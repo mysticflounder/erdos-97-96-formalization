@@ -189,8 +189,20 @@ unresolved member in the stored 263-core bank.  This remains recurrence within
 a mined finite bank, not live parent coverage or a proof of the generic
 interval-flux extraction lemma.
 
+The exact row boundaries also have a small assignment-flow normal form inside
+this bank.  [`analyze_contour_assignment_flows.py`](analyze_contour_assignment_flows.py)
+replays row and target balance, then decomposes every integral boundary into
+alternating assignment circuits.  Of 263 contours, 229 decompose into one
+circuit (221 of them simple) and 34 into two.  For the deterministic
+decomposition used here, 32 of those 34 have two individually mixed components
+whose sum is one-signed; the remaining two already contain a one-signed
+component.  This is an exact bank census, not a theorem that arbitrary live
+tables admit a one- or two-circuit contour.
+
 The merged records and every displayed multiplier are in
 [`core_bank_small_contour_audit.json`](core_bank_small_contour_audit.json).
+The assignment decompositions are in
+[`contour_assignment_flow_audit.json`](contour_assignment_flow_audit.json).
 [`merge_core_bank_contour_audits.py`](merge_core_bank_contour_audits.py)
 checks that the shards cover each source index exactly once before producing
 the census.
@@ -212,12 +224,99 @@ The completed external exact-Z3 decisions are:
 | 8 | reachability, cuts, and omitted | `UNSAT` |
 | 9 | reachability, cuts, and omitted | `UNSAT` |
 | 10 | six reachability seeds and six omitted-connectivity seeds | `UNSAT` |
-| 11 | eight reachability seeds, 600 seconds each | `UNKNOWN` (timeout) |
+| 11 | 8 reachability, 8 cut, and 6 omitted-connectivity seeds | `UNKNOWN` (all 600-second timeouts) |
 
 Card-ten runs finish in 227--320 seconds.  These are exact-arithmetic external
 solver decisions, but the UNSAT results have no imported proof certificate and
 remain finite theorem-discovery evidence.  A SAT model would be exact and
-independently replayed; none has been found.
+independently replayed; none has been found.  The 22 card-eleven no-verdicts
+span both exact connectivity encodings and the stronger formula with
+connectivity omitted, so another direct integrated portfolio is not the next
+step.
+
+## Assignment-comparability reduction
+
+The strongest surviving sufficient route chooses one selected target at each
+center.  Two assignments with equal target multiplicities have a balanced
+difference, and its interval flux is exactly the difference of their outward
+circular-cut crossing profiles.  A strictly comparable pair therefore closes
+through the same weighted Kalmanson consumer.
+
+[`AssignmentComparability.lean`](AssignmentComparability.lean) now
+kernel-checks the row-balance identity, target balance under equal
+multiplicities, and the exact flux/crossing-count identity.  Its axiom queries
+report only `propext`, `Classical.choice`, and `Quot.sound`.  It deliberately
+does not assert the open product-box theorem.
+
+Pigeonhole proves that an equal-multiplicity pair exists, but not that its
+profiles are comparable.  The exact missing statement is a circular
+product-box width theorem: some multiplicity fiber of every complete strongly
+connected pair-alternating four-choice row table is not an antichain.  The
+schema-4 contour requires two oppositely coupled mixed swaps, while W(3,3)
+already has a directly comparable four-row pair.  Partial core 79 has no
+comparable pair among its 48 displayed-support assignments, so complete rows
+are a load-bearing hypothesis.  The exact reduction and regressions are in
+[`ASSIGNMENT_COMPARABILITY_REDUCTION.md`](ASSIGNMENT_COMPARABILITY_REDUCTION.md).
+
+### Full product-box decision at the first feasible card
+
+[`search_full_product_antichain.py`](search_full_product_antichain.py) tests
+the full statement rather than a metric shadow or partial minimized core.  Its
+outer table has four distinct nonself targets at every center, exact strong
+connectivity, and every shared target pair alternating with its two centers.
+For each outer table, an exact inner query searches the complete assignment
+product for an equal-multiplicity strictly comparable pair.  A found pair is
+replayed over integer circular-interval crossing counts before its changed-row
+support becomes a blocking clause.
+
+Cards five through seven are already structurally `UNSAT` from pair
+alternation.  Card eight is the first feasible outer surface.  There the CEGAR
+loop examined two complete row tables, banked 256 replayed comparable-pair
+support cuts, and then returned `UNSAT`.  The independently exported Boolean
+formula has 56 variables and 1,238 clauses; CaDiCaL returned `UNSAT`, and
+`drat-trim` reported `s VERIFIED` for the saved 31,865-byte proof.
+[`verify_full_product_antichain.py`](verify_full_product_antichain.py)
+independently recomputes every cut certificate, reconstructs the complete CNF
+clause multiset, checks its digest, and reruns the DRAT verifier.  Its saved
+terminal record is
+[`full_product_antichain_n8.replay.json`](full_product_antichain_n8.replay.json).
+
+Reproduce the decision and replay with:
+
+```bash
+UV_CACHE_DIR=/private/tmp/p97-uv-cache uv run --no-project python \
+  scratch/atail-force/aggregate-positive-contour-discovery/search_full_product_antichain.py \
+  --n 8 --timeout-seconds 300 --solver-timeout-ms 60000 \
+  --max-iterations 10000 --batch-cuts 128 --seed 0 \
+  --output scratch/atail-force/aggregate-positive-contour-discovery/full_product_antichain_n8.json \
+  --dimacs-output scratch/atail-force/aggregate-positive-contour-discovery/full_product_antichain_n8.cnf
+cadical -q -t 60 \
+  scratch/atail-force/aggregate-positive-contour-discovery/full_product_antichain_n8.cnf \
+  scratch/atail-force/aggregate-positive-contour-discovery/full_product_antichain_n8.drat
+UV_CACHE_DIR=/private/tmp/p97-uv-cache uv run --no-project python \
+  scratch/atail-force/aggregate-positive-contour-discovery/verify_full_product_antichain.py \
+  scratch/atail-force/aggregate-positive-contour-discovery/full_product_antichain_n8.json \
+  scratch/atail-force/aggregate-positive-contour-discovery/full_product_antichain_n8.cnf \
+  scratch/atail-force/aggregate-positive-contour-discovery/full_product_antichain_n8.drat \
+  --output scratch/atail-force/aggregate-positive-contour-discovery/full_product_antichain_n8.replay.json
+```
+
+This is exhaustive, proof-checked **finite card-eight evidence** for the
+product-box comparability theorem.  It is not a cardinality-generic extraction
+theorem, is not imported into Lean, and closes no source `sorry` by itself.
+
+The first completion audit preserves the partial schema-4 incidences and asks
+for a complete strongly connected pair-alternating four-target table with no
+favorable simple cycle.  Exact finite CEGAR returns external `UNSAT` at cards
+nine and ten after forbidding 1,500 and 59,000 favorable cycles respectively.
+This is positive evidence for the full-row theorem, not a certificate or a
+generic proof.
+
+An independent core-guided falsifier checked 1,230,000 complete row tables
+without an exact-LRA SAT hit: 880,935 at card eleven, 318,344 at card fourteen,
+30,566 at card twenty, and 155 at card forty.  The low card-forty count is a
+timeout effect.  Every candidate uses exact Z3 arithmetic and any SAT hit
+would be replayed, but bounded no-hit is not coverage.
 
 ## Reproduction
 
@@ -244,6 +343,8 @@ Validation at this checkpoint:
 ```text
 python byte compilation                         PASS (through uv)
 ruff check                                      PASS
+assignment reduction Lean check                 PASS
+assignment reduction reaches `sorryAx`           no
 seed-1 exact dual status                        SAT
 seed-1 exact vector cancellation                true
 seed-1 active Kalmanson inequalities            3

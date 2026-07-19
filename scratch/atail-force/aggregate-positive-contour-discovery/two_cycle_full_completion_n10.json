@@ -1,0 +1,27 @@
+{
+  "epistemic_status": "EXTERNAL_EXACT_Z3_RESULT_NOT_INDEPENDENTLY_CERTIFIED",
+  "fixed_partial_rows": {
+    "0": [
+      6,
+      8
+    ],
+    "6": [
+      1,
+      7
+    ],
+    "7": [
+      6,
+      8
+    ],
+    "8": [
+      1,
+      7
+    ]
+  },
+  "forbidden_favorable_cycle_count": 59000,
+  "n": 10,
+  "schema": "p97-atail-favorable-simple-cycle-completion-audit-v1",
+  "search_mode": "PINNED_TWO_CYCLE_COMPLETION",
+  "search_status": "UNSAT",
+  "wall_seconds": 344.46899974998087
+}

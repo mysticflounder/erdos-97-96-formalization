@@ -1076,14 +1076,60 @@ target is:
 > fluxes are all nonpositive after one global sign choice, with at least one
 > strict flux.
 
-This target must permit coupled cycles.  A deletion-minimal two-cell core has
+The generic consumer permits coupled cycles.  A deletion-minimal two-cell core has
 two simple alternating cycles whose interval fluxes are individually mixed,
 although their sum is a positive telescoping contour.  The same obstruction
 occurs in 38 of the 263 minimized exact cores, so minimum-length,
-minimum-crossing, or otherwise extremal **single-cycle** extraction is false.
+minimum-crossing, or otherwise extremal **single-cycle** extraction from the
+minimal core alone is false.  Those cores omit unused targets and centers, so
+they do not rule out a full-row theorem producing a different favorable
+simple cycle from the complete four-target table.  Coupled-cycle extraction
+remains the proven-safe general target while that sharper possibility is
+audited.
+
 The exact Gordan dual of failure is again a strict circular-split Kalmanson
 table with four equal selected targets per row; dimension or separation alone
 does not prove the theorem.
+
+The strongest currently coherent sufficient target is the **circular
+product-box comparability theorem**.  Choose one selected target at every
+center.  Equal target multiplicities make the difference of two assignments a
+balanced circulation, and its interval flux is exactly the difference of
+their outward circular-cut crossing profiles.  Pigeonhole forces a
+multiplicity collision but not comparability.  Prove that some multiplicity
+fiber of every complete strongly connected, pair-alternating four-choice row
+table is not an antichain.  Schema 4 needs two oppositely coupled swaps and
+`W(3,3)` has a direct comparable four-row pair; partial core 79 has no
+comparable pair among 48 assignments, so the full-box hypothesis is
+load-bearing.  If this stronger theorem fails, return to the general coupled
+circulation lemma rather than another literal schema bank.  In the stored
+263-core census, exact assignment-flow decomposition uses one circuit in 229
+cases (221 simple) and two circuits in 34; 32 of the two-circuit decompositions
+couple individually mixed components.  Treat this as theorem-discovery shape,
+not a uniform at-most-two-circuit claim.
+
+The reduction itself is now kernel checked in scratch:
+`aggregate-positive-contour-discovery/AssignmentComparability.lean` proves
+center-row balance, target-column balance from equal multiplicities, and the
+exact flux/crossing-profile identity with only `propext`, `Classical.choice`,
+and `Quot.sound`.  The file deliberately leaves the product-box width theorem
+unstated rather than hiding it behind a new conditional producer.
+
+The first complete finite product surface is now closed at card eight.  Cards
+five through seven are pair-alternation UNSAT; card eight is exhausted by 256
+exactly replayed comparable-pair support cuts, and the resulting
+56-variable/1,238-clause CNF has an independently verified DRAT proof.  This
+is finite theorem evidence only and has not been imported into Lean.  A naive
+minimal-counterexample induction does not follow: a full degree-three `Fin 7`
+table is strongly connected and pair-alternating yet has an exact positive
+split-metric Gordan separator, so it admits no one-signed circulation.  Any
+induction must preserve or repair the fourth target explicitly.
+
+The weaker favorable-simple-cycle completion audit is externally UNSAT on the
+entire unpinned card-nine surface after 8,000 cuts.  Card ten remains open
+after a manually stopped 73,500-cut run.  Do not treat this bounded cycle
+census as a replacement for the generic product-box or coupled-circulation
+proof.
 
 The current recurrence evidence is nevertheless complete for the stored
 bank.  Independent integer replay accepts positive contours for all 263
@@ -1098,12 +1144,20 @@ falsification; all global Kalmanson inequalities are nonnegative sums of
 these cells.  The local-basis exact solver reproduces external UNSAT at cards
 eight through ten, including no-connectivity runs at each size.  Six connected
 and six no-connectivity card-ten seeds finish in 227--320 seconds; eight
-card-eleven reachability seeds time out at 600 seconds and remain `UNKNOWN`.
+card-eleven reachability seeds, eight cut-encoding seeds, and six
+no-connectivity seeds all time out at 600 seconds and remain `UNKNOWN`.
 An exact replayed SAT table would refute the bare aggregate theorem and return
 priority to the parent-specific all-center/CSS/MEC coupling.  An external
 UNSAT result without a checked certificate is finite evidence only.  Do not
 restart literal membership-schema CEGAR: the next proof step is the uniform
-interval-flux lemma, and the fallback is genuinely stronger parent geometry.
+interval-flux lemma (with either a full-row favorable cycle or a coupled
+circulation), and the fallback is genuinely stronger parent geometry.
+
+A bounded core-guided falsifier has now exact-checked 1,230,000 complete row
+tables across cards eleven, fourteen, twenty, and forty without finding an LRA
+SAT model.  This supports the aggregate conjecture but proves no coverage; the
+card-forty sample is only 155 tables because many fixed checks consume their
+per-candidate timeout.
 
 The helper-local LIVE-C fallback is not a competing closure route.  The exact
 rational Lean model in `live-c-t2-rowfailure-closure/` realizes the local

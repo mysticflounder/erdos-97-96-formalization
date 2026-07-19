@@ -2325,13 +2325,61 @@ already close with one cell.  The precise live theorem-discovery target is:
 
 This is not a renamed literal-core queue.  A minimized exact two-cell core
 shows that neither minimum-length nor minimum-crossing **single-cycle**
-extraction is valid: its two simple alternating cycles each have mixed flux,
-while their sum is a positive telescoping contour.  Thirty-eight of the 263
-minimized bank cores have no one-signed simple incidence cycle.  Any proof must
-allow coupled cycles.  The Gordan dual of failure is exactly a strict
+extraction is valid from the minimized core alone: its two simple alternating
+cycles each have mixed flux, while their sum is a positive telescoping
+contour.  Thirty-eight of the 263 minimized bank cores have no one-signed
+simple incidence cycle.  Coupled cycles are therefore a necessary fallback
+for core-local extraction.  Because these cores omit unused targets and
+centers, they do not refute a stronger theorem that every complete four-target
+row table contains some favorable simple cycle.  The Gordan dual of failure is
+exactly a strict
 circular-split Kalmanson table with four equal selected targets in every row,
 so separation or dimension counting alone loops back to the original bare
 theorem.
+
+A stronger sufficient formulation may be more tractable.  Choose one of the
+four selected targets at every center.  If two such assignments have the same
+target multiplicities, their difference is balanced, and its interval flux is
+exactly the difference of their outward circular-cut crossing profiles.
+Pigeonhole guarantees an equal-multiplicity pair, but comparability is the
+missing step: a multiplicity fiber may be an antichain.  The exact sharper
+target is a **circular product-box comparability theorem** asserting that some
+multiplicity fiber of every complete strongly connected, pair-alternating
+four-choice row table contains two distinct strictly comparable profiles.
+Schema 4 closes only after two mixed swaps are coupled; `W(3,3)` already has a
+comparable four-row pair.  Core 79 has no comparable pair on its partial
+48-assignment support, so this is a genuine strengthening of the circulation
+route, not a normal form for every minimized core.  Keep the general
+one-signed circulation lemma as the fallback.  Exact decomposition of the
+stored contours gives one alternating assignment circuit in 229/263 cases
+(221 simple) and two circuits in 34/263; in 32 of those 34, the chosen
+components are individually mixed while their sum is one-signed.  This is a
+finite-bank recurrence, not a uniform two-circuit theorem.
+
+The algebraic handoff is no longer informal:
+`aggregate-positive-contour-discovery/AssignmentComparability.lean`
+kernel-checks center-row balance, target-column balance under equal
+multiplicities, and the exact identity between interval flux and the
+difference of outward crossing counts.  Its axiom closure is only `propext`,
+`Classical.choice`, and `Quot.sound`; it does not assume the open product-box
+width theorem.
+
+The first feasible complete product surface is now decided exactly at card
+eight.  Cards five through seven already violate pair alternation.  At card
+eight, exact CEGAR learns 256 replayed comparable-assignment support cuts; the
+remaining 56-variable, 1,238-clause CNF is UNSAT and its saved DRAT proof is
+independently verified.  This is a proof-checked finite decision, not a
+cardinality-generic theorem and not yet a Lean theorem.  The obvious induction
+from this base is false: there is an exact strongly connected pair-alternating
+degree-three table on `Fin 7` with a strictly positive split-metric Gordan
+separator and no one-signed circulation.  Deletion must therefore repair the
+fourth target rather than weaken the hypothesis to degree at least three.
+
+As a separate simple-cycle audit, the unpinned complete four-target surface at
+card nine is externally UNSAT after 8,000 learned favorable-cycle clauses.
+The corresponding card-ten run was stopped unresolved after 73,500 clauses.
+These facts support a full-row favorable-cycle theorem but are weaker than the
+product-box decision and remain external finite evidence.
 
 The recurrence evidence is now exact across the stored bank.  Independent
 integer replay accepts positive contours for all 263 minimized exact-LRA
@@ -2350,10 +2398,18 @@ replaces 2,002 global strict constraints by 77 equivalent local cells at card
 fourteen.  The local-basis exact decision reproduces external UNSAT at cards
 eight through ten, including no-connectivity runs at each size.  Six connected
 and six no-connectivity card-ten seeds finish in 227--320 seconds.  Eight
-card-eleven reachability seeds time out at 600 seconds and remain `UNKNOWN`.
+card-eleven reachability seeds, eight cut-encoding seeds, and six
+no-connectivity seeds all time out at 600 seconds and remain `UNKNOWN`.
 A future exact SAT table would refute the aggregate route and
 return priority to the parent-specific all-center/CSS/MEC coupling.  An UNSAT
 result without a checked certificate remains finite evidence only.
+
+The completed core-guided falsifier adds 1,230,000 full-row probes with no
+exact-LRA SAT hit: 880,935 at card eleven, 318,344 at card fourteen, 30,566 at
+card twenty, and 155 at card forty.  Every fixed candidate is checked by exact
+Z3 arithmetic and any SAT hit would be replayed, but no-hit remains bounded
+theorem-discovery evidence.  The much smaller card-forty count reflects
+per-candidate timeouts, not stronger coverage.
 
 An exact-seven finite route must enumerate both first-apex same- and
 distinct-radius role cells, adding common planar rank-two constraints only if

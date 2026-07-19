@@ -223,7 +223,7 @@ all-center strict-Kalmanson theorem.  A successful proof still has to use the
 four marks per fiber, pair alternation, and (after sink reduction) strong
 connectivity to rule out the positive split-metric potential representation.
 
-## 4. Why a single extremal incidence cycle is insufficient
+## 4. Why minimized-core single-cycle extraction is insufficient
 
 The deletion-minimal bank already contains a smallest exact obstruction to a
 proof that chooses one bipartite support cycle and orients it.  The core is
@@ -260,13 +260,18 @@ K2(0,1,6,7) + K2(0,1,7,8)
 and the four displayed row equalities make the right side zero.  The middle
 terms cancel through center/target role identification.  Thus a proof by a
 minimum-length, minimum-span, or minimum-crossing **single** support cycle is
-false as stated.  The generic extraction theorem must allow a nonnegative
-combination of individually mixed circulation cycles.
+not available from the minimized core alone.  A nonnegative combination of
+individually mixed circulation cycles is sufficient for this core.
 
 An audit of the current 263 deletion-minimal exact cores finds 38 cores with
 no one-signed simple incidence cycle, although each complete core has a
 positive exact Kalmanson dual.  This is finite evidence for the same
-structural warning; it is not generic coverage.
+structural warning; it is not generic coverage.  These minimized cores contain
+only the row incidences used by their certificates, not four complete targets
+at every carrier center.  They therefore do **not** refute a stronger theorem
+that every complete strongly connected four-target row table has some
+favorable simple cycle using additional incidences.  That completion-level
+single-cycle statement remains a live candidate until separately decided.
 
 ## 5. High-girth positive example
 
@@ -286,3 +291,21 @@ K2(3,4,34,37) + K2(4,8,25,37) + K2(7,8,12,25).
 This confirms that the interval-flux formulation handles sparse high-girth
 row systems, but it does not prove that every strongly connected residual
 has such a circulation.
+
+## 6. Stronger assignment-comparability route
+
+[`ASSIGNMENT_COMPARABILITY_REDUCTION.md`](ASSIGNMENT_COMPARABILITY_REDUCTION.md)
+isolates a stronger sufficient statement.  Two choices of one selected target
+per center with the same target multiplicities define a balanced circulation,
+and their interval-flux difference is exactly the coordinatewise difference
+of their outward circular-cut crossing profiles.  Thus a strictly comparable
+pair closes immediately.
+
+Pigeonhole guarantees two assignments with the same target multiplicities,
+but does not guarantee comparable crossing profiles.  The precise stronger
+target is a circular product-box width theorem saying that some multiplicity
+fiber of every complete strongly connected pair-alternating four-choice row
+system is not an antichain.  Schema 4 and W(3,3) have exact comparable product
+pairs.  Minimized core 79 has no comparable pair on its partial displayed
+support, so assignment pairs are not a normal form for arbitrary partial
+cores; that does not decide the complete four-target theorem.

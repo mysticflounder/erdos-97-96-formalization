@@ -1,0 +1,20 @@
+{
+  "artifact_sha256": "606e2459063c7efac5fb0320186842c2d477bb3a3c73d6dd28a2967bc506343c",
+  "cnf_clause_count": 1238,
+  "cnf_sha256": "d971e0278e58ba54847b0a35be009b79bf56a970464a746cc10ac12c9b701106",
+  "cnf_variable_count": 56,
+  "cut_certificate_count": 256,
+  "cut_support_size_histogram": {
+    "10": 34,
+    "12": 71,
+    "14": 40,
+    "16": 17,
+    "6": 34,
+    "8": 60
+  },
+  "drat_sha256": "bffe39238f7538d9c43b85646fec161082eafccba88259d9add4f6c08c28d915",
+  "drat_trim_terminal": "s VERIFIED",
+  "n": 8,
+  "schema": "p97-full-four-row-product-antichain-replay-v1",
+  "status": "VERIFIED"
+}

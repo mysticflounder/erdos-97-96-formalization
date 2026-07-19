@@ -1,0 +1,10 @@
+{
+  "epistemic_status": "EXTERNAL_EXACT_Z3_RESULT_NOT_INDEPENDENTLY_CERTIFIED",
+  "fixed_partial_rows": null,
+  "forbidden_favorable_cycle_count": 8000,
+  "n": 9,
+  "schema": "p97-atail-favorable-simple-cycle-completion-audit-v1",
+  "search_mode": "UNPINNED_FULL_ROW_TABLE",
+  "search_status": "UNSAT",
+  "wall_seconds": 29.29424158402253
+}
