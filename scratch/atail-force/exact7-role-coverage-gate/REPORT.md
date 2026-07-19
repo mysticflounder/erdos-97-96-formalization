@@ -355,9 +355,13 @@ residual): single outside point on a completion slot, outside point =
 frontier source, extra on a row slot, shared completion in the
 same-radius arm (`l1_id_type_cores.json`).
 
-Joint-crossing sample (`sample_l1c.py`, deterministic seed): retro
-survivors × L1b patterns as single full schemas — checks for cross-layer
-teeth the per-layer censuses missed.
+Joint-crossing sample (`sample_l1c.py`, deterministic seed 97, 40
+crossings): **2 joint kills, 38 SAT** (`l1c_sample_results.json`).
+Cross-layer teeth EXIST: both kills have an L1 row carrying O plus a
+named interior point (`cO-s1`, `ds0-O`), where the row equalities feed
+the L0 Kalmanson/class system (cores mix row_eq + cls_eq + kal, sizes
+12-16).  A full L1c census (876 × surviving row patterns) is warranted —
+joint schemas run minutes each, so shard it or offload to flux.local.
 
 ## Next steps
 

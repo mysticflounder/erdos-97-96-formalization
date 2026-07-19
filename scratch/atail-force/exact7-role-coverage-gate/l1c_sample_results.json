@@ -1,0 +1,326 @@
+{
+ "l1c.retro.L0.eO1-EA.r0S-S.r1O1-O1.r2S-S.X.L1a.qwW-O1.cO1-O1.ds2-O.ne": {
+  "schema_id": "l1c.retro.L0.eO1-EA.r0S-S.r1O1-O1.r2S-S.X.L1a.qwW-O1.cO1-O1.ds2-O.ne",
+  "verdict": "sat",
+  "points": 20,
+  "assertions": 33466,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eEA-W.r0S-O.r1S-S.r2S-O1.mp0a=p1b.X.L1a.qwO1-O1.cO-s1.db0-none.ne": {
+  "schema_id": "l1c.retro.L0.eEA-W.r0S-O.r1S-S.r2S-O1.mp0a=p1b.X.L1a.qwO1-O1.cO-s1.db0-none.ne",
+  "verdict": "unsat",
+  "points": 17,
+  "assertions": 14210,
+  "trivial_k4_centers": [],
+  "core": [
+   "cls_eq|O|s2",
+   "cls_eq|b0|O",
+   "cls_eq|b0|s1",
+   "cls_eq|s1|s0",
+   "kal|EA,O,s1,s2|ac+bd-ab-cd",
+   "kal|EA,p0a+p1b,s0,b0|ac+bd-ad-bc",
+   "kal|EA,s0,b0,s2|ac+bd-ab-cd",
+   "kal|p0a+p1b,O,s0,b0|ac+bd-ad-bc",
+   "kal|s0,b0,b1,s2|ac+bd-ad-bc",
+   "kal|s0,b0,s1,b1|ac+bd-ad-bc",
+   "row_eq|ret|O",
+   "row_eq|ret|s1"
+  ],
+  "core_size": 12,
+  "families": {
+   "cls_eq": 4,
+   "kal": 6,
+   "row_eq": 2
+  }
+ },
+ "l1c.retro.L0.eEA-W.r0O1-O1.r1O1-O.r2S-S.mp0b=p1a.X.L1a.qwO1-O1.cO1-O.db0-none.ne": {
+  "schema_id": "l1c.retro.L0.eEA-W.r0O1-O1.r1O1-O.r2S-S.mp0b=p1a.X.L1a.qwO1-O1.cO1-O.db0-none.ne",
+  "verdict": "sat",
+  "points": 18,
+  "assertions": 22901,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-W.r0O1-O1.r1S-O1.r2O1-O.mp0b=p1b.X.L1a.qwO1-O1.cO1-O1.dnone-S.eq": {
+  "schema_id": "l1c.retro.L0.eS-W.r0O1-O1.r1S-O1.r2O1-O.mp0b=p1b.X.L1a.qwO1-O1.cO1-O1.dnone-S.eq",
+  "verdict": "sat",
+  "points": 21,
+  "assertions": 50417,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-W.r0S-O.r1S-S.r2S-S.mp0a=p1b.X.L1a.qwO1-O1.cO1-S.ds2-none.ne": {
+  "schema_id": "l1c.retro.L0.eS-W.r0S-O.r1S-S.r2S-S.mp0a=p1b.X.L1a.qwO1-O1.cO1-S.ds2-none.ne",
+  "verdict": "sat",
+  "points": 20,
+  "assertions": 30260,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-O1.r0S-S.r1O1-O1.r2O1-O1.X.L1a.qwO1-O1.cS-s1.db1-none.ne": {
+  "schema_id": "l1c.retro.L0.eS-O1.r0S-S.r1O1-O1.r2O1-O1.X.L1a.qwO1-O1.cS-s1.db1-none.ne",
+  "verdict": "sat",
+  "points": 22,
+  "assertions": 58847,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-O1.r0S-S.r1S-S.r2S-O1.mp0a=p1a.X.L1a.qwO1-O1.cO1-S.dnone-O.ne": {
+  "schema_id": "l1c.retro.L0.eS-O1.r0S-S.r1S-S.r2S-O1.mp0a=p1a.X.L1a.qwO1-O1.cO1-S.dnone-O.ne",
+  "verdict": "sat",
+  "points": 22,
+  "assertions": 50185,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2S-O.X.L1a.qwb1-O1.cO1-O1.ds1-S.ne": {
+  "schema_id": "l1c.retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2S-O.X.L1a.qwb1-O1.cO1-O1.ds1-S.ne",
+  "verdict": "sat",
+  "points": 21,
+  "assertions": 50416,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-O1.r0S-O.r1S-S.r2O1-O1.mp0a=p1a.X.L1a.qws0-O1.cO1-O1.db0-none.ne": {
+  "schema_id": "l1c.retro.L0.eS-O1.r0S-O.r1S-S.r2O1-O1.mp0a=p1a.X.L1a.qws0-O1.cO1-O1.db0-none.ne",
+  "verdict": "sat",
+  "points": 20,
+  "assertions": 37572,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eO1-EA.r0S-O1.r1O1-O1.r2S-O.mp0b=p1b.X.L1a.qwO1-O1.cO1-b0.dW-O.ne": {
+  "schema_id": "l1c.retro.L0.eO1-EA.r0S-O1.r1O1-O1.r2S-O.mp0b=p1b.X.L1a.qwO1-O1.cO1-b0.dW-O.ne",
+  "verdict": "sat",
+  "points": 18,
+  "assertions": 22901,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eEA-W.r0O1-O1.r1O1-O1.r2S-S.mp0a=p1a.X.L1a.qwO1-O1.cS-s2.db1-S.ne": {
+  "schema_id": "l1c.retro.L0.eEA-W.r0O1-O1.r1O1-O1.r2S-S.mp0a=p1a.X.L1a.qwO1-O1.cS-s2.db1-S.ne",
+  "verdict": "sat",
+  "points": 19,
+  "assertions": 24803,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eO1-EA.r0O1-O1.r1S-O1.r2S-S.X.L1a.qwO1-O1.cS-s2.ds0-none.ne": {
+  "schema_id": "l1c.retro.L0.eO1-EA.r0O1-O1.r1S-O1.r2S-S.X.L1a.qwO1-O1.cS-s2.ds0-none.ne",
+  "verdict": "sat",
+  "points": 21,
+  "assertions": 44648,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eO1-EA.r0S-S.r1S-S.r2S-O1.X.L1a.qwO1-O1.cS-b0.db1-none.ne": {
+  "schema_id": "l1c.retro.L0.eO1-EA.r0S-S.r1S-S.r2S-O1.X.L1a.qwO1-O1.cS-b0.db1-none.ne",
+  "verdict": "sat",
+  "points": 21,
+  "assertions": 39030,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eEA-W.r0S-S.r1S-O.r2S-S.mp0b=p1a.X.L1a.qwO1-O1.cO-s2.ds2-O.eq": {
+  "schema_id": "l1c.retro.L0.eEA-W.r0S-S.r1S-O.r2S-S.mp0b=p1a.X.L1a.qwO1-O1.cO-s2.ds2-O.eq",
+  "verdict": "sat",
+  "points": 16,
+  "assertions": 9636,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-W.r0S-O1.r1S-O1.r2S-O.mp0a=p1a.X.L1a.qwO1-O1.cO1-s2.db0-S.ne": {
+  "schema_id": "l1c.retro.L0.eS-W.r0S-O1.r1S-O1.r2S-O.mp0a=p1a.X.L1a.qwO1-O1.cO1-s2.db0-S.ne",
+  "verdict": "sat",
+  "points": 19,
+  "assertions": 24803,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-W.r0O1-O.r1O1-O1.r2S-S.X.L1a.qwO1-O1.cO1-s0.ds0-O.eq": {
+  "schema_id": "l1c.retro.L0.eS-W.r0O1-O.r1O1-O1.r2S-S.X.L1a.qwO1-O1.cO1-s0.ds0-O.eq",
+  "verdict": "unsat",
+  "points": 19,
+  "assertions": 27575,
+  "trivial_k4_centers": [],
+  "core": [
+   "cls_eq|O|s2",
+   "cls_eq|b0|O",
+   "cls_eq|s1|s0",
+   "kal|EA,O,p0a,s2|ac+bd-ab-cd",
+   "kal|EA,W,s0,s2|ac+bd-ab-cd",
+   "kal|EA,b0,s1,s2|ac+bd-ab-cd",
+   "kal|EA,e1,b0,s1|ac+bd-ad-bc",
+   "kal|EA,e1,s0,b0|ac+bd-ad-bc",
+   "kal|EA,p0a,W,s2|ac+bd-ab-cd",
+   "kal|EA,s0,b0,s2|ac+bd-ab-cd",
+   "kal|O,p0a,b0,s1|ac+bd-ad-bc",
+   "kal|W,s0,b0,s1|ac+bd-ad-bc",
+   "kal|e1,O,b0,s1|ac+bd-ad-bc",
+   "kal|e1,O,s0,b0|ac+bd-ad-bc",
+   "kal|p0a,W,b0,s1|ac+bd-ad-bc",
+   "row_eq|dbl|O"
+  ],
+  "core_size": 16,
+  "families": {
+   "cls_eq": 3,
+   "kal": 12,
+   "row_eq": 1
+  }
+ },
+ "l1c.retro.L0.eO1-EA.r0S-O.r1O1-O.r2S-S.X.L1a.qwb0-O1.cO1-O.dnone-none.eq": {
+  "schema_id": "l1c.retro.L0.eO1-EA.r0S-O.r1O1-O.r2S-S.X.L1a.qwb0-O1.cO1-O.dnone-none.eq",
+  "verdict": "sat",
+  "points": 19,
+  "assertions": 27574,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-W.r0S-O1.r1O1-O1.r2S-S.mp0b=p1a.X.L1a.qwO1-O1.cO1-b0.db0-none.eq": {
+  "schema_id": "l1c.retro.L0.eS-W.r0S-O1.r1O1-O1.r2S-S.mp0b=p1a.X.L1a.qwO1-O1.cO1-b0.db0-none.eq",
+  "verdict": "sat",
+  "points": 20,
+  "assertions": 33467,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-O1.r0O1-O1.r1S-O1.r2O1-O.X.L1a.qwO1-O1.cO1-s1.db0-none.ne": {
+  "schema_id": "l1c.retro.L0.eS-O1.r0O1-O1.r1S-O1.r2O1-O.X.L1a.qwO1-O1.cO1-s1.db0-none.ne",
+  "verdict": "sat",
+  "points": 21,
+  "assertions": 58334,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-W.r0S-S.r1O1-O.r2S-S.X.L1a.qwO1-O1.cO1-W.ds0-none.ne": {
+  "schema_id": "l1c.retro.L0.eS-W.r0S-S.r1O1-O.r2S-S.X.L1a.qwO1-O1.cO1-W.ds0-none.ne",
+  "verdict": "sat",
+  "points": 20,
+  "assertions": 31053,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-W.r0S-O1.r1S-O.r2S-S.mp0a=p1a.X.L1a.qwb0-O1.cO1-O1.db1-O.ne": {
+  "schema_id": "l1c.retro.L0.eS-W.r0S-O1.r1S-O.r2S-S.mp0a=p1a.X.L1a.qwb0-O1.cO1-O1.db1-O.ne",
+  "verdict": "sat",
+  "points": 18,
+  "assertions": 18203,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eEA-W.r0S-S.r1S-O1.r2S-S.X.L1a.qws1-O1.cO1-O.ds2-S.ne": {
+  "schema_id": "l1c.retro.L0.eEA-W.r0S-S.r1S-O1.r2S-S.X.L1a.qws1-O1.cO1-O.ds2-S.ne",
+  "verdict": "sat",
+  "points": 19,
+  "assertions": 23449,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-O1.r0O1-O.r1S-O1.r2O1-O1.X.L1a.qwO1-O1.cO1-W.dnone-S.ne": {
+  "schema_id": "l1c.retro.L0.eS-O1.r0O1-O.r1S-O1.r2O1-O1.X.L1a.qwO1-O1.cO1-W.dnone-S.ne",
+  "verdict": "sat",
+  "points": 22,
+  "assertions": 66642,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2S-S.mp0a=p1a.X.L1a.qwO1-O1.cO1-W.ds2-S.ne": {
+  "schema_id": "l1c.retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2S-S.mp0a=p1a.X.L1a.qwO1-O1.cO1-W.ds2-S.ne",
+  "verdict": "sat",
+  "points": 21,
+  "assertions": 44648,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eEA-W.r0S-O1.r1O1-O1.r2S-O1.mp0b=p1b.X.L1a.qwO1-O1.cS-s0.ds0-none.eq": {
+  "schema_id": "l1c.retro.L0.eEA-W.r0S-O1.r1O1-O1.r2S-O1.mp0b=p1b.X.L1a.qwO1-O1.cS-s0.ds0-none.eq",
+  "verdict": "sat",
+  "points": 19,
+  "assertions": 27576,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-W.r0O1-O.r1O1-O.r2O1-O1.X.L1a.qwO1-O1.cO1-O1.dnone-none.eq": {
+  "schema_id": "l1c.retro.L0.eS-W.r0O1-O.r1O1-O.r2O1-O1.X.L1a.qwO1-O1.cO1-O1.dnone-none.eq",
+  "verdict": "sat",
+  "points": 21,
+  "assertions": 68592,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-W.r0O1-O1.r1O1-O1.r2S-O1.mp0b=p1b.X.L1a.qwO1-O1.cO1-s1.ds1-none.eq": {
+  "schema_id": "l1c.retro.L0.eS-W.r0O1-O1.r1O1-O1.r2S-O1.mp0b=p1b.X.L1a.qwO1-O1.cO1-s1.ds1-none.eq",
+  "verdict": "sat",
+  "points": 20,
+  "assertions": 43493,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-W.r0S-S.r1S-O1.r2S-S.mp0a=p1a.X.L1a.qwO1-O1.cO1-s2.dnone-O.eq": {
+  "schema_id": "l1c.retro.L0.eS-W.r0S-S.r1S-O1.r2S-S.mp0a=p1a.X.L1a.qwO1-O1.cO1-s2.dnone-O.eq",
+  "verdict": "sat",
+  "points": 20,
+  "assertions": 31053,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-O1.r0S-S.r1S-S.r2S-S.mp0a=p1a.X.L1a.qwO1-O1.cO1-W.dnone-none.eq": {
+  "schema_id": "l1c.retro.L0.eS-O1.r0S-S.r1S-S.r2S-S.mp0a=p1a.X.L1a.qwO1-O1.cO1-W.dnone-none.eq",
+  "verdict": "sat",
+  "points": 22,
+  "assertions": 50184,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eO1-EA.r0O1-O1.r1O1-O1.r2S-S.mp0a=p1b.X.L1a.qws1-O1.cO1-S.dnone-O.ne": {
+  "schema_id": "l1c.retro.L0.eO1-EA.r0O1-O1.r1O1-O1.r2S-S.mp0a=p1b.X.L1a.qws1-O1.cO1-S.dnone-O.ne",
+  "verdict": "sat",
+  "points": 20,
+  "assertions": 37573,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eO1-EA.r0O1-O1.r1S-O1.r2S-O1.X.L1a.qwO1-O1.cO1-O1.ds1-none.ne": {
+  "schema_id": "l1c.retro.L0.eO1-EA.r0O1-O1.r1S-O1.r2S-O1.X.L1a.qwO1-O1.cO1-O1.ds1-none.ne",
+  "verdict": "sat",
+  "points": 22,
+  "assertions": 76953,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-W.r0S-O.r1O1-O1.r2S-S.X.L1a.qws2-O1.cO1-O1.db1-none.ne": {
+  "schema_id": "l1c.retro.L0.eS-W.r0S-O.r1O1-O1.r2S-S.X.L1a.qws2-O1.cO1-O1.db1-none.ne",
+  "verdict": "sat",
+  "points": 20,
+  "assertions": 33466,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-O1.r0S-S.r1S-S.r2S-O.X.L1a.qwO1-O1.cO1-b1.dnone-S.ne": {
+  "schema_id": "l1c.retro.L0.eS-O1.r0S-S.r1S-S.r2S-O.X.L1a.qwO1-O1.cO1-b1.dnone-S.ne",
+  "verdict": "sat",
+  "points": 22,
+  "assertions": 49125,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-W.r0S-S.r1S-S.r2S-O.mp0a=p1b.X.L1a.qwO1-O1.cO1-O1.db0-none.ne": {
+  "schema_id": "l1c.retro.L0.eS-W.r0S-S.r1S-S.r2S-O.mp0a=p1b.X.L1a.qwO1-O1.cO1-O1.db0-none.ne",
+  "verdict": "sat",
+  "points": 20,
+  "assertions": 31052,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-W.r0O1-O1.r1O1-O1.r2O1-O1.mp0b=p1a.X.L1a.qws0-O1.cO1-O.ds2-none.ne": {
+  "schema_id": "l1c.retro.L0.eS-W.r0O1-O1.r1O1-O1.r2O1-O1.mp0b=p1a.X.L1a.qws0-O1.cO1-O.ds2-none.ne",
+  "verdict": "sat",
+  "points": 19,
+  "assertions": 37791,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-O1.r0O1-O1.r1O1-O.r2S-S.mp0a=p1a.X.L1a.qwO1-O1.cO1-O1.dnone-O.eq": {
+  "schema_id": "l1c.retro.L0.eS-O1.r0O1-O1.r1O1-O.r2S-S.mp0a=p1a.X.L1a.qwO1-O1.cO1-O1.dnone-O.eq",
+  "verdict": "sat",
+  "points": 21,
+  "assertions": 50416,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eEA-W.r0S-S.r1S-S.r2O1-O1.mp0a=p1b.X.L1a.qws2-O1.cO1-O.db1-none.ne": {
+  "schema_id": "l1c.retro.L0.eEA-W.r0S-S.r1S-S.r2O1-O1.mp0a=p1b.X.L1a.qws2-O1.cO1-O.db1-none.ne",
+  "verdict": "sat",
+  "points": 18,
+  "assertions": 19933,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-O1.r0S-O.r1S-O.r2S-O1.X.L1a.qwb0-O1.cO1-S.ds2-O.ne": {
+  "schema_id": "l1c.retro.L0.eS-O1.r0S-O.r1S-O.r2S-O1.X.L1a.qwb0-O1.cO1-S.ds2-O.ne",
+  "verdict": "sat",
+  "points": 19,
+  "assertions": 23443,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-O1.r0S-O.r1S-O1.r2S-O1.mp0a=p1a.X.L1a.qwW-O1.cO1-O1.dnone-S.eq": {
+  "schema_id": "l1c.retro.L0.eS-O1.r0S-O.r1S-O1.r2S-O1.mp0a=p1a.X.L1a.qwW-O1.cO1-O1.dnone-S.eq",
+  "verdict": "sat",
+  "points": 21,
+  "assertions": 44648,
+  "trivial_k4_centers": []
+ },
+ "l1c.retro.L0.eS-W.r0S-S.r1S-O1.r2S-S.X.L1a.qwO1-O1.cO1-S.dnone-none.eq": {
+  "schema_id": "l1c.retro.L0.eS-W.r0S-S.r1S-O1.r2S-S.X.L1a.qwO1-O1.cO1-S.dnone-none.eq",
+  "verdict": "sat",
+  "points": 23,
+  "assertions": 61775,
+  "trivial_k4_centers": []
+ }
+}
