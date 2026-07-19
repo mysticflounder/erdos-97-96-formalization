@@ -699,6 +699,42 @@ remaining 18 (9 merged + 9 cycle) need multi-kernel chain/cycle
 machinery — a separate development, off the exact-seven critical path
 (the DoubleApex spine sorry is unchanged either way).
 
+## Finding 15b: conditioning of the 53 non-universal round-3 laws (2026-07-19)
+
+The 53 conditional patterns (kill < denominator) resolved against the
+bag placements of `(u, uc, m)` over every buildable base
+(`condition_l2u_round3.py` / `_v2.py`; table
+`l2u_round3_conditioning.json`).  **48/53 are pure placement laws** —
+the verdict is a function of `(bag(u), bag(uc), bag(m))` alone (no base
+with a fixed placement tuple splits kill/SAT).  Four mechanism
+families, all generalizing the Finding 14b (p2a,p2b,s1) split:
+
+- **s2 through-point (18): kill ⟺ `bag(uc) = O1`.**  The row center in
+  the O1-bag forces the crossing; `uc ∈ S`-bag is SAT.  Independent of
+  `bag(u)`.
+- **s1, u & uc in the same exact class (2: (p0b,p0a), (p1a,p1b)):
+  kill ⟺ same bag.**  SAT = the split placement — the exact Finding
+  14b law.
+- **s1, u & uc in different classes (16): kill on 3 of 4 placements**,
+  the single SAT split fixed by `u`'s class: r0-`u` alive only at
+  `(u ∈ O1, uc ∈ S)`; r1-`u` alive only at `(u ∈ S, uc ∈ O1)`.
+- **s0 merged-`u` (6): kill ⟺ `bag(uc) = S`** (the S↔O1 mirror of the
+  s2 law).
+
+The six "other-pure" patterns fold into the same three predicates
+(`bag(uc)`, same-bag, `bag(u)`): e.g. (p1b,W,s1)/(p1b,s0,s1) kill ⟺
+`bag(p1b) = O1`.
+
+- **5/53 mixed** — all `p0a+p1a, ·, O` (merged first-family `u`,
+  target `m = O`): the placement tuple leaves residual kill/SAT mixing
+  (e.g. `(O1, blk0, blk2)` 24 kill / 20 SAT).  The chord touches the
+  class-O center and the merged `u` sits in both r0 and r1; a deeper
+  coupling, deferred with the 18 merged/cycle universal laws.
+
+Honest scope: these are the bag-placement selection rules for the
+conditional branch kills; they are census facts, not yet Lean.  The
+DoubleApex spine sorry is unchanged.
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
@@ -758,5 +794,6 @@ machinery — a separate development, off the exact-seven critical path
     classes; follow-ups — ~~Lean shape of the round-3 laws~~ DONE
     (Finding 15a: 48 direct + 7 two-branch on the four ported
     terminals, no missing terminal; 18 merged/cycle patterns need
-    separate chain machinery), conditioning map of the 53 conditional
-    patterns).
+    separate chain machinery), ~~conditioning map of the 53 conditional
+    patterns~~ DONE (Finding 15b: 48/53 pure bag-placement laws in four
+    families generalizing 14b; 5 merged `p0a+p1a,·,O` mixed)).
