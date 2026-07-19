@@ -799,9 +799,18 @@ no_qfree were the closure lever.  Combined with the all-fresh full-row SAT
 witness (Finding 13, lines 498–501), the full forced unused critical row
 (co-radiality + exclusion + no_qfree, named members, named center `uc=W`)
 admits a placement on the tested bases ⇒ **the L2u dimension cannot close a
-base outright.**  Scale run (Stage A over all 44,623 triangles, 28 shards,
-`analyze_l2u_fc.py`) launched to convert this from sample to complete map;
-per-group deadness + closed-base count {{UNVALIDATED — census running}}.
+base outright.**
+
+**Scale run COMPLETE** (Stage A over all 44,623 triangles, 12 bases, 28
+shards, `analyze_l2u_fc.py` → `l2u_fc_closure.json`): 692 UNSAT (1.55%),
+**0 closed bases, 0 fully-dead `(base,u,uc)` groups of 494**, 0 soundness
+violations (every |M|=3-UNSAT stays fc-UNSAT).  The decisive number:
+**0 exclusion flips and 0 of the 692 UNSAT cores use `rad_ne`** — every
+kill core is `{cls_eq, kal, pos, row_eq}` (co-radiality + Kalmanson), the
+Finding 13/14/15 branch-kill laws reproduced.  Exclusion is provably inert
+at full scale: it contributes to no kill and closes no base.  The sample
+result is now a complete map — the L2u base-closer question is settled
+negative.
 
 Consequence for the branch: the L2u refinement dimension is exhausted as a
 base-closer (co-radiality, exclusion, no_qfree all censused inert for
