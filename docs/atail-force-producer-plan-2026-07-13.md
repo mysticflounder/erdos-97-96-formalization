@@ -1060,6 +1060,47 @@ global minimality.  `OrderedCrossRowCore` is a fallback consumer only: it adds
 anonymous-fiber alignment, a cross-row incidence, and six-role order fields,
 whereas the existing co-radial terminal is missing just one equality.
 
+The aggregate Kalmanson route now has a precise non-enumerative normal form.
+Adjacent `K2` cells and the seam `K1` cells form a basis for the zero-degree
+unordered-distance space, indexed by proper circular intervals modulo
+complement.  Consequently a positive weighted Kalmanson cancellation exists
+exactly when the selected-incidence weights form a nonzero balanced
+circulation whose flux through every proper circular interval has one common
+sign.  After passing to a sink selected-witness SCC and disposing of a
+nonalternating shared target pair with one local cell, the exact mathematical
+target is:
+
+> Every strongly connected, pair-alternating four-target row system admits a
+> nonzero balanced incidence circulation whose proper circular-interval
+> fluxes are all nonpositive after one global sign choice.
+
+This target must permit coupled cycles.  A deletion-minimal two-cell core has
+two simple alternating cycles whose interval fluxes are individually mixed,
+although their sum is a positive telescoping contour.  The same obstruction
+occurs in 38 of the 263 minimized exact cores, so minimum-length,
+minimum-crossing, or otherwise extremal **single-cycle** extraction is false.
+The exact Gordan dual of failure is again a strict circular-split Kalmanson
+table with four equal selected targets per row; dimension or separation alone
+does not prove the theorem.
+
+The current recurrence evidence is nevertheless complete for the stored
+bank.  Independent integer replay accepts positive contours for all 263
+minimized cores; 261 use at most five strict cells, while the remaining two
+replay their verified source-minimal 34- and 49-cell supports.  All eight
+center-avoiding card-forty `W(3,3)` tables are also exact-LRA UNSAT, including
+a three-`K2`/four-row contour.  These facts are theorem-discovery convergence,
+not live coverage and not source-`sorry` closure.
+
+Use only the `n(n-3)/2` local-cell basis for further computational
+falsification; all global Kalmanson inequalities are nonnegative sums of
+these cells.  The local-basis exact solver reproduces external UNSAT at cards
+eight and nine, while 60-second card-ten and card-eleven probes are `UNKNOWN`.
+An exact replayed SAT table would refute the bare aggregate theorem and return
+priority to the parent-specific all-center/CSS/MEC coupling.  An external
+UNSAT result without a checked certificate is finite evidence only.  Do not
+restart literal membership-schema CEGAR: the next proof step is the uniform
+interval-flux lemma, and the fallback is genuinely stronger parent geometry.
+
 The helper-local LIVE-C fallback is not a competing closure route.  The exact
 rational Lean model in `live-c-t2-rowfailure-closure/` realizes the local
 `center_t2_rowFailure` metric surface.  Closing that leaf requires omitted

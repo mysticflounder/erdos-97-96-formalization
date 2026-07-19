@@ -2307,6 +2307,51 @@ through ten.  Strong-connectivity runs at cards eleven through fourteen time
 out at 600 seconds and remain `UNKNOWN`.  These exact-arithmetic solver results
 have no independently checked UNSAT certificates and do not prove the uniform
 proposal.
+
+The aggregate theorem now has an exact non-enumerative normal form.  Adjacent
+`K2` cells together with the seam `K1` cells form a basis of the zero-degree
+unordered-distance space, indexed by proper circular intervals modulo
+complement.  A linear combination of selected-row equalities is therefore a
+positive Kalmanson contour exactly when its selected-incidence weights have
+zero row and target sums and every proper circular-interval flux has one
+common sign, with at least one strict flux.  Strong connectivity may be
+assumed by passing to a sink selected-witness SCC; nonalternating shared pairs
+already close with one cell.  The precise live theorem-discovery target is:
+
+> Every strongly connected, pair-alternating four-target row system admits a
+> nonzero balanced incidence circulation whose proper circular-interval
+> fluxes are all nonpositive after one global choice of sign.
+
+This is not a renamed literal-core queue.  A minimized exact two-cell core
+shows that neither minimum-length nor minimum-crossing **single-cycle**
+extraction is valid: its two simple alternating cycles each have mixed flux,
+while their sum is a positive telescoping contour.  Thirty-eight of the 263
+minimized bank cores have no one-signed simple incidence cycle.  Any proof must
+allow coupled cycles.  The Gordan dual of failure is exactly a strict
+circular-split Kalmanson table with four equal selected targets in every row,
+so separation or dimension counting alone loops back to the original bare
+theorem.
+
+The recurrence evidence is now exact across the stored bank.  Independent
+integer replay accepts positive contours for all 263 minimized exact-LRA
+cores: support histogram `1:33, 2:121, 3:70, 4:29, 5:8, 34:1, 49:1`.
+Two hundred sixty-one have at most five strict cells; the final two replay
+their already verified source-minimal supports.  Eight center-avoiding
+`W(3,3)` card-forty fixed-row tables are also exact-LRA UNSAT, with one
+compressing to three `K2` cells and four row fibers.  This is strong theorem-
+discovery convergence, not coverage of live row tables and not source `sorry`
+closure.  The full artifacts and exact epistemic boundary are in
+`scratch/atail-force/aggregate-positive-contour-discovery/`.
+
+For computational falsification, use only the `n(n-3)/2` local cell basis;
+every global Kalmanson inequality is its nonnegative rectangle sum.  This
+replaces 2,002 global strict constraints by 77 equivalent local cells at card
+fourteen.  The local-basis exact decision reproduces external UNSAT at cards
+eight and nine; its 60-second card-ten and card-eleven probes remain
+`UNKNOWN`.  A future exact SAT table would refute the aggregate route and
+return priority to the parent-specific all-center/CSS/MEC coupling.  An UNSAT
+result without a checked certificate remains finite evidence only.
+
 An exact-seven finite route must enumerate both first-apex same- and
 distinct-radius role cells, adding common planar rank-two constraints only if
 an abstract SAT cell survives.

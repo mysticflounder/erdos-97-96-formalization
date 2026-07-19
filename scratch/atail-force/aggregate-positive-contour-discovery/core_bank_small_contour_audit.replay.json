@@ -1,0 +1,28 @@
+{
+  "all_integer_cancellations_zero": true,
+  "all_used_labels_are_active": true,
+  "all_used_rows_belong_to_source_cores": true,
+  "audit": "scratch/atail-force/aggregate-positive-contour-discovery/core_bank_small_contour_audit.json",
+  "audit_sha256": "7bad01f632fb4d012d3ea1e0e902e0725b32072343bbfa966a5d4203a9c5d6bd",
+  "exact_positive_contour_count": 263,
+  "record_count": 263,
+  "schema": "p97-atail-core-bank-positive-contour-replay-v2",
+  "source_replay_status": "VERIFIED",
+  "status": "VERIFIED",
+  "strict_support_histogram": {
+    "1": 33,
+    "2": 121,
+    "3": 70,
+    "4": 29,
+    "5": 8,
+    "34": 1,
+    "49": 1
+  },
+  "unit_strict_weight_count": 258,
+  "w33_signature_schema_indices": [
+    65,
+    79,
+    94,
+    211
+  ]
+}

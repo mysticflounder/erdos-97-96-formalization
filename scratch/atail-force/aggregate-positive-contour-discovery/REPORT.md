@@ -3,9 +3,10 @@
 Date: 2026-07-18
 
 Status: **THEOREM DISCOVERY ONLY.  EIGHT HIGH-GIRTH CARD-FORTY FIXED ROW
-TABLES ARE EXACTLY KALMANSON-INFEASIBLE, AND ONE HAS A THREE-INEQUALITY,
-FOUR-ROW POSITIVE CONTOUR.  NO LIVE PARENT COVERAGE THEOREM OR SOURCE `sorry`
-IS CLOSED.**
+TABLES ARE EXACTLY KALMANSON-INFEASIBLE; ALL 263 MINIMIZED EXACT-CORE BANK
+MEMBERS HAVE INDEPENDENTLY REPLAYED POSITIVE CONTOURS.  THE GENERIC EXTRACTION
+THEOREM REMAINS OPEN, SO NO LIVE PARENT COVERAGE THEOREM OR SOURCE `sorry` IS
+CLOSED.**
 
 ## Decision surface
 
@@ -114,6 +115,86 @@ a three-center/three-target cycle have no positive dual.  The proof must select
 the orientation/filling, not merely invoke graph cyclicity.  Until that
 selection theorem is proved, this checkpoint closes no A-tail parent branch.
 
+## Exact recurrence in the 263-core bank
+
+The compact contour is not peculiar to the `W(3,3)` adversary.  The canonical
+source for this census is
+`../exact6-allcenter-capaware-gate/combined_round1_round2_minimized_schema_bank.json`,
+whose independent replay reports `VERIFIED` for all 263 deletion-minimal
+exact-LRA cores.
+
+[`audit_core_bank_contours.py`](audit_core_bank_contours.py) discards each
+core's strict inequalities for its small-support search, retains only its
+selected-row equalities, and searches all `K1`/`K2` inequalities on the active
+ordered roles for a positive dual.  HiGHS selects a minimum support.  A wider
+pass raises the support limit to eight; if minimization still times out, the
+tool can replay the source-minimal strict support directly.  A core is counted
+as covered only after Z3 reconstructs rational multipliers and the independent
+verifier replays every distance-coordinate coefficient exactly over the
+integers.  The resulting exact-positive census is:
+
+| positive strict support | exactly replayed cores |
+|---:|---:|
+| 1 | 33 |
+| 2 | 121 |
+| 3 | 70 |
+| 4 | 29 |
+| 5 | 8 |
+| 34 | 1 |
+| 49 | 1 |
+| **total** | **263 / 263** |
+
+Thus 154 cores have a one- or two-cell contour, 224 have a contour of at most
+three cells, 253 have one of at most four cells, and 261 have one of at most
+five cells.  Of the 263 exact certificates, 258 use unit weight on every
+strict term.
+
+The literal card-forty signature
+
+```text
+three positive K2 cells + four represented center fibers
+```
+
+occurs in 4 cores, at canonical indices `65`, `79`, `94`, and `211`.  Its
+seam-aware generalization
+
+```text
+three positive K1/K2 cells + four represented center fibers
+```
+
+occurs in 45 cores.  The row equalities may be multi-edge paths through a
+row's selected shell; after path compression they have the same boundary
+role as the four direct equalities in the `W(3,3)` seed-1 certificate.
+
+The dominant schema is therefore not the literal three-`K2` staircase.  It is
+a **small positive strip contour**:
+
+> Three to seven oriented center-fiber paths have total boundary equal to the
+> negative boundary of a nonempty positive chain of at most four Kalmanson
+> cells, using `K2` cells in the interior and `K1` cells when the contour
+> crosses the distance-term strip seam.
+
+This is the right generalized producer shape for theorem discovery.  A theorem
+restricted to the three-`K2`/four-row picture would explain only 4 cores; even
+allowing either cell kind at the same size explains 45.  A uniform extraction
+theorem should construct the positive strip contour, with the existing
+weighted Kalmanson consumer handling its variable cell and row-path counts.
+
+The 17 first-pass gaps were search-bound artifacts, not survivors.  A wider
+parallel pass finds exact three-to-five-cell contours for 15 of them.  For
+indices `157` and `221`, small-support minimization still times out, but direct
+replay of their already verified source-minimal supports gives exact positive
+contours with 49 and 34 strict terms respectively.  There is therefore no
+unresolved member in the stored 263-core bank.  This remains recurrence within
+a mined finite bank, not live parent coverage or a proof of the generic
+interval-flux extraction lemma.
+
+The merged records and every displayed multiplier are in
+[`core_bank_small_contour_audit.json`](core_bank_small_contour_audit.json).
+[`merge_core_bank_contour_audits.py`](merge_core_bank_contour_audits.py)
+checks that the shards cover each source index exactly once before producing
+the census.
+
 ## Reproduction
 
 Generate one adversarial table and its exact assumption core:
@@ -143,4 +224,9 @@ seed-1 exact dual status                        SAT
 seed-1 exact vector cancellation                true
 seed-1 active Kalmanson inequalities            3
 seed-1 represented row centers                  4
+263-core source replay                           VERIFIED
+exact positive contours                          263
+exact positive contours with <= 5 cells          261
+unit-weight positive contours                    258
+literal 3-K2 / 4-center recurrences                4
 ```
