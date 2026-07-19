@@ -53,6 +53,36 @@ def rational(value: z3.RatNumRef) -> Fraction:
     return Fraction(value.numerator_as_long(), value.denominator_as_long())
 
 
+def compress_k2_target_chains(multipliers: dict[str, int]) -> dict[str, int]:
+    """Replace adjacent positive K2 rectangles by their exact union."""
+    result = dict(multipliers)
+    while True:
+        changed = False
+        k2_terms = {
+            tuple(map(int, name.split("_")[1:])): value
+            for name, value in result.items()
+            if name.startswith("kal2_") and value > 0
+        }
+        for (a, b, c, d), left_weight in k2_terms.items():
+            for (a2, b2, d2, e), right_weight in k2_terms.items():
+                if (a, b, d) != (a2, b2, d2):
+                    continue
+                weight = min(left_weight, right_weight)
+                left = f"kal2_{a}_{b}_{c}_{d}"
+                right = f"kal2_{a}_{b}_{d}_{e}"
+                outer = f"kal2_{a}_{b}_{c}_{e}"
+                result[left] -= weight
+                result[right] -= weight
+                result[outer] = result.get(outer, 0) + weight
+                result = {name: value for name, value in result.items() if value}
+                changed = True
+                break
+            if changed:
+                break
+        if not changed:
+            return result
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("input", type=Path)
@@ -75,6 +105,12 @@ def main() -> int:
         raise ValueError("row centers do not cover the carrier")
     if any(len(support) != 4 or center in support for center, support in rows.items()):
         raise ValueError("every row must have four non-center targets")
+    for raw_equality in source.get("core", []):
+        if len(raw_equality) != 3:
+            raise ValueError("every core equality must have center, left, and right")
+        center, left, right = map(int, raw_equality)
+        if left == right or left not in rows[center] or right not in rows[center]:
+            raise ValueError("core equality is not supported by its selected row")
 
     edges = tuple(itertools.combinations(range(n), 2))
     edge_index = {item: index for index, item in enumerate(edges)}
@@ -143,10 +179,11 @@ def main() -> int:
     )
     payload: dict[str, object] = {
         "schema": "p97-fixed-row-positive-kalmanson-dual-v1",
-        "epistemic_status": "EXACT_ONLY_IF_Z3_REPLAY_VALID",
+        "epistemic_status": "THEOREM_DISCOVERY_EXACT_FIXED_TABLE_ONLY",
         "input": str(args.input),
         "n": n,
         "row_count": len(rows),
+        "kalmanson_vertex_count": len(core_vertices),
         "kalmanson_variable_count": len(kal_vectors),
         "lp_status": int(lp.status),
         "lp_message": lp.message,
@@ -189,7 +226,7 @@ def main() -> int:
         exact_status = solver.check()
         payload["lp_active_kalmanson"] = len(active_kal)
         payload["lp_active_rows"] = len(active_rows)
-        payload["exact_status"] = str(exact_status).upper()
+        payload["exact_dual_status"] = str(exact_status).upper()
         if exact_status == z3.sat:
             model = solver.model()
             exact: dict[str, Fraction] = {}
@@ -205,6 +242,8 @@ def main() -> int:
             integers = {name: int(value * denominator) for name, value in exact.items()}
             divisor = math.gcd(*(abs(value) for value in integers.values() if value))
             integers = {name: value // divisor for name, value in integers.items() if value}
+            uncompressed_kalmanson = sum(name.startswith("kal") for name in integers)
+            integers = compress_k2_target_chains(integers)
             residue: dict[Edge, int] = defaultdict(int)
             strict_weight = 0
             for name, multiplier in integers.items():
@@ -225,6 +264,7 @@ def main() -> int:
             payload.update({
                 "status": "EXACT_POSITIVE_DUAL",
                 "strict_weight": strict_weight,
+                "uncompressed_active_kalmanson": uncompressed_kalmanson,
                 "active_kalmanson": sum(name.startswith("kal") for name in integers),
                 "active_row_equalities": sum(name.startswith("row") for name in integers),
                 "used_row_centers": sorted({
