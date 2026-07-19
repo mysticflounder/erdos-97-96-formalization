@@ -1,0 +1,57 @@
+{
+  "schema": "p97-atail-equal-blocker-full-parent-gate-v1",
+  "target": {
+    "branch": "FullParentExactFiveMutualData.equal_blocker",
+    "input": "FullParentMutualEqualBlockerShell M",
+    "implication": "False",
+    "preferred_terminal": "CriticalFiberClosingCore.sameCap or CriticalFiberClosingCore.ordered"
+  },
+  "status": "NOT_RUN",
+  "status_reason": "No complete full-parent Euclidean/MEC model has been encoded or decided yet; existing artifacts are retained-subsystem regressions.",
+  "parent_ledger": {
+    "counterexample_data_D": false,
+    "surplus_packet_S": false,
+    "total_critical_system_H": false,
+    "frontier_F0": false,
+    "robust_residual_R": false,
+    "blocker_packet_B": false,
+    "live_parent_L": false,
+    "exact_five_profile": false,
+    "equal_blocker_shell_Q": false,
+    "strict_convex_boundary_order": false,
+    "mec_nonobtuse_cap_geometry": false,
+    "complete_exact_radius_filters": false,
+    "all_center_K4": false,
+    "all_source_no_qfree_at": false,
+    "minimality": false,
+    "global_noM44": false,
+    "both_cap_six_bounds": false,
+    "deletion_restoration_fields": false,
+    "source_faithful_provenance": false,
+    "planar_rank_two_realization": false
+  },
+  "evidence": [
+    {
+      "path": "scratch/atail-force/global-mutual-equal-blocker-terminal/REPORT.md",
+      "classification": "RELAXATION_ONLY",
+      "note": "Full-parent critical-fiber fields are present, but no source-faithful terminal is forced."
+    },
+    {
+      "path": "scratch/atail-force/critical-fiber-closing-core-samecap/REPORT.md",
+      "classification": "RELAXATION_ONLY",
+      "note": "ParentSameCapRoute is identified as the exact missing producer; finite BothOff models refute projection-only derivation."
+    },
+    {
+      "path": "scratch/atail-force/critical-fiber-closing-core-ordered/REPORT.md",
+      "classification": "RELAXATION_ONLY",
+      "note": "RowHit lacks the source-faithful support membership and cyclic-order fields needed by the consumer."
+    },
+    {
+      "path": "scratch/atail-force/global-mutual-third-source-producer/REPORT.md",
+      "classification": "RELAXATION_ONLY",
+      "note": "The requested third row is not forced by the current finite projection."
+    }
+  ],
+  "witness": null,
+  "certificate": null
+}

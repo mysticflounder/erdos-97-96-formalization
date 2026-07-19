@@ -581,6 +581,12 @@ weaken the target.  If it produces checked UNSAT, formalize the exact terminal
 implication before moving to the distinct-blocker arm.  Do not edit production
 Lean merely to expose another nonterminal adapter.
 
+The executable fail-closed checkpoint for this first gate is
+`scratch/atail-force/equal-blocker-full-parent-gate/`: its manifest records the
+required parent ledger and its checker rejects decisive SAT/UNSAT statuses
+until every full-parent field is present.  The initial status is `NOT_RUN`;
+the cited equal-blocker scratch reports remain relaxation-only evidence.
+
 ## Final commands
 
 Run only after the shared tree is stable and no other same-project build is
