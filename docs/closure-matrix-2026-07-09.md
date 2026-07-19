@@ -482,6 +482,37 @@ marginals.
 | ATAIL-LIVE-EXACT7-SOURCE-BLOCKER | CHECKED NORMAL FORM; PURE INCIDENCE/RADIUS-COLOR PRODUCER REFUTED; ONE FIXED SOURCE-FAITHFUL KALMANSON CELL UNSAT 2026-07-18 | `card-ge-seven-periodthree-occurrence-audit/`; `exact7-successor-terminal/`; `exact7-global-coradial-producer/`; full-parent exact-five all-reverse packet | The uniform positive-dual proposal remains conjectural. If this fallback remains necessary, enumerate the finite exact-seven source-faithful role cells in both first-apex same/distinct-radius arms; add common planar rank-two constraints only after a persisted abstract SAT cell. | The normal form isolates first-apex co-radiality of the exact outside residual pair `{a,b}` as the one consumed antecedent. A 15-label exact finite abstraction retains the cap profile `(5,6,7)`, total support-locked blocker map, both robust apex classes, all-reverse rows, selected-row strong connectivity, and exhaustive abstract minimality over 32,766 proper subsets while making every reverse pair non-co-radial. Hence incidence, blocker counting, and abstract minimality colors do not imply the producer. The same fixed fixture is exact-QF_LRA UNSAT with 105 distance variables and 4,365 triangle/Kalmanson assertions, so convex-order geometry remains promising but is not coverage. Cap eight still needs a different aggregate argument. No source `sorry` is closed. |
 | ATAIL-PARENT-WIRE | CAP-FIRST PHYSICAL DISPATCH AND TERMINAL CONSUMERS IMPLEMENTED; LARGE-OPPOSITE-CAPS PRODUCER AND PROTECTED UNIQUE CONSUMERS OPEN; NO PRODUCTION SORRY CLOSED | `removableVertexOfLarge_of_nonIsM44`; `u1_largeCap_routeB_tail_false`; production physical-ingress, frontier, bi-apex, and critical-fiber modules; protected unique-row lane | Preserve the source order: cap-first small/critical exits; frontier extraction; `originalUnique_or_commonDeletionParent`; then `R`, `B`, and `L : FrontierLargeOppositeCapsBiApexRobustResidual B`. Close `false_of_largeOppositeCapsBiApexRobust L` plus the protected unique arms, then call `false_of_twoLargeCaps_commonCriticalMap` before LIVE row construction. | Whole-carrier bank decisions are not wiring dependencies. Once the direct L-indexed contradiction and protected consumers close, bypass/delete K-A, reference-mine/delete the remaining LIVE-C tree, rebuild, refresh blueprint, and require the current eight direct source-`sorry` declarations (K-A-PAIR plus seven LIVE-C helpers) to disappear. LIVE-Q/T1/T3 are already source-clean compatibility consumers. A late favorable `H` plus rebased closing core may implement the contradiction but does not change this dispatcher order. |
 
+### Authoritative exact-six redirect (2026-07-19)
+
+This checkpoint supersedes the older action text in
+`ATAIL-LIVE-EXACT6-PERIOD3-ORDER` and
+`ATAIL-LIVE-EXACT6-CERTIFIED-COVERAGE` that says to continue exact cut
+coverage or keep the total all-center literal gate active.
+
+- The production all-reverse exact-six contradiction remains done and
+  source-clean.
+- Kernel-checked scratch
+  `full-parent-coradial-card-split/FullParentCoRadialCardSplit.lean` uses that
+  contradiction at cap cardinality six and requests
+  `FirstApexCoRadialTransitionReversePairOccurrence` only from cardinality
+  seven upward.  Exact seven is a separate geometric leaf; the aggregate lane
+  after it begins at cardinality eight and retains the full `R`/`B`/`L`
+  parent.
+- The corrected piqd audit repairs cyclic schema transport, expands the bank
+  to 737,100 cyclic-dihedral applications, and still obtains 28 wholly new
+  independently replayed cuts, five shell-conditioned, with two fail-closed
+  timeouts and no exhausted or `ALIVE` orbit.
+- Checkpoint `f8ef5d9b` therefore classifies literal exact-six CEGAR
+  `NONCONVERGENT_UNDER_OPTIMIZED_ENGINE`.  Preserve its replay artifacts but
+  launch no further literal rounds.
+- The active mathematical input must be nonlinear Euclidean/MEC geometry,
+  full-fiber/common-critical-system provenance, or genuinely global
+  minimality, feeding the existing co-radial terminal or direct parent
+  `False`.  `OrderedCrossRowCore` is a fallback only when its extra fiber
+  alignment, cross-incidence, and cyclic-order fields are actually produced.
+- The exact-five arbitrary mutual-omission sibling remains an independent
+  open consumer obligation.  No source `sorry` closes at this checkpoint.
+
 ## Final commands
 
 Run only after the shared tree is stable and no other same-project build is

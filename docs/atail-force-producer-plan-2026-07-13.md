@@ -859,6 +859,18 @@ axioms.  Do not extend the outer solver for this all-reverse slice.  The next
 targets are the exact-six arbitrary mutual-omission sibling and then a genuine
 cap-cardinality-at-least-seven aggregate theorem.
 
+The producer contract is now cardinality-correct at the full parent boundary.
+Kernel-checked scratch
+`full-parent-coradial-card-split/FullParentCoRadialCardSplit.lean` proves that
+the all-reverse dispatcher uses the direct exact-six contradiction when
+`S.oppCap2.card = 6` and requests
+`FirstApexCoRadialTransitionReversePairOccurrence` only under
+`7 <= S.oppCap2.card`.  A uniform occurrence theorem on exact six is
+unnecessarily strong and is retired.  Exact seven remains a separate
+boundary/interior-shell geometry leaf; the aggregate lane after that split is
+card at least eight and must retain the complete `R`/`B`/`L` parent.  The
+mutual-omission sibling remains an independent consumer obligation.
+
 The exact-six mutual sibling has now passed a terminal audit rather than a
 proof.  The current full-parent packet plus `S.oppCap2.card = 6` does not force
 the reciprocal cross hits, common-cap pair, or distinct third row consumed by
@@ -888,13 +900,12 @@ Lean consumer, `SevenPointCircleNetworkCollisionCore`, still needs three
 equalities absent from the manifest.  Do not schedule a wrapper around that
 consumer without first producing those exact fields from the full parent.
 
-Any successor CEGAR pass must therefore enumerate the seven role constructors
-and the four manifest rows first.  It must preserve complete-filter negative
-guards and may introduce a fifth row only with a concrete carrier source and
-its actual `H.centerAt`.  A cut is admissible only when it yields a complete
-on-spine consumer occurrence or a direct orbit contradiction.  This explicitly
-forbids returning to the fourteen preselected rows, anonymous centers, or a
-growing queue of literal equality cores.
+The historical successor-CEGAR admission gate required the seven role
+constructors, the four manifest rows, complete-filter negative guards, and only
+source-indexed `H.centerAt` extensions.  The completed 2026-07-19 piqd audit
+now retires even that literal loop; preserve the gate only as a regression
+specification for the saved artifacts, not as an instruction to launch another
+round.
 
 The prescribed first gate has now run.  Exact rational witnesses pass all 29
 four-row/finite-cap checks in every one of the seven role constructors.  These
@@ -1032,12 +1043,22 @@ through ten.  Its strong-connectivity runs at cards eleven through fourteen
 time out after 600 seconds.  Those `UNKNOWN` records and the uncertified finite
 UNSAT prefix neither prove nor refute the uniform aggregate theorem.
 
-The finite route remains exact cut coverage or a uniform aggregate
-Kalmanson theorem.  Continue from immutable, hash-pinned prefixes and stop only
-at independently replayed `ALIVE` or a checked terminal cover.  The exact
-Cayley--Menger/Gram rank-two gate is prepared as the immediate escalation if a
-real `ALIVE` table lands; only then proceed to MEC,
-full-fiber/common-critical-system, and global-minimality force.
+The optimized piqd checkpoint makes the finite-route decision explicit.  The
+linear transporter was missing cyclic reindexing; after closing the bank under
+the full cyclic-dihedral action, 737,100 applications subsume 26 of the 70
+round-three cuts.  A fresh seven-orbit checkpoint nevertheless produces 28
+new independently replayed exact-LRA cuts, including five shell-conditioned
+cuts, with zero semantic overlap with round three.  Five orbits reach their
+bounded cut checkpoint and two terminate `OUTER_UNKNOWN_FAIL_CLOSED`; no orbit
+is exhausted and no independently replayed `ALIVE` appears.  The complete
+evidence is committed under
+`exact6-outer-engine-optimization/` at checkpoint `f8ef5d9b` and is classified
+`NONCONVERGENT_UNDER_OPTIMIZED_ENGINE`.  Stop literal exact-six CEGAR.  The
+active proof object is the aggregate full-parent occurrence/direct-`False`
+theorem using nonlinear Euclidean/MEC, full-fiber provenance, or genuinely
+global minimality.  `OrderedCrossRowCore` is a fallback consumer only: it adds
+anonymous-fiber alignment, a cross-row incidence, and six-role order fields,
+whereas the existing co-radial terminal is missing just one equality.
 
 The helper-local LIVE-C fallback is not a competing closure route.  The exact
 rational Lean model in `live-c-t2-rowfailure-closure/` realizes the local

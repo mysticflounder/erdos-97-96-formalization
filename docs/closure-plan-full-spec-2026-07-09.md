@@ -2009,6 +2009,16 @@ closes the all-reverse half of the exact-six slice; the independent arbitrary
 mutual-omission sibling, cap cardinality at least seven, and the source
 `sorry` remain open.
 
+The corrected full-parent dispatcher must not demand the co-radial occurrence
+on this already-closed exact-six leaf.  Kernel-checked scratch
+`full-parent-coradial-card-split/FullParentCoRadialCardSplit.lean` uses the
+production exact-six contradiction at equality six and requests
+`FirstApexCoRadialTransitionReversePairOccurrence` only from cap cardinality
+at least seven.  Exact seven remains its own geometric leaf; after that split,
+the aggregate occurrence target begins at cap cardinality eight and retains
+the full `R`/`B`/`L` parent.  The arbitrary mutual-omission sibling remains an
+independent exact-five consumer slot.
+
 The exact-six mutual sibling has now been audited against the complete current
 interface.  Exact six does not supply the positive cross-row incidence needed
 by any existing same-cap or critical-fiber terminal.  Both blocker arms have
@@ -2199,6 +2209,20 @@ sidecar or lock remains, and the six-member portfolio summary has SHA-256
 `344e5c57fd1ab023217792ccbdbdf614e11ee3cf85ef855e2bee31a46d64f863`.
 This is a clean bounded no-verdict, not convergence or negative evidence.
 
+The later piqd outer-engine audit is the terminal literal-CEGAR checkpoint.
+It first repaired a real cyclic-reindexing omission in the schema transporter:
+full cyclic-dihedral closure yields 737,100 applications and subsumes 26/70
+round-three cuts.  The corrected seven-orbit continuation still generates 28
+new independently replayed exact-LRA cuts, five shell-conditioned and all
+semantically new against round three; two orbits end
+`OUTER_UNKNOWN_FAIL_CLOSED`, and none is exhausted or `ALIVE`.  The committed
+artifact `scratch/atail-force/exact6-outer-engine-optimization/` at
+`f8ef5d9b` records the hashes, replay ledgers, and stop decision
+`NONCONVERGENT_UNDER_OPTIMIZED_ENGINE`.  Do not launch another literal round.
+Redirect to the aggregate full-parent co-radial occurrence/direct-`False`
+producer; use an ordered critical-fiber core only if the parent actually
+supplies its additional alignment and order fields.
+
 The linear surface is invariant under adding one constant to every abstract
 distance.  Hence any nonnegative SAT table would become strictly positive,
 preserve all Kalmanson and row/shell equalities, and, after a sufficiently
@@ -2206,11 +2230,13 @@ large translation, satisfy all strict triangle inequalities.  This proves
 that positivity and triangle rows add no force; it does not refute a uniform
 aggregate positive dual while no abstract SAT table exists.
 
-Continue exact cut coverage from immutable hash-pinned prefixes and pursue the
-aggregate Kalmanson theorem.  Common planar Euclidean rank two is the prepared
-next gate only if a real `ALIVE` table is persisted.  A planar survivor would
-then require actual MEC/full-fiber/common-critical-system/minimality data.
-Floating MILP optimality and a growing linear cut bank are not terminal.
+Preserve the immutable hash-pinned prefixes and replay tools as regression
+evidence, but stop literal cut coverage.  A future computational lane must
+encode genuinely new aggregate force--common planar Euclidean rank two,
+actual MEC/full-fiber provenance, the total common critical system, or global
+minimality--and must target the full parent theorem or its existing co-radial
+consumer directly.  Floating MILP optimality and a growing linear cut bank are
+not terminal.
 
 The LIVE-C `center_t2_rowFailure` fallback has also been adjudicated.  A
 kernel-checked exact rational planar projection realizes the fixed `p` circle,
