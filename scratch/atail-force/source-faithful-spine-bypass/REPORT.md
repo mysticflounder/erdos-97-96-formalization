@@ -86,3 +86,30 @@ This is a genuine global input for a future occurrence producer, but it is
 not yet wired to `FullParentExactFiveAllReverseData`: the remaining coupling
 must still identify the relevant faithful row with the source-faithful
 critical rows (or prove a contradiction from the coverage pattern).
+
+## Newer scratch snapshot audit (2026-07-19)
+
+The later `/Users/adam/scratch` history was checked in addition to the
+`/opt/nfs` checkpoints:
+
+* rounds 234--235 (`full_occurrence_probe`) and 237--249 (shell-overlap,
+  metric-cone, and Kalmanson-cycle probes) all report `UNKNOWN` after a
+  bounded SAT continuation; their scope is explicitly the fixed exact-card-14
+  row-table gate;
+* the round-249 generic cycle files are source-clean finite Kalmanson
+  consumers, but their statements are `OrderedRowKalmansonPacket 14` schemas,
+  not producers from `FullParentExactFiveAllReverseData`;
+* the saved round-249 survivor analysis still contains SAT row tables and
+  marks the result as having no Euclidean-realization or closure claim;
+* `/opt/nfs/.../Round171LiveSparseThreeRowOccurrence.lean` proves that the
+  current three-row sparse projection can avoid the existing six-point
+  Kalmanson terminal words, and `/opt/nfs/.../Round147DualUnusedCommonCycleSource.lean`
+  supplies only a higher-cap dual-unused residual.  Neither file proves the
+  full-`L` first-apex occurrence or a direct parent contradiction.
+
+These results rule out treating the exact-six CEGAR bank as a uniform
+`card ≥ 14` producer.  The next source-faithful target remains the same
+single contract: from the complete `F₀/R/B/L` parent and the common critical
+map, produce either `FirstApexCoRadialTransitionReversePairOccurrence` or
+`False`.  Any future finite certificate must first provide a checked bridge
+from the live parent packet to its row-table schema.
