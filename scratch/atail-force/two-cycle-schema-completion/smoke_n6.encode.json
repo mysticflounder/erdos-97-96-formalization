@@ -1,0 +1,33 @@
+{
+  "bank": "scratch/atail-force/two-cycle-schema-completion/bank_n12_n13_two_cycle_rotation_closed_292.json",
+  "bank_epistemic_status": "SOURCE_218_BANK_PLUS_FINITE_CARRIER_THEOREM_FAITHFUL_TWO_CYCLE_ROTATION_CLOSURE",
+  "bank_schema": "p97-whole-carrier-kalmanson-transported-schema-bank-v1",
+  "bank_schema_count": 292,
+  "clause_block_counts": {
+    "blocker_at_least_one": 6,
+    "blocker_at_most_one": 24,
+    "blocker_forbidden": 16,
+    "blocker_implies_source_membership": 20,
+    "cyclic_alternation": 60,
+    "pair_center_count_at_most_2": 60,
+    "preloaded_schema_cut": 972,
+    "row_at_least_4": 60,
+    "row_at_most_4": 6,
+    "row_intersection_at_most_2": 60,
+    "row_nonself": 6,
+    "strong_connectivity_outgoing_cut": 62
+  },
+  "clause_count": 1352,
+  "cnf_path": "scratch/atail-force/two-cycle-schema-completion/smoke_n6.cnf",
+  "embeddable_schema_count": 156,
+  "encoding_schema": "p97-biapex-structural-outer-direct-cnf-v1",
+  "n": 6,
+  "omitted_apices": [
+    0,
+    1
+  ],
+  "schema_embedding_count": 972,
+  "skipped_schema_count_core_larger_than_n": 136,
+  "solver_status": "NOT_RUN",
+  "variable_count": 72
+}

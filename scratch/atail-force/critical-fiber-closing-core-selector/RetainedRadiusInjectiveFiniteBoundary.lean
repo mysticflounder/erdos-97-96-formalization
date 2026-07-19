@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Mathlib
+import Erdos9796Proof.P97.Census554.EqualityCore
 
 /-!
 # Finite boundary for retained-radius blocker injectivity
@@ -16,8 +16,12 @@ five-point retained first-apex class.  Its required global noninjectivity
 occurs only outside that class.
 -/
 
+open scoped EuclideanGeometry
+
 namespace Problem97
 namespace ATailRetainedRadiusInjectiveFiniteBoundary
+
+open Census554.EqualityCore
 
 abbrev Label := Fin 12
 
@@ -152,6 +156,68 @@ theorem minimal_row_closure_surface_checked :
     ∀ U : Finset Label, U.Nonempty → rowClosed U → U = Finset.univ := by
   decide
 
+/-- The repaired finite object still is not geometrically realizable: the
+transitive equality closure of its exact rows contains a banked
+`DuplicateCenterCore`.  This is stronger than the direct shared-pair
+alternation gate checked above. -/
+def banked_duplicateCenterCore :
+    Census554.EqualityCore.DuplicateCenterCore globalRow := by
+  refine
+    { p := 0
+      q := 1
+      r := 3
+      a := 2
+      b := 8
+      hpq := by decide
+      hpr := by decide
+      hqr := by decide
+      hab := by decide
+      ap_aq := ?_
+      ap_ar := ?_
+      bp_bq := ?_
+      bp_br := ?_ }
+  · apply EdgeClosure.trans (EdgeClosure.flip 2 0)
+    apply EdgeClosure.trans (EdgeClosure.row 0 2 1 (by decide) (by decide))
+    apply EdgeClosure.trans (EdgeClosure.flip 0 1)
+    apply EdgeClosure.trans (EdgeClosure.row 1 0 2 (by decide) (by decide))
+    exact EdgeClosure.flip 1 2
+  · apply EdgeClosure.trans (EdgeClosure.flip 2 0)
+    apply EdgeClosure.trans (EdgeClosure.row 0 2 4 (by decide) (by decide))
+    apply EdgeClosure.trans (EdgeClosure.flip 0 4)
+    apply EdgeClosure.trans (EdgeClosure.row 4 0 6 (by decide) (by decide))
+    apply EdgeClosure.trans (EdgeClosure.flip 4 6)
+    apply EdgeClosure.trans (EdgeClosure.row 6 4 7 (by decide) (by decide))
+    apply EdgeClosure.trans (EdgeClosure.flip 6 7)
+    apply EdgeClosure.trans (EdgeClosure.row 7 6 10 (by decide) (by decide))
+    apply EdgeClosure.trans (EdgeClosure.flip 7 10)
+    apply EdgeClosure.trans (EdgeClosure.row 10 7 3 (by decide) (by decide))
+    apply EdgeClosure.trans (EdgeClosure.flip 10 3)
+    apply EdgeClosure.trans (EdgeClosure.row 3 10 2 (by decide) (by decide))
+    exact EdgeClosure.flip 3 2
+  · exact EdgeClosure.row 8 0 1 (by decide) (by decide)
+  · apply EdgeClosure.trans (EdgeClosure.row 8 0 1 (by decide) (by decide))
+    apply EdgeClosure.trans (EdgeClosure.flip 8 1)
+    apply EdgeClosure.trans (EdgeClosure.row 1 8 2 (by decide) (by decide))
+    apply EdgeClosure.trans (EdgeClosure.flip 1 2)
+    apply EdgeClosure.trans (EdgeClosure.row 2 1 9 (by decide) (by decide))
+    apply EdgeClosure.trans (EdgeClosure.flip 2 9)
+    apply EdgeClosure.trans (EdgeClosure.row 9 2 7 (by decide) (by decide))
+    apply EdgeClosure.trans (EdgeClosure.flip 9 7)
+    apply EdgeClosure.trans (EdgeClosure.row 7 9 10 (by decide) (by decide))
+    apply EdgeClosure.trans (EdgeClosure.flip 7 10)
+    apply EdgeClosure.trans (EdgeClosure.row 10 7 3 (by decide) (by decide))
+    apply EdgeClosure.trans (EdgeClosure.flip 10 3)
+    apply EdgeClosure.trans (EdgeClosure.row 3 10 8 (by decide) (by decide))
+    exact EdgeClosure.flip 3 8
+
+/-- The repaired displayed matching object has no injective planar
+realization of all of its selected-row equalities. -/
+theorem no_planar_realization :
+    ¬ ∃ pointOf : Label → ℝ²,
+      Census554.EqualityCore.Realizes globalRow pointOf :=
+  Census554.EqualityCore.not_realizes_of_duplicateCenterCore
+    banked_duplicateCenterCore
+
 #print axioms total_critical_system_checked
 #print axioms retained_radius_matching_checked
 #print axioms exact_two_circle_intersection_checked
@@ -159,6 +225,8 @@ theorem minimal_row_closure_surface_checked :
 #print axioms all_shared_pairs_alternate_checked
 #print axioms off_radius_collision_checked
 #print axioms minimal_row_closure_surface_checked
+#print axioms banked_duplicateCenterCore
+#print axioms no_planar_realization
 
 end ATailRetainedRadiusInjectiveFiniteBoundary
 end Problem97

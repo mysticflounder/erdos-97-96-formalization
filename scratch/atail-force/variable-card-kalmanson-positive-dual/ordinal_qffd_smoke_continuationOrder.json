@@ -1,0 +1,27 @@
+{
+  "build_elapsed_seconds": 0.736805333988741,
+  "complete_shell_selected_row_alternation": true,
+  "connectivity": "FLOYD_WARSHALL_ALL_PAIRS_EXACT",
+  "connectivity_clause_count": 3136,
+  "elapsed_seconds": 5.749731083982624,
+  "engine": "qffd",
+  "epistemic_status": "EXACT_IF_SAT_EXTERNAL_BOUNDED_IF_UNSAT_OR_UNKNOWN",
+  "literal_metric_schema_cuts": 0,
+  "n": 14,
+  "orbit": "continuationOrder",
+  "ordinal_counts": {
+    "guarded_exact_five_shell_rank_equalities": 78,
+    "guarded_selected_row_rank_equalities": 1092,
+    "kalmanson_cancellation_implications": 8008,
+    "rank_atoms": 91,
+    "rank_bit_width": 7
+  },
+  "outer_source": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact6-allcenter-capaware-gate/allcenter_gate.py",
+  "outer_source_sha256": "2af4ebe69459f371f25100a80de1a092e81cae75bd62ad87175c1d4c19a5f27b",
+  "reason": "timeout",
+  "schema": "p97-exact6-integrated-ordinal-cycle-decision-v1",
+  "seed": 500,
+  "solver_statistics": "(:max-memory              118.68\n :memory                  118.68\n :num-allocs              610025007\n :pb-aux-clauses          15989\n :pb-aux-variables        4317\n :pb-compile-card         220\n :rlimit-count            90254471\n :sat-backjumps           33238\n :sat-backtracks          46\n :sat-conflicts           33284\n :sat-decisions           154538\n :sat-del-clause          13527\n :sat-elim-clauses        635\n :sat-elim-literals       1596\n :sat-gc-clause           9302\n :sat-minimized-lits      173345\n :sat-mk-clause-2ary      143721\n :sat-mk-clause-nary      163609\n :sat-mk-var              74604\n :sat-probing-assigned    32\n :sat-propagations-2ary   61913255\n :sat-propagations-nary   30897435\n :sat-restarts            4332\n :sat-scc-elim-binary     8\n :sat-scc-elim-vars       2595\n :sat-subs-resolution     695\n :sat-subs-resolution-dyn 4251\n :sat-subsumed            3311\n :sat-units               1974\n :time                    5.01)",
+  "status": "UNKNOWN",
+  "timeout_ms": 5000
+}

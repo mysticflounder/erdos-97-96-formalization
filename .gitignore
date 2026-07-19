@@ -94,3 +94,25 @@ __pycache__/
 /scratch/atail-force/unique-row-producer/unit_core_source_indexed_654_10_scalar_certificate.lean
 /scratch/atail-force/unique-row-producer/unit_core_source_indexed_654_47_alt_certificate.json
 /scratch/atail-force/unique-row-producer/unit_core_source_indexed_654_47_alt_scalar_certificate.lean
+
+# unique-row-producer generated certificate/verification payloads (tens of
+# MB each, hundreds of MB total). Replayable from the committed generator
+# scripts; digests live in that dir's REPORT.md. Scripts, REPORT.md, and
+# small .md/.py summaries stay tracked.
+/scratch/atail-force/unique-row-producer/*_certificate.json
+/scratch/atail-force/unique-row-producer/*_certificate.lean
+/scratch/atail-force/unique-row-producer/*_verification.json
+/scratch/atail-force/unique-row-producer/*_singular_lift.json
+/scratch/atail-force/unique-row-producer/*_singular_reverse_*.json
+/scratch/atail-force/unique-row-producer/source_indexed_unit_core_*.json
+
+# Multi-GB CEGAR/SAT run output from the front-A closure lanes (2026-07-18).
+# Deterministically replayable from the committed scripts in the same dirs;
+# the scripts, summaries, and compressed banks are what gets committed.
+/scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round*/
+/scratch/atail-force/uniform-cycle-coverage-audit/front-before-isosceles-cegar/
+/scratch/atail-force/uniform-cycle-coverage-audit/*.drat
+/scratch/atail-force/uniform-cycle-coverage-audit/*.cnf
+/scratch/atail-force/exact6-integrated-qflra-crosscheck/artifacts/
+/scratch/atail-force/exact6-allcenter-coverage-certificate/n14_continuationOrder.cnf
+/scratch/atail-force/exact6-allcenter-coverage-certificate/n14_continuationOrder.drat

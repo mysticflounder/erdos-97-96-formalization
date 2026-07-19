@@ -1,0 +1,29 @@
+{
+  "constraint_count": 1026,
+  "core": [
+    {
+      "kind": "row_eq",
+      "name": "row_0_1_2",
+      "payload": [0, 1, 2]
+    },
+    {
+      "kind": "row_eq",
+      "name": "row_0_1_3",
+      "payload": [0, 1, 3]
+    },
+    {
+      "kind": "row_eq",
+      "name": "row_1_2_3",
+      "payload": [1, 2, 3]
+    },
+    {
+      "kind": "kalmanson_diagonals_vs_ad_bc",
+      "name": "kal2_0_1_2_3",
+      "payload": [0, 1, 2, 3]
+    }
+  ],
+  "deletion_minimal_core_count": 4,
+  "epistemic_status": "Z3_LINEAR_THEOREM_DISCOVERY_NOT_LEAN_PROOF",
+  "initial_core_count": 4,
+  "schema": "p97-atail-biapex-fin12-kalmanson-mus-v1"
+}

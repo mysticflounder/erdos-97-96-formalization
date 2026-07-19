@@ -1,0 +1,33 @@
+{
+  "bank": "scratch/atail-force/generic-biapex-kalmanson-search/schema_bank_round2.json",
+  "bank_epistemic_status": "BOUNDED_DISCOVERY_BANK_REQUIRES_CORE_PROVENANCE",
+  "bank_schema": "p97-whole-carrier-kalmanson-transported-schema-bank-v1",
+  "bank_schema_count": 231,
+  "clause_block_counts": {
+    "blocker_at_least_one": 11,
+    "blocker_at_most_one": 324,
+    "blocker_forbidden": 31,
+    "blocker_implies_source_membership": 90,
+    "cyclic_alternation": 1320,
+    "pair_center_count_at_most_2": 4620,
+    "preloaded_schema_cut": 141504,
+    "row_at_least_4": 1320,
+    "row_at_most_4": 2772,
+    "row_intersection_at_most_2": 4620,
+    "row_nonself": 11,
+    "strong_connectivity_outgoing_cut": 2046
+  },
+  "clause_count": 158669,
+  "cnf_path": "scratch/atail-force/generic-biapex-kalmanson-cnf/n11_a1_round2.cnf",
+  "embeddable_schema_count": 214,
+  "encoding_schema": "p97-biapex-structural-outer-direct-cnf-v1",
+  "n": 11,
+  "omitted_apices": [
+    0,
+    1
+  ],
+  "schema_embedding_count": 141504,
+  "skipped_schema_count_core_larger_than_n": 17,
+  "solver_status": "NOT_RUN",
+  "variable_count": 242
+}

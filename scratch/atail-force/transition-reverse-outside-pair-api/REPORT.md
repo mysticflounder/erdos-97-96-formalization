@@ -3,9 +3,10 @@
 Date: 2026-07-17
 
 Status: **THE TRANSITION API AND SINGLE-ORBIT BRIDGE ARE NOW PRODUCTION.
-THE TERMINAL CONSUMER IS CHECKED. THE EXACT REMAINING FULL-PARENT PRODUCER IS
-A TWO-HIT CAPTURE OF ONE TRANSITION REVERSE RESIDUAL IN THE RETAINED
-FIRST-APEX RADIUS CLASS. THAT GEOMETRIC CAPTURE REMAINS OPEN.**
+THE TERMINAL CONSUMER AND RETAINED-RADIUS-CAPTURE ADAPTER ARE KERNEL-CHECKED.
+THE EXACT REMAINING FULL-PARENT PRODUCER IS A TWO-HIT CAPTURE OF ONE
+TRANSITION REVERSE RESIDUAL IN THE RETAINED FIRST-APEX RADIUS CLASS. THAT
+GEOMETRIC CAPTURE REMAINS OPEN.**
 
 This lane is scratch/source-only. It did not edit production Lean, shared plan
 documents, proof-blueprint state, `SurplusM44`, the protected card-five/FA-UNIQ
@@ -35,8 +36,10 @@ drafted:
   frontier, common-deletion parent, both apex robustness facts, both cap-six
   bounds, `minimal`, and `noM44`.
 
-The user stopped the active build before this later audit. No Lean, Lake, LSP,
-target build, or full build was started or resumed for this checkpoint.
+The user stopped the active build before the source-only audit. On 2026-07-18,
+after the production dependencies landed and focused validation was authorized,
+this lane ran only the single-file Lean gate recorded below. It did not run a
+Lake target build or full build.
 
 ### Required bank and corpus result
 
@@ -64,8 +67,8 @@ first-apex radius class. Their first-apex distances are equal, and
 `false_of_transitionReverseOutsidePair_coRadial_firstApex` gives `False`.
 
 `RetainedFirstApexRadiusCapture.lean` records the complete parent-indexed
-contract and the routine terminal adapter. Because the build was stopped, the
-new adapter is **ROUTINE-UNELABORATED**, not claimed kernel-checked.
+contract and the routine terminal adapter. The adapter is now
+**PROVEN / KERNEL-CHECKED** against the landed production modules.
 
 ### Why the current critical-fiber APIs do not produce it
 
@@ -107,11 +110,37 @@ a blocker collision.
 - co-radial transition-pair consumer: **PROVEN IN CURRENT PRODUCTION AND
   TERMINAL**;
 - new parent-indexed adapter from retained-radius two-hit capture to `False`:
-  **ROUTINE-UNELABORATED**;
+  **PROVEN / KERNEL-CHECKED**;
 - retained-radius two-hit capture from full `L` plus all-reverse transition:
   **OPEN, GENUINELY EUCLIDEAN/MEC/FULL-PARENT**;
 - unconditional closure of the all-reverse leaf at this checkpoint:
   **NOT PROVEN**.
+
+### Focused validation on 2026-07-18
+
+From the Lake root `lean/`, the lane ran:
+
+```text
+lake env lean -M 16384 \
+  ../scratch/atail-force/transition-reverse-outside-pair-api/\
+RetainedFirstApexRadiusCapture.lean
+```
+
+The command exits zero with no Lean warnings. The host prints only the
+non-proof environment notice `Not privileged to set domain environment.`
+The explicit axiom query for
+`false_of_retainedFirstApexRadiusCapture` reports exactly:
+
+```text
+propext
+Classical.choice
+Quot.sound
+```
+
+The checked adapter contains no `sorry`, `admit`, custom axiom,
+`native_decide`, or unsafe declaration. No production source, shared plan,
+`ShellCurvature`, protected mutual/card-five lane, `surplusM44`, or
+proof-blueprint state was touched.
 
 ## Registry and corpus preflight
 

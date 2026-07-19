@@ -1,0 +1,95 @@
+{
+  "coordinate_model": "p0_zero_p1_e1",
+  "equality_count": 18,
+  "evidence_scope": "exact characteristic-zero equality ideal; NONUNIT is not a real or nondegenerate realization; a collision is admitted only after the included lift replays exactly",
+  "expanded_polynomial_sha256": "16d4ad5207ffb11f7cebe75a79298b080c3655bef5b76da8b7a0b88b7a6637e4",
+  "msolve": {
+    "forward": {
+      "verdict": "TIMEOUT"
+    },
+    "reverse": {
+      "verdict": "TIMEOUT"
+    }
+  },
+  "pattern": "source-indexed-unit-core-654-21",
+  "point_relabeling": {
+    "kind": "cyclic_shift_mod_12",
+    "old_to_new": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      0,
+      1
+    ],
+    "shift": 2
+  },
+  "row_count": 6,
+  "rows": [
+    {
+      "center": 1,
+      "support": [
+        3,
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "center": 2,
+      "support": [
+        3,
+        5,
+        7,
+        11
+      ]
+    },
+    {
+      "center": 5,
+      "support": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "center": 7,
+      "support": [
+        1,
+        5,
+        6,
+        10
+      ]
+    },
+    {
+      "center": 9,
+      "support": [
+        3,
+        7,
+        8,
+        10
+      ]
+    },
+    {
+      "center": 10,
+      "support": [
+        1,
+        5,
+        8,
+        11
+      ]
+    }
+  ],
+  "schema": "p97-source-indexed-saved-pattern-exact-probe-v1",
+  "singular": {
+    "status": "SKIPPED"
+  },
+  "singular_variable_order": "forward"
+}

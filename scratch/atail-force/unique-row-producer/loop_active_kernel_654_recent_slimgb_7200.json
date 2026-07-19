@@ -1,0 +1,64 @@
+{
+  "bank_path": "scratch/atail-force/unique-row-producer/card_five_interior_shadow_search.py",
+  "bank_sha256": "fab48c6082cb193504f756954d7553999dcc2bf9a283a8f5d307809471cf0ea5",
+  "evidence_scope": "theorem-discovery only; nonzero Singular lift positions and Singular internal replay, without retained coefficients or independent exact replay",
+  "generated_at": "2026-07-16T21:19:43.412069+00:00",
+  "jobs": 2,
+  "lift_algorithm": "slimgb",
+  "quotient": {
+    "directed_embedding_count": 0,
+    "nontrivial_isomorphism_classes": [],
+    "strict_embedding_edges": [],
+    "valid_kernel_count": 0
+  },
+  "results": [
+    {
+      "active_equality_count": 0,
+      "active_generator_names": [],
+      "active_generator_positions_zero_based": [],
+      "active_label_count": 2,
+      "active_rabinowitsch_generator": false,
+      "active_row_count": 0,
+      "active_rows": [],
+      "core_id": "forced-pair-core-654-45",
+      "elapsed_seconds": 6666.006775207992,
+      "generator_count": 25,
+      "grade": "radical-forced-pair",
+      "lift_algorithm": "slimgb",
+      "nominal_equality_count": 24,
+      "nominal_row_count": 8,
+      "pair": [
+        7,
+        8
+      ],
+      "singular_lift_check": null,
+      "singular_membership_status": "ERROR",
+      "singular_returncode": -9,
+      "singular_stderr": "",
+      "status": "INVALID_OR_INCOMPLETE",
+      "timeout_seconds": 7200.0,
+      "trust_boundary": "Singular lift support plus Singular internal identity replay only; coefficient polynomials were not retained or independently replayed"
+    },
+    {
+      "core_id": "forced-pair-core-654-46",
+      "elapsed_seconds": 7200.105564541998,
+      "grade": "radical-forced-pair",
+      "lift_algorithm": "slimgb",
+      "nominal_equality_count": 24,
+      "nominal_row_count": 8,
+      "pair": [
+        7,
+        8
+      ],
+      "status": "TIMEOUT",
+      "timeout_seconds": 7200.0
+    }
+  ],
+  "schema": "p97-atail-loop-active-kernel-mining-v1",
+  "selected_core_ids": [
+    "forced-pair-core-654-45",
+    "forced-pair-core-654-46"
+  ],
+  "selection": "explicit",
+  "timeout_seconds": 7200.0
+}

@@ -1,0 +1,41 @@
+{
+  "evidence_scope": "theorem-discovery matcher only; every theorem is source-proved, but a hit still requires a Lean adapter from the live row data",
+  "inventory": "certificates/p97_rvol_general_n_mining.json",
+  "scans": [
+    {
+      "assignment_signature_sha256": "9669a150eed0597d9ced28dad91089e2ad9e25432bbf90b06faf20610d64d606",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset9_postunit54_4m_scan.json",
+      "pinned_support": [
+        4,
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  ],
+  "schema": "p97-u5-incidence-bank-saved-shadow-audit-v1",
+  "supported_pattern_count": 106,
+  "unsupported_pattern_count": 8,
+  "unsupported_type_counts": {
+    "0 < dist a b": 2,
+    "0 < dist p q": 5,
+    "dist a b = dist a c": 2,
+    "dist a b = dist b c": 2,
+    "dist a x = dist a b": 1,
+    "dist b x = dist a b": 1,
+    "dist p a = dist p q": 4,
+    "dist p b = dist p q": 4,
+    "dist p c = dist p q": 4,
+    "dist p t = dist p q": 1,
+    "dist p t1 = dist p q": 1,
+    "dist p t2 = dist p q": 1,
+    "dist p t3 = dist p q": 1,
+    "dist p x \u2260 dist p q": 2,
+    "missing U5DangerousTriple": 7,
+    "t\u2082 \u2208 B\u2081 \u2228 t\u2081 \u2208 B\u2082": 1,
+    "\u00ac Collinear \u211d ({t1, t2, t3} : Set \u211d\u00b2)": 1
+  }
+}

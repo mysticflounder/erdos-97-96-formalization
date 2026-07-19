@@ -1,0 +1,7 @@
+{"attempt": 10, "counters": {"generalized_metric_schema_cuts": 2308, "linear_metric_unsat": 10, "metric_core_cuts": 10}, "orbit": "reverseContinuationOrder", "phase": "linear_unsat"}
+{"attempt": 20, "counters": {"generalized_metric_schema_cuts": 14030, "linear_metric_unsat": 20, "metric_core_cuts": 20}, "orbit": "reverseContinuationOrder", "phase": "linear_unsat"}
+{"attempt": 30, "counters": {"generalized_metric_schema_cuts": 14852, "linear_metric_unsat": 30, "metric_core_cuts": 30}, "orbit": "reverseContinuationOrder", "phase": "linear_unsat"}
+{"attempt": 40, "counters": {"generalized_metric_schema_cuts": 18286, "linear_metric_unsat": 40, "metric_core_cuts": 40}, "orbit": "reverseContinuationOrder", "phase": "linear_unsat"}
+{"attempt": 50, "counters": {"generalized_metric_schema_cuts": 22896, "linear_metric_unsat": 50, "metric_core_cuts": 50}, "orbit": "reverseContinuationOrder", "phase": "linear_unsat"}
+{"attempt": 60, "counters": {"generalized_metric_schema_cuts": 27734, "linear_metric_unsat": 60, "metric_core_cuts": 60}, "orbit": "reverseContinuationOrder", "phase": "linear_unsat"}
+{"attempt": 70, "counters": {"generalized_metric_schema_cuts": 30100, "linear_metric_unsat": 70, "metric_core_cuts": 70}, "orbit": "reverseContinuationOrder", "phase": "linear_unsat"}

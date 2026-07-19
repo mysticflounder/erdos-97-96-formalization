@@ -1,0 +1,25 @@
+{
+  "cycle_checks": 64753,
+  "cycle_count_by_size": {
+    "3": 139,
+    "4": 730,
+    "5": 3629,
+    "6": 14682,
+    "7": 46764
+  },
+  "epistemic_status": "EXACT_BOUNDED_STRUCTURAL_AND_LRA_SCAN",
+  "n": 11,
+  "reason": null,
+  "schema": "p97-uniform-cycle-coverage-candidate-scan-v1",
+  "single_kalmanson_collision_count": 0,
+  "source": "scratch/atail-force/uniform-cycle-coverage-audit/n11_a1_minimal0.result.json",
+  "status": "NO_TERMINAL_FOUND",
+  "terminal": null,
+  "unique_cycle_type_count_by_size": {
+    "3": 46,
+    "4": 543,
+    "5": 3341,
+    "6": 14347,
+    "7": 46476
+  }
+}

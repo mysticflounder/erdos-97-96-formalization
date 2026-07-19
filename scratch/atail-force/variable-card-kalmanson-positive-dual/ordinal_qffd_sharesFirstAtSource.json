@@ -1,0 +1,27 @@
+{
+  "build_elapsed_seconds": 0.7444051249767654,
+  "complete_shell_selected_row_alternation": true,
+  "connectivity": "FLOYD_WARSHALL_ALL_PAIRS_EXACT",
+  "connectivity_clause_count": 3136,
+  "elapsed_seconds": 180.7589506249642,
+  "engine": "qffd",
+  "epistemic_status": "EXACT_IF_SAT_EXTERNAL_BOUNDED_IF_UNSAT_OR_UNKNOWN",
+  "literal_metric_schema_cuts": 0,
+  "n": 14,
+  "orbit": "sharesFirstAtSource",
+  "ordinal_counts": {
+    "guarded_exact_five_shell_rank_equalities": 78,
+    "guarded_selected_row_rank_equalities": 1092,
+    "kalmanson_cancellation_implications": 8008,
+    "rank_atoms": 91,
+    "rank_bit_width": 7
+  },
+  "outer_source": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact6-allcenter-capaware-gate/allcenter_gate.py",
+  "outer_source_sha256": "2af4ebe69459f371f25100a80de1a092e81cae75bd62ad87175c1d4c19a5f27b",
+  "reason": "timeout",
+  "schema": "p97-exact6-integrated-ordinal-cycle-decision-v1",
+  "seed": 602,
+  "solver_statistics": "(:max-memory              159.38\n :memory                  150.10\n :num-allocs              76341204885.00\n :pb-aux-clauses          15989\n :pb-aux-variables        4317\n :pb-compile-card         220\n :rlimit-count            2740839241\n :sat-ate                 603\n :sat-backjumps           886914\n :sat-backtracks          213\n :sat-conflicts           887127\n :sat-decisions           2507322\n :sat-del-clause          816934\n :sat-elim-clauses        759\n :sat-elim-literals       32302\n :sat-gc-clause           802298\n :sat-minimized-lits      12118110\n :sat-mk-clause-2ary      191455\n :sat-mk-clause-nary      1010777\n :sat-mk-var              74609\n :sat-probing-assigned    67\n :sat-propagations-2ary   2023242476\n :sat-propagations-nary   923481696\n :sat-restarts            99441\n :sat-scc-elim-binary     56\n :sat-scc-elim-vars       6351\n :sat-subs-resolution     19060\n :sat-subs-resolution-dyn 325417\n :sat-subsumed            12309\n :sat-tr                  103\n :sat-units               2061\n :time                    180.01)",
+  "status": "UNKNOWN",
+  "timeout_ms": 180000
+}

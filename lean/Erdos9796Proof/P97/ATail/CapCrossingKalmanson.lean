@@ -414,6 +414,45 @@ theorem false_of_selected_rows_in_five_ccw_order
       hcarrier hboundary_injective hboundary_image hboundary_ccw
       hOA hAY hYE hEC hYRow hORow hARow
 
+/-- Two selected rows at the first two vertices of an increasing boundary
+quadruple cannot share the last two support vertices.
+
+For `ia < ib < ic < id`, the strict Kalmanson inequality
+
+```text
+dist ia id + dist ib ic < dist ia ic + dist ib id
+```
+
+contradicts the two row equalities after direct cancellation. -/
+theorem false_of_two_selected_rows_shared_late_pair
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {ia ib ic id : Fin carrier.card}
+    (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id)
+    (ARow : SelectedFourClass carrier (boundary ia))
+    (BRow : SelectedFourClass carrier (boundary ib))
+    (hic_mem_ARow : boundary ic ∈ ARow.support)
+    (hid_mem_ARow : boundary id ∈ ARow.support)
+    (hic_mem_BRow : boundary ic ∈ BRow.support)
+    (hid_mem_BRow : boundary id ∈ BRow.support) : False := by
+  have hAeq :
+      dist (boundary ia) (boundary ic) =
+        dist (boundary ia) (boundary id) :=
+    (ARow.support_eq_radius _ hic_mem_ARow).trans
+      (ARow.support_eq_radius _ hid_mem_ARow).symm
+  have hBeq :
+      dist (boundary ib) (boundary ic) =
+        dist (boundary ib) (boundary id) :=
+    (BRow.support_eq_radius _ hic_mem_BRow).trans
+      (BRow.support_eq_radius _ hid_mem_BRow).symm
+  have hstrict :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+      hboundary_injective hboundary_image hboundary_ccw hiab hibc hicd
+  linarith
+
 #print axioms exists_mem_openSegment_diagonals_of_ccw
 #print axioms dist_add_dist_lt_diagonal_sum_of_openSegment_diagonals
 #print axioms complementary_dist_add_dist_lt_diagonal_sum_of_openSegment_diagonals
@@ -423,6 +462,7 @@ theorem false_of_selected_rows_in_five_ccw_order
 #print axioms dist_first_side_lt_second_diagonal_of_ccw_of_dist_diagonal_eq_last_side
 #print axioms false_of_five_ccw_three_shell_equalities
 #print axioms false_of_selected_rows_in_five_ccw_order
+#print axioms false_of_two_selected_rows_shared_late_pair
 
 end CapCrossingKalmansonBridge
 end Problem97

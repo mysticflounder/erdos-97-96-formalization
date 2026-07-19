@@ -1,0 +1,164 @@
+{
+  "attempt_count": 1,
+  "elapsed_seconds": 180.01009154203348,
+  "first_refinements": [
+    {
+      "attempt": 1,
+      "complete_core_vertices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "constraint_kinds": [
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "row_equality",
+        "row_equality",
+        "row_equality",
+        "row_equality",
+        "row_equality",
+        "row_equality"
+      ],
+      "dependency_centers": [
+        0,
+        1,
+        2
+      ],
+      "kind": "FULL_LRA",
+      "metric_core": [
+        "kal2_1_2_3_4",
+        "kal2_1_2_5_6",
+        "kal2_1_2_7_8",
+        "kal2_1_2_6_7",
+        "kal2_1_2_4_5",
+        "kal2_0_1_5_6",
+        "kal2_0_1_4_5",
+        "kal2_0_1_3_4",
+        "row_0_2_3",
+        "row_0_2_6",
+        "row_1_0_6",
+        "row_1_0_8",
+        "row_2_1_3",
+        "row_2_1_8"
+      ],
+      "order_embedding_cut_count": 110,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          8
+        ]
+      ],
+      "required_memberships": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          8
+        ]
+      ]
+    }
+  ],
+  "full_linear": true,
+  "full_linear_check_count": 1,
+  "full_linear_core_count": 1,
+  "n": 11,
+  "omitted_apices": [
+    0,
+    4
+  ],
+  "preload_paths": [],
+  "preloaded_embedding_cut_count": 118222,
+  "preloaded_schema_count": 173,
+  "random_seed": 6,
+  "reason": "wall budget",
+  "refinement_count": 1,
+  "refinement_rate_per_second": 0.0055552441056700074,
+  "schema_size_histogram": {
+    "10": 4,
+    "11": 8,
+    "12": 10,
+    "4": 5,
+    "5": 41,
+    "6": 51,
+    "7": 39,
+    "8": 11,
+    "9": 5
+  },
+  "status": "UNKNOWN",
+  "total_collision_count": 0,
+  "total_embedding_cut_count": 110
+}

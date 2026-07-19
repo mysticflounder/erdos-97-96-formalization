@@ -1,0 +1,13 @@
+{
+  "bank": "scratch/atail-force/uniform-cycle-coverage-audit/front-before-isosceles-cegar/bank_218.json",
+  "bank_schema_count": 218,
+  "carrier": "scratch/atail-force/n12-geometry-regression/n13/carrier.json",
+  "carrier_n": 13,
+  "checked_embedding_count": 670670,
+  "epistemic_status": "INDEPENDENT_EXACT_LITERAL_MEMBERSHIP_REPLAY",
+  "hit_count": 0,
+  "hits": [],
+  "schema": "p97-transported-bank-saved-carrier-replay-v1",
+  "scope_warning": "This checks only transported literal cuts against one saved finite carrier. It is not a new SAT/UNSAT decision and not arbitrary-cardinality coverage.",
+  "status": "PASSES_BANK"
+}

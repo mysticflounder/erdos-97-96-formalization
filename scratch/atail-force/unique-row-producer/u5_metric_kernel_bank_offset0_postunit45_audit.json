@@ -1,0 +1,29 @@
+{
+  "evidence_scope": "theorem-discovery matcher only; distance equalities come from row closure, p-circle inequalities from the exact pinned row, and noncollinearity from distinct labels plus CounterexampleData.convex",
+  "inventory": "certificates/p97_rvol_general_n_mining.json",
+  "scans": [
+    {
+      "assignment_signature_sha256": "24c674a0f324ce9c435e1ec7516566b3982b48d3536564a426b4782d760d2b45",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset0_postunit45_4m_scan.json",
+      "pinned_support": [
+        0,
+        2,
+        7,
+        8,
+        9
+      ]
+    }
+  ],
+  "schema": "p97-u5-metric-kernel-saved-shadow-audit-v1",
+  "smoke_gates": {
+    "class_only_residual_positive": true,
+    "common_bisector_positive": true,
+    "exact_off_circle_positive": true,
+    "membership_disjunction_positive": true,
+    "missing_class_negative": true
+  },
+  "supported_pattern_count": 8,
+  "unsupported_patterns": []
+}

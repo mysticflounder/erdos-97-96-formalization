@@ -1,0 +1,6 @@
+{"attempt": 20, "counters": {"linear_metric_unsat": 20}, "orbit": "continuationOrder", "phase": "linear_unsat"}
+{"attempt": 40, "counters": {"linear_metric_unsat": 40}, "orbit": "continuationOrder", "phase": "linear_unsat"}
+{"attempt": 60, "counters": {"linear_metric_unsat": 60}, "orbit": "continuationOrder", "phase": "linear_unsat"}
+{"attempt": 80, "counters": {"linear_metric_unsat": 80}, "orbit": "continuationOrder", "phase": "linear_unsat"}
+{"attempt": 100, "counters": {"linear_metric_unsat": 100}, "orbit": "continuationOrder", "phase": "linear_unsat"}
+{"attempt": 120, "counters": {"linear_metric_unsat": 120}, "orbit": "continuationOrder", "phase": "linear_unsat"}

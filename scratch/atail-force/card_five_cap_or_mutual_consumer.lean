@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import same_radius_double_erase_classifier
+import Erdos9796Proof.P97.ATail.CriticalPairFrontier
 import Erdos9796Proof.P97.CapSelectedRowCounting
 
 /-!
@@ -38,19 +38,18 @@ namespace Problem97
 namespace ATAILCardFiveCapOrMutualScratch
 
 open ATAILSameRadiusDoubleErase
-open U1Depth5
 
 /-- Local adapter from the banked ordered-cap uniqueness theorem to an
 indexed cap of a surplus packet. -/
 private theorem sameCap_outsidePair_unique_bisectorCenter
-    {A : Finset Plane} (S : SurplusCapPacket A)
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hconv : ConvexIndep A) (k : Fin 3)
-    {c z w : Plane}
+    {c z w : ℝ²}
     (hcCap : c ∈ S.capByIndex k)
     (hzA : z ∈ A) (hwA : w ∈ A) (hzw : z ≠ w)
     (hzOff : z ∉ S.capByIndex k) (hwOff : w ∉ S.capByIndex k)
     (hcdist : dist c z = dist c w) :
-    ∀ a : Plane, a ∈ S.capByIndex k →
+    ∀ a : ℝ², a ∈ S.capByIndex k →
       (dist a z = dist a w ↔ a = c) := by
   classical
   intro a haCap
@@ -89,14 +88,14 @@ private theorem sameCap_outsidePair_unique_bisectorCenter
     simpa [hac] using hcdist
 
 private theorem capByIndex_surplusIdx_eq
-    {A : Finset Plane} (S : SurplusCapPacket A) :
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.surplusIdx = S.surplusCap := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
     simp [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
 private theorem oppApex1_mem_A
-    {A : Finset Plane} (S : SurplusCapPacket A) :
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
@@ -105,7 +104,7 @@ private theorem oppApex1_mem_A
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 private theorem oppApex1_mem_surplusCap
-    {A : Finset Plane} (S : SurplusCapPacket A) :
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ S.surplusCap := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
@@ -116,11 +115,94 @@ private theorem oppApex1_mem_surplusCap
   · simpa [SurplusCapPacket.surplusCap,
       SurplusCapPacket.oppApex1, hi] using S.partition.v1_mem_C3
 
+/-- Erasing one point from an exact five-point radius class leaves a
+four-point witness at the same center. -/
+private theorem single_erase_survives_of_class_card_five
+    {A : Finset ℝ²} {center z : ℝ²} {radius : ℝ}
+    (hradius : 0 < radius)
+    (_hzClass : z ∈ SelectedClass A center radius)
+    (hcard : (SelectedClass A center radius).card = 5) :
+    HasNEquidistantPointsAt 4 (A.erase z) center := by
+  refine ⟨radius, hradius, ?_⟩
+  simpa [SelectedClass] using
+    selectedClass_erase_card_ge_of_succ_le
+      (A := A) (x := z) (s := center) (d := radius) (n := 4) (by omega)
+
+/-- Three distinct carrier centers cannot all bisect the same carrier pair.
+
+The first center is the first opposite apex.  Deletion survival separates it
+from both source blockers, while mutual critical-row incidence places both
+blockers on the same perpendicular bisector. -/
+private theorem false_of_mutualCriticalIncidence_of_distinct_blockers
+    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+    {apex z w : ℝ²}
+    (hapexA : apex ∈ D.A) (hzA : z ∈ D.A) (hwA : w ∈ D.A)
+    (hzw : z ≠ w)
+    (hapexEq : dist apex z = dist apex w)
+    (hzSurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase z) apex)
+    (hwSurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase w) apex)
+    (hcenters : H.centerAt z hzA ≠ H.centerAt w hwA)
+    (hwInZRow :
+      w ∈ (H.selectedAt z hzA).toCriticalFourShell.support)
+    (hzInWRow :
+      z ∈ (H.selectedAt w hwA).toCriticalFourShell.support) :
+    False := by
+  classical
+  let cz := H.centerAt z hzA
+  let cw := H.centerAt w hwA
+  have hczA : cz ∈ D.A := by
+    simpa [cz] using
+      (Finset.mem_erase.mp
+        (H.selectedAt z hzA).toCriticalFourShell.center_mem).2
+  have hcwA : cw ∈ D.A := by
+    simpa [cw] using
+      (Finset.mem_erase.mp
+        (H.selectedAt w hwA).toCriticalFourShell.center_mem).2
+  have hcz_ne_apex : cz ≠ apex := by
+    simpa [cz] using
+      ATAILStageOnePrescribedApexDichotomy.actual_blocker_ne_of_deletion_survives
+        H hzA hzSurvives
+  have hcw_ne_apex : cw ≠ apex := by
+    simpa [cw] using
+      ATAILStageOnePrescribedApexDichotomy.actual_blocker_ne_of_deletion_survives
+        H hwA hwSurvives
+  have hczEq : dist cz z = dist cz w := by
+    simpa [cz] using
+      (H.selectedAt z hzA).toCriticalFourShell.support_eq_radius z
+          (H.selectedAt z hzA).toCriticalFourShell.q_mem_support
+        |>.trans
+          ((H.selectedAt z hzA).toCriticalFourShell.support_eq_radius w
+            hwInZRow).symm
+  have hcwEq : dist cw z = dist cw w := by
+    simpa [cw] using
+      (H.selectedAt w hwA).toCriticalFourShell.support_eq_radius z hzInWRow
+        |>.trans
+          ((H.selectedAt w hwA).toCriticalFourShell.support_eq_radius w
+            (H.selectedAt w hwA).toCriticalFourShell.q_mem_support).symm
+  have hbound := Dumitrescu.perpBisector_apex_bound D.convex hzA hwA hzw
+  have hapexFilter :
+      apex ∈ D.A.filter (fun c => dist c z = dist c w) :=
+    Finset.mem_filter.mpr ⟨hapexA, hapexEq⟩
+  have hczFilter :
+      cz ∈ D.A.filter (fun c => dist c z = dist c w) :=
+    Finset.mem_filter.mpr ⟨hczA, hczEq⟩
+  have hcwFilter :
+      cw ∈ D.A.filter (fun c => dist c z = dist c w) :=
+    Finset.mem_filter.mpr ⟨hcwA, hcwEq⟩
+  have hthree :
+      2 < (D.A.filter (fun c => dist c z = dist c w)).card := by
+    rw [Finset.two_lt_card]
+    exact ⟨apex, hapexFilter, cz, hczFilter, cw, hcwFilter,
+      hcz_ne_apex.symm, hcw_ne_apex.symm, by simpa [cz, cw] using hcenters⟩
+  omega
+
 /-- One cross-incidence already contradicts ordered-cap uniqueness when its
 blocker center lies in the surplus cap. -/
 theorem false_of_cardFive_capLocal_crossIncidence
     {D : CounterexampleData} (S : SurplusCapPacket D.A)
-    (H : CriticalShellSystem D.A) {radius : ℝ} {z w : Plane}
+    (H : CriticalShellSystem D.A) {radius : ℝ} {z w : ℝ²}
     (hzA : z ∈ D.A) (hwA : w ∈ D.A)
     (hradius : 0 < radius)
     (hcard : (SelectedClass D.A S.oppApex1 radius).card = 5)
@@ -137,7 +219,8 @@ theorem false_of_cardFive_capLocal_crossIncidence
       HasNEquidistantPointsAt 4 (D.A.erase z) S.oppApex1 :=
     single_erase_survives_of_class_card_five hradius hzClass hcard
   have hzCenterNe : H.centerAt z hzA ≠ S.oppApex1 :=
-    blocker_center_ne_of_deletion_survives H hzA hzSurvives
+    ATAILStageOnePrescribedApexDichotomy.actual_blocker_ne_of_deletion_survives
+      H hzA hzSurvives
   have hapexDist : dist S.oppApex1 z = dist S.oppApex1 w :=
     (mem_selectedClass.mp hzClass).2.trans
       (mem_selectedClass.mp hwClass).2.symm
@@ -165,8 +248,8 @@ theorem false_of_cardFive_capLocal_crossIncidence
 structure CardFiveCapOrMutualFields
     {D : CounterexampleData} (S : SurplusCapPacket D.A)
     (H : CriticalShellSystem D.A) (radius : ℝ) where
-  z : Plane
-  w : Plane
+  z : ℝ²
+  w : ℝ²
   z_mem_A : z ∈ D.A
   w_mem_A : w ∈ D.A
   z_mem_class : z ∈ SelectedClass D.A S.oppApex1 radius
@@ -210,12 +293,13 @@ theorem false_of_cardFive_exists_capLocal_or_mutualIncidence
         HasNEquidistantPointsAt 4 (D.A.erase F.w) S.oppApex1 :=
       single_erase_survives_of_class_card_five
         hradius F.w_mem_class hcard
-    exact false_of_distinctBlockers_mutualCriticalIncidence H
+    exact false_of_mutualCriticalIncidence_of_distinct_blockers H
       (oppApex1_mem_A S) F.z_mem_A F.w_mem_A F.ne
       ((mem_selectedClass.mp F.z_mem_class).2.trans
         (mem_selectedClass.mp F.w_mem_class).2.symm)
       hzSurvives hwSurvives F.centers_ne hmutual.1 hmutual.2
 
+#print axioms false_of_mutualCriticalIncidence_of_distinct_blockers
 #print axioms false_of_cardFive_capLocal_crossIncidence
 #print axioms false_of_cardFive_exists_capLocal_or_mutualIncidence
 

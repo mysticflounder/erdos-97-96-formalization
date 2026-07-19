@@ -1,0 +1,215 @@
+{
+  "blockers": {
+    "0": 10,
+    "1": 2,
+    "10": 4,
+    "2": 4,
+    "3": 5,
+    "4": 3,
+    "5": 7,
+    "6": 7,
+    "7": 3,
+    "8": 5,
+    "9": 2
+  },
+  "elapsed_seconds": 0.05741249996935949,
+  "epistemic_status": "EXACT_RATIONAL_LRA_SOLVER_EVIDENCE_PENDING_INDEPENDENT_REPLAY",
+  "metric_core": [
+    "kal2_0_1_2_3",
+    "kal2_0_1_3_4",
+    "kal2_0_1_4_5",
+    "kal2_0_1_5_6",
+    "kal2_0_1_6_7",
+    "kal2_0_1_7_8",
+    "kal2_0_1_8_9",
+    "kal2_0_1_9_10",
+    "kal1_0_2_3_4",
+    "row_10_0_1",
+    "row_2_1_4",
+    "row_3_0_4"
+  ],
+  "metric_core_constraint_count": 12,
+  "metric_core_deletion_minimized_by_source_oracle": true,
+  "n": 11,
+  "omitted_apices": [
+    0,
+    1
+  ],
+  "random_seed": 0,
+  "refinements": [
+    {
+      "attempt": 1,
+      "complete_core_vertices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "constraint_kinds": [
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ab_cd",
+        "row_equality",
+        "row_equality",
+        "row_equality"
+      ],
+      "dependency_centers": [
+        2,
+        3,
+        10
+      ],
+      "kind": "FULL_LRA",
+      "metric_core": [
+        "kal2_0_1_2_3",
+        "kal2_0_1_3_4",
+        "kal2_0_1_4_5",
+        "kal2_0_1_5_6",
+        "kal2_0_1_6_7",
+        "kal2_0_1_7_8",
+        "kal2_0_1_8_9",
+        "kal2_0_1_9_10",
+        "kal1_0_2_3_4",
+        "row_10_0_1",
+        "row_2_1_4",
+        "row_3_0_4"
+      ],
+      "order_embedding_cut_count": 2,
+      "order_schema": [
+        [
+          0,
+          9
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          7,
+          10
+        ],
+        [
+          8,
+          6
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "required_memberships": [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          1
+        ]
+      ]
+    }
+  ],
+  "rows": {
+    "0": [
+      2,
+      7,
+      8,
+      10
+    ],
+    "1": [
+      0,
+      3,
+      5,
+      9
+    ],
+    "10": [
+      0,
+      1,
+      6,
+      7
+    ],
+    "2": [
+      1,
+      4,
+      6,
+      9
+    ],
+    "3": [
+      0,
+      2,
+      4,
+      7
+    ],
+    "4": [
+      1,
+      2,
+      5,
+      10
+    ],
+    "5": [
+      2,
+      3,
+      6,
+      8
+    ],
+    "6": [
+      1,
+      3,
+      4,
+      7
+    ],
+    "7": [
+      2,
+      5,
+      6,
+      9
+    ],
+    "8": [
+      3,
+      7,
+      9,
+      10
+    ],
+    "9": [
+      0,
+      4,
+      5,
+      8
+    ]
+  },
+  "schema": "p97-fixed-row-full-lra-check-v1",
+  "source_outer_result": "scratch/atail-force/generic-biapex-kalmanson-cnf/n11_a1_round2.result.json",
+  "status": "UNSAT_FULL_LRA_FIXED_ROWS"
+}

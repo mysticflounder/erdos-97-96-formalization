@@ -1,0 +1,600 @@
+{
+  "attempt_count": 1,
+  "elapsed_seconds": 66.71027383301407,
+  "first_refinements": [
+    {
+      "attempt": 1,
+      "complete_core_vertices": [
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "equality_paths": [
+        [
+          {
+            "center": 5,
+            "left": [
+              2,
+              5
+            ],
+            "memberships": [
+              [
+                5,
+                2
+              ],
+              [
+                5,
+                6
+              ]
+            ],
+            "right": [
+              5,
+              6
+            ]
+          },
+          {
+            "center": 6,
+            "left": [
+              2,
+              6
+            ],
+            "memberships": [
+              [
+                6,
+                2
+              ],
+              [
+                6,
+                5
+              ]
+            ],
+            "right": [
+              5,
+              6
+            ]
+          },
+          {
+            "center": 2,
+            "left": [
+              2,
+              3
+            ],
+            "memberships": [
+              [
+                2,
+                3
+              ],
+              [
+                2,
+                6
+              ]
+            ],
+            "right": [
+              2,
+              6
+            ]
+          }
+        ],
+        [
+          {
+            "center": 7,
+            "left": [
+              3,
+              7
+            ],
+            "memberships": [
+              [
+                7,
+                3
+              ],
+              [
+                7,
+                5
+              ]
+            ],
+            "right": [
+              5,
+              7
+            ]
+          }
+        ]
+      ],
+      "kind": "K1",
+      "order_embedding_cut_count": 924,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "quadruple": [
+        2,
+        3,
+        5,
+        7
+      ],
+      "required_memberships": [
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          5
+        ]
+      ]
+    },
+    {
+      "attempt": 1,
+      "complete_core_vertices": [
+        2,
+        3,
+        5,
+        6,
+        10
+      ],
+      "equality_paths": [
+        [
+          {
+            "center": 5,
+            "left": [
+              2,
+              5
+            ],
+            "memberships": [
+              [
+                5,
+                2
+              ],
+              [
+                5,
+                6
+              ]
+            ],
+            "right": [
+              5,
+              6
+            ]
+          },
+          {
+            "center": 6,
+            "left": [
+              2,
+              6
+            ],
+            "memberships": [
+              [
+                6,
+                2
+              ],
+              [
+                6,
+                5
+              ]
+            ],
+            "right": [
+              5,
+              6
+            ]
+          },
+          {
+            "center": 2,
+            "left": [
+              2,
+              6
+            ],
+            "memberships": [
+              [
+                2,
+                6
+              ],
+              [
+                2,
+                10
+              ]
+            ],
+            "right": [
+              2,
+              10
+            ]
+          }
+        ],
+        [
+          {
+            "center": 3,
+            "left": [
+              3,
+              5
+            ],
+            "memberships": [
+              [
+                3,
+                5
+              ],
+              [
+                3,
+                10
+              ]
+            ],
+            "right": [
+              3,
+              10
+            ]
+          }
+        ]
+      ],
+      "kind": "K2",
+      "order_embedding_cut_count": 924,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "quadruple": [
+        2,
+        3,
+        5,
+        10
+      ],
+      "required_memberships": [
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          5
+        ]
+      ]
+    },
+    {
+      "attempt": 1,
+      "complete_core_vertices": [
+        2,
+        5,
+        6,
+        7,
+        8,
+        10
+      ],
+      "equality_paths": [
+        [
+          {
+            "center": 5,
+            "left": [
+              5,
+              6
+            ],
+            "memberships": [
+              [
+                5,
+                6
+              ],
+              [
+                5,
+                8
+              ]
+            ],
+            "right": [
+              5,
+              8
+            ]
+          },
+          {
+            "center": 6,
+            "left": [
+              2,
+              6
+            ],
+            "memberships": [
+              [
+                6,
+                2
+              ],
+              [
+                6,
+                5
+              ]
+            ],
+            "right": [
+              5,
+              6
+            ]
+          },
+          {
+            "center": 2,
+            "left": [
+              2,
+              6
+            ],
+            "memberships": [
+              [
+                2,
+                6
+              ],
+              [
+                2,
+                10
+              ]
+            ],
+            "right": [
+              2,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "left": [
+              2,
+              10
+            ],
+            "memberships": [
+              [
+                10,
+                2
+              ],
+              [
+                10,
+                8
+              ]
+            ],
+            "right": [
+              8,
+              10
+            ]
+          }
+        ],
+        [
+          {
+            "center": 7,
+            "left": [
+              5,
+              7
+            ],
+            "memberships": [
+              [
+                7,
+                5
+              ],
+              [
+                7,
+                10
+              ]
+            ],
+            "right": [
+              7,
+              10
+            ]
+          }
+        ]
+      ],
+      "kind": "K1",
+      "order_embedding_cut_count": 924,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "quadruple": [
+        5,
+        7,
+        8,
+        10
+      ],
+      "required_memberships": [
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          5
+        ],
+        [
+          7,
+          10
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          10,
+          8
+        ]
+      ]
+    }
+  ],
+  "full_linear": true,
+  "full_linear_check_count": 0,
+  "full_linear_core_count": 0,
+  "n": 11,
+  "omitted_apices": [
+    0,
+    2
+  ],
+  "preload_paths": [],
+  "preloaded_embedding_cut_count": 70932,
+  "preloaded_schema_count": 98,
+  "random_seed": 0,
+  "reason": "canceled",
+  "refinement_count": 3,
+  "refinement_rate_per_second": 0.04497058440367753,
+  "schema_size_histogram": {
+    "10": 2,
+    "11": 2,
+    "4": 5,
+    "5": 26,
+    "6": 28,
+    "7": 26,
+    "8": 9,
+    "9": 3
+  },
+  "status": "UNKNOWN",
+  "total_collision_count": 3,
+  "total_embedding_cut_count": 2772
+}

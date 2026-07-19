@@ -1,0 +1,494 @@
+{
+  "conclusion": "The outer carrier cannot be realized by points in the stored strict convex cyclic order, because it already violates a necessary strict Kalmanson distance system.",
+  "first_failed_layer": "PLANAR_STRICT_CONVEX_CYCLIC_REALIZATION",
+  "layer_1": {
+    "claim_tested": "selected equal-distance row equations plus every strict Kalmanson inequality forced by the stored cyclic order",
+    "direct_encoding": {
+      "distance_variable_count": 78,
+      "encoding": "direct-pair-distance-qf-lra-v1",
+      "path": "scratch/atail-force/n12-geometry-regression/n13/strict_kalmanson_direct.smt2",
+      "row_equality_count": 39,
+      "sha256": "284ac79520a67f997abacfb36bc3a8e8cb5723c5300998732e08f515d6df0fe7",
+      "strict_kalmanson_count": 1430,
+      "strict_slack_normalization": 1
+    },
+    "quotient_encoding": {
+      "classes": {
+        "q_0": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            12
+          ]
+        ],
+        "q_1": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            10
+          ]
+        ],
+        "q_10": [
+          [
+            1,
+            5
+          ]
+        ],
+        "q_11": [
+          [
+            1,
+            6
+          ]
+        ],
+        "q_12": [
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            9,
+            11
+          ]
+        ],
+        "q_13": [
+          [
+            1,
+            8
+          ]
+        ],
+        "q_14": [
+          [
+            1,
+            9
+          ]
+        ],
+        "q_15": [
+          [
+            1,
+            10
+          ]
+        ],
+        "q_16": [
+          [
+            1,
+            11
+          ]
+        ],
+        "q_17": [
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            3,
+            12
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            10
+          ]
+        ],
+        "q_18": [
+          [
+            2,
+            5
+          ]
+        ],
+        "q_19": [
+          [
+            2,
+            7
+          ]
+        ],
+        "q_2": [
+          [
+            0,
+            3
+          ]
+        ],
+        "q_20": [
+          [
+            2,
+            8
+          ]
+        ],
+        "q_21": [
+          [
+            2,
+            11
+          ]
+        ],
+        "q_22": [
+          [
+            3,
+            6
+          ]
+        ],
+        "q_23": [
+          [
+            3,
+            9
+          ]
+        ],
+        "q_24": [
+          [
+            3,
+            10
+          ]
+        ],
+        "q_25": [
+          [
+            4,
+            7
+          ]
+        ],
+        "q_26": [
+          [
+            4,
+            8
+          ]
+        ],
+        "q_27": [
+          [
+            4,
+            9
+          ]
+        ],
+        "q_28": [
+          [
+            4,
+            11
+          ]
+        ],
+        "q_29": [
+          [
+            5,
+            10
+          ]
+        ],
+        "q_3": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            0,
+            11
+          ]
+        ],
+        "q_30": [
+          [
+            5,
+            11
+          ]
+        ],
+        "q_31": [
+          [
+            5,
+            12
+          ]
+        ],
+        "q_32": [
+          [
+            6,
+            9
+          ]
+        ],
+        "q_33": [
+          [
+            6,
+            12
+          ]
+        ],
+        "q_34": [
+          [
+            7,
+            10
+          ]
+        ],
+        "q_35": [
+          [
+            7,
+            11
+          ]
+        ],
+        "q_36": [
+          [
+            7,
+            12
+          ]
+        ],
+        "q_37": [
+          [
+            8,
+            9
+          ]
+        ],
+        "q_38": [
+          [
+            8,
+            12
+          ]
+        ],
+        "q_39": [
+          [
+            9,
+            12
+          ]
+        ],
+        "q_4": [
+          [
+            0,
+            6
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            11
+          ]
+        ],
+        "q_5": [
+          [
+            0,
+            7
+          ]
+        ],
+        "q_6": [
+          [
+            0,
+            8
+          ]
+        ],
+        "q_7": [
+          [
+            0,
+            10
+          ]
+        ],
+        "q_8": [
+          [
+            0,
+            12
+          ],
+          [
+            2,
+            12
+          ],
+          [
+            3,
+            11
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            8,
+            11
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            10,
+            12
+          ],
+          [
+            11,
+            12
+          ]
+        ],
+        "q_9": [
+          [
+            1,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            10
+          ],
+          [
+            4,
+            12
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            8
+          ]
+        ]
+      },
+      "encoding": "row-equality-quotient-qf-lra-v1",
+      "original_distance_variable_count": 78,
+      "path": "scratch/atail-force/n12-geometry-regression/n13/strict_kalmanson_quotient.smt2",
+      "quotient_variable_count": 40,
+      "sha256": "4b843842ebb21b9730d44fefadfcd22b77ba8cd50de5d4d6f41accc9da543456",
+      "strict_kalmanson_count": 1430,
+      "strict_slack_normalization": 1
+    },
+    "scope": "Necessary linear consequence of planar strict-convex cyclic realization; not a sufficient Euclidean realization encoding",
+    "solver_results": {
+      "cvc5_direct": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--produce-unsat-cores",
+          "--tlimit",
+          "60000",
+          "scratch/atail-force/n12-geometry-regression/n13/strict_kalmanson_direct.smt2"
+        ],
+        "elapsed_seconds": 0.1656647920026444,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "unsat\n(\nrow_0_eq_1\nrow_0_eq_2\nrow_0_eq_3\nrow_1_eq_1\nrow_1_eq_2\nrow_1_eq_3\nrow_2_eq_1\nrow_2_eq_2\nrow_2_eq_3\nrow_3_eq_1\nrow_3_eq_2\nrow_3_eq_3\nrow_4_eq_1\nrow_4_eq_2\nrow_4_eq_3\nrow_5_eq_1\nrow_5_eq_2\nrow_5_eq_3\nrow_6_eq_1\nrow_6_eq_2\nrow_6_eq_3\nrow_7_eq_1\nrow_7_eq_2\nrow_7_eq_3\nrow_8_eq_1\nrow_8_eq_2\nrow_8_eq_3\nrow_9_eq_1\nrow_9_eq_2\nrow_9_eq_3\nrow_10_eq_1\nrow_10_eq_2\nrow_10_eq_3\nrow_11_eq_1\nrow_11_eq_2\nrow_11_eq_3\nrow_12_eq_1\nrow_12_eq_2\nkal_0_1_3_4_two\nkal_0_1_7_8_two\nkal_0_1_8_9_two\nkal_0_1_9_10_two\nkal_0_1_10_11_two\nkal_0_1_11_12_two\nkal_0_3_4_6_one\nkal_0_3_5_11_two\nkal_0_3_6_7_two\n)\n",
+        "verdict": "UNSAT"
+      },
+      "cvc5_quotient": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--produce-unsat-cores",
+          "--tlimit",
+          "60000",
+          "scratch/atail-force/n12-geometry-regression/n13/strict_kalmanson_quotient.smt2"
+        ],
+        "elapsed_seconds": 0.14286645798711106,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "unsat\n(\nqkal_0_1_3_4_two\nqkal_0_1_7_8_two\nqkal_0_1_8_9_two\nqkal_0_1_9_10_two\nqkal_0_1_10_11_two\nqkal_0_1_11_12_two\nqkal_0_3_4_6_one\nqkal_0_3_5_11_two\nqkal_0_3_6_7_two\n)\n",
+        "verdict": "UNSAT"
+      },
+      "z3_direct": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:60",
+          "scratch/atail-force/n12-geometry-regression/n13/strict_kalmanson_direct.smt2"
+        ],
+        "elapsed_seconds": 0.028346250008326024,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "unsat\n(row_0_eq_1 row_0_eq_3 row_1_eq_2 row_1_eq_3 row_4_eq_1 row_5_eq_1 row_6_eq_1 row_7_eq_1 row_10_eq_2 row_10_eq_3 row_11_eq_2 row_12_eq_2 kal_0_1_3_4_two kal_0_1_7_8_two kal_0_1_8_9_two kal_0_1_9_10_two kal_0_1_10_11_two kal_0_1_11_12_two kal_0_3_4_6_one kal_0_3_5_11_two kal_0_3_6_7_two)\n",
+        "verdict": "UNSAT"
+      },
+      "z3_quotient": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:60",
+          "scratch/atail-force/n12-geometry-regression/n13/strict_kalmanson_quotient.smt2"
+        ],
+        "elapsed_seconds": 0.01933812501374632,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "unsat\n(qkal_0_1_3_12_two qkal_0_3_6_11_one)\n",
+        "verdict": "UNSAT"
+      }
+    }
+  },
+  "layers_not_reached": [
+    "MEC_NONOBTUSE_CAP_PLACEMENT",
+    "COMMON_CRITICAL_SHELL_BLOCKER_COUPLING"
+  ],
+  "outer_replay": {
+    "blocker_count": 13,
+    "failures": [],
+    "n": 13,
+    "row_count": 13,
+    "status": "VERIFIED"
+  },
+  "schema": "p97-n13-geometry-regression-check-v1",
+  "source_carrier": "scratch/atail-force/n12-geometry-regression/n13/carrier.json",
+  "source_carrier_sha256": "8a5ac9c10aa0d5c89df089dfd073fd29a4cdf9336de6bf428d037906441b6864"
+}

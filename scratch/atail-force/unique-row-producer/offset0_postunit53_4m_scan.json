@@ -1,0 +1,76 @@
+{
+  "profile": [
+    6,
+    5,
+    4
+  ],
+  "reports": [
+    {
+      "max_nodes": 4000000,
+      "nodes": 4000001,
+      "off_surplus_sources": [
+        0,
+        7,
+        8,
+        9
+      ],
+      "prefix_metric_core_cache": {
+        "hits": 133820,
+        "misses": 3866101,
+        "size": 3866101
+      },
+      "rejected_complete_assignments": {
+        "equality-convex-eight-point-five-row-circle-intersection-order": 378,
+        "equality-convex-five-point": 81156,
+        "equality-convex-five-point-reverse": 5300,
+        "equality-convex-rhombus-equilateral": 513,
+        "equality-eight-point-five-circle-collision": 4928,
+        "equality-equal-k4": 154,
+        "equality-equilateral-bisector-collision": 16543,
+        "equality-seven-point-circle-network-collision": 300,
+        "equality-seven-point-five-circle-collision": 5757,
+        "equality-seven-point-twin-four-circle-collision": 666,
+        "equality-six-point-circle-chain-collision": 4798,
+        "equality-six-point-five-circle-collision-b": 5416,
+        "equality-six-point-five-circle-collision-c": 1038,
+        "equality-three-triad-collision": 4004,
+        "exact-qq-local:source-indexed-654-isomorphic-six-row-02": 54,
+        "exact-qq-local:source-indexed-isomorphic-unit-core-654-07": 48,
+        "exact-qq-local:source-indexed-isomorphic-unit-core-654-11": 162
+      },
+      "rejected_prefixes": {
+        "equality-duplicate-center": 1199566,
+        "equality-exact-off-circle": 187566,
+        "equality-perpendicular-bisector-convex": 428151,
+        "exact-qq-local:source-indexed-654-five-row": 41,
+        "exact-qq-local:source-indexed-654-five-row-03": 21,
+        "exact-qq-local:source-indexed-654-six-row-02": 3,
+        "exact-qq-local:source-indexed-654-six-row-04": 33,
+        "exact-qq-local:source-indexed-unit-core-654-07": 38,
+        "exact-qq-local:source-indexed-unit-core-654-08": 73,
+        "exact-qq-local:source-indexed-unit-core-654-11": 10,
+        "exact-qq-local:source-indexed-unit-core-654-41": 169,
+        "exact-qq-local:source-indexed-unit-core-654-43": 118,
+        "exact-qq-local:source-indexed-unit-core-654-45": 375,
+        "exact-qq-local:source-indexed-unit-core-654-47": 8,
+        "exact-qq-local:source-indexed-unit-core-654-49": 9,
+        "exact-qq-local:source-indexed-unit-core-654-53": 90,
+        "pinned-row-compatibility": 3629,
+        "target:CoincidentBlockerResidualMember": 1554
+      },
+      "status": "INDETERMINATE",
+      "support": [
+        0,
+        2,
+        7,
+        8,
+        9
+      ]
+    }
+  ],
+  "schema": "p97-card-five-source-indexed-target-probe-v2",
+  "support_offset": 0,
+  "supports_tried": 1,
+  "total_support_count": 15,
+  "trust_boundary": "finite cap/incidence/equality shadow; exact source rows are declared; the local exact-QQ cuts have exactly replayed algebraic certificates; selected unit cores have generated but unbuilt Lean sources; SAT is not a Euclidean realization and UNSAT is not a Lean theorem"
+}

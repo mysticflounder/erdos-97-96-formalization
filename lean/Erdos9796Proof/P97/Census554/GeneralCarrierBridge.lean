@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.Census554.EqualityCore
+import Erdos9796Proof.P97.Census554.FivePointCircleIsoscelesOrderBridge
 import Erdos9796Proof.P97.Census554.FiveRowCircleIntersectionOrderCore
 import Erdos9796Proof.P97.Census554.FivePointCollision
 import Erdos9796Proof.P97.Census554.ThreeTriadCollision
@@ -224,7 +225,7 @@ theorem exactAt_blocker
 /-- The obstruction families used by the bounded metric-core miner, stated on
 an arbitrary canonical carrier pattern. The additional equality-only
 families reuse generic Census554 collision theorems proved before this bridge.
-The three order-sensitive families use the negative signed-area convention of
+The four order-sensitive families use the negative signed-area convention of
 the live convex boundary enumeration. -/
 def MetricCoreAlternative {A : Finset ℝ²}
     (F : FaithfulCarrierPattern A) : Prop :=
@@ -265,7 +266,13 @@ def MetricCoreAlternative {A : Finset ℝ²}
     signedArea2 (pointOf core.O) (pointOf core.A) (pointOf core.E) < 0 ∧
     signedArea2 (pointOf core.O) (pointOf core.D) (pointOf core.E) < 0 ∧
     signedArea2 (pointOf core.O) (pointOf core.D) (pointOf core.C) < 0 ∧
-    signedArea2 (pointOf core.O) (pointOf core.E) (pointOf core.C) < 0)
+    signedArea2 (pointOf core.O) (pointOf core.E) (pointOf core.C) < 0) ∨
+  (∃ core : FivePointCircleIsoscelesOrderCore.Core (rowPattern F),
+    signedArea2 (pointOf core.W) (pointOf core.F) (pointOf core.Z) < 0 ∧
+    signedArea2 (pointOf core.F) (pointOf core.X) (pointOf core.Z) < 0 ∧
+    ∃ q : ℝ²,
+      q ∈ openSegment ℝ (pointOf core.F) (pointOf core.X) ∧
+      q ∈ openSegment ℝ (pointOf core.P) (pointOf core.Z))
 
 /-- Any arbitrary-cardinality carrier pattern satisfying the metric-core
 alternative is contradictory.  This is the complete generic consumer; a
@@ -289,7 +296,7 @@ theorem false_of_metricCoreAlternative
       hthreeTriad | hsurplusSource | hsixRow | hsixPoint | hsevenPoint |
       hcircleNetwork | hperp | hfive | hrhombus | htwinFourCircle |
       hfiveCircleA | hfiveCircleB | hfiveCircleC | hsevenFiveCircle |
-      heightFiveCircle | hfiveRow
+      heightFiveCircle | hfiveRow | hcircleIsosceles
   · rcases hduplicate with ⟨core⟩
     exact not_realizes_of_duplicateCenterCore core ⟨_, hreal⟩
   · rcases hexact with ⟨core, hcoreExact⟩
@@ -333,6 +340,9 @@ theorem false_of_metricCoreAlternative
   · rcases hfiveRow with ⟨core, hOAC, hOAD, hOAE, hODE, hODC, hOEC⟩
     exact FiveRowCircleIntersectionOrderCore.false_of_core_of_neg
       hreal core hOAC hOAD hOAE hODE hODC hOEC
+  · rcases hcircleIsosceles with ⟨core, hWFZ, hFXZ, hcross⟩
+    exact FivePointCircleIsoscelesOrderCore.false_of_core_of_neg
+      hreal core hWFZ hFXZ hcross
 
 /-- Shell-aware form of the metric-core alternative.  Its exact-row branch
 only has to identify the core center as a chosen blocker; exactness is then a
@@ -376,7 +386,13 @@ def ShellMetricCoreAlternative {A : Finset ℝ²}
     signedArea2 (pointOf core.O) (pointOf core.A) (pointOf core.E) < 0 ∧
     signedArea2 (pointOf core.O) (pointOf core.D) (pointOf core.E) < 0 ∧
     signedArea2 (pointOf core.O) (pointOf core.D) (pointOf core.C) < 0 ∧
-    signedArea2 (pointOf core.O) (pointOf core.E) (pointOf core.C) < 0)
+    signedArea2 (pointOf core.O) (pointOf core.E) (pointOf core.C) < 0) ∨
+  (∃ core : FivePointCircleIsoscelesOrderCore.Core (rowPattern F),
+    signedArea2 (pointOf core.W) (pointOf core.F) (pointOf core.Z) < 0 ∧
+    signedArea2 (pointOf core.F) (pointOf core.X) (pointOf core.Z) < 0 ∧
+    ∃ q : ℝ²,
+      q ∈ openSegment ℝ (pointOf core.F) (pointOf core.X) ∧
+      q ∈ openSegment ℝ (pointOf core.P) (pointOf core.Z))
 
 /-- A shell-aware core alternative supplies the generic metric-core
 alternative, with exactness discharged by the blocker-row theorem. -/
@@ -398,7 +414,7 @@ theorem metricCoreAlternative_of_shellMetricCoreAlternative
           hthreeTriad | hsurplusSource | hsixRow | hsixPoint | hsevenPoint |
           hcircleNetwork | hperp | hfive | hrhombus | htwinFourCircle |
           hfiveCircleA | hfiveCircleB | hfiveCircleC | hsevenFiveCircle |
-          heightFiveCircle | hfiveRow
+          heightFiveCircle | hfiveRow | hcircleIsosceles
         · exact Or.inl hduplicate
         · rcases hexact with ⟨q, hq, core, hc⟩
           exact Or.inr <| Or.inl ⟨core, by
@@ -447,7 +463,11 @@ theorem metricCoreAlternative_of_shellMetricCoreAlternative
         · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
             Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
             Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
-            Or.inr <| Or.inr hfiveRow
+            Or.inr <| Or.inr <| Or.inl hfiveRow
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr hcircleIsosceles
 
 /-- Complete shell-aware consumer for the arbitrary-cardinality metric-core
 route. -/

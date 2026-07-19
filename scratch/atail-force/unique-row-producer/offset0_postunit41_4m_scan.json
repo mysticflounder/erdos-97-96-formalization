@@ -1,0 +1,239 @@
+{
+  "profile": [
+    6,
+    5,
+    4
+  ],
+  "reports": [
+    {
+      "assignment_signature_sha256": "28a7aebecda7969dc35d989757ab7adee67571d5e66de3b5d9e79083e2f8d1b0",
+      "max_nodes": 4000000,
+      "nodes": 2561220,
+      "off_surplus_sources": [
+        0,
+        7,
+        8,
+        9
+      ],
+      "prefix_metric_core_cache": {
+        "hits": 86108,
+        "misses": 2476612,
+        "size": 2476612
+      },
+      "rejected_complete_assignments": {
+        "equality-convex-eight-point-five-row-circle-intersection-order": 270,
+        "equality-convex-five-point": 58017,
+        "equality-convex-five-point-reverse": 3959,
+        "equality-convex-rhombus-equilateral": 513,
+        "equality-eight-point-five-circle-collision": 3177,
+        "equality-equal-k4": 20,
+        "equality-equilateral-bisector-collision": 12752,
+        "equality-seven-point-circle-network-collision": 228,
+        "equality-seven-point-five-circle-collision": 1510,
+        "equality-seven-point-twin-four-circle-collision": 642,
+        "equality-six-point-circle-chain-collision": 2011,
+        "equality-six-point-five-circle-collision-b": 3405,
+        "equality-six-point-five-circle-collision-c": 978,
+        "equality-three-triad-collision": 3171,
+        "exact-qq-local:source-indexed-654-isomorphic-six-row-02": 54,
+        "exact-qq-local:source-indexed-isomorphic-unit-core-654-07": 48,
+        "exact-qq-local:source-indexed-isomorphic-unit-core-654-11": 162
+      },
+      "rejected_prefixes": {
+        "equality-duplicate-center": 759265,
+        "equality-exact-off-circle": 113240,
+        "equality-perpendicular-bisector-convex": 279702,
+        "exact-qq-local:source-indexed-654-five-row": 40,
+        "exact-qq-local:source-indexed-654-five-row-03": 19,
+        "exact-qq-local:source-indexed-654-six-row-02": 2,
+        "exact-qq-local:source-indexed-654-six-row-04": 27,
+        "exact-qq-local:source-indexed-unit-core-654-07": 38,
+        "exact-qq-local:source-indexed-unit-core-654-08": 68,
+        "exact-qq-local:source-indexed-unit-core-654-11": 10,
+        "exact-qq-local:source-indexed-unit-core-654-41": 149,
+        "pinned-row-compatibility": 3629,
+        "target:CoincidentBlockerResidualMember": 611
+      },
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "name": "global:0",
+          "support": [
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "name": "global:10",
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "name": "global:11",
+          "support": [
+            1,
+            3,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "exact": false,
+          "name": "global:2",
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "name": "global:3",
+          "support": [
+            4,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": false,
+          "name": "global:4",
+          "support": [
+            2,
+            3,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "name": "global:5",
+          "support": [
+            1,
+            4,
+            6,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "name": "global:6",
+          "support": [
+            3,
+            5,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "name": "global:7",
+          "support": [
+            2,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "name": "global:8",
+          "support": [
+            6,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "name": "global:9",
+          "support": [
+            0,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "name": "shell:0",
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "name": "shell:7",
+          "support": [
+            4,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 0,
+          "exact": true,
+          "name": "shell:8",
+          "support": [
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "name": "shell:9",
+          "support": [
+            1,
+            4,
+            6,
+            9
+          ]
+        }
+      ],
+      "status": "SAT",
+      "support": [
+        0,
+        2,
+        7,
+        8,
+        9
+      ]
+    }
+  ],
+  "schema": "p97-card-five-source-indexed-target-probe-v2",
+  "support_offset": 0,
+  "supports_tried": 1,
+  "total_support_count": 15,
+  "trust_boundary": "finite cap/incidence/equality shadow; exact source rows are declared; the local exact-QQ cuts have exactly replayed algebraic certificates; selected unit cores have generated but unbuilt Lean sources; SAT is not a Euclidean realization and UNSAT is not a Lean theorem"
+}

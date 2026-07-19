@@ -1,0 +1,1560 @@
+{
+  "abstract_metric": {
+    "complete_unordered_distance_count": 55,
+    "minimum_positive_distance": "11",
+    "minimum_positive_distance_pair": [
+      0,
+      1
+    ],
+    "minimum_triangle_case": [
+      0,
+      1,
+      2,
+      "ab+bc-ac"
+    ],
+    "minimum_triangle_slack": "0",
+    "triangle_inequality_count": 495,
+    "verified": true
+  },
+  "all_distance_level_critical_shell_fields_verified": true,
+  "all_rows_exact_full_filters": true,
+  "blocker_checks": {
+    "0": {
+      "blocker_row_exact_full_filter": true,
+      "center": 2,
+      "center_in_carrier_erase_source": true,
+      "center_omits_physical_apices": true,
+      "four_or_larger_classes_after_source_deletion": {},
+      "no_qfree_at_blocker": true,
+      "positive_distance_classes_after_source_deletion": {
+        "21": [
+          1
+        ],
+        "32": [
+          3,
+          4,
+          8
+        ],
+        "42": [
+          5,
+          9
+        ],
+        "44": [
+          7
+        ],
+        "52": [
+          10
+        ],
+        "55": [
+          6
+        ]
+      },
+      "selected_blocker_row": [
+        0,
+        3,
+        4,
+        8
+      ],
+      "shell_radius": "32",
+      "shell_radius_positive": true,
+      "source_in_selected_blocker_row": true,
+      "whole_shell_radius_class": [
+        0,
+        3,
+        4,
+        8
+      ]
+    },
+    "1": {
+      "blocker_row_exact_full_filter": true,
+      "center": 10,
+      "center_in_carrier_erase_source": true,
+      "center_omits_physical_apices": true,
+      "four_or_larger_classes_after_source_deletion": {},
+      "no_qfree_at_blocker": true,
+      "positive_distance_classes_after_source_deletion": {
+        "32": [
+          0,
+          8,
+          9
+        ],
+        "44": [
+          4
+        ],
+        "47": [
+          7
+        ],
+        "51": [
+          5
+        ],
+        "52": [
+          2
+        ],
+        "55": [
+          3
+        ],
+        "61": [
+          6
+        ]
+      },
+      "selected_blocker_row": [
+        0,
+        1,
+        8,
+        9
+      ],
+      "shell_radius": "32",
+      "shell_radius_positive": true,
+      "source_in_selected_blocker_row": true,
+      "whole_shell_radius_class": [
+        0,
+        1,
+        8,
+        9
+      ]
+    },
+    "10": {
+      "blocker_row_exact_full_filter": true,
+      "center": 9,
+      "center_in_carrier_erase_source": true,
+      "center_omits_physical_apices": true,
+      "four_or_larger_classes_after_source_deletion": {},
+      "no_qfree_at_blocker": true,
+      "positive_distance_classes_after_source_deletion": {
+        "16": [
+          8
+        ],
+        "28": [
+          1
+        ],
+        "32": [
+          0,
+          4,
+          7
+        ],
+        "38": [
+          5
+        ],
+        "42": [
+          2
+        ],
+        "44": [
+          3
+        ],
+        "47": [
+          6
+        ]
+      },
+      "selected_blocker_row": [
+        0,
+        4,
+        7,
+        10
+      ],
+      "shell_radius": "32",
+      "shell_radius_positive": true,
+      "source_in_selected_blocker_row": true,
+      "whole_shell_radius_class": [
+        0,
+        4,
+        7,
+        10
+      ]
+    },
+    "2": {
+      "blocker_row_exact_full_filter": true,
+      "center": 4,
+      "center_in_carrier_erase_source": true,
+      "center_omits_physical_apices": true,
+      "four_or_larger_classes_after_source_deletion": {},
+      "no_qfree_at_blocker": true,
+      "positive_distance_classes_after_source_deletion": {
+        "11": [
+          5
+        ],
+        "19": [
+          8
+        ],
+        "21": [
+          3
+        ],
+        "23": [
+          1
+        ],
+        "29": [
+          7
+        ],
+        "32": [
+          0,
+          6,
+          9
+        ],
+        "44": [
+          10
+        ]
+      },
+      "selected_blocker_row": [
+        0,
+        2,
+        6,
+        9
+      ],
+      "shell_radius": "32",
+      "shell_radius_positive": true,
+      "source_in_selected_blocker_row": true,
+      "whole_shell_radius_class": [
+        0,
+        2,
+        6,
+        9
+      ]
+    },
+    "3": {
+      "blocker_row_exact_full_filter": true,
+      "center": 5,
+      "center_in_carrier_erase_source": true,
+      "center_omits_physical_apices": true,
+      "four_or_larger_classes_after_source_deletion": {},
+      "no_qfree_at_blocker": true,
+      "positive_distance_classes_after_source_deletion": {
+        "11": [
+          4
+        ],
+        "24": [
+          8
+        ],
+        "32": [
+          1,
+          6,
+          7
+        ],
+        "38": [
+          9
+        ],
+        "40": [
+          0
+        ],
+        "42": [
+          2
+        ],
+        "51": [
+          10
+        ]
+      },
+      "selected_blocker_row": [
+        1,
+        3,
+        6,
+        7
+      ],
+      "shell_radius": "32",
+      "shell_radius_positive": true,
+      "source_in_selected_blocker_row": true,
+      "whole_shell_radius_class": [
+        1,
+        3,
+        6,
+        7
+      ]
+    },
+    "4": {
+      "blocker_row_exact_full_filter": true,
+      "center": 6,
+      "center_in_carrier_erase_source": true,
+      "center_omits_physical_apices": true,
+      "four_or_larger_classes_after_source_deletion": {},
+      "no_qfree_at_blocker": true,
+      "positive_distance_classes_after_source_deletion": {
+        "32": [
+          5,
+          7,
+          8
+        ],
+        "44": [
+          1
+        ],
+        "47": [
+          3,
+          9
+        ],
+        "51": [
+          0
+        ],
+        "55": [
+          2
+        ],
+        "61": [
+          10
+        ]
+      },
+      "selected_blocker_row": [
+        4,
+        5,
+        7,
+        8
+      ],
+      "shell_radius": "32",
+      "shell_radius_positive": true,
+      "source_in_selected_blocker_row": true,
+      "whole_shell_radius_class": [
+        4,
+        5,
+        7,
+        8
+      ]
+    },
+    "5": {
+      "blocker_row_exact_full_filter": true,
+      "center": 3,
+      "center_in_carrier_erase_source": true,
+      "center_omits_physical_apices": true,
+      "four_or_larger_classes_after_source_deletion": {},
+      "no_qfree_at_blocker": true,
+      "positive_distance_classes_after_source_deletion": {
+        "21": [
+          4
+        ],
+        "32": [
+          1,
+          2,
+          8
+        ],
+        "42": [
+          0
+        ],
+        "43": [
+          7
+        ],
+        "44": [
+          9
+        ],
+        "47": [
+          6
+        ],
+        "55": [
+          10
+        ]
+      },
+      "selected_blocker_row": [
+        1,
+        2,
+        5,
+        8
+      ],
+      "shell_radius": "32",
+      "shell_radius_positive": true,
+      "source_in_selected_blocker_row": true,
+      "whole_shell_radius_class": [
+        1,
+        2,
+        5,
+        8
+      ]
+    },
+    "6": {
+      "blocker_row_exact_full_filter": true,
+      "center": 7,
+      "center_in_carrier_erase_source": true,
+      "center_omits_physical_apices": true,
+      "four_or_larger_classes_after_source_deletion": {},
+      "no_qfree_at_blocker": true,
+      "positive_distance_classes_after_source_deletion": {
+        "16": [
+          8
+        ],
+        "29": [
+          4
+        ],
+        "32": [
+          1,
+          5,
+          9
+        ],
+        "38": [
+          0
+        ],
+        "43": [
+          3
+        ],
+        "44": [
+          2
+        ],
+        "47": [
+          10
+        ]
+      },
+      "selected_blocker_row": [
+        1,
+        5,
+        6,
+        9
+      ],
+      "shell_radius": "32",
+      "shell_radius_positive": true,
+      "source_in_selected_blocker_row": true,
+      "whole_shell_radius_class": [
+        1,
+        5,
+        6,
+        9
+      ]
+    },
+    "7": {
+      "blocker_row_exact_full_filter": true,
+      "center": 6,
+      "center_in_carrier_erase_source": true,
+      "center_omits_physical_apices": true,
+      "four_or_larger_classes_after_source_deletion": {},
+      "no_qfree_at_blocker": true,
+      "positive_distance_classes_after_source_deletion": {
+        "32": [
+          4,
+          5,
+          8
+        ],
+        "44": [
+          1
+        ],
+        "47": [
+          3,
+          9
+        ],
+        "51": [
+          0
+        ],
+        "55": [
+          2
+        ],
+        "61": [
+          10
+        ]
+      },
+      "selected_blocker_row": [
+        4,
+        5,
+        7,
+        8
+      ],
+      "shell_radius": "32",
+      "shell_radius_positive": true,
+      "source_in_selected_blocker_row": true,
+      "whole_shell_radius_class": [
+        4,
+        5,
+        7,
+        8
+      ]
+    },
+    "8": {
+      "blocker_row_exact_full_filter": true,
+      "center": 3,
+      "center_in_carrier_erase_source": true,
+      "center_omits_physical_apices": true,
+      "four_or_larger_classes_after_source_deletion": {},
+      "no_qfree_at_blocker": true,
+      "positive_distance_classes_after_source_deletion": {
+        "21": [
+          4
+        ],
+        "32": [
+          1,
+          2,
+          5
+        ],
+        "42": [
+          0
+        ],
+        "43": [
+          7
+        ],
+        "44": [
+          9
+        ],
+        "47": [
+          6
+        ],
+        "55": [
+          10
+        ]
+      },
+      "selected_blocker_row": [
+        1,
+        2,
+        5,
+        8
+      ],
+      "shell_radius": "32",
+      "shell_radius_positive": true,
+      "source_in_selected_blocker_row": true,
+      "whole_shell_radius_class": [
+        1,
+        2,
+        5,
+        8
+      ]
+    },
+    "9": {
+      "blocker_row_exact_full_filter": true,
+      "center": 4,
+      "center_in_carrier_erase_source": true,
+      "center_omits_physical_apices": true,
+      "four_or_larger_classes_after_source_deletion": {},
+      "no_qfree_at_blocker": true,
+      "positive_distance_classes_after_source_deletion": {
+        "11": [
+          5
+        ],
+        "19": [
+          8
+        ],
+        "21": [
+          3
+        ],
+        "23": [
+          1
+        ],
+        "29": [
+          7
+        ],
+        "32": [
+          0,
+          2,
+          6
+        ],
+        "44": [
+          10
+        ]
+      },
+      "selected_blocker_row": [
+        0,
+        2,
+        6,
+        9
+      ],
+      "shell_radius": "32",
+      "shell_radius_positive": true,
+      "source_in_selected_blocker_row": true,
+      "whole_shell_radius_class": [
+        0,
+        2,
+        6,
+        9
+      ]
+    }
+  },
+  "claim_boundary": {
+    "fixed_metric": "The displayed rational metric is not Euclidean, despite satisfying the abstract metric, strict Kalmanson, row, blocker, exact-filter, and deletion-critical checks above.",
+    "live_fields_not_decided_by_this_distance_table": [
+      "existence of planar coordinates realizing some metric in the same row/Kalmanson cell",
+      "ConvexIndep and the actual CCW boundary geometry",
+      "minimality of CounterexampleData",
+      "the packet/cap/frontier residual fields selecting the two physical apices"
+    ],
+    "row_kalmanson_cell": "This audit does not prove that every metric satisfying the same row equalities and strict Kalmanson inequalities is non-Euclidean. Euclidean infeasibility of that entire cell remains unproved."
+  },
+  "epistemic_status": "EXACT_RATIONAL_SUBSTITUTION_AND_DISTANCE_FIELD_AUDIT",
+  "euclidean_realizability": {
+    "base_vertex": 0,
+    "exact_gram_rank": 10,
+    "gram_dimension": 10,
+    "negative_principal_minor_determinant": "-16597476",
+    "negative_principal_minor_matrix": [
+      [
+        "121",
+        "352",
+        "861/2"
+      ],
+      [
+        "352",
+        "1024",
+        "882"
+      ],
+      [
+        "861/2",
+        "882",
+        "1764"
+      ]
+    ],
+    "negative_principal_minor_vertices": [
+      1,
+      2,
+      3
+    ],
+    "positive_semidefinite": false,
+    "realizable_as_points_in_R2": false,
+    "realizable_in_any_real_inner_product_space": false
+  },
+  "global_k4_and_deletion_filter": {
+    "deletion_survival_by_source": {
+      "0": {
+        "centers_predicted_by_source_absent_from_exact_row": [
+          0,
+          1,
+          3,
+          5,
+          6,
+          7,
+          8
+        ],
+        "centers_with_K4_after_deletion": [
+          0,
+          1,
+          3,
+          5,
+          6,
+          7,
+          8
+        ],
+        "equivalent": true
+      },
+      "1": {
+        "centers_predicted_by_source_absent_from_exact_row": [
+          0,
+          1,
+          2,
+          4,
+          6,
+          8,
+          9
+        ],
+        "centers_with_K4_after_deletion": [
+          0,
+          1,
+          2,
+          4,
+          6,
+          8,
+          9
+        ],
+        "equivalent": true
+      },
+      "10": {
+        "centers_predicted_by_source_absent_from_exact_row": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          10
+        ],
+        "centers_with_K4_after_deletion": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          10
+        ],
+        "equivalent": true
+      },
+      "2": {
+        "centers_predicted_by_source_absent_from_exact_row": [
+          1,
+          2,
+          5,
+          6,
+          7,
+          9,
+          10
+        ],
+        "centers_with_K4_after_deletion": [
+          1,
+          2,
+          5,
+          6,
+          7,
+          9,
+          10
+        ],
+        "equivalent": true
+      },
+      "3": {
+        "centers_predicted_by_source_absent_from_exact_row": [
+          0,
+          3,
+          4,
+          6,
+          7,
+          9,
+          10
+        ],
+        "centers_with_K4_after_deletion": [
+          0,
+          3,
+          4,
+          6,
+          7,
+          9,
+          10
+        ],
+        "equivalent": true
+      },
+      "4": {
+        "centers_predicted_by_source_absent_from_exact_row": [
+          1,
+          3,
+          4,
+          5,
+          7,
+          8,
+          10
+        ],
+        "centers_with_K4_after_deletion": [
+          1,
+          3,
+          4,
+          5,
+          7,
+          8,
+          10
+        ],
+        "equivalent": true
+      },
+      "5": {
+        "centers_predicted_by_source_absent_from_exact_row": [
+          0,
+          2,
+          4,
+          5,
+          8,
+          9,
+          10
+        ],
+        "centers_with_K4_after_deletion": [
+          0,
+          2,
+          4,
+          5,
+          8,
+          9,
+          10
+        ],
+        "equivalent": true
+      },
+      "6": {
+        "centers_predicted_by_source_absent_from_exact_row": [
+          0,
+          1,
+          2,
+          3,
+          6,
+          9,
+          10
+        ],
+        "centers_with_K4_after_deletion": [
+          0,
+          1,
+          2,
+          3,
+          6,
+          9,
+          10
+        ],
+        "equivalent": true
+      },
+      "7": {
+        "centers_predicted_by_source_absent_from_exact_row": [
+          0,
+          2,
+          3,
+          4,
+          7,
+          8,
+          10
+        ],
+        "centers_with_K4_after_deletion": [
+          0,
+          2,
+          3,
+          4,
+          7,
+          8,
+          10
+        ],
+        "equivalent": true
+      },
+      "8": {
+        "centers_predicted_by_source_absent_from_exact_row": [
+          0,
+          1,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "centers_with_K4_after_deletion": [
+          0,
+          1,
+          4,
+          5,
+          7,
+          8,
+          9
+        ],
+        "equivalent": true
+      },
+      "9": {
+        "centers_predicted_by_source_absent_from_exact_row": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          8,
+          9
+        ],
+        "centers_with_K4_after_deletion": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          8,
+          9
+        ],
+        "equivalent": true
+      }
+    },
+    "deletion_survival_exactly_source_absent_from_row": true,
+    "global_K4_at_every_center": true
+  },
+  "n": 11,
+  "reduced_exact_planar_encoding": {
+    "blocker_exactness_formula": "D(c,z) != 1 for every chosen blocker center c and every z outside {c} union row(c), where D is squared Euclidean distance.",
+    "blocker_source_membership_center_survival_and_apex_avoidance": "Already fixed combinatorially by the row table and blocker map; they add no real-variable constraints.",
+    "coordinate_variables_after_gauge": 18,
+    "critical_blocker_centers": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9,
+      10
+    ],
+    "expanded_no_qfree_fourset_clauses": 120,
+    "gauge": [
+      "p_0 = (0,0)",
+      "p_2 = (1,0)"
+    ],
+    "minimal_live_distance_assumptions": [
+      "22 selected-edge unit equations",
+      "30 distinct nonedge disequalities making every chosen blocker row its full unit-radius filter",
+      "8 center-level no_qfree multiplicity-at-most-3 conditions, or 120 exact four-set clauses when expanded"
+    ],
+    "no_qfree_formula": "For each chosen blocker center c and each four-set S among the six nonunit candidates V \\ ({c} union row(c)), the squared distances D(c,s), s in S, are not all equal. Exact unit-shell status reduces all sources mapped to the same center to this one center-level condition.",
+    "optional_full_row_exactness_increment": 3,
+    "scope": "A smallest direct coordinate encoding after using the verified graph symmetry, connectivity, Euclidean gauge freedom, and common-radius scaling; no global optimality claim over all possible encodings.",
+    "selected_unit_distance_equations": 22,
+    "strict_ccw_convex_edge_halfplane_inequalities": 99,
+    "strict_ccw_formula": "orient(p_i, p_(i+1 mod n), p_j) > 0 for every boundary edge i and every j outside that edge",
+    "strict_kalmanson_auxiliary_constraints": 0,
+    "strict_kalmanson_reason": "Strict CCW convex Euclidean position makes the diagonals of each cyclic quadruple cross internally; strict triangle inequalities at the crossing give both strict Kalmanson inequalities.",
+    "stronger_fixed_witness_row_assumption": "Adding the remaining 3 nonedge disequalities makes all 11 selected rows exact, matching the displayed rational metric but exceeding what CriticalShellSystem itself requires away from blocker centers.",
+    "unique_blocker_center_no_qfree_conditions": 8,
+    "unique_nonedge_disequalities_for_exactness_at_blocker_rows": 30,
+    "unique_nonedge_disequalities_for_exactness_at_every_row": 33
+  },
+  "row_checks": {
+    "0": {
+      "exact_full_filter": true,
+      "nonmembers_sharing_row_radius": [],
+      "positive_distance_class_profile": {
+        "11": [
+          1
+        ],
+        "24": [
+          8
+        ],
+        "32": [
+          2,
+          4,
+          9,
+          10
+        ],
+        "38": [
+          7
+        ],
+        "40": [
+          5
+        ],
+        "42": [
+          3
+        ],
+        "51": [
+          6
+        ]
+      },
+      "radius": "32",
+      "support": [
+        2,
+        4,
+        9,
+        10
+      ],
+      "whole_positive_radius_class": [
+        2,
+        4,
+        9,
+        10
+      ]
+    },
+    "1": {
+      "exact_full_filter": true,
+      "nonmembers_sharing_row_radius": [],
+      "positive_distance_class_profile": {
+        "11": [
+          0
+        ],
+        "19": [
+          8
+        ],
+        "21": [
+          2
+        ],
+        "23": [
+          4
+        ],
+        "28": [
+          9
+        ],
+        "32": [
+          3,
+          5,
+          7,
+          10
+        ],
+        "44": [
+          6
+        ]
+      },
+      "radius": "32",
+      "support": [
+        3,
+        5,
+        7,
+        10
+      ],
+      "whole_positive_radius_class": [
+        3,
+        5,
+        7,
+        10
+      ]
+    },
+    "10": {
+      "exact_full_filter": true,
+      "nonmembers_sharing_row_radius": [],
+      "positive_distance_class_profile": {
+        "32": [
+          0,
+          1,
+          8,
+          9
+        ],
+        "44": [
+          4
+        ],
+        "47": [
+          7
+        ],
+        "51": [
+          5
+        ],
+        "52": [
+          2
+        ],
+        "55": [
+          3
+        ],
+        "61": [
+          6
+        ]
+      },
+      "radius": "32",
+      "support": [
+        0,
+        1,
+        8,
+        9
+      ],
+      "whole_positive_radius_class": [
+        0,
+        1,
+        8,
+        9
+      ]
+    },
+    "2": {
+      "exact_full_filter": true,
+      "nonmembers_sharing_row_radius": [],
+      "positive_distance_class_profile": {
+        "21": [
+          1
+        ],
+        "32": [
+          0,
+          3,
+          4,
+          8
+        ],
+        "42": [
+          5,
+          9
+        ],
+        "44": [
+          7
+        ],
+        "52": [
+          10
+        ],
+        "55": [
+          6
+        ]
+      },
+      "radius": "32",
+      "support": [
+        0,
+        3,
+        4,
+        8
+      ],
+      "whole_positive_radius_class": [
+        0,
+        3,
+        4,
+        8
+      ]
+    },
+    "3": {
+      "exact_full_filter": true,
+      "nonmembers_sharing_row_radius": [],
+      "positive_distance_class_profile": {
+        "21": [
+          4
+        ],
+        "32": [
+          1,
+          2,
+          5,
+          8
+        ],
+        "42": [
+          0
+        ],
+        "43": [
+          7
+        ],
+        "44": [
+          9
+        ],
+        "47": [
+          6
+        ],
+        "55": [
+          10
+        ]
+      },
+      "radius": "32",
+      "support": [
+        1,
+        2,
+        5,
+        8
+      ],
+      "whole_positive_radius_class": [
+        1,
+        2,
+        5,
+        8
+      ]
+    },
+    "4": {
+      "exact_full_filter": true,
+      "nonmembers_sharing_row_radius": [],
+      "positive_distance_class_profile": {
+        "11": [
+          5
+        ],
+        "19": [
+          8
+        ],
+        "21": [
+          3
+        ],
+        "23": [
+          1
+        ],
+        "29": [
+          7
+        ],
+        "32": [
+          0,
+          2,
+          6,
+          9
+        ],
+        "44": [
+          10
+        ]
+      },
+      "radius": "32",
+      "support": [
+        0,
+        2,
+        6,
+        9
+      ],
+      "whole_positive_radius_class": [
+        0,
+        2,
+        6,
+        9
+      ]
+    },
+    "5": {
+      "exact_full_filter": true,
+      "nonmembers_sharing_row_radius": [],
+      "positive_distance_class_profile": {
+        "11": [
+          4
+        ],
+        "24": [
+          8
+        ],
+        "32": [
+          1,
+          3,
+          6,
+          7
+        ],
+        "38": [
+          9
+        ],
+        "40": [
+          0
+        ],
+        "42": [
+          2
+        ],
+        "51": [
+          10
+        ]
+      },
+      "radius": "32",
+      "support": [
+        1,
+        3,
+        6,
+        7
+      ],
+      "whole_positive_radius_class": [
+        1,
+        3,
+        6,
+        7
+      ]
+    },
+    "6": {
+      "exact_full_filter": true,
+      "nonmembers_sharing_row_radius": [],
+      "positive_distance_class_profile": {
+        "32": [
+          4,
+          5,
+          7,
+          8
+        ],
+        "44": [
+          1
+        ],
+        "47": [
+          3,
+          9
+        ],
+        "51": [
+          0
+        ],
+        "55": [
+          2
+        ],
+        "61": [
+          10
+        ]
+      },
+      "radius": "32",
+      "support": [
+        4,
+        5,
+        7,
+        8
+      ],
+      "whole_positive_radius_class": [
+        4,
+        5,
+        7,
+        8
+      ]
+    },
+    "7": {
+      "exact_full_filter": true,
+      "nonmembers_sharing_row_radius": [],
+      "positive_distance_class_profile": {
+        "16": [
+          8
+        ],
+        "29": [
+          4
+        ],
+        "32": [
+          1,
+          5,
+          6,
+          9
+        ],
+        "38": [
+          0
+        ],
+        "43": [
+          3
+        ],
+        "44": [
+          2
+        ],
+        "47": [
+          10
+        ]
+      },
+      "radius": "32",
+      "support": [
+        1,
+        5,
+        6,
+        9
+      ],
+      "whole_positive_radius_class": [
+        1,
+        5,
+        6,
+        9
+      ]
+    },
+    "8": {
+      "exact_full_filter": true,
+      "nonmembers_sharing_row_radius": [],
+      "positive_distance_class_profile": {
+        "16": [
+          7,
+          9
+        ],
+        "19": [
+          1,
+          4
+        ],
+        "24": [
+          0,
+          5
+        ],
+        "32": [
+          2,
+          3,
+          6,
+          10
+        ]
+      },
+      "radius": "32",
+      "support": [
+        2,
+        3,
+        6,
+        10
+      ],
+      "whole_positive_radius_class": [
+        2,
+        3,
+        6,
+        10
+      ]
+    },
+    "9": {
+      "exact_full_filter": true,
+      "nonmembers_sharing_row_radius": [],
+      "positive_distance_class_profile": {
+        "16": [
+          8
+        ],
+        "28": [
+          1
+        ],
+        "32": [
+          0,
+          4,
+          7,
+          10
+        ],
+        "38": [
+          5
+        ],
+        "42": [
+          2
+        ],
+        "44": [
+          3
+        ],
+        "47": [
+          6
+        ]
+      },
+      "radius": "32",
+      "support": [
+        0,
+        4,
+        7,
+        10
+      ],
+      "whole_positive_radius_class": [
+        0,
+        4,
+        7,
+        10
+      ]
+    }
+  },
+  "row_incidence_graph": {
+    "degree_by_vertex": {
+      "0": 4,
+      "1": 4,
+      "10": 4,
+      "2": 4,
+      "3": 4,
+      "4": 4,
+      "5": 4,
+      "6": 4,
+      "7": 4,
+      "8": 4,
+      "9": 4
+    },
+    "directed_edge_count": 44,
+    "fixed_metric_common_radius": "32",
+    "fixed_metric_pairs_at_common_radius": [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        9
+      ],
+      [
+        0,
+        10
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        1,
+        10
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        4,
+        9
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        7,
+        9
+      ],
+      [
+        8,
+        10
+      ],
+      [
+        9,
+        10
+      ]
+    ],
+    "fixed_metric_row_radius_values": [
+      "32"
+    ],
+    "reason": "On every symmetric selected edge c--p, d(c,p) is both row radius r_c and row radius r_p; connectedness propagates r_c = r_p to every center.",
+    "scaled_interpretation": "After scaling the common radius to 1, the selected graph is a spanning 4-regular 22-edge unit-distance graph. Exactness of every row in this fixed metric makes it the entire unit-distance graph.",
+    "selected_pairs_equal_all_common_radius_pairs": true,
+    "strongly_connected": true,
+    "structurally_forces_one_common_selected_radius": true,
+    "symmetric": true,
+    "symmetry_violations": [],
+    "undirected_edge_count": 22,
+    "undirected_edges": [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        9
+      ],
+      [
+        0,
+        10
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        1,
+        10
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        4,
+        9
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        7,
+        9
+      ],
+      [
+        8,
+        10
+      ],
+      [
+        9,
+        10
+      ]
+    ]
+  },
+  "schema": "p97-full-metric-live-distance-field-audit-v1",
+  "sources": {
+    "scratch/atail-force/uniform-cycle-coverage-audit/n11_a1_minimal0.full_lra.json": "2d3e1a1e5452addfeedca93fdc5073f5c0fd0147b5c1587ac4855630df58e1ee",
+    "scratch/atail-force/uniform-cycle-coverage-audit/n11_a1_minimal0.result.json": "10bafa995ea62799b44382263b5f01047b8ebf289c86191a7c92a4a6151bdfa0",
+    "scratch/atail-force/uniform-cycle-coverage-audit/n11_a1_minimal0.verify.json": "7bda14903d00e388947cd083ee39befbcfa6cbd21311220fb630c4d8d570694b"
+  },
+  "status": "FIXED_METRIC_EXACTLY_VERIFIED_NON_EUCLIDEAN",
+  "strict_kalmanson": {
+    "first_minimum_case": [
+      0,
+      1,
+      2,
+      10
+    ],
+    "first_minimum_slack": "1",
+    "quadruple_count": 330,
+    "second_minimum_case": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "second_minimum_slack": "1",
+    "verified": true
+  }
+}

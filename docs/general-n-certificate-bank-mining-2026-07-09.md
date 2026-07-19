@@ -775,6 +775,46 @@ for frozen core IDs.  No row-level
 `RejectsEveryCard11DirectOrMirrorOrder` instance or census-coverage claim is
 made before those finite witnesses exist.
 
+### 555/654 five-point order consumer (2026-07-17)
+
+The later `/opt/nfs/verified-results.md` ledger contributes one new geometric
+consumer that does simplify the current 555/654 bank. Lemma 81 states that
+strict convex cyclic order `W,F,P,X,Z` is incompatible with
+
+```text
+WF = WX = WZ
+PZ = XZ.
+```
+
+This is now formalized in
+`Census554/FivePointCircleIsoscelesOrderCore.lean`. The core uses exactly two
+`RowPattern` rows; the convex-boundary theorem
+`FivePointCircleIsoscelesOrderBridge.false_of_core_of_ccw` derives the chord
+side and proper diagonal crossing directly from one injective CCW enumeration.
+Both the core theorem and the boundary bridge have kernel closure
+
+```text
+propext, Classical.choice, Quot.sound
+```
+
+and the core is wired into both arbitrary-cardinality alternatives in
+`GeneralCarrierBridge`.
+
+An independent literal-row audit covers 230/230 cores in the live bank
+snapshot with source SHA-256
+`42101d8be2abfd5692b1076301a8d48580ab6dbad38fbd6024da4b54e1b24004`:
+89 unit-555, 17 forced-pair-555, 48 unit-654, and 76 forced-pair-654. Every
+core has a stored row at `W` containing `F,X,Z`, a stored row at `Z` containing
+`P,X`, and the required cyclic role order. The checked role map and concise
+report are reproduced by
+`scratch/555-654-general-theorem-mining/mine_opt_nfs_geometry.py` and recorded
+in the adjacent `REPORT.md`.
+
+This completes the reusable consumer side for the current fixed bank. It does
+not close a live proof-spine `sorry`. The missing theorem is still the source
+map from an arbitrary live `FaithfulCarrierPattern` branch to one of those
+fixed 555/654 cores.
+
 ## Closure impact
 
 The equality-core layer does not close a current proof-spine `sorry`. The

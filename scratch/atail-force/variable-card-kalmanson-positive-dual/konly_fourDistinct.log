@@ -1,0 +1,2 @@
+{"build_elapsed_seconds": 0.6914474159711972, "connectivity_clause_count": 3136, "metric_counts": {"guarded_exact_five_shell_equality": 78, "guarded_selected_row_equality": 1092, "positivity": 0, "strict_kalmanson": 2002, "strict_triangle": 0}, "orbit": "fourDistinct", "phase": "solver_built"}
+{"elapsed_seconds": 180.71109904098557, "orbit": "fourDistinct", "phase": "terminal", "status": "UNKNOWN"}

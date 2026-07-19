@@ -27,6 +27,7 @@ namespace Problem97
 namespace ATailPeriodThreeSharedOrderPacketScratch
 
 open ATailCriticalPairFrontier
+open ATailOrientedPhysicalApexIngress
 open ATailFirstApexShellRoleAuditScratch
 open ATailLargeCapUniqueFive
 open ATailLargeCapUniqueFivePhysicalOmissionCycle

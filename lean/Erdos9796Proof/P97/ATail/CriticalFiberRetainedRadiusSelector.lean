@@ -28,6 +28,7 @@ namespace ATailCriticalFiberRetainedRadiusSelector
 open ATailCriticalPairFrontier
 open ATailOrientedPhysicalApexIngress
 open ATailFirstApexCriticalFiber
+open ATailFirstApexCriticalFiberRow
 open Census554.GeneralCarrierBridge
 
 attribute [local instance] Classical.propDecidable
@@ -195,6 +196,20 @@ structure RetainedRadiusCollision
     fiber.source₂.1 ∈ SelectedClass D.A S.oppApex1 radius
 
 namespace RetainedRadiusCollision
+
+/-- A retained-radius collision is automatically on the `rowHit` side of the
+first-apex source-faithful split: both collision sources lie in the retained
+class, so the `bothOff` constructor is impossible. -/
+theorem nonempty_rowHit
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (Q : RetainedRadiusCollision (R := R)) : Nonempty (RowHit Q.fiber) := by
+  rcases nonempty_outcome Q.fiber with ⟨outcome⟩
+  cases outcome with
+  | bothOff off => exact False.elim (off.source₁_off Q.source₁_mem_radius)
+  | rowHit hit => exact ⟨hit⟩
 
 /-- The two collision sources are equidistant from the first apex. -/
 theorem firstApex_equidistant

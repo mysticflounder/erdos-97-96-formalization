@@ -1,0 +1,11 @@
+{"attempt": 100, "counters": {"linear_metric_unsat": 100}, "orbit": "continuationOrder", "phase": "linear_unsat"}
+{"attempt": 200, "counters": {"linear_metric_unsat": 200}, "orbit": "continuationOrder", "phase": "linear_unsat"}
+{"attempt": 300, "counters": {"linear_metric_unsat": 300}, "orbit": "continuationOrder", "phase": "linear_unsat"}
+{"attempt": 400, "counters": {"linear_metric_unsat": 400}, "orbit": "continuationOrder", "phase": "linear_unsat"}
+{"attempt": 500, "counters": {"linear_metric_unsat": 500}, "orbit": "continuationOrder", "phase": "linear_unsat"}
+{"attempt": 600, "counters": {"linear_metric_unsat": 600}, "orbit": "continuationOrder", "phase": "linear_unsat"}
+{"attempt": 700, "counters": {"linear_metric_unsat": 700}, "orbit": "continuationOrder", "phase": "linear_unsat"}
+{"attempt": 800, "counters": {"linear_metric_unsat": 800}, "orbit": "continuationOrder", "phase": "linear_unsat"}
+{"attempt": 900, "counters": {"linear_metric_unsat": 900}, "orbit": "continuationOrder", "phase": "linear_unsat"}
+{"attempt": 1000, "counters": {"linear_metric_unsat": 1000}, "orbit": "continuationOrder", "phase": "linear_unsat"}
+{"attempt": 1100, "counters": {"linear_metric_unsat": 1100}, "orbit": "continuationOrder", "phase": "linear_unsat"}

@@ -1,0 +1,27 @@
+{
+  "all_single_constraint_deletions": "SAT",
+  "all_variable_coefficients_cancel": true,
+  "constraint_count": 12,
+  "deletion_minimal": true,
+  "equality_multipliers": {
+    "row_10_0_1": "-1/9",
+    "row_2_1_4": "-1/9",
+    "row_3_0_4": "1/9"
+  },
+  "independent_qf_lra_replay": "UNSAT",
+  "inequality_multipliers": {
+    "kal1_0_2_3_4": "1/9",
+    "kal2_0_1_2_3": "1/9",
+    "kal2_0_1_3_4": "1/9",
+    "kal2_0_1_4_5": "1/9",
+    "kal2_0_1_5_6": "1/9",
+    "kal2_0_1_6_7": "1/9",
+    "kal2_0_1_7_8": "1/9",
+    "kal2_0_1_8_9": "1/9",
+    "kal2_0_1_9_10": "1/9"
+  },
+  "normalized_weighted_rhs": "1",
+  "schema": "p97-fixed-row-farkas-core-verification-v1",
+  "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/n11_a1_round2.full_lra.json",
+  "status": "VERIFIED_EXACT_FARKAS_CORE"
+}

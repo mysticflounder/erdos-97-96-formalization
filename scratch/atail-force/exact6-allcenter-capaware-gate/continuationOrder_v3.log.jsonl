@@ -1,0 +1,10 @@
+{"attempt": 100, "counters": {"transported_2k3_schema_cuts": 3270}, "new_cuts": 28, "orbit": "continuationOrder", "phase": "transported_2k3_schema"}
+{"attempt": 200, "counters": {"transported_2k3_schema_cuts": 6535}, "new_cuts": 37, "orbit": "continuationOrder", "phase": "transported_2k3_schema"}
+{"attempt": 300, "counters": {"transported_2k3_schema_cuts": 9589}, "new_cuts": 38, "orbit": "continuationOrder", "phase": "transported_2k3_schema"}
+{"attempt": 400, "counters": {"transported_2k3_schema_cuts": 12387}, "new_cuts": 27, "orbit": "continuationOrder", "phase": "transported_2k3_schema"}
+{"attempt": 500, "counters": {"transported_2k3_schema_cuts": 15163}, "new_cuts": 32, "orbit": "continuationOrder", "phase": "transported_2k3_schema"}
+{"attempt": 600, "counters": {"transported_2k3_schema_cuts": 17682}, "new_cuts": 33, "orbit": "continuationOrder", "phase": "transported_2k3_schema"}
+{"attempt": 700, "counters": {"transported_2k3_schema_cuts": 20070}, "new_cuts": 23, "orbit": "continuationOrder", "phase": "transported_2k3_schema"}
+{"attempt": 800, "counters": {"transported_2k3_schema_cuts": 22372}, "new_cuts": 21, "orbit": "continuationOrder", "phase": "transported_2k3_schema"}
+{"attempt": 900, "counters": {"transported_2k3_schema_cuts": 24498}, "new_cuts": 18, "orbit": "continuationOrder", "phase": "transported_2k3_schema"}
+{"attempt": 1000, "counters": {"transported_2k3_schema_cuts": 26572}, "new_cuts": 22, "orbit": "continuationOrder", "phase": "transported_2k3_schema"}

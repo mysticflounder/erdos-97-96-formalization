@@ -1,0 +1,55 @@
+{
+  "evidence_scope": "theorem-discovery matcher only; distance equalities come from row closure, p-circle inequalities from the exact pinned row, and noncollinearity from distinct labels plus CounterexampleData.convex",
+  "inventory": "certificates/p97_rvol_general_n_mining.json",
+  "scans": [
+    {
+      "assignment_signature_sha256": "28a7aebecda7969dc35d989757ab7adee67571d5e66de3b5d9e79083e2f8d1b0",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset0_postunit41_4m_scan.json",
+      "pinned_support": [
+        0,
+        2,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "assignment_signature_sha256": "d3aae93e0b70df73a5a6c6d6d9563cf52ef785f162848560c9996657a2a5550b",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset5_postunit36_4m_scan.json",
+      "pinned_support": [
+        2,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "assignment_signature_sha256": "5c195f57028f8499b652f8855d8557227a43a93a02bc3e3ddece3bb5504216ee",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset9_postunit38_4m_scan.json",
+      "pinned_support": [
+        4,
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  ],
+  "schema": "p97-u5-metric-kernel-saved-shadow-audit-v1",
+  "smoke_gates": {
+    "class_only_residual_positive": true,
+    "common_bisector_positive": true,
+    "exact_off_circle_positive": true,
+    "membership_disjunction_positive": true,
+    "missing_class_negative": true
+  },
+  "supported_pattern_count": 8,
+  "unsupported_patterns": []
+}

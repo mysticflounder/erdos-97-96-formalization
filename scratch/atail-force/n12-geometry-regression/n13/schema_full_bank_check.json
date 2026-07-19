@@ -1,0 +1,43 @@
+{
+  "bank": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/bank_030.json",
+  "bank_schema_count": 262,
+  "bank_sha256": "9d57666f160264cff6c03ad061b9a13aa50aff50dec988018deaf537702fc9e4",
+  "matching_indices": [],
+  "schema": "p97-n12-two-cycle-bank-membership-check-v1",
+  "status": "VERIFIED_ABSENT",
+  "target_core_vertex_count": 6,
+  "target_order_schema": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      4,
+      0
+    ],
+    [
+      4,
+      3
+    ]
+  ]
+}

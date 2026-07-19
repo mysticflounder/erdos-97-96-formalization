@@ -1,0 +1,37 @@
+{
+  "cnf_clause_count": 310686,
+  "cnf_path": "/private/tmp/p97-ordinal-continuationOrder.cnf",
+  "cnf_sha256": "77fd5d420d29f3954c52ca3b979483892f38b07b58e46c27d7574702b10b46d8",
+  "cnf_variable_count": 57561,
+  "connectivity_clause_count": 3136,
+  "epistemic_status": "SEMANTICS_PRESERVING_EXTERNAL_Z3_TACTIC_EXPORT",
+  "formula_built_elapsed_seconds": 0.9003827919950709,
+  "literal_metric_schema_cuts": 0,
+  "n": 14,
+  "orbit": "continuationOrder",
+  "ordinal_counts": {
+    "guarded_exact_five_shell_rank_equalities": 78,
+    "guarded_selected_row_rank_equalities": 1092,
+    "kalmanson_cancellation_implications": 8008,
+    "rank_atoms": 91,
+    "rank_bit_width": 7
+  },
+  "ordinal_source": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/variable-card-kalmanson-positive-dual/integrated_ordinal_cycle_decision.py",
+  "ordinal_source_sha256": "ab6329812be5069a3902b53d41483160e557db091cc8632aa57721a908528e05",
+  "outer_source": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact6-allcenter-capaware-gate/allcenter_gate.py",
+  "outer_source_sha256": "2af4ebe69459f371f25100a80de1a092e81cae75bd62ad87175c1d4c19a5f27b",
+  "schema": "p97-exact6-integrated-ordinal-bitblast-v1",
+  "seed": 900,
+  "source_assertion_count": 19524,
+  "tactic_pipeline": [
+    "simplify",
+    "propagate-values",
+    "elim-term-ite",
+    "solve-eqs",
+    "lia2card",
+    "card2bv",
+    "bit-blast",
+    "tseitin-cnf"
+  ],
+  "total_elapsed_seconds": 1.2985692499787547
+}

@@ -1,0 +1,375 @@
+{
+  "all_selected_edge_radii_forced_equal": true,
+  "bank_match": {
+    "fq_name": "Problem97.u5_qcritical_aux_base_collision_metric_incompatibility",
+    "line": 30,
+    "local_exact_name": false,
+    "module": "RVOL.P97.U5GlobalIncidenceQCriticalAuxBaseCollision",
+    "path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalAuxBaseCollision.lean",
+    "proof_status": "source-proved",
+    "source_reachable": true,
+    "statement": "theorem u5_qcritical_aux_base_collision_metric_incompatibility {p q t\u2081 t\u2082 t\u2083 x : \u211d\u00b2} {r : \u211d} (hr : 0 < r) (hpq : dist p q = r) (hpt\u2081 : dist p t\u2081 = r) (hpt\u2082 : dist p t\u2082 = r) (hpt\u2083 : dist p t\u2083 = r) (ht\u2081q : dist t\u2081 q = r) (ht\u2081t\u2082 : dist t\u2081 t\u2082 = r) (ht\u2082t\u2083 : dist t\u2082 t\u2083 = r) (hq_ne_t\u2082 : q \u2260 t\u2082) (ht\u2081_ne_t\u2083 : t\u2081 \u2260 t\u2083) (hx_ne_p : x \u2260 p) (ht\u2083x : dist t\u2083 x = r) (hxt\u2083q : dist x t\u2083 = dist x q) : False"
+  },
+  "bank_match_argument": {
+    "distinctness": {
+      "q_ne_t2": [
+        2,
+        9
+      ],
+      "t1_ne_t3": [
+        4,
+        10
+      ],
+      "x_ne_p": [
+        8,
+        0
+      ]
+    },
+    "ht3x": [
+      10,
+      8
+    ],
+    "hxt3q": {
+      "left": [
+        8,
+        10
+      ],
+      "right": [
+        8,
+        2
+      ]
+    },
+    "positive_radius_from": "injectivity/dist_pos for labels 0 and 2",
+    "r": "dist(point 0, point 2)"
+  },
+  "canonical_graph6_nauty_labelg": "Jsd@IgtIaS_",
+  "cell_level_conclusion": "NO_INJECTIVE_PLANAR_REALIZATION_OF_THE_FIXED_ROW_EQUALITY_CELL",
+  "connected": true,
+  "connected_component_of_zero": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "degree_sequence": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4
+  ],
+  "directed_incidence_count": 44,
+  "edges": [
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      9
+    ],
+    [
+      0,
+      10
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      5
+    ],
+    [
+      1,
+      7
+    ],
+    [
+      1,
+      10
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2,
+      8
+    ],
+    [
+      3,
+      5
+    ],
+    [
+      3,
+      8
+    ],
+    [
+      4,
+      6
+    ],
+    [
+      4,
+      9
+    ],
+    [
+      5,
+      6
+    ],
+    [
+      5,
+      7
+    ],
+    [
+      6,
+      7
+    ],
+    [
+      6,
+      8
+    ],
+    [
+      7,
+      9
+    ],
+    [
+      8,
+      10
+    ],
+    [
+      9,
+      10
+    ]
+  ],
+  "epistemic_status": "EXACT_FINITE_REPLAY_AND_SOURCE_BANK_MATCH",
+  "fixed_exported_distances_needed": false,
+  "is_circulant": false,
+  "is_circulant_reason": "A circulant graph is vertex-transitive, but countg reports more than one vertex orbit.",
+  "kalmanson_needed": false,
+  "n": 11,
+  "nauty_properties": {
+    "automorphism_group_size": 2,
+    "chromatic_number": 3,
+    "component_count": 1,
+    "edge_count": 22,
+    "four_cycle_count": 10,
+    "maximum_degree": 4,
+    "minimum_degree": 4,
+    "triangle_count": 7,
+    "vertex_count": 11,
+    "vertex_orbit_count": 6
+  },
+  "obstruction_required_unit_edges": {
+    "p_q": [
+      0,
+      2
+    ],
+    "p_t1": [
+      0,
+      4
+    ],
+    "p_t2": [
+      0,
+      9
+    ],
+    "p_t3": [
+      0,
+      10
+    ],
+    "t1_q": [
+      2,
+      4
+    ],
+    "t1_t2": [
+      4,
+      9
+    ],
+    "t2_t3": [
+      9,
+      10
+    ],
+    "t3_x": [
+      8,
+      10
+    ],
+    "x_q": [
+      2,
+      8
+    ]
+  },
+  "obstruction_roles": {
+    "p": 0,
+    "q": 2,
+    "t1": 4,
+    "t2": 9,
+    "t3": 10,
+    "x": 8
+  },
+  "radius_derivation": {
+    "radius_edge": [
+      0,
+      2
+    ],
+    "row_0": {
+      "concludes_equal_to_radius": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "support": [
+        2,
+        4,
+        9,
+        10
+      ]
+    },
+    "row_2": {
+      "concludes_equal_to_radius": [
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          8
+        ]
+      ],
+      "shared_edge": [
+        0,
+        2
+      ],
+      "support": [
+        0,
+        3,
+        4,
+        8
+      ]
+    },
+    "row_4": {
+      "concludes_equal_to_radius": [
+        [
+          4,
+          9
+        ]
+      ],
+      "shared_edge": [
+        0,
+        4
+      ],
+      "support": [
+        0,
+        2,
+        6,
+        9
+      ]
+    },
+    "row_8": {
+      "concludes_equal_to_radius": [
+        [
+          8,
+          10
+        ]
+      ],
+      "shared_edge": [
+        2,
+        8
+      ],
+      "support": [
+        2,
+        3,
+        6,
+        10
+      ]
+    },
+    "row_9": {
+      "concludes_equal_to_radius": [
+        [
+          9,
+          10
+        ]
+      ],
+      "shared_edge": [
+        0,
+        9
+      ],
+      "support": [
+        0,
+        4,
+        7,
+        10
+      ]
+    }
+  },
+  "raw_graph6": "JRhOYKqaU@_",
+  "schema": "p97-n11-symmetric-support-graph-audit-v1",
+  "source": "scratch/atail-force/uniform-cycle-coverage-audit/n11_a1_minimal0.full_lra.json",
+  "symmetric_support_relation": true,
+  "triangles": [
+    [
+      0,
+      2,
+      4
+    ],
+    [
+      0,
+      4,
+      9
+    ],
+    [
+      0,
+      9,
+      10
+    ],
+    [
+      1,
+      3,
+      5
+    ],
+    [
+      1,
+      5,
+      7
+    ],
+    [
+      2,
+      3,
+      8
+    ],
+    [
+      5,
+      6,
+      7
+    ]
+  ],
+  "undirected_edge_count": 22
+}

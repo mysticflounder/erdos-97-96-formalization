@@ -1,0 +1,1 @@
+{"attempt": 10, "counters": {"generalized_metric_schema_cuts": 4338, "linear_metric_unsat": 10, "metric_core_cuts": 10}, "orbit": "sharesFirstAtTarget", "phase": "linear_unsat"}

@@ -1,0 +1,176 @@
+{
+  "bank": "scratch/atail-force/generic-biapex-kalmanson-search/schema_bank_round0.json",
+  "results": [
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a1_seed0.json",
+      "random_seed": 0,
+      "returncode": 0,
+      "second_apex": 1
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a1_seed1.json",
+      "random_seed": 1,
+      "returncode": 0,
+      "second_apex": 1
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a1_seed2.json",
+      "random_seed": 2,
+      "returncode": 0,
+      "second_apex": 1
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a1_seed3.json",
+      "random_seed": 3,
+      "returncode": 0,
+      "second_apex": 1
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a2_seed0.json",
+      "random_seed": 0,
+      "returncode": 0,
+      "second_apex": 2
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a2_seed1.json",
+      "random_seed": 1,
+      "returncode": 0,
+      "second_apex": 2
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a2_seed2.json",
+      "random_seed": 2,
+      "returncode": 0,
+      "second_apex": 2
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a2_seed3.json",
+      "random_seed": 3,
+      "returncode": 0,
+      "second_apex": 2
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a3_seed0.json",
+      "random_seed": 0,
+      "returncode": 0,
+      "second_apex": 3
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a3_seed1.json",
+      "random_seed": 1,
+      "returncode": 0,
+      "second_apex": 3
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a3_seed2.json",
+      "random_seed": 2,
+      "returncode": 0,
+      "second_apex": 3
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a3_seed3.json",
+      "random_seed": 3,
+      "returncode": 0,
+      "second_apex": 3
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a4_seed0.json",
+      "random_seed": 0,
+      "returncode": 0,
+      "second_apex": 4
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a4_seed1.json",
+      "random_seed": 1,
+      "returncode": 0,
+      "second_apex": 4
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a4_seed2.json",
+      "random_seed": 2,
+      "returncode": 0,
+      "second_apex": 4
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a4_seed3.json",
+      "random_seed": 3,
+      "returncode": 0,
+      "second_apex": 4
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a5_seed0.json",
+      "random_seed": 0,
+      "returncode": 0,
+      "second_apex": 5
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a5_seed1.json",
+      "random_seed": 1,
+      "returncode": 0,
+      "second_apex": 5
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a5_seed2.json",
+      "random_seed": 2,
+      "returncode": 0,
+      "second_apex": 5
+    },
+    {
+      "n": 11,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n11_a5_seed3.json",
+      "random_seed": 3,
+      "returncode": 0,
+      "second_apex": 5
+    },
+    {
+      "n": 12,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n12_a1_seed0.json",
+      "random_seed": 0,
+      "returncode": 0,
+      "second_apex": 1
+    },
+    {
+      "n": 12,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n12_a2_seed0.json",
+      "random_seed": 0,
+      "returncode": 0,
+      "second_apex": 2
+    },
+    {
+      "n": 12,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n12_a3_seed0.json",
+      "random_seed": 0,
+      "returncode": 0,
+      "second_apex": 3
+    },
+    {
+      "n": 12,
+      "output": "scratch/atail-force/generic-biapex-kalmanson-search/portfolio_round1/n12_a6_seed0.json",
+      "random_seed": 0,
+      "returncode": 0,
+      "second_apex": 6
+    }
+  ],
+  "schema": "p97-whole-carrier-live24-portfolio-v1",
+  "wall_seconds_per_case": 120.0,
+  "workers": 24
+}

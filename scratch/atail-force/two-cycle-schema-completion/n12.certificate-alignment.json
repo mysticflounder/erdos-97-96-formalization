@@ -1,0 +1,24 @@
+{
+  "certificate": "scratch/atail-force/n12-geometry-regression/minimal_two_cycle.json",
+  "conclusion": "The certificate memberships admit both SelectedRowOrdinalComparison constructors under one common cyclically shifted CCW chart, so false_of_two_cycle is an exact consumer.",
+  "detection": "scratch/atail-force/two-cycle-schema-completion/n12.detect.json",
+  "epistemic_status": "EXACT_INCIDENCE_AND_CONSTRUCTOR_REPLAY",
+  "matching_witnesses": [
+    {
+      "backward_constructor": "diagonalEqSide",
+      "common_chart_cut_offset": 1,
+      "forward_constructor": "diagonalEqSide",
+      "reflection_canonical_schema_matches_certificate": true,
+      "witness_index": 0
+    },
+    {
+      "backward_constructor": "diagonalEqSide",
+      "common_chart_cut_offset": 1,
+      "forward_constructor": "diagonalEqSide",
+      "reflection_canonical_schema_matches_certificate": true,
+      "witness_index": 2
+    }
+  ],
+  "schema": "p97-two-cycle-certificate-production-consumer-alignment-v1",
+  "status": "VERIFIED"
+}

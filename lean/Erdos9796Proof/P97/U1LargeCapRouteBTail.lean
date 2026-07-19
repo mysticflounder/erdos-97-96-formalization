@@ -27,6 +27,7 @@ import Erdos9796Proof.P97.ATail.FrontierCommonDeletionSurplusEscape
 import Erdos9796Proof.P97.ATail.FirstApexCriticalFiber
 import Erdos9796Proof.P97.ATail.FirstApexCriticalFiberRow
 import Erdos9796Proof.P97.ATail.CriticalFiberRetainedRadiusSelector
+import Erdos9796Proof.P97.ATail.BiApexBlockerMultiplicity
 import Erdos9796Proof.P97.ATail.CriticalFiberClosingCore
 
 /-!
@@ -3700,7 +3701,142 @@ theorem false_of_center_p_t3_t20_via_pair
     rw [hset]
     exact hsupport_t3
 
+/-- Reindex an exact critical row by another point of the same full shell.
+The metric row and its named support remain unchanged. -/
+private noncomputable def reindexCriticalRow
+    {D : CounterexampleData} {source target : ℝ²}
+    (R : U1Depth5.CriticalRowPacket D source)
+    (htarget : target ∈ R.selected.toCriticalFourShell.support) :
+    U1Depth5.CriticalRowPacket D target where
+  source_mem := R.selected.toCriticalFourShell.support_subset_A htarget
+  center := R.center
+  selected :=
+    { toCriticalFourShell :=
+        { center_mem := by
+            refine Finset.mem_erase.mpr ⟨?_, ?_⟩
+            · intro hcenter
+              exact R.selected.toCriticalFourShell.center_not_mem_support
+                (hcenter ▸ htarget)
+            · exact (Finset.mem_erase.mp
+                R.selected.toCriticalFourShell.center_mem).2
+          radius := R.selected.toCriticalFourShell.radius
+          radius_pos := R.selected.toCriticalFourShell.radius_pos
+          support := R.selected.toCriticalFourShell.support
+          support_eq := R.selected.toCriticalFourShell.support_eq
+          support_card := R.selected.toCriticalFourShell.support_card
+          q_mem_support := htarget }
+      l1 := R.selected.l1
+      l2 := R.selected.l2
+      l3 := R.selected.l3
+      l4 := R.selected.l4
+      l1_ne_l2 := R.selected.l1_ne_l2
+      l1_ne_l3 := R.selected.l1_ne_l3
+      l1_ne_l4 := R.selected.l1_ne_l4
+      l2_ne_l3 := R.selected.l2_ne_l3
+      l2_ne_l4 := R.selected.l2_ne_l4
+      l3_ne_l4 := R.selected.l3_ne_l4
+      support_eq_labels := R.selected.support_eq_labels }
+
+/-- Replace the t2 source row by the actual q-source shell, reindexed at t2. -/
+private noncomputable def rowsWithT2ReindexedQRow
+    {D : CounterexampleData} {q t1 t2 t3 u : ℝ²}
+    (rows : U1Depth5.CriticalSourceRows D q t1 t2 t3 u)
+    (ht2 :
+      t2 ∈ (rows.rowAt U1Depth5.CriticalSource.q).selected.toCriticalFourShell.support) :
+    U1Depth5.CriticalSourceRows D q t1 t2 t3 u where
+  qRow := rows.qRow
+  t1Row := rows.t1Row
+  t2Row := reindexCriticalRow rows.qRow (by
+    simpa [U1Depth5.CriticalSourceRows.rowAt] using ht2)
+  t3Row := rows.t3Row
+  uRow := rows.uRow
+
+open U1LargeCapRouteBTailMetricResidualTarget in
+/-- A q-source collision reduces to the existing t2-source sink by reindexing
+the same exact dangerous shell at t2. -/
+theorem false_of_center_p_q_t20_via_reindex
+    {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
+    {hncol : ¬ Collinear ℝ (D.A : Set ℝ²)}
+    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+    (hCirc : ∃ h12 h23 h13,
+      MT.toMoserTriangle.case_split = Or.inl ⟨h12, h23, h13⟩)
+    {M : MoserTriangle D.A} (CP : CapTriple D.A M) {i : Fin 3}
+    (hM : M = MT.toMoserTriangle.toStructural hCirc)
+    (hqCap : q ∈ CP.capAt i)
+    (hsurplus : 4 < (CP.capAt i).card)
+    (hqNonMoser : q ∉ M.verts)
+    (hnotOppExact : ¬ CP.OppositePairExactAt i)
+    (hNoM44 : ¬ ∃ S : SurplusCapPacket D.A, S.IsM44)
+    (hcard : 9 < D.A.card)
+    (hnoRem : ∀ x : ℝ², ¬ IsRemovableVertex D.A x)
+    (hcritical : Nonempty (CriticalShellSystem D.A))
+    (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
+    (hfixed : U3FixedTriplePacket D q p t1 t2 t3)
+    (hbase : List.Pairwise (fun x y : ℝ² => x ≠ y)
+      [p, q, t1, t2, t3, u])
+    (rows : U1Depth5.CriticalSourceRows D q t1 t2 t3 u)
+    (f2CriticalRow :
+      U1Depth5.CriticalRowPacket D
+        (rows.pointOfChoice
+          { source := U1Depth5.CriticalSource.t2, slot := 0 }))
+    (hf2Center_eq_rowAt_center :
+      ∀ source : U1Depth5.CriticalSource,
+        rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } =
+          rows.sourcePoint source →
+        f2CriticalRow.center = (rows.rowAt source).center)
+    (hf2Selected_l1_eq_rowAt_l1 :
+      ∀ source : U1Depth5.CriticalSource,
+        rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } =
+          rows.sourcePoint source →
+        f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
+    (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
+    (hcenter_p : f2CriticalRow.center = p)
+    (hsupport :
+      f2CriticalRow.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²))
+    (hq_t20 :
+      q = rows.pointOfChoice
+        { source := U1Depth5.CriticalSource.t2, slot := 0 }) :
+    False := by
+  have hsource :
+      rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } =
+        rows.sourcePoint U1Depth5.CriticalSource.q := by
+    simpa [U1Depth5.CriticalSourceRows.sourcePoint] using hq_t20.symm
+  have hcenters :
+      f2CriticalRow.center =
+        (rows.rowAt U1Depth5.CriticalSource.q).center :=
+    hf2Center_eq_rowAt_center U1Depth5.CriticalSource.q hsource
+  have hcenter_q :
+      (rows.rowAt U1Depth5.CriticalSource.q).center = p :=
+    hcenters.symm.trans hcenter_p
+  have hsupport_q :
+      (rows.rowAt U1Depth5.CriticalSource.q).selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²) := by
+    have hsame := support_eq_of_center_eq_l1 f2CriticalRow
+      (rows.rowAt U1Depth5.CriticalSource.q) hcenters
+      (hf2Selected_l1_eq_rowAt_l1 U1Depth5.CriticalSource.q hsource)
+    exact hsame.symm.trans hsupport
+  have ht2 :
+      t2 ∈ (rows.rowAt U1Depth5.CriticalSource.q).selected.toCriticalFourShell.support := by
+    rw [hsupport_q]
+    simp
+  let rows' := rowsWithT2ReindexedQRow rows ht2
+  apply false_of_largeCap_pCentered_t2Source_exactDangerousRow
+    (p := p) MT hCirc CP i rows' hM hqCap hsurplus hqNonMoser
+      hnotOppExact hNoM44 hcard hnoRem hcritical hlocalNoQFree hfixed
+      hbase H
+  · simpa [rows', rowsWithT2ReindexedQRow,
+      U1Depth5.CriticalSourceRows.rowAt, reindexCriticalRow] using hcenter_q
+  · simpa [rows', rowsWithT2ReindexedQRow,
+      U1Depth5.CriticalSourceRows.rowAt, reindexCriticalRow] using hsupport_q
+
 end U1LargeCapRouteBTailRelabel
+
+section LiveDataQReindex
+
+-- The public LIVE-Q signatures remain stable for their current callers; the
+-- reindexing reduction intentionally does not consume the slot-local premises.
+set_option linter.unusedVariables false
 
 
 open U1LargeCapRouteBTailMetricResidualTarget in
@@ -3804,30 +3940,11 @@ theorem liveData_Q_l1_false
       ({f2CriticalRow.selected.l2, f2CriticalRow.selected.l3,
           f2CriticalRow.selected.l4} : Finset ℝ²) = ({t1, t2, t3} : Finset ℝ²)) :
     False := by
-        rcases perm_of_finset_eq_triple htail_set
-            f2CriticalRow.selected.l2_ne_l3 f2CriticalRow.selected.l2_ne_l4
-            f2CriticalRow.selected.l3_ne_l4 with
-          ⟨hl2_t1, hl3_t2, hl4_t3⟩ | ⟨hl2_t1, hl3_t3, hl4_t2⟩ |
-            ⟨hl2_t2, hl3_t1, hl4_t3⟩ | ⟨hl2_t2, hl3_t3, hl4_t1⟩ |
-            ⟨hl2_t3, hl3_t1, hl4_t2⟩ | ⟨hl2_t3, hl3_t2, hl4_t1⟩
-        · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t1`,
-          -- `l3 = t2`, `l4 = t3`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t1`,
-          -- `l3 = t3`, `l4 = t2`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t2`,
-          -- `l3 = t1`, `l4 = t3`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t2`,
-          -- `l3 = t3`, `l4 = t1`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t3`,
-          -- `l3 = t1`, `l4 = t2`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t3`,
-          -- `l3 = t2`, `l4 = t1`.
-          sorry
+  exact U1LargeCapRouteBTailRelabel.false_of_center_p_q_t20_via_reindex
+    MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard
+      hnoRem hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+      hselected_support_eq_base hq_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-Q orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -3931,30 +4048,11 @@ theorem liveData_Q_l2_false
       ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l3,
           f2CriticalRow.selected.l4} : Finset ℝ²) = ({t1, t2, t3} : Finset ℝ²)) :
     False := by
-        rcases perm_of_finset_eq_triple htail_set
-            f2CriticalRow.selected.l1_ne_l3 f2CriticalRow.selected.l1_ne_l4
-            f2CriticalRow.selected.l3_ne_l4 with
-          ⟨hl1_t1, hl3_t2, hl4_t3⟩ | ⟨hl1_t1, hl3_t3, hl4_t2⟩ |
-            ⟨hl1_t2, hl3_t1, hl4_t3⟩ | ⟨hl1_t2, hl3_t3, hl4_t1⟩ |
-            ⟨hl1_t3, hl3_t1, hl4_t2⟩ | ⟨hl1_t3, hl3_t2, hl4_t1⟩
-        · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t1`,
-          -- `l3 = t2`, `l4 = t3`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t1`,
-          -- `l3 = t3`, `l4 = t2`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t2`,
-          -- `l3 = t1`, `l4 = t3`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t2`,
-          -- `l3 = t3`, `l4 = t1`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t3`,
-          -- `l3 = t1`, `l4 = t2`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t3`,
-          -- `l3 = t2`, `l4 = t1`.
-          sorry
+  exact U1LargeCapRouteBTailRelabel.false_of_center_p_q_t20_via_reindex
+    MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard
+      hnoRem hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+      hselected_support_eq_base hq_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-Q orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -4066,30 +4164,11 @@ theorem liveData_Q_l3_false
       ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l2,
           f2CriticalRow.selected.l4} : Finset ℝ²) = ({t1, t2, t3} : Finset ℝ²)) :
     False := by
-        rcases perm_of_finset_eq_triple htail_set
-            f2CriticalRow.selected.l1_ne_l2 f2CriticalRow.selected.l1_ne_l4
-            f2CriticalRow.selected.l2_ne_l4 with
-          ⟨hl1_t1, hl2_t2, hl4_t3⟩ | ⟨hl1_t1, hl2_t3, hl4_t2⟩ |
-            ⟨hl1_t2, hl2_t1, hl4_t3⟩ | ⟨hl1_t2, hl2_t3, hl4_t1⟩ |
-            ⟨hl1_t3, hl2_t1, hl4_t2⟩ | ⟨hl1_t3, hl2_t2, hl4_t1⟩
-        · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t1`,
-          -- `l2 = t2`, `l4 = t3`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t1`,
-          -- `l2 = t3`, `l4 = t2`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t2`,
-          -- `l2 = t1`, `l4 = t3`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t2`,
-          -- `l2 = t3`, `l4 = t1`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t3`,
-          -- `l2 = t1`, `l4 = t2`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t3`,
-          -- `l2 = t2`, `l4 = t1`.
-          sorry
+  exact U1LargeCapRouteBTailRelabel.false_of_center_p_q_t20_via_reindex
+    MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard
+      hnoRem hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+      hselected_support_eq_base hq_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-Q orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -4201,30 +4280,13 @@ theorem liveData_Q_l4_false
       ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l2,
           f2CriticalRow.selected.l3} : Finset ℝ²) = ({t1, t2, t3} : Finset ℝ²)) :
     False := by
-        rcases perm_of_finset_eq_triple htail_set
-            f2CriticalRow.selected.l1_ne_l2 f2CriticalRow.selected.l1_ne_l3
-            f2CriticalRow.selected.l2_ne_l3 with
-          ⟨hl1_t1, hl2_t2, hl3_t3⟩ | ⟨hl1_t1, hl2_t3, hl3_t2⟩ |
-            ⟨hl1_t2, hl2_t1, hl3_t3⟩ | ⟨hl1_t2, hl2_t3, hl3_t1⟩ |
-            ⟨hl1_t3, hl2_t1, hl3_t2⟩ | ⟨hl1_t3, hl2_t2, hl3_t1⟩
-        · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t1`,
-          -- `l2 = t2`, `l3 = t3`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t1`,
-          -- `l2 = t3`, `l3 = t2`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t2`,
-          -- `l2 = t1`, `l3 = t3`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t2`,
-          -- `l2 = t3`, `l3 = t1`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t3`,
-          -- `l2 = t1`, `l3 = t2`.
-          sorry
-        · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t3`,
-          -- `l2 = t2`, `l3 = t1`.
-          sorry
+  exact U1LargeCapRouteBTailRelabel.false_of_center_p_q_t20_via_reindex
+    MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard
+      hnoRem hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+      hselected_support_eq_base hq_t20
+
+end LiveDataQReindex
 
 section LiveDataT1Relabel
 

@@ -1,0 +1,36 @@
+{
+  "epistemic_status": "EXACT_RATIONAL_LINEAR_ALGEBRA",
+  "euclidean_R2": false,
+  "euclidean_any_dimension": false,
+  "gram_rank": 10,
+  "n": 11,
+  "negative_principal_minor": {
+    "determinant": "-16597476",
+    "gram_principal_submatrix": [
+      [
+        "121",
+        "352",
+        "861/2"
+      ],
+      [
+        "352",
+        "1024",
+        "882"
+      ],
+      [
+        "861/2",
+        "882",
+        "1764"
+      ]
+    ],
+    "vertices": [
+      1,
+      2,
+      3
+    ]
+  },
+  "rank_at_most_two": false,
+  "reference_vertex": 0,
+  "schema": "p97-exact-distance-euclidean-gram-audit-v1",
+  "source": "scratch/atail-force/uniform-cycle-coverage-audit/n11_a1_minimal0.full_lra.json"
+}

@@ -52,6 +52,8 @@ def RetainedFirstApexRadiusCapture
     (continuation :
       LargeCapUniqueFiveTwoCommonDeletionSources D S H profile)
     (T : PhysicalActualCriticalOmissionTransition H profile) : Prop :=
+  let _fullParent := L
+  let _sourceFaithfulContinuation := continuation
   ∃ q : PhysicalVertex profile,
     (transitionReverseOutsidePair T q ∩
       SelectedClass D.A S.oppApex1 radius).card = 2
@@ -111,6 +113,8 @@ theorem false_of_retainedFirstApexRadiusCapture
       (mem_selectedClass.mp hbClass).2.symm
   exact false_of_transitionReverseOutsidePair_coRadial_firstApex
     T hreverse q hab haPair hbPair hfirstEq
+
+#print axioms false_of_retainedFirstApexRadiusCapture
 
 end
 

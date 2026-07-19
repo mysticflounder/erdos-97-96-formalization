@@ -1,0 +1,10 @@
+{
+  "carrier": "scratch/atail-force/n12-geometry-regression/carrier.json",
+  "carrier_n": 12,
+  "core_vertex_count": 6,
+  "hit_count": 0,
+  "hits": [],
+  "schema": "p97-transformed-row-schema-embedding-check-v1",
+  "source_certificate": "scratch/atail-force/n12-geometry-regression/n13/minimal_two_cycle.json",
+  "status": "ABSENT"
+}

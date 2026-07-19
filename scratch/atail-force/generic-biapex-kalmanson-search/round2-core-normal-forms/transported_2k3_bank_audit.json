@@ -1,0 +1,877 @@
+{
+  "all_certificates_independently_verified": true,
+  "certificate_count": 203,
+  "exact_overlap_count": 1,
+  "exact_overlap_existing_schema_indices": [
+    25
+  ],
+  "existing_bank_schema_count": 435,
+  "existing_schema_not_subsumed_count": 279,
+  "existing_schema_strictly_subsumed_union_count": 155,
+  "existing_schema_subsumed_union_count": 156,
+  "internal_minimal_schema_count": 20,
+  "internal_subsumption_pair_count": 0,
+  "new_exact_schema_count": 19,
+  "per_schema": [
+    {
+      "certificate_provenance_count": 21,
+      "core_vertex_count": 5,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 15,
+      "subsumed_existing_schema_count": 15,
+      "subsumed_existing_schema_indices": [
+        53,
+        129,
+        199,
+        204,
+        220,
+        222,
+        238,
+        242,
+        267,
+        268,
+        282,
+        285,
+        313,
+        343,
+        367
+      ]
+    },
+    {
+      "certificate_provenance_count": 19,
+      "core_vertex_count": 5,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 1,
+      "subsumed_existing_schema_count": 1,
+      "subsumed_existing_schema_indices": [
+        255
+      ]
+    },
+    {
+      "certificate_provenance_count": 8,
+      "core_vertex_count": 5,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 16,
+      "subsumed_existing_schema_count": 16,
+      "subsumed_existing_schema_indices": [
+        52,
+        193,
+        207,
+        225,
+        236,
+        240,
+        246,
+        281,
+        332,
+        339,
+        340,
+        349,
+        361,
+        369,
+        403,
+        404
+      ]
+    },
+    {
+      "certificate_provenance_count": 11,
+      "core_vertex_count": 5,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 6,
+      "subsumed_existing_schema_count": 6,
+      "subsumed_existing_schema_indices": [
+        306,
+        324,
+        373,
+        385,
+        388,
+        405
+      ]
+    },
+    {
+      "certificate_provenance_count": 5,
+      "core_vertex_count": 5,
+      "exact_existing_overlap": true,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 2,
+      "subsumed_existing_schema_count": 3,
+      "subsumed_existing_schema_indices": [
+        25,
+        287,
+        431
+      ]
+    },
+    {
+      "certificate_provenance_count": 6,
+      "core_vertex_count": 5,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 1,
+      "subsumed_existing_schema_count": 1,
+      "subsumed_existing_schema_indices": [
+        392
+      ]
+    },
+    {
+      "certificate_provenance_count": 2,
+      "core_vertex_count": 5,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 3,
+      "subsumed_existing_schema_count": 3,
+      "subsumed_existing_schema_indices": [
+        119,
+        409,
+        410
+      ]
+    },
+    {
+      "certificate_provenance_count": 2,
+      "core_vertex_count": 5,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 10,
+      "subsumed_existing_schema_count": 10,
+      "subsumed_existing_schema_indices": [
+        15,
+        173,
+        186,
+        188,
+        296,
+        325,
+        380,
+        395,
+        399,
+        402
+      ]
+    },
+    {
+      "certificate_provenance_count": 3,
+      "core_vertex_count": 5,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 3,
+      "subsumed_existing_schema_count": 3,
+      "subsumed_existing_schema_indices": [
+        18,
+        374,
+        414
+      ]
+    },
+    {
+      "certificate_provenance_count": 13,
+      "core_vertex_count": 6,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 6,
+      "subsumed_existing_schema_count": 6,
+      "subsumed_existing_schema_indices": [
+        127,
+        189,
+        277,
+        302,
+        396,
+        418
+      ]
+    },
+    {
+      "certificate_provenance_count": 16,
+      "core_vertex_count": 6,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 16,
+      "subsumed_existing_schema_count": 16,
+      "subsumed_existing_schema_indices": [
+        50,
+        62,
+        125,
+        126,
+        131,
+        133,
+        167,
+        183,
+        192,
+        221,
+        253,
+        254,
+        258,
+        261,
+        278,
+        331
+      ]
+    },
+    {
+      "certificate_provenance_count": 52,
+      "core_vertex_count": 6,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 6,
+      "subsumed_existing_schema_count": 6,
+      "subsumed_existing_schema_indices": [
+        140,
+        154,
+        200,
+        284,
+        338,
+        362
+      ]
+    },
+    {
+      "certificate_provenance_count": 11,
+      "core_vertex_count": 6,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 18,
+      "subsumed_existing_schema_count": 18,
+      "subsumed_existing_schema_indices": [
+        190,
+        191,
+        203,
+        223,
+        224,
+        234,
+        273,
+        279,
+        308,
+        309,
+        337,
+        345,
+        348,
+        350,
+        357,
+        358,
+        363,
+        370
+      ]
+    },
+    {
+      "certificate_provenance_count": 20,
+      "core_vertex_count": 6,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 21,
+      "subsumed_existing_schema_count": 21,
+      "subsumed_existing_schema_indices": [
+        67,
+        148,
+        187,
+        227,
+        229,
+        233,
+        269,
+        274,
+        275,
+        276,
+        317,
+        342,
+        346,
+        347,
+        351,
+        352,
+        354,
+        355,
+        364,
+        365,
+        366
+      ]
+    },
+    {
+      "certificate_provenance_count": 2,
+      "core_vertex_count": 6,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 12,
+      "subsumed_existing_schema_count": 12,
+      "subsumed_existing_schema_indices": [
+        202,
+        250,
+        257,
+        271,
+        292,
+        299,
+        301,
+        353,
+        356,
+        389,
+        390,
+        401
+      ]
+    },
+    {
+      "certificate_provenance_count": 4,
+      "core_vertex_count": 6,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 4,
+      "subsumed_existing_schema_count": 4,
+      "subsumed_existing_schema_indices": [
+        170,
+        182,
+        247,
+        384
+      ]
+    },
+    {
+      "certificate_provenance_count": 2,
+      "core_vertex_count": 6,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 1,
+      "subsumed_existing_schema_count": 1,
+      "subsumed_existing_schema_indices": [
+        379
+      ]
+    },
+    {
+      "certificate_provenance_count": 1,
+      "core_vertex_count": 6,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 5,
+      "subsumed_existing_schema_count": 5,
+      "subsumed_existing_schema_indices": [
+        169,
+        263,
+        411,
+        413,
+        434
+      ]
+    },
+    {
+      "certificate_provenance_count": 4,
+      "core_vertex_count": 6,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 7,
+      "subsumed_existing_schema_count": 7,
+      "subsumed_existing_schema_indices": [
+        74,
+        140,
+        158,
+        170,
+        252,
+        412,
+        417
+      ]
+    },
+    {
+      "certificate_provenance_count": 1,
+      "core_vertex_count": 6,
+      "exact_existing_overlap": false,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "strictly_subsumed_existing_schema_count": 4,
+      "subsumed_existing_schema_count": 4,
+      "subsumed_existing_schema_indices": [
+        217,
+        303,
+        415,
+        416
+      ]
+    }
+  ],
+  "schema": "p97-transported-2k3-bank-audit-v1",
+  "unique_schema_count": 20
+}

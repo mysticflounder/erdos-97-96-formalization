@@ -1,0 +1,244 @@
+{
+  "bounded_row_deletion_msolve": {
+    "attempts": [
+      {
+        "original_index": 0,
+        "removed": true,
+        "verdict": "UNIT"
+      },
+      {
+        "original_index": 1,
+        "removed": false,
+        "verdict": "NONUNIT"
+      },
+      {
+        "original_index": 2,
+        "removed": true,
+        "verdict": "UNIT"
+      },
+      {
+        "original_index": 3,
+        "removed": true,
+        "verdict": "UNIT"
+      },
+      {
+        "original_index": 4,
+        "removed": true,
+        "verdict": "UNIT"
+      },
+      {
+        "original_index": 5,
+        "removed": false,
+        "verdict": "NONUNIT"
+      },
+      {
+        "original_index": 6,
+        "removed": false,
+        "verdict": "NONUNIT"
+      },
+      {
+        "original_index": 7,
+        "removed": false,
+        "verdict": "NONUNIT"
+      },
+      {
+        "original_index": 8,
+        "removed": true,
+        "verdict": "UNIT"
+      },
+      {
+        "original_index": 9,
+        "removed": true,
+        "verdict": "UNIT"
+      },
+      {
+        "original_index": 10,
+        "removed": false,
+        "verdict": "NONUNIT"
+      }
+    ],
+    "initial_row_count": 11,
+    "retained_equality_count": 15,
+    "retained_expanded_polynomial_sha256": "e21da3d0279ef886db35f50c551b1d65d71e244051ad752233722d863281e5d4",
+    "retained_row_count": 5,
+    "retained_rows": [
+      {
+        "center": 1,
+        "support": [
+          0,
+          3,
+          6,
+          7
+        ]
+      },
+      {
+        "center": 6,
+        "support": [
+          1,
+          5,
+          7,
+          8
+        ]
+      },
+      {
+        "center": 7,
+        "support": [
+          0,
+          4,
+          8,
+          10
+        ]
+      },
+      {
+        "center": 8,
+        "support": [
+          1,
+          4,
+          7,
+          11
+        ]
+      },
+      {
+        "center": 11,
+        "support": [
+          1,
+          4,
+          6,
+          9
+        ]
+      }
+    ],
+    "retained_verdict": "UNIT",
+    "strategy": "one-pass-canonical-row-deletion-msolve",
+    "variable_order": "reverse"
+  },
+  "coordinate_model": "p0_zero_p1_e1",
+  "equality_count": 33,
+  "evidence_scope": "exact characteristic-zero equality ideal; NONUNIT is not a real or nondegenerate realization; a collision is admitted only after the included lift replays exactly",
+  "expanded_polynomial_sha256": "87fa9263d05456fadda7f001bd9b4a5ca0388a0c446153acc29adfacdb355bd9",
+  "pattern": "offset3-postcollision-full",
+  "point_relabeling": {
+    "kind": "cyclic_shift_mod_12",
+    "old_to_new": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      0,
+      1
+    ],
+    "shift": 2
+  },
+  "row_count": 11,
+  "rows": [
+    {
+      "center": 0,
+      "support": [
+        2,
+        3,
+        5,
+        8
+      ]
+    },
+    {
+      "center": 1,
+      "support": [
+        0,
+        3,
+        6,
+        7
+      ]
+    },
+    {
+      "center": 2,
+      "support": [
+        0,
+        5,
+        6,
+        10
+      ]
+    },
+    {
+      "center": 4,
+      "support": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "center": 5,
+      "support": [
+        3,
+        6,
+        8,
+        11
+      ]
+    },
+    {
+      "center": 6,
+      "support": [
+        1,
+        5,
+        7,
+        8
+      ]
+    },
+    {
+      "center": 7,
+      "support": [
+        0,
+        4,
+        8,
+        10
+      ]
+    },
+    {
+      "center": 8,
+      "support": [
+        1,
+        4,
+        7,
+        11
+      ]
+    },
+    {
+      "center": 9,
+      "support": [
+        2,
+        4,
+        5,
+        7
+      ]
+    },
+    {
+      "center": 10,
+      "support": [
+        0,
+        8,
+        9,
+        11
+      ]
+    },
+    {
+      "center": 11,
+      "support": [
+        1,
+        4,
+        6,
+        9
+      ]
+    }
+  ],
+  "schema": "p97-source-indexed-saved-pattern-exact-probe-v1",
+  "singular": {
+    "status": "SKIPPED"
+  }
+}

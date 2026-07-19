@@ -1,0 +1,40 @@
+{
+  "bank": null,
+  "bank_schema_count": 0,
+  "clause_block_counts": {
+    "blocker_at_least_one": 5,
+    "blocker_at_most_one": 9,
+    "blocker_forbidden": 13,
+    "blocker_implies_source_membership": 12,
+    "cyclic_alternation": 20,
+    "pair_center_count_at_most_2": 10,
+    "row_at_least_4": 20,
+    "row_intersection_at_most_2": 10,
+    "row_nonself": 5,
+    "strong_connectivity_outgoing_cut": 30
+  },
+  "clause_count": 134,
+  "cnf_path": "scratch/atail-force/generic-biapex-kalmanson-cnf/smoke_n5.cnf",
+  "embeddable_schema_count": 0,
+  "encoding_schema": "p97-biapex-structural-outer-direct-cnf-v1",
+  "n": 5,
+  "omitted_apices": [
+    0,
+    1
+  ],
+  "schema_embedding_count": 0,
+  "skipped_schema_count_core_larger_than_n": 0,
+  "solver": "CaDiCaL",
+  "solver_command": [
+    "cadical",
+    "-t",
+    "30",
+    "scratch/atail-force/generic-biapex-kalmanson-cnf/smoke_n5.cnf",
+    "scratch/atail-force/generic-biapex-kalmanson-cnf/smoke_n5.drat"
+  ],
+  "solver_elapsed_seconds": 0.0038246660260483623,
+  "solver_returncode": 20,
+  "solver_status": "UNSAT",
+  "timeout_seconds": 30,
+  "variable_count": 50
+}

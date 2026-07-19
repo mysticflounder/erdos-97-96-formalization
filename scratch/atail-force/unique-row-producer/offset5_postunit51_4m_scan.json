@@ -1,0 +1,62 @@
+{
+  "profile": [
+    6,
+    5,
+    4
+  ],
+  "reports": [
+    {
+      "max_nodes": 4000000,
+      "nodes": 4000001,
+      "off_surplus_sources": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "prefix_metric_core_cache": {
+        "hits": 122103,
+        "misses": 3876268,
+        "size": 3876268
+      },
+      "rejected_complete_assignments": {
+        "equality-convex-eight-point-five-row-circle-intersection-order": 230,
+        "equality-convex-five-point": 22930,
+        "equality-convex-five-point-reverse": 4674,
+        "equality-eight-point-five-circle-collision": 138,
+        "equality-equilateral-bisector-collision": 3900,
+        "equality-seven-point-circle-network-collision": 72,
+        "equality-seven-point-five-circle-collision": 96,
+        "equality-seven-point-six-circle-collision-b": 153,
+        "equality-seven-point-twin-four-circle-collision": 270,
+        "equality-six-point-circle-chain-collision": 609,
+        "equality-six-point-five-circle-collision-b": 1869,
+        "equality-six-point-five-circle-collision-c": 102,
+        "equality-three-triad-collision": 1202,
+        "exact-qq-local:source-indexed-isomorphic-unit-core-654-31": 81,
+        "exact-qq-local:source-indexed-isomorphic-unit-core-654-36": 54,
+        "exact-qq-local:source-indexed-isomorphic-unit-core-654-42": 48
+      },
+      "rejected_prefixes": {
+        "equality-duplicate-center": 1177075,
+        "equality-exact-off-circle": 202525,
+        "equality-perpendicular-bisector-convex": 488646,
+        "pinned-row-compatibility": 3902,
+        "target:CoincidentBlockerResidualMember": 3981
+      },
+      "status": "INDETERMINATE",
+      "support": [
+        2,
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  ],
+  "schema": "p97-card-five-source-indexed-target-probe-v2",
+  "support_offset": 5,
+  "supports_tried": 1,
+  "total_support_count": 15,
+  "trust_boundary": "finite cap/incidence/equality shadow; exact source rows are declared; the local exact-QQ cuts have exactly replayed algebraic certificates; selected unit cores have generated but unbuilt Lean sources; SAT is not a Euclidean realization and UNSAT is not a Lean theorem"
+}

@@ -1,0 +1,434 @@
+{
+  "conclusion": "The outer carrier cannot be realized by points in the stored strict convex cyclic order, because it already violates a necessary strict Kalmanson distance system.",
+  "first_failed_layer": "PLANAR_STRICT_CONVEX_CYCLIC_REALIZATION",
+  "layer_1": {
+    "claim_tested": "selected equal-distance row equations plus every strict Kalmanson inequality forced by the stored cyclic order",
+    "direct_encoding": {
+      "distance_variable_count": 66,
+      "encoding": "direct-pair-distance-qf-lra-v1",
+      "path": "scratch/atail-force/n12-geometry-regression/strict_kalmanson_direct.smt2",
+      "row_equality_count": 36,
+      "sha256": "a28ca821a9fc9525fadf1332f64cc548866495a1f0d16db83441c80e3266240c",
+      "strict_kalmanson_count": 990,
+      "strict_slack_normalization": 1
+    },
+    "quotient_encoding": {
+      "classes": {
+        "q_0": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            11
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "q_1": [
+          [
+            0,
+            3
+          ]
+        ],
+        "q_10": [
+          [
+            1,
+            7
+          ]
+        ],
+        "q_11": [
+          [
+            1,
+            9
+          ]
+        ],
+        "q_12": [
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            7,
+            9
+          ]
+        ],
+        "q_13": [
+          [
+            2,
+            7
+          ]
+        ],
+        "q_14": [
+          [
+            2,
+            8
+          ]
+        ],
+        "q_15": [
+          [
+            2,
+            9
+          ]
+        ],
+        "q_16": [
+          [
+            2,
+            10
+          ]
+        ],
+        "q_17": [
+          [
+            2,
+            11
+          ]
+        ],
+        "q_18": [
+          [
+            3,
+            6
+          ]
+        ],
+        "q_19": [
+          [
+            3,
+            7
+          ]
+        ],
+        "q_2": [
+          [
+            0,
+            4
+          ]
+        ],
+        "q_20": [
+          [
+            3,
+            9
+          ]
+        ],
+        "q_21": [
+          [
+            3,
+            10
+          ]
+        ],
+        "q_22": [
+          [
+            4,
+            8
+          ]
+        ],
+        "q_23": [
+          [
+            4,
+            10
+          ]
+        ],
+        "q_24": [
+          [
+            5,
+            7
+          ]
+        ],
+        "q_25": [
+          [
+            5,
+            9
+          ]
+        ],
+        "q_26": [
+          [
+            5,
+            10
+          ]
+        ],
+        "q_27": [
+          [
+            5,
+            11
+          ]
+        ],
+        "q_28": [
+          [
+            6,
+            8
+          ]
+        ],
+        "q_29": [
+          [
+            6,
+            9
+          ]
+        ],
+        "q_3": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            8
+          ],
+          [
+            3,
+            11
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            8,
+            10
+          ]
+        ],
+        "q_30": [
+          [
+            6,
+            10
+          ]
+        ],
+        "q_31": [
+          [
+            6,
+            11
+          ]
+        ],
+        "q_32": [
+          [
+            7,
+            11
+          ]
+        ],
+        "q_33": [
+          [
+            8,
+            11
+          ]
+        ],
+        "q_4": [
+          [
+            0,
+            6
+          ]
+        ],
+        "q_5": [
+          [
+            0,
+            8
+          ]
+        ],
+        "q_6": [
+          [
+            0,
+            9
+          ]
+        ],
+        "q_7": [
+          [
+            0,
+            10
+          ],
+          [
+            1,
+            11
+          ],
+          [
+            4,
+            9
+          ],
+          [
+            4,
+            11
+          ],
+          [
+            7,
+            10
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            9,
+            11
+          ],
+          [
+            10,
+            11
+          ]
+        ],
+        "q_8": [
+          [
+            1,
+            4
+          ]
+        ],
+        "q_9": [
+          [
+            1,
+            5
+          ]
+        ]
+      },
+      "encoding": "row-equality-quotient-qf-lra-v1",
+      "original_distance_variable_count": 66,
+      "path": "scratch/atail-force/n12-geometry-regression/strict_kalmanson_quotient.smt2",
+      "quotient_variable_count": 34,
+      "sha256": "53ef1802b18f15c522ab6e100c7e248c3f0ce18dfd6e5913f4bddb5281eb43a6",
+      "strict_kalmanson_count": 990,
+      "strict_slack_normalization": 1
+    },
+    "scope": "Necessary linear consequence of planar strict-convex cyclic realization; not a sufficient Euclidean realization encoding",
+    "solver_results": {
+      "cvc5_direct": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--produce-unsat-cores",
+          "--tlimit",
+          "60000",
+          "scratch/atail-force/n12-geometry-regression/strict_kalmanson_direct.smt2"
+        ],
+        "elapsed_seconds": 0.08872216701274738,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "unsat\n(\nrow_0_eq_1\nrow_0_eq_2\nrow_0_eq_3\nrow_1_eq_1\nrow_1_eq_2\nrow_1_eq_3\nrow_2_eq_1\nrow_2_eq_2\nrow_2_eq_3\nrow_3_eq_1\nrow_3_eq_2\nrow_3_eq_3\nrow_4_eq_1\nrow_4_eq_2\nrow_4_eq_3\nrow_5_eq_1\nrow_5_eq_2\nrow_5_eq_3\nrow_6_eq_1\nrow_6_eq_2\nrow_6_eq_3\nrow_7_eq_2\nrow_7_eq_3\nrow_8_eq_3\nrow_9_eq_1\nrow_9_eq_2\nrow_9_eq_3\nrow_10_eq_1\nrow_10_eq_2\nrow_10_eq_3\nrow_11_eq_1\nrow_11_eq_2\nkal_0_1_3_4_two\nkal_0_1_4_5_two\nkal_0_1_5_6_two\nkal_0_1_6_7_two\nkal_0_1_7_8_two\nkal_0_1_8_9_two\nkal_0_1_9_10_two\nkal_0_1_10_11_two\nkal_0_2_5_6_two\nkal_0_3_7_8_one\n)\n",
+        "verdict": "UNSAT"
+      },
+      "cvc5_quotient": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--produce-unsat-cores",
+          "--tlimit",
+          "60000",
+          "scratch/atail-force/n12-geometry-regression/strict_kalmanson_quotient.smt2"
+        ],
+        "elapsed_seconds": 0.07241274998523295,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "unsat\n(\nqkal_0_1_3_4_two\nqkal_0_1_4_5_two\nqkal_0_1_5_6_two\nqkal_0_1_6_7_two\nqkal_0_1_7_8_two\nqkal_0_1_8_9_two\nqkal_0_1_9_10_two\nqkal_0_1_10_11_two\nqkal_0_2_5_6_two\nqkal_0_3_7_8_one\n)\n",
+        "verdict": "UNSAT"
+      },
+      "z3_direct": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:60",
+          "scratch/atail-force/n12-geometry-regression/strict_kalmanson_direct.smt2"
+        ],
+        "elapsed_seconds": 0.06478741695173085,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "unsat\n(row_0_eq_2 row_0_eq_3 row_1_eq_1 row_1_eq_3 row_3_eq_2 row_4_eq_2 row_4_eq_3 row_5_eq_1 row_6_eq_1 row_7_eq_2 row_9_eq_2 row_9_eq_3 row_10_eq_2 row_11_eq_2 kal_0_1_3_4_two kal_0_1_4_5_two kal_0_1_5_6_two kal_0_1_6_7_two kal_0_1_7_8_two kal_0_1_8_9_two kal_0_1_9_10_two kal_0_1_10_11_two kal_0_2_5_6_two kal_0_3_7_8_one)\n",
+        "verdict": "UNSAT"
+      },
+      "z3_quotient": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:60",
+          "scratch/atail-force/n12-geometry-regression/strict_kalmanson_quotient.smt2"
+        ],
+        "elapsed_seconds": 0.015513582970015705,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "unsat\n(qkal_0_5_7_8_one qkal_1_2_3_6_two)\n",
+        "verdict": "UNSAT"
+      }
+    }
+  },
+  "layers_not_reached": [
+    "MEC_NONOBTUSE_CAP_PLACEMENT",
+    "COMMON_CRITICAL_SHELL_BLOCKER_COUPLING"
+  ],
+  "outer_replay": {
+    "blocker_count": 12,
+    "failures": [],
+    "n": 12,
+    "row_count": 12,
+    "status": "VERIFIED"
+  },
+  "schema": "p97-n12-geometry-regression-check-v1",
+  "source_carrier": "scratch/atail-force/n12-geometry-regression/carrier.json",
+  "source_carrier_sha256": "6c83653031d1a10bad8cc60d1c02cafaffa26a1cb2dfa515d748a95071954b91"
+}

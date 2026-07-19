@@ -7,13 +7,17 @@ ALL-REVERSE -> FALSE`.  IT MUST NOT ACCEPT A NEW `hsharedOrder` HYPOTHESIS.
 THE CONVEX BOUNDARY AND REVERSE SHARED-CAP ORDER ARE DERIVED PRODUCERS.  THE
 REUSABLE GEOMETRY IS A PERIOD-PARAMETRIC LOCAL-EXTREMUM DISJOINTNESS LEMMA;
 THE PERIOD-THREE GLOBAL PRUNING AND THE FINAL T0/T1 METRIC CONTRADICTION ARE
-SEPARATE.  THE CURRENT SIX-CELL/16-POINT SOLVER IS NOT SOURCE COVERAGE.  NO
-PRODUCTION `sorry` IS CLOSED.**
+SEPARATE.  THE PACKET INTERFACE NOW ELABORATES CLEANLY, AND ITS GENERIC
+SHARED-CAP-ORDER PRODUCER IS CHECKED IN THE ADJACENT SCRATCH LANE.  THE
+CURRENT SIX-CELL/16-POINT SOLVER IS NOT SOURCE COVERAGE.  NO PRODUCTION
+`sorry` IS CLOSED.**
 
 This lane owns only
 `scratch/atail-force/period-three-shared-order-packet/`. It did not edit
 production Lean, shared plans, proof-blueprint state, protected scratch lanes,
-`ShellCurvature`, `SurplusM44`, or git state. No Lean or Lake command was run.
+`ShellCurvature`, `SurplusM44`, or git state.  After the build gate was lifted,
+the file was checked by a scoped Lean elaboration through a fresh scratch
+dependency chain.
 
 ## Required theorem-bank preflight
 
@@ -99,7 +103,7 @@ hypotheses of the parent theorem.
 | `hperiod : K.period = 3` | **ARITHMETIC CASE ASSUMPTION** | All-reverse proves only `3 <= period`; production proves `period <= 5`. Periods 4 and 5 remain sibling branches. |
 | reverse support has adjacent cap pair plus two outside points | **CHECKED SCRATCH CONSEQUENCE OF `K + hreverse`** | `successor_actualCriticalSupport_inter_physicalCap_eq_pair` and the outside-cardinality theorem; do not duplicate as free fields. |
 | reverse centers and outside pairs are injective | **CHECKED SCRATCH CONSEQUENCE OF `K + hreverse`** | `reverseRowCenter_injective` and `reverseOutsidePair_injective`; a blocker may still equal a nonincident cycle source. |
-| one shared strict-cap order with every blocker straddling its incident source pair | **SOURCE-FAITHFUL PRODUCER STATEMENT; NOT YET LEAN-PROVED** | Derivable by choosing one `StrictCapBlockData` and factoring the fixed-block version of the existing per-row straddle proof. |
+| one shared strict-cap order with every blocker straddling its incident source pair | **CHECKED SCRATCH THEOREM** | `nonempty_reverseCycleSharedCapOrder` chooses one `StrictCapBlockData` and factors the fixed-block version of the existing per-row straddle proof. |
 | full strict Kalmanson inequalities for distinct named points | **PRODUCTION-PROVEN AFTER BOUNDARY EXTRACTION** | Apply the two `CapCrossingKalmanson` theorems to a whole-carrier CCW enumeration. Identity branches must be quotiented before strict inequalities are instantiated. |
 | `False` from all named T0/T1 and reverse rows | **OPEN NEW MATHEMATICS** | This is the actual period-three closer. No current theorem or source-complete finite certificate proves it. |
 
@@ -291,10 +295,22 @@ but it is still a real Lean dependency and must not be hidden by accepting
 | Production cycle, period bounds, and all-reverse split | **PRODUCTION-PROVEN** |
 | Exact reverse cap intersection and two-point outside residual | **CHECKED SCRATCH SOURCE** |
 | `FirstApexShellRolePacket` field statement | **SOURCE-AUDITED; PRODUCER NOT YET ELABORATED** |
-| Generic shared-cap order producer | **SOURCE-FAITHFUL STATEMENT; NOT YET LEAN-PROVED** |
+| Generic shared-cap order producer | **CHECKED SCRATCH THEOREM; STANDARD AXIOMS ONLY** |
 | Local-extremum outside-pair disjointness | **PAPER REDUCTION TO EXISTING GEOMETRY; NOT YET LEAN-PROVED** |
 | Period-three isolated-pair / union-at-least-five conclusion | **FINITE/PAPER CONSEQUENCE; NOT YET LEAN-PROVED** |
 | Current six-cell solver as source coverage | **REFUTED BY SOURCE AUDIT** |
 | Period-three direct `False` | **OPEN** |
 | Production `sorry` closed | **NONE** |
-| Lean/Lake validation | **NOT RUN BY INSTRUCTION** |
+| Lean/Lake validation | **SCOPED SCRATCH ELABORATION PASSED** |
+
+## Validation status
+
+`PeriodThreeSharedOrderPacket.lean` elaborates successfully with Lean 4.27.0
+after opening the production namespace that owns
+`FrontierCommonDeletionParentResidual`.  The check used the production Lake
+environment, `-R ..`, the 16-GiB worker cap, and a fresh temporary
+`LEAN_PATH` containing freshly elaborated scratch dependencies.  The file has
+no `sorry`, `admit`, or `axiom` commands.  It remains an interface module: the
+final period-three contradiction and the local-extremum consumer are still
+proposition boundaries, not claimed proofs.  No full project build was run
+because this scratch module is not a Lake target.

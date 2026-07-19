@@ -1,0 +1,106 @@
+{
+  "evidence_scope": "theorem-discovery matcher only; every theorem is source-proved, but a hit still requires a Lean adapter from the live row data",
+  "inventory": "certificates/p97_rvol_general_n_mining.json",
+  "scans": [
+    {
+      "assignment_signature_sha256": "0392366851f0aaca3f5d2c3009ab43b080d3f03beeb0e2aa90c15e5e52da6a26",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset0_postunit11_4m_scan.json",
+      "pinned_support": [
+        0,
+        2,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "assignment_signature_sha256": "afbde5899e9e170fcf7abdb47907e2c9db02a8a9cf536461d0c2a64b97fc0c39",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset3_postunit30_16m_scan.json",
+      "pinned_support": [
+        0,
+        5,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "assignment_signature_sha256": "d3aae93e0b70df73a5a6c6d6d9563cf52ef785f162848560c9996657a2a5550b",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset5_postunit36_4m_scan.json",
+      "pinned_support": [
+        2,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "assignment_signature_sha256": "12c2e483c95fe6175b8506e386878806ff4275d48e3f3220ace8e820c3829bda",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset7_postinterior08_4m_scan.json",
+      "pinned_support": [
+        3,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "assignment_signature_sha256": "78f0fccae0b2f750f733591a9ec8011aca28f673bfb867f1951b7e81ed01c1d5",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset9_postunit34_4m_scan.json",
+      "pinned_support": [
+        4,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "assignment_signature_sha256": "eae2e5c9ec98a8de006ed5a947c1808fcb809dd05916b44835c47e097f5c6e8a",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset14_deep_4m_scan.json",
+      "pinned_support": [
+        6,
+        7,
+        8,
+        9,
+        11
+      ]
+    }
+  ],
+  "schema": "p97-u5-incidence-bank-saved-shadow-audit-v1",
+  "supported_pattern_count": 106,
+  "unsupported_pattern_count": 8,
+  "unsupported_type_counts": {
+    "0 < dist a b": 2,
+    "0 < dist p q": 5,
+    "dist a b = dist a c": 2,
+    "dist a b = dist b c": 2,
+    "dist a x = dist a b": 1,
+    "dist b x = dist a b": 1,
+    "dist p a = dist p q": 4,
+    "dist p b = dist p q": 4,
+    "dist p c = dist p q": 4,
+    "dist p t = dist p q": 1,
+    "dist p t1 = dist p q": 1,
+    "dist p t2 = dist p q": 1,
+    "dist p t3 = dist p q": 1,
+    "dist p x \u2260 dist p q": 2,
+    "missing U5DangerousTriple": 7,
+    "t\u2082 \u2208 B\u2081 \u2228 t\u2081 \u2208 B\u2082": 1,
+    "\u00ac Collinear \u211d ({t1, t2, t3} : Set \u211d\u00b2)": 1
+  }
+}

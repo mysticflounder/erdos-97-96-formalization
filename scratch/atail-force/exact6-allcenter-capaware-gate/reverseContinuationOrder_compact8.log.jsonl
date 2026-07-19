@@ -1,0 +1,2 @@
+{"attempt": 10, "counters": {"generalized_metric_schema_cuts": 17458, "linear_metric_unsat": 10, "metric_core_cuts": 10}, "orbit": "reverseContinuationOrder", "phase": "linear_unsat"}
+{"attempt": 20, "counters": {"generalized_metric_schema_cuts": 18748, "linear_metric_unsat": 20, "metric_core_cuts": 20}, "orbit": "reverseContinuationOrder", "phase": "linear_unsat"}

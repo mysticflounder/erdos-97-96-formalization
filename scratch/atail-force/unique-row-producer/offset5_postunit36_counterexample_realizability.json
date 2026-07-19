@@ -1,0 +1,116 @@
+{
+  "candidate": {
+    "atom_count": 227,
+    "cyclic_order": [
+      0,
+      10,
+      11,
+      1,
+      3,
+      4,
+      5,
+      6,
+      2,
+      7,
+      8,
+      9
+    ],
+    "equality_count": 37,
+    "expanded_polynomial_sha256": "92d738924b9f644cc7ca77ab18a71d6a79c281fa3ff2b9355b8dd2870d9c78e0",
+    "family_counts": {
+      "distinctness": 66,
+      "equidistant-row": 37,
+      "gauge": 4,
+      "strict-convex-order": 120
+    },
+    "n": 12,
+    "passed": true,
+    "problem97_implication": "SAT gives 12 distinct strictly convex points and at least four positive-radius equidistant witnesses at every carrier point",
+    "profile": [
+      6,
+      5,
+      4
+    ],
+    "row_centers": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "row_support_sizes": {
+      "0": 4,
+      "1": 5,
+      "10": 4,
+      "11": 4,
+      "2": 4,
+      "3": 4,
+      "4": 4,
+      "5": 4,
+      "6": 4,
+      "7": 4,
+      "8": 4,
+      "9": 4
+    },
+    "variable_count": 24
+  },
+  "classification": "NO_DECISIVE_CROSSCHECKED_VERDICT",
+  "cvc5": {
+    "engine": "This is cvc5 version 1.3.3 [git 8ff882e on branch HEAD]",
+    "evidence_scope": "trusted QF_NRA computation; not a Lean proof",
+    "reason": "internal-timeout",
+    "returncode": -6,
+    "status": "UNKNOWN",
+    "stderr": "cvc5 interrupted by timeout.\n",
+    "stdout": "",
+    "timeout_seconds": 30.0
+  },
+  "query": {
+    "distinctness_encoding": "derived: any equal pair makes one strict boundary-edge area zero",
+    "enabled_atom_count": 157,
+    "logic": "QF_NRA",
+    "normalized_variable_count": 20,
+    "omitted_ledger": [
+      "cap and MEC predicates: unnecessary for Problem97.IsCounterexample",
+      "critical-blocker and deletion predicates: unnecessary for Problem97.IsCounterexample",
+      "full radius-class exactness: HasNEquidistantProperty only needs four witnesses"
+    ],
+    "same_named_atoms_for_both_engines": true,
+    "smt2_sha256": "0771a99f22c1776290114452713a26ba27d61fefe23255501961543cb1dd004c",
+    "z3_assertions_tracked": true
+  },
+  "schema": "p97-654-full-counterexample-realizability-v1",
+  "smoke_gates": {
+    "cvc5": {
+      "passed": true,
+      "sat": "sat",
+      "unsat": "unsat"
+    },
+    "encoding": {
+      "ccw_square": "sat",
+      "non_equidistant_row": "unsat",
+      "passed": true,
+      "unit_circle_row": "sat",
+      "wrong_square_order": "unsat"
+    },
+    "z3": {
+      "passed": true,
+      "sat_probe": "sat",
+      "unsat_probe": "unsat"
+    }
+  },
+  "z3": {
+    "engine": "z3py 4.16.0 SolverFor(QF_NRA)",
+    "evidence_scope": "trusted QF_NRA computation; not a Lean proof",
+    "reason_unknown": "canceled",
+    "status": "UNKNOWN",
+    "timeout_seconds": 30.0
+  }
+}

@@ -1,0 +1,5 @@
+{"attempt": 10, "counters": {"generalized_metric_schema_cuts": 3842, "linear_metric_unsat": 10, "metric_core_cuts": 10}, "orbit": "sharesSecondAtTarget", "phase": "linear_unsat"}
+{"attempt": 20, "counters": {"generalized_metric_schema_cuts": 6464, "linear_metric_unsat": 20, "metric_core_cuts": 20}, "orbit": "sharesSecondAtTarget", "phase": "linear_unsat"}
+{"attempt": 30, "counters": {"generalized_metric_schema_cuts": 13394, "linear_metric_unsat": 30, "metric_core_cuts": 30}, "orbit": "sharesSecondAtTarget", "phase": "linear_unsat"}
+{"attempt": 40, "counters": {"generalized_metric_schema_cuts": 21626, "linear_metric_unsat": 40, "metric_core_cuts": 40}, "orbit": "sharesSecondAtTarget", "phase": "linear_unsat"}
+{"attempt": 50, "counters": {"generalized_metric_schema_cuts": 22374, "linear_metric_unsat": 50, "metric_core_cuts": 50}, "orbit": "sharesSecondAtTarget", "phase": "linear_unsat"}

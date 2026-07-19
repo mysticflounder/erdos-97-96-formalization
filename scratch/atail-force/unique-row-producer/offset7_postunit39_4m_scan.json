@@ -1,0 +1,230 @@
+{
+  "profile": [
+    6,
+    5,
+    4
+  ],
+  "reports": [
+    {
+      "assignment_signature_sha256": "23a05f86deef5daefcf4b4ee0a3acd1aaab361b05919a88e37a066c784a2ddd2",
+      "max_nodes": 4000000,
+      "nodes": 1764438,
+      "off_surplus_sources": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "prefix_metric_core_cache": {
+        "hits": 54457,
+        "misses": 1711655,
+        "size": 1711655
+      },
+      "rejected_complete_assignments": {
+        "equality-convex-eight-point-five-row-circle-intersection-order": 16,
+        "equality-convex-five-point": 33004,
+        "equality-convex-five-point-reverse": 2831,
+        "equality-eight-point-five-circle-collision": 270,
+        "equality-equilateral-bisector-collision": 3447,
+        "equality-seven-point-five-circle-collision": 198,
+        "equality-seven-point-six-circle-collision-b": 108,
+        "equality-six-point-circle-chain-collision": 813,
+        "equality-six-point-five-circle-collision-a": 243,
+        "equality-six-point-five-circle-collision-b": 54,
+        "equality-six-point-five-circle-collision-c": 36,
+        "equality-six-point-two-pair-collision": 216,
+        "equality-three-triad-collision": 939,
+        "exact-qq-local:source-indexed-isomorphic-unit-core-654-31": 144,
+        "exact-qq-local:source-indexed-isomorphic-unit-core-654-39": 81
+      },
+      "rejected_prefixes": {
+        "equality-duplicate-center": 586021,
+        "equality-exact-off-circle": 60176,
+        "equality-perpendicular-bisector-convex": 187145,
+        "exact-qq-local:interior-bank-unit-core-654-08": 144,
+        "pinned-row-compatibility": 3810,
+        "target:CoincidentBlockerResidualMember": 627
+      },
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "name": "global:0",
+          "support": [
+            1,
+            2,
+            3,
+            5
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "name": "global:10",
+          "support": [
+            0,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "name": "global:11",
+          "support": [
+            0,
+            1,
+            4,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "exact": false,
+          "name": "global:2",
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "name": "global:3",
+          "support": [
+            4,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": false,
+          "name": "global:4",
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "name": "global:5",
+          "support": [
+            3,
+            4,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "name": "global:6",
+          "support": [
+            2,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "name": "global:7",
+          "support": [
+            2,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "name": "global:8",
+          "support": [
+            0,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "name": "global:9",
+          "support": [
+            2,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "name": "shell:10",
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "name": "shell:7",
+          "support": [
+            2,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "name": "shell:8",
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "name": "shell:9",
+          "support": [
+            4,
+            5,
+            9,
+            11
+          ]
+        }
+      ],
+      "status": "SAT",
+      "support": [
+        3,
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  ],
+  "schema": "p97-card-five-source-indexed-target-probe-v2",
+  "support_offset": 7,
+  "supports_tried": 1,
+  "total_support_count": 15,
+  "trust_boundary": "finite cap/incidence/equality shadow; exact source rows are declared; the local exact-QQ cuts have exactly replayed algebraic certificates; selected unit cores have generated but unbuilt Lean sources; SAT is not a Euclidean realization and UNSAT is not a Lean theorem"
+}

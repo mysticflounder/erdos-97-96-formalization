@@ -1,0 +1,94 @@
+{
+  "blockers": {
+    "0": 6,
+    "1": 6,
+    "10": 2,
+    "2": 3,
+    "3": 7,
+    "4": 2,
+    "5": 4,
+    "6": 2,
+    "7": 4,
+    "8": 10,
+    "9": 3
+  },
+  "epistemic_status": "FINITE_COMBINATORIAL_THEOREM_DISCOVERY",
+  "forbidden_terminal_count": 1320,
+  "n": 11,
+  "omitted_values": [
+    0,
+    1
+  ],
+  "reason_unknown": null,
+  "rows": {
+    "0": [
+      1,
+      2,
+      3,
+      10
+    ],
+    "1": [
+      2,
+      6,
+      8,
+      9
+    ],
+    "10": [
+      1,
+      4,
+      7,
+      8
+    ],
+    "2": [
+      1,
+      4,
+      6,
+      10
+    ],
+    "3": [
+      0,
+      2,
+      4,
+      9
+    ],
+    "4": [
+      5,
+      7,
+      9,
+      10
+    ],
+    "5": [
+      0,
+      4,
+      6,
+      7
+    ],
+    "6": [
+      0,
+      1,
+      5,
+      8
+    ],
+    "7": [
+      3,
+      5,
+      6,
+      9
+    ],
+    "8": [
+      0,
+      3,
+      7,
+      10
+    ],
+    "9": [
+      2,
+      4,
+      5,
+      10
+    ]
+  },
+  "schema": "p97-whole-carrier-shared-late-decision-v1",
+  "status": "SAT",
+  "terminal_mode": "cyclic"
+}

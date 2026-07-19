@@ -1,0 +1,94 @@
+{
+  "evidence_scope": "theorem-discovery matcher only; distance equalities come from row closure, p-circle inequalities from the exact pinned row, and noncollinearity from distinct labels plus CounterexampleData.convex",
+  "inventory": "certificates/p97_rvol_general_n_mining.json",
+  "scans": [
+    {
+      "assignment_signature_sha256": "0392366851f0aaca3f5d2c3009ab43b080d3f03beeb0e2aa90c15e5e52da6a26",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset0_postunit11_4m_scan.json",
+      "pinned_support": [
+        0,
+        2,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "assignment_signature_sha256": "afbde5899e9e170fcf7abdb47907e2c9db02a8a9cf536461d0c2a64b97fc0c39",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset3_postunit30_16m_scan.json",
+      "pinned_support": [
+        0,
+        5,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "assignment_signature_sha256": "d3aae93e0b70df73a5a6c6d6d9563cf52ef785f162848560c9996657a2a5550b",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset5_postunit36_4m_scan.json",
+      "pinned_support": [
+        2,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "assignment_signature_sha256": "12c2e483c95fe6175b8506e386878806ff4275d48e3f3220ace8e820c3829bda",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset7_postinterior08_4m_scan.json",
+      "pinned_support": [
+        3,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "assignment_signature_sha256": "78f0fccae0b2f750f733591a9ec8011aca28f673bfb867f1951b7e81ed01c1d5",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset9_postunit34_4m_scan.json",
+      "pinned_support": [
+        4,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "assignment_signature_sha256": "eae2e5c9ec98a8de006ed5a947c1808fcb809dd05916b44835c47e097f5c6e8a",
+      "hit_count": 0,
+      "hits": [],
+      "path": "scratch/atail-force/unique-row-producer/offset14_deep_4m_scan.json",
+      "pinned_support": [
+        6,
+        7,
+        8,
+        9,
+        11
+      ]
+    }
+  ],
+  "schema": "p97-u5-metric-kernel-saved-shadow-audit-v1",
+  "smoke_gates": {
+    "class_only_residual_positive": true,
+    "common_bisector_positive": true,
+    "exact_off_circle_positive": true,
+    "membership_disjunction_positive": true,
+    "missing_class_negative": true
+  },
+  "supported_pattern_count": 8,
+  "unsupported_patterns": []
+}

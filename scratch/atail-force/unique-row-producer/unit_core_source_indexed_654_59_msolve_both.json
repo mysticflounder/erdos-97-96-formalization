@@ -1,0 +1,112 @@
+{
+  "coordinate_model": "p0_zero_p1_e1",
+  "equality_count": 21,
+  "evidence_scope": "exact characteristic-zero equality ideal; NONUNIT is not a real or nondegenerate realization; a collision is admitted only after the included lift replays exactly",
+  "expanded_polynomial_sha256": "2a909d9356bb87a10e039e7f7d2577107b2d7b4962429177b1ef9c9159e95b80",
+  "msolve": {
+    "forward": {
+      "output_char_count": 6,
+      "output_sha256": "0333251e6ebb3890ef547f522ec55f27f0cef9a860998757e31f3e1b819e7490",
+      "returncode": 0,
+      "stderr": "",
+      "verdict": "UNIT"
+    },
+    "reverse": {
+      "output_char_count": 6,
+      "output_sha256": "0333251e6ebb3890ef547f522ec55f27f0cef9a860998757e31f3e1b819e7490",
+      "returncode": 0,
+      "stderr": "",
+      "verdict": "UNIT"
+    }
+  },
+  "pattern": "source-indexed-unit-core-654-59",
+  "point_relabeling": {
+    "kind": "cyclic_shift_mod_12",
+    "old_to_new": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "shift": 0
+  },
+  "row_count": 7,
+  "rows": [
+    {
+      "center": 0,
+      "support": [
+        1,
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "center": 2,
+      "support": [
+        0,
+        1,
+        10,
+        11
+      ]
+    },
+    {
+      "center": 7,
+      "support": [
+        2,
+        4,
+        8,
+        11
+      ]
+    },
+    {
+      "center": 8,
+      "support": [
+        0,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "center": 9,
+      "support": [
+        2,
+        6,
+        8,
+        10
+      ]
+    },
+    {
+      "center": 10,
+      "support": [
+        0,
+        6,
+        9,
+        11
+      ]
+    },
+    {
+      "center": 11,
+      "support": [
+        0,
+        1,
+        4,
+        7
+      ]
+    }
+  ],
+  "schema": "p97-source-indexed-saved-pattern-exact-probe-v1",
+  "singular": {
+    "status": "SKIPPED"
+  },
+  "singular_variable_order": "forward"
+}

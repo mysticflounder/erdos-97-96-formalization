@@ -1,0 +1,19 @@
+{
+  "cadical_returncode": 0,
+  "cnf_path": "/private/tmp/p97-ordinal-continuationOrder.cnf",
+  "cnf_sha256": "77fd5d420d29f3954c52ca3b979483892f38b07b58e46c27d7574702b10b46d8",
+  "elapsed_seconds": 5.020550374989398,
+  "epistemic_status": "EXACT_IF_SAT_EXTERNAL_BOUNDED_IF_UNSAT_OR_UNKNOWN",
+  "literal_metric_schema_cuts": 0,
+  "log_path": "scratch/atail-force/variable-card-kalmanson-positive-dual/ordinal_cadical_smoke_continuationOrder.log",
+  "log_sha256": "cadc297087350ce9b95eb0e8c993d22185b5d7576092bca277e8339403a74e50",
+  "orbit": "continuationOrder",
+  "replay": null,
+  "schema": "p97-exact6-integrated-ordinal-cadical-run-v1",
+  "seed": 900,
+  "solution_path": "/private/tmp/p97-ordinal-continuationOrder-smoke.sol",
+  "solution_sha256": "8fba55cea0f98be36fab7b65349dda867a58aabfcf974a46098f5123830ac5cb",
+  "solver": "CaDiCaL 3.0.0 --plain",
+  "status": "UNKNOWN_WALL_BUDGET",
+  "timeout_seconds": 5
+}

@@ -87,7 +87,7 @@ mandatory alternation.  The production collision arm's honest positive packet
 is the boundary-alternation theorem; closure needs a cap/MEC fact incompatible
 with that alternation or a further ordered row.
 
-## The injective arm survives the repaired finite abstraction
+## The repaired injective fixture is killed by the existing metric bank
 
 The first candidate finite witness copied from the earlier O-row collision
 audit was **invalid for the current frontier**.  Its blocker-1 and blocker-8
@@ -97,9 +97,8 @@ the production two-circle theorem
 It must not be cited as evidence that injectivity survives the Euclidean
 frontier.
 
-The checked file now contains a repaired `Fin 12` regression found only after
-adding that theorem as a mandatory gate.  It
-simultaneously has:
+The checked file contains a repaired `Fin 12` regression found only after
+adding that theorem as a mandatory gate.  It simultaneously has:
 
 - a total fixed-point-free blocker map omitting the robust first apex;
 - exact four-point critical supports with source membership and support
@@ -116,13 +115,21 @@ simultaneously has:
 - the selected-row closure consequence of minimality: every nonempty
   row-closed subset is the full carrier.
 
-All regression theorems are proved with kernel `decide`, not
-`native_decide`.  This is an exhaustive check of the displayed finite object,
-not a Euclidean counterexample.  It proves that represented blocker/row/
-minimality data plus the exact two-circle and shared-pair-separation gates do
-not discard the injective matching arm.  It still does not encode all cap/MEC,
-full-filter, or no-`IsM44` geometry, so the arm remains unresolved rather than
-geometrically realized.
+Those direct regression theorems are proved with kernel `decide`, not
+`native_decide`, but they were not the complete theorem-bank gate.  Replaying
+the displayed rows through the formalized metric-core scanner finds a
+`DuplicateCenterCore`: labels `2` and `8` are both forced equidistant from
+`0,1,3` by transitive row-equality closure.  The Lean fixture now packages the
+exact closure paths as `banked_duplicateCenterCore` and proves
+`no_planar_realization`, with only `propext`, `Classical.choice`, and
+`Quot.sound`.
+
+Thus the repaired object is not a Euclidean or bank-clean counterexample.  It
+does not prove that the general injective matching arm survives.  The fixture
+instead establishes a mandatory regression rule: every future matching
+search must run the full formalized equality/metric and ordinal/Kalmanson
+banks, including edge flips and transitive equality closure, before a survivor
+can motivate cap/MEC/full-filter/no-`IsM44` mathematics.
 
 ## Closure consequence
 
@@ -130,15 +137,16 @@ The strongest honest selector currently available is therefore the proved
 collision-or-injective dichotomy, not unconditional collision inside the
 retained class.
 
-- **Collision arm:** start from the now-checked boundary alternation of the
-  source pair.  A same-cap terminal is available only if an independent cap
-  theorem forces the incompatible two-centers-inside/two-sources-outside
-  placement.
-- **Injective arm:** use genuinely geometric information to contradict or
-  exploit a source-to-distinct-blocker matching of size at least four.  More
-  finite pigeonhole, row-closure, two-circle-intersection, or bare separation
-  reasoning cannot do this, as the repaired regression satisfies those
-  surfaces.
+- **Collision arm:** start from the checked boundary alternation of the source
+  pair.  Every retained collision also has a production `RowHit`; the old
+  ordered terminal is incompatible with that alternation.  The same-cap target
+  is either directly inconsistent (first-apex version) or center-degenerate
+  (actual-row version).  Use an alternation-compatible consumer or direct
+  `False`.
+- **Injective arm:** the repaired fixture supplies no surviving obstruction.
+  First prove source-valid coverage into the existing metric/ordinal bank, or
+  produce a genuinely bank-clean residual.  Only then use additional
+  cap/MEC/full-filter/no-`IsM44` information.
 
 The next useful producer should consume cap order, MEC/full-filter placement,
 or no-`IsM44` on the injective matching.  It should not replace the matching

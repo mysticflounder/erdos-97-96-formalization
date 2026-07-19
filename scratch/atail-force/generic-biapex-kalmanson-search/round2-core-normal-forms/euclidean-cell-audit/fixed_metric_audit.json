@@ -1,0 +1,4181 @@
+{
+  "all_four_point_obstructions": [
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "-132779808",
+      "gram_determinant": "-16597476",
+      "sign": "negative",
+      "vertices": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "-142737408",
+      "gram_determinant": "-17842176",
+      "sign": "negative",
+      "vertices": [
+        0,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "-329936672",
+      "gram_determinant": "-41242084",
+      "sign": "negative",
+      "vertices": [
+        0,
+        1,
+        2,
+        5
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "-688353408",
+      "gram_determinant": "-86044176",
+      "sign": "negative",
+      "vertices": [
+        0,
+        1,
+        2,
+        6
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "-262663200",
+      "gram_determinant": "-32832900",
+      "sign": "negative",
+      "vertices": [
+        0,
+        1,
+        2,
+        7
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "-39002112",
+      "gram_determinant": "-4875264",
+      "sign": "negative",
+      "vertices": [
+        0,
+        1,
+        2,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "-142062368",
+      "gram_determinant": "-17757796",
+      "sign": "negative",
+      "vertices": [
+        0,
+        1,
+        2,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "-245887488",
+      "gram_determinant": "-30735936",
+      "sign": "negative",
+      "vertices": [
+        0,
+        1,
+        2,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "48137038",
+      "gram_determinant": "24068519/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "129374208",
+      "gram_determinant": "16171776",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        3,
+        5
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "198638062",
+      "gram_determinant": "99319031/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        3,
+        6
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "111293388",
+      "gram_determinant": "27823347/2",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        3,
+        7
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "73568992",
+      "gram_determinant": "9196124",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        3,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "124505568",
+      "gram_determinant": "15563196",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        3,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "115679700",
+      "gram_determinant": "28919925/2",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        3,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "9979102",
+      "gram_determinant": "4989551/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        4,
+        5
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "220523022",
+      "gram_determinant": "110261511/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        4,
+        6
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "179869198",
+      "gram_determinant": "89934599/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        4,
+        7
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "43992558",
+      "gram_determinant": "21996279/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "172668928",
+      "gram_determinant": "21583616",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        4,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "221571328",
+      "gram_determinant": "27696416",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        4,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "562705632",
+      "gram_determinant": "70338204",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        5,
+        6
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "432805888",
+      "gram_determinant": "54100736",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        5,
+        7
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "101084032",
+      "gram_determinant": "12635504",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        5,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "430862488",
+      "gram_determinant": "53857811",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        5,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "547934652",
+      "gram_determinant": "136983663/2",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        5,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "689552352",
+      "gram_determinant": "86194044",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        6,
+        7
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "166676782",
+      "gram_determinant": "83338391/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "953363502",
+      "gram_determinant": "476681751/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        6,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "1216295118",
+      "gram_determinant": "608147559/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        6,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "30191328",
+      "gram_determinant": "3773916",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "514987648",
+      "gram_determinant": "64373456",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "807320308",
+      "gram_determinant": "201830077/2",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "78519168",
+      "gram_determinant": "9814896",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "289418112",
+      "gram_determinant": "36177264",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "553842688",
+      "gram_determinant": "69230336",
+      "sign": "positive",
+      "vertices": [
+        0,
+        1,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "1923094528",
+      "gram_determinant": "240386816",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "6440083200",
+      "gram_determinant": "805010400",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "15173145568",
+      "gram_determinant": "1896643196",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        3,
+        6
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "9649996128",
+      "gram_determinant": "1206249516",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        3,
+        7
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "2695856128",
+      "gram_determinant": "336982016",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        3,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "7507208448",
+      "gram_determinant": "938401056",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        3,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "7339996800",
+      "gram_determinant": "917499600",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        3,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "129374208",
+      "gram_determinant": "16171776",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "4967774208",
+      "gram_determinant": "620971776",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "4856584192",
+      "gram_determinant": "607073024",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        4,
+        7
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "1262057472",
+      "gram_determinant": "157757184",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        4,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "4725374976",
+      "gram_determinant": "590671872",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        4,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "5384962048",
+      "gram_determinant": "673120256",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        4,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "11699954208",
+      "gram_determinant": "1462494276",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        5,
+        6
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "9376876800",
+      "gram_determinant": "1172109600",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        5,
+        7
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "1978316800",
+      "gram_determinant": "247289600",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        5,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "9373744000",
+      "gram_determinant": "1171718000",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        5,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "10502962048",
+      "gram_determinant": "1312870256",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        5,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "11493558432",
+      "gram_determinant": "1436694804",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        6,
+        7
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "2127275008",
+      "gram_determinant": "265909376",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        6,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "17038135008",
+      "gram_determinant": "2129766876",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        6,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "18899578368",
+      "gram_determinant": "2362447296",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        6,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "237772800",
+      "gram_determinant": "29721600",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "7466565888",
+      "gram_determinant": "933320736",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "9972546688",
+      "gram_determinant": "1246568336",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "799782912",
+      "gram_determinant": "99972864",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "2541846528",
+      "gram_determinant": "317730816",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "5014388736",
+      "gram_determinant": "626798592",
+      "sign": "positive",
+      "vertices": [
+        0,
+        2,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "-329936672",
+      "gram_determinant": "-41242084",
+      "sign": "negative",
+      "vertices": [
+        0,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "1866881278",
+      "gram_determinant": "933440639/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "2215895422",
+      "gram_determinant": "1107947711/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        4,
+        7
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "668840800",
+      "gram_determinant": "83605100",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        4,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "2425526272",
+      "gram_determinant": "303190784",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        4,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "3232396000",
+      "gram_determinant": "404049500",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        4,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "11816672248",
+      "gram_determinant": "1477084031",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        5,
+        6
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "9332604000",
+      "gram_determinant": "1166575500",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        5,
+        7
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "1978316800",
+      "gram_determinant": "247289600",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        5,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "9376876800",
+      "gram_determinant": "1172109600",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        5,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "11699954208",
+      "gram_determinant": "1462494276",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        5,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "15475601518",
+      "gram_determinant": "7737800759/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        6,
+        7
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "2641935352",
+      "gram_determinant": "330241919",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        6,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "22418591968",
+      "gram_determinant": "2802323996",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        6,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "27839848798",
+      "gram_determinant": "13919924399/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        6,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "-60068768",
+      "gram_determinant": "-7508596",
+      "sign": "negative",
+      "vertices": [
+        0,
+        3,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "10975533408",
+      "gram_determinant": "1371941676",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "16518664350",
+      "gram_determinant": "8259332175/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "581632000",
+      "gram_determinant": "72704000",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "3182243200",
+      "gram_determinant": "397780400",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "9082902528",
+      "gram_determinant": "1135362816",
+      "sign": "positive",
+      "vertices": [
+        0,
+        3,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "547934652",
+      "gram_determinant": "136983663/2",
+      "sign": "positive",
+      "vertices": [
+        0,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "458398048",
+      "gram_determinant": "57299756",
+      "sign": "positive",
+      "vertices": [
+        0,
+        4,
+        5,
+        7
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "101084032",
+      "gram_determinant": "12635504",
+      "sign": "positive",
+      "vertices": [
+        0,
+        4,
+        5,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "432805888",
+      "gram_determinant": "54100736",
+      "sign": "positive",
+      "vertices": [
+        0,
+        4,
+        5,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "562705632",
+      "gram_determinant": "70338204",
+      "sign": "positive",
+      "vertices": [
+        0,
+        4,
+        5,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "4337356068",
+      "gram_determinant": "1084339017/2",
+      "sign": "positive",
+      "vertices": [
+        0,
+        4,
+        6,
+        7
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "877212700",
+      "gram_determinant": "219303175/2",
+      "sign": "positive",
+      "vertices": [
+        0,
+        4,
+        6,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "5945407488",
+      "gram_determinant": "743175936",
+      "sign": "positive",
+      "vertices": [
+        0,
+        4,
+        6,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "7823577600",
+      "gram_determinant": "977947200",
+      "sign": "positive",
+      "vertices": [
+        0,
+        4,
+        6,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "69900768",
+      "gram_determinant": "8737596",
+      "sign": "positive",
+      "vertices": [
+        0,
+        4,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "4204730368",
+      "gram_determinant": "525591296",
+      "sign": "positive",
+      "vertices": [
+        0,
+        4,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "6612612832",
+      "gram_determinant": "826576604",
+      "sign": "positive",
+      "vertices": [
+        0,
+        4,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "190937088",
+      "gram_determinant": "23867136",
+      "sign": "positive",
+      "vertices": [
+        0,
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "1153843200",
+      "gram_determinant": "144230400",
+      "sign": "positive",
+      "vertices": [
+        0,
+        4,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "4504158208",
+      "gram_determinant": "563019776",
+      "sign": "positive",
+      "vertices": [
+        0,
+        4,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "7269193728",
+      "gram_determinant": "908649216",
+      "sign": "positive",
+      "vertices": [
+        0,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "1286968192",
+      "gram_determinant": "160871024",
+      "sign": "positive",
+      "vertices": [
+        0,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "10378016928",
+      "gram_determinant": "1297252116",
+      "sign": "positive",
+      "vertices": [
+        0,
+        5,
+        6,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "13374416718",
+      "gram_determinant": "6687208359/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        5,
+        6,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "-2508800",
+      "gram_determinant": "-313600",
+      "sign": "negative",
+      "vertices": [
+        0,
+        5,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "6760288000",
+      "gram_determinant": "845036000",
+      "sign": "positive",
+      "vertices": [
+        0,
+        5,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "10378016928",
+      "gram_determinant": "1297252116",
+      "sign": "positive",
+      "vertices": [
+        0,
+        5,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "-2508800",
+      "gram_determinant": "-313600",
+      "sign": "negative",
+      "vertices": [
+        0,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "1286968192",
+      "gram_determinant": "160871024",
+      "sign": "positive",
+      "vertices": [
+        0,
+        5,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "7269193728",
+      "gram_determinant": "908649216",
+      "sign": "positive",
+      "vertices": [
+        0,
+        5,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "166028800",
+      "gram_determinant": "20753600",
+      "sign": "positive",
+      "vertices": [
+        0,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "7793545248",
+      "gram_determinant": "974193156",
+      "sign": "positive",
+      "vertices": [
+        0,
+        6,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "11551123422",
+      "gram_determinant": "5775561711/4",
+      "sign": "positive",
+      "vertices": [
+        0,
+        6,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "-731878400",
+      "gram_determinant": "-91484800",
+      "sign": "negative",
+      "vertices": [
+        0,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "805120000",
+      "gram_determinant": "100640000",
+      "sign": "positive",
+      "vertices": [
+        0,
+        6,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "11960451072",
+      "gram_determinant": "1495056384",
+      "sign": "positive",
+      "vertices": [
+        0,
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "-330964992",
+      "gram_determinant": "-41370624",
+      "sign": "negative",
+      "vertices": [
+        0,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "-68231808",
+      "gram_determinant": "-8528976",
+      "sign": "negative",
+      "vertices": [
+        0,
+        7,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "5443065856",
+      "gram_determinant": "680383232",
+      "sign": "positive",
+      "vertices": [
+        0,
+        7,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 0,
+      "cayley_menger_determinant": "830472192",
+      "gram_determinant": "103809024",
+      "sign": "positive",
+      "vertices": [
+        0,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "555776478",
+      "gram_determinant": "277888239/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "1923094528",
+      "gram_determinant": "240386816",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "4454466750",
+      "gram_determinant": "2227233375/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        3,
+        6
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "2729151612",
+      "gram_determinant": "682287903/2",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        3,
+        7
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "877197312",
+      "gram_determinant": "109649664",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        3,
+        8
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "1978801888",
+      "gram_determinant": "247350236",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        3,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "382920300",
+      "gram_determinant": "95730075/2",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        3,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "48137038",
+      "gram_determinant": "24068519/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "1427021550",
+      "gram_determinant": "713510775/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "1259517150",
+      "gram_determinant": "629758575/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        4,
+        7
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "385354350",
+      "gram_determinant": "192677175/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        4,
+        8
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "1094402848",
+      "gram_determinant": "136800356",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        4,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "100343808",
+      "gram_determinant": "12542976",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        4,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "3232396000",
+      "gram_determinant": "404049500",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        5,
+        6
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "2425526272",
+      "gram_determinant": "303190784",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        5,
+        7
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "668840800",
+      "gram_determinant": "83605100",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        5,
+        8
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "2097630808",
+      "gram_determinant": "262203851",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        5,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "-307098332",
+      "gram_determinant": "-76774583/2",
+      "sign": "negative",
+      "vertices": [
+        1,
+        2,
+        5,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "3151145952",
+      "gram_determinant": "393893244",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        6,
+        7
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "908657550",
+      "gram_determinant": "454328775/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        6,
+        8
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "3698223550",
+      "gram_determinant": "1849111775/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        6,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "-1542574818",
+      "gram_determinant": "-771287409/4",
+      "sign": "negative",
+      "vertices": [
+        1,
+        2,
+        6,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "154939392",
+      "gram_determinant": "19367424",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "1745441152",
+      "gram_determinant": "218180144",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "-109653588",
+      "gram_determinant": "-27413397/2",
+      "sign": "negative",
+      "vertices": [
+        1,
+        2,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "227164000",
+      "gram_determinant": "28395500",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "178532352",
+      "gram_determinant": "22316544",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "335294848",
+      "gram_determinant": "41911856",
+      "sign": "positive",
+      "vertices": [
+        1,
+        2,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "-142737408",
+      "gram_determinant": "-17842176",
+      "sign": "negative",
+      "vertices": [
+        1,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "1159335918",
+      "gram_determinant": "579667959/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "1140126462",
+      "gram_determinant": "570063231/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        4,
+        7
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "385354350",
+      "gram_determinant": "192677175/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        4,
+        8
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "1187960832",
+      "gram_determinant": "148495104",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        4,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "1427021550",
+      "gram_determinant": "713510775/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        4,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "6326745088",
+      "gram_determinant": "790843136",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        5,
+        6
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "4631197696",
+      "gram_determinant": "578899712",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        5,
+        7
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "1262057472",
+      "gram_determinant": "157757184",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        5,
+        8
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "4532174848",
+      "gram_determinant": "566521856",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        5,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "4967774208",
+      "gram_determinant": "620971776",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        5,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "7834501888",
+      "gram_determinant": "979312736",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        6,
+        7
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "2184949612",
+      "gram_determinant": "546237403/2",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        6,
+        8
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "10853203168",
+      "gram_determinant": "1356650396",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        6,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "11320027438",
+      "gram_determinant": "5660013719/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        6,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "284545852",
+      "gram_determinant": "71136463/2",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "5182264288",
+      "gram_determinant": "647783036",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "6563474350",
+      "gram_determinant": "3281737175/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "401624800",
+      "gram_determinant": "50203100",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "1550675500",
+      "gram_determinant": "387668875/2",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "3983685088",
+      "gram_determinant": "497960636",
+      "sign": "positive",
+      "vertices": [
+        1,
+        3,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "221571328",
+      "gram_determinant": "27696416",
+      "sign": "positive",
+      "vertices": [
+        1,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "178388992",
+      "gram_determinant": "22298624",
+      "sign": "positive",
+      "vertices": [
+        1,
+        4,
+        5,
+        7
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "43992558",
+      "gram_determinant": "21996279/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        4,
+        5,
+        8
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "172188448",
+      "gram_determinant": "21523556",
+      "sign": "positive",
+      "vertices": [
+        1,
+        4,
+        5,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "220523022",
+      "gram_determinant": "110261511/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        4,
+        5,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "2181422848",
+      "gram_determinant": "272677856",
+      "sign": "positive",
+      "vertices": [
+        1,
+        4,
+        6,
+        7
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "601232350",
+      "gram_determinant": "300616175/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        4,
+        6,
+        8
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "2993460508",
+      "gram_determinant": "748365127/2",
+      "sign": "positive",
+      "vertices": [
+        1,
+        4,
+        6,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "3796461100",
+      "gram_determinant": "949115275/2",
+      "sign": "positive",
+      "vertices": [
+        1,
+        4,
+        6,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "127191118",
+      "gram_determinant": "63595559/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        4,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "2103916288",
+      "gram_determinant": "262989536",
+      "sign": "positive",
+      "vertices": [
+        1,
+        4,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "3159316942",
+      "gram_determinant": "1579658471/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        4,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "134327518",
+      "gram_determinant": "67163759/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "601232350",
+      "gram_determinant": "300616175/4",
+      "sign": "positive",
+      "vertices": [
+        1,
+        4,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "2172594688",
+      "gram_determinant": "271574336",
+      "sign": "positive",
+      "vertices": [
+        1,
+        4,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "4504158208",
+      "gram_determinant": "563019776",
+      "sign": "positive",
+      "vertices": [
+        1,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "1153843200",
+      "gram_determinant": "144230400",
+      "sign": "positive",
+      "vertices": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "6229406848",
+      "gram_determinant": "778675856",
+      "sign": "positive",
+      "vertices": [
+        1,
+        5,
+        6,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "7823577600",
+      "gram_determinant": "977947200",
+      "sign": "positive",
+      "vertices": [
+        1,
+        5,
+        6,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "190937088",
+      "gram_determinant": "23867136",
+      "sign": "positive",
+      "vertices": [
+        1,
+        5,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "3986784256",
+      "gram_determinant": "498348032",
+      "sign": "positive",
+      "vertices": [
+        1,
+        5,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "5945407488",
+      "gram_determinant": "743175936",
+      "sign": "positive",
+      "vertices": [
+        1,
+        5,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "101645208",
+      "gram_determinant": "12705651",
+      "sign": "positive",
+      "vertices": [
+        1,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "877212700",
+      "gram_determinant": "219303175/2",
+      "sign": "positive",
+      "vertices": [
+        1,
+        5,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "4251367008",
+      "gram_determinant": "531420876",
+      "sign": "positive",
+      "vertices": [
+        1,
+        5,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "329881600",
+      "gram_determinant": "41235200",
+      "sign": "positive",
+      "vertices": [
+        1,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "5193491968",
+      "gram_determinant": "649186496",
+      "sign": "positive",
+      "vertices": [
+        1,
+        6,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "7752239872",
+      "gram_determinant": "969029984",
+      "sign": "positive",
+      "vertices": [
+        1,
+        6,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "-249571700",
+      "gram_determinant": "-62392925/2",
+      "sign": "negative",
+      "vertices": [
+        1,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "784344700",
+      "gram_determinant": "196086175/2",
+      "sign": "positive",
+      "vertices": [
+        1,
+        6,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "8001478912",
+      "gram_determinant": "1000184864",
+      "sign": "positive",
+      "vertices": [
+        1,
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "-168691712",
+      "gram_determinant": "-21086464",
+      "sign": "negative",
+      "vertices": [
+        1,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "973132",
+      "gram_determinant": "243283/2",
+      "sign": "positive",
+      "vertices": [
+        1,
+        7,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "3820474336",
+      "gram_determinant": "477559292",
+      "sign": "positive",
+      "vertices": [
+        1,
+        7,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 1,
+      "cayley_menger_determinant": "555046912",
+      "gram_determinant": "69380864",
+      "sign": "positive",
+      "vertices": [
+        1,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "-132779808",
+      "gram_determinant": "-16597476",
+      "sign": "negative",
+      "vertices": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "1966657950",
+      "gram_determinant": "983328975/4",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "2083791150",
+      "gram_determinant": "1041895575/4",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        4,
+        7
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "877197312",
+      "gram_determinant": "109649664",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        4,
+        8
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "2657630232",
+      "gram_determinant": "332203779",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        4,
+        9
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "5177023200",
+      "gram_determinant": "647127900",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        4,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "8352885600",
+      "gram_determinant": "1044110700",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        5,
+        6
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "7396552728",
+      "gram_determinant": "924569091",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        5,
+        7
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "2695856128",
+      "gram_determinant": "336982016",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        5,
+        8
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "9321586048",
+      "gram_determinant": "1165198256",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        5,
+        9
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "17994851488",
+      "gram_determinant": "2249356436",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        5,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "11751352798",
+      "gram_determinant": "5875676399/4",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        6,
+        7
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "4756633600",
+      "gram_determinant": "594579200",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        6,
+        8
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "21834136800",
+      "gram_determinant": "2729267100",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        6,
+        9
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "42645103198",
+      "gram_determinant": "21322551599/4",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        6,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "830666752",
+      "gram_determinant": "103833344",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "11211521688",
+      "gram_determinant": "1401440211",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "25990067950",
+      "gram_determinant": "12995033975/4",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "899776512",
+      "gram_determinant": "112472064",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "4918835200",
+      "gram_determinant": "614854400",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "13239404568",
+      "gram_determinant": "1654925571",
+      "sign": "positive",
+      "vertices": [
+        2,
+        3,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "115679700",
+      "gram_determinant": "28919925/2",
+      "sign": "positive",
+      "vertices": [
+        2,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "174607200",
+      "gram_determinant": "21825900",
+      "sign": "positive",
+      "vertices": [
+        2,
+        4,
+        5,
+        7
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "73568992",
+      "gram_determinant": "9196124",
+      "sign": "positive",
+      "vertices": [
+        2,
+        4,
+        5,
+        8
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "132821848",
+      "gram_determinant": "16602731",
+      "sign": "positive",
+      "vertices": [
+        2,
+        4,
+        5,
+        9
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "-14102048",
+      "gram_determinant": "-1762756",
+      "sign": "negative",
+      "vertices": [
+        2,
+        4,
+        5,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "4107141388",
+      "gram_determinant": "1026785347/2",
+      "sign": "positive",
+      "vertices": [
+        2,
+        4,
+        6,
+        7
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "1550675500",
+      "gram_determinant": "387668875/2",
+      "sign": "positive",
+      "vertices": [
+        2,
+        4,
+        6,
+        8
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "6506134200",
+      "gram_determinant": "813266775",
+      "sign": "positive",
+      "vertices": [
+        2,
+        4,
+        6,
+        9
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "11604821728",
+      "gram_determinant": "1450602716",
+      "sign": "positive",
+      "vertices": [
+        2,
+        4,
+        6,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "382978048",
+      "gram_determinant": "47872256",
+      "sign": "positive",
+      "vertices": [
+        2,
+        4,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "5426404632",
+      "gram_determinant": "678300579",
+      "sign": "positive",
+      "vertices": [
+        2,
+        4,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "12526885600",
+      "gram_determinant": "1565860700",
+      "sign": "positive",
+      "vertices": [
+        2,
+        4,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "324190872",
+      "gram_determinant": "40523859",
+      "sign": "positive",
+      "vertices": [
+        2,
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "2089883872",
+      "gram_determinant": "261235484",
+      "sign": "positive",
+      "vertices": [
+        2,
+        4,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "8399236608",
+      "gram_determinant": "1049904576",
+      "sign": "positive",
+      "vertices": [
+        2,
+        4,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "9082902528",
+      "gram_determinant": "1135362816",
+      "sign": "positive",
+      "vertices": [
+        2,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "3182243200",
+      "gram_determinant": "397780400",
+      "sign": "positive",
+      "vertices": [
+        2,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "16020283000",
+      "gram_determinant": "2002535375",
+      "sign": "positive",
+      "vertices": [
+        2,
+        5,
+        6,
+        9
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "31686846238",
+      "gram_determinant": "15843423119/4",
+      "sign": "positive",
+      "vertices": [
+        2,
+        5,
+        6,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "581632000",
+      "gram_determinant": "72704000",
+      "sign": "positive",
+      "vertices": [
+        2,
+        5,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "10696736128",
+      "gram_determinant": "1337092016",
+      "sign": "positive",
+      "vertices": [
+        2,
+        5,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "25093746208",
+      "gram_determinant": "3136718276",
+      "sign": "positive",
+      "vertices": [
+        2,
+        5,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "60103552",
+      "gram_determinant": "7512944",
+      "sign": "positive",
+      "vertices": [
+        2,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "2013526912",
+      "gram_determinant": "251690864",
+      "sign": "positive",
+      "vertices": [
+        2,
+        5,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "16481385688",
+      "gram_determinant": "2060173211",
+      "sign": "positive",
+      "vertices": [
+        2,
+        5,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "971365888",
+      "gram_determinant": "121420736",
+      "sign": "positive",
+      "vertices": [
+        2,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "13226866488",
+      "gram_determinant": "1653358311",
+      "sign": "positive",
+      "vertices": [
+        2,
+        6,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "29932128142",
+      "gram_determinant": "14966064071/4",
+      "sign": "positive",
+      "vertices": [
+        2,
+        6,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "-1467088200",
+      "gram_determinant": "-183386025",
+      "sign": "negative",
+      "vertices": [
+        2,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "-2122967072",
+      "gram_determinant": "-265370884",
+      "sign": "negative",
+      "vertices": [
+        2,
+        6,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "29131957728",
+      "gram_determinant": "3641494716",
+      "sign": "positive",
+      "vertices": [
+        2,
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "-665395200",
+      "gram_determinant": "-83174400",
+      "sign": "negative",
+      "vertices": [
+        2,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "-1521248768",
+      "gram_determinant": "-190156096",
+      "sign": "negative",
+      "vertices": [
+        2,
+        7,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "13181908248",
+      "gram_determinant": "1647738531",
+      "sign": "positive",
+      "vertices": [
+        2,
+        7,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 2,
+      "cayley_menger_determinant": "1475739648",
+      "gram_determinant": "184467456",
+      "sign": "positive",
+      "vertices": [
+        2,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "-63686898",
+      "gram_determinant": "-31843449/4",
+      "sign": "negative",
+      "vertices": [
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "-113673042",
+      "gram_determinant": "-56836521/4",
+      "sign": "negative",
+      "vertices": [
+        3,
+        4,
+        5,
+        7
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "-39002112",
+      "gram_determinant": "-4875264",
+      "sign": "negative",
+      "vertices": [
+        3,
+        4,
+        5,
+        8
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "-262663200",
+      "gram_determinant": "-32832900",
+      "sign": "negative",
+      "vertices": [
+        3,
+        4,
+        5,
+        9
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "-688353408",
+      "gram_determinant": "-86044176",
+      "sign": "negative",
+      "vertices": [
+        3,
+        4,
+        5,
+        10
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "1534526622",
+      "gram_determinant": "767263311/4",
+      "sign": "positive",
+      "vertices": [
+        3,
+        4,
+        6,
+        7
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "807896142",
+      "gram_determinant": "403948071/4",
+      "sign": "positive",
+      "vertices": [
+        3,
+        4,
+        6,
+        8
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "1975705182",
+      "gram_determinant": "987852591/4",
+      "sign": "positive",
+      "vertices": [
+        3,
+        4,
+        6,
+        9
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "2746319022",
+      "gram_determinant": "1373159511/4",
+      "sign": "positive",
+      "vertices": [
+        3,
+        4,
+        6,
+        10
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "204931278",
+      "gram_determinant": "102465639/4",
+      "sign": "positive",
+      "vertices": [
+        3,
+        4,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "1832079150",
+      "gram_determinant": "916039575/4",
+      "sign": "positive",
+      "vertices": [
+        3,
+        4,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "3925951200",
+      "gram_determinant": "490743900",
+      "sign": "positive",
+      "vertices": [
+        3,
+        4,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "154939392",
+      "gram_determinant": "19367424",
+      "sign": "positive",
+      "vertices": [
+        3,
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "908657550",
+      "gram_determinant": "454328775/4",
+      "sign": "positive",
+      "vertices": [
+        3,
+        4,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "3151145952",
+      "gram_determinant": "393893244",
+      "sign": "positive",
+      "vertices": [
+        3,
+        4,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "6242646016",
+      "gram_determinant": "780330752",
+      "sign": "positive",
+      "vertices": [
+        3,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "3336190848",
+      "gram_determinant": "417023856",
+      "sign": "positive",
+      "vertices": [
+        3,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "11276907328",
+      "gram_determinant": "1409613416",
+      "sign": "positive",
+      "vertices": [
+        3,
+        5,
+        6,
+        9
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "20946321198",
+      "gram_determinant": "10473160599/4",
+      "sign": "positive",
+      "vertices": [
+        3,
+        5,
+        6,
+        10
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "715473792",
+      "gram_determinant": "89434224",
+      "sign": "positive",
+      "vertices": [
+        3,
+        5,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "7454537368",
+      "gram_determinant": "931817171",
+      "sign": "positive",
+      "vertices": [
+        3,
+        5,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "17107271118",
+      "gram_determinant": "8553635559/4",
+      "sign": "positive",
+      "vertices": [
+        3,
+        5,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "237772800",
+      "gram_determinant": "29721600",
+      "sign": "positive",
+      "vertices": [
+        3,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "2127275008",
+      "gram_determinant": "265909376",
+      "sign": "positive",
+      "vertices": [
+        3,
+        5,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "11493558432",
+      "gram_determinant": "1436694804",
+      "sign": "positive",
+      "vertices": [
+        3,
+        5,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "1383835648",
+      "gram_determinant": "172979456",
+      "sign": "positive",
+      "vertices": [
+        3,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "12513306718",
+      "gram_determinant": "6256653359/4",
+      "sign": "positive",
+      "vertices": [
+        3,
+        6,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "27776357248",
+      "gram_determinant": "3472044656",
+      "sign": "positive",
+      "vertices": [
+        3,
+        6,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "-710858528",
+      "gram_determinant": "-88857316",
+      "sign": "negative",
+      "vertices": [
+        3,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "323450638",
+      "gram_determinant": "161725319/4",
+      "sign": "positive",
+      "vertices": [
+        3,
+        6,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "26540063422",
+      "gram_determinant": "13270031711/4",
+      "sign": "positive",
+      "vertices": [
+        3,
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "-768320000",
+      "gram_determinant": "-96040000",
+      "sign": "negative",
+      "vertices": [
+        3,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "-1804692050",
+      "gram_determinant": "-902346025/4",
+      "sign": "negative",
+      "vertices": [
+        3,
+        7,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "13626689998",
+      "gram_determinant": "6813344999/4",
+      "sign": "positive",
+      "vertices": [
+        3,
+        7,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 3,
+      "cayley_menger_determinant": "971365888",
+      "gram_determinant": "121420736",
+      "sign": "positive",
+      "vertices": [
+        3,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "617347072",
+      "gram_determinant": "77168384",
+      "sign": "positive",
+      "vertices": [
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "289418112",
+      "gram_determinant": "36177264",
+      "sign": "positive",
+      "vertices": [
+        4,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "807320308",
+      "gram_determinant": "201830077/2",
+      "sign": "positive",
+      "vertices": [
+        4,
+        5,
+        6,
+        9
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "1216295118",
+      "gram_determinant": "608147559/4",
+      "sign": "positive",
+      "vertices": [
+        4,
+        5,
+        6,
+        10
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "70705152",
+      "gram_determinant": "8838144",
+      "sign": "positive",
+      "vertices": [
+        4,
+        5,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "535400032",
+      "gram_determinant": "66925004",
+      "sign": "positive",
+      "vertices": [
+        4,
+        5,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "1023666048",
+      "gram_determinant": "127958256",
+      "sign": "positive",
+      "vertices": [
+        4,
+        5,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "30191328",
+      "gram_determinant": "3773916",
+      "sign": "positive",
+      "vertices": [
+        4,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "166676782",
+      "gram_determinant": "83338391/4",
+      "sign": "positive",
+      "vertices": [
+        4,
+        5,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "689552352",
+      "gram_determinant": "86194044",
+      "sign": "positive",
+      "vertices": [
+        4,
+        5,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "498867712",
+      "gram_determinant": "62358464",
+      "sign": "positive",
+      "vertices": [
+        4,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "3886452748",
+      "gram_determinant": "971613187/2",
+      "sign": "positive",
+      "vertices": [
+        4,
+        6,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "8237569150",
+      "gram_determinant": "4118784575/4",
+      "sign": "positive",
+      "vertices": [
+        4,
+        6,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "973132",
+      "gram_determinant": "243283/2",
+      "sign": "positive",
+      "vertices": [
+        4,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "784344700",
+      "gram_determinant": "196086175/2",
+      "sign": "positive",
+      "vertices": [
+        4,
+        6,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "7752239872",
+      "gram_determinant": "969029984",
+      "sign": "positive",
+      "vertices": [
+        4,
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "-203858432",
+      "gram_determinant": "-25482304",
+      "sign": "negative",
+      "vertices": [
+        4,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "-353569682",
+      "gram_determinant": "-176784841/4",
+      "sign": "negative",
+      "vertices": [
+        4,
+        7,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "5484002272",
+      "gram_determinant": "685500284",
+      "sign": "positive",
+      "vertices": [
+        4,
+        7,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 4,
+      "cayley_menger_determinant": "329881600",
+      "gram_determinant": "41235200",
+      "sign": "positive",
+      "vertices": [
+        4,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 5,
+      "cayley_menger_determinant": "830472192",
+      "gram_determinant": "103809024",
+      "sign": "positive",
+      "vertices": [
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "basepoint": 5,
+      "cayley_menger_determinant": "5443065856",
+      "gram_determinant": "680383232",
+      "sign": "positive",
+      "vertices": [
+        5,
+        6,
+        7,
+        9
+      ]
+    },
+    {
+      "basepoint": 5,
+      "cayley_menger_determinant": "11960451072",
+      "gram_determinant": "1495056384",
+      "sign": "positive",
+      "vertices": [
+        5,
+        6,
+        7,
+        10
+      ]
+    },
+    {
+      "basepoint": 5,
+      "cayley_menger_determinant": "-68231808",
+      "gram_determinant": "-8528976",
+      "sign": "negative",
+      "vertices": [
+        5,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 5,
+      "cayley_menger_determinant": "805120000",
+      "gram_determinant": "100640000",
+      "sign": "positive",
+      "vertices": [
+        5,
+        6,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 5,
+      "cayley_menger_determinant": "11551123422",
+      "gram_determinant": "5775561711/4",
+      "sign": "positive",
+      "vertices": [
+        5,
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 5,
+      "cayley_menger_determinant": "-330964992",
+      "gram_determinant": "-41370624",
+      "sign": "negative",
+      "vertices": [
+        5,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 5,
+      "cayley_menger_determinant": "-731878400",
+      "gram_determinant": "-91484800",
+      "sign": "negative",
+      "vertices": [
+        5,
+        7,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 5,
+      "cayley_menger_determinant": "7793545248",
+      "gram_determinant": "974193156",
+      "sign": "positive",
+      "vertices": [
+        5,
+        7,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 5,
+      "cayley_menger_determinant": "166028800",
+      "gram_determinant": "20753600",
+      "sign": "positive",
+      "vertices": [
+        5,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 6,
+      "cayley_menger_determinant": "-231899648",
+      "gram_determinant": "-28987456",
+      "sign": "negative",
+      "vertices": [
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "basepoint": 6,
+      "cayley_menger_determinant": "-391534592",
+      "gram_determinant": "-48941824",
+      "sign": "negative",
+      "vertices": [
+        6,
+        7,
+        8,
+        10
+      ]
+    },
+    {
+      "basepoint": 6,
+      "cayley_menger_determinant": "8281723918",
+      "gram_determinant": "4140861959/4",
+      "sign": "positive",
+      "vertices": [
+        6,
+        7,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 6,
+      "cayley_menger_determinant": "-391534592",
+      "gram_determinant": "-48941824",
+      "sign": "negative",
+      "vertices": [
+        6,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "basepoint": 7,
+      "cayley_menger_determinant": "-231899648",
+      "gram_determinant": "-28987456",
+      "sign": "negative",
+      "vertices": [
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  ],
+  "basepoint_gram_audits": [
+    {
+      "basepoint": 0,
+      "exact_rank": 10,
+      "gram_order": 10,
+      "rank_le_two": false,
+      "smallest_order_negative_principal_minor": {
+        "determinant": "-313600",
+        "order": 3,
+        "vertices": [
+          5,
+          7,
+          8
+        ]
+      }
+    },
+    {
+      "basepoint": 1,
+      "exact_rank": 10,
+      "gram_order": 10,
+      "rank_le_two": false,
+      "smallest_order_negative_principal_minor": {
+        "determinant": "-4875264",
+        "order": 3,
+        "vertices": [
+          0,
+          2,
+          8
+        ]
+      }
+    },
+    {
+      "basepoint": 2,
+      "exact_rank": 10,
+      "gram_order": 10,
+      "rank_le_two": false,
+      "smallest_order_negative_principal_minor": {
+        "determinant": "-1762756",
+        "order": 3,
+        "vertices": [
+          4,
+          5,
+          10
+        ]
+      }
+    },
+    {
+      "basepoint": 3,
+      "exact_rank": 10,
+      "gram_order": 10,
+      "rank_le_two": false,
+      "smallest_order_negative_principal_minor": {
+        "determinant": "-4875264",
+        "order": 3,
+        "vertices": [
+          4,
+          5,
+          8
+        ]
+      }
+    },
+    {
+      "basepoint": 4,
+      "exact_rank": 10,
+      "gram_order": 10,
+      "rank_le_two": false,
+      "smallest_order_negative_principal_minor": {
+        "determinant": "-1762756",
+        "order": 3,
+        "vertices": [
+          2,
+          5,
+          10
+        ]
+      }
+    },
+    {
+      "basepoint": 5,
+      "exact_rank": 10,
+      "gram_order": 10,
+      "rank_le_two": false,
+      "smallest_order_negative_principal_minor": {
+        "determinant": "-313600",
+        "order": 3,
+        "vertices": [
+          0,
+          7,
+          8
+        ]
+      }
+    },
+    {
+      "basepoint": 6,
+      "exact_rank": 10,
+      "gram_order": 10,
+      "rank_le_two": false,
+      "smallest_order_negative_principal_minor": {
+        "determinant": "-31843449/4",
+        "order": 3,
+        "vertices": [
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "basepoint": 7,
+      "exact_rank": 10,
+      "gram_order": 10,
+      "rank_le_two": false,
+      "smallest_order_negative_principal_minor": {
+        "determinant": "-313600",
+        "order": 3,
+        "vertices": [
+          0,
+          5,
+          8
+        ]
+      }
+    },
+    {
+      "basepoint": 8,
+      "exact_rank": 10,
+      "gram_order": 10,
+      "rank_le_two": false,
+      "smallest_order_negative_principal_minor": {
+        "determinant": "-313600",
+        "order": 3,
+        "vertices": [
+          0,
+          5,
+          7
+        ]
+      }
+    },
+    {
+      "basepoint": 9,
+      "exact_rank": 10,
+      "gram_order": 10,
+      "rank_le_two": false,
+      "smallest_order_negative_principal_minor": {
+        "determinant": "-313600",
+        "order": 3,
+        "vertices": [
+          0,
+          5,
+          8
+        ]
+      }
+    },
+    {
+      "basepoint": 10,
+      "exact_rank": 10,
+      "gram_order": 10,
+      "rank_le_two": false,
+      "smallest_order_negative_principal_minor": {
+        "determinant": "-1762756",
+        "order": 3,
+        "vertices": [
+          2,
+          4,
+          5
+        ]
+      }
+    }
+  ],
+  "cell_level_conclusion": "NOT_TESTED_BY_THIS_FIXED_METRIC_REPLAY",
+  "conclusion_for_fixed_metric": "NOT_EUCLIDEAN_ANY_DIMENSION",
+  "distance_count": 55,
+  "epistemic_status": "EXACT_RATIONAL_REPLAY",
+  "four_point_subset_count": 330,
+  "n": 11,
+  "negative_four_point_gram_count": 44,
+  "nonzero_four_point_gram_count": 330,
+  "positive_four_point_gram_count": 286,
+  "schema": "p97-exact-fixed-metric-euclidean-audit-v1",
+  "smallest_absolute_negative_four_point_gram": {
+    "basepoint": 0,
+    "cayley_menger_determinant": "-2508800",
+    "gram_determinant": "-313600",
+    "sign": "negative",
+    "vertices": [
+      0,
+      5,
+      7,
+      8
+    ]
+  },
+  "smallest_absolute_nonzero_four_point_gram": {
+    "basepoint": 1,
+    "cayley_menger_determinant": "973132",
+    "gram_determinant": "243283/2",
+    "sign": "positive",
+    "vertices": [
+      1,
+      7,
+      8,
+      10
+    ]
+  },
+  "smallest_absolute_positive_four_point_gram": {
+    "basepoint": 1,
+    "cayley_menger_determinant": "973132",
+    "gram_determinant": "243283/2",
+    "sign": "positive",
+    "vertices": [
+      1,
+      7,
+      8,
+      10
+    ]
+  },
+  "source": "scratch/atail-force/uniform-cycle-coverage-audit/n11_a1_minimal0.full_lra.json",
+  "triangle_violation_count": 0,
+  "triangle_violations": [],
+  "zero_four_point_gram_count": 0
+}

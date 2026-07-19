@@ -1,0 +1,11 @@
+{
+  "checked_membership_count": 8,
+  "checked_row_equality_count": 4,
+  "checked_strict_inequality_count": 2,
+  "derived_contradiction": "0 >= 2",
+  "failures": [],
+  "schema": "p97-two-kalmanson-cycle-verification-v1",
+  "status": "VERIFIED",
+  "summed_coefficient_count": 0,
+  "summed_rhs": 2
+}

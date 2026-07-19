@@ -1,0 +1,147 @@
+{
+  "coordinate_model": "p0_zero_p1_e1",
+  "equality_count": 33,
+  "evidence_scope": "exact characteristic-zero equality ideal; NONUNIT is not a real or nondegenerate realization; a collision is admitted only after the included lift replays exactly",
+  "expanded_polynomial_sha256": "68636dcf8d3b6b44e84c997906cbdbfb5f5333d0a843fe008acec0ac36c6f1c7",
+  "msolve": {
+    "forward": {
+      "output_char_count": 17,
+      "output_sha256": "6adf16fd42fd52884a1f6c68aa5f2958952d4026d6d4238b33ddb2fe21e9d75f",
+      "returncode": 0,
+      "stderr": "",
+      "verdict": "NONUNIT"
+    },
+    "reverse": {
+      "output_char_count": 17,
+      "output_sha256": "6adf16fd42fd52884a1f6c68aa5f2958952d4026d6d4238b33ddb2fe21e9d75f",
+      "returncode": 0,
+      "stderr": "",
+      "verdict": "NONUNIT"
+    }
+  },
+  "pattern": "offset8-postunit-full",
+  "point_relabeling": {
+    "kind": "cyclic_shift_mod_12",
+    "old_to_new": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "shift": 6
+  },
+  "row_count": 11,
+  "rows": [
+    {
+      "center": 0,
+      "support": [
+        3,
+        4,
+        10,
+        11
+      ]
+    },
+    {
+      "center": 1,
+      "support": [
+        2,
+        6,
+        9,
+        11
+      ]
+    },
+    {
+      "center": 2,
+      "support": [
+        0,
+        1,
+        6,
+        10
+      ]
+    },
+    {
+      "center": 3,
+      "support": [
+        2,
+        5,
+        8,
+        11
+      ]
+    },
+    {
+      "center": 4,
+      "support": [
+        1,
+        6,
+        7,
+        11
+      ]
+    },
+    {
+      "center": 5,
+      "support": [
+        0,
+        2,
+        4,
+        7
+      ]
+    },
+    {
+      "center": 6,
+      "support": [
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "center": 8,
+      "support": [
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "center": 9,
+      "support": [
+        0,
+        3,
+        7,
+        11
+      ]
+    },
+    {
+      "center": 10,
+      "support": [
+        1,
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "center": 11,
+      "support": [
+        0,
+        5,
+        8,
+        10
+      ]
+    }
+  ],
+  "schema": "p97-source-indexed-saved-pattern-exact-probe-v1",
+  "singular": {
+    "status": "SKIPPED"
+  }
+}

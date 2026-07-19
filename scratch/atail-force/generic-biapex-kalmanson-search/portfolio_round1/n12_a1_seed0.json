@@ -1,0 +1,564 @@
+{
+  "attempt_count": 1,
+  "elapsed_seconds": 67.53179391700542,
+  "epistemic_status": "BOUNDED_THEOREM_DISCOVERY_NOT_LEAN_PROOF",
+  "full_linear": true,
+  "full_linear_check_count": 0,
+  "full_linear_core_count": 0,
+  "n": 12,
+  "omitted_apices": [
+    0,
+    1
+  ],
+  "preload_bank": "scratch/atail-force/generic-biapex-kalmanson-search/schema_bank_round0.json",
+  "preload_paths": [],
+  "preloaded_embedding_cut_count": 144588,
+  "preloaded_schema_count": 98,
+  "random_seed": 0,
+  "reason": "canceled",
+  "refinement_count": 3,
+  "refinements": [
+    {
+      "attempt": 1,
+      "complete_core_vertices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "equality_paths": [
+        [
+          {
+            "center": 3,
+            "left": [
+              0,
+              3
+            ],
+            "memberships": [
+              [
+                3,
+                0
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            "right": [
+              1,
+              3
+            ]
+          },
+          {
+            "center": 1,
+            "left": [
+              1,
+              2
+            ],
+            "memberships": [
+              [
+                1,
+                2
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            "right": [
+              1,
+              3
+            ]
+          },
+          {
+            "center": 2,
+            "left": [
+              1,
+              2
+            ],
+            "memberships": [
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                3
+              ]
+            ],
+            "right": [
+              2,
+              3
+            ]
+          }
+        ],
+        [
+          {
+            "center": 4,
+            "left": [
+              0,
+              4
+            ],
+            "memberships": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                2
+              ]
+            ],
+            "right": [
+              2,
+              4
+            ]
+          }
+        ]
+      ],
+      "kind": "K2",
+      "order_embedding_cut_count": 1584,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "quadruple": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "required_memberships": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          2
+        ]
+      ]
+    },
+    {
+      "attempt": 1,
+      "complete_core_vertices": [
+        2,
+        4,
+        8,
+        10,
+        11
+      ],
+      "equality_paths": [
+        [
+          {
+            "center": 8,
+            "left": [
+              2,
+              8
+            ],
+            "memberships": [
+              [
+                8,
+                2
+              ],
+              [
+                8,
+                11
+              ]
+            ],
+            "right": [
+              8,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "left": [
+              8,
+              11
+            ],
+            "memberships": [
+              [
+                11,
+                8
+              ],
+              [
+                11,
+                10
+              ]
+            ],
+            "right": [
+              10,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "left": [
+              8,
+              10
+            ],
+            "memberships": [
+              [
+                10,
+                8
+              ],
+              [
+                10,
+                11
+              ]
+            ],
+            "right": [
+              10,
+              11
+            ]
+          }
+        ],
+        [
+          {
+            "center": 4,
+            "left": [
+              2,
+              4
+            ],
+            "memberships": [
+              [
+                4,
+                2
+              ],
+              [
+                4,
+                10
+              ]
+            ],
+            "right": [
+              4,
+              10
+            ]
+          }
+        ]
+      ],
+      "kind": "K1",
+      "order_embedding_cut_count": 1584,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "quadruple": [
+        2,
+        4,
+        8,
+        10
+      ],
+      "required_memberships": [
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          8,
+          2
+        ],
+        [
+          8,
+          11
+        ],
+        [
+          10,
+          8
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          11,
+          8
+        ],
+        [
+          11,
+          10
+        ]
+      ]
+    },
+    {
+      "attempt": 1,
+      "complete_core_vertices": [
+        5,
+        8,
+        9,
+        10,
+        11
+      ],
+      "equality_paths": [
+        [
+          {
+            "center": 9,
+            "left": [
+              5,
+              9
+            ],
+            "memberships": [
+              [
+                9,
+                5
+              ],
+              [
+                9,
+                10
+              ]
+            ],
+            "right": [
+              9,
+              10
+            ]
+          }
+        ],
+        [
+          {
+            "center": 10,
+            "left": [
+              8,
+              10
+            ],
+            "memberships": [
+              [
+                10,
+                8
+              ],
+              [
+                10,
+                11
+              ]
+            ],
+            "right": [
+              10,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "left": [
+              8,
+              11
+            ],
+            "memberships": [
+              [
+                11,
+                8
+              ],
+              [
+                11,
+                10
+              ]
+            ],
+            "right": [
+              10,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "left": [
+              5,
+              8
+            ],
+            "memberships": [
+              [
+                8,
+                5
+              ],
+              [
+                8,
+                11
+              ]
+            ],
+            "right": [
+              8,
+              11
+            ]
+          }
+        ]
+      ],
+      "kind": "K1",
+      "order_embedding_cut_count": 1584,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "quadruple": [
+        5,
+        8,
+        9,
+        10
+      ],
+      "required_memberships": [
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          11
+        ],
+        [
+          9,
+          5
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          10,
+          8
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          11,
+          8
+        ],
+        [
+          11,
+          10
+        ]
+      ]
+    }
+  ],
+  "schema": "p97-global-equality-quotient-kalmanson-cegar-v1",
+  "schema_size_histogram": {
+    "10": 2,
+    "11": 2,
+    "4": 5,
+    "5": 27,
+    "6": 27,
+    "7": 26,
+    "8": 9,
+    "9": 3
+  },
+  "status": "UNKNOWN",
+  "total_collision_count": 4,
+  "total_embedding_cut_count": 4752
+}

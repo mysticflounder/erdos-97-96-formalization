@@ -1,0 +1,2 @@
+{"build_elapsed_seconds": 0.7660865419893526, "connectivity_clause_count": 3136, "orbit": "continuationOrder", "ordinal_counts": {"guarded_exact_five_shell_rank_equalities": 78, "guarded_selected_row_rank_equalities": 1092, "kalmanson_cancellation_implications": 8008, "rank_atoms": 91, "rank_bit_width": 7}, "phase": "solver_built"}
+{"elapsed_seconds": 5.7911933750147, "orbit": "continuationOrder", "phase": "terminal", "status": "UNKNOWN"}

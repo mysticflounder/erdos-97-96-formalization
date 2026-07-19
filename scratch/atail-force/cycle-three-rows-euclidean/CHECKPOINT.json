@@ -1,0 +1,152 @@
+{
+  "date": "2026-07-17",
+  "schema": "period3-all-reverse-complete-three-row-euclidean-suite-v1",
+  "epistemic_status": "BOUNDED_NUMERIC_SEARCH_NOT_COVERAGE",
+  "overall_status": "UNKNOWN_NO_HIT",
+  "branches": [
+    {
+      "target_union_cardinality": 3,
+      "graph": "triangle",
+      "pivot": null,
+      "script": "search_three_target_cycle.py",
+      "maxiter": 600,
+      "popsize": 28,
+      "workers": 12,
+      "seed": 20260720,
+      "minimum_margin": -0.02214540207882745,
+      "audit_minimum": 9.999996669330927e-10,
+      "status": "UNKNOWN_NO_HIT"
+    },
+    {
+      "target_union_cardinality": 4,
+      "graph": "path",
+      "pivot": 0,
+      "script": "search_partial_overlap.py",
+      "maxiter": 500,
+      "popsize": 28,
+      "workers": 12,
+      "seed": 20260723,
+      "minimum_margin": -0.02057188854960131,
+      "audit_minimum": 9.999998334665464e-10,
+      "status": "UNKNOWN_NO_HIT"
+    },
+    {
+      "target_union_cardinality": 4,
+      "graph": "path",
+      "pivot": 1,
+      "script": "search_partial_overlap.py",
+      "maxiter": 500,
+      "popsize": 28,
+      "workers": 12,
+      "seed": 20260724,
+      "minimum_margin": -0.018704810001600458,
+      "audit_minimum": 9.999998889776976e-10,
+      "status": "UNKNOWN_NO_HIT"
+    },
+    {
+      "target_union_cardinality": 4,
+      "graph": "path",
+      "pivot": 2,
+      "script": "search_partial_overlap.py",
+      "maxiter": 500,
+      "popsize": 28,
+      "workers": 12,
+      "seed": 20260725,
+      "minimum_margin": -0.0072980866799123275,
+      "audit_minimum": 9.999999444888488e-10,
+      "status": "UNKNOWN_NO_HIT"
+    },
+    {
+      "target_union_cardinality": 4,
+      "graph": "star",
+      "pivot": null,
+      "script": "search_four_target_star.py",
+      "maxiter": 1000,
+      "popsize": 36,
+      "workers": 12,
+      "seed": 20260802,
+      "minimum_margin": -0.032505292404975766,
+      "audit_minimum": 9.999998889776976e-10,
+      "status": "UNKNOWN_NO_HIT"
+    },
+    {
+      "target_union_cardinality": 5,
+      "graph": "one_shared_vertex_plus_disjoint_edge",
+      "pivot": 0,
+      "script": "search_partial_overlap.py",
+      "maxiter": 500,
+      "popsize": 28,
+      "workers": 12,
+      "seed": 20260726,
+      "minimum_margin": -0.007279775141329101,
+      "audit_minimum": 9.999998334665464e-10,
+      "status": "UNKNOWN_NO_HIT"
+    },
+    {
+      "target_union_cardinality": 5,
+      "graph": "one_shared_vertex_plus_disjoint_edge",
+      "pivot": 1,
+      "script": "search_partial_overlap.py",
+      "maxiter": 500,
+      "popsize": 28,
+      "workers": 12,
+      "seed": 20260727,
+      "minimum_margin": -0.004499997292205975,
+      "audit_minimum": 9.999998889776976e-10,
+      "status": "UNKNOWN_NO_HIT"
+    },
+    {
+      "target_union_cardinality": 5,
+      "graph": "one_shared_vertex_plus_disjoint_edge",
+      "pivot": 2,
+      "script": "search_partial_overlap.py",
+      "maxiter": 500,
+      "popsize": 28,
+      "workers": 12,
+      "seed": 20260728,
+      "minimum_margin": -0.01584973704615783,
+      "audit_minimum": 9.999998889776976e-10,
+      "status": "UNKNOWN_NO_HIT"
+    },
+    {
+      "target_union_cardinality": 6,
+      "graph": "three_disjoint_pairs",
+      "box_profile": "focused",
+      "script": "search_cycle_three_rows.py",
+      "maxiter": 700,
+      "popsize": 32,
+      "workers": 12,
+      "seed": 20260730,
+      "minimum_margin": -0.004423783391280808,
+      "status": "UNKNOWN_NO_HIT"
+    },
+    {
+      "target_union_cardinality": 6,
+      "graph": "three_disjoint_pairs",
+      "box_profile": "broad",
+      "script": "search_cycle_three_rows.py",
+      "maxiter": 1000,
+      "popsize": 48,
+      "workers": 12,
+      "seed": 20260801,
+      "minimum_margin": -0.00004086728591161285,
+      "status": "UNKNOWN_NO_HIT"
+    }
+  ],
+  "precursors": [
+    {
+      "name": "one_target_per_row_broad",
+      "script": "search_cycle_three_rows.py",
+      "maxiter": 700,
+      "popsize": 40,
+      "workers": 12,
+      "seed": 20260731,
+      "minimum_margin": -0.00003084769137440815,
+      "status": "UNKNOWN_NO_HIT"
+    }
+  ],
+  "coverage_complete": false,
+  "unsat_claimed": false,
+  "sat_candidate_found": false,
+  "exact_rational_reconstruction": "NOT_ATTEMPTED_NO_HIT"
+}

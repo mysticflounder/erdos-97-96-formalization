@@ -1,0 +1,26 @@
+{
+  "build_elapsed_seconds": 0.6523548749973997,
+  "complete_shell_selected_row_alternation": true,
+  "connectivity": "FLOYD_WARSHALL_ALL_PAIRS_EXACT",
+  "connectivity_clause_count": 3136,
+  "elapsed_seconds": 180.66225570900133,
+  "epistemic_status": "EXACT_IF_SAT_EXTERNAL_BOUNDED_IF_UNSAT_OR_UNKNOWN",
+  "literal_metric_schema_cuts": 0,
+  "metric_counts": {
+    "guarded_exact_five_shell_equality": 78,
+    "guarded_selected_row_equality": 1092,
+    "positivity": 91,
+    "strict_kalmanson": 2002,
+    "strict_triangle": 1092
+  },
+  "n": 14,
+  "orbit": "reverseContinuationOrder",
+  "outer_source": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact6-allcenter-capaware-gate/allcenter_gate.py",
+  "outer_source_sha256": "2af4ebe69459f371f25100a80de1a092e81cae75bd62ad87175c1d4c19a5f27b",
+  "reason": "timeout",
+  "schema": "p97-exact6-integrated-structural-distance-decision-v1",
+  "seed": 101,
+  "solver_statistics": "(:added-eqs                   1877015\n :arith-eq-adapter            1092\n :arith-bound-propagations-lp 1863817\n :arith-conflicts             3084\n :arith-diseq                 667592\n :arith-fixed-eqs             55035\n :arith-lower                 708912\n :arith-make-feasible         36775\n :arith-max-columns           4489\n :arith-max-rows              4200\n :arith-offset-eqs            10691\n :arith-upper                 684955\n :binary-propagations         3631140\n :conflicts                   14014\n :decisions                   43622\n :del-clause                  11796\n :max-memory                  221.16\n :memory                      33.03\n :minimized-lits              47786\n :mk-bool-var                 16748\n :mk-clause                   34816\n :mk-clause-binary            14575\n :num-allocs                  151671223495.00\n :num-checks                  1\n :pb-conflicts                1462\n :pb-predicates               3060\n :pb-propagations             33524\n :pb-resolves                 1461\n :propagations                5755622\n :restarts                    91\n :rlimit-count                84412746\n :solve-eqs-elim-vars         2957\n :solve-eqs-steps             8963\n :time                        180.01)",
+  "status": "UNKNOWN",
+  "timeout_ms": 180000
+}

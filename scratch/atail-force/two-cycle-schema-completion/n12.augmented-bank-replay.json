@@ -1,0 +1,279 @@
+{
+  "bank": "scratch/atail-force/two-cycle-schema-completion/bank_n12_n13_two_cycle_rotation_closed_292.json",
+  "bank_schema_count": 292,
+  "carrier": "scratch/atail-force/n12-geometry-regression/carrier.json",
+  "carrier_n": 12,
+  "checked_embedding_count": 452628,
+  "epistemic_status": "INDEPENDENT_EXACT_LITERAL_MEMBERSHIP_REPLAY",
+  "hit_count": 4,
+  "hits": [
+    {
+      "core_vertex_count": 6,
+      "orientation": "reflected",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 1,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 0
+        }
+      ],
+      "schema_index": 93,
+      "target_vertices": [
+        3,
+        4,
+        7,
+        8,
+        9,
+        11
+      ],
+      "transformed_memberships": [
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          9,
+          8
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          11,
+          4
+        ],
+        [
+          11,
+          9
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "orientation": "reflected",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 4,
+          "source_carrier_n": 12,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n12.detect.json",
+          "source_witness_index": 0
+        },
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 4,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 1
+        }
+      ],
+      "schema_index": 154,
+      "target_vertices": [
+        2,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "transformed_memberships": [
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "orientation": "direct",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 2,
+          "source_carrier_n": 12,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n12.detect.json",
+          "source_witness_index": 1
+        }
+      ],
+      "schema_index": 188,
+      "target_vertices": [
+        0,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "transformed_memberships": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 8,
+      "orientation": "direct",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 5,
+          "source_carrier_n": 12,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n12.detect.json",
+          "source_witness_index": 2
+        }
+      ],
+      "schema_index": 274,
+      "target_vertices": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8
+      ],
+      "transformed_memberships": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          7,
+          8
+        ]
+      ]
+    }
+  ],
+  "schema": "p97-transported-bank-saved-carrier-replay-v1",
+  "scope_warning": "This checks only transported literal cuts against one saved finite carrier. It is not a new SAT/UNSAT decision and not arbitrary-cardinality coverage.",
+  "status": "REJECTED_BY_BANK"
+}

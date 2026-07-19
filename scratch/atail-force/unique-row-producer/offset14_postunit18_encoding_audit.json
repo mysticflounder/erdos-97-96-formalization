@@ -1,0 +1,9 @@
+{
+  "assignment_signature_sha256": "db21dce58acce6284a86999c02b69eb0d5f55f6945c33ea9f425725c17a66176",
+  "canonical_row_sha256": "3a2fcb5f9a58106bf9dccf5cffa77974ee851a0e332b75e038fd8a3f9d6eab97",
+  "exact_encoding_match": true,
+  "global_or_pinned_row_count": 12,
+  "pattern": "offset14-postunit18-full",
+  "scan": "scratch/atail-force/unique-row-producer/offset14_postunit18_4m_scan.json",
+  "shell_duplicate_count": 4
+}

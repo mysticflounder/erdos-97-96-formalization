@@ -1,0 +1,1775 @@
+{
+  "epistemic_status": "EXACT_BOUNDED_LRA_NOT_UNIFORM_LEAN_COVERAGE",
+  "full_lra_schema_count": 57,
+  "order_type_count": 28,
+  "order_types": {
+    "C0X0|C1|C2|X1|X2": {
+      "schema_count": 3,
+      "schema_indices": [
+        201,
+        205,
+        206
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "C0X0|C1|C2|X2|X1": {
+      "schema_count": 1,
+      "schema_indices": [
+        122
+      ],
+      "statuses": [
+        "SAT"
+      ]
+    },
+    "C0|C1X1|C2|X0|X2": {
+      "schema_count": 2,
+      "schema_indices": [
+        185,
+        186
+      ],
+      "statuses": [
+        "SAT"
+      ]
+    },
+    "C0|C1X1|C2|X2|X0": {
+      "schema_count": 2,
+      "schema_indices": [
+        188,
+        197
+      ],
+      "statuses": [
+        "SAT"
+      ]
+    },
+    "C0|C1X1|X2|C2|X0": {
+      "schema_count": 1,
+      "schema_indices": [
+        182
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "C0|C1|C2X2|X0|X1": {
+      "schema_count": 3,
+      "schema_indices": [
+        170,
+        179,
+        218
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "C0|C1|C2|X0|X1|X2": {
+      "schema_count": 1,
+      "schema_indices": [
+        201
+      ],
+      "statuses": [
+        "SAT"
+      ]
+    },
+    "C0|C1|C2|X0|X2|X1": {
+      "schema_count": 8,
+      "schema_indices": [
+        173,
+        185,
+        186,
+        187,
+        190,
+        198,
+        207,
+        219
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "C0|C1|C2|X1|X0|X2": {
+      "schema_count": 1,
+      "schema_indices": [
+        193
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "C0|C1|C2|X1|X2|X0": {
+      "schema_count": 4,
+      "schema_indices": [
+        178,
+        195,
+        202,
+        223
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "C0|C1|C2|X2|X0|X1": {
+      "schema_count": 3,
+      "schema_indices": [
+        196,
+        199,
+        217
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "C0|C1|X0|C2|X1|X2": {
+      "schema_count": 1,
+      "schema_indices": [
+        202
+      ],
+      "statuses": [
+        "SAT"
+      ]
+    },
+    "C0|C1|X0|X1|C2|X2": {
+      "schema_count": 1,
+      "schema_indices": [
+        200
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "C0|C1|X2|C2|X0|X1": {
+      "schema_count": 1,
+      "schema_indices": [
+        161
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "C0|X0|C1X1|C2|X2": {
+      "schema_count": 1,
+      "schema_indices": [
+        109
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "C0|X0|C1|C2|X1|X2": {
+      "schema_count": 2,
+      "schema_indices": [
+        209,
+        230
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "C0|X1|C1|C2X2|X0": {
+      "schema_count": 1,
+      "schema_indices": [
+        227
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "C0|X1|C1|C2|X0|X2": {
+      "schema_count": 1,
+      "schema_indices": [
+        197
+      ],
+      "statuses": [
+        "SAT"
+      ]
+    },
+    "C0|X1|C1|X2|C2|X0": {
+      "schema_count": 3,
+      "schema_indices": [
+        194,
+        215,
+        228
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "C0|X1|C2|C1|X0|X2": {
+      "schema_count": 2,
+      "schema_indices": [
+        196,
+        216
+      ],
+      "statuses": [
+        "SAT"
+      ]
+    },
+    "C0|X1|C2|C1|X2|X0": {
+      "schema_count": 1,
+      "schema_indices": [
+        195
+      ],
+      "statuses": [
+        "SAT"
+      ]
+    },
+    "C0|X1|X2|C1|C2|X0": {
+      "schema_count": 1,
+      "schema_indices": [
+        214
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "X0|C0|C1|C2X2|X1": {
+      "schema_count": 1,
+      "schema_indices": [
+        224
+      ],
+      "statuses": [
+        "SAT"
+      ]
+    },
+    "X0|C0|C1|C2|X1|X2": {
+      "schema_count": 5,
+      "schema_indices": [
+        191,
+        222,
+        225,
+        226,
+        229
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "X0|C1X1|C2|C0|X2": {
+      "schema_count": 1,
+      "schema_indices": [
+        210
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "X0|C1|C0|X2|C2|X1": {
+      "schema_count": 3,
+      "schema_indices": [
+        181,
+        208,
+        213
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    },
+    "X0|C1|C2|C0|X1|X2": {
+      "schema_count": 1,
+      "schema_indices": [
+        183
+      ],
+      "statuses": [
+        "SAT"
+      ]
+    },
+    "X0|C1|C2|C0|X2|X1": {
+      "schema_count": 4,
+      "schema_indices": [
+        175,
+        189,
+        211,
+        212
+      ],
+      "statuses": [
+        "UNSAT"
+      ]
+    }
+  },
+  "results": [
+    {
+      "canonical_order_type": "C0|X0|C1X1|C2|X2",
+      "centers": [
+        0,
+        2,
+        3
+      ],
+      "core_vertex_count": 6,
+      "pairs": [
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "schema_index": 109,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0X0|C1|C2|X2|X1",
+      "centers": [
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 7,
+      "pairs": [
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "schema_index": 122,
+      "status": "SAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|X2|C2|X0|X1",
+      "centers": [
+        1,
+        2,
+        4
+      ],
+      "core_vertex_count": 7,
+      "pairs": [
+        [
+          3,
+          6
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "schema_index": 161,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2X2|X0|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 8,
+      "pairs": [
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          6,
+          7
+        ]
+      ],
+      "schema_index": 170,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X2|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 8,
+      "pairs": [
+        [
+          4,
+          7
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          7
+        ]
+      ],
+      "schema_index": 173,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "X0|C1|C2|C0|X2|X1",
+      "centers": [
+        1,
+        3,
+        5
+      ],
+      "core_vertex_count": 8,
+      "pairs": [
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          6,
+          7
+        ]
+      ],
+      "schema_index": 175,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X1|X2|X0",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 9,
+      "pairs": [
+        [
+          3,
+          6
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "schema_index": 178,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2X2|X0|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 9,
+      "pairs": [
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          7,
+          8
+        ]
+      ],
+      "schema_index": 179,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "X0|C1|C0|X2|C2|X1",
+      "centers": [
+        1,
+        2,
+        4
+      ],
+      "core_vertex_count": 9,
+      "pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          0,
+          8
+        ]
+      ],
+      "schema_index": 181,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1X1|X2|C2|X0",
+      "centers": [
+        0,
+        1,
+        3
+      ],
+      "core_vertex_count": 10,
+      "pairs": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "schema_index": 182,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "X0|C1|C2|C0|X1|X2",
+      "centers": [
+        1,
+        2,
+        4
+      ],
+      "core_vertex_count": 10,
+      "pairs": [
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "schema_index": 183,
+      "status": "SAT"
+    },
+    {
+      "canonical_order_type": "C0|C1X1|C2|X0|X2",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 10,
+      "pairs": [
+        [
+          1,
+          7
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "schema_index": 185,
+      "status": "SAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X2|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 10,
+      "pairs": [
+        [
+          7,
+          9
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          3,
+          9
+        ]
+      ],
+      "schema_index": 185,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1X1|C2|X0|X2",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 10,
+      "pairs": [
+        [
+          1,
+          8
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "schema_index": 186,
+      "status": "SAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X2|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 10,
+      "pairs": [
+        [
+          8,
+          9
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          4,
+          9
+        ]
+      ],
+      "schema_index": 186,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X2|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 10,
+      "pairs": [
+        [
+          4,
+          9
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          9
+        ]
+      ],
+      "schema_index": 187,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1X1|C2|X2|X0",
+      "centers": [
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 10,
+      "pairs": [
+        [
+          2,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          2,
+          8
+        ]
+      ],
+      "schema_index": 188,
+      "status": "SAT"
+    },
+    {
+      "canonical_order_type": "X0|C1|C2|C0|X2|X1",
+      "centers": [
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 10,
+      "pairs": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "schema_index": 189,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X2|X1",
+      "centers": [
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 10,
+      "pairs": [
+        [
+          7,
+          9
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          9
+        ]
+      ],
+      "schema_index": 190,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "X0|C0|C1|C2|X1|X2",
+      "centers": [
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 10,
+      "pairs": [
+        [
+          4,
+          9
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "schema_index": 191,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X1|X0|X2",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          3,
+          10
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "schema_index": 193,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|X1|C1|X2|C2|X0",
+      "centers": [
+        0,
+        2,
+        5
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "schema_index": 194,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|X1|C2|C1|X2|X0",
+      "centers": [
+        0,
+        2,
+        3
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          4,
+          10
+        ]
+      ],
+      "schema_index": 195,
+      "status": "SAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X1|X2|X0",
+      "centers": [
+        0,
+        2,
+        3
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          4,
+          10
+        ]
+      ],
+      "schema_index": 195,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|X1|C2|C1|X0|X2",
+      "centers": [
+        0,
+        2,
+        3
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          8,
+          10
+        ]
+      ],
+      "schema_index": 196,
+      "status": "SAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X2|X0|X1",
+      "centers": [
+        0,
+        2,
+        3
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          4,
+          10
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          8,
+          10
+        ]
+      ],
+      "schema_index": 196,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1X1|C2|X2|X0",
+      "centers": [
+        0,
+        1,
+        3
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          1,
+          9
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          1,
+          10
+        ]
+      ],
+      "schema_index": 197,
+      "status": "SAT"
+    },
+    {
+      "canonical_order_type": "C0|X1|C1|C2|X0|X2",
+      "centers": [
+        0,
+        2,
+        3
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          1,
+          7
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "schema_index": 197,
+      "status": "SAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X2|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          8,
+          10
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          10
+        ]
+      ],
+      "schema_index": 198,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X2|X0|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          3,
+          10
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "schema_index": 199,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|X0|X1|C2|X2",
+      "centers": [
+        0,
+        1,
+        5
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          4,
+          6
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "schema_index": 200,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X1|X2",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          7,
+          10
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          6,
+          7
+        ]
+      ],
+      "schema_index": 201,
+      "status": "SAT"
+    },
+    {
+      "canonical_order_type": "C0X0|C1|C2|X1|X2",
+      "centers": [
+        0,
+        1,
+        3
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          4,
+          10
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "schema_index": 201,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|X0|C2|X1|X2",
+      "centers": [
+        0,
+        1,
+        4
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          5,
+          8
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "schema_index": 202,
+      "status": "SAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X1|X2|X0",
+      "centers": [
+        0,
+        1,
+        4
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          5,
+          8
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          5,
+          10
+        ]
+      ],
+      "schema_index": 202,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0X0|C1|C2|X1|X2",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          3,
+          4
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "schema_index": 205,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0X0|C1|C2|X1|X2",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          3,
+          7
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "schema_index": 206,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X2|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          7,
+          10
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          10
+        ]
+      ],
+      "schema_index": 207,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "X0|C1|C0|X2|C2|X1",
+      "centers": [
+        1,
+        2,
+        4
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "schema_index": 208,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|X0|C1|C2|X1|X2",
+      "centers": [
+        1,
+        3,
+        4
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          5,
+          9
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "schema_index": 209,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "X0|C1X1|C2|C0|X2",
+      "centers": [
+        1,
+        2,
+        9
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          0,
+          9
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "schema_index": 210,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "X0|C1|C2|C0|X2|X1",
+      "centers": [
+        2,
+        3,
+        4
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "schema_index": 211,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "X0|C1|C2|C0|X2|X1",
+      "centers": [
+        2,
+        3,
+        5
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "schema_index": 212,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "X0|C1|C0|X2|C2|X1",
+      "centers": [
+        2,
+        3,
+        6
+      ],
+      "core_vertex_count": 11,
+      "pairs": [
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          1,
+          10
+        ]
+      ],
+      "schema_index": 213,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|X1|X2|C1|C2|X0",
+      "centers": [
+        0,
+        3,
+        5
+      ],
+      "core_vertex_count": 12,
+      "pairs": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          1,
+          7
+        ]
+      ],
+      "schema_index": 214,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|X1|C1|X2|C2|X0",
+      "centers": [
+        0,
+        2,
+        5
+      ],
+      "core_vertex_count": 12,
+      "pairs": [
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "schema_index": 215,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|X1|C2|C1|X0|X2",
+      "centers": [
+        0,
+        3,
+        5
+      ],
+      "core_vertex_count": 12,
+      "pairs": [
+        [
+          1,
+          11
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          7,
+          11
+        ]
+      ],
+      "schema_index": 216,
+      "status": "SAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X2|X0|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 12,
+      "pairs": [
+        [
+          3,
+          11
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          11
+        ]
+      ],
+      "schema_index": 217,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2X2|X0|X1",
+      "centers": [
+        0,
+        2,
+        3
+      ],
+      "core_vertex_count": 12,
+      "pairs": [
+        [
+          3,
+          11
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          11
+        ]
+      ],
+      "schema_index": 218,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X2|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 12,
+      "pairs": [
+        [
+          4,
+          11
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          11
+        ]
+      ],
+      "schema_index": 219,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "X0|C0|C1|C2|X1|X2",
+      "centers": [
+        1,
+        3,
+        7
+      ],
+      "core_vertex_count": 12,
+      "pairs": [
+        [
+          10,
+          11
+        ],
+        [
+          0,
+          11
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "schema_index": 222,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X1|X2|X0",
+      "centers": [
+        0,
+        3,
+        7
+      ],
+      "core_vertex_count": 12,
+      "pairs": [
+        [
+          8,
+          10
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          8,
+          11
+        ]
+      ],
+      "schema_index": 223,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "X0|C0|C1|C2X2|X1",
+      "centers": [
+        2,
+        5,
+        6
+      ],
+      "core_vertex_count": 12,
+      "pairs": [
+        [
+          6,
+          11
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "schema_index": 224,
+      "status": "SAT"
+    },
+    {
+      "canonical_order_type": "X0|C0|C1|C2|X1|X2",
+      "centers": [
+        1,
+        2,
+        4
+      ],
+      "core_vertex_count": 12,
+      "pairs": [
+        [
+          5,
+          7
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "schema_index": 225,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "X0|C0|C1|C2|X1|X2",
+      "centers": [
+        1,
+        2,
+        4
+      ],
+      "core_vertex_count": 12,
+      "pairs": [
+        [
+          5,
+          10
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "schema_index": 226,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|X1|C1|C2X2|X0",
+      "centers": [
+        1,
+        3,
+        8
+      ],
+      "core_vertex_count": 12,
+      "pairs": [
+        [
+          2,
+          8
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          2,
+          9
+        ]
+      ],
+      "schema_index": 227,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|X1|C1|X2|C2|X0",
+      "centers": [
+        1,
+        6,
+        8
+      ],
+      "core_vertex_count": 12,
+      "pairs": [
+        [
+          3,
+          7
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          3,
+          11
+        ]
+      ],
+      "schema_index": 228,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "X0|C0|C1|C2|X1|X2",
+      "centers": [
+        1,
+        2,
+        4
+      ],
+      "core_vertex_count": 12,
+      "pairs": [
+        [
+          5,
+          9
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "schema_index": 229,
+      "status": "UNSAT"
+    },
+    {
+      "canonical_order_type": "C0|X0|C1|C2|X1|X2",
+      "centers": [
+        3,
+        5,
+        6
+      ],
+      "core_vertex_count": 12,
+      "pairs": [
+        [
+          7,
+          9
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          7
+        ]
+      ],
+      "schema_index": 230,
+      "status": "UNSAT"
+    }
+  ],
+  "schema": "p97-full-lra-equality-triangle-subcore-audit-v1",
+  "schema_with_triangle_count": 52,
+  "source": "scratch/atail-force/generic-biapex-kalmanson-search/schema_bank_round2.json",
+  "status_histogram": {
+    "SAT": 13,
+    "UNSAT": 46
+  },
+  "triangle_witness_count": 59
+}

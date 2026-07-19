@@ -1,0 +1,29 @@
+{
+  "schema": "p97-homogeneous-farkas-core-v1",
+  "epistemic_status": "LEAN_SMOKE_CERTIFICATE_INPUT",
+  "variables": ["d01", "d02", "d03", "d12", "d13"],
+  "strict_forms": [
+    {
+      "name": "kal2_0_1_2_3",
+      "coefficients": [0, 1, -1, -1, 1],
+      "weight": 1
+    }
+  ],
+  "equality_forms": [
+    {
+      "name": "row_0_1_2",
+      "coefficients": [1, -1, 0, 0, 0],
+      "weight": 1
+    },
+    {
+      "name": "row_0_1_3",
+      "coefficients": [1, 0, -1, 0, 0],
+      "weight": -1
+    },
+    {
+      "name": "row_1_2_3",
+      "coefficients": [0, 0, 0, 1, -1],
+      "weight": 1
+    }
+  ]
+}

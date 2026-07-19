@@ -1,0 +1,35 @@
+{
+  "attempt_count": 0,
+  "elapsed_seconds": 41.05002720898483,
+  "epistemic_status": "BOUNDED_THEOREM_DISCOVERY_NOT_LEAN_PROOF",
+  "full_linear": true,
+  "full_linear_check_count": 0,
+  "full_linear_core_count": 0,
+  "n": 11,
+  "omitted_apices": [
+    0,
+    1
+  ],
+  "preload_bank": "scratch/atail-force/generic-biapex-kalmanson-search/schema_bank_round0.json",
+  "preload_paths": [],
+  "preloaded_embedding_cut_count": 70932,
+  "preloaded_schema_count": 98,
+  "random_seed": 1,
+  "reason": "timeout",
+  "refinement_count": 0,
+  "refinements": [],
+  "schema": "p97-global-equality-quotient-kalmanson-cegar-v1",
+  "schema_size_histogram": {
+    "10": 2,
+    "11": 2,
+    "4": 5,
+    "5": 24,
+    "6": 27,
+    "7": 26,
+    "8": 9,
+    "9": 3
+  },
+  "status": "UNKNOWN",
+  "total_collision_count": 0,
+  "total_embedding_cut_count": 0
+}

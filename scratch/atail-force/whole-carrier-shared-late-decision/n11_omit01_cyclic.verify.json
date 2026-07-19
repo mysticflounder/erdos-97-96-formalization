@@ -1,0 +1,16 @@
+{
+  "maximum_pair_center_count": 2,
+  "maximum_row_intersection": 2,
+  "n": 11,
+  "omitted_values": [
+    0,
+    1
+  ],
+  "schema": "p97-whole-carrier-shared-late-verification-v1",
+  "shared_late_pair": null,
+  "source_schema": "p97-whole-carrier-shared-late-decision-v1",
+  "status": "PASS",
+  "strongly_connected": true,
+  "terminal_mode": "cyclic",
+  "total_blocker_map": true
+}

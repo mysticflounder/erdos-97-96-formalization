@@ -1,0 +1,22 @@
+{
+  "added_schema_count": 74,
+  "augmented_schema_count": 292,
+  "detections": [
+    {
+      "carrier_n": 12,
+      "detection": "scratch/atail-force/two-cycle-schema-completion/n12.detect.json",
+      "verified_exact_saved_carrier_cut_hits": 3
+    },
+    {
+      "carrier_n": 13,
+      "detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+      "verified_exact_saved_carrier_cut_hits": 9
+    }
+  ],
+  "epistemic_status": "INDEPENDENT_EXACT_SCHEMA_AND_CARRIER_HIT_REPLAY",
+  "expected_rotation_key_count": 79,
+  "schema": "p97-theorem-faithful-two-cycle-augmented-bank-replay-v1",
+  "scope_warning": "The saved n=12 and n=13 carriers are rejected by explicit new theorem-backed cuts. No new SAT/UNSAT decision for the augmented outer problem was run, and no uniform arbitrary-cardinality occurrence theorem is claimed.",
+  "source_schema_count": 218,
+  "status": "VERIFIED"
+}

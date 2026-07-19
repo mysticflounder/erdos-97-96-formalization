@@ -1,0 +1,187 @@
+{
+  "bounded_row_deletion_msolve": {
+    "attempts": [
+      {
+        "original_index": 0,
+        "removed": false,
+        "verdict": "TIMEOUT"
+      },
+      {
+        "original_index": 1,
+        "removed": false,
+        "verdict": "NONUNIT"
+      },
+      {
+        "original_index": 2,
+        "removed": false,
+        "verdict": "NONUNIT"
+      },
+      {
+        "original_index": 3,
+        "removed": false,
+        "verdict": "NONUNIT"
+      },
+      {
+        "original_index": 4,
+        "removed": false,
+        "verdict": "NONUNIT"
+      },
+      {
+        "original_index": 5,
+        "removed": false,
+        "verdict": "NONUNIT"
+      }
+    ],
+    "initial_row_count": 6,
+    "retained_equality_count": 19,
+    "retained_expanded_polynomial_sha256": "1462da443a07ffd4ca669dec37f9a2d5a1f94e573a3ac25807f585d1c3793a86",
+    "retained_row_count": 6,
+    "retained_rows": [
+      {
+        "center": 0,
+        "support": [
+          1,
+          3,
+          6,
+          9
+        ]
+      },
+      {
+        "center": 1,
+        "support": [
+          4,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "center": 3,
+        "support": [
+          1,
+          5,
+          6,
+          8
+        ]
+      },
+      {
+        "center": 4,
+        "support": [
+          2,
+          3,
+          5,
+          10
+        ]
+      },
+      {
+        "center": 5,
+        "support": [
+          0,
+          4,
+          6,
+          7
+        ]
+      },
+      {
+        "center": 9,
+        "support": [
+          0,
+          3,
+          5,
+          7
+        ]
+      }
+    ],
+    "retained_verdict": "UNIT",
+    "row_order": "forward",
+    "strategy": "one-pass-canonical-row-deletion-msolve",
+    "variable_order": "forward"
+  },
+  "coordinate_model": "p0_zero_p1_e1",
+  "equality_count": 19,
+  "evidence_scope": "exact characteristic-zero equality ideal; NONUNIT is not a real or nondegenerate realization; a collision is admitted only after the included lift replays exactly",
+  "expanded_polynomial_sha256": "1462da443a07ffd4ca669dec37f9a2d5a1f94e573a3ac25807f585d1c3793a86",
+  "pattern": "source-indexed-unit-core-654-27",
+  "point_relabeling": {
+    "kind": "cyclic_shift_mod_12",
+    "old_to_new": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "shift": 0
+  },
+  "row_count": 6,
+  "rows": [
+    {
+      "center": 0,
+      "support": [
+        1,
+        3,
+        6,
+        9
+      ]
+    },
+    {
+      "center": 1,
+      "support": [
+        4,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "center": 3,
+      "support": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "center": 4,
+      "support": [
+        2,
+        3,
+        5,
+        10
+      ]
+    },
+    {
+      "center": 5,
+      "support": [
+        0,
+        4,
+        6,
+        7
+      ]
+    },
+    {
+      "center": 9,
+      "support": [
+        0,
+        3,
+        5,
+        7
+      ]
+    }
+  ],
+  "schema": "p97-source-indexed-saved-pattern-exact-probe-v1",
+  "singular": {
+    "status": "SKIPPED"
+  },
+  "singular_variable_order": "forward"
+}

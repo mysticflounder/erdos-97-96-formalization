@@ -1,0 +1,3 @@
+{"attempt": 10, "counters": {"generalized_metric_schema_cuts": 2308, "linear_metric_unsat": 10, "metric_core_cuts": 10}, "orbit": "sharesSecondAtTarget", "phase": "linear_unsat"}
+{"attempt": 20, "counters": {"generalized_metric_schema_cuts": 4932, "linear_metric_unsat": 20, "metric_core_cuts": 20}, "orbit": "sharesSecondAtTarget", "phase": "linear_unsat"}
+{"attempt": 30, "counters": {"generalized_metric_schema_cuts": 12176, "linear_metric_unsat": 30, "metric_core_cuts": 30}, "orbit": "sharesSecondAtTarget", "phase": "linear_unsat"}

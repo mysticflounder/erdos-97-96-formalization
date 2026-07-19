@@ -14,9 +14,9 @@ caller-independent `StrictCapBlockData`.  It derives the shared order packet
 from the actual omission cycle and all-reverse membership; no public
 `hsharedOrder` hypothesis is introduced.
 
-This is a no-build checkpoint while the production `ShellCurvature` module is
-being edited in another lane.  The proof has therefore not yet been
-elaborated against the current tree.
+The proof has been elaborated against the current scratch dependency chain.
+It is source-faithful and introduces no extra order, distinctness, or
+orientation hypothesis.
 -/
 
 open scoped EuclideanGeometry

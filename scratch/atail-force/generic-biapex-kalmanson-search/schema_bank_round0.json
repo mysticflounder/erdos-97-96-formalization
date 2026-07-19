@@ -1,0 +1,5659 @@
+{
+  "epistemic_status": "BOUNDED_DISCOVERY_BANK_REQUIRES_CORE_PROVENANCE",
+  "schema": "p97-whole-carrier-kalmanson-transported-schema-bank-v1",
+  "schema_count": 98,
+  "schemas": [
+    {
+      "core_vertex_count": 4,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 22,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 4,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 12,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 4,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 8,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 4,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 58,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 4,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 52,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 55,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 57,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 77,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 3,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 40,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 5,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 30,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 81,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 69,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 76,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 0,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 85,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 50,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 7,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 59,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 39,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 91,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 75,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 64,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 11,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 73,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 6,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 74,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 51,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 31,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 43,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 67,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 16,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 84,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 66,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 9,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 32,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 1,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 87,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 4,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 88,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 10,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 45,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 15,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 14,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 44,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 92,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 90,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 34,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 71,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 96,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "FULL_LRA",
+          "metric_core": [
+            "kal2_0_1_2_3",
+            "kal2_0_1_3_4",
+            "kal2_0_1_4_5",
+            "kal2_1_2_3_4",
+            "kal2_1_2_4_5",
+            "row_0_2_5",
+            "row_2_1_5",
+            "row_3_1_2"
+          ],
+          "refinement_index": 78,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 18,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 65,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 47,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 89,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 29,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 42,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 48,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 36,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          6
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "FULL_LRA",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal1_0_2_3_10",
+            "kal2_1_2_3_4",
+            "kal2_1_2_4_5",
+            "row_0_1_3",
+            "row_1_0_5",
+            "row_1_0_10",
+            "row_2_1_3",
+            "row_2_1_5",
+            "row_3_1_10"
+          ],
+          "refinement_index": 60,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 41,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 93,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 72,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 20,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 83,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 68,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 21,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 2,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 95,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 13,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 23,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 94,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 35,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 63,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 61,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 62,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 56,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 38,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 53,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 54,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "order_schema": [
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 70,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 8,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          6
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 19,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 8,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 24,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 8,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 27,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 8,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          6
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 37,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 8,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 26,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 8,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 86,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 8,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 46,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 8,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 33,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 8,
+      "order_schema": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 82,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 9,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          2
+        ],
+        [
+          8,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 25,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 9,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          7
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K1",
+          "metric_core": null,
+          "refinement_index": 49,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 9,
+      "order_schema": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          6
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 17,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 10,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          3,
+          9
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          2
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          9,
+          0
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "K2",
+          "metric_core": null,
+          "refinement_index": 28,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 10,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          9
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "FULL_LRA",
+          "metric_core": [
+            "kal2_0_1_8_9",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "row_0_1_8",
+            "row_0_1_9",
+            "row_1_3_4",
+            "row_1_3_8",
+            "row_2_1_4",
+            "row_2_1_9"
+          ],
+          "refinement_index": 97,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 11,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "FULL_LRA",
+          "metric_core": [
+            "kal2_2_3_9_10",
+            "kal2_2_3_8_9",
+            "kal2_2_3_7_8",
+            "kal1_0_2_3_10",
+            "kal2_2_3_6_7",
+            "kal2_0_1_9_10",
+            "kal2_0_1_8_9",
+            "kal2_0_1_7_8",
+            "kal2_0_1_6_7",
+            "kal2_2_3_5_6",
+            "kal2_0_1_5_6",
+            "kal2_1_2_9_10",
+            "kal2_0_1_4_5",
+            "kal2_1_2_8_9",
+            "kal1_0_1_2_10",
+            "kal2_1_2_7_8",
+            "kal2_2_3_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_4_5",
+            "row_0_2_4",
+            "row_0_2_7",
+            "row_0_2_10",
+            "row_1_0_6",
+            "row_1_0_10",
+            "row_2_1_6",
+            "row_2_1_7",
+            "row_3_0_4"
+          ],
+          "refinement_index": 79,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 11,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          9,
+          0
+        ],
+        [
+          9,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "kind": "FULL_LRA",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal2_3_4_9_10",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "row_1_0_5",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_0_1_9_10",
+            "row_0_2_10",
+            "row_9_0_5",
+            "row_5_2_10",
+            "kal2_4_5_9_10",
+            "kal2_2_3_9_10"
+          ],
+          "refinement_index": 80,
+          "source": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json"
+        }
+      ]
+    }
+  ],
+  "source_count": 1,
+  "sources": [
+    {
+      "n": 11,
+      "path": "scratch/atail-force/generic-biapex-kalmanson-search/n11_a4_global_equality_full_180s.json",
+      "random_seed": null,
+      "sha256": "ddc0834be44dd3e7fbeed715692ada3a6b5c3935e318f69d0132ab3fc5f33c3c",
+      "status": "UNKNOWN"
+    }
+  ]
+}

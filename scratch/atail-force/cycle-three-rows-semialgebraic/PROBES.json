@@ -1,0 +1,130 @@
+{
+  "epistemic_status": "BOUNDED_EXTERNAL_EXACT_ARITHMETIC_PROBES_NOT_PROOF",
+  "finite_normal_form": {
+    "five_target_fixed_orders": 360,
+    "five_target_shared_rows": [
+      0,
+      1
+    ],
+    "six_target_fixed_orders": 630,
+    "total_fixed_orders": 990
+  },
+  "reduction_boundary": {
+    "available": "per-row ReverseRowCyclicRoles from K + hperiod + hreverse",
+    "consequence": "the 990 fixed orders exhaust the finite abstraction only after that shared-order packet is produced",
+    "missing": "one anchored chiral common-boundary order simultaneously transporting the three row-role packets",
+    "status": "CONDITIONAL_ON_SOURCE_OPEN_SHARED_BOUNDARY_ORDER_PACKET"
+  },
+  "records": [
+    {
+      "actual_outside_target_count": 5,
+      "case": "k5_0384",
+      "constraint_blocks": {
+        "blocker_parameterization_equalities": 6,
+        "fixed_strict_convex_order": 168,
+        "mec_containment": 11,
+        "mec_parameterization_equalities": 3,
+        "opposite_cap_side": 6,
+        "pairwise_distinct": 91,
+        "physical_cap_side": 6,
+        "physical_exact_class_named_exclusions": 8,
+        "row_exact_class_named_exclusions": 27,
+        "row_target_equalities": 6,
+        "source_order_and_nonobtuse": 6,
+        "tangent_parameterization_equalities": 8
+      },
+      "constraint_count": 346,
+      "cvc5": {
+        "returncode": -6,
+        "status": "UNKNOWN_NO_VERDICT",
+        "stderr_tail": "cvc5 interrupted by timeout.\n",
+        "stdout_tail": ""
+      },
+      "cyclic_order": [
+        "o",
+        "left",
+        "q0",
+        "c0",
+        "c2",
+        "q1",
+        "c1",
+        "q2",
+        "right",
+        "t_x0_x1",
+        "t_y0",
+        "t_y1",
+        "t_x2",
+        "t_y2"
+      ],
+      "generic_equality_dimension": 11,
+      "generically_independent_equality_count": 23,
+      "point_count": 14,
+      "smt2": "k5_0384.smt2",
+      "variable_count": 34,
+      "z3": {
+        "reason": "timeout",
+        "status": "UNKNOWN"
+      }
+    },
+    {
+      "actual_outside_target_count": 6,
+      "case": "k6_1584",
+      "constraint_blocks": {
+        "blocker_parameterization_equalities": 6,
+        "fixed_strict_convex_order": 195,
+        "mec_containment": 12,
+        "mec_parameterization_equalities": 3,
+        "opposite_cap_side": 7,
+        "pairwise_distinct": 105,
+        "physical_cap_side": 6,
+        "physical_exact_class_named_exclusions": 9,
+        "row_exact_class_named_exclusions": 30,
+        "row_target_equalities": 6,
+        "source_order_and_nonobtuse": 6,
+        "tangent_parameterization_equalities": 8
+      },
+      "constraint_count": 393,
+      "cvc5": {
+        "returncode": -6,
+        "status": "UNKNOWN_NO_VERDICT",
+        "stderr_tail": "cvc5 interrupted by timeout.\n",
+        "stdout_tail": ""
+      },
+      "cyclic_order": [
+        "o",
+        "left",
+        "q0",
+        "c0",
+        "c2",
+        "q1",
+        "c1",
+        "q2",
+        "right",
+        "t_x0",
+        "t_y0",
+        "t_x1",
+        "t_y1",
+        "t_x2",
+        "t_y2"
+      ],
+      "generic_equality_dimension": 13,
+      "generically_independent_equality_count": 23,
+      "point_count": 15,
+      "smt2": "k6_1584.smt2",
+      "variable_count": 36,
+      "z3": {
+        "reason": "timeout",
+        "status": "UNKNOWN"
+      }
+    }
+  ],
+  "schema": "period3-all-reverse-fixed-order-qf-nra-v1",
+  "smoke_tests": {
+    "cvc5_qf_nra_sat": "PASS",
+    "cvc5_qf_nra_unsat": "PASS",
+    "exact_square_orientation": "PASS",
+    "z3_tangent_inconsistent_unsat": "PASS",
+    "z3_tangent_sat": "PASS"
+  },
+  "timeout_ms_per_engine_per_case": 3000
+}

@@ -1,0 +1,271 @@
+{
+  "bounded_row_deletion_msolve": {
+    "attempts": [
+      {
+        "original_index": 0,
+        "removed": true,
+        "verdict": "UNIT"
+      },
+      {
+        "original_index": 1,
+        "removed": false,
+        "verdict": "NONUNIT"
+      },
+      {
+        "original_index": 2,
+        "removed": false,
+        "verdict": "NONUNIT"
+      },
+      {
+        "original_index": 3,
+        "removed": true,
+        "verdict": "UNIT"
+      },
+      {
+        "original_index": 4,
+        "removed": true,
+        "verdict": "UNIT"
+      },
+      {
+        "original_index": 5,
+        "removed": true,
+        "verdict": "UNIT"
+      },
+      {
+        "original_index": 6,
+        "removed": true,
+        "verdict": "UNIT"
+      },
+      {
+        "original_index": 7,
+        "removed": true,
+        "verdict": "UNIT"
+      },
+      {
+        "original_index": 8,
+        "removed": false,
+        "verdict": "NONUNIT"
+      },
+      {
+        "original_index": 9,
+        "removed": false,
+        "verdict": "NONUNIT"
+      },
+      {
+        "original_index": 10,
+        "removed": false,
+        "verdict": "NONUNIT"
+      },
+      {
+        "original_index": 11,
+        "removed": false,
+        "verdict": "NONUNIT"
+      }
+    ],
+    "initial_row_count": 12,
+    "retained_equality_count": 19,
+    "retained_expanded_polynomial_sha256": "f355dc18d8515a63d589f48cbea997749e1b9778ab5513ca5f7ad1806f1d49cd",
+    "retained_row_count": 6,
+    "retained_rows": [
+      {
+        "center": 1,
+        "support": [
+          0,
+          2,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "center": 2,
+        "support": [
+          0,
+          1,
+          10,
+          11
+        ]
+      },
+      {
+        "center": 8,
+        "support": [
+          2,
+          4,
+          9,
+          11
+        ]
+      },
+      {
+        "center": 9,
+        "support": [
+          0,
+          2,
+          3,
+          6
+        ]
+      },
+      {
+        "center": 10,
+        "support": [
+          0,
+          1,
+          5,
+          6
+        ]
+      },
+      {
+        "center": 11,
+        "support": [
+          4,
+          5,
+          9,
+          10
+        ]
+      }
+    ],
+    "retained_verdict": "UNIT",
+    "row_order": "forward",
+    "strategy": "one-pass-canonical-row-deletion-msolve",
+    "variable_order": "reverse"
+  },
+  "coordinate_model": "p0_zero_p1_e1",
+  "equality_count": 37,
+  "evidence_scope": "exact characteristic-zero equality ideal; NONUNIT is not a real or nondegenerate realization; a collision is admitted only after the included lift replays exactly",
+  "expanded_polynomial_sha256": "bfcf685d1c40112312f26d87df3a314378c251905ac7ea7d9d9d52a7bb322dc5",
+  "pattern": "offset0-postunit45-full",
+  "point_relabeling": {
+    "kind": "cyclic_shift_mod_12",
+    "old_to_new": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "shift": 0
+  },
+  "row_count": 12,
+  "rows": [
+    {
+      "center": 0,
+      "support": [
+        3,
+        4,
+        8,
+        10
+      ]
+    },
+    {
+      "center": 1,
+      "support": [
+        0,
+        2,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "center": 2,
+      "support": [
+        0,
+        1,
+        10,
+        11
+      ]
+    },
+    {
+      "center": 3,
+      "support": [
+        4,
+        6,
+        7,
+        11
+      ]
+    },
+    {
+      "center": 4,
+      "support": [
+        1,
+        3,
+        5,
+        7
+      ]
+    },
+    {
+      "center": 5,
+      "support": [
+        1,
+        4,
+        6,
+        8
+      ]
+    },
+    {
+      "center": 6,
+      "support": [
+        2,
+        3,
+        5,
+        11
+      ]
+    },
+    {
+      "center": 7,
+      "support": [
+        2,
+        5,
+        8,
+        10
+      ]
+    },
+    {
+      "center": 8,
+      "support": [
+        2,
+        4,
+        9,
+        11
+      ]
+    },
+    {
+      "center": 9,
+      "support": [
+        0,
+        2,
+        3,
+        6
+      ]
+    },
+    {
+      "center": 10,
+      "support": [
+        0,
+        1,
+        5,
+        6
+      ]
+    },
+    {
+      "center": 11,
+      "support": [
+        4,
+        5,
+        9,
+        10
+      ]
+    }
+  ],
+  "schema": "p97-source-indexed-saved-pattern-exact-probe-v1",
+  "singular": {
+    "status": "SKIPPED"
+  },
+  "singular_variable_order": "forward"
+}

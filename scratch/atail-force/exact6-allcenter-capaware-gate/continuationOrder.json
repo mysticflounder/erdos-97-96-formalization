@@ -1,0 +1,1431 @@
+{
+  "attempts": 1106,
+  "cap_profile": [
+    5,
+    6,
+    6
+  ],
+  "counters": {
+    "linear_metric_unsat": 1105
+  },
+  "elapsed_seconds": 180.08948541700374,
+  "epistemic_status": "BOUNDED_THEOREM_DISCOVERY_NOT_LEAN_PROOF",
+  "n": 14,
+  "omitted_from_abstract_distance_gate": [
+    "rank-two Euclidean coordinate realization beyond the equality ideal",
+    "MEC containment and nonobtuse support-triangle inequalities",
+    "noM44 alternate-support-triangle quantification",
+    "minimality beyond selected-witness strong connectivity",
+    "the original first-apex frontier radius and retained double-deletion rows"
+  ],
+  "orbit": "continuationOrder",
+  "physical_apices_omitted_from_blocker_image": [
+    5,
+    9
+  ],
+  "reason": "wall budget",
+  "refinements": [
+    {
+      "attempt": 1,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 15,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          3,
+          12
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        3,
+        5,
+        11
+      ]
+    },
+    {
+      "attempt": 2,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 8,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          10
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        3,
+        7,
+        13
+      ]
+    },
+    {
+      "attempt": 3,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 22,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          9
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        3,
+        7,
+        13
+      ]
+    },
+    {
+      "attempt": 4,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 6,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          11
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          11
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        3,
+        7,
+        13
+      ]
+    },
+    {
+      "attempt": 5,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 12,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        3,
+        7,
+        13
+      ]
+    },
+    {
+      "attempt": 6,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 13,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          4
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        3,
+        7,
+        13
+      ]
+    },
+    {
+      "attempt": 7,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 33,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          13
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          3,
+          13
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        3,
+        7,
+        13
+      ]
+    },
+    {
+      "attempt": 8,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 11,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        3,
+        7,
+        13
+      ]
+    },
+    {
+      "attempt": 9,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 26,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          13
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          9
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        3,
+        7,
+        13
+      ]
+    },
+    {
+      "attempt": 10,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 10,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          10
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        3,
+        7,
+        13
+      ]
+    },
+    {
+      "attempt": 11,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 16,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          11
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        3,
+        7,
+        13
+      ]
+    },
+    {
+      "attempt": 12,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 18,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          13
+        ],
+        [
+          9,
+          1
+        ],
+        [
+          9,
+          2
+        ],
+        [
+          9,
+          13
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        3,
+        7,
+        13
+      ]
+    },
+    {
+      "attempt": 13,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 13,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        13
+      ]
+    },
+    {
+      "attempt": 14,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 28,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          13
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          7
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        13
+      ]
+    },
+    {
+      "attempt": 15,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 28,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          3,
+          12
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          10,
+          7
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        13
+      ]
+    },
+    {
+      "attempt": 16,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 38,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          12
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        13
+      ]
+    },
+    {
+      "attempt": 17,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 22,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        13
+      ]
+    },
+    {
+      "attempt": 18,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 8,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          10
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        13
+      ]
+    },
+    {
+      "attempt": 19,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 6,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          10
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        13
+      ]
+    },
+    {
+      "attempt": 20,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 10,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          12,
+          4
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        13
+      ]
+    },
+    {
+      "attempt": 21,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 3,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          5
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          5
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        13
+      ]
+    },
+    {
+      "attempt": 22,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 12,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          9,
+          1
+        ],
+        [
+          9,
+          6
+        ],
+        [
+          9,
+          13
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        13
+      ]
+    },
+    {
+      "attempt": 23,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 31,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          11
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          10,
+          7
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        13
+      ]
+    },
+    {
+      "attempt": 24,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 28,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          8
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        13
+      ]
+    },
+    {
+      "attempt": 25,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 15,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          13
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          10
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        10
+      ]
+    },
+    {
+      "attempt": 26,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 21,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        10
+      ]
+    },
+    {
+      "attempt": 27,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 18,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        10
+      ]
+    },
+    {
+      "attempt": 28,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 22,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          13
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        10
+      ]
+    },
+    {
+      "attempt": 29,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_first",
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 10,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        10
+      ]
+    },
+    {
+      "attempt": 30,
+      "conditioned_on_shell": false,
+      "core_kinds": [
+        "kalmanson_second",
+        "selected_row_equality"
+      ],
+      "core_size": 26,
+      "kind": "linear_metric_unsat",
+      "required_memberships": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          6
+        ]
+      ],
+      "shell": [
+        1,
+        2,
+        4,
+        6,
+        10
+      ]
+    }
+  ],
+  "retained": [
+    "one selected K4 row at every actual carrier center",
+    "one actual critical blocker and blocker-row manifest at every source",
+    "full no_qfree_at semantic at every actual source/blocker",
+    "both physical apices omitted from the blocker image",
+    "exact contiguous (5,6,6) cap blocks and cap-local row-hit bounds",
+    "strict triangle and both strict Kalmanson inequalities",
+    "complete exact-five physical-apex class with corrected exact-six distribution",
+    "complete named unused/source/target critical rows and role orbit",
+    "selected witness strong connectivity"
+  ],
+  "schema": "p97-exact6-allcenter-capaware-gate-v1",
+  "status": "UNKNOWN",
+  "stored_refinement_count": 30
+}

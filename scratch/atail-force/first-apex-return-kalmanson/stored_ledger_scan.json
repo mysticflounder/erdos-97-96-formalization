@@ -1,0 +1,408 @@
+{
+  "all_three_pairs_unequal_cases": 990,
+  "all_unequal_representatives": {
+    "x<y,x<y,x<y": {
+      "case": "k5_0384",
+      "comparisons": [
+        {
+          "absolute_gap": "6",
+          "direction": "x<y",
+          "dist_first_apex_x": "19",
+          "dist_first_apex_y": "25",
+          "row": 0,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y0"
+        },
+        {
+          "absolute_gap": "16",
+          "direction": "x<y",
+          "dist_first_apex_x": "19",
+          "dist_first_apex_y": "35",
+          "row": 1,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y1"
+        },
+        {
+          "absolute_gap": "4",
+          "direction": "x<y",
+          "dist_first_apex_x": "50",
+          "dist_first_apex_y": "54",
+          "row": 2,
+          "x_target": "t_x2",
+          "y_target": "t_y2"
+        }
+      ],
+      "cyclic_order": [
+        "o",
+        "left",
+        "q0",
+        "c0",
+        "c2",
+        "q1",
+        "c1",
+        "q2",
+        "right",
+        "t_x0_x1",
+        "t_y0",
+        "t_y1",
+        "t_x2",
+        "t_y2"
+      ]
+    },
+    "x<y,x<y,y<x": {
+      "case": "k5_0388",
+      "comparisons": [
+        {
+          "absolute_gap": "5",
+          "direction": "x<y",
+          "dist_first_apex_x": "58",
+          "dist_first_apex_y": "63",
+          "row": 0,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y0"
+        },
+        {
+          "absolute_gap": "4",
+          "direction": "x<y",
+          "dist_first_apex_x": "58",
+          "dist_first_apex_y": "62",
+          "row": 1,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y1"
+        },
+        {
+          "absolute_gap": "20",
+          "direction": "y<x",
+          "dist_first_apex_x": "84",
+          "dist_first_apex_y": "64",
+          "row": 2,
+          "x_target": "t_x2",
+          "y_target": "t_y2"
+        }
+      ],
+      "cyclic_order": [
+        "o",
+        "t_x0_x1",
+        "t_y0",
+        "t_y1",
+        "t_x2",
+        "left",
+        "q0",
+        "c0",
+        "c2",
+        "q1",
+        "c1",
+        "q2",
+        "right",
+        "t_y2"
+      ]
+    },
+    "x<y,y<x,x<y": {
+      "case": "k5_0386",
+      "comparisons": [
+        {
+          "absolute_gap": "5",
+          "direction": "x<y",
+          "dist_first_apex_x": "53",
+          "dist_first_apex_y": "58",
+          "row": 0,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y0"
+        },
+        {
+          "absolute_gap": "33",
+          "direction": "y<x",
+          "dist_first_apex_x": "53",
+          "dist_first_apex_y": "20",
+          "row": 1,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y1"
+        },
+        {
+          "absolute_gap": "4",
+          "direction": "x<y",
+          "dist_first_apex_x": "55",
+          "dist_first_apex_y": "59",
+          "row": 2,
+          "x_target": "t_x2",
+          "y_target": "t_y2"
+        }
+      ],
+      "cyclic_order": [
+        "o",
+        "t_x0_x1",
+        "t_y0",
+        "left",
+        "q0",
+        "c0",
+        "c2",
+        "q1",
+        "c1",
+        "q2",
+        "right",
+        "t_y1",
+        "t_x2",
+        "t_y2"
+      ]
+    },
+    "x<y,y<x,y<x": {
+      "case": "k5_0393",
+      "comparisons": [
+        {
+          "absolute_gap": "5",
+          "direction": "x<y",
+          "dist_first_apex_x": "51",
+          "dist_first_apex_y": "56",
+          "row": 0,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y0"
+        },
+        {
+          "absolute_gap": "28",
+          "direction": "y<x",
+          "dist_first_apex_x": "51",
+          "dist_first_apex_y": "23",
+          "row": 1,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y1"
+        },
+        {
+          "absolute_gap": "16",
+          "direction": "y<x",
+          "dist_first_apex_x": "73",
+          "dist_first_apex_y": "57",
+          "row": 2,
+          "x_target": "t_x2",
+          "y_target": "t_y2"
+        }
+      ],
+      "cyclic_order": [
+        "o",
+        "t_x0_x1",
+        "t_y0",
+        "t_x2",
+        "left",
+        "q0",
+        "c0",
+        "c2",
+        "q1",
+        "c1",
+        "q2",
+        "right",
+        "t_y1",
+        "t_y2"
+      ]
+    },
+    "y<x,x<y,x<y": {
+      "case": "k5_0404",
+      "comparisons": [
+        {
+          "absolute_gap": "20",
+          "direction": "y<x",
+          "dist_first_apex_x": "52",
+          "dist_first_apex_y": "32",
+          "row": 0,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y0"
+        },
+        {
+          "absolute_gap": "2",
+          "direction": "x<y",
+          "dist_first_apex_x": "52",
+          "dist_first_apex_y": "54",
+          "row": 1,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y1"
+        },
+        {
+          "absolute_gap": "4",
+          "direction": "x<y",
+          "dist_first_apex_x": "54",
+          "dist_first_apex_y": "58",
+          "row": 2,
+          "x_target": "t_x2",
+          "y_target": "t_y2"
+        }
+      ],
+      "cyclic_order": [
+        "o",
+        "t_x0_x1",
+        "t_y1",
+        "left",
+        "q0",
+        "c0",
+        "c2",
+        "q1",
+        "c1",
+        "q2",
+        "right",
+        "t_y0",
+        "t_x2",
+        "t_y2"
+      ]
+    },
+    "y<x,x<y,y<x": {
+      "case": "k5_0411",
+      "comparisons": [
+        {
+          "absolute_gap": "15",
+          "direction": "y<x",
+          "dist_first_apex_x": "52",
+          "dist_first_apex_y": "37",
+          "row": 0,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y0"
+        },
+        {
+          "absolute_gap": "2",
+          "direction": "x<y",
+          "dist_first_apex_x": "52",
+          "dist_first_apex_y": "54",
+          "row": 1,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y1"
+        },
+        {
+          "absolute_gap": "16",
+          "direction": "y<x",
+          "dist_first_apex_x": "74",
+          "dist_first_apex_y": "58",
+          "row": 2,
+          "x_target": "t_x2",
+          "y_target": "t_y2"
+        }
+      ],
+      "cyclic_order": [
+        "o",
+        "t_x0_x1",
+        "t_y1",
+        "t_x2",
+        "left",
+        "q0",
+        "c0",
+        "c2",
+        "q1",
+        "c1",
+        "q2",
+        "right",
+        "t_y0",
+        "t_y2"
+      ]
+    },
+    "y<x,y<x,x<y": {
+      "case": "k5_0385",
+      "comparisons": [
+        {
+          "absolute_gap": "25",
+          "direction": "y<x",
+          "dist_first_apex_x": "57",
+          "dist_first_apex_y": "32",
+          "row": 0,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y0"
+        },
+        {
+          "absolute_gap": "8",
+          "direction": "y<x",
+          "dist_first_apex_x": "57",
+          "dist_first_apex_y": "49",
+          "row": 1,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y1"
+        },
+        {
+          "absolute_gap": "4",
+          "direction": "x<y",
+          "dist_first_apex_x": "59",
+          "dist_first_apex_y": "63",
+          "row": 2,
+          "x_target": "t_x2",
+          "y_target": "t_y2"
+        }
+      ],
+      "cyclic_order": [
+        "o",
+        "t_x0_x1",
+        "left",
+        "q0",
+        "c0",
+        "c2",
+        "q1",
+        "c1",
+        "q2",
+        "right",
+        "t_y0",
+        "t_y1",
+        "t_x2",
+        "t_y2"
+      ]
+    },
+    "y<x,y<x,y<x": {
+      "case": "k5_0422",
+      "comparisons": [
+        {
+          "absolute_gap": "20",
+          "direction": "y<x",
+          "dist_first_apex_x": "53",
+          "dist_first_apex_y": "33",
+          "row": 0,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y0"
+        },
+        {
+          "absolute_gap": "6",
+          "direction": "y<x",
+          "dist_first_apex_x": "53",
+          "dist_first_apex_y": "47",
+          "row": 1,
+          "x_target": "t_x0_x1",
+          "y_target": "t_y1"
+        },
+        {
+          "absolute_gap": "12",
+          "direction": "y<x",
+          "dist_first_apex_x": "71",
+          "dist_first_apex_y": "59",
+          "row": 2,
+          "x_target": "t_x2",
+          "y_target": "t_y2"
+        }
+      ],
+      "cyclic_order": [
+        "o",
+        "t_x0_x1",
+        "t_x2",
+        "left",
+        "q0",
+        "c0",
+        "c2",
+        "q1",
+        "c1",
+        "q2",
+        "right",
+        "t_y0",
+        "t_y1",
+        "t_y2"
+      ]
+    }
+  },
+  "apex_mapping": {
+    "left": "surplusApex",
+    "o": "S.oppApex2",
+    "queried_first_apex": "right",
+    "right": "S.oppApex1"
+  },
+  "epistemic_status": "EXACT_REPLAY_OF_STORED_ABSTRACT_LRA_MODELS_NOT_EUCLIDEAN_NOT_LEAN",
+  "schema": "period3-oppApex1-nonreturn-stored-ledger-scan-v2",
+  "signature_counts": {
+    "x<y,x<y,x<y": 348,
+    "x<y,x<y,y<x": 126,
+    "x<y,y<x,x<y": 114,
+    "x<y,y<x,y<x": 72,
+    "y<x,x<y,x<y": 114,
+    "y<x,x<y,y<x": 72,
+    "y<x,y<x,x<y": 84,
+    "y<x,y<x,y<x": 60
+  },
+  "stored_full_lra_cases": 990
+}

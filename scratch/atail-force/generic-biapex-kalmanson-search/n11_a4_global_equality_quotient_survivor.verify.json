@@ -1,0 +1,8 @@
+{
+  "all_refinement_cores_force_recorded_collision": true,
+  "n": 11,
+  "refinement_count": 60,
+  "sat_payload_checked": true,
+  "source_status": "SAT_GLOBAL_EQUALITY_QUOTIENT_SURVIVOR",
+  "status": "VERIFIED"
+}

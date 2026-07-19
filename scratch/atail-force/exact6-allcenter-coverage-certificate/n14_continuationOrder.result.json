@@ -1,0 +1,31 @@
+{
+  "artifacts": {
+    "cnf": {
+      "bytes": 8277733,
+      "path": "n14_continuationOrder.cnf",
+      "sha256": "e65851c851c7d3b4f57ae9e969e93037e87a8a108a40eaef29c9926e9d3988b4"
+    },
+    "manifest": {
+      "bytes": 92866,
+      "path": "n14_continuationOrder.manifest.json",
+      "sha256": "eedfc5af55ae5de28ce523782ba02489c9803917db553c8c3e705e3783330e57"
+    },
+    "solver_output": {
+      "bytes": 11757,
+      "path": "n14_continuationOrder.solver.txt",
+      "sha256": "92abf093eeea52f278e3b307403b3bba62d3ac0d873a4af055a3c311763c241f"
+    }
+  },
+  "epistemic_status": "FINITE_STRUCTURAL_VERDICT_NOT_LIVE_LEAN_CLOSURE",
+  "live_closure": false,
+  "orbit": "continuationOrder",
+  "profile": "n14",
+  "proof_check": null,
+  "schema": "p97-exact6-allcenter-coverage-result-v1",
+  "solver": {
+    "name": "cadical",
+    "returncode": 10,
+    "timeout_seconds": 300
+  },
+  "verdict": "SAT_CANDIDATE"
+}

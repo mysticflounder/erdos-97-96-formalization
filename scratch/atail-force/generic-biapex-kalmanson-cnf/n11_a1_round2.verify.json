@@ -1,0 +1,15 @@
+{
+  "all_preloaded_schema_cuts_satisfied": true,
+  "blocker_count": 11,
+  "checked_schema_count": 214,
+  "checked_schema_embedding_count": 141504,
+  "n": 11,
+  "omitted_apices": [
+    0,
+    1
+  ],
+  "row_count": 11,
+  "skipped_schema_count_core_larger_than_n": 17,
+  "status": "VERIFIED_SAT",
+  "strongly_connected": true
+}

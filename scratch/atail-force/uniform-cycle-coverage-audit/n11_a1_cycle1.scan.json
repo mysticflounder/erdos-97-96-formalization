@@ -1,0 +1,64 @@
+{
+  "cycle_checks": 2,
+  "cycle_count_by_size": {
+    "3": 168
+  },
+  "epistemic_status": "EXACT_BOUNDED_STRUCTURAL_AND_LRA_SCAN",
+  "n": 11,
+  "reason": null,
+  "schema": "p97-uniform-cycle-coverage-candidate-scan-v1",
+  "single_kalmanson_collision_count": 0,
+  "source": "scratch/atail-force/uniform-cycle-coverage-audit/n11_a1_cycle1.result.json",
+  "status": "TERMINAL_FOUND",
+  "terminal": {
+    "canonical_order_type": "C0|C1X0|X1|C2|X2",
+    "core_vertex_count": 11,
+    "cycle_edges": [
+      [
+        0,
+        1,
+        3
+      ],
+      [
+        1,
+        3,
+        6
+      ],
+      [
+        4,
+        1,
+        6
+      ]
+    ],
+    "cycle_size": 3,
+    "has_ordinal_cycle": false,
+    "kalmanson_only_status": "UNSAT",
+    "kind": "KALMANSON_UNSAT_EQUALITY_CYCLE",
+    "order_schema": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        4,
+        6
+      ]
+    ]
+  }
+}

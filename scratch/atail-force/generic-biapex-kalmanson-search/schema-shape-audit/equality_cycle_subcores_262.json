@@ -1,0 +1,3910 @@
+{
+  "cycle_witness_count": 112,
+  "epistemic_status": "EXACT_BOUNDED_LRA_NOT_UNIFORM_LEAN_COVERAGE",
+  "full_lra_schema_count": 88,
+  "full_lra_status_histogram": {
+    "SAT": 22,
+    "UNSAT": 90
+  },
+  "kalmanson_only_status_histogram": {
+    "SAT": 22,
+    "UNSAT": 90
+  },
+  "minimum_unsat_cycle_size": {
+    "110": 3,
+    "116": 3,
+    "124": 4,
+    "162": 3,
+    "164": 3,
+    "167": 3,
+    "174": 3,
+    "177": 3,
+    "179": 3,
+    "180": 3,
+    "181": 4,
+    "182": 3,
+    "183": 4,
+    "186": 3,
+    "187": 3,
+    "188": 4,
+    "189": 3,
+    "190": 3,
+    "192": 3,
+    "193": 3,
+    "194": 3,
+    "195": 5,
+    "196": 3,
+    "198": 3,
+    "199": 3,
+    "200": 3,
+    "201": 3,
+    "202": 3,
+    "203": 3,
+    "204": 3,
+    "205": 3,
+    "206": 4,
+    "207": 3,
+    "208": 3,
+    "209": 3,
+    "210": 3,
+    "211": 3,
+    "212": 4,
+    "213": 3,
+    "214": 3,
+    "215": 3,
+    "216": 3,
+    "217": 3,
+    "218": 3,
+    "219": 4,
+    "220": 3,
+    "221": 3,
+    "222": 3,
+    "223": 3,
+    "224": 3,
+    "225": 3,
+    "226": 3,
+    "227": 3,
+    "228": 3,
+    "229": 4,
+    "230": 5,
+    "231": 3,
+    "232": 3,
+    "233": 4,
+    "235": 3,
+    "236": 3,
+    "237": 3,
+    "238": 3,
+    "239": 3,
+    "240": 3,
+    "241": 3,
+    "242": 3,
+    "243": 3,
+    "244": 3,
+    "245": 3,
+    "246": 3,
+    "247": 7,
+    "248": 3,
+    "249": 3,
+    "250": 3,
+    "251": 4,
+    "252": 4,
+    "253": 3,
+    "254": 3,
+    "255": 4,
+    "256": 3,
+    "257": 3,
+    "258": 3,
+    "259": 3,
+    "260": 3,
+    "261": 3,
+    "99": 3
+  },
+  "minimum_unsat_cycle_size_histogram": {
+    "3": 72,
+    "4": 12,
+    "5": 2,
+    "7": 1
+  },
+  "not_killed_schema_indices": [
+    234
+  ],
+  "ordinal_cycle_schema_indices": [
+    179,
+    186,
+    198,
+    199,
+    200,
+    215,
+    218,
+    221,
+    228,
+    231,
+    243,
+    245,
+    246,
+    249,
+    251,
+    253,
+    254,
+    255,
+    256,
+    257,
+    259,
+    260
+  ],
+  "results": [
+    {
+      "canonical_order_type": "C0|C1|C2|X1|X2|X0",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 6,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "schema_index": 99
+    },
+    {
+      "canonical_order_type": "C0|X2|C1X0|C2|X1",
+      "centers": [
+        0,
+        2,
+        3
+      ],
+      "core_vertex_count": 6,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "schema_index": 110
+    },
+    {
+      "canonical_order_type": "C0|C1|X1|X0|X2|C2",
+      "centers": [
+        0,
+        5,
+        6
+      ],
+      "core_vertex_count": 7,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "schema_index": 116
+    },
+    {
+      "canonical_order_type": "C0X2|C1|C2|X1|X0",
+      "centers": [
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 7,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "schema_index": 124
+    },
+    {
+      "canonical_order_type": "C0|C2X0|C1|C3X1|X2|X3",
+      "centers": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 7,
+      "cycle_size": 4,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "schema_index": 124
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X2|X1|X0",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 7,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          6
+        ]
+      ],
+      "schema_index": 162
+    },
+    {
+      "canonical_order_type": "C0|C1|X1|C2|X2|X0",
+      "centers": [
+        1,
+        2,
+        4
+      ],
+      "core_vertex_count": 7,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          3,
+          6
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "schema_index": 164
+    },
+    {
+      "canonical_order_type": "C0X2|C1|C2|X0|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 8,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          3,
+          7
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "schema_index": 167
+    },
+    {
+      "canonical_order_type": "C0|C1|C2X1|X2|X0",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 8,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          6,
+          7
+        ]
+      ],
+      "schema_index": 174
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X2|X1|X0",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 8,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          4,
+          7
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          7
+        ]
+      ],
+      "schema_index": 177
+    },
+    {
+      "canonical_order_type": "X0|C0|C2|C1|X1|X2",
+      "centers": [
+        1,
+        3,
+        5
+      ],
+      "core_vertex_count": 8,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          6,
+          7
+        ]
+      ],
+      "schema_index": 179
+    },
+    {
+      "canonical_order_type": "X0|C1|C0|C2|X2|X1",
+      "centers": [
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 8,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          4,
+          7
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "schema_index": 180
+    },
+    {
+      "canonical_order_type": "C0|C1|C3X1|X3|X0|X2|C2",
+      "centers": [
+        0,
+        1,
+        2,
+        8
+      ],
+      "core_vertex_count": 9,
+      "cycle_size": 4,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          7
+        ]
+      ],
+      "schema_index": 181
+    },
+    {
+      "canonical_order_type": "C0|C1|X0|X1|X2|C2",
+      "centers": [
+        0,
+        1,
+        8
+      ],
+      "core_vertex_count": 9,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          3,
+          7
+        ]
+      ],
+      "schema_index": 182
+    },
+    {
+      "canonical_order_type": "C0|C2X0|C3X2|X1|X3|C1",
+      "centers": [
+        0,
+        1,
+        2,
+        8
+      ],
+      "core_vertex_count": 9,
+      "cycle_size": 4,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "schema_index": 183
+    },
+    {
+      "canonical_order_type": "C0|C1|X2|X1|X0|C2",
+      "centers": [
+        0,
+        6,
+        7
+      ],
+      "core_vertex_count": 9,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "schema_index": 186
+    },
+    {
+      "canonical_order_type": "C0|C1X0|C2|X2|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 9,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "schema_index": 187
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X2|X1|X0",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 9,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          5,
+          8
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "schema_index": 187
+    },
+    {
+      "canonical_order_type": "C0|C1X0|C2|X2|X1|X3|C3",
+      "centers": [
+        0,
+        1,
+        2,
+        8
+      ],
+      "core_vertex_count": 9,
+      "cycle_size": 4,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          6
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          1,
+          7
+        ]
+      ],
+      "schema_index": 188
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X1|X2",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 9,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          3,
+          6
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "schema_index": 189
+    },
+    {
+      "canonical_order_type": "C0|C1|C2X1|X2|X0",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 9,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          7,
+          8
+        ]
+      ],
+      "schema_index": 190
+    },
+    {
+      "canonical_order_type": "X0|C0|C1|X1|C2|X2",
+      "centers": [
+        1,
+        2,
+        4
+      ],
+      "core_vertex_count": 9,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          0,
+          8
+        ]
+      ],
+      "schema_index": 192
+    },
+    {
+      "canonical_order_type": "C0|C1X0|X1|C2|X2",
+      "centers": [
+        0,
+        1,
+        3
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "schema_index": 193
+    },
+    {
+      "canonical_order_type": "C0|C1|X2|X0|X1|C2",
+      "centers": [
+        0,
+        1,
+        9
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          3,
+          8
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "schema_index": 194
+    },
+    {
+      "canonical_order_type": "X0|C0|C2|C1|X2|X1",
+      "centers": [
+        1,
+        2,
+        4
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "schema_index": 195
+    },
+    {
+      "canonical_order_type": "C0|X0|C2|C1X4|C3X1|C4X3|X2",
+      "centers": [
+        0,
+        2,
+        3,
+        4,
+        5
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 5,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          4
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "schema_index": 195
+    },
+    {
+      "canonical_order_type": "C0X3|C3X0|C2|C1X5|C4X1|C5|X4|X2",
+      "centers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 6,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          4
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "schema_index": 195
+    },
+    {
+      "canonical_order_type": "C0|C1X0|X1|X2|C2",
+      "centers": [
+        0,
+        1,
+        9
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          4
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          1,
+          8
+        ]
+      ],
+      "schema_index": 196
+    },
+    {
+      "canonical_order_type": "C0X2|C1|X0|X1|C2",
+      "centers": [
+        0,
+        2,
+        9
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          6,
+          8
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "schema_index": 198
+    },
+    {
+      "canonical_order_type": "C0|C1|X2|X0|X1|C2",
+      "centers": [
+        0,
+        2,
+        9
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          6,
+          8
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          6
+        ]
+      ],
+      "schema_index": 198
+    },
+    {
+      "canonical_order_type": "C0|C1|X2|X1|X0|C2",
+      "centers": [
+        0,
+        7,
+        8
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          6
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "schema_index": 199
+    },
+    {
+      "canonical_order_type": "C0|C1|X0|X1|X2|C2",
+      "centers": [
+        0,
+        7,
+        8
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          6
+        ]
+      ],
+      "schema_index": 200
+    },
+    {
+      "canonical_order_type": "C0|X0|X2|C2|C1|X1",
+      "centers": [
+        0,
+        7,
+        8
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          9
+        ]
+      ],
+      "schema_index": 200
+    },
+    {
+      "canonical_order_type": "C0|C1X0|C2|X2|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          1,
+          7
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "schema_index": 201
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X2|X1|X0",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          7,
+          9
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          3,
+          9
+        ]
+      ],
+      "schema_index": 201
+    },
+    {
+      "canonical_order_type": "C0|X0|C1|X1|X2|C2",
+      "centers": [
+        0,
+        2,
+        9
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          1,
+          8
+        ]
+      ],
+      "schema_index": 202
+    },
+    {
+      "canonical_order_type": "C0|C1X0|X1|X2|C2",
+      "centers": [
+        0,
+        7,
+        9
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "schema_index": 203
+    },
+    {
+      "canonical_order_type": "C0|C1X0|C2|X2|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          1,
+          8
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "schema_index": 204
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X2|X1|X0",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          8,
+          9
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          4,
+          9
+        ]
+      ],
+      "schema_index": 204
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X2|X1|X0",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          4,
+          9
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          9
+        ]
+      ],
+      "schema_index": 205
+    },
+    {
+      "canonical_order_type": "C0|C1X0|C2|X1|X2",
+      "centers": [
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          2,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          2,
+          8
+        ]
+      ],
+      "schema_index": 206
+    },
+    {
+      "canonical_order_type": "C0|C1|C2X1|C3|X2|X3|X0",
+      "centers": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 4,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          2,
+          9
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "schema_index": 206
+    },
+    {
+      "canonical_order_type": "X0|C0|C2|C1|X1|X2",
+      "centers": [
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "schema_index": 207
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X2|X1|X0",
+      "centers": [
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          7,
+          9
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          9
+        ]
+      ],
+      "schema_index": 208
+    },
+    {
+      "canonical_order_type": "X0|C1|C0|C2|X2|X1",
+      "centers": [
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 10,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          4,
+          9
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "schema_index": 209
+    },
+    {
+      "canonical_order_type": "C0|C1|X0|X1|X2|C2",
+      "centers": [
+        0,
+        1,
+        10
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          2,
+          6
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          2,
+          9
+        ]
+      ],
+      "schema_index": 210
+    },
+    {
+      "canonical_order_type": "C0|C1X0|X1|X2|C2",
+      "centers": [
+        0,
+        1,
+        10
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          1,
+          9
+        ]
+      ],
+      "schema_index": 211
+    },
+    {
+      "canonical_order_type": "C0|C1X0|C2X1|C3|X3|X2",
+      "centers": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 4,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "schema_index": 212
+    },
+    {
+      "canonical_order_type": "C0|C1|X2|X1|X0|C2",
+      "centers": [
+        0,
+        1,
+        10
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          3,
+          9
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          9
+        ]
+      ],
+      "schema_index": 213
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X2|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          3,
+          10
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "schema_index": 214
+    },
+    {
+      "canonical_order_type": "C0|X0|C1|X1|C2|X2",
+      "centers": [
+        0,
+        2,
+        5
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "schema_index": 215
+    },
+    {
+      "canonical_order_type": "C0|X0|C2|C1|X1|X2",
+      "centers": [
+        0,
+        2,
+        3
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          4,
+          10
+        ]
+      ],
+      "schema_index": 216
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X1|X2",
+      "centers": [
+        0,
+        2,
+        3
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          4,
+          10
+        ]
+      ],
+      "schema_index": 216
+    },
+    {
+      "canonical_order_type": "C0|C1|X1|X0|X2|C2",
+      "centers": [
+        0,
+        8,
+        9
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          4,
+          7
+        ]
+      ],
+      "schema_index": 217
+    },
+    {
+      "canonical_order_type": "C0|X0|C2|C1|X2|X1",
+      "centers": [
+        0,
+        2,
+        3
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          8,
+          10
+        ]
+      ],
+      "schema_index": 218
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X1|X2|X0",
+      "centers": [
+        0,
+        2,
+        3
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          4,
+          10
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          8,
+          10
+        ]
+      ],
+      "schema_index": 218
+    },
+    {
+      "canonical_order_type": "C0|C1X0|C2|X1|X2",
+      "centers": [
+        0,
+        1,
+        3
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          1,
+          9
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          1,
+          10
+        ]
+      ],
+      "schema_index": 219
+    },
+    {
+      "canonical_order_type": "C0|X0|C1|C2|X2|X1",
+      "centers": [
+        0,
+        2,
+        3
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          1,
+          7
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "schema_index": 219
+    },
+    {
+      "canonical_order_type": "C0|C1|C3|C2|X3|X0|X1|X2",
+      "centers": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 4,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          7,
+          9
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          10
+        ]
+      ],
+      "schema_index": 219
+    },
+    {
+      "canonical_order_type": "C0|C1|X2|X1|X0|C2",
+      "centers": [
+        0,
+        8,
+        10
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          7
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "schema_index": 220
+    },
+    {
+      "canonical_order_type": "C0|X0|X2|C1|X1|C2",
+      "centers": [
+        0,
+        8,
+        10
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          1,
+          9
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "schema_index": 220
+    },
+    {
+      "canonical_order_type": "C0|C1|X2|X1|X0|C2",
+      "centers": [
+        0,
+        8,
+        9
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "schema_index": 221
+    },
+    {
+      "canonical_order_type": "C0|X0|X2|C1|C2|X1",
+      "centers": [
+        0,
+        8,
+        9
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "schema_index": 221
+    },
+    {
+      "canonical_order_type": "C0|C1|X2|X0|X1|C2",
+      "centers": [
+        0,
+        1,
+        10
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          8,
+          9
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "schema_index": 222
+    },
+    {
+      "canonical_order_type": "C0|C1|X0|X1|X2|C2",
+      "centers": [
+        0,
+        9,
+        10
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "schema_index": 223
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X2|X1|X0",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          8,
+          10
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          10
+        ]
+      ],
+      "schema_index": 224
+    },
+    {
+      "canonical_order_type": "C0|C1|X0|X1|X2|C2",
+      "centers": [
+        0,
+        9,
+        10
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          8
+        ]
+      ],
+      "schema_index": 225
+    },
+    {
+      "canonical_order_type": "C0X2|C1|X0|X1|C2",
+      "centers": [
+        0,
+        9,
+        10
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          8,
+          10
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          2,
+          8
+        ]
+      ],
+      "schema_index": 225
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X1|X2|X0",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          3,
+          10
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "schema_index": 226
+    },
+    {
+      "canonical_order_type": "C0|C1|X2|X0|C2|X1",
+      "centers": [
+        0,
+        1,
+        5
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          4,
+          6
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "schema_index": 227
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X2|X0|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          7,
+          10
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          6,
+          7
+        ]
+      ],
+      "schema_index": 228
+    },
+    {
+      "canonical_order_type": "C0X2|C1|C2|X0|X1",
+      "centers": [
+        0,
+        1,
+        3
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          4,
+          10
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "schema_index": 228
+    },
+    {
+      "canonical_order_type": "C0X2|C2|C3|C1|X1|X3|X0",
+      "centers": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 4,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          4,
+          7
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "schema_index": 228
+    },
+    {
+      "canonical_order_type": "C0X2|C2|X0|C1|C3X1|X3",
+      "centers": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 4,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          2,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "schema_index": 229
+    },
+    {
+      "canonical_order_type": "C0X2|C3|C2X0|C1|X1|X3",
+      "centers": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 4,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "schema_index": 230
+    },
+    {
+      "canonical_order_type": "C0X2|C3|C2X0|C1|C4X1|X4|X3",
+      "centers": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 5,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          2,
+          4
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "schema_index": 230
+    },
+    {
+      "canonical_order_type": "C0|C1|X2|C2|X0|X1",
+      "centers": [
+        0,
+        1,
+        4
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          5,
+          8
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "schema_index": 231
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X1|X2",
+      "centers": [
+        0,
+        1,
+        4
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          5,
+          8
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          5,
+          10
+        ]
+      ],
+      "schema_index": 231
+    },
+    {
+      "canonical_order_type": "C0X2|X0|C1|X1|C2",
+      "centers": [
+        0,
+        2,
+        10
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          5,
+          10
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "schema_index": 232
+    },
+    {
+      "canonical_order_type": "C0X2|C2|C3X1|C1|X0|X3",
+      "centers": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 4,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          2,
+          5
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "schema_index": 233
+    },
+    {
+      "canonical_order_type": "C0X2|C1|C2|X0|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          3,
+          4
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "schema_index": 235
+    },
+    {
+      "canonical_order_type": "C0X2|C1|C2|X0|X1",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          3,
+          7
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "schema_index": 236
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X2|X1|X0",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          7,
+          10
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          10
+        ]
+      ],
+      "schema_index": 237
+    },
+    {
+      "canonical_order_type": "C0|X2|C1|C2|X0|X1",
+      "centers": [
+        0,
+        7,
+        8
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          9,
+          10
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          6,
+          9
+        ]
+      ],
+      "schema_index": 238
+    },
+    {
+      "canonical_order_type": "X0|C0|C1|X1|C2|X2",
+      "centers": [
+        1,
+        2,
+        4
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "schema_index": 239
+    },
+    {
+      "canonical_order_type": "C0|X2|C1|C2|X0|X1",
+      "centers": [
+        1,
+        3,
+        4
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          5,
+          9
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "schema_index": 240
+    },
+    {
+      "canonical_order_type": "X0|C0X2|C2|C1|X1",
+      "centers": [
+        1,
+        2,
+        9
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          0,
+          9
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "schema_index": 241
+    },
+    {
+      "canonical_order_type": "X0|C0|C2|C1|X1|X2",
+      "centers": [
+        2,
+        3,
+        4
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "schema_index": 242
+    },
+    {
+      "canonical_order_type": "X0|C0|C2|C1|X1|X2",
+      "centers": [
+        2,
+        3,
+        5
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "schema_index": 243
+    },
+    {
+      "canonical_order_type": "X0|C0|C1|X1|C2|X2",
+      "centers": [
+        2,
+        3,
+        6
+      ],
+      "core_vertex_count": 11,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          1,
+          10
+        ]
+      ],
+      "schema_index": 244
+    },
+    {
+      "canonical_order_type": "C0|X0|X1|C1|C2|X2",
+      "centers": [
+        0,
+        3,
+        5
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          1,
+          7
+        ]
+      ],
+      "schema_index": 245
+    },
+    {
+      "canonical_order_type": "C0|X0|C1|X1|C2|X2",
+      "centers": [
+        0,
+        2,
+        5
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          1,
+          6
+        ]
+      ],
+      "schema_index": 246
+    },
+    {
+      "canonical_order_type": "C0|X0|C2|C1|X2|X1",
+      "centers": [
+        0,
+        3,
+        5
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          1,
+          11
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          7,
+          11
+        ]
+      ],
+      "schema_index": 247
+    },
+    {
+      "canonical_order_type": "C0X2|C4X1|X3|C2|X4|C3|C1|X0",
+      "centers": [
+        0,
+        1,
+        4,
+        7,
+        8
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 5,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          1,
+          10
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "schema_index": 247
+    },
+    {
+      "canonical_order_type": "C0X4|C1X5|X3|C5|C3|C6X2|C2X6|C4|X1|X0",
+      "centers": [
+        0,
+        1,
+        3,
+        4,
+        5,
+        7,
+        8
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 7,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          10,
+          11
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "schema_index": 247
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X1|X2|X0",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          3,
+          11
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          11
+        ]
+      ],
+      "schema_index": 248
+    },
+    {
+      "canonical_order_type": "C0|C1|C2X1|X2|X0",
+      "centers": [
+        0,
+        2,
+        3
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          3,
+          11
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          11
+        ]
+      ],
+      "schema_index": 249
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X2|X1|X0",
+      "centers": [
+        0,
+        1,
+        2
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          4,
+          11
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          11
+        ]
+      ],
+      "schema_index": 250
+    },
+    {
+      "canonical_order_type": "C0|C2|X2|C3X1|C1X3|X0",
+      "centers": [
+        0,
+        2,
+        4,
+        5
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 4,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          4,
+          6
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "schema_index": 251
+    },
+    {
+      "canonical_order_type": "C0X2|C3|C2|C1|X1|X3|X0",
+      "centers": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 4,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "schema_index": 252
+    },
+    {
+      "canonical_order_type": "X0|C1|C0|C2|X2|X1",
+      "centers": [
+        1,
+        3,
+        7
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          10,
+          11
+        ],
+        [
+          0,
+          11
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "schema_index": 253
+    },
+    {
+      "canonical_order_type": "C0X2|C3|C2|X1|C1|X0|X3",
+      "centers": [
+        0,
+        1,
+        3,
+        7
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 4,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          6,
+          10
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          0,
+          11
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "schema_index": 253
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X1|X2",
+      "centers": [
+        0,
+        3,
+        7
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          8,
+          10
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          8,
+          11
+        ]
+      ],
+      "schema_index": 254
+    },
+    {
+      "canonical_order_type": "X0|C0X2|C1|C2|X1",
+      "centers": [
+        2,
+        5,
+        6
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 3,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          6,
+          11
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "schema_index": 255
+    },
+    {
+      "canonical_order_type": "X0|C0|C2|X2|C3|X3|C1|X1",
+      "centers": [
+        1,
+        2,
+        5,
+        8
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 4,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          0,
+          10
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          4,
+          10
+        ]
+      ],
+      "schema_index": 255
+    },
+    {
+      "canonical_order_type": "X0|C0X4|C2|X2|C4|C3|C1|X1|X3",
+      "centers": [
+        1,
+        2,
+        5,
+        6,
+        8
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 5,
+      "full_lra_status": "SAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "SAT",
+      "pairs": [
+        [
+          0,
+          10
+        ],
+        [
+          4,
+          11
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          4,
+          10
+        ]
+      ],
+      "schema_index": 255
+    },
+    {
+      "canonical_order_type": "X0|C1|C0|C2|X2|X1",
+      "centers": [
+        1,
+        2,
+        4
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          5,
+          7
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "schema_index": 256
+    },
+    {
+      "canonical_order_type": "X0|C1|C0|C2|X2|X1",
+      "centers": [
+        1,
+        2,
+        4
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          5,
+          10
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "schema_index": 257
+    },
+    {
+      "canonical_order_type": "C0|X0|C1|C2X1|X2",
+      "centers": [
+        1,
+        3,
+        8
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          2,
+          8
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          2,
+          9
+        ]
+      ],
+      "schema_index": 258
+    },
+    {
+      "canonical_order_type": "C0|X0|C1|X1|C2|X2",
+      "centers": [
+        1,
+        6,
+        8
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          3,
+          7
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          3,
+          11
+        ]
+      ],
+      "schema_index": 259
+    },
+    {
+      "canonical_order_type": "X0|C1|C0|C2|X2|X1",
+      "centers": [
+        1,
+        2,
+        4
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": true,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          5,
+          9
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "schema_index": 260
+    },
+    {
+      "canonical_order_type": "C0|X2|C1|C2|X0|X1",
+      "centers": [
+        3,
+        5,
+        6
+      ],
+      "core_vertex_count": 12,
+      "cycle_size": 3,
+      "full_lra_status": "UNSAT",
+      "has_ordinal_cycle": false,
+      "kalmanson_only_status": "UNSAT",
+      "pairs": [
+        [
+          7,
+          9
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          4,
+          7
+        ]
+      ],
+      "schema_index": 261
+    }
+  ],
+  "schema": "p97-full-lra-equality-cycle-subcore-audit-v1",
+  "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/bank_030.json",
+  "unsat_cycle_schema_count": 87,
+  "unsat_cycle_schema_indices": [
+    99,
+    110,
+    116,
+    124,
+    162,
+    164,
+    167,
+    174,
+    177,
+    179,
+    180,
+    181,
+    182,
+    183,
+    186,
+    187,
+    188,
+    189,
+    190,
+    192,
+    193,
+    194,
+    195,
+    196,
+    198,
+    199,
+    200,
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    217,
+    218,
+    219,
+    220,
+    221,
+    222,
+    223,
+    224,
+    225,
+    226,
+    227,
+    228,
+    229,
+    230,
+    231,
+    232,
+    233,
+    235,
+    236,
+    237,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255,
+    256,
+    257,
+    258,
+    259,
+    260,
+    261
+  ],
+  "unsat_nonordinal_farkas_witness_count": 68,
+  "unsat_order_types": [
+    {
+      "canonical_order_type": "C0X2|C1|C2|X0|X1",
+      "cycle_size": 3,
+      "schema_count": 4,
+      "schema_indices": [
+        167,
+        228,
+        235,
+        236
+      ]
+    },
+    {
+      "canonical_order_type": "C0X2|X0|C1|X1|C2",
+      "cycle_size": 3,
+      "schema_count": 1,
+      "schema_indices": [
+        232
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1X0|X1|C2|X2",
+      "cycle_size": 3,
+      "schema_count": 1,
+      "schema_indices": [
+        193
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1X0|X1|X2|C2",
+      "cycle_size": 3,
+      "schema_count": 3,
+      "schema_indices": [
+        196,
+        203,
+        211
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1|C2X1|X2|X0",
+      "cycle_size": 3,
+      "schema_count": 3,
+      "schema_indices": [
+        174,
+        190,
+        249
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X1|X2",
+      "cycle_size": 3,
+      "schema_count": 4,
+      "schema_indices": [
+        189,
+        216,
+        231,
+        254
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X0|X2|X1",
+      "cycle_size": 3,
+      "schema_count": 1,
+      "schema_indices": [
+        214
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X1|X2|X0",
+      "cycle_size": 3,
+      "schema_count": 4,
+      "schema_indices": [
+        99,
+        218,
+        226,
+        248
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1|C2|X2|X1|X0",
+      "cycle_size": 3,
+      "schema_count": 10,
+      "schema_indices": [
+        162,
+        177,
+        187,
+        201,
+        204,
+        205,
+        208,
+        224,
+        237,
+        250
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1|X0|X1|X2|C2",
+      "cycle_size": 3,
+      "schema_count": 5,
+      "schema_indices": [
+        182,
+        200,
+        210,
+        223,
+        225
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1|X1|C2|X2|X0",
+      "cycle_size": 3,
+      "schema_count": 1,
+      "schema_indices": [
+        164
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1|X1|X0|X2|C2",
+      "cycle_size": 3,
+      "schema_count": 2,
+      "schema_indices": [
+        116,
+        217
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1|X2|X0|C2|X1",
+      "cycle_size": 3,
+      "schema_count": 1,
+      "schema_indices": [
+        227
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1|X2|X0|X1|C2",
+      "cycle_size": 3,
+      "schema_count": 3,
+      "schema_indices": [
+        194,
+        198,
+        222
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1|X2|X1|X0|C2",
+      "cycle_size": 3,
+      "schema_count": 5,
+      "schema_indices": [
+        186,
+        199,
+        213,
+        220,
+        221
+      ]
+    },
+    {
+      "canonical_order_type": "C0|X0|C1|C2X1|X2",
+      "cycle_size": 3,
+      "schema_count": 1,
+      "schema_indices": [
+        258
+      ]
+    },
+    {
+      "canonical_order_type": "C0|X0|C1|X1|C2|X2",
+      "cycle_size": 3,
+      "schema_count": 3,
+      "schema_indices": [
+        215,
+        246,
+        259
+      ]
+    },
+    {
+      "canonical_order_type": "C0|X0|C1|X1|X2|C2",
+      "cycle_size": 3,
+      "schema_count": 1,
+      "schema_indices": [
+        202
+      ]
+    },
+    {
+      "canonical_order_type": "C0|X0|X1|C1|C2|X2",
+      "cycle_size": 3,
+      "schema_count": 1,
+      "schema_indices": [
+        245
+      ]
+    },
+    {
+      "canonical_order_type": "C0|X2|C1X0|C2|X1",
+      "cycle_size": 3,
+      "schema_count": 1,
+      "schema_indices": [
+        110
+      ]
+    },
+    {
+      "canonical_order_type": "C0|X2|C1|C2|X0|X1",
+      "cycle_size": 3,
+      "schema_count": 3,
+      "schema_indices": [
+        238,
+        240,
+        261
+      ]
+    },
+    {
+      "canonical_order_type": "X0|C0X2|C2|C1|X1",
+      "cycle_size": 3,
+      "schema_count": 1,
+      "schema_indices": [
+        241
+      ]
+    },
+    {
+      "canonical_order_type": "X0|C0|C1|X1|C2|X2",
+      "cycle_size": 3,
+      "schema_count": 3,
+      "schema_indices": [
+        192,
+        239,
+        244
+      ]
+    },
+    {
+      "canonical_order_type": "X0|C0|C2|C1|X1|X2",
+      "cycle_size": 3,
+      "schema_count": 4,
+      "schema_indices": [
+        179,
+        207,
+        242,
+        243
+      ]
+    },
+    {
+      "canonical_order_type": "X0|C1|C0|C2|X2|X1",
+      "cycle_size": 3,
+      "schema_count": 6,
+      "schema_indices": [
+        180,
+        209,
+        253,
+        256,
+        257,
+        260
+      ]
+    },
+    {
+      "canonical_order_type": "C0X2|C2|C3X1|C1|X0|X3",
+      "cycle_size": 4,
+      "schema_count": 1,
+      "schema_indices": [
+        233
+      ]
+    },
+    {
+      "canonical_order_type": "C0X2|C2|C3|C1|X1|X3|X0",
+      "cycle_size": 4,
+      "schema_count": 1,
+      "schema_indices": [
+        228
+      ]
+    },
+    {
+      "canonical_order_type": "C0X2|C2|X0|C1|C3X1|X3",
+      "cycle_size": 4,
+      "schema_count": 1,
+      "schema_indices": [
+        229
+      ]
+    },
+    {
+      "canonical_order_type": "C0X2|C3|C2|C1|X1|X3|X0",
+      "cycle_size": 4,
+      "schema_count": 1,
+      "schema_indices": [
+        252
+      ]
+    },
+    {
+      "canonical_order_type": "C0X2|C3|C2|X1|C1|X0|X3",
+      "cycle_size": 4,
+      "schema_count": 1,
+      "schema_indices": [
+        253
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1X0|C2X1|C3|X3|X2",
+      "cycle_size": 4,
+      "schema_count": 1,
+      "schema_indices": [
+        212
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1X0|C2|X2|X1|X3|C3",
+      "cycle_size": 4,
+      "schema_count": 1,
+      "schema_indices": [
+        188
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1|C2X1|C3|X2|X3|X0",
+      "cycle_size": 4,
+      "schema_count": 1,
+      "schema_indices": [
+        206
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1|C3X1|X3|X0|X2|C2",
+      "cycle_size": 4,
+      "schema_count": 1,
+      "schema_indices": [
+        181
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C1|C3|C2|X3|X0|X1|X2",
+      "cycle_size": 4,
+      "schema_count": 1,
+      "schema_indices": [
+        219
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C2X0|C1|C3X1|X2|X3",
+      "cycle_size": 4,
+      "schema_count": 1,
+      "schema_indices": [
+        124
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C2X0|C3X2|X1|X3|C1",
+      "cycle_size": 4,
+      "schema_count": 1,
+      "schema_indices": [
+        183
+      ]
+    },
+    {
+      "canonical_order_type": "C0|C2|X2|C3X1|C1X3|X0",
+      "cycle_size": 4,
+      "schema_count": 1,
+      "schema_indices": [
+        251
+      ]
+    },
+    {
+      "canonical_order_type": "X0|C0|C2|X2|C3|X3|C1|X1",
+      "cycle_size": 4,
+      "schema_count": 1,
+      "schema_indices": [
+        255
+      ]
+    },
+    {
+      "canonical_order_type": "C0X2|C3|C2X0|C1|C4X1|X4|X3",
+      "cycle_size": 5,
+      "schema_count": 1,
+      "schema_indices": [
+        230
+      ]
+    },
+    {
+      "canonical_order_type": "C0|X0|C2|C1X4|C3X1|C4X3|X2",
+      "cycle_size": 5,
+      "schema_count": 1,
+      "schema_indices": [
+        195
+      ]
+    },
+    {
+      "canonical_order_type": "C0X3|C3X0|C2|C1X5|C4X1|C5|X4|X2",
+      "cycle_size": 6,
+      "schema_count": 1,
+      "schema_indices": [
+        195
+      ]
+    },
+    {
+      "canonical_order_type": "C0X4|C1X5|X3|C5|C3|C6X2|C2X6|C4|X1|X0",
+      "cycle_size": 7,
+      "schema_count": 1,
+      "schema_indices": [
+        247
+      ]
+    }
+  ],
+  "unsat_ordinal_cycle_witness_count": 22
+}

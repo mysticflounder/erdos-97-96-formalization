@@ -1,0 +1,642 @@
+{
+  "compact_schema_count_k_le_8": 1,
+  "deletion_orders_per_input": 4,
+  "epistemic_status": "EXACT_RATIONAL_LRA_CORE_BANK_NOT_LEAN_PROOF",
+  "input_core_count": 5,
+  "minimal_core_count": 5,
+  "schema": "p97-exact6-allcenter-minimized-metric-schema-bank-v1",
+  "schemas": [
+    {
+      "complete_application_count": 2574,
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "attempt": 6,
+          "deletion_minimal_replayed": true,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 6,
+          "minimal_core": [
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_10_4_8",
+            "row_5_3_10",
+            "row_5_3_8",
+            "row_8_4_10"
+          ],
+          "minimal_core_size": 6,
+          "orbit": "continuationOrder",
+          "order_index": 0,
+          "result": "scratch/atail-force/exact6-allcenter-capaware-gate/continuationOrder_marco.json",
+          "source_core": [
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_10_4_8",
+            "row_5_3_10",
+            "row_5_3_8",
+            "row_8_4_10"
+          ]
+        }
+      ]
+    },
+    {
+      "complete_application_count": 572,
+      "core_vertex_count": 11,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          9
+        ]
+      ],
+      "provenance": [
+        {
+          "attempt": 54,
+          "deletion_minimal_replayed": true,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 15,
+          "minimal_core": [
+            "kal1_0_1_2_13",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_2_3_10_11",
+            "kal2_3_4_10_11",
+            "kal2_4_5_10_11",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "row_1_0_10",
+            "row_2_0_11",
+            "row_5_3_11",
+            "row_5_3_12",
+            "row_6_4_10",
+            "row_6_4_12"
+          ],
+          "minimal_core_size": 15,
+          "orbit": "continuationOrder",
+          "order_index": 0,
+          "result": "scratch/atail-force/exact6-allcenter-capaware-gate/continuationOrder_marco.json",
+          "source_core": [
+            "kal1_0_1_2_13",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_2_3_10_11",
+            "kal2_3_4_10_11",
+            "kal2_4_5_10_11",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "row_1_0_10",
+            "row_2_0_11",
+            "row_5_3_11",
+            "row_5_3_12",
+            "row_6_4_10",
+            "row_6_4_12"
+          ]
+        }
+      ]
+    },
+    {
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "order_schema": [
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          9,
+          1
+        ],
+        [
+          9,
+          8
+        ],
+        [
+          9,
+          12
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          10,
+          9
+        ]
+      ],
+      "provenance": [
+        {
+          "attempt": 38,
+          "deletion_minimal_replayed": true,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 37,
+          "minimal_core": [
+            "kal1_0_6_7_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_9_10",
+            "kal2_0_2_6_9",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_6_7_10_11",
+            "kal2_6_7_11_12",
+            "kal2_6_7_12_13",
+            "kal2_6_7_8_9",
+            "kal2_6_7_9_10",
+            "kal2_7_8_10_11",
+            "kal2_7_8_11_12",
+            "kal2_8_9_10_11",
+            "kal2_8_9_11_12",
+            "row_0_6_12",
+            "row_0_6_7",
+            "row_10_3_9",
+            "row_6_3_8",
+            "row_8_4_7",
+            "row_8_4_9",
+            "row_9_1_12",
+            "row_9_1_8"
+          ],
+          "minimal_core_size": 37,
+          "orbit": "continuationOrder",
+          "order_index": 0,
+          "result": "scratch/atail-force/exact6-allcenter-capaware-gate/continuationOrder_marco.json",
+          "source_core": [
+            "kal1_0_6_7_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_9_10",
+            "kal2_0_2_6_9",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_6_7_10_11",
+            "kal2_6_7_11_12",
+            "kal2_6_7_12_13",
+            "kal2_6_7_8_9",
+            "kal2_6_7_9_10",
+            "kal2_7_8_10_11",
+            "kal2_7_8_11_12",
+            "kal2_8_9_10_11",
+            "kal2_8_9_11_12",
+            "row_0_6_12",
+            "row_0_6_7",
+            "row_10_3_9",
+            "row_6_3_8",
+            "row_8_4_7",
+            "row_8_4_9",
+            "row_9_1_12",
+            "row_9_1_8"
+          ]
+        }
+      ]
+    },
+    {
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "order_schema": [
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          11
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          6,
+          13
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          1
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          11,
+          2
+        ],
+        [
+          11,
+          5
+        ],
+        [
+          11,
+          13
+        ]
+      ],
+      "provenance": [
+        {
+          "attempt": 70,
+          "deletion_minimal_replayed": true,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 48,
+          "minimal_core": [
+            "kal1_0_10_11_13",
+            "kal1_0_6_7_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_6_7",
+            "kal2_10_11_12_13",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_6_7",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_6_7_10_11",
+            "kal2_6_7_11_12",
+            "kal2_6_7_12_13",
+            "row_11_2_12",
+            "row_12_0_10",
+            "row_12_0_2",
+            "row_13_1_5",
+            "row_2_0_11",
+            "row_2_0_8",
+            "row_5_4_12",
+            "row_5_4_8",
+            "row_6_5_11",
+            "row_7_0_1",
+            "row_7_0_10"
+          ],
+          "minimal_core_size": 48,
+          "orbit": "continuationOrder",
+          "order_index": 0,
+          "result": "scratch/atail-force/exact6-allcenter-capaware-gate/continuationOrder_marco.json",
+          "source_core": [
+            "kal1_0_10_11_13",
+            "kal1_0_6_7_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_6_7",
+            "kal2_10_11_12_13",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_6_7",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_6_7_10_11",
+            "kal2_6_7_11_12",
+            "kal2_6_7_12_13",
+            "row_11_2_12",
+            "row_12_0_10",
+            "row_12_0_2",
+            "row_13_1_5",
+            "row_2_0_11",
+            "row_2_0_8",
+            "row_5_4_12",
+            "row_5_4_8",
+            "row_6_5_11",
+            "row_7_0_1",
+            "row_7_0_10"
+          ]
+        }
+      ]
+    },
+    {
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "order_schema": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          12
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          11
+        ]
+      ],
+      "provenance": [
+        {
+          "attempt": 22,
+          "deletion_minimal_replayed": true,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 32,
+          "minimal_core": [
+            "kal1_0_3_10_13",
+            "kal2_0_1_3_4",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_3_4",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_10_1_13",
+            "row_12_0_3",
+            "row_12_0_5",
+            "row_3_2_13",
+            "row_7_2_5",
+            "row_9_1_3"
+          ],
+          "minimal_core_size": 32,
+          "orbit": "continuationOrder",
+          "order_index": 0,
+          "result": "scratch/atail-force/exact6-allcenter-capaware-gate/continuationOrder_marco.json",
+          "source_core": [
+            "kal1_0_3_10_13",
+            "kal2_0_1_3_4",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_3_4",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_10_1_13",
+            "row_12_0_3",
+            "row_12_0_5",
+            "row_3_2_13",
+            "row_7_2_5",
+            "row_9_1_3"
+          ]
+        }
+      ]
+    }
+  ],
+  "shard_count": 16,
+  "shard_index": 5,
+  "sources": [
+    {
+      "path": "scratch/atail-force/exact6-allcenter-capaware-gate/continuationOrder_marco.json",
+      "sha256": "b1a93132dce16207261c895e482750d57adc1cc9f21d7fad373d888b26bd2eee"
+    }
+  ],
+  "unique_schema_count": 5,
+  "worker_count": 1
+}

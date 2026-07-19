@@ -1,0 +1,25 @@
+{
+  "build_elapsed_seconds": 0.7484489160124213,
+  "complete_shell_selected_row_alternation": true,
+  "connectivity": "FLOYD_WARSHALL_ALL_PAIRS_EXACT",
+  "connectivity_clause_count": 3136,
+  "elapsed_seconds": 180.77380704099778,
+  "epistemic_status": "EXACT_IF_SAT_EXTERNAL_BOUNDED_IF_UNSAT_OR_UNKNOWN",
+  "literal_metric_schema_cuts": 0,
+  "n": 14,
+  "orbit": "sharesFirstAtTarget",
+  "ordinal_counts": {
+    "guarded_exact_five_shell_rank_equalities": 78,
+    "guarded_selected_row_rank_equalities": 1092,
+    "kalmanson_cancellation_implications": 8008,
+    "rank_atoms": 91
+  },
+  "outer_source": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact6-allcenter-capaware-gate/allcenter_gate.py",
+  "outer_source_sha256": "2af4ebe69459f371f25100a80de1a092e81cae75bd62ad87175c1d4c19a5f27b",
+  "reason": "timeout",
+  "schema": "p97-exact6-integrated-ordinal-cycle-decision-v1",
+  "seed": 303,
+  "solver_statistics": "(:added-eqs           180096761\n :arith-eq-adapter    2\n :arith-lower         8\n :arith-make-feasible 9\n :arith-max-columns   212\n :arith-max-rows      14\n :arith-upper         8\n :binary-propagations 234351146\n :conflicts           672143\n :decisions           3567038\n :del-clause          647288\n :max-memory          104.06\n :memory              62.16\n :minimized-lits      38928736\n :mk-bool-var         22739\n :mk-clause           705337\n :mk-clause-binary    31485\n :num-allocs          1385355215\n :num-checks          1\n :pb-conflicts        198866\n :pb-predicates       7301\n :pb-propagations     14057358\n :pb-resolves         187401\n :propagations        319932567\n :restarts            1019\n :rlimit-count        586864159\n :solve-eqs-elim-vars 2956\n :solve-eqs-steps     8962\n :time                180.02)",
+  "status": "UNKNOWN",
+  "timeout_ms": 180000
+}

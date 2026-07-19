@@ -1,0 +1,104 @@
+{
+  "coordinate_model": "p0_zero_p1_e1",
+  "equality_count": 19,
+  "evidence_scope": "exact characteristic-zero equality ideal; NONUNIT is not a real or nondegenerate realization; a collision is admitted only after the included lift replays exactly",
+  "expanded_polynomial_sha256": "648d2a73b6aec22369993df730d70e60ade24fb1feab1008d5f8127e8babfaec",
+  "msolve": {
+    "forward": {
+      "output_char_count": 6,
+      "output_sha256": "0333251e6ebb3890ef547f522ec55f27f0cef9a860998757e31f3e1b819e7490",
+      "returncode": 0,
+      "stderr": "",
+      "verdict": "UNIT"
+    },
+    "reverse": {
+      "output_char_count": 6,
+      "output_sha256": "0333251e6ebb3890ef547f522ec55f27f0cef9a860998757e31f3e1b819e7490",
+      "returncode": 0,
+      "stderr": "",
+      "verdict": "UNIT"
+    }
+  },
+  "pattern": "unit-core-654-02",
+  "point_relabeling": {
+    "kind": "explicit_old_to_new_permutation",
+    "old_to_new": [
+      2,
+      0,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      1,
+      9,
+      10,
+      11
+    ],
+    "shift": null
+  },
+  "row_count": 6,
+  "rows": [
+    {
+      "center": 0,
+      "support": [
+        1,
+        2,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "center": 1,
+      "support": [
+        0,
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "center": 4,
+      "support": [
+        0,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "center": 8,
+      "support": [
+        3,
+        7,
+        9,
+        11
+      ]
+    },
+    {
+      "center": 9,
+      "support": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "center": 11,
+      "support": [
+        0,
+        5,
+        7,
+        10
+      ]
+    }
+  ],
+  "schema": "p97-source-indexed-saved-pattern-exact-probe-v1",
+  "singular": {
+    "status": "SKIPPED"
+  },
+  "singular_variable_order": "forward"
+}

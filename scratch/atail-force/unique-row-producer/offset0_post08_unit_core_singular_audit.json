@@ -1,0 +1,70 @@
+{
+  "coordinate_model": "p0_zero_p1_e1",
+  "equality_count": 19,
+  "evidence_scope": "exact characteristic-zero equality ideal; NONUNIT is not a real or nondegenerate realization; a collision is admitted only after the included lift replays exactly",
+  "expanded_polynomial_sha256": "da0eead0a09a25cb33bdb0e25ffab185e2008a73acf36085b6ee2acc7cadd197",
+  "pattern": "offset0-post08-unit-core",
+  "row_count": 6,
+  "rows": [
+    {
+      "center": 1,
+      "support": [
+        0,
+        2,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "center": 2,
+      "support": [
+        0,
+        1,
+        10,
+        11
+      ]
+    },
+    {
+      "center": 7,
+      "support": [
+        2,
+        5,
+        9,
+        11
+      ]
+    },
+    {
+      "center": 9,
+      "support": [
+        0,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "center": 10,
+      "support": [
+        3,
+        6,
+        7,
+        11
+      ]
+    },
+    {
+      "center": 11,
+      "support": [
+        1,
+        4,
+        8,
+        10
+      ]
+    }
+  ],
+  "schema": "p97-source-indexed-saved-pattern-exact-probe-v1",
+  "singular": {
+    "status": "TIMEOUT",
+    "timeout_seconds": 180.0
+  }
+}

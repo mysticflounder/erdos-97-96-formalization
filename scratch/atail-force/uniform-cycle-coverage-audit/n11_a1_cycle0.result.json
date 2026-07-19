@@ -1,0 +1,126 @@
+{
+  "bank": "scratch/atail-force/uniform-cycle-coverage-audit/compressed_bank_262_n11_cyclic.json",
+  "bank_epistemic_status": "BOUNDED_EXACT_CYCLE_COMPRESSED_COVERAGE_AUDIT",
+  "bank_schema": "p97-whole-carrier-kalmanson-transported-schema-bank-v1",
+  "bank_schema_count": 1647,
+  "blockers": {
+    "0": 10,
+    "1": 9,
+    "10": 9,
+    "2": 5,
+    "3": 4,
+    "4": 7,
+    "5": 7,
+    "6": 3,
+    "7": 3,
+    "8": 5,
+    "9": 6
+  },
+  "clause_block_counts": {
+    "blocker_at_least_one": 11,
+    "blocker_at_most_one": 324,
+    "blocker_forbidden": 31,
+    "blocker_implies_source_membership": 90,
+    "cyclic_alternation": 1320,
+    "pair_center_count_at_most_2": 4620,
+    "preloaded_schema_cut": 148018,
+    "row_at_least_4": 1320,
+    "row_at_most_4": 2772,
+    "row_intersection_at_most_2": 4620,
+    "row_nonself": 11,
+    "strong_connectivity_outgoing_cut": 2046
+  },
+  "clause_count": 165183,
+  "cnf_model_checked": true,
+  "cnf_path": "scratch/atail-force/uniform-cycle-coverage-audit/n11_a1_cycle0.cnf",
+  "embeddable_schema_count": 1630,
+  "encoding_schema": "p97-biapex-structural-outer-direct-cnf-v1",
+  "n": 11,
+  "omitted_apices": [
+    0,
+    1
+  ],
+  "rows": {
+    "0": [
+      1,
+      6,
+      9,
+      10
+    ],
+    "1": [
+      2,
+      5,
+      8,
+      10
+    ],
+    "10": [
+      0,
+      3,
+      5,
+      7
+    ],
+    "2": [
+      3,
+      4,
+      8,
+      9
+    ],
+    "3": [
+      0,
+      1,
+      6,
+      7
+    ],
+    "4": [
+      1,
+      3,
+      5,
+      9
+    ],
+    "5": [
+      2,
+      3,
+      6,
+      8
+    ],
+    "6": [
+      2,
+      4,
+      7,
+      9
+    ],
+    "7": [
+      1,
+      4,
+      5,
+      8
+    ],
+    "8": [
+      0,
+      2,
+      6,
+      10
+    ],
+    "9": [
+      1,
+      7,
+      8,
+      10
+    ]
+  },
+  "schema_embedding_count": 148018,
+  "skipped_schema_count_core_larger_than_n": 17,
+  "solver": "CaDiCaL",
+  "solver_command": [
+    "cadical",
+    "-t",
+    "300",
+    "scratch/atail-force/uniform-cycle-coverage-audit/n11_a1_cycle0.cnf",
+    "scratch/atail-force/uniform-cycle-coverage-audit/n11_a1_cycle0.drat"
+  ],
+  "solver_elapsed_seconds": 28.20746554096695,
+  "solver_returncode": 10,
+  "solver_status": "SAT",
+  "timeout_seconds": 300,
+  "variable_count": 242
+}

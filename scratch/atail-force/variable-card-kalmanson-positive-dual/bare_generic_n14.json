@@ -1,0 +1,36 @@
+{
+  "assumptions": [
+    "one non-self selected four-member row at every cyclic center",
+    "selected-edge strong connectivity",
+    "all strict K1 and K2 inequalities",
+    "all selected-row spoke equalities"
+  ],
+  "cadical_returncode": 0,
+  "cadical_seconds": 10,
+  "cnf_sha256": "43fe5b2a477138cc85645abc675a4343ab72026fc50eaacdeda97e00a43a4821",
+  "counts": {
+    "connectivity_clause_count": 3136,
+    "guarded_selected_row_rank_equalities": 1092,
+    "kalmanson_cancellation_implications": 8008,
+    "rank_atoms": 91,
+    "rank_bit_width": 7
+  },
+  "elapsed_seconds": 10.765600583981723,
+  "epistemic_status": "BOUNDED_THEOREM_DISCOVERY",
+  "full_linear": null,
+  "literal_metric_schema_cuts": 0,
+  "log_sha256": "86da43cd0d3a957bc322bd25016978965e66713a8fd1c1f367f8e83f69d5ca9a",
+  "n": 14,
+  "omitted": [
+    "triangle inequalities",
+    "distance positivity",
+    "cap and apex roles",
+    "pair incidence bounds",
+    "blocker map",
+    "exact-five shell"
+  ],
+  "rows": null,
+  "schema": "p97-bare-variable-card-positive-dual-decision-v1",
+  "solution_sha256": "8fba55cea0f98be36fab7b65349dda867a58aabfcf974a46098f5123830ac5cb",
+  "status": "UNKNOWN_WALL_BUDGET"
+}

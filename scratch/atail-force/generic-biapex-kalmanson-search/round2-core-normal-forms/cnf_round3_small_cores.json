@@ -1,0 +1,5116 @@
+{
+  "abstract_normal_form_count": 14,
+  "abstract_normal_form_frequencies": [
+    8,
+    4,
+    3,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "full_row_alternate_count": 30,
+  "normal_form_count": 16,
+  "normal_form_frequencies": [
+    5,
+    4,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "one_kalmanson_alternate_count": 2,
+  "record_count": 30,
+  "records": [
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          4,
+          5,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          4,
+          -1
+        ],
+        [
+          "row",
+          3,
+          1,
+          2,
+          1
+        ],
+        [
+          "row",
+          5,
+          2,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_4",
+        "kal1_0_2_8_9",
+        "row_0_1_8",
+        "row_4_1_2",
+        "row_9_2_8"
+      ],
+      "inequality_count": 2,
+      "iteration": 1,
+      "multipliers": {
+        "kal1_0_1_2_4": "1",
+        "kal1_0_2_8_9": "1",
+        "row_0_1_8": "-1",
+        "row_4_1_2": "1",
+        "row_9_2_8": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_4_5",
+          1
+        ],
+        [
+          "row_0_1_4",
+          -1
+        ],
+        [
+          "row_3_1_2",
+          1
+        ],
+        [
+          "row_5_2_4",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 15,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            4,
+            5,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            4,
+            -1
+          ],
+          [
+            "row",
+            3,
+            1,
+            2,
+            1
+          ],
+          [
+            "row",
+            5,
+            2,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_4",
+          "kal1_0_2_8_9",
+          "row_0_1_8",
+          "row_4_1_2",
+          "row_9_2_8"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_4": "1",
+          "kal1_0_2_8_9": "1",
+          "row_0_1_8": "-1",
+          "row_4_1_2": "1",
+          "row_9_2_8": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_4_5",
+            1
+          ],
+          [
+            "row_0_1_4",
+            -1
+          ],
+          [
+            "row_3_1_2",
+            1
+          ],
+          [
+            "row_5_2_4",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_001.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          1,
+          2,
+          4,
+          3,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          2,
+          -1
+        ],
+        [
+          "row",
+          1,
+          2,
+          4,
+          -1
+        ],
+        [
+          "row",
+          3,
+          1,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_10",
+        "kal1_1_2_9_10",
+        "row_0_1_2",
+        "row_1_2_9",
+        "row_10_1_9"
+      ],
+      "inequality_count": 2,
+      "iteration": 2,
+      "multipliers": {
+        "kal1_0_1_2_10": "1",
+        "kal1_1_2_9_10": "1",
+        "row_0_1_2": "-1",
+        "row_10_1_9": "1",
+        "row_1_2_9": "-1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_3_4",
+          1
+        ],
+        [
+          "row_0_1_3",
+          1
+        ],
+        [
+          "row_3_1_2",
+          -1
+        ],
+        [
+          "row_4_2_3",
+          -1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 19,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            1,
+            2,
+            4,
+            3,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            2,
+            -1
+          ],
+          [
+            "row",
+            1,
+            2,
+            4,
+            -1
+          ],
+          [
+            "row",
+            3,
+            1,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_10",
+          "kal1_1_2_9_10",
+          "row_0_1_2",
+          "row_1_2_9",
+          "row_10_1_9"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_10": "1",
+          "kal1_1_2_9_10": "1",
+          "row_0_1_2": "-1",
+          "row_10_1_9": "1",
+          "row_1_2_9": "-1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_3_4",
+            1
+          ],
+          [
+            "row_0_1_3",
+            1
+          ],
+          [
+            "row_3_1_2",
+            -1
+          ],
+          [
+            "row_4_2_3",
+            -1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_002.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          4,
+          5,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          4,
+          -1
+        ],
+        [
+          "row",
+          3,
+          1,
+          2,
+          1
+        ],
+        [
+          "row",
+          5,
+          2,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_4",
+        "kal1_0_2_9_10",
+        "row_0_1_9",
+        "row_4_1_2",
+        "row_10_2_9"
+      ],
+      "inequality_count": 2,
+      "iteration": 3,
+      "multipliers": {
+        "kal1_0_1_2_4": "1",
+        "kal1_0_2_9_10": "1",
+        "row_0_1_9": "-1",
+        "row_10_2_9": "1",
+        "row_4_1_2": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_4_5",
+          1
+        ],
+        [
+          "row_0_1_4",
+          -1
+        ],
+        [
+          "row_3_1_2",
+          1
+        ],
+        [
+          "row_5_2_4",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 13,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            4,
+            5,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            4,
+            -1
+          ],
+          [
+            "row",
+            3,
+            1,
+            2,
+            1
+          ],
+          [
+            "row",
+            5,
+            2,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_4",
+          "kal1_0_2_9_10",
+          "row_0_1_9",
+          "row_4_1_2",
+          "row_10_2_9"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_4": "1",
+          "kal1_0_2_9_10": "1",
+          "row_0_1_9": "-1",
+          "row_10_2_9": "1",
+          "row_4_1_2": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_4_5",
+            1
+          ],
+          [
+            "row_0_1_4",
+            -1
+          ],
+          [
+            "row_3_1_2",
+            1
+          ],
+          [
+            "row_5_2_4",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_003.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          1,
+          3,
+          4,
+          5,
+          1
+        ],
+        [
+          "row",
+          1,
+          0,
+          4,
+          -1
+        ],
+        [
+          "row",
+          2,
+          0,
+          3,
+          1
+        ],
+        [
+          "row",
+          5,
+          3,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_2_3_4",
+        "kal1_2_4_7_8",
+        "row_2_0_7",
+        "row_3_0_4",
+        "row_8_4_7"
+      ],
+      "inequality_count": 2,
+      "iteration": 4,
+      "multipliers": {
+        "kal1_0_2_3_4": "1",
+        "kal1_2_4_7_8": "1",
+        "row_2_0_7": "-1",
+        "row_3_0_4": "1",
+        "row_8_4_7": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_1_3_4_5",
+          1
+        ],
+        [
+          "row_1_0_4",
+          -1
+        ],
+        [
+          "row_2_0_3",
+          1
+        ],
+        [
+          "row_5_3_4",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": {
+        "constraint_count": 6,
+        "constraints": [
+          "kal1_0_2_3_9",
+          "row_10_1_9",
+          "row_1_3_10",
+          "row_2_0_9",
+          "row_3_0_1",
+          "row_9_3_10"
+        ],
+        "multipliers": {
+          "kal1_0_2_3_9": "1",
+          "row_10_1_9": "1",
+          "row_1_3_10": "1",
+          "row_2_0_9": "-1",
+          "row_3_0_1": "1",
+          "row_9_3_10": "-1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_2_3_4",
+            1
+          ],
+          [
+            "row_1_3_5",
+            1
+          ],
+          [
+            "row_2_0_4",
+            -1
+          ],
+          [
+            "row_3_0_1",
+            1
+          ],
+          [
+            "row_4_3_5",
+            -1
+          ],
+          [
+            "row_5_1_4",
+            1
+          ]
+        ],
+        "row_equality_count": 5
+      },
+      "oracle_constraint_count": 17,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            1,
+            3,
+            4,
+            5,
+            1
+          ],
+          [
+            "row",
+            1,
+            0,
+            4,
+            -1
+          ],
+          [
+            "row",
+            2,
+            0,
+            3,
+            1
+          ],
+          [
+            "row",
+            5,
+            3,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_2_3_4",
+          "kal1_2_4_7_8",
+          "row_2_0_7",
+          "row_3_0_4",
+          "row_8_4_7"
+        ],
+        "multipliers": {
+          "kal1_0_2_3_4": "1",
+          "kal1_2_4_7_8": "1",
+          "row_2_0_7": "-1",
+          "row_3_0_4": "1",
+          "row_8_4_7": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_1_3_4_5",
+            1
+          ],
+          [
+            "row_1_0_4",
+            -1
+          ],
+          [
+            "row_2_0_3",
+            1
+          ],
+          [
+            "row_5_3_4",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_004.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          4,
+          5,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          4,
+          -1
+        ],
+        [
+          "row",
+          3,
+          1,
+          2,
+          1
+        ],
+        [
+          "row",
+          5,
+          2,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_3_4",
+        "kal1_0_3_6_7",
+        "row_0_1_6",
+        "row_4_1_3",
+        "row_7_3_6"
+      ],
+      "inequality_count": 2,
+      "iteration": 5,
+      "multipliers": {
+        "kal1_0_1_3_4": "1",
+        "kal1_0_3_6_7": "1",
+        "row_0_1_6": "-1",
+        "row_4_1_3": "1",
+        "row_7_3_6": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_4_5",
+          1
+        ],
+        [
+          "row_0_1_4",
+          -1
+        ],
+        [
+          "row_3_1_2",
+          1
+        ],
+        [
+          "row_5_2_4",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 11,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            4,
+            5,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            4,
+            -1
+          ],
+          [
+            "row",
+            3,
+            1,
+            2,
+            1
+          ],
+          [
+            "row",
+            5,
+            2,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_3_4",
+          "kal1_0_3_6_7",
+          "row_0_1_6",
+          "row_4_1_3",
+          "row_7_3_6"
+        ],
+        "multipliers": {
+          "kal1_0_1_3_4": "1",
+          "kal1_0_3_6_7": "1",
+          "row_0_1_6": "-1",
+          "row_4_1_3": "1",
+          "row_7_3_6": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_4_5",
+            1
+          ],
+          [
+            "row_0_1_4",
+            -1
+          ],
+          [
+            "row_3_1_2",
+            1
+          ],
+          [
+            "row_5_2_4",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_005.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          1,
+          2,
+          4,
+          3,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          2,
+          -1
+        ],
+        [
+          "row",
+          1,
+          2,
+          3,
+          -1
+        ],
+        [
+          "row",
+          4,
+          1,
+          3,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_10",
+        "kal1_1_2_8_10",
+        "row_0_1_2",
+        "row_1_2_10",
+        "row_8_1_10"
+      ],
+      "inequality_count": 2,
+      "iteration": 6,
+      "multipliers": {
+        "kal1_0_1_2_10": "1",
+        "kal1_1_2_8_10": "1",
+        "row_0_1_2": "-1",
+        "row_1_2_10": "-1",
+        "row_8_1_10": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_3_4",
+          1
+        ],
+        [
+          "row_1_0_3",
+          1
+        ],
+        [
+          "row_3_0_2",
+          -1
+        ],
+        [
+          "row_4_2_3",
+          -1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 17,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            1,
+            2,
+            4,
+            3,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            2,
+            -1
+          ],
+          [
+            "row",
+            1,
+            2,
+            3,
+            -1
+          ],
+          [
+            "row",
+            4,
+            1,
+            3,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_10",
+          "kal1_1_2_8_10",
+          "row_0_1_2",
+          "row_1_2_10",
+          "row_8_1_10"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_10": "1",
+          "kal1_1_2_8_10": "1",
+          "row_0_1_2": "-1",
+          "row_1_2_10": "-1",
+          "row_8_1_10": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_3_4",
+            1
+          ],
+          [
+            "row_1_0_3",
+            1
+          ],
+          [
+            "row_3_0_2",
+            -1
+          ],
+          [
+            "row_4_2_3",
+            -1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_006.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal2",
+          0,
+          2,
+          4,
+          3,
+          1
+        ],
+        [
+          "row",
+          0,
+          2,
+          3,
+          1
+        ],
+        [
+          "row",
+          1,
+          0,
+          3,
+          -1
+        ],
+        [
+          "row",
+          4,
+          0,
+          2,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_10",
+        "kal2_0_2_5_10",
+        "row_0_2_10",
+        "row_1_0_10",
+        "row_5_0_2"
+      ],
+      "inequality_count": 2,
+      "iteration": 7,
+      "multipliers": {
+        "kal1_0_1_2_10": "1",
+        "kal2_0_2_5_10": "1",
+        "row_0_2_10": "1",
+        "row_1_0_10": "-1",
+        "row_5_0_2": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_4",
+          1
+        ],
+        [
+          "kal2_0_2_3_4",
+          1
+        ],
+        [
+          "row_0_2_4",
+          1
+        ],
+        [
+          "row_1_0_4",
+          -1
+        ],
+        [
+          "row_3_0_2",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 12,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal2",
+            0,
+            2,
+            4,
+            3,
+            1
+          ],
+          [
+            "row",
+            0,
+            2,
+            3,
+            1
+          ],
+          [
+            "row",
+            1,
+            0,
+            3,
+            -1
+          ],
+          [
+            "row",
+            4,
+            0,
+            2,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_10",
+          "kal2_0_2_5_10",
+          "row_0_2_10",
+          "row_1_0_10",
+          "row_5_0_2"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_10": "1",
+          "kal2_0_2_5_10": "1",
+          "row_0_2_10": "1",
+          "row_1_0_10": "-1",
+          "row_5_0_2": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_4",
+            1
+          ],
+          [
+            "kal2_0_2_3_4",
+            1
+          ],
+          [
+            "row_0_2_4",
+            1
+          ],
+          [
+            "row_1_0_4",
+            -1
+          ],
+          [
+            "row_3_0_2",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_007.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal2",
+          0,
+          1,
+          3,
+          4,
+          1
+        ],
+        [
+          "row",
+          0,
+          2,
+          4,
+          1
+        ],
+        [
+          "row",
+          1,
+          0,
+          4,
+          -1
+        ],
+        [
+          "row",
+          3,
+          0,
+          2,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_3",
+        "kal2_0_1_3_4",
+        "row_0_2_4",
+        "row_1_0_4",
+        "row_3_0_2"
+      ],
+      "inequality_count": 2,
+      "iteration": 8,
+      "multipliers": {
+        "kal1_0_1_2_3": "1",
+        "kal2_0_1_3_4": "1",
+        "row_0_2_4": "1",
+        "row_1_0_4": "-1",
+        "row_3_0_2": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal2_0_1_3_4",
+          1
+        ],
+        [
+          "row_0_2_4",
+          1
+        ],
+        [
+          "row_1_0_4",
+          -1
+        ],
+        [
+          "row_3_0_2",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 18,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal2",
+            0,
+            1,
+            3,
+            4,
+            1
+          ],
+          [
+            "row",
+            0,
+            2,
+            4,
+            1
+          ],
+          [
+            "row",
+            1,
+            0,
+            4,
+            -1
+          ],
+          [
+            "row",
+            3,
+            0,
+            2,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_3",
+          "kal2_0_1_3_4",
+          "row_0_2_4",
+          "row_1_0_4",
+          "row_3_0_2"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_3": "1",
+          "kal2_0_1_3_4": "1",
+          "row_0_2_4": "1",
+          "row_1_0_4": "-1",
+          "row_3_0_2": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal2_0_1_3_4",
+            1
+          ],
+          [
+            "row_0_2_4",
+            1
+          ],
+          [
+            "row_1_0_4",
+            -1
+          ],
+          [
+            "row_3_0_2",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_008.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          4,
+          5,
+          1
+        ],
+        [
+          "row",
+          1,
+          0,
+          3,
+          -1
+        ],
+        [
+          "row",
+          2,
+          3,
+          5,
+          -1
+        ],
+        [
+          "row",
+          4,
+          0,
+          5,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_3",
+        "kal1_0_2_4_8",
+        "row_1_0_3",
+        "row_2_3_8",
+        "row_4_0_8"
+      ],
+      "inequality_count": 2,
+      "iteration": 9,
+      "multipliers": {
+        "kal1_0_1_2_3": "1",
+        "kal1_0_2_4_8": "1",
+        "row_1_0_3": "-1",
+        "row_2_3_8": "-1",
+        "row_4_0_8": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_4_5",
+          1
+        ],
+        [
+          "row_1_0_3",
+          -1
+        ],
+        [
+          "row_2_3_5",
+          -1
+        ],
+        [
+          "row_4_0_5",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 14,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            4,
+            5,
+            1
+          ],
+          [
+            "row",
+            1,
+            0,
+            3,
+            -1
+          ],
+          [
+            "row",
+            2,
+            3,
+            5,
+            -1
+          ],
+          [
+            "row",
+            4,
+            0,
+            5,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_3",
+          "kal1_0_2_4_8",
+          "row_1_0_3",
+          "row_2_3_8",
+          "row_4_0_8"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_3": "1",
+          "kal1_0_2_4_8": "1",
+          "row_1_0_3": "-1",
+          "row_2_3_8": "-1",
+          "row_4_0_8": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_4_5",
+            1
+          ],
+          [
+            "row_1_0_3",
+            -1
+          ],
+          [
+            "row_2_3_5",
+            -1
+          ],
+          [
+            "row_4_0_5",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_009.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          4,
+          5,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          4,
+          -1
+        ],
+        [
+          "row",
+          3,
+          1,
+          2,
+          1
+        ],
+        [
+          "row",
+          5,
+          2,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_3",
+        "kal1_0_2_4_5",
+        "row_0_1_4",
+        "row_3_1_2",
+        "row_5_2_4"
+      ],
+      "inequality_count": 2,
+      "iteration": 10,
+      "multipliers": {
+        "kal1_0_1_2_3": "1",
+        "kal1_0_2_4_5": "1",
+        "row_0_1_4": "-1",
+        "row_3_1_2": "1",
+        "row_5_2_4": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_4_5",
+          1
+        ],
+        [
+          "row_0_1_4",
+          -1
+        ],
+        [
+          "row_3_1_2",
+          1
+        ],
+        [
+          "row_5_2_4",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 19,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            4,
+            5,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            4,
+            -1
+          ],
+          [
+            "row",
+            3,
+            1,
+            2,
+            1
+          ],
+          [
+            "row",
+            5,
+            2,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_3",
+          "kal1_0_2_4_5",
+          "row_0_1_4",
+          "row_3_1_2",
+          "row_5_2_4"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_3": "1",
+          "kal1_0_2_4_5": "1",
+          "row_0_1_4": "-1",
+          "row_3_1_2": "1",
+          "row_5_2_4": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_4_5",
+            1
+          ],
+          [
+            "row_0_1_4",
+            -1
+          ],
+          [
+            "row_3_1_2",
+            1
+          ],
+          [
+            "row_5_2_4",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_010.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal2",
+          0,
+          2,
+          4,
+          3,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          4,
+          -1
+        ],
+        [
+          "row",
+          2,
+          0,
+          4,
+          1
+        ],
+        [
+          "row",
+          3,
+          0,
+          1,
+          -1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_10",
+        "kal2_0_2_6_10",
+        "row_0_1_6",
+        "row_2_0_6",
+        "row_10_0_1"
+      ],
+      "inequality_count": 2,
+      "iteration": 11,
+      "multipliers": {
+        "kal1_0_1_2_10": "1",
+        "kal2_0_2_6_10": "1",
+        "row_0_1_6": "-1",
+        "row_10_0_1": "-1",
+        "row_2_0_6": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_4",
+          1
+        ],
+        [
+          "kal2_0_2_3_4",
+          1
+        ],
+        [
+          "row_0_1_3",
+          -1
+        ],
+        [
+          "row_2_0_3",
+          1
+        ],
+        [
+          "row_4_0_1",
+          -1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 13,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal2",
+            0,
+            2,
+            4,
+            3,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            4,
+            -1
+          ],
+          [
+            "row",
+            2,
+            0,
+            4,
+            1
+          ],
+          [
+            "row",
+            3,
+            0,
+            1,
+            -1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_10",
+          "kal2_0_2_6_10",
+          "row_0_1_6",
+          "row_2_0_6",
+          "row_10_0_1"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_10": "1",
+          "kal2_0_2_6_10": "1",
+          "row_0_1_6": "-1",
+          "row_10_0_1": "-1",
+          "row_2_0_6": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_4",
+            1
+          ],
+          [
+            "kal2_0_2_3_4",
+            1
+          ],
+          [
+            "row_0_1_3",
+            -1
+          ],
+          [
+            "row_2_0_3",
+            1
+          ],
+          [
+            "row_4_0_1",
+            -1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_011.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal2",
+          1,
+          4,
+          5,
+          3,
+          1
+        ],
+        [
+          "row",
+          1,
+          0,
+          5,
+          -1
+        ],
+        [
+          "row",
+          2,
+          0,
+          3,
+          1
+        ],
+        [
+          "row",
+          4,
+          3,
+          5,
+          -1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_10",
+        "kal2_1_4_5_10",
+        "row_1_0_5",
+        "row_2_0_10",
+        "row_4_5_10"
+      ],
+      "inequality_count": 2,
+      "iteration": 12,
+      "multipliers": {
+        "kal1_0_1_2_10": "1",
+        "kal2_1_4_5_10": "1",
+        "row_1_0_5": "-1",
+        "row_2_0_10": "1",
+        "row_4_5_10": "-1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_5",
+          1
+        ],
+        [
+          "kal2_1_3_4_5",
+          1
+        ],
+        [
+          "row_1_0_4",
+          -1
+        ],
+        [
+          "row_2_0_5",
+          1
+        ],
+        [
+          "row_3_4_5",
+          -1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 24,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal2",
+            1,
+            4,
+            5,
+            3,
+            1
+          ],
+          [
+            "row",
+            1,
+            0,
+            5,
+            -1
+          ],
+          [
+            "row",
+            2,
+            0,
+            3,
+            1
+          ],
+          [
+            "row",
+            4,
+            3,
+            5,
+            -1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_10",
+          "kal2_1_4_5_10",
+          "row_1_0_5",
+          "row_2_0_10",
+          "row_4_5_10"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_10": "1",
+          "kal2_1_4_5_10": "1",
+          "row_1_0_5": "-1",
+          "row_2_0_10": "1",
+          "row_4_5_10": "-1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_5",
+            1
+          ],
+          [
+            "kal2_1_3_4_5",
+            1
+          ],
+          [
+            "row_1_0_4",
+            -1
+          ],
+          [
+            "row_2_0_5",
+            1
+          ],
+          [
+            "row_3_4_5",
+            -1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_012.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          1,
+          3,
+          4,
+          5,
+          1
+        ],
+        [
+          "row",
+          1,
+          0,
+          4,
+          -1
+        ],
+        [
+          "row",
+          2,
+          0,
+          3,
+          1
+        ],
+        [
+          "row",
+          5,
+          3,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_2_3_4",
+        "kal1_2_4_7_8",
+        "row_2_0_7",
+        "row_3_0_4",
+        "row_8_4_7"
+      ],
+      "inequality_count": 2,
+      "iteration": 13,
+      "multipliers": {
+        "kal1_0_2_3_4": "1",
+        "kal1_2_4_7_8": "1",
+        "row_2_0_7": "-1",
+        "row_3_0_4": "1",
+        "row_8_4_7": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_1_3_4_5",
+          1
+        ],
+        [
+          "row_1_0_4",
+          -1
+        ],
+        [
+          "row_2_0_3",
+          1
+        ],
+        [
+          "row_5_3_4",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 20,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            1,
+            3,
+            4,
+            5,
+            1
+          ],
+          [
+            "row",
+            1,
+            0,
+            4,
+            -1
+          ],
+          [
+            "row",
+            2,
+            0,
+            3,
+            1
+          ],
+          [
+            "row",
+            5,
+            3,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_2_3_4",
+          "kal1_2_4_7_8",
+          "row_2_0_7",
+          "row_3_0_4",
+          "row_8_4_7"
+        ],
+        "multipliers": {
+          "kal1_0_2_3_4": "1",
+          "kal1_2_4_7_8": "1",
+          "row_2_0_7": "-1",
+          "row_3_0_4": "1",
+          "row_8_4_7": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_1_3_4_5",
+            1
+          ],
+          [
+            "row_1_0_4",
+            -1
+          ],
+          [
+            "row_2_0_3",
+            1
+          ],
+          [
+            "row_5_3_4",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_013.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          3,
+          4,
+          1
+        ],
+        [
+          "row",
+          1,
+          0,
+          3,
+          -1
+        ],
+        [
+          "row",
+          2,
+          3,
+          4,
+          -1
+        ],
+        [
+          "row",
+          3,
+          0,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_5",
+        "kal1_0_2_5_10",
+        "row_1_0_5",
+        "row_2_5_10",
+        "row_5_0_10"
+      ],
+      "inequality_count": 2,
+      "iteration": 14,
+      "multipliers": {
+        "kal1_0_1_2_5": "1",
+        "kal1_0_2_5_10": "1",
+        "row_1_0_5": "-1",
+        "row_2_5_10": "-1",
+        "row_5_0_10": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_3_4",
+          1
+        ],
+        [
+          "row_1_0_3",
+          -1
+        ],
+        [
+          "row_2_3_4",
+          -1
+        ],
+        [
+          "row_3_0_4",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 16,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            3,
+            4,
+            1
+          ],
+          [
+            "row",
+            1,
+            0,
+            3,
+            -1
+          ],
+          [
+            "row",
+            2,
+            3,
+            4,
+            -1
+          ],
+          [
+            "row",
+            3,
+            0,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_5",
+          "kal1_0_2_5_10",
+          "row_1_0_5",
+          "row_2_5_10",
+          "row_5_0_10"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_5": "1",
+          "kal1_0_2_5_10": "1",
+          "row_1_0_5": "-1",
+          "row_2_5_10": "-1",
+          "row_5_0_10": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_3_4",
+            1
+          ],
+          [
+            "row_1_0_3",
+            -1
+          ],
+          [
+            "row_2_3_4",
+            -1
+          ],
+          [
+            "row_3_0_4",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_014.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal2",
+          0,
+          2,
+          4,
+          3,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          4,
+          -1
+        ],
+        [
+          "row",
+          2,
+          0,
+          4,
+          1
+        ],
+        [
+          "row",
+          3,
+          0,
+          1,
+          -1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_3_10",
+        "kal2_0_3_4_10",
+        "row_0_1_4",
+        "row_3_0_4",
+        "row_10_0_1"
+      ],
+      "inequality_count": 2,
+      "iteration": 15,
+      "multipliers": {
+        "kal1_0_1_3_10": "1",
+        "kal2_0_3_4_10": "1",
+        "row_0_1_4": "-1",
+        "row_10_0_1": "-1",
+        "row_3_0_4": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_4",
+          1
+        ],
+        [
+          "kal2_0_2_3_4",
+          1
+        ],
+        [
+          "row_0_1_3",
+          -1
+        ],
+        [
+          "row_2_0_3",
+          1
+        ],
+        [
+          "row_4_0_1",
+          -1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 14,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal2",
+            0,
+            2,
+            4,
+            3,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            4,
+            -1
+          ],
+          [
+            "row",
+            2,
+            0,
+            4,
+            1
+          ],
+          [
+            "row",
+            3,
+            0,
+            1,
+            -1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_3_10",
+          "kal2_0_3_4_10",
+          "row_0_1_4",
+          "row_3_0_4",
+          "row_10_0_1"
+        ],
+        "multipliers": {
+          "kal1_0_1_3_10": "1",
+          "kal2_0_3_4_10": "1",
+          "row_0_1_4": "-1",
+          "row_10_0_1": "-1",
+          "row_3_0_4": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_4",
+            1
+          ],
+          [
+            "kal2_0_2_3_4",
+            1
+          ],
+          [
+            "row_0_1_3",
+            -1
+          ],
+          [
+            "row_2_0_3",
+            1
+          ],
+          [
+            "row_4_0_1",
+            -1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_015.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          4,
+          5,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          4,
+          -1
+        ],
+        [
+          "row",
+          3,
+          1,
+          2,
+          1
+        ],
+        [
+          "row",
+          5,
+          2,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_4_9",
+        "kal1_0_4_7_10",
+        "row_0_1_7",
+        "row_9_1_4",
+        "row_10_4_7"
+      ],
+      "inequality_count": 2,
+      "iteration": 16,
+      "multipliers": {
+        "kal1_0_1_4_9": "1",
+        "kal1_0_4_7_10": "1",
+        "row_0_1_7": "-1",
+        "row_10_4_7": "1",
+        "row_9_1_4": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_4",
+          1
+        ],
+        [
+          "kal1_0_2_3_5",
+          1
+        ],
+        [
+          "row_0_1_3",
+          -1
+        ],
+        [
+          "row_4_1_2",
+          1
+        ],
+        [
+          "row_5_2_3",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 19,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            4,
+            5,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            4,
+            -1
+          ],
+          [
+            "row",
+            3,
+            1,
+            2,
+            1
+          ],
+          [
+            "row",
+            5,
+            2,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_4_9",
+          "kal1_0_4_7_10",
+          "row_0_1_7",
+          "row_9_1_4",
+          "row_10_4_7"
+        ],
+        "multipliers": {
+          "kal1_0_1_4_9": "1",
+          "kal1_0_4_7_10": "1",
+          "row_0_1_7": "-1",
+          "row_10_4_7": "1",
+          "row_9_1_4": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_4",
+            1
+          ],
+          [
+            "kal1_0_2_3_5",
+            1
+          ],
+          [
+            "row_0_1_3",
+            -1
+          ],
+          [
+            "row_4_1_2",
+            1
+          ],
+          [
+            "row_5_2_3",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_016.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          4,
+          5,
+          1
+        ],
+        [
+          "row",
+          1,
+          0,
+          3,
+          -1
+        ],
+        [
+          "row",
+          2,
+          3,
+          5,
+          -1
+        ],
+        [
+          "row",
+          4,
+          0,
+          5,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_4",
+        "kal1_0_2_5_8",
+        "row_1_0_4",
+        "row_2_4_8",
+        "row_5_0_8"
+      ],
+      "inequality_count": 2,
+      "iteration": 17,
+      "multipliers": {
+        "kal1_0_1_2_4": "1",
+        "kal1_0_2_5_8": "1",
+        "row_1_0_4": "-1",
+        "row_2_4_8": "-1",
+        "row_5_0_8": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_4_5",
+          1
+        ],
+        [
+          "row_1_0_3",
+          -1
+        ],
+        [
+          "row_2_3_5",
+          -1
+        ],
+        [
+          "row_4_0_5",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 9,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            4,
+            5,
+            1
+          ],
+          [
+            "row",
+            1,
+            0,
+            3,
+            -1
+          ],
+          [
+            "row",
+            2,
+            3,
+            5,
+            -1
+          ],
+          [
+            "row",
+            4,
+            0,
+            5,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_4",
+          "kal1_0_2_5_8",
+          "row_1_0_4",
+          "row_2_4_8",
+          "row_5_0_8"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_4": "1",
+          "kal1_0_2_5_8": "1",
+          "row_1_0_4": "-1",
+          "row_2_4_8": "-1",
+          "row_5_0_8": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_4_5",
+            1
+          ],
+          [
+            "row_1_0_3",
+            -1
+          ],
+          [
+            "row_2_3_5",
+            -1
+          ],
+          [
+            "row_4_0_5",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_017.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          4,
+          5,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          4,
+          -1
+        ],
+        [
+          "row",
+          3,
+          1,
+          2,
+          1
+        ],
+        [
+          "row",
+          5,
+          2,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_6",
+        "kal1_0_2_3_5",
+        "row_0_1_3",
+        "row_5_2_3",
+        "row_6_1_2"
+      ],
+      "inequality_count": 2,
+      "iteration": 18,
+      "multipliers": {
+        "kal1_0_1_2_6": "1",
+        "kal1_0_2_3_5": "1",
+        "row_0_1_3": "-1",
+        "row_5_2_3": "1",
+        "row_6_1_2": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_5",
+          1
+        ],
+        [
+          "kal1_0_2_3_4",
+          1
+        ],
+        [
+          "row_0_1_3",
+          -1
+        ],
+        [
+          "row_4_2_3",
+          1
+        ],
+        [
+          "row_5_1_2",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 15,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            4,
+            5,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            4,
+            -1
+          ],
+          [
+            "row",
+            3,
+            1,
+            2,
+            1
+          ],
+          [
+            "row",
+            5,
+            2,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_6",
+          "kal1_0_2_3_5",
+          "row_0_1_3",
+          "row_5_2_3",
+          "row_6_1_2"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_6": "1",
+          "kal1_0_2_3_5": "1",
+          "row_0_1_3": "-1",
+          "row_5_2_3": "1",
+          "row_6_1_2": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_5",
+            1
+          ],
+          [
+            "kal1_0_2_3_4",
+            1
+          ],
+          [
+            "row_0_1_3",
+            -1
+          ],
+          [
+            "row_4_2_3",
+            1
+          ],
+          [
+            "row_5_1_2",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_018.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal2",
+          1,
+          4,
+          5,
+          3,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          2,
+          -1
+        ],
+        [
+          "row",
+          3,
+          2,
+          4,
+          -1
+        ],
+        [
+          "row",
+          5,
+          1,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_3_10",
+        "kal2_1_7_8_10",
+        "row_0_1_3",
+        "row_8_1_7",
+        "row_10_3_7"
+      ],
+      "inequality_count": 2,
+      "iteration": 19,
+      "multipliers": {
+        "kal1_0_1_3_10": "1",
+        "kal2_1_7_8_10": "1",
+        "row_0_1_3": "-1",
+        "row_10_3_7": "-1",
+        "row_8_1_7": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_5",
+          1
+        ],
+        [
+          "kal2_1_3_4_5",
+          1
+        ],
+        [
+          "row_0_1_2",
+          -1
+        ],
+        [
+          "row_4_1_3",
+          1
+        ],
+        [
+          "row_5_2_3",
+          -1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 11,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal2",
+            1,
+            4,
+            5,
+            3,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            2,
+            -1
+          ],
+          [
+            "row",
+            3,
+            2,
+            4,
+            -1
+          ],
+          [
+            "row",
+            5,
+            1,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_3_10",
+          "kal2_1_7_8_10",
+          "row_0_1_3",
+          "row_8_1_7",
+          "row_10_3_7"
+        ],
+        "multipliers": {
+          "kal1_0_1_3_10": "1",
+          "kal2_1_7_8_10": "1",
+          "row_0_1_3": "-1",
+          "row_10_3_7": "-1",
+          "row_8_1_7": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_5",
+            1
+          ],
+          [
+            "kal2_1_3_4_5",
+            1
+          ],
+          [
+            "row_0_1_2",
+            -1
+          ],
+          [
+            "row_4_1_3",
+            1
+          ],
+          [
+            "row_5_2_3",
+            -1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_019.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          4,
+          5,
+          1
+        ],
+        [
+          "row",
+          1,
+          0,
+          3,
+          -1
+        ],
+        [
+          "row",
+          2,
+          3,
+          5,
+          -1
+        ],
+        [
+          "row",
+          4,
+          0,
+          5,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_3",
+        "kal1_0_2_9_10",
+        "row_1_0_3",
+        "row_2_3_10",
+        "row_9_0_10"
+      ],
+      "inequality_count": 2,
+      "iteration": 20,
+      "multipliers": {
+        "kal1_0_1_2_3": "1",
+        "kal1_0_2_9_10": "1",
+        "row_1_0_3": "-1",
+        "row_2_3_10": "-1",
+        "row_9_0_10": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_4_5",
+          1
+        ],
+        [
+          "row_1_0_3",
+          -1
+        ],
+        [
+          "row_2_3_5",
+          -1
+        ],
+        [
+          "row_4_0_5",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 16,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            4,
+            5,
+            1
+          ],
+          [
+            "row",
+            1,
+            0,
+            3,
+            -1
+          ],
+          [
+            "row",
+            2,
+            3,
+            5,
+            -1
+          ],
+          [
+            "row",
+            4,
+            0,
+            5,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_3",
+          "kal1_0_2_9_10",
+          "row_1_0_3",
+          "row_2_3_10",
+          "row_9_0_10"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_3": "1",
+          "kal1_0_2_9_10": "1",
+          "row_1_0_3": "-1",
+          "row_2_3_10": "-1",
+          "row_9_0_10": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_4_5",
+            1
+          ],
+          [
+            "row_1_0_3",
+            -1
+          ],
+          [
+            "row_2_3_5",
+            -1
+          ],
+          [
+            "row_4_0_5",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_020.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal2",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "row",
+          0,
+          3,
+          4,
+          1
+        ],
+        [
+          "row",
+          2,
+          0,
+          1,
+          1
+        ],
+        [
+          "row",
+          3,
+          1,
+          4,
+          -1
+        ],
+        [
+          "row",
+          4,
+          0,
+          3,
+          -1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal2_5_6_7_10",
+        "row_10_1_6",
+        "row_1_5_10",
+        "row_5_1_10",
+        "row_7_5_6"
+      ],
+      "inequality_count": 1,
+      "iteration": 21,
+      "multipliers": {
+        "kal2_5_6_7_10": "1",
+        "row_10_1_6": "-1",
+        "row_1_5_10": "-1",
+        "row_5_1_10": "1",
+        "row_7_5_6": "1"
+      },
+      "normal_form": [
+        [
+          "kal2_0_1_2_3",
+          1
+        ],
+        [
+          "row_0_2_4",
+          -1
+        ],
+        [
+          "row_1_2_3",
+          1
+        ],
+        [
+          "row_3_0_4",
+          1
+        ],
+        [
+          "row_4_0_3",
+          -1
+        ]
+      ],
+      "one_kalmanson_alternate": {
+        "constraint_count": 5,
+        "constraints": [
+          "kal2_5_6_7_10",
+          "row_10_1_6",
+          "row_1_5_10",
+          "row_5_1_10",
+          "row_7_5_6"
+        ],
+        "multipliers": {
+          "kal2_5_6_7_10": "1",
+          "row_10_1_6": "-1",
+          "row_1_5_10": "-1",
+          "row_5_1_10": "1",
+          "row_7_5_6": "1"
+        },
+        "normal_form": [
+          [
+            "kal2_0_1_2_3",
+            1
+          ],
+          [
+            "row_0_2_4",
+            -1
+          ],
+          [
+            "row_1_2_3",
+            1
+          ],
+          [
+            "row_3_0_4",
+            1
+          ],
+          [
+            "row_4_0_3",
+            -1
+          ]
+        ],
+        "row_equality_count": 4
+      },
+      "oracle_constraint_count": 14,
+      "row_equality_count": 4,
+      "shape": "ONE_KALMANSON_4_ROW_EQUALITY_CLOSURE",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal2",
+            0,
+            2,
+            4,
+            3,
+            1
+          ],
+          [
+            "row",
+            0,
+            2,
+            3,
+            1
+          ],
+          [
+            "row",
+            1,
+            0,
+            3,
+            -1
+          ],
+          [
+            "row",
+            4,
+            0,
+            2,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_10",
+          "kal2_0_2_3_10",
+          "row_0_2_10",
+          "row_1_0_10",
+          "row_3_0_2"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_10": "1",
+          "kal2_0_2_3_10": "1",
+          "row_0_2_10": "1",
+          "row_1_0_10": "-1",
+          "row_3_0_2": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_4",
+            1
+          ],
+          [
+            "kal2_0_2_3_4",
+            1
+          ],
+          [
+            "row_0_2_4",
+            1
+          ],
+          [
+            "row_1_0_4",
+            -1
+          ],
+          [
+            "row_3_0_2",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_021.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          3,
+          4,
+          1
+        ],
+        [
+          "row",
+          1,
+          0,
+          3,
+          -1
+        ],
+        [
+          "row",
+          2,
+          3,
+          4,
+          -1
+        ],
+        [
+          "row",
+          3,
+          0,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_3",
+        "kal1_0_2_3_9",
+        "row_1_0_3",
+        "row_2_3_9",
+        "row_3_0_9"
+      ],
+      "inequality_count": 2,
+      "iteration": 22,
+      "multipliers": {
+        "kal1_0_1_2_3": "1",
+        "kal1_0_2_3_9": "1",
+        "row_1_0_3": "-1",
+        "row_2_3_9": "-1",
+        "row_3_0_9": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_3_4",
+          1
+        ],
+        [
+          "row_1_0_3",
+          -1
+        ],
+        [
+          "row_2_3_4",
+          -1
+        ],
+        [
+          "row_3_0_4",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 9,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            3,
+            4,
+            1
+          ],
+          [
+            "row",
+            1,
+            0,
+            3,
+            -1
+          ],
+          [
+            "row",
+            2,
+            3,
+            4,
+            -1
+          ],
+          [
+            "row",
+            3,
+            0,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_3",
+          "kal1_0_2_3_9",
+          "row_1_0_3",
+          "row_2_3_9",
+          "row_3_0_9"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_3": "1",
+          "kal1_0_2_3_9": "1",
+          "row_1_0_3": "-1",
+          "row_2_3_9": "-1",
+          "row_3_0_9": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_3_4",
+            1
+          ],
+          [
+            "row_1_0_3",
+            -1
+          ],
+          [
+            "row_2_3_4",
+            -1
+          ],
+          [
+            "row_3_0_4",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_022.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          4,
+          5,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          4,
+          -1
+        ],
+        [
+          "row",
+          3,
+          1,
+          2,
+          1
+        ],
+        [
+          "row",
+          5,
+          2,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_10",
+        "kal1_0_2_4_5",
+        "row_0_1_4",
+        "row_5_2_4",
+        "row_10_1_2"
+      ],
+      "inequality_count": 2,
+      "iteration": 23,
+      "multipliers": {
+        "kal1_0_1_2_10": "1",
+        "kal1_0_2_4_5": "1",
+        "row_0_1_4": "-1",
+        "row_10_1_2": "1",
+        "row_5_2_4": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_5",
+          1
+        ],
+        [
+          "kal1_0_2_3_4",
+          1
+        ],
+        [
+          "row_0_1_3",
+          -1
+        ],
+        [
+          "row_4_2_3",
+          1
+        ],
+        [
+          "row_5_1_2",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 13,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            4,
+            5,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            4,
+            -1
+          ],
+          [
+            "row",
+            3,
+            1,
+            2,
+            1
+          ],
+          [
+            "row",
+            5,
+            2,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_10",
+          "kal1_0_2_4_5",
+          "row_0_1_4",
+          "row_5_2_4",
+          "row_10_1_2"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_10": "1",
+          "kal1_0_2_4_5": "1",
+          "row_0_1_4": "-1",
+          "row_10_1_2": "1",
+          "row_5_2_4": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_5",
+            1
+          ],
+          [
+            "kal1_0_2_3_4",
+            1
+          ],
+          [
+            "row_0_1_3",
+            -1
+          ],
+          [
+            "row_4_2_3",
+            1
+          ],
+          [
+            "row_5_1_2",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_023.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          3,
+          4,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          3,
+          -1
+        ],
+        [
+          "row",
+          2,
+          3,
+          4,
+          -1
+        ],
+        [
+          "row",
+          3,
+          1,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_3",
+        "kal1_0_2_3_4",
+        "row_0_1_3",
+        "row_2_3_4",
+        "row_3_1_4"
+      ],
+      "inequality_count": 2,
+      "iteration": 24,
+      "multipliers": {
+        "kal1_0_1_2_3": "1",
+        "kal1_0_2_3_4": "1",
+        "row_0_1_3": "-1",
+        "row_2_3_4": "-1",
+        "row_3_1_4": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_3_4",
+          1
+        ],
+        [
+          "row_0_1_3",
+          -1
+        ],
+        [
+          "row_2_3_4",
+          -1
+        ],
+        [
+          "row_3_1_4",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 12,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            3,
+            4,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            3,
+            -1
+          ],
+          [
+            "row",
+            2,
+            3,
+            4,
+            -1
+          ],
+          [
+            "row",
+            3,
+            1,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_3",
+          "kal1_0_2_3_4",
+          "row_0_1_3",
+          "row_2_3_4",
+          "row_3_1_4"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_3": "1",
+          "kal1_0_2_3_4": "1",
+          "row_0_1_3": "-1",
+          "row_2_3_4": "-1",
+          "row_3_1_4": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_3_4",
+            1
+          ],
+          [
+            "row_0_1_3",
+            -1
+          ],
+          [
+            "row_2_3_4",
+            -1
+          ],
+          [
+            "row_3_1_4",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_024.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          1,
+          2,
+          4,
+          3,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          2,
+          -1
+        ],
+        [
+          "row",
+          1,
+          2,
+          3,
+          -1
+        ],
+        [
+          "row",
+          4,
+          1,
+          3,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_10",
+        "kal1_1_2_9_10",
+        "row_0_1_2",
+        "row_1_2_10",
+        "row_9_1_10"
+      ],
+      "inequality_count": 2,
+      "iteration": 25,
+      "multipliers": {
+        "kal1_0_1_2_10": "1",
+        "kal1_1_2_9_10": "1",
+        "row_0_1_2": "-1",
+        "row_1_2_10": "-1",
+        "row_9_1_10": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_3_4",
+          1
+        ],
+        [
+          "row_1_0_3",
+          1
+        ],
+        [
+          "row_3_0_2",
+          -1
+        ],
+        [
+          "row_4_2_3",
+          -1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 8,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            1,
+            2,
+            4,
+            3,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            2,
+            -1
+          ],
+          [
+            "row",
+            1,
+            2,
+            3,
+            -1
+          ],
+          [
+            "row",
+            4,
+            1,
+            3,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_10",
+          "kal1_1_2_9_10",
+          "row_0_1_2",
+          "row_1_2_10",
+          "row_9_1_10"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_10": "1",
+          "kal1_1_2_9_10": "1",
+          "row_0_1_2": "-1",
+          "row_1_2_10": "-1",
+          "row_9_1_10": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_3_4",
+            1
+          ],
+          [
+            "row_1_0_3",
+            1
+          ],
+          [
+            "row_3_0_2",
+            -1
+          ],
+          [
+            "row_4_2_3",
+            -1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_025.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          3,
+          4,
+          1
+        ],
+        [
+          "row",
+          1,
+          0,
+          3,
+          -1
+        ],
+        [
+          "row",
+          3,
+          0,
+          2,
+          1
+        ],
+        [
+          "row",
+          4,
+          2,
+          3,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_3",
+        "kal1_0_2_3_8",
+        "row_1_0_3",
+        "row_3_0_2",
+        "row_8_2_3"
+      ],
+      "inequality_count": 2,
+      "iteration": 26,
+      "multipliers": {
+        "kal1_0_1_2_3": "1",
+        "kal1_0_2_3_8": "1",
+        "row_1_0_3": "-1",
+        "row_3_0_2": "1",
+        "row_8_2_3": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_3_4",
+          1
+        ],
+        [
+          "row_1_0_3",
+          -1
+        ],
+        [
+          "row_3_0_2",
+          1
+        ],
+        [
+          "row_4_2_3",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 15,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            3,
+            4,
+            1
+          ],
+          [
+            "row",
+            1,
+            0,
+            3,
+            -1
+          ],
+          [
+            "row",
+            3,
+            0,
+            2,
+            1
+          ],
+          [
+            "row",
+            4,
+            2,
+            3,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_3",
+          "kal1_0_2_3_8",
+          "row_1_0_3",
+          "row_3_0_2",
+          "row_8_2_3"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_3": "1",
+          "kal1_0_2_3_8": "1",
+          "row_1_0_3": "-1",
+          "row_3_0_2": "1",
+          "row_8_2_3": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_3_4",
+            1
+          ],
+          [
+            "row_1_0_3",
+            -1
+          ],
+          [
+            "row_3_0_2",
+            1
+          ],
+          [
+            "row_4_2_3",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_026.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          3,
+          4,
+          1
+        ],
+        [
+          "row",
+          1,
+          0,
+          3,
+          -1
+        ],
+        [
+          "row",
+          2,
+          3,
+          4,
+          -1
+        ],
+        [
+          "row",
+          3,
+          0,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_3_6",
+        "kal1_0_3_6_8",
+        "row_1_0_6",
+        "row_3_6_8",
+        "row_6_0_8"
+      ],
+      "inequality_count": 2,
+      "iteration": 27,
+      "multipliers": {
+        "kal1_0_1_3_6": "1",
+        "kal1_0_3_6_8": "1",
+        "row_1_0_6": "-1",
+        "row_3_6_8": "-1",
+        "row_6_0_8": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_3_4",
+          1
+        ],
+        [
+          "row_1_0_3",
+          -1
+        ],
+        [
+          "row_2_3_4",
+          -1
+        ],
+        [
+          "row_3_0_4",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 9,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            3,
+            4,
+            1
+          ],
+          [
+            "row",
+            1,
+            0,
+            3,
+            -1
+          ],
+          [
+            "row",
+            2,
+            3,
+            4,
+            -1
+          ],
+          [
+            "row",
+            3,
+            0,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_3_6",
+          "kal1_0_3_6_8",
+          "row_1_0_6",
+          "row_3_6_8",
+          "row_6_0_8"
+        ],
+        "multipliers": {
+          "kal1_0_1_3_6": "1",
+          "kal1_0_3_6_8": "1",
+          "row_1_0_6": "-1",
+          "row_3_6_8": "-1",
+          "row_6_0_8": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_3_4",
+            1
+          ],
+          [
+            "row_1_0_3",
+            -1
+          ],
+          [
+            "row_2_3_4",
+            -1
+          ],
+          [
+            "row_3_0_4",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_027.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          4,
+          5,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          4,
+          -1
+        ],
+        [
+          "row",
+          3,
+          1,
+          2,
+          1
+        ],
+        [
+          "row",
+          5,
+          2,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_6",
+        "kal1_0_2_7_9",
+        "row_0_1_7",
+        "row_6_1_2",
+        "row_9_2_7"
+      ],
+      "inequality_count": 2,
+      "iteration": 28,
+      "multipliers": {
+        "kal1_0_1_2_6": "1",
+        "kal1_0_2_7_9": "1",
+        "row_0_1_7": "-1",
+        "row_6_1_2": "1",
+        "row_9_2_7": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_4_5",
+          1
+        ],
+        [
+          "row_0_1_4",
+          -1
+        ],
+        [
+          "row_3_1_2",
+          1
+        ],
+        [
+          "row_5_2_4",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 23,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            4,
+            5,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            4,
+            -1
+          ],
+          [
+            "row",
+            3,
+            1,
+            2,
+            1
+          ],
+          [
+            "row",
+            5,
+            2,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_6",
+          "kal1_0_2_7_9",
+          "row_0_1_7",
+          "row_6_1_2",
+          "row_9_2_7"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_6": "1",
+          "kal1_0_2_7_9": "1",
+          "row_0_1_7": "-1",
+          "row_6_1_2": "1",
+          "row_9_2_7": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_4_5",
+            1
+          ],
+          [
+            "row_0_1_4",
+            -1
+          ],
+          [
+            "row_3_1_2",
+            1
+          ],
+          [
+            "row_5_2_4",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_028.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal2",
+          1,
+          4,
+          5,
+          3,
+          1
+        ],
+        [
+          "row",
+          0,
+          1,
+          2,
+          -1
+        ],
+        [
+          "row",
+          3,
+          2,
+          4,
+          -1
+        ],
+        [
+          "row",
+          5,
+          1,
+          4,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_2_10",
+        "kal2_1_5_6_10",
+        "row_0_1_2",
+        "row_6_1_5",
+        "row_10_2_5"
+      ],
+      "inequality_count": 2,
+      "iteration": 29,
+      "multipliers": {
+        "kal1_0_1_2_10": "1",
+        "kal2_1_5_6_10": "1",
+        "row_0_1_2": "-1",
+        "row_10_2_5": "-1",
+        "row_6_1_5": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_5",
+          1
+        ],
+        [
+          "kal2_1_3_4_5",
+          1
+        ],
+        [
+          "row_0_1_2",
+          -1
+        ],
+        [
+          "row_4_1_3",
+          1
+        ],
+        [
+          "row_5_2_3",
+          -1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 15,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal2",
+            1,
+            4,
+            5,
+            3,
+            1
+          ],
+          [
+            "row",
+            0,
+            1,
+            2,
+            -1
+          ],
+          [
+            "row",
+            3,
+            2,
+            4,
+            -1
+          ],
+          [
+            "row",
+            5,
+            1,
+            4,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_2_10",
+          "kal2_1_5_6_10",
+          "row_0_1_2",
+          "row_6_1_5",
+          "row_10_2_5"
+        ],
+        "multipliers": {
+          "kal1_0_1_2_10": "1",
+          "kal2_1_5_6_10": "1",
+          "row_0_1_2": "-1",
+          "row_10_2_5": "-1",
+          "row_6_1_5": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_5",
+            1
+          ],
+          [
+            "kal2_1_3_4_5",
+            1
+          ],
+          [
+            "row_0_1_2",
+            -1
+          ],
+          [
+            "row_4_1_3",
+            1
+          ],
+          [
+            "row_5_2_3",
+            -1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_029.full_lra.json"
+    },
+    {
+      "abstract_normal_form": [
+        [
+          "kal1",
+          0,
+          1,
+          2,
+          3,
+          1
+        ],
+        [
+          "kal1",
+          0,
+          2,
+          4,
+          5,
+          1
+        ],
+        [
+          "row",
+          1,
+          0,
+          3,
+          -1
+        ],
+        [
+          "row",
+          2,
+          3,
+          5,
+          -1
+        ],
+        [
+          "row",
+          4,
+          0,
+          5,
+          1
+        ]
+      ],
+      "alternate_constraint_count": 5,
+      "alternate_source": "FULL_ROW_TABLE_ALTERNATE",
+      "constraints": [
+        "kal1_0_1_3_4",
+        "kal1_0_3_9_10",
+        "row_1_0_4",
+        "row_3_4_10",
+        "row_9_0_10"
+      ],
+      "inequality_count": 2,
+      "iteration": 30,
+      "multipliers": {
+        "kal1_0_1_3_4": "1",
+        "kal1_0_3_9_10": "1",
+        "row_1_0_4": "-1",
+        "row_3_4_10": "-1",
+        "row_9_0_10": "1"
+      },
+      "normal_form": [
+        [
+          "kal1_0_1_2_3",
+          1
+        ],
+        [
+          "kal1_0_2_4_5",
+          1
+        ],
+        [
+          "row_1_0_3",
+          -1
+        ],
+        [
+          "row_2_3_5",
+          -1
+        ],
+        [
+          "row_4_0_5",
+          1
+        ]
+      ],
+      "one_kalmanson_alternate": null,
+      "oracle_constraint_count": 13,
+      "row_equality_count": 3,
+      "shape": "TWO_KALMANSON_THREE_ROW",
+      "small_hash_alternate": {
+        "abstract_normal_form": [
+          [
+            "kal1",
+            0,
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            "kal1",
+            0,
+            2,
+            4,
+            5,
+            1
+          ],
+          [
+            "row",
+            1,
+            0,
+            3,
+            -1
+          ],
+          [
+            "row",
+            2,
+            3,
+            5,
+            -1
+          ],
+          [
+            "row",
+            4,
+            0,
+            5,
+            1
+          ]
+        ],
+        "constraint_count": 5,
+        "constraints": [
+          "kal1_0_1_3_4",
+          "kal1_0_3_9_10",
+          "row_1_0_4",
+          "row_3_4_10",
+          "row_9_0_10"
+        ],
+        "multipliers": {
+          "kal1_0_1_3_4": "1",
+          "kal1_0_3_9_10": "1",
+          "row_1_0_4": "-1",
+          "row_3_4_10": "-1",
+          "row_9_0_10": "1"
+        },
+        "normal_form": [
+          [
+            "kal1_0_1_2_3",
+            1
+          ],
+          [
+            "kal1_0_2_4_5",
+            1
+          ],
+          [
+            "row_1_0_3",
+            -1
+          ],
+          [
+            "row_2_3_5",
+            -1
+          ],
+          [
+            "row_4_0_5",
+            1
+          ]
+        ],
+        "shape": "TWO_KALMANSON_THREE_ROW"
+      },
+      "source": "iteration_030.full_lra.json"
+    }
+  ],
+  "schema": "p97-cnf-round3-full-row-small-alternate-cores-v1",
+  "shape_counts": {
+    "ONE_KALMANSON_4_ROW_EQUALITY_CLOSURE": 1,
+    "TWO_KALMANSON_THREE_ROW": 29
+  },
+  "two_kalmanson_three_row_abstract_normal_form_count": 13,
+  "two_kalmanson_three_row_abstract_normal_form_frequencies": [
+    8,
+    4,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "two_kalmanson_three_row_alternate_count": 30,
+  "two_kalmanson_three_row_order_normal_form_count": 15,
+  "two_kalmanson_three_row_order_normal_form_frequencies": [
+    5,
+    4,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ]
+}

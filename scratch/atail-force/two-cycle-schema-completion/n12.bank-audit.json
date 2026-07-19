@@ -1,0 +1,87 @@
+{
+  "banks": [
+    {
+      "all_exact_saved_carrier_linear_keys_absent": true,
+      "bank": "scratch/atail-force/uniform-cycle-coverage-audit/front-before-isosceles-cegar/bank_218.json",
+      "bank_schema_count": 218,
+      "bank_sha256": "cebe28e739da3d121158879a0dffd56ed7496c1c50a45e5902cf09d22d38be5f",
+      "witnesses": [
+        {
+          "core_vertex_count": 6,
+          "cyclic_family_bank_hit_count": 5,
+          "cyclic_family_bank_hit_indices": [
+            84,
+            119,
+            134,
+            139,
+            148
+          ],
+          "cyclic_family_rotation_record_count": 6,
+          "exact_saved_carrier_linear_key_index": null,
+          "exact_saved_carrier_linear_key_present": false,
+          "witness_index": 0
+        },
+        {
+          "core_vertex_count": 7,
+          "cyclic_family_bank_hit_count": 0,
+          "cyclic_family_bank_hit_indices": [],
+          "cyclic_family_rotation_record_count": 7,
+          "exact_saved_carrier_linear_key_index": null,
+          "exact_saved_carrier_linear_key_present": false,
+          "witness_index": 1
+        },
+        {
+          "core_vertex_count": 8,
+          "cyclic_family_bank_hit_count": 0,
+          "cyclic_family_bank_hit_indices": [],
+          "cyclic_family_rotation_record_count": 8,
+          "exact_saved_carrier_linear_key_index": null,
+          "exact_saved_carrier_linear_key_present": false,
+          "witness_index": 2
+        }
+      ]
+    },
+    {
+      "all_exact_saved_carrier_linear_keys_absent": true,
+      "bank": "scratch/atail-force/uniform-cycle-coverage-audit/compressed_bank_262.json",
+      "bank_schema_count": 262,
+      "bank_sha256": "4b288524414a37d27b33264b48fa5c455205cc8257a7da317709d16fb30ff26a",
+      "witnesses": [
+        {
+          "core_vertex_count": 6,
+          "cyclic_family_bank_hit_count": 1,
+          "cyclic_family_bank_hit_indices": [
+            112
+          ],
+          "cyclic_family_rotation_record_count": 6,
+          "exact_saved_carrier_linear_key_index": null,
+          "exact_saved_carrier_linear_key_present": false,
+          "witness_index": 0
+        },
+        {
+          "core_vertex_count": 7,
+          "cyclic_family_bank_hit_count": 0,
+          "cyclic_family_bank_hit_indices": [],
+          "cyclic_family_rotation_record_count": 7,
+          "exact_saved_carrier_linear_key_index": null,
+          "exact_saved_carrier_linear_key_present": false,
+          "witness_index": 1
+        },
+        {
+          "core_vertex_count": 8,
+          "cyclic_family_bank_hit_count": 0,
+          "cyclic_family_bank_hit_indices": [],
+          "cyclic_family_rotation_record_count": 8,
+          "exact_saved_carrier_linear_key_index": null,
+          "exact_saved_carrier_linear_key_present": false,
+          "witness_index": 2
+        }
+      ]
+    }
+  ],
+  "detection": "scratch/atail-force/two-cycle-schema-completion/n12.detect.json",
+  "epistemic_status": "EXACT_SCHEMA_KEY_COMPARISON",
+  "interpretation": "An absent exact linear key explains why that saved carrier survived the bank. A cyclic-family hit only means another choice of linear cut was previously banked; the current encoder does not quotient schema records by cyclic rotation.",
+  "schema": "p97-theorem-faithful-two-cycle-bank-audit-v1",
+  "status": "VERIFIED"
+}

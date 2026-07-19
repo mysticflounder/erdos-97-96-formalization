@@ -1,0 +1,53 @@
+{
+  "profile": [
+    6,
+    5,
+    4
+  ],
+  "reports": [
+    {
+      "max_nodes": 4000000,
+      "nodes": 4000001,
+      "off_surplus_sources": [
+        0,
+        7,
+        8,
+        9
+      ],
+      "prefix_metric_core_cache": {
+        "hits": 129435,
+        "misses": 3871433,
+        "size": 3871433
+      },
+      "rejected_complete_assignments": {
+        "equality-convex-five-point": 4736,
+        "equality-convex-five-point-reverse": 218,
+        "equality-equilateral-bisector-collision": 575,
+        "equality-six-point-circle-chain-collision": 72,
+        "equality-six-point-five-circle-collision-a": 36,
+        "equality-six-point-five-circle-collision-b": 96,
+        "equality-three-triad-collision": 1228
+      },
+      "rejected_prefixes": {
+        "equality-duplicate-center": 927328,
+        "equality-exact-off-circle": 206147,
+        "equality-perpendicular-bisector-convex": 484676,
+        "pinned-row-compatibility": 3815,
+        "target:CoincidentBlockerResidualMember": 1409
+      },
+      "status": "INDETERMINATE",
+      "support": [
+        0,
+        6,
+        7,
+        8,
+        9
+      ]
+    }
+  ],
+  "schema": "p97-card-five-source-indexed-target-probe-v2",
+  "support_offset": 4,
+  "supports_tried": 1,
+  "total_support_count": 15,
+  "trust_boundary": "finite cap/incidence/equality shadow; exact source rows are declared; the local exact-QQ cuts have exactly replayed algebraic certificates; only the first unit core has an unbuilt Lean source; SAT is not a Euclidean realization and UNSAT is not a Lean theorem"
+}

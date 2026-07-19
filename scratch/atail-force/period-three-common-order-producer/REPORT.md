@@ -4,15 +4,19 @@ Date: 2026-07-17
 
 Status: **THE SHARED-CAP-ORDER PACKET IS CONSTRUCTIBLE FROM THE ACTUAL COMMON
 CAP, THE PHYSICAL OMISSION CYCLE, AND ALL-REVERSE MEMBERSHIP.  IT DOES NOT
-NEED TO BE A PUBLIC PREMISE.  A COMPLETE SCRATCH PROOF DRAFT IS RECORDED, BUT
-IT HAS NOT BEEN ELABORATED BECAUSE THE USER-OWNED `ShellCurvature` LANE STILL
-FORBIDS LEAN/LAKE RUNS.  NO PRODUCTION `sorry` IS CLOSED.**
+NEED TO BE A PUBLIC PREMISE.  THE COMPLETE SCRATCH PROOF ELABORATES AGAINST A
+FRESH CURRENT DEPENDENCY CHAIN, HAS NO `sorry`, AND USES ONLY THE STANDARD
+AXIOMS `propext`, `Classical.choice`, AND `Quot.sound`.  NO PRODUCTION `sorry`
+IS CLOSED.**
 
-This lane owns only
-`scratch/atail-force/period-three-common-order-producer/`.  It did not edit
-production Lean, shared documents, blueprint state, `ShellCurvature`,
-`SurplusM44`, protected census files, or git state.  No Lean, Lake, or LSP
-elaboration was run.
+The producer itself remains confined to
+`scratch/atail-force/period-three-common-order-producer/`.  Clean validation
+also required two mechanical repairs to its scratch interface dependencies:
+individual dependent structure fields in `CandidateAdapter.lean` and the
+namespace opening for `FrontierCommonDeletionParentResidual` in
+`PeriodThreeSharedOrderPacket.lean`.  No production Lean, shared documents,
+blueprint state, `ShellCurvature`, `SurplusM44`, protected census files, or git
+state were changed.
 
 ## Required preflight
 
@@ -86,12 +90,12 @@ per-row straddle packets and then merely collecting them would leave two
 potentially different local indices for the same successor source.  The
 single source-index function avoids that coherence gap.
 
-## First remaining validation/proof boundary
+## First remaining proof boundary
 
-The producer has no mathematical API gap.  The first remaining task is
-mechanical elaboration once the no-build gate lifts.  The likely repair
-surface is limited to namespace/import inference or `simp` orientation in the
-distance rewrite; no missing theorem was found.
+The producer has no mathematical API or elaboration gap.  The next proof task
+is the pointwise local-extremum/Kalmanson consumer that uses this shared order.
+No theorem currently turns that consumer into the final T0/T1 metric
+contradiction.
 
 Even after elaboration, this producer is not a contradiction.  It removes
 `hsharedOrder` as an independent premise and supplies an honest input to the
@@ -102,7 +106,15 @@ contradiction remain the live mathematical work.
 
 - theorem-bank and indexed-corpus preflight: completed;
 - source implication audit: completed;
-- scratch proof body: drafted with no `sorry` or `admit`;
-- Lean/LSP elaboration: intentionally not run;
-- Lake build and axiom audit: intentionally not run;
+- clean scratch dependency chain: freshly elaborated in
+  `/private/tmp/p97-common-order-fresh.XUt39M`;
+- `CandidateAdapter.lean`: direct scoped Lean check passed;
+- `PeriodThreeSharedOrderPacket.lean`: direct scoped Lean check passed;
+- `ReverseCycleSharedCapOrderProducer.lean`: direct scoped Lean check passed;
+- source scan: no `sorry`, `admit`, or `axiom` commands in the three checked
+  files;
+- axiom audit for `nonempty_reverseCycleSharedCapOrder`: exactly `propext`,
+  `Classical.choice`, and `Quot.sound`;
+- full project `lake-build`: not run because these scratch modules are not
+  Lake targets;
 - production `sorry` closure: none.

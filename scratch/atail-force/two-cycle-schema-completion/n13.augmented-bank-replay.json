@@ -1,0 +1,942 @@
+{
+  "bank": "scratch/atail-force/two-cycle-schema-completion/bank_n12_n13_two_cycle_rotation_closed_292.json",
+  "bank_schema_count": 292,
+  "carrier": "scratch/atail-force/n12-geometry-regression/n13/carrier.json",
+  "carrier_n": 13,
+  "checked_embedding_count": 897182,
+  "epistemic_status": "INDEPENDENT_EXACT_LITERAL_MEMBERSHIP_REPLAY",
+  "hit_count": 14,
+  "hits": [
+    {
+      "core_vertex_count": 6,
+      "orientation": "reflected",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 1,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 0
+        }
+      ],
+      "schema_index": 93,
+      "target_vertices": [
+        0,
+        3,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transformed_memberships": [
+        [
+          0,
+          9
+        ],
+        [
+          0,
+          11
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          10,
+          9
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          11,
+          3
+        ],
+        [
+          11,
+          10
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "orientation": "direct",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 2,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 0
+        }
+      ],
+      "schema_index": 102,
+      "target_vertices": [
+        0,
+        5,
+        6,
+        7,
+        9,
+        11
+      ],
+      "transformed_memberships": [
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          7,
+          5
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          9,
+          7
+        ],
+        [
+          9,
+          11
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "orientation": "reflected",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 3,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 0
+        }
+      ],
+      "schema_index": 111,
+      "target_vertices": [
+        0,
+        1,
+        3,
+        6,
+        11,
+        12
+      ],
+      "transformed_memberships": [
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          11,
+          3
+        ],
+        [
+          11,
+          12
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          12,
+          11
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "orientation": "reflected",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 3,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 0
+        }
+      ],
+      "schema_index": 111,
+      "target_vertices": [
+        2,
+        3,
+        8,
+        9,
+        11,
+        12
+      ],
+      "transformed_memberships": [
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          12
+        ],
+        [
+          9,
+          2
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          11,
+          8
+        ],
+        [
+          11,
+          12
+        ],
+        [
+          12,
+          2
+        ],
+        [
+          12,
+          11
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "orientation": "reflected",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 5,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 0
+        }
+      ],
+      "schema_index": 139,
+      "target_vertices": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7
+      ],
+      "transformed_memberships": [
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          5
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "orientation": "reflected",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 4,
+          "source_carrier_n": 12,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n12.detect.json",
+          "source_witness_index": 0
+        },
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 4,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 1
+        }
+      ],
+      "schema_index": 154,
+      "target_vertices": [
+        1,
+        3,
+        4,
+        7,
+        8,
+        10
+      ],
+      "transformed_memberships": [
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          10
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "orientation": "reflected",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 4,
+          "source_carrier_n": 12,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n12.detect.json",
+          "source_witness_index": 0
+        },
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 4,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 1
+        }
+      ],
+      "schema_index": 154,
+      "target_vertices": [
+        1,
+        3,
+        4,
+        7,
+        11,
+        12
+      ],
+      "transformed_memberships": [
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          11,
+          3
+        ],
+        [
+          11,
+          12
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "orientation": "reflected",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 0,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 2
+        }
+      ],
+      "schema_index": 160,
+      "target_vertices": [
+        0,
+        4,
+        5,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transformed_memberships": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          9,
+          5
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          10,
+          9
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          11,
+          8
+        ],
+        [
+          11,
+          10
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "orientation": "reflected",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 0,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 3
+        }
+      ],
+      "schema_index": 170,
+      "target_vertices": [
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transformed_memberships": [
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          9,
+          5
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          11,
+          8
+        ],
+        [
+          11,
+          10
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "orientation": "direct",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 1,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 5
+        }
+      ],
+      "schema_index": 194,
+      "target_vertices": [
+        0,
+        4,
+        5,
+        8,
+        9,
+        11,
+        12
+      ],
+      "transformed_memberships": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          11
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          9,
+          5
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          11,
+          8
+        ],
+        [
+          11,
+          12
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 7,
+      "orientation": "direct",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 5,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 4
+        }
+      ],
+      "schema_index": 230,
+      "target_vertices": [
+        2,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11
+      ],
+      "transformed_memberships": [
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          9,
+          5
+        ],
+        [
+          9,
+          11
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 8,
+      "orientation": "reflected",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 0,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 7
+        }
+      ],
+      "schema_index": 247,
+      "target_vertices": [
+        2,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "transformed_memberships": [
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          9,
+          5
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          10,
+          6
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          11,
+          8
+        ],
+        [
+          11,
+          10
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 8,
+      "orientation": "direct",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 2,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 6
+        }
+      ],
+      "schema_index": 256,
+      "target_vertices": [
+        2,
+        4,
+        5,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "transformed_memberships": [
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          9,
+          5
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          10,
+          12
+        ],
+        [
+          11,
+          8
+        ],
+        [
+          11,
+          10
+        ]
+      ]
+    },
+    {
+      "core_vertex_count": 8,
+      "orientation": "reflected",
+      "provenance": [
+        {
+          "ccw_rotation_adapter": "Problem97.isCcwConvexPolygon_cyclicShift",
+          "common_boundary_chart_required": true,
+          "consumer": "Problem97.ATailOrdinalKalmansonCycle.false_of_two_cycle",
+          "kind": "LEAN_THEOREM_ORDINAL_TWO_CYCLE",
+          "rotation_record_index": 4,
+          "source_carrier_n": 13,
+          "source_detection": "scratch/atail-force/two-cycle-schema-completion/n13.detect.json",
+          "source_witness_index": 8
+        }
+      ],
+      "schema_index": 264,
+      "target_vertices": [
+        0,
+        4,
+        5,
+        6,
+        8,
+        9,
+        11,
+        12
+      ],
+      "transformed_memberships": [
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          9,
+          5
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          11,
+          8
+        ],
+        [
+          11,
+          12
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          12,
+          11
+        ]
+      ]
+    }
+  ],
+  "schema": "p97-transported-bank-saved-carrier-replay-v1",
+  "scope_warning": "This checks only transported literal cuts against one saved finite carrier. It is not a new SAT/UNSAT decision and not arbitrary-cardinality coverage.",
+  "status": "REJECTED_BY_BANK"
+}

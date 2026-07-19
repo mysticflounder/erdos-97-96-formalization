@@ -1,0 +1,13 @@
+{
+  "canonical_witness_count": 3,
+  "carrier": "scratch/atail-force/n12-geometry-regression/carrier.json",
+  "carrier_n": 12,
+  "detection": "scratch/atail-force/two-cycle-schema-completion/n12.detect.json",
+  "epistemic_status": "INDEPENDENT_EXACT_FINITE_INCIDENCE_REPLAY",
+  "raw_two_cycle_count": 12,
+  "raw_witness_key_sha256": "3262205f16ed9b0e28b9a613c35d415e22a48c8e6c11e786609d9d00780425ca",
+  "replayed_raw_witness_count": 12,
+  "schema": "p97-theorem-faithful-two-cycle-independent-replay-v1",
+  "scope_warning": "This verifies the finite-carrier occurrence search and explicit theorem inputs. It does not prove arbitrary-cardinality live coverage.",
+  "status": "VERIFIED"
+}

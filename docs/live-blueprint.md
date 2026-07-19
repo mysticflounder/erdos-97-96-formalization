@@ -1,13 +1,5 @@
-active anchors (9):
-  ⚓ 019f5a3d  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — K-A-PAIR coherent-R lane: provenance-bearing resolved normal form remains load-bearing; the F2 source-faithful three-row 2-2 packet is kernel-checked; exact role/metric deficit audits are in flight; do not promote the generic common-deletion projection to a closure interface.
-  ⚓ 37d29399  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — U4/U5 unique-row owner: card-four/card-five unique first-apex radius branches and (6,5,4) work only; R is owned by another session.
-  ⚓ 019f640a  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — Bounded audit of realizability-safe robust classifier target; no production edits; preserving apex-containing two-hit profiles
-  ⚓ 019f5a3d  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — K-A-PAIR active. Production frontier retains a first-apex strict pair and simultaneous second-apex deletion survival. Symmetric all-center K4 continuation and selector boundary are kernel-checked. Correction: checkpoint SHA ad2400da... is cap-bound and synchronized only to an older matcher subset (11 SAT / 12 node-capped / 0 UNSAT), not the complete current bank. Broader producer_bank finds 10 existing consumers in dirty shards 10,12,13,15,21; clean shards 0,1,2,3,16,20 contain eight deficit-one grids. All six clean complete row ideals are exact UNIT in Singular and both msolve orders; compact MARCO cores and a truly current-bank regeneration are running. Old checkpoint 5b661a15... and dependent h4/h5 counts are stale. Current task: extract a uniform kernel-checkable metric/cap-order contradiction, then wire the parent K-A False theorem. Adam authorized parallel research; unique-row and (6,5,4) remain separately owned.
-  ⚓ 019f6310  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — bank-route refresh against current renumbered theorem inventories
-  ⚓ 019f6281  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — All-eight scratch consumer contract kernel-green: four ordered plus four equilateral-hinge EdgeClosure cores. Corrected deterministic (4,5,6) complete-leaf run at 100000 nodes/shard finished 1 SAT finite-shadow survivor (shard 6), 7 node-capped INDETERMINATE, 0 UNSAT/exhausted, 760861 nodes; source hashes and survivor rows pinned in formalized_core_shards_after_equilateral_hinge_46_8_checkpoint.json. This is not live closure or finite exhaustion. Remaining obligation is a realizability-sensitive producer/new sink. Adam authorized parallel research.
-  ⚓ 019f6284  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — Off-frontier two-hit geometry audit: determine whether full convex/MEC/noM44 hypotheses force an actual critical shell to meet the dangerous p-row twice with nonalternating cap placement. Adam authorized parallel research.
-  ⚓ 019f4dd4  Problem97.liveData_T1_ql1_srcl2_false  [open]  — LIVE-T1 production-wiring checkpoint. All 12 LIVE-T1 helpers are source-sorry-free: the 24 former textual holes now call Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair. Focused build 4305dbbef395 passed; the fresh index is clean; proof-blueprint symbols --with-sorry fell from 36 to 24. LIVE-T1 remains transitively OPEN only through K-A-PAIR (DoubleApexOffSurplusSharedRadiusPair), with axioms propext, Classical.choice, Quot.sound, and inherited sorryAx. LIVE-T3 still has 24 direct holes. Session 019f5a3d owns the active K-A-PAIR/ATAIL producer lane; keep this cursor stored on LIVE-T1 rather than auto-sinking.
-  ⚓ 17ed85d2  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — K-A card>=12 pair producer. W2 smoke test is MOOT: census/q3_two_center probe COMPLETE 2026-07-07 (87 joint classes: 72 REALIZED exact, 15 KILLED-PROVEN, kills SAT n=12-16). => hcritical load-bearing (pure-convex conjecture NOT provable from minimal window); two-center not closing granularity. Card>=12 tail routes: >=15 census FALSIFIED, 12-14 census nonconvergent+AHEAD-DEC-gated, only non-excluded = Candidate-D new math. Card-11 slice = census-554/A11-RUN (STOPPED-BOUNDED). No local lever left.
+active anchors (1):
+  ⚓ fd7b0078 (YOU)  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — Taking over exact-seven branch from session 019f720d (Round124+ frontier). Boundary-successor arm closed; residual: aligned critical four-shell center strictly inside global MEC. Unused-blocker alternative per Rounds 136/152: card-four physical residual with shared-order index, or strict other-cap interior; Round156 exact model blocks local closure of the nonphysical arm; Round166 names the missing producers (rank+winding or cross-row occurrence).
 target spine view: 2 configured target_symbol(s)
 
 ════════════════════════════════════════════════════════════════
@@ -16,11 +8,11 @@ target spine view: 2 configured target_symbol(s)
 spine rooted at: Problem97.erdos97_rhs
 (this is a [publish] target_symbol — a claim being gated)
 approved axioms: core + Lean.trustCompiler
-open: 51/2263 node(s)
+open: 52/2263 node(s)
 trusted leaves: 20 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 72099 line(s) of lean across 2271 decl(s)
+spine source: 72069 line(s) of lean across 2271 decl(s)
 
-open obligations (13):
+open obligations (9):
   💧 Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [sorry]
   💧 Problem97.liveData_C_center_fresh_false  [sorry]
   💧 Problem97.liveData_C_center_q_false  [sorry]
@@ -29,10 +21,6 @@ open obligations (13):
   💧 Problem97.liveData_C_center_t2_rowFailure_false  [sorry]
   💧 Problem97.liveData_C_center_t3_false  [sorry]
   💧 Problem97.liveData_C_center_u_false  [sorry]
-  💧 Problem97.liveData_Q_l1_false  [sorry]
-  💧 Problem97.liveData_Q_l2_false  [sorry]
-  💧 Problem97.liveData_Q_l3_false  [sorry]
-  💧 Problem97.liveData_Q_l4_false  [sorry]
   ❌ sorryAx  [unapproved axiom]
 
 (open branches only — closed subtrees collapsed; --full for everything)
@@ -45,29 +33,31 @@ open obligations (13):
         │   │   │   │   ├── Problem97.removableVertexOfLarge_of_nonIsM44
         │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_false
         │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_liveData_false
-        │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l1_false  [💧]
-        │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-        │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l2_false  [💧]
-        │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-        │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l3_false  [💧]
-        │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-        │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l4_false  [💧]
-        │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-        │   │   │   │   │   │   │   ├── Problem97.liveData_T1_ql1_srcl2_false
-        │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+        │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l1_false
+        │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_q_t20_via_reindex
         │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_largeCap_pCentered_t2Source_exactDangerousRow
         │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_twoLargeCaps_pCentered_t2Source
         │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.exists_removableVertex_of_twoLargeCaps
-        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [💧]  ⚓ (YOU)
         │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
         │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
+        │   │   │   │   │   │   │   │   │   └── ✓ 26 closed dep(s)
+        │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+        │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l2_false
+        │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_q_t20_via_reindex (seen)
+        │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+        │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l3_false
+        │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_q_t20_via_reindex (seen)
+        │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+        │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l4_false
+        │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_q_t20_via_reindex (seen)
+        │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+        │   │   │   │   │   │   │   ├── Problem97.liveData_T1_ql1_srcl2_false
+        │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+        │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_largeCap_pCentered_t2Source_exactDangerousRow (seen)
         │   │   │   │   │   │   │   │   │   └── ✓ 26 closed dep(s)
         │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
         │   │   │   │   │   │   │   ├── Problem97.liveData_T1_ql1_srcl3_false
@@ -166,7 +156,7 @@ open obligations (13):
         │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
         │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
         │   │   │   │   │   │   │   └── ✓ 36 closed dep(s)
-        │   │   │   │   │   │   └── ✓ 46 closed dep(s)
+        │   │   │   │   │   │   └── ✓ 47 closed dep(s)
         │   │   │   │   │   └── ✓ 25 closed dep(s)
         │   │   │   │   └── ✓ 4 closed dep(s)
         │   │   │   └── ✓ 2 closed dep(s)
@@ -175,7 +165,7 @@ open obligations (13):
         └── ✓ 2 closed dep(s)
 
 ❌ NOT kernel-complete — spine of `Problem97.erdos97_rhs` has:
-  - reaches sorry via 12 symbol(s)
+  - reaches sorry via 8 symbol(s)
   - unapproved axiom on spine: sorryAx
 
 ════════════════════════════════════════════════════════════════
@@ -184,11 +174,11 @@ open obligations (13):
 spine rooted at: Problem96.erdos96_rhs
 (this is a [publish] target_symbol — a claim being gated)
 approved axioms: core + Lean.trustCompiler
-open: 55/2271 node(s)
+open: 56/2271 node(s)
 trusted leaves: 20 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 72292 line(s) of lean across 2279 decl(s)
+spine source: 72262 line(s) of lean across 2279 decl(s)
 
-open obligations (13):
+open obligations (9):
   💧 Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [sorry]
   💧 Problem97.liveData_C_center_fresh_false  [sorry]
   💧 Problem97.liveData_C_center_q_false  [sorry]
@@ -197,10 +187,6 @@ open obligations (13):
   💧 Problem97.liveData_C_center_t2_rowFailure_false  [sorry]
   💧 Problem97.liveData_C_center_t3_false  [sorry]
   💧 Problem97.liveData_C_center_u_false  [sorry]
-  💧 Problem97.liveData_Q_l1_false  [sorry]
-  💧 Problem97.liveData_Q_l2_false  [sorry]
-  💧 Problem97.liveData_Q_l3_false  [sorry]
-  💧 Problem97.liveData_Q_l4_false  [sorry]
   ❌ sorryAx  [unapproved axiom]
 
 (open branches only — closed subtrees collapsed; --full for everything)
@@ -217,29 +203,31 @@ open obligations (13):
             │   │   │   │   │   │   │   ├── Problem97.removableVertexOfLarge_of_nonIsM44
             │   │   │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_false
             │   │   │   │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_liveData_false
-            │   │   │   │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l1_false  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l2_false  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l3_false  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l4_false  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   ├── Problem97.liveData_T1_ql1_srcl2_false
-            │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+            │   │   │   │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l1_false
+            │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_q_t20_via_reindex
             │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_largeCap_pCentered_t2Source_exactDangerousRow
             │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_twoLargeCaps_pCentered_t2Source
             │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.exists_removableVertex_of_twoLargeCaps
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [💧]
+            │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [💧]  ⚓ (YOU)
             │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
             │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
             │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
             │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
             │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 26 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l2_false
+            │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_q_t20_via_reindex (seen)
+            │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l3_false
+            │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_q_t20_via_reindex (seen)
+            │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l4_false
+            │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_q_t20_via_reindex (seen)
+            │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   ├── Problem97.liveData_T1_ql1_srcl2_false
+            │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+            │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_largeCap_pCentered_t2Source_exactDangerousRow (seen)
             │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 26 closed dep(s)
             │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
             │   │   │   │   │   │   │   │   │   │   ├── Problem97.liveData_T1_ql1_srcl3_false
@@ -338,7 +326,7 @@ open obligations (13):
             │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
             │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
             │   │   │   │   │   │   │   │   │   │   └── ✓ 36 closed dep(s)
-            │   │   │   │   │   │   │   │   │   └── ✓ 46 closed dep(s)
+            │   │   │   │   │   │   │   │   │   └── ✓ 47 closed dep(s)
             │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
             │   │   │   │   │   │   │   └── ✓ 4 closed dep(s)
             │   │   │   │   │   │   └── ✓ 2 closed dep(s)
@@ -350,9 +338,9 @@ open obligations (13):
             └── ✓ 3 closed dep(s)
 
 ❌ NOT kernel-complete — spine of `Problem96.erdos96_rhs` has:
-  - reaches sorry via 12 symbol(s)
+  - reaches sorry via 8 symbol(s)
   - unapproved axiom on spine: sorryAx
 
-unimported files (556 file(s), 2188 symbol(s) — never reached by any lake import chain) — --full to list
+unimported files (580 file(s), 2495 symbol(s) — never reached by any lake import chain) — --full to list
 
 targets summary: 2/2 target(s) still open

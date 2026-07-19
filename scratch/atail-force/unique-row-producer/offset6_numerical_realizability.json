@@ -1,0 +1,76 @@
+{
+  "best": {
+    "equality_l2": 1.0576327135734114,
+    "equality_max_abs": 0.6992447405046592,
+    "maximum_abs_coordinate": 1.0,
+    "minimum_boundary_area": -0.0022888439676764538,
+    "minimum_squared_distance": 5.876986217902718e-09
+  },
+  "classification": "NO_WITNESS_FOUND_NOT_AN_UNSAT_RESULT",
+  "equality_sha256": "52ad733b0009cde4c5c658d624cecc0b9389e84f4b6eef58e5398d9742a355c5",
+  "policy": {
+    "area_margin": 1e-05,
+    "barrier_weight": 30.0,
+    "distance_margin": 1e-05,
+    "max_nfev": 1500,
+    "seed": 660,
+    "starts": 4,
+    "witness_equality_threshold": 1e-09
+  },
+  "runs": [
+    {
+      "cost": 0.5638726315874046,
+      "equality_l2": 1.0576327135734114,
+      "equality_max_abs": 0.6992447405046592,
+      "maximum_abs_coordinate": 1.0,
+      "message": "`ftol` termination condition is satisfied.",
+      "minimum_boundary_area": -0.0022888439676764538,
+      "minimum_squared_distance": 5.876986217902718e-09,
+      "nfev": 152,
+      "start": 0,
+      "status": 2,
+      "success_flag": true
+    },
+    {
+      "cost": 0.5638726315874105,
+      "equality_l2": 1.0576327136564445,
+      "equality_max_abs": 0.6992447419066201,
+      "maximum_abs_coordinate": 1.0,
+      "message": "`ftol` termination condition is satisfied.",
+      "minimum_boundary_area": -0.002288844077631724,
+      "minimum_squared_distance": 5.876986497054538e-09,
+      "nfev": 146,
+      "start": 1,
+      "status": 2,
+      "success_flag": true
+    },
+    {
+      "cost": 0.563872631587391,
+      "equality_l2": 1.0576327253903712,
+      "equality_max_abs": 0.6992447457398084,
+      "maximum_abs_coordinate": 1.0,
+      "message": "`ftol` termination condition is satisfied.",
+      "minimum_boundary_area": -0.002288838706880599,
+      "minimum_squared_distance": 5.87685450397834e-09,
+      "nfev": 183,
+      "start": 2,
+      "status": 2,
+      "success_flag": true
+    },
+    {
+      "cost": 0.5638726315873883,
+      "equality_l2": 1.0576327254620428,
+      "equality_max_abs": 0.6992447451700344,
+      "maximum_abs_coordinate": 1.0,
+      "message": "`ftol` termination condition is satisfied.",
+      "minimum_boundary_area": -0.002288838764431581,
+      "minimum_squared_distance": 5.876870146971781e-09,
+      "nfev": 148,
+      "start": 3,
+      "status": 2,
+      "success_flag": true
+    }
+  ],
+  "schema": "p97-654-numerical-real-feasibility-scout-v1",
+  "trust_boundary": "floating-point nonlinear least squares; success needs exact model replay; failure is not evidence of infeasibility"
+}

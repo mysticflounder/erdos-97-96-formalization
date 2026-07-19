@@ -1,0 +1,86 @@
+{
+  "apex_mapping": {
+    "left": "surplusApex",
+    "o": "S.oppApex2",
+    "queried_first_apex": "right",
+    "right": "S.oppApex1"
+  },
+  "direction_cells_covered": 8,
+  "epistemic_status": "EXACT_RATIONAL_QF_LRA_WITNESSES_NOT_EUCLIDEAN_NOT_LEAN",
+  "schema": "period3-oppApex1-nonreturn-exact-replay-v2",
+  "witness_count": 8,
+  "witnesses": [
+    {
+      "case": "k5_0384",
+      "minimum_distance": "11/2",
+      "minimum_first_apex_direction_gap": "4",
+      "minimum_named_exclusion_gap": "1",
+      "minimum_strict_kalmanson_slack": "1",
+      "minimum_triangle_slack": "0",
+      "signature": "x<y,x<y,x<y"
+    },
+    {
+      "case": "k5_0388",
+      "minimum_distance": "7",
+      "minimum_first_apex_direction_gap": "4",
+      "minimum_named_exclusion_gap": "1",
+      "minimum_strict_kalmanson_slack": "1",
+      "minimum_triangle_slack": "0",
+      "signature": "x<y,x<y,y<x"
+    },
+    {
+      "case": "k5_0386",
+      "minimum_distance": "6",
+      "minimum_first_apex_direction_gap": "4",
+      "minimum_named_exclusion_gap": "1",
+      "minimum_strict_kalmanson_slack": "1",
+      "minimum_triangle_slack": "0",
+      "signature": "x<y,y<x,x<y"
+    },
+    {
+      "case": "k5_0393",
+      "minimum_distance": "6",
+      "minimum_first_apex_direction_gap": "5",
+      "minimum_named_exclusion_gap": "1",
+      "minimum_strict_kalmanson_slack": "1",
+      "minimum_triangle_slack": "0",
+      "signature": "x<y,y<x,y<x"
+    },
+    {
+      "case": "k5_0404",
+      "minimum_distance": "6",
+      "minimum_first_apex_direction_gap": "2",
+      "minimum_named_exclusion_gap": "1",
+      "minimum_strict_kalmanson_slack": "1",
+      "minimum_triangle_slack": "0",
+      "signature": "y<x,x<y,x<y"
+    },
+    {
+      "case": "k5_0411",
+      "minimum_distance": "6",
+      "minimum_first_apex_direction_gap": "2",
+      "minimum_named_exclusion_gap": "1",
+      "minimum_strict_kalmanson_slack": "1",
+      "minimum_triangle_slack": "0",
+      "signature": "y<x,x<y,y<x"
+    },
+    {
+      "case": "k5_0385",
+      "minimum_distance": "7",
+      "minimum_first_apex_direction_gap": "4",
+      "minimum_named_exclusion_gap": "1",
+      "minimum_strict_kalmanson_slack": "1",
+      "minimum_triangle_slack": "0",
+      "signature": "y<x,y<x,x<y"
+    },
+    {
+      "case": "k5_0422",
+      "minimum_distance": "8",
+      "minimum_first_apex_direction_gap": "6",
+      "minimum_named_exclusion_gap": "1",
+      "minimum_strict_kalmanson_slack": "1",
+      "minimum_triangle_slack": "0",
+      "signature": "y<x,y<x,y<x"
+    }
+  ]
+}

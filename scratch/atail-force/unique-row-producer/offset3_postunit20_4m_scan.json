@@ -1,0 +1,65 @@
+{
+  "profile": [
+    6,
+    5,
+    4
+  ],
+  "reports": [
+    {
+      "max_nodes": 4000000,
+      "nodes": 4000001,
+      "off_surplus_sources": [
+        0,
+        7,
+        8,
+        9
+      ],
+      "prefix_metric_core_cache": {
+        "hits": 114205,
+        "misses": 3886665,
+        "size": 3886665
+      },
+      "rejected_complete_assignments": {
+        "equality-convex-eight-point-five-row-circle-intersection-order": 72,
+        "equality-convex-five-point": 40922,
+        "equality-convex-five-point-reverse": 5356,
+        "equality-eight-point-five-circle-collision": 54,
+        "equality-equilateral-bisector-collision": 4166,
+        "equality-seven-point-circle-network-collision": 240,
+        "equality-seven-point-five-circle-collision": 20,
+        "equality-seven-point-six-circle-collision-b": 329,
+        "equality-seven-point-twin-four-circle-collision": 36,
+        "equality-six-point-five-circle-collision-b": 36,
+        "equality-six-point-five-circle-collision-c": 210,
+        "equality-surplus-source-collision": 54,
+        "equality-three-triad-collision": 2761,
+        "exact-qq-local:source-indexed-isomorphic-collision-core-654-03": 54,
+        "exact-qq-local:source-indexed-isomorphic-unit-core-654-13": 36,
+        "exact-qq-local:source-indexed-isomorphic-unit-core-654-20": 72
+      },
+      "rejected_prefixes": {
+        "equality-duplicate-center": 976764,
+        "equality-exact-off-circle": 168059,
+        "equality-perpendicular-bisector-convex": 493982,
+        "exact-qq-local:interior-bank-unit-core-654-05": 14,
+        "exact-qq-local:interior-bank-unit-core-654-06": 32,
+        "exact-qq-local:source-indexed-collision-core-654-03": 2,
+        "pinned-row-compatibility": 3719,
+        "target:CoincidentBlockerResidualMember": 1455
+      },
+      "status": "INDETERMINATE",
+      "support": [
+        0,
+        5,
+        7,
+        8,
+        9
+      ]
+    }
+  ],
+  "schema": "p97-card-five-source-indexed-target-probe-v2",
+  "support_offset": 3,
+  "supports_tried": 1,
+  "total_support_count": 15,
+  "trust_boundary": "finite cap/incidence/equality shadow; exact source rows are declared; the local exact-QQ cuts have exactly replayed algebraic certificates; selected unit cores have generated but unbuilt Lean sources; SAT is not a Euclidean realization and UNSAT is not a Lean theorem"
+}
