@@ -201,14 +201,6 @@ complete first-apex `SelectedClass`.  Containment in either selected
 four-point row of `P : FirstApexShellRolePacket F0 R` remains a sufficient
 implementation path, and its adapter is production in
 `ATail/ParentExactFiveAssembler.lean`, but it is not the theorem target.
-The bounded named-row consumer is now separately kernel-checked in
-`scratch/atail-force/reverse-pair-named-row-consumer/`: two points of one
-transition reverse outside pair in either the retained or double-deletion
-first-apex row immediately provide the first-apex co-radial terminal.  Its
-public declarations have only `propext`, `Classical.choice`, and
-`Quot.sound`.  This is a genuine consumer, not an occurrence claim; it does
-not close a source `sorry` until the parent producer supplies its two-point
-intersection hypothesis.
 The exact marginal audit exhibits a period-three all-reverse packet whose
 reverse pairs split one-and-one between the two named rows.  A second exact
 selector fixture shows that even a pair already contained in a six-point
