@@ -1194,6 +1194,22 @@ rational Lean model in `live-c-t2-rowfailure-closure/` realizes the local
 global parent force, so keep the direct large-opposite-caps contradiction as
 the primary producer.
 
+The exact 26-point full-cell replay now selects the first source-faithful use
+of that global force.  Only six centers have any K4 class, and thirteen named
+sources--including both retained frontier points--have no possible legal
+deletion-critical blocker anywhere in the carrier.  Consequently the next
+proof step is not an arbitrary all-center row or another T0/T1 extension.  On
+the complete `L` parent, split the actual frontier-source row with
+`cross_deletion_survives_or_cross_membership F.pair`.  Cross membership feeds
+the existing signed-area and third-center common-pair consumers; cross
+survival gives the already source-faithful companion common-deletion arm and
+must be coupled to total `H`, minimality, or a terminating geometric measure.
+Keep the public target direct `false_of_largeOppositeCapsBiApexRobust L`, so a
+successful proof may bypass both the all-reverse occurrence and the still
+independent arbitrary mutual-omission sibling.  Any candidate using only the
+displayed local rows, cap order, MEC geometry, or the refuted uniform
+Kalmanson/product-box abstraction fails a mandatory regression.
+
 For nonlinear follow-up, split actual mutual rows by their number of physical
 exact-five hits.  Checked geometry now localizes every two-hit row's blocker to
 the four strict physical-cap positions; card four reduces this to

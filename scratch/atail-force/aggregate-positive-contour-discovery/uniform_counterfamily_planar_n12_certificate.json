@@ -1,0 +1,74 @@
+{
+  "cayley_menger_determinant": "-193651200",
+  "centered_gram": [
+    [
+      "225",
+      "450",
+      "347"
+    ],
+    [
+      "450",
+      "900",
+      "1022"
+    ],
+    [
+      "347",
+      "1022",
+      "1369"
+    ]
+  ],
+  "centered_gram_determinant": "-24206400",
+  "certificate_points": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "epistemic_status": "EXACT_INTEGER_N12_PLUS_SYMBOLIC_UNIFORM_FORMULA",
+  "minimum_distance": 15,
+  "minimum_triangle_slack": 0,
+  "n": 12,
+  "quadruple_count": 495,
+  "quadruple_negative_gram_count": 96,
+  "quadruple_nonzero_gram_count": 495,
+  "quadruple_positive_gram_count": 399,
+  "replay": "EXACT_INTEGER_PASS",
+  "schema": "p97-uniform-counterfamily-planar-rank-audit-v1",
+  "six_distances": {
+    "0,1": 15,
+    "0,2": 30,
+    "0,3": 37,
+    "1,2": 15,
+    "1,3": 30,
+    "2,3": 15
+  },
+  "smallest_obstruction_cardinality": 4,
+  "symbolic_family": {
+    "cayley_menger_determinant": "-288*(n-7)^2*(n-8)^2*(8*n-55)^2",
+    "centered_gram_determinant": "-36*(n-7)^2*(n-8)^2*(8*n-55)^2",
+    "distance_pattern": {
+      "d01=d12=d23": "h",
+      "d02=d13": "2*h",
+      "d03": "q"
+    },
+    "domain": "even n >= 12",
+    "h": "3*n - 21",
+    "q": "7*n - 47",
+    "sign_on_domain": "STRICTLY_NEGATIVE"
+  },
+  "three_point_centered_gram_determinant_minimum": "0",
+  "three_point_degenerate_count": 12,
+  "verdict": "NOT_EUCLIDEAN_IN_ANY_DIMENSION_AND_HENCE_NOT_PLANAR",
+  "weak_sum_row_equal_family": {
+    "normal_form": "D_K(i,j)=D(i,j)-beta_i-beta_j+K for i!=j",
+    "resultant_in_K": "-67108864*(2*n - 13)**4*(4*n - 29)**4*(n**2 - 13*n + 43)**2*(2*n**2 - 34*n + 139)**2*(7*n**2 - 91*n + 295)**2*(9*n**4 - 270*n**3 + 2997*n**2 - 14604*n + 26377)*(71*n**4 - 2370*n**3 + 28647*n**2 - 150120*n + 289575)*(2304*n**8 - 119808*n**7 + 2734560*n**6 - 35790144*n**5 + 293836309*n**4 - 1549761546*n**3 + 5128236414*n**2 - 9734103990*n + 8114015025)",
+    "specialized_n": 12,
+    "specialized_resultant": "114122861080204702654250528410686862336720896",
+    "specialized_twice_gram_det_0123": "(K - 30)**2*(K**4 - 68*K**3 - 36*K**2 + 36784*K - 349448)",
+    "specialized_twice_gram_det_0134": "(K**2 - 62*K + 836)*(K**2 - 58*K + 802)*(K**2 + 26*K - 836)",
+    "target_cooccurrence_connected": true,
+    "twice_gram_det_0123": "-(-K + 6*n - 42)**2*(-K**4 + 14*K**3*n - 100*K**3 - 6*K**2*n**2 + 120*K**2*n - 540*K**2 - 256*K*n**3 + 5184*K*n**2 - 34944*K*n + 78416*K + 512*n**4 - 14080*n**3 + 145056*n**2 - 663520*n + 1137032)",
+    "twice_gram_det_0134": "-(-K**2 - 4*K*n + 22*K + 32*n**2 - 440*n + 1508)*(K**2 - 12*K*n + 82*K + 32*n**2 - 440*n + 1508)*(K**2 - 12*K*n + 86*K + 32*n**2 - 448*n + 1570)",
+    "verdict": "NO_TRANSLATION_K_MAKES_BOTH_MINORS_PLANAR"
+  }
+}

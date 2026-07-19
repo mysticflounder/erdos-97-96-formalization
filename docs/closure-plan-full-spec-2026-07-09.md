@@ -595,6 +595,23 @@ adds no local scalar force by itself.  Marginal counting, complete local
 reverse-row geometry, and the full displayed T0/T1/continuation surface are
 refuted routes.
 
+The source-level replay is sharper than that aggregate omission statement.
+Thirteen named sources in the exact cell, including both retained frontier
+points, admit no carrier center whose exact four-class contains the source and
+whose deletion destroys every K4 witness at that center.  Thus a single actual
+frontier-source instance of `H.selectedAt` together with `H.no_qfree_at`
+already excludes this cell and is the first live parent feature positioned
+immediately before checked consumers.  Begin the full-parent proof with
+`cross_deletion_survives_or_cross_membership F.pair`.  The membership arm has
+the signed-area placement and third-center common-pair terminal; the survival
+arm produces a second source-faithful common deletion and must be closed with
+the retained total map/minimality or a genuine progress invariant.  Do not
+replace this split by another arbitrary manifest extension.  The later `x21`
+manifest below is compatible precisely because it is not a frontier-source
+row.  The arbitrary mutual-omission exact-five sibling remains independent of
+the all-reverse occurrence unless the direct full-`L` contradiction bypasses
+their split.
+
 The whole-carrier Lean extraction itself is not missing:
 `generic-biapex-kalmanson-search/WholeCarrierBiApexKalmansonSurface.lean`
 already obtains an arbitrary-cardinality boundary, one selected K4 row at
