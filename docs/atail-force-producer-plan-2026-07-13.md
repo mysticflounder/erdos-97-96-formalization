@@ -5351,6 +5351,11 @@ Acceptance is fail-closed:
    `sourceFaithful_card_ge_fourteen_physicalSecondApex_consumer`.  Preserve
    the complete `H`, frontier, minimality, and `L` packet; keep the
    non-exact-card-four hypothesis and the `w ∈ selectedAt(q)` field explicit.
+   The new parent-facing boundary
+   `ATail/SurvivalCoverParentBoundary.lean` makes this split exhaustive:
+   exact-card-four, a source-faithful companion common-deletion packet, or
+   the robust/physical-critical endpoint.  It does not discharge any of
+   these residual consumers.
 4. Close the two outputs of
    `physicalSecondApex_commonDeletion_robust_or_critical`: the robust
    `FullyDeletionRobustAt D S.oppApex2` arm and the

@@ -57,6 +57,15 @@ physical-critical residual.  The next load-bearing task is the complete
 `L`-indexed consumer for those two residuals, with the exact-card-four branch
 kept separate.
 
+The parent-facing split is now also productionized in
+`lean/Erdos9796Proof/P97/ATail/SurvivalCoverParentBoundary.lean` as
+`exactFour_or_companionCommonDeletion_or_physicalSecondApexEndpoint`.  It
+applies the existing directed blocker classifier to a complete `L` parent and
+returns exactly one of: the explicit exact-card-four frontier exception; a
+source-faithful companion packet from cross survival; or the robust/critical
+physical-second-apex endpoint from cross membership.  This removes the
+interface gap around the branch split but remains a nonterminal reduction.
+
 Acceptance gate: `cd lean && lake env lean ../scratch/atail-force/frontier-pair-global-deletion-split/FrontierPairGlobalDeletionSplit.lean`
 must pass with no `sorry` and no `sorryAx` in the declaration’s transitive
 axioms.  The focused check passes; the declaration has axioms exactly
