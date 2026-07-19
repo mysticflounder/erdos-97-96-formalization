@@ -127,6 +127,28 @@ centers; falsifiers are non-convex"). The a3d2ad88 witness IS such a non-convex
 falsifier. UNSAT here (no convex witness) ⇒ SI1 closes via `D.convex`; a convex
 witness ⇒ genuinely harder / open. This is the next probe.
 
+## SI1 is the bellwether for the whole D.convex question
+
+SI2–4 (the matching walk) force MORE points at frontier radius (first, second,
+next — 3 sources), each demanding a survival class at oppApex1 via
+`firstApexFullyDeletionRobust`. So they impose MORE concentric-arc pressure at
+the apex than SI1's 2 sources ⇒ TIGHTER convex constraint. Hence:
+
+- If the SI1 convex probe is **UNSAT** (D.convex closes the most permissive
+  case), SI2–4 — with strictly more forced structure — very likely close too;
+  the reduction extends. Verify per case, but SI1 UNSAT is the strong signal.
+- If SI1 is **SAT** (escapes bare convexity), the finer coupling is needed for
+  ALL cases. Candidate for the finer lever: `D.K4 = HasNEquidistantProperty 4 A`
+  — EVERY named point (incl. the freely-placed class members) must ALSO carry 4
+  equidistant points. The convex witness only enforces equidistance for the
+  designated classes; D.K4 additionally constrains the class members. Plus the
+  arc-block contiguity lemmas (ArcBlockContiguity.lean: `signedArea2_..._between`,
+  `onArc_iff_between`, `signedArea2_trichotomy`) give convexity in usable
+  algebraic form (a chord meets the boundary in ≤2 pts) — the "couple ≥2
+  centers" tool. Next probe if SAT: {1-8} + D.convex + D.K4-on-class-members.
+
+So SI1's convex verdict decides the shape of the entire arm2 endgame.
+
 ## FE factor (the ×3) — why SI-level UNSAT covers all three
 
 FrontierRefinedEscapeOutcome (FE1/FE2/FE3) is a SEPARATE factor. Constraints
