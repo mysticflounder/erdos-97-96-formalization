@@ -355,6 +355,21 @@ residual): single outside point on a completion slot, outside point =
 frontier source, extra on a row slot, shared completion in the
 same-radius arm (`l1_id_type_cores.json`).
 
+Citation record (item 5c, verified at source 2026-07-19): the 18
+pp-ret/pp-dbl certificates (`pp-{ret,dbl}.{b0,b1,s1}.{O1-O,O1-O1,O1-S}`,
+uniform local core `rad_ne|EA|m1,m2 + row_eq|ret|m1 + row_eq|ret|m2`)
+are the censal image of
+`Problem97.false_of_fullParentExactFiveAllReverseData_of_namedRowOccurrence`
+(`lean/Erdos9796Proof/P97/ATail/ParentExactFiveAssembler.lean:356`) —
+two named points on one first-apex row slot pair against the EA
+one-hit disequality family.  The qw-classO types cite the cardinality
+argument: `secondApexDouble`
+(`ATail/CriticalPairFrontier.lean:573`) +
+`LargeCapUniqueFiveSecondApexRadius.class_card_eq_five` /
+`unique_K4_radius` (`ATail/LargeCapUniqueFive.lean:30-36`) force
+|class(O) ∖ {q,w}| ≥ 4 against the actual 3.  No new Lean is needed
+for either family.
+
 Joint-crossing sample (`sample_l1c.py`, deterministic seed 97, 40
 crossings): **2 joint kills, 38 SAT** (`l1c_sample_results.json`).
 Cross-layer teeth EXIST: both kills have an L1 row carrying O plus a
@@ -499,8 +514,9 @@ rows are the reverse rows already encoded).
    (Findings 7-9).
 5. Lean ports: (a) ~~e-pattern split law~~ DONE
    (`SecondApexClassOneHit.lean`); (b) ~~Finding 5 landing law~~ DONE
-   (`TwoCenterBisectorParity.lean`); (c) record the Finding 9 dead
-   types as citations of existing production theorems; (d) Laws A/B
+   (`TwoCenterBisectorParity.lean`); (c) ~~Finding 9 dead-type
+   citations~~ DONE (recorded under Finding 9, declarations verified
+   at source); (d) Laws A/B
    canonical terminals DONE —
    `false_of_two_centers_equidistant_pair_split`
    (TwoCenterBisectorParity.lean: the `c₂ < p₁ < p₂ < c₁` arrangement
