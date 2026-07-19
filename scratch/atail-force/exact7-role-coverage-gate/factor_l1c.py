@@ -76,15 +76,22 @@ def constraint_id(constraints: frozenset) -> str:
 
 
 def factored_schema(retro: dict, constraints: frozenset) -> dict:
-    """Retro schema + implied named constraints, encoder-ready."""
+    """Retro schema + implied named constraints, encoder-ready.
+
+    Disequalities already asserted by the retro one-hit families (all
+    NAMED6 pairs sit in the closed physical region at EA) are skipped —
+    adding them would collide with the existing ``rad_ne`` labels and
+    change nothing.
+    """
     schema = json.loads(json.dumps(retro))
     row_eqs = list(schema.get("row_eqs", []))
     rad_ne = list(schema.get("rad_ne", []))
+    present = {(s["center"], s["a"], s["b"]) for s in rad_ne}
     for index, (kind, a, b) in enumerate(sorted(constraints)):
         if kind == "eq":
             row_eqs.append(
                 {"name": f"feq{index}", "center": "EA", "members": [a, b]})
-        else:
+        elif ("EA", a, b) not in present:
             rad_ne.append({"center": "EA", "a": a, "b": b})
     schema["row_eqs"] = row_eqs
     schema["rad_ne"] = rad_ne
@@ -129,10 +136,19 @@ def main() -> None:
     # with one named point, and UNSAT at a bare {eqO-x} transfers to every
     # superset (all ne-decorated variants), so the bare sets carry the
     # whole kill signature.  Phase 2 (ne-bearing sets) only matters where
-    # phase 1 leaves SAT.
+    # phase 1 leaves SAT.  Sets whose disequalities are all NAMED6 pairs
+    # add nothing beyond the retro one-hit families — factored system =
+    # retro alone = SAT by the retro census; skip them.
+    def genuine(c: frozenset) -> bool:
+        return any(kind == "eq" or "O" in (a, b) for kind, a, b in c)
+
+    retro_equal = [c for c in distinct if not genuine(c)]
+    print(f"retro-equal sets (all nes already one-hit asserted, SAT by "
+          f"retro census): {len(retro_equal)}")
     phase1 = [c for c in distinct
               if c and all(kind == "eq" for kind, _, _ in c)]
-    phase2 = [c for c in distinct if c not in phase1]
+    phase2 = [c for c in distinct
+              if c not in phase1 and genuine(c)]
     for label, sets in (("phase1-eq", phase1), ("phase2-ne", phase2)):
         schemas = [
             factored_schema(retro, constraints)

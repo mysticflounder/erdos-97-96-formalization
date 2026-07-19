@@ -363,6 +363,45 @@ the L0 Kalmanson/class system (cores mix row_eq + cls_eq + kal, sizes
 12-16).  A full L1c census (876 × surviving row patterns) is warranted —
 joint schemas run minutes each, so shard it or offload to flux.local.
 
+## Finding 10: full L1c census, factored — three row-coupling laws (2026-07-19)
+
+The full joint product (876 retro survivors × 746 l1b patterns =
+653,496 schemas) factors through the named EA-coradiality constraints a
+row pattern implies (`factor_l1c.py`): the fresh row content is inert
+(Finding 8), so join(retro, l1b) inherits UNSAT a fortiori from
+retro + implied(l1b).  Both sample joint kills reproduce factored with
+matching cores (`smoke_l1f.py`, 3/3 incl. a SAT control).  Structure of
+the implied sets: every genuine equality pairs O with one named point
+(the physical ≤1 row budget forbids two non-O named landings per row),
+and all 15 named–named disequalities are already asserted by the
+one-hit families (those sets are retro-equal, SAT by citation).
+Distinct genuine sets: 6 bare `eqO-x` + 30 ne-decorated + 6 pure
+`neO-x` = 42; census = 36,792 runs, all resolved (one 10-min timeout
+retried SAT at 1h; `l1f_ledger.jsonl.gz`, `l1f_coverage_summary.json`).
+
+Verdicts are three clean laws (perfect separation, no exceptions):
+
+- **Law A**: retro + `eqO-s0` (equally `eqO-s1`) is UNSAT **iff some
+  reverse row carries O** — 552/876 die (504 with one O-row, 48 with
+  two); all 324 no-O-row survivors are SAT.
+- **Law B**: retro + `eqO-W` is UNSAT iff some reverse row carries O
+  AND the e-extra lands on W — 276/876 (a subset of the 552).
+- **Law C (no other teeth)**: `eqO-b0`, `eqO-b1`, `eqO-s2` and every
+  pure disequality kill nothing; every ne-decorated superset's kill set
+  equals its bare-eq kill set id-for-id (md5-verified) — disequalities
+  never add teeth.
+
+Joint-product coverage: 75,900/653,496 (11.6%) of retro × l1b pairs
+dead via factored kills.  No retro survivor dies under ALL bare-eq
+sets, so the row layer closes no survivor outright — it kills the
+"row ties O to s0/s1 (or to W, with a W-extra)" case on O-row
+survivors.  Caveat: the SAT direction is factored-SAT, not certified
+joint-SAT (supported by Finding 8 + the 38/40 SAT samples, not
+proven).  Lean shape of Laws A/B: a `TwoCenterBisectorParity`-style
+assembly where the row equality supplies one radius equation and the
+O-carrying reverse row supplies the second — same kernel family as the
+Finding 5 ports.
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
@@ -370,13 +409,16 @@ joint schemas run minutes each, so shard it or offload to flux.local.
 3. ~~Identification-layer census~~ DONE (Findings 5-6).
 4. ~~One-hit families + retro census + L1 rows + id types~~ DONE
    (Findings 7-9).
-5. Lean ports, in order of leverage: (a) the e-pattern split law
-   (Finding 7 cores: oppApex2 one-hits via withPacket + class(O) —
-   kills 876 of 1752 censal classes in one lemma); (b) the Finding 5
-   landing law (bisector-parity assembly over
-   `dist_add_dist_lt_diagonal_sum_of_ccw`); (c) record the Finding 9
-   dead types as citations of existing production theorems.
-6. Residual after ports: 876 censal classes × alive id types — closed
-   only by Round 166 geometry (rank+winding / cross-row occurrence) or
-   an L2 refinement (unused-critical-row dimension, W-centered one-hit
-   analogue if provable).
+5. Lean ports: (a) ~~e-pattern split law~~ DONE
+   (`SecondApexClassOneHit.lean`); (b) ~~Finding 5 landing law~~ DONE
+   (`TwoCenterBisectorParity.lean`); (c) record the Finding 9 dead
+   types as citations of existing production theorems; (d) Laws A/B
+   (Finding 10) as ordered terminals over the same Kalmanson kernels.
+6. ~~Full L1c census~~ DONE factored (Finding 10): 11.6% of the joint
+   product dead via Laws A/B; no survivor closes outright.
+7. Residual: 876 censal classes × (alive id types + non-coupling row
+   landings) — closed only by Round 166 geometry (rank+winding /
+   cross-row occurrence) or an L2 refinement (unused-critical-row
+   dimension, W-centered one-hit analogue if provable).  The 324
+   no-O-row survivors take no L1-row damage at all and are the hard
+   core of the residual.

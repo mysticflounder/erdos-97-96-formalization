@@ -135,3 +135,4 @@ scratch/atail-force/exact7-role-coverage-gate/l1c_sample.log
 scratch/atail-force/exact7-role-coverage-gate/l1f_phase*_schemas.json
 scratch/atail-force/exact7-role-coverage-gate/l1f_phase*_shard*.log
 scratch/atail-force/exact7-role-coverage-gate/l1f_phase*_ledger_shard*.jsonl
+scratch/atail-force/exact7-role-coverage-gate/l1f_unknown_retry.log
