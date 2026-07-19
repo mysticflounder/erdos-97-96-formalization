@@ -2,8 +2,8 @@
 
 Date: 2026-07-18 (lane opened at session takeover fd7b0078)
 
-Status: **FIXTURE UNSAT EVIDENCE DOWNGRADED; NAMED-INTERIOR NORMAL FORM
-IDENTIFIED; GATE DESIGN FIXED; ENUMERATOR NOT YET BUILT.**
+Status: **ENCODER BUILT AND SMOKE-VALIDATED (5/5); ENUMERATOR NOT YET
+BUILT.**
 
 This lane owns only `scratch/atail-force/exact7-role-coverage-gate/`.  It
 continues the exact-seven branch of `DoubleApexOffSurplusSharedRadiusPair`
@@ -132,12 +132,62 @@ QF_LRA-SAT survivors are the branch's genuine residual and must be answered
 by geometry the gate does not encode (rank+winding curvature or a new
 cross-row occurrence, per Round 166).
 
+## Finding 4: the fixture carries two more accidents; encoder smoke-validated
+
+`gate_encoder.py` implements the DESIGN.md engine core: block-structured
+boundary order (ordered blocks + symbolic bags with Z3 integer positions),
+strict Kalmanson asserted conditionally on an exhaustive enumeration of
+within-bag orderings per cyclic quadruple, complete radius classes,
+selected-row equalities, radius distinctions, and K4 disjunctions with an
+anonymous-slot escape (trivialized disjunctions are recorded, never
+silently dropped).  `smoke_fixture.py` runs five gates through the
+production codepath; all five PASS:
+
+- A (fixed order, full fixture): UNSAT, minimized core == the recorded
+  4-constraint hinge, label for label;
+- C (symbolic within-arc order, full fixture): UNSAT with the same
+  order-free hinge core — the conditional-branch machinery neither loses
+  nor invents constraints;
+- E (fixed order, hinge memberships removed): UNSAT with a NEW sound
+  5-constraint core `{cls_eq: 3, kal: 2}` — points 5 and 11 both lie in
+  the classes at centers 1 and 2, so both centers sit on the bisector of
+  chord (5,11), but that chord does not cross chord (1,2) in the boundary
+  order; summing the two strict Kalmanson inequalities gives 0 >= 2.
+  This is the cross-cap bisector-parity pattern: the Kalmanson base
+  family already implies it, so no separate bisector cut bank is needed.
+  DESIGN.md's original smoke-B expectation (hinge-free => SAT) was wrong:
+  the fixture's arbitrary supports carry this second accident.
+- Hand-checking the fixture's named-role projection found a THIRD
+  accident: the fixture identifies the second exact-five extra with the
+  b1-row outside point 8, which puts the non-crossing pair {8,12} in the
+  classes at centers 1 and 4 — UNSAT by the same parity pattern.  So that
+  identification-plus-arc-side class is already a portable gate verdict.
+- B/D (named-forced schema, fixed/symbolic): SAT.  The de-accidented
+  named system — exact-five class with a fresh extra, the three
+  support-locked reverse rows, first-apex fibers with the distinct-radius
+  arm, lower/triangle/Kalmanson — does not close by itself, confirming
+  the census will have genuine SAT survivors (Round 166) and that the
+  encoder does not manufacture UNSAT.
+
+Replay:
+
+```bash
+UV_CACHE_DIR=/Users/adam/scratch/.uv-cache uv run --no-project \
+  --with z3-solver python \
+  scratch/atail-force/exact7-role-coverage-gate/smoke_fixture.py
+```
+
+Verdict-bearing output: `ALL SMOKE GATES PASS` plus per-gate verdicts in
+`smoke_results.json`.
+
 ## Next steps
 
-1. Lean normal-form theorem for Finding 2 (assemble rounds 119/124/125/136
-   into one named-interior placement statement on the production packet).
-2. Enumerator + encoder with two smoke gates: the sibling fixed fixture
-   must reproduce UNSAT via the hinge cut alone; deleting the hinge
-   memberships must go SAT (Round 156-style escape).
-3. Full run modulo dihedral symmetry; census of verdicts; unsat-core audit
+1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
+2. ~~Encoder + smoke gates~~ DONE (Finding 4; smoke-B redefined to the
+   named-forced schema after the hinge-free variant proved UNSAT-by-
+   second-accident).
+3. Enumerator over identification patterns / arc sides / endpoint side /
+   first-apex radius arm / Round-152 endpoint-blocker choices, using the
+   Lean-pinned membership tables; full run modulo dihedral symmetry
+   (offload candidate: flux.local); census of verdicts; unsat-core audit
    for named-role-only support on every UNSAT schema.

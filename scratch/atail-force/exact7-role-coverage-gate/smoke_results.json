@@ -1,0 +1,105 @@
+{
+  "A_fixed_full": {
+    "schema_id": "A_fixed_full",
+    "verdict": "unsat",
+    "points": 15,
+    "assertions": 4365,
+    "trivial_k4_centers": [],
+    "core": [
+      "cls_eq|7|4",
+      "cls_eq|7|8",
+      "cls_eq|8|7",
+      "cls_ne|4|7"
+    ],
+    "core_size": 4,
+    "families": {
+      "cls_eq": 3,
+      "cls_ne": 1
+    }
+  },
+  "B_named_fixed": {
+    "schema_id": "B_named_fixed",
+    "verdict": "sat",
+    "points": 16,
+    "assertions": 5503,
+    "trivial_k4_centers": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "eb"
+    ]
+  },
+  "C_symbolic_full": {
+    "schema_id": "C_symbolic_full",
+    "verdict": "unsat",
+    "points": 15,
+    "assertions": 6079,
+    "trivial_k4_centers": [],
+    "core": [
+      "cls_eq|7|4",
+      "cls_eq|7|8",
+      "cls_eq|8|7",
+      "cls_ne|4|7"
+    ],
+    "core_size": 4,
+    "families": {
+      "cls_eq": 3,
+      "cls_ne": 1
+    }
+  },
+  "D_named_symbolic": {
+    "schema_id": "D_named_symbolic",
+    "verdict": "sat",
+    "points": 16,
+    "assertions": 8231,
+    "trivial_k4_centers": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "eb"
+    ]
+  },
+  "E_fixed_hingefree": {
+    "schema_id": "E_fixed_hingefree",
+    "verdict": "unsat",
+    "points": 15,
+    "assertions": 4365,
+    "trivial_k4_centers": [],
+    "core": [
+      "cls_eq|1|11",
+      "cls_eq|2|11",
+      "cls_eq|2|5",
+      "kal|0,1,2,11|ac+bd-ab-cd",
+      "kal|0,5,1,2|ac+bd-ad-bc"
+    ],
+    "core_size": 5,
+    "families": {
+      "cls_eq": 3,
+      "kal": 2
+    }
+  }
+}
