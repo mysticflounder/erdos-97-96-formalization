@@ -1,0 +1,46 @@
+{
+  "duplicate_record_count": 0,
+  "epistemic_status": "EXACT_VECTOR_CANCELLATION_BANK_NOT_LIVE_LEAN_CLOSURE",
+  "input_record_count": 70,
+  "inputs": [
+    {
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T023555Z/continuationOrder/derived-cuts.jsonl",
+      "records": 10,
+      "sha256": "deda23f1299f0617923b2a415239b5e2246eade5199ce5cf966c2b3526343f7f"
+    },
+    {
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T023555Z/reverseContinuationOrder/derived-cuts.jsonl",
+      "records": 10,
+      "sha256": "c3ec687f1da9a59740532ed6acd8ea2ab240d01f78264abcd66126a24aa5e45f"
+    },
+    {
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T023555Z/sharesFirstAtSource/derived-cuts.jsonl",
+      "records": 10,
+      "sha256": "4ed875c55059d07799e7ae718f977b72cf842262486afce716cd85942e87d959"
+    },
+    {
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T023555Z/sharesFirstAtTarget/derived-cuts.jsonl",
+      "records": 10,
+      "sha256": "640f1f9f56e5d4966cb393adbffc669f42f12e8ab30fbbc96de26ec633e864bf"
+    },
+    {
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T023555Z/sharesSecondAtSource/derived-cuts.jsonl",
+      "records": 10,
+      "sha256": "49a7111f28a1c23d5a26561b03a3cd21ffb41fb08d85b7151f70006fa3a69f57"
+    },
+    {
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T023555Z/sharesSecondAtTarget/derived-cuts.jsonl",
+      "records": 10,
+      "sha256": "ab852669b91f46da1193f4402ec41a952b0c14cbc8e927d101c7d60c16a8ae20"
+    },
+    {
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T023555Z/fourDistinct/derived-cuts.jsonl",
+      "records": 10,
+      "sha256": "37533fd32187d903af0a577a6361c1d7094e8f121c53b11667279e1838f2b6d4"
+    }
+  ],
+  "output": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T023555Z/checkpoint-70-merged.jsonl",
+  "output_sha256": "6c7077c0b42261ade1a0db990f2cc0814c281137140ac561a6636c775b00ac78",
+  "schema": "p97-exact6-integrated-global-cut-bank-manifest-v1",
+  "unique_record_count": 70
+}

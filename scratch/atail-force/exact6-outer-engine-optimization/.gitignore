@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+piqd-data/
+
+# Nonterminal CNFs are deterministically reconstructible from their manifests.
+# Keep terminal proof-bearing CNFs under an explicitly named certificate path.
+runs/**/current.cnf
+runs/**/current.cadical.txt
+
+# Canceled pre-smoke attempt superseded by the hash-pinned piqd checkpoints.
+runs/20260719T023555Z-round2/

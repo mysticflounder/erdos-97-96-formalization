@@ -1,0 +1,19 @@
+{
+  "derived_cut_replay": "INDEPENDENT_EXACT_LOCAL_CUT_REPLAY_PASS",
+  "elapsed_seconds": 192.31817470799433,
+  "epistemic_status": "FINITE_EXACT_CEGAR_NOT_LIVE_LEAN_CLOSURE",
+  "imported_cut_count": 14719,
+  "new_cut_count": 1,
+  "orbit": "fourDistinct",
+  "outer_oracle": "piqd",
+  "resumed_local_cut_count": 0,
+  "schema": "p97-exact6-raw-cnf-cegar-result-v2",
+  "terminal": {
+    "detail": null,
+    "job_id": "3f615e74-4ad2-4fca-b58c-1ffb3850b718",
+    "reason": "piqd_no_terminal_verdict",
+    "returncode": null,
+    "verdict": "OUTER_UNKNOWN_FAIL_CLOSED"
+  },
+  "total_local_cut_count": 1
+}

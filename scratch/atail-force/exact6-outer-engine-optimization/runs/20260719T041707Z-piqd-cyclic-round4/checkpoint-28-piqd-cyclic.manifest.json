@@ -1,0 +1,53 @@
+{
+  "cut_count": 28,
+  "epistemic_status": "FINITE_EXACT_CEGAR_NOT_LIVE_LEAN_CLOSURE",
+  "exact_unique_count": 28,
+  "inputs": [
+    {
+      "cut_count": 5,
+      "orbit": "continuationOrder",
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T041707Z-piqd-cyclic-round4/continuationOrder/derived-cuts.jsonl",
+      "sha256": "7d818ac4276e455ab54c2c2ed9dc9a07de3691f3d8247b24c6bb9f9089f99b8b"
+    },
+    {
+      "cut_count": 5,
+      "orbit": "reverseContinuationOrder",
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T041707Z-piqd-cyclic-round4/reverseContinuationOrder/derived-cuts.jsonl",
+      "sha256": "f990fa488dcac32c8d44e63b2a3653152a82c09345826f207c7f35e2ca1c9156"
+    },
+    {
+      "cut_count": 2,
+      "orbit": "sharesFirstAtSource",
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T041707Z-piqd-cyclic-round4/sharesFirstAtSource/derived-cuts.jsonl",
+      "sha256": "2496dd2616225ba8c9efe1d7b48bdcbec3862c3b11e27b3de54987da5d11e885"
+    },
+    {
+      "cut_count": 5,
+      "orbit": "sharesFirstAtTarget",
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T041707Z-piqd-cyclic-round4/sharesFirstAtTarget/derived-cuts.jsonl",
+      "sha256": "507841c10ac79bb37a2d7f269738780e01d726aa7f5c396347d0c4dbacbfe05a"
+    },
+    {
+      "cut_count": 5,
+      "orbit": "sharesSecondAtSource",
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T041707Z-piqd-cyclic-round4/sharesSecondAtSource/derived-cuts.jsonl",
+      "sha256": "e4fc82791f522e40e974b025e99101aed394ead55372230ce12e011f3670c48d"
+    },
+    {
+      "cut_count": 5,
+      "orbit": "sharesSecondAtTarget",
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T041707Z-piqd-cyclic-round4/sharesSecondAtTarget/derived-cuts.jsonl",
+      "sha256": "15419983b98155d56b2d3be93b82a7ddf9812a629ca06ea77038549bd9703e1a"
+    },
+    {
+      "cut_count": 1,
+      "orbit": "fourDistinct",
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T041707Z-piqd-cyclic-round4/fourDistinct/derived-cuts.jsonl",
+      "sha256": "f3e92301aa4974515aeb68f220a12d627807a0a402df94ac2f12483085262f5d"
+    }
+  ],
+  "merged_path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T041707Z-piqd-cyclic-round4/checkpoint-28-piqd-cyclic.jsonl",
+  "merged_sha256": "7878bc41df5443964edfa8d55ee2bda9137b78654b9f46fcd580f48be236127d",
+  "schema": "p97-exact6-piqd-seven-orbit-checkpoint-manifest-v1",
+  "semantic_unique_count": 28
+}

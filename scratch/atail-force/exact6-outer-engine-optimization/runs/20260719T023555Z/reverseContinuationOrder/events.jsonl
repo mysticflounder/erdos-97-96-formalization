@@ -1,0 +1,42 @@
+{"base_clauses": 345723, "imported_cut_count": 14509, "orbit": "reverseContinuationOrder", "phase": "start", "resumed_local_cut_count": 0, "seed_count": 7, "startup_replay_verdict": "INDEPENDENT_EXACT_LOCAL_CUT_REPLAY_PASS", "time": 1784428927.5927339, "variables": 476}
+{"clauses": 345723, "cnf_sha256": "e334818e14095eaec50e8230da20e56476832f4f6379e04dd48efad1850bccb4", "elapsed_seconds": 5.2985827079974115, "iteration": 1, "phase": "outer_result", "status": "SAT", "time": 1784428933.062078}
+{"iteration": 1, "phase": "outer_model_verified", "time": 1784428933.131883}
+{"elapsed_seconds": 0.21743733301991597, "iteration": 1, "phase": "metric_result", "status": "UNSAT", "time": 1784428933.349966}
+{"conditioned_shell": false, "constraint_count": 30, "cut_id": "reverseContinuationOrder-direct-cnf-cut-00001", "independent_replay": "PASS", "iteration": 1, "local_cut_count": 1, "new_cut_count": 1, "phase": "cut_banked", "required_memberships": 11, "time": 1784428933.392006}
+{"clauses": 345724, "cnf_sha256": "37856f3d95abe0cc901a8420c5a24eefb54cf982ac63105c9f887af7f4f07118", "elapsed_seconds": 5.453938541992102, "iteration": 2, "phase": "outer_result", "status": "SAT", "time": 1784428939.0274072}
+{"iteration": 2, "phase": "outer_model_verified", "time": 1784428939.098282}
+{"elapsed_seconds": 0.15971300000092015, "iteration": 2, "phase": "metric_result", "status": "UNSAT", "time": 1784428939.258608}
+{"conditioned_shell": false, "constraint_count": 23, "cut_id": "reverseContinuationOrder-direct-cnf-cut-00002", "independent_replay": "PASS", "iteration": 2, "local_cut_count": 2, "new_cut_count": 2, "phase": "cut_banked", "required_memberships": 9, "time": 1784428939.299139}
+{"clauses": 345725, "cnf_sha256": "db3c5b6b9ead26a8a6408cb04f87072db5a85cc31074eae52d75d174f8d7fabd", "elapsed_seconds": 5.651434875035193, "iteration": 3, "phase": "outer_result", "status": "SAT", "time": 1784428945.133424}
+{"iteration": 3, "phase": "outer_model_verified", "time": 1784428945.2034419}
+{"elapsed_seconds": 0.14716012502321973, "iteration": 3, "phase": "metric_result", "status": "UNSAT", "time": 1784428945.351203}
+{"conditioned_shell": false, "constraint_count": 13, "cut_id": "reverseContinuationOrder-direct-cnf-cut-00003", "independent_replay": "PASS", "iteration": 3, "local_cut_count": 3, "new_cut_count": 3, "phase": "cut_banked", "required_memberships": 12, "time": 1784428945.39089}
+{"clauses": 345726, "cnf_sha256": "a4288bbec1ab2c556fdeb9157fa244247db43f5da4043be23bf6a00ce71436b7", "elapsed_seconds": 5.231021207990125, "iteration": 4, "phase": "outer_result", "status": "SAT", "time": 1784428950.802913}
+{"iteration": 4, "phase": "outer_model_verified", "time": 1784428950.873132}
+{"elapsed_seconds": 0.21559195796726272, "iteration": 4, "phase": "metric_result", "status": "UNSAT", "time": 1784428951.089346}
+{"conditioned_shell": true, "constraint_count": 50, "cut_id": "reverseContinuationOrder-direct-cnf-cut-00004", "independent_replay": "PASS", "iteration": 4, "local_cut_count": 4, "new_cut_count": 4, "phase": "cut_banked", "required_memberships": 17, "time": 1784428951.1322129}
+{"clauses": 345727, "cnf_sha256": "e39d2d83fb52627eaf112776e3044ceefec70a006d3119e40eac6578ef8eeea0", "elapsed_seconds": 5.2497893330291845, "iteration": 5, "phase": "outer_result", "status": "SAT", "time": 1784428956.563624}
+{"iteration": 5, "phase": "outer_model_verified", "time": 1784428956.632673}
+{"elapsed_seconds": 0.17046341695822775, "iteration": 5, "phase": "metric_result", "status": "UNSAT", "time": 1784428956.803733}
+{"conditioned_shell": true, "constraint_count": 19, "cut_id": "reverseContinuationOrder-direct-cnf-cut-00005", "independent_replay": "PASS", "iteration": 5, "local_cut_count": 5, "new_cut_count": 5, "phase": "cut_banked", "required_memberships": 8, "time": 1784428956.843897}
+{"clauses": 345728, "cnf_sha256": "8312c05dad826283f0384396907cf70567b13ce5d32f7045e72544bc4fb4991f", "elapsed_seconds": 6.704245582979638, "iteration": 6, "phase": "outer_result", "status": "SAT", "time": 1784428963.7303438}
+{"iteration": 6, "phase": "outer_model_verified", "time": 1784428963.800365}
+{"elapsed_seconds": 0.1673992500291206, "iteration": 6, "phase": "metric_result", "status": "UNSAT", "time": 1784428963.968419}
+{"conditioned_shell": false, "constraint_count": 16, "cut_id": "reverseContinuationOrder-direct-cnf-cut-00006", "independent_replay": "PASS", "iteration": 6, "local_cut_count": 6, "new_cut_count": 6, "phase": "cut_banked", "required_memberships": 9, "time": 1784428964.009523}
+{"clauses": 345729, "cnf_sha256": "7b7e5588d12a7e6cd698a5c3e51a3f0f22bb83be2109632a4a676cb5df82496c", "elapsed_seconds": 6.696698541985825, "iteration": 7, "phase": "outer_result", "status": "SAT", "time": 1784428970.8874218}
+{"iteration": 7, "phase": "outer_model_verified", "time": 1784428970.956347}
+{"elapsed_seconds": 0.13632641697768122, "iteration": 7, "phase": "metric_result", "status": "UNSAT", "time": 1784428971.0930529}
+{"conditioned_shell": true, "constraint_count": 5, "cut_id": "reverseContinuationOrder-direct-cnf-cut-00007", "independent_replay": "PASS", "iteration": 7, "local_cut_count": 7, "new_cut_count": 7, "phase": "cut_banked", "required_memberships": 4, "time": 1784428971.132222}
+{"clauses": 345730, "cnf_sha256": "634cacbfafd64d32a2253683e22a99e0cb288dd5a89f57a81d736b3e5346bb48", "elapsed_seconds": 8.392817499989178, "iteration": 8, "phase": "outer_result", "status": "SAT", "time": 1784428979.705248}
+{"iteration": 8, "phase": "outer_model_verified", "time": 1784428979.774612}
+{"elapsed_seconds": 0.14965454203775153, "iteration": 8, "phase": "metric_result", "status": "UNSAT", "time": 1784428979.924881}
+{"conditioned_shell": false, "constraint_count": 16, "cut_id": "reverseContinuationOrder-direct-cnf-cut-00008", "independent_replay": "PASS", "iteration": 8, "local_cut_count": 8, "new_cut_count": 8, "phase": "cut_banked", "required_memberships": 9, "time": 1784428979.965951}
+{"clauses": 345731, "cnf_sha256": "816ae2c2f74769b0d3b1c31e9c30187043f0c174692691923005c6570c74ff0f", "elapsed_seconds": 8.3473469580058, "iteration": 9, "phase": "outer_result", "status": "SAT", "time": 1784428988.494006}
+{"iteration": 9, "phase": "outer_model_verified", "time": 1784428988.562902}
+{"elapsed_seconds": 0.18392295797821134, "iteration": 9, "phase": "metric_result", "status": "UNSAT", "time": 1784428988.747458}
+{"conditioned_shell": false, "constraint_count": 28, "cut_id": "reverseContinuationOrder-direct-cnf-cut-00009", "independent_replay": "PASS", "iteration": 9, "local_cut_count": 9, "new_cut_count": 9, "phase": "cut_banked", "required_memberships": 9, "time": 1784428988.7899609}
+{"clauses": 345732, "cnf_sha256": "c5a04c1e396687a36efe6d2ebc4dde2f2d2d773fb3ecf7f5f3e20e177cfb69b1", "elapsed_seconds": 6.380273667047732, "iteration": 10, "phase": "outer_result", "status": "SAT", "time": 1784428995.3505101}
+{"iteration": 10, "phase": "outer_model_verified", "time": 1784428995.417981}
+{"elapsed_seconds": 0.17420570802642033, "iteration": 10, "phase": "metric_result", "status": "UNSAT", "time": 1784428995.5927548}
+{"conditioned_shell": false, "constraint_count": 20, "cut_id": "reverseContinuationOrder-direct-cnf-cut-00010", "independent_replay": "PASS", "iteration": 10, "local_cut_count": 10, "new_cut_count": 10, "phase": "cut_banked", "required_memberships": 12, "time": 1784428995.632032}
+{"new_cut_count": 10, "phase": "done", "time": 1784428995.6745799, "verdict": "GENERALIZATION_CHECKPOINT"}

@@ -1,0 +1,252 @@
+{
+  "all_cyclic_schemas_exact_full_kalmanson_unsat": true,
+  "bank": {
+    "max_vertices": 8,
+    "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T034302Z-piqd-round3/checkpoint-210-overlay-schema-bank.json",
+    "sha256": "27edb043c208dc25127f16396112aed42522d54efb46e9ffa61cd7d0cbc26a84"
+  },
+  "checkpoints": [
+    {
+      "cut_count": 28,
+      "cyclic_subsumed_count": 0,
+      "cyclic_subsumed_histogram": {},
+      "linear_subsumed_count": 0,
+      "new_cyclic_subsumed_count": 0,
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T041707Z-piqd-cyclic-round4/checkpoint-28-piqd-cyclic.jsonl",
+      "records": [
+        {
+          "conditioned_shell": false,
+          "cut_id": "continuationOrder-piqd-cnf-cut-00001",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 11
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "continuationOrder-piqd-cnf-cut-00002",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 18
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "continuationOrder-piqd-cnf-cut-00003",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 10
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "continuationOrder-piqd-cnf-cut-00004",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 15
+        },
+        {
+          "conditioned_shell": true,
+          "cut_id": "continuationOrder-piqd-cnf-cut-00005",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 7
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "reverseContinuationOrder-piqd-cnf-cut-00001",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 16
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "reverseContinuationOrder-piqd-cnf-cut-00002",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 10
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "reverseContinuationOrder-piqd-cnf-cut-00003",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 15
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "reverseContinuationOrder-piqd-cnf-cut-00004",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 9
+        },
+        {
+          "conditioned_shell": true,
+          "cut_id": "reverseContinuationOrder-piqd-cnf-cut-00005",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 10
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "sharesFirstAtSource-piqd-cnf-cut-00001",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 17
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "sharesFirstAtSource-piqd-cnf-cut-00002",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 13
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "sharesFirstAtTarget-piqd-cnf-cut-00001",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 12
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "sharesFirstAtTarget-piqd-cnf-cut-00002",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 17
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "sharesFirstAtTarget-piqd-cnf-cut-00003",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 17
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "sharesFirstAtTarget-piqd-cnf-cut-00004",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 9
+        },
+        {
+          "conditioned_shell": true,
+          "cut_id": "sharesFirstAtTarget-piqd-cnf-cut-00005",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 7
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "sharesSecondAtSource-piqd-cnf-cut-00001",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 9
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "sharesSecondAtSource-piqd-cnf-cut-00002",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 12
+        },
+        {
+          "conditioned_shell": true,
+          "cut_id": "sharesSecondAtSource-piqd-cnf-cut-00003",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 5
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "sharesSecondAtSource-piqd-cnf-cut-00004",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 13
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "sharesSecondAtSource-piqd-cnf-cut-00005",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 11
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00001",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 14
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00002",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 17
+        },
+        {
+          "conditioned_shell": true,
+          "cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00003",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 11
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00004",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 11
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00005",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 14
+        },
+        {
+          "conditioned_shell": false,
+          "cut_id": "fourDistinct-piqd-cnf-cut-00001",
+          "cyclic_application_subsumes_cut": false,
+          "linear_application_subsumes_cut": false,
+          "new_cyclic_application_subsumes_cut": false,
+          "required_membership_count": 12
+        }
+      ],
+      "sha256": "7878bc41df5443964edfa8d55ee2bda9137b78654b9f46fcd580f48be236127d"
+    }
+  ],
+  "cyclic_dihedral_application_count": 737100,
+  "cyclic_dihedral_schema_count": 424,
+  "epistemic_status": "EXACT_QF_LRA_SCHEMA_AUDIT_NOT_LIVE_LEAN_CLOSURE",
+  "linear_application_count": 120338,
+  "linear_schema_count": 66,
+  "new_cyclic_dihedral_application_count": 616762,
+  "schema": "p97-exact6-cyclic-schema-coverage-audit-v1"
+}

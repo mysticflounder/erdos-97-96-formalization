@@ -1,0 +1,17 @@
+{
+  "derived_cut_replay": "INDEPENDENT_EXACT_LOCAL_CUT_REPLAY_PASS",
+  "elapsed_seconds": 211.19339116598712,
+  "epistemic_status": "FINITE_EXACT_CEGAR_NOT_LIVE_LEAN_CLOSURE",
+  "imported_cut_count": 14649,
+  "new_cut_count": 10,
+  "orbit": "fourDistinct",
+  "outer_oracle": "piqd",
+  "resumed_local_cut_count": 0,
+  "schema": "p97-exact6-raw-cnf-cegar-result-v2",
+  "terminal": {
+    "new_cut_count": 10,
+    "verdict": "GENERALIZATION_CHECKPOINT",
+    "wall_limit_reached": false
+  },
+  "total_local_cut_count": 10
+}

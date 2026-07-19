@@ -1,0 +1,98 @@
+{
+  "alive_witnesses": [],
+  "banks": [
+    {
+      "cut_count": 12509,
+      "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-cross-20260718.jsonl",
+      "positive_constraint_count": 0,
+      "positive_weight_sum": 0,
+      "sha256": "92a88957465e7d9e3c47392e8748ad6a8da05089b75e14abb7b16181a17e7288",
+      "shell_conditioned_count": 302
+    },
+    {
+      "cut_count": 1000,
+      "path": "scratch/atail-force/exact6-integrated-milp/alive-recovery/sharesFirstAtSource/cuts.jsonl",
+      "positive_constraint_count": 0,
+      "positive_weight_sum": 0,
+      "sha256": "719975b8320c73bc4c803ea33d0971b2437534a9d594c05df1ca532534c1511e",
+      "shell_conditioned_count": 38
+    },
+    {
+      "cut_count": 1000,
+      "path": "scratch/atail-force/exact6-integrated-milp/alive-recovery/sharesFirstAtTarget/cuts.jsonl",
+      "positive_constraint_count": 0,
+      "positive_weight_sum": 0,
+      "sha256": "5fbcfb8f91f488ae3bd50d1d68880a0cb7555ea50a852b4ae5aa6eff5cdce5ef",
+      "shell_conditioned_count": 25
+    },
+    {
+      "cut_count": 70,
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T023555Z/checkpoint-70-merged.jsonl",
+      "positive_constraint_count": 0,
+      "positive_weight_sum": 0,
+      "sha256": "6c7077c0b42261ade1a0db990f2cc0814c281137140ac561a6636c775b00ac78",
+      "shell_conditioned_count": 10
+    }
+  ],
+  "n": 14,
+  "schema": "p97-exact6-integrated-cegar-independent-audit-v1",
+  "second_apex": 9,
+  "seeds": [
+    {
+      "antecedent_count": 7,
+      "inequality_count": 5,
+      "orbit": "continuationOrder",
+      "path": "scratch/atail-force/exact6-integrated-milp/continuationOrder.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "66218647bf33e2a5de87fd488c08f1f85629590af7c7ce3fc2c72f4400770a95"
+    },
+    {
+      "antecedent_count": 7,
+      "inequality_count": 5,
+      "orbit": "reverseContinuationOrder",
+      "path": "scratch/atail-force/exact6-integrated-milp/reverseContinuationOrder.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "f605211ce723894472d1ffaac5dc025cb183ac72ebf17d817213690150d7568e"
+    },
+    {
+      "antecedent_count": 11,
+      "inequality_count": 8,
+      "orbit": "sharesFirstAtSource",
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesFirstAtSource.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "0b81b8a18400f9a18e632e3c31c99a010ef4d0b7e7ee0589fc7af075c12a27b1"
+    },
+    {
+      "antecedent_count": 7,
+      "inequality_count": 5,
+      "orbit": "sharesFirstAtTarget",
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesFirstAtTarget.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "1debdeda81b23fcf8fdfe57b8b41c3a34ff58fe0b9f1deb8bd8f6b09959e4e1b"
+    },
+    {
+      "antecedent_count": 8,
+      "inequality_count": 6,
+      "orbit": "sharesSecondAtSource",
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesSecondAtSource.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "86e591282f662760ff7795be7b1b51d16bf18c16b1151e2119006713b9812f40"
+    },
+    {
+      "antecedent_count": 8,
+      "inequality_count": 6,
+      "orbit": "sharesSecondAtTarget",
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesSecondAtTarget.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "ab35da65c8450839eec92799069fd468fc3fa337169a7a2678d7a55acdb66f08"
+    },
+    {
+      "antecedent_count": 9,
+      "inequality_count": 7,
+      "orbit": "fourDistinct",
+      "path": "scratch/atail-force/exact6-integrated-milp/fourDistinct.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "006f0adeb1c463592420c9b3fb00cfd49b072314102f54f4b43d4c938249bd6b"
+    }
+  ],
+  "total_positive_constraints_in_cuts": 0,
+  "total_positive_weight_in_cuts": 0,
+  "total_shell_conditioned_cuts": 375,
+  "total_verified_alive_witnesses": 0,
+  "total_verified_cuts": 14579,
+  "total_verified_seeds": 7,
+  "verdict": "INDEPENDENT_EXACT_LOCAL_CUT_REPLAY_PASS"
+}

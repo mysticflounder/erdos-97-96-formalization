@@ -1,0 +1,8412 @@
+{
+  "checkpoint": {
+    "cut_count": 70,
+    "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T034302Z-piqd-round3/checkpoint-70-piqd.jsonl",
+    "sha256": "f8d4dd4335f7c123a5bd753870fc52c64a1ded396de0f47b43af92bc20ef2fd4",
+    "shell_conditioned_cut_count_skipped": 14,
+    "shell_free_cut_count": 56
+  },
+  "deletion_orders_per_input": 8,
+  "epistemic_status": "EXACT_RATIONAL_LRA_THEOREM_DISCOVERY_NOT_LIVE_LEAN_CLOSURE",
+  "minimal_core_count": 56,
+  "new_compact_schema_count_k_le_8": 3,
+  "new_compact_schemas_k_le_8": [
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 3432,
+      "core_vertex_count": 8,
+      "new_application_count_over_prior_compact_bank": 3432,
+      "order_schema": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 8,
+          "minimal_core": [
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_3_7_10_12",
+            "row_10_7_8",
+            "row_12_3_7",
+            "row_4_1_10",
+            "row_4_1_8",
+            "row_8_3_10"
+          ],
+          "minimal_core_size": 8,
+          "source_constraints": [
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_3_7_10_12",
+            "row_10_7_8",
+            "row_12_3_7",
+            "row_4_1_10",
+            "row_4_1_8",
+            "row_8_3_10"
+          ],
+          "source_cut_id": "fourDistinct-piqd-cnf-cut-00002",
+          "source_required_memberships": [
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              4,
+              10
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              10,
+              7
+            ],
+            [
+              10,
+              8
+            ],
+            [
+              12,
+              3
+            ],
+            [
+              12,
+              7
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 3432,
+      "core_vertex_count": 8,
+      "new_application_count_over_prior_compact_bank": 3432,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 10,
+          "minimal_core": [
+            "kal1_0_3_4_13",
+            "kal2_0_1_3_11",
+            "kal2_3_4_12_13",
+            "row_0_4_11",
+            "row_11_1_9",
+            "row_3_1_12",
+            "row_4_0_12",
+            "row_4_0_9",
+            "row_9_1_11",
+            "row_9_1_4"
+          ],
+          "minimal_core_size": 10,
+          "source_constraints": [
+            "kal1_0_3_4_13",
+            "kal2_0_1_3_11",
+            "kal2_3_4_12_13",
+            "row_0_4_11",
+            "row_11_1_9",
+            "row_3_1_12",
+            "row_4_0_12",
+            "row_4_0_9",
+            "row_9_1_11",
+            "row_9_1_4"
+          ],
+          "source_cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00008",
+          "source_required_memberships": [
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              11
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              12
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              9
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              9,
+              4
+            ],
+            [
+              9,
+              11
+            ],
+            [
+              11,
+              1
+            ],
+            [
+              11,
+              9
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 1848,
+      "core_vertex_count": 8,
+      "new_application_count_over_prior_compact_bank": 1848,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 10,
+          "minimal_core": [
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_2_3_7_8",
+            "row_6_2_13",
+            "row_7_2_3",
+            "row_8_3_13"
+          ],
+          "minimal_core_size": 10,
+          "source_constraints": [
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_2_3_7_8",
+            "row_6_2_13",
+            "row_7_2_3",
+            "row_8_3_13"
+          ],
+          "source_cut_id": "sharesFirstAtSource-piqd-cnf-cut-00010",
+          "source_required_memberships": [
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              13
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              13
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "new_schema_count": 56,
+  "prior_bank": {
+    "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T032400Z-piqd-round2/checkpoint-140-overlay-schema-bank.json",
+    "schema_count": 265,
+    "sha256": "526746a403bc1ad6d24361047d502303db7e6259832b322e9b677dd69f00b529"
+  },
+  "schema": "p97-exact6-direct-cnf-checkpoint-schema-mining-v1",
+  "schemas": [
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 3432,
+      "core_vertex_count": 8,
+      "new_application_count_over_prior_compact_bank": 3432,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 10,
+          "minimal_core": [
+            "kal1_0_3_4_13",
+            "kal2_0_1_3_11",
+            "kal2_3_4_12_13",
+            "row_0_4_11",
+            "row_11_1_9",
+            "row_3_1_12",
+            "row_4_0_12",
+            "row_4_0_9",
+            "row_9_1_11",
+            "row_9_1_4"
+          ],
+          "minimal_core_size": 10,
+          "source_constraints": [
+            "kal1_0_3_4_13",
+            "kal2_0_1_3_11",
+            "kal2_3_4_12_13",
+            "row_0_4_11",
+            "row_11_1_9",
+            "row_3_1_12",
+            "row_4_0_12",
+            "row_4_0_9",
+            "row_9_1_11",
+            "row_9_1_4"
+          ],
+          "source_cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00008",
+          "source_required_memberships": [
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              11
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              12
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              9
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              9,
+              4
+            ],
+            [
+              9,
+              11
+            ],
+            [
+              11,
+              1
+            ],
+            [
+              11,
+              9
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 3432,
+      "core_vertex_count": 8,
+      "new_application_count_over_prior_compact_bank": 3432,
+      "order_schema": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 8,
+          "minimal_core": [
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_3_7_10_12",
+            "row_10_7_8",
+            "row_12_3_7",
+            "row_4_1_10",
+            "row_4_1_8",
+            "row_8_3_10"
+          ],
+          "minimal_core_size": 8,
+          "source_constraints": [
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_3_7_10_12",
+            "row_10_7_8",
+            "row_12_3_7",
+            "row_4_1_10",
+            "row_4_1_8",
+            "row_8_3_10"
+          ],
+          "source_cut_id": "fourDistinct-piqd-cnf-cut-00002",
+          "source_required_memberships": [
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              4,
+              10
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              10,
+              7
+            ],
+            [
+              10,
+              8
+            ],
+            [
+              12,
+              3
+            ],
+            [
+              12,
+              7
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 1848,
+      "core_vertex_count": 8,
+      "new_application_count_over_prior_compact_bank": 1848,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 10,
+          "minimal_core": [
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_2_3_7_8",
+            "row_6_2_13",
+            "row_7_2_3",
+            "row_8_3_13"
+          ],
+          "minimal_core_size": 10,
+          "source_constraints": [
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_2_3_7_8",
+            "row_6_2_13",
+            "row_7_2_3",
+            "row_8_3_13"
+          ],
+          "source_cut_id": "sharesFirstAtSource-piqd-cnf-cut-00010",
+          "source_required_memberships": [
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              13
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              13
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 1584,
+      "core_vertex_count": 9,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 15,
+          "minimal_core": [
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_11_12",
+            "row_0_1_12",
+            "row_0_1_8",
+            "row_2_0_11",
+            "row_2_0_8",
+            "row_3_1_11",
+            "row_3_1_12"
+          ],
+          "minimal_core_size": 15,
+          "source_constraints": [
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_11_12",
+            "row_0_1_12",
+            "row_0_1_8",
+            "row_2_0_11",
+            "row_2_0_8",
+            "row_3_1_11",
+            "row_3_1_12"
+          ],
+          "source_cut_id": "reverseContinuationOrder-piqd-cnf-cut-00001",
+          "source_required_memberships": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              0,
+              12
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              2,
+              11
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              11
+            ],
+            [
+              3,
+              12
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 1584,
+      "core_vertex_count": 9,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 12,
+          "minimal_core": [
+            "kal1_0_1_2_13",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_2_3_4",
+            "kal2_1_2_12_13",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "row_0_2_6",
+            "row_1_0_12",
+            "row_2_4_12",
+            "row_2_4_6",
+            "row_3_0_2"
+          ],
+          "minimal_core_size": 12,
+          "source_constraints": [
+            "kal1_0_1_2_13",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_2_3_4",
+            "kal2_1_2_12_13",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "row_0_2_6",
+            "row_1_0_12",
+            "row_2_4_12",
+            "row_2_4_6",
+            "row_3_0_2"
+          ],
+          "source_cut_id": "fourDistinct-piqd-cnf-cut-00006",
+          "source_required_memberships": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              12
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              2
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 1584,
+      "core_vertex_count": 9,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 13,
+          "minimal_core": [
+            "kal2_0_1_7_8",
+            "kal2_1_2_7_8",
+            "kal2_2_3_5_6",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_3_4_5_6",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "row_0_2_7",
+            "row_0_2_8",
+            "row_2_5_7",
+            "row_4_3_5",
+            "row_4_3_8"
+          ],
+          "minimal_core_size": 13,
+          "source_constraints": [
+            "kal2_0_1_7_8",
+            "kal2_1_2_7_8",
+            "kal2_2_3_5_6",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_3_4_5_6",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "row_0_2_7",
+            "row_0_2_8",
+            "row_2_5_7",
+            "row_4_3_5",
+            "row_4_3_8"
+          ],
+          "source_cut_id": "sharesSecondAtSource-piqd-cnf-cut-00002",
+          "source_required_memberships": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              8
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 924,
+      "core_vertex_count": 9,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          8
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 11,
+          "minimal_core": [
+            "kal2_0_1_11_12",
+            "kal2_0_1_12_13",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_3_4_12_13",
+            "kal2_4_5_12_13",
+            "row_11_0_3",
+            "row_12_3_5",
+            "row_13_0_5"
+          ],
+          "minimal_core_size": 11,
+          "source_constraints": [
+            "kal2_0_1_11_12",
+            "kal2_0_1_12_13",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_3_4_12_13",
+            "kal2_4_5_12_13",
+            "row_11_0_3",
+            "row_12_3_5",
+            "row_13_0_5"
+          ],
+          "source_cut_id": "sharesFirstAtSource-piqd-cnf-cut-00003",
+          "source_required_memberships": [
+            [
+              11,
+              0
+            ],
+            [
+              11,
+              3
+            ],
+            [
+              12,
+              3
+            ],
+            [
+              12,
+              5
+            ],
+            [
+              13,
+              0
+            ],
+            [
+              13,
+              5
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 924,
+      "core_vertex_count": 9,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 14,
+          "minimal_core": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal2_0_1_2_3",
+            "kal2_0_1_3_4",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "row_1_0_4",
+            "row_1_0_7",
+            "row_2_1_11",
+            "row_4_2_11",
+            "row_4_2_7",
+            "row_7_1_4"
+          ],
+          "minimal_core_size": 14,
+          "source_constraints": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal2_0_1_2_3",
+            "kal2_0_1_3_4",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "row_1_0_4",
+            "row_1_0_7",
+            "row_2_1_11",
+            "row_4_2_11",
+            "row_4_2_7",
+            "row_7_1_4"
+          ],
+          "source_cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00001",
+          "source_required_memberships": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              7
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              11
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              4,
+              11
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              7,
+              4
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 924,
+      "core_vertex_count": 9,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 10,
+          "minimal_core": [
+            "kal1_0_4_11_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_9_10",
+            "kal2_1_2_10_11",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_9_10",
+            "row_11_3_13",
+            "row_4_0_13",
+            "row_9_0_3"
+          ],
+          "minimal_core_size": 10,
+          "source_constraints": [
+            "kal1_0_4_11_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_9_10",
+            "kal2_1_2_10_11",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_9_10",
+            "row_11_3_13",
+            "row_4_0_13",
+            "row_9_0_3"
+          ],
+          "source_cut_id": "continuationOrder-piqd-cnf-cut-00004",
+          "source_required_memberships": [
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              13
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              9,
+              3
+            ],
+            [
+              11,
+              3
+            ],
+            [
+              11,
+              13
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 1584,
+      "core_vertex_count": 9,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 10,
+          "minimal_core": [
+            "kal1_0_1_2_13",
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "row_1_0_11",
+            "row_2_3_11",
+            "row_2_3_13",
+            "row_5_0_13"
+          ],
+          "minimal_core_size": 10,
+          "source_constraints": [
+            "kal1_0_1_2_13",
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "row_1_0_11",
+            "row_2_3_11",
+            "row_2_3_13",
+            "row_5_0_13"
+          ],
+          "source_cut_id": "sharesSecondAtSource-piqd-cnf-cut-00009",
+          "source_required_memberships": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              11
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              11
+            ],
+            [
+              2,
+              13
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              13
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 924,
+      "core_vertex_count": 9,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 11,
+          "minimal_core": [
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "row_5_2_13",
+            "row_7_1_13",
+            "row_9_1_2"
+          ],
+          "minimal_core_size": 11,
+          "source_constraints": [
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "row_5_2_13",
+            "row_7_1_13",
+            "row_9_1_2"
+          ],
+          "source_cut_id": "fourDistinct-piqd-cnf-cut-00003",
+          "source_required_memberships": [
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              13
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              7,
+              13
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              9,
+              2
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 924,
+      "core_vertex_count": 9,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 14,
+          "minimal_core": [
+            "kal1_0_7_8_13",
+            "kal1_0_8_9_13",
+            "kal1_0_9_10_13",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_7_8_11_12",
+            "kal2_7_8_12_13",
+            "kal2_8_9_11_12",
+            "kal2_8_9_12_13",
+            "kal2_9_10_11_12",
+            "kal2_9_10_12_13",
+            "row_10_1_11",
+            "row_7_0_11",
+            "row_8_0_1"
+          ],
+          "minimal_core_size": 14,
+          "source_constraints": [
+            "kal1_0_7_8_13",
+            "kal1_0_8_9_13",
+            "kal1_0_9_10_13",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_7_8_11_12",
+            "kal2_7_8_12_13",
+            "kal2_8_9_11_12",
+            "kal2_8_9_12_13",
+            "kal2_9_10_11_12",
+            "kal2_9_10_12_13",
+            "row_10_1_11",
+            "row_7_0_11",
+            "row_8_0_1"
+          ],
+          "source_cut_id": "fourDistinct-piqd-cnf-cut-00008",
+          "source_required_memberships": [
+            [
+              7,
+              0
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              1
+            ],
+            [
+              10,
+              1
+            ],
+            [
+              10,
+              11
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 924,
+      "core_vertex_count": 9,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          7
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 12,
+          "minimal_core": [
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "kal2_6_7_12_13",
+            "row_5_1_10",
+            "row_6_5_10",
+            "row_6_5_12",
+            "row_7_1_12"
+          ],
+          "minimal_core_size": 12,
+          "source_constraints": [
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "kal2_6_7_12_13",
+            "row_5_1_10",
+            "row_6_5_10",
+            "row_6_5_12",
+            "row_7_1_12"
+          ],
+          "source_cut_id": "sharesFirstAtSource-piqd-cnf-cut-00009",
+          "source_required_memberships": [
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              6,
+              10
+            ],
+            [
+              6,
+              12
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              7,
+              12
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 990,
+      "core_vertex_count": 10,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          8,
+          2
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          8,
+          6
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 19,
+          "minimal_core": [
+            "kal1_0_11_12_13",
+            "kal1_0_4_5_13",
+            "kal2_0_1_11_12",
+            "kal2_0_1_4_5",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "row_10_1_5",
+            "row_13_1_11",
+            "row_13_1_12",
+            "row_1_3_11",
+            "row_1_3_5",
+            "row_4_1_12"
+          ],
+          "minimal_core_size": 19,
+          "source_constraints": [
+            "kal1_0_11_12_13",
+            "kal1_0_4_5_13",
+            "kal2_0_1_11_12",
+            "kal2_0_1_4_5",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "row_10_1_5",
+            "row_13_1_11",
+            "row_13_1_12",
+            "row_1_3_11",
+            "row_1_3_5",
+            "row_4_1_12"
+          ],
+          "source_cut_id": "continuationOrder-piqd-cnf-cut-00009",
+          "source_required_memberships": [
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              1,
+              11
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              10,
+              1
+            ],
+            [
+              10,
+              5
+            ],
+            [
+              13,
+              1
+            ],
+            [
+              13,
+              11
+            ],
+            [
+              13,
+              12
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 660,
+      "core_vertex_count": 10,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 10,
+          "minimal_core": [
+            "kal1_0_8_9_13",
+            "kal2_8_9_10_11",
+            "kal2_8_9_11_12",
+            "kal2_8_9_12_13",
+            "row_0_2_6",
+            "row_0_2_8",
+            "row_10_3_8",
+            "row_10_3_9",
+            "row_6_0_9",
+            "row_9_0_6"
+          ],
+          "minimal_core_size": 10,
+          "source_constraints": [
+            "kal1_0_8_9_13",
+            "kal2_8_9_10_11",
+            "kal2_8_9_11_12",
+            "kal2_8_9_12_13",
+            "row_0_2_6",
+            "row_0_2_8",
+            "row_10_3_8",
+            "row_10_3_9",
+            "row_6_0_9",
+            "row_9_0_6"
+          ],
+          "source_cut_id": "reverseContinuationOrder-piqd-cnf-cut-00008",
+          "source_required_memberships": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              9
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              9,
+              6
+            ],
+            [
+              10,
+              3
+            ],
+            [
+              10,
+              8
+            ],
+            [
+              10,
+              9
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 420,
+      "core_vertex_count": 10,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 14,
+          "minimal_core": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal2_0_1_7_8",
+            "kal2_1_2_7_8",
+            "kal2_2_3_7_8",
+            "kal2_3_4_7_8",
+            "row_0_2_7",
+            "row_2_4_13",
+            "row_4_2_7",
+            "row_8_4_13"
+          ],
+          "minimal_core_size": 14,
+          "source_constraints": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal2_0_1_7_8",
+            "kal2_1_2_7_8",
+            "kal2_2_3_7_8",
+            "kal2_3_4_7_8",
+            "row_0_2_7",
+            "row_2_4_13",
+            "row_4_2_7",
+            "row_8_4_13"
+          ],
+          "source_cut_id": "sharesFirstAtTarget-piqd-cnf-cut-00004",
+          "source_required_memberships": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              13
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              13
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 660,
+      "core_vertex_count": 10,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          8
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 15,
+          "minimal_core": [
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal2_0_1_11_12",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_4_5_12_13",
+            "kal2_5_6_12_13",
+            "kal2_6_7_12_13",
+            "row_11_0_1",
+            "row_12_0_4",
+            "row_1_2_12",
+            "row_1_2_4",
+            "row_7_1_12"
+          ],
+          "minimal_core_size": 15,
+          "source_constraints": [
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal2_0_1_11_12",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_4_5_12_13",
+            "kal2_5_6_12_13",
+            "kal2_6_7_12_13",
+            "row_11_0_1",
+            "row_12_0_4",
+            "row_1_2_12",
+            "row_1_2_4",
+            "row_7_1_12"
+          ],
+          "source_cut_id": "sharesSecondAtSource-piqd-cnf-cut-00008",
+          "source_required_memberships": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              12
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              7,
+              12
+            ],
+            [
+              11,
+              0
+            ],
+            [
+              11,
+              1
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              12,
+              4
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 660,
+      "core_vertex_count": 10,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 12,
+          "minimal_core": [
+            "kal1_0_6_7_13",
+            "kal2_0_2_6_7",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "row_6_4_13",
+            "row_7_2_13",
+            "row_9_1_2",
+            "row_9_1_4"
+          ],
+          "minimal_core_size": 12,
+          "source_constraints": [
+            "kal1_0_6_7_13",
+            "kal2_0_2_6_7",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "row_6_4_13",
+            "row_7_2_13",
+            "row_9_1_2",
+            "row_9_1_4"
+          ],
+          "source_cut_id": "fourDistinct-piqd-cnf-cut-00004",
+          "source_required_memberships": [
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              13
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              7,
+              13
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              9,
+              2
+            ],
+            [
+              9,
+              4
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 240,
+      "core_vertex_count": 11,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 17,
+          "minimal_core": [
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_12_13",
+            "kal2_0_1_9_10",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "row_0_1_13",
+            "row_1_0_11",
+            "row_5_3_11",
+            "row_5_3_13",
+            "row_9_0_1"
+          ],
+          "minimal_core_size": 17,
+          "source_constraints": [
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_12_13",
+            "kal2_0_1_9_10",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "row_0_1_13",
+            "row_1_0_11",
+            "row_5_3_11",
+            "row_5_3_13",
+            "row_9_0_1"
+          ],
+          "source_cut_id": "sharesFirstAtTarget-piqd-cnf-cut-00010",
+          "source_required_memberships": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              13
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              11
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              5,
+              11
+            ],
+            [
+              5,
+              13
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              9,
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 240,
+      "core_vertex_count": 11,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          10
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 15,
+          "minimal_core": [
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_3_4_9_10",
+            "kal2_3_5_6_9",
+            "kal2_4_5_9_10",
+            "row_0_4_6",
+            "row_0_4_8",
+            "row_3_5_10",
+            "row_3_5_8",
+            "row_5_4_10",
+            "row_5_4_6"
+          ],
+          "minimal_core_size": 15,
+          "source_constraints": [
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_3_4_9_10",
+            "kal2_3_5_6_9",
+            "kal2_4_5_9_10",
+            "row_0_4_6",
+            "row_0_4_8",
+            "row_3_5_10",
+            "row_3_5_8",
+            "row_5_4_10",
+            "row_5_4_6"
+          ],
+          "source_cut_id": "sharesFirstAtSource-piqd-cnf-cut-00007",
+          "source_required_memberships": [
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              3,
+              10
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              5,
+              10
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 240,
+      "core_vertex_count": 11,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          10
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 14,
+          "minimal_core": [
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_3_2_11",
+            "row_3_2_13",
+            "row_4_5_11",
+            "row_4_5_7",
+            "row_5_4_13",
+            "row_5_4_7"
+          ],
+          "minimal_core_size": 14,
+          "source_constraints": [
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_3_2_11",
+            "row_3_2_13",
+            "row_4_5_11",
+            "row_4_5_7",
+            "row_5_4_13",
+            "row_5_4_7"
+          ],
+          "source_cut_id": "sharesFirstAtSource-piqd-cnf-cut-00002",
+          "source_required_memberships": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              11
+            ],
+            [
+              3,
+              13
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              4,
+              11
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              13
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 330,
+      "core_vertex_count": 11,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          10
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 19,
+          "minimal_core": [
+            "kal2_2_3_10_11",
+            "kal2_3_4_10_11",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "kal2_6_7_10_11",
+            "kal2_6_7_8_9",
+            "kal2_6_7_9_10",
+            "row_2_1_10",
+            "row_2_1_11",
+            "row_3_2_10",
+            "row_3_2_8",
+            "row_7_4_11",
+            "row_7_4_8"
+          ],
+          "minimal_core_size": 19,
+          "source_constraints": [
+            "kal2_2_3_10_11",
+            "kal2_3_4_10_11",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "kal2_6_7_10_11",
+            "kal2_6_7_8_9",
+            "kal2_6_7_9_10",
+            "row_2_1_10",
+            "row_2_1_11",
+            "row_3_2_10",
+            "row_3_2_8",
+            "row_7_4_11",
+            "row_7_4_8"
+          ],
+          "source_cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00002",
+          "source_required_memberships": [
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              10
+            ],
+            [
+              2,
+              11
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              3,
+              10
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              7,
+              11
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 168,
+      "core_vertex_count": 11,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          8
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 13,
+          "minimal_core": [
+            "kal1_0_3_5_13",
+            "kal1_0_5_6_13",
+            "kal2_0_1_3_4",
+            "kal2_0_1_5_6",
+            "kal2_0_2_4_5",
+            "kal2_1_2_3_4",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "row_3_2_13",
+            "row_6_1_13",
+            "row_9_1_2"
+          ],
+          "minimal_core_size": 13,
+          "source_constraints": [
+            "kal1_0_3_5_13",
+            "kal1_0_5_6_13",
+            "kal2_0_1_3_4",
+            "kal2_0_1_5_6",
+            "kal2_0_2_4_5",
+            "kal2_1_2_3_4",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "row_3_2_13",
+            "row_6_1_13",
+            "row_9_1_2"
+          ],
+          "source_cut_id": "fourDistinct-piqd-cnf-cut-00010",
+          "source_required_memberships": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              13
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              13
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              9,
+              2
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 168,
+      "core_vertex_count": 11,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          8
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 16,
+          "minimal_core": [
+            "kal1_0_3_4_13",
+            "kal2_0_1_3_4",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_1_2_3_4",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "row_3_2_13",
+            "row_4_0_13",
+            "row_9_0_2"
+          ],
+          "minimal_core_size": 16,
+          "source_constraints": [
+            "kal1_0_3_4_13",
+            "kal2_0_1_3_4",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_1_2_3_4",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "row_3_2_13",
+            "row_4_0_13",
+            "row_9_0_2"
+          ],
+          "source_cut_id": "sharesFirstAtSource-piqd-cnf-cut-00004",
+          "source_required_memberships": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              13
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              13
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              9,
+              2
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 72,
+      "core_vertex_count": 12,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          1
+        ],
+        [
+          9,
+          6
+        ],
+        [
+          9,
+          8
+        ],
+        [
+          11,
+          0
+        ],
+        [
+          11,
+          2
+        ],
+        [
+          11,
+          6
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 22,
+          "minimal_core": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal2_0_1_2_3",
+            "kal2_0_1_3_4",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_6_7_11_12",
+            "kal2_6_7_12_13",
+            "kal2_7_8_11_12",
+            "kal2_7_8_12_13",
+            "row_0_1_8",
+            "row_11_6_8",
+            "row_13_0_2",
+            "row_13_0_6",
+            "row_1_0_2",
+            "row_8_0_1"
+          ],
+          "minimal_core_size": 22,
+          "source_constraints": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal2_0_1_2_3",
+            "kal2_0_1_3_4",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_6_7_11_12",
+            "kal2_6_7_12_13",
+            "kal2_7_8_11_12",
+            "kal2_7_8_12_13",
+            "row_0_1_8",
+            "row_11_6_8",
+            "row_13_0_2",
+            "row_13_0_6",
+            "row_1_0_2",
+            "row_8_0_1"
+          ],
+          "source_cut_id": "reverseContinuationOrder-piqd-cnf-cut-00005",
+          "source_required_memberships": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              1
+            ],
+            [
+              11,
+              6
+            ],
+            [
+              11,
+              8
+            ],
+            [
+              13,
+              0
+            ],
+            [
+              13,
+              2
+            ],
+            [
+              13,
+              6
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 90,
+      "core_vertex_count": 12,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          9
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          11
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 25,
+          "minimal_core": [
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_0_2_10",
+            "row_0_2_7",
+            "row_3_1_10",
+            "row_3_1_12",
+            "row_5_2_12",
+            "row_5_2_7"
+          ],
+          "minimal_core_size": 25,
+          "source_constraints": [
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_0_2_10",
+            "row_0_2_7",
+            "row_3_1_10",
+            "row_3_1_12",
+            "row_5_2_12",
+            "row_5_2_7"
+          ],
+          "source_cut_id": "sharesSecondAtSource-piqd-cnf-cut-00001",
+          "source_required_memberships": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              10
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              10
+            ],
+            [
+              3,
+              12
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              12
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 72,
+      "core_vertex_count": 12,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          11
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 17,
+          "minimal_core": [
+            "kal2_0_3_7_8",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "row_0_3_7",
+            "row_0_3_8",
+            "row_1_0_13",
+            "row_1_0_8",
+            "row_3_5_13",
+            "row_3_5_7"
+          ],
+          "minimal_core_size": 17,
+          "source_constraints": [
+            "kal2_0_3_7_8",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "row_0_3_7",
+            "row_0_3_8",
+            "row_1_0_13",
+            "row_1_0_8",
+            "row_3_5_13",
+            "row_3_5_7"
+          ],
+          "source_cut_id": "continuationOrder-piqd-cnf-cut-00001",
+          "source_required_memberships": [
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              1,
+              13
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              3,
+              13
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 90,
+      "core_vertex_count": 12,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          8,
+          11
+        ],
+        [
+          11,
+          4
+        ],
+        [
+          11,
+          8
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 20,
+          "minimal_core": [
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_2_3_7_8",
+            "kal2_3_4_7_8",
+            "kal2_4_5_10_11",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_5_6_7_8",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "row_0_3_6",
+            "row_0_3_8",
+            "row_11_4_8",
+            "row_6_2_11",
+            "row_7_2_6",
+            "row_8_4_11"
+          ],
+          "minimal_core_size": 20,
+          "source_constraints": [
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_2_3_7_8",
+            "kal2_3_4_7_8",
+            "kal2_4_5_10_11",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_5_6_7_8",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "row_0_3_6",
+            "row_0_3_8",
+            "row_11_4_8",
+            "row_6_2_11",
+            "row_7_2_6",
+            "row_8_4_11"
+          ],
+          "source_cut_id": "sharesFirstAtTarget-piqd-cnf-cut-00008",
+          "source_required_memberships": [
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              11
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              11
+            ],
+            [
+              11,
+              4
+            ],
+            [
+              11,
+              8
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 90,
+      "core_vertex_count": 12,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          11
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 23,
+          "minimal_core": [
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "row_1_0_12",
+            "row_1_0_7",
+            "row_2_1_6",
+            "row_2_1_7",
+            "row_4_3_12",
+            "row_4_3_6"
+          ],
+          "minimal_core_size": 23,
+          "source_constraints": [
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "row_1_0_12",
+            "row_1_0_7",
+            "row_2_1_6",
+            "row_2_1_7",
+            "row_4_3_12",
+            "row_4_3_6"
+          ],
+          "source_cut_id": "sharesFirstAtTarget-piqd-cnf-cut-00001",
+          "source_required_memberships": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              7
+            ],
+            [
+              1,
+              12
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              12
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 72,
+      "core_vertex_count": 12,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          8,
+          1
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          10,
+          7
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 15,
+          "minimal_core": [
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_3_4_12_13",
+            "kal2_4_5_12_13",
+            "kal2_5_6_12_13",
+            "kal2_6_7_12_13",
+            "row_10_1_3",
+            "row_12_3_7",
+            "row_1_0_13",
+            "row_1_0_7",
+            "row_7_1_13"
+          ],
+          "minimal_core_size": 15,
+          "source_constraints": [
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_3_4_12_13",
+            "kal2_4_5_12_13",
+            "kal2_5_6_12_13",
+            "kal2_6_7_12_13",
+            "row_10_1_3",
+            "row_12_3_7",
+            "row_1_0_13",
+            "row_1_0_7",
+            "row_7_1_13"
+          ],
+          "source_cut_id": "continuationOrder-piqd-cnf-cut-00005",
+          "source_required_memberships": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              7
+            ],
+            [
+              1,
+              13
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              7,
+              13
+            ],
+            [
+              10,
+              1
+            ],
+            [
+              10,
+              3
+            ],
+            [
+              12,
+              3
+            ],
+            [
+              12,
+              7
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 90,
+      "core_vertex_count": 12,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          11
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          11
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          6
+        ],
+        [
+          8,
+          10
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 21,
+          "minimal_core": [
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_3_4_10_11",
+            "kal2_3_4_5_6",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_3_1_11",
+            "row_3_1_5",
+            "row_5_4_11",
+            "row_7_0_5",
+            "row_9_0_4"
+          ],
+          "minimal_core_size": 21,
+          "source_constraints": [
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_3_4_10_11",
+            "kal2_3_4_5_6",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_3_1_11",
+            "row_3_1_5",
+            "row_5_4_11",
+            "row_7_0_5",
+            "row_9_0_4"
+          ],
+          "source_cut_id": "continuationOrder-piqd-cnf-cut-00003",
+          "source_required_memberships": [
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              11
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              11
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              9,
+              4
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 20,
+      "core_vertex_count": 13,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          11
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          11
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          12
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 27,
+          "minimal_core": [
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_11_12",
+            "kal2_3_4_11_12",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_0_2_12",
+            "row_0_2_6",
+            "row_2_1_11",
+            "row_2_1_6",
+            "row_4_2_11",
+            "row_4_2_7",
+            "row_5_0_12",
+            "row_5_0_7"
+          ],
+          "minimal_core_size": 27,
+          "source_constraints": [
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_11_12",
+            "kal2_3_4_11_12",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_0_2_12",
+            "row_0_2_6",
+            "row_2_1_11",
+            "row_2_1_6",
+            "row_4_2_11",
+            "row_4_2_7",
+            "row_5_0_12",
+            "row_5_0_7"
+          ],
+          "source_cut_id": "sharesFirstAtSource-piqd-cnf-cut-00006",
+          "source_required_memberships": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              12
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              11
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              4,
+              11
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              12
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 24,
+      "core_vertex_count": 13,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          12
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 33,
+          "minimal_core": [
+            "kal2_0_1_7_8",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_5_6",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_5_6",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_5_6_7_8",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "row_0_3_7",
+            "row_0_3_8",
+            "row_1_5_10",
+            "row_4_3_5",
+            "row_4_3_8",
+            "row_5_0_10",
+            "row_5_0_12",
+            "row_6_2_12",
+            "row_6_2_7"
+          ],
+          "minimal_core_size": 33,
+          "source_constraints": [
+            "kal2_0_1_7_8",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_5_6",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_5_6",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_5_6_7_8",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "row_0_3_7",
+            "row_0_3_8",
+            "row_1_5_10",
+            "row_4_3_5",
+            "row_4_3_8",
+            "row_5_0_10",
+            "row_5_0_12",
+            "row_6_2_12",
+            "row_6_2_7"
+          ],
+          "source_cut_id": "sharesFirstAtSource-piqd-cnf-cut-00008",
+          "source_required_memberships": [
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              1,
+              10
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              5,
+              12
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              12
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 14,
+      "core_vertex_count": 13,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          12
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 29,
+          "minimal_core": [
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_7_8",
+            "row_12_0_5",
+            "row_7_0_6",
+            "row_8_5_6"
+          ],
+          "minimal_core_size": 29,
+          "source_constraints": [
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_7_8",
+            "row_12_0_5",
+            "row_7_0_6",
+            "row_8_5_6"
+          ],
+          "source_cut_id": "sharesFirstAtTarget-piqd-cnf-cut-00007",
+          "source_required_memberships": [
+            [
+              7,
+              0
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              8,
+              5
+            ],
+            [
+              8,
+              6
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              12,
+              5
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 16,
+      "core_vertex_count": 13,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          12
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 25,
+          "minimal_core": [
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "row_1_0_13",
+            "row_1_0_7",
+            "row_3_1_6",
+            "row_3_1_7",
+            "row_4_3_13",
+            "row_4_3_6"
+          ],
+          "minimal_core_size": 25,
+          "source_constraints": [
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "row_1_0_13",
+            "row_1_0_7",
+            "row_3_1_6",
+            "row_3_1_7",
+            "row_4_3_13",
+            "row_4_3_6"
+          ],
+          "source_cut_id": "sharesFirstAtSource-piqd-cnf-cut-00001",
+          "source_required_memberships": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              7
+            ],
+            [
+              1,
+              13
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              13
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 14,
+      "core_vertex_count": 13,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          11
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 26,
+          "minimal_core": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal2_2_3_12_13",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "kal2_5_6_7_8",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "row_2_0_12",
+            "row_3_7_12",
+            "row_6_0_7"
+          ],
+          "minimal_core_size": 26,
+          "source_constraints": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal2_2_3_12_13",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "kal2_5_6_7_8",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "row_2_0_12",
+            "row_3_7_12",
+            "row_6_0_7"
+          ],
+          "source_cut_id": "sharesSecondAtSource-piqd-cnf-cut-00010",
+          "source_required_memberships": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              3,
+              12
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              7
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 22,
+      "core_vertex_count": 13,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          5
+        ],
+        [
+          10,
+          11
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 15,
+          "minimal_core": [
+            "kal2_2_3_12_13",
+            "kal2_3_4_12_13",
+            "kal2_4_5_12_13",
+            "kal2_5_6_12_13",
+            "kal2_6_7_12_13",
+            "kal2_7_8_12_13",
+            "kal2_7_8_9_10",
+            "row_10_7_8",
+            "row_12_0_2",
+            "row_12_0_8",
+            "row_2_1_13",
+            "row_2_1_7",
+            "row_7_2_9",
+            "row_8_4_13",
+            "row_8_4_9"
+          ],
+          "minimal_core_size": 15,
+          "source_constraints": [
+            "kal2_2_3_12_13",
+            "kal2_3_4_12_13",
+            "kal2_4_5_12_13",
+            "kal2_5_6_12_13",
+            "kal2_6_7_12_13",
+            "kal2_7_8_12_13",
+            "kal2_7_8_9_10",
+            "row_10_7_8",
+            "row_12_0_2",
+            "row_12_0_8",
+            "row_2_1_13",
+            "row_2_1_7",
+            "row_7_2_9",
+            "row_8_4_13",
+            "row_8_4_9"
+          ],
+          "source_cut_id": "sharesFirstAtTarget-piqd-cnf-cut-00005",
+          "source_required_memberships": [
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              13
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              7,
+              9
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              9
+            ],
+            [
+              8,
+              13
+            ],
+            [
+              10,
+              7
+            ],
+            [
+              10,
+              8
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              12,
+              2
+            ],
+            [
+              12,
+              8
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 18,
+      "core_vertex_count": 13,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          11
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          10,
+          6
+        ],
+        [
+          10,
+          11
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 31,
+          "minimal_core": [
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal1_0_8_9_13",
+            "kal1_0_9_10_13",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_4_5_12_13",
+            "kal2_5_6_12_13",
+            "kal2_6_7_12_13",
+            "kal2_7_8_12_13",
+            "kal2_8_9_12_13",
+            "kal2_9_10_12_13",
+            "row_10_6_12",
+            "row_2_0_10",
+            "row_2_0_4",
+            "row_4_1_12",
+            "row_4_1_6",
+            "row_6_3_10",
+            "row_6_3_4"
+          ],
+          "minimal_core_size": 31,
+          "source_constraints": [
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal1_0_8_9_13",
+            "kal1_0_9_10_13",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_4_5_12_13",
+            "kal2_5_6_12_13",
+            "kal2_6_7_12_13",
+            "kal2_7_8_12_13",
+            "kal2_8_9_12_13",
+            "kal2_9_10_12_13",
+            "row_10_6_12",
+            "row_2_0_10",
+            "row_2_0_4",
+            "row_4_1_12",
+            "row_4_1_6",
+            "row_6_3_10",
+            "row_6_3_4"
+          ],
+          "source_cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00006",
+          "source_required_memberships": [
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              10
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              10
+            ],
+            [
+              10,
+              6
+            ],
+            [
+              10,
+              12
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          13
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          13
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 17,
+          "minimal_core": [
+            "kal2_0_1_7_8",
+            "kal2_1_2_7_8",
+            "kal2_2_3_7_8",
+            "kal2_3_4_7_8",
+            "kal2_4_5_7_8",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "kal2_5_6_7_8",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "row_0_1_7",
+            "row_0_1_8",
+            "row_5_4_13",
+            "row_5_4_8",
+            "row_6_3_13",
+            "row_6_3_7"
+          ],
+          "minimal_core_size": 17,
+          "source_constraints": [
+            "kal2_0_1_7_8",
+            "kal2_1_2_7_8",
+            "kal2_2_3_7_8",
+            "kal2_3_4_7_8",
+            "kal2_4_5_7_8",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "kal2_5_6_7_8",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "row_0_1_7",
+            "row_0_1_8",
+            "row_5_4_13",
+            "row_5_4_8",
+            "row_6_3_13",
+            "row_6_3_7"
+          ],
+          "source_cut_id": "fourDistinct-piqd-cnf-cut-00001",
+          "source_required_memberships": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              8
+            ],
+            [
+              5,
+              13
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              13
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          13
+        ],
+        [
+          11,
+          4
+        ],
+        [
+          11,
+          8
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 32,
+          "minimal_core": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_2_3",
+            "kal2_0_1_3_4",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_4_5",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "kal2_6_7_11_12",
+            "kal2_6_7_12_13",
+            "kal2_7_8_11_12",
+            "kal2_7_8_12_13",
+            "row_0_1_12",
+            "row_0_1_8",
+            "row_11_4_8",
+            "row_1_2_12",
+            "row_2_1_13",
+            "row_2_1_4",
+            "row_5_2_13"
+          ],
+          "minimal_core_size": 32,
+          "source_constraints": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_2_3",
+            "kal2_0_1_3_4",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_4_5",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "kal2_6_7_11_12",
+            "kal2_6_7_12_13",
+            "kal2_7_8_11_12",
+            "kal2_7_8_12_13",
+            "row_0_1_12",
+            "row_0_1_8",
+            "row_11_4_8",
+            "row_1_2_12",
+            "row_2_1_13",
+            "row_2_1_4",
+            "row_5_2_13"
+          ],
+          "source_cut_id": "reverseContinuationOrder-piqd-cnf-cut-00010",
+          "source_required_memberships": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              0,
+              12
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              12
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              13
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              13
+            ],
+            [
+              11,
+              4
+            ],
+            [
+              11,
+              8
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          5,
+          11
+        ],
+        [
+          5,
+          13
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          13
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          10
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 49,
+          "minimal_core": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal2_0_1_6_7",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "kal2_6_7_10_11",
+            "kal2_6_7_11_12",
+            "kal2_6_7_12_13",
+            "kal2_6_7_8_9",
+            "kal2_6_7_9_10",
+            "kal2_7_8_10_11",
+            "kal2_7_8_11_12",
+            "kal2_7_8_12_13",
+            "row_0_1_8",
+            "row_1_0_8",
+            "row_2_0_7",
+            "row_5_3_10",
+            "row_5_3_11",
+            "row_5_3_13",
+            "row_6_4_11",
+            "row_7_1_13",
+            "row_8_4_10",
+            "row_8_4_7"
+          ],
+          "minimal_core_size": 49,
+          "source_constraints": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal2_0_1_6_7",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "kal2_6_7_10_11",
+            "kal2_6_7_11_12",
+            "kal2_6_7_12_13",
+            "kal2_6_7_8_9",
+            "kal2_6_7_9_10",
+            "kal2_7_8_10_11",
+            "kal2_7_8_11_12",
+            "kal2_7_8_12_13",
+            "row_0_1_8",
+            "row_1_0_8",
+            "row_2_0_7",
+            "row_5_3_10",
+            "row_5_3_11",
+            "row_5_3_13",
+            "row_6_4_11",
+            "row_7_1_13",
+            "row_8_4_10",
+            "row_8_4_7"
+          ],
+          "source_cut_id": "sharesFirstAtTarget-piqd-cnf-cut-00009",
+          "source_required_memberships": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              5,
+              11
+            ],
+            [
+              5,
+              13
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              11
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              7,
+              13
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              7
+            ],
+            [
+              8,
+              10
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          11
+        ],
+        [
+          0,
+          13
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          12
+        ],
+        [
+          8,
+          1
+        ],
+        [
+          8,
+          11
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          12,
+          7
+        ],
+        [
+          12,
+          13
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 24,
+          "minimal_core": [
+            "kal1_0_11_12_13",
+            "kal1_0_5_6_13",
+            "kal2_0_1_11_12",
+            "kal2_0_1_5_6",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_11_12",
+            "kal2_3_4_11_12",
+            "kal2_4_5_11_12",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "row_11_1_13",
+            "row_11_1_6",
+            "row_13_0_12",
+            "row_13_0_2",
+            "row_1_0_13",
+            "row_1_0_6",
+            "row_5_2_12"
+          ],
+          "minimal_core_size": 24,
+          "source_constraints": [
+            "kal1_0_11_12_13",
+            "kal1_0_5_6_13",
+            "kal2_0_1_11_12",
+            "kal2_0_1_5_6",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_11_12",
+            "kal2_3_4_11_12",
+            "kal2_4_5_11_12",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "row_11_1_13",
+            "row_11_1_6",
+            "row_13_0_12",
+            "row_13_0_2",
+            "row_1_0_13",
+            "row_1_0_6",
+            "row_5_2_12"
+          ],
+          "source_cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00010",
+          "source_required_memberships": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              1,
+              13
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              12
+            ],
+            [
+              11,
+              1
+            ],
+            [
+              11,
+              6
+            ],
+            [
+              11,
+              13
+            ],
+            [
+              13,
+              0
+            ],
+            [
+              13,
+              2
+            ],
+            [
+              13,
+              12
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          13
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          7,
+          9
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 38,
+          "minimal_core": [
+            "kal1_0_10_11_13",
+            "kal1_0_7_8_13",
+            "kal1_0_8_9_13",
+            "kal1_0_9_10_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_10_11",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_7_8",
+            "kal2_5_6_8_9",
+            "kal2_7_8_11_12",
+            "kal2_7_8_12_13",
+            "kal2_8_9_11_12",
+            "kal2_8_9_12_13",
+            "row_11_0_5",
+            "row_11_0_9",
+            "row_13_0_11",
+            "row_13_0_6",
+            "row_6_4_13",
+            "row_6_4_9",
+            "row_7_6_11",
+            "row_8_5_13"
+          ],
+          "minimal_core_size": 38,
+          "source_constraints": [
+            "kal1_0_10_11_13",
+            "kal1_0_7_8_13",
+            "kal1_0_8_9_13",
+            "kal1_0_9_10_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_10_11",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_7_8",
+            "kal2_5_6_8_9",
+            "kal2_7_8_11_12",
+            "kal2_7_8_12_13",
+            "kal2_8_9_11_12",
+            "kal2_8_9_12_13",
+            "row_11_0_5",
+            "row_11_0_9",
+            "row_13_0_11",
+            "row_13_0_6",
+            "row_6_4_13",
+            "row_6_4_9",
+            "row_7_6_11",
+            "row_8_5_13"
+          ],
+          "source_cut_id": "reverseContinuationOrder-piqd-cnf-cut-00004",
+          "source_required_memberships": [
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              9
+            ],
+            [
+              6,
+              13
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              8,
+              5
+            ],
+            [
+              8,
+              13
+            ],
+            [
+              11,
+              0
+            ],
+            [
+              11,
+              5
+            ],
+            [
+              11,
+              9
+            ],
+            [
+              13,
+              0
+            ],
+            [
+              13,
+              6
+            ],
+            [
+              13,
+              11
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          11
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          12
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          13
+        ],
+        [
+          9,
+          2
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          11,
+          0
+        ],
+        [
+          11,
+          8
+        ],
+        [
+          11,
+          9
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 38,
+          "minimal_core": [
+            "kal1_0_10_11_13",
+            "kal1_0_4_5_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_0_2_4_5",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_6_7_10_11",
+            "kal2_6_7_11_12",
+            "kal2_7_8_10_11",
+            "kal2_7_8_11_12",
+            "row_10_1_13",
+            "row_10_1_8",
+            "row_12_0_8",
+            "row_13_2_11",
+            "row_2_4_13",
+            "row_2_4_5",
+            "row_4_2_11",
+            "row_8_0_5"
+          ],
+          "minimal_core_size": 38,
+          "source_constraints": [
+            "kal1_0_10_11_13",
+            "kal1_0_4_5_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_0_2_4_5",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_6_7_10_11",
+            "kal2_6_7_11_12",
+            "kal2_7_8_10_11",
+            "kal2_7_8_11_12",
+            "row_10_1_13",
+            "row_10_1_8",
+            "row_12_0_8",
+            "row_13_2_11",
+            "row_2_4_13",
+            "row_2_4_5",
+            "row_4_2_11",
+            "row_8_0_5"
+          ],
+          "source_cut_id": "sharesSecondAtSource-piqd-cnf-cut-00005",
+          "source_required_memberships": [
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              2,
+              13
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              11
+            ],
+            [
+              8,
+              0
+            ],
+            [
+              8,
+              5
+            ],
+            [
+              10,
+              1
+            ],
+            [
+              10,
+              8
+            ],
+            [
+              10,
+              13
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              12,
+              8
+            ],
+            [
+              13,
+              2
+            ],
+            [
+              13,
+              11
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          13
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          11
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          3,
+          13
+        ],
+        [
+          11,
+          1
+        ],
+        [
+          11,
+          9
+        ],
+        [
+          11,
+          12
+        ],
+        [
+          12,
+          9
+        ],
+        [
+          12,
+          10
+        ],
+        [
+          13,
+          2
+        ],
+        [
+          13,
+          10
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 27,
+          "minimal_core": [
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_3_4",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_0_9_12_13",
+            "kal2_10_11_12_13",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_9_10_12_13",
+            "row_0_3_11",
+            "row_10_0_2",
+            "row_11_2_12",
+            "row_13_0_11",
+            "row_1_3_4",
+            "row_2_1_12",
+            "row_2_1_4"
+          ],
+          "minimal_core_size": 27,
+          "source_constraints": [
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_3_4",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_0_9_12_13",
+            "kal2_10_11_12_13",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_9_10_12_13",
+            "row_0_3_11",
+            "row_10_0_2",
+            "row_11_2_12",
+            "row_13_0_11",
+            "row_1_3_4",
+            "row_2_1_12",
+            "row_2_1_4"
+          ],
+          "source_cut_id": "reverseContinuationOrder-piqd-cnf-cut-00009",
+          "source_required_memberships": [
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              11
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              10,
+              2
+            ],
+            [
+              11,
+              2
+            ],
+            [
+              11,
+              12
+            ],
+            [
+              13,
+              0
+            ],
+            [
+              13,
+              11
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          12
+        ],
+        [
+          9,
+          0
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 20,
+          "minimal_core": [
+            "kal1_0_2_3_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_9_10",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_2_3_4_5",
+            "kal2_2_3_5_6",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "row_0_3_12",
+            "row_2_0_4",
+            "row_3_4_12",
+            "row_9_0_3"
+          ],
+          "minimal_core_size": 20,
+          "source_constraints": [
+            "kal1_0_2_3_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_9_10",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_2_3_4_5",
+            "kal2_2_3_5_6",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "row_0_3_12",
+            "row_2_0_4",
+            "row_3_4_12",
+            "row_9_0_3"
+          ],
+          "source_cut_id": "continuationOrder-piqd-cnf-cut-00010",
+          "source_required_memberships": [
+            [
+              0,
+              3
+            ],
+            [
+              0,
+              12
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              12
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              9,
+              3
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          10,
+          6
+        ],
+        [
+          10,
+          12
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 40,
+          "minimal_core": [
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal1_0_8_9_13",
+            "kal1_0_9_10_13",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_12_13",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_12_13",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "kal2_6_7_10_11",
+            "kal2_6_7_11_12",
+            "kal2_6_7_12_13",
+            "kal2_6_7_8_9",
+            "kal2_6_7_9_10",
+            "kal2_7_8_12_13",
+            "kal2_8_9_12_13",
+            "kal2_9_10_12_13",
+            "row_0_4_7",
+            "row_10_6_12",
+            "row_4_2_12",
+            "row_4_2_6",
+            "row_6_3_4",
+            "row_8_3_7"
+          ],
+          "minimal_core_size": 40,
+          "source_constraints": [
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal1_0_8_9_13",
+            "kal1_0_9_10_13",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_12_13",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_12_13",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "kal2_6_7_10_11",
+            "kal2_6_7_11_12",
+            "kal2_6_7_12_13",
+            "kal2_6_7_8_9",
+            "kal2_6_7_9_10",
+            "kal2_7_8_12_13",
+            "kal2_8_9_12_13",
+            "kal2_9_10_12_13",
+            "row_0_4_7",
+            "row_10_6_12",
+            "row_4_2_12",
+            "row_4_2_6",
+            "row_6_3_4",
+            "row_8_3_7"
+          ],
+          "source_cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00007",
+          "source_required_memberships": [
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              7
+            ],
+            [
+              10,
+              6
+            ],
+            [
+              10,
+              12
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          13
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          13
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 17,
+          "minimal_core": [
+            "kal2_0_1_7_8",
+            "kal2_1_2_7_8",
+            "kal2_2_3_7_8",
+            "kal2_3_4_7_8",
+            "kal2_4_5_7_8",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "kal2_5_6_7_8",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "row_0_5_7",
+            "row_0_5_8",
+            "row_5_3_13",
+            "row_5_3_8",
+            "row_6_2_13",
+            "row_6_2_7"
+          ],
+          "minimal_core_size": 17,
+          "source_constraints": [
+            "kal2_0_1_7_8",
+            "kal2_1_2_7_8",
+            "kal2_2_3_7_8",
+            "kal2_3_4_7_8",
+            "kal2_4_5_7_8",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "kal2_5_6_7_8",
+            "kal2_5_6_8_9",
+            "kal2_5_6_9_10",
+            "row_0_5_7",
+            "row_0_5_8",
+            "row_5_3_13",
+            "row_5_3_8",
+            "row_6_2_13",
+            "row_6_2_7"
+          ],
+          "source_cut_id": "continuationOrder-piqd-cnf-cut-00002",
+          "source_required_memberships": [
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              5,
+              8
+            ],
+            [
+              5,
+              13
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              13
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          4,
+          11
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 23,
+          "minimal_core": [
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal2_0_1_3_4",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_1_2_3_4",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_0_5_7",
+            "row_3_2_11",
+            "row_4_1_11",
+            "row_4_1_7",
+            "row_7_2_5"
+          ],
+          "minimal_core_size": 23,
+          "source_constraints": [
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal2_0_1_3_4",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_1_2_3_4",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_0_5_7",
+            "row_3_2_11",
+            "row_4_1_11",
+            "row_4_1_7",
+            "row_7_2_5"
+          ],
+          "source_cut_id": "reverseContinuationOrder-piqd-cnf-cut-00002",
+          "source_required_memberships": [
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              11
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              4,
+              11
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              7,
+              5
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          11
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          2
+        ],
+        [
+          8,
+          7
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 38,
+          "minimal_core": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal2_0_1_2_3",
+            "kal2_0_1_3_4",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_1_2_10_11",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_2_3_5_6",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_3_4_5_6",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_6_7",
+            "row_0_5_8",
+            "row_1_0_11",
+            "row_1_0_4",
+            "row_2_1_11",
+            "row_5_4_7",
+            "row_6_1_5",
+            "row_7_2_8",
+            "row_8_2_7"
+          ],
+          "minimal_core_size": 38,
+          "source_constraints": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal2_0_1_2_3",
+            "kal2_0_1_3_4",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_1_2_10_11",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_2_3_5_6",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_3_4_5_6",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_6_7",
+            "row_0_5_8",
+            "row_1_0_11",
+            "row_1_0_4",
+            "row_2_1_11",
+            "row_5_4_7",
+            "row_6_1_5",
+            "row_7_2_8",
+            "row_8_2_7"
+          ],
+          "source_cut_id": "continuationOrder-piqd-cnf-cut-00007",
+          "source_required_memberships": [
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              11
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              11
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              8,
+              7
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          12
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          3,
+          13
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          6,
+          13
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          12,
+          9
+        ],
+        [
+          12,
+          11
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 30,
+          "minimal_core": [
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal1_0_8_9_13",
+            "kal1_0_9_10_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "row_10_0_13",
+            "row_10_0_6",
+            "row_12_0_4",
+            "row_13_1_6",
+            "row_1_2_13",
+            "row_1_2_4",
+            "row_7_0_1"
+          ],
+          "minimal_core_size": 30,
+          "source_constraints": [
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal1_0_8_9_13",
+            "kal1_0_9_10_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "row_10_0_13",
+            "row_10_0_6",
+            "row_12_0_4",
+            "row_13_1_6",
+            "row_1_2_13",
+            "row_1_2_4",
+            "row_7_0_1"
+          ],
+          "source_cut_id": "sharesSecondAtSource-piqd-cnf-cut-00007",
+          "source_required_memberships": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              13
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              10,
+              6
+            ],
+            [
+              10,
+              13
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              12,
+              4
+            ],
+            [
+              13,
+              1
+            ],
+            [
+              13,
+              6
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          0,
+          12
+        ],
+        [
+          0,
+          13
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          1
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          9,
+          5
+        ],
+        [
+          9,
+          12
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 35,
+          "minimal_core": [
+            "kal1_0_10_11_13",
+            "kal1_0_11_12_13",
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal1_0_8_9_13",
+            "kal1_0_9_10_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_12_13",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_11_12",
+            "kal2_2_3_11_12",
+            "kal2_3_4_11_12",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_11_12",
+            "kal2_6_7_11_12",
+            "kal2_7_8_11_12",
+            "row_11_0_8",
+            "row_12_5_13",
+            "row_13_0_1",
+            "row_4_1_8",
+            "row_5_3_12",
+            "row_5_3_13",
+            "row_8_5_12"
+          ],
+          "minimal_core_size": 35,
+          "source_constraints": [
+            "kal1_0_10_11_13",
+            "kal1_0_11_12_13",
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal1_0_8_9_13",
+            "kal1_0_9_10_13",
+            "kal2_0_1_10_11",
+            "kal2_0_1_11_12",
+            "kal2_0_1_12_13",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_0_1_8_9",
+            "kal2_0_1_9_10",
+            "kal2_1_2_11_12",
+            "kal2_2_3_11_12",
+            "kal2_3_4_11_12",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_11_12",
+            "kal2_6_7_11_12",
+            "kal2_7_8_11_12",
+            "row_11_0_8",
+            "row_12_5_13",
+            "row_13_0_1",
+            "row_4_1_8",
+            "row_5_3_12",
+            "row_5_3_13",
+            "row_8_5_12"
+          ],
+          "source_cut_id": "reverseContinuationOrder-piqd-cnf-cut-00006",
+          "source_required_memberships": [
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              5,
+              12
+            ],
+            [
+              5,
+              13
+            ],
+            [
+              8,
+              5
+            ],
+            [
+              8,
+              12
+            ],
+            [
+              11,
+              0
+            ],
+            [
+              11,
+              8
+            ],
+            [
+              12,
+              5
+            ],
+            [
+              12,
+              13
+            ],
+            [
+              13,
+              0
+            ],
+            [
+              13,
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          11
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          9,
+          2
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 17,
+          "minimal_core": [
+            "kal1_0_1_2_13",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_1_2_3_4",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_9_10",
+            "row_1_0_3",
+            "row_2_0_11",
+            "row_3_2_11",
+            "row_9_2_3"
+          ],
+          "minimal_core_size": 17,
+          "source_constraints": [
+            "kal1_0_1_2_13",
+            "kal2_1_2_10_11",
+            "kal2_1_2_11_12",
+            "kal2_1_2_12_13",
+            "kal2_1_2_3_4",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_1_2_8_9",
+            "kal2_1_2_9_10",
+            "kal2_2_3_10_11",
+            "kal2_2_3_9_10",
+            "row_1_0_3",
+            "row_2_0_11",
+            "row_3_2_11",
+            "row_9_2_3"
+          ],
+          "source_cut_id": "fourDistinct-piqd-cnf-cut-00009",
+          "source_required_memberships": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              11
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              2
+            ],
+            [
+              9,
+              3
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          13
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          13
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 29,
+          "minimal_core": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal2_0_1_2_3",
+            "kal2_0_1_3_4",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_2_1_8",
+            "row_5_0_13",
+            "row_5_0_8",
+            "row_7_1_13"
+          ],
+          "minimal_core_size": 29,
+          "source_constraints": [
+            "kal1_0_2_3_13",
+            "kal1_0_3_4_13",
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal2_0_1_2_3",
+            "kal2_0_1_3_4",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_2_3_10_11",
+            "kal2_2_3_11_12",
+            "kal2_2_3_12_13",
+            "kal2_2_3_8_9",
+            "kal2_2_3_9_10",
+            "kal2_3_4_10_11",
+            "kal2_3_4_11_12",
+            "kal2_3_4_12_13",
+            "kal2_3_4_8_9",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "row_2_1_8",
+            "row_5_0_13",
+            "row_5_0_8",
+            "row_7_1_13"
+          ],
+          "source_cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00004",
+          "source_required_memberships": [
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              8
+            ],
+            [
+              5,
+              13
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              7,
+              13
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          11
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          7,
+          12
+        ],
+        [
+          11,
+          2
+        ],
+        [
+          11,
+          7
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 28,
+          "minimal_core": [
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_2_3_6_7",
+            "kal2_3_4_6_7",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_6_7",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_12_13",
+            "kal2_6_7_12_13",
+            "row_11_2_7",
+            "row_2_4_11",
+            "row_4_2_5",
+            "row_4_2_7",
+            "row_5_4_12",
+            "row_6_2_5",
+            "row_7_6_11",
+            "row_7_6_12"
+          ],
+          "minimal_core_size": 28,
+          "source_constraints": [
+            "kal1_0_4_5_13",
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal2_0_1_4_5",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_2_3_6_7",
+            "kal2_3_4_6_7",
+            "kal2_4_5_10_11",
+            "kal2_4_5_11_12",
+            "kal2_4_5_12_13",
+            "kal2_4_5_6_7",
+            "kal2_4_5_7_8",
+            "kal2_4_5_8_9",
+            "kal2_4_5_9_10",
+            "kal2_5_6_12_13",
+            "kal2_6_7_12_13",
+            "row_11_2_7",
+            "row_2_4_11",
+            "row_4_2_5",
+            "row_4_2_7",
+            "row_5_4_12",
+            "row_6_2_5",
+            "row_7_6_11",
+            "row_7_6_12"
+          ],
+          "source_cut_id": "sharesSecondAtSource-piqd-cnf-cut-00006",
+          "source_required_memberships": [
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              11
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              12
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              7,
+              12
+            ],
+            [
+              11,
+              2
+            ],
+            [
+              11,
+              7
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "already_in_prior_bank": false,
+      "complete_application_count": 2,
+      "core_vertex_count": 14,
+      "new_application_count_over_prior_compact_bank": null,
+      "order_schema": [
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          4,
+          11
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          9,
+          12
+        ]
+      ],
+      "provenance": [
+        {
+          "deletion_minimal_replayed": true,
+          "deletion_order_index": 0,
+          "exact_lra_unsat_replayed": true,
+          "input_core_size": 44,
+          "minimal_core": [
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_2_3_4_5",
+            "kal2_2_3_5_6",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_3_4_10_11",
+            "kal2_3_4_5_6",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_6_7",
+            "kal2_4_5_7_8",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "kal2_5_6_9_10",
+            "kal2_6_7_10_11",
+            "kal2_6_7_11_12",
+            "kal2_6_7_12_13",
+            "kal2_6_7_9_10",
+            "kal2_7_8_10_11",
+            "kal2_7_8_11_12",
+            "kal2_7_8_12_13",
+            "kal2_7_8_9_10",
+            "row_11_0_3",
+            "row_11_0_5",
+            "row_4_1_3",
+            "row_5_4_8",
+            "row_6_2_5",
+            "row_7_1_4",
+            "row_9_2_3",
+            "row_9_2_8"
+          ],
+          "minimal_core_size": 44,
+          "source_constraints": [
+            "kal1_0_5_6_13",
+            "kal1_0_6_7_13",
+            "kal1_0_7_8_13",
+            "kal2_0_1_5_6",
+            "kal2_0_1_6_7",
+            "kal2_0_1_7_8",
+            "kal2_1_2_4_5",
+            "kal2_1_2_5_6",
+            "kal2_1_2_6_7",
+            "kal2_1_2_7_8",
+            "kal2_2_3_4_5",
+            "kal2_2_3_5_6",
+            "kal2_2_3_6_7",
+            "kal2_2_3_7_8",
+            "kal2_2_3_8_9",
+            "kal2_3_4_10_11",
+            "kal2_3_4_5_6",
+            "kal2_3_4_6_7",
+            "kal2_3_4_7_8",
+            "kal2_3_4_9_10",
+            "kal2_4_5_10_11",
+            "kal2_4_5_6_7",
+            "kal2_4_5_7_8",
+            "kal2_4_5_9_10",
+            "kal2_5_6_10_11",
+            "kal2_5_6_11_12",
+            "kal2_5_6_12_13",
+            "kal2_5_6_9_10",
+            "kal2_6_7_10_11",
+            "kal2_6_7_11_12",
+            "kal2_6_7_12_13",
+            "kal2_6_7_9_10",
+            "kal2_7_8_10_11",
+            "kal2_7_8_11_12",
+            "kal2_7_8_12_13",
+            "kal2_7_8_9_10",
+            "row_11_0_3",
+            "row_11_0_5",
+            "row_4_1_3",
+            "row_5_4_8",
+            "row_6_2_5",
+            "row_7_1_4",
+            "row_9_2_3",
+            "row_9_2_8"
+          ],
+          "source_cut_id": "sharesSecondAtSource-piqd-cnf-cut-00003",
+          "source_required_memberships": [
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              8
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              9,
+              2
+            ],
+            [
+              9,
+              3
+            ],
+            [
+              9,
+              8
+            ],
+            [
+              11,
+              0
+            ],
+            [
+              11,
+              3
+            ],
+            [
+              11,
+              5
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "unique_schema_count": 56,
+  "worker_count": 24
+}

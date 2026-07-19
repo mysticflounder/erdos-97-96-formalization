@@ -1,0 +1,11 @@
+{"base_clauses": 941231, "imported_cut_count": 14719, "orbit": "sharesFirstAtSource", "outer_oracle": "piqd", "phase": "start", "resumed_local_cut_count": 0, "seed_count": 7, "startup_replay_verdict": "INDEPENDENT_EXACT_LOCAL_CUT_REPLAY_PASS", "time": 1784434707.876778, "variables": 476}
+{"clauses": 941231, "cnf_sha256": "9fd606bab61f09c013340d29c7f1d8af8d311984fdc94a878adfd8edb83d5ee9", "elapsed_seconds": 53.63654187502107, "exported_cnf_verified": true, "iteration": 1, "job_id": "62493a30-01a4-4a5d-98b8-168cdc8cc7f8", "outer_oracle": "piqd", "phase": "outer_result", "status": "SAT", "time": 1784434761.979758}
+{"iteration": 1, "phase": "outer_model_verified", "time": 1784434762.146252}
+{"elapsed_seconds": 0.18134125001961365, "iteration": 1, "phase": "metric_result", "status": "UNSAT", "time": 1784434762.327918}
+{"conditioned_shell": false, "constraint_count": 31, "cut_id": "sharesFirstAtSource-piqd-cnf-cut-00001", "independent_replay": "PASS", "iteration": 1, "local_cut_count": 1, "new_cut_count": 1, "phase": "cut_banked", "required_memberships": 17, "time": 1784434762.371883}
+{"clauses": 941232, "cnf_sha256": "6bfd4c71e52c38a2e097c1ac821fd4658cca196a42a4872d54ecde8f74cb5c11", "elapsed_seconds": 38.9737343339948, "exported_cnf_verified": true, "iteration": 2, "job_id": "3ec554b2-6c3e-4f58-8ead-bcda70e91ddb", "outer_oracle": "piqd", "phase": "outer_result", "status": "SAT", "time": 1784434801.836268}
+{"iteration": 2, "phase": "outer_model_verified", "time": 1784434802.001526}
+{"elapsed_seconds": 0.1690370420110412, "iteration": 2, "phase": "metric_result", "status": "UNSAT", "time": 1784434802.170888}
+{"conditioned_shell": false, "constraint_count": 29, "cut_id": "sharesFirstAtSource-piqd-cnf-cut-00002", "independent_replay": "PASS", "iteration": 2, "local_cut_count": 2, "new_cut_count": 2, "phase": "cut_banked", "required_memberships": 13, "time": 1784434802.2155452}
+{"clauses": 941233, "cnf_sha256": "6ece2c28d57faef0722da5e15dd701d48b332ba16dfa4dbdee9bf1c0465194be", "elapsed_seconds": 180.93797433399595, "exported_cnf_verified": null, "iteration": 3, "job_id": "72cc632d-b4ce-448d-a3b7-5370b8584205", "outer_oracle": "piqd", "phase": "outer_result", "status": "UNKNOWN", "time": 1784434983.64544}
+{"new_cut_count": 2, "phase": "done", "time": 1784434983.6871521, "verdict": "OUTER_UNKNOWN_FAIL_CLOSED"}

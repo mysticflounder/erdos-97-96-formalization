@@ -1,0 +1,42 @@
+{"base_clauses": 348437, "imported_cut_count": 14649, "orbit": "sharesSecondAtTarget", "outer_oracle": "piqd", "phase": "start", "resumed_local_cut_count": 0, "seed_count": 7, "startup_replay_verdict": "INDEPENDENT_EXACT_LOCAL_CUT_REPLAY_PASS", "time": 1784432603.5962539, "variables": 476}
+{"clauses": 348437, "cnf_sha256": "d4a9d01416f732d525d1661fdb312e604d5bba7299dbee008317651543dc55e8", "elapsed_seconds": 21.904672999982722, "exported_cnf_verified": true, "iteration": 1, "job_id": "d99ab7fe-8ab7-420a-bfd8-9cc51a88b425", "outer_oracle": "piqd", "phase": "outer_result", "status": "SAT", "time": 1784432625.674529}
+{"iteration": 1, "phase": "outer_model_verified", "time": 1784432625.737328}
+{"elapsed_seconds": 0.14696554199326783, "iteration": 1, "phase": "metric_result", "status": "UNSAT", "time": 1784432625.8849}
+{"conditioned_shell": false, "constraint_count": 14, "cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00001", "independent_replay": "PASS", "iteration": 1, "local_cut_count": 1, "new_cut_count": 1, "phase": "cut_banked", "required_memberships": 10, "time": 1784432625.924227}
+{"clauses": 348438, "cnf_sha256": "430ff0555dc22d9f33f09c3ec0e3c9a6a07c29a8867ff7bf8b86767c8413a685", "elapsed_seconds": 7.200341957970522, "exported_cnf_verified": true, "iteration": 2, "job_id": "51fee1b5-fe06-4bf0-a2f8-734b0fc1023e", "outer_oracle": "piqd", "phase": "outer_result", "status": "SAT", "time": 1784432633.307818}
+{"iteration": 2, "phase": "outer_model_verified", "time": 1784432633.37025}
+{"elapsed_seconds": 0.1483731670305133, "iteration": 2, "phase": "metric_result", "status": "UNSAT", "time": 1784432633.518911}
+{"conditioned_shell": false, "constraint_count": 19, "cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00002", "independent_replay": "PASS", "iteration": 2, "local_cut_count": 2, "new_cut_count": 2, "phase": "cut_banked", "required_memberships": 9, "time": 1784432633.56159}
+{"clauses": 348439, "cnf_sha256": "1799cdc20d3e7efc22a82b768b3a2fbe28886a8a1941a3afff763489cadbcac3", "elapsed_seconds": 10.569064499984961, "exported_cnf_verified": true, "iteration": 3, "job_id": "2e148d37-d852-476d-a955-48f28e922f96", "outer_oracle": "piqd", "phase": "outer_result", "status": "SAT", "time": 1784432644.308789}
+{"iteration": 3, "phase": "outer_model_verified", "time": 1784432644.372413}
+{"elapsed_seconds": 0.16999245900660753, "iteration": 3, "phase": "metric_result", "status": "UNSAT", "time": 1784432644.54302}
+{"conditioned_shell": true, "constraint_count": 25, "cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00003", "independent_replay": "PASS", "iteration": 3, "local_cut_count": 3, "new_cut_count": 3, "phase": "cut_banked", "required_memberships": 7, "time": 1784432644.584386}
+{"clauses": 348440, "cnf_sha256": "b1711d9a35607da68c0adb9171e9184e7b69fb4370900b80f13a41d33a696943", "elapsed_seconds": 7.656723791966215, "exported_cnf_verified": true, "iteration": 4, "job_id": "b9505fed-a61d-43c4-8b77-2d7c7c9d4996", "outer_oracle": "piqd", "phase": "outer_result", "status": "SAT", "time": 1784432652.422723}
+{"iteration": 4, "phase": "outer_model_verified", "time": 1784432652.485493}
+{"elapsed_seconds": 0.16958729200996459, "iteration": 4, "phase": "metric_result", "status": "UNSAT", "time": 1784432652.655344}
+{"conditioned_shell": false, "constraint_count": 29, "cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00004", "independent_replay": "PASS", "iteration": 4, "local_cut_count": 4, "new_cut_count": 4, "phase": "cut_banked", "required_memberships": 7, "time": 1784432652.693716}
+{"clauses": 348441, "cnf_sha256": "68140d362717b08509bcacf05532502e129c2483942b3eceb5c922358837f073", "elapsed_seconds": 24.161122834018897, "exported_cnf_verified": true, "iteration": 5, "job_id": "3bfc74e5-27cf-4f74-9484-eda19958bb93", "outer_oracle": "piqd", "phase": "outer_result", "status": "SAT", "time": 1784432677.034933}
+{"iteration": 5, "phase": "outer_model_verified", "time": 1784432677.097263}
+{"elapsed_seconds": 0.1980715420213528, "iteration": 5, "phase": "metric_result", "status": "UNSAT", "time": 1784432677.2959769}
+{"conditioned_shell": true, "constraint_count": 40, "cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00005", "independent_replay": "PASS", "iteration": 5, "local_cut_count": 5, "new_cut_count": 5, "phase": "cut_banked", "required_memberships": 11, "time": 1784432677.33985}
+{"clauses": 348442, "cnf_sha256": "7cdf124ab11435478c2f30ea93c4d9c6d345bd51f9c60c313f53e67a28a140b0", "elapsed_seconds": 6.951401041995268, "exported_cnf_verified": true, "iteration": 6, "job_id": "c37d0b64-be93-455f-b9d9-b43cc450125b", "outer_oracle": "piqd", "phase": "outer_result", "status": "SAT", "time": 1784432684.475026}
+{"iteration": 6, "phase": "outer_model_verified", "time": 1784432684.5378098}
+{"elapsed_seconds": 0.17643837502691895, "iteration": 6, "phase": "metric_result", "status": "UNSAT", "time": 1784432684.71454}
+{"conditioned_shell": false, "constraint_count": 31, "cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00006", "independent_replay": "PASS", "iteration": 6, "local_cut_count": 6, "new_cut_count": 6, "phase": "cut_banked", "required_memberships": 11, "time": 1784432684.7546618}
+{"clauses": 348443, "cnf_sha256": "3a3c8b4c7fa8eaccf807a360cf243c134356616688025e2322fe668284d67cfc", "elapsed_seconds": 7.009371666004881, "exported_cnf_verified": true, "iteration": 7, "job_id": "62915970-da74-41a6-895d-6853dd749da8", "outer_oracle": "piqd", "phase": "outer_result", "status": "SAT", "time": 1784432691.947781}
+{"iteration": 7, "phase": "outer_model_verified", "time": 1784432692.011529}
+{"elapsed_seconds": 0.19215229200199246, "iteration": 7, "phase": "metric_result", "status": "UNSAT", "time": 1784432692.203941}
+{"conditioned_shell": false, "constraint_count": 40, "cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00007", "independent_replay": "PASS", "iteration": 7, "local_cut_count": 7, "new_cut_count": 7, "phase": "cut_banked", "required_memberships": 11, "time": 1784432692.243207}
+{"clauses": 348444, "cnf_sha256": "c44c092a6cb31ac2fd153f46e344f2e3a182ade1d9a2918e42f65e42585395b3", "elapsed_seconds": 6.99518333299784, "exported_cnf_verified": true, "iteration": 8, "job_id": "7cd8b47d-9f29-45ae-94bd-5da37fe3816a", "outer_oracle": "piqd", "phase": "outer_result", "status": "SAT", "time": 1784432699.41919}
+{"iteration": 8, "phase": "outer_model_verified", "time": 1784432699.481757}
+{"elapsed_seconds": 0.13149095902917907, "iteration": 8, "phase": "metric_result", "status": "UNSAT", "time": 1784432699.6138408}
+{"conditioned_shell": false, "constraint_count": 10, "cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00008", "independent_replay": "PASS", "iteration": 8, "local_cut_count": 8, "new_cut_count": 8, "phase": "cut_banked", "required_memberships": 12, "time": 1784432699.653734}
+{"clauses": 348445, "cnf_sha256": "2489bae92639e88b9532b97c9753f78e143faf8529f00ce2d03ded13a104e88d", "elapsed_seconds": 7.414269500004593, "exported_cnf_verified": true, "iteration": 9, "job_id": "611828a1-17ae-40bf-bb6a-be9c6b7fdd06", "outer_oracle": "piqd", "phase": "outer_result", "status": "SAT", "time": 1784432707.2463129}
+{"iteration": 9, "phase": "outer_model_verified", "time": 1784432707.30789}
+{"elapsed_seconds": 0.14587170799495652, "iteration": 9, "phase": "metric_result", "status": "UNSAT", "time": 1784432707.454433}
+{"conditioned_shell": true, "constraint_count": 17, "cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00009", "independent_replay": "PASS", "iteration": 9, "local_cut_count": 9, "new_cut_count": 9, "phase": "cut_banked", "required_memberships": 5, "time": 1784432707.4962718}
+{"clauses": 348446, "cnf_sha256": "c1214fb334929da9f64ee54cfb137817c5fcfee7af4bbe1cebe3f85f194b38b5", "elapsed_seconds": 6.564732750004623, "exported_cnf_verified": true, "iteration": 10, "job_id": "36c8ce1c-c670-4b77-98dc-6cc08eb7c86e", "outer_oracle": "piqd", "phase": "outer_result", "status": "SAT", "time": 1784432714.237563}
+{"iteration": 10, "phase": "outer_model_verified", "time": 1784432714.299405}
+{"elapsed_seconds": 0.1666387080331333, "iteration": 10, "phase": "metric_result", "status": "UNSAT", "time": 1784432714.466645}
+{"conditioned_shell": false, "constraint_count": 24, "cut_id": "sharesSecondAtTarget-piqd-cnf-cut-00010", "independent_replay": "PASS", "iteration": 10, "local_cut_count": 10, "new_cut_count": 10, "phase": "cut_banked", "required_memberships": 11, "time": 1784432714.508651}
+{"new_cut_count": 10, "phase": "done", "time": 1784432714.5509, "verdict": "GENERALIZATION_CHECKPOINT"}

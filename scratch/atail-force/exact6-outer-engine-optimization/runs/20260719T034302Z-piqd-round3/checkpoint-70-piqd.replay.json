@@ -1,0 +1,24 @@
+{
+  "alive_witnesses": [],
+  "banks": [
+    {
+      "cut_count": 70,
+      "path": "scratch/atail-force/exact6-outer-engine-optimization/runs/20260719T034302Z-piqd-round3/checkpoint-70-piqd.jsonl",
+      "positive_constraint_count": 0,
+      "positive_weight_sum": 0,
+      "sha256": "f8d4dd4335f7c123a5bd753870fc52c64a1ded396de0f47b43af92bc20ef2fd4",
+      "shell_conditioned_count": 14
+    }
+  ],
+  "n": 14,
+  "schema": "p97-exact6-integrated-cegar-independent-audit-v1",
+  "second_apex": 9,
+  "seeds": [],
+  "total_positive_constraints_in_cuts": 0,
+  "total_positive_weight_in_cuts": 0,
+  "total_shell_conditioned_cuts": 14,
+  "total_verified_alive_witnesses": 0,
+  "total_verified_cuts": 70,
+  "total_verified_seeds": 0,
+  "verdict": "INDEPENDENT_EXACT_LOCAL_CUT_REPLAY_PASS"
+}

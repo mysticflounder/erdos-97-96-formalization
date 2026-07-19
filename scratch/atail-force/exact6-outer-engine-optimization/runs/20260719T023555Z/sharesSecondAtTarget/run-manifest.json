@@ -1,0 +1,67 @@
+{
+  "budgets": {
+    "max_new_cuts": 10,
+    "proof_timeout": 1800,
+    "solver_timeout": 120,
+    "wall_seconds": 1800.0
+  },
+  "distance_profile": "positive-distances-plus-strict-Kalmanson",
+  "driver_sha256": "8070af27bf618c3f38984197a1ea4f6022c8036100b10e7b20427dcb2916557a",
+  "encoder_sha256": "1d31c875afa50ea03d825d6ddc34ea41928438dddd5f0b50918c4b448ef599d5",
+  "epistemic_status": "FINITE_EXACT_CEGAR_NOT_LIVE_LEAN_CLOSURE",
+  "exact_cegar_sha256": "009f2c0556c655187a36238401c1bda31b555771dd9530def6973b298dc40a07",
+  "import_banks": [
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-cross-20260718.jsonl",
+      "sha256": "92a88957465e7d9e3c47392e8748ad6a8da05089b75e14abb7b16181a17e7288"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/alive-recovery/sharesFirstAtSource/cuts.jsonl",
+      "sha256": "719975b8320c73bc4c803ea33d0971b2437534a9d594c05df1ca532534c1511e"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/alive-recovery/sharesFirstAtTarget/cuts.jsonl",
+      "sha256": "5fbcfb8f91f488ae3bd50d1d68880a0cb7555ea50a852b4ae5aa6eff5cdce5ef"
+    }
+  ],
+  "independent_verifier_sha256": "0ff26c948b33d89a06eaad7290b0816bc26d7575d66552980ac1a22d6b09dec2",
+  "learned_bank": {
+    "max_vertices": 8,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact6-allcenter-capaware-gate/combined_round1_round2_minimized_schema_bank.json",
+    "sha256": "25aac2f8f0b2bc89c37610737aa5df55cb01b58207fe9810dd5cf5935e272b2a"
+  },
+  "orbit": "sharesSecondAtTarget",
+  "python_version": "3.13.13 (main, Apr 14 2026, 14:32:41) [Clang 22.1.3 ]",
+  "schema": "p97-exact6-direct-cnf-cegar-run-manifest-v1",
+  "seeds": [
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/continuationOrder.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "66218647bf33e2a5de87fd488c08f1f85629590af7c7ce3fc2c72f4400770a95"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/reverseContinuationOrder.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "f605211ce723894472d1ffaac5dc025cb183ac72ebf17d817213690150d7568e"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesFirstAtSource.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "0b81b8a18400f9a18e632e3c31c99a010ef4d0b7e7ee0589fc7af075c12a27b1"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesFirstAtTarget.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "1debdeda81b23fcf8fdfe57b8b41c3a34ff58fe0b9f1deb8bd8f6b09959e4e1b"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesSecondAtSource.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "86e591282f662760ff7795be7b1b51d16bf18c16b1151e2119006713b9812f40"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesSecondAtTarget.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "ab35da65c8450839eec92799069fd468fc3fa337169a7a2678d7a55acdb66f08"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/fourDistinct.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "006f0adeb1c463592420c9b3fb00cfd49b072314102f54f4b43d4c938249bd6b"
+    }
+  ],
+  "z3_version": "4.16.0"
+}
