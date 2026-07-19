@@ -183,6 +183,47 @@ Remaining unexamined LOCAL lever before conceding the global residual: the FE
 factor (below) — does FrontierRefinedEscapeOutcome add a constraint the SI
 witness violates?
 
+## FINAL card≥5 SI1 VERDICT (2026-07-19) — arm2 reduces to (Q) [validated]
+
+Two validated kernel-clean scratch files settle the card≥5 SI1 collision case:
+
+- `scratch/atail-arm2/SI1CardFiveCollisionResidual.lean` — `card5CollisionExtract_of_collision`
+  PROVEN kernel-clean (`[propext, Classical.choice, Quot.sound]`); the residual
+  `retainedInteriorBlockerCollision_card_ge_five_false` isolated (sorryAx).
+- `scratch/atail-arm2/SI1CoupledFECenterAnalysis.lean` — 3 crux lemmas PROVEN
+  kernel-clean, pinning the FE factor's supplied data.
+
+PROVEN chain (SI1 collision, card≥5 first-apex branch):
+1. The shared blocker `bc` localizes into the first cap; source₁'s shell minus the
+   first cap is an outside pair `{a,b}` co-radial from `bc`; first cap card ≥ 5.
+2. The only co-radial-outside-pair kill engine `outsidePair_unique_capCenter`
+   (CapSelectedRowCounting.lean:283) needs a SECOND first-cap center co-radial
+   from `{a,b}`. The collision supplies one (`bc`); `oppApex1` is the opposite
+   apex (member of every cap except the first) → engine cannot fire.
+3. The card-5 cross-membership/winding producers (:1177/:1202) need oppApex2-
+   survival, which the collision lacks → inapplicable; winding "opposite sides"
+   is not contradictory (co-radial circle spans both sides).
+4. The FE coupling (`frontierEscape`) supplies centers only at `{oppApex1,
+   centerAt F.pair.q}` and an escape point that is surplus-or-off-radius — NEVER
+   a second first-cap center co-radial from `{a,b}` (every FE object is stated
+   over the frontier pair + surplus cap, none over source₁/bc/shell(source₁)).
+   No FE common-deletion is at oppApex2 either → producers stay inapplicable.
+5. `D.convex` + local shell/cap facts are SATISFIABLE (exact 13-pt convex witness,
+   fixed_order_convex.py) → convex provably cannot close it.
+
+CONCLUSION (rigorous reduction): every EXAMINED local and coupled lever fails, and
+convex+local is provably satisfiable, so closing SI1-collision-card≥5 REQUIRES the
+sole unused global hypothesis `D.K4 = HasNEquidistantProperty 4 D.A` on the freely-
+placed shell/frontier class members = the irreducible (Q) surplus-cap-escape core
+(dead-ends.md: "must be convexity-coupled"). Since SI1-collision-card≥5 is a real
+non-vacuous case that `FrontierCoupledStrictInteriorNormalForm R → False` must
+handle, **arm2 — the sole surviving route for the :2531 exact-seven closure —
+reduces to (Q).** This does NOT depend on SI2-4 or the card=4 branch: the single
+SI1-collision-card≥5 case already forces the (Q) obligation. Not overclaimed: PROVEN
+= the examined levers fail + convex+local satisfiable; the "(Q) is the sole
+remaining route" is well-supported (D.K4 is the only unused hypothesis), not a
+mechanized "no lever exists" theorem.
+
 ## FE factor (the ×3) — why SI-level UNSAT covers all three
 
 FrontierRefinedEscapeOutcome (FE1/FE2/FE3) is a SEPARATE factor. Constraints
