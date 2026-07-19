@@ -2,8 +2,8 @@
 
 Date: 2026-07-18 (lane opened at session takeover fd7b0078)
 
-Status: **ENCODER BUILT AND SMOKE-VALIDATED (5/5); ENUMERATOR NOT YET
-BUILT.**
+Status: **L0 (ALL-FRESH) CENSUS COMPLETE: 744 SAT / 256 UNSAT with a
+clean landing law; MERGE-LAYER CENSUS RUNNING.**
 
 This lane owns only `scratch/atail-force/exact7-role-coverage-gate/`.  It
 continues the exact-seven branch of `DoubleApexOffSurplusSharedRadiusPair`
@@ -179,6 +179,38 @@ UV_CACHE_DIR=/Users/adam/scratch/.uv-cache uv run --no-project \
 
 Verdict-bearing output: `ALL SMOKE GATES PASS` plus per-gate verdicts in
 `smoke_results.json`.
+
+## Finding 5: L0 all-fresh census — 256/1000 UNSAT with a clean law
+
+The L0 layer (`enumerate_l0.py`: named cap system + O + extras + the three
+reverse-row outside pairs, all fresh, landings enumerated per
+ENCODER_FACTS.md, within-arc order symbolic) is fully decided: 744 SAT,
+256 UNSAT, no timeouts.  Every UNSAT core is pure `{cls_eq, kal}` (sizes
+4-10) over named roles only — no uniq4, no cls_ne, no anonymous escape —
+so all 256 verdicts are portable in principle.
+
+The dead set is exactly characterized by the landing law
+
+    UNSAT  <=>  O lands on the collision row (r2)  AND
+                O lands on at least one blocker row (r0 or r1),
+
+independent of the extras landing (uniform 32/125 over all eight
+e-landings).  Mechanism (hand-checked against the cores): with
+O ∈ class(s1) and O ∈ class(b0), the pair {O, s0} lies in
+class(b0) ∩ class(s1) (s0 is their shared forced source), so both
+centers b0, s1 sit on the bisector of chord (O, s0); in the boundary
+order both centers lie on the SAME arc side of that chord —
+the bisector-parity kill (Finding 4E) fires via two strict Kalmanson
+quadruples.  Symmetrically for b1 via {O, s2}.
+
+Consequence: "the second apex is an outside-pair point of both the
+collision row and a blocker row" is impossible — a portable finite
+producer candidate.  The 744 SAT survivors confirm (Round 166) that the
+base families cannot close the branch alone; the residual freedom now
+has an exact catalog by landing pattern.
+
+Artifacts: `l0_ledger.jsonl` (full verdicts + minimized cores; replay via
+`enumerate_l0.py` + `census_runner.py`).
 
 ## Next steps
 

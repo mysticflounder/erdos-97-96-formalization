@@ -1,0 +1,1000 @@
+{"schema_id": "L0.eS-S.r0S-S.r1S-S.r2S-S", "verdict": "sat", "points": 16, "assertions": 16160, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1S-S.r2O1-O", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1S-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1S-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 7094, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,W,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 8, "families": {"cls_eq": 4, "kal": 4}}
+{"schema_id": "L0.eS-S.r0S-S.r1O1-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1O1-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1O1-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-S.r0S-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O.r1S-S.r2S-O", "verdict": "unsat", "points": 14, "assertions": 7094, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-S.r0S-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,s0,b0,s1|ac+bd-ad-bc"], "core_size": 4, "families": {"cls_eq": 3, "kal": 1}}
+{"schema_id": "L0.eS-S.r0S-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-S.r0O1-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-S.r0O1-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-S.r0O1-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-O1.r0S-S.r1S-S.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1S-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1S-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1O1-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1O1-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1O1-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1S-S.r2S-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1S-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,s1,b1,s2|ac+bd-ad-bc"], "core_size": 5, "families": {"cls_eq": 4, "kal": 1}}
+{"schema_id": "L0.eS-O1.r0S-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e2,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e2,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-O1.r0S-O.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-O1.r0S-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-O1.r0S-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1S-S.r2S-S", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e2,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e2,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-O1.r0O1-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc"], "core_size": 8, "families": {"cls_eq": 5, "kal": 3}}
+{"schema_id": "L0.eS-O1.r0O1-O.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,s0,b0,s1|ac+bd-ad-bc"], "core_size": 4, "families": {"cls_eq": 3, "kal": 1}}
+{"schema_id": "L0.eS-O1.r0O1-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1S-S.r2S-O", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p2a,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p2a,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-EA.r0S-S.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-EA.r0S-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O.r1S-S.r2S-S", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,p2a,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|p2a,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-EA.r0S-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O.r1S-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2793, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,W,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 8, "families": {"cls_eq": 4, "kal": 4}}
+{"schema_id": "L0.eS-EA.r0S-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O.r1O1-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O.r1S-S.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,p0a,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|p0a,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-EA.r0O1-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O.r1S-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-EA.r0O1-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-W.r0S-S.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1S-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1O1-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p0b,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p0b,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-W.r0S-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p0b,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p0b,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-W.r0S-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc"], "core_size": 8, "families": {"cls_eq": 5, "kal": 3}}
+{"schema_id": "L0.eS-W.r0S-O.r1S-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-W.r0S-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1S-S.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p0a,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p0a,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-W.r0O1-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p0b,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p0b,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-W.r0O1-O.r1S-S.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O.r1S-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-W.r0O1-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-W.r0O1-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1S-S.r2S-S", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1S-S.r2O1-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1S-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1S-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p0a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p0a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-O1.r0S-S.r1O1-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1O1-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1O1-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O.r1S-S.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,s0,b0,s1|ac+bd-ad-bc"], "core_size": 4, "families": {"cls_eq": 3, "kal": 1}}
+{"schema_id": "L0.eO1-O1.r0S-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eO1-O1.r0S-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p0a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p0a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p1a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p1a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 4505, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-EA.r0S-S.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1S-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1O1-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1S-S.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p0a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p0a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p0a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p0a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-EA.r0S-O.r1S-S.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O.r1S-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p0a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd", "kal|p0a,O,s0,b0|ac+bd-ad-bc"], "core_size": 8, "families": {"cls_eq": 5, "kal": 3}}
+{"schema_id": "L0.eO1-EA.r0S-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p0a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p0a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-EA.r0S-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 4505, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,O,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd"], "core_size": 7, "families": {"cls_eq": 5, "kal": 2}}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1S-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 4505, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,e1,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|e1,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 4505, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1S-S.r2S-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eO1-W.r0S-S.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,s1,b1,s2|ac+bd-ad-bc"], "core_size": 5, "families": {"cls_eq": 4, "kal": 1}}
+{"schema_id": "L0.eO1-W.r0S-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O.r1S-S.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p0a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p0a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-W.r0S-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O.r1S-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p0a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p0a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-W.r0S-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O.r1O1-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p0a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p0a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O.r1S-S.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,e1,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|e1,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-W.r0O1-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O.r1S-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-W.r0O1-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p2a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p2a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eEA-W.r0S-S.r1S-S.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1S-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1S-O1.r2O1-O", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1S-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1O1-O1.r2S-O", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1O1-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1S-S.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,s1,b1,s2|ac+bd-ad-bc"], "core_size": 5, "families": {"cls_eq": 4, "kal": 1}}
+{"schema_id": "L0.eEA-W.r0S-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p0b,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p0b,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eEA-W.r0S-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,s0,b0,s1|ac+bd-ad-bc"], "core_size": 4, "families": {"cls_eq": 3, "kal": 1}}
+{"schema_id": "L0.eEA-W.r0S-O.r1S-O.r2S-O1", "verdict": "sat", "points": 12, "assertions": 2394, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,O,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd"], "core_size": 7, "families": {"cls_eq": 5, "kal": 2}}
+{"schema_id": "L0.eEA-W.r0S-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 12, "assertions": 2394, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1S-S.r2S-O", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1S-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p1a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p1a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p0a,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p0a,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eEA-W.r0O1-O.r1S-S.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O.r1S-O1.r2S-S", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p1a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p1a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eEA-W.r0O1-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 12, "assertions": 2394, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p2a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p2a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eEA-W.r0O1-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 12, "assertions": 2394, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1S-S.r2S-O1", "verdict": "sat", "points": 16, "assertions": 13157, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1S-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 13157, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1S-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1S-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1O1-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1O1-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1S-S.r2S-S", "verdict": "sat", "points": 16, "assertions": 13157, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-S.r0S-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p0b,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p0b,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-S.r0S-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,s0,b0,s1|ac+bd-ad-bc"], "core_size": 4, "families": {"cls_eq": 3, "kal": 1}}
+{"schema_id": "L0.eS-S.r0S-O.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc"], "core_size": 8, "families": {"cls_eq": 5, "kal": 3}}
+{"schema_id": "L0.eS-S.r0S-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1S-S.r2S-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1S-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-S.r0O1-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p0a,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p0a,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-S.r0O1-O.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-S.r0O1-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-S.r0O1-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1S-S.r2S-S", "verdict": "sat", "points": 16, "assertions": 13157, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1S-S.r2O1-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1S-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1S-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-O1.r0S-S.r1O1-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1O1-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1O1-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-O1.r0S-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O.r1S-S.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-O1.r0S-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-O1.r0S-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e2,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e2,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-O1.r0O1-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e2,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e2,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-O1.r0O1-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc"], "core_size": 8, "families": {"cls_eq": 5, "kal": 3}}
+{"schema_id": "L0.eS-EA.r0S-S.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1S-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1O1-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1S-S.r2S-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p0b,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p0b,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-EA.r0S-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-EA.r0S-O.r1S-S.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O.r1S-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,p1b,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|p1b,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-EA.r0S-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,s0,b0,s1|ac+bd-ad-bc"], "core_size": 4, "families": {"cls_eq": 3, "kal": 1}}
+{"schema_id": "L0.eS-EA.r0S-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p0a,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p0a,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-EA.r0O1-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,p0a,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|p0a,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-EA.r0O1-O.r1S-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,p0a,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|p0a,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-EA.r0O1-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1S-S.r2S-O", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-W.r0S-S.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p1a,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p1a,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-W.r0S-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O.r1S-S.r2S-S", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,p2a,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|p2a,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-W.r0S-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O.r1S-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2793, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,W,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 8, "families": {"cls_eq": 4, "kal": 4}}
+{"schema_id": "L0.eS-W.r0S-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O.r1O1-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-W.r0O1-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O.r1S-S.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,p0a,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|p0a,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-W.r0O1-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O.r1S-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,O,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd"], "core_size": 7, "families": {"cls_eq": 5, "kal": 2}}
+{"schema_id": "L0.eS-W.r0O1-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-O1.r0S-S.r1S-S.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1S-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1S-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1S-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1O1-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1O1-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1S-S.r2S-S", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p0a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p0a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-O1.r0S-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,e1,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|e1,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-O1.r0S-O.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p0a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p0a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0S-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1S-S.r2S-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1S-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p1a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p1a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 16160, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p1a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p1a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p2a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd", "kal|p2a,O,s0,b0|ac+bd-ad-bc"], "core_size": 8, "families": {"cls_eq": 5, "kal": 3}}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1S-S.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p0a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p0a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-EA.r0S-S.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O.r1S-S.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,e1,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|e1,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-EA.r0S-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O.r1S-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,O,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd"], "core_size": 7, "families": {"cls_eq": 5, "kal": 2}}
+{"schema_id": "L0.eO1-EA.r0S-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1S-S.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p1a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p1a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1S-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1O1-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2793, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-W.r0S-S.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1S-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1O1-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1S-S.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-W.r0S-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eO1-W.r0S-O.r1S-S.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O.r1S-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,O,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd"], "core_size": 7, "families": {"cls_eq": 5, "kal": 2}}
+{"schema_id": "L0.eO1-W.r0S-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p0a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p0a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-W.r0S-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 4505, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-W.r0O1-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,O,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd"], "core_size": 7, "families": {"cls_eq": 5, "kal": 2}}
+{"schema_id": "L0.eO1-W.r0O1-O.r1S-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 4505, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,O,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 5, "kal": 4}}
+{"schema_id": "L0.eO1-W.r0O1-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 4505, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1S-S.r2S-O", "verdict": "sat", "points": 13, "assertions": 4505, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1S-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1S-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 4505, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1S-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p0a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p0a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eEA-W.r0S-S.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1O1-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p0a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p0a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eEA-W.r0S-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O.r1S-S.r2S-S", "verdict": "sat", "points": 13, "assertions": 4505, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p0a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd", "kal|p0a,O,s0,b0|ac+bd-ad-bc"], "core_size": 8, "families": {"cls_eq": 5, "kal": 3}}
+{"schema_id": "L0.eEA-W.r0S-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O.r1S-O.r2S-O", "verdict": "unsat", "points": 11, "assertions": 1705, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p0a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p0a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eEA-W.r0S-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O.r1O1-O.r2S-S", "verdict": "sat", "points": 12, "assertions": 2394, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 11, "assertions": 1527, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p1a,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p1a,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 13, "assertions": 4505, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 4505, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O.r1S-S.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,s0,b0,s1|ac+bd-ad-bc"], "core_size": 4, "families": {"cls_eq": 3, "kal": 1}}
+{"schema_id": "L0.eEA-W.r0O1-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O.r1S-O.r2S-S", "verdict": "sat", "points": 12, "assertions": 2394, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 11, "assertions": 1527, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p1a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p1a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eEA-W.r0O1-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 4505, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 11, "assertions": 1527, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p2a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p2a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-S.r0S-S.r1S-S.r2S-O", "verdict": "sat", "points": 15, "assertions": 10862, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1S-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1S-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 10862, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1S-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-S.r0S-S.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1O1-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-S.r0S-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 10862, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-S.r0S-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 4505, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-S.r0S-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-S.r0O1-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O.r1S-S.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5809, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,s0,b0,s1|ac+bd-ad-bc"], "core_size": 4, "families": {"cls_eq": 3, "kal": 1}}
+{"schema_id": "L0.eS-S.r0O1-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-S.r0O1-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-O1.r0S-S.r1S-S.r2S-O1", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1S-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1S-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1S-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1O1-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1O1-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1S-S.r2S-S", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-O1.r0S-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,s1,b1,s2|ac+bd-ad-bc"], "core_size": 5, "families": {"cls_eq": 4, "kal": 1}}
+{"schema_id": "L0.eS-O1.r0S-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,e2,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|e2,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-O1.r0S-O.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-O1.r0S-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1S-S.r2S-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1S-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 13157, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-O1.r0O1-O.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,O,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd"], "core_size": 7, "families": {"cls_eq": 5, "kal": 2}}
+{"schema_id": "L0.eS-O1.r0O1-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,e2,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|e2,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-O1.r0O1-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 10862, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1S-S.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 4505, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,W,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 8, "families": {"cls_eq": 4, "kal": 4}}
+{"schema_id": "L0.eS-EA.r0S-S.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-EA.r0S-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O.r1S-S.r2S-O", "verdict": "unsat", "points": 13, "assertions": 4505, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-EA.r0S-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O.r1S-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 4505, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-EA.r0S-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O.r1S-S.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-EA.r0O1-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O.r1S-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,s1,b1,s2|ac+bd-ad-bc"], "core_size": 5, "families": {"cls_eq": 4, "kal": 1}}
+{"schema_id": "L0.eS-EA.r0O1-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O.r1O1-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-W.r0S-S.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1S-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1O1-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1S-S.r2S-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-W.r0S-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-W.r0S-O.r1S-S.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O.r1S-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,O,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 5, "kal": 4}}
+{"schema_id": "L0.eS-W.r0S-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,s0,b0,s1|ac+bd-ad-bc"], "core_size": 4, "families": {"cls_eq": 3, "kal": 1}}
+{"schema_id": "L0.eS-W.r0S-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-W.r0O1-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-W.r0O1-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,s0,b0,s1|ac+bd-ad-bc"], "core_size": 4, "families": {"cls_eq": 3, "kal": 1}}
+{"schema_id": "L0.eS-W.r0O1-O.r1S-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-W.r0O1-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1S-S.r2S-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1S-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1S-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1S-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0S-S.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1O1-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p0a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p0a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p0a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p0a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0S-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p0a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p0a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-O1.r0S-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 10862, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 10862, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1S-S.r2S-O", "verdict": "unsat", "points": 14, "assertions": 4853, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p1a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p1a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 10862, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p2a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p2a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-EA.r0S-S.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1S-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1O1-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,s1,b1,s2|ac+bd-ad-bc"], "core_size": 5, "families": {"cls_eq": 4, "kal": 1}}
+{"schema_id": "L0.eO1-EA.r0S-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,e1,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|e1,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-EA.r0S-O.r1S-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,e1,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|e1,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-EA.r0S-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1S-S.r2S-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,s1,b1,s2|ac+bd-ad-bc"], "core_size": 5, "families": {"cls_eq": 4, "kal": 1}}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 10862, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1S-S.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1S-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p1a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p1a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p2a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p2a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1S-S.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-W.r0S-S.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p0a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p0a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-W.r0S-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O.r1S-S.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,e1,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|e1,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-W.r0S-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O.r1S-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p0a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p0a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-W.r0S-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O.r1S-S.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,e1,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|e1,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-W.r0O1-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O.r1S-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,e1,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|e1,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-W.r0O1-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O.r1O1-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2793, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eEA-W.r0S-S.r1S-S.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1S-O1.r2S-O", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1S-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1O1-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1O1-O1.r2O1-O", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1O1-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1S-S.r2S-O", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1S-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p0b,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p0b,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eEA-W.r0S-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eEA-W.r0S-O.r1S-S.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O.r1S-O1.r2S-S", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,p1b,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|p1b,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eEA-W.r0S-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 12, "assertions": 2269, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p0a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p0a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eEA-W.r0S-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 12, "assertions": 2269, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1S-S.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p1a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p1a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2793, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eEA-W.r0O1-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,p0a,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|p0a,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eEA-W.r0O1-O.r1S-O.r2S-O1", "verdict": "sat", "points": 12, "assertions": 2269, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2793, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,O,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 5, "kal": 4}}
+{"schema_id": "L0.eEA-W.r0O1-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 12, "assertions": 2793, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1S-S.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1S-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1S-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1O1-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1O1-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-S.r1O1-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1S-S.r2S-O", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1S-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-S.r0S-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-S.r0S-O.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,s0,b0,s1|ac+bd-ad-bc"], "core_size": 4, "families": {"cls_eq": 3, "kal": 1}}
+{"schema_id": "L0.eS-S.r0S-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0S-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,s0,b0,s1|ac+bd-ad-bc"], "core_size": 4, "families": {"cls_eq": 3, "kal": 1}}
+{"schema_id": "L0.eS-S.r0S-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1S-S.r2S-S", "verdict": "sat", "points": 16, "assertions": 11132, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-S.r0O1-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-S.r0O1-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-S.r0O1-O.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-S.r0O1-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,p0a,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|p0a,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-S.r0O1-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1S-S.r2S-O", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1S-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1S-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1S-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e2,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e2,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-O1.r0S-S.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-S.r1O1-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e2,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e2,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-O1.r0S-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-O1.r0S-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-O1.r0S-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0S-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O.r1S-S.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,s0,b0,s1|ac+bd-ad-bc"], "core_size": 4, "families": {"cls_eq": 3, "kal": 1}}
+{"schema_id": "L0.eS-O1.r0O1-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-O1.r0O1-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-O1.r0O1-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-EA.r0S-S.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1S-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1O1-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-S.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-EA.r0S-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-EA.r0S-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,p1b,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|p1b,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-EA.r0S-O.r1S-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0S-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,O,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd"], "core_size": 7, "families": {"cls_eq": 5, "kal": 2}}
+{"schema_id": "L0.eS-EA.r0S-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1S-S.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p0a,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p0a,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 8840, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,p0a,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|p0a,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eS-EA.r0O1-O.r1S-S.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O.r1S-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc"], "core_size": 8, "families": {"cls_eq": 5, "kal": 3}}
+{"schema_id": "L0.eS-EA.r0O1-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-EA.r0O1-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-EA.r0O1-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 10862, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1S-S.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 4505, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,e1,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|e1,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eS-W.r0S-S.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-S.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eS-W.r0S-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O.r1S-S.r2S-O", "verdict": "unsat", "points": 13, "assertions": 4505, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-W.r0S-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O.r1S-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 4505, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-W.r0S-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0S-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-W.r0O1-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O.r1S-S.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eS-W.r0O1-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O.r1S-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,O,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd"], "core_size": 7, "families": {"cls_eq": 5, "kal": 2}}
+{"schema_id": "L0.eS-W.r0O1-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O.r1O1-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eS-W.r0O1-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,e1,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|e1,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0S-S.r1S-S.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1S-O1.r2S-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1S-O.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1O1-O1.r2S-S", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1O1-O1.r2O1-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-S.r1O1-O.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1S-S.r2S-O", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 9965, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1S-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p0a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p0a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 13157, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eO1-O1.r0S-O.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,e1,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|e1,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-O1.r0S-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0S-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p0a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p0a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0S-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1S-S.r2S-S", "verdict": "sat", "points": 16, "assertions": 9584, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 16, "assertions": 13157, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 16, "assertions": 13157, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 7094, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 14, "assertions": 5086, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p1a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p1a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 14, "assertions": 7094, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,s0,b0,s1|ac+bd-ad-bc"], "core_size": 4, "families": {"cls_eq": 3, "kal": 1}}
+{"schema_id": "L0.eO1-O1.r0O1-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1S-S.r2S-O", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-EA.r0S-S.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-S.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p0a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p0a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 6962, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O.r1S-S.r2S-S", "verdict": "sat", "points": 14, "assertions": 5809, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p0a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd", "kal|p0a,O,s0,b0|ac+bd-ad-bc"], "core_size": 8, "families": {"cls_eq": 5, "kal": 3}}
+{"schema_id": "L0.eO1-EA.r0S-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O.r1S-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,O,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd"], "core_size": 7, "families": {"cls_eq": 5, "kal": 2}}
+{"schema_id": "L0.eO1-EA.r0S-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O.r1O1-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0S-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1S-S.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p1a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p1a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 5086, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1S-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-EA.r0O1-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2394, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eO1-W.r0S-S.r1S-S.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1S-O1.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1S-O1.r2O1-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1S-O.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1O1-O1.r2S-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-S.r1O1-O.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1S-S.r2S-S", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1S-S.r2O1-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1S-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1S-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-W.r0S-O1.r1O1-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1O1-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O1.r1O1-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-W.r0S-O.r1S-S.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O.r1S-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3395, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p0a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd", "kal|p0a,O,s0,b0|ac+bd-ad-bc"], "core_size": 8, "families": {"cls_eq": 5, "kal": 3}}
+{"schema_id": "L0.eO1-W.r0S-O.r1S-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O.r1O1-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0S-O.r1O1-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p0a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p0a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-W.r0S-O.r1O1-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1S-S.r2S-O", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1S-O1.r2S-O1", "verdict": "sat", "points": 15, "assertions": 7572, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1S-O.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1S-O.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p1a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p1a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 15, "assertions": 10862, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O1.r1O1-O.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,e1,b1,s2|ac+bd-ad-bc", "kal|W,s0,b1,s2|ac+bd-ad-bc", "kal|b0,s1,b1,s2|ac+bd-ad-bc", "kal|e1,W,b1,s2|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc"], "core_size": 9, "families": {"cls_eq": 4, "kal": 5}}
+{"schema_id": "L0.eO1-W.r0O1-O.r1S-S.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O.r1S-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O.r1S-O1.r2O1-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p1a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p1a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eO1-W.r0O1-O.r1S-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eO1-W.r0O1-O.r1O1-O1.r2S-O", "verdict": "unsat", "points": 13, "assertions": 3749, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,e1,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|e1,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eO1-W.r0O1-O.r1O1-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1S-S.r2S-S", "verdict": "sat", "points": 14, "assertions": 7094, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1S-S.r2O1-O", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1S-O1.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1S-O.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2793, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,p0a,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd", "kal|p0a,O,s1,b1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eEA-W.r0S-S.r1O1-O1.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1O1-O.r2S-S", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-S.r1O1-O.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|b1|O", "cls_eq|b1|s2", "cls_eq|s1|O", "kal|EA,O,s1,b1|ac+bd-ad-bc", "kal|EA,s1,b1,s2|ac+bd-ab-cd"], "core_size": 5, "families": {"cls_eq": 3, "kal": 2}}
+{"schema_id": "L0.eEA-W.r0S-O1.r1S-S.r2O1-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1S-O1.r2S-O", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1S-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1O1-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1O1-O1.r2O1-O", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O1.r1O1-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O.r1S-S.r2S-O", "verdict": "unsat", "points": 12, "assertions": 2793, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,O,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd"], "core_size": 7, "families": {"cls_eq": 5, "kal": 2}}
+{"schema_id": "L0.eEA-W.r0S-O.r1S-O1.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3395, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O.r1S-O.r2S-S", "verdict": "sat", "points": 12, "assertions": 2793, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O.r1S-O.r2O1-O", "verdict": "unsat", "points": 11, "assertions": 1527, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,p2a,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|p2a,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
+{"schema_id": "L0.eEA-W.r0S-O.r1O1-O1.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0S-O.r1O1-O.r2S-O", "verdict": "unsat", "points": 11, "assertions": 1527, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,O,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s1|ac+bd-ab-cd"], "core_size": 7, "families": {"cls_eq": 5, "kal": 2}}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1S-S.r2S-O1", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1S-O1.r2S-S", "verdict": "sat", "points": 14, "assertions": 4853, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1S-O1.r2O1-O", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1S-O.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1O1-O1.r2S-O", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O1.r1O1-O.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O.r1S-S.r2S-S", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O.r1S-S.r2O1-O", "verdict": "unsat", "points": 12, "assertions": 2269, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|b0|O", "cls_eq|b0|s1", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|EA,p1a,s0,b0|ac+bd-ad-bc", "kal|EA,s0,b0,s2|ac+bd-ab-cd", "kal|p1a,O,s0,b0|ac+bd-ad-bc", "kal|s0,b0,b1,s2|ac+bd-ad-bc", "kal|s0,b0,s1,b1|ac+bd-ad-bc"], "core_size": 10, "families": {"cls_eq": 5, "kal": 5}}
+{"schema_id": "L0.eEA-W.r0O1-O.r1S-O1.r2O1-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O.r1S-O.r2S-O", "verdict": "unsat", "points": 11, "assertions": 1527, "trivial_k4_centers": [], "core": ["cls_eq|O|s1", "cls_eq|O|s2", "cls_eq|b1|O", "cls_eq|s1|O", "kal|O,s1,b1,s2|ac+bd-ad-bc"], "core_size": 5, "families": {"cls_eq": 4, "kal": 1}}
+{"schema_id": "L0.eEA-W.r0O1-O.r1O1-O1.r2S-O1", "verdict": "sat", "points": 13, "assertions": 3749, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O.r1O1-O.r2S-S", "verdict": "sat", "points": 12, "assertions": 2269, "trivial_k4_centers": []}
+{"schema_id": "L0.eEA-W.r0O1-O.r1O1-O.r2O1-O", "verdict": "unsat", "points": 11, "assertions": 1705, "trivial_k4_centers": [], "core": ["cls_eq|b0|O", "cls_eq|s1|O", "cls_eq|s1|s0", "kal|O,p0a,b0,s1|ac+bd-ad-bc", "kal|W,s0,b0,s1|ac+bd-ad-bc", "kal|p0a,W,b0,s1|ac+bd-ad-bc"], "core_size": 6, "families": {"cls_eq": 3, "kal": 3}}
