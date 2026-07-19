@@ -819,6 +819,40 @@ close via **Round 166 geometry (rank+winding / cross-row occurrence)** — the
 one dimension the report (item 7) reserves as a closer — not this one.
 Branch-kill instruments only; the DoubleApex spine sorry is unchanged.
 
+## Finding 17: DoubleApex closure path — validated at source (2026-07-19)
+
+Subagent trace + my source validation. **Corrects the overflow hypothesis
+(Next steps 13).** Four load-bearing facts verified at file:line:
+
+1. The interior OVERFLOW lever is OBSTRUCTED: `fourClass_of_cover`
+   (`U2SqueezePort.lean:347`) is hard-wired to `|I| = 2`, so a `≥5`-regime
+   interior (`card ≥ 3`, trivially from `capInteriorAt_card_add_two:2211`)
+   cannot feed the squeeze.  The M44 squeeze does not transfer.
+2. The `≤1` adjacent one-hit bounds are UNCONDITIONAL —
+   `oppApex1_surplusCap_one_hit (D) (r)` (`U2NonSurplusOneHit.lean:213`),
+   no cap-size/`IsM44` hypothesis; they survive the two-large-cap regime.
+3. The co-radial-pair producer is ALREADY BUILT, sorry-free, cap-size-
+   agnostic: `exists_criticalPairFrontier_of_K4 (D)(S)(H)`
+   (`CriticalPairFrontier.lean:1281`) gets `3 ≤ |class \ surplusCap|` from
+   `D.K4` (≥4) minus the one-hit (≤1) via `omega` (`:1302-1309`) — NOT
+   from overflow.
+4. WIRING BLOCKER: the ATail `→ False` route
+   (`false_of_parentResidualConsumers`, `OrientedPhysicalApexIngress.lean:454`)
+   needs `hmin : D.Minimal`.  The `:2531` DoubleApex target LACKS it;
+   `u1_largeCap_routeB_tail_false` (`:9522`) HAS it (+ `hcritical`,
+   `hNoM44`, `hcard`, `hnoRem`).  The `:2531` conclusion is unsatisfiable
+   over ℝ² (`oppCap2_escape_gen`), i.e. ex-falso only.
+
+RECOMMENDATION (a spine refactor — **Adam's pivot to decide**): close the
+tail through the frontier route at the `hmin` level, leaving the two genuine
+open kills — `OriginalFrontierUniqueRadiusArm F → False` (simpler arm) and
+`FrontierCoupledStrictInteriorNormalForm R → False` (the two-center coupled
+residual, which `dead-ends.md:743/786` independently flag as the sole
+surviving route; single-center / pattern-level / `|A|≥12`-uniform levers are
+falsified).  Not-yet-pinned: exact current `:9522→:2531` routing; whether
+arm 1 is partly available.  See memories "Exact-seven DoubleApex CLOSURE
+PATH" + "…overflow MECHANISM".  Spine sorry unchanged.
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
