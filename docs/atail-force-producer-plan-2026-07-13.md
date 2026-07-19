@@ -5344,7 +5344,7 @@ Acceptance is fail-closed:
    equal-blocker or literal CEGAR split.
 2. Route cross membership through the existing signed-area/third-center
    consumers.  It is a source-valid branch, not an unconditional `False`.
-3. On cross survival, use the production card-≥14 producer in
+3. On cross membership (`w ∈ selectedAt(q)`), use the production card-≥14 producer in
    `ATail/SurvivalCover.lean`:
    `exists_sourceFaithful_secondApexCommonDeletionPacket_of_card_ge_fourteen`
    and its wrapper

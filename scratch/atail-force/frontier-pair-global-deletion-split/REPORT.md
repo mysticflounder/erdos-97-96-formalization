@@ -40,7 +40,8 @@ and the cross split together; it must not promote the common-deletion packet
 as an anonymous recursive successor.
 
 The card-≥14 producer is now also ported into production at
-`lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean`.  The theorem
+`lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean`.  On the
+cross-membership subarm (`w ∈ selectedAt(q)`), the theorem
 `exists_sourceFaithful_secondApexCommonDeletionPacket_of_card_ge_fourteen`
 uses only the production anchored deletion cover, exact support locking, and
 the four-point actual-blocker fiber bound.  Its companion
@@ -51,7 +52,7 @@ declarations are source-clean with axioms exactly
 
 This promotion removes the producer/interface gap but does **not** close a
 sorry: the theorem still requires the non-exact-card-four branch and the
-`w ∈ selectedAt(q)` cross-hit field, and its output is the existing robust or
+`w ∈ selectedAt(q)` cross-membership field, and its output is the existing robust or
 physical-critical residual.  The next load-bearing task is the complete
 `L`-indexed consumer for those two residuals, with the exact-card-four branch
 kept separate.
