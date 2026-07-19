@@ -615,6 +615,41 @@ ledger and the survivor schemas:
   chain.  Composite shape — no single ported terminal; Lean wiring
   would need a per-branch case split.
 
+## Finding 15: round-3 L2u — e/p0/p1 through-point laws (2026-07-19)
+
+Scale of the 126 all-kill round-2 probe patterns at e/p0/p1
+through-points (selection: probe denominator ≥ 4, or ≥ 2 for
+e-patterns; smoke 3/3 against recorded round-2 probe verdicts;
+`l2u_round3_scale_ledger.jsonl.gz`, 36,914 runs): **31,580 kills
+(85.5%)**, 5,334 SAT.  All 31,408 structural cores are
+Kalmanson-terminal (1-33 kal labels; zero pure-equality kills) — the
+round-2 order-coupled regime, not the round-1 equality-chain regime.
+
+**73 of 126 patterns are universal on their availability classes**
+(kill = built in the per-pattern denominators of
+`l2u_round3_denominators.json`):
+
+- all 12 e2-involving patterns — 219/219 (the eS-O1 bases): rows
+  through e1 at e2, through e2 at {e1, EA, b1, s2}, m ∈ {s0,s1,s2};
+- p0a family — 588/588 at (b1,s0), (EA,s0), (s0,s1), (s0,s2),
+  (s2,s0), (W,s1), (W,s2), plus (p0b,s1) 252/252 and e2-centered
+  147/147;
+- p1a family — 588/588 at (b0,s2), (EA,s0), (EA,s1), (s0,s2),
+  (s2,s0), (s2,s1), (W,s2), plus e2-centered 147/147;
+- p0b / p1b counterparts — 468/468 on the same center sets;
+- merged-point variants — p0a+p1a 172/172 (10 patterns),
+  p0b+p1b 100/100 (12 patterns).
+
+The 53 conditional patterns hold the SAT mass, concentrated in p-p
+cross patterns ((p1b,p2a,s2), (p0b,p2a,s2), ...) — presumably
+bag-placement conditioned as in Finding 14b; mapping deferred.
+
+Honest scope: branch kills of the unused-row refinement; no base
+closes outright.  Lean shape of the round-3 universal laws is not yet
+assessed (expected: the same two-center bisector terminals with
+r0/r1-class transports, since p0 ∈ r0, p1 ∈ r1 mirror p2 ∈ r2 —
+unverified).
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
@@ -669,5 +704,7 @@ ledger and the survivor schemas:
     terminals; two need the new centers-before arrangement + mutual
     transport, both ported kernel-clean in
     `TwoCenterBisectorParity.lean`); (c) |M| = 2 decorations of
-    surviving branches; (d) e1/e2/p0/p1 non-universal probe patterns
-    (probe kills exist but none scaled yet).
+    surviving branches; (d) ~~e1/e2/p0/p1 non-universal probe
+    patterns~~ DONE (Finding 15: 73/126 universal on availability
+    classes; follow-ups — Lean shape of the round-3 laws, conditioning
+    map of the 53 conditional patterns).
