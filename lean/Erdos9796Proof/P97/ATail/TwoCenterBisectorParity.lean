@@ -24,7 +24,14 @@ linear arrangements a fixed enumeration cut can present are covered:
   strictly after (`c₂ < p₁ < p₂ < c₁` — the Finding 10 Law A/B
   canonical core shape `kal|EA,O,m,c|ac+bd-ab-cd`, where the first-apex
   row center `EA` precedes the chord `{O, m}` and the O-carrying
-  reverse-row center follows it).
+  reverse-row center follows it);
+- `..._before`: both centers strictly before both endpoints
+  (`c₂ < c₁ < p₁ < p₂` — the Finding 14 universal p2-row law shape for
+  `uc ∈ {s0, s2}` with `m = s1`, census cores `kal|O,p2a,s0,s1|` /
+  `kal|p2a,O,s0,s1|ac+bd-ad-bc`: the mutual pair of row and r2
+  equalities forces `p2a` onto the bisector of the chord `{s0, s1}`
+  (see `dist_eq_dist_of_mutual_bisector`), where the class-O radius
+  already holds `O`, and both centers precede the chord).
 
 Each is one strict Kalmanson kernel plus the two radius equalities; the
 substitution cancels the inequality to strict irreflexivity.  These are
@@ -81,6 +88,22 @@ theorem false_of_two_centers_equidistant_pair_enclosed
   rw [hc1, hc2] at hkal
   linarith
 
+/-- If each of two points is equidistant from the other and from a third
+point `q`, then `q` is equidistant from both: the mutual isoceles pair
+shares the edge `dist c1 c2`, so both legs to `q` equal it.  This is the
+equality-transport step of the Finding 14 universal p2-row laws at
+`uc ∈ {s0, s2}`, `m = s1`: the asserted row makes `d(uc, p2a) = d(uc, s1)`
+and the r2 class makes `d(s1, p2a) = d(s1, uc)`, forcing `p2a` onto the
+bisector of the chord `{uc, s1}` already carrying the class-O center. -/
+theorem dist_eq_dist_of_mutual_bisector {q c1 c2 : ℝ²}
+    (h1 : dist c1 q = dist c1 c2) (h2 : dist c2 q = dist c2 c1) :
+    dist q c1 = dist q c2 :=
+  calc dist q c1 = dist c1 q := dist_comm q c1
+    _ = dist c1 c2 := h1
+    _ = dist c2 c1 := dist_comm c1 c2
+    _ = dist c2 q := h2.symm
+    _ = dist q c2 := dist_comm c2 q
+
 /-- Chord endpoints `p₁ = phi i1, p₂ = phi i2`, center `phi j2` strictly
 before both and center `phi j1` strictly after both in the CCW
 enumeration: contradictory via the complementary kernel at
@@ -102,5 +125,26 @@ theorem false_of_two_centers_equidistant_pair_split
   rw [dist_comm (phi i2) (phi j1), dist_comm (phi i1) (phi j1)] at hkal
   rw [hc2, ← hc1] at hkal
   exact lt_irrefl _ hkal
+
+/-- Chord endpoints `p₁ = phi i1, p₂ = phi i2`, both centers strictly
+before both endpoints in the CCW enumeration: contradictory via the
+crossing kernel at `(j2, j1, i1, i2)`.  This is the arrangement of the
+Finding 14 universal p2-row laws at `uc ∈ {s0, s2}`, `m = s1`, with
+centers `{O, p2a}` and chord `{uc, s1}`. -/
+theorem false_of_two_centers_equidistant_pair_before
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {phi : Fin A.card → ℝ²}
+    (hphi_inj : Function.Injective phi)
+    (hphi_image : Finset.univ.image phi = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    {j2 j1 i1 i2 : Fin A.card}
+    (hjj : j2 < j1) (hj1 : j1 < i1) (h12 : i1 < i2)
+    (hc1 : dist (phi j1) (phi i1) = dist (phi j1) (phi i2))
+    (hc2 : dist (phi j2) (phi i1) = dist (phi j2) (phi i2)) : False := by
+  have hkal :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hA hphi_inj hphi_image hccw
+      hjj hj1 h12
+  rw [hc1, hc2] at hkal
+  linarith
 
 end Problem97

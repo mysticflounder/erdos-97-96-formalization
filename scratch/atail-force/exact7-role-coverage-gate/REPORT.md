@@ -523,8 +523,8 @@ build-skips for merges/citations; `l2u_round2_scale_ledger.jsonl.gz`):
   (with the evidence-paired cap member m: (EA,s0), (W,s2), (b0,s2),
   (b1,s0), (s0,s1), (s0,s2), (s2,s0), (s2,s1)) — **876/876 each**;
   same eight through `p2b` — **660/660 each** (216 bases lack `p2b`).
-  All Kalmanson-cored: Lean shape = ordered terminals; NOT covered by
-  the equality-chain ports.
+  All Kalmanson-cored: Lean shape = ordered terminals (resolved in
+  Finding 14a — all 16 reduce to two-center bisector terminals).
 - **Two conditional u=O pure-equality laws**: rows through `O` at `s0`
   or `s2` carrying `s1` — **660/876 each**; minimal cores are the
   three-center chain ALREADY PORTED
@@ -542,6 +542,54 @@ Finding 13; no base closes outright (1,808 SAT rows remain across the
 critical shell of an r2-outside point at any named center off its own
 row cannot carry the paired cap member — the strongest single
 refinement layer censused so far.
+
+## Finding 14a: Lean shape of the universal p2-row laws (2026-07-19)
+
+Structural fact, machine-checked against all 876 survivor schemas: every
+survivor has the same six-block cyclic layout
+`[EA] [S-bag] [O] [O1-bag] [W] [s0 b0 s1 b1 s2]`, and the p2 points
+always land in one of the two bags (`p2a`: S-bag 548 / O1-bag 328;
+`p2b`: S-bag 220 / O1-bag 440 / absent 216).  Hence
+`EA < p2 < W < s0 < b0 < s1 < b1 < s2` in every surviving base — each
+p2-row law's four-point arrangement is fixed blockwise, not
+per-schema.
+
+With the r2 equalities `d(s1,p2a) = rad2 = d(s1,s0) = d(s1,s2)`, the
+eight uc-patterns split into two shapes:
+
+- **Six direct two-center kills** — chord `{p2a, m}`, centers
+  `(uc, s1)`, one Kalmanson kernel + r2 radius transport:
+  (EA,s0) `_split`; (W,s2), (b0,s2), (s0,s2) `_enclosed`;
+  (b1,s0), (s2,s0) `_after` — the three previously ported
+  `TwoCenterBisectorParity` terminals suffice.
+- **Two mutual-pair kills** ((s0,s1), (s2,s1)) — the row
+  (`d(uc,p2a) = d(uc,s1)`) and r2 (`d(s1,p2a) = d(s1,uc)`) form a
+  mutual isoceles pair sharing edge `{uc, s1}`, forcing
+  `d(p2a,uc) = d(p2a,s1)`; the class-O radius holds `O` on the same
+  bisector of chord `{uc, s1}`, and both centers `O, p2a` precede the
+  chord — a FOURTH linear arrangement (`c₂ < c₁ < p₁ < p₂`), not
+  covered by split/after/enclosed.
+
+Ported (TwoCenterBisectorParity.lean, axioms
+`[propext, Classical.choice, Quot.sound]`):
+`dist_eq_dist_of_mutual_bisector` (the shared-edge equality transport)
+and `false_of_two_centers_equidistant_pair_before` (the centers-before
+kill via the crossing kernel at `(j2, j1, i1, i2)`).
+
+Census cross-check: the mutual-pair minimal cores are exactly
+`cls_eq|O|s1 [cls_eq|O|s2] cls_eq|s1|p2a [cls_eq|s1|s0]
+kal|{O,p2a | p2a,O},uc,s1| row_eq|unu|s1`, and the kernel's
+center order splits 328/548 across the 876 kills — matching the
+O1-bag/S-bag placement counts exactly ((s0,s1): 109+219 / 211+337;
+(s2,s1): 114+214 / 179+369).  The p2b laws are verbatim copies on the
+same bag regions.
+
+Honest scope: the arrangement claim is machine-checked against all 876
+schema block layouts; the reduction of each law to its ported terminal
+is hand-derived from the census cores (the solver's alternative larger
+irreducible cores route the same net inequality through auxiliary
+points).  Per-base Lean wiring of the laws is not done — these are
+terminal instruments, and the spine `sorry` is unchanged.
 
 ## Next steps
 
@@ -590,8 +638,10 @@ refinement layer censused so far.
    `[propext, Classical.choice, Quot.sound]`.
 10. ~~L2u round 2 probe + scale~~ DONE (Finding 14).  Follow-ups:
     (a) map the 216-base conditioning of the u=O laws and the 440/660
-    (p2a,p2b,s1) split; (b) Lean shape of the p2-row kal cores
-    (ordered terminals — check whether the split/after/enclosed
-    arrangements suffice); (c) |M| = 2 decorations of surviving
-    branches; (d) e1/e2/p0/p1 non-universal probe patterns (probe
-    kills exist but none scaled yet).
+    (p2a,p2b,s1) split; (b) ~~Lean shape of the p2-row kal cores~~
+    DONE (Finding 14a: six laws on ported split/after/enclosed
+    terminals; two need the new centers-before arrangement + mutual
+    transport, both ported kernel-clean in
+    `TwoCenterBisectorParity.lean`); (c) |M| = 2 decorations of
+    surviving branches; (d) e1/e2/p0/p1 non-universal probe patterns
+    (probe kills exist but none scaled yet).
