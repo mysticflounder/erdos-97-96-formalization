@@ -115,6 +115,21 @@ co-radial-to-`False` terminal are production in
 that invariant occurrence directly.  The arbitrary mutual-omission sibling
 still requires its own direct-False consumer.
 
+### 2026-07-19 named-row consumer checkpoint
+
+The bounded named-row arm is now kernel-checked in
+`scratch/atail-force/reverse-pair-named-row-consumer/ReversePairNamedRowConsumer.lean`.
+For the complete `FullParentExactFiveAllReverseData` packet, two members of
+one `transitionReverseOutsidePair` lying in either
+`firstApexRoles.retainedRow.support` or `firstApexRoles.doubleRow.support`
+give equal distance from `S.oppApex1`; the existing
+`false_of_transitionReverseOutsidePair_coRadial_firstApex` terminal then
+closes the branch. Both public declarations are source-sorry-free and report
+only `propext`, `Classical.choice`, and `Quot.sound`. This narrows the next
+producer search to a source-faithful occurrence theorem; it does not claim
+that either selected row always contains two points of a reverse pair, and it
+does not close K-A-PAIR by itself.
+
 The corrected source/consumer map and exact transient-tail regression remain
 recorded in
 `scratch/atail-force/full-l-all-reverse-occurrence-attack/REPORT.md`; the new
