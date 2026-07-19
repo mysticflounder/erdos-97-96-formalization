@@ -5364,6 +5364,12 @@ Acceptance is fail-closed:
    exact-card-four, a source-faithful companion common-deletion packet, or
    the robust/physical-critical endpoint.  It does not discharge any of
    these residual consumers.
+   For the retained frontier pair itself, the source-clean production module
+   `ATail/FrontierPairGlobalDeletionSplit.lean` supplies
+   `frontierPair_globalDeletion_split`: a center outside `{q,w}`, a minimal
+   deletion core contained in that pair, restoration fields, and the
+   singleton/full-pair split.  This is the required global progress surface,
+   not a terminal contradiction.
 4. Close the two outputs of
    `physicalSecondApex_commonDeletion_robust_or_critical`: the robust
    `FullyDeletionRobustAt D S.oppApex2` arm and the

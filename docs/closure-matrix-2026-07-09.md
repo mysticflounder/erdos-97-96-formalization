@@ -529,13 +529,15 @@ superseded equal-blocker gate.  On the complete `L` parent, apply
   `R`/`B`/`L` packet, then establish a terminating global survival/progress
   fact.  Anonymous row or Kalmanson marginal mining is not a substitute.
 
-The pushed scratch theorem
-`frontierPair_globalDeletion_split` applies global minimality to the actual
-pair with `14 ≤ D.A.card`.  It yields a center outside `{q,w}`, a minimal
+The source-clean production module
+`ATail/FrontierPairGlobalDeletionSplit.lean` now exposes
+`frontierPair_globalDeletion_split`.  It applies global minimality to the
+actual pair with `14 ≤ D.A.card`, yielding a center outside `{q,w}`, a minimal
 deletion core `V ⊆ {q,w}`, restoration fields, and the exact split
 `V.card = 1` or `V = {q,w}`.  Neither branch is terminal yet; the singleton
 branch needs a total-map/progress consumer and the full-pair branch needs the
-same global progress coupling.
+same global progress coupling.  The protected live dispatcher is intentionally
+not edited, so the live sorry count does not change from this port.
 
 The 26-point exact rational Euclidean/MEC replay remains a regression: it
 realizes the local rows but fails to provide legal deletion-critical blockers
