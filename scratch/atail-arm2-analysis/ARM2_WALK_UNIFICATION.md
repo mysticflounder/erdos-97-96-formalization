@@ -87,6 +87,46 @@ WITHOUT uniqueness. Open question to resolve after the SI1 SAT/UNSAT verdict.
   straddle (SI1), and the overflow needs ≥3 forced survivors. Attack SI2–4 with
   the walk explicitly (3 points, 3 distinct blockers).
 
+## VERIFIED RESULT (2026-07-19, prover a3d2ad88 + independent double-check)
+
+The SI1 coupled system {1–8} was decided and the encoding independently
+re-verified (Adam: "double check the encoding"):
+
+- **{1–8} is SAT** (z3 qfnra-nlsat SAT at every stage 0–3; exact-rational
+  re-validated on a 21-point witness, all 8 constraints PASS). Encoding checked
+  faithful to Lean source line-by-line (`si1_coupled.py` re-run reproduces:
+  Stages 0–3 sat, exact witness VALIDATED).
+- **Two "unused levers" are VACUOUS, not unused** (Lean-cited): `overlap≤2` is a
+  THEOREM (`inter_card_le_two`, distinct centers ⇒ ≤2 shared), and mutual
+  omission #7 ≡ the survives-at-2nd-center content of #5/#6
+  (`cross_deletion_survives_iff_...`). Neither can close SI1.
+- **The uniqueness+card-4 pigeonhole is UNAVAILABLE in arm2.** Probes:
+  {1–8}+uniqueness+card=4 → UNSAT, but +card=5 → SAT. And
+  `FrontierCommonDeletionParentResidual.firstApexFullyDeletionRobust`
+  (OrientedPhysicalApexIngress.lean:318, docstring :313-317) proves arm2's `R`
+  makes oppApex1 robust via EITHER card≥5 OR card=4-with-a-second-radius. So in
+  arm2: card≥5 ⇒ the card-5 SAT escape; card=4 ⇒ a SECOND ≥4-radius exists ⇒
+  NOT unique ⇒ the pigeonhole's uniqueness premise fails and g survives-4 at
+  oppApex1 via that second radius. Robustness itself supplies SI1's required
+  "g survives-4 at oppApex1". **SI1 is realizable in both arm2 sub-cases.**
+- **The SAT witness is grossly NON-CONVEX** (`witness_convexity_check.py`: 132
+  collinear triples; hull size 6; 17 of 23 points strictly interior, incl. c0,
+  bc, bf, s1, s2, f). So `D.convex` EXCLUDES it.
+
+### Rigorous reduction of the crux (SI1)
+
+Every LOCAL lever for SI1 is ruled out (opposite-apex, mutual-omission,
+overlap≤2 all SAT/vacuous; uniqueness-card4 excluded by arm2 robustness). The
+crux reduces to the SINGLE open question:
+
+> **Does `D.convex` (global convex position of A) + {1–8} → UNSAT?**
+> Equivalently: is there a CONVEX-position witness of {1–8}?
+
+This is exactly dead-ends.md's irreducible (Q) / Candidate D ("must couple ≥2
+centers; falsifiers are non-convex"). The a3d2ad88 witness IS such a non-convex
+falsifier. UNSAT here (no convex witness) ⇒ SI1 closes via `D.convex`; a convex
+witness ⇒ genuinely harder / open. This is the next probe.
+
 ## FE factor (the ×3) — why SI-level UNSAT covers all three
 
 FrontierRefinedEscapeOutcome (FE1/FE2/FE3) is a SEPARATE factor. Constraints
