@@ -1,0 +1,18 @@
+{
+  "core_size": 4,
+  "families": {
+    "cls_eq": 3,
+    "cls_ne": 1
+  },
+  "point_occurrences": {
+    "7": 2,
+    "8": 1,
+    "4": 1
+  },
+  "core": [
+    "cls_eq|7|4",
+    "cls_eq|7|8",
+    "cls_eq|8|7",
+    "cls_ne|4|7"
+  ]
+}
