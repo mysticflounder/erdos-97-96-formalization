@@ -301,7 +301,7 @@ dependency of either proof row.
 | ID | Status | Dependencies | Exact deliverable | Consumer and acceptance |
 |---|---|---|---|---|
 | ATAIL-FIBER-EXTRACT | CHECKED-SCRATCH 2026-07-13; COMPATIBILITY ADAPTER ONLY / NOT A PRODUCER | Existing `leafSurplusPacket` and old `DoubleApexOffSurplusSharedRadiusPair` vocabulary | Define the two-apex joint fiber at radii `r, ρ` and extract the old shared-radius witness from a hypothetical fiber cardinality lower bound. | `SurplusCapPacket.exists_doubleApex_pair_of_joint_filter_card_ge_two` in `scratch/atail-force/critical_row_coupling.lean` is sorry-free, but `doubleApexJointFiber_sdiff_surplus_card_le_one` proves every such off-surplus joint fiber has cardinality at most one. The helper is therefore a compatibility adapter for an impossible antecedent, not an on-spine milestone. Do not wire or mine this pair; prove the parent common-critical-map contradiction directly. |
-| ATAIL-FRONTIER-CLOSING-CORE | PRIMARY LARGE-OPPOSITE-CAPS BI-APEX DIRECT-FALSE PRODUCER OPEN; FRONTIER-SOURCE CRITICAL-ROW SPLIT IS THE FIRST LIVE GLOBAL STEP; PAIR-MINIMALITY REDUCTION CHECKED; EXACT LOWER-CARD COVERAGE REMAINS OPTIONAL | production `ATail/CriticalPairFrontier.lean`, `ATail/ThirdCenterCommonPair.lean`, `ATail/FrontierCommonDeletionEscape.lean`, and `ATail/CriticalFiberClosingCore.lean`; scratch `frontier-pair-global-deletion-split/`; exact 26-point full-cell audit | Prove `false_of_largeOppositeCapsBiApexRobust (L : FrontierLargeOppositeCapsBiApexRobustResidual B)`. First call `cross_deletion_survives_or_cross_membership F.pair`: route cross membership through the signed-area/third-center consumers; route cross survival through the source-faithful companion common deletion and close its global survival cover using total `H`, minimality, or a terminating geometric measure. The prescribed-pair minimality check now reduces its core to a singleton or the full `{q,w}` pair, but neither arm is yet terminal. Keep the arbitrary mutual-omission sibling independent unless direct full-`L` `False` bypasses the split. | Exact replay of the 26-point Euclidean/MEC/T0/T1/continuation cell finds only six K4 centers and no possible legal deletion-critical blocker for thirteen sources, including both frontier points. Hence one actual frontier-source `H.selectedAt`/`H.no_qfree_at` instance is the smallest audited feature that excludes that cell and feeds checked consumers. The uniform circular-split aggregate route remains refuted for every even `n >= 12`; arbitrary manifest extensions and local row/cap-order lemmas are not substitutes. If `CriticalFiberClosingCore` is used, choose a favorable system late while preserving the complete `R`/`B`/`L` parent. |
+| ATAIL-FRONTIER-CLOSING-CORE | PRIMARY LARGE-OPPOSITE-CAPS BI-APEX DIRECT-FALSE PRODUCER OPEN; FRONTIER-SOURCE CRITICAL-ROW SPLIT IS THE FIRST LIVE GLOBAL STEP; CARD ≥14 SURVIVAL-COVER PRODUCER NOW PRODUCTION; PAIR-MINIMALITY REDUCTION CHECKED | production `ATail/CriticalPairFrontier.lean`, `ATail/ThirdCenterCommonPair.lean`, `ATail/FrontierCommonDeletionEscape.lean`, `ATail/CriticalFiberClosingCore.lean`, and `ATail/SurvivalCover.lean`; scratch `frontier-pair-global-deletion-split/`; exact 26-point full-cell audit | Prove `false_of_largeOppositeCapsBiApexRobust (L : FrontierLargeOppositeCapsBiApexRobustResidual B)`. First call `cross_deletion_survives_or_cross_membership F.pair`: route cross membership through the signed-area/third-center consumers; route cross survival through the production card-≥14 source-faithful packet and then close its robust/physical-critical residual with total `H`, minimality, or a terminating geometric measure. The prescribed-pair minimality check now reduces its core to a singleton or the full `{q,w}` pair, but neither arm is yet terminal. Keep the arbitrary mutual-omission sibling independent unless direct full-`L` `False` bypasses the split. | Exact replay of the 26-point Euclidean/MEC/T0/T1/continuation cell finds only six K4 centers and no possible legal deletion-critical blocker for thirteen sources, including both frontier points. The new production `SurvivalCover` theorem removes the producer/interface gap on the card-≥14, non-card-four, cross-hit surface but is not a contradiction. Hence one actual frontier-source `H.selectedAt`/`H.no_qfree_at` instance is still the smallest audited feature that excludes the local cell and feeds checked consumers. The uniform circular-split aggregate route remains refuted for every even `n >= 12`; arbitrary manifest extensions and local row/cap-order lemmas are not substitutes. If `CriticalFiberClosingCore` is used, choose a favorable system late while preserving the complete `R`/`B`/`L` parent. |
 | ATAIL-AGGREGATE-INTERVAL-FLUX | EXACT NORMAL FORM AND 263/263 BANK RECURRENCE; GENERIC EXTRACTION REFUTED FOR EVERY EVEN CARD `>= 12`; FINITE LOWER-CARD TOOL ONLY | `scratch/atail-force/aggregate-positive-contour-discovery/`; production weighted Kalmanson consumer; whole-carrier selected-row surface | Retain the flux normal form as a finite-card decision procedure and diagnostic. Do not target a cardinality-uniform one-signed circulation theorem from the bare four-target, strong-connectivity, pair-alternation, and strict-Kalmanson hypotheses. | `TIGHT_GRAPH_UNIFORM_ATTACK.md` gives a symbolic positive circular-split counterfamily for every even `n >= 12`; the independent card-twelve replay checks 48 tight arcs, degree four on both sides, strong connectivity, pair alternation, and strict Kalmanson slacks. Hence no one-signed nonzero interval-flux circulation exists on that table. The 263/263 stored-core recurrence and card-eight/nine decisions remain exact finite evidence only. Cards ten and eleven may still be decided separately; high-card closure must restore Euclidean/MEC/full-fiber/minimality data. |
 | ATAIL-AGGREGATE-PRODUCT-BOX | KERNEL-CHECKED SUFFICIENT REDUCTION; COMPLETE PRODUCT SURFACES UNSAT WITH VERIFIED DRAT AT CARDS EIGHT AND NINE; CARD TEN SEARCH ACTIVE; GENERIC WIDTH THEOREM REFUTED FROM CARD TWELVE | assignment-comparability and coupled-cycle audits under `aggregate-positive-contour-discovery/`; ATAIL-AGGREGATE-INTERVAL-FLUX | Use exact product-box CEGAR only to decide remaining lower-card surfaces. Do not extrapolate it to a uniform parent producer. | Scratch Lean kernel-checks the balance and crossing-profile reduction. Card eight is exhausted by 256 replayed cuts and verified DRAT; card nine by 2,560 cuts and verified DRAT. The piqd raw-DIMACS outer now replays complete SAT assignments exactly, supports atomic resume, and emits only the inclusion-minimal active cut antichain while preserving the append-only certificate bank. The uniform even-card counterfamily has no one-signed contour, so the generic comparability conclusion is false. Cards ten and eleven remain finite cardinal-specific questions, not a route to `card >= 12`. |
 | ATAIL-AGGREGATE-TIGHT-ROW | OFF-DIAGONAL ONE-EDGE-DEFICIT AND LOW-ROW THEOREMS REFUTED; UNIFORM EVEN-CARD DEGREE-FOUR COUNTERFAMILY EXACT | `TIGHT_GRAPH_UNIFORM_ATTACK.md`; `tight_graph_uniform_counterexample.py`; positive circular-split Gordan dual | Preserve the counterfamily as a regression gate. Any replacement theorem must add full-parent geometric/provenance hypotheses absent from the circular-split abstraction. | For every even `n >= 12`, set split weight `n-8` on size-two splits and one elsewhere. Explicit parity potentials produce exactly four nonloop tight targets per row and target. The symbolic formula proves the family; two independent exact-integer verifiers pass at card twelve. This refutes `|E| <= 4*n-1`, the degree-`<=3` row lemma, and the generic interval-flux/product-box theorem. It is not a Problem 97 counterexample because the split metric need not be realized by the full Euclidean/MEC/critical-fiber parent. |
@@ -473,7 +473,7 @@ marginals.
 | ATAIL-R-SPENT-ENTRY | CHECKED-SCRATCH 2026-07-16; GENERIC COMMON-DELETION PROJECTION AVAILABLE; ORIGIN DATA POTENTIALLY LOAD-BEARING | `FrontierRadiusSpentAtEntry`; `SpentEntryOriginalPairSharedRows.lean`; `biApex_two_by_two_survival_normal_form`; `CoherentContinuationCollapse.lean`; full parent cap/dangerous data | Feed the spent packet into the same provenance-aware common-deletion consumer family while retaining its original pair and shared-row facts. | The spent arm already has the generic common-deletion shape. Its stronger audit also retains two original endpoints omitted by the same two supports and the exact one-inside/one-outside overlap split. The generic packet alone is nonterminal, so this origin data cannot be declared irrelevant until a uniform consumer has actually been proved. Do not build a separate spent-only DAG, but do not erase the spent tag at the parent boundary. |
 | ATAIL-R-COHERENT-COLLAPSE | CHECKED LOGICAL PROJECTION 2026-07-16; NOT THE CLOSURE INTERFACE | `ReciprocalSwapIntegration.lean`; `AnchoredTwoRowCoverConsumer.lean`; `CoherentContinuationCollapse.lean`; common-deletion successor-cycle regression; `r-branch-coverage-audit/REPORT.md` | Record that every non-unique R output has a generic common-deletion projection or swapped `FA-UNIQ4`, without promoting the weakened projection to a direct-`False` target. | Anchored terminal/cycle transitions, reciprocal common deletion, and spent-at-entry all map to `CommonDeletionTwoCenterPacket`; reciprocal criticality maps to swapped `FA-UNIQ4`. This retires provenance-specific work whose sole purpose was to produce a continuation. It does not prove that the generic packet is contradictory: the exact finite successor-cycle regression shows geometry-free termination is false. The coverage audit further shows that `ResolvedCurrentFirstApexFixedRadiusNormalForm` drops reciprocal and spent origin witnesses needed by a branch-complete consumer, so the next boundary must be a stronger origin-tagged source-current coordinator rather than this projection. |
 | ATAIL-R-BRANCH-COVERAGE | CHECKED SOURCE AUDIT 2026-07-16; SECONDARY FALLBACK, NOT PRIMARY CARD ≥14 ROUTE | `scratch/atail-force/r-branch-coverage-audit/REPORT.md`; `matrix.json`; `OriginTaggedCoordinator.lean`; branch-handler reports | Preserve the exact branch inventory and regressions without treating every callback as a current closure obligation. | The origin-tagged coordinator remains a valid source-complete audit of unaligned, two-off-live, F1/F2/F3, generated-successor, mixed, reciprocal, and spent surfaces. However, the physical-second-apex survival-cover reduction now bypasses that tree on the primary card ≥14 route and lands directly in robust `S.oppApex2` or swapped `FA-UNIQ4`. The still-open callback list is therefore fallback infrastructure, not the load-bearing plan. |
-| ATAIL-THIRD-CENTER-SATURATION | FOUNDATIONAL CLASSIFIER / SURVIVAL COVER PRODUCTION 2026-07-16; CARD ≥14 PHYSICAL ALIGNMENT AND UNIFORM CONSUMER CHECKED-SCRATCH; ROBUST HANDLERS OPEN | Production `ATail/ThirdCenterCommonPair.lean` and `ATail/AnchoredDoubleDeletionProducer.lean`; scratch `survival-cover-bank-match/`, `common-deletion-uniform-consumer/`, `robust-second-apex-geometry/`; actual frontier | Use the production total-map classifier and blocker-fiber bound; promote the downstream physical-second-apex reduction only with its coherent dependency closure, then close the large-cap robust alternatives. | Production now contains the third-center impossibility, deletion-failure/support equivalence, exact support locking, blocker-fiber bound `≤ 4`, six-source outside-fiber bound, and survival/alignment normal form; the focused U1 target builds. The checked scratch continuation uses card ≥14 to produce a distinct actual blocker paired with `S.oppApex2`, then yields robust `S.oppApex2` or swapped `FA-UNIQ4`; cap five routes to swapped `FA-UNIQ5`. Only the cap-at-least-six radius alternatives remain. All promoted endpoints use only the three core axioms; no production `sorry` is closed. |
+| ATAIL-THIRD-CENTER-SATURATION | FOUNDATIONAL CLASSIFIER / CARD ≥14 SURVIVAL-COVER PRODUCER PORTED 2026-07-19; ROBUST HANDLERS OPEN | Production `ATail/ThirdCenterCommonPair.lean`, `ATail/AnchoredDoubleDeletionProducer.lean`, and `ATail/SurvivalCover.lean`; scratch `survival-cover-bank-match/`, `common-deletion-uniform-consumer/`, `robust-second-apex-geometry/`; actual frontier | Use the production total-map classifier and blocker-fiber bound; feed the source-faithful card-≥14 physical-second-apex packet into the existing robust/critical consumer, then close the large-cap residuals. Keep the exact-card-four branch separate. | Production now contains the third-center impossibility, deletion-failure/support equivalence, exact support locking, blocker-fiber bound `≤ 4`, and the card-≥14 two-color survival-cover producer. `exists_sourceFaithful_secondApexCommonDeletionPacket_of_card_ge_fourteen` and its physical-consumer wrapper are focused-build clean with only `propext`, `Classical.choice`, and `Quot.sound`; they do not themselves close a sorry. The remaining target is the complete `L`-indexed consumer for `FullyDeletionRobustAt D S.oppApex2` or `PhysicalSecondApexCriticalResidual D S`, with the exact-card-four first-apex arm explicit. |
 | ATAIL-UNIQUE-ROW-PRODUCER | THEOREM TARGETS REMAIN LOAD-BEARING; LITERAL 555/654 QUEUE STOPPED BY SOURCE-MAP GATE | User-owned unique-row/`(6,5,4)` work; checked T1/T5/D refinements; exact-CAS whole-row audits; actual-frontier, third-center, and anchored survival-cover audits | Prove the `FA-UNIQ4`, `FA-UNIQ5` distinct-blocker, and `FA-UNIQ5` coincident-blocker residual configurations directly as `False`, but admit new computation only when it targets a complete source-valid antecedent or formal coverage theorem with an immediate checked consumer. | The protected lane's checked T1/T5/D results show that `ExistsSurplusPairCriticalBlocker`, `CardFiveDistinctCapLocalCrossHypothesis`, and the coincident residual-member packet are already inconsistent on their branch surfaces, so producing them is equivalent to proving the branch contradiction. They remain valid consumers but are not useful intermediate producer objects. Exact-CAS audits kill the standing 555 row assignment by a crosschecked UNIT core and the standing 654 assignment by crosschecked real-infeasible forced-pair membership; those are exact within their fixed algebraic assignments, not Lean proofs or uniform closure. The current source-map audits establish that further literal 555/654 cores neither consume the six-source survival cover, produce the complete five-point packet, nor prove coverage. Preserve completed artifacts, stop the in-flight scans, and launch no successors. The unique-row theorem targets remain required before parent wiring is branch-complete; this is a correction of the mining object, not removal of those dependencies. |
 | ATAIL-EXACT-FIVE-OMISSION-CYCLE | DONE-PRODUCTION GLOBAL MUTUAL/REVERSE SPLIT, CARDINALITY THREE, SOURCE-FAITHFUL PERIOD-THREE NORMAL FORM, AND FULL-PARENT ASSEMBLER; COMPLETE LOCAL FULL-CELL ROUTE EXACTLY REFUTED; AGGREGATE GLOBAL COUPLING OPEN 2026-07-18 | `ATail/ParentExactFiveAssembler.lean`; exact 26-point full-cell audit; equal-blocker Kalmanson audit | Use the total `PhysicalActualCriticalOmissionTransition` as the parent-facing surface. Close the mutual and reverse arms only through one aggregate `L`-indexed theorem that retains the total common critical map and all-center K4/minimality, or through a proved source-valid shared-outside-pair occurrence. | A 26-point exact rational convex/MEC model with cap sizes `(11,10,8)` realizes the physical exact five, all three complete reverse rows, source-faithful unequal/disjoint T0/T1, retained frontier inequality, unused critical row, and both continuation common deletions while avoiding first-apex return. K4 holds only at six named centers; the other twenty have singleton distance spectra. Thus the next mining object is total all-center K4/CSS completion, not another local row adapter. Separately, one generic shared-middle-pair Kalmanson theorem kills all 3,456 cap orders of the banked 14-label equal-blocker row table, but parent occurrence/coverage remains open. |
 | ATAIL-SOURCE-FAITHFUL-FULL-CELL-K4 | ONE EXACT SOURCE-ORIENTED DELETION-CRITICAL EXTENSION CERTIFIED; BOUNDED SECOND-MANIFEST SEARCH NO-HIT/UNKNOWN; MULTI-ROW/TOTAL COMPLETION OPEN 2026-07-18 | exact 26-point full-cell coordinates; `WholeCarrierBiApexKalmansonSurface`; `BlockerRowManifest`; `source-faithful-full-cell-k4-completion/`; `x21-blocker-semantic-audit/`; `source-faithful-full-cell-k4-second-manifest/` | Replace local equality hunting by a full-dimensional exact oracle, or prove a hull/MEC boundary theorem; any successor must preserve the predecessor cell and both exhaustive deletion-critical manifests. | The generic arbitrary-cardinality Lean extraction already exists. An exact rational Krawczyk/interval certificate adds `{uS1,t0s,t1s,o}` at `x21`, with every source deletion leaving maximum radius-class cardinality three; Singular independently verifies the zero-dimensional system. A bounded 76-atom second-manifest pass found no gated candidate, but all 76 outcomes are fail-closed `UNKNOWN_NO_HIT`, not UNSAT. A six-DOF follow-up found 66 equality hits, all rejected by the full-cell/manifests gate; the closest valid-manifest hit violates MEC and strict hull inequalities. This is external discovery evidence, not Lean, coverage, total K4, minimality, or sorry closure. |
@@ -516,76 +516,40 @@ coverage or keep the total all-center literal gate active.
 - The exact-five arbitrary mutual-omission sibling remains an independent
   open consumer obligation.  No source `sorry` closes at this checkpoint.
 
-### Authoritative full-parent blocker escape checkpoint (2026-07-19)
+### Authoritative frontier-pair global checkpoint (2026-07-19)
 
-This checkpoint supersedes action text that treats
-`false_of_largeOppositeCapsBiApexRobust L` as one undifferentiated producer,
-or that resumes abstract literal-row/Kalmanson mining without a new
-source-backed parent field.  It does not change the parent architecture:
-retain the complete `R`/`B`/`L` packet and close before LIVE row enumeration.
-It changes the research acceptance gate.
+The active parent-scoped step is now the retained frontier pair, not the
+superseded equal-blocker gate.  On the complete `L` parent, apply
+`cross_deletion_survives_or_cross_membership F.pair` first.
 
-The full-parent exact-five relation split has two independent mathematical
-closers.
+- Cross membership feeds the signed-area and third-center consumers.  It is a
+  source-valid branch, not an unconditional contradiction.
+- Cross survival produces a source-faithful companion common-deletion packet.
+  The live consumer must retain total `H`, `D.Minimal`, and the complete
+  `R`/`B`/`L` packet, then establish a terminating global survival/progress
+  fact.  Anonymous row or Kalmanson marginal mining is not a substitute.
 
-1. **Arbitrary mutual omission.**  Work from
-   `M : FullParentExactFiveMutualData L profile`.  The checked full-parent
-   normal form splits on the two actual blockers.
-   - In the equal-blocker arm, the parent already supplies an actual
-     `FrontierCommonDeletionCriticalFiber`.  The first target is one of the
-     existing `CriticalFiberClosingCore` terminals: either a source-faithful
-     second same-cap center or the ordered third-row incidence packet.
-   - In the distinct-blocker arm, the parent supplies two source-faithful
-     `CommonDeletionTwoCenterPacket`s for the same deleted physical vertex.
-     The first target is one positive shared outside pair or one compatible
-     cap-order/cross-row incidence consumed by an existing terminal.
-   - The checked crossed-survival and critical-fiber normal forms are not
-     themselves contradictory.  Exact finite regressions realize their
-     displayed fields, so no theorem may close either arm using only those
-     projected fields.
-2. **All reverse.**  Work from
-   `A : FullParentExactFiveAllReverseData L profile continuation`.
-   The all-reverse exact-six slice is closed in production.  Exact seven is a
-   separate user-owned parent-specific lane and must not be duplicated here.
-   From cap cardinality eight upward, prove
-   `FirstApexCoRadialTransitionReversePairOccurrence A` or close the complete
-   `A` packet directly.  The arbitrary mutual-omission sibling remains open
-   even when an all-reverse cardinality slice closes.
+The pushed scratch theorem
+`frontierPair_globalDeletion_split` applies global minimality to the actual
+pair with `14 ≤ D.A.card`.  It yields a center outside `{q,w}`, a minimal
+deletion core `V ⊆ {q,w}`, restoration fields, and the exact split
+`V.card = 1` or `V = {q,w}`.  Neither branch is terminal yet; the singleton
+branch needs a total-map/progress consumer and the full-pair branch needs the
+same global progress coupling.
 
-Before adding another producer lemma or increasing a solver budget, apply a
-full-parent model gate to the exact proposed implication.  The gate must
-retain `D`, `S`, the total `H`, `F0`, `R`, `B`, `L`, the exact-five profile,
-and the relevant mutual/all-reverse packet.  It must include convex order,
-MEC/cap geometry, complete exact-radius filters, all-center K4, every
-all-source `H.no_qfree_at` obligation, `D.Minimal`, `noM44`, both cap-six
-bounds, and the source-faithful deletion/restoration fields.  Selected-four
-incidence, bare Kalmanson distance variables, or a partial blocker manifest
-is only a relaxation and cannot adjudicate the full theorem.
+The 26-point exact rational Euclidean/MEC replay remains a regression: it
+realizes the local rows but fails to provide legal deletion-critical blockers
+for thirteen sources.  Therefore the next model or theorem must include the
+total critical map and all-source deletion semantics.  Any solver result is
+fail-closed: a full-parent witness weakens the target, a checked UNSAT result
+is promoted only for its named branch, and `UNKNOWN` makes no mathematical
+claim.
 
-The gate has three fail-closed outcomes.
-
-- A substitution-checked exact Euclidean/full-parent witness refutes the
-  proposed implication and forces a narrower terminal or a parent-interface
-  correction.  A witness for a relaxation is only a regression.
-- A checked UNSAT certificate may be promoted only for the exact named
-  cardinality/branch slice it decides, followed by a Lean kernel proof or a
-  small verified certificate checker.
-- `UNKNOWN`, timeout, or numerical no-hit makes no mathematical claim.  It
-  authorizes neither a blind budget increase nor another anonymous schema
-  round; profile first and add compute only if the bottleneck is identified.
-
-The first active target is the equal-blocker mutual arm because it already
-lands in the production critical-fiber interface.  If its full-parent gate
-produces a witness, stop that theorem immediately and use the witness to
-weaken the target.  If it produces checked UNSAT, formalize the exact terminal
-implication before moving to the distinct-blocker arm.  Do not edit production
-Lean merely to expose another nonterminal adapter.
-
-The executable fail-closed checkpoint for this first gate is
-`scratch/atail-force/equal-blocker-full-parent-gate/`: its manifest records the
-required parent ledger and its checker rejects decisive SAT/UNSAT statuses
-until every full-parent field is present.  The initial status is `NOT_RUN`;
-the cited equal-blocker scratch reports remain relaxation-only evidence.
+The previous
+`scratch/atail-force/equal-blocker-full-parent-gate/` artifact is retained as
+historical relaxation evidence, but it is no longer the active anchor for
+research.  Do not reopen it unless the frontier-pair route produces a
+source-faithful equal-blocker consumer.
 
 ## Final commands
 

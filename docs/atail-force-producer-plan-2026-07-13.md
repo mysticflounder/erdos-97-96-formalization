@@ -5337,22 +5337,33 @@ Acceptance is fail-closed:
   Increase compute only after profiling identifies a concrete bottleneck and
   the encoding still contains the complete parent ledger.
 
-### Immediate execution order
+### Immediate execution order (revised 2026-07-19)
 
-1. Freeze the equal-blocker mutual implication at the
-   `FrontierCommonDeletionCriticalFiber` boundary and identify the smallest
-   existing `CriticalFiberClosingCore` constructor it can plausibly feed.
-2. Run the full-parent model gate for exactly that implication.
-3. On checked UNSAT, formalize the terminal implication and wire it into the
-   mutual dispatcher.  On a full witness, weaken the implication before any
-   further Lean adapter work.
-4. Repeat for the distinct-blocker two-packet arm.
-5. Reconcile the all-reverse dispatcher with exact six, the user-owned exact
-   seven lane, and the cap-at-least-eight occurrence/direct-`False` contract.
-6. Only after both relation arms are closed, assemble
-   `false_of_largeOppositeCapsBiApexRobust L`, then the parent
-   `false_of_twoLargeCaps_commonCriticalMap`, and remove or trivialize the
-   legacy K-A-PAIR/LIVE-C compatibility tree by reference mining.
+1. On the complete `L` parent, apply
+   `cross_deletion_survives_or_cross_membership F.pair` before any
+   equal-blocker or literal CEGAR split.
+2. Route cross membership through the existing signed-area/third-center
+   consumers.  It is a source-valid branch, not an unconditional `False`.
+3. On cross survival, use the production card-≥14 producer in
+   `ATail/SurvivalCover.lean`:
+   `exists_sourceFaithful_secondApexCommonDeletionPacket_of_card_ge_fourteen`
+   and its wrapper
+   `sourceFaithful_card_ge_fourteen_physicalSecondApex_consumer`.  Preserve
+   the complete `H`, frontier, minimality, and `L` packet; keep the
+   non-exact-card-four hypothesis and the `w ∈ selectedAt(q)` field explicit.
+4. Close the two outputs of
+   `physicalSecondApex_commonDeletion_robust_or_critical`: the robust
+   `FullyDeletionRobustAt D S.oppApex2` arm and the
+   `PhysicalSecondApexCriticalResidual D S` arm.  This is the current
+   load-bearing theorem target; the producer port itself is source-clean but
+   does not close a sorry.
+5. Handle the exact-card-four first-apex arm as a separate parent residual;
+   do not weaken the card-≥14 producer or silently treat card four as covered.
+6. Only after the mutual/cross relation arm has a terminal consumer, reconcile
+   the all-reverse dispatcher with exact six, the user-owned exact seven lane,
+   and the cap-at-least-eight occurrence/direct-`False` contract.  Then
+   assemble `false_of_largeOppositeCapsBiApexRobust L`, followed by the parent
+   direct-False theorem and legacy compatibility wrappers.
 
 No anonymous CEGAR round, additional selected-row wrapper, or larger linear
 quotient counts as progress under this checkpoint.  A new artifact advances
