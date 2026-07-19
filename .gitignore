@@ -132,3 +132,6 @@ scratch/atail-force/exact7-role-coverage-gate/l1b_schemas.json
 scratch/atail-force/exact7-role-coverage-gate/l1b_shard*.log
 scratch/atail-force/exact7-role-coverage-gate/l1b_ledger_shard*.jsonl
 scratch/atail-force/exact7-role-coverage-gate/l1c_sample.log
+scratch/atail-force/exact7-role-coverage-gate/l1f_phase*_schemas.json
+scratch/atail-force/exact7-role-coverage-gate/l1f_phase*_shard*.log
+scratch/atail-force/exact7-role-coverage-gate/l1f_phase*_ledger_shard*.jsonl
