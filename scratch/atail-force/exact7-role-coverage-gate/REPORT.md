@@ -735,6 +735,38 @@ Honest scope: these are the bag-placement selection rules for the
 conditional branch kills; they are census facts, not yet Lean.  The
 DoubleApex spine sorry is unchanged.
 
+## Finding 15c: |M|=2 joint co-radiality — no base closes (2026-07-19)
+
+REPORT item 10(c).  The forced unused critical row (DESIGN-L2) is a full
+4-class: `u` plus THREE named members all co-radial from the placed
+center `uc ≠ O`.  A base is CLOSED iff no placement `(u, uc)` admits such
+a row.  Reframing as a compatibility graph per `(base, u, uc)`: nodes =
+the `|M|=1`-SAT members (individually co-radial with `u`; 5–15 per group,
+median 12, so none are row-dead on single teeth), edges = the `|M|=2`-SAT
+pairs (jointly co-radial with `u`).  A 4-class row needs three
+pairwise-co-radial members — a **triangle** — so a triangle-free `(u,uc)`
+is row-dead and a base with every group triangle-free is closed
+(`build_l2u_m2_probe.py`, `analyze_l2u_m2.py`; smoke 5/5 + 8/8).
+
+Census over the 12 stratified sample bases (all pairs among the
+`|M|=1`-SAT members): **31,335 pairs, 9,941 kills (31.7%)**.  Result:
+**16 of 510 groups are row-dead (triangle-free), but 0 bases close** —
+every sample base retains 21–64 surviving groups (median-12 nodes at
+~68% edge density is well above the triangle-free threshold; total
+44,623 surviving triangles).  The `|M|=3` smoke (`smoke_l2u_m3.py`)
+confirms the obstruction saturates: 10/10 tested triangles are jointly
+4-co-radial SAT, so 4 co-radial boundary points are geometrically
+admissible in these configs.
+
+Conclusion: raw co-radiality (`|M|=1,2,3`) kills branches but does not
+close bases — every schema hosts abundant valid row placements.  The
+`|M|=3` census (44,623 triangles) is running to complete the map and
+pre-filter the real 4-co-radial candidates, but closure — if reachable
+by this dimension — must come from the full row's EXCLUSION (exactly 4
+co-radial, all others off-radius) and `no_qfree` blocker, not more
+co-radiality layers.  Branch-kill instruments only; the DoubleApex spine
+sorry is unchanged.
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
@@ -788,8 +820,12 @@ DoubleApex spine sorry is unchanged.
     DONE (Finding 14a: six laws on ported split/after/enclosed
     terminals; two need the new centers-before arrangement + mutual
     transport, both ported kernel-clean in
-    `TwoCenterBisectorParity.lean`); (c) |M| = 2 decorations of
-    surviving branches; (d) ~~e1/e2/p0/p1 non-universal probe
+    `TwoCenterBisectorParity.lean`); (c) ~~|M| = 2 decorations of
+    surviving branches~~ DONE (Finding 15c: |M|=2 joint co-radiality,
+    31.7% pair-kill, 16/510 groups row-dead but 0 bases close; |M|=3
+    census running to complete the co-radiality map — closure needs the
+    full row's exclusion + no_qfree, not more co-radiality); (d)
+    ~~e1/e2/p0/p1 non-universal probe
     patterns~~ DONE (Finding 15: 73/126 universal on availability
     classes; follow-ups — ~~Lean shape of the round-3 laws~~ DONE
     (Finding 15a: 48 direct + 7 two-branch on the four ported

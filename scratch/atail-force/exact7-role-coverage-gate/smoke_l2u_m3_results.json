@@ -1,0 +1,253 @@
+{
+ "N1": [
+  {
+   "key": [
+    "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+    "EA",
+    "W"
+   ],
+   "tri": [
+    "O",
+    "p2b",
+    "s1"
+   ],
+   "killed_pair": [
+    "p2b",
+    "s1"
+   ],
+   "verdict": "unsat",
+   "pass": true
+  },
+  {
+   "key": [
+    "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+    "EA",
+    "s0"
+   ],
+   "tri": [
+    "O",
+    "e1",
+    "p2a"
+   ],
+   "killed_pair": [
+    "e1",
+    "p2a"
+   ],
+   "verdict": "unsat",
+   "pass": true
+  },
+  {
+   "key": [
+    "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+    "EA",
+    "b0"
+   ],
+   "tri": [
+    "O",
+    "p2b",
+    "s2"
+   ],
+   "killed_pair": [
+    "p2b",
+    "s2"
+   ],
+   "verdict": "unsat",
+   "pass": true
+  },
+  {
+   "key": [
+    "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+    "EA",
+    "e2"
+   ],
+   "tri": [
+    "O",
+    "e1",
+    "s0"
+   ],
+   "killed_pair": [
+    "e1",
+    "s0"
+   ],
+   "verdict": "unsat",
+   "pass": true
+  },
+  {
+   "key": [
+    "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+    "EA",
+    "p1a"
+   ],
+   "tri": [
+    "O",
+    "p2b",
+    "s2"
+   ],
+   "killed_pair": [
+    "p2b",
+    "s2"
+   ],
+   "verdict": "unsat",
+   "pass": true
+  }
+ ],
+ "N2": [
+  {
+   "key": [
+    "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+    "EA",
+    "W"
+   ],
+   "tri": [
+    "O",
+    "b0",
+    "b1"
+   ],
+   "verdict": "sat",
+   "subs_sat": true,
+   "pass": true
+  },
+  {
+   "key": [
+    "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+    "EA",
+    "W"
+   ],
+   "tri": [
+    "O",
+    "b0",
+    "e1"
+   ],
+   "verdict": "sat",
+   "subs_sat": true,
+   "pass": true
+  },
+  {
+   "key": [
+    "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+    "EA",
+    "W"
+   ],
+   "tri": [
+    "O",
+    "b0",
+    "e2"
+   ],
+   "verdict": "sat",
+   "subs_sat": true,
+   "pass": true
+  },
+  {
+   "key": [
+    "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+    "EA",
+    "W"
+   ],
+   "tri": [
+    "O",
+    "b0",
+    "p0a"
+   ],
+   "verdict": "sat",
+   "subs_sat": true,
+   "pass": true
+  },
+  {
+   "key": [
+    "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+    "EA",
+    "W"
+   ],
+   "tri": [
+    "O",
+    "b0",
+    "p0b"
+   ],
+   "verdict": "sat",
+   "subs_sat": true,
+   "pass": true
+  },
+  {
+   "key": [
+    "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+    "EA",
+    "W"
+   ],
+   "tri": [
+    "O",
+    "b0",
+    "p1a"
+   ],
+   "verdict": "sat",
+   "subs_sat": true,
+   "pass": true
+  },
+  {
+   "key": [
+    "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+    "EA",
+    "W"
+   ],
+   "tri": [
+    "O",
+    "b0",
+    "p1b"
+   ],
+   "verdict": "sat",
+   "subs_sat": true,
+   "pass": true
+  },
+  {
+   "key": [
+    "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+    "EA",
+    "W"
+   ],
+   "tri": [
+    "O",
+    "b0",
+    "p2a"
+   ],
+   "verdict": "sat",
+   "subs_sat": true,
+   "pass": true
+  },
+  {
+   "key": [
+    "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+    "EA",
+    "W"
+   ],
+   "tri": [
+    "O",
+    "b0",
+    "p2b"
+   ],
+   "verdict": "sat",
+   "subs_sat": true,
+   "pass": true
+  },
+  {
+   "key": [
+    "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+    "EA",
+    "W"
+   ],
+   "tri": [
+    "O",
+    "b0",
+    "s0"
+   ],
+   "verdict": "sat",
+   "subs_sat": true,
+   "pass": true
+  }
+ ],
+ "summary": {
+  "N1_pass": true,
+  "N1_count": 5,
+  "N2_pass": true,
+  "N2_sat_triples": 10,
+  "overall": true
+ }
+}
