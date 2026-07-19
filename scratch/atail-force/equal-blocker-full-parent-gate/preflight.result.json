@@ -1,0 +1,18 @@
+{
+  "schema": "p97-atail-equal-blocker-full-parent-preflight-v1",
+  "status": "RELAXATION_ONLY",
+  "source": "scratch/atail-force/full-parent-t0t1-exact-model/exact-source-faithful-full-cell.json",
+  "source_verification": "EXACT_RATIONAL_REPLAY_PASS",
+  "point_count": 26,
+  "coordinate_digest": "ed4d4520d0b0a00e775ba05fe71cfacc1f2ccf2c4fc1dab65ec42d7294e59d8a",
+  "cap_sizes": [11, 10, 8],
+  "missing_parent_fields": [
+    "all_center_K4",
+    "all_source_no_qfree_at",
+    "global_noM44",
+    "minimality",
+    "total_critical_system_H",
+    "planar_rank_two_parent_realization"
+  ],
+  "decision": "The exact rational 26-point local cell does not decide the equal-blocker full-parent implication. It remains a regression against local-row or partial-projection closers."
+}

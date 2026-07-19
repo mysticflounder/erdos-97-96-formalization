@@ -50,6 +50,11 @@
       "path": "scratch/atail-force/global-mutual-third-source-producer/REPORT.md",
       "classification": "RELAXATION_ONLY",
       "note": "The requested third row is not forced by the current finite projection."
+    },
+    {
+      "path": "scratch/atail-force/equal-blocker-full-parent-gate/preflight.result.json",
+      "classification": "RELAXATION_ONLY",
+      "note": "Exact rational replay passes for a 26-point local cell, but the total K4/critical-map/minimality/noM44 parent fields are absent."
     }
   ],
   "witness": null,
