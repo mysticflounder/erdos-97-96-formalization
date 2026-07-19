@@ -1,0 +1,24 @@
+{
+ "N1_quad_fires_unsat": {
+  "verdict": "unsat",
+  "core": [
+   "nok4|c|a,b,d,f",
+   "row_eq|w4|b",
+   "row_eq|w4|d",
+   "row_eq|w4|f"
+  ],
+  "pass": true
+ },
+ "N2_three_coradial_sat": {
+  "verdict": "sat",
+  "pass": true
+ },
+ "N3_avoid_exempt_sat": {
+  "verdict": "sat",
+  "pass": true
+ },
+ "N4_retro_regression_sat": {
+  "verdict": "sat",
+  "pass": true
+ }
+}

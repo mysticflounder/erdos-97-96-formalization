@@ -423,6 +423,30 @@ refinement branch.  Remaining residual consumers: Round 166 geometry
 (rank+winding / cross-row occurrence) and the unused-critical-row
 dimension.
 
+## Finding 12: the no_qfree families at named centers are inert (2026-07-19)
+
+The retro schemas commit (Round 188 aligned normal form, uniform across
+all 1752: `jq` check) to the reverse rows being the critical shells
+`H.selectedAt s_i` with named centers `(b0←s0, b1←s1, s1←s2)`.  The
+shell-system field `no_qfree` (U1CarrierInjection.lean:1022-1024) then
+gives a PROVEN family the retro layer never encoded: no four carrier
+points avoiding the source are co-radial at its blocker center at ANY
+radius.  New encoder family `no_k4` (label `nok4|center|quad`; smoke
+`smoke_l2n.py` 4/4 PASS incl. old-behavior regression), builder
+`build_l2n.py`, three specs per schema (~3,000 extra Or-of-disequality
+assertions).
+
+Result: **876/876 SAT** (`l2n_ledger.jsonl.gz`) — zero kills.
+Consistent with Law C (Finding 10): `no_k4` is a pure-disequality
+family, and disequalities have been toothless throughout this gate.
+Sharp consequence for the unused-critical-row dimension: its
+disequality content (row exactness excludes, `no_qfree` at the row
+center) is predicted inert; the only candidate teeth are the row
+EQUALITIES `d(uc,u) = d(uc,m)` with u, m named and the center uc
+placed (named identification or bag membership — a floating uc is
+provably toothless: its distance variables occur only in row/exclusion
+constraints and always extend by a large-M assignment).
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
@@ -440,6 +464,9 @@ dimension.
 7. Residual: 876 censal classes × (alive id types + non-coupling row
    landings) — closed only by Round 166 geometry (rank+winding /
    cross-row occurrence) or the unused-critical-row L2 dimension
-   (W-centered one-hit retired by Finding 11).  The 324 no-O-row
-   survivors take no L1-row damage at all and are the hard core of
-   the residual.
+   (W-centered one-hit retired by Finding 11; no_qfree layer inert by
+   Finding 12).  The 324 no-O-row survivors take no L1-row damage at
+   all and are the hard core of the residual.
+8. L2u probe per DESIGN-L2.md: bare single equalities `d(uc,u) =
+   d(uc,m)` over placed centers on a stratified survivor sample; factor
+   and scale only what kills.

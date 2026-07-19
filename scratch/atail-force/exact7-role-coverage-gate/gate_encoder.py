@@ -41,10 +41,17 @@ Schema fields:
                     radius class over the whole carrier is the listed one
                     (unique_K4_radius): every 4-subset of named points not
                     inside ``members`` has some radius disequality;
+- ``no_k4``         [{"center", "avoid"}] — no four carrier points outside
+                    ``avoid`` are co-radial at the center at ANY radius
+                    (``CriticalShellSystem.no_qfree_at``: deleting the
+                    row's source blocks K4 at its blocker center): every
+                    4-subset of named points disjoint from ``avoid`` has
+                    some radius disequality;
 - ``no_kalmanson`` / ``no_triangle`` / ``no_lower``  opt-outs (relaxation).
 
 Tracked label families: ``pos`` (structural order), ``lower``, ``tri``,
-``cls_eq``, ``cls_ne``, ``row_eq``, ``rad_ne``, ``radrel``, ``k4``, ``kal``.
+``cls_eq``, ``cls_ne``, ``row_eq``, ``rad_ne``, ``radrel``, ``k4``,
+``nok4``, ``kal``.
 """
 
 from __future__ import annotations
@@ -81,6 +88,7 @@ class GateEncoder:
         self._add_rad_ne()
         self._add_k4()
         self._add_unique_class()
+        self._add_no_k4()
         if not schema.get("no_kalmanson", False):
             self._add_kalmanson()
 
@@ -221,6 +229,19 @@ class GateEncoder:
                 base = self.dist(center, quad[0])
                 self.track(
                     f"uniq4|{center}|{','.join(quad)}",
+                    z3.Or(*[self.dist(center, p) != base for p in quad[1:]]),
+                )
+
+    def _add_no_k4(self) -> None:
+        for spec in self.schema.get("no_k4", []):
+            center = spec["center"]
+            avoid = set(spec["avoid"])
+            assert center not in avoid
+            candidates = [p for p in self.points if p != center and p not in avoid]
+            for quad in combinations(candidates, 4):
+                base = self.dist(center, quad[0])
+                self.track(
+                    f"nok4|{center}|{','.join(quad)}",
                     z3.Or(*[self.dist(center, p) != base for p in quad[1:]]),
                 )
 
