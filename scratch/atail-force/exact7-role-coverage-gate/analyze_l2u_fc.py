@@ -33,11 +33,18 @@ def parse_m3(sid: str):
 
 def load_fc():
     v = {}
+    fam_use = defaultdict(int)   # core family -> count of UNSAT rows using it
+    rad_ne_cores = 0            # UNSAT cores that actually use exclusion
     for f in glob.glob("l2u_fc_ledger_shard*.jsonl"):
         for line in open(f):
             r = json.loads(line)
             v[r["schema_id"]] = r["verdict"]
-    return v
+            if r["verdict"] == "unsat":
+                for fam in (r.get("families") or {}):
+                    fam_use[fam] += 1
+                if "rad_ne" in (r.get("families") or {}):
+                    rad_ne_cores += 1
+    return v, dict(fam_use), rad_ne_cores
 
 
 def load_m3():
@@ -50,7 +57,7 @@ def load_m3():
 
 
 def main() -> None:
-    fc = load_fc()
+    fc, fam_use, rad_ne_cores = load_fc()
     m3 = load_m3()
 
     groups = defaultdict(list)          # (base,u,uc) -> [verdicts]
@@ -88,6 +95,8 @@ def main() -> None:
         "bases": len(base_groups),
         "closed_bases": len(closed),
         "closed_base_ids": closed[:20],
+        "unsat_core_families": fam_use,
+        "unsat_cores_using_exclusion_rad_ne": rad_ne_cores,
         "dead_group_sample": [f"{b}|{u}|{uc}" for (b, u, uc) in
                               list(dead_groups)[:30]],
     }
@@ -97,7 +106,9 @@ def main() -> None:
                        "exclusion_flips_m3sat_to_fcunsat",
                        "soundness_violations_m3unsat_revived",
                        "total_groups", "dead_groups", "bases",
-                       "closed_bases"]}, indent=1))
+                       "closed_bases",
+                       "unsat_cores_using_exclusion_rad_ne"]}, indent=1))
+    print("unsat core families:", json.dumps(fam_use))
 
 
 if __name__ == "__main__":
