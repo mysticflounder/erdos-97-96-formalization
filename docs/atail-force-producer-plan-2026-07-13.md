@@ -859,6 +859,14 @@ axioms.  Do not extend the outer solver for this all-reverse slice.  The next
 targets are the exact-six arbitrary mutual-omission sibling and then a genuine
 cap-cardinality-at-least-seven aggregate theorem.
 
+The same module now also exposes
+`false_of_fullParentExactFive_of_card_eq_fourteen_and_mutualConsumer`: on the
+card-14 parent slice, the cap-sum identity plus the two opposite-cap lower
+bounds forces `S.oppCap2.card = 6`, so the exact-six all-reverse terminal is
+available without an extra cardinality assumption.  This is a parent-slice
+consumer only; it does not wire the protected LIVE-C leaves or claim whole-
+spine closure.
+
 The producer contract is now cardinality-correct at the full parent boundary.
 Kernel-checked scratch
 `full-parent-coradial-card-split/FullParentCoRadialCardSplit.lean` proves that

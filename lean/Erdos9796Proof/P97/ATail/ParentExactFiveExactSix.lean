@@ -282,6 +282,31 @@ theorem false_of_fullParentExactFive_of_secondCap_card_eq_six_and_mutualConsumer
   · exact false_of_fullParentExactFiveAllReverseData_of_secondCap_card_eq_six
       hallReverse.some hcap
 
+/- The cap-sum identity makes the exact-six terminal unconditional on the
+card-14 slice: two opposite caps already contribute six points each and the
+surplus cap contributes at least five, so equality in the carrier lower bound
+forces the second opposite cap to have exactly six points. -/
+
+theorem false_of_fullParentExactFive_of_card_eq_fourteen_and_mutualConsumer
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {firstRadius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F₀ : ATailCriticalPairFrontier.CriticalPairFrontier D S firstRadius H}
+    {R : FrontierCommonDeletionParentResidual F₀}
+    {B : FrontierBiApexRobustResidual R}
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (profile : ATailLargeCapUniqueFive.LargeCapUniqueFiveSecondApexRadius D S)
+    (hcard : D.A.card = 14)
+    (mutualFalse : FullParentExactFiveMutualData L profile → False) : False := by
+  have hsum := S.capSum
+  have hsurplus := S.surplus_card_gt_four
+  have hfirst := L.firstOppCap_card_ge_six
+  have hsecond := L.secondOppCap_card_ge_six
+  rw [hcard] at hsum
+  have hcap : S.oppCap2.card = 6 := by
+    omega
+  exact false_of_fullParentExactFive_of_secondCap_card_eq_six_and_mutualConsumer
+    L profile hcap mutualFalse
+
 end
 
 end ATailParentExactFiveExactSix
