@@ -1,0 +1,24 @@
+{
+ "N1_citation_s1": {
+  "verdict": "unsat",
+  "core": [
+   "cls_eq|b0|s1",
+   "cls_ne|b0|EA",
+   "row_eq|unu|s1"
+  ],
+  "pass": true
+ },
+ "N2_citation_p0b": {
+  "verdict": "unsat",
+  "core": [
+   "cls_eq|b0|p0b",
+   "cls_ne|b0|EA",
+   "row_eq|unu|p0b"
+  ],
+  "pass": true
+ },
+ "N3_fresh_center_sat": {
+  "verdict": "sat",
+  "pass": true
+ }
+}
