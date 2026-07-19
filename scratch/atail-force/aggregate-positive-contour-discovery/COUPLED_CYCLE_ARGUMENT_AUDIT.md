@@ -321,18 +321,226 @@ valid deletion step needs a repair operation that restores a fourth target in
 every damaged row while preserving cyclic order and pair alternation; simply
 weakening the induction hypothesis to three choices cannot work.
 
+## Attempt F: planarity or a linear extremal bound for the dual tight graph
+
+### Candidate argument
+
+Under a Gordan separator, let `H` be the bipartite graph of additive-tight
+incidences
+
+```text
+D_w(c,x) = alpha_c + beta_x.
+```
+
+If `H` were planar, its `2n` bipartite vertices would give
+`|E(H)| <= 4n-4`.  A degree-four selected table has `4n` edges, yielding an
+immediate contradiction.  Small exact maximization suggested the even
+stronger bound `|E(H)| <= 4n-6`.
+
+### Planarity is false
+
+On `Fin 7`, take the 22-edge tight graph
+
+```text
+0 : {1,6}
+1 : {0,3,5,6}
+2 : {4,6}
+3 : {1,4,5}
+4 : {2,3,5}
+5 : {1,3,4,6}
+6 : {0,1,2,5}.
+```
+
+In standard interval order, the strictly positive split weights are
+
+```text
+w = (1,1,1,4, 1,2,1,1, 1,3,1, 1,1,1),
+```
+
+and one may take
+
+```text
+alpha = beta = (0,7,10,4,0,5,4).
+```
+
+Integer replay verifies every displayed tight equation.  The graph contains
+a subdivision of `K_3,3` with branch sides
+
+```text
+{L5,L1,L4},        {L6,R3,R5}.
+```
+
+The nine branch paths are
+
+```text
+L5-R1-L6,          L5-R3,             L5-R4-L3-R5,
+L1-R0-L6,          L1-R3,             L1-R5,
+L4-R2-L6,          L4-R3,             L4-R5.
+```
+
+Their internal vertices are pairwise disjoint, so Kuratowski's theorem gives
+nonplanarity.  Thus the proposed planar embedding is exactly false.
+
+### The `4n-6` bound is also false
+
+The same graph has
+
+```text
+|E(H)| = 22 = 4*7-6.
+```
+
+Exact Z3 optimization gives maximum tight-edge counts `14,18,22` at
+`n=5,6,7`, respectively, suggesting `4n-6` only on that finite range.  At
+`n=8`, HiGHS discovered the following 28-edge graph, and a separate exact Z3
+reconstruction replayed it with positive rational split weights:
+
+```text
+0 : {2,4,6}
+1 : {2,5,7}
+2 : {0,3,4,7}
+3 : {1,2,4,5}
+4 : {0,2,3,6}
+5 : {1,4,6,7}
+6 : {0,4}
+7 : {0,1,5,6}.
+```
+
+In standard interval order, take
+
+```text
+w = (3,1,1,1,3, 5,2,1,1,1, 2,1,1,2, 1,1,1, 3,1, 5),
+alpha = (0,-9,-1,-10,-1,-10,-1,-10),
+beta  = (20,29,19,10,19,28,19,28).
+```
+
+Every displayed incidence satisfies `D_w(c,x)=alpha_c+beta_x`, and
+
+```text
+|E(H)| = 28 = 4*8-4 > 4*8-6.
+```
+
+Thus the proposed `4n-6` bound is exactly false.
+
+### Upper/lower forest decomposition is false
+
+Another attempted derivation of `4n-6` splits tight arcs into the halves
+`c<x` and `c>x` and claims each half is a forest.  The upper half already has
+an exact six-cycle at `n=6`:
+
+```text
+0 : {4,5},       1 : {3,5},       2 : {3,4}.
+```
+
+All six arcs have `c<x`.  Standard interval weights
+
+```text
+w = (1,4,1,1,1,1,1,1,1),
+alpha = (0,6,3,0,0,0),
+beta  = (0,0,0,0,6,3)
+```
+
+replay every tight equation.  Hence neither triangular half is generally a
+forest.
+
+### The `4n-4` bound is false as well
+
+The sharper live candidate is therefore:
+
+At `n=10`, a floating MILP discovery followed by independent exact rational
+reconstruction gives 39 tight incidences.  Its rows are
+
+```text
+0:{2,5,7,8}       1:{0,3,5,9}       2:{0,4,6,8}
+3:{1,2,4,5}       4:{2,6,7,9}       5:{1,3,4,6}
+6:{2,4,8}         7:{1,5,6,8,9}     8:{0,2,3,6}
+9:{0,1,8}.
+```
+
+The standard-order positive split weights and potentials are
+
+```text
+w = (1,5,1,1,5,5,14,10,
+     1,1,1,1,1,10,14,
+     9,1,1,1,5,2,5,
+     1,1,1,6,1,1,
+     1,10,1,1,
+     6,1,
+     6),
+alpha = (0,-18,7,-25,0,-25,0,-25,0,-25),
+beta  = (50,82,57,75,50,75,50,63,50,75).
+```
+
+Exact integer replay verifies all 39 equations.  Hence
+
+```text
+|E(H)| = 39 = 4*10-1 > 4*10-4.
+```
+
+The row degrees are
+
+```text
+(4,4,4,4,4,4,3,5,4,3).
+```
+
+This is a feasible 39-edge model, not a proof that 39 is the card-ten
+maximum.
+
+### Surviving load-bearing statements
+
+Either of the following would still exclude four tight choices in every row:
+
+> **One-edge-deficit bound.**  Every additive tight graph of a strictly
+> positive circular-split metric has at most `4n-1` nonloop incidences.
+
+> **Minimum-row theorem.**  Every such graph has some row with at most three
+> nonloop tight incidences.
+
+At this stage of the audit, the minimum-row theorem was the exact statement
+needed by the Gordan route.
+Unlike a total-edge estimate, it remains meaningful if a few other rows have
+large degree.  The 39-edge model is near-extremal evidence for both statements
+and shows that any universal deficit can be at most one at `n=10`.
+
+Any attempted proof would have needed to tolerate nonplanarity and avoid the
+false half-forest split.  Attempt G below shows that no such proof exists from
+the bare aggregate hypotheses.
+
+The nonplanar `n=7` graph, upper-half `n=6` cycle, 28-edge `n=8` graph, and
+39-edge `n=10` graph remain mandatory regressions.  Attempt G refutes both the
+one-edge-deficit bound and the minimum-row theorem.
+
+## Attempt G: uniform positive-split separator
+
+The remaining aggregate targets are refuted by an explicit family.  For every
+even `n >= 12`, give weight `n-8` to every size-two circular split and weight
+one to every other proper circular split.  With the parity potentials in
+[`TIGHT_GRAPH_UNIFORM_ATTACK.md`](TIGHT_GRAPH_UNIFORM_ATTACK.md), the complete
+additive-tight graph has exactly four nonloop targets at every source and four
+uses of every target.  It is strongly connected and pair-alternating, but the
+positive split weights annihilate every balanced circulation and therefore
+exclude a one-signed strict interval-flux vector.
+
+The canonical card-twelve certificate has 48 tight arcs and passes two
+independent exact-integer replays.  Thus the completed-row favorable-cycle,
+generic assignment-comparability, one-edge-deficit, low-row, and general
+coupled-circulation targets are all false on the bare aggregate surface.
+
 ## Conclusion
 
 1. Local or lexicographic **simple-cycle extraction from the displayed
    minimized core is refuted** by schema 4; the stronger completed-row-table
-   favorable-cycle theorem remains open.
+   theorem is refuted by the uniform even-card family.
 2. Graph cycle rank does not force an oriented-matroid positive circuit; an
    alternating tight four-cycle gives the exact first counterexample.
 3. Gordan-dual single-crossing proves only pair alternation, and arbitrary
    positive split metrics defeat radial-potential descent.
-4. Assignment comparability remains a coherent stronger route, with one
-   sharply stated product-box width theorem still open.
+4. Generic assignment comparability and the product-box width theorem are
+   refuted from card twelve; the finite lower-card decisions remain useful.
 5. Naive deletion to a degree-three induction hypothesis is exactly refuted;
    any induction must use a structure-preserving fourth-target repair.
+6. Ordinary planarity, upper/lower forest decomposition, every proposed edge
+   deficit through `|E| <= 4n-1`, and the minimum-row theorem are exactly
+   refuted.
 
-No generic one-signed flux lemma has been proved by these attempts.
+The generic one-signed flux lemma is false.  Any high-card parent theorem must
+restore Euclidean/MEC, full critical-fiber provenance, or global minimality.

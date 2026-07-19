@@ -1034,14 +1034,16 @@ The translation invariant still proves one useful boundary: adding a common
 constant preserves every Kalmanson and row/shell equation, makes a
 nonnegative table strictly positive, and can make every triangle strict.
 Thus positivity and triangle inequalities add no force to this linear shadow.
-They do not, however, refute a cardinality-generic positive dual while no
-abstract SAT witness exists.
+They did not by themselves refute a cardinality-generic positive dual.  The
+later explicit even-card circular-split family does refute that bare dual;
+positivity and triangles remain non-load-bearing in the linear shadow.
 
 The separate direct exact-Z3 all-row encoding is externally UNSAT through card
 ten, both with and without selected-witness strong connectivity at cards eight
 through ten.  Its strong-connectivity runs at cards eleven through fourteen
 time out after 600 seconds.  Those `UNKNOWN` records and the uncertified finite
-UNSAT prefix neither prove nor refute the uniform aggregate theorem.
+UNSAT prefix did not decide the uniform theorem.  The symbolic counterfamily
+now refutes it independently of those bounded runs.
 
 The optimized piqd checkpoint makes the finite-route decision explicit.  The
 linear transporter was missing cyclic reindexing; after closing the bank under
@@ -1068,13 +1070,21 @@ exactly when the selected-incidence weights form a nonzero balanced
 circulation whose flux through every proper circular interval has one common
 sign and is nonzero on at least one interval.  After passing to a sink
 selected-witness SCC and disposing of a
-nonalternating shared target pair with one local cell, the exact mathematical
-target is:
+nonalternating shared target pair with one local cell, this suggested the
+mathematical target:
 
 > Every strongly connected, pair-alternating four-target row system admits a
 > nonzero balanced incidence circulation whose proper circular-interval
 > fluxes are all nonpositive after one global sign choice, with at least one
 > strict flux.
+
+This cardinality-uniform theorem is now exactly refuted.  The explicit family
+in `aggregate-positive-contour-discovery/TIGHT_GRAPH_UNIFORM_ATTACK.md` gives,
+for every even `n >= 12`, a positive circular-split Gordan separator with four
+tight targets per source, four uses per target, strong connectivity, and pair
+alternation.  The card-twelve member passes two independent exact-integer
+verifiers.  Keep the interval-flux language only as a finite lower-card
+decision tool and regression normal form.
 
 The generic consumer permits coupled cycles.  A deletion-minimal two-cell core has
 two simple alternating cycles whose interval fluxes are individually mixed,
@@ -1084,15 +1094,15 @@ minimum-crossing, or otherwise extremal **single-cycle** extraction from the
 minimal core alone is false.  Those cores omit unused targets and centers, so
 they do not rule out a full-row theorem producing a different favorable
 simple cycle from the complete four-target table.  Coupled-cycle extraction
-remains the proven-safe general target while that sharper possibility is
-audited.
+remains valid for the stored cores, but the uniform even-card separator proves
+it cannot be promoted to the bare general theorem.
 
 The exact Gordan dual of failure is again a strict circular-split Kalmanson
 table with four equal selected targets per row; dimension or separation alone
 does not prove the theorem.
 
-The strongest currently coherent sufficient target is the **circular
-product-box comparability theorem**.  Choose one selected target at every
+The **circular product-box comparability theorem** was a sufficient target.
+Choose one selected target at every
 center.  Equal target multiplicities make the difference of two assignments a
 balanced circulation, and its interval flux is exactly the difference of
 their outward circular-cut crossing profiles.  Pigeonhole forces a
@@ -1101,8 +1111,9 @@ fiber of every complete strongly connected, pair-alternating four-choice row
 table is not an antichain.  Schema 4 needs two oppositely coupled swaps and
 `W(3,3)` has a direct comparable four-row pair; partial core 79 has no
 comparable pair among 48 assignments, so the full-box hypothesis is
-load-bearing.  If this stronger theorem fails, return to the general coupled
-circulation lemma rather than another literal schema bank.  In the stored
+load-bearing.  The uniform even-card separator proves that both this stronger
+theorem and the general coupled-circulation conclusion fail from card twelve.
+In the stored
 263-core census, exact assignment-flow decomposition uses one circuit in 229
 cases (221 simple) and two circuits in 34; 32 of the two-circuit decompositions
 couple individually mixed components.  Treat this as theorem-discovery shape,
@@ -1125,11 +1136,30 @@ table is strongly connected and pair-alternating yet has an exact positive
 split-metric Gordan separator, so it admits no one-signed circulation.  Any
 induction must preserve or repair the fourth target explicitly.
 
+The exact full-product decision also closes card nine externally: ten outer
+tables yield 2,560 replayed cuts, followed by a verified DRAT proof for the
+72-variable/4,582-clause residual CNF.  The 7.7 MB generated card-nine bundle
+is intentionally left out of the repository but is reproducible from the
+scratch report.  Card ten is the current frontier: a 300-second run reaches
+42 tables and 10,752 cuts before `UNKNOWN`; the partial-bank CNF remains SAT,
+which is neither coverage nor a counterexample.
+
+The Gordan dual also refutes the proposed proof-first extremal targets.  For
+every even `n >= 12`, explicit positive circular-split weights and parity
+potentials produce exactly `4*n` off-diagonal tight arcs, with degree four in
+every left and right row.  This refutes both `|E| <= 4*n-1` and the proposed
+degree-at-most-three row.  The card-twelve instance is strongly connected and
+pair-alternating, has no tight diagonal, and has exact strict Kalmanson slack
+minima two.  Planarity, half-forest, stronger total-edge, and
+diagonal-inclusive shortcuts have separate exact counterexamples as well.
+Preserve the algebraic normal form `S(c,x)=gamma_c-gamma_x` only as a
+diagnostic; it cannot close the high-card parent without
+Euclidean/MEC/full-fiber/minimality input.
+
 The weaker favorable-simple-cycle completion audit is externally UNSAT on the
 entire unpinned card-nine surface after 8,000 cuts.  Card ten remains open
 after a manually stopped 73,500-cut run.  Do not treat this bounded cycle
-census as a replacement for the generic product-box or coupled-circulation
-proof.
+census as a replacement for a parent-specific geometric proof.
 
 The current recurrence evidence is nevertheless complete for the stored
 bank.  Independent integer replay accepts positive contours for all 263
@@ -1146,12 +1176,11 @@ eight through ten, including no-connectivity runs at each size.  Six connected
 and six no-connectivity card-ten seeds finish in 227--320 seconds; eight
 card-eleven reachability seeds, eight cut-encoding seeds, and six
 no-connectivity seeds all time out at 600 seconds and remain `UNKNOWN`.
-An exact replayed SAT table would refute the bare aggregate theorem and return
-priority to the parent-specific all-center/CSS/MEC coupling.  An external
-UNSAT result without a checked certificate is finite evidence only.  Do not
-restart literal membership-schema CEGAR: the next proof step is the uniform
-interval-flux lemma (with either a full-row favorable cycle or a coupled
-circulation), and the fallback is genuinely stronger parent geometry.
+The explicit even-card separator now refutes the bare aggregate theorem and
+returns priority to the parent-specific all-center/CSS/MEC coupling.  An
+external UNSAT result without a checked certificate remains finite evidence
+only.  Do not restart literal membership-schema CEGAR or the uniform
+interval-flux lane; the next proof step is genuinely stronger parent geometry.
 
 A bounded core-guided falsifier has now exact-checked 1,230,000 complete row
 tables across cards eleven, fourteen, twenty, and forty without finding an LRA

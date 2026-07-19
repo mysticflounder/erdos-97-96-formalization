@@ -2308,7 +2308,7 @@ out at 600 seconds and remain `UNKNOWN`.  These exact-arithmetic solver results
 have no independently checked UNSAT certificates and do not prove the uniform
 proposal.
 
-The aggregate theorem now has an exact non-enumerative normal form.  Adjacent
+The aggregate theorem has an exact non-enumerative normal form.  Adjacent
 `K2` cells together with the seam `K1` cells form a basis of the zero-degree
 unordered-distance space, indexed by proper circular intervals modulo
 complement.  A linear combination of selected-row equalities is therefore a
@@ -2316,12 +2316,21 @@ positive Kalmanson contour exactly when its selected-incidence weights have
 zero row and target sums and every proper circular-interval flux has one
 common sign, with at least one strict flux.  Strong connectivity may be
 assumed by passing to a sink selected-witness SCC; nonalternating shared pairs
-already close with one cell.  The precise live theorem-discovery target is:
+already close with one cell.  This originally suggested the theorem:
 
 > Every strongly connected, pair-alternating four-target row system admits a
 > nonzero balanced incidence circulation whose proper circular-interval
 > fluxes are all nonpositive after one global choice of sign, with at least
 > one strict flux.
+
+That theorem is now **refuted**, not open.  For every even `n >= 12`, explicit
+positive circular-split weights and parity potentials give a complete
+strongly connected, pair-alternating four-target row table with a Gordan
+separator.  The symbolic family and two independent exact card-twelve
+replays are recorded in
+`aggregate-positive-contour-discovery/TIGHT_GRAPH_UNIFORM_ATTACK.md`.  The
+normal form remains useful for finite lower-card decisions and regression
+tests, but it is not a uniform parent producer.
 
 This is not a renamed literal-core queue.  A minimized exact two-cell core
 shows that neither minimum-length nor minimum-crossing **single-cycle**
@@ -2337,24 +2346,25 @@ circular-split Kalmanson table with four equal selected targets in every row,
 so separation or dimension counting alone loops back to the original bare
 theorem.
 
-A stronger sufficient formulation may be more tractable.  Choose one of the
+A stronger sufficient formulation was also tested.  Choose one of the
 four selected targets at every center.  If two such assignments have the same
 target multiplicities, their difference is balanced, and its interval flux is
 exactly the difference of their outward circular-cut crossing profiles.
 Pigeonhole guarantees an equal-multiplicity pair, but comparability is the
-missing step: a multiplicity fiber may be an antichain.  The exact sharper
-target is a **circular product-box comparability theorem** asserting that some
+missing step: a multiplicity fiber may be an antichain.  The proposed
+**circular product-box comparability theorem** asserted that some
 multiplicity fiber of every complete strongly connected, pair-alternating
 four-choice row table contains two distinct strictly comparable profiles.
 Schema 4 closes only after two mixed swaps are coupled; `W(3,3)` already has a
 comparable four-row pair.  Core 79 has no comparable pair on its partial
 48-assignment support, so this is a genuine strengthening of the circulation
-route, not a normal form for every minimized core.  Keep the general
-one-signed circulation lemma as the fallback.  Exact decomposition of the
+route, not a normal form for every minimized core.  The even-card
+counterfamily refutes the generic product-box statement and the general
+one-signed circulation fallback.  Exact decomposition of the
 stored contours gives one alternating assignment circuit in 229/263 cases
 (221 simple) and two circuits in 34/263; in 32 of those 34, the chosen
-components are individually mixed while their sum is one-signed.  This is a
-finite-bank recurrence, not a uniform two-circuit theorem.
+components are individually mixed while their sum is one-signed.  This is
+finite-bank recurrence only.
 
 The algebraic handoff is no longer informal:
 `aggregate-positive-contour-discovery/AssignmentComparability.lean`
@@ -2374,6 +2384,53 @@ from this base is false: there is an exact strongly connected pair-alternating
 degree-three table on `Fin 7` with a strictly positive split-metric Gordan
 separator and no one-signed circulation.  Deletion must therefore repair the
 fourth target rather than weaken the hypothesis to degree at least three.
+
+The same exact product-box driver also exhausts card nine: ten outer tables
+produce 2,560 replayed comparable-pair cuts, after which a 72-variable,
+4,582-clause CNF is UNSAT and its DRAT proof independently verifies.  The
+multi-megabyte card-nine generated artifacts are intentionally left
+untracked; the command recorded in the scratch report reproduces them.  Card
+ten is the first unresolved product surface: after 42 tables and 10,752 cuts,
+the bounded Z3 run returns `UNKNOWN`, while the exported partial-bank CNF is
+still SAT.  That SAT instance is merely an unrefined next table, not a theorem
+counterexample.
+
+The equivalent Gordan-dual surface exposed two candidate extremal statements.
+For a positive circular-split metric `D` and row/target potentials
+`alpha,beta`, let an arc `c -> x` be tight when
+`D(c,x)=alpha_c+beta_x`.  Either of the following would have implied a generic
+contradiction:
+
+```text
+|E_tight| <= 4*n-1,
+```
+
+or the row-local conclusion that some left row has degree at most three.
+Both exclude four selected tight arcs in every row, and both are now exactly
+refuted.  For every even `n >= 12`, the uniform construction has `4*n`
+off-diagonal tight arcs, degree four in every left and right row, no tight
+diagonal, strong connectivity, and pair alternation.  Its card-twelve member
+passes two independent exact-integer replays with strict Kalmanson slack
+minima two.  Earlier stronger shortcuts are also false: exact rational
+examples refute planarity, upper/lower forest decomposition, `4*n-6`, and
+`4*n-4`.  Counting
+diagonal zeros does not simplify the target: another exact card-ten model has
+38 off-diagonal tight arcs plus three tight diagonals, refuting a total-zero
+bound of `4*n`.  The useful symmetric normalization is
+
+```text
+p_v = (alpha_v+beta_v)/2,
+gamma_v = (alpha_v-beta_v)/2,
+S(c,x) = D(c,x)-p_c-p_x,
+c -> x tight  iff  S(c,x)=gamma_c-gamma_x.
+```
+
+Bidirected pairs lie inside one `gamma` level; single arcs run between levels.
+The uniform counterfamily is now a mandatory regression.  Do not pursue a
+bare additive-tight edge bound, low-row lemma, product-box comparison, or
+one-signed circulation theorem as the high-card parent proof.  The next
+producer must restore nonlinear Euclidean realizability, MEC/cap geometry,
+the full common critical-fiber provenance, or global minimality.
 
 As a separate simple-cycle audit, the unpinned complete four-target surface at
 card nine is externally UNSAT after 8,000 learned favorable-cycle clauses.

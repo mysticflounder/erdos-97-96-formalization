@@ -200,6 +200,145 @@ def main() -> None:
         for target in targets
     )
 
+    # A maximum-size n=7 tight graph refutes the tempting planarity claim.
+    nonplanar_tight_rows = {
+        0: (1, 6),
+        1: (0, 3, 5, 6),
+        2: (4, 6),
+        3: (1, 4, 5),
+        4: (2, 3, 5),
+        5: (1, 3, 4, 6),
+        6: (0, 1, 2, 5),
+    }
+    assert sum(map(len, nonplanar_tight_rows.values())) == 22 == 4 * 7 - 6
+    nonplanar_weights = {
+        frozenset((1, 2, 3, 4, 5)): 4,
+        frozenset((2, 3, 4)): 2,
+        frozenset((3, 4, 5)): 3,
+    }
+    nonplanar_potential = (0, 7, 10, 4, 0, 5, 4)
+    assert all(
+        split_distance(7, center, target, nonplanar_weights)
+        == nonplanar_potential[center] + nonplanar_potential[target]
+        for center, targets in nonplanar_tight_rows.items()
+        for target in targets
+    )
+
+    # Internally vertex-disjoint paths exhibiting a K_3,3 subdivision.
+    tight_edges = {
+        (f"L{center}", f"R{target}")
+        for center, targets in nonplanar_tight_rows.items()
+        for target in targets
+    }
+    branch_left = ("L5", "L1", "L4")
+    branch_right = ("L6", "R3", "R5")
+    subdivision_paths = (
+        ("L5", "R1", "L6"),
+        ("L5", "R3"),
+        ("L5", "R4", "L3", "R5"),
+        ("L1", "R0", "L6"),
+        ("L1", "R3"),
+        ("L1", "R5"),
+        ("L4", "R2", "L6"),
+        ("L4", "R3"),
+        ("L4", "R5"),
+    )
+    assert {(path[0], path[-1]) for path in subdivision_paths} == {
+        (left, right) for left in branch_left for right in branch_right
+    }
+    internal_vertices = [vertex for path in subdivision_paths for vertex in path[1:-1]]
+    assert len(internal_vertices) == len(set(internal_vertices))
+    assert not (set(internal_vertices) & set(branch_left + branch_right))
+    assert all(
+        (left, right) in tight_edges or (right, left) in tight_edges
+        for path in subdivision_paths
+        for left, right in zip(path, path[1:])
+    )
+
+    # Even one upper-triangular half need not be a forest: this is a tight C6.
+    upper_cycle_rows = {0: (4, 5), 1: (3, 5), 2: (3, 4)}
+    upper_cycle_weights = {frozenset((1, 2, 3)): 4}
+    upper_cycle_alpha = (0, 6, 3, 0, 0, 0)
+    upper_cycle_beta = (0, 0, 0, 0, 6, 3)
+    assert all(center < target for center, targets in upper_cycle_rows.items()
+               for target in targets)
+    assert all(
+        split_distance(6, center, target, upper_cycle_weights)
+        == upper_cycle_alpha[center] + upper_cycle_beta[target]
+        for center, targets in upper_cycle_rows.items()
+        for target in targets
+    )
+
+    # Exact n=8 saturation refutes the stronger 4*n-6 edge conjecture.
+    tight28_rows = {
+        0: (2, 4, 6),
+        1: (2, 5, 7),
+        2: (0, 3, 4, 7),
+        3: (1, 2, 4, 5),
+        4: (0, 2, 3, 6),
+        5: (1, 4, 6, 7),
+        6: (0, 4),
+        7: (0, 1, 5, 6),
+    }
+    tight28_weight_values = (
+        3, 1, 1, 1, 3,
+        5, 2, 1, 1, 1,
+        2, 1, 1, 2,
+        1, 1, 1,
+        3, 1,
+        5,
+    )
+    tight28_weights = dict(zip(
+        circular_intervals(8), tight28_weight_values, strict=True
+    ))
+    tight28_alpha = (0, -9, -1, -10, -1, -10, -1, -10)
+    tight28_beta = (20, 29, 19, 10, 19, 28, 19, 28)
+    assert sum(map(len, tight28_rows.values())) == 28 == 4 * 8 - 4
+    assert all(
+        split_distance(8, center, target, tight28_weights)
+        == tight28_alpha[center] + tight28_beta[target]
+        for center, targets in tight28_rows.items()
+        for target in targets
+    )
+
+    # A 39-edge n=10 graph refutes every universal bound through 4*n-4.
+    tight39_rows = {
+        0: (2, 5, 7, 8),
+        1: (0, 3, 5, 9),
+        2: (0, 4, 6, 8),
+        3: (1, 2, 4, 5),
+        4: (2, 6, 7, 9),
+        5: (1, 3, 4, 6),
+        6: (2, 4, 8),
+        7: (1, 5, 6, 8, 9),
+        8: (0, 2, 3, 6),
+        9: (0, 1, 8),
+    }
+    tight39_weight_values = (
+        1, 5, 1, 1, 5, 5, 14, 10,
+        1, 1, 1, 1, 1, 10, 14,
+        9, 1, 1, 1, 5, 2, 5,
+        1, 1, 1, 6, 1, 1,
+        1, 10, 1, 1,
+        6, 1,
+        6,
+    )
+    tight39_weights = dict(zip(
+        circular_intervals(10), tight39_weight_values, strict=True
+    ))
+    tight39_alpha = (0, -18, 7, -25, 0, -25, 0, -25, 0, -25)
+    tight39_beta = (50, 82, 57, 75, 50, 75, 50, 63, 50, 75)
+    tight39_degrees = tuple(map(len, tight39_rows.values()))
+    assert tight39_degrees == (4, 4, 4, 4, 4, 4, 3, 5, 4, 3)
+    assert sum(tight39_degrees) == 39 == 4 * 10 - 1
+    assert pair_alternating(tight39_rows)
+    assert all(
+        split_distance(10, center, target, tight39_weights)
+        == tight39_alpha[center] + tight39_beta[target]
+        for center, targets in tight39_rows.items()
+        for target in targets
+    )
+
     # The equality support of minimized core 79 has 48 assignments and no
     # comparable equal-multiplicity pair.  Its saved exact positive contour
     # has row-positive mass two at center 4.  Thus an assignment-pair theorem
@@ -219,6 +358,10 @@ def main() -> None:
     print("Fin-8 alternating tight pair: MIXED WITH POSITIVE SPLIT SEPARATOR")
     print("Fin-7 radial split monotonicity: REFUTED")
     print("Fin-7 full degree-3 deletion induction: EXACT COUNTEREXAMPLE")
+    print("Fin-7 additive-tight graph planarity: REFUTED BY K_3,3 SUBDIVISION")
+    print("Fin-6 upper-half tight forest: REFUTED BY C6")
+    print("Fin-8 additive-tight 4*n-6 bound: REFUTED BY 28-EDGE MODEL")
+    print("Fin-10 additive-tight 4*n-4 bound: REFUTED BY 39-EDGE MODEL")
     print("core-79 displayed equality support: NO_COMPARABLE_PAIR (48/48)")
 
 

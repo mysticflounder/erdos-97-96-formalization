@@ -234,9 +234,9 @@ span both exact connectivity encodings and the stronger formula with
 connectivity omitted, so another direct integrated portfolio is not the next
 step.
 
-## Assignment-comparability reduction
+## Assignment-comparability reduction (finite lower-card only)
 
-The strongest surviving sufficient route chooses one selected target at each
+The assignment-comparability reduction chooses one selected target at each
 center.  Two assignments with equal target multiplicities have a balanced
 difference, and its interval flux is exactly the difference of their outward
 circular-cut crossing profiles.  A strictly comparable pair therefore closes
@@ -246,12 +246,13 @@ through the same weighted Kalmanson consumer.
 kernel-checks the row-balance identity, target balance under equal
 multiplicities, and the exact flux/crossing-count identity.  Its axiom queries
 report only `propext`, `Classical.choice`, and `Quot.sound`.  It deliberately
-does not assert the open product-box theorem.
+does not assert the product-box theorem, which is now refuted uniformly from
+card twelve by the counterfamily below.
 
 Pigeonhole proves that an equal-multiplicity pair exists, but not that its
-profiles are comparable.  The exact missing statement is a circular
-product-box width theorem: some multiplicity fiber of every complete strongly
-connected pair-alternating four-choice row table is not an antichain.  The
+profiles are comparable.  The proposed circular product-box width theorem
+claimed that some multiplicity fiber of every complete strongly connected
+pair-alternating four-choice row table is not an antichain.  The
 schema-4 contour requires two oppositely coupled mixed swaps, while W(3,3)
 already has a directly comparable four-row pair.  Partial core 79 has no
 comparable pair among its 48 displayed-support assignments, so complete rows
@@ -304,6 +305,54 @@ UV_CACHE_DIR=/private/tmp/p97-uv-cache uv run --no-project python \
 This is exhaustive, proof-checked **finite card-eight evidence** for the
 product-box comparability theorem.  It is not a cardinality-generic extraction
 theorem, is not imported into Lean, and closes no source `sorry` by itself.
+
+A bounded follow-up used the same command with `--n 9 --batch-cuts 256`.
+It exhausted card nine after ten outer tables and 2,560 replayed support cuts
+in 28 seconds.  The independently reconstructed CNF has 72 variables and
+4,582 clauses; CaDiCaL returned `UNSAT`, and the 4,320,235-byte DRAT proof
+replayed as `s VERIFIED`.  The result, CNF, proof, and replay were deliberately
+kept in `/tmp` rather than committing another 7.7 MB of generated artifacts;
+the command above reproduces them by replacing `--n 8` with `--n 9`,
+`--batch-cuts 128` with `--batch-cuts 256`, and the two tracked output paths
+with `/tmp/p97-product-antichain-n9.{json,cnf}`.  Pass the CNF to CaDiCaL with
+`/tmp/p97-product-antichain-n9.drat` as its proof output, then pass all three
+temporary paths to the verifier.  This avoids overwriting the canonical
+card-eight artifacts.
+
+Card ten did not close under the same bounded search.  A 300-second run
+processed 42 complete tables and banked 10,752 replayed cuts before the next
+outer Z3 check returned `UNKNOWN` with reason `canceled`.  Its 90-variable,
+14,714-clause partial-bank CNF is still `SAT` under CaDiCaL, so this is neither
+coverage nor a product-box counterexample: the SAT model is only the next
+unrefined outer table.  Card ten is therefore the current exact finite
+frontier for this driver.
+
+The outer oracle now also supports piqd's raw-DIMACS endpoint.  Every returned
+SAT assignment must cover every variable, satisfy every emitted clause, and
+decode to a valid row table before the inner CEGAR step runs.  Checkpoints are
+atomic and resume only after every stored cut certificate and bank hash
+replays.  At 39,266 verified card-ten cuts, exact subsumption leaves 27,430
+inclusion-minimal clauses; emitting only that antichain reduces the CNF by
+11,836 clauses while preserving the append-only certificate bank.  This is an
+exact performance improvement, not a proof-status change.
+
+A resumed pruned card-ten run reached 51,554 verified certificates, of which
+33,768 were inclusion-minimal and emitted.  The resulting 90-variable,
+37,730-clause outer CNF returned piqd/CaDiCaL `UNKNOWN` at the 600-second
+solver cap.  This is an unresolved exact finite card-ten checkpoint, not SAT,
+UNSAT, coverage, or evidence against the independently verified pruning.
+
+More importantly, the cardinality-uniform product-box conclusion is false.
+[`TIGHT_GRAPH_UNIFORM_ATTACK.md`](TIGHT_GRAPH_UNIFORM_ATTACK.md) gives a
+symbolic counterfamily for every even `n >= 12`: positive circular-split
+weights and parity potentials produce exactly four off-diagonal tight targets
+at every source and four uses of every target.  The table is strongly
+connected and pair-alternating, yet its positive Gordan separator excludes
+every one-signed nonzero interval-flux circulation.  The canonical card-twelve
+artifact has 48 tight arcs, no tight diagonal, and passes two independent
+exact-integer verifiers.  Therefore this driver is now a finite lower-card
+tool only; extending literal CEGAR beyond card eleven would rediscover a
+satisfiable family rather than close the parent branch.
 
 The first completion audit preserves the partial schema-4 incidences and asks
 for a complete strongly connected pair-alternating four-target table with no
