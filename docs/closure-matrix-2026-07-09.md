@@ -106,7 +106,7 @@ diff in every affected file, and avoid any row owned by an active session.
 | K-A-P3-RANK2 | BOUNDED QF_NRA UNKNOWN; ENCODING AUDITED; RAW CARTESIAN INSTRUMENT RETIRED | `period-three-rank2-coordinate-probe/`; `period-three-rank2-encoding-audit/` | Use a convexity-preserving numerical/homotopy seed on the fixed cell, substitute-check every atom on any hit, then seek a small-box or algebraic certificate. Run the prepared MEC phase only after coordinate SAT. Do not extend blind SMT timeouts. | The complete fixed projection has 25 named points, 46 free reals, 19 shell equalities, 79 named exact exclusions, and 575 edge-side convexity atoms. Z3 and cvc5 both timed out at 120 seconds. Exclusion-free and row-prefix ladders also timed out, including T0/T1 alone, so no row coupling was localized. The role map is correct for one legal branch, but a live extension needs at least one unnamed surplus-cap point and all global K4/MEC/CSS/minimality/`noM44` fields. No `sorry` closes. |
 | K-A-P3-NUM | THREE 24-CORE CAMPAIGNS; 480 BOUNDED STARTS; NO VERIFIED PLANAR HIT; FIXED-CELL NUMERICAL TUNING RETIRED; NOT UNSAT | `period-three-rank2-numerical-seed/`; `period-three-exact-seed-lift/`; `period-three-seed-compatible-cell/`; `period-three-rank2-interior-point/` | Preserve the exact result and durable progress ledgers as regression evidence. Do not run more fixed-cell multistart tuning. Pursue the complete-`L` occurrence; escalate a cell to exact algebra only if it exposes a reusable nonlinear Euclidean/MEC field for that theorem. | The first two campaigns tested 384 SLSQP starts across two source-legal exact-QF_LRA-SAT words. The final 96-start trust-constr chart enforced all 19 row equalities identically, covered all four radius-gap signs 24 times, and hard-tested strict convex order and pair separation. It produced zero substitution-verified hits; the best hard slack remained about `-1.18e-3`. All results are bounded numerical no-hit, not infeasibility, and close no `sorry`. |
 | K-A-P3-PROSE | SOURCE-VALID DOMAIN REFINEMENT; NO LEAN IMPORT; NONTERMINAL | `/opt/nfs/front-a-closure-backup-20260718T025149Z/`; `prose-backup-period3-match/REPORT.md` | Formalize or reuse the smallest apex-omission/open-block localization only when it is needed by the next nonlinear/global consumer. Do not instantiate Lemma 202, Corollary 203, or Lemma 237 without their missing positive source fields. | Two-owner alternation/localization duplicates the checked reverse-row straddle. Pair-reuse additionally makes every reverse critical support omit `S.oppApex2` and puts its outside pair in the complementary two-block union. The recorded `rho = r`, `IO` witness already satisfies this. Lemma 202 lacks shared T0/T1/reverse incidence; Corollary 203 requires a through-opposite row that the reverse normal form excludes; Lemma 237 requires a whole block of exact transverse rows. No source `sorry` closes. |
-| K-A-LIVE | OPEN SOURCE INVENTORY; DIRECT-HELPER CLOSURE AUDITED NEGATIVE (actual surface card ≥ 11; T1/T3 production-wired) | `Problem97.u1_largeCap_routeB_tail_liveData_false`; four LIVE-Q and seven LIVE-C helpers carry 31 direct holes | `u1_largeCap_routeB_tail_false` | Exact scratch elaboration shows none of the eleven Q/C helper signatures can derive the new generic consumers: `GeneralCarrierBridge.false_of_shellMetricCoreAlternative` still requires `ShellMetricCoreAlternative F H`, while the helpers retain only weak center/slot comparison maps and lose equality tying their local rows to the shared `CriticalShellSystem`. The preferred parent theorem must therefore run before this case tree. Once it closes, reference-mine and delete the obsolete helper tree; any externally referenced declaration becomes a source-clean compatibility wrapper. Proving helpers one by one is not the active route. |
+| K-A-LIVE | EIGHT DIRECT ON-SPINE SOURCE SORRIES; DIRECT-HELPER CLOSURE AUDITED NEGATIVE (actual surface card ≥ 11) | `Problem97.u1_largeCap_routeB_tail_liveData_false`; K-A-PAIR plus seven LIVE-C helpers are direct source holes; LIVE-Q/T1/T3 are source-clean but transitively open | `u1_largeCap_routeB_tail_false` | Current blueprint truth is eight direct on-spine declarations: `DoubleApexOffSurplusSharedRadiusPair` and seven `liveData_C_center_*_false` helpers. LIVE-Q/T1/T3 contain no direct source `sorry` but still inherit `sorryAx` through K-A-PAIR. Exact scratch elaboration shows that the remaining LIVE-C signatures lose the shared-system/global-parent force needed by current consumers. The preferred parent theorem must therefore run before this case tree. Once it closes, reference-mine and delete the obsolete helper tree; any externally referenced declaration becomes a source-clean compatibility wrapper. Proving helpers one by one is not the active route. |
 | K-B-PIN | DONE (2026-07-12, spine-verified post build refresh) | `Problem97.isM44PinnedSurplusGeneralMResidualsExcluded` in `PinnedSurplusGeneralM.lean` | `isM44PinnedSurplusResidualsExcluded` | The open `5 < m` branch is forced to `m = 6`, `A.card = 11`, with exact `(6,4,4)` cap-selected hit counts; all six incidence fields and native placement soundness are proved. `CapSelectedPinnedShellBridge` consumes every right aligned residual packet through all twelve certified core cases. The new `U2NonSurplusSqueeze.NonSurplusSwap.pinnedLeft_to_right` field proves the left-to-right reflection for all three surplus-index cases, preserving minimality, `(m,4,4)`, and surplus-cap cardinality; the terminal relabels the swapped packet and reuses the right producer and closure contradiction. `PinnedSurplusGeneralM.lean` has no source `sorry`, and direct Lean elaboration passed. Build refreshed 2026-07-12 after the U1 owner landed P1b (86149679) + the ERASE-P2 redraft (3d27977c): full library green, 9308 jobs; `PinnedSurplusGeneralM.lean` built clean with zero sorry warnings. `proof-blueprint axioms` on the declaration: core + `Lean.ofReduceBool` + approved `Lean.trustCompiler`, no `sorryAx`; the declaration left the `proof-blueprint spine` open-obligations list (anchor [closed]). |
 | K-B-END-LABEL | DONE (2026-07-11) | `Problem97.isM44EndpointResidualsExcluded` (`Base.lean`; both former `hshadow` holes proved) | `removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit` | Route (b) implemented (136ebb9b) and the m=5 branch fully proved: `EndpointCertificate/GeometryProducer.lean` (sorry-free) supplies `endpointLeft/Right_residual_false_of_card_five`, each covering both ambient CCW apex orientations (direct + reflected kernels `SurplusCOMPGBankGeometry.lean:1498/:1621`; apex orientation SYMMETRIC not forced per the 2026-07-11 prover verdict; the mirror residual flips the kernel pairing). Gate passed: full library green. Its former general-m dependency later closed under K-B-END-GENERAL; the endpoint cluster is absent from the current open inventory. Commits: 858b7e39, 8a7e6d1b, b2183714, 35bc63aa, f67e7818, e7ee31a2, plus the right-residual closure. |
 | K-B-END-GENERAL | DONE (2026-07-12, commit 3114fb1f) | `Problem97.isM44EndpointGeneralMResidualsExcluded` (`Base.lean:9511`, hole `:9513`; stated strictly `5 < S.surplusCap.card`) | `isM44EndpointResidualsExcluded` (`m ≠ 5` branch) | General-m endpoint leaf, routed to the forced `m = 6` / `A.card = 11` machinery (K-B-PIN). Cannot consume K-B-PIN unchanged: endpoint escape forces the Moser apex OUT of the escaped row, failing `PinnedShellOK`. Scoped extension required (see `docs/audits/2026-07-11-endpoint-generalm-representability.md`): `EndpointLeft/RightShellOK` seed predicates, classifier extension to the seed union, one (4,2,2) bridge seed-production case, endpoint source consumers. Finite gate PASSED 2026-07-11 — EXACT WITHIN MODEL, not PROVEN: 64-placement sweep (both families, twelve formalized metric cores, enumerate-residuals, complete=true) returned zero residuals (`census/endpoint_confinement/endpoint_direct_metric_core_residuals_n11.json`); no new metric cores needed. STAGING LANDED (5c44d1fc, 6fbde4a8): `EndpointCertificate/GeneralMCardEleven.lean` (sorry-free, no Base import) — card-11 forcing transport, full left+right escape row-shape families (selected classes card-4 interior-pinned, escapee strict-interior + surplus-cap disjointness), and the `EndpointLeft/RightShellOK` seed predicates over the `Fin 11` vocabulary matching the probe encoding. Next: endpoint placement checks against the committed native classifier (gate: `#eval` all 64 before proving — the Lean `hasPrefixCore` core set is not identical to the probe's core granularity), then the soundness transport mirroring `CapSelectedNativeClosureSound` (committed c5fcf286). BRIDGE LANE 2026-07-11 late: transport map `docs/audits/2026-07-11-endpoint-classifier-transport-map.md` (58f93ae2 - left family reuses the committed search code verbatim; right family needs a center-2 detector fork with fresh native runs); bridge design `docs/endpoint-generalm-bridge-design-2026-07-11.md` (a57c7e71, lemmas L1-L13; L9/L10/L10b done upstream at 9e6b5722 `incidenceOK_patternCode`); `EndpointCertificate/BridgeStaging.lean` landed 41d704f3 (L1a-L5: minimality glue, `labelOf`, Moser-cap class forcing + k4Radius uniqueness, endpoint no-qfree, T1 decomposition, row-0 two-intS-slots chooser - obstruction E1 discharged). ASSEMBLY INPUTS ALL LANDED 2026-07-11: `BridgeCarrier.lean` 9bac7853 (L6 public prescription constructor, L7 `endpointBlocker` + transports, L8 row-1 equation, right L3/L4 mirrors); `OrderedCoreSigns.lean` 2c32e3a1 (L12 branches 11-12, core axioms only); `EndpointClassifierSound.lean` + `EndpointClosureSound.lean` fffff751 (transport items 4-7; finals `closureCoreAlternative_of_incidenceOK_endpointLeft/RightShellOK`, axioms core + ofReduceBool/trustCompiler). Pinned lane 8ebadfa2 supplies `false_of_duplicateCenterCore_patternCode` + `false_of_perpBisectorCore_patternCode` for the branch dispatch. CLOSED 3114fb1f: `EndpointCertificate/BridgeAssembly.lean` (L11 `exactAt_endpointBlocker`, right L7/L8 mirrors, system-exposing blocker assemblies, L12b `false_of_closureCoreAlternative_of_canonical`, L13 `false_of_endpointEscapeLeft/Right_cardEleven`) + minimal Base.lean wiring at `:9513`. Leaf axioms: propext/Classical.choice/Quot.sound + Lean.ofReduceBool/Lean.trustCompiler (allowed set, no sorryAx); full library green (9307 jobs); spine open inventory 5 → 4 declarations. |
@@ -515,6 +515,71 @@ coverage or keep the total all-center literal gate active.
   alignment, cross-incidence, and cyclic-order fields are actually produced.
 - The exact-five arbitrary mutual-omission sibling remains an independent
   open consumer obligation.  No source `sorry` closes at this checkpoint.
+
+### Authoritative full-parent blocker escape checkpoint (2026-07-19)
+
+This checkpoint supersedes action text that treats
+`false_of_largeOppositeCapsBiApexRobust L` as one undifferentiated producer,
+or that resumes abstract literal-row/Kalmanson mining without a new
+source-backed parent field.  It does not change the parent architecture:
+retain the complete `R`/`B`/`L` packet and close before LIVE row enumeration.
+It changes the research acceptance gate.
+
+The full-parent exact-five relation split has two independent mathematical
+closers.
+
+1. **Arbitrary mutual omission.**  Work from
+   `M : FullParentExactFiveMutualData L profile`.  The checked full-parent
+   normal form splits on the two actual blockers.
+   - In the equal-blocker arm, the parent already supplies an actual
+     `FrontierCommonDeletionCriticalFiber`.  The first target is one of the
+     existing `CriticalFiberClosingCore` terminals: either a source-faithful
+     second same-cap center or the ordered third-row incidence packet.
+   - In the distinct-blocker arm, the parent supplies two source-faithful
+     `CommonDeletionTwoCenterPacket`s for the same deleted physical vertex.
+     The first target is one positive shared outside pair or one compatible
+     cap-order/cross-row incidence consumed by an existing terminal.
+   - The checked crossed-survival and critical-fiber normal forms are not
+     themselves contradictory.  Exact finite regressions realize their
+     displayed fields, so no theorem may close either arm using only those
+     projected fields.
+2. **All reverse.**  Work from
+   `A : FullParentExactFiveAllReverseData L profile continuation`.
+   The all-reverse exact-six slice is closed in production.  Exact seven is a
+   separate user-owned parent-specific lane and must not be duplicated here.
+   From cap cardinality eight upward, prove
+   `FirstApexCoRadialTransitionReversePairOccurrence A` or close the complete
+   `A` packet directly.  The arbitrary mutual-omission sibling remains open
+   even when an all-reverse cardinality slice closes.
+
+Before adding another producer lemma or increasing a solver budget, apply a
+full-parent model gate to the exact proposed implication.  The gate must
+retain `D`, `S`, the total `H`, `F0`, `R`, `B`, `L`, the exact-five profile,
+and the relevant mutual/all-reverse packet.  It must include convex order,
+MEC/cap geometry, complete exact-radius filters, all-center K4, every
+all-source `H.no_qfree_at` obligation, `D.Minimal`, `noM44`, both cap-six
+bounds, and the source-faithful deletion/restoration fields.  Selected-four
+incidence, bare Kalmanson distance variables, or a partial blocker manifest
+is only a relaxation and cannot adjudicate the full theorem.
+
+The gate has three fail-closed outcomes.
+
+- A substitution-checked exact Euclidean/full-parent witness refutes the
+  proposed implication and forces a narrower terminal or a parent-interface
+  correction.  A witness for a relaxation is only a regression.
+- A checked UNSAT certificate may be promoted only for the exact named
+  cardinality/branch slice it decides, followed by a Lean kernel proof or a
+  small verified certificate checker.
+- `UNKNOWN`, timeout, or numerical no-hit makes no mathematical claim.  It
+  authorizes neither a blind budget increase nor another anonymous schema
+  round; profile first and add compute only if the bottleneck is identified.
+
+The first active target is the equal-blocker mutual arm because it already
+lands in the production critical-fiber interface.  If its full-parent gate
+produces a witness, stop that theorem immediately and use the witness to
+weaken the target.  If it produces checked UNSAT, formalize the exact terminal
+implication before moving to the distinct-blocker arm.  Do not edit production
+Lean merely to expose another nonterminal adapter.
 
 ## Final commands
 

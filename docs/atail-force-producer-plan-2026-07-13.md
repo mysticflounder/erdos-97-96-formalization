@@ -5237,3 +5237,126 @@ some-HIT/all-OMISSION split; its next object is the bank-feeding producer in
 those arms, such as a cycle-wide endpoint-spending/strict-lap/metric terminal.
 One-edge rank data is not sufficient unless its order composes around the
 whole cycle.
+
+## 2026-07-19 full-parent blocker escape plan
+
+The public architecture remains cap-first dispatch, frontier extraction,
+construction of the complete `R`/`B`/`L` parent, and direct contradiction
+before LIVE row enumeration.  The research loop changes here: do not attempt
+the complete `false_of_largeOppositeCapsBiApexRobust L` theorem as one opaque
+proof obligation, and do not resume literal membership or linear Kalmanson
+mining without a newly proved parent field.
+
+### Branch-local closure contracts
+
+The exact-five dispatcher has two independent contracts.
+
+#### Mutual omission
+
+Input:
+
+```lean
+M : FullParentExactFiveMutualData L profile
+```
+
+Use the checked full-parent blocker split, retaining `H`, `F0`, `R`, `B`,
+`L`, `profile`, `M.continuation`, and `M.pair` throughout.
+
+- **Equal blockers:** the checked reduction constructs a genuine
+  `FrontierCommonDeletionCriticalFiber R`.  The next theorem must derive
+  either the `CriticalFiberClosingCore.sameCap` antecedent from a
+  source-faithful second center, or the `CriticalFiberClosingCore.ordered`
+  antecedent from a third actual row and compatible boundary order.  Equal
+  support of the two fiber rows alone is not enough.
+- **Distinct blockers:** the checked reduction constructs two actual
+  `CommonDeletionTwoCenterPacket`s for the same deletion, one at the physical
+  apices and one at the two actual blockers.  The next theorem must derive a
+  named positive row intersection/shared outside pair, or a source-valid
+  cross-incidence plus boundary order consumed by an existing terminal.
+  Another deletion-survival packet is nonterminal.
+
+The crossed-survival grid, one-exception classifier, and bare critical fiber
+have exact finite regressions.  They may be used as source normal forms, but
+not as contradiction statements.  The equal-blocker arm is first because it
+already reaches a production closing-core interface; the distinct-blocker
+arm follows only after the equal-blocker implication is decided.
+
+#### All reverse
+
+Input:
+
+```lean
+A : FullParentExactFiveAllReverseData L profile continuation
+```
+
+- Cap cardinality six is closed by the production exact-six all-reverse
+  theorem.
+- Exact seven is user-owned and remains a separate parent-specific geometric
+  lane.  Do not duplicate it.
+- From cap cardinality eight upward, prove
+  `FirstApexCoRadialTransitionReversePairOccurrence A`, or prove `False`
+  directly from the complete packet.  Preserve total critical-map,
+  all-center K4, full-fiber, convex/MEC, minimality, `noM44`, and both cap-six
+  fields.
+
+Closing an all-reverse cardinality slice does not close the arbitrary mutual
+omission contract.  The parent dispatcher is complete only after both
+contracts have terminal consumers.
+
+### Full-parent model gate
+
+Every new producer conjecture must first be encoded on the exact branch
+surface it claims to decide.  The frozen input ledger must include:
+
+1. `D`, `S`, the total common `CriticalShellSystem H`, `F0`, `R`, `B`, and
+   `L`;
+2. the exact-five profile and the complete mutual or all-reverse packet;
+3. strict convex boundary order and the actual cap partition;
+4. MEC/nonobtuse support-triangle constraints and complete exact-radius
+   filters, not only selected four-subsets;
+5. K4 at every carrier source and every all-source `H.no_qfree_at` deletion
+   failure;
+6. `D.Minimal`, `noM44`, both cap-six bounds, and every named
+   deletion/restoration field consumed by the proposed implication.
+
+A smaller encoding is explicitly a necessary-condition relaxation.  Its SAT
+models can reject proofs using only the retained fields, but cannot refute the
+full parent theorem.
+
+Acceptance is fail-closed:
+
+- **Exact full-parent witness:** substitute-check every equality, strict
+  inequality, membership, cardinality, and deletion condition.  The witness
+  refutes only the exact proposed implication and triggers a narrower
+  contract or interface correction.
+- **Certified UNSAT:** preserve the immutable input digest and obtain a
+  checkable certificate.  Promote only the decided named branch/cardinality
+  slice, then kernel-check its Lean endpoint before changing the parent
+  dispatcher.
+- **UNKNOWN / timeout / numerical no-hit:** record the bounded result and stop.
+  Increase compute only after profiling identifies a concrete bottleneck and
+  the encoding still contains the complete parent ledger.
+
+### Immediate execution order
+
+1. Freeze the equal-blocker mutual implication at the
+   `FrontierCommonDeletionCriticalFiber` boundary and identify the smallest
+   existing `CriticalFiberClosingCore` constructor it can plausibly feed.
+2. Run the full-parent model gate for exactly that implication.
+3. On checked UNSAT, formalize the terminal implication and wire it into the
+   mutual dispatcher.  On a full witness, weaken the implication before any
+   further Lean adapter work.
+4. Repeat for the distinct-blocker two-packet arm.
+5. Reconcile the all-reverse dispatcher with exact six, the user-owned exact
+   seven lane, and the cap-at-least-eight occurrence/direct-`False` contract.
+6. Only after both relation arms are closed, assemble
+   `false_of_largeOppositeCapsBiApexRobust L`, then the parent
+   `false_of_twoLargeCaps_commonCriticalMap`, and remove or trivialize the
+   legacy K-A-PAIR/LIVE-C compatibility tree by reference mining.
+
+No anonymous CEGAR round, additional selected-row wrapper, or larger linear
+quotient counts as progress under this checkpoint.  A new artifact advances
+the proof only if it either supplies the exact antecedent of an existing
+on-spine consumer, produces a substitution-checked full-parent witness that
+invalidates a conjectured implication, or supplies a checked certificate for
+a named branch slice.
