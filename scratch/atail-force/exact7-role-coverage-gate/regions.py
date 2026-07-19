@@ -42,8 +42,18 @@ APEX_FAMILIES: dict[str, tuple[str, ...]] = {
     "O": ("surplus", "opp1"),
 }
 
+# HYPOTHETICAL W-centered analogue — NOT proven (no bank theorem; the
+# endpoint kernel plausibly permutes to W but the acute hypothesis is
+# unverified).  Only for exploratory censuses that say so explicitly.
+APEX_FAMILIES_WITH_W: dict[str, tuple[str, ...]] = {
+    **APEX_FAMILIES,
+    "W": ("physical", "opp1"),
+}
 
-def onehit_rad_ne(placement: dict[str, str]) -> list[dict]:
+
+def onehit_rad_ne(placement: dict[str, str],
+                  families: dict[str, tuple[str, ...]] = APEX_FAMILIES,
+                  ) -> list[dict]:
     """rad_ne specs for every same-closed-cap pair at each adjacent apex.
 
     ``placement`` maps every positioned schema point to its site.  Named
@@ -53,9 +63,9 @@ def onehit_rad_ne(placement: dict[str, str]) -> list[dict]:
     specs = []
     seen: set[tuple[str, str, str]] = set()
     apex_points = {
-        site: point for point, site in placement.items() if site in APEX_FAMILIES
+        site: point for point, site in placement.items() if site in families
     }
-    for apex_site, regions in APEX_FAMILIES.items():
+    for apex_site, regions in families.items():
         if apex_site not in apex_points:
             continue
         apex = apex_points[apex_site]

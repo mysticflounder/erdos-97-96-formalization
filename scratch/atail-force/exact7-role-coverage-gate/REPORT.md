@@ -402,6 +402,27 @@ assembly where the row equality supplies one radius equation and the
 O-carrying reverse row supplies the second — same kernel family as the
 Finding 5 ports.
 
+## Finding 11: the W-centered one-hit hypothesis is moot (2026-07-19)
+
+The endpoint one-hit kernel plausibly permutes to `W` (an endpoint of
+both its adjacent caps), but no bank theorem asserts it and the acute
+hypothesis is unverified.  Payoff test before any Lean investment
+(`build_l2w.py`, `build_l2w_eq.py`; kills would have been CONDITIONAL
+on the unproven analogue):
+
+- W families (rad_ne at W over the physical and opp1 closed regions)
+  added to all 876 retro survivors: **876/876 SAT** — no L0-level
+  damage (`l2w_ledger.jsonl.gz`).
+- W families + each of the 6 bare row-coupling equalities on the 324
+  hard-core (no-O-row) survivors: **1,944/1,944 SAT**
+  (`l2weq_ledger.jsonl.gz`).
+
+The W analogue adds no kills to this residual even if provable — the
+Lean question is retired, and with it the "W-centered one-hit" L2
+refinement branch.  Remaining residual consumers: Round 166 geometry
+(rank+winding / cross-row occurrence) and the unused-critical-row
+dimension.
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
@@ -418,7 +439,7 @@ Finding 5 ports.
    product dead via Laws A/B; no survivor closes outright.
 7. Residual: 876 censal classes × (alive id types + non-coupling row
    landings) — closed only by Round 166 geometry (rank+winding /
-   cross-row occurrence) or an L2 refinement (unused-critical-row
-   dimension, W-centered one-hit analogue if provable).  The 324
-   no-O-row survivors take no L1-row damage at all and are the hard
-   core of the residual.
+   cross-row occurrence) or the unused-critical-row L2 dimension
+   (W-centered one-hit retired by Finding 11).  The 324 no-O-row
+   survivors take no L1-row damage at all and are the hard core of
+   the residual.
