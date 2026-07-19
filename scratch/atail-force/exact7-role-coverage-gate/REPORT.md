@@ -512,8 +512,15 @@ rows are the reverse rows already encoded).
    all and are the hard core of the residual.
 8. ~~L2u probe + scale~~ DONE (Finding 13): Laws U1/U2 universal,
    O-coupling laws per carrier row; 2,952 branch kills.
-9. Lean port: the general mutual-shell-pair lemma (covers U1/U2), then
-   the class(O)-exactness variant for the O-laws.
+9. ~~Lean port of the Finding 13 laws~~ DONE
+   (`MutualShellPairSharedMember.lean`): three kernel-clean lemmas
+   covering all 2,952 structural cores —
+   `false_of_mutualShellPair_sharedMember_thirdShellExcludes` (Laws
+   U1/U2, 1,752 kills), `..._sharedMember_selectedClassExcludes` (the
+   four 192-kill O-cores), and
+   `..._selectedClassBridge_thirdShellExcludes` (the two 216-kill
+   r2-carrier O-cores; four-center chain through class(O)).  Axioms:
+   `[propext, Classical.choice, Quot.sound]`.
 10. L2u round 2: generalized through-points u ∈ {O, e1, e2, p·} (m
     restricted to cap points + O per the kill evidence), and |M| = 2
     decorations of surviving branches if round 2 shows depth.
