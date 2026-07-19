@@ -924,6 +924,23 @@ two-center coupled residual (arm2) as the sole survivor.  Hence the pivot
 (thread `hmin` + target swap) is the ONLY viable closure; there is no
 producer-only shortcut.  Confirms Findings 17-18; spine sorry unchanged.
 
+## Finding 18c: arm1 content pinned, not bank-dischargeable (2026-07-19)
+
+Read-only characterization of the "simpler" arm.  `OriginalFrontierUnique
+RadiusArm F` (`OrientedPhysicalApexIngress.lean:226`) unfolds to: `((class
+card = 4) ∨ (class card = 5)) ∧ ∀ ρ>0, 4 ≤ (SelectedClass D.A oppApex1 ρ).card
+→ ρ = radius` — i.e. oppApex1 has a UNIQUE ≥4-radius, of card exactly 4 or 5.
+`arm1 → False` is therefore a **global radius-uniqueness rigidity refutation**
+at the first apex, needing the minimality structure; it is not a finite-pattern
+or local-metric fact.  Theorem-bank / Lean-corpus search (apex radius
+uniqueness / multiplicity / two-radius-class) returns no discharge: the nearest
+hit `largePhysicalRadius_or_exactTwoFourRadii_of_robust` (`:506`) concerns the
+SECOND apex under robustness (yields two radius classes — the opposite of
+arm1), and is an assembler piece, not an arm1 refutation.  So BOTH arms of the
+only viable route are hard-open: arm1 (this rigidity) and arm2 (`dead-ends.md:
+743/786` sole survivor).  No autonomous non-pivot closure exists.  Spine sorry
+unchanged.
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
