@@ -876,3 +876,29 @@ Branch-kill instruments only; the DoubleApex spine sorry is unchanged.
     separate chain machinery), ~~conditioning map of the 53 conditional
     patterns~~ DONE (Finding 15b: 48/53 pure bag-placement laws in four
     families generalizing 14b; 5 merged `p0a+p1a,·,O` mixed)).
+11. **L2u full row** DONE (Finding 16): co-radiality + exclusion +
+    no_qfree all inert; the L2u unused-row dimension (arm (a) of the
+    DoubleApex residual per `live-blueprint.md:2`) refines but cannot
+    close a base.  The `capInteriorByIndex_card_add_two` counting slice
+    that closes exact-SIX (`ParentExactFiveExactSix.lean`,
+    `five_le_card_of_periodThree_straddles`: period-3 sources+blockers
+    force interior ≥ 5) is TIGHT at exact-seven (interior = 7−2 = 5),
+    which is the structural reason this branch is the residual.
+12. **NEXT — L3 cross-row-occurrence layer** (the gate contract's
+    "Round 166 producers" for the SAT residuals).  The producers already
+    exist kernel-clean in `ATail.CriticalPairFrontier.lean` (0 sorries):
+    `blocker_centers_eq_iff_mutual_cross_membership_of_five_le` (:1177) —
+    with first-apex `SelectedClass` card ≥ 5, blocker-center coincidence
+    `H.centerAt q = H.centerAt w` ⟺ MUTUAL cross-membership (`w` in `q`'s
+    row-shell support ∧ `q` in `w`'s); the winding companion is
+    `signedArea_product_neg_of_cross_membership` (:927).  Both relations
+    are gate-encodable (row-support membership + center identification are
+    already encoded).  Design: add an L3 schema field asserting the
+    cross-membership⟹center-coincidence implication; a survivor that
+    forces mutual cross-membership with role-distinct centers is then
+    UNSAT.  Soundness gate before any census: each added constraint must
+    be a proven consequence of the packet (the iff lemma supplies it,
+    conditioned on the card-≥5 first-apex hypothesis — verify that
+    hypothesis holds on the survivor class before encoding).  Needs the
+    `SurvivorPairRelocationPacket` field map + a check that the L2u SAT
+    survivors actually exhibit forced mutual cross-membership.
