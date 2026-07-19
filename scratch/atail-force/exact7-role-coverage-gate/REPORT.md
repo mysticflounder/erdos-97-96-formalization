@@ -591,6 +591,30 @@ irreducible cores route the same net inequality through auxiliary
 points).  Per-base Lean wiring of the laws is not done — these are
 terminal instruments, and the spine `sorry` is unchanged.
 
+## Finding 14b: conditioning of the non-universal round-2 laws (2026-07-19)
+
+Both conditionings are exact biconditionals, verified against the scale
+ledger and the survivor schemas:
+
+- **u=O laws** (O,s0,s1) / (O,s2,s1), 660/876 each: kill **iff
+  `O ∉ r2.members`**.  The 216 SAT bases are exactly the `r2*-O`
+  decorations, where `p2b` is merged with `O` and `O` is therefore an
+  r2 MEMBER (`members = [s2, s0, p2a, O]`, checked 216/216; no killed
+  base has `O ∈ r2`, 0/660).  On those bases the chain lemma's
+  exclusion hypothesis (`cls_ne|s1|O`) is structurally absent — the
+  branch is genuinely consistent, not under-censused.  Both laws share
+  the identical SAT set.
+- **(p2a,p2b,s1) / (p2b,p2a,s1)**, 440/660 each: kill **iff `p2a` and
+  `p2b` lie in the same bag** (220 S/S + 220 O1/O1); the 220 SAT bases
+  are exactly the split placement `p2a ∈ S-bag, p2b ∈ O1-bag` (the
+  reverse placement does not occur).  Mirror SAT sets identical.  Kill
+  cores are TWO-BRANCH case splits over the unordered in-bag pair
+  order (`pos|ne|p2a,p2b` + `|br0`/`|br1` kernels): per branch, the
+  mutual transport `d(p2a,p2b) = d(p2a,s1)`
+  (`dist_eq_dist_of_mutual_bisector`) feeds a 1-3-kernel Kalmanson
+  chain.  Composite shape — no single ported terminal; Lean wiring
+  would need a per-branch case split.
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
@@ -637,8 +661,10 @@ terminal instruments, and the spine `sorry` is unchanged.
    r2-carrier O-cores; four-center chain through class(O)).  Axioms:
    `[propext, Classical.choice, Quot.sound]`.
 10. ~~L2u round 2 probe + scale~~ DONE (Finding 14).  Follow-ups:
-    (a) map the 216-base conditioning of the u=O laws and the 440/660
-    (p2a,p2b,s1) split; (b) ~~Lean shape of the p2-row kal cores~~
+    (a) ~~map the 216-base conditioning of the u=O laws and the
+    440/660 (p2a,p2b,s1) split~~ DONE (Finding 14b: u=O kills iff
+    `O ∉ r2.members`; p2-pair kills iff same-bag placement);
+    (b) ~~Lean shape of the p2-row kal cores~~
     DONE (Finding 14a: six laws on ported split/after/enclosed
     terminals; two need the new centers-before arrangement + mutual
     transport, both ported kernel-clean in
