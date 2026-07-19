@@ -612,6 +612,13 @@ row.  The arbitrary mutual-omission exact-five sibling remains independent of
 the all-reverse occurrence unless the direct full-`L` contradiction bypasses
 their split.
 
+The first prescribed-pair minimality check is also kernel-checked in
+`scratch/atail-force/frontier-pair-global-deletion-split/`: for the retained
+frontier pair, the parent cardinality bound yields a deletion-critical core
+`V ⊆ {q,w}` with memberwise restoration, and `V` is either a singleton or the
+whole pair.  This narrows the next consumer interface without claiming that
+either arm is closed.
+
 The whole-carrier Lean extraction itself is not missing:
 `generic-biapex-kalmanson-search/WholeCarrierBiApexKalmansonSurface.lean`
 already obtains an arbitrary-cardinality boundary, one selected K4 row at

@@ -1210,6 +1210,14 @@ independent arbitrary mutual-omission sibling.  Any candidate using only the
 displayed local rows, cap order, MEC geometry, or the refuted uniform
 Kalmanson/product-box abstraction fails a mandatory regression.
 
+The first minimality reduction is now kernel-checked in
+`scratch/atail-force/frontier-pair-global-deletion-split/`: applying the
+existing global deletion bridge to the actual frontier pair and the parent
+bound `14 ≤ D.A.card` produces a deletion-critical `V ⊆ {q,w}` with all
+restoration fields, and classifies `V` as either a singleton or the full pair.
+This is a source-faithful reduction, not a contradiction; the singleton and
+full-pair arms still require their respective total-map/progress consumers.
+
 For nonlinear follow-up, split actual mutual rows by their number of physical
 exact-five hits.  Checked geometry now localizes every two-hit row's blocker to
 the four strict physical-cap positions; card four reduces this to
