@@ -116,3 +116,6 @@ __pycache__/
 /scratch/atail-force/exact6-integrated-qflra-crosscheck/artifacts/
 /scratch/atail-force/exact6-allcenter-coverage-certificate/n14_continuationOrder.cnf
 /scratch/atail-force/exact6-allcenter-coverage-certificate/n14_continuationOrder.drat
+scratch/atail-force/exact7-role-coverage-gate/l0_schemas.json
+scratch/atail-force/exact7-role-coverage-gate/l0_shard*.log
+scratch/atail-force/exact7-role-coverage-gate/l0_ledger_shard*.jsonl

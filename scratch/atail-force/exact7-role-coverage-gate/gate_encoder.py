@@ -20,6 +20,10 @@ Schema fields:
 - ``points``        canonical point list (fixes label enumeration order);
 - ``blocks``        [{"points": [...], "ordered": bool}, ...] — cyclic
                     boundary order, cut at the start of block 0;
+- ``floating``      points with no boundary position yet (coarse census
+                    levels): they keep lower/triangle/class constraints
+                    but appear in no Kalmanson quadruple — a sound
+                    relaxation, so coarse UNSAT kills every refinement;
 - ``exact_classes`` [{"center", "members", "exclude"}] — complete radius
                     classes: equalities to members[0], exclusions strict;
 - ``row_eqs``       [{"name", "center", "members"}] — selected rows
@@ -30,6 +34,10 @@ Schema fields:
                     equalities.  ``escape`` counts anonymous row slots; if
                     4-escape <= 1 the disjunction is trivial and skipped
                     (recorded in meta as toothless, never silently);
+- ``unique_class``  [{"center", "members"}] — the center's ONLY >=4-card
+                    radius class over the whole carrier is the listed one
+                    (unique_K4_radius): every 4-subset of named points not
+                    inside ``members`` has some radius disequality;
 - ``no_kalmanson`` / ``no_triangle`` / ``no_lower``  opt-outs (relaxation).
 
 Tracked label families: ``pos`` (structural order), ``lower``, ``tri``,
@@ -68,6 +76,7 @@ class GateEncoder:
         self._add_row_eqs()
         self._add_rad_ne()
         self._add_k4()
+        self._add_unique_class()
         if not schema.get("no_kalmanson", False):
             self._add_kalmanson()
 
@@ -85,8 +94,11 @@ class GateEncoder:
 
     def _build_positions(self) -> None:
         blocks = self.schema["blocks"]
+        self.floating: set[str] = set(self.schema.get("floating", []))
         flat = [p for block in blocks for p in block["points"]]
-        assert sorted(flat) == sorted(self.points), "blocks must partition points"
+        assert sorted(flat + sorted(self.floating)) == sorted(
+            self.points
+        ), "blocks plus floating must partition points"
         self.block_index: dict[str, int] = {}
         self.static_pos: dict[str, int] = {}
         self.sym_pos: dict[str, z3.ArithRef] = {}
@@ -181,10 +193,25 @@ class GateEncoder:
                 )
             self.track(f"k4|{center}", z3.Or(*witnesses))
 
+    def _add_unique_class(self) -> None:
+        for spec in self.schema.get("unique_class", []):
+            center = spec["center"]
+            members = set(spec["members"])
+            others = [p for p in self.points if p != center]
+            for quad in combinations(others, 4):
+                if set(quad) <= members:
+                    continue
+                base = self.dist(center, quad[0])
+                self.track(
+                    f"uniq4|{center}|{','.join(quad)}",
+                    z3.Or(*[self.dist(center, p) != base for p in quad[1:]]),
+                )
+
     # -- conditional Kalmanson -----------------------------------------------
 
     def _add_kalmanson(self) -> None:
-        for quad in combinations(self.points, 4):
+        placed = [p for p in self.points if p not in self.floating]
+        for quad in combinations(placed, 4):
             self._add_kal_quad(quad)
 
     def _add_kal_quad(self, quad: tuple[str, ...]) -> None:

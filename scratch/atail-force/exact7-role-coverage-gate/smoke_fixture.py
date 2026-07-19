@@ -16,7 +16,13 @@ Five gates, all through the production ``gate_encoder`` codepath:
 - E  fixed order, full supports minus the (7,8) hinge memberships: must be
      UNSAT via the second recorded accident — the bisector-parity core
      {cls_eq: 3, kal: 2} on points {5,11} against centers {1,2}.  This
-     validates that Kalmanson constraints participate in minimized cores.
+     validates that Kalmanson constraints participate in minimized cores;
+- F  named-forced schema with the six first-apex arc points floating
+     (no boundary position — coarse census-level relaxation of B): must
+     be SAT, validating the ``floating`` machinery;
+- G  unique-class unit test: four points forced equiradial at a center
+     whose sole >=4 class is elsewhere — must be UNSAT with exactly the
+     three row equalities plus the one uniq4 clause in the core.
 
 The named-forced schema keeps only constraint families that are forced for
 every aligned exact-seven configuration given the fixture's role choices:
@@ -138,17 +144,24 @@ def fixture_schema(schema_id: str, symbolic: bool, hinge_free: bool) -> dict:
     }
 
 
-def named_schema(schema_id: str, symbolic: bool) -> dict:
-    """The named-forced, de-accidented schema (smokes B, D)."""
+def named_schema(schema_id: str, symbolic: bool, float_arcs: bool = False) -> dict:
+    """The named-forced, de-accidented schema (smokes B, D, F)."""
     points = names(fixture.A) + [FRESH_EXTRA]
     surplus_arc = [name(5), FRESH_EXTRA, name(6), name(7)]
+    opp1_arc = names(OPP1_ARC)
+    floating: list[str] = []
+
+    if float_arcs:
+        floating = [name(6), name(7)] + opp1_arc
+        surplus_arc = [p for p in surplus_arc if p not in floating]
+        opp1_arc = []
 
     if symbolic:
         blocks = [
             {"points": [name(fixture.FIRST_APEX)], "ordered": True},
             {"points": surplus_arc, "ordered": False},
             {"points": [name(fixture.SECOND_APEX)], "ordered": True},
-            {"points": names(OPP1_ARC), "ordered": False},
+            {"points": opp1_arc, "ordered": False},
             {"points": [name(fixture.SURPLUS_VERTEX)], "ordered": True},
             {"points": [name(p) for p in PHYSICAL_INTERIOR_ORDER], "ordered": True},
         ]
@@ -157,7 +170,7 @@ def named_schema(schema_id: str, symbolic: bool) -> dict:
             [name(fixture.FIRST_APEX)]
             + surplus_arc
             + [name(fixture.SECOND_APEX)]
-            + names(OPP1_ARC)
+            + opp1_arc
             + [name(fixture.SURPLUS_VERTEX)]
             + [name(p) for p in PHYSICAL_INTERIOR_ORDER]
         )
@@ -205,11 +218,34 @@ def named_schema(schema_id: str, symbolic: bool) -> dict:
         "id": schema_id,
         "points": points,
         "blocks": blocks,
+        "floating": floating,
         "exact_classes": exact_classes,
         "row_eqs": row_eqs,
         "rad_ne": rad_ne,
         "k4": k4,
     }
+
+
+def uniq4_unit_schema() -> dict:
+    """Smoke G: unique_class must forbid a second equiradial 4-subset."""
+    points = ["O", "a", "b", "c", "d", "m1", "m2"]
+    return {
+        "id": "G_uniq4_unit",
+        "points": points,
+        "blocks": [{"points": points, "ordered": True}],
+        "row_eqs": [{"name": "u", "center": "O", "members": ["a", "b", "c", "d"]}],
+        "unique_class": [{"center": "O", "members": ["m1", "m2"]}],
+        "no_kalmanson": True,
+        "no_triangle": True,
+    }
+
+
+EXPECTED_UNIQ4_CORE = [
+    "row_eq|u|b",
+    "row_eq|u|c",
+    "row_eq|u|d",
+    "uniq4|O|a,b,c,d",
+]
 
 
 def main() -> None:
@@ -253,6 +289,16 @@ def main() -> None:
             fixture_schema("E_fixed_hingefree", symbolic=False, hinge_free=True),
             "unsat",
             EXPECTED_BISECTOR_CORE,
+        ),
+        "F_named_floating": (
+            named_schema("F_named_floating", symbolic=False, float_arcs=True),
+            "sat",
+            None,
+        ),
+        "G_uniq4_unit": (
+            uniq4_unit_schema(),
+            "unsat",
+            EXPECTED_UNIQ4_CORE,
         ),
     }
 

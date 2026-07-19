@@ -101,5 +101,47 @@
       "cls_eq": 3,
       "kal": 2
     }
+  },
+  "F_named_floating": {
+    "schema_id": "F_named_floating",
+    "verdict": "sat",
+    "points": 16,
+    "assertions": 2283,
+    "trivial_k4_centers": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "eb"
+    ]
+  },
+  "G_uniq4_unit": {
+    "schema_id": "G_uniq4_unit",
+    "verdict": "unsat",
+    "points": 7,
+    "assertions": 39,
+    "trivial_k4_centers": [],
+    "core": [
+      "row_eq|u|b",
+      "row_eq|u|c",
+      "row_eq|u|d",
+      "uniq4|O|a,b,c,d"
+    ],
+    "core_size": 4,
+    "families": {
+      "row_eq": 3,
+      "uniq4": 1
+    }
   }
 }
