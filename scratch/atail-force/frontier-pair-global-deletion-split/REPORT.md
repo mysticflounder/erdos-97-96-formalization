@@ -50,6 +50,32 @@ feeds `physicalSecondApex_commonDeletion_robust_or_critical`.  Both focused
 declarations are source-clean with axioms exactly
 `propext`, `Classical.choice`, and `Quot.sound`.
 
+## Snapshot producer audit (2026-07-19)
+
+The latest Front-A snapshots under `/opt/nfs` and `~/scratch` were checked
+against the current spine. No source-clean declaration directly matches any
+of the seven `liveData_C_*_false` signatures, and no imported declaration
+accepts the live telescope and returns `False`.
+
+The closest artifacts are conditional or nonterminal:
+
+* `Round86LiveCT2RowFailureNormalForm` proves only that the three expected
+  named support equalities cannot all hold; it does not imply the existing
+  `q`-not-named condition for the actual `t2` row.
+* `Round133LiveTelescopeNamedCoupling` packages the center residual but has no
+  contradiction.
+* `Round134SourceFaithfulSpineBypass` requires an unprovided aggregate
+  producer.
+* `LiveMutual37TerminalSinks` requires a same-cap shared-pair/equal-blocker
+  residual that no C leaf produces.
+
+The scan also found a source-clean snapshot reduction of the exact-two-four
+physical-radius ingress to the protected original unique-radius arm or a
+production common-deletion packet. That result is not imported by the current
+checkout and is not direct `False`; it does not change the live source-sorry
+count. Accordingly, no snapshot file was copied into the production import
+graph and no new CEGAR round was launched.
+
 This promotion removes the producer/interface gap but does **not** close a
 sorry: the theorem still requires the non-exact-card-four branch and the
 `w ∈ selectedAt(q)` cross-membership field, and its output is the existing robust or
