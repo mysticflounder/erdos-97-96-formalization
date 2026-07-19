@@ -645,10 +645,59 @@ cross patterns ((p1b,p2a,s2), (p0b,p2a,s2), ...) — presumably
 bag-placement conditioned as in Finding 14b; mapping deferred.
 
 Honest scope: branch kills of the unused-row refinement; no base
-closes outright.  Lean shape of the round-3 universal laws is not yet
-assessed (expected: the same two-center bisector terminals with
-r0/r1-class transports, since p0 ∈ r0, p1 ∈ r1 mirror p2 ∈ r2 —
-unverified).
+closes outright.  Lean shape of the round-3 universal laws assessed in
+Finding 15a.
+
+## Finding 15a: Lean shape of the round-3 universal laws (2026-07-19)
+
+Classification of all 73 universal patterns by the four-point geometry
+of `{uc, K(u), u, m}`, where `K(u)` is the through-point's exact-class
+center — `b0` for `p0a/p0b` (r0), `b1` for `p1a/p1b` (r1), `O` for
+`e1/e2` (class O) — computed directly from the block order over every
+killed base (`classify_l2u_round3_shapes.py`; the census minimal cores
+sometimes use an alternate multi-kernel certificate, but the branch is
+dead by the two-center bisector whenever both centers are equidistant
+from the chord `{u, m}` and the arrangement is one of the four ported
+terminals).  Two centers are equidistant here exactly when `m` shares
+`K(u)`'s class: the asserted row gives `d(uc, u) = d(uc, m)` and the
+class radius gives `d(K, u) = d(K, m)`.
+
+- **48/73 reduce to a single ported `TwoCenterBisectorParity` terminal**
+  in every killed base — no new Lean, an r0/r1/O-class transport in
+  place of Finding 14a's r2:
+  - `enclosed` (21): e1e2·s{0,1,2}; p0a/p0b at (W,s1),(s0,s1);
+    p1a/p1b at (W,s2),(b0,s2),(s0,s2); the p0a+p1a/p0b+p1b (W,s1),
+    (W,s2),(s0,s1),(s0,s2) merges;
+  - `split` (11): e2 at (b1,s0),(s2,s0),(s2,s1); p0a/p0b/p1a/p1b and
+    both merges at their EA-centered patterns;
+  - `after` (10): p0a/p0b at (b1,s0),(s2,s0); p1a/p1b (s2,s1); the
+    (s2,s0)/(s2,s1) merges;
+  - `before` (6): e2 at (EA,s{0,1,2}) and (e1,s{0,1,2}).
+- **7/73 are same-bag two-branch kills** — the chord or a center pairs
+  two same-bag points, so both index orders must die; the non-tied
+  arrangement is `enclosed` or `split`, so each branch lands on a
+  ported terminal (the Finding 14b mechanism, `pos|ne|·|br0/br1`
+  cores): (p0a,p0b,s1), (p1b,p1a,s1), (p0a,p0b+p1b,s1),
+  (p1b,p0a+p1a,s1), (p0a,e2,s1), (p1a,e2,s2), (p1b,e2,s2).  No new
+  terminal; the wiring is a two-case split, not yet written.
+- **9/73 merged-point chains** — `u ∈ {p0a+p1a, p0b+p1b}` sits in both
+  r0 and r1, and the minimal certificate routes through a longer
+  complementary-kernel chain (e.g. (p0a+p1a,p2a,s1): `EA,O,b1`
+  four-point kernels), not a single bisector.  Not single-terminal
+  reducible; unported.
+- **9/73 three-center cycles** — `m ∉ K(u)`'s class, so no second
+  center is equidistant from `{u, m}` and the kill is an irreducible
+  3–4 kernel triangle: (p0a,W,s2), (p0a,s0,s2), (p0b,W,s2),
+  (p0b,s0,s2), (p0a,e2,s2), (p1a,EA,s0), (p1a,s2,s0), (p1b,EA,s0),
+  (p1b,s2,s0).  A cycle argument distinct from the bisector terminals;
+  unported.
+
+Result: **no two-center bisector terminal is missing** — the four
+Finding 14a arrangements (after/enclosed/split/before) cover all 55
+bisector-shaped round-3 laws (48 direct + 7 two-branch).  The
+remaining 18 (9 merged + 9 cycle) need multi-kernel chain/cycle
+machinery — a separate development, off the exact-seven critical path
+(the DoubleApex spine sorry is unchanged either way).
 
 ## Next steps
 
@@ -706,5 +755,8 @@ unverified).
     `TwoCenterBisectorParity.lean`); (c) |M| = 2 decorations of
     surviving branches; (d) ~~e1/e2/p0/p1 non-universal probe
     patterns~~ DONE (Finding 15: 73/126 universal on availability
-    classes; follow-ups — Lean shape of the round-3 laws, conditioning
-    map of the 53 conditional patterns).
+    classes; follow-ups — ~~Lean shape of the round-3 laws~~ DONE
+    (Finding 15a: 48 direct + 7 two-branch on the four ported
+    terminals, no missing terminal; 18 merged/cycle patterns need
+    separate chain machinery), conditioning map of the 53 conditional
+    patterns).
