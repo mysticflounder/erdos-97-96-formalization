@@ -149,6 +149,40 @@ the apex than SI1's 2 sources ⇒ TIGHTER convex constraint. Hence:
 
 So SI1's convex verdict decides the shape of the entire arm2 endgame.
 
+## CONVEX VERDICT (2026-07-19) — D.convex does NOT close SI1 [DEFINITIVE]
+
+The crux question ("does `D.convex` + {1–8} → UNSAT?") is answered: **NO.**
+
+`fixed_order_convex.py` constructs an EXACT RATIONAL witness of the full SI1
+{1–8} system in which ALL 13 forced points are in strict convex position:
+- Pipeline: scipy differential-evolution finds a convex config (penalty 0 on
+  restart 0 — abundant, once the sign bias is removed) → the CCW order is read
+  off → each circle is re-expressed with rational chord-slope points (concyclic
+  holds EXACTLY by construction: s1=(0,0),s2=(1,0) on circle(c0)/(bc) for any
+  rational center on x=1/2; further points are rational second-intersections)
+  → snap to denominator base D=360 → exact-Fraction validate.
+- ALL 14 checks PASS: 3 concyclic classes; class ids M=frontier∖{g},
+  P=frontier∖{f}, N=shell(f), Q=shell(g); overlaps |M∩N|=1, |P∩Q|=2 (≤2);
+  mutual omission; 0 collinear triples; **all 13 points are hull vertices**.
+- These 13 are ALL forced members of A (verified from source: c0,bc,bf ∈ A via
+  packet `center₁_mem_A`/`center₂_mem_A` + `blockerVertex`; class members ∈ A).
+  core13's constraints WITH those class ids imply all of {1–8}, so the witness
+  is a genuine model of the full local system under D.convex.
+
+Therefore under D.convex the SI1 local data is STILL satisfiable ⇒ no False is
+derivable from SI1 + convex position alone. **D.convex is provably insufficient.**
+This sharpens dead-ends.md Candidate D: not "falsifiers are non-convex" — there
+EXIST convex falsifiers of the local system. The closer must use the global K4
+property (`HasNEquidistantProperty 4 A`, every point 4-equidistant) and/or global
+exact-seven counting — a coupling that is NOT finitely localizable as this SAT
+instance. The hard core is the **card-5-robust branch** (frontier |U|=5): every
+survivor deletes to ≥4, so neither convexity NOR the |U|-overflow counting closes
+it. Witness coords: see `fixed_order_convex.py` Phase-2 output (D=360).
+
+Remaining unexamined LOCAL lever before conceding the global residual: the FE
+factor (below) — does FrontierRefinedEscapeOutcome add a constraint the SI
+witness violates?
+
 ## FE factor (the ×3) — why SI-level UNSAT covers all three
 
 FrontierRefinedEscapeOutcome (FE1/FE2/FE3) is a SEPARATE factor. Constraints
