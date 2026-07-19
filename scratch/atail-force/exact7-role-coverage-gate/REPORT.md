@@ -212,6 +212,91 @@ has an exact catalog by landing pattern.
 Artifacts: `l0_ledger.jsonl` (full verdicts + minimized cores; replay via
 `enumerate_l0.py` + `census_runner.py`).
 
+### Lean porting spec for the landing law
+
+The minimal cores are single-quadruple (size 4), e.g.
+`L0.eS-S.r0S-O.r1S-O.r2O1-O`:
+
+```text
+cls_eq|b0|O     d(b0,O) = d(b0,s0)     O on the b0 reverse row
+cls_eq|s1|O     d(s1,O) = d(s1,s2)     O on the collision row
+cls_eq|s1|s0    d(s1,s0) = d(s1,s2)    s0 on the collision row (PROVEN)
+kal|O,s0,b0,s1  d(O,b0)+d(s0,s1) > d(O,s1)+d(s0,b0)
+```
+
+Substituting the equalities cancels both sides: strict 0 > 0.  Pattern:
+two centers (b0, s1) equidistant from the pair {O, s0}, with both centers
+on the same arc side of chord (O, s0) — cross-cap bisector injectivity in
+its 4-point Kalmanson form.  The r1-variant uses (O, s2, b1, s1)
+symmetrically.  Lean obligations: the two case assumptions (O on each
+row), the PROVEN 2+2 memberships, the Round 188 cyclic order, and one
+strict Kalmanson kernel on a named quadruple.  Bank check done: the
+production kernel `false_of_two_cap_centers_equidistant_outside_pair`
+(TwoCenterCapLocalization.lean:60, via
+`CapSelectedRowCounting.outsidePair_unique_capCenter`) covers two cap
+centers bisecting a pair BOTH outside the cap; our pair {O, s0} is mixed
+(s0 interior), so the port is a small assembly over the raw kernel
+`dist_add_dist_lt_diagonal_sum_of_ccw` (CapCrossingKalmanson), plus a ccw
+fact for (O, s0, b0, s1) from the cap partition.
+
+## Finding 6: merge-layer census — identification layer fully decided
+
+All 7040 merge schemas decided, no timeouts (`merge_ledger.jsonl`,
+`merge_census_summary.json`):
+
+| kind | sat | unsat |
+|---|---|---|
+| e~p0 / e~p1 / e~p2 | 0 | 3000 |
+| p0~p2 / p1~p2 | 0 | 2560 |
+| p0~p1 double | 0 | 200 |
+| p0~p1 single | 1008 | 272 |
+
+Portable laws (each with uniform local certificates in
+`dead_type_local_cores.json`, cores over {fused point, named} only —
+`verify_dead_type_local_cores.py`, 10/10 PASS):
+
+1. an exact-five extra is NEVER an outside-pair point (any row, either
+   arc);
+2. the collision row shares NO outside point with either blocker row
+   (5-6 constraint cores, same bisector-parity shape as Finding 5);
+3. the two blocker rows cannot share BOTH outside points;
+4. of the 272 dead p0~p1 singles, 224 inherit the Finding 5 landing law;
+   the 48 others are a new uniform law: if the blocker rows share an
+   outside point, O cannot be an outside point of both blocker rows
+   (cores: 4 cls_eq + 1-2 kal on {O, fused, b0, b1, s1}).
+
+Z3's minimized cores on the full schemas often drag in stray fresh
+points via conditional-Kalmanson implications (locality audit: 2780
+non-local cores), so the multi-merge containment argument runs through
+the mini-schema certificates instead: every multi-merge pattern contains
+a dead pair whose mini-core maps verbatim under renaming (class
+memberships only grow; named points are never fused; the mini-cores'
+quadruples contain at most the fused bag point).
+
+Residual freedom after L0 + merge layer: 744 all-fresh + 1008 single
+p0~p1 SAT classes.  Next teeth: L1 first-apex rows (frontier pair,
+retained/double rows, polychromatic split — note the polychromatic
+rad_ne family is INERT without EA-centered equalities, so it only fires
+with the row structure), then Round 166 geometry for whatever survives.
+
+Coverage accounting for the identification layer.  Every real aligned
+exact-seven configuration projects to exactly one of:
+
+1. an all-fresh L0 schema (Finding 5);
+2. a single-merge schema (extra ~ outside point same bag, or outside
+   points of two different rows same bag) — enumerated exhaustively
+   (`enumerate_merges.py`, 6840 schemas);
+3. a double b0-row ~ b1-row merge (200 schemas, enumerated); or
+4. a multi-merge pattern containing at least one pair whose type is dead
+   in the single-merge census.  Such a pattern inherits the dead pair's
+   minimized core verbatim, PROVIDED the core touches no fresh point
+   other than the fused one (named points are never fusable and distinct
+   fusions touch distinct fresh points).  This locality condition is
+   checked mechanically over every dead core (`analyze_merges.py`,
+   `nonlocal_cores` must be empty); remaining multi patterns are
+   impossible role-side (same-row or e1~e2 fusions violate proven card
+   facts).
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
