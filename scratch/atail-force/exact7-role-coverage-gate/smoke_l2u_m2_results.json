@@ -1,0 +1,154 @@
+{
+ "N1_poisoned": [
+  {
+   "base": "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+   "u": "b0",
+   "uc": "EA",
+   "bad": "W",
+   "good": "O",
+   "verdict": "unsat",
+   "pass": true
+  },
+  {
+   "base": "retro.L0.eS-O1.r0S-S.r1S-S.r2S-S.mp0b=p1b",
+   "u": "W",
+   "uc": "EA",
+   "bad": "b0",
+   "good": "O",
+   "verdict": "unsat",
+   "pass": true
+  },
+  {
+   "base": "retro.L0.eS-O1.r0S-S.r1S-S.r2S-S.mp0b=p1b",
+   "u": "b1",
+   "uc": "EA",
+   "bad": "W",
+   "good": "O",
+   "verdict": "unsat",
+   "pass": true
+  },
+  {
+   "base": "retro.L0.eS-O1.r0O1-O.r1O1-O1.r2O1-O1.mp0a=p1a",
+   "u": "W",
+   "uc": "EA",
+   "bad": "b0",
+   "good": "O",
+   "verdict": "unsat",
+   "pass": true
+  },
+  {
+   "base": "retro.L0.eS-O1.r0O1-O.r1O1-O1.r2O1-O1.mp0a=p1a",
+   "u": "b0",
+   "uc": "EA",
+   "bad": "W",
+   "good": "O",
+   "verdict": "unsat",
+   "pass": true
+  }
+ ],
+ "N2_monotone": [
+  {
+   "base": "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+   "u": "EA",
+   "uc": "W",
+   "pair": [
+    "O",
+    "b0"
+   ],
+   "verdict": "sat",
+   "subset_sat": true,
+   "pass": true
+  },
+  {
+   "base": "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+   "u": "EA",
+   "uc": "s0",
+   "pair": [
+    "O",
+    "W"
+   ],
+   "verdict": "sat",
+   "subset_sat": true,
+   "pass": true
+  },
+  {
+   "base": "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+   "u": "EA",
+   "uc": "b0",
+   "pair": [
+    "O",
+    "W"
+   ],
+   "verdict": "sat",
+   "subset_sat": true,
+   "pass": true
+  },
+  {
+   "base": "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+   "u": "EA",
+   "uc": "s1",
+   "pair": [
+    "O",
+    "W"
+   ],
+   "verdict": "sat",
+   "subset_sat": true,
+   "pass": true
+  },
+  {
+   "base": "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+   "u": "EA",
+   "uc": "s2",
+   "pair": [
+    "O",
+    "W"
+   ],
+   "verdict": "sat",
+   "subset_sat": true,
+   "pass": true
+  },
+  {
+   "base": "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+   "u": "EA",
+   "uc": "e1",
+   "pair": [
+    "O",
+    "W"
+   ],
+   "verdict": "sat",
+   "subset_sat": true,
+   "pass": true
+  },
+  {
+   "base": "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+   "u": "EA",
+   "uc": "e2",
+   "pair": [
+    "O",
+    "W"
+   ],
+   "verdict": "sat",
+   "subset_sat": true,
+   "pass": true
+  },
+  {
+   "base": "retro.L0.eS-O1.r0O1-O1.r1O1-O1.r2O1-O1",
+   "u": "EA",
+   "uc": "p0a",
+   "pair": [
+    "O",
+    "W"
+   ],
+   "verdict": "sat",
+   "subset_sat": true,
+   "pass": true
+  }
+ ],
+ "summary": {
+  "N1_all_pass": true,
+  "N1_count": 5,
+  "N2_all_pass": true,
+  "N2_sat_pairs": 8,
+  "overall": true
+ }
+}

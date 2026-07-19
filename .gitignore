@@ -165,3 +165,7 @@ scratch/atail-force/exact7-role-coverage-gate/l2u_round3_scale_schemas.json
 scratch/atail-force/exact7-role-coverage-gate/l2u_round3_scale_shard*.log
 scratch/atail-force/exact7-role-coverage-gate/l2u_round3_scale_ledger_shard*.jsonl
 scratch/atail-force/exact7-role-coverage-gate/l2u_round3_scale_kills.json
+scratch/atail-force/exact7-role-coverage-gate/l2u_m2_probe_schemas.json
+scratch/atail-force/exact7-role-coverage-gate/l2u_m2_probe_shard*.log
+scratch/atail-force/exact7-role-coverage-gate/l2u_m2_probe_ledger_shard*.jsonl
+scratch/atail-force/exact7-role-coverage-gate/l2u_m2_probe_kills.json
