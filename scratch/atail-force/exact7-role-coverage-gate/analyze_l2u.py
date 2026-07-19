@@ -9,6 +9,7 @@ fresh center (fS/fO1).
 
 import glob
 import json
+import sys
 from collections import Counter
 
 
@@ -30,8 +31,9 @@ def role(name: str) -> str:
 
 
 def main() -> None:
+    stem = sys.argv[1] if len(sys.argv) > 1 else "l2u_probe"
     rows = []
-    for path in sorted(glob.glob("l2u_probe_ledger_shard*.jsonl")):
+    for path in sorted(glob.glob(f"{stem}_ledger_shard*.jsonl")):
         with open(path) as fh:
             rows.extend(json.loads(line) for line in fh)
     print(f"{len(rows)} rows: {dict(Counter(r['verdict'] for r in rows))}")
@@ -50,14 +52,29 @@ def main() -> None:
             "core": r.get("core", []),
         })
     print(f"{len(kills)} kills")
-    by_pattern = Counter((k["u"], role(k["uc"]), role(k["m"])) for k in kills)
-    for (u, ucr, mr), n in sorted(by_pattern.items(), key=lambda kv: -kv[1]):
-        print(f"  u={u} uc={ucr} m={mr}: {n}")
-    by_base = Counter(k["base"] for k in kills)
-    for b, n in sorted(by_base.items()):
-        print(f"  base {b}: {n}")
-    json.dump(kills, open("l2u_probe_kills.json", "w"), indent=1)
-    print("kills -> l2u_probe_kills.json")
+    for k in kills:
+        rest = [c for c in k["core"] if not c.startswith("row_eq|unu|")]
+        pair = {k["u"], k["m"]}
+        k["kind"] = (
+            "citation"
+            if len(rest) == 1
+            and rest[0].startswith(f"rad_ne|{k['uc']}|")
+            and set(rest[0].split("|")[2].split(",")) == pair
+            else "structural"
+        )
+    print(dict(Counter(k["kind"] for k in kills)))
+    for kind in ("citation", "structural"):
+        sub = [k for k in kills if k["kind"] == kind]
+        by_pattern = Counter((k["u"], role(k["uc"]), role(k["m"])) for k in sub)
+        print(f"-- {kind} by (u, uc, m) role:")
+        for (u, ucr, mr), n in sorted(by_pattern.items(), key=lambda kv: -kv[1]):
+            print(f"  u={u} uc={ucr} m={mr}: {n}")
+        by_base = Counter(k["base"] for k in sub)
+        print(f"-- {kind} by base:")
+        for b, n in sorted(by_base.items()):
+            print(f"  {b}: {n}")
+    json.dump(kills, open(f"{stem}_kills.json", "w"), indent=1)
+    print(f"kills -> {stem}_kills.json")
 
 
 if __name__ == "__main__":

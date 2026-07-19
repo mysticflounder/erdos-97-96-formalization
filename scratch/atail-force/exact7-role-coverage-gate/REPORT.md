@@ -447,6 +447,49 @@ placed (named identification or bag membership — a floating uc is
 provably toothless: its distance variables occur only in row/exclusion
 constraints and always extend by a large-M assignment).
 
+## Finding 13: the unused-row equality layer has teeth — shell-cycle laws (2026-07-19)
+
+L2u probe (`build_l2u_probe.py`): bare single equalities `d(uc,u) =
+d(uc,m)` — the factored |M|=1 named-part of the unused critical row —
+over 12 stratified bases, all placed centers, 5,982 runs, smoke 3/3.
+182 kills: 150 dead-by-citation (uc = EA with u, m both in the closed
+physical cap — the one-hit family, uniform) and 32 structural.  Scale
+sweep (`build_l2u_scale.py`, 6,576 runs over all 876 survivors):
+**2,952 branch kills**, confirming the probe laws exactly:
+
+- **Law U1** (876/876): the shell of b0 centered at s0 cannot contain
+  s1.  Minimal core (4 labels, base-independent): `cls_eq|b0|s1`,
+  `cls_eq|s1|s0`, `cls_ne|s1|b0`, `row_eq|unu|s1`.
+- **Law U2** (876/876): the shell of b1 centered at s2 cannot contain
+  s1.  Core: 3 labels.
+- **O-coupling laws** (conditional on which reverse row carries O):
+  shell(b0)@s0 ∌ O iff O ∈ r0 (192) or O ∈ r2 (216); shell(b1)@s2 ∌ O
+  iff O ∈ r1 (192) or O ∈ r2 (216); shell(b0)@s1 ∌ O iff O ∈ r0 (192);
+  shell(b1)@s1 ∌ O iff O ∈ r1 (192).  Carrier counts (192+192+216 =
+  600 slots on 552 carriers) reconcile with Law A's 48 double-carriers.
+
+Every core is a pure equality-symmetry chain — cls_eq/cls_ne/row_eq
+only, NO Kalmanson, order, or triangle labels.  Common shape: a mutual
+shell pair (the branch shell of P centered at C, and a named shell
+centered at P containing both the shared member M and C) forces
+d(M,P) = radius of a third shell centered at M that contains C but
+excludes P — full-class exactness (`CriticalFourShell.support_eq`)
+gives False.  One general lemma covers U1/U2 (third shell = r2/r2);
+the O-laws are the same chain with class(O) exactness as the third
+class.  These are the cheapest Lean-portable kills the gate has
+produced (Laws A/B needed ordered terminals over Kalmanson kernels).
+
+Scope, stated honestly: these kill BRANCHES of the unused-row
+refinement (where the shells of b0/b1 can sit), not base schemas.  The
+all-fresh full-row branch (fresh center, 3 fresh members, exactness
+excludes + no_qfree included) is SAT on a hard-core base — the L2u
+dimension prunes and refines but cannot close a base outright.
+Generalization pinned for round 2: `CriticalShellSystem` +
+`physicalApex_survives_erase` (arbitrary deleted point) give an
+unconditional row through EVERY carrier point with center ≠ O —
+u ∈ {O, e1, e2, outside points} are valid new through-points (sources'
+rows are the reverse rows already encoded).
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
@@ -467,6 +510,10 @@ constraints and always extend by a large-M assignment).
    (W-centered one-hit retired by Finding 11; no_qfree layer inert by
    Finding 12).  The 324 no-O-row survivors take no L1-row damage at
    all and are the hard core of the residual.
-8. L2u probe per DESIGN-L2.md: bare single equalities `d(uc,u) =
-   d(uc,m)` over placed centers on a stratified survivor sample; factor
-   and scale only what kills.
+8. ~~L2u probe + scale~~ DONE (Finding 13): Laws U1/U2 universal,
+   O-coupling laws per carrier row; 2,952 branch kills.
+9. Lean port: the general mutual-shell-pair lemma (covers U1/U2), then
+   the class(O)-exactness variant for the O-laws.
+10. L2u round 2: generalized through-points u ∈ {O, e1, e2, p·} (m
+    restricted to cap points + O per the kill evidence), and |M| = 2
+    decorations of surviving branches if round 2 shows depth.
