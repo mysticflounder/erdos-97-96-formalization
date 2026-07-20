@@ -725,3 +725,32 @@ role cell and an immediate consumer, with an explicit full deletion-radius
 semantics and an oriented-coordinate/MEC validation layer.  Any result short
 of that is a finite abstraction diagnostic, not evidence that either live
 source obligation is closed.
+
+### Rebuilt-spine robust priority (2026-07-20)
+
+The focused Route-B build and fresh kernel mining now verify that the public
+Problem 97 target reaches exactly two source holes:
+
+| On-spine obligation | Correct active target |
+| --- | --- |
+| `false_of_originalFrontierUniqueRadiusArm` | direct protected unique-radius contradiction |
+| `false_of_frontierBiApexRobustResidual` | direct full-parent robust geometric/minimality contradiction |
+
+The retired `DoubleApexOffSurplusSharedRadiusPair` and LIVE-Q/C declarations
+are not on that rebuilt spine. The physical-second-apex critical case is
+source-clean and reorients into the first obligation.
+
+The generic robust surface `B` has no proved bridge to
+`FrontierLargeOppositeCapsBiApexRobustResidual B`: the two cap-six bounds are
+additional `L` data, not a consequence of `B` or a low-cardinality split.
+The production multiplicity theorem yields either multiple blocker fibers or
+a larger one, but the source-faithful audits show that this alone supplies no
+cross-row membership, first-apex equality, or compatible cyclic order.
+
+Therefore `ATAIL-FRONTIER-CLOSING-CORE` should be read as a direct
+full-parent occurrence target: select a favorable fiber late and produce a
+complete `CriticalFiberClosingCore` (or `False`) using cap/MEC/order and
+global deletion-criticality data. Exact-five/six/seven `L` work is
+supporting-only until an ingress theorem covers the complementary generic
+robust cases. Literal CEGAR, raw DIMACS, and further standalone
+blocker-fiber/cap adapters remain nonterminal regressions.

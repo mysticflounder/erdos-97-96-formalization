@@ -5666,3 +5666,38 @@ consumer, and its producer supplies a complete deletion-radius partition plus
 an oriented-coordinate/MEC oracle.  Raw CNF may then be used as a subordinate
 Boolean sub-oracle; its `SAT`, `UNSAT`, or DRAT result is not by itself a
 proof of the Euclidean parent or a replacement for that occurrence theorem.
+
+### Rebuilt live-spine and robust-arm priority (2026-07-20)
+
+A focused rebuild of `Erdos9796Proof.P97.U1LargeCapRouteBTail`, followed by
+a fresh proof-blueprint index and kernel call-graph mining, confirms the
+actual public spine:
+
+```text
+Problem97.erdos97_rhs
+  -> u1_largeCap_routeB_tail_liveData_false
+  -> false_of_twoLargeCaps_commonCriticalMap
+  -> false_of_criticalPairFrontier
+  -> { false_of_originalFrontierUniqueRadiusArm,
+       false_of_frontierBiApexRobustResidual }
+```
+
+These are the only two source `sorry` declarations reached by the target.
+The old `DoubleApexOffSurplusSharedRadiusPair` and the LIVE-Q/C tree are not
+part of this rebuilt spine.
+
+The robust-arm blocker-multiplicity and cap-localization audits also settle a
+strategy point: the generic `B : FrontierBiApexRobustResidual R` does **not**
+currently imply the two cap-six bounds required by
+`L : FrontierLargeOppositeCapsBiApexRobustResidual B`. Mixed/small-cap
+profiles are not discharged merely by carrier cardinality. Do not treat
+exact-five/six/seven as a direct consumer of the generic live robust arm.
+
+Accordingly, the primary robust target is a direct, full-parent occurrence
+that chooses a collision/fiber only after inspecting the complete geometry
+and returns an already-terminal `CriticalFiberClosingCore` (or direct
+`False`). It must supply the cross-row equality together with compatible
+cap/order placement; blocker multiplicity, support locking, and literal
+Kalmanson shadows have been audited as insufficient. The `L` exact-five and
+exact-seven work remains supporting research until a source-faithful ingress
+theorem handles every non-`L` case.
