@@ -64,8 +64,14 @@ false_of_largeOppositeCapsBiApexRobust
 The exact-five transition now has a production global split before cycle
 normalization: either some arbitrary pair of physical sources mutually omit
 one another, or every physical omission reverses to membership.  The mutual
-arm is an open arbitrary-pair sibling: the older cycle-edge mutual packets do
-not consume this type and are nonterminal in any case.  The complementary arm
+arm now has a recovered, kernel-checked source-faithful consumer:
+`scratch/atail-force/live-global-mutual-cap-consumer/` converts the arbitrary
+pair to a fresh period-two edge and uses the total map plus the robust-card
+bound to return either a same-cap `CommonDeletionTwoCenterPacket` or an
+equal-blocker exact-shell residual.  Neither residual is yet `False`: the
+distinct-blocker arm needs a positive shared outside pair, while the
+equal-blocker arm needs a distinct actual row through both fiber sources with
+compatible cap placement.  The complementary arm
 is no longer a period-three-through-five problem: production proves that the
 physical interior has cardinality exactly three and supplies a zero-entry,
 all-reverse period-three cycle containing both continuation sources.
@@ -113,7 +119,8 @@ arbitrary complete first-apex radius class.  The full-parent assembler and
 co-radial-to-`False` terminal are production in
 `ATail/ParentExactFiveAssembler.lean`, and its exact-five dispatcher consumes
 that invariant occurrence directly.  The arbitrary mutual-omission sibling
-still requires its own direct-False consumer.
+therefore has a terminal-facing consumer, but still requires one final
+geometric producer for one of its two residuals.
 
 The corrected source/consumer map and exact transient-tail regression remain
 recorded in

@@ -152,9 +152,12 @@ every physical omission reverses to membership
 ```
 
 This is stronger than splitting only the edges of one chosen normalized
-cycle.  The first arm is an open arbitrary-pair mutual-omission sibling: the
-older cycle-edge mutual reductions neither accept its type nor reach a
-terminal contradiction.  In the second arm, production proves
+cycle.  The first arm has a recovered source-faithful scratch consumer: it
+constructs a fresh period-two edge from the arbitrary pair and reaches a
+same-cap distinct-blocker common-deletion residual or an equal-blocker exact
+shell residual.  Both outputs still need a positive geometric overlap or
+third row to reach `False`; they are not closure by themselves.  In the
+second arm, production proves
 `physicalVertices.card = 3`.  It also constructs a zero-entry normalized
 cycle of period three that starts at `continuation.first`, contains
 `continuation.second`, and is all-reverse.  Consequently periods four and
@@ -181,7 +184,7 @@ outside-cap pair feed production
 ```text
 full R/B/L parent + same-H exact-five total transition
   -> arbitrary-pair mutual omission | global reverse-membership
-  -> open mutual direct-False slot | source-faithful period-three cycle
+  -> checked same-cap/equal-blocker residual | source-faithful period-three cycle
   -> co-radial transition reverse-outside-pair occurrence
   -> outsidePair_unique_capCenter
   -> False
