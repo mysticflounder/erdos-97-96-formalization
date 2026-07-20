@@ -769,3 +769,31 @@ The remaining robust theorem must visibly consume total
 and one global parent field. This is a precise research boundary, not a claim
 that the full parent is unrealizable or that the two live obligations are
 closed.
+
+### Active direct-parent campaign (2026-07-20)
+
+| Retained-pair arm | Required closure result | Disallowed substitute |
+| --- | --- | --- |
+| Actual cross membership | A complete signed-area, third-center, Kalmanson, or `CriticalFiberClosingCore` occurrence with its compatible order/cap fields. | A bare additional row, blocker collision, or equality list. |
+| Cross-deletion survival | A companion common-deletion packet **and** a source-faithful strict progress/nonreturn invariant using cap/MEC/minimality. | Reapplying the same robust/critical splitter as an unranked recurrence. |
+
+The sole admissible finite-analysis manifest is whole-carrier and
+source-faithful: full `no_qfree_at` radius partitions, the retained-pair
+minimal-deletion core, oriented convex-boundary/MEC constraints, and one fixed
+terminal consumer. Literal 555/654, arbitrary selected-row, and uniform
+Kalmanson searches remain excluded. `SAT` may falsify an overstrong proposed
+occurrence; `UNSAT` becomes closure evidence only after formal coverage maps
+every parent configuration to the manifest.
+
+**Retained-pair source audit (2026-07-20).** The physical-second-apex escape
+has a chosen critical blocker distinct from both known retained-pair centers:
+the first apex is deletion-robust and the `q` blocker survives deleting the
+escape source. This is a proved role constraint, not a terminal row
+occurrence. The third-center classifier then forbids a third blocker from
+containing both retained sources. The valid next producer is consequently a
+geometric consumer of the source-indexed two-deletion survival cover outside
+the at-most-four-source known blocker fiber (at least six sources under the
+live cardinality bound). It must consume cap/MEC and a global parent field and
+return `CriticalFiberClosingCore`, a retriangulated `IsM44` packet, or
+`False`; another third-blocker, survival, or common-deletion wrapper is not
+an admissible milestone.

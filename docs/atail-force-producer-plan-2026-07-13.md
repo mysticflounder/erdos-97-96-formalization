@@ -5731,3 +5731,51 @@ The exact-five/six/seven `L` developments remain useful only as tests and
 possible terminal cores for such an ingress; they are not a substitute for
 the missing generic-`B` bridge. This is a scope correction, not an
 impossibility claim about the full Euclidean parent.
+
+### Active direct-parent campaign (2026-07-20)
+
+The next implementation/research cycle is deliberately one campaign, not a
+new family of local adapters.  Its target is the live source declaration
+`false_of_frontierBiApexRobustResidual F R B`.
+
+1. Start with the retained frontier pair's source-faithful split between a
+   cross membership and cross-deletion survival.  Do not replace either arm
+   by an anonymous selected-row or radius-class assertion.
+2. On a cross-membership arm, derive a complete existing terminal occurrence:
+   either compatible ordered cross rows for `CriticalFiberClosingCore`, or a
+   named signed-area/third-center/Kalmanson consumer.  The required output is
+   `False`, not another row packet.
+3. On a cross-survival arm, retain the resulting companion common-deletion
+   packet and prove a genuine cap/MEC/global-minimality progress or nonreturn
+   fact. Re-entering the same physical robust/critical split without a
+   strictly justified invariant is a recurrence, not a proof.
+
+Any computational exploration is admissible only for this exact pair split
+and only after its manifest contains the total `CriticalShellSystem`, the
+all-radius `no_qfree_at` semantics, the minimal-deletion core on the retained
+pair, a whole-carrier oriented boundary/MEC model, and a fixed immediate
+consumer. A `SAT` witness may reject an overstrong occurrence claim; an
+`UNSAT` result is useful only with coverage back to that source-level
+manifest. This explicitly excludes fresh literal 555/654, arbitrary-row, and
+uniform Kalmanson mining.
+
+#### Retained-pair audit checkpoint (2026-07-20)
+
+The cross-membership branch has now been audited against the actual
+second-apex off-confinement escape and the bi-apex robust parent.  The escape
+source's chosen critical blocker is provably distinct from both known
+retained-pair centers: it cannot be the first apex by first-apex robustness,
+and it cannot be the retained `q` blocker because that blocker survives
+deletion of the escape source.  This is a useful source-faithful role
+constraint, but it does **not** create a retained-pair cross membership in
+the third row.
+
+The checked third-center classifier instead makes clear why: a genuinely
+third blocker containing *both* retained sources is already impossible.  Away
+from the protected exact-card-four alternative, the total critical map yields
+the existing source-indexed two-deletion survival cover; the known blocker
+fiber has size at most four and at least six carrier sources lie outside it.
+The next theorem must therefore be a cap/MEC/global-parent consumer of that
+survival cover, not another third-blocker or common-deletion adapter.  Its
+acceptable outputs remain a completed `CriticalFiberClosingCore`, a new
+retriangulated `IsM44` packet, or direct `False`.
