@@ -68,7 +68,9 @@ arm now has a recovered, kernel-checked source-faithful consumer:
 `scratch/atail-force/live-global-mutual-cap-consumer/` converts the arbitrary
 pair to a fresh period-two edge and uses the total map plus the robust-card
 bound to return either a same-cap `CommonDeletionTwoCenterPacket` or an
-equal-blocker exact-shell residual.  Neither residual is yet `False`: the
+equal-blocker exact-shell residual. `FullParentBridge.lean` applies that
+consumer directly to `FullParentExactFiveMutualData`, preserving the complete
+`L` parent through this split. Neither residual is yet `False`: the
 distinct-blocker arm needs a positive shared outside pair, while the
 equal-blocker arm needs a distinct actual row through both fiber sources with
 compatible cap placement.  The complementary arm

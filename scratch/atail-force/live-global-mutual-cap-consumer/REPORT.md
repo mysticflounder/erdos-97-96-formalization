@@ -21,6 +21,13 @@ not a direct `False` theorem: the distinct-blocker arm still needs a positive
 common outside pair, and the equal-blocker arm still needs a distinct actual
 row through both fiber sources with compatible cap placement.
 
+`FullParentBridge.lean` now applies this result directly to
+`FullParentExactFiveMutualData`.  It constructs the robust-radius surface from
+the retained `L` parent and returns the same period-two/distinct-or-equal
+residual split without discarding the full-parent index.  This is the live
+bridge needed by the exact-five mutual dispatcher; it does not claim that
+either residual is contradictory.
+
 ## Imported source and validation
 
 The recovered files are `GlobalMutualPairCycleEdge.lean` and
@@ -37,11 +44,12 @@ PhysicalOmissionCycleParentAdapter.lean
 MutualGlobalCapConsumer.lean
 GlobalMutualPairCycleEdge.lean
 LiveGlobalMutualCapConsumer.lean
+FullParentBridge.lean
 ```
 
 All checks used `-DwarningAsError=true`. The four public recovered endpoints
-report only `propext`, `Classical.choice`, and `Quot.sound`; neither recovered
-file contains `sorry`, `admit`, a declared axiom, `unsafe`, or
-`native_decide`.
+and the full-parent bridge report only `propext`, `Classical.choice`, and
+`Quot.sound`; neither recovered file contains `sorry`, `admit`, a declared
+axiom, or `unsafe`.
 
 No production source `sorry` is closed by this checkpoint.

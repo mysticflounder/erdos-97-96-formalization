@@ -155,7 +155,9 @@ This is stronger than splitting only the edges of one chosen normalized
 cycle.  The first arm has a recovered source-faithful scratch consumer: it
 constructs a fresh period-two edge from the arbitrary pair and reaches a
 same-cap distinct-blocker common-deletion residual or an equal-blocker exact
-shell residual.  Both outputs still need a positive geometric overlap or
+shell residual. `FullParentBridge.lean` applies this consumer directly to
+`FullParentExactFiveMutualData`, preserving the full `L` parent through the
+split. Both outputs still need a positive geometric overlap or
 third row to reach `False`; they are not closure by themselves.  In the
 second arm, production proves
 `physicalVertices.card = 3`.  It also constructs a zero-entry normalized

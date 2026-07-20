@@ -514,7 +514,8 @@ coverage or keep the total all-center literal gate active.
   `False`.  `OrderedCrossRowCore` is a fallback only when its extra fiber
   alignment, cross-incidence, and cyclic-order fields are actually produced.
 - The exact-five arbitrary mutual-omission sibling now has a checked
-  source-faithful same-cap/equal-blocker residual consumer. Its final positive
+  source-faithful same-cap/equal-blocker residual consumer, with a direct
+  `FullParentExactFiveMutualData` bridge preserving `L`. Its final positive
   overlap or third-row producer remains independent and open. No source
   `sorry` closes at this checkpoint.
 
