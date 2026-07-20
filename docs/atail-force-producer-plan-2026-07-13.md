@@ -5553,9 +5553,9 @@ The kernel-mined live spine has exactly two source obligations:
 
 1. `false_of_originalFrontierUniqueRadiusArm`, for the protected exact
    first-apex radius-four-or-five arm; and
-2. `false_of_frontierCoupledStrictInteriorNormalForm`, for the full
-   source-faithful common-deletion parent residual together with its coupled
-   strict-interior/frontier-escape normal form.
+2. `false_of_frontierBiApexRobustResidual`, for the source-faithful
+   common-deletion parent residual after both physical opposite apices have
+   deletion robustness.
 
 This is an architectural reduction, not a claim that either arm is currently
 proved or that the former generic-frontier scope objection has been resolved
@@ -5569,10 +5569,10 @@ the unique arm is its independent sibling.
 
 The exact-five, exact-six, and exact-seven production theorems are indexed by
 the cap-first packet `L : FrontierLargeOppositeCapsBiApexRobustResidual B`.
-The two live obligations above are instead generic `F`/`R` arms.  No current
-source theorem maps either live normal form to an aligned `L` packet: in
-particular, the live coupled form retains neither the second-apex robust
-surface `B` nor the two opposite-cap lower bounds carried by `L`.
+The live robust obligation retains generic `F`/`R` data and
+`B : FrontierBiApexRobustResidual R`, but not `L`'s two opposite-cap lower
+bounds.  No current source theorem discharges the complementary small-cap
+cases and constructs `L` from that generic robust parent.
 
 Therefore an exact-six theorem or an exact-seven oriented-coordinate producer
 does not currently discharge a live `sorry`; it is supporting research unless
@@ -5581,8 +5581,8 @@ are exactly:
 
 1. prove a bridge from the full live parent data to the cap-first `L` route,
    discharging its non-`L` ingress cases; or
-2. prove a direct geometric/minimality consumer for the generic coupled and
-   unique-radius live arms.
+2. prove a direct geometric/minimality consumer for the generic bi-apex
+   robust and unique-radius live arms.
 
 The current 25-role coordinate probe is `UNKNOWN`, and its 192 numerical
 multistarts found no witness but are not an infeasibility result.  Do not
