@@ -5623,3 +5623,46 @@ This is a reduction in independent source holes, not kernel closure of the
 critical arm: it inherits the original unique-arm dependency. The next active
 task remains the robust arm's source-faithful cap-size ingress to `L`, with
 actual short-cap consumers required for every complementary case.
+
+### Exact-five transition status correction (2026-07-20)
+
+The earlier cycle-normalization provenance concern is already repaired in the
+current production exact-five path. `ParentExactFiveAssembler` performs the
+mutual/all-reverse split over arbitrary physical vertices before choosing a
+cycle. Its all-reverse payload uses
+`exists_entryZeroPeriodThreeCycle_containing_continuationSources`, which
+proves that the cycle has entry time zero, starts at the first continuation
+source, and contains the second continuation source. Thus no closure work
+should target a transient-cycle anchoring repair or re-promote the scratch
+transition API.
+
+The remaining robust mathematics is genuinely aggregate. In the mutual arm,
+the checked full-parent audit shows that the common blocker bisects the named
+pair but both physical apices do not; and the displayed cap-six packet is
+already not `IsM44`. Consequently `R.noM44` can help only through a new,
+different support-triangle/cap-partition construction, not by reusing `S`.
+The valid next targets remain a full-`L` co-radial reverse-outside-pair
+occurrence, a late-choice `CriticalFiberClosingCore`, or such a
+retriangulation/direct nonlinear cap proof.
+
+### Faithful finite-search gate (2026-07-20)
+
+The deployed `piqd` raw-DIMACS endpoint is a faithful executor for a CNF
+already emitted elsewhere; it does not add geometry to that CNF.  In
+particular, neither it nor the existing whole-carrier Python CEGAR encodes
+the two live ingredients still absent from the linear shadow:
+
+1. full source-deletion criticality (`H.no_qfree_at`) over *every* radius at
+   the chosen blocker, rather than exactness of one displayed four-shell; and
+2. the signed-area/interior-center and MEC constraints needed for the
+   exact-seven cross-membership branch.  These are not functions of the
+   pairwise distance matrix: reflected configurations retain the same metric
+   table and reverse the required orientation sign.
+
+Consequently, do not submit the existing literal/Kalmanson DIMACS or Z3
+instances to `piqd` as another closure run.  A future finite job is admissible
+only after a source-valid occurrence theorem fixes its role map and immediate
+consumer, and its producer supplies a complete deletion-radius partition plus
+an oriented-coordinate/MEC oracle.  Raw CNF may then be used as a subordinate
+Boolean sub-oracle; its `SAT`, `UNSAT`, or DRAT result is not by itself a
+proof of the Euclidean parent or a replacement for that occurrence theorem.

@@ -689,3 +689,39 @@ same packet-generic FA-UNIQ4 interface consumed by
 Thus the live spine has two—not three—source `sorry`s. The critical branch is
 not kernel-closed independently; it inherits the original unique-arm
 dependency and must not be reported as an independent producer frontier.
+
+### Exact-five transition status correction (2026-07-20)
+
+The normalized-cycle provenance gap has already been eliminated in production:
+the mutual/all-reverse split is transition-global, and the all-reverse branch
+constructs a zero-entry period-three cycle containing both continuation
+sources. Do not schedule another cycle-anchoring or transition-API promotion
+as live closure work.
+
+The remaining full-`L` cells are not local incidence obligations. The
+full-parent mutual equal-blocker audit proves a three-center ledger: its
+common blocker is equidistant from the pair, while both physical apices are
+not. Since the displayed large-cap packet has cap cardinality at least six,
+it is itself not `IsM44`; using `noM44` requires an internally constructed
+different support triangle with exact `(m,4,4)` cap counts. The only honest
+producer frontiers are therefore a global co-radial reverse-outside pair, a
+late-choice `CriticalFiberClosingCore`, or a retriangulation/direct nonlinear
+cap contradiction.
+
+### Faithful finite-search gate (2026-07-20)
+
+The current raw-DIMACS/piqd route is not an oriented Euclidean or
+deletion-criticality solver.  It faithfully runs a supplied Boolean CNF, but
+the extant generic CEGAR chooses blocker rows freely and checks only a local
+Kalmanson/metric shadow.  It lacks both the all-radius meaning of
+`H.no_qfree_at` and the signed-area/MEC information used by the remaining
+cross-membership geometry.  The latter is not recoverable from a distance
+matrix because reflection preserves all distances while reversing the needed
+orientation sign.
+
+Therefore literal CEGAR and raw-CNF runs are retired as primary closure work.
+They may be used only after a source-faithful occurrence map fixes a finite
+role cell and an immediate consumer, with an explicit full deletion-radius
+semantics and an oriented-coordinate/MEC validation layer.  Any result short
+of that is a finite abstraction diagnostic, not evidence that either live
+source obligation is closed.
