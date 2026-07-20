@@ -1244,6 +1244,19 @@ solving.  The one-hit branch is still open: four 24-worker strict-hull/MEC
 searches returned only `UNKNOWN_NO_HIT`, with no exact witness and no UNSAT
 certificate.  Do not promote their negative margins into infeasibility.
 
+The first role-preserving one-hit probe now fixes the card-three
+`continuationOrder` `(1,1,1)` subcell: the mutual source/target are `q0/q2`,
+the unused row's unique physical hit is `q1`, and its off-class source is `u`.
+It explicitly checks mutual and continuation omissions plus the legal
+same-cap hit counts.  Its 24-worker numerical run is still
+`UNKNOWN_NO_HIT`.  The paired fixed-word QF_NRA checker is a contract gate,
+not coverage: it rejects the optimizer's cap-inconsistent near-miss word by a
+four-atom cap-order core, while a cap-consistent word is `UNKNOWN` at 30
+seconds.  Before enumerating words, preserve the missing `(2,1,0)` and
+`(1,2,0)` hit distributions, other role/cap cells, and exact all-center
+`no_qfree`/parent fields in a source-valid occurrence map.  No local QF_NRA
+verdict yet supplies the full mutual consumer or closes a `sorry`.
+
 Do not route the mutual branch through a supposed third robust center.  The
 minimal-deletion output may reuse the first physical apex, and even the stronger
 three-distinct finite projection with two disjoint fresh-center shells and

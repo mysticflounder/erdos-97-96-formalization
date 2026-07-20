@@ -162,6 +162,42 @@ assigned the two-hit blockers to complementary caps, exactly the placement
 the kernel localization theorem rules out.  Their failure was useful for
 discovering the correct theorem split, but it is not an UNSAT result.
 
+### Role-preserving one-hit cell and exact fixed-word probe (2026-07-20)
+
+The older `search_single_physical_hit.py` is a useful one-hit relaxation, but
+it does not retain a concrete `ExactSixMutualRoleOrbit`.  The new
+`search_card3_continuation_order_one_hit.py` is the first role-preserving
+subcell.  It fixes the card-three `continuationOrder` assignment
+
+```text
+mutual source = q0, mutual target = q2, unused physical hit = q1,
+unused off-class source = u,
+```
+
+with actual-row physical intersections exactly `{q0}`, `{q2}`, and `{q1}`.
+It checks the two mutual omissions, both unused-row continuation omissions,
+and a legal fixed cap assignment with same-blocker-cap support counts `2,2,0`.
+The recorded 400-generation/population-12/24-worker run has
+`UNKNOWN_NO_HIT`, best minimum margin `-0.005325931709815055`; its closest
+point simultaneously presses a lower-cap membership, MEC containment, and a
+strict-hull atom.  This is not infeasibility evidence.
+
+`qfnra_card3_continuation_order_one_hit.py` turns a supplied cyclic word of
+that exact displayed-role contract into 547 QF_NRA atoms.  It provides a
+necessary consistency guard before solver time is interpreted: replaying the
+numeric near-miss word is externally exact `UNSAT`, but its four-atom core is
+only a cap-order mismatch (`source_x2` was placed on the lower arc despite
+its upper-cap assignment).  A cap-consistent canonical word reaches Z3/NLSAT
+`UNKNOWN` at 30 seconds.  Neither result eliminates a source-valid cell.
+
+This probe covers only the `(1,1,1)` physical-hit subcase of card-three
+`continuationOrder`.  It omits the allowed `(2,1,0)` and `(1,2,0)` hit
+distributions, all other role orbits, cap cells and cyclic words, exact
+all-center `no_qfree`, full `CriticalShellSystem`, the retained parent packet,
+global minimality, and `noM44`.  In particular, broad fixed-word enumeration
+must wait for a source-valid coverage/occurrence map; it cannot be promoted to
+the mutual-branch proof from a bounded numeric or isolated QF_NRA result.
+
 ## Equality ideal, inequalities, and full-parent boundary
 
 The epistemic split is:
@@ -232,6 +268,10 @@ unknown.
 - `search_card3_one_hit_free_caps.py`: free complementary-cap card-three
   discovery search.
 - `search_card3_one_hit_near_cell.py`: nearest legal cap-hit cell.
+- `search_card3_continuation_order_one_hit.py`: role-preserving card-three
+  `continuationOrder` `(1,1,1)` one-hit subcell with named constraint logging.
+- `qfnra_card3_continuation_order_one_hit.py`: exact QF_NRA check for one
+  supplied cyclic word of that subcell.
 - `search_card3_role_orbit_pairs.py` and
   `search_card4_four_distinct_pairs.py`: diagnostic paired-row searches whose
   invalid complementary-cap blocker premise led to the checked localization
@@ -244,6 +284,8 @@ unknown.
 - **PROVED / KERNEL-CHECKED:** source-faithful two-hit blocker localization and
   exact-six finite alias sets.
 - **BOUNDED NUMERICAL UNKNOWN:** tested one-hit strict-convex/MEC cells.
+- **EXTERNALLY EXACT CELL CHECKS:** one invalid near-miss word is rejected by
+  cap order alone; one cap-consistent word is QF_NRA `UNKNOWN` at 30 seconds.
 - **NOT PROVED:** Euclidean/MEC infeasibility of any complete source-role
   orbit, or an exact local countermodel.
 - **PRODUCTION `sorry` CLOSED:** none.
