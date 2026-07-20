@@ -941,6 +941,43 @@ only viable route are open: arm1 (this rigidity) and arm2 (`dead-ends.md:
 743/786` sole survivor).  No autonomous non-pivot closure exists.  Spine sorry
 unchanged.
 
+## Finding 19: the L3/Round-166 layer is not expressible in this gate (2026-07-19)
+
+Source-verified resolution of Next-step 12 (the proposed L3 cross-row
+layer).  The applicability precondition IS met — on the same-radius
+double-row arm, `sameRadius_six` (`FirstApexShellRole.lean:110`) forces
+`class(EA) card ≥ 6 ≥ 5`, satisfying the producer's `hfive`, and the
+frontier-pair packet carries `q/w_secondApex_survives`
+(`FirstApexShellRole.lean:126-129`), the oppApex2-survival the producer
+needs.  (The arm2 *collision* decomposition lacks that survival; the
+*gate* frontier-pair survivors do not — see the item-12 caveat, which is
+specific to the collision, not the gate.)
+
+But the layer is **not buildable in this encoder**, which is a QF_LRA
+relaxation over the pairwise-distance matrix (`gate_encoder.py`: the only
+geometric variables are `d_a_b : Real`, plus `Int` bag positions used
+solely to branch Kalmanson quadruples; there are no coordinates).  The L3
+kill turns on `signedArea_product_neg_of_cross_membership`
+(`CriticalPairFrontier.lean:927`) — a constraint on the **sign** of a
+signed-area product whose apex `H.centerAt q` is an interior circumcenter.
+A signed area's sign is not a function of the distance matrix: a config
+and its mirror image have an identical distance matrix and opposite
+orientation.  Kalmanson fixes the convex **boundary** cyclic order, but
+not the side of a chord an interior point falls on.  So the winding
+constraint — the active ingredient; the center-coincidence⟺cross-
+membership iff alone kills nothing — is inexpressible here.  Adding
+`center_q/center_w` as floating points does not help: their signed-area
+sign is still not distance-determined.
+
+This pins why the census is terminal (Finding 16): the distance-matrix
+relaxation has extracted all it can express (metric feasibility, convex
+boundary order, radius incidences).  The remaining kills require oriented
+geometry (signed area of interior triples) — the irreducibly ∃ℝ metric
+core (`dead-ends.md`), the same content on which a coordinate-NRA
+encoding times out (`scratch/atail-arm2-analysis/core13_convex.py` →
+`unknown`).  A Round-166 census would require a coordinate/orientation
+encoding, a different tool, not an added field on this gate.
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
@@ -1015,8 +1052,14 @@ unchanged.
     `five_le_card_of_periodThree_straddles`: period-3 sources+blockers
     force interior ≥ 5) is TIGHT at exact-seven (interior = 7−2 = 5),
     which is the structural reason this branch is the residual.
-12. **NEXT — L3 cross-row-occurrence layer** (the gate contract's
-    "Round 166 producers" for the SAT residuals).  The producers already
+12. **~~NEXT — L3 cross-row-occurrence layer~~ RESOLVED: not expressible in
+    this gate (Finding 19).**  The precondition is met on the same-radius
+    arm, but the kill turns on a signed-area *sign* constraint that no
+    QF_LRA distance-matrix relaxation can express (mirror images share the
+    distance matrix, differ in orientation).  A Round-166 census needs a
+    coordinate/orientation encoding, not a field on this gate.  Original
+    proposal retained below for provenance.
+    The producers already
     exist kernel-clean in `ATail.CriticalPairFrontier.lean` (0 sorries):
     `blocker_centers_eq_iff_mutual_cross_membership_of_five_le` (:1177) —
     with first-apex `SelectedClass` card ≥ 5, blocker-center coincidence
