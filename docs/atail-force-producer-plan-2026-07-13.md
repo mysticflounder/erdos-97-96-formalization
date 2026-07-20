@@ -5370,6 +5370,14 @@ Acceptance is fail-closed:
    deletion core contained in that pair, restoration fields, and the
    singleton/full-pair split.  This is the required global progress surface,
    not a terminal contradiction.
+   The scratch adapter
+   `frontierPair_globalStep_exactFour_or_robustContext_or_companion` now
+   checks the next parent normal form: exact-card-four remains an explicit
+   arm; otherwise the directed cross split installs the seven fields needed
+   by the robust-minimal reduction or returns the source-faithful companion
+   packet.  It does not derive the non-card-four premise or close either
+   residual, and it intentionally remains scratch until the older
+   stage-one import collision is resolved.
 4. Close the two outputs of
    `physicalSecondApex_commonDeletion_robust_or_critical`: the robust
    `FullyDeletionRobustAt D S.oppApex2` arm and the

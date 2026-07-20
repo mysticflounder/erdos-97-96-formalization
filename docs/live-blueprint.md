@@ -1,5 +1,9 @@
-active anchors (1):
-  ⚓ fd7b0078 (YOU)  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — Taking over exact-seven branch from session 019f720d (Round124+ frontier). Boundary-successor arm closed; residual: aligned critical four-shell center strictly inside global MEC. Unused-blocker alternative per Rounds 136/152: card-four physical residual with shared-order index, or strict other-cap interior; Round156 exact model blocks local closure of the nonphysical arm; Round166 names the missing producers (rank+winding or cross-row occurrence).
+active anchors (5):
+  ⚓ 019f5a3d (YOU)  Problem97.u1_largeCap_routeB_tail_liveData_false  [open]  — Full-L parent route: exact-six is closed; exact-seven is user-owned; continue the >=8 aggregate occurrence/direct-False coupling while preserving F/R/B/L.
+  ⚓ 019f7992  Problem97.liveData_C_center_t2_named_false  [open]  — Audit all seven LIVE-C source leaves for unconditional banked closure; protected production file read-only. Closest leaf is t2_named; current common boundary gives non-p center and two off-dangerous support points, while same-cap terminal needs two dangerous support points plus common-cap/outside-cap placement.
+  ⚓ 019f78cc  Problem97.u1_largeCap_routeB_tail_liveData_false  [open]  — Audit exact live parent geometry packet after aggregate counterfamily; identify smallest on-spine hypothesis feeding checked consumer; scratch signature only, no production edits
+  ⚓ 019f5a3d  Problem97.u1_largeCap_routeB_tail_liveData_false  [open]  — Aggregate route correction: explicit positive circular-split counterfamily for every even n>=12 gives a strongly connected pair-alternating four-target Gordan separator; canonical n=12 has 48 offdiag tight arcs, degree4 on both sides, no diagonal, exact Kalmanson slacks, and two independent integer replays. Therefore generic interval-flux/product-box, |E|<=4n-1, and low-row theorems are REFUTED. Finite n8,n9 remain DRAT-closed; n10 piqd checkpoint 51,554 verified cuts / 33,768 emitted minimal clauses ends UNKNOWN at 600s; n11 finite only. High-card closure must restore Euclidean/MEC/full critical-fiber/global-minimality parent force. No sorry closed. Do not duplicate exact-seven fd7b0078.
+  ⚓ fd7b0078  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — Exact-seven lane (took over 019f720d). New: fixture QF_LRA UNSAT downgraded — 4-constraint equilateral-hinge core from arbitrary support choices, not exact-seven force (exact7-role-coverage-gate/fixture_unsat_core.json). New: aligned exact-seven cap interior is fully named [end,s0,b0,s1,b1,s2,end], s1 middle — no anonymous cap points, so a finite role-coverage gate is Lean-portable. Next: (1) Lean named-interior normal form assembling rounds 119/124/125/136; (2) role-coverage enumerator with hinge/five-point/six-point cut banks + QF_LRA CEGAR, smoke-gated on the fixed fixture.
 target spine view: 2 configured target_symbol(s)
 
 ════════════════════════════════════════════════════════════════
@@ -32,13 +36,13 @@ open obligations (9):
         │   │   │   ├── Problem97.RemovableVertexOfLarge_from_pinnedSurplusCOMPGBank
         │   │   │   │   ├── Problem97.removableVertexOfLarge_of_nonIsM44
         │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_false
-        │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_liveData_false
+        │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_liveData_false  ⚓ (YOU)
         │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l1_false
         │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_q_t20_via_reindex
         │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_largeCap_pCentered_t2Source_exactDangerousRow
         │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_twoLargeCaps_pCentered_t2Source
         │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.exists_removableVertex_of_twoLargeCaps
-        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [💧]  ⚓ (YOU)
+        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [💧]
         │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
         │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
@@ -202,13 +206,13 @@ open obligations (9):
             │   │   │   │   │   │   ├── Problem97.RemovableVertexOfLarge_from_pinnedSurplusCOMPGBank
             │   │   │   │   │   │   │   ├── Problem97.removableVertexOfLarge_of_nonIsM44
             │   │   │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_false
-            │   │   │   │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_liveData_false
+            │   │   │   │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_liveData_false  ⚓ (YOU)
             │   │   │   │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l1_false
             │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_q_t20_via_reindex
             │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_largeCap_pCentered_t2Source_exactDangerousRow
             │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_twoLargeCaps_pCentered_t2Source
             │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.exists_removableVertex_of_twoLargeCaps
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [💧]  ⚓ (YOU)
+            │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [💧]
             │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
             │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
             │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
@@ -341,6 +345,6 @@ open obligations (9):
   - reaches sorry via 8 symbol(s)
   - unapproved axiom on spine: sorryAx
 
-unimported files (580 file(s), 2495 symbol(s) — never reached by any lake import chain) — --full to list
+unimported files (586 file(s), 2526 symbol(s) — never reached by any lake import chain) — --full to list
 
 targets summary: 2/2 target(s) still open

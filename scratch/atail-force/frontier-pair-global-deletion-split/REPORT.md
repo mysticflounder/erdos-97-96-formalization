@@ -76,6 +76,17 @@ checkout and is not direct `False`; it does not change the live source-sorry
 count. Accordingly, no snapshot file was copied into the production import
 graph and no new CEGAR round was launched.
 
+The newer `~/scratch/round98-full-parent-all-reverse` check was also replayed.
+Its `DistanceDifferenceInvariant.lean` file is source-clean and normalizes the
+missing first-apex co-radial occurrence to one orthogonality equation for the
+reverse-row center and outside chord.  Its `StraddleOrientationGuard.lean`
+file is source-clean and extracts the three shared-cap straddles, but gives an
+exact six-index witness showing that those unoriented straddles do not force a
+consistent cycle orientation.  Thus the order-only orientation route is
+explicitly ruled out as a producer; a successful occurrence theorem still
+needs nonlinear Euclidean/MEC, full-fiber provenance, or global minimality
+force.  These files remain external scratch and are not imported.
+
 This promotion removes the producer/interface gap but does **not** close a
 sorry: the theorem still requires the non-exact-card-four branch and the
 `w ∈ selectedAt(q)` cross-membership field, and its output is the existing robust or
@@ -114,3 +125,26 @@ Acceptance gate: `cd lean && lake env lean ../scratch/atail-force/frontier-pair-
 must pass with no `sorry` and no `sorryAx` in the declaration’s transitive
 axioms.  The focused check passes; the declaration has axioms exactly
 `propext`, `Classical.choice`, and `Quot.sound`.
+
+## Robust-context adapter (2026-07-19)
+
+`FrontierPairRobustContextAdapter.lean` now checks the next routing step
+without importing the older scratch robust-minimal module (its stage-one
+predecessor collides with the current production namespace).  Its local
+`FrontierPairCrossRobustContext` mirrors that module's seven required fields:
+global minimality and no-`M44`, the non-card-four first-apex branch, the
+directed cross hit, the carrier/cap lower bounds, and physical second-apex
+deletion robustness.  The theorem
+`frontierPair_globalStep_robustContext_or_companion` proves that a complete
+`FrontierPairGlobalStep` plus the explicit non-card-four hypothesis yields
+either this robust-context packet or the existing companion common-deletion
+packet.  The focused check is source-clean with axioms exactly
+`propext`, `Classical.choice`, and `Quot.sound`.
+
+This is still only wiring: it does not derive the non-card-four premise and
+does not eliminate either residual.  The next actual consumer must close the
+robust collision/multi-core/singleton outcomes or consume the companion packet.
+The companion theorem
+`frontierPair_globalStep_exactFour_or_robustContext_or_companion` packages the
+same result as the parent-facing three-way split, with exact-card-four as an
+explicit first arm; it has the same source-clean axiom closure.
