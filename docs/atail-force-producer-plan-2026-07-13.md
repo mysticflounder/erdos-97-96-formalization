@@ -5706,3 +5706,28 @@ cap/order placement; blocker multiplicity, support locking, and literal
 Kalmanson shadows have been audited as insufficient. The `L` exact-five and
 exact-seven work remains supporting research until a source-faithful ingress
 theorem handles every non-`L` case.
+
+### Direct robust-field triage (2026-07-20)
+
+The current full-parent audits further delimit what may count as that direct
+producer.
+
+* **PROVEN negative interface result:** `R.minimal` can rule out a proper
+  four-equidistant subcarrier, but its selected-row/strong-connectivity
+  consequences admit the audited abstract full-fiber survivor families. It
+  is not, by itself, a source of the missing cross-row occurrence.
+* **PROVEN nonterminal role of `R.noM44`:** the displayed large-cap packet is
+  already outside `IsM44`. The hypothesis can fire only after a proof builds
+  a *different* Moser support triangle and verifies its exact cap counts; it
+  cannot turn the present common blocker or a local reverse row directly into
+  `False`.
+* **OPEN live bridge:** use the total `CriticalShellSystem` (including its
+  all-radius deletion filter), actual oriented/MEC placement, and the global
+  parent fields together to produce either a complete
+  `CriticalFiberClosingCore` or direct `False`. A conditional row packet is
+  not progress unless it is immediately consumed by one of those terminals.
+
+The exact-five/six/seven `L` developments remain useful only as tests and
+possible terminal cores for such an ingress; they are not a substitute for
+the missing generic-`B` bridge. This is a scope correction, not an
+impossibility claim about the full Euclidean parent.

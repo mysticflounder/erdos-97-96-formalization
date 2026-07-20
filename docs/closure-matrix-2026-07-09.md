@@ -754,3 +754,18 @@ global deletion-criticality data. Exact-five/six/seven `L` work is
 supporting-only until an ingress theorem covers the complementary generic
 robust cases. Literal CEGAR, raw DIMACS, and further standalone
 blocker-fiber/cap adapters remain nonterminal regressions.
+
+### Direct robust-field triage (2026-07-20)
+
+| Parent field or route | Checked status | Permitted next use |
+| --- | --- | --- |
+| `R.minimal` / selected-row strong connectivity | **Insufficient in the audited abstract full-fiber models.** | Couple it to a specifically Euclidean source fact; do not mine another connectivity or quota adapter. |
+| `R.noM44` | **Nonterminal at the displayed large-cap packet**, which is already not `IsM44`. | First construct a different Moser support triangle with verified exact cap counts, then invoke `noM44`. |
+| Blocker multiplicity / local cap placement | **Insufficient.** They do not yield an actual cross row, first-apex co-radial pair, or compatible cyclic order. | Use only inside a full-parent producer that immediately returns `CriticalFiberClosingCore` or `False`. |
+| Exact-five/six/seven `L` terminals | **Supporting only.** Generic `B` still has no cap-six ingress. | Retain as terminal targets/tests after a source-faithful bridge, not as a separate live closure claim. |
+
+The remaining robust theorem must visibly consume total
+`CriticalShellSystem` deletion-radius semantics plus oriented/MEC geometry
+and one global parent field. This is a precise research boundary, not a claim
+that the full parent is unrealizable or that the two live obligations are
+closed.
