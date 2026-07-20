@@ -1617,13 +1617,18 @@ The missing input is positive shared outside-cap support or equivalent
 interlacing. In the reverse arm, period two is excluded, actual blockers and
 outside pairs are injective, and the capacity bound is too weak to force a
 collision. The new checked cap-order bridge instead puts the two physical
-targets on opposite sides of the actual blocker. A source-faithful cyclic-role
-lift is checked, but the current `CounterclockwiseAngleChart` interface is
-inconsistent with the required periodic endpoint equality. Curvature is
-therefore blocked pending an open-window/distinct-endpoint repair and is not a
-live consumer. The pinned finite and exact Euclidean
-regressions show that neither arm's marginal normal form alone is
-contradictory; both consumers must use global parent/frontier data.
+targets on opposite sides of the actual blocker. The former periodic-chart
+typing defect is now repaired in production: `ShellCurvatureConstruct`,
+`ShellCurvatureRows`, `ShellCurvatureAggregate`, and
+`ShellCurvatureTransport` construct an open fundamental-window chart, give
+every exact critical row a nonvacuous quarter-turn separation, and transport
+it to one common global lift. This remains a geometric input rather than a
+consumer: the exact rational `2π` ledger still satisfies all marginal
+per-row bounds, so a closer must additionally derive a source-indexed
+cross-row packing/overlap fact or another full-parent consequence. The pinned
+finite and exact Euclidean regressions show that neither arm's marginal normal
+form alone is contradictory; both consumers must use global parent/frontier
+data.
 
 The oriented ingress is exhaustively classified in production by
 `ATailOrientedPhysicalApexIngress.classify_largeRadiusParent`. Small original

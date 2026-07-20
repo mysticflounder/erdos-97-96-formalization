@@ -467,15 +467,19 @@ The smallest honest next closer is therefore direct `False` from
 `FrontierCoupledExactFivePhysicalCycleParentResidual H Flarge` together with
 its `all_reverseMembership` arm and the original cap-strengthened `L`. Its new
 content must be an aggregate multirow cap/curvature collision, an immediately
-consumed named U5 incidence, or an equivalent direct contradiction. The
-user-owned `ShellCurvature` analytic core is not yet a usable adapter: its
-unrestricted ordered-triple sign field conflicts with the periodic endpoint
-equality required by the live reverse-row wrapper.  It must first be repaired
-to an open fundamental window or distinct-endpoint interface.  Even after that
-repair, one charted shell inequality is nonterminal. After this leaf, the
-mutual-omission cycle arm, the unequal two-radius core, localized robust-center
-nonreturn, and the independent retained-parent coupling remain explicit; no
-production `sorry` has closed at this checkpoint.
+consumed named U5 incidence, or an equivalent direct contradiction. The former
+periodic endpoint defect is now repaired in production:
+`ShellCurvatureConstruct`, `ShellCurvatureRows`,
+`ShellCurvatureAggregate`, and `ShellCurvatureTransport` build an open
+fundamental-window chart from the actual convex boundary, prove each exact
+critical row's nonvacuous quarter-turn separation, and transport those arcs
+to a common global lift. This promotes curvature to an available geometric
+input, not a terminal: the exact rational aggregate ledger still satisfies
+the marginal per-row bounds, so a new source-indexed multirow packing/overlap
+or other full-parent fact is required. After this leaf, the mutual-omission
+cycle arm, the unequal two-radius core, localized robust-center nonreturn,
+and the independent retained-parent coupling remain explicit; no production
+`sorry` has closed at this checkpoint.
 
 The aggregate-curvature audit now rules out the simplest proposed consumer.
 An exact rational shared `2*pi` turn ledger realizes three distinct, strictly
