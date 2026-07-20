@@ -5775,7 +5775,27 @@ third blocker containing *both* retained sources is already impossible.  Away
 from the protected exact-card-four alternative, the total critical map yields
 the existing source-indexed two-deletion survival cover; the known blocker
 fiber has size at most four and at least six carrier sources lie outside it.
-The next theorem must therefore be a cap/MEC/global-parent consumer of that
-survival cover, not another third-blocker or common-deletion adapter.  Its
-acceptable outputs remain a completed `CriticalFiberClosingCore`, a new
-retriangulated `IsM44` packet, or direct `False`.
+That cover is a constraint, not the target: its existing card-≥14 consumer
+returns to the same physical robust/critical splitter.
+
+The direct `B` target is instead the terminal-facing coverage theorem
+
+```lean
+nonempty_criticalFiberClosingCore_of_biApexRobust F R B :
+  Nonempty (CriticalFiberClosingCore R)
+```
+
+with any retriangulated-`IsM44` branch discharged internally.  The two robust
+apex omissions already force a two-fiber-or-three-source blocker seed.  The
+new geometry must choose a favorable collision fiber and return either the
+ordered cross-row data or the same-cap collision data consumed by
+`CriticalFiberClosingCore`; the caller immediately eliminates it to `False`.
+Another third-blocker, survival, or common-deletion adapter is not an
+admissible milestone.
+
+The whole-carrier bi-apex audit further rejects a pure ordinal shortcut: its
+source-faithful boundary/critical-map surface has a card-11 structural SAT
+shadow after all current Kalmanson/Farkas consumers are excluded.  Do not run
+another literal ordinal or linear Kalmanson census.  The coverage proof/model
+must add nonlinear planar Euclidean rank, complete exact-radius filters, or
+actual MEC/cap placement coupled to the common critical map.

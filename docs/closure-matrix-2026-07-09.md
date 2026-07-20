@@ -791,9 +791,21 @@ the first apex is deletion-robust and the `q` blocker survives deleting the
 escape source. This is a proved role constraint, not a terminal row
 occurrence. The third-center classifier then forbids a third blocker from
 containing both retained sources. The valid next producer is consequently a
-geometric consumer of the source-indexed two-deletion survival cover outside
-the at-most-four-source known blocker fiber (at least six sources under the
-live cardinality bound). It must consume cap/MEC and a global parent field and
-return `CriticalFiberClosingCore`, a retriangulated `IsM44` packet, or
-`False`; another third-blocker, survival, or common-deletion wrapper is not
-an admissible milestone.
+terminal-facing coverage theorem on the full bi-apex parent:
+`Nonempty (CriticalFiberClosingCore R)`. The two robust-apex image omissions
+already yield a two-fiber-or-three-source blocker seed; cap/MEC and a global
+parent field must select a favorable fiber and construct its ordered cross-row
+or same-cap collision endpoint. The source-indexed two-deletion survival cover
+outside the at-most-four-source known blocker fiber (at least six sources
+under the live cardinality bound) remains a required constraint, but its
+card-≥14 consumer loops back to the physical splitter and is not the generic
+closer. A retriangulated `IsM44` construction may discharge internally;
+another third-blocker, survival, or common-deletion wrapper is not an
+admissible milestone.
+
+The existing whole-carrier bi-apex audit has a source-faithful card-11
+structural SAT shadow after every current pure Kalmanson/Farkas consumer is
+excluded. Literal ordinal, linear-distance, and Kalmanson-only mining are
+therefore blocked for this target. Any new coverage model must add nonlinear
+planar Euclidean rank, complete exact-radius filters, or actual MEC/cap
+placement coupled to the common critical map.

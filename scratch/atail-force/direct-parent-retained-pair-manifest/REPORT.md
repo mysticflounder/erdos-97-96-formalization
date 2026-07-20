@@ -176,6 +176,56 @@ A proof that merely re-derives the survival cover, that `c` omits one of
 `q,w`, or that another common-deletion packet exists, is not progress toward
 any endpoint.
 
+## Chosen direct-parent theorem shape
+
+The survivor-cover audit also found an important routing limit: the existing
+card-≥14 cover can manufacture another physical-second-apex common-deletion
+packet, but its robust outcome returns to the same robust/critical split.  It
+is therefore not the generic `B` closer.
+
+The full bi-apex endpoint has a stronger, nonrecursive source seed.  Since
+both physical apices are omitted by the retained blocker endomap,
+`FrontierBiApexRobustResidual.exists_two_fibers_or_larger_fiber` supplies two
+nontrivial blocker fibers or a three-source fiber.  The immediate theorem to
+prove is consequently the terminal-facing coverage statement
+
+```lean
+nonempty_criticalFiberClosingCore_of_biApexRobust
+  (F : CriticalPairFrontier D S radius H)
+  (R : FrontierCommonDeletionParentResidual F)
+  (B : FrontierBiApexRobustResidual R) :
+  Nonempty (CriticalFiberClosingCore R)
+```
+
+possibly with an internal retriangulated-`IsM44` branch discharged to `False`
+before it returns.  This is not a new intermediate interface: its sole caller
+immediately applies `false_of_criticalFiberClosingCore`, closing the live
+robust parent theorem.
+
+The known smallest missing payload is source-indexed and geometric.  After
+choosing a collision pair `C,K` with common blocker `A` and an external source
+`J` with blocker `X`, prove either the ordered row data
+
+```text
+dist(O,J) = dist(O,C),   K in selectedAt(J).support,
+O < A < X < J < C < K,
+```
+
+or the same-cap collision data for the pair `C,K`.  The two physical robust
+apices, full exact shell map, oriented cap/MEC boundary, and one global parent
+field must all remain in scope.  The existing source-indexed
+`cross-row-mining-manifest` is the acceptance contract for this theorem; its
+explicit gate forbids a broad run until a whole-parent coverage model exists.
+
+The existing whole-carrier bi-apex audit also excludes a shortcut: its
+faithful boundary/critical-map extraction has an exact card-11 structural SAT
+shadow after every pure Kalmanson/Farkas consumer in the current bank is
+removed.  Therefore no further literal ordinal, linear-distance, or
+Kalmanson-only mining is licensed here.  The first new model/proof field must
+be nonlinear planar Euclidean rank, full exact-radius filtering, or actual
+MEC/cap placement coupled to the common critical map; only then may it test
+the terminal-coverage theorem above.
+
 ## Solver/model admission contract
 
 Any prospective finite or nonlinear search instance must encode all of the
