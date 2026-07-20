@@ -1033,20 +1033,37 @@ unchanged.
     hypothesis holds on the survivor class before encoding).  Needs the
     `SurvivorPairRelocationPacket` field map + a check that the L2u SAT
     survivors actually exhibit forced mutual cross-membership.
-13. **DIRECT closure path (verified at source 2026-07-19).**  This gate is a
-    DIAGNOSTIC (DESIGN.md contract: SAT ⇒ which non-encoded geometry to add);
-    the intended DIRECT closure of `DoubleApexOffSurplusSharedRadiusPair`
-    (`U1LargeCapRouteBTail.lean:2531`, sorry :2576) is the U2-squeeze
-    OVERFLOW.  Downstream is fully proven (the shared-radius pair fires
-    `oppCap2_escape_gen` + reflection kernel ⇒ leaf closes).  Open = does
-    `(≥5,≥5,4)` FORCE the pair.  Scaffold `U2SqueezePort.lean` (0 sorries):
-    `oppApex1_exactRadiusClass_cover` (:299) is UNCONDITIONAL;
-    `oppApex1_interior_card_eq_two_of_isM44` (:249) is M44-conditional
-    (caps 4 ⇒ apex interior 2, exactly covered).  TRANSFER GAP: in the
-    DoubleApex `hNoM44` two-large-cap regime the caps are ≥5, so the apex
-    interior OVERFLOWS (card ≥ 3) — the exact-radius classes cannot all be
-    covered, forcing the double-apex coincidence.  Concrete next: prove the
-    ≥5-regime apex-interior-overflow analog + assemble the coincidence via
-    the unconditional cover.  Same overflow as the exact-six period-3
-    straddle count and the card-≥5 cross-membership producer.  See memory
-    "Exact-seven DoubleApex CLOSURE PATH".
+    **CAVEAT (2026-07-19, arm2 lane):** the iff producer
+    `blocker_centers_eq_iff_mutual_cross_membership_of_five_le` REQUIRES
+    oppApex2-survival (a `SurvivorPairRelocationPacket`), and the
+    strict-interior-collision shape provably lacks it — see
+    `scratch/atail-arm2/SI1CoupledFECenterAnalysis.lean` (kernel-clean:
+    every FE common-deletion is centred at `oppApex1` / `centerAt F.pair.q`,
+    never `oppApex2`).  So this L3 producer does **not** apply to
+    collision-shaped survivors; verify per-id-type applicability before
+    encoding, do not assume it fires on the whole residual.
+13. **~~DIRECT closure path via U2-squeeze OVERFLOW~~ FALSIFIED — superseded
+    by Findings 17/18/18b (this file, 2026-07-19).**  The earlier claim was
+    that the DoubleApex sorry closes directly by an interior-OVERFLOW analog
+    of the M44 squeeze (`(≥5,≥5,4)` ⇒ apex interior card ≥ 3 ⇒ the exact-radius
+    classes cannot all be covered ⇒ forced double-apex coincidence).  This is
+    **wrong**, verified at source:
+    - `fourClass_of_cover` (`U2SqueezePort.lean:345`) hard-wires `hIcard :
+      I.card = 2` (line 347); its `T.card = 4 := by omega` step relies on
+      `(T ∩ I).card ≤ 2`.  With interior card ≥ 3 the omega step no longer
+      forces `T.card = 4` (the bound becomes `≤ 1+1+3 = 5`).  So the ≥5-regime
+      interior **breaks** the squeeze lemma rather than driving a coincidence;
+      the M44 squeeze does **not** transfer.  The overflow is an obstruction
+      to this squeeze, not a lever.
+    The only viable route is the ATail **frontier** route, which needs
+    `hmin : D.Minimal`; the `:2531` DoubleApex target lacks it (only `:9522`
+    carries it).  Per Finding 18, closing via the frontier = mechanical
+    `hmin`-thread `:9522`→`:2531` (autonomous-legal, **zero** sorry reduction)
+    + a TARGET SWAP that replaces the one DoubleApex sorry with the two open
+    frontier arms — arm1 (`OriginalFrontierUniqueRadiusArm F → False`, never
+    discharged) and arm2 (`FrontierCoupledStrictInteriorNormalForm R → False`,
+    `dead-ends.md:743/786` sole surviving hard route).  The swap relocates the
+    on-spine residual without reducing it → **Adam's pivot decision; BLOCKED
+    ON ADAM.**  Finding 18b confirms no `hmin`-free producer shortcut exists.
+    See memory `nthdegree recall "Exact-seven DoubleApex routing PINNED"`
+    (Finding 18) for the full caller chain.
