@@ -5394,6 +5394,14 @@ Acceptance is fail-closed:
    deletion core contained in that pair, restoration fields, and the
    singleton/full-pair split.  This is the required global progress surface,
    not a terminal contradiction.
+   On its directed cross-membership/full-pair subarm, production now eliminates
+   the co-radial fresh-center case: `full_frontierPair_core_dist_ne` applies
+   the retained first-apex double deletion, the restored `w` deletion, and the
+   perpendicular-bisector bound.  Its companion
+   `nonempty_minimalDeletionCore_of_full_frontierPair_core` leaves exactly a
+   two-source distinct-radius `MinimalDeletionCore`.  The next consumer must
+   use that core's disjoint shells with the total critical map or cap/MEC
+   geometry; a new shared-radius, local-row, or marginal search is unsound.
    The scratch adapter
    `frontierPair_globalStep_exactFour_or_robustContext_or_companion` now
    checks the next parent normal form: exact-card-four remains an explicit
@@ -5492,6 +5500,29 @@ minimality, and `noM44`) and yields that equality or `False`.  Do not resume
 literal distance-matrix CEGAR, add a bare rank/winding lemma, or promote a
 conditional row adapter as a closure result.
 
+### Exact-seven live-routing boundary (2026-07-20)
+
+The current public compatibility target
+`DoubleApexOffSurplusSharedRadiusPair` cannot itself call this frontier
+assembler: its signature contains `hcritical`, `hNoM44`, `hcard`, and local
+non-removability, but has already dropped `D.Minimal`.  The first live caller
+that still has `hmin` is `u1_largeCap_routeB_tail_false`; the only actual
+caller path then drops it at `u1_largeCap_routeB_tail_liveData_false` before
+reaching the pair theorem.  This is a verified interface boundary, not a
+missing row incidence.
+
+Consequently, the exact-seven source blocker theorem is useful only under a
+minimality-preserving parent route.  Threading `hmin` down that single caller
+chain is a mechanical, source-compatible preparation step, but it does not
+remove a `sorry`.  Replacing the one pair endpoint with the two real frontier
+obligations—`OriginalFrontierUniqueRadiusArm F → False` and the coupled
+`FrontierCoupledStrictInteriorNormalForm R → False` arm—would relocate the
+on-spine obligation rather than close it.  Do **not** perform that target swap
+without an explicit user decision.  Until then, keep exact-seven research on
+the retained full parent and seek a genuine oriented/MEC or total-critical-map
+consumer; do not claim a hmin-free producer of the impossible double-apex
+pair.
+
 The source-clean Round-126 total-map classifier has also been adjudicated.
 For each member of the exact-seven predecessor outside pair it returns either
 a blocker collision at the aligned successor or a concrete physical-second-
@@ -5503,3 +5534,28 @@ outside-point row containing both complementary period-three sources.  The
 full parent does not supply that incidence.  Treat the total-map split as a
 checked negative interface audit, not as an additional exact-seven producer
 or a reason to extend the literal census.
+
+### User-authorized live-spine frontier refactor (2026-07-20)
+
+The deferred target swap above is now executed by explicit user authorization.
+`u1_largeCap_routeB_tail_false` threads `D.Minimal` to the sole live child,
+which immediately extracts the concrete `CriticalShellSystem` and calls
+`ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap`.  The
+retired `DoubleApexOffSurplusSharedRadiusPair` route and the LIVE
+Q/T/C-classification tree are no longer compiled as active declarations.
+
+The kernel-mined live spine has exactly two source obligations:
+
+1. `false_of_originalFrontierUniqueRadiusArm`, for the protected exact
+   first-apex radius-four-or-five arm; and
+2. `false_of_frontierCoupledStrictInteriorNormalForm`, for the full
+   source-faithful common-deletion parent residual together with its coupled
+   strict-interior/frontier-escape normal form.
+
+This is an architectural reduction, not a claim that either arm is currently
+proved or that the former generic-frontier scope objection has been resolved
+mathematically. The full `L` packet remains the preferred research surface
+for exact-five/exact-seven geometry; any proof of either live arm must retain
+enough cap/MEC, total-critical-map, and minimality data to avoid reintroducing
+the rejected local/linear countermodels. The coupled arm is the active anchor;
+the unique arm is its independent sibling.

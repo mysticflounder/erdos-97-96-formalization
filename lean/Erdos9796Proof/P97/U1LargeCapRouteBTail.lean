@@ -29,6 +29,7 @@ import Erdos9796Proof.P97.ATail.FirstApexCriticalFiberRow
 import Erdos9796Proof.P97.ATail.CriticalFiberRetainedRadiusSelector
 import Erdos9796Proof.P97.ATail.BiApexBlockerMultiplicity
 import Erdos9796Proof.P97.ATail.CriticalFiberClosingCore
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure
 
 /-!
 # U1 large-cap Route-B tail
@@ -2499,6 +2500,7 @@ abbrev LargeCapPCenteredT2SourceTwoLargeCapsStatement
                           ({q, t1, t2, t3} : Finset ℝ²) →
                         False
 
+/-
 set_option linter.unusedVariables false in
 /-- **Named residual — Route-A double-apex off-surplus shared-radius pair
 (2026-07-05).**  The producer attack
@@ -2750,6 +2752,7 @@ theorem false_of_center_p_t2_t20
       (p := p) MT hCirc CP i rows hM hqCap hsurplus hqNonMoser hnotOppExact
       hNoM44 hcard hnoRem hcritical hlocalNoQFree hfixed hbase H
       ht2Row_center_p hrow_support
+-/
 
 /-- Collision exclusion kills the only surviving `center = p` branch.
 
@@ -3411,6 +3414,7 @@ theorem perm_of_finset_eq_triple {α : Type*} [DecidableEq α]
   rcases ha with rfl | rfl | rfl <;> rcases hb with rfl | rfl | rfl <;>
     rcases hc with rfl | rfl | rfl <;> simp_all
 
+/-
 namespace U1LargeCapRouteBTailRelabel
 
 private theorem support_eq_of_center_eq_l1
@@ -8049,6 +8053,7 @@ theorem liveData_C_center_fresh_false
                   f2CriticalRow.center
                       ≠ rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }) :
     False := sorry
+-/
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- **LEAF — U1.2 large-cap Route-B structural bridge.**
@@ -8101,6 +8106,7 @@ theorem u1_largeCap_routeB_tail_liveData_false
     (hnotOppExact : ¬ CP.OppositePairExactAt i)
     (hNoM44 : ¬ ∃ S : SurplusCapPacket D.A, S.IsM44)
     (hcard : 9 < D.A.card)
+    (hmin : D.Minimal)
     (hnoRem : ∀ x : ℝ², ¬ IsRemovableVertex D.A x)
     (hcritical : Nonempty (CriticalShellSystem D.A))
     (rows : U1Depth5.CriticalSourceRows D q t1 t2 t3 u)
@@ -8120,6 +8126,13 @@ theorem u1_largeCap_routeB_tail_liveData_false
         f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
     (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u) :
     False := by
+  rcases hcritical with ⟨Hcritical⟩
+  exact ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap
+    (U1LargeCapRouteBTailMetricResidualTarget.leafSurplusPacket
+      (D := D) (MT := MT) (hCirc := hCirc) (CP := CP) (i := i)
+      (hM := hM) (hsurplus := hsurplus))
+    hmin hNoM44 hcard Hcritical
+  /-
   /-
   Exact current live target inside this leaf:
 
@@ -9514,6 +9527,7 @@ theorem u1_largeCap_routeB_tail_liveData_false
       hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hsource_ne_selected_of_target_ne_q
       hsource_named_except_l1 hsource_named_except_l2 hsource_named_except_l3
       hsource_named_except_l4 hcenter_fresh
+-/
 
 /-- **LEAF — U1.2 large-cap Route-B tail.**  This is the extracted tail of the
 current non-exact U1.2 branch.  It consumes the concrete surplus cap and the
@@ -9690,7 +9704,7 @@ theorem u1_largeCap_routeB_tail_false (D : CounterexampleData)
   exact
     u1_largeCap_routeB_tail_liveData_false hlocalNoQFree hfixed
       hbaseSixPairwise MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact
-      hNoM44 hcard hnoRem ⟨Hcritical⟩ Hdepth5Rows Hf2CriticalRow
+      hNoM44 hcard hmin hnoRem ⟨Hcritical⟩ Hdepth5Rows Hf2CriticalRow
       hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1
       { dangerous := hdanger
         exactQDeletedRadius := hExactQDeletedRadius
@@ -9702,6 +9716,7 @@ open Problem97
 
 namespace Erdos9796Proof.P97.U1LargeCapRouteBTail
 
+/-
 theorem DoubleApexOffSurplusSharedRadiusPair
     {D : Problem97.CounterexampleData} {p q t1 t2 t3 u : ℝ²}
     {hncol : ¬ Collinear ℝ (D.A : Set ℝ²)}
@@ -9784,6 +9799,7 @@ theorem exists_removableVertex_of_twoLargeCaps
     Problem97.U1LargeCapRouteBTailMetricResidualTarget.exists_removableVertex_of_twoLargeCaps
       (p := p) MT hCirc CP i j rows hM hqCap hsurplus hqNonMoser hjne hj5
       hNoM44 hcard hcritical hlocalNoQFree hfixed hbase H hcenter hsupport
+-/
 
 theorem oppCap2_escape_gen (D : Problem97.CounterexampleData)
     (S : SurplusCapPacket D.A) {r ρ : ℝ} {x w' : ℝ²}
