@@ -634,3 +634,58 @@ return to literal CEGAR or generic Kalmanson closure: the known projection
 countermodels remain regression gates. Exact-five/exact-seven `L`-indexed
 work is a preferred way to furnish an arm consumer, not a third live
 obligation.
+
+### Post-refactor routing boundary (2026-07-20)
+
+The live obligations retain generic `F`/`R` frontier data, while the existing
+exact-five/six/seven theorem family begins only at the stronger cap-first
+packet `L : FrontierLargeOppositeCapsBiApexRobustResidual B`.  The current
+live normal forms do not retain `B` or `L`'s two cap lower bounds, and no
+source-valid bridge presently reconstructs them.  Thus exact-six and
+exact-seven progress is not on-spine closure by itself.
+
+The only current routes to a live close are a source-faithful full-parent to
+`L` bridge with its complementary ingress cases discharged, or a direct
+global Euclidean/MEC/critical-map/minimality contradiction for each generic
+live arm.  Treat the 25-role coordinate model as unresolved: 192 numerical
+no-hit runs are empirical negative evidence, not `UNSAT`.  Literal CEGAR and
+unmodified numerical restarts remain retired until a changed instrument has a
+named on-spine consumer.
+
+### Physical-second-apex live refinement (2026-07-20)
+
+The coupled strict-interior expansion is no longer on the live spine.  A
+common-deletion parent contains a packet with physical second center
+`S.oppApex2`, and the production theorem
+`frontierCommonDeletionParent_biApexRobust_or_critical` gives its exact
+source-faithful split.  The current on-spine source obligations are:
+
+| Obligation | Retained data | Immediate next proof object |
+| --- | --- | --- |
+| `false_of_originalFrontierUniqueRadiusArm` | `F` and global parent fields | packet-generic FA-UNIQ4/5 consumer |
+| `false_of_frontierBiApexRobustResidual` | `F`, `R`, and bi-apex robust `B` | cap-size ingress to `L` or a direct robust geometric/minimality consumer |
+| `false_of_physicalSecondApexCriticalResidual` | `F`, `R`, and physical-second critical shell | swapped packet-generic FA-UNIQ4 reorientation, then its direct consumer |
+
+This is a **PROVEN routing refinement**, not closure.  It removes an
+unnecessary strict-interior wrapper and makes the two real common-deletion
+endpoints explicit.  Exact-five/six/seven work can help only after the robust
+endpoint is strengthened to `L` with a complete cap-size case split; it still
+does not close the critical or original unique arm by itself.
+
+### Critical-arm reorientation promoted (2026-07-20)
+
+The physical-second critical endpoint is now source-cleanly reoriented by
+`ATailPhysicalSecondApexSwap.physicalSecondCritical_reorients_to_swappedUniqueFour`.
+The proof swaps the non-surplus packet roles, identifies the prescribed
+blocked radius as the unique positive four-capable radius, and produces the
+same packet-generic FA-UNIQ4 interface consumed by
+`false_of_originalFrontierUniqueRadiusArm`.
+
+| Current source obligation | Status of former critical branch |
+| --- | --- |
+| `false_of_originalFrontierUniqueRadiusArm` | still open; now also consumes the reoriented physical critical branch |
+| `false_of_frontierBiApexRobustResidual` | still open; needs cap-faithful ingress to `L` or direct global consumer |
+
+Thus the live spine has two—not three—source `sorry`s. The critical branch is
+not kernel-closed independently; it inherits the original unique-arm
+dependency and must not be reported as an independent producer frontier.

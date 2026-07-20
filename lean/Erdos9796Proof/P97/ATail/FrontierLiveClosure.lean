@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.ATail.FrontierCoupledStrictInteriorNormalForm
+import Erdos9796Proof.P97.ATail.PhysicalSecondApexSwap
 
 /-!
 # Live large-cap frontier closure boundary
@@ -16,18 +16,19 @@ residual is the exhaustive `CriticalPairFrontier` split instead.  This module
 keeps those hypotheses on both remaining arms and exposes no LIVE slot or
 center classification.
 
-The two declarations below are the only open mathematical obligations of this
-boundary.  They are deliberately parent-facing: a future proof must consume
-the full frontier (and, on the second arm, its coupled common-deletion normal
-form), rather than manufacture the already-impossible shared-radius pair.
+The declarations below are deliberately parent-facing: a future proof must
+consume the full frontier and the physical-second-apex split of its genuine
+common-deletion packet, rather than manufacture the already-impossible
+shared-radius pair.
 -/
 
 namespace Problem97
 namespace ATailFrontierLiveClosure
 
 open ATailCriticalPairFrontier
-open ATailFrontierCoupledStrictInteriorNormalForm
 open ATailOrientedPhysicalApexIngress
+open ATailPhysicalSecondApexCommonDeletion
+open ATailPhysicalSecondApexSwap
 
 /-- The protected exact-four-or-five first-apex radius arm, with the live
 minimality and no-M44 context retained. -/
@@ -43,21 +44,49 @@ theorem false_of_originalFrontierUniqueRadiusArm
     False := by
   sorry
 
-/-- The source-faithful common-deletion arm, retaining the coupled strict
-interior and frontier-escape normal forms under the same live parent context.
+/-- The source-faithful common-deletion arm after both physical opposite
+apices are deletion-robust.  This retains the complete parent residual so a
+consumer can use its concrete frontier, minimality, no-M44, and cap/MEC data.
 -/
-theorem false_of_frontierCoupledStrictInteriorNormalForm
+theorem false_of_frontierBiApexRobustResidual
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     (F : CriticalPairFrontier D S radius H)
-    (hmin : D.Minimal)
-    (hNoM44 : ¬ ∃ T : SurplusCapPacket D.A, T.IsM44)
-    (hcard : 9 < D.A.card)
-    (hfour : 4 ≤ (SelectedClass D.A S.oppApex1 radius).card)
     (R : FrontierCommonDeletionParentResidual F)
-    (C : FrontierCoupledStrictInteriorNormalForm R) :
+    (B : FrontierBiApexRobustResidual R) :
     False := by
   sorry
+
+/-- The non-robust physical-second-apex outcome.  The residual is kept with
+the critical shell: the intended consumer is the packet-generic swapped
+first-apex unique-four route, not an anonymous critical-row contradiction. -/
+theorem false_of_physicalSecondApexCriticalResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F)
+    (P : PhysicalSecondApexCriticalResidual D S) :
+    False := by
+  rcases physicalSecondCritical_reorients_to_swappedUniqueFour
+      (H := H) P.shell P.deletion_blocked with ⟨U⟩
+  apply false_of_originalFrontierUniqueRadiusArm (H := H)
+    U.frontier R.minimal R.noM44 R.carrier_card_gt_nine
+  · rw [U.firstClass_card_eq_four]
+  · exact ⟨Or.inl U.firstClass_card_eq_four, U.firstClass_unique_radius⟩
+
+/-- The exact physical split of a common-deletion parent.  This is strictly
+stronger routing than the former coupled strict-interior normal form: it
+exposes the robust and prescribed-critical geometric endpoints directly. -/
+theorem false_of_frontierCommonDeletionPhysicalSecondApex
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F) :
+    False := by
+  rcases frontierCommonDeletionParent_biApexRobust_or_critical R with
+    hrobust | hcritical
+  · exact false_of_frontierBiApexRobustResidual F R hrobust.some
+  · exact false_of_physicalSecondApexCriticalResidual F R hcritical.some
 
 /-- Assemble the two genuine frontier arms. -/
 theorem false_of_criticalPairFrontier
@@ -69,12 +98,11 @@ theorem false_of_criticalPairFrontier
     (hcard : 9 < D.A.card)
     (hfour : 4 ≤ (SelectedClass D.A S.oppApex1 radius).card) :
     False := by
-  exact false_of_frontierCoupledStrictInteriorConsumers
+  apply CriticalPairFrontier.false_of_parentResidualConsumers
     F hmin hNoM44 hcard hfour
-    (false_of_originalFrontierUniqueRadiusArm F hmin hNoM44 hcard hfour)
-    (fun R C =>
-      false_of_frontierCoupledStrictInteriorNormalForm
-        F hmin hNoM44 hcard hfour R C)
+  · exact false_of_originalFrontierUniqueRadiusArm F hmin hNoM44 hcard hfour
+  · intro R
+    exact false_of_frontierCommonDeletionPhysicalSecondApex F R
 
 /-- Parent-facing large-opposite-cap contradiction.  The extraction is
 uniform from the live `CriticalShellSystem`; slot-labelled LIVE data is not an

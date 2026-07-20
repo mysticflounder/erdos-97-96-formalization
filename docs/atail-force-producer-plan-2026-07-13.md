@@ -5559,3 +5559,67 @@ for exact-five/exact-seven geometry; any proof of either live arm must retain
 enough cap/MEC, total-critical-map, and minimality data to avoid reintroducing
 the rejected local/linear countermodels. The coupled arm is the active anchor;
 the unique arm is its independent sibling.
+
+### Post-refactor interface correction (2026-07-20)
+
+The exact-five, exact-six, and exact-seven production theorems are indexed by
+the cap-first packet `L : FrontierLargeOppositeCapsBiApexRobustResidual B`.
+The two live obligations above are instead generic `F`/`R` arms.  No current
+source theorem maps either live normal form to an aligned `L` packet: in
+particular, the live coupled form retains neither the second-apex robust
+surface `B` nor the two opposite-cap lower bounds carried by `L`.
+
+Therefore an exact-six theorem or an exact-seven oriented-coordinate producer
+does not currently discharge a live `sorry`; it is supporting research unless
+an explicit source-faithful bridge is proved.  The active closure alternatives
+are exactly:
+
+1. prove a bridge from the full live parent data to the cap-first `L` route,
+   discharging its non-`L` ingress cases; or
+2. prove a direct geometric/minimality consumer for the generic coupled and
+   unique-radius live arms.
+
+The current 25-role coordinate probe is `UNKNOWN`, and its 192 numerical
+multistarts found no witness but are not an infeasibility result.  Do not
+restart literal CEGAR or numerical multistarts without both an instrument
+change and a bridge to a named live consumer.
+
+### Physical-second-apex live refinement (2026-07-20)
+
+The coupled strict-interior normal form was a diagnostic expansion, not a
+necessary ingress: `R.common.packet` already has `S.oppApex2` as its second
+center.  Production now dispatches that packet directly through
+`frontierCommonDeletionParent_biApexRobust_or_critical`.  The live spine has
+three, rather than two, explicit consumers:
+
+1. `false_of_originalFrontierUniqueRadiusArm`;
+2. `false_of_frontierBiApexRobustResidual`, retaining `F`, `R`, and the
+   source-faithful bi-apex robust surface `B`; and
+3. `false_of_physicalSecondApexCriticalResidual`, retaining `F`, `R`, and a
+   prescribed critical shell at the physical second apex.
+
+This is a **PROVEN routing reduction**: the old coupled normal form is no
+longer an active premise and is not a third mathematical consumer.  The
+robust arm is now the only live entry that can be strengthened to `L`; it
+still needs the independent cap-size split.  The critical arm should promote
+the checked packet-generic swapped FA-UNIQ4 reorientation before attempting
+its direct contradiction.  Neither endpoint is closed.
+
+### Critical-arm reorientation promoted (2026-07-20)
+
+`ATailPhysicalSecondApexSwap.physicalSecondCritical_reorients_to_swappedUniqueFour`
+is now production-built and source-clean. It uses the non-surplus packet swap
+and prescribed-deletion radius uniqueness to turn the physical second-apex
+critical residual into the packet-generic
+`false_of_originalFrontierUniqueRadiusArm` obligation. Accordingly,
+`false_of_physicalSecondApexCriticalResidual` is no longer a source `sorry`.
+
+The kernel-mined live spine now has exactly two source obligations:
+
+1. `false_of_originalFrontierUniqueRadiusArm`; and
+2. `false_of_frontierBiApexRobustResidual`.
+
+This is a reduction in independent source holes, not kernel closure of the
+critical arm: it inherits the original unique-arm dependency. The next active
+task remains the robust arm's source-faithful cap-size ingress to `L`, with
+actual short-cap consumers required for every complementary case.
