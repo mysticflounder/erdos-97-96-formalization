@@ -5321,8 +5321,10 @@ A : FullParentExactFiveAllReverseData L profile continuation
 
 - Cap cardinality six is closed by the production exact-six all-reverse
   theorem.
-- Exact seven is user-owned and remains a separate parent-specific geometric
-  lane.  Do not duplicate it.
+- Exact seven now has a production source-blocker occurrence theorem and
+  remains a separate parent-specific geometric producer lane.  Its sole
+  missing conclusion is first-apex co-radiality of the canonical predecessor
+  outside pair (or direct `False` from the same full packet).
 - From cap cardinality eight upward, prove
   `FirstApexCoRadialTransitionReversePairOccurrence A`, or prove `False`
   directly from the complete packet.  Preserve total critical-map,
@@ -5489,3 +5491,15 @@ consumes the retained `L` fields (both cap bounds, bi-apex robustness,
 minimality, and `noM44`) and yields that equality or `False`.  Do not resume
 literal distance-matrix CEGAR, add a bare rank/winding lemma, or promote a
 conditional row adapter as a closure result.
+
+The source-clean Round-126 total-map classifier has also been adjudicated.
+For each member of the exact-seven predecessor outside pair it returns either
+a blocker collision at the aligned successor or a concrete physical-second-
+apex common-deletion packet.  A collision enters a critical-fiber interface
+but still lacks the ordered cross-row or same-cap producer; two packet outputs
+are uncoupled, while the physical-apex robust reduction is already present in
+`L`.  The first extra antecedent that would make this route progress is one
+outside-point row containing both complementary period-three sources.  The
+full parent does not supply that incidence.  Treat the total-map split as a
+checked negative interface audit, not as an additional exact-seven producer
+or a reason to extend the literal census.

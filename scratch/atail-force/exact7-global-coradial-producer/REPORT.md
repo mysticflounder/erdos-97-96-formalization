@@ -3,10 +3,11 @@
 Date: 2026-07-18
 
 Status: **THE EXACT-SEVEN LEAF IS NOT CLOSED.  NO EXISTING GLOBAL ROW OR
-FIBER THEOREM PRODUCES THE REQUIRED FIRST-APEX EQUALITY.  THE PURE
-INCIDENCE/RADIUS-COLOR ROUTE IS REFUTED BY AN EXACT FINITE ABSTRACT MODEL,
-BUT ONE SOURCE-FAITHFUL ROLE FIXTURE IS EXACT-QF_LRA UNSAT AFTER TRIANGLE AND
-STRICT KALMANSON CLOSURE.  EXHAUSTIVE ROLE COVERAGE IS THE NEXT LIVE TEST.**
+FIBER THEOREM PRODUCES THE REQUIRED FIRST-APEX EQUALITY.  PURE
+INCIDENCE/RADIUS-COLOR AND THE COMPLETE DISTANCE-MATRIX ROLE CENSUS ARE
+EXHAUSTED: the latter leaves hard survivors because its missing constraint is
+oriented/full-parent geometry.  THE ACTIVE NEED IS A SOURCE-FAITHFUL
+COORDINATE/MEC OR TOTAL-CRITICAL-SYSTEM PRODUCER.**
 
 This lane owns only
 `scratch/atail-force/exact7-global-coradial-producer/`.  It does not edit
@@ -97,6 +98,40 @@ false_of_fullParentExactFiveAllReverseData_of_firstApexOccurrence A.
 ```
 
 Thus no new consumer, row packet, or slot normalization is needed.
+
+## Total critical-map classifier audit (2026-07-20)
+
+`/Users/adam/scratch/Round126OutsidePairTotalMap.lean` is source-clean
+scratch, not an unmined terminal.  At the aligned period-three source labels
+`q0,q1,q2`, the pair `q0,q2` is co-radial at the robust physical second apex
+and at the aligned blocker `q1`.  For either member `p` of the canonical
+outside pair `{a,b}`, its total critical row gives exactly one of:
+
+1. a `CommonDeletionTwoCenterPacket` deleting `q0`;
+2. such a packet deleting `q2`; or
+3. `H.blockerVertex p = q1`.
+
+The third outcome creates a source-faithful first-apex critical fiber, but
+the checked closing cores still require an ordered cross-row occurrence or a
+same-cap second center.  The first two outcomes, when obtained for both `a`
+and `b`, are merely two *uncoupled* common-deletion packets: their deleted
+cycle sources and actual blockers need not agree.  The physical-second-apex
+consumer is redundant on its robust output and incompatible with the
+all-reverse robust parent on its critical output.
+
+The first missing positive antecedent on that route is exactly a row at one
+of `a,b` containing both `q0` and `q2`; it would force the blocker collision
+at `q1`.  No current parent field provides it, and later checked unused-row
+rounds leave their blockers unlocalized.  Therefore this classifier must not
+be promoted as another conditional production adapter or treated as a path to
+the co-radial terminal.
+
+The scratch source was previously checked with only the standard logical
+axioms, but it is not an importable current production module: its retained
+scratch `.olean` dependency has an incompatible header under the active
+toolchain.  It is therefore a source/audit record only until a future
+terminal-producing port rebuilds the dependency chain.  No current result
+depends on importing it.
 
 ## Smallest genuine global producer
 
@@ -205,6 +240,58 @@ of global `noM44` over every alternative support triangle.  It refutes the
 producer only from the listed finite incidence/radius-color consequences.
 It does not refute the theorem on the complete Euclidean parent.
 
+## 2026-07-20 production promotion and orientation-scope audit
+
+The exact-seven collision is now production code in
+`ATail/ParentExactFiveExactSeven.lean`:
+
+```lean
+exists_source_blocker_eq_transition_successor_of_secondCap_card_eq_seven
+```
+
+Its global-manifest strengthening is important for future work: for the
+returned source `q`, every `FaithfulCarrierPattern` selects exactly the
+critical shell at `successor q`, and deleting `q` blocks every K4 radius at
+that center.  This confirms that the collision is not merely a selected-row
+artifact.
+
+Two tempting next encodings are nevertheless invalid as stated.
+
+1. `FaithfulCarrierPattern.exists_row_escape_of_proper_subset` gives only an
+   unspecified center in a chosen subset.  It cannot assert an escaping row
+   at `q`, `successor q`, or either outside-pair member, so it does not supply
+   the named second-row occurrence consumed by the existing terminals.
+2. `signedArea_product_neg_of_cross_membership` is a theorem about the
+   original `SurvivorPairRelocationPacket` frontier pair.  The exact-seven
+   source `q` is a physical transition source, with no proved identity to a
+   frontier endpoint.  Encoding that signed-area sign for the exact-seven
+   collision would therefore smuggle in the missing cross-source bridge.
+
+There is one source-valid alternate geometric consumer worth testing before a
+large coordinate census: `LargeCapUniqueFiveShortCapTerminal` proves `False`
+from *any* alternative `SurplusCapPacket` having a four-point cap opposite
+the physical exact-five apex.  A genuine exact-seven producer may thus return
+either the desired first-apex equality or such a short-cap packet.  At
+present no theorem turns the non-co-radial exact-seven outside pair into that
+alternative packet; this is a candidate theorem, not an available reduction.
+
+Accordingly the next coordinate/MEC experiment must start from a
+source-validated bridge of one of these two forms:
+
+```lean
+-- direct terminal bridge
+dist S.oppApex1 a = dist S.oppApex1 b
+
+-- alternative-cap bridge
+∃ (T : SurplusCapPacket D.A) (i : Fin 3),
+  T.oppositeVertexByIndex i = S.oppApex2 ∧
+  (T.capByIndex i).card = 4
+```
+
+It must not encode the frontier-pair signed-area theorem against `q`, or use
+an arbitrary minimality escape as though it named the required row.  No new
+closure claim follows from this audit.
+
 ## Linear convex-order lift gate
 
 `solve_linear_distance_shadow.py` asks whether that same finite fixture can
@@ -245,10 +332,22 @@ The result only says that the finite countermodel cannot be promoted to a
 Kalmanson countermodel with those choices.  It is positive evidence that the
 exact-seven role collision may make the linear geometry load-bearing.
 
-## Next closure step
+## Superseded role-coverage proposal
 
-The next bounded task is an exact-seven **role-coverage gate**, not another
-local theorem:
+The role-coverage gate below was the correct bounded test when this report
+was opened.  It is now complete in
+`scratch/atail-force/exact7-role-coverage-gate/REPORT.md`: full unused-row
+co-radiality, exact-row exclusion, and `no_qfree` close no base, while the
+survivors require signed orientation not represented by the distance matrix.
+It remains here solely as the original coverage contract; do not relaunch it.
+
+The next live work is a source-validated coordinate/MEC or total-critical
+system experiment that supplies either the exact first-apex equality or a
+short-cap alternative packet.  It must preserve the complete `L` parent and
+name its terminal consumer before solving.
+
+The original bounded task was an exact-seven **role-coverage gate**, not
+another local theorem:
 
 1. normalize the five physical-interior roles using the proved
    source-as-successor-blocker collision;
