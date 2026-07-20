@@ -52,6 +52,52 @@ No source `sorry` is closed by this checkpoint.  The next allowed result is a
 substitution-checked full-parent witness, a checked UNSAT certificate for
 this exact branch, or an explicit `UNKNOWN`/timeout outcome.
 
+## 2026-07-20 field audit against the disjoint 26-point witness
+
+The exact replay was repeated from the checked rational certificate.  It
+passes as the advertised *local all-reverse cell*.  It is not an instance of
+`FullParentExactFiveMutualData`: its displayed physical rows are the
+all-reverse orientation, whereas the `pair` field of that structure requires
+two physical vertices whose selected rows omit one another.
+
+The following table records every full-parent ingredient that matters to the
+comparison.  `Present` means represented by the exact replay, not merely
+suggested by its numerical discovery run.
+
+| Full-parent field | In 26-point replay? | Result of the audit |
+| --- | --- | --- |
+| strict convex order, support-triangle MEC/caps | Present | Satisfied locally. |
+| exact-five profile and both cap-six bounds | Present | Satisfied locally (cap sizes `(11,10,8)`). |
+| retained frontier split and source-faithful continuation | Present locally | Satisfied for the named T0/T1 and unused-row data. |
+| mutual-omission `pair` | No | The displayed three physical rows are all-reverse; no total row map is supplied. |
+| `D.K4` at every source | No | The exact report has K4 only at the six named centers `o`, `right`, `left`, `c0`, `c1`, `c2`; the other 20 vertices have maximum radius multiplicity one. |
+| total `CriticalShellSystem` and every `no_qfree_at` | No | In particular, there are no deletion-critical selected rows at the frontier sources. |
+| `R.minimal` | No | It cannot even be posed for this witness as `CounterexampleData`, because global K4 fails. |
+| `R.noM44` | Undecided | The displayed support triangle is non-M44, but alternate support triangles were not audited. |
+| full filters / deletion restoration outside named rows | No | Only the named local filters and deletion checks were replayed. |
+
+Thus `D.K4` is already a decisive **rejection of this relaxation witness**,
+and the missing total critical system is a second independent rejection.  It
+does **not** prove the universal implication
+
+```lean
+FullParentExactFiveMutualData L profile → False
+```
+
+because a failure of a field in one object outside the antecedent supplies no
+contradiction for objects satisfying the antecedent.  Formalizing
+``the 26-point replay is not K4`` would be a correct model-audit theorem but
+would not feed the parent consumer and must not be wired as a purported
+closure proof.
+
+The audit therefore leaves the mutual arm `OPEN`, with one precise next
+producer requirement: use the *total* `CriticalShellSystem` together with
+global K4/minimality to derive a positive shared-member, same-cap, or ordered
+third-row incidence from `M.pair`.  Those are the antecedents of the existing
+`MutualShellPairSharedMember` terminals.  No existing banked theorem produces
+that incidence from the full-parent packet, and the local all-reverse witness
+cannot test it.
+
 Validation:
 
 ```text

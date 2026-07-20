@@ -5449,3 +5449,43 @@ The import audit also confirms that the source-clean exact-five terminals in
 reachable from `U1LargeCapRouteBTail.lean`; they remain reusable sinks, not
 closed spine obligations.  Wiring them requires the missing full-`L` packet
 and the mutual-arm `FullParentExactFiveMutualData L profile → False` consumer.
+
+### Parent-boundary scope correction (2026-07-20)
+
+Do not bypass the tail by extracting an arbitrary `CriticalPairFrontier` and
+asking generic unique/common-deletion arms for `False`. That loses the
+cap-first classification: the arms would then have to cover cap-four/five and
+non-robust configurations excluded from the exact-five/exact-seven route.
+The active parent boundary remains the cap-strengthened robust packet
+`L : FrontierLargeOppositeCapsBiApexRobustResidual B`, formed only after the
+physical ingress has discharged the small-cap and critical-second-apex cases.
+
+Accordingly, exact-seven work may promote only a theorem that consumes the
+complete `L`-indexed all-reverse packet (or an explicit source-faithful
+residual obtained from it). A generic `F`/`R` arm is an overstrong target, not
+a valid replacement for the live large-opposite-caps producer.
+
+### Exact-seven production checkpoint (2026-07-20)
+
+`ATail/ParentExactFiveExactSeven.lean` now promotes the source-faithful
+exact-card-seven counting result.  Given
+`A : FullParentExactFiveAllReverseData L profile continuation` and
+`S.oppCap2.card = 7`, it produces a physical source `q` such that its selected
+critical blocker is `A.transition.successor q`; its stronger form also exposes
+the forced faithful all-center shell at that successor and the failure of K4
+after deleting `q`.
+
+This is deliberately an occurrence, not a terminal.  The existing all-reverse
+consumer reduces the remaining exact-seven work to one equality: the two
+members of the canonical predecessor outside pair must be co-radial from
+`S.oppApex1`.  The exact finite radius-color countermodel rules out proving
+that equality from row incidence, selected-radius colors, deletion criticality,
+and abstract minimality alone.  The Round-166 counterpattern independently
+rules out deriving it from a blocker cycle plus local shell-curvature bounds.
+
+The only active exact-seven producer search is therefore source-faithful
+oriented geometry: a coordinate/MEC or full-critical-system argument that
+consumes the retained `L` fields (both cap bounds, bi-apex robustness,
+minimality, and `noM44`) and yields that equality or `False`.  Do not resume
+literal distance-matrix CEGAR, add a bare rank/winding lemma, or promote a
+conditional row adapter as a closure result.
