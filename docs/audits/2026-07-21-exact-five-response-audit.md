@@ -42,7 +42,15 @@ proves:
   remaining support is an exact two-point outside pair; and
 - that outside pair is immediately contradictory if it is co-radial from
   the first physical apex, by the existing ordered-cap center-uniqueness
-  theorem.
+  theorem;
+- if an initially both-one-hit pair is not already the fully symmetric
+  case, any two-hit physical row can be reoriented with one endpoint of the
+  original pair to produce the same asymmetric normal form; and
+- consequently the only residual without a named asymmetric outside pair is
+  `AllPhysicalActualCriticalRowsOneHit`: every one of the three physical
+  source rows hits the physical set only at its own source.  Distinct
+  physical sources then mutually omit one another and have pairwise distinct
+  actual blocker centers.
 
 The resulting one-hit disjunction is stored as `M.oneHit` in the live
 mutual-parent packet.
@@ -52,23 +60,23 @@ five-point ambient class and never reassigns the fixed critical system.
 
 ## Remaining surface
 
-Let `a,b` be the mutual endpoints and `c` the third physical vertex.  The
-actual rows sourced at `a,b` contain their own source and omit the other
-endpoint.  The remaining local cases are:
+The remaining local classification is now binary:
 
-1. both rows hit only their own source in the physical set;
-2. the `a` row also hits `c`, while the `b` row is one-hit; or
-3. the mirror asymmetric case.
+1. an asymmetric pair supplies a named exact two-point outside-cap pair; or
+2. all three physical actual-critical rows are one-hit.
 
-The double-two-hit pattern is closed in production Lean by
-`PhysicalActualCriticalMutualOmissionPair.source_hit_eq_one_or_target_hit_eq_one`.
-Thus the packet itself certifies that at least one mutual row is one-hit.
+The asymmetric arm needs an occurrence theorem placing its named outside
+pair on a first-apex radius, or a complete alternative `IsM44` packet.  The
+all-three-one-hit arm cannot close through a physical-source blocker
+collision: the blocker map is injective on those three sources.  It needs a
+genuinely global same-cap shared-pair / `CriticalFiberClosingCore` occurrence,
+or a complete alternative `IsM44` packet.
 
-Thus the asymmetric arms no longer have an anonymous two-hit row.  They need
-one occurrence theorem placing their named outside pair on a first-apex
-radius (or on another source-faithful same-cap row).  The both-one-hit arm
-still needs the more general same-cap shared-outside-pair occurrence or a
-complete alternative `IsM44` packet.
+The cap-six low-hit/common-deletion normal form does not apply here.  Its
+producer requires `6 ≤ S.oppCap2.card`, while this branch has the exact
+identity `S.oppCap2.card = 5`; the available six-point bound is on the other
+cap.  The retained endpoint-row dichotomy also does not mention the
+asymmetric normal form's outside pair.
 
 The surviving occurrence surface is genuinely global.  Existing strict-convex
 MEC regressions realize the one-row geometry, and a stronger regression with
@@ -91,6 +99,8 @@ must visibly use global K4 coupled to the named mutual/parent rows,
 | At least one mutual row is one-hit (`M.oneHit`) | **PROVEN IN PRODUCTION LEAN** |
 | Asymmetric two-hit outside-pair normal form | **PROVEN IN PRODUCTION LEAN** |
 | First-apex co-radial terminal for the asymmetric outside pair | **PROVEN IN PRODUCTION LEAN** |
+| Global split: named asymmetric normal form or all three rows one-hit | **PROVEN IN PRODUCTION LEAN** |
+| Pairwise omission and blocker-center injectivity on the all-three-one-hit arm | **PROVEN IN PRODUCTION LEAN** |
 | Asymmetric outside-pair occurrence | **OPEN** |
-| Both-one-hit same-cap shared-pair or alternative-`IsM44` occurrence | **OPEN** |
+| All-three-one-hit `CriticalFiberClosingCore` or alternative-`IsM44` occurrence | **OPEN** |
 | Live exact-five mutual-parent theorem | **OPEN** |

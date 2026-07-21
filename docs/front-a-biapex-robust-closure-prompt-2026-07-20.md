@@ -16,65 +16,56 @@ Problem97.ATailFrontierLiveClosure
     False
 ```
 
-## Available source-faithful data
+## Exact checked reduction
 
-`M.pair` is an arbitrary pair of distinct strict physical second-cap points
-whose actual `H.selectedAt` supports omit one another.  The physical set has
-exactly three points.  The fixed `H`, full frontier `F`, minimality and
-`noM44` in `R`, bi-apex deletion robustness in `B`, exact-five cap data in
-`Q`, and both retained parent rows remain available.
+The fixed `H`, full `F/R/B/Q/profile/M`, global K4, minimality, no-`IsM44`,
+bi-apex deletion robustness, and retained parent rows are available.  The
+strict physical second-cap set has exactly three points.
 
-The retained-row coupling is already proved and stored in `M`:
+`ATail/ExactFiveMutualOneHitGeometry.lean` reduces the theorem to exactly two
+source-faithful outcomes:
 
-```text
-exists x, x is physical and x in B2 and x notin B1
-pair.source in B2 or pair.target in B2
-pair.source notin B1 or pair.target notin B1
-```
+1. **Asymmetric.** A mutual pair has a two-hit row.  Its blocker is the other
+   endpoint; its physical-cap intersection is exactly the source and the
+   third physical point; and its remaining support is a named two-point pair
+   outside the closed physical cap.  If that outside pair is co-radial from
+   `S.oppApex1`, the existing theorem
+   `SourceTwoHitNormalForm.false_of_firstApex_coRadial` gives `False`.
+2. **Fully symmetric.** `AllPhysicalActualCriticalRowsOneHit H profile`:
+   every physical actual-critical row meets the physical set only at its own
+   source.  Hence every two distinct physical sources mutually omit one
+   another, and their three actual blocker centers are pairwise distinct.
 
-`M.endpointRowDichotomy` sharpens this to either one mutual endpoint in
-`B2 \ B1`, or one endpoint in `B1 ∩ B2` while the other is outside both
-retained rows.
-
-`M.oneHit` is also kernel-checked: at least one of the two actual critical
-supports meets the three-point physical set in exactly one point.  Production
-module `ATail/ExactFiveMutualOneHitGeometry.lean` now gives the exhaustive
-geometric split.  In either asymmetric case, the two-hit row is centered at
-the other mutual endpoint, meets the physical cap in exactly two points, and
-has an exact two-point support complement outside that cap.  The existing
-ordered-cap terminal immediately refutes that arm if the outside pair is
-co-radial from the first physical apex.
-
-The unresolved cases are therefore:
-
-1. both mutual rows are one-hit; or
-2. one asymmetric row supplies the named outside pair, but no source-level
-   theorem yet makes that pair co-radial at the first apex or places it in a
-   distinct actual row centered in the same cap.
-
-Pure one-row cap geometry and bare total criticality admit regressions.  A
-closing proof must visibly use convex/MEC geometry together with global K4,
-`R.minimal`, or construct a complete alternative `IsM44` packet contradicted
-by `R.noM44`.
+The cap-six `LargeCapUniqueFiveLowHit` / common-deletion normal form is not
+available: it requires `6 ≤ S.oppCap2.card`, while this branch has
+`S.oppCap2.card = 5`.  `M.endpointRowDichotomy` concerns the original mutual
+endpoints in the two retained rows; it supplies no incidence or first-apex
+equality for an asymmetric normal form's outside pair.
 
 ## Required result
 
-Derive `False` from exactly the theorem inputs above.  The first missing
-source-level implication is an occurrence theorem with this terminal shape:
+Derive `False` from exactly the theorem inputs above.  It is enough to prove
+both of the following source-level implications:
 
 ```text
-same-cap distinct fixed-H centers sharing two shell points outside that cap
-  OR
-a genuine alternative non-obtuse MEC support packet with IsM44.
+asymmetric normal form
+  -> its named outside pair is co-radial from S.oppApex1
+     OR a genuine alternative IsM44 SurplusCapPacket;
+
+AllPhysicalActualCriticalRowsOneHit H profile
+  -> Nonempty (CriticalFiberClosingCore R)
+     OR a genuine alternative IsM44 SurplusCapPacket.
 ```
 
-On an asymmetric arm, it is enough to prove that the normalized outside pair
-is co-radial from `S.oppApex1`.  On the both-one-hit arm, choose a cap
-containing a one-hit blocker; the cap row bound supplies two points of its
-exact shell outside that cap, and the missing step is a distinct fixed-`H`
-center in the same cap whose actual shell contains those same two points.
-The first output feeds `outsidePair_unique_capCenter`; the second contradicts
+The first co-radial output feeds
+`SourceTwoHitNormalForm.false_of_firstApex_coRadial`.  The closing-core output
+feeds `false_of_criticalFiberClosingCore`.  Either packet output contradicts
 `R.noM44`.
+
+Pure one-row geometry, pairwise omission, and distinct physical blocker
+centers are not terminal.  A successful proof must visibly use global K4 or
+`R.minimal` coupled to convex/MEC geometry, or construct the complete
+alternative packet needed by `R.noM44`.
 
 Do not re-prove the parent-row bridge, the all-reverse split, or the
 double-two-hit classifier: all are already kernel-checked in
@@ -82,7 +73,9 @@ double-two-hit classifier: all are already kernel-checked in
 
 ## Rigor requirements
 
-- Use the fixed `H`; do not reassign blockers.
+- Use the fixed `H`; do not silently reassign blockers.  If a different
+  critical system is chosen, justify the quantifier change and transport the
+  complete `F/R/B/Q` parent contract.
 - Keep complete radius classes distinct from selected four-point supports.
 - Do not assume genericity, distinct radii, distinct blockers, or unproved
   MEC-boundary membership.

@@ -453,6 +453,235 @@ theorem nonempty_mutualParentOneHitGeometricOutcome
     Nonempty (MutualOneHitGeometricOutcome Q profile M.pair) :=
   nonempty_mutualOneHitGeometricOutcome Q profile M.pair M.oneHit
 
+/-- Every actual critical row at a physical exact-five source has exactly one
+physical hit.  This is the fully symmetric residual left after every possible
+asymmetric mutual pair has been normalized. -/
+def AllPhysicalActualCriticalRowsOneHit
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (H : CriticalShellSystem D.A)
+    (profile : LargeCapUniqueFiveSecondApexRadius D S) : Prop :=
+  ∀ q : PhysicalVertex profile,
+    (physicalVertices profile ∩
+      (H.selectedAt q.1
+        (PhysicalVertex.mem_A q)).toCriticalFourShell.support).card = 1
+
+/-- On the fully symmetric exact-five residual, distinct physical sources
+mutually omit one another from their actual critical supports. -/
+theorem AllPhysicalActualCriticalRowsOneHit.not_mem_support_of_ne
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {profile : LargeCapUniqueFiveSecondApexRadius D S}
+    (hall : AllPhysicalActualCriticalRowsOneHit H profile)
+    {q w : PhysicalVertex profile} (hqw : q ≠ w) :
+    w.1 ∉
+      (H.selectedAt q.1
+        (PhysicalVertex.mem_A q)).toCriticalFourShell.support := by
+  classical
+  let K := (H.selectedAt q.1
+    (PhysicalVertex.mem_A q)).toCriticalFourShell
+  intro hw
+  have hqInter : q.1 ∈ physicalVertices profile ∩ K.support :=
+    Finset.mem_inter.mpr ⟨q.2, K.q_mem_support⟩
+  have hwInter : w.1 ∈ physicalVertices profile ∩ K.support :=
+    Finset.mem_inter.mpr ⟨w.2, hw⟩
+  have hle : (physicalVertices profile ∩ K.support).card ≤ 1 := by
+    simpa [K] using (hall q).le
+  exact hqw (Subtype.ext (Finset.card_le_one.mp hle q.1 hqInter w.1 hwInter))
+
+/-- The three actual blocker centers on the fully symmetric exact-five arm
+are pairwise distinct.  This rules out closing that arm by the easy repeated
+critical-fiber pigeonhole restricted to the physical sources. -/
+theorem AllPhysicalActualCriticalRowsOneHit.blockerCenters_injective
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {profile : LargeCapUniqueFiveSecondApexRadius D S}
+    (hall : AllPhysicalActualCriticalRowsOneHit H profile) :
+    Function.Injective fun q : PhysicalVertex profile ↦
+      H.centerAt q.1 (PhysicalVertex.mem_A q) := by
+  intro q w hcenters
+  by_contra hqw
+  exact (blocker_centers_ne_of_not_mem_other_selected_support H
+      (PhysicalVertex.mem_A q) (PhysicalVertex.mem_A w)
+      (hall.not_mem_support_of_ne (fun h ↦ hqw h.symm))) hcenters
+
+/-- Choice-free endpoint of the exact-five mutual classification.  Either an
+asymmetric two-hit row has the forced outside-pair normal form, or all three
+physical source rows are one-hit. -/
+inductive ExactFiveGlobalOneHitOutcome
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    (Q : FrontierBiApexRobustExactFiveSecondCapResidual B)
+    (profile : LargeCapUniqueFiveSecondApexRadius D S) : Type
+  | allRowsOneHit
+      (all_one : AllPhysicalActualCriticalRowsOneHit H profile)
+  | asymmetric
+      (pair : PhysicalActualCriticalMutualOmissionPair H profile)
+      (target_one :
+        (physicalVertices profile ∩
+          (H.selectedAt pair.target.1
+            (PhysicalVertex.mem_A pair.target)).toCriticalFourShell.support).card = 1)
+      (normal : SourceTwoHitNormalForm Q profile pair)
+
+/-- If the given mutual pair is both-one-hit but some physical row is
+two-hit, that row mutually omits one endpoint of the given pair.  Reorienting
+at that new pair yields the asymmetric normal form.  Hence the only residual
+without a named outside pair is the all-three-rows-one-hit case. -/
+theorem nonempty_exactFiveGlobalOneHitOutcome
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    (Q : FrontierBiApexRobustExactFiveSecondCapResidual B)
+    (profile : LargeCapUniqueFiveSecondApexRadius D S)
+    (M : PhysicalActualCriticalMutualOmissionPair H profile)
+    (hone :
+      (physicalVertices profile ∩
+          (H.selectedAt M.source.1
+            (PhysicalVertex.mem_A M.source)).toCriticalFourShell.support).card = 1 ∨
+        (physicalVertices profile ∩
+          (H.selectedAt M.target.1
+            (PhysicalVertex.mem_A M.target)).toCriticalFourShell.support).card = 1) :
+    Nonempty (ExactFiveGlobalOneHitOutcome Q profile) := by
+  classical
+  rcases nonempty_mutualOneHitGeometricOutcome Q profile M hone with
+    ⟨outcome⟩
+  cases outcome with
+  | sourceTwoHit targetOne normal =>
+      exact ⟨ExactFiveGlobalOneHitOutcome.asymmetric M targetOne normal⟩
+  | targetTwoHit sourceOne normal =>
+      exact ⟨ExactFiveGlobalOneHitOutcome.asymmetric
+        (swapMutualOmissionPair M) sourceOne normal⟩
+  | bothOneHit sourceOne targetOne =>
+      by_cases hall : AllPhysicalActualCriticalRowsOneHit H profile
+      · exact ⟨ExactFiveGlobalOneHitOutcome.allRowsOneHit hall⟩
+      · simp only [AllPhysicalActualCriticalRowsOneHit, not_forall] at hall
+        rcases hall with ⟨q, hqNotOne⟩
+        let Kq := (H.selectedAt q.1
+          (PhysicalVertex.mem_A q)).toCriticalFourShell
+        let Ksource := (H.selectedAt M.source.1
+          (PhysicalVertex.mem_A M.source)).toCriticalFourShell
+        let Ktarget := (H.selectedAt M.target.1
+          (PhysicalVertex.mem_A M.target)).toCriticalFourShell
+        have hqUpper :
+            (physicalVertices profile ∩ Kq.support).card ≤ 2 := by
+          change ((SelectedClass D.A S.oppApex2 profile.radius ∩
+            S.capInteriorByIndex S.oppIndex2) ∩ Kq.support).card ≤ 2
+          simpa only [Kq] using
+            actualCriticalSupport_physicalInterior_inter_card_le_two
+              H profile q.1 q.2
+        have hqPos : 0 <
+            (physicalVertices profile ∩ Kq.support).card :=
+          Finset.card_pos.mpr ⟨q.1,
+            Finset.mem_inter.mpr ⟨q.2, Kq.q_mem_support⟩⟩
+        have hqTwo :
+            (physicalVertices profile ∩ Kq.support).card = 2 := by
+          have hqNotOne' :
+              (physicalVertices profile ∩ Kq.support).card ≠ 1 := by
+            simpa [Kq] using hqNotOne
+          omega
+        have hqNeSource : q ≠ M.source := by
+          intro h
+          subst q
+          exact hqNotOne (by simpa [Ksource] using sourceOne)
+        have hqNeTarget : q ≠ M.target := by
+          intro h
+          subst q
+          exact hqNotOne (by simpa [Ktarget] using targetOne)
+        have hqNotSourceSupport : q.1 ∉ Ksource.support := by
+          intro hqMem
+          have hqInter :
+              q.1 ∈ physicalVertices profile ∩ Ksource.support :=
+            Finset.mem_inter.mpr ⟨q.2, hqMem⟩
+          have hsourceInter :
+              M.source.1 ∈ physicalVertices profile ∩ Ksource.support :=
+            Finset.mem_inter.mpr ⟨M.source.2, Ksource.q_mem_support⟩
+          have hunique := Finset.card_le_one.mp
+            (show (physicalVertices profile ∩ Ksource.support).card ≤ 1 by
+              simpa [Ksource] using sourceOne.le)
+          exact hqNeSource (Subtype.ext
+            (hunique q.1 hqInter M.source.1 hsourceInter))
+        have hqNotTargetSupport : q.1 ∉ Ktarget.support := by
+          intro hqMem
+          have hqInter :
+              q.1 ∈ physicalVertices profile ∩ Ktarget.support :=
+            Finset.mem_inter.mpr ⟨q.2, hqMem⟩
+          have htargetInter :
+              M.target.1 ∈ physicalVertices profile ∩ Ktarget.support :=
+            Finset.mem_inter.mpr ⟨M.target.2, Ktarget.q_mem_support⟩
+          have hunique := Finset.card_le_one.mp
+            (show (physicalVertices profile ∩ Ktarget.support).card ≤ 1 by
+              simpa [Ktarget] using targetOne.le)
+          exact hqNeTarget (Subtype.ext
+            (hunique q.1 hqInter M.target.1 htargetInter))
+        by_cases hsourceMissing : M.source.1 ∉ Kq.support
+        · let pair : PhysicalActualCriticalMutualOmissionPair H profile := {
+            source := q
+            target := M.source
+            target_not_mem_sourceSupport := by
+              simpa [Kq] using hsourceMissing
+            source_not_mem_targetSupport := by
+              simpa [Ksource] using hqNotSourceSupport }
+          rcases nonempty_sourceTwoHitNormalForm Q profile pair
+              (by simpa [pair, Kq] using hqTwo) with ⟨normal⟩
+          exact ⟨ExactFiveGlobalOneHitOutcome.asymmetric pair
+            (by simpa [pair, Ksource] using sourceOne) normal⟩
+        · have hsourceMem : M.source.1 ∈ Kq.support := by
+            simpa only [not_not] using hsourceMissing
+          have htargetMissing : M.target.1 ∉ Kq.support := by
+            intro htargetMem
+            have htripleSub :
+                ({q.1, M.source.1, M.target.1} : Finset ℝ²) ⊆
+                  physicalVertices profile ∩ Kq.support := by
+              intro z hz
+              simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+              rcases hz with rfl | rfl | rfl
+              · exact Finset.mem_inter.mpr ⟨q.2, Kq.q_mem_support⟩
+              · exact Finset.mem_inter.mpr ⟨M.source.2, hsourceMem⟩
+              · exact Finset.mem_inter.mpr ⟨M.target.2, htargetMem⟩
+            have htripleCard :
+                ({q.1, M.source.1, M.target.1} : Finset ℝ²).card = 3 := by
+              have hqSource : q.1 ≠ M.source.1 :=
+                fun h ↦ hqNeSource (Subtype.ext h)
+              have hqTarget : q.1 ≠ M.target.1 :=
+                fun h ↦ hqNeTarget (Subtype.ext h)
+              have hsourceTarget : M.source.1 ≠ M.target.1 :=
+                fun h ↦
+                  PhysicalActualCriticalMutualOmissionPair.source_ne_target M
+                    (Subtype.ext h)
+              simp [hqSource, hqTarget, hsourceTarget]
+            have hcard := Finset.card_le_card htripleSub
+            rw [htripleCard, hqTwo] at hcard
+            omega
+          let pair : PhysicalActualCriticalMutualOmissionPair H profile := {
+            source := q
+            target := M.target
+            target_not_mem_sourceSupport := by
+              simpa [Kq] using htargetMissing
+            source_not_mem_targetSupport := by
+              simpa [Ktarget] using hqNotTargetSupport }
+          rcases nonempty_sourceTwoHitNormalForm Q profile pair
+              (by simpa [pair, Kq] using hqTwo) with ⟨normal⟩
+          exact ⟨ExactFiveGlobalOneHitOutcome.asymmetric pair
+            (by simpa [pair, Ktarget] using targetOne) normal⟩
+
+/-- The live mutual-parent packet reaches the choice-free global exact-five
+classification without discarding its parent context. -/
+theorem nonempty_mutualParentGlobalOneHitOutcome
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    {Q : FrontierBiApexRobustExactFiveSecondCapResidual B}
+    {profile : LargeCapUniqueFiveSecondApexRadius D S}
+    (M : FrontierBiApexRobustExactFiveMutualParentResidual Q profile) :
+    Nonempty (ExactFiveGlobalOneHitOutcome Q profile) :=
+  nonempty_exactFiveGlobalOneHitOutcome Q profile M.pair M.oneHit
+
 end
 
 end ATailExactFiveMutualOneHitGeometry

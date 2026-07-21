@@ -232,13 +232,33 @@ co-radial from `S.oppApex1`.
 
 The remaining mathematics is therefore one global occurrence theorem.  On
 the asymmetric arm, produce the first-apex co-radiality of the normalized
-outside pair.  On the both-one-hit arm, produce two distinct fixed-`H`
-centers in one cap whose actual shells share two points outside that cap, or
-construct a complete alternative `IsM44` packet.  The shared-pair output is
-consumed by `outsidePair_unique_capCenter`; the packet output is consumed by
-`R.noM44`.  Local one-row and bare-critical-system regressions realize the
-missing-incidence surface, so the producer must visibly use convex/MEC
-geometry coupled to global K4 or `R.minimal`, or make `noM44` load-bearing.
+outside pair.  If an initially both-one-hit pair is not globally symmetric,
+any physical two-hit row reorients with an original endpoint and produces the
+same asymmetric normal form.  Thus the only other residual is
+`AllPhysicalActualCriticalRowsOneHit`: all three physical source rows are
+one-hit, all distinct physical sources mutually omit one another, and their
+actual blocker centers are pairwise distinct.  This excludes an easy
+physical-source fiber collision but is not a terminal.
+
+The exact closing targets are now:
+
+```text
+asymmetric normal form
+  -> first-apex co-radial outside pair OR alternative IsM44 packet;
+
+all three physical rows one-hit
+  -> CriticalFiberClosingCore R OR alternative IsM44 packet.
+```
+
+The first output is consumed by the existing outside-pair terminal, the
+closing core by `false_of_criticalFiberClosingCore`, and either packet by
+`R.noM44`.  The cap-six low-hit/common-deletion normal form is inapplicable:
+it requires `6 ≤ S.oppCap2.card`, contradicting the exact-five identity on
+this branch.  The retained endpoint-row dichotomy also does not constrain the
+asymmetric outside pair.  Local one-row and bare-critical-system regressions
+realize the missing-incidence surface, so the producer must visibly use
+convex/MEC geometry coupled to global K4 or `R.minimal`, or make `noM44`
+load-bearing.
 
 Do not reopen the parent-row bridge, the exact-five all-reverse occurrence,
 or the MEC-extreme packet route.  The cap-six `L` all-reverse program below
