@@ -175,7 +175,12 @@ The exact-five-card branch now also has a checked profile producer,
 spine retains `F`, `R`, `B`, the exact-five cap residual, and this complete
 ambient five-point profile. Its open terminal must prove a direct
 full-parent contradiction or produce a valid alternative short-cap packet;
-it must not invoke the cap-six-only assembler.
+it must not invoke the cap-six-only assembler. The generic
+`MEC.nonempty_surplusCapPacket_of_K4` existence theorem cannot supply that
+packet: it fixes neither the physical second apex nor a four-cap. Any
+alternative-packet proof therefore needs new MEC-boundary/retriangulation
+geometry, as recorded in
+`docs/audits/2026-07-20-exact-five-short-cap-terminal-audit.md`.
 
 ### Exact-five ownership and provenance correction (2026-07-17)
 

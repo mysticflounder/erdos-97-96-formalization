@@ -118,6 +118,12 @@ is wired to `false_of_frontierBiApexRobustExactFiveSecondCapProfile` on the
 live spine. The terminal must consume its full `F/R/B` parent and profile,
 either directly or by producing an alternative short-cap packet for the
 existing short-cap terminal; `ParentExactFiveAssembler` remains inapplicable.
+The generic `MEC.nonempty_surplusCapPacket_of_K4` constructor is not such a
+producer: it controls neither the physical second apex nor any four-cap.
+The audited alternate-packet route therefore requires genuinely new
+MEC-boundary/retriangulation geometry, rather than a relabelling or a global
+`K4` existence call. See
+`docs/audits/2026-07-20-exact-five-short-cap-terminal-audit.md`.
 
 ## Kernel obligations
 

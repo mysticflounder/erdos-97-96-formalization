@@ -5859,7 +5859,12 @@ residual alone. It is wired through the live spine as
 `false_of_frontierBiApexRobustExactFiveSecondCapProfile`; no cap-six premise
 is smuggled into this branch. The remaining terminal is a direct full-parent
 contradiction or a source-faithful alternative short-cap/retriangulation
-producer accepted by `LargeCapUniqueFiveShortCapTerminal`.
+producer accepted by `LargeCapUniqueFiveShortCapTerminal`. The generic
+`MEC.nonempty_surplusCapPacket_of_K4` constructor is not a retriangulation
+producer: it controls neither the physical second apex nor a four-cap. The
+alternative route therefore needs new MEC-boundary geometry, not a relabelled
+global-K4 packet; see
+`docs/audits/2026-07-20-exact-five-short-cap-terminal-audit.md`.
 
 The first two implementation stages are complete; the remaining order is:
 
