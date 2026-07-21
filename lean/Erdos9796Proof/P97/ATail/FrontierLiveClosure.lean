@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.ATail.BiApexRobustCapBounds
+import Erdos9796Proof.P97.ATail.ParentExactFiveSecondCap
 import Erdos9796Proof.P97.ATail.PhysicalSecondApexSwap
 
 /-!
@@ -31,6 +31,7 @@ open ATailBiApexRobustCapBounds
 open ATailLargeCapUniqueFive
 open ATailLargeOppositeCapsBiApexSurface
 open ATailOrientedPhysicalApexIngress
+open ATailParentExactFiveSecondCap
 open ATailPhysicalSecondApexCommonDeletion
 open ATailPhysicalSecondApexSwap
 
@@ -48,9 +49,25 @@ theorem false_of_originalFrontierUniqueRadiusArm
     False := by
   sorry
 
-/-- The exact-five second-cap robust residual with its forced unique ambient
-five-point second-apex profile. The terminal must retain the full parent;
-the existing cap-six-only exact-five assembler does not apply. -/
+/-- The one remaining exact-five consumer after the parent-row bridge and
+the exact-five all-reverse arm have been discharged.  This target sees the
+actual arbitrary mutual omission together with its sharp distribution across
+the two retained parent rows. -/
+theorem false_of_frontierBiApexRobustExactFiveMutualParentResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F)
+    (B : FrontierBiApexRobustResidual R)
+    (Q : FrontierBiApexRobustExactFiveSecondCapResidual B)
+    (profile : LargeCapUniqueFiveSecondApexRadius D S)
+    (M : FrontierBiApexRobustExactFiveMutualParentResidual Q profile) :
+    False := by
+  sorry
+
+/-- The exact-five second-cap profile reduces unconditionally to the
+full-parent mutual residual.  The complementary global all-reverse arm is
+closed by the exact-five period-three straddle contradiction. -/
 theorem false_of_frontierBiApexRobustExactFiveSecondCapProfile
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -60,7 +77,10 @@ theorem false_of_frontierBiApexRobustExactFiveSecondCapProfile
     (Q : FrontierBiApexRobustExactFiveSecondCapResidual B)
     (profile : LargeCapUniqueFiveSecondApexRadius D S) :
     False := by
-  sorry
+  rcases nonempty_frontierBiApexRobustExactFiveMutualParentResidual
+      Q profile with ⟨M⟩
+  exact false_of_frontierBiApexRobustExactFiveMutualParentResidual
+    F R B Q profile M
 
 /-- The exact-five second-cap robust residual. It first produces the forced
 unique ambient five-point profile before entering its terminal. -/

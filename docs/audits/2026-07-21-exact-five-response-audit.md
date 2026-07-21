@@ -1,73 +1,80 @@
 # Exact-five response audit
 
-Scope: the live exact-five terminal
-`false_of_frontierBiApexRobustExactFiveSecondCapProfile`. This records only
-results that change its next proof obligation.
+Date: 2026-07-21
 
-## Status
+## Current live status
 
-`False` is not proved. The proposed MEC-extreme route is not a new producer:
-under the same hypotheses its conditional short-cap exchange derives that both
-extreme strict-cap points are off the MEC boundary. Constructing a packet from
-an extreme would also still require the full `SurplusCapPacket` cap-partition
-contract. Do not target an extreme-boundary disjunction or add a `sorry` for
-it.
+The exact-five profile theorem no longer contains a direct `sorry`.  It
+reduces to the one live consumer:
 
-## Reusable production facts
-
-- The full five-point second-apex class has at least three points in the
-  physical strict interior; this is already
-  `three_le_capInterior_hits_of_largeCapUniqueFive`.
-- The existing physical-omission successor and
-  `nonempty_physicalActualCriticalOmissionCycle_from_start` turn any such
-  physical point into a source-faithful cycle without changing the fixed
-  `CriticalShellSystem`.
-- `nonempty_mutualOmissionEdge_or_all_reverseMembership` is an exhaustive
-  split of that cycle. On its all-reverse arm,
-  `false_of_transitionReverseOutsidePair_coRadial_firstApex` is already a
-  direct terminal once a distinct co-radial pair in one reverse outside pair
-  is produced.
-
-## First missing source-level implication
-
-The parent has the chosen `q`-deleted rows at the two physical apices. The
-useful source-level bridge is:
-
-```text
-∃ x, x lies in the strict physical second-cap interior,
-     x lies in the second-apex q-deleted row, and
-     x does not lie in the first-apex q-deleted row.
+```lean
+false_of_frontierBiApexRobustExactFiveMutualParentResidual
 ```
 
-This is **CONJECTURED**. The checked theorem
-`three_le_capInterior_hits_of_largeCapUniqueFive` gives only `3 ≤ |P|`; it
-does not put three points of `P` in the selected second row. A sufficient
-producer is `3 ≤ |P ∩ U₂|`, where `U₁` and `U₂` are the retained first- and
-second-apex rows: the parent overlap bound `|U₁ ∩ U₂| ≤ 2` would then give the
-displayed point.
+`proof-blueprint` places the exact-five anchor on that declaration.  The
+other two live frontier sorries are the original unique-radius arm and the
+large-opposite-caps robust arm.
 
-The cardinality facts alone do not imply it. The abstract pattern
+## Production results
 
-```text
-P  = {p1, p2, p3}
-U₂ = {p1, p2, u, v}
-U₁ = {p1, p2, s, t}
-```
+`ATail/ParentExactFiveSecondCap.lean` is kernel-checked and source-clean.  It
+proves:
 
-has the required sizes and row-overlap bound but no point of `P ∩ U₂` outside
-`U₁`. Thus neither an unverified row/class identification nor a bare
-same-side argument may be recorded as a producer. Its sole role, if proved,
-is to choose a cycle start that retains both parent rows.
+- the retained second row lies in the unique ambient five-class;
+- at least two of its points are strict physical-cap points;
+- the retained first row has at most one strict physical-cap point;
+- a physical point exists in the second row but outside the first;
+- the strict physical set has exactly three points;
+- the global all-reverse omission arm is impossible, since its period-three
+  shared-cap-order straddles require at least five strict-cap positions;
+- the complementary arbitrary mutual-omission pair is therefore
+  unconditional; and
+- its endpoints satisfy the sharp retained-row dichotomy stored in
+  `FrontierBiApexRobustExactFiveMutualParentResidual`;
+- two physical hits in an actual critical row localize its blocker to the
+  three-point physical set; and
+- the two mutual rows cannot both have two physical hits.  Otherwise their
+  blockers swap the mutual endpoints, forcing the physical triple to be
+  equilateral and hence non-obtuse, contrary to convex/MEC independence.
 
-## Exact remaining closure surface
+The resulting one-hit disjunction is stored as `M.oneHit` in the live
+mutual-parent packet.
 
-Only after this source-level producer is proved, start the cycle and prove one
-of the following from the full live parent and the exact-five profile:
+The production proof never identifies a selected four-row with the complete
+five-point ambient class and never reassigns the fixed critical system.
 
-1. a mutual-omission cycle edge is contradictory; or
-2. on the all-reverse arm, one transition has two distinct members of
-   `transitionReverseOutsidePair` co-radial from the first physical apex.
+## Remaining surface
 
-The second result feeds the existing direct terminal above. Bare cycles,
-another selected-row adapter, a cap-at-least-six continuation, or literal
-CEGAR output are not closure progress for this anchor.
+Let `a,b` be the mutual endpoints and `c` the third physical vertex.  The
+actual rows sourced at `a,b` contain their own source and omit the other
+endpoint.  The remaining local cases are:
+
+1. both rows hit only their own source in the physical set;
+2. the `a` row also hits `c`, while the `b` row is one-hit; or
+3. the mirror asymmetric case.
+
+The double-two-hit pattern is closed in production Lean by
+`PhysicalActualCriticalMutualOmissionPair.source_hit_eq_one_or_target_hit_eq_one`.
+Thus the packet itself certifies that at least one mutual row is one-hit.
+
+The surviving one-hit surface is genuinely global.  Existing strict-convex
+MEC regressions realize the one-row geometry, and a stronger regression with
+a total critical system still avoids the missing shared incidence; neither
+is a full counterexample because global all-center K4 is absent.  A closer
+must visibly use global K4 coupled to the named mutual/parent rows,
+`R.minimal`, or construct a complete alternative `IsM44` packet for
+`R.noM44`.
+
+## Epistemic status
+
+| Claim | Status |
+|---|---|
+| Parent-row bridge | **PROVEN IN PRODUCTION LEAN** |
+| Exact-five physical set has cardinality three | **PROVEN IN PRODUCTION LEAN** |
+| Exact-five all-reverse arm is impossible | **PROVEN IN PRODUCTION LEAN** |
+| Exact-five profile reduces to full-parent mutual omission | **PROVEN IN PRODUCTION LEAN** |
+| Mutual endpoint retained-row dichotomy | **PROVEN IN PRODUCTION LEAN** |
+| Double-two-hit mutual branch contradiction | **PROVEN IN PRODUCTION LEAN** |
+| At least one mutual row is one-hit (`M.oneHit`) | **PROVEN IN PRODUCTION LEAN** |
+| Both-one-hit and asymmetric one-hit cases | **OPEN** |
+| Live exact-five mutual-parent theorem | **OPEN** |

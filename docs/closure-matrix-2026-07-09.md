@@ -112,24 +112,25 @@ require the cap-six `L` packet and additional radius/all-reverse data.  This
 producer would exclude cards 10--12 on the robust arm, but it closes no source
 `sorry` until both split branches reach terminal consumers.
 
-**PROVEN PROFILE; OPEN EXACT-FIVE TERMINAL.** The exact-five residual now
-produces `LargeCapUniqueFiveSecondApexRadius` from second-apex robustness and
-is wired to `false_of_frontierBiApexRobustExactFiveSecondCapProfile` on the
-live spine. The terminal must consume its full `F/R/B` parent and profile,
-either directly or by producing an alternative short-cap packet for the
-existing short-cap terminal; `ParentExactFiveAssembler` remains inapplicable.
-The generic `MEC.nonempty_surplusCapPacket_of_K4` constructor is not such a
-producer: it controls neither the physical second apex nor any four-cap.
-The audited alternate-packet route therefore requires genuinely new
-MEC-boundary/retriangulation geometry, rather than a relabelling or a global
-`K4` existence call. See
-`docs/audits/2026-07-20-exact-five-short-cap-terminal-audit.md`.
+**PROVEN PROFILE AND MUTUAL REDUCTION; OPEN MUTUAL-PARENT TERMINAL.** The
+exact-five residual produces `LargeCapUniqueFiveSecondApexRadius` and is now
+wired through source-clean
+`false_of_frontierBiApexRobustExactFiveSecondCapProfile` to the sole open
+consumer `false_of_frontierBiApexRobustExactFiveMutualParentResidual`.
+`ATail/ParentExactFiveSecondCap.lean` proves the retained-row bridge, exact
+three-point physical set, impossibility of the global all-reverse arm, and
+the sharp mutual-endpoint row dichotomy. The remaining surface is the
+both-one-hit or asymmetric one-hit mutual-row case. A closer must use global
+K4 coupled to those named rows, `R.minimal`, or a complete alternative
+`IsM44` packet; `ParentExactFiveAssembler` remains inapplicable because it
+requires the cap-six `L` branch.
 
 ## Kernel obligations
 
 | ID | Status | Source declaration | Direct consumer | Completion gate |
 |---|---|---|---|---|
 | K-A-PAIR | OPEN COMPATIBILITY ENDPOINT; PRIMARY CLOSURE BOUNDARY IS FULL-`L` DIRECT `FALSE`; NO SOURCE SORRY CLOSED | `Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair`; proposed `false_of_largeOppositeCapsBiApexRobust`; production global exact-five relation split; recovered `live-global-mutual-cap-consumer` scratch | Run the cap-first exits, construct `R`, `B`, and cap-strengthened `L`, dispatch protected unique arms, and prove `false_of_largeOppositeCapsBiApexRobust L`. On the exact-five branch, the arbitrary mutual pair now reaches a fresh period-two same-cap common-deletion/equal-blocker-shell split; prove the positive overlap or third-row geometry that closes one residual, or use the production cardinality-three all-reverse producer before calling an existing sink. | The legacy shared-radius theorem is an ex-falso compatibility endpoint. The recovered global mutual consumer is source-clean and preserves the named pair, but does not itself return `False`: the distinct-blocker residual lacks a shared outside pair and the equal-blocker residual lacks a distinct actual row through both fiber sources. The normalized all-reverse source gap is repaired by a zero-entry cycle containing both continuation sources; periods four and five are impossible there. |
+| K-A-EXACT5-MUTUAL | OPEN SINGLE LIVE CONSUMER; BRIDGE, ALL-REVERSE ARM, AND DOUBLE-TWO-HIT CLASSIFIER DONE-PRODUCTION 2026-07-21 | `ATail/ParentExactFiveSecondCap.lean`; `false_of_frontierBiApexRobustExactFiveMutualParentResidual` | Prove `False` from the full `F/R/B/Q/profile` mutual packet and its kernel-checked `oneHit` field. Force one new source-faithful cross-row incidence, a third selected class completing a checked metric sink, or a complete alternative `IsM44` packet. | Production proves `B₂` is contained in the exact five-class, the physical row-hit bounds `2` versus `1`, a physical `B₂ \ B₁` bridge, exact physical cardinality three, the period-three straddle contradiction on the all-reverse arm, the sharp mutual-endpoint row dichotomy, and that the mutual rows cannot both be two-hit. The profile theorem is source-clean; its former `sorry` has moved to the honest mutual-only consumer. Local one-row and total-critical-system regressions leave the both-one-hit/asymmetric cases alive because they omit global all-center K4. |
 | K-A-ALL-REVERSE-OCCURRENCE | GLOBAL SPLIT, CARDINALITY-THREE REDUCTION, SOURCE-FAITHFUL PERIOD-THREE CYCLE, SHARED ORDER, FIRST-APEX SHELL-ROLE EXTRACTOR, AND FULL-PARENT ASSEMBLER DONE-PRODUCTION; CHOICE-FREE CO-RADIAL OCCURRENCE OPEN | `ATail/ParentExactFiveAssembler.lean`; full `L : FrontierLargeOppositeCapsBiApexRobustResidual B`; `transitionReverseOutsidePair` | From the complete production `FullParentExactFiveAllReverseData`, prove that one complete reverse outside pair is co-radial from `S.oppApex1`, equivalently that it has two hits in some complete first-apex `SelectedClass`. The production dispatcher now consumes this invariant occurrence directly. | The global split, cardinality-three cycle, shared cap order, first-apex role extractor, full-parent assembler, and occurrence terminal all build and have only the three core axioms. Named-row containment remains sufficient but is not the target: exact marginal fixtures split every reverse pair across the two chosen rows, and a separate selector fixture can omit a pair from both four-subrows even when it lies in a six-point co-radial class. These are abstraction-level regressions, not full Euclidean countermodels. ShellCurvature's repaired marginal scalar ledger is also feasible. The proof must therefore cross-couple nonlinear Euclidean/MEC all-row geometry with full-fiber provenance or global minimality while retaining both cap-six bounds, frontier, `D.Minimal`, and `noM44`. |
 | K-A-P3-QUOTIENT | DIAGNOSTIC ONLY; FULLY DISJOINT LINEAR CELL SAT; NAMED ALIASES ADD ZERO ATOMS; DO NOT ENLARGE | internal `false_of_periodThree_allReverse_firstApexRows`; `period-three-first-apex-kalmanson/SOURCE_AUDIT.md`; `period-three-full-role-identity-quotient/`; `period-three-named-source-alias-decision/` | Use nonlinear experiments only to discover an additional source-backed Euclidean/MEC or full-parent field for K-A-ALL-REVERSE-OCCURRENCE. Do not continue quotient, Farkas, or alias enumeration. | One source-faithful fully disjoint 25-role cell satisfies every current linear row, triangle, Kalmanson, order, and alternation constraint exactly. The 12 structural descriptors each have six aliases with identical formula hashes and no added arithmetic atoms. Linear or alias coverage cannot close the leaf. The source-faithful common-order producer is tracked under K-A-P3-ORDER. |
 | K-A-P3-ORDER | DONE-PRODUCTION TRANSITION-GLOBAL PRODUCER; NO PUBLIC ORDER HYPOTHESIS | `ATail/LargeCapUniqueFivePhysicalOmissionSharedCapOrder.lean`; `nonempty_transitionSharedCapOrder_of_all_omissions_reverseMembership` | Use the retained shared block in the eventual nonlinear/full-parent period-three consumer; do not reconstruct cycle-local blocks or import the old scratch adapter chain. | Chooses one strict block for the actual physical cap, indexes every physical source and successor-row blocker in it, and derives each straddle from the global reverse-membership arm. The focused build passes; both producer endpoints have exactly `propext`, `Classical.choice`, and `Quot.sound`. This closes the order-producer gap but does not prove the period-three contradiction. |

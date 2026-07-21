@@ -182,7 +182,57 @@ alternative-packet proof therefore needs new MEC-boundary/retriangulation
 geometry, as recorded in
 `docs/audits/2026-07-20-exact-five-short-cap-terminal-audit.md`.
 
-### Exact-five ownership and provenance correction (2026-07-17)
+### Authoritative exact-five second-cap reduction (2026-07-21)
+
+**PROVEN REDUCTION; ONE MUTUAL-PARENT CONSUMER OPEN.** Production module
+`ATail/ParentExactFiveSecondCap.lean` now closes the two preliminary gaps on
+the live `S.oppCap2.card = 5` branch.
+
+First, it proves the retained-row bridge without identifying a selected row
+with a complete radius class:
+
+```text
+B₂ ⊆ SelectedClass D.A S.oppApex2 profile.radius
+2 ≤ |physicalVertices profile ∩ B₂|
+|physicalVertices profile ∩ B₁| ≤ 1
+∃ x, x ∈ physicalVertices profile ∩ B₂ ∧ x ∉ B₁.
+```
+
+Second, exact-five cap arithmetic gives exactly three physical vertices.  On
+the global all-reverse omission arm, the source-faithful shared-cap order and
+period-three cycle would place a blocker strictly between each consecutive
+source pair.  The generic finite order lemma proves that this requires at
+least five strict-cap positions, contradicting cardinality three.  Thus the
+all-reverse arm is closed in production Lean.
+
+The live exact-five profile theorem now constructs
+`FrontierBiApexRobustExactFiveMutualParentResidual` and calls the sole open
+consumer:
+
+```lean
+false_of_frontierBiApexRobustExactFiveMutualParentResidual
+```
+
+That packet retains `F/R/B/Q/profile`, the fixed `H`, the arbitrary mutual
+omission pair, the parent-row bridge, both endpoint incidence disjunctions,
+the sharp same-endpoint/split-endpoint row dichotomy, and `oneHit`: at least
+one mutual actual-critical support meets the exact three-point physical set
+in exactly one point.  The double-two-hit case is closed in production Lean:
+two hits localize both blockers to the physical set; mutual omission then
+forces the blockers to swap endpoints, making the physical triple
+equilateral and contradicting the non-obtuse convex/MEC obstruction.  The
+remaining mathematics is therefore exactly the one-hit mutual surface: both
+actual mutual rows are one-hit, or exactly one row also hits the third
+vertex.  Local one-row and bare-critical-system regressions realize this
+geometry; a closer must use global all-center K4 coupled to the named rows,
+`R.minimal`, or a complete alternative `IsM44` packet immediately consumed
+by `R.noM44`.
+
+Do not reopen the parent-row bridge, the exact-five all-reverse occurrence,
+or the MEC-extreme packet route.  The cap-six `L` all-reverse program below
+is a distinct branch and is not the live exact-five-cap obligation.
+
+### Historical exact-five ownership and provenance correction (2026-07-17; superseded for the exact-five-cap branch)
 
 The exact-five transition now has a kernel-checked **global relation split**
 before cycle normalization:

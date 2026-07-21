@@ -1,114 +1,76 @@
-# Exact-five physical-omission-cycle closure
+# Exact-five mutual-parent closure
 
-Prove the following theorem:
+Prove the current live theorem:
 
 ```lean
 Problem97.ATailFrontierLiveClosure
-  .false_of_frontierBiApexRobustExactFiveSecondCapProfile
+  .false_of_frontierBiApexRobustExactFiveMutualParentResidual
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     (F : CriticalPairFrontier D S radius H)
     (R : FrontierCommonDeletionParentResidual F)
     (B : FrontierBiApexRobustResidual R)
     (Q : FrontierBiApexRobustExactFiveSecondCapResidual B)
-    (profile : LargeCapUniqueFiveSecondApexRadius D S) :
+    (profile : LargeCapUniqueFiveSecondApexRadius D S)
+    (M : FrontierBiApexRobustExactFiveMutualParentResidual Q profile) :
     False
 ```
 
-## Relevant live data
+## Available source-faithful data
 
-`S` has physical opposite apices `O1 = S.oppApex1` and
-`O2 = S.oppApex2`. The full parent `F/R/B/Q` retains both `q`-deleted
-four-point rows, at `O1` and at `O2`, together with the common-deletion,
-robustness, cap, and fixed critical-shell data. The second physical cap has
-cardinality five and the first has cardinality at least six.
+`M.pair` is an arbitrary pair of distinct strict physical second-cap points
+whose actual `H.selectedAt` supports omit one another.  The physical set has
+exactly three points.  The fixed `H`, full frontier `F`, minimality and
+`noM44` in `R`, bi-apex deletion robustness in `B`, exact-five cap data in
+`Q`, and both retained parent rows remain available.
 
-`profile` gives the unique positive-radius `O2` class `E` of cardinality five.
-Let `P` be its intersection with the strict physical second-cap interior.
-The following is already kernel-checked:
-
-```lean
-three_le_capInterior_hits_of_largeCapUniqueFive profile
-```
-
-so `P` has at least three points. Do not confuse `E`, a complete ambient
-radius class, with either selected parent row.
-
-In particular, this theorem does **not** establish that three points of `P`
-occur in the selected `O2` q-deleted row `U2`. The retained-row cardinalities
-and `|U1 ∩ U2| ≤ 2` alone do not yield a physical point of `U2 \ U1`:
+The retained-row coupling is already proved and stored in `M`:
 
 ```text
-P  = {p1, p2, p3}
-U2 = {p1, p2, u, v}
-U1 = {p1, p2, s, t}
+exists x, x is physical and x in B2 and x notin B1
+pair.source in B2 or pair.target in B2
+pair.source notin B1 or pair.target notin B1
 ```
 
-is an abstract compatible incidence pattern. Do not silently identify a
-selected row with `E` or assume a three-point hit.
+`M.endpointRowDichotomy` sharpens this to either one mutual endpoint in
+`B2 \ B1`, or one endpoint in `B1 ∩ B2` while the other is outside both
+retained rows.
 
-The existing physical omission machinery gives, for every `start :
-PhysicalVertex profile`, a source-faithful cycle:
-
-```lean
-nonempty_physicalActualCriticalOmissionCycle_from_start H profile start
-```
-
-and a complete split:
-
-```lean
-nonempty_mutualOmissionEdge_or_all_reverseMembership K
-```
-
-On the all-reverse arm, this is an existing terminal:
-
-```lean
-false_of_transitionReverseOutsidePair_coRadial_firstApex
-```
-
-It concludes `False` from a transition, its reverse-membership condition, and
-two distinct points of one `transitionReverseOutsidePair` that have equal
-distance from `O1`.
+`M.oneHit` is also kernel-checked: at least one of the two actual critical
+supports meets the three-point physical set in exactly one point.  The
+double-two-hit case is impossible because blocker localization would make
+the blockers swap endpoints and force an equilateral physical triple.
+Therefore the only remaining local cases are both-one-hit or one of the two
+mirror asymmetric two-hit/one-hit cases.  Pure one-row cap geometry and bare
+total criticality admit regressions; a closing proof must visibly use a
+full-parent field such as global K4 coupled back to these named rows,
+`R.minimal`, or a complete alternative `IsM44` packet contradicted by
+`R.noM44`.
 
 ## Required result
 
-The first missing source-level implication is:
+Derive `False` from exactly the theorem inputs above.  A useful proof must
+produce one of:
 
-```text
-there is x in P which is in the O2 q-deleted row
-and not in the O1 q-deleted row.
-```
+1. a second named cross-row incidence feeding an existing same-cap,
+   Kalmanson, or critical-fiber terminal;
+2. a source-faithful third selected class completing an existing metric
+   contradiction; or
+3. a genuine alternative non-obtuse MEC support packet with `IsM44`.
 
-This bridge is **CONJECTURED**, not an available hypothesis. A sufficient
-producer is `3 ≤ |P ∩ U2|`, since the parent gives `|U1 ∩ U2| ≤ 2`. Prove this
-or another source-faithful producer from the actual parent fields. Do not use
-only the displayed cardinalities.
-
-Only after that producer is established, close both arms of the existing split:
-
-1. prove a mutual-omission edge contradicts the full parent and exact-five
-   profile; and
-2. on the all-reverse arm, produce a transition and distinct `a b` in its
-   `transitionReverseOutsidePair` with
-   `dist O1 a = dist O1 b`, then invoke
-   `false_of_transitionReverseOutsidePair_coRadial_firstApex`.
-
-## Excluded directions
-
-Do not target a MEC-boundary extreme, retriangulation packet, cap-at-least-six
-continuation, another selected-row adapter, literal CEGAR, or a reassigned
-critical system. None is an established producer for this exact-five anchor.
+Do not re-prove the parent-row bridge, the all-reverse split, or the
+double-two-hit classifier: all are already kernel-checked in
+`ATail/ParentExactFiveSecondCap.lean`, and the all-reverse arm is impossible.
 
 ## Rigor requirements
 
-- Use only the exact `F/R/B/Q/profile` data and existing named theorems.
-- Keep complete radius classes and selected four-point rows separate; do not
-  infer selected-row coverage from a full-class cardinality.
-- Do not assume genericity, distinct radii, or distinct critical centers.
-- Retain the fixed `H`; no favorable reassignment of blockers.
+- Use the fixed `H`; do not reassign blockers.
+- Keep complete radius classes distinct from selected four-point supports.
+- Do not assume genericity, distinct radii, distinct blockers, or unproved
+  MEC-boundary membership.
+- Every constructed row or packet must be the exact antecedent of a named
+  existing consumer, or be consumed immediately.
 - Label claims `PROVEN`, `EMPIRICALLY VERIFIED`, `CONJECTURED`, or
-  `HEURISTIC`. Do not call a conditional consumer, a cycle, or a source-clean
-  adapter closure.
-
-If closure fails, report only the first missing source-level implication and
-the exact existing terminal it would feed.
+  `HEURISTIC`.
+- If closure fails, report only the first missing source-level implication,
+  the exact parent fields it uses, and the named terminal it would feed.
