@@ -220,13 +220,25 @@ one mutual actual-critical support meets the exact three-point physical set
 in exactly one point.  The double-two-hit case is closed in production Lean:
 two hits localize both blockers to the physical set; mutual omission then
 forces the blockers to swap endpoints, making the physical triple
-equilateral and contradicting the non-obtuse convex/MEC obstruction.  The
-remaining mathematics is therefore exactly the one-hit mutual surface: both
-actual mutual rows are one-hit, or exactly one row also hits the third
-vertex.  Local one-row and bare-critical-system regressions realize this
-geometry; a closer must use global all-center K4 coupled to the named rows,
-`R.minimal`, or a complete alternative `IsM44` packet immediately consumed
-by `R.noM44`.
+equilateral and contradicting the non-obtuse convex/MEC obstruction.
+
+`ATail/ExactFiveMutualOneHitGeometry.lean` now normalizes the remaining
+surface exactly.  In either asymmetric case, the two-hit row is centered at
+the other mutual endpoint, meets the closed physical cap in exactly its
+source and the third physical point, and has an exact two-point support
+complement outside that cap.  The existing ordered-cap center-uniqueness
+theorem immediately refutes the asymmetric arm if this named outside pair is
+co-radial from `S.oppApex1`.
+
+The remaining mathematics is therefore one global occurrence theorem.  On
+the asymmetric arm, produce the first-apex co-radiality of the normalized
+outside pair.  On the both-one-hit arm, produce two distinct fixed-`H`
+centers in one cap whose actual shells share two points outside that cap, or
+construct a complete alternative `IsM44` packet.  The shared-pair output is
+consumed by `outsidePair_unique_capCenter`; the packet output is consumed by
+`R.noM44`.  Local one-row and bare-critical-system regressions realize the
+missing-incidence surface, so the producer must visibly use convex/MEC
+geometry coupled to global K4 or `R.minimal`, or make `noM44` load-bearing.
 
 Do not reopen the parent-row bridge, the exact-five all-reverse occurrence,
 or the MEC-extreme packet route.  The cap-six `L` all-reverse program below

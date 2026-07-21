@@ -36,6 +36,13 @@ proves:
 - the two mutual rows cannot both have two physical hits.  Otherwise their
   blockers swap the mutual endpoints, forcing the physical triple to be
   equilateral and hence non-obtuse, contrary to convex/MEC independence.
+- every surviving asymmetric two-hit row has a forced geometric normal
+  form: its blocker is the other mutual endpoint, its closed physical-cap
+  intersection is exactly its source plus the third physical point, and its
+  remaining support is an exact two-point outside pair; and
+- that outside pair is immediately contradictory if it is co-radial from
+  the first physical apex, by the existing ordered-cap center-uniqueness
+  theorem.
 
 The resulting one-hit disjunction is stored as `M.oneHit` in the live
 mutual-parent packet.
@@ -57,7 +64,13 @@ The double-two-hit pattern is closed in production Lean by
 `PhysicalActualCriticalMutualOmissionPair.source_hit_eq_one_or_target_hit_eq_one`.
 Thus the packet itself certifies that at least one mutual row is one-hit.
 
-The surviving one-hit surface is genuinely global.  Existing strict-convex
+Thus the asymmetric arms no longer have an anonymous two-hit row.  They need
+one occurrence theorem placing their named outside pair on a first-apex
+radius (or on another source-faithful same-cap row).  The both-one-hit arm
+still needs the more general same-cap shared-outside-pair occurrence or a
+complete alternative `IsM44` packet.
+
+The surviving occurrence surface is genuinely global.  Existing strict-convex
 MEC regressions realize the one-row geometry, and a stronger regression with
 a total critical system still avoids the missing shared incidence; neither
 is a full counterexample because global all-center K4 is absent.  A closer
@@ -76,5 +89,8 @@ must visibly use global K4 coupled to the named mutual/parent rows,
 | Mutual endpoint retained-row dichotomy | **PROVEN IN PRODUCTION LEAN** |
 | Double-two-hit mutual branch contradiction | **PROVEN IN PRODUCTION LEAN** |
 | At least one mutual row is one-hit (`M.oneHit`) | **PROVEN IN PRODUCTION LEAN** |
-| Both-one-hit and asymmetric one-hit cases | **OPEN** |
+| Asymmetric two-hit outside-pair normal form | **PROVEN IN PRODUCTION LEAN** |
+| First-apex co-radial terminal for the asymmetric outside pair | **PROVEN IN PRODUCTION LEAN** |
+| Asymmetric outside-pair occurrence | **OPEN** |
+| Both-one-hit same-cap shared-pair or alternative-`IsM44` occurrence | **OPEN** |
 | Live exact-five mutual-parent theorem | **OPEN** |

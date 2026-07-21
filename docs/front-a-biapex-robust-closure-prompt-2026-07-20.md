@@ -37,26 +37,44 @@ pair.source notin B1 or pair.target notin B1
 retained rows.
 
 `M.oneHit` is also kernel-checked: at least one of the two actual critical
-supports meets the three-point physical set in exactly one point.  The
-double-two-hit case is impossible because blocker localization would make
-the blockers swap endpoints and force an equilateral physical triple.
-Therefore the only remaining local cases are both-one-hit or one of the two
-mirror asymmetric two-hit/one-hit cases.  Pure one-row cap geometry and bare
-total criticality admit regressions; a closing proof must visibly use a
-full-parent field such as global K4 coupled back to these named rows,
-`R.minimal`, or a complete alternative `IsM44` packet contradicted by
-`R.noM44`.
+supports meets the three-point physical set in exactly one point.  Production
+module `ATail/ExactFiveMutualOneHitGeometry.lean` now gives the exhaustive
+geometric split.  In either asymmetric case, the two-hit row is centered at
+the other mutual endpoint, meets the physical cap in exactly two points, and
+has an exact two-point support complement outside that cap.  The existing
+ordered-cap terminal immediately refutes that arm if the outside pair is
+co-radial from the first physical apex.
+
+The unresolved cases are therefore:
+
+1. both mutual rows are one-hit; or
+2. one asymmetric row supplies the named outside pair, but no source-level
+   theorem yet makes that pair co-radial at the first apex or places it in a
+   distinct actual row centered in the same cap.
+
+Pure one-row cap geometry and bare total criticality admit regressions.  A
+closing proof must visibly use convex/MEC geometry together with global K4,
+`R.minimal`, or construct a complete alternative `IsM44` packet contradicted
+by `R.noM44`.
 
 ## Required result
 
-Derive `False` from exactly the theorem inputs above.  A useful proof must
-produce one of:
+Derive `False` from exactly the theorem inputs above.  The first missing
+source-level implication is an occurrence theorem with this terminal shape:
 
-1. a second named cross-row incidence feeding an existing same-cap,
-   Kalmanson, or critical-fiber terminal;
-2. a source-faithful third selected class completing an existing metric
-   contradiction; or
-3. a genuine alternative non-obtuse MEC support packet with `IsM44`.
+```text
+same-cap distinct fixed-H centers sharing two shell points outside that cap
+  OR
+a genuine alternative non-obtuse MEC support packet with IsM44.
+```
+
+On an asymmetric arm, it is enough to prove that the normalized outside pair
+is co-radial from `S.oppApex1`.  On the both-one-hit arm, choose a cap
+containing a one-hit blocker; the cap row bound supplies two points of its
+exact shell outside that cap, and the missing step is a distinct fixed-`H`
+center in the same cap whose actual shell contains those same two points.
+The first output feeds `outsidePair_unique_capCenter`; the second contradicts
+`R.noM44`.
 
 Do not re-prove the parent-row bridge, the all-reverse split, or the
 double-two-hit classifier: all are already kernel-checked in
