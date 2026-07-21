@@ -92,6 +92,33 @@ row is not complete until its stated acceptance gate passes.
 Before taking a row, run `proof-blueprint anchor list`, inspect the current
 diff in every affected file, and avoid any row owned by an active session.
 
+### Live robust ingress correction (2026-07-20)
+
+**PROVEN PRODUCER; OPEN TERMINALS.** `ATail/BiApexRobustCapBounds.lean`
+kernel-checks `first_oppCap_card_ge_six R`,
+`second_oppCap_card_ge_five B.secondApex_robust`, and
+`carrier_card_ge_thirteen B`. These use complete ambient radius classes, the
+retained first-apex double deletion, second-apex robustness, and endpoint
+one-hit geometry. Thus cards 10--12 cannot realize the live robust parent;
+this is a cap-cardinality result, not `False`.
+
+The checked dispatcher `biApexRobust_exactFiveSecond_or_largeOppositeCaps`
+gives the only admissible follow-up:
+`S.oppCap2.card = 5 ∨ 6 ≤ S.oppCap2.card`.  The large branch constructs the
+existing `FrontierLargeOppositeCapsBiApexRobustResidual B`; the exact-five-cap
+branch remains a new named robust residual.  Existing exact-five-radius,
+exact-six, and exact-seven modules do not close that branch: their interfaces
+require the cap-six `L` packet and additional radius/all-reverse data.  This
+producer would exclude cards 10--12 on the robust arm, but it closes no source
+`sorry` until both split branches reach terminal consumers.
+
+**PROVEN PROFILE; OPEN EXACT-FIVE TERMINAL.** The exact-five residual now
+produces `LargeCapUniqueFiveSecondApexRadius` from second-apex robustness and
+is wired to `false_of_frontierBiApexRobustExactFiveSecondCapProfile` on the
+live spine. The terminal must consume its full `F/R/B` parent and profile,
+either directly or by producing an alternative short-cap packet for the
+existing short-cap terminal; `ParentExactFiveAssembler` remains inapplicable.
+
 ## Kernel obligations
 
 | ID | Status | Source declaration | Direct consumer | Completion gate |

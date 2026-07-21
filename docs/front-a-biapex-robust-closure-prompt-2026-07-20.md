@@ -125,15 +125,16 @@ The following facts are already proven and may be assumed without proof:
   route to closure. This exclusion is not available before the
   cross-membership arm has been established.
 
-- Away from the protected exact-card-four alternative, the total critical
-  map yields a source-indexed two-deletion survival cover: every source
-  outside the q-blocker fiber preserves deletion of q or of w at its actual
-  chosen blocker. That fiber has at most four sources, so at least six
+- On the directed cross-membership arm, and away from the protected
+  exact-card-four alternative, the total critical map yields a source-indexed
+  two-deletion survival cover: every source outside the q-blocker fiber
+  preserves deletion of q or of w at its actual chosen blocker. That fiber
+  has at most four sources, so at least six
   carrier sources lie outside it under the live cardinality bound. This
-  cover is a proven constraint, not the target: its existing card-≥14
-  consumer manufactures another physical-second-apex common-deletion packet
-  and returns to the same robust/critical split, so it is not the generic
-  closer.
+  kernel-checked scratch cover is a constraint, not the target: its existing
+  card-≥14 consumer manufactures another physical-second-apex
+  common-deletion packet and returns to the same robust/critical split, so it
+  is not the generic closer.
 
 - The original displayed surplus-cap packet is not an (m,4,4) packet.
   Therefore the no-(m,4,4) hypothesis cannot be invoked directly. It may be
@@ -151,8 +152,9 @@ Consequently, any of the following finishes the task:
 4. Derive another direct contradiction that genuinely uses the full robust
    parent data.
 
-The current production plan packages outcomes 1 and 2 as a single
-terminal-facing coverage theorem,
+The current production plan designates the following **CONJECTURED**
+terminal-facing coverage theorem as the preferred target; it is not yet a
+Lean declaration:
 
 ```lean
 nonempty_criticalFiberClosingCore_of_biApexRobust
@@ -162,9 +164,10 @@ nonempty_criticalFiberClosingCore_of_biApexRobust
     Nonempty (CriticalFiberClosingCore R)
 ```
 
-choosing the closing fiber after inspecting the full parent and discharging
-any retriangulated (m,4,4) branch internally to False before returning; its
-sole caller immediately applies `false_of_criticalFiberClosingCore`.
+The intended proof would choose the closing fiber after inspecting the full
+parent and discharge any retriangulated (m,4,4) branch internally to False
+before returning; its caller would immediately apply
+`false_of_criticalFiberClosingCore`.
 
 Assume for purposes of this task that a complete proof exists. A complete
 solution must prove exactly the stated residual nonexistence for every
@@ -278,28 +281,32 @@ This is the audited project copy of
 `~/scratch/front-a-biapex-robust-closure-prompt-2026-07-20.md`. The original
 was audited against the Lean source (post-`74fb6ccc` wiring) and the
 2026-07-20 direct-parent manifest
-(`scratch/atail-force/direct-parent-retained-pair-manifest/REPORT.md`). Every
-hypothesis (H1)-(H5), every "already proven" bullet, and every failure-mode
-claim was verified against sorry-free declarations. Four corrections were
-applied:
+(`scratch/atail-force/direct-parent-retained-pair-manifest/REPORT.md`). The
+source-backed hypotheses, already-proven bullets, and failure-mode claims
+were checked against their cited declarations; the two-deletion cover is
+kernel-checked scratch, while the named coverage theorem is explicitly
+CONJECTURED. Four corrections were applied:
 
 1. **Same-cap output (b), O1 arm.** The original omitted a required conjunct:
    `HasSourceFaithfulSecondCenter` (`ATail/CriticalFiberClosingCore.lean`)
    demands `dist(O1,C) = dist(O1,K)` when the second center is O1 itself.
    The prose now states the equality must be supplied.
 
-2. **Two-deletion survival cover.** Added the proven source-indexed
-   two-deletion survival cover (from the `AnchoredDoubleDeletionProducer`
-   audit, recorded in commits `3a54fb85`/`6dc4e581`): outside the
+2. **Two-deletion survival cover.** Added the kernel-checked scratch
+   source-indexed cover (from the `AnchoredDoubleDeletionProducer` audit,
+   recorded in commits `3a54fb85`/`6dc4e581`), valid only on the directed
+   cross-membership arm and away from exact card four: outside the
    at-most-four-source q-blocker fiber, every source preserves deletion of q
    or of w at its actual blocker, with at least six such sources — plus the
    routing caveat that its card-≥14 consumer loops back to the physical
    robust/critical splitter and is not the generic closer.
 
-3. **Designated coverage target.** Named the production plan's packaging of
-   outcomes 1-2, `nonempty_criticalFiberClosingCore_of_biApexRobust :
+3. **Designated coverage target.** Named the production plan's CONJECTURED
+   packaging of outcomes 1-2, `nonempty_criticalFiberClosingCore_of_biApexRobust :
    Nonempty (CriticalFiberClosingCore R)`, so a solver targets the exact
-   theorem shape the closure matrix designates.
+   theorem shape the closure matrix designates. The displayed theorem is not
+   yet a production Lean declaration; it specifies the exact output a solver
+   or prover must establish.
 
 4. **(H4) retained packet.** Added the concrete single-deletion packet
    carried by the parent residual (`CommonDeletionTwoCenterPacket` at O1 and
@@ -307,9 +314,10 @@ applied:
    overlap in at most two points. The blocker-avoidance fields (b(q), b(w)
    avoiding the apices) were not added separately: they follow from the
    existing bullet that O1, O2 are omitted from the image of H. The
-   `F.firstApexSplit`/`F.secondApexSplit` disjunctions were also not added:
-   both are subsumed by the unconditional double-deletion witnesses already
-   stated in (H4).
+   `F.firstApexSplit`/`F.secondApexSplit` disjunctions were not listed
+   separately: on this common-deletion branch the required double-deletion
+   witnesses are stated in (H4); the remaining split data is derived
+   auxiliary structure, not an additional prompt assumption.
 
 Known context caveat, not a prompt error: `docs/live-blueprint.md` still
 shows the pre-`74fb6ccc` kernel-mined tree (the liveData chain ending at

@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
+import Erdos9796Proof.P97.ATail.BiApexRobustCapBounds
 import Erdos9796Proof.P97.ATail.PhysicalSecondApexSwap
 
 /-!
@@ -26,6 +27,9 @@ namespace Problem97
 namespace ATailFrontierLiveClosure
 
 open ATailCriticalPairFrontier
+open ATailBiApexRobustCapBounds
+open ATailLargeCapUniqueFive
+open ATailLargeOppositeCapsBiApexSurface
 open ATailOrientedPhysicalApexIngress
 open ATailPhysicalSecondApexCommonDeletion
 open ATailPhysicalSecondApexSwap
@@ -44,10 +48,49 @@ theorem false_of_originalFrontierUniqueRadiusArm
     False := by
   sorry
 
+/-- The exact-five second-cap robust residual with its forced unique ambient
+five-point second-apex profile. The terminal must retain the full parent;
+the existing cap-six-only exact-five assembler does not apply. -/
+theorem false_of_frontierBiApexRobustExactFiveSecondCapProfile
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F)
+    (B : FrontierBiApexRobustResidual R)
+    (Q : FrontierBiApexRobustExactFiveSecondCapResidual B)
+    (profile : LargeCapUniqueFiveSecondApexRadius D S) :
+    False := by
+  sorry
+
+/-- The exact-five second-cap robust residual. It first produces the forced
+unique ambient five-point profile before entering its terminal. -/
+theorem false_of_frontierBiApexRobustExactFiveSecondCapResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F)
+    (B : FrontierBiApexRobustResidual R)
+    (Q : FrontierBiApexRobustExactFiveSecondCapResidual B) :
+    False := by
+  rcases nonempty_largeCapUniqueFiveSecondApexRadius_of_exactFiveSecondCap Q with
+    ⟨profile⟩
+  exact false_of_frontierBiApexRobustExactFiveSecondCapProfile F R B Q profile
+
+/-- The cap-six continuation of the bi-apex robust parent. Its terminal must
+consume the complete large-cap surface, not a locally manufactured witness. -/
+theorem false_of_frontierLargeOppositeCapsBiApexRobustResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F)
+    (B : FrontierBiApexRobustResidual R)
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B) :
+    False := by
+  sorry
+
 /-- The source-faithful common-deletion arm after both physical opposite
-apices are deletion-robust.  This retains the complete parent residual so a
-consumer can use its concrete frontier, minimality, no-M44, and cap/MEC data.
--/
+apices are deletion-robust. It retains the complete parent residual and
+dispatches its checked cap-bound split to the two terminal surfaces. -/
 theorem false_of_frontierBiApexRobustResidual
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -55,7 +98,9 @@ theorem false_of_frontierBiApexRobustResidual
     (R : FrontierCommonDeletionParentResidual F)
     (B : FrontierBiApexRobustResidual R) :
     False := by
-  sorry
+  rcases biApexRobust_exactFiveSecond_or_largeOppositeCaps B with hfive | hlarge
+  · exact false_of_frontierBiApexRobustExactFiveSecondCapResidual F R B hfive.some
+  · exact false_of_frontierLargeOppositeCapsBiApexRobustResidual F R B hlarge.some
 
 /-- The non-robust physical-second-apex outcome.  The residual is kept with
 the critical shell: the intended consumer is the packet-generic swapped

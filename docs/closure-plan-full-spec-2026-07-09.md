@@ -140,6 +140,43 @@ false_of_largeOppositeCapsBiApexRobust
     (L : FrontierLargeOppositeCapsBiApexRobustResidual B) : False
 ```
 
+### Bi-apex robust cap-strengthening correction (2026-07-20)
+
+The displayed cap-first classifier is a valid route where its cap-six inputs
+are available, but the current live robust source theorem receives only
+`F`, `R`, and `B`.  The next source-faithful producer is therefore not a
+generic direct jump to `L`; it is the following **PROVEN** cap/MEC
+strengthening in `ATail/BiApexRobustCapBounds.lean`:
+
+```lean
+first_oppCap_card_ge_six R : 6 ≤ S.oppCap1.card
+second_oppCap_card_ge_five B.secondApex_robust : 5 ≤ S.oppCap2.card
+carrier_card_ge_thirteen B : 13 ≤ D.A.card
+```
+
+The first bound uses the retained frontier pair and first-apex
+double-deletion witness; the second is to use second-apex full deletion
+robustness. Both rely on complete radius classes and the existing endpoint
+one-hit theorem, not arbitrary selected four-rows. The carrier-cardinality
+corollary is also checked on this live branch.
+
+The checked dispatcher immediately dispatches
+`S.oppCap2.card = 5 ∨ 6 ≤ S.oppCap2.card`.
+Only the latter branch constructs `L` and may enter the current exact-five
+radius/exact-six/exact-seven infrastructure.  The exact-five-card branch is
+a separate robust residual: a five-point cap does not satisfy the existing
+exact-five-radius continuation's cap-six premise.  Do not describe the
+current exact-six/exact-seven consumers as generic cap-size consumers; they
+also require the `L` packet, an exact-five radius profile at `oppApex2`, and
+their stated all-reverse data.
+
+The exact-five-card branch now also has a checked profile producer,
+`nonempty_largeCapUniqueFiveSecondApexRadius_of_exactFiveSecondCap`. The live
+spine retains `F`, `R`, `B`, the exact-five cap residual, and this complete
+ambient five-point profile. Its open terminal must prove a direct
+full-parent contradiction or produce a valid alternative short-cap packet;
+it must not invoke the cap-six-only assembler.
+
 ### Exact-five ownership and provenance correction (2026-07-17)
 
 The exact-five transition now has a kernel-checked **global relation split**

@@ -5799,3 +5799,78 @@ shadow after all current Kalmanson/Farkas consumers are excluded.  Do not run
 another literal ordinal or linear Kalmanson census.  The coverage proof/model
 must add nonlinear planar Euclidean rank, complete exact-radius filters, or
 actual MEC/cap placement coupled to the common critical map.
+
+### Bi-apex robust cap-strengthening split (2026-07-20)
+
+**PROVEN in `ATail/BiApexRobustCapBounds.lean` (focused build passed
+2026-07-20).** A source-faithful cap/MEC argument provides a narrower ingress
+than the previous opaque
+generic-`B` target.  It uses complete ambient radius classes at the two
+physical apices, the first-apex frontier pair and double-deletion witness in
+`R.common`, both apex robustness fields, and the endpoint one-hit theorem
+already used by `U1OppositeCapLowerBounds`. The checked declarations are:
+
+```lean
+first_oppCap_card_ge_six R : 6 ≤ S.oppCap1.card
+second_oppCap_card_ge_five B.secondApex_robust : 5 ≤ S.oppCap2.card
+carrier_card_ge_thirteen B : 13 ≤ D.A.card
+```
+
+Here `oppCap1` is the cap opposite the first physical apex.  Its lower bound
+uses the two distinct retained frontier sources and the first-apex
+double-deletion witness: either the original full radius class survives both
+erasures and has at least six members, or a disjoint second four-capable class
+supplies the double-deletion witness; endpoint one-hit puts at least two
+strict-cap points from each class in `oppCap1`.  The `oppCap2 ≥ 5` bound uses
+the second-apex full singleton-deletion robustness: an exact four-point
+opposite cap would force one unique exact-four radius class, which deletion of
+one of its strict-cap members destroys.
+
+Together with `S.surplus_card_gt_four` and `S.capSum`, the checked corollary
+proves `13 ≤ D.A.card` on the live bi-apex robust arm. It therefore eliminates
+cards 10--12 from this arm, including the card-11 structural shadow as a
+possible full Euclidean/MEC realization of `F`, `R`, and `B`.  This is a
+cap-cardinality producer, not `False` and not a license to revive bounded
+cardinality mining.
+
+The required immediate split is exact and prevents an interface error:
+
+```text
+6 ≤ oppCap1, 5 ≤ oppCap2
+  -> oppCap2 = 5       : a new bi-apex-robust short-second-cap residual
+   | oppCap2 ≥ 6       : construct the existing
+                          FrontierLargeOppositeCapsBiApexRobustResidual B (L)
+```
+
+Only the second branch supplies the two cap-six fields required by the
+existing `L`-indexed exact-five-radius, exact-six, and exact-seven
+developments.  The `oppCap2 = 5` branch may force a unique five-point
+second-apex radius class, but it does **not** enter
+`ParentExactFiveAssembler`: its continuation construction requires
+`6 ≤ S.oppCap2.card`.  Nor may an exact size of `oppCap1` be passed to the
+current exact-six/exact-seven consumers, which are specifically indexed by
+`S.oppCap2.card` and also require an exact-five *radius* profile plus the
+all-reverse packet.
+
+The exact-five profile stage is now also **PROVEN**:
+`nonempty_largeCapUniqueFiveSecondApexRadius_of_exactFiveSecondCap Q` builds
+the existing `LargeCapUniqueFiveSecondApexRadius` from the robust exact-five
+residual alone. It is wired through the live spine as
+`false_of_frontierBiApexRobustExactFiveSecondCapProfile`; no cap-six premise
+is smuggled into this branch. The remaining terminal is a direct full-parent
+contradiction or a source-faithful alternative short-cap/retriangulation
+producer accepted by `LargeCapUniqueFiveShortCapTerminal`.
+
+The first two implementation stages are complete; the remaining order is:
+
+1. expose the small-second-cap robust residual as a load-bearing, named
+   branch with its immediate intended consumer, rather than claiming the
+   exact-five assembler closes it; and
+2. retain the direct full-parent campaign for both the small residual and the
+   large `L` residual.  Exact-six all-reverse is closed only inside its stated
+   `L`/all-reverse contract; exact-seven still supplies an occurrence, not
+   `False`.
+
+This refinement supersedes the claim that generic `B` must jump directly to
+`L`, but it does not supersede the need for a terminal consumer on either
+resulting branch.
