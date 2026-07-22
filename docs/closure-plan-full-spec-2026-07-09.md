@@ -558,6 +558,53 @@ needed for this declaration.  Likewise, the exact-card-13 LRAT proof remains
 an independent source-clean verification rather than a prerequisite for the
 live reduction.
 
+### Original unique-radius residual dispatch (2026-07-22)
+
+The open unique-radius theorem now has a source-clean, kernel-checked
+three-leaf normal form in
+`scratch/atail-force/unique-arm-route-audit/OriginalUniqueResidualDispatch.lean`:
+
+```text
+OriginalFrontierUniqueRadiusArm F
+  -> OriginalUniqueFourResidual F
+   | OriginalUniqueFiveDistinctBlockersResidual F
+   | OriginalUniqueFiveCoincidentBlockerResidual F.
+```
+
+The exact-four leaf retains the full global parent fields, uniqueness of the
+positive K4 radius, deletion failure for every member of the complete
+four-class, a strict-cap interior pair, and localization of every non-apex
+carrier bisector center to that strict cap.  The exact-five leaves first
+reselect a source-valid strict-interior pair whose joint deletion still fails
+at the first apex while singleton deletion is fully robust.  The
+distinct-blocker leaf then carries the checked directed cross-deletion
+survival; the coincident-blocker leaf carries mutual cross membership, strict
+cap localization of the common blocker, exclusion from the surplus cap, and
+the complete no-third-carrier-bisector conclusion.
+
+Both the deletion normal form and the three-leaf dispatcher pass
+warning-as-error elaboration.  The dispatcher has axiom set exactly
+`[propext, Classical.choice, Quot.sound]`, with no `sorryAx`.  It is a
+reduction, not a terminal: the first remaining statements are the three
+direct contradictions
+
+```text
+false_of_originalUniqueFourResidual
+false_of_originalUniqueFiveDistinctBlockersResidual
+false_of_originalUniqueFiveCoincidentBlockerResidual.
+```
+
+Do not send these leaves back through cap redesignation: a fresh common-parent
+arm contradicts the redesigned cap size, but its unique arm is the same open
+theorem and would be circular.  Do not target arbitrary-selector endpoint
+inequalities either; exact four admits a valid critical-system override that
+chooses the first apex for every member of its complete class.  Current work
+therefore seeks direct `False` on the three full residuals, starting with the
+narrow coincident-blocker leaf and auditing exact four independently.  The
+production theorem should become a thin dispatcher only when the leaf
+closers exist; moving three new `sorry`s into production would not advance
+closure.
+
 ### Historical exact-five ownership and provenance correction (2026-07-17; superseded for the exact-five-cap branch)
 
 The exact-five transition now has a kernel-checked **global relation split**
