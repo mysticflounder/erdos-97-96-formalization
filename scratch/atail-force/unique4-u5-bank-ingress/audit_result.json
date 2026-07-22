@@ -1,0 +1,67 @@
+{
+  "audit_digest": "07b0dad3efe838ce86af55624d35ffb3bed3fe7030bea2af16dea33908597532",
+  "claim_scope": "The exact row, arbitrary-row cardinalities, pairwise two-circle bounds, and cap-intersection upper bounds only; not Euclidean/minimal/full-residual satisfiability.",
+  "closest_extension_stable_consumer": "Problem97.U5QDeletedK4Class.three_exact_classes_tetrahedron_incompatibility",
+  "closest_negative_incidence_deficit_after_local_metric_adapter": 0,
+  "closest_positive_incidence_deficit": 5,
+  "consumer_count": 96,
+  "fixture": {
+    "bank_matches": [],
+    "exact_class": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "pairwise_row_intersection_cards": {
+      "0,1": 0,
+      "0,2": 0,
+      "1,2": 0
+    },
+    "physical_cap": [
+      1,
+      2,
+      13,
+      14
+    ],
+    "rows": {
+      "0": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "1": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "2": [
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    "strict_center_row_cap_intersection_cards": {
+      "1": 0,
+      "2": 0
+    }
+  },
+  "input_catalog": "scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+  "input_catalog_digest": "565b29de5bcd7e283abda2d0b983f0aa75ddf2ca6f9b03eafe6ade6162b92866",
+  "normalized_schema_count": 93,
+  "schema": "unique4-u5-three-row-ingress-audit-v1",
+  "schemas_with_at_most_three_centers": [
+    "Problem97.U5QDeletedK4Class.three_exact_classes_tetrahedron_incompatibility"
+  ],
+  "signed_row_center_histogram": {
+    "3": 1,
+    "4": 29,
+    "5": 40,
+    "6": 18,
+    "7": 5
+  },
+  "status": "VERIFIED_NO_FORCED_THREE_ROW_BANK_OCCURRENCE"
+}

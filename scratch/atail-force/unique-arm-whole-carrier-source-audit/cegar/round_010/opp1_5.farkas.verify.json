@@ -1,0 +1,36 @@
+{
+  "all_single_constraint_deletions": "SAT",
+  "all_variable_coefficients_cancel": true,
+  "constraint_count": 21,
+  "deletion_minimal": true,
+  "equality_multipliers": {
+    "row_0_1_10": "1/13",
+    "row_0_1_7": "-1/13",
+    "row_10_0_8": "1/13",
+    "row_1_0_7": "1/13",
+    "row_1_0_8": "-1/13",
+    "row_2_0_4": "-1/13",
+    "row_3_1_10": "-1/13",
+    "row_3_1_4": "1/13"
+  },
+  "independent_qf_lra_replay": "UNSAT",
+  "inequality_multipliers": {
+    "kal1_0_2_3_10": "1/13",
+    "kal1_0_3_4_10": "1/13",
+    "kal1_0_4_5_10": "1/13",
+    "kal1_0_5_6_10": "1/13",
+    "kal1_0_6_7_10": "1/13",
+    "kal1_0_7_8_10": "1/13",
+    "kal2_0_1_7_8": "1/13",
+    "kal2_2_3_4_5": "1/13",
+    "kal2_2_3_5_6": "1/13",
+    "kal2_2_3_6_7": "1/13",
+    "kal2_2_3_7_8": "1/13",
+    "kal2_2_3_8_9": "1/13",
+    "kal2_2_3_9_10": "1/13"
+  },
+  "normalized_weighted_rhs": "1",
+  "schema": "p97-fixed-row-farkas-core-verification-v1",
+  "source": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_010/opp1_5.full-lra.json",
+  "status": "VERIFIED_EXACT_FARKAS_CORE"
+}

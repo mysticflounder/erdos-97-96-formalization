@@ -1,0 +1,23 @@
+{
+  "all_encoded_semantic_constraints_replayed": true,
+  "checked_kalmanson_embedding_count": 3324,
+  "checked_kalmanson_schema_count": 8,
+  "checked_planar_injection_count": 332640,
+  "checked_planar_schema_count": 1,
+  "checked_u5_embedding_count": 720720,
+  "checked_u5_schema_count": 3,
+  "claim_scope": "This verifies a SAT witness for the documented finite projection; it is not a Euclidean realization or a model of every Lean source field.",
+  "cnf_sha256": "142a2c641956f7f70d6528aa6e9731e67d42c1a2594ca4cf549ff35d8f6068a4",
+  "kalmanson_bank_sha256": "1c862b8fd196174fe85ac8fc83c98d8d80b8fe44e69f56a597a2ad1ebeb48228",
+  "n": 11,
+  "opp1_card": 5,
+  "planar_bank_sha256": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+  "schema": "p97-late-choice-exact-four-row-projection-semantic-replay-v1",
+  "skipped_kalmanson_schema_count": 0,
+  "skipped_planar_schema_count": 0,
+  "skipped_u5_schema_count": 0,
+  "source_result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/n11_opp1_5.result.json",
+  "source_result_sha256": "b504527cd61b51aa6a06076debb294c7ed002d2fa1e9ffed49358b742387fda1",
+  "status": "VERIFIED_SAT_PROJECTION",
+  "u5_bank_sha256": "e6f7fba2ee26b3ee9d8d03fac4de88f63cfa4e652c8978d185c46c32fda3fdfe"
+}

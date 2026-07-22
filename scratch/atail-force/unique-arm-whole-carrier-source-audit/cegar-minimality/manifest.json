@@ -1,0 +1,109 @@
+{
+  "claim_scope": "This loop audits two fixed n=11 finite projections. It does not by itself prove the Lean unique-four residual or a Euclidean realization.",
+  "epistemic_status": "INTENTIONALLY_STOPPED_AFTER_TWO_VERIFIED_ROUNDS_FOR_STRONGER_PAIR_OVERLAY",
+  "initial_kalmanson_bank_counts": {
+    "kernel": 10,
+    "pending": 20
+  },
+  "max_new_rounds": 20,
+  "profiles": [
+    4,
+    5
+  ],
+  "rounds": [
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "8cd5ff0ba99cd560b0e12d148bf6ed74c33eb79cfa1bd897afd87317c27df1c3",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "693fbfa3e977f9ce0c2c3517b7bd95aa876ef2612f1cbc10d6eb1b151345c4a3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "6ffcf5bc891f2d676632a5ec9509513d7fe0e556456dc836e2cd90fa83a26a10",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-minimality/round_001/opp1_4.result.json",
+          "result_sha256": "88885cc373b3680d78446de16c04edf2db2f9c171e85de41eaf6f57b27c48186",
+          "solver_log_retained": false,
+          "solver_log_sha256": "f4f0eb13965d7c1f4f31fb5300e187dba334d4682b120fea9fce1a78fb76248f"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "6eace4641ca3809f214df5d02d23c831ac53f970b4d09cc01389ac4419772b69",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-minimality/round_001/opp1_5.result.json",
+          "result_sha256": "9ebe506dfc6e9bd31038c3908e2f1a8a0dbb52a10fb69e88d9a93f244edc579a",
+          "solver_log_retained": false,
+          "solver_log_sha256": "9d8007df0708c23732f3e31b8940ab5b0fdbb5fd6e41a71371cba7c9a760751e"
+        }
+      ],
+      "round": 1,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "6800a22c3d700c6f3b6c8f2e36370cdb9f9488bf7f133c7658587ee04884c9bd",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "693fbfa3e977f9ce0c2c3517b7bd95aa876ef2612f1cbc10d6eb1b151345c4a3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "9123659c2218a556dc1b6ac39e73b992177eef294b460c0d9e16a1a8d1f38b77",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-minimality/round_002/opp1_4.result.json",
+          "result_sha256": "f29e2cc78cddedddf543be44ae21e983f89ed8d5a6eed9643ce59279889af235",
+          "solver_log_retained": false,
+          "solver_log_sha256": "c82ae9a358d3cd332b837a649bf0c3a28014e6e695e5d698392b134b74d45dc5"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "5eb99285722447ca874a0c3161cdb5435cf8d459e76d6b23053d4c9df3a88b82",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-minimality/round_002/opp1_5.result.json",
+          "result_sha256": "a6e8797a3f637e39ec40099eae0d632fb258a7486a038796d77402681d491a6b",
+          "solver_log_retained": false,
+          "solver_log_sha256": "8e5b858398eab2e45a479d5af45d09354340c6c09b2c7d272621650c403bbe6a"
+        }
+      ],
+      "round": 2,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    }
+  ],
+  "finished_unix": 1784758779,
+  "final_kalmanson_bank_counts": {
+    "kernel": 10,
+    "pending": 24,
+    "total": 34
+  },
+  "final_kalmanson_bank_sha256": "bd77be3c9107ea296fa8389b37f2498e9415a72d323ad420bb2dad90bb0e1a7b",
+  "final_u5_bank_sha256": "693fbfa3e977f9ce0c2c3517b7bd95aa876ef2612f1cbc10d6eb1b151345c4a3",
+  "schema": "p97-exact-four-two-profile-cegar-run-v1",
+  "started_unix": 1784758043.912334,
+  "strict_cap_minimality_overlay": true,
+  "terminal_status": "INTENTIONALLY_STOPPED_AFTER_TWO_VERIFIED_ROUNDS_FOR_STRONGER_PAIR_OVERLAY"
+}

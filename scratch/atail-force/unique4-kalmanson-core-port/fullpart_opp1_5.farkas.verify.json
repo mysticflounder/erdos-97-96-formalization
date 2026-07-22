@@ -1,0 +1,24 @@
+{
+  "all_single_constraint_deletions": "SAT",
+  "all_variable_coefficients_cancel": true,
+  "constraint_count": 9,
+  "deletion_minimal": true,
+  "equality_multipliers": {
+    "row_0_1_5": "1/4",
+    "row_1_0_2": "-1/4",
+    "row_2_0_1": "1/4",
+    "row_2_0_5": "-1/4",
+    "row_3_0_2": "1/4"
+  },
+  "independent_qf_lra_replay": "UNSAT",
+  "inequality_multipliers": {
+    "kal2_0_1_3_4": "1/4",
+    "kal2_0_1_4_5": "1/4",
+    "kal2_1_2_3_4": "1/4",
+    "kal2_1_2_4_5": "1/4"
+  },
+  "normalized_weighted_rhs": "1",
+  "schema": "p97-fixed-row-farkas-core-verification-v1",
+  "source": "scratch/atail-force/unique4-kalmanson-core-port/fullpart_opp1_5.full_lra.json",
+  "status": "VERIFIED_EXACT_FARKAS_CORE"
+}

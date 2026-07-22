@@ -1,0 +1,831 @@
+{
+  "claim_scope": "This loop audits two fixed n=11 finite projections. It does not by itself prove the Lean unique-four residual or a Euclidean realization.",
+  "epistemic_status": "RUNNING_FAIL_CLOSED",
+  "final_kalmanson_bank_counts": {
+    "kernel": 5,
+    "pending": 36,
+    "total": 41
+  },
+  "final_kalmanson_bank_sha256": "36fa803990255f6e0d0a788f4119130293e54b1bf2b8dcea6254296d7d1c5a91",
+  "final_u5_bank_sha256": "693fbfa3e977f9ce0c2c3517b7bd95aa876ef2612f1cbc10d6eb1b151345c4a3",
+  "finished_unix": 1784757837.785897,
+  "initial_kalmanson_bank_counts": {
+    "kernel": 5,
+    "pending": 3
+  },
+  "max_new_rounds": 20,
+  "profiles": [
+    4,
+    5
+  ],
+  "rounds": [
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "85804a98e62c9be76c23f5e180f579022536668fa10ba08a2be66807137e3758",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "e6f7fba2ee26b3ee9d8d03fac4de88f63cfa4e652c8978d185c46c32fda3fdfe"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "5275f1eca1ad6b0317246383455a55f9fecca3dbd3a61717b5f3a47a68f151a6",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_001/opp1_4.result.json",
+          "result_sha256": "8263c87827a48453f25f93e2009603eab4f135b25a6ebcd837b59e422a7bd256",
+          "solver_log_retained": false,
+          "solver_log_sha256": "b1a1cf43215d7e8a8dd6365def9aad1c6dff0c8306a4a64e47501d4e2ac7d653"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "dd8c82a69865d125c0442c321ee6f8bde7fe3294a0fab67293e2be19ccac49a5",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_001/opp1_5.result.json",
+          "result_sha256": "a85b268074b498e007904bf8e842c3d443fe949d838e4ea5ee3e996090ca1c78",
+          "solver_log_retained": false,
+          "solver_log_sha256": "3eb6de871f94d8e981bfc05285d8156b9174bf7fc5f595c7ff6590b6db4e7d96"
+        }
+      ],
+      "round": 1,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "2d9c31219e6741252a2062794b2fcea8d8878b54135a1c908ef639d27a5cb8aa",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "e6f7fba2ee26b3ee9d8d03fac4de88f63cfa4e652c8978d185c46c32fda3fdfe"
+      },
+      "new_u5_catalog_indices": [
+        42
+      ],
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "f4dad6365e27e4bdae7a896680fa8d1973ebf40315cb4d866f42fc37d676187b",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_002/opp1_4.result.json",
+          "result_sha256": "f4cbcd78de40e06f61108a40be4264d402dd951e6a14f1470147b124d6df80f3",
+          "solver_log_retained": false,
+          "solver_log_sha256": "a82e9546299493926869bb4faf99f3cd8ad3c58acff73c95274b34e780c16374"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "fd192a1b83d05f40bd25beed00d5804924835d6c88de0150c4cf8eeeb599ca87",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_002/opp1_5.result.json",
+          "result_sha256": "965e30e6a15789ab4f27f412e7bdf4c700c50e162066d44fa14113a1967e53dc",
+          "solver_log_retained": false,
+          "solver_log_sha256": "040d424f599a66838c475ac534407ebb7b167f8b135b3eeb5c80b9f04e0dff46"
+        }
+      ],
+      "round": 2,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_SOURCE_PROVED_U5_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "2d9c31219e6741252a2062794b2fcea8d8878b54135a1c908ef639d27a5cb8aa",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "6f7db75e36563da6763e8c324edf91b6898c997492a29f3888e38118528dd6a2"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "53cbd10229de0dfbba9ebcbcb879317787950aad5f055fcb7f521ca6fe9b8f79",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_003/opp1_4.result.json",
+          "result_sha256": "9efccb5211452a788535919b0d7b5ee6b792610404d6f189dfb737812d21892e",
+          "solver_log_retained": false,
+          "solver_log_sha256": "b6a8b25b16382bede10b0c38b7de8f231cf95d227e79776c7f78a29780cc8c85"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "b4d819f8890ac4854c117ceed8058452050aa8052ea13edfa558a0228ef9ac01",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_003/opp1_5.result.json",
+          "result_sha256": "93554ec965f4d9109644c9e27628c62927dcfc12ae99997456df0e291f8b8fce",
+          "solver_log_retained": false,
+          "solver_log_sha256": "c2699e4b322f7516868d5dff210bb516c275fcab32351151bc7d7fbcf243716a"
+        }
+      ],
+      "round": 3,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "5d2b037fbdca566b98465a22f2472f660b11c3e4dc05d313a272d33ca77b98e5",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "6f7db75e36563da6763e8c324edf91b6898c997492a29f3888e38118528dd6a2"
+      },
+      "new_u5_catalog_indices": [
+        31
+      ],
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "1555bf4a821d7da132754a297639496e86928aa1b356f37380be9e3cabfe0e55",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_004/opp1_4.result.json",
+          "result_sha256": "2c4ccd1e75ae073bfa376e0fac32caaf1c5c1ef93dfb22476934a133ab924ce1",
+          "solver_log_retained": false,
+          "solver_log_sha256": "e04b3a4f3283471c9b0b94cc9f4b7a05a4e1d9c8ba3ff4f18fabdae2896556f0"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "3c11cdac902b37f53860b6bb83ad9ed81247a345d2251b8669b19eafc0054625",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_004/opp1_5.result.json",
+          "result_sha256": "15f5b340e23d0c0a5b49d7c8333d5fce63c87ea03d29e044bb60797df86729f6",
+          "solver_log_retained": false,
+          "solver_log_sha256": "c6dc0f2accc5df2cec01695de9a4db62913871388da2fa85586c278c3f4eeb99"
+        }
+      ],
+      "round": 4,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_SOURCE_PROVED_U5_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "5d2b037fbdca566b98465a22f2472f660b11c3e4dc05d313a272d33ca77b98e5",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "1df7c8cff76c56c72bf1502ea0a0f5bf60d47be35d47ee8331cf4ab7b002add3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "bee57df9966931cdd223a7964925b3494a94a0d75d3e3167bf911b4af409cb4e",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_005/opp1_4.result.json",
+          "result_sha256": "26ae5c00d13a4a8e0e111fb7dc8a3b06e5e10e7974e331bdb8b292ecb891268c",
+          "solver_log_retained": false,
+          "solver_log_sha256": "a1eacf0f4005a2d62bf8156f3a10c04d471a34e9c0c33b4821f0dc5c2c335271"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "246949d4dea30e7f6d69ef395ff8e06bb40bed71195738a4b9799ebe938398e6",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_005/opp1_5.result.json",
+          "result_sha256": "bdba71cb1e0f29a2fc04383fd1cbf8bc3730793bb8a094c99b106088f4db72b0",
+          "solver_log_retained": false,
+          "solver_log_sha256": "46652d54305b415d8002a6ab6f9e944ed52d57797e4dd0bf06faa4acb308d12a"
+        }
+      ],
+      "round": 5,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "69e137f18e1b55ef20dde31fcdae698044220342f1b5676b8ef357a6a529e059",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "1df7c8cff76c56c72bf1502ea0a0f5bf60d47be35d47ee8331cf4ab7b002add3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "8880256e2ab3e1788ad9fdf8a639d83a11a58e34dc76f8b99307102ab322bb6f",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_006/opp1_4.result.json",
+          "result_sha256": "b63fa0fc797fd48537be4b8a0ad44a552c637038937c97b96144a6421cb94dc0",
+          "solver_log_retained": false,
+          "solver_log_sha256": "c9feb1b0ab1f62c41307d37360849cc7fbaa1e04e3d14970eebb99ee6c66e4e4"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "59956605cc64ed04356840409f7c5f83b8d9c510bfd3c3fa2531e385170a9bbd",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_006/opp1_5.result.json",
+          "result_sha256": "7c2c282f4826c6c80d41fea4ca5442c11dcb39b1d6f98f50311187a2b79702f9",
+          "solver_log_retained": false,
+          "solver_log_sha256": "9dcff2e3359c7787b996f36b20cf346a7eb5559393a6550959cd7eb3d4b3bc21"
+        }
+      ],
+      "round": 6,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "298a06574d44a1d27002b368325cd66d056bce6a49feb8a3a218d686631eaeb4",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "1df7c8cff76c56c72bf1502ea0a0f5bf60d47be35d47ee8331cf4ab7b002add3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "285a07640c4899310d917c061e3b1855e532c74c567281614f8b0017a3ff23df",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_007/opp1_4.result.json",
+          "result_sha256": "067e163b8e9cb7e7bf2590b1c6fa39f535e279b47346a50de326adedc4e9758a",
+          "solver_log_retained": false,
+          "solver_log_sha256": "57885097fe64013061cdcaf9164f8ce215ba62a75bfd26ffa4b46add2ee1c0dc"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "57627224b8cc1bd3b47b7a6251b8421c86416170847a2e4593f56be682c14369",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_007/opp1_5.result.json",
+          "result_sha256": "4e35f8c3f11c9ff0185b9ff76f80919f8566fc8f4ce7d76d165f549cbb002f72",
+          "solver_log_retained": false,
+          "solver_log_sha256": "1c88b70ffd3dc6eee6704fc8b353409b5551527c01a1135232a1259111c97696"
+        }
+      ],
+      "round": 7,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "7969aee0e66cd721c371d1da4fe87d64185f99cc94420e46d47b613f1e862595",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "1df7c8cff76c56c72bf1502ea0a0f5bf60d47be35d47ee8331cf4ab7b002add3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "d123a104b0b2c604e956ddcca522d476cc2fcbd9e6be7e204c04098d9ae074d7",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_008/opp1_4.result.json",
+          "result_sha256": "03f5fa9a415ffa5f985020d87f7728bfe13e54e8ad61f39634df29cfd6b81504",
+          "solver_log_retained": false,
+          "solver_log_sha256": "8dac286801ea85a212d9790b7cd46ecf8513994fcdcef8698f304dd32b6a0c76"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "e905f72c9a368b1c3af123d1a4616f5d505221dfb18f73e8baf30b17569c481b",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_008/opp1_5.result.json",
+          "result_sha256": "2995c557f6d5429319f58e8343ed0cc3dd69444fe76e8a5fcbb940d7e577b5f0",
+          "solver_log_retained": false,
+          "solver_log_sha256": "799d598aa6a29dbcac6677bc70d9fd3558a4f4aaca3da1612563f330b40b5009"
+        }
+      ],
+      "round": 8,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "b54b367eb22980186a6744ad67c8daab5cf70921ca4d0158f4e7d3cf84de74d4",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "1df7c8cff76c56c72bf1502ea0a0f5bf60d47be35d47ee8331cf4ab7b002add3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "3d09caa5b2a8ab0d7c817cec929b0f0b29e42147fc9507ab694c26982059b351",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_009/opp1_4.result.json",
+          "result_sha256": "a9590a02578a09249b19f84258abd1cfa54a8a79f37e6a6b843998eb27982a1a",
+          "solver_log_retained": false,
+          "solver_log_sha256": "7fb21492c5ae2ae96dff3f1cdd0bdacd5ba9dce0b94f866e756463e905ee2204"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "7a7c301a3101a55cfc32e9dd521589115092202deb6c8493cddd5453a248f02e",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_009/opp1_5.result.json",
+          "result_sha256": "e011fc008053d29df9442f690496021f84b3df1f53944a0e7b886d01d31fc0c0",
+          "solver_log_retained": false,
+          "solver_log_sha256": "2b0e44897365526b47c735b40fe25f6bf8a8aa21328d51680887f96ebd02dc58"
+        }
+      ],
+      "round": 9,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "8e1771ce54c5de4d128a6cb5e4bb2fcde85e81c8347b855b3901d8d57d7eaca4",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "1df7c8cff76c56c72bf1502ea0a0f5bf60d47be35d47ee8331cf4ab7b002add3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "db372fe3481447afbe94b96fb5291de45bb4d9f476a5a8038696ff7a5fc96f5b",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_010/opp1_4.result.json",
+          "result_sha256": "767ae095ac1745f01e57ff84563a013f12d6ece3544693a5c83752a8d5f17b0c",
+          "solver_log_retained": false,
+          "solver_log_sha256": "95d38ed045a18614ff0f24feb9747a13ee5dcec5267d4cdd4aecda500ea374df"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "7517a69e88bf30bf0618888cc0dfc305aad3a7cbd67ac96e92fa5b0bbd3654d5",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_010/opp1_5.result.json",
+          "result_sha256": "3961c676fb8ba42d85100ba2488940c4da366192bc4072d634986aaf16354f97",
+          "solver_log_retained": false,
+          "solver_log_sha256": "75e4689c5b3a2c701fc46d3b7fbeb4497d9b86bc4c6c7c70d52aa628a77d3a98"
+        }
+      ],
+      "round": 10,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "a98ca7742fdd460a9e430a2d6f22fee0be615ba8ac40839ae84339db59c1be9f",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "1df7c8cff76c56c72bf1502ea0a0f5bf60d47be35d47ee8331cf4ab7b002add3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "2999fe67aff24045587fe39126737a540e715e7a2cbeff238338308981d09eaa",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_011/opp1_4.result.json",
+          "result_sha256": "316a665a5d24c173ab32f095ad9d3e280b60c0420d4c275bd07304eeb540789f",
+          "solver_log_retained": false,
+          "solver_log_sha256": "2b983115140a2792d00dcf9c972670c9f8021594171315a1b5120afab95d5aff"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "29657a62e570752e822aef3a0c31a077f19b86ab991921419274a700e35c4680",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_011/opp1_5.result.json",
+          "result_sha256": "93b60bd2febc4eae4b3361baa76b75b03dc834407ed4527b9e6670b360812bfc",
+          "solver_log_retained": false,
+          "solver_log_sha256": "a4e512f692168692fb404231bf1d51d46cf2114207642f0777b5d2c0dd2dbf2f"
+        }
+      ],
+      "round": 11,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "4203f85d5e2e361da23098a9167226aa1b316575600fda0e56b5b69e6ee9cb51",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "1df7c8cff76c56c72bf1502ea0a0f5bf60d47be35d47ee8331cf4ab7b002add3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "82925ed147915c667183cd1eba05d015f5119758571af9f47917ed236f3287f4",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_012/opp1_4.result.json",
+          "result_sha256": "5d9dee47201dbaa62bd9580dff2c14f54f466a95864988f1f80bc18e790a0de0",
+          "solver_log_retained": false,
+          "solver_log_sha256": "a7526d37bf0234e282881edaead319e9215cb2a74052740c0a4dab2240620930"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "a164e0ebf834ebb87d34edecea4862828ed0434ea2ccf9c79e35b9de7e82d086",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_012/opp1_5.result.json",
+          "result_sha256": "42f39dfa8d17e7d820418fa1e1abc56932e384e1be5a901fdfcace13170e4dca",
+          "solver_log_retained": false,
+          "solver_log_sha256": "a4b6a35c2fc3dce372b7b27bae8ba6d62dd0117826f4cf17f0f19e3febf02bce"
+        }
+      ],
+      "round": 12,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "613bd36356863e8a0375b632748f11543e5b55db2c2ebfb25d0a3b6db8213c83",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "1df7c8cff76c56c72bf1502ea0a0f5bf60d47be35d47ee8331cf4ab7b002add3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "d5af44f8a549897c5d886ec5540f32f9b8270fd5fc4d7fc0bd946db5efa4e2c2",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_013/opp1_4.result.json",
+          "result_sha256": "3bf401ef692e4181a0dfb5622aac322bcd1e4970d519aa5fbaa63d5f190781d1",
+          "solver_log_retained": false,
+          "solver_log_sha256": "716b850b8f5674f8722a73251f7a91d57c7bf5c6ba980a93ddbb6b28efbf8ee1"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "7ba8d216e24ec838c7e03f765285b69b94901ba916c5071f8dd61ee41070b80b",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_013/opp1_5.result.json",
+          "result_sha256": "cf439fe760893df413459c45e5d31558bec6a0f98da15bcc6e511324685fda53",
+          "solver_log_retained": false,
+          "solver_log_sha256": "122181ee36611c8480dee7b824b80743808a235a92feb7b857888c5d0d2ea3eb"
+        }
+      ],
+      "round": 13,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "c41b6d66d79988964a90accc71d43183015dae59a7b0a68fb93912fa88f786cd",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "1df7c8cff76c56c72bf1502ea0a0f5bf60d47be35d47ee8331cf4ab7b002add3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "c97900332c81ebcb7e93b92fa7e32854cff2f19b0b674eecd9f7b5a76f579583",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_014/opp1_4.result.json",
+          "result_sha256": "dc047dd8e49efd1f48f8d72e03b201e0427b6c1f1c94385053c366b84e63fd90",
+          "solver_log_retained": false,
+          "solver_log_sha256": "90def3c1015bd77f4085b34d8b5cdd76484b80f63f27e1f18a8ec32747a16713"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "ea7c7a4f9c1e30c4128037fc1ef155fd8cc992b55ceea5c730192ceed5a59648",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_014/opp1_5.result.json",
+          "result_sha256": "98651e59986b263b63801146294a69de79d7540a46d1c57a9e819b1a0b24ecbc",
+          "solver_log_retained": false,
+          "solver_log_sha256": "9f1946109ee0b8b331450ddcd8f29914fa8c0c5de5bc34a645604c106ad76f89"
+        }
+      ],
+      "round": 14,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "05923e5493ec455bfdc9b20cf201e702251ec53e417d4f0ccaaece870fb7b9e8",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "1df7c8cff76c56c72bf1502ea0a0f5bf60d47be35d47ee8331cf4ab7b002add3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "8cec91e5b449e498c3378f50cdcf4fd4bbde12a794e21056dd9c58ebcf3825c7",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_015/opp1_4.result.json",
+          "result_sha256": "498ce4df18bd9906657edd507451f65186bc1b1b91748f18cc8c4efc1d208061",
+          "solver_log_retained": false,
+          "solver_log_sha256": "6cfc7e98b42cf691fe9cabb30a1e0bb7e22bbe03818b42e2583bfdcb82962286"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "8f7a7418ffc3d5dfe66668aade18d4677a68c8bdce867c98104d461efd21d4ab",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_015/opp1_5.result.json",
+          "result_sha256": "6a061c57f6c107ebcc23cf009248146fce1235f2131a24c20a172b26416b5264",
+          "solver_log_retained": false,
+          "solver_log_sha256": "de76acb1ebc0de9b2086e57c42619febfa505664d254c5434a129b9b3295b7ac"
+        }
+      ],
+      "round": 15,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "3dacb3e7aa665ac032750aad5b8f8e85f3233a42c276d2711671251efee67116",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "1df7c8cff76c56c72bf1502ea0a0f5bf60d47be35d47ee8331cf4ab7b002add3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "SUBSUMED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "d45f85e12bfb5373521158661f49384cad41eeac4b43cad1b34ae3dfe8ada69c",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_016/opp1_4.result.json",
+          "result_sha256": "3676c6edece072aba0dfea49733f9353e55939ef3bb7f8d69cf38922eec3c9a8",
+          "solver_log_retained": false,
+          "solver_log_sha256": "4af6983ca1f44cebd6017e1917c7f7d7440815046d0c4d4f4b0250d33e981795"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "14e45acb7cc671886dd1b18f55fa431340938e2f06b6a974d0d1794844c1af4c",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_016/opp1_5.result.json",
+          "result_sha256": "6019e7b42bc0f40267b88eab7ce51280b93330ef1deb2eabef0579104baca830",
+          "solver_log_retained": false,
+          "solver_log_sha256": "8efdb91efdf8869d7530f8ca0eef8cda372b5ee59b488ba28cd8da13637c7aab"
+        }
+      ],
+      "round": 16,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "b921c7e6eb558327d3c95ae5c821afcdbf78fa61472a961606281b57997a792c",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "1df7c8cff76c56c72bf1502ea0a0f5bf60d47be35d47ee8331cf4ab7b002add3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "bc378000a32cb8aa157d0478675a03c2c78055d86dcb0c5c3666ab6a10d0ddaf",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_017/opp1_4.result.json",
+          "result_sha256": "d31a5aa9d6e25d36b2cdab7bd85165fe8a2b08d411e602a9800148811e2ad25f",
+          "solver_log_retained": false,
+          "solver_log_sha256": "400de1ded845c6f616c289fa33d18215bdb9072b01c569fc6730e8a2d3ec3692"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "df86c7ee03b99473fb2c2505512a208de3701fbc91d70afea7f120165b878d07",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_017/opp1_5.result.json",
+          "result_sha256": "344bdb9c1990b46e3b0a2e54558621a70988fad9c8121aed86db6a40d69472a3",
+          "solver_log_retained": false,
+          "solver_log_sha256": "b3646d102f9c865b590a5cce63fb6b7154737e0c0ce33c0eaec6fa6b6966b3ea"
+        }
+      ],
+      "round": 17,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "e0949ef67d2ba725ffa6ab7b13e338e5e313da1b536e509eb9c89508cc9ef8a2",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "1df7c8cff76c56c72bf1502ea0a0f5bf60d47be35d47ee8331cf4ab7b002add3"
+      },
+      "new_u5_catalog_indices": [
+        12
+      ],
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "6c7d94b91622f39186c016d4e5c3d766c644b5ecd3800b13dea814b9d3d77cf6",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_018/opp1_4.result.json",
+          "result_sha256": "6f3c14287b593724a01b9a771513fc960fcafccdda66c9ea47721e73cb56dfcf",
+          "solver_log_retained": false,
+          "solver_log_sha256": "b743cb05c76aa137ee78c0d7c8eb97543cdd9e72a3cc3512b898a9d6b868b61d"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "5bfdbf8bf41a8e2e0328d8c5de3996e02fc9fbc24fe2dad12439634d5b4e9e2c",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_018/opp1_5.result.json",
+          "result_sha256": "1ea61eaa79ae77062c7e7fccd75ee59431d313e91be24603521a41a8ded31693",
+          "solver_log_retained": false,
+          "solver_log_sha256": "414e252933a3bf41c2134dc19bb0c8780709a21024f75ab7eea4988a04a865ff"
+        }
+      ],
+      "round": 18,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_SOURCE_PROVED_U5_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "e0949ef67d2ba725ffa6ab7b13e338e5e313da1b536e509eb9c89508cc9ef8a2",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "693fbfa3e977f9ce0c2c3517b7bd95aa876ef2612f1cbc10d6eb1b151345c4a3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "a5ee405a27309a7275591b6b715d4c61bd31d836961b836a51ddbed41230ed19",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_019/opp1_4.result.json",
+          "result_sha256": "5ef1b5b5b125f5f528f9814da5794dd650220f1c37d0ccc0474c39d92efb2ecf",
+          "solver_log_retained": false,
+          "solver_log_sha256": "e37413736ec0d3210167f3998d153c15b246b11fad5f8f5f7907436c23ad15ac"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "470753a2ad5143ab9bbd11469db1e13e4035c66bdafb4679ef420847ce43bbd5",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_019/opp1_5.result.json",
+          "result_sha256": "caab4ca409e5e1eba2d267ca2c0f2d8c410b04f78eaea7be1ef2c9abd83a5501",
+          "solver_log_retained": false,
+          "solver_log_sha256": "4e9f8e8b09f8c34e9b10cdbbc7248e584599f233661d54341448e78c8a80b21a"
+        }
+      ],
+      "round": 19,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "d41aa89ce4e7293de193671235a6d7d0c701738db7ec6bd57c5d7c27984edc4a",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "693fbfa3e977f9ce0c2c3517b7bd95aa876ef2612f1cbc10d6eb1b151345c4a3"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "bd0abe88716c5756db650413f853e8c21fee6408ee5e6dd842bbfd7447ecf8a5",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_020/opp1_4.result.json",
+          "result_sha256": "e15973fae56cfda0ff3d9a4fcf7e065d5644941a1f1111f0a3d044ebfd5cdc14",
+          "solver_log_retained": false,
+          "solver_log_sha256": "f3c4dc076c9305881e643886e27295258bf4854964bbe8fb2200eaf02a33487e"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "164077b2e40d10937ee9bc009737892caf89f9b0d0d2d26b897b17973a118881",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_020/opp1_5.result.json",
+          "result_sha256": "93b501c8f70e0852492f1793b88f1b89a4c64172ba04a09b820edbe5153783f4",
+          "solver_log_retained": false,
+          "solver_log_sha256": "00a91b5a057e26fe7947247fc709323ec784cff30b2bc7ef8ad7534d34f5fc6b"
+        }
+      ],
+      "round": 20,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    }
+  ],
+  "schema": "p97-exact-four-two-profile-cegar-run-v1",
+  "started_unix": 1784756284.75542,
+  "terminal_status": "ROUND_CAP_REACHED_UNRESOLVED"
+}

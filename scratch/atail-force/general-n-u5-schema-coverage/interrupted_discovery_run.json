@@ -1,0 +1,12 @@
+{
+  "schema": "p97-general-n-u5-interrupted-discovery-v1",
+  "status": "INTERRUPTED_BY_OPERATOR",
+  "reason": "Discovery run was incorrectly emitting DRAT; stopped to remove proof-I/O overhead. No solver verdict was produced.",
+  "n": 11,
+  "second_apex": 1,
+  "seed_schema_indices": [35],
+  "timeout_seconds": 600,
+  "partial_cnf_bytes": 28243676,
+  "partial_drat_bytes": 472526848,
+  "partial_artifacts_retained": false
+}

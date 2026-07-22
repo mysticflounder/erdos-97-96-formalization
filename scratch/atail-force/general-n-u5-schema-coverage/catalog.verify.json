@@ -1,0 +1,12 @@
+{
+  "catalog": {
+    "checked_registry_consumers": 96,
+    "checked_source_declarations": 96,
+    "normalized_schema_count": 93,
+    "registry_source_reachability_checked": true,
+    "signed_antecedents_reconstructed": true
+  },
+  "claim_scope": "Source catalog and finite n=11 outer only; no arbitrary-card/live coverage.",
+  "schema": "p97-general-n-u5-schema-coverage-independent-verification-v1",
+  "status": "VERIFIED"
+}

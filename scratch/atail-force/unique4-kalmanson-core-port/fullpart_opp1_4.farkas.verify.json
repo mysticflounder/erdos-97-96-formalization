@@ -1,0 +1,19 @@
+{
+  "all_single_constraint_deletions": "SAT",
+  "all_variable_coefficients_cancel": true,
+  "constraint_count": 4,
+  "deletion_minimal": true,
+  "equality_multipliers": {
+    "row_10_1_2": "1",
+    "row_1_0_2": "-1",
+    "row_2_0_1": "1"
+  },
+  "independent_qf_lra_replay": "UNSAT",
+  "inequality_multipliers": {
+    "kal1_0_1_2_10": "1"
+  },
+  "normalized_weighted_rhs": "1",
+  "schema": "p97-fixed-row-farkas-core-verification-v1",
+  "source": "scratch/atail-force/unique4-kalmanson-core-port/fullpart_opp1_4.full_lra.json",
+  "status": "VERIFIED_EXACT_FARKAS_CORE"
+}

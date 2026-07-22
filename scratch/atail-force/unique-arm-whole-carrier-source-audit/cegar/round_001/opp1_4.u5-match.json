@@ -1,0 +1,15 @@
+{
+  "catalog": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+  "catalog_digest": "565b29de5bcd7e283abda2d0b983f0aa75ddf2ca6f9b03eafe6ade6162b92866",
+  "catalog_schema_count": 93,
+  "embedding_mode": "first_per_schema",
+  "epistemic_status": "EXACT_FINITE_ROW_INCIDENCE_REPLAY",
+  "matched_schema_count": 0,
+  "matches": [],
+  "n": 11,
+  "recorded_embedding_count": 0,
+  "schema": "p97-general-n-u5-signed-row-schema-match-v1",
+  "source": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_001/opp1_4.result.json",
+  "source_digest": "90c1da715b3cda59bcb6659fdefec60be6328cd896f77169bf80eb494649970f",
+  "status": "NO_BANK_MATCH"
+}

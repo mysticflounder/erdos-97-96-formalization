@@ -1,0 +1,33 @@
+{
+  "all_single_constraint_deletions": "SAT",
+  "all_variable_coefficients_cancel": true,
+  "constraint_count": 18,
+  "deletion_minimal": true,
+  "equality_multipliers": {
+    "row_0_2_9": "1/20",
+    "row_10_0_1": "-1/20",
+    "row_2_1_9": "-1/20",
+    "row_3_0_2": "1/20"
+  },
+  "independent_qf_lra_replay": "UNSAT",
+  "inequality_multipliers": {
+    "kal2_0_1_2_3": "1/20",
+    "kal2_0_1_3_4": "1/10",
+    "kal2_0_1_4_5": "1/10",
+    "kal2_0_1_5_6": "1/10",
+    "kal2_0_1_6_7": "1/10",
+    "kal2_0_1_7_8": "1/10",
+    "kal2_0_1_8_9": "1/10",
+    "kal2_0_1_9_10": "1/20",
+    "kal2_1_2_3_4": "1/20",
+    "kal2_1_2_4_5": "1/20",
+    "kal2_1_2_5_6": "1/20",
+    "kal2_1_2_6_7": "1/20",
+    "kal2_1_2_7_8": "1/20",
+    "kal2_1_2_8_9": "1/20"
+  },
+  "normalized_weighted_rhs": "1",
+  "schema": "p97-fixed-row-farkas-core-verification-v1",
+  "source": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_014/opp1_5.full-lra.json",
+  "status": "VERIFIED_EXACT_FARKAS_CORE"
+}

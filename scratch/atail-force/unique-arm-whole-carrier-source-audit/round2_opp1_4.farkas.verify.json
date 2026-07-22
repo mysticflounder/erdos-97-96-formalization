@@ -1,0 +1,39 @@
+{
+  "all_single_constraint_deletions": "SAT",
+  "all_variable_coefficients_cancel": true,
+  "constraint_count": 24,
+  "deletion_minimal": true,
+  "equality_multipliers": {
+    "row_0_1_5": "-1/23",
+    "row_10_0_3": "-1/23",
+    "row_1_0_3": "1/23",
+    "row_1_0_4": "-1/23",
+    "row_2_0_5": "1/23",
+    "row_3_1_4": "1/23"
+  },
+  "independent_qf_lra_replay": "UNSAT",
+  "inequality_multipliers": {
+    "kal1_0_1_2_10": "1/23",
+    "kal2_0_1_5_6": "1/23",
+    "kal2_0_1_6_7": "1/23",
+    "kal2_0_1_7_8": "1/23",
+    "kal2_0_1_8_9": "1/23",
+    "kal2_0_1_9_10": "1/23",
+    "kal2_1_2_4_5": "1/23",
+    "kal2_1_2_5_6": "2/23",
+    "kal2_1_2_6_7": "2/23",
+    "kal2_1_2_7_8": "2/23",
+    "kal2_1_2_8_9": "2/23",
+    "kal2_1_2_9_10": "2/23",
+    "kal2_2_3_4_5": "1/23",
+    "kal2_2_3_5_6": "1/23",
+    "kal2_2_3_6_7": "1/23",
+    "kal2_2_3_7_8": "1/23",
+    "kal2_2_3_8_9": "1/23",
+    "kal2_2_3_9_10": "1/23"
+  },
+  "normalized_weighted_rhs": "1",
+  "schema": "p97-fixed-row-farkas-core-verification-v1",
+  "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/round2_opp1_4.full_lra.json",
+  "status": "VERIFIED_EXACT_FARKAS_CORE"
+}

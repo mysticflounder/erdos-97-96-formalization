@@ -1,0 +1,85 @@
+{
+  "catalog": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+  "catalog_digest": "565b29de5bcd7e283abda2d0b983f0aa75ddf2ca6f9b03eafe6ade6162b92866",
+  "catalog_schema_count": 93,
+  "embedding_mode": "first_per_schema",
+  "epistemic_status": "EXACT_FINITE_ROW_INCIDENCE_REPLAY",
+  "matched_schema_count": 1,
+  "matches": [
+    {
+      "consumers": [
+        "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_qcritical_mid_right_exact_left_incompatibility"
+      ],
+      "embedding_count_recorded": 1,
+      "embeddings": [
+        [
+          5,
+          0,
+          7,
+          3,
+          6
+        ]
+      ],
+      "negative_memberships": [
+        [
+          4,
+          3
+        ]
+      ],
+      "positive_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "role_count": 5,
+      "schema_index": 2
+    }
+  ],
+  "n": 11,
+  "recorded_embedding_count": 1,
+  "schema": "p97-general-n-u5-signed-row-schema-match-v1",
+  "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-pair-minimality/round_001/opp1_5.result.json",
+  "source_digest": "58480b430291488f602f834cfe5b14386be01351a656cad18853e39865644eac",
+  "status": "BANK_MATCH"
+}

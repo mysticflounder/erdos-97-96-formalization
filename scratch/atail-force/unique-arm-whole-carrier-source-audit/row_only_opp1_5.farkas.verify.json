@@ -1,0 +1,31 @@
+{
+  "all_single_constraint_deletions": "SAT",
+  "all_variable_coefficients_cancel": true,
+  "constraint_count": 16,
+  "deletion_minimal": true,
+  "equality_multipliers": {
+    "row_0_3_6": "1/10",
+    "row_0_3_8": "-1/10",
+    "row_10_1_2": "-1/10",
+    "row_10_1_8": "1/10",
+    "row_1_0_2": "1/10",
+    "row_1_0_6": "-1/10"
+  },
+  "independent_qf_lra_replay": "UNSAT",
+  "inequality_multipliers": {
+    "kal1_0_2_3_10": "1/10",
+    "kal1_0_3_4_10": "1/10",
+    "kal1_0_4_5_10": "1/10",
+    "kal1_0_5_6_10": "1/10",
+    "kal1_0_6_7_10": "1/10",
+    "kal1_0_7_8_10": "1/10",
+    "kal2_0_1_2_3": "1/10",
+    "kal2_0_1_3_4": "1/10",
+    "kal2_0_1_4_5": "1/10",
+    "kal2_0_1_5_6": "1/10"
+  },
+  "normalized_weighted_rhs": "1",
+  "schema": "p97-fixed-row-farkas-core-verification-v1",
+  "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/row_only_opp1_5.full_lra.json",
+  "status": "VERIFIED_EXACT_FARKAS_CORE"
+}

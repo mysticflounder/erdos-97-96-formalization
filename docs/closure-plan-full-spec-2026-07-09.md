@@ -773,6 +773,127 @@ globally forbid either physical apex as a blocker.  Fixed-card output is only
 discovery evidence unless it yields an extension-stable checked consumer or
 is accompanied by a uniform source theorem.
 
+The corrected exact-four cardinality and occurrence boundary is now checked
+in `scratch/atail-force/unique4-uniform-route-audit/`.  The source residual
+proves
+
+```text
+11 <= D.A.card,
+```
+
+using the cap sum and `noM44`; it supplies no finite upper bound.  Minimality
+also rules out the hoped hereditary reduction: a nonempty selected-row-closed
+subcarrier is the whole carrier.  Therefore a fixed card-eleven decision can
+close only the base case.  The cardinality-independent target is the
+explicitly **CONJECTURED** disjunction
+
+```text
+D.A.card = 11
+  OR an order-preserving/reflected occurrence of a checked local consumer.
+```
+
+The consumer side has materially improved.  Ten exact Kalmanson cores from
+the source-faithful card-eleven search now have warning-as-error checked,
+cardinality-generic Lean theorems in
+`scratch/atail-force/unique4-kalmanson-core-port/`.  Consecutive fixed-pair
+`K2` and fixed-outer-endpoint `K1` paths compress to direct endpoint
+inequalities, so the smallest consumer uses four ordered roles, three row
+centers, and six selected-row memberships.  These are genuine
+extension-stable terminals, not coverage: no theorem yet forces one of their
+ten incidence schemas from `OriginalUniqueFourResidual`.
+
+The full source-level minimal-deletion transition does not fill that gap.
+`scratch/atail-force/unique4-transition-bank-match/` verifies that its
+collision arm controls at most the first apex and one fresh row center, while
+the singleton and packed-core shells are all concentric at the fresh center.
+Every checked Kalmanson or U5 consumer needs at least three distinct row
+centers, and the checked planar consumer needs four.  The sole two-center
+outside-pair case is already exactly the subcase removed by
+`collision_sources_exact_cap_residual`.  The first missing source fact is
+therefore a genuine multicenter row occurrence, or a separately named
+MEC/`noM44` residual with an immediate terminal.  Do not add another
+arbitrary-K4-row adapter.
+
+The center-count part of that statement is no longer open.
+`scratch/atail-force/unique4-multicenter-occurrence/` proves uniformly that
+the favorable critical system has three pairwise-distinct actual blocker
+centers: the first apex and two centers attached to sources outside its exact
+four-source fiber.  All three rows are complete critical shells.  This still
+does not match a checked terminal.  The two outside rows carry only their
+mandatory own-source incidences, whereas the smallest four-role Kalmanson
+consumer requires six coordinated cross-row memberships.  The remaining
+producer is therefore **cross-incidence occurrence**, not another center
+existence or fiber-cardinality theorem.
+
+The prescribed strict-pair specialization is checked separately in
+`scratch/atail-force/unique4-strict-pair-minimality/`.  Minimality for
+`{R.interior_q, R.interior_w}` gives exactly three outcomes: a singleton
+exact critical shell through one named source; an equal-radius whole-pair
+arm with a fully robust center in the same strict cap and an ambient class of
+cardinality at least five; or a distinct-radius whole-pair core with two
+disjoint concentric exact shells.  If the *physical* first opposite cap had
+cardinality four, the equal-radius arm would be contradictory.  That
+hypothesis is not present: `R.class_card_eq_four` is the cardinality of the
+first-apex radius class, not of the physical cap.  The two notions must not
+be conflated, and the singleton/two-shell outputs still lack a terminal
+cross-incidence.
+
+The complementary MEC route is also sharply delimited.  The source-faithful
+replay in `scratch/atail-force/unique4-mec-terminal/` retains that the global
+minimality center lies outside the complete exact class and all three Moser
+vertices.  It proves the center is either strictly inside the MEC disk or is
+a genuinely fourth MEC-boundary point, and removes the first-opposite-cap
+location when that physical cap has cardinality four.  An exact twelve-point
+convex regression nevertheless has four MEC-boundary points, displayed cap
+profile `(6,5,4)`, and no nonobtuse boundary triple with two exact four-caps.
+It is not `CounterexampleData`, but it proves that bare boundary ingress does
+not construct an alternative `IsM44` packet.  A live retriangulation theorem
+must visibly consume the collision/minimal-deletion shells and produce a
+complete nonobtuse `CapTriple.HasExactPair`; otherwise it is false at the
+available geometric interface.
+
+The stronger local retriangulation proposal has now been adversarially tested
+in `scratch/atail-force/unique4-retriangulation-terminal/` and is false at
+the collision/core interface.  Three exact rational strictly convex models
+realize respectively the fresh-center five-class collision, singleton exact
+shell, and two disjoint exact-shell packed core, while the fresh center lies
+strictly inside the MEC and no boundary support triple has two exact caps.
+They are explicitly not models of `OriginalUniqueFourResidual`: global
+all-center K4, carrier minimality, the total critical system, and the exact
+`protectedDeletionSet` provenance are absent.  They nevertheless force the
+MEC route into two separate live theorems.  First, prove from those global
+source fields that a fresh transition center cannot be strictly inside the
+MEC.  Only then may a second theorem use the boundary center plus the full
+transition roles to construct `CapTriple.HasExactPair`.  Do not formalize a
+local collision/core-to-retriangulation adapter; the exact regressions refute
+it.
+
+The bounded card-eleven CEGAR loop remains a discovery gate only.  It uses
+complete radius partitions, exact critical shells and `no_qfree`, the
+favorable first-apex fiber, actual cap roles, separate retained/interior
+pairs, and a separate second-apex deletion row.  The literal loop ran for
+twenty rounds.  Every Boolean projection was SAT and every fixed-row full-LRA
+check was exactly UNSAT, producing another Farkas/Kalmanson cut; after
+subsumption the base bank retained ten kernel-checked schemas and twenty
+genuine exact-Farkas schemas still pending a Lean port.  The two minimality
+audits added four and two more verified pending cuts respectively, so the
+current merged bank is ten kernel-checked plus twenty-six pending ports.  Its
+seven signed-U5 entries are all source-proved and source-reachable.  This is
+non-convergence, not coverage, and the final 36-schema bank has not itself
+been rerun after the last two cuts.
+
+Two source-proved minimality overlays were then tested independently.  The
+fresh strict-cap transition overlay survived two rounds.  The sharper
+prescribed-interior-pair overlay also survived two rounds: its first survivor
+matched a source-proved U5 schema, and after installing that cut the next
+survivors again required a new exact Farkas cut.  In particular the pair
+overlay may select a singleton minimal deletion, so it does not force the
+nontrivial two-source coupling.  These bounded runs are now a regression and
+theorem-discovery corpus, not the primary closure route.  Resume literal
+CEGAR only after a new source theorem adds a field not represented in these
+overlays.  Even a finite UNSAT result must remain separate from a uniform
+source occurrence theorem and a Lean coverage certificate.
+
 ### Historical exact-five ownership and provenance correction (2026-07-17; superseded for the exact-five-cap branch)
 
 The exact-five transition now has a kernel-checked **global relation split**

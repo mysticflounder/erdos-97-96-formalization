@@ -1,0 +1,877 @@
+{
+  "epistemic_status": "SOURCE_PROVED_REACHABLE_SELECTED_ROW_ADAPTER_VERIFIED",
+  "schema": "p97-exact-four-u5-signed-schema-bank-v1",
+  "schema_count": 7,
+  "schemas": [
+    {
+      "catalog_index": 2,
+      "consumer": "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_qcritical_mid_right_exact_left_incompatibility",
+      "consumers": [
+        "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_qcritical_mid_right_exact_left_incompatibility"
+      ],
+      "negative_memberships": [
+        [
+          4,
+          3
+        ]
+      ],
+      "positive_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "provenance": {
+        "catalog": "scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+        "catalog_digest": "565b29de5bcd7e283abda2d0b983f0aa75ddf2ca6f9b03eafe6ade6162b92866",
+        "selected_row_adapters": "scratch/atail-force/general-n-u5-schema-coverage/SelectedRowU5Adapters.lean",
+        "source_consumers": [
+          {
+            "fq_name": "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_qcritical_mid_right_exact_left_incompatibility",
+            "hypothesis_kinds": [
+              "class_membership",
+              "dangerous_triple",
+              "qcritical_class",
+              "qdeleted_class",
+              "triple_membership"
+            ],
+            "module": "RVOL.P97.U5GlobalIncidenceQCriticalExactSelectedQCriticalMidRightBase",
+            "point_roles": [
+              "q",
+              "p",
+              "t\u2081",
+              "t\u2082",
+              "t\u2083"
+            ],
+            "proof_status": "source-proved",
+            "raw_negative_memberships": [
+              [
+                "t\u2083",
+                "q"
+              ]
+            ],
+            "raw_positive_memberships": [
+              [
+                "p",
+                "q"
+              ],
+              [
+                "p",
+                "t\u2081"
+              ],
+              [
+                "p",
+                "t\u2082"
+              ],
+              [
+                "p",
+                "t\u2083"
+              ],
+              [
+                "t\u2081",
+                "p"
+              ],
+              [
+                "t\u2081",
+                "q"
+              ],
+              [
+                "t\u2081",
+                "t\u2082"
+              ],
+              [
+                "t\u2082",
+                "q"
+              ],
+              [
+                "t\u2082",
+                "t\u2083"
+              ],
+              [
+                "t\u2083",
+                "p"
+              ],
+              [
+                "t\u2083",
+                "t\u2081"
+              ]
+            ],
+            "source_line": 331,
+            "source_path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalMidRightBase.lean",
+            "source_reachable": true,
+            "source_shape": "dda1426c91077c63"
+          }
+        ]
+      },
+      "role_count": 5,
+      "transport": "all_injective_role_maps"
+    },
+    {
+      "catalog_index": 6,
+      "consumer": "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_mid_aux_qcritical_collision_incompatibility",
+      "negative_memberships": [
+        [
+          2,
+          3
+        ]
+      ],
+      "positive_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "provenance": {
+        "catalog": "scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+        "module": "RVOL.P97.U5GlobalIncidenceQCriticalExactSelectedMidAuxQCriticalCollision",
+        "selected_row_adapters": "scratch/atail-force/general-n-u5-schema-coverage/SelectedRowU5Adapters.lean",
+        "source_line": 26,
+        "source_path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedMidAuxQCriticalCollision.lean"
+      },
+      "role_count": 5,
+      "transport": "all_injective_role_maps"
+    },
+    {
+      "catalog_index": 12,
+      "consumer": "Problem97.U5QCriticalTripleClass.qcritical_exact_right_selected_antipodal_incompatibility",
+      "consumers": [
+        "Problem97.U5QCriticalTripleClass.qcritical_exact_right_selected_antipodal_incompatibility"
+      ],
+      "negative_memberships": [
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "positive_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "provenance": {
+        "catalog": "scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+        "catalog_digest": "565b29de5bcd7e283abda2d0b983f0aa75ddf2ca6f9b03eafe6ade6162b92866",
+        "selected_row_adapters": "scratch/atail-force/general-n-u5-schema-coverage/SelectedRowU5Adapters.lean",
+        "source_consumers": [
+          {
+            "fq_name": "Problem97.U5QCriticalTripleClass.qcritical_exact_right_selected_antipodal_incompatibility",
+            "hypothesis_kinds": [
+              "class_membership",
+              "dangerous_triple",
+              "disequality",
+              "qcritical_class",
+              "qdeleted_class",
+              "triple_membership"
+            ],
+            "module": "RVOL.P97.U5GlobalIncidenceQCriticalRightSelectedAntipodal",
+            "point_roles": [
+              "q",
+              "p",
+              "t\u2081",
+              "t\u2082",
+              "t\u2083",
+              "u"
+            ],
+            "proof_status": "source-proved",
+            "raw_negative_memberships": [
+              [
+                "t\u2082",
+                "q"
+              ],
+              [
+                "t\u2083",
+                "q"
+              ]
+            ],
+            "raw_positive_memberships": [
+              [
+                "p",
+                "q"
+              ],
+              [
+                "p",
+                "t\u2081"
+              ],
+              [
+                "p",
+                "t\u2082"
+              ],
+              [
+                "p",
+                "t\u2083"
+              ],
+              [
+                "t\u2081",
+                "p"
+              ],
+              [
+                "t\u2081",
+                "q"
+              ],
+              [
+                "t\u2081",
+                "t\u2082"
+              ],
+              [
+                "t\u2081",
+                "u"
+              ],
+              [
+                "t\u2082",
+                "p"
+              ],
+              [
+                "t\u2082",
+                "t\u2083"
+              ],
+              [
+                "t\u2082",
+                "u"
+              ],
+              [
+                "t\u2083",
+                "t\u2081"
+              ],
+              [
+                "t\u2083",
+                "u"
+              ]
+            ],
+            "source_line": 157,
+            "source_path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalRightSelectedAntipodal.lean",
+            "source_reachable": true,
+            "source_shape": "6c72cc80fb07a5a5"
+          }
+        ]
+      },
+      "role_count": 6,
+      "transport": "all_injective_role_maps"
+    },
+    {
+      "catalog_index": 31,
+      "consumer": "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_selected_exact_right_qcritical_mid_right_incompatibility",
+      "consumers": [
+        "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_selected_exact_right_qcritical_mid_right_incompatibility"
+      ],
+      "negative_memberships": [
+        [
+          5,
+          2
+        ]
+      ],
+      "positive_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": {
+        "catalog": "scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+        "catalog_digest": "565b29de5bcd7e283abda2d0b983f0aa75ddf2ca6f9b03eafe6ade6162b92866",
+        "selected_row_adapters": "scratch/atail-force/general-n-u5-schema-coverage/SelectedRowU5Adapters.lean",
+        "source_consumers": [
+          {
+            "fq_name": "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_selected_exact_right_qcritical_mid_right_incompatibility",
+            "hypothesis_kinds": [
+              "class_membership",
+              "dangerous_triple",
+              "qcritical_class",
+              "qdeleted_class",
+              "triple_membership"
+            ],
+            "module": "RVOL.P97.U5GlobalIncidenceQCriticalExactSelectedSelectedExactRightQCriticalMidRight",
+            "point_roles": [
+              "q",
+              "p",
+              "t\u2081",
+              "t\u2082",
+              "t\u2083",
+              "u"
+            ],
+            "proof_status": "source-proved",
+            "raw_negative_memberships": [
+              [
+                "u",
+                "q"
+              ]
+            ],
+            "raw_positive_memberships": [
+              [
+                "p",
+                "q"
+              ],
+              [
+                "p",
+                "t\u2081"
+              ],
+              [
+                "p",
+                "t\u2082"
+              ],
+              [
+                "p",
+                "t\u2083"
+              ],
+              [
+                "t\u2081",
+                "p"
+              ],
+              [
+                "t\u2081",
+                "q"
+              ],
+              [
+                "t\u2081",
+                "t\u2082"
+              ],
+              [
+                "t\u2081",
+                "u"
+              ],
+              [
+                "t\u2083",
+                "q"
+              ],
+              [
+                "t\u2083",
+                "t\u2081"
+              ],
+              [
+                "t\u2083",
+                "u"
+              ],
+              [
+                "u",
+                "t\u2082"
+              ],
+              [
+                "u",
+                "t\u2083"
+              ]
+            ],
+            "source_line": 26,
+            "source_path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactRightQCriticalMidRight.lean",
+            "source_reachable": true,
+            "source_shape": "b257daface253ae9"
+          }
+        ]
+      },
+      "role_count": 6,
+      "transport": "all_injective_role_maps"
+    },
+    {
+      "catalog_index": 42,
+      "consumer": "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_equilateral_selected_tangent_incompatibility",
+      "consumers": [
+        "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_equilateral_selected_tangent_incompatibility"
+      ],
+      "negative_memberships": [
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "positive_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": {
+        "catalog": "scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+        "catalog_digest": "565b29de5bcd7e283abda2d0b983f0aa75ddf2ca6f9b03eafe6ade6162b92866",
+        "selected_row_adapters": "scratch/atail-force/general-n-u5-schema-coverage/SelectedRowU5Adapters.lean",
+        "source_consumers": [
+          {
+            "fq_name": "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_equilateral_selected_tangent_incompatibility",
+            "hypothesis_kinds": [
+              "carrier_membership",
+              "class_membership",
+              "dangerous_triple",
+              "disequality",
+              "qcritical_class",
+              "qdeleted_class",
+              "triple_membership"
+            ],
+            "module": "RVOL.P97.U5GlobalIncidenceQCriticalExactSelectedEquilateralSelectedTangent",
+            "point_roles": [
+              "q",
+              "p",
+              "t\u2081",
+              "t\u2082",
+              "t\u2083",
+              "u"
+            ],
+            "proof_status": "source-proved",
+            "raw_negative_memberships": [
+              [
+                "t\u2082",
+                "q"
+              ],
+              [
+                "u",
+                "q"
+              ]
+            ],
+            "raw_positive_memberships": [
+              [
+                "p",
+                "q"
+              ],
+              [
+                "p",
+                "t\u2081"
+              ],
+              [
+                "p",
+                "t\u2082"
+              ],
+              [
+                "p",
+                "t\u2083"
+              ],
+              [
+                "t\u2081",
+                "p"
+              ],
+              [
+                "t\u2081",
+                "q"
+              ],
+              [
+                "t\u2081",
+                "t\u2082"
+              ],
+              [
+                "t\u2082",
+                "p"
+              ],
+              [
+                "t\u2082",
+                "u"
+              ],
+              [
+                "t\u2083",
+                "p"
+              ],
+              [
+                "t\u2083",
+                "q"
+              ],
+              [
+                "u",
+                "t\u2082"
+              ],
+              [
+                "u",
+                "t\u2083"
+              ]
+            ],
+            "source_line": 23,
+            "source_path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedEquilateralSelectedTangent.lean",
+            "source_reachable": true,
+            "source_shape": "86ba2a9f590e7868"
+          }
+        ]
+      },
+      "role_count": 6,
+      "transport": "all_injective_role_maps"
+    },
+    {
+      "catalog_index": 44,
+      "consumer": "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_aux_exact_collision_incompatibility",
+      "negative_memberships": [
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "positive_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          1
+        ]
+      ],
+      "provenance": {
+        "catalog": "scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+        "module": "RVOL.P97.U5GlobalIncidenceQCriticalExactSelectedAuxExactCollision",
+        "selected_row_adapters": "scratch/atail-force/general-n-u5-schema-coverage/SelectedRowU5Adapters.lean",
+        "source_line": 27,
+        "source_path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedAuxExactCollision.lean"
+      },
+      "role_count": 6,
+      "transport": "all_injective_role_maps"
+    },
+    {
+      "catalog_index": 50,
+      "consumer": "Problem97.U5QCriticalTripleClass.qcritical_exact_outer_aux_eq_mid_incompatibility",
+      "negative_memberships": [
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "positive_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": {
+        "catalog": "scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+        "module": "RVOL.P97.U5GlobalIncidenceQCriticalExactSelectedOuterAux",
+        "selected_row_adapters": "scratch/atail-force/general-n-u5-schema-coverage/SelectedRowU5Adapters.lean",
+        "source_line": 24,
+        "source_path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedOuterAux.lean"
+      },
+      "role_count": 6,
+      "transport": "all_injective_role_maps"
+    }
+  ],
+  "source_catalog_digest": "565b29de5bcd7e283abda2d0b983f0aa75ddf2ca6f9b03eafe6ade6162b92866"
+}

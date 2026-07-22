@@ -1,0 +1,23 @@
+{
+  "all_encoded_semantic_constraints_replayed": true,
+  "checked_kalmanson_embedding_count": 6918,
+  "checked_kalmanson_schema_count": 37,
+  "checked_planar_injection_count": 332640,
+  "checked_planar_schema_count": 1,
+  "checked_u5_embedding_count": 1386000,
+  "checked_u5_schema_count": 5,
+  "claim_scope": "This verifies a SAT witness for the documented finite projection; it is not a Euclidean realization or a model of every Lean source field.",
+  "cnf_sha256": "6c7d94b91622f39186c016d4e5c3d766c644b5ecd3800b13dea814b9d3d77cf6",
+  "kalmanson_bank_sha256": "e0949ef67d2ba725ffa6ab7b13e338e5e313da1b536e509eb9c89508cc9ef8a2",
+  "n": 11,
+  "opp1_card": 4,
+  "planar_bank_sha256": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+  "schema": "p97-late-choice-exact-four-full-partition-semantic-replay-v1",
+  "skipped_kalmanson_schema_count": 0,
+  "skipped_planar_schema_count": 0,
+  "skipped_u5_schema_count": 0,
+  "source_result": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_018/opp1_4.result.json",
+  "source_result_sha256": "6f3c14287b593724a01b9a771513fc960fcafccdda66c9ea47721e73cb56dfcf",
+  "status": "VERIFIED_SAT_PROJECTION",
+  "u5_bank_sha256": "1df7c8cff76c56c72bf1502ea0a0f5bf60d47be35d47ee8331cf4ab7b002add3"
+}

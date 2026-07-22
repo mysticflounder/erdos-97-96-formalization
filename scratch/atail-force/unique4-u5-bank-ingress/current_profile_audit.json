@@ -1,0 +1,34 @@
+{
+  "audit_digest": "a5e11fcf0a23b57da4535ec3294ccecd441f6ad53dc3a390472f9ac8a3b98909",
+  "catalog": "scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+  "catalog_digest": "565b29de5bcd7e283abda2d0b983f0aa75ddf2ca6f9b03eafe6ade6162b92866",
+  "claim_scope": "The current fixed n=11 finite projections only; a BANK_MATCH gives an extension-stable theorem consumer for that row table, while NO_BANK_MATCH does not establish Euclidean realizability or live-branch satisfiability.",
+  "epistemic_status": "EXACT_SIGNED_INCIDENCE_REPLAY_ON_VERIFIED_SAT_PROJECTIONS",
+  "profiles": [
+    {
+      "catalog_schema_count": 93,
+      "matched_schema_count": 0,
+      "matches": [],
+      "n": 11,
+      "opp1_card": 4,
+      "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/n11_opp1_4.result.json",
+      "result_sha256": "34cd432b0b238f5e9695a28e924e1fb1410ce883bccf7eb912c4aa53a452fc75",
+      "semantic_replay": "scratch/atail-force/unique-arm-whole-carrier-source-audit/n11_opp1_4.replay.json",
+      "semantic_replay_sha256": "2beda28fbf1999bde974fb49d16fa567c8d13de1a4f675202d567bf4b433294f",
+      "status": "NO_BANK_MATCH"
+    },
+    {
+      "catalog_schema_count": 93,
+      "matched_schema_count": 0,
+      "matches": [],
+      "n": 11,
+      "opp1_card": 5,
+      "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/n11_opp1_5.result.json",
+      "result_sha256": "b181447ff3ab09fe0487be157c3e059bc6fb872f3db191ac88b951be9e69f5ea",
+      "semantic_replay": "scratch/atail-force/unique-arm-whole-carrier-source-audit/n11_opp1_5.replay.json",
+      "semantic_replay_sha256": "1d1adac714e613b2772916ad93b3fa536589769e2f0561597028d877511830da",
+      "status": "NO_BANK_MATCH"
+    }
+  ],
+  "schema": "unique4-u5-current-sat-profile-audit-v1"
+}

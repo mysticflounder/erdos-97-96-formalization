@@ -1,0 +1,105 @@
+{
+  "claim_scope": "This loop audits two fixed n=11 finite projections. It does not by itself prove the Lean unique-four residual or a Euclidean realization.",
+  "epistemic_status": "BOUNDED_TWO_ROUND_PAIR_MINIMALITY_AUDIT_COMPLETE",
+  "initial_kalmanson_bank_counts": {
+    "kernel": 10,
+    "pending": 24
+  },
+  "max_new_rounds": 20,
+  "pair_minimality_overlay": true,
+  "profiles": [
+    4,
+    5
+  ],
+  "rounds": [
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "bd77be3c9107ea296fa8389b37f2498e9415a72d323ad420bb2dad90bb0e1a7b",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "693fbfa3e977f9ce0c2c3517b7bd95aa876ef2612f1cbc10d6eb1b151345c4a3"
+      },
+      "new_u5_catalog_indices": [
+        2
+      ],
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "d942d6db9ff4ce909062065267be2935323d7ab64fd41e06115376829bbf14ae",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-pair-minimality/round_001/opp1_4.result.json",
+          "result_sha256": "ba69cf584cfc3f891836184c8d195f91a24b333d566f52357d22998793e526d4",
+          "solver_log_retained": false,
+          "solver_log_sha256": "842d3c0dc8a192cdb3b4967ffa586acb502e082d755ec920bc86cd348d0835dc"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "69a73e70063b555605066de817710c5644347e911d3546431f6fc0fbea80829a",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-pair-minimality/round_001/opp1_5.result.json",
+          "result_sha256": "7d754bb81e2be56471cdc1d4b142100207753c60f42df53a3d1614a20f47e95c",
+          "solver_log_retained": false,
+          "solver_log_sha256": "c08823fcb4d8774a0d75a10ac6cc0696267a0fe9d13e5ba85f8c0947a29a3aff"
+        }
+      ],
+      "round": 1,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_SOURCE_PROVED_U5_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "bd77be3c9107ea296fa8389b37f2498e9415a72d323ad420bb2dad90bb0e1a7b",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "ce243ebdefaa6d881de0ca703bfc3b77669ce2649ae026d2f77e9a0648d04980"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "66fafd62d5b0921ad9731b14d40364fabe987fe0b4018859b7458cf48e19f1dc",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-pair-minimality/round_002/opp1_4.result.json",
+          "result_sha256": "9f426bb6f22ad9e0f292bbcbb2c3fa6d5076e3dd8992fa59bbe0a17d121dc8fc",
+          "solver_log_retained": false,
+          "solver_log_sha256": "300e547a4a4b1264798549a2ceb7648b6f313f7907fa47ff0fcf17555651db6a"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "64ea4d2cd13eda4753a355d424250c04d0a497e32204d1ba793a72b8f390c057",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-pair-minimality/round_002/opp1_5.result.json",
+          "result_sha256": "e336f23845c72bacdeead35a3168d405a819a161af24431634fa52714cfcf4b5",
+          "solver_log_retained": false,
+          "solver_log_sha256": "96c6df9c9889c16915d3703d9f82e46c6ff1b0b04a6d8c92845fcd8da22890bb"
+        }
+      ],
+      "round": 2,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    }
+  ],
+  "finished_unix": 1784758779,
+  "final_kalmanson_bank_counts": {
+    "kernel": 10,
+    "pending": 26,
+    "total": 36
+  },
+  "final_kalmanson_bank_sha256": "0ac192a6b29154a3d988f0c102030d9cf63ea9f612f03a0f831a5e648657a89e",
+  "final_u5_bank_sha256": "ce243ebdefaa6d881de0ca703bfc3b77669ce2649ae026d2f77e9a0648d04980",
+  "schema": "p97-exact-four-two-profile-cegar-run-v1",
+  "started_unix": 1784758471.694101,
+  "strict_cap_minimality_overlay": false,
+  "terminal_status": "BOUNDED_TWO_ROUND_PAIR_MINIMALITY_AUDIT_COMPLETE_UNRESOLVED"
+}

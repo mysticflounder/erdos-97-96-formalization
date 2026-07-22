@@ -1,0 +1,452 @@
+{
+  "catalog": "scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+  "catalog_digest": "565b29de5bcd7e283abda2d0b983f0aa75ddf2ca6f9b03eafe6ade6162b92866",
+  "catalog_schema_count": 93,
+  "embedding_mode": "first_per_schema",
+  "epistemic_status": "EXACT_FINITE_ROW_INCIDENCE_REPLAY",
+  "matched_schema_count": 5,
+  "matches": [
+    {
+      "consumers": [
+        "Problem97.U5QCriticalTripleClass.qcritical_aux_base_collision_incompatibility"
+      ],
+      "embedding_count_recorded": 1,
+      "embeddings": [
+        [
+          0,
+          9,
+          4,
+          10,
+          2,
+          8
+        ]
+      ],
+      "negative_memberships": [
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "positive_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "role_count": 6,
+      "schema_index": 35
+    },
+    {
+      "consumers": [
+        "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_qcritical_right_right_mid_incompatibility"
+      ],
+      "embedding_count_recorded": 1,
+      "embeddings": [
+        [
+          0,
+          9,
+          4,
+          10,
+          2,
+          8
+        ]
+      ],
+      "negative_memberships": [
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "positive_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "role_count": 6,
+      "schema_index": 38
+    },
+    {
+      "consumers": [
+        "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_equilateral_selected_tangent_incompatibility"
+      ],
+      "embedding_count_recorded": 1,
+      "embeddings": [
+        [
+          0,
+          4,
+          2,
+          9,
+          10,
+          8
+        ]
+      ],
+      "negative_memberships": [
+        [
+          2,
+          3
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "positive_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "role_count": 6,
+      "schema_index": 42
+    },
+    {
+      "consumers": [
+        "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_equilateral_tangent_incompatibility"
+      ],
+      "embedding_count_recorded": 1,
+      "embeddings": [
+        [
+          0,
+          4,
+          9,
+          2,
+          10,
+          6,
+          8
+        ]
+      ],
+      "negative_memberships": [
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "positive_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "role_count": 7,
+      "schema_index": 72
+    },
+    {
+      "consumers": [
+        "Problem97.U5QCriticalTripleClass.qcritical_exact_aux_tangent_incompatibility"
+      ],
+      "embedding_count_recorded": 1,
+      "embeddings": [
+        [
+          0,
+          9,
+          4,
+          10,
+          2,
+          3,
+          8
+        ]
+      ],
+      "negative_memberships": [
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "positive_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "role_count": 7,
+      "schema_index": 81
+    }
+  ],
+  "n": 11,
+  "recorded_embedding_count": 5,
+  "schema": "p97-general-n-u5-signed-row-schema-match-v1",
+  "source": "scratch/atail-force/uniform-cycle-coverage-audit/n11_a1_minimal0.result.json",
+  "source_digest": "fc18450ef42632cf9c154830db4f63cd1843fc56db5e9c1c0767e0c9ecaa5276",
+  "status": "BANK_MATCH"
+}

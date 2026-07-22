@@ -1,0 +1,192 @@
+{
+  "blockers": {
+    "0": 10,
+    "1": 10,
+    "10": 0,
+    "2": 9,
+    "3": 9,
+    "4": 0,
+    "5": 3,
+    "6": 0,
+    "7": 0,
+    "8": 7,
+    "9": 10
+  },
+  "elapsed_seconds": 0.06091749994084239,
+  "epistemic_status": "EXACT_RATIONAL_LRA_SOLVER_EVIDENCE_PENDING_INDEPENDENT_REPLAY",
+  "metric_core": [
+    "kal1_0_1_2_10",
+    "kal1_0_2_3_10",
+    "kal1_0_3_4_10",
+    "row_0_4_10",
+    "row_1_0_10",
+    "row_10_0_4"
+  ],
+  "metric_core_constraint_count": 6,
+  "metric_core_deletion_minimized_by_source_oracle": true,
+  "n": 11,
+  "omitted_apices": [
+    0,
+    4
+  ],
+  "random_seed": 5,
+  "refinements": [
+    {
+      "attempt": 1,
+      "complete_core_vertices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        10
+      ],
+      "constraint_kinds": [
+        "kalmanson_diagonals_vs_ab_cd",
+        "kalmanson_diagonals_vs_ab_cd",
+        "kalmanson_diagonals_vs_ab_cd",
+        "row_equality",
+        "row_equality",
+        "row_equality"
+      ],
+      "dependency_centers": [
+        0,
+        1,
+        10
+      ],
+      "kind": "FULL_LRA",
+      "metric_core": [
+        "kal1_0_1_2_10",
+        "kal1_0_2_3_10",
+        "kal1_0_3_4_10",
+        "row_0_4_10",
+        "row_1_0_10",
+        "row_10_0_4"
+      ],
+      "order_embedding_cut_count": 924,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          1
+        ]
+      ],
+      "required_memberships": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          4
+        ]
+      ]
+    }
+  ],
+  "rows": {
+    "0": [
+      4,
+      6,
+      7,
+      10
+    ],
+    "1": [
+      0,
+      2,
+      5,
+      10
+    ],
+    "10": [
+      0,
+      1,
+      4,
+      9
+    ],
+    "2": [
+      0,
+      3,
+      6,
+      9
+    ],
+    "3": [
+      1,
+      4,
+      5,
+      8
+    ],
+    "4": [
+      2,
+      5,
+      7,
+      9
+    ],
+    "5": [
+      3,
+      4,
+      6,
+      8
+    ],
+    "6": [
+      0,
+      3,
+      5,
+      7
+    ],
+    "7": [
+      0,
+      2,
+      6,
+      8
+    ],
+    "8": [
+      1,
+      5,
+      9,
+      10
+    ],
+    "9": [
+      1,
+      2,
+      3,
+      7
+    ]
+  },
+  "schema": "p97-fixed-row-full-lra-check-v1",
+  "source_outer_result": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_019/opp1_5.lra-adapter.json",
+  "status": "UNSAT_FULL_LRA_FIXED_ROWS"
+}

@@ -1,0 +1,54 @@
+{
+  "bank": "scratch/atail-force/uniform-cycle-coverage-audit/compressed_bank_262_minimal_cyclic.json",
+  "bank_epistemic_status": "BOUNDED_EXACT_CYCLE_COMPRESSED_COVERAGE_AUDIT",
+  "bank_schema": "p97-whole-carrier-kalmanson-transported-schema-bank-v1",
+  "bank_schema_count": 217,
+  "clause_block_counts": {
+    "blocker_at_least_one": 11,
+    "blocker_at_most_one": 324,
+    "blocker_forbidden": 31,
+    "blocker_implies_source_membership": 90,
+    "cyclic_alternation": 1320,
+    "general_n_u5_signed_schema_cut": 332640,
+    "pair_center_count_at_most_2": 4620,
+    "preloaded_schema_cut": 173756,
+    "row_at_least_4": 1320,
+    "row_at_most_4": 2772,
+    "row_intersection_at_most_2": 4620,
+    "row_nonself": 11,
+    "strong_connectivity_outgoing_cut": 2046
+  },
+  "clause_count": 523561,
+  "cnf_path": "scratch/atail-force/general-n-u5-schema-coverage/n11_cegar/iteration_000.cnf",
+  "cnf_retained": false,
+  "embeddable_schema_count": 217,
+  "encoding_schema": "p97-biapex-structural-outer-direct-cnf-v1",
+  "n": 11,
+  "omitted_apices": [
+    0,
+    1
+  ],
+  "schema_embedding_count": 173756,
+  "skipped_schema_count_core_larger_than_n": 0,
+  "solver": "CaDiCaL",
+  "solver_command": [
+    "cadical",
+    "-t",
+    "600",
+    "scratch/atail-force/general-n-u5-schema-coverage/n11_cegar/iteration_000.cnf"
+  ],
+  "solver_elapsed_seconds": 600.0128357500071,
+  "solver_returncode": 0,
+  "solver_status": "UNKNOWN",
+  "timeout_seconds": 600,
+  "u5_catalog": "scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+  "u5_catalog_digest": "565b29de5bcd7e283abda2d0b983f0aa75ddf2ca6f9b03eafe6ade6162b92866",
+  "u5_schema_embedding_count": 332640,
+  "u5_schema_embedding_counts": {
+    "35": 332640
+  },
+  "u5_selected_schema_indices": [
+    35
+  ],
+  "variable_count": 242
+}

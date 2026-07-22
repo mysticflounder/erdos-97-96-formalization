@@ -1,0 +1,15 @@
+{
+  "catalog": "scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+  "catalog_digest": "565b29de5bcd7e283abda2d0b983f0aa75ddf2ca6f9b03eafe6ade6162b92866",
+  "catalog_schema_count": 93,
+  "embedding_mode": "first_per_schema",
+  "epistemic_status": "EXACT_FINITE_ROW_INCIDENCE_REPLAY",
+  "matched_schema_count": 0,
+  "matches": [],
+  "n": 11,
+  "recorded_embedding_count": 0,
+  "schema": "p97-general-n-u5-signed-row-schema-match-v1",
+  "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/n11_opp1_4.result.json",
+  "source_digest": "fd777bab59c8d3f88f86d0b2489720d0ce4167c8f8a326f225831cdf2d61c389",
+  "status": "NO_BANK_MATCH"
+}

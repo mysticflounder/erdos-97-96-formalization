@@ -1,0 +1,36 @@
+{
+  "base_bank": "scratch/atail-force/uniform-cycle-coverage-audit/compressed_bank_262_minimal_cyclic.json",
+  "base_encoder": "scratch/atail-force/generic-biapex-kalmanson-cnf/exact_outer_cnf.py",
+  "catalog": "scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+  "catalog_schema_count": 93,
+  "claim_scope": "Finite n=11 selected-row/blocker/Kalmanson outer only; not arbitrary-cardinality coverage and not a live-parent Lean theorem.",
+  "elapsed_seconds": 601.7135106659262,
+  "emit_drat": false,
+  "epistemic_status": "EXACT_WITHIN_CORRECTED_N11_STRUCTURAL_OUTER",
+  "iterations": [
+    {
+      "clause_count": 523561,
+      "cnf": "scratch/atail-force/general-n-u5-schema-coverage/n11_cegar/iteration_000.cnf",
+      "cnf_retained": false,
+      "iteration": 0,
+      "proof": null,
+      "result": "scratch/atail-force/general-n-u5-schema-coverage/n11_cegar/iteration_000.result.json",
+      "schema_embedding_count": 332640,
+      "selected_schema_indices": [
+        35
+      ],
+      "solver_elapsed_seconds": 600.0128357500071,
+      "solver_log": "scratch/atail-force/general-n-u5-schema-coverage/n11_cegar/iteration_000.cadical.log",
+      "solver_status": "UNKNOWN"
+    }
+  ],
+  "n": 11,
+  "retain_cnf": false,
+  "schema": "p97-general-n-u5-n11-schema-cegar-v1",
+  "second_apex": 1,
+  "selected_schema_count": 1,
+  "selected_schema_indices": [
+    35
+  ],
+  "terminal_status": "OUTER_UNKNOWN"
+}

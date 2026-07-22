@@ -1,0 +1,98 @@
+{
+  "catalog": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+  "catalog_digest": "565b29de5bcd7e283abda2d0b983f0aa75ddf2ca6f9b03eafe6ade6162b92866",
+  "catalog_schema_count": 93,
+  "embedding_mode": "first_per_schema",
+  "epistemic_status": "EXACT_FINITE_ROW_INCIDENCE_REPLAY",
+  "matched_schema_count": 1,
+  "matches": [
+    {
+      "consumers": [
+        "Problem97.U5QCriticalTripleClass.qcritical_exact_right_selected_antipodal_incompatibility"
+      ],
+      "embedding_count_recorded": 1,
+      "embeddings": [
+        [
+          2,
+          4,
+          10,
+          3,
+          0,
+          6
+        ]
+      ],
+      "negative_memberships": [
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "positive_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "role_count": 6,
+      "schema_index": 12
+    }
+  ],
+  "n": 11,
+  "recorded_embedding_count": 1,
+  "schema": "p97-general-n-u5-signed-row-schema-match-v1",
+  "source": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_018/opp1_5.result.json",
+  "source_digest": "de243b1b87c1bdc6e63d114100f64342815a53b38cfbea28726fd561b0625f01",
+  "status": "BANK_MATCH"
+}
