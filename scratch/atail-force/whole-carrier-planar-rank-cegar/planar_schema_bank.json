@@ -1,0 +1,32 @@
+{
+  "epistemic_status": "KERNEL_CHECKED_EXTENSION_STABLE_PLANAR_CONSUMER",
+  "schema": "p97-whole-carrier-planar-membership-schema-bank-v1",
+  "schema_count": 1,
+  "schemas": [
+    {
+      "active_role_count": 6,
+      "consumer": "Problem97.WholeCarrierPlanarRankCut.false_of_four_selected_rows_auxBaseCollision",
+      "memberships": [
+        [0, 1],
+        [0, 2],
+        [0, 3],
+        [0, 4],
+        [1, 0],
+        [1, 2],
+        [1, 5],
+        [2, 0],
+        [2, 3],
+        [4, 0],
+        [4, 3],
+        [4, 5]
+      ],
+      "provenance": {
+        "active_roles_in_discovery_table": [0, 2, 4, 9, 10, 8],
+        "certificate": "scratch/atail-force/whole-carrier-planar-rank-cegar/current_n11_planar_cut.json",
+        "minimum_row_centers_in_discovery_table": [0, 2, 4, 10],
+        "role_order": ["p", "q", "t1", "t2", "t3", "x"]
+      },
+      "transport": "all_injective_role_maps"
+    }
+  ]
+}

@@ -750,6 +750,29 @@ Any resumed finite search must encode the arbitrary-cardinality whole-carrier
 surface, including full deletion-criticality, or produce a uniform schema
 whose Lean theorem applies to every carrier extension.
 
+**Whole-carrier surface correction (2026-07-22).**  The existing
+`WholeCarrierBiApexKalmansonSurface` and its direct-CNF outer are not an
+encoding of any of the three unique-radius leaves above.  Their extractor is
+typed over `FrontierBiApexRobustResidual` on the separate common-deletion arm
+and uses full robustness at both physical apices to omit both apices from the
+fixed blocker-map image.  Exact four has the opposite first-apex polarity:
+after the checked favorable rebase, the first apex is precisely the blocker
+of all four members of the unique class.  The exact-five leaves likewise do
+not supply full second-apex robustness.  Generic bi-apex SAT/UNSAT results
+must therefore be charged only to the large-opposite-cap branch, never to
+`false_of_originalFrontierUniqueRadiusArm`.
+
+The active unique-arm finite correctness gate is a leaf-specific exact-four
+surface.  It must retain a complete per-center radius partition (or an
+equivalent multi-row representation), the exact four-member first-apex class
+and favorable blocker fiber, the separately named frontier and strict-cap
+interior pairs without assuming those pairs are disjoint, and a separate
+second-apex deletion-surviving row which need not equal an actual critical
+row at that center.  It must also retain the actual cap indices and must not
+globally forbid either physical apex as a blocker.  Fixed-card output is only
+discovery evidence unless it yields an extension-stable checked consumer or
+is accompanied by a uniform source theorem.
+
 ### Historical exact-five ownership and provenance correction (2026-07-17; superseded for the exact-five-cap branch)
 
 The exact-five transition now has a kernel-checked **global relation split**
@@ -1481,20 +1504,30 @@ cross-hit leaf still lacks its cyclic placement. Neither supersedes the robust
 second-apex radius residual, and no source `sorry` has closed at this
 checkpoint.
 
-The survivor-guided geometric audit has now found the first failed layer:
-planar Euclidean realizability already fails at the row-equality cell, without
-using MEC or cap placement. Independent reflection-canonical replay finds
+On the separate bi-apex-robust whole-carrier surface, the survivor-guided
+geometric audit has now found the first failed layer: planar Euclidean
+realizability already fails at the row-equality cell, without using MEC or cap
+placement. Independent reflection-canonical replay finds
 three embeddings of the
 five-role front-before-isosceles pattern `WF = WX = WZ`, `PZ = XZ`. Its
 generic contradiction and convex-boundary bridge are production theorems in
 `Census554/FivePointCircleIsoscelesOrder{Core,Bridge}.lean`, use only the
 standard three axioms, and are already disjuncts of both alternatives in
-`GeneralCarrierBridge`. Independently, rows `0,2,4,8,9` match
-the sibling-bank theorem
+`GeneralCarrierBridge`. Independently, rows `0,2,4,10` form the globally
+minimum center set for a six-role match of the sibling-bank theorem
 `u5_qcritical_aux_base_collision_metric_incompatibility`; its exact-name local
-port is also kernel-checked in scratch. Thus the rational Kalmanson metric was
-valid evidence against the linear route, but not a Euclidean realization of
-the structural row cell.
+port and generic four-row adapter are kernel-checked in scratch. Thus the
+rational Kalmanson metric was valid evidence against the linear route, but not
+a Euclidean realization of the structural row cell.
+
+The normalized planar cut does not yet cover the corrected outer.  With the
+217-type active-role Kalmanson bank it leaves a 523,561-clause card-eleven
+instance that is `UNKNOWN` after 300 seconds.  A separate digest-stable
+231-to-235 discovery chain produces four Boolean SAT tables which all miss
+the planar schema and are then independently exact-QF_LRA UNSAT by
+deletion-minimal Farkas cores of sizes 11, 17, 22, and 25.  These are verified
+pruning certificates for `FrontierBiApexRobustResidual`, not unique-arm
+coverage and not a source-`sorry` closure.
 
 The front-before-isosceles theorem matches all 230 stored 555/654 cores in the
 current general-theorem report. Broad 555/654 witness mining remains stopped.

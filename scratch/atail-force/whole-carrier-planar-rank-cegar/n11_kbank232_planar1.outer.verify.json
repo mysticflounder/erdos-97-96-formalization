@@ -1,0 +1,25 @@
+{
+  "all_planar_schema_cuts_satisfied": true,
+  "all_preloaded_schema_cuts_satisfied": true,
+  "blocker_count": 11,
+  "checked_planar_injection_count": 332640,
+  "checked_planar_schema_count": 1,
+  "checked_schema_count": 215,
+  "checked_schema_embedding_count": 141834,
+  "kalmanson_bank": "scratch/atail-force/whole-carrier-planar-rank-cegar/kbank_after_n11_kbank231_planar1.json",
+  "kalmanson_bank_sha256": "dc9d1eb4bcbc5f9b9273786a0689a442dde6fa31a25c4df063d961be49150dc6",
+  "n": 11,
+  "omitted_apices": [
+    0,
+    1
+  ],
+  "planar_bank_sha256": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+  "row_count": 11,
+  "schema": "p97-biapex-outer-plus-planar-bank-semantic-replay-v1",
+  "skipped_planar_schema_count": 0,
+  "skipped_schema_count_core_larger_than_n": 17,
+  "source_result": "scratch/atail-force/whole-carrier-planar-rank-cegar/n11_kbank232_planar1.result.json",
+  "source_result_sha256": "88f083e96bfa6ff9ca0d9c3cae8282aea05688d79ba91f7a2166e40464745c16",
+  "status": "VERIFIED_SAT_WITH_PLANAR_BANK",
+  "strongly_connected": true
+}

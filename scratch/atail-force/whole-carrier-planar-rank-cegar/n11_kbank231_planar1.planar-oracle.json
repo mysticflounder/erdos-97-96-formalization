@@ -1,0 +1,9 @@
+{
+  "claim_scope": "No auxiliary base-collision match; planar realizability is unresolved.",
+  "match_count": 0,
+  "n": 11,
+  "schema": "p97-whole-carrier-planar-bank-oracle-v1",
+  "source": "scratch/atail-force/whole-carrier-planar-rank-cegar/n11_kbank231_planar1.result.json",
+  "source_digest": "eda60e5c81469619e4a777b631a732d7f518c5427295c8a186b5cc8b25f8ad6f",
+  "status": "NO_BANK_MATCH"
+}

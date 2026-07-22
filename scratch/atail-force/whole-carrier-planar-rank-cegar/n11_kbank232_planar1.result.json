@@ -1,0 +1,146 @@
+{
+  "bank": "scratch/atail-force/whole-carrier-planar-rank-cegar/kbank_after_n11_kbank231_planar1.json",
+  "bank_epistemic_status": "BOUNDED_DISCOVERY_BANK_REQUIRES_CORE_PROVENANCE",
+  "bank_schema": "p97-whole-carrier-kalmanson-transported-schema-bank-v1",
+  "bank_schema_count": 232,
+  "blockers": {
+    "0": 9,
+    "1": 2,
+    "10": 6,
+    "2": 7,
+    "3": 5,
+    "4": 3,
+    "5": 4,
+    "6": 2,
+    "7": 3,
+    "8": 3,
+    "9": 2
+  },
+  "clause_block_counts": {
+    "blocker_at_least_one": 11,
+    "blocker_at_most_one": 324,
+    "blocker_forbidden": 31,
+    "blocker_implies_source_membership": 90,
+    "cyclic_alternation": 1320,
+    "pair_center_count_at_most_2": 4620,
+    "preloaded_planar_schema_cut": 332640,
+    "preloaded_schema_cut": 141834,
+    "row_at_least_4": 1320,
+    "row_at_most_4": 2772,
+    "row_intersection_at_most_2": 4620,
+    "row_nonself": 11,
+    "strong_connectivity_outgoing_cut": 2046
+  },
+  "clause_count": 491639,
+  "cnf_model_checked": true,
+  "cnf_path": "scratch/atail-force/whole-carrier-planar-rank-cegar/n11_kbank232_planar1.cnf",
+  "embeddable_schema_count": 215,
+  "embedded_planar_schema_count": 1,
+  "encoding_schema": "p97-biapex-structural-outer-direct-cnf-plus-planar-bank-v1",
+  "n": 11,
+  "omitted_apices": [
+    0,
+    1
+  ],
+  "planar_bank": "scratch/atail-force/whole-carrier-planar-rank-cegar/planar_schema_bank.json",
+  "planar_bank_epistemic_status": "KERNEL_CHECKED_EXTENSION_STABLE_PLANAR_CONSUMER",
+  "planar_bank_schema": "p97-whole-carrier-planar-membership-schema-bank-v1",
+  "planar_bank_schema_count": 1,
+  "planar_bank_sha256": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+  "planar_raw_injection_count": 332640,
+  "planar_schema_clause_count": 332640,
+  "planar_schema_details": [
+    {
+      "active_role_count": 6,
+      "automorphism_group_size": 1,
+      "consumer": "Problem97.WholeCarrierPlanarRankCut.false_of_four_selected_rows_auxBaseCollision",
+      "membership_count": 12,
+      "raw_injection_count": 332640,
+      "unique_clause_count": 332640
+    }
+  ],
+  "rows": {
+    "0": [
+      2,
+      6,
+      8,
+      10
+    ],
+    "1": [
+      0,
+      3,
+      4,
+      10
+    ],
+    "10": [
+      2,
+      5,
+      7,
+      9
+    ],
+    "2": [
+      1,
+      4,
+      6,
+      9
+    ],
+    "3": [
+      2,
+      4,
+      7,
+      8
+    ],
+    "4": [
+      0,
+      1,
+      5,
+      8
+    ],
+    "5": [
+      1,
+      2,
+      3,
+      10
+    ],
+    "6": [
+      4,
+      5,
+      7,
+      10
+    ],
+    "7": [
+      0,
+      2,
+      4,
+      9
+    ],
+    "8": [
+      6,
+      7,
+      9,
+      10
+    ],
+    "9": [
+      0,
+      3,
+      5,
+      6
+    ]
+  },
+  "schema_embedding_count": 141834,
+  "skipped_planar_schema_count_core_larger_than_n": 0,
+  "skipped_schema_count_core_larger_than_n": 17,
+  "solver": "CaDiCaL",
+  "solver_command": [
+    "cadical",
+    "-t",
+    "300",
+    "scratch/atail-force/whole-carrier-planar-rank-cegar/n11_kbank232_planar1.cnf",
+    "scratch/atail-force/whole-carrier-planar-rank-cegar/n11_kbank232_planar1.drat"
+  ],
+  "solver_elapsed_seconds": 1.1659991670167074,
+  "solver_returncode": 10,
+  "solver_status": "SAT",
+  "timeout_seconds": 300,
+  "variable_count": 242
+}

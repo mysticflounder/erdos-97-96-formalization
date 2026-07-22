@@ -1,0 +1,26 @@
+{
+  "all_single_constraint_deletions": "SAT",
+  "all_variable_coefficients_cancel": true,
+  "constraint_count": 11,
+  "deletion_minimal": true,
+  "equality_multipliers": {
+    "row_0_2_4": "-1/6",
+    "row_10_1_2": "-1/6",
+    "row_10_1_6": "1/6",
+    "row_1_0_4": "1/6",
+    "row_1_0_6": "-1/6"
+  },
+  "independent_qf_lra_replay": "UNSAT",
+  "inequality_multipliers": {
+    "kal1_0_2_3_10": "1/6",
+    "kal1_0_3_4_10": "1/6",
+    "kal1_0_4_5_10": "1/6",
+    "kal1_0_5_6_10": "1/6",
+    "kal2_0_1_4_5": "1/6",
+    "kal2_0_1_5_6": "1/6"
+  },
+  "normalized_weighted_rhs": "1",
+  "schema": "p97-fixed-row-farkas-core-verification-v1",
+  "source": "scratch/atail-force/whole-carrier-planar-rank-cegar/n11_kbank231_planar1.full_lra.json",
+  "status": "VERIFIED_EXACT_FARKAS_CORE"
+}

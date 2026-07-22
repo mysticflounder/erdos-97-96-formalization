@@ -1,0 +1,238 @@
+{
+  "blockers": {
+    "0": 9,
+    "1": 2,
+    "10": 6,
+    "2": 7,
+    "3": 5,
+    "4": 3,
+    "5": 4,
+    "6": 2,
+    "7": 3,
+    "8": 3,
+    "9": 2
+  },
+  "elapsed_seconds": 0.06449616700410843,
+  "epistemic_status": "EXACT_RATIONAL_LRA_SOLVER_EVIDENCE_PENDING_INDEPENDENT_REPLAY",
+  "metric_core": [
+    "kal2_0_1_6_7",
+    "kal2_0_1_7_8",
+    "kal2_0_1_8_9",
+    "kal1_0_2_3_10",
+    "kal1_0_3_4_10",
+    "kal1_0_4_5_10",
+    "kal1_0_5_6_10",
+    "kal1_0_6_7_10",
+    "kal1_0_7_8_10",
+    "kal1_0_8_9_10",
+    "kal2_1_2_6_7",
+    "kal2_1_2_7_8",
+    "kal2_1_2_8_9",
+    "row_0_2_6",
+    "row_10_2_9",
+    "row_2_1_6",
+    "row_2_1_9"
+  ],
+  "metric_core_constraint_count": 17,
+  "metric_core_deletion_minimized_by_source_oracle": true,
+  "n": 11,
+  "omitted_apices": [
+    0,
+    1
+  ],
+  "random_seed": 0,
+  "refinements": [
+    {
+      "attempt": 1,
+      "complete_core_vertices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "constraint_kinds": [
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ab_cd",
+        "kalmanson_diagonals_vs_ab_cd",
+        "kalmanson_diagonals_vs_ab_cd",
+        "kalmanson_diagonals_vs_ab_cd",
+        "kalmanson_diagonals_vs_ab_cd",
+        "kalmanson_diagonals_vs_ab_cd",
+        "kalmanson_diagonals_vs_ab_cd",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "row_equality",
+        "row_equality",
+        "row_equality",
+        "row_equality"
+      ],
+      "dependency_centers": [
+        0,
+        2,
+        10
+      ],
+      "kind": "FULL_LRA",
+      "metric_core": [
+        "kal2_0_1_6_7",
+        "kal2_0_1_7_8",
+        "kal2_0_1_8_9",
+        "kal1_0_2_3_10",
+        "kal1_0_3_4_10",
+        "kal1_0_4_5_10",
+        "kal1_0_5_6_10",
+        "kal1_0_6_7_10",
+        "kal1_0_7_8_10",
+        "kal1_0_8_9_10",
+        "kal2_1_2_6_7",
+        "kal2_1_2_7_8",
+        "kal2_1_2_8_9",
+        "row_0_2_6",
+        "row_10_2_9",
+        "row_2_1_6",
+        "row_2_1_9"
+      ],
+      "order_embedding_cut_count": 2,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          8,
+          1
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          10,
+          8
+        ]
+      ],
+      "required_memberships": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          10,
+          9
+        ]
+      ]
+    }
+  ],
+  "rows": {
+    "0": [
+      2,
+      6,
+      8,
+      10
+    ],
+    "1": [
+      0,
+      3,
+      4,
+      10
+    ],
+    "10": [
+      2,
+      5,
+      7,
+      9
+    ],
+    "2": [
+      1,
+      4,
+      6,
+      9
+    ],
+    "3": [
+      2,
+      4,
+      7,
+      8
+    ],
+    "4": [
+      0,
+      1,
+      5,
+      8
+    ],
+    "5": [
+      1,
+      2,
+      3,
+      10
+    ],
+    "6": [
+      4,
+      5,
+      7,
+      10
+    ],
+    "7": [
+      0,
+      2,
+      4,
+      9
+    ],
+    "8": [
+      6,
+      7,
+      9,
+      10
+    ],
+    "9": [
+      0,
+      3,
+      5,
+      6
+    ]
+  },
+  "schema": "p97-fixed-row-full-lra-check-v1",
+  "source_outer_result": "scratch/atail-force/whole-carrier-planar-rank-cegar/n11_kbank232_planar1.result.json",
+  "status": "UNSAT_FULL_LRA_FIXED_ROWS"
+}

@@ -1,0 +1,27 @@
+{
+  "active_roles": [
+    0,
+    2,
+    4,
+    8,
+    9,
+    10
+  ],
+  "all_equality_paths_replayed": true,
+  "claim_scope": "The fixed selected-row equality cell has no injective planar realization. This is one-table closure, not arbitrary-cardinality source coverage.",
+  "consumer": "Problem97.u5_qcritical_aux_base_collision_metric_incompatibility",
+  "consumer_statement_registry_match": true,
+  "extension_stable": true,
+  "minimum_row_core": [
+    0,
+    2,
+    4,
+    10
+  ],
+  "minimum_row_core_size": 4,
+  "role_map_injective": true,
+  "row_core_globally_minimum_for_roles": true,
+  "schema": "p97-whole-carrier-planar-bank-cut-replay-v1",
+  "source_digest": "e77f8554c32256c3cc6acf212c457acba57ed7bfe673e0dfbea2b2a69c962d3a",
+  "status": "VERIFIED_EXACT_PLANAR_BANK_CUT"
+}
