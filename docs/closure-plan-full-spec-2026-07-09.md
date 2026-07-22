@@ -356,24 +356,60 @@ uniform target must consume that raw packet together with the named star and
 return one of the three existing sinks directly; another robust/common-
 deletion wrapper is nonterminal.
 
-The source-audited implementation is
+The source-audited structural implementation is
 `scratch/atail-force/exact5-global-cover-parent-gate/`. Five parent-role
 orbits are required; reflection is not role-preserving because the two
 physical-cap endpoints and adjacent cap sizes differ. The two star edges also
 require independent witness-row tables. The B0 incidence/criticality
-relaxation is SAT in all five orbits.  The independent audit added two missing
+relaxation is SAT in all five orbits. The independent audit added two missing
 necessary synchronizations: at every fixed-blocker-image center both cover
 rows equal the unique actual row, and both second-apex cover rows lie in the
-unique exact-five class.  All five corrected B0 orbits remain SAT.  On the two
-asymmetric orbits, both signed negations of the co-radial terminal remained
-bounded `UNKNOWN` after 164 decoded candidates; all 164 were exact-LRA UNSAT.
-The corrected runs record 156 normalized schema entries / 143 distinct ids,
-but none uses the exact-five shell and only three use the terminal sign.  This
-is a negative route checkpoint, not convergence or coverage.  Freeze this
-local gate unless a future parent-facing theorem supplies the omitted retained
-rows or an all-one-hit terminal negation; do not resume whole-assignment
-blocking, broad MARCO enumeration, or the integrated Boolean+LRA fallback as
-the primary closure lane.
+unique exact-five class. All five corrected B0 orbits remain SAT. Adding the
+retained parent rows as separate selected rows does not change this boundary:
+their source-valid subset, hit, omission, overlap, endpoint, and two-circle
+constraints still admit independently verified B0 assignments, and the
+sampled metric cores remain dominated by generic actual-row Kalmanson
+patterns. The retained rows must not be identified with the stored
+double-deletion rows.
+
+The all-one common-order checkpoint is now recorded in
+`scratch/atail-force/exact5-all-one-card13-card14-gate/`. At card 13, all
+2,729 decoded candidates reached by the bounded run are exact-LRA `UNSAT`:
+2,529 have an equality-quotient ordinal Kalmanson cycle, while the remaining
+200 need a multi-term Kalmanson/Farkas combination. Removing every triangle
+inequality leaves all 200 residuals `UNSAT`. This is strong pruning evidence,
+not coverage: no orbit was exhausted, and the 2,529 ordinal cores still give
+1,337 cyclic/gap-normalized schemas. Literal or eager schema CEGAR is therefore
+retired rather than extended.
+
+The same source-valid shell-aware gate was instantiated at the only card-14
+profiles compatible with the proved cap bounds, `(5,7,5)` and `(6,6,5)`. Its
+complete exact-five shell participates in every represented cross-center
+overlap, pair-alternation, and at-most-two-centers check. Across the six
+profile/orbit runs, all 1,017 reached candidates die by quotient ordinal
+cycles, but every run ends bounded `UNKNOWN`; none reaches an exact linear
+survivor and none proves orbit coverage. Thus the card-13 behavior is not yet
+known to be a uniform theorem.
+
+`scratch/atail-force/exact5-allone-aggregate-kalmanson-cegar/` records the
+aggregate decision audit. Direct mixed Boolean/rank encodings ran for 600
+seconds on each card-13 all-one orbit and returned `UNKNOWN` after roughly
+three million SAT conflicts per orbit. Preloading literal cores or hundreds
+of thousands of schema embeddings only increases the first-solve cost. The
+only proof-facing continuation of this linear route would be a compact
+source-level cut/gap circulation theorem or a checkable finite coverage tree;
+another unpartitioned solver run, literal-core queue, MARCO wave, or eager
+schema expansion is not justified. Even such a card-specific certificate
+would not close the uniform Lean theorem without a proved lift to arbitrary
+carrier cardinality.
+
+These diagnostics do not change the primary mathematical target. Closure must
+still couple the total fixed critical system to one common rank-two Euclidean
+realization and the actual MEC/cap/`noM44` packet, then return the existing
+co-radial, `CriticalFiberClosingCore`, alternative-`IsM44`, or direct-`False`
+terminal. Freeze the finite gate except for a verified survivor, a compact
+coverage certificate, or a source theorem that supplies genuinely new
+nonlinear parent force.
 
 Do not reopen the parent-row bridge, the exact-five all-reverse occurrence,
 or the MEC-extreme packet route.  The cap-six `L` all-reverse program below
@@ -8031,6 +8067,17 @@ blocking both closing-core ingresses.  The latter is not planar/MEC and is not
 a counterexample; it is a proof-route gate.  Together they retire standalone
 minimal-deletion, finite-incidence, metric-minimality, and local Kalmanson
 extensions on exact five.
+
+The newer common-order gate does not reverse that conclusion. Bounded card-13
+search rejects 2,729 reached all-one candidates, and bounded shell-aware
+card-14 search rejects 1,017 reached candidates across `(5,7,5)` and
+`(6,6,5)`, but no orbit is exhausted. The card-13 bank splits into 2,529
+quotient ordinal cycles and 200 triangle-free multi-term Kalmanson cores, with
+1,337 normalized ordinal schemas; three integrated 600-second decisions all
+return `UNKNOWN`. These are theorem-discovery diagnostics, not a finite cover
+or a uniform proof. Literal/schema CEGAR and longer monolithic linear runs are
+retired unless a compact checked coverage object or a verified survivor is
+produced.
 
 The next theorem/search must combine the total fixed critical system with one
 common rank-two Euclidean realization and the actual MEC/cap/`noM44` packet,

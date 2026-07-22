@@ -1,0 +1,8 @@
+{
+  "connectivity_cuts": 0,
+  "known_kalmanson_unsat": true,
+  "known_metric_sat": true,
+  "profile": "6,6,5",
+  "shell_aware_b0_sat_and_independently_verified": true,
+  "status": "PASS"
+}
