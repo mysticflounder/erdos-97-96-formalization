@@ -403,6 +403,45 @@ cross the two exact classes. In the same-radius mode the only surviving
 alternative has at least one outside point outside the strict first cap.
 This is the current exact card-13 residual; it is a reduction, not a terminal.
 
+The same-radius asymmetric slice now has an exact finite ordinal certificate
+in `scratch/atail-force/exact5-card13-same-radius-terminal/`.  In the canonical
+card-13 `(5,6,5)` boundary frame, the two source-role orbits `(1,2,3)` and
+`(3,2,1)` export to CNFs with 53,279 variables and 383,487 / 383,465 clauses.
+CaDiCaL proves both UNSAT, and `drat-trim` independently accepts both DRAT
+proofs.  An adversarial source-block audit found no encoded strengthening:
+the formula retains the fixed critical rows, two independent global-cover
+row families, the exact-five second-apex class, the same-radius exact-six
+first-apex class, and all necessary ordinal Kalmanson cancellations while
+omitting the retained parent rows, strong connectivity, nonlinear Euclidean
+realization, and MEC/`noM44` data.  Those omissions weaken the formula.
+
+This is not yet Lean closure.  The companion ingress modules
+`Card13BoundaryNormalization.lean` and `CommonLabelTransport.lean`
+kernel-check the exact direct/reverse apex placements, a zero-fixed reversal
+adapter preserving both strict Kalmanson inequalities, and the complete
+source-role transport into the common `Fin 13` frame.  In both ambient
+orientations the actual blocker is forced to canonical index `2`, so the only
+source/blocker/third triples are `(1,2,3)` and `(3,2,1)`.  Their public checks
+use only `propext`, `Classical.choice`, and `Quot.sound`.  A third scratch
+module now constructs the exact 78 finite distance ranks, packs them into the
+certificate's 546-bit layout, and proves equality, unsigned order, and
+Kalmanson cancellation transport with the same axiom closure.  Exact Boolean
+packers now also match all generated row, blocker, shell, and first-row bit
+offsets.  The remaining implementation gates are semantic: instantiate those
+packers from the actual fixed-critical and global-cover rows, prove the
+aggregate predicate blocks, and kernel-check the finite contradiction.  Until
+those gates pass, the CNFs are exact external certificates for the encoded
+branch and close no source `sorry`.
+
+The distinct-radius sibling cannot be closed by the same local linear metric
+surface.  `scratch/atail-force/exact5-card13-distinct-cross-terminal/`
+contains an independently replayed rational assignment satisfying positivity,
+all strict triangle and Kalmanson inequalities, the complete exact-five and
+two exact-four class data, retained rows, and the required cross-class outside
+pair.  It is not a planar/MEC realization or a Problem 97 counterexample, but
+it proves that the distinct arm needs total fixed-`H`/global-cover force or
+genuinely nonlinear rank-two/MEC geometry.
+
 The all-one common-order checkpoint is now recorded in
 `scratch/atail-force/exact5-all-one-card13-card14-gate/`. At card 13, all
 2,729 decoded candidates reached by the bounded run are exact-LRA `UNSAT`:
@@ -447,6 +486,16 @@ the first outer candidate. This identifies a combined-solver bottleneck, not
 mathematical convergence. Do not spend another long run on this encoding
 without a decomposition which exposes the new fields or a compact coverage
 object.
+
+The decomposed follow-up in
+`scratch/atail-force/exact5-full-role-retained-decomposed/` removes that mixed
+solver bottleneck by separating finite incidence from ordinal propagation.
+It checked 7,402 finite assignments across the six hub/radius cells; every
+one contains a source-audited strict Kalmanson quotient cycle, and none
+reached the exact LRA callback.  No cell was exhausted and no finite coverage
+certificate was produced, so all six cells remain bounded `UNKNOWN`.  This is
+faster diagnostics, not a reason to resume literal-core accumulation or to
+claim the all-one arm closed.
 
 For the complementary `7 <= S.oppCap1.card` slice, the source audit in
 `scratch/atail-force/exact5-firstcap-ge-seven-route-audit/` proves
@@ -8158,6 +8207,20 @@ fixed-`H` positive occurrence and return one of those terminal outputs. Do
 not add another conditional adapter. The unique arm remains independent: its
 checked exact-four/five normal forms have no terminal consumer, with the
 exact-five coincident-blocker cell the narrowest honest direct-`False` target.
+
+The card-13 same-radius asymmetric subcase has since advanced from a search
+target to a DRAT-verified finite ordinal certificate for both reflected source
+orbits.  The kernel-checked boundary audit closes the exact `(5,6,5)` apex
+placement, reversal/chirality, the common-label role transport, and the exact
+78-distance rank packing, including the source-valid proof that the blocker
+is canonical index `2`.  The Boolean carrier packing is also kernel-checked.
+It does not yet close the source branch: semantic instantiation of those
+packed tables, aggregate predicate-block proofs, and the kernel contradiction
+remain.  These are the immediate implementation target.
+The distinct-cross local linear packet is exactly SAT, so that sibling still
+requires global fixed-`H`/cover information or nonlinear MEC geometry.  The
+decomposed all-one gate rejects 7,402 tested assignments by ordinal cycles but
+proves no cell coverage.  No source `sorry` is closed at this checkpoint.
 
 ## Change control
 

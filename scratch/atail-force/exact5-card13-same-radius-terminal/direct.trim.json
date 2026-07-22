@@ -1,0 +1,39 @@
+{
+  "artifacts": {
+    "cnf": {
+      "bytes": 9786338,
+      "path": "scratch/atail-force/exact5-card13-same-radius-terminal/direct.cnf",
+      "sha256": "a819eba5898a7c6a20c2c2cee4e39bfe308e706197c18afcc47e9cf8e251f74e"
+    },
+    "core_cnf": {
+      "bytes": 677477,
+      "path": "scratch/atail-force/exact5-card13-same-radius-terminal/direct.core.cnf",
+      "sha256": "07ebcebd5bffc22193f2442470374637c58bae2e5db802d1204a3d68b5b42b22"
+    },
+    "drat": {
+      "bytes": 11175672,
+      "path": "scratch/atail-force/exact5-card13-same-radius-terminal/direct.drat",
+      "sha256": "bfd0bd3c73c2d0f979e60e17f2f1971fe3a68d6791179a966ac49fa43b144b02"
+    },
+    "log": {
+      "bytes": 452,
+      "path": "scratch/atail-force/exact5-card13-same-radius-terminal/direct.trim.log",
+      "sha256": "9233863d599d9d958ddc78bf5ac3827b23885555729c78193a635483e8554da2"
+    },
+    "lrat": {
+      "bytes": 18413555,
+      "path": "scratch/atail-force/exact5-card13-same-radius-terminal/direct.lrat",
+      "sha256": "5cd9e0b805ff22d874015922a5d8f2567b91eef8457b6d6f9d5a85f1a6c5dfed"
+    }
+  },
+  "core_num_clauses": 31792,
+  "core_num_variables": 53279,
+  "elapsed_seconds": 2.779642750043422,
+  "lrat_checker_note": "No standalone LRAT checker is installed on PATH; drat-trim emitted LRAT while verifying the source DRAT.",
+  "lrat_independently_checked": false,
+  "original_num_clauses": 383487,
+  "original_num_variables": 53279,
+  "returncode": 0,
+  "schema": "p97-exact5-card13-asymmetric-same-trimmed-lrat-v1",
+  "status": "DRAT_VERIFIED_LRAT_EMITTED"
+}

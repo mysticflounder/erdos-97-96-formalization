@@ -5923,13 +5923,45 @@ Two new checked regressions prevent another detour.
    incidence, deletion, and minimality consequences are insufficient.
 
 The selected-row/full-class concern is also closed in production by
-`parentSecondRow_subset_physicalClass`; do not reopen it.  The exact-five
-search is now allowed to add only the missing common nonlinear layer:
-rank-two planar Euclidean realization together with the actual MEC/cap
-packet and `noM44`, coupled to the total fixed critical system.  Another
-minimal-deletion wrapper, row-local curvature sum, Kalmanson quotient,
-blocker-multiplicity lemma, or selected-row incidence packet is not an
-admissible milestone.
+`parentSecondRow_subset_physicalClass`; do not reopen it.  The card-13
+same-radius asymmetric slice now has a full aggregate ordinal decision rather
+than another literal or local-row queue.  In
+`scratch/atail-force/exact5-card13-same-radius-terminal/`, the two canonical
+source-role CNFs have 53,279 variables and 383,487 / 383,465 clauses; CaDiCaL
+proves both UNSAT and `drat-trim` independently verifies both DRAT proofs.
+The source-block audit found no overstrong block.  The encoded surface keeps
+the fixed critical rows, both independent global-cover row families, the
+exact-five second-apex class, the same-radius exact-six first-apex class, and
+the complete ordinal Kalmanson cancellation theory.  This is exact within the
+encoded finite model, not yet Lean closure.
+
+The ingress audit in
+`scratch/atail-force/exact5-card13-cnf-ingress-audit/` kernel-checks exact
+`(5,6,5)` boundary placement, reversal-stable strict Kalmanson inequalities,
+and a common-label packet forcing the actual blocker to canonical index `2`.
+Thus the exhaustive source/blocker/third roles are `(1,2,3)` / `(3,2,1)` in
+the same `Fin 13` frame, with only the three core axioms.  The immediate
+implementation order is now fixed.  `FiniteDistanceRank.lean` additionally
+kernel-checks the exact lexicographic 78-pair rank assignment and 546-bit
+packing, with equality, unsigned comparison, and Kalmanson cancellation
+transport.  `BooleanPacking.lean` also kernel-checks the exact generated
+layouts for all three row families, blocker indices, the shell, and the
+first-apex row.  Thus:
+
+1. instantiate the checked Boolean packers from the source configuration;
+2. combine those tables with the checked distance-rank witness to prove the
+   aggregate selected source-core predicate; and
+3. kernel-check the direct and reflected finite contradictions.
+
+Until all three steps pass, no source `sorry` is closed.  The distinct-radius
+arm is not covered: an exact rational strict-triangle/Kalmanson witness in
+`scratch/atail-force/exact5-card13-distinct-cross-terminal/` shows that its
+local cross-class packet needs total fixed-`H`/global-cover force or genuinely
+nonlinear rank-two/MEC geometry.  The all-one decomposition checked 7,402
+assignments and rejected all of them by ordinal cycles, but exhausted no cell;
+all six cells remain bounded `UNKNOWN`.  Do not resume literal/schema queues,
+minimal-deletion wrappers, row-local curvature sums, blocker-multiplicity
+lemmas, or monolithic linear runs as closure milestones.
 
 In parallel, the protected unique-radius audit kernel-checks sharp exact-four
 and exact-five normal forms but finds no existing consumer for either whole

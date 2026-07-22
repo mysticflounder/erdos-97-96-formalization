@@ -1,0 +1,57 @@
+{
+  "base_outer_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-global-cover-parent-gate/encode.py",
+  "base_outer_sha256": "9ee047a28bb55d1ae40a4c14b5f8750590b56e36d3a1f200390b442fea82b947",
+  "cnf_clause_count": 383487,
+  "cnf_path": "scratch/atail-force/exact5-card13-same-radius-terminal/direct.cnf",
+  "cnf_sha256": "a819eba5898a7c6a20c2c2cee4e39bfe308e706197c18afcc47e9cf8e251f74e",
+  "cnf_variable_count": 53279,
+  "counts": {
+    "base_assertions": 37363,
+    "guarded_exact_five_shell_rank_equalities": 66,
+    "guarded_selected_row_rank_equalities": 2640,
+    "kalmanson_cancellation_implications": 5720,
+    "rank_atoms": 78,
+    "rank_bit_width": 7,
+    "retained_parent_row_assertions": 0,
+    "source_role_assertions": 11,
+    "total_source_assertions": 45878
+  },
+  "dimacs_structure_check": "PASS",
+  "encoder_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-same-radius-terminal/bitblast_ordinal_cnf.py",
+  "encoder_sha256": "54efab5e16b3869de965aab30240f48305f3db1fa09a604909ac2efa0f80704d",
+  "epistemic_status": "SEMANTICS_PRESERVING_EXTERNAL_Z3_TACTIC_EXPORT",
+  "formula_built_elapsed_seconds": 2.811272209044546,
+  "n": 13,
+  "normalized_orbit": "asymmetricSourceLeft",
+  "not_encoded": [
+    "retained parent q-deleted rows",
+    "full real-valued triangle inequalities",
+    "nonlinear Euclidean coordinates",
+    "MEC equations or noM44"
+  ],
+  "orientation": "direct",
+  "schema": "p97-exact5-card13-asymmetric-same-ordinal-bitblast-v1",
+  "seed": 17,
+  "source_assumptions": [
+    "cardinality profile is exactly (5,6,5)",
+    "labels 0..12 are one common cyclic boundary order up to reflection",
+    "the two reflected asymmetric source orbits are exhaustive",
+    "fixed critical and global-cover row tables satisfy the base encoder",
+    "same-radius first-apex class has six points and covers the four strict points",
+    "selected-row and exact-five-shell equalities induce distance-rank equalities",
+    "one-term cancellation in each strict Kalmanson inequality induces strict rank order"
+  ],
+  "surface_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-same-radius-terminal/asymmetric_ordinal_rank.py",
+  "surface_sha256": "7a3d2521632674faaf5bfcb22b982226a6f10964038d7e04b70b8b5625fbd8df",
+  "tactic_pipeline": [
+    "simplify",
+    "propagate-values",
+    "elim-term-ite",
+    "solve-eqs",
+    "lia2card",
+    "card2bv",
+    "bit-blast",
+    "tseitin-cnf"
+  ],
+  "total_elapsed_seconds": 3.6966238340828568
+}

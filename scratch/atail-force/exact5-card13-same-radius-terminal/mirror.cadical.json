@@ -1,0 +1,16 @@
+{
+  "cadical_returncode": 20,
+  "cnf_path": "scratch/atail-force/exact5-card13-same-radius-terminal/mirror.cnf",
+  "cnf_sha256": "13e10db3d4b6522f8c2f100b526a6165c89372e67bf0fd48a41162a72e779144",
+  "elapsed_seconds": 7.412693792022765,
+  "epistemic_status": "EXTERNAL_CADICAL_AWAITING_DRAT_CHECK",
+  "log_path": "scratch/atail-force/exact5-card13-same-radius-terminal/mirror.cadical.log",
+  "log_sha256": "64846b0f70d9696def98934fc32daf7fa3dc72145312c3833786ec50f6250ca2",
+  "proof_path": "scratch/atail-force/exact5-card13-same-radius-terminal/mirror.drat",
+  "proof_sha256": "76cd15c4970c7227b251fc9cb8d63a3b303eeb64fcda52a4beac3d7785fbe136",
+  "proof_size_bytes": 8181887,
+  "schema": "p97-exact5-card13-asymmetric-same-cadical-drat-v1",
+  "solver": "CaDiCaL --plain",
+  "status": "UNSAT",
+  "timeout_seconds": 600
+}

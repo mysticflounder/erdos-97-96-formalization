@@ -1,0 +1,1315 @@
+{
+  "assertion_count": 45913,
+  "core": [
+    {
+      "assertion": "Not(m_2_2)",
+      "index": 4
+    },
+    {
+      "assertion": "PbEq(((m_2_0, 1),\n      (m_2_1, 1),\n      (m_2_2, 1),\n      (m_2_3, 1),\n      (m_2_4, 1),\n      (m_2_5, 1),\n      (m_2_6, 1),\n      (m_2_7, 1),\n      (m_2_8, 1),\n      (m_2_9, 1),\n      (m_2_10, 1),\n      (m_2_11, 1),\n      (m_2_12, 1)),\n     4)",
+      "index": 5
+    },
+    {
+      "assertion": "PbEq(((m_4_0, 1),\n      (m_4_1, 1),\n      (m_4_2, 1),\n      (m_4_3, 1),\n      (m_4_4, 1),\n      (m_4_5, 1),\n      (m_4_6, 1),\n      (m_4_7, 1),\n      (m_4_8, 1),\n      (m_4_9, 1),\n      (m_4_10, 1),\n      (m_4_11, 1),\n      (m_4_12, 1)),\n     4)",
+      "index": 9
+    },
+    {
+      "assertion": "AtMost((m_4_0, m_4_1, m_4_2, m_4_3, m_4_4), 1)",
+      "index": 3658
+    },
+    {
+      "assertion": "Not(g0_9_9)",
+      "index": 3957
+    },
+    {
+      "assertion": "PbEq(((g0_9_0, 1),\n      (g0_9_1, 1),\n      (g0_9_2, 1),\n      (g0_9_3, 1),\n      (g0_9_4, 1),\n      (g0_9_5, 1),\n      (g0_9_6, 1),\n      (g0_9_7, 1),\n      (g0_9_8, 1),\n      (g0_9_9, 1),\n      (g0_9_10, 1),\n      (g0_9_11, 1),\n      (g0_9_12, 1)),\n     4)",
+      "index": 3958
+    },
+    {
+      "assertion": "Not(g1_5_5)",
+      "index": 7888
+    },
+    {
+      "assertion": "PbEq(((g1_5_0, 1),\n      (g1_5_1, 1),\n      (g1_5_2, 1),\n      (g1_5_3, 1),\n      (g1_5_4, 1),\n      (g1_5_5, 1),\n      (g1_5_6, 1),\n      (g1_5_7, 1),\n      (g1_5_8, 1),\n      (g1_5_9, 1),\n      (g1_5_10, 1),\n      (g1_5_11, 1),\n      (g1_5_12, 1)),\n     4)",
+      "index": 7889
+    },
+    {
+      "assertion": "Not(g1_6_6)",
+      "index": 7890
+    },
+    {
+      "assertion": "PbEq(((g1_6_0, 1),\n      (g1_6_1, 1),\n      (g1_6_2, 1),\n      (g1_6_3, 1),\n      (g1_6_4, 1),\n      (g1_6_5, 1),\n      (g1_6_6, 1),\n      (g1_6_7, 1),\n      (g1_6_8, 1),\n      (g1_6_9, 1),\n      (g1_6_10, 1),\n      (g1_6_11, 1),\n      (g1_6_12, 1)),\n     4)",
+      "index": 7891
+    },
+    {
+      "assertion": "AtMost((g1_5_4, g1_5_5, g1_5_6, g1_5_7, g1_5_8), 2)",
+      "index": 10921
+    },
+    {
+      "assertion": "shell_1",
+      "index": 36803
+    },
+    {
+      "assertion": "shell_2",
+      "index": 36804
+    },
+    {
+      "assertion": "shell_3",
+      "index": 36805
+    },
+    {
+      "assertion": "PbEq(((shell_4, 1),\n      (shell_5, 1),\n      (shell_6, 1),\n      (shell_7, 1)),\n     1)",
+      "index": 36806
+    },
+    {
+      "assertion": "PbEq(((shell_0, 1),\n      (shell_9, 1),\n      (shell_10, 1),\n      (shell_11, 1),\n      (shell_12, 1)),\n     1)",
+      "index": 36807
+    },
+    {
+      "assertion": "Or(frontier_q == 0,\n   frontier_q == 1,\n   frontier_q == 2,\n   frontier_q == 3,\n   frontier_q == 9,\n   frontier_q == 10,\n   frontier_q == 11,\n   frontier_q == 12)",
+      "index": 37263
+    },
+    {
+      "assertion": "Or(frontier_w == 0,\n   frontier_w == 1,\n   frontier_w == 2,\n   frontier_w == 3,\n   frontier_w == 9,\n   frontier_w == 10,\n   frontier_w == 11,\n   frontier_w == 12)",
+      "index": 37264
+    },
+    {
+      "assertion": "frontier_q != frontier_w",
+      "index": 37265
+    },
+    {
+      "assertion": "Or(And(frontier_q == 0, m_4_0),\n   And(frontier_q == 1, m_4_1),\n   And(frontier_q == 2, m_4_2),\n   And(frontier_q == 3, m_4_3),\n   And(frontier_q == 4, m_4_4),\n   And(frontier_q == 5, m_4_5),\n   And(frontier_q == 6, m_4_6),\n   And(frontier_q == 7, m_4_7),\n   And(frontier_q == 8, m_4_8),\n   And(frontier_q == 9, m_4_9),\n   And(frontier_q == 10, m_4_10),\n   And(frontier_q == 11, m_4_11),\n   And(frontier_q == 12, m_4_12))",
+      "index": 37266
+    },
+    {
+      "assertion": "Or(And(frontier_w == 0, m_4_0),\n   And(frontier_w == 1, m_4_1),\n   And(frontier_w == 2, m_4_2),\n   And(frontier_w == 3, m_4_3),\n   And(frontier_w == 4, m_4_4),\n   And(frontier_w == 5, m_4_5),\n   And(frontier_w == 6, m_4_6),\n   And(frontier_w == 7, m_4_7),\n   And(frontier_w == 8, m_4_8),\n   And(frontier_w == 9, m_4_9),\n   And(frontier_w == 10, m_4_10),\n   And(frontier_w == 11, m_4_11),\n   And(frontier_w == 12, m_4_12))",
+      "index": 37267
+    },
+    {
+      "assertion": "PbEq(((b1_0, 1),\n      (b1_1, 1),\n      (b1_2, 1),\n      (b1_3, 1),\n      (b1_4, 1),\n      (b1_5, 1),\n      (b1_6, 1),\n      (b1_7, 1),\n      (b1_8, 1),\n      (b1_9, 1),\n      (b1_10, 1),\n      (b1_11, 1),\n      (b1_12, 1)),\n     4)",
+      "index": 37270
+    },
+    {
+      "assertion": "Not(b1_4)",
+      "index": 37271
+    },
+    {
+      "assertion": "Implies(frontier_q == 9, Not(b1_9))",
+      "index": 37290
+    },
+    {
+      "assertion": "Implies(frontier_w == 9, Not(b1_9))",
+      "index": 37291
+    },
+    {
+      "assertion": "Implies(frontier_q == 10, Not(b1_10))",
+      "index": 37292
+    },
+    {
+      "assertion": "Implies(frontier_w == 10, Not(b1_10))",
+      "index": 37293
+    },
+    {
+      "assertion": "Implies(frontier_q == 11, Not(b1_11))",
+      "index": 37294
+    },
+    {
+      "assertion": "Implies(frontier_w == 11, Not(b1_11))",
+      "index": 37295
+    },
+    {
+      "assertion": "Implies(frontier_q == 12, Not(b1_12))",
+      "index": 37296
+    },
+    {
+      "assertion": "Implies(frontier_w == 12, Not(b1_12))",
+      "index": 37297
+    },
+    {
+      "assertion": "AtMost((b1_4, b1_5, b1_6, b1_7, b1_8), 1)",
+      "index": 37300
+    },
+    {
+      "assertion": "m_2_3",
+      "index": 37357
+    },
+    {
+      "assertion": "Not(m_2_0)",
+      "index": 37358
+    },
+    {
+      "assertion": "Not(m_2_4)",
+      "index": 37360
+    },
+    {
+      "assertion": "PbEq(((Or(m_4_0, b1_0), 1),\n      (Or(m_4_1, b1_1), 1),\n      (Or(m_4_2, b1_2), 1),\n      (Or(m_4_3, b1_3), 1),\n      (Or(m_4_4, b1_4), 1),\n      (Or(m_4_5, b1_5), 1),\n      (Or(m_4_6, b1_6), 1),\n      (Or(m_4_7, b1_7), 1),\n      (Or(m_4_8, b1_8), 1),\n      (Or(m_4_9, b1_9), 1),\n      (Or(m_4_10, b1_10), 1),\n      (Or(m_4_11, b1_11), 1),\n      (Or(m_4_12, b1_12), 1)),\n     6)",
+      "index": 37393
+    },
+    {
+      "assertion": "Or(m_4_9, b1_9)",
+      "index": 37394
+    },
+    {
+      "assertion": "Or(m_4_10, b1_10)",
+      "index": 37395
+    },
+    {
+      "assertion": "Or(m_4_11, b1_11)",
+      "index": 37396
+    },
+    {
+      "assertion": "Or(m_4_12, b1_12)",
+      "index": 37397
+    },
+    {
+      "assertion": "outer_d_0_2 + outer_d_1_4 >= outer_d_0_4 + outer_d_1_2 + 1",
+      "index": 41132
+    },
+    {
+      "assertion": "outer_d_0_4 + outer_d_1_8 >= outer_d_0_8 + outer_d_1_4 + 1",
+      "index": 41174
+    },
+    {
+      "assertion": "outer_d_0_5 + outer_d_1_8 >= outer_d_0_8 + outer_d_1_5 + 1",
+      "index": 41188
+    },
+    {
+      "assertion": "outer_d_0_6 + outer_d_1_7 >= outer_d_0_7 + outer_d_1_6 + 1",
+      "index": 41198
+    },
+    {
+      "assertion": "outer_d_0_7 + outer_d_1_8 >= outer_d_0_8 + outer_d_1_7 + 1",
+      "index": 41210
+    },
+    {
+      "assertion": "outer_d_0_8 + outer_d_1_9 >= outer_d_0_9 + outer_d_1_8 + 1",
+      "index": 41220
+    },
+    {
+      "assertion": "outer_d_0_3 + outer_d_2_4 >= outer_d_0_4 + outer_d_2_3 + 1",
+      "index": 41240
+    },
+    {
+      "assertion": "outer_d_0_3 + outer_d_2_12 >= outer_d_0_2 + outer_d_3_12 + 1",
+      "index": 41255
+    },
+    {
+      "assertion": "outer_d_0_4 + outer_d_2_5 >= outer_d_0_5 + outer_d_2_4 + 1",
+      "index": 41258
+    },
+    {
+      "assertion": "outer_d_0_5 + outer_d_2_6 >= outer_d_0_6 + outer_d_2_5 + 1",
+      "index": 41274
+    },
+    {
+      "assertion": "outer_d_0_4 + outer_d_3_12 >= outer_d_0_3 + outer_d_4_12 + 1",
+      "index": 41343
+    },
+    {
+      "assertion": "outer_d_0_5 + outer_d_4_12 >= outer_d_0_4 + outer_d_5_12 + 1",
+      "index": 41413
+    },
+    {
+      "assertion": "outer_d_0_6 + outer_d_5_12 >= outer_d_0_5 + outer_d_6_12 + 1",
+      "index": 41467
+    },
+    {
+      "assertion": "outer_d_0_7 + outer_d_6_12 >= outer_d_0_6 + outer_d_7_12 + 1",
+      "index": 41507
+    },
+    {
+      "assertion": "outer_d_0_8 + outer_d_7_12 >= outer_d_0_7 + outer_d_8_12 + 1",
+      "index": 41535
+    },
+    {
+      "assertion": "outer_d_0_9 + outer_d_8_12 >= outer_d_0_8 + outer_d_9_12 + 1",
+      "index": 41553
+    },
+    {
+      "assertion": "outer_d_1_5 + outer_d_2_8 >= outer_d_1_8 + outer_d_2_5 + 1",
+      "index": 41608
+    },
+    {
+      "assertion": "outer_d_1_6 + outer_d_2_7 >= outer_d_1_7 + outer_d_2_6 + 1",
+      "index": 41618
+    },
+    {
+      "assertion": "outer_d_1_7 + outer_d_2_8 >= outer_d_1_8 + outer_d_2_7 + 1",
+      "index": 41630
+    },
+    {
+      "assertion": "outer_d_1_8 + outer_d_2_9 >= outer_d_1_9 + outer_d_2_8 + 1",
+      "index": 41640
+    },
+    {
+      "assertion": "outer_d_2_4 + outer_d_3_5 >= outer_d_2_5 + outer_d_3_4 + 1",
+      "index": 41900
+    },
+    {
+      "assertion": "outer_d_2_5 + outer_d_3_6 >= outer_d_2_6 + outer_d_3_5 + 1",
+      "index": 41916
+    },
+    {
+      "assertion": "outer_d_2_6 + outer_d_3_8 >= outer_d_2_8 + outer_d_3_6 + 1",
+      "index": 41932
+    },
+    {
+      "assertion": "outer_d_2_7 + outer_d_3_8 >= outer_d_2_8 + outer_d_3_7 + 1",
+      "index": 41942
+    },
+    {
+      "assertion": "outer_d_2_8 + outer_d_3_9 >= outer_d_2_9 + outer_d_3_8 + 1",
+      "index": 41952
+    },
+    {
+      "assertion": "outer_d_2_9 + outer_d_3_10 >= outer_d_2_10 + outer_d_3_9 + 1",
+      "index": 41960
+    },
+    {
+      "assertion": "outer_d_2_11 + outer_d_3_12 >=\nouter_d_2_12 + outer_d_3_11 + 1",
+      "index": 41970
+    },
+    {
+      "assertion": "outer_d_2_10 + outer_d_4_11 >=\nouter_d_2_11 + outer_d_4_10 + 1",
+      "index": 42022
+    },
+    {
+      "assertion": "outer_d_2_6 + outer_d_5_7 >= outer_d_2_7 + outer_d_5_6 + 1",
+      "index": 42028
+    },
+    {
+      "assertion": "outer_d_3_5 + outer_d_4_6 >= outer_d_3_6 + outer_d_4_5 + 1",
+      "index": 42140
+    },
+    {
+      "assertion": "outer_d_3_6 + outer_d_4_8 >= outer_d_3_8 + outer_d_4_6 + 1",
+      "index": 42156
+    },
+    {
+      "assertion": "outer_d_3_7 + outer_d_4_8 >= outer_d_3_8 + outer_d_4_7 + 1",
+      "index": 42166
+    },
+    {
+      "assertion": "outer_d_3_8 + outer_d_4_9 >= outer_d_3_9 + outer_d_4_8 + 1",
+      "index": 42176
+    },
+    {
+      "assertion": "outer_d_3_9 + outer_d_4_10 >= outer_d_3_10 + outer_d_4_9 + 1",
+      "index": 42184
+    },
+    {
+      "assertion": "outer_d_3_10 + outer_d_4_11 >=\nouter_d_3_11 + outer_d_4_10 + 1",
+      "index": 42190
+    },
+    {
+      "assertion": "outer_d_3_11 + outer_d_4_12 >=\nouter_d_3_12 + outer_d_4_11 + 1",
+      "index": 42194
+    },
+    {
+      "assertion": "outer_d_4_6 + outer_d_5_8 >= outer_d_4_8 + outer_d_5_6 + 1",
+      "index": 42310
+    },
+    {
+      "assertion": "outer_d_4_7 + outer_d_5_8 >= outer_d_4_8 + outer_d_5_7 + 1",
+      "index": 42320
+    },
+    {
+      "assertion": "outer_d_4_8 + outer_d_5_9 >= outer_d_4_9 + outer_d_5_8 + 1",
+      "index": 42330
+    },
+    {
+      "assertion": "outer_d_4_9 + outer_d_5_10 >= outer_d_4_10 + outer_d_5_9 + 1",
+      "index": 42338
+    },
+    {
+      "assertion": "outer_d_4_10 + outer_d_5_11 >=\nouter_d_4_11 + outer_d_5_10 + 1",
+      "index": 42344
+    },
+    {
+      "assertion": "outer_d_4_11 + outer_d_5_12 >=\nouter_d_4_12 + outer_d_5_11 + 1",
+      "index": 42348
+    },
+    {
+      "assertion": "outer_d_5_7 + outer_d_6_8 >= outer_d_5_8 + outer_d_6_7 + 1",
+      "index": 42420
+    },
+    {
+      "assertion": "outer_d_5_8 + outer_d_6_9 >= outer_d_5_9 + outer_d_6_8 + 1",
+      "index": 42430
+    },
+    {
+      "assertion": "outer_d_5_9 + outer_d_6_10 >= outer_d_5_10 + outer_d_6_9 + 1",
+      "index": 42438
+    },
+    {
+      "assertion": "outer_d_5_10 + outer_d_6_11 >=\nouter_d_5_11 + outer_d_6_10 + 1",
+      "index": 42444
+    },
+    {
+      "assertion": "outer_d_5_11 + outer_d_6_12 >=\nouter_d_5_12 + outer_d_6_11 + 1",
+      "index": 42448
+    },
+    {
+      "assertion": "outer_d_6_8 + outer_d_7_9 >= outer_d_6_9 + outer_d_7_8 + 1",
+      "index": 42490
+    },
+    {
+      "assertion": "outer_d_6_9 + outer_d_7_10 >= outer_d_6_10 + outer_d_7_9 + 1",
+      "index": 42498
+    },
+    {
+      "assertion": "outer_d_6_10 + outer_d_7_11 >=\nouter_d_6_11 + outer_d_7_10 + 1",
+      "index": 42504
+    },
+    {
+      "assertion": "outer_d_6_11 + outer_d_7_12 >=\nouter_d_6_12 + outer_d_7_11 + 1",
+      "index": 42508
+    },
+    {
+      "assertion": "outer_d_7_9 + outer_d_8_10 >= outer_d_7_10 + outer_d_8_9 + 1",
+      "index": 42530
+    },
+    {
+      "assertion": "outer_d_7_10 + outer_d_8_11 >=\nouter_d_7_11 + outer_d_8_10 + 1",
+      "index": 42536
+    },
+    {
+      "assertion": "outer_d_7_11 + outer_d_8_12 >=\nouter_d_7_12 + outer_d_8_11 + 1",
+      "index": 42540
+    },
+    {
+      "assertion": "outer_d_8_10 + outer_d_9_11 >=\nouter_d_8_11 + outer_d_9_10 + 1",
+      "index": 42550
+    },
+    {
+      "assertion": "outer_d_8_11 + outer_d_9_12 >=\nouter_d_8_12 + outer_d_9_11 + 1",
+      "index": 42554
+    },
+    {
+      "assertion": "Implies(And(m_2_1, m_2_8), outer_d_1_2 == outer_d_2_8)",
+      "index": 42733
+    },
+    {
+      "assertion": "Implies(And(m_2_1, m_2_9), outer_d_1_2 == outer_d_2_9)",
+      "index": 42734
+    },
+    {
+      "assertion": "Implies(And(m_2_1, m_2_10), outer_d_1_2 == outer_d_2_10)",
+      "index": 42735
+    },
+    {
+      "assertion": "Implies(And(m_2_1, m_2_11), outer_d_1_2 == outer_d_2_11)",
+      "index": 42736
+    },
+    {
+      "assertion": "Implies(And(m_2_1, m_2_12), outer_d_1_2 == outer_d_2_12)",
+      "index": 42737
+    },
+    {
+      "assertion": "Implies(And(m_2_3, m_2_6), outer_d_2_3 == outer_d_2_6)",
+      "index": 42750
+    },
+    {
+      "assertion": "Implies(And(m_2_3, m_2_7), outer_d_2_3 == outer_d_2_7)",
+      "index": 42751
+    },
+    {
+      "assertion": "Implies(And(m_2_3, m_2_8), outer_d_2_3 == outer_d_2_8)",
+      "index": 42752
+    },
+    {
+      "assertion": "Implies(And(m_2_5, m_2_6), outer_d_2_5 == outer_d_2_6)",
+      "index": 42765
+    },
+    {
+      "assertion": "Implies(And(m_2_5, m_2_7), outer_d_2_5 == outer_d_2_7)",
+      "index": 42766
+    },
+    {
+      "assertion": "Implies(And(m_2_5, m_2_8), outer_d_2_5 == outer_d_2_8)",
+      "index": 42767
+    },
+    {
+      "assertion": "Implies(And(m_2_5, m_2_9), outer_d_2_5 == outer_d_2_9)",
+      "index": 42768
+    },
+    {
+      "assertion": "Implies(And(m_2_5, m_2_10), outer_d_2_5 == outer_d_2_10)",
+      "index": 42769
+    },
+    {
+      "assertion": "Implies(And(m_2_5, m_2_11), outer_d_2_5 == outer_d_2_11)",
+      "index": 42770
+    },
+    {
+      "assertion": "Implies(And(m_2_5, m_2_12), outer_d_2_5 == outer_d_2_12)",
+      "index": 42771
+    },
+    {
+      "assertion": "Implies(And(m_2_8, m_2_9), outer_d_2_8 == outer_d_2_9)",
+      "index": 42783
+    },
+    {
+      "assertion": "Implies(And(m_2_8, m_2_10), outer_d_2_8 == outer_d_2_10)",
+      "index": 42784
+    },
+    {
+      "assertion": "Implies(And(m_2_8, m_2_11), outer_d_2_8 == outer_d_2_11)",
+      "index": 42785
+    },
+    {
+      "assertion": "Implies(And(m_2_8, m_2_12), outer_d_2_8 == outer_d_2_12)",
+      "index": 42786
+    },
+    {
+      "assertion": "Implies(And(m_2_9, m_2_10), outer_d_2_9 == outer_d_2_10)",
+      "index": 42787
+    },
+    {
+      "assertion": "Implies(And(m_2_9, m_2_11), outer_d_2_9 == outer_d_2_11)",
+      "index": 42788
+    },
+    {
+      "assertion": "Implies(And(m_2_9, m_2_12), outer_d_2_9 == outer_d_2_12)",
+      "index": 42789
+    },
+    {
+      "assertion": "Implies(And(m_2_10, m_2_11), outer_d_2_10 == outer_d_2_11)",
+      "index": 42790
+    },
+    {
+      "assertion": "Implies(And(m_2_10, m_2_12), outer_d_2_10 == outer_d_2_12)",
+      "index": 42791
+    },
+    {
+      "assertion": "Implies(And(m_2_11, m_2_12), outer_d_2_11 == outer_d_2_12)",
+      "index": 42792
+    },
+    {
+      "assertion": "Implies(And(m_4_0, m_4_10), outer_d_0_4 == outer_d_4_10)",
+      "index": 42880
+    },
+    {
+      "assertion": "Implies(And(m_4_0, m_4_11), outer_d_0_4 == outer_d_4_11)",
+      "index": 42881
+    },
+    {
+      "assertion": "Implies(And(m_4_0, m_4_12), outer_d_0_4 == outer_d_4_12)",
+      "index": 42882
+    },
+    {
+      "assertion": "Implies(And(m_4_1, m_4_10), outer_d_1_4 == outer_d_4_10)",
+      "index": 42891
+    },
+    {
+      "assertion": "Implies(And(m_4_1, m_4_11), outer_d_1_4 == outer_d_4_11)",
+      "index": 42892
+    },
+    {
+      "assertion": "Implies(And(m_4_1, m_4_12), outer_d_1_4 == outer_d_4_12)",
+      "index": 42893
+    },
+    {
+      "assertion": "Implies(And(m_4_2, m_4_10), outer_d_2_4 == outer_d_4_10)",
+      "index": 42901
+    },
+    {
+      "assertion": "Implies(And(m_4_2, m_4_11), outer_d_2_4 == outer_d_4_11)",
+      "index": 42902
+    },
+    {
+      "assertion": "Implies(And(m_4_2, m_4_12), outer_d_2_4 == outer_d_4_12)",
+      "index": 42903
+    },
+    {
+      "assertion": "Implies(And(m_4_3, m_4_10), outer_d_3_4 == outer_d_4_10)",
+      "index": 42910
+    },
+    {
+      "assertion": "Implies(And(m_4_3, m_4_11), outer_d_3_4 == outer_d_4_11)",
+      "index": 42911
+    },
+    {
+      "assertion": "Implies(And(m_4_3, m_4_12), outer_d_3_4 == outer_d_4_12)",
+      "index": 42912
+    },
+    {
+      "assertion": "Implies(And(m_4_5, m_4_10), outer_d_4_5 == outer_d_4_10)",
+      "index": 42925
+    },
+    {
+      "assertion": "Implies(And(m_4_5, m_4_11), outer_d_4_5 == outer_d_4_11)",
+      "index": 42926
+    },
+    {
+      "assertion": "Implies(And(m_4_5, m_4_12), outer_d_4_5 == outer_d_4_12)",
+      "index": 42927
+    },
+    {
+      "assertion": "Implies(And(m_4_6, m_4_10), outer_d_4_6 == outer_d_4_10)",
+      "index": 42931
+    },
+    {
+      "assertion": "Implies(And(m_4_6, m_4_11), outer_d_4_6 == outer_d_4_11)",
+      "index": 42932
+    },
+    {
+      "assertion": "Implies(And(m_4_6, m_4_12), outer_d_4_6 == outer_d_4_12)",
+      "index": 42933
+    },
+    {
+      "assertion": "Implies(And(m_4_7, m_4_10), outer_d_4_7 == outer_d_4_10)",
+      "index": 42936
+    },
+    {
+      "assertion": "Implies(And(m_4_7, m_4_11), outer_d_4_7 == outer_d_4_11)",
+      "index": 42937
+    },
+    {
+      "assertion": "Implies(And(m_4_7, m_4_12), outer_d_4_7 == outer_d_4_12)",
+      "index": 42938
+    },
+    {
+      "assertion": "Implies(And(m_4_8, m_4_10), outer_d_4_8 == outer_d_4_10)",
+      "index": 42940
+    },
+    {
+      "assertion": "Implies(And(m_4_8, m_4_11), outer_d_4_8 == outer_d_4_11)",
+      "index": 42941
+    },
+    {
+      "assertion": "Implies(And(m_4_8, m_4_12), outer_d_4_8 == outer_d_4_12)",
+      "index": 42942
+    },
+    {
+      "assertion": "Implies(And(m_4_9, m_4_10), outer_d_4_9 == outer_d_4_10)",
+      "index": 42943
+    },
+    {
+      "assertion": "Implies(And(m_4_9, m_4_11), outer_d_4_9 == outer_d_4_11)",
+      "index": 42944
+    },
+    {
+      "assertion": "Implies(And(m_4_9, m_4_12), outer_d_4_9 == outer_d_4_12)",
+      "index": 42945
+    },
+    {
+      "assertion": "Implies(And(g0_9_0, g0_9_4), outer_d_0_9 == outer_d_4_9)",
+      "index": 44278
+    },
+    {
+      "assertion": "Implies(And(g0_9_0, g0_9_5), outer_d_0_9 == outer_d_5_9)",
+      "index": 44279
+    },
+    {
+      "assertion": "Implies(And(g0_9_0, g0_9_6), outer_d_0_9 == outer_d_6_9)",
+      "index": 44280
+    },
+    {
+      "assertion": "Implies(And(g0_9_0, g0_9_7), outer_d_0_9 == outer_d_7_9)",
+      "index": 44281
+    },
+    {
+      "assertion": "Implies(And(g0_9_0, g0_9_10), outer_d_0_9 == outer_d_9_10)",
+      "index": 44284
+    },
+    {
+      "assertion": "Implies(And(g0_9_0, g0_9_11), outer_d_0_9 == outer_d_9_11)",
+      "index": 44285
+    },
+    {
+      "assertion": "Implies(And(g0_9_0, g0_9_12), outer_d_0_9 == outer_d_9_12)",
+      "index": 44286
+    },
+    {
+      "assertion": "Implies(And(g0_9_1, g0_9_6), outer_d_1_9 == outer_d_6_9)",
+      "index": 44291
+    },
+    {
+      "assertion": "Implies(And(g0_9_1, g0_9_7), outer_d_1_9 == outer_d_7_9)",
+      "index": 44292
+    },
+    {
+      "assertion": "Implies(And(g0_9_1, g0_9_8), outer_d_1_9 == outer_d_8_9)",
+      "index": 44293
+    },
+    {
+      "assertion": "Implies(And(g0_9_1, g0_9_10), outer_d_1_9 == outer_d_9_10)",
+      "index": 44295
+    },
+    {
+      "assertion": "Implies(And(g0_9_1, g0_9_11), outer_d_1_9 == outer_d_9_11)",
+      "index": 44296
+    },
+    {
+      "assertion": "Implies(And(g0_9_2, g0_9_3), outer_d_2_9 == outer_d_3_9)",
+      "index": 44298
+    },
+    {
+      "assertion": "Implies(And(g0_9_2, g0_9_4), outer_d_2_9 == outer_d_4_9)",
+      "index": 44299
+    },
+    {
+      "assertion": "Implies(And(g0_9_2, g0_9_5), outer_d_2_9 == outer_d_5_9)",
+      "index": 44300
+    },
+    {
+      "assertion": "Implies(And(g0_9_2, g0_9_6), outer_d_2_9 == outer_d_6_9)",
+      "index": 44301
+    },
+    {
+      "assertion": "Implies(And(g0_9_2, g0_9_8), outer_d_2_9 == outer_d_8_9)",
+      "index": 44303
+    },
+    {
+      "assertion": "Implies(And(g0_9_2, g0_9_10), outer_d_2_9 == outer_d_9_10)",
+      "index": 44305
+    },
+    {
+      "assertion": "Implies(And(g0_9_2, g0_9_11), outer_d_2_9 == outer_d_9_11)",
+      "index": 44306
+    },
+    {
+      "assertion": "Implies(And(g0_9_3, g0_9_4), outer_d_3_9 == outer_d_4_9)",
+      "index": 44308
+    },
+    {
+      "assertion": "Implies(And(g0_9_3, g0_9_5), outer_d_3_9 == outer_d_5_9)",
+      "index": 44309
+    },
+    {
+      "assertion": "Implies(And(g0_9_3, g0_9_6), outer_d_3_9 == outer_d_6_9)",
+      "index": 44310
+    },
+    {
+      "assertion": "Implies(And(g0_9_3, g0_9_8), outer_d_3_9 == outer_d_8_9)",
+      "index": 44312
+    },
+    {
+      "assertion": "Implies(And(g0_9_4, g0_9_7), outer_d_4_9 == outer_d_7_9)",
+      "index": 44319
+    },
+    {
+      "assertion": "Implies(And(g0_9_4, g0_9_8), outer_d_4_9 == outer_d_8_9)",
+      "index": 44320
+    },
+    {
+      "assertion": "Implies(And(g0_9_4, g0_9_10), outer_d_4_9 == outer_d_9_10)",
+      "index": 44322
+    },
+    {
+      "assertion": "Implies(And(g0_9_4, g0_9_11), outer_d_4_9 == outer_d_9_11)",
+      "index": 44323
+    },
+    {
+      "assertion": "Implies(And(g0_9_4, g0_9_12), outer_d_4_9 == outer_d_9_12)",
+      "index": 44324
+    },
+    {
+      "assertion": "Implies(And(g0_9_5, g0_9_6), outer_d_5_9 == outer_d_6_9)",
+      "index": 44325
+    },
+    {
+      "assertion": "Implies(And(g0_9_5, g0_9_7), outer_d_5_9 == outer_d_7_9)",
+      "index": 44326
+    },
+    {
+      "assertion": "Implies(And(g0_9_5, g0_9_8), outer_d_5_9 == outer_d_8_9)",
+      "index": 44327
+    },
+    {
+      "assertion": "Implies(And(g0_9_5, g0_9_10), outer_d_5_9 == outer_d_9_10)",
+      "index": 44329
+    },
+    {
+      "assertion": "Implies(And(g0_9_5, g0_9_11), outer_d_5_9 == outer_d_9_11)",
+      "index": 44330
+    },
+    {
+      "assertion": "Implies(And(g0_9_5, g0_9_12), outer_d_5_9 == outer_d_9_12)",
+      "index": 44331
+    },
+    {
+      "assertion": "Implies(And(g0_9_6, g0_9_7), outer_d_6_9 == outer_d_7_9)",
+      "index": 44332
+    },
+    {
+      "assertion": "Implies(And(g0_9_6, g0_9_8), outer_d_6_9 == outer_d_8_9)",
+      "index": 44333
+    },
+    {
+      "assertion": "Implies(And(g0_9_7, g0_9_8), outer_d_7_9 == outer_d_8_9)",
+      "index": 44338
+    },
+    {
+      "assertion": "Implies(And(g0_9_7, g0_9_12), outer_d_7_9 == outer_d_9_12)",
+      "index": 44342
+    },
+    {
+      "assertion": "Implies(And(g0_9_8, g0_9_12), outer_d_8_9 == outer_d_9_12)",
+      "index": 44346
+    },
+    {
+      "assertion": "Implies(And(g0_9_10, g0_9_11), outer_d_9_10 == outer_d_9_11)",
+      "index": 44350
+    },
+    {
+      "assertion": "Implies(And(g0_9_10, g0_9_12), outer_d_9_10 == outer_d_9_12)",
+      "index": 44351
+    },
+    {
+      "assertion": "Implies(And(g0_9_11, g0_9_12), outer_d_9_11 == outer_d_9_12)",
+      "index": 44352
+    },
+    {
+      "assertion": "Implies(And(g1_5_0, g1_5_6), outer_d_0_5 == outer_d_5_6)",
+      "index": 44982
+    },
+    {
+      "assertion": "Implies(And(g1_5_0, g1_5_7), outer_d_0_5 == outer_d_5_7)",
+      "index": 44983
+    },
+    {
+      "assertion": "Implies(And(g1_5_0, g1_5_8), outer_d_0_5 == outer_d_5_8)",
+      "index": 44984
+    },
+    {
+      "assertion": "Implies(And(g1_5_0, g1_5_9), outer_d_0_5 == outer_d_5_9)",
+      "index": 44985
+    },
+    {
+      "assertion": "Implies(And(g1_5_0, g1_5_10), outer_d_0_5 == outer_d_5_10)",
+      "index": 44986
+    },
+    {
+      "assertion": "Implies(And(g1_5_0, g1_5_11), outer_d_0_5 == outer_d_5_11)",
+      "index": 44987
+    },
+    {
+      "assertion": "Implies(And(g1_5_0, g1_5_12), outer_d_0_5 == outer_d_5_12)",
+      "index": 44988
+    },
+    {
+      "assertion": "Implies(And(g1_5_1, g1_5_3), outer_d_1_5 == outer_d_3_5)",
+      "index": 44990
+    },
+    {
+      "assertion": "Implies(And(g1_5_1, g1_5_4), outer_d_1_5 == outer_d_4_5)",
+      "index": 44991
+    },
+    {
+      "assertion": "Implies(And(g1_5_1, g1_5_7), outer_d_1_5 == outer_d_5_7)",
+      "index": 44994
+    },
+    {
+      "assertion": "Implies(And(g1_5_1, g1_5_8), outer_d_1_5 == outer_d_5_8)",
+      "index": 44995
+    },
+    {
+      "assertion": "Implies(And(g1_5_1, g1_5_9), outer_d_1_5 == outer_d_5_9)",
+      "index": 44996
+    },
+    {
+      "assertion": "Implies(And(g1_5_1, g1_5_10), outer_d_1_5 == outer_d_5_10)",
+      "index": 44997
+    },
+    {
+      "assertion": "Implies(And(g1_5_1, g1_5_11), outer_d_1_5 == outer_d_5_11)",
+      "index": 44998
+    },
+    {
+      "assertion": "Implies(And(g1_5_2, g1_5_4), outer_d_2_5 == outer_d_4_5)",
+      "index": 45001
+    },
+    {
+      "assertion": "Implies(And(g1_5_2, g1_5_6), outer_d_2_5 == outer_d_5_6)",
+      "index": 45003
+    },
+    {
+      "assertion": "Implies(And(g1_5_2, g1_5_8), outer_d_2_5 == outer_d_5_8)",
+      "index": 45005
+    },
+    {
+      "assertion": "Implies(And(g1_5_2, g1_5_9), outer_d_2_5 == outer_d_5_9)",
+      "index": 45006
+    },
+    {
+      "assertion": "Implies(And(g1_5_2, g1_5_10), outer_d_2_5 == outer_d_5_10)",
+      "index": 45007
+    },
+    {
+      "assertion": "Implies(And(g1_5_2, g1_5_11), outer_d_2_5 == outer_d_5_11)",
+      "index": 45008
+    },
+    {
+      "assertion": "Implies(And(g1_5_2, g1_5_12), outer_d_2_5 == outer_d_5_12)",
+      "index": 45009
+    },
+    {
+      "assertion": "Implies(And(g1_5_3, g1_5_4), outer_d_3_5 == outer_d_4_5)",
+      "index": 45010
+    },
+    {
+      "assertion": "Implies(And(g1_5_3, g1_5_7), outer_d_3_5 == outer_d_5_7)",
+      "index": 45013
+    },
+    {
+      "assertion": "Implies(And(g1_5_3, g1_5_8), outer_d_3_5 == outer_d_5_8)",
+      "index": 45014
+    },
+    {
+      "assertion": "Implies(And(g1_5_3, g1_5_9), outer_d_3_5 == outer_d_5_9)",
+      "index": 45015
+    },
+    {
+      "assertion": "Implies(And(g1_5_3, g1_5_10), outer_d_3_5 == outer_d_5_10)",
+      "index": 45016
+    },
+    {
+      "assertion": "Implies(And(g1_5_3, g1_5_11), outer_d_3_5 == outer_d_5_11)",
+      "index": 45017
+    },
+    {
+      "assertion": "Implies(And(g1_5_4, g1_5_6), outer_d_4_5 == outer_d_5_6)",
+      "index": 45020
+    },
+    {
+      "assertion": "Implies(And(g1_5_4, g1_5_7), outer_d_4_5 == outer_d_5_7)",
+      "index": 45021
+    },
+    {
+      "assertion": "Implies(And(g1_5_6, g1_5_7), outer_d_5_6 == outer_d_5_7)",
+      "index": 45034
+    },
+    {
+      "assertion": "Implies(And(g1_5_6, g1_5_9), outer_d_5_6 == outer_d_5_9)",
+      "index": 45036
+    },
+    {
+      "assertion": "Implies(And(g1_5_6, g1_5_10), outer_d_5_6 == outer_d_5_10)",
+      "index": 45037
+    },
+    {
+      "assertion": "Implies(And(g1_5_6, g1_5_11), outer_d_5_6 == outer_d_5_11)",
+      "index": 45038
+    },
+    {
+      "assertion": "Implies(And(g1_5_6, g1_5_12), outer_d_5_6 == outer_d_5_12)",
+      "index": 45039
+    },
+    {
+      "assertion": "Implies(And(g1_5_7, g1_5_10), outer_d_5_7 == outer_d_5_10)",
+      "index": 45042
+    },
+    {
+      "assertion": "Implies(And(g1_5_7, g1_5_11), outer_d_5_7 == outer_d_5_11)",
+      "index": 45043
+    },
+    {
+      "assertion": "Implies(And(g1_5_7, g1_5_12), outer_d_5_7 == outer_d_5_12)",
+      "index": 45044
+    },
+    {
+      "assertion": "Implies(And(g1_5_8, g1_5_12), outer_d_5_8 == outer_d_5_12)",
+      "index": 45048
+    },
+    {
+      "assertion": "Implies(And(g1_5_9, g1_5_10), outer_d_5_9 == outer_d_5_10)",
+      "index": 45049
+    },
+    {
+      "assertion": "Implies(And(g1_5_9, g1_5_11), outer_d_5_9 == outer_d_5_11)",
+      "index": 45050
+    },
+    {
+      "assertion": "Implies(And(g1_5_9, g1_5_12), outer_d_5_9 == outer_d_5_12)",
+      "index": 45051
+    },
+    {
+      "assertion": "Implies(And(g1_5_10, g1_5_11), outer_d_5_10 == outer_d_5_11)",
+      "index": 45052
+    },
+    {
+      "assertion": "Implies(And(g1_5_10, g1_5_12), outer_d_5_10 == outer_d_5_12)",
+      "index": 45053
+    },
+    {
+      "assertion": "Implies(And(g1_5_11, g1_5_12), outer_d_5_11 == outer_d_5_12)",
+      "index": 45054
+    },
+    {
+      "assertion": "Implies(And(g1_6_0, g1_6_7), outer_d_0_6 == outer_d_6_7)",
+      "index": 45061
+    },
+    {
+      "assertion": "Implies(And(g1_6_0, g1_6_8), outer_d_0_6 == outer_d_6_8)",
+      "index": 45062
+    },
+    {
+      "assertion": "Implies(And(g1_6_0, g1_6_9), outer_d_0_6 == outer_d_6_9)",
+      "index": 45063
+    },
+    {
+      "assertion": "Implies(And(g1_6_0, g1_6_10), outer_d_0_6 == outer_d_6_10)",
+      "index": 45064
+    },
+    {
+      "assertion": "Implies(And(g1_6_0, g1_6_11), outer_d_0_6 == outer_d_6_11)",
+      "index": 45065
+    },
+    {
+      "assertion": "Implies(And(g1_6_0, g1_6_12), outer_d_0_6 == outer_d_6_12)",
+      "index": 45066
+    },
+    {
+      "assertion": "Implies(And(g1_6_1, g1_6_3), outer_d_1_6 == outer_d_3_6)",
+      "index": 45068
+    },
+    {
+      "assertion": "Implies(And(g1_6_1, g1_6_4), outer_d_1_6 == outer_d_4_6)",
+      "index": 45069
+    },
+    {
+      "assertion": "Implies(And(g1_6_1, g1_6_5), outer_d_1_6 == outer_d_5_6)",
+      "index": 45070
+    },
+    {
+      "assertion": "Implies(And(g1_6_1, g1_6_8), outer_d_1_6 == outer_d_6_8)",
+      "index": 45073
+    },
+    {
+      "assertion": "Implies(And(g1_6_1, g1_6_9), outer_d_1_6 == outer_d_6_9)",
+      "index": 45074
+    },
+    {
+      "assertion": "Implies(And(g1_6_1, g1_6_10), outer_d_1_6 == outer_d_6_10)",
+      "index": 45075
+    },
+    {
+      "assertion": "Implies(And(g1_6_2, g1_6_4), outer_d_2_6 == outer_d_4_6)",
+      "index": 45079
+    },
+    {
+      "assertion": "Implies(And(g1_6_2, g1_6_5), outer_d_2_6 == outer_d_5_6)",
+      "index": 45080
+    },
+    {
+      "assertion": "Implies(And(g1_6_2, g1_6_7), outer_d_2_6 == outer_d_6_7)",
+      "index": 45082
+    },
+    {
+      "assertion": "Implies(And(g1_6_2, g1_6_9), outer_d_2_6 == outer_d_6_9)",
+      "index": 45084
+    },
+    {
+      "assertion": "Implies(And(g1_6_2, g1_6_10), outer_d_2_6 == outer_d_6_10)",
+      "index": 45085
+    },
+    {
+      "assertion": "Implies(And(g1_6_2, g1_6_11), outer_d_2_6 == outer_d_6_11)",
+      "index": 45086
+    },
+    {
+      "assertion": "Implies(And(g1_6_2, g1_6_12), outer_d_2_6 == outer_d_6_12)",
+      "index": 45087
+    },
+    {
+      "assertion": "Implies(And(g1_6_3, g1_6_4), outer_d_3_6 == outer_d_4_6)",
+      "index": 45088
+    },
+    {
+      "assertion": "Implies(And(g1_6_3, g1_6_5), outer_d_3_6 == outer_d_5_6)",
+      "index": 45089
+    },
+    {
+      "assertion": "Implies(And(g1_6_3, g1_6_8), outer_d_3_6 == outer_d_6_8)",
+      "index": 45092
+    },
+    {
+      "assertion": "Implies(And(g1_6_3, g1_6_9), outer_d_3_6 == outer_d_6_9)",
+      "index": 45093
+    },
+    {
+      "assertion": "Implies(And(g1_6_3, g1_6_10), outer_d_3_6 == outer_d_6_10)",
+      "index": 45094
+    },
+    {
+      "assertion": "Implies(And(g1_6_4, g1_6_7), outer_d_4_6 == outer_d_6_7)",
+      "index": 45099
+    },
+    {
+      "assertion": "Implies(And(g1_6_4, g1_6_8), outer_d_4_6 == outer_d_6_8)",
+      "index": 45100
+    },
+    {
+      "assertion": "Implies(And(g1_6_5, g1_6_7), outer_d_5_6 == outer_d_6_7)",
+      "index": 45106
+    },
+    {
+      "assertion": "Implies(And(g1_6_5, g1_6_8), outer_d_5_6 == outer_d_6_8)",
+      "index": 45107
+    },
+    {
+      "assertion": "Implies(And(g1_6_7, g1_6_8), outer_d_6_7 == outer_d_6_8)",
+      "index": 45118
+    },
+    {
+      "assertion": "Implies(And(g1_6_7, g1_6_9), outer_d_6_7 == outer_d_6_9)",
+      "index": 45119
+    },
+    {
+      "assertion": "Implies(And(g1_6_7, g1_6_10), outer_d_6_7 == outer_d_6_10)",
+      "index": 45120
+    },
+    {
+      "assertion": "Implies(And(g1_6_7, g1_6_11), outer_d_6_7 == outer_d_6_11)",
+      "index": 45121
+    },
+    {
+      "assertion": "Implies(And(g1_6_7, g1_6_12), outer_d_6_7 == outer_d_6_12)",
+      "index": 45122
+    },
+    {
+      "assertion": "Implies(And(g1_6_8, g1_6_9), outer_d_6_8 == outer_d_6_9)",
+      "index": 45123
+    },
+    {
+      "assertion": "Implies(And(g1_6_8, g1_6_10), outer_d_6_8 == outer_d_6_10)",
+      "index": 45124
+    },
+    {
+      "assertion": "Implies(And(g1_6_8, g1_6_11), outer_d_6_8 == outer_d_6_11)",
+      "index": 45125
+    },
+    {
+      "assertion": "Implies(And(g1_6_8, g1_6_12), outer_d_6_8 == outer_d_6_12)",
+      "index": 45126
+    },
+    {
+      "assertion": "Implies(And(g1_6_9, g1_6_10), outer_d_6_9 == outer_d_6_10)",
+      "index": 45127
+    },
+    {
+      "assertion": "Implies(And(g1_6_9, g1_6_11), outer_d_6_9 == outer_d_6_11)",
+      "index": 45128
+    },
+    {
+      "assertion": "Implies(And(g1_6_9, g1_6_12), outer_d_6_9 == outer_d_6_12)",
+      "index": 45129
+    },
+    {
+      "assertion": "Implies(And(g1_6_10, g1_6_11), outer_d_6_10 == outer_d_6_11)",
+      "index": 45130
+    },
+    {
+      "assertion": "Implies(And(g1_6_10, g1_6_12), outer_d_6_10 == outer_d_6_12)",
+      "index": 45131
+    },
+    {
+      "assertion": "Implies(And(g1_6_11, g1_6_12), outer_d_6_11 == outer_d_6_12)",
+      "index": 45132
+    },
+    {
+      "assertion": "Implies(And(b1_0, b1_10), outer_d_0_4 == outer_d_4_10)",
+      "index": 45610
+    },
+    {
+      "assertion": "Implies(And(b1_0, b1_11), outer_d_0_4 == outer_d_4_11)",
+      "index": 45611
+    },
+    {
+      "assertion": "Implies(And(b1_0, b1_12), outer_d_0_4 == outer_d_4_12)",
+      "index": 45612
+    },
+    {
+      "assertion": "Implies(And(b1_1, b1_10), outer_d_1_4 == outer_d_4_10)",
+      "index": 45621
+    },
+    {
+      "assertion": "Implies(And(b1_1, b1_11), outer_d_1_4 == outer_d_4_11)",
+      "index": 45622
+    },
+    {
+      "assertion": "Implies(And(b1_1, b1_12), outer_d_1_4 == outer_d_4_12)",
+      "index": 45623
+    },
+    {
+      "assertion": "Implies(And(b1_2, b1_10), outer_d_2_4 == outer_d_4_10)",
+      "index": 45631
+    },
+    {
+      "assertion": "Implies(And(b1_2, b1_11), outer_d_2_4 == outer_d_4_11)",
+      "index": 45632
+    },
+    {
+      "assertion": "Implies(And(b1_2, b1_12), outer_d_2_4 == outer_d_4_12)",
+      "index": 45633
+    },
+    {
+      "assertion": "Implies(And(b1_3, b1_10), outer_d_3_4 == outer_d_4_10)",
+      "index": 45640
+    },
+    {
+      "assertion": "Implies(And(b1_3, b1_11), outer_d_3_4 == outer_d_4_11)",
+      "index": 45641
+    },
+    {
+      "assertion": "Implies(And(b1_3, b1_12), outer_d_3_4 == outer_d_4_12)",
+      "index": 45642
+    },
+    {
+      "assertion": "Implies(And(b1_5, b1_10), outer_d_4_5 == outer_d_4_10)",
+      "index": 45655
+    },
+    {
+      "assertion": "Implies(And(b1_5, b1_11), outer_d_4_5 == outer_d_4_11)",
+      "index": 45656
+    },
+    {
+      "assertion": "Implies(And(b1_5, b1_12), outer_d_4_5 == outer_d_4_12)",
+      "index": 45657
+    },
+    {
+      "assertion": "Implies(And(b1_6, b1_10), outer_d_4_6 == outer_d_4_10)",
+      "index": 45661
+    },
+    {
+      "assertion": "Implies(And(b1_6, b1_11), outer_d_4_6 == outer_d_4_11)",
+      "index": 45662
+    },
+    {
+      "assertion": "Implies(And(b1_6, b1_12), outer_d_4_6 == outer_d_4_12)",
+      "index": 45663
+    },
+    {
+      "assertion": "Implies(And(b1_7, b1_10), outer_d_4_7 == outer_d_4_10)",
+      "index": 45666
+    },
+    {
+      "assertion": "Implies(And(b1_7, b1_11), outer_d_4_7 == outer_d_4_11)",
+      "index": 45667
+    },
+    {
+      "assertion": "Implies(And(b1_7, b1_12), outer_d_4_7 == outer_d_4_12)",
+      "index": 45668
+    },
+    {
+      "assertion": "Implies(And(b1_8, b1_10), outer_d_4_8 == outer_d_4_10)",
+      "index": 45670
+    },
+    {
+      "assertion": "Implies(And(b1_8, b1_11), outer_d_4_8 == outer_d_4_11)",
+      "index": 45671
+    },
+    {
+      "assertion": "Implies(And(b1_8, b1_12), outer_d_4_8 == outer_d_4_12)",
+      "index": 45672
+    },
+    {
+      "assertion": "Implies(And(b1_9, b1_10), outer_d_4_9 == outer_d_4_10)",
+      "index": 45673
+    },
+    {
+      "assertion": "Implies(And(b1_9, b1_11), outer_d_4_9 == outer_d_4_11)",
+      "index": 45674
+    },
+    {
+      "assertion": "Implies(And(b1_9, b1_12), outer_d_4_9 == outer_d_4_12)",
+      "index": 45675
+    },
+    {
+      "assertion": "Implies(And(shell_0, shell_4), outer_d_0_8 == outer_d_4_8)",
+      "index": 45682
+    },
+    {
+      "assertion": "Implies(And(shell_0, shell_5), outer_d_0_8 == outer_d_5_8)",
+      "index": 45683
+    },
+    {
+      "assertion": "Implies(And(shell_0, shell_6), outer_d_0_8 == outer_d_6_8)",
+      "index": 45684
+    },
+    {
+      "assertion": "Implies(And(shell_0, shell_7), outer_d_0_8 == outer_d_7_8)",
+      "index": 45685
+    },
+    {
+      "assertion": "Implies(And(shell_1, shell_4), outer_d_1_8 == outer_d_4_8)",
+      "index": 45693
+    },
+    {
+      "assertion": "Implies(And(shell_1, shell_5), outer_d_1_8 == outer_d_5_8)",
+      "index": 45694
+    },
+    {
+      "assertion": "Implies(And(shell_1, shell_6), outer_d_1_8 == outer_d_6_8)",
+      "index": 45695
+    },
+    {
+      "assertion": "Implies(And(shell_1, shell_7), outer_d_1_8 == outer_d_7_8)",
+      "index": 45696
+    },
+    {
+      "assertion": "Implies(And(shell_2, shell_4), outer_d_2_8 == outer_d_4_8)",
+      "index": 45703
+    },
+    {
+      "assertion": "Implies(And(shell_2, shell_5), outer_d_2_8 == outer_d_5_8)",
+      "index": 45704
+    },
+    {
+      "assertion": "Implies(And(shell_2, shell_6), outer_d_2_8 == outer_d_6_8)",
+      "index": 45705
+    },
+    {
+      "assertion": "Implies(And(shell_2, shell_7), outer_d_2_8 == outer_d_7_8)",
+      "index": 45706
+    },
+    {
+      "assertion": "Implies(And(shell_3, shell_4), outer_d_3_8 == outer_d_4_8)",
+      "index": 45712
+    },
+    {
+      "assertion": "Implies(And(shell_3, shell_5), outer_d_3_8 == outer_d_5_8)",
+      "index": 45713
+    },
+    {
+      "assertion": "Implies(And(shell_3, shell_6), outer_d_3_8 == outer_d_6_8)",
+      "index": 45714
+    },
+    {
+      "assertion": "Implies(And(shell_3, shell_7), outer_d_3_8 == outer_d_7_8)",
+      "index": 45715
+    },
+    {
+      "assertion": "Implies(And(shell_3, shell_9), outer_d_3_8 == outer_d_8_9)",
+      "index": 45717
+    },
+    {
+      "assertion": "Implies(And(shell_3, shell_10), outer_d_3_8 == outer_d_8_10)",
+      "index": 45718
+    },
+    {
+      "assertion": "Implies(And(shell_3, shell_11), outer_d_3_8 == outer_d_8_11)",
+      "index": 45719
+    },
+    {
+      "assertion": "Implies(And(shell_4, shell_12), outer_d_4_8 == outer_d_8_12)",
+      "index": 45728
+    },
+    {
+      "assertion": "Implies(And(shell_5, shell_12), outer_d_5_8 == outer_d_8_12)",
+      "index": 45735
+    },
+    {
+      "assertion": "Implies(And(shell_6, shell_12), outer_d_6_8 == outer_d_8_12)",
+      "index": 45741
+    },
+    {
+      "assertion": "Implies(And(shell_7, shell_12), outer_d_7_8 == outer_d_8_12)",
+      "index": 45746
+    }
+  ],
+  "core_size": 327,
+  "status": "UNSAT"
+}

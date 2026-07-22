@@ -1,0 +1,182 @@
+{
+  "encoder": {
+    "bytes": 5311,
+    "path": "bitblast_ordinal_cnf.py",
+    "sha256": "54efab5e16b3869de965aab30240f48305f3db1fa09a604909ac2efa0f80704d"
+  },
+  "epistemic_status": "CNF_UNSAT_DRAT_VERIFIED_SOURCE_TO_CNF_MAP_NOT_LEAN_CHECKED",
+  "orbits": {
+    "direct": {
+      "artifacts": {
+        "cadical_json": {
+          "bytes": 821,
+          "path": "direct.cadical.json",
+          "sha256": "4fe220f873c6135dbfb6493648039dd36a25e878beebc3c7fe2c76715193af88"
+        },
+        "cadical_log": {
+          "bytes": 17005,
+          "path": "direct.cadical.log",
+          "sha256": "3c091424cf67ac0425bc1021452068fc37ea3e6d488f2baf0b24d11b52009d75"
+        },
+        "cnf": {
+          "bytes": 9786338,
+          "path": "direct.cnf",
+          "sha256": "a819eba5898a7c6a20c2c2cee4e39bfe308e706197c18afcc47e9cf8e251f74e"
+        },
+        "core_cnf": {
+          "bytes": 677477,
+          "path": "direct.core.cnf",
+          "sha256": "07ebcebd5bffc22193f2442470374637c58bae2e5db802d1204a3d68b5b42b22"
+        },
+        "drat": {
+          "bytes": 11175672,
+          "path": "direct.drat",
+          "sha256": "bfd0bd3c73c2d0f979e60e17f2f1971fe3a68d6791179a966ac49fa43b144b02"
+        },
+        "drat-check_json": {
+          "bytes": 697,
+          "path": "direct.drat-check.json",
+          "sha256": "e3c03f7951d31de8d4b26d56c1ed3b05b7e3455da10627130fc7469bbb55410f"
+        },
+        "drat-trim_log": {
+          "bytes": 456,
+          "path": "direct.drat-trim.log",
+          "sha256": "4274931219720ec746ea80f54b9c8a27e9570987d0d03190e3ccf706fda33417"
+        },
+        "lrat": {
+          "bytes": 18413555,
+          "path": "direct.lrat",
+          "sha256": "5cd9e0b805ff22d874015922a5d8f2567b91eef8457b6d6f9d5a85f1a6c5dfed"
+        },
+        "metadata_json": {
+          "bytes": 2603,
+          "path": "direct.metadata.json",
+          "sha256": "d790bfe054e93ec05905f7571483bb8d62a2dc8ac27761b6d30b5d325a22e937"
+        },
+        "trim_json": {
+          "bytes": 1555,
+          "path": "direct.trim.json",
+          "sha256": "aebe53e2edeb1b298d46291c6bf8143ca43ba1144e0ebe60426441179d4d0980"
+        },
+        "trim_log": {
+          "bytes": 452,
+          "path": "direct.trim.log",
+          "sha256": "9233863d599d9d958ddc78bf5ac3827b23885555729c78193a635483e8554da2"
+        }
+      },
+      "cadical_status": "UNSAT",
+      "cnf_clauses": 383487,
+      "cnf_variables": 53279,
+      "core_clauses": 31792,
+      "drat_status": "DRAT_VERIFIED",
+      "lrat_independently_checked": false,
+      "normalized_orbit": "asymmetricSourceLeft"
+    },
+    "mirror": {
+      "artifacts": {
+        "cadical_json": {
+          "bytes": 821,
+          "path": "mirror.cadical.json",
+          "sha256": "2d8a8f166550f7952b2a876279bdcd8716690efb4cec9efaa83c052f83e6b0f9"
+        },
+        "cadical_log": {
+          "bytes": 15886,
+          "path": "mirror.cadical.log",
+          "sha256": "64846b0f70d9696def98934fc32daf7fa3dc72145312c3833786ec50f6250ca2"
+        },
+        "cnf": {
+          "bytes": 9785678,
+          "path": "mirror.cnf",
+          "sha256": "13e10db3d4b6522f8c2f100b526a6165c89372e67bf0fd48a41162a72e779144"
+        },
+        "core_cnf": {
+          "bytes": 563921,
+          "path": "mirror.core.cnf",
+          "sha256": "20fd36c29e9009d2bda549081415ad59f8cb3832a3338cea04436e4733517ac3"
+        },
+        "drat": {
+          "bytes": 8181887,
+          "path": "mirror.drat",
+          "sha256": "76cd15c4970c7227b251fc9cb8d63a3b303eeb64fcda52a4beac3d7785fbe136"
+        },
+        "drat-check_json": {
+          "bytes": 696,
+          "path": "mirror.drat-check.json",
+          "sha256": "8227e2512bb8edac0f84aed59a40a1d0bb1568e97fd0b50d33af34fdfa0b9e3a"
+        },
+        "drat-trim_log": {
+          "bytes": 455,
+          "path": "mirror.drat-trim.log",
+          "sha256": "a994b966936d629baaad3f760e1427442ec431d22581b11e01e371fcbd147d42"
+        },
+        "lrat": {
+          "bytes": 12975558,
+          "path": "mirror.lrat",
+          "sha256": "7ebd05047a7c82147c538c10b693dea8e1afe3f0575227c56c4f5860d0be22a4"
+        },
+        "metadata_json": {
+          "bytes": 2603,
+          "path": "mirror.metadata.json",
+          "sha256": "e6a2a4f76e28aa9e4cfc0a61854113671ce5d1408a7bcebaeff8bd22a1a19660"
+        },
+        "trim_json": {
+          "bytes": 1555,
+          "path": "mirror.trim.json",
+          "sha256": "77e5fcb147eceac388cb3f375579d4ee970edcaaef2a440413520474112b2448"
+        },
+        "trim_log": {
+          "bytes": 451,
+          "path": "mirror.trim.log",
+          "sha256": "cb6a6939ad4f364b3f2f8f6edea9e8776836d8a5d7ef618d22874c294dba5c9f"
+        }
+      },
+      "cadical_status": "UNSAT",
+      "cnf_clauses": 383465,
+      "cnf_variables": 53279,
+      "core_clauses": 26490,
+      "drat_status": "DRAT_VERIFIED",
+      "lrat_independently_checked": false,
+      "normalized_orbit": "asymmetricSourceRight"
+    }
+  },
+  "replay_commands": [
+    "UV_CACHE_DIR=.uv-cache uv run --no-project python scratch/atail-force/exact5-card13-same-radius-terminal/smoke_bitblast.py --output scratch/atail-force/exact5-card13-same-radius-terminal/smoke.json",
+    "UV_CACHE_DIR=.uv-cache uv run --no-project python scratch/atail-force/exact5-card13-same-radius-terminal/bitblast_ordinal_cnf.py --orientation direct --seed 17 --output-cnf scratch/atail-force/exact5-card13-same-radius-terminal/direct.cnf --output-metadata scratch/atail-force/exact5-card13-same-radius-terminal/direct.metadata.json",
+    "UV_CACHE_DIR=.uv-cache uv run --no-project python scratch/atail-force/exact5-card13-same-radius-terminal/bitblast_ordinal_cnf.py --orientation mirror --seed 17 --output-cnf scratch/atail-force/exact5-card13-same-radius-terminal/mirror.cnf --output-metadata scratch/atail-force/exact5-card13-same-radius-terminal/mirror.metadata.json",
+    "UV_CACHE_DIR=.uv-cache uv run --no-project python scratch/atail-force/exact5-card13-same-radius-terminal/run_cadical_drat.py --cnf scratch/atail-force/exact5-card13-same-radius-terminal/direct.cnf --proof scratch/atail-force/exact5-card13-same-radius-terminal/direct.drat --log scratch/atail-force/exact5-card13-same-radius-terminal/direct.cadical.log --output scratch/atail-force/exact5-card13-same-radius-terminal/direct.cadical.json --timeout-seconds 600",
+    "UV_CACHE_DIR=.uv-cache uv run --no-project python scratch/atail-force/exact5-card13-same-radius-terminal/run_cadical_drat.py --cnf scratch/atail-force/exact5-card13-same-radius-terminal/mirror.cnf --proof scratch/atail-force/exact5-card13-same-radius-terminal/mirror.drat --log scratch/atail-force/exact5-card13-same-radius-terminal/mirror.cadical.log --output scratch/atail-force/exact5-card13-same-radius-terminal/mirror.cadical.json --timeout-seconds 600",
+    "UV_CACHE_DIR=.uv-cache uv run --no-project python scratch/atail-force/exact5-card13-same-radius-terminal/check_drat.py --cnf scratch/atail-force/exact5-card13-same-radius-terminal/direct.cnf --proof scratch/atail-force/exact5-card13-same-radius-terminal/direct.drat --log scratch/atail-force/exact5-card13-same-radius-terminal/direct.drat-trim.log --output scratch/atail-force/exact5-card13-same-radius-terminal/direct.drat-check.json --timeout-seconds 600",
+    "UV_CACHE_DIR=.uv-cache uv run --no-project python scratch/atail-force/exact5-card13-same-radius-terminal/check_drat.py --cnf scratch/atail-force/exact5-card13-same-radius-terminal/mirror.cnf --proof scratch/atail-force/exact5-card13-same-radius-terminal/mirror.drat --log scratch/atail-force/exact5-card13-same-radius-terminal/mirror.drat-trim.log --output scratch/atail-force/exact5-card13-same-radius-terminal/mirror.drat-check.json --timeout-seconds 600",
+    "UV_CACHE_DIR=.uv-cache uv run --no-project python scratch/atail-force/exact5-card13-same-radius-terminal/trim_to_lrat.py --cnf scratch/atail-force/exact5-card13-same-radius-terminal/direct.cnf --proof scratch/atail-force/exact5-card13-same-radius-terminal/direct.drat --core scratch/atail-force/exact5-card13-same-radius-terminal/direct.core.cnf --lrat scratch/atail-force/exact5-card13-same-radius-terminal/direct.lrat --log scratch/atail-force/exact5-card13-same-radius-terminal/direct.trim.log --output scratch/atail-force/exact5-card13-same-radius-terminal/direct.trim.json --timeout-seconds 1200",
+    "UV_CACHE_DIR=.uv-cache uv run --no-project python scratch/atail-force/exact5-card13-same-radius-terminal/trim_to_lrat.py --cnf scratch/atail-force/exact5-card13-same-radius-terminal/mirror.cnf --proof scratch/atail-force/exact5-card13-same-radius-terminal/mirror.drat --core scratch/atail-force/exact5-card13-same-radius-terminal/mirror.core.cnf --lrat scratch/atail-force/exact5-card13-same-radius-terminal/mirror.lrat --log scratch/atail-force/exact5-card13-same-radius-terminal/mirror.trim.log --output scratch/atail-force/exact5-card13-same-radius-terminal/mirror.trim.json --timeout-seconds 1200"
+  ],
+  "schema": "p97-exact5-card13-asymmetric-same-certificate-manifest-v1",
+  "smoke": {
+    "bytes": 1495,
+    "path": "smoke.json",
+    "sha256": "c7268bbb1bb0e82827a3e137ac49dd7cee0c62e4d34b7533a1bbc0ec90596fc5"
+  },
+  "source_map_gates_remaining": [
+    "audit BaseOuter clause blocks against named Lean source fields",
+    "prove direct/mirror asymmetric orbit exhaustiveness",
+    "prove the card-13 (5,6,5) Fin 13 boundary transport",
+    "port the finite source formula and certificate checker to Lean"
+  ],
+  "source_surface": {
+    "base_encoder": {
+      "bytes": 33184,
+      "path": "decision.py",
+      "sha256": "40f19f5bacc8e6da2e483a636c2ea318847877b04da1ed5cf4ad341eb2d06721"
+    },
+    "base_outer": {
+      "bytes": 19738,
+      "path": "encode.py",
+      "sha256": "9ee047a28bb55d1ae40a4c14b5f8750590b56e36d3a1f200390b442fea82b947"
+    },
+    "file": {
+      "bytes": 6055,
+      "path": "asymmetric_ordinal_rank.py",
+      "sha256": "7a3d2521632674faaf5bfcb22b982226a6f10964038d7e04b70b8b5625fbd8df"
+    }
+  }
+}

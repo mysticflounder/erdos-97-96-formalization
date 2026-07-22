@@ -1,0 +1,98 @@
+{
+  "schema": "p97-exact5-card13-decomposed-ordinal-checkpoint-v1",
+  "date": "2026-07-21",
+  "profile": "5,6,5",
+  "epistemic_status": "UNKNOWN",
+  "source_status": "no source sorry closed",
+  "run_outputs": [
+    "runs/left-same-300.json",
+    "runs/left-distinct-300.json",
+    "runs/middle-same-120.json",
+    "runs/middle-distinct-120.json",
+    "runs/right-same-120.json",
+    "runs/right-distinct-120.json"
+  ],
+  "cells": [
+    {
+      "orbit": "allOneHitHubLeft",
+      "radius_arm": "same",
+      "seconds": 300,
+      "finite_checked": 2241,
+      "ordinal_rejections": 2241,
+      "exact_checked": 0,
+      "status": "UNKNOWN"
+    },
+    {
+      "orbit": "allOneHitHubLeft",
+      "radius_arm": "distinct",
+      "seconds": 300,
+      "finite_checked": 1735,
+      "ordinal_rejections": 1735,
+      "exact_checked": 0,
+      "status": "UNKNOWN"
+    },
+    {
+      "orbit": "allOneHitHubMiddle",
+      "radius_arm": "same",
+      "seconds": 120,
+      "finite_checked": 922,
+      "ordinal_rejections": 922,
+      "exact_checked": 0,
+      "status": "UNKNOWN"
+    },
+    {
+      "orbit": "allOneHitHubMiddle",
+      "radius_arm": "distinct",
+      "seconds": 120,
+      "finite_checked": 787,
+      "ordinal_rejections": 787,
+      "exact_checked": 0,
+      "status": "UNKNOWN"
+    },
+    {
+      "orbit": "allOneHitHubRight",
+      "radius_arm": "same",
+      "seconds": 120,
+      "finite_checked": 928,
+      "ordinal_rejections": 928,
+      "exact_checked": 0,
+      "status": "UNKNOWN"
+    },
+    {
+      "orbit": "allOneHitHubRight",
+      "radius_arm": "distinct",
+      "seconds": 120,
+      "finite_checked": 789,
+      "ordinal_rejections": 789,
+      "exact_checked": 0,
+      "status": "UNKNOWN"
+    }
+  ],
+  "totals": {
+    "finite_checked": 7402,
+    "ordinal_rejections": 7402,
+    "exact_checked": 0,
+    "completed_unsat_cells": 0,
+    "sat_survivors": 0,
+    "unknown_cells": 6
+  },
+  "scope": {
+    "included": [
+      "exact card-13 closed-cap profile (5,6,5)",
+      "three all-one hub orbits and both first-apex radius arms",
+      "fixed total critical blocker map and synchronized selected rows",
+      "two independent global-cover row tables",
+      "actual retained q-deleted parent rows B1 and B2",
+      "complete exact-five second-apex class",
+      "complete exact-six or two complete exact-four first-apex classes",
+      "full-class two-circle and pair-center constraints",
+      "generic ordinal consequences of strict Kalmanson inequalities"
+    ],
+    "omitted": [
+      "complete multi-term linear Kalmanson theory before an ordinal survivor",
+      "planar Euclidean distance-matrix rank",
+      "minimum-enclosing-circle equations and membership",
+      "full no-(m,4,4) support-triangle semantics"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "checker": "drat-trim",
+  "cnf_path": "scratch/atail-force/exact5-card13-same-radius-terminal/direct.cnf",
+  "cnf_sha256": "a819eba5898a7c6a20c2c2cee4e39bfe308e706197c18afcc47e9cf8e251f74e",
+  "elapsed_seconds": 2.4056835420196876,
+  "log_path": "scratch/atail-force/exact5-card13-same-radius-terminal/direct.drat-trim.log",
+  "log_sha256": "4274931219720ec746ea80f54b9c8a27e9570987d0d03190e3ccf706fda33417",
+  "proof_path": "scratch/atail-force/exact5-card13-same-radius-terminal/direct.drat",
+  "proof_sha256": "bfd0bd3c73c2d0f979e60e17f2f1971fe3a68d6791179a966ac49fa43b144b02",
+  "returncode": 0,
+  "schema": "p97-exact5-card13-asymmetric-same-drat-check-v1",
+  "status": "DRAT_VERIFIED"
+}
