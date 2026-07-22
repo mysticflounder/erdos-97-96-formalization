@@ -1,0 +1,328 @@
+{
+  "elapsed_seconds": 300.0189075829694,
+  "epistemic_status": "FIXED_CARD_15_CLOSED_CARRIER_CEGAR_NOT_LIVE_COVERAGE_NOT_LEAN",
+  "first_linear_cores": [],
+  "first_ordinal_cores": [
+    {
+      "cycle_length": 2,
+      "iteration": 1,
+      "literals": [
+        [
+          "m10",
+          0
+        ],
+        [
+          "m10",
+          13
+        ],
+        [
+          "m8",
+          0
+        ],
+        [
+          "m8",
+          5
+        ]
+      ]
+    },
+    {
+      "cycle_length": 1,
+      "iteration": 2,
+      "literals": [
+        [
+          "a",
+          4
+        ],
+        [
+          "a",
+          6
+        ],
+        [
+          "m4",
+          7
+        ],
+        [
+          "m4",
+          13
+        ],
+        [
+          "m6",
+          7
+        ],
+        [
+          "m6",
+          13
+        ],
+        [
+          "m7",
+          4
+        ],
+        [
+          "m7",
+          6
+        ]
+      ]
+    },
+    {
+      "cycle_length": 1,
+      "iteration": 3,
+      "literals": [
+        [
+          "b",
+          2
+        ],
+        [
+          "b",
+          8
+        ],
+        [
+          "m2",
+          7
+        ],
+        [
+          "m2",
+          8
+        ],
+        [
+          "m8",
+          2
+        ],
+        [
+          "m8",
+          7
+        ]
+      ]
+    },
+    {
+      "cycle_length": 1,
+      "iteration": 4,
+      "literals": [
+        [
+          "b",
+          1
+        ],
+        [
+          "b",
+          9
+        ],
+        [
+          "m12",
+          1
+        ],
+        [
+          "m12",
+          13
+        ],
+        [
+          "m13",
+          9
+        ],
+        [
+          "m13",
+          12
+        ]
+      ]
+    },
+    {
+      "cycle_length": 1,
+      "iteration": 5,
+      "literals": [
+        [
+          "a",
+          4
+        ],
+        [
+          "a",
+          10
+        ],
+        [
+          "m10",
+          4
+        ],
+        [
+          "m10",
+          13
+        ],
+        [
+          "m4",
+          10
+        ],
+        [
+          "m4",
+          13
+        ]
+      ]
+    },
+    {
+      "cycle_length": 1,
+      "iteration": 6,
+      "literals": [
+        [
+          "m3",
+          5
+        ],
+        [
+          "m3",
+          7
+        ],
+        [
+          "m4",
+          3
+        ],
+        [
+          "m4",
+          7
+        ],
+        [
+          "m7",
+          3
+        ],
+        [
+          "m7",
+          5
+        ]
+      ]
+    },
+    {
+      "cycle_length": 1,
+      "iteration": 7,
+      "literals": [
+        [
+          "m2",
+          3
+        ],
+        [
+          "m2",
+          7
+        ],
+        [
+          "m3",
+          5
+        ],
+        [
+          "m3",
+          7
+        ],
+        [
+          "m7",
+          3
+        ],
+        [
+          "m7",
+          5
+        ]
+      ]
+    },
+    {
+      "cycle_length": 1,
+      "iteration": 8,
+      "literals": [
+        [
+          "a",
+          1
+        ],
+        [
+          "a",
+          10
+        ],
+        [
+          "b",
+          2
+        ],
+        [
+          "b",
+          5
+        ],
+        [
+          "m2",
+          0
+        ],
+        [
+          "m2",
+          8
+        ],
+        [
+          "m5",
+          0
+        ],
+        [
+          "m5",
+          10
+        ],
+        [
+          "m8",
+          1
+        ],
+        [
+          "m8",
+          2
+        ]
+      ]
+    },
+    {
+      "cycle_length": 1,
+      "iteration": 9,
+      "literals": [
+        [
+          "b",
+          5
+        ],
+        [
+          "b",
+          8
+        ],
+        [
+          "m11",
+          0
+        ],
+        [
+          "m11",
+          5
+        ],
+        [
+          "m5",
+          0
+        ],
+        [
+          "m5",
+          8
+        ]
+      ]
+    },
+    {
+      "cycle_length": 1,
+      "iteration": 10,
+      "literals": [
+        [
+          "a",
+          5
+        ],
+        [
+          "a",
+          10
+        ],
+        [
+          "m11",
+          0
+        ],
+        [
+          "m11",
+          5
+        ],
+        [
+          "m5",
+          0
+        ],
+        [
+          "m5",
+          10
+        ]
+      ]
+    }
+  ],
+  "iterations": 4107,
+  "linear_core_count": 0,
+  "ordinal_core_count": 4106,
+  "reason": "wall budget",
+  "status": "UNKNOWN"
+}
