@@ -5879,3 +5879,62 @@ The first two implementation stages are complete; the remaining order is:
 This refinement supersedes the claim that generic `B` must jump directly to
 `L`, but it does not supersede the need for a terminal consumer on either
 resulting branch.
+
+### Exact-five terminal-boundary checkpoint (2026-07-21)
+
+The current source contains three direct `sorry` declarations in
+`ATail/FrontierLiveClosure.lean`:
+
+1. `false_of_originalFrontierUniqueRadiusArm`;
+2. `false_of_frontierBiApexRobustExactFiveGlobalCoverStarResidual`; and
+3. `false_of_frontierLargeOppositeCapsBiApexRobustResidual`.
+
+The public dispatcher has two top-level arms (unique and bi-apex robust).  The
+exact-five declaration is a direct child of the robust arm in source.  The
+current kernel-edge extraction omits that nested dependency and therefore
+reports the exact-five declaration off-spine; this is a tracker defect, not a
+proof or a reason to ignore the source hole.
+
+Exact five remains the first direct source-closure target because its
+dispatcher and both immediate terminal families are already production
+complete.  The live theorem must eliminate all constructors of
+`ExactFiveGlobalCoverStarOutcome Q profile`:
+
+- on either asymmetric spoke arm, prove the named outside pair co-radial from
+  `S.oppApex1`, construct a complete alternative `IsM44` packet, or prove
+  `False` directly; and
+- on the all-one-hit arm, construct `CriticalFiberClosingCore R`, construct a
+  complete alternative `IsM44` packet, or prove `False` directly.
+
+Two new checked regressions prevent another detour.
+
+1. `scratch/atail-force/exact5-asymmetric-global-minimality-boundary/`
+   kernel-proves that deleting either named outside point already blocks K4
+   at the existing physical hub.  It constructs an explicit singleton
+   `MinimalDeletionCore` there.  Applying global minimality to the outside
+   pair can therefore stutter and cannot force a fresh center, full-pair core,
+   or first-apex equality.
+2. `scratch/atail-force/exact5-all-one-finite-metric-regression/` gives an
+   exact 13-point finite metric with global K4, exhaustive subset minimality,
+   a total singleton-critical map, two robust apices, the retained rows, the
+   exact-five cover star, and all three physical rows one-hit, while neither
+   `CriticalFiberClosingCore` constructor can start.  It is not planar or MEC
+   and is not a Problem 97 counterexample.  It proves only that finite-metric,
+   incidence, deletion, and minimality consequences are insufficient.
+
+The selected-row/full-class concern is also closed in production by
+`parentSecondRow_subset_physicalClass`; do not reopen it.  The exact-five
+search is now allowed to add only the missing common nonlinear layer:
+rank-two planar Euclidean realization together with the actual MEC/cap
+packet and `noM44`, coupled to the total fixed critical system.  Another
+minimal-deletion wrapper, row-local curvature sum, Kalmanson quotient,
+blocker-multiplicity lemma, or selected-row incidence packet is not an
+admissible milestone.
+
+In parallel, the protected unique-radius audit kernel-checks sharp exact-four
+and exact-five normal forms but finds no existing consumer for either whole
+arm.  The exact-five coincident-blocker normal form is its narrowest remaining
+cell; a useful theorem there must be direct `False` and must visibly use
+global minimality plus nonlinear MEC/full-radius or total critical-row data.
+Do not promote the normal forms to production until such a terminal consumes
+them.

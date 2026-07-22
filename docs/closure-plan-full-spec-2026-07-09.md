@@ -7992,6 +7992,53 @@ branch-complete parent route.  The reciprocal critical arm is a checked
 dependency edge into the protected owner lane.  The protected paused
 `FA-UNIQ4` / `FA-UNIQ5` lane remains a separate final-closure dependency.
 
+## Authoritative A-tail terminal boundary (2026-07-21)
+
+This section supersedes the historical coherent-R and LIVE helper queue above
+for current A-tail execution.  The live Route-B caller now bypasses the old
+`DoubleApexOffSurplusSharedRadiusPair` and LIVE Q/C tree and dispatches through
+`CriticalPairFrontier`.
+
+Current source truth is three direct declarations with `sorry`, all in
+`ATail/FrontierLiveClosure.lean`:
+
+```text
+false_of_originalFrontierUniqueRadiusArm
+false_of_frontierBiApexRobustExactFiveGlobalCoverStarResidual
+false_of_frontierLargeOppositeCapsBiApexRobustResidual
+```
+
+The first and the robust dispatcher are the two top-level public arms.  The
+exact-five declaration is directly called beneath the robust dispatcher in
+source, although the current kernel-edge miner drops that dependency and can
+display it as off-spine.  Treat it as a live source obligation.
+
+The exact-five theorem is the first closure target.  Its only admissible
+branch outputs are already terminal:
+
+- asymmetric: first-apex co-radiality of the normalized outside pair, a
+  complete alternative `IsM44`, or direct `False`;
+- all-one-hit: a complete `CriticalFiberClosingCore R`, a complete
+  alternative `IsM44`, or direct `False`.
+
+The checked scratch regression
+`exact5-asymmetric-global-minimality-boundary` proves that outside-pair
+minimality can return the existing hub with a singleton core.  The exact
+`exact5-all-one-finite-metric-regression` simultaneously satisfies every
+currently extracted finite-metric, global-K4, total critical-map, robust,
+minimality, retained-row, cap-incidence, and cover-star condition while
+blocking both closing-core ingresses.  The latter is not planar/MEC and is not
+a counterexample; it is a proof-route gate.  Together they retire standalone
+minimal-deletion, finite-incidence, metric-minimality, and local Kalmanson
+extensions on exact five.
+
+The next theorem/search must combine the total fixed critical system with one
+common rank-two Euclidean realization and the actual MEC/cap/`noM44` packet,
+and it must return one of the terminal outputs above.  Do not add another
+conditional adapter.  The unique arm remains independent: its checked
+exact-four/five normal forms have no terminal consumer, with the exact-five
+coincident-blocker cell the narrowest honest direct-`False` target.
+
 ## Change control
 
 This document supersedes ad-hoc status narration. Any status change must update
