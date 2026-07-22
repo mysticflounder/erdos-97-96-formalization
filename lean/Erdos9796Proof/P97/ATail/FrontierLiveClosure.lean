@@ -50,10 +50,48 @@ theorem false_of_originalFrontierUniqueRadiusArm
     False := by
   sorry
 
-/-- The one remaining exact-five consumer.  Its normalized input preserves a
-two-edge global-cover star.  On an asymmetric arm the two-hit source remains
-paired with the one-hit hub by a carrier-wide deletion cover; on the symmetric
-arm the complete star is retained with all three one-hit rows. -/
+/-- Keep the MEC triangle and cap partition fixed, but designate the old first
+opposite cap as the new surplus cap. -/
+private noncomputable def redesignateFirstOppCapAsSurplus
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    (Q : FrontierBiApexRobustExactFiveSecondCapResidual B) :
+    SurplusCapPacket D.A where
+  hA := S.hA
+  hncol := S.hncol
+  triangleNonObtuse := S.triangleNonObtuse
+  hCirc := S.hCirc
+  partition := S.partition
+  surplusIdx := S.oppIndex1
+  surplus := by
+    have hgt : 4 < S.oppCap1.card :=
+      lt_of_lt_of_le (by omega) Q.firstOppCap_card_ge_six
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i <;>
+      simpa [SurplusCapPacket.oppIndex1, SurplusCapPacket.oppCap1, hi]
+        using hgt
+
+@[simp] private theorem redesignateFirstOppCapAsSurplus_oppCap1
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    (Q : FrontierBiApexRobustExactFiveSecondCapResidual B) :
+    (redesignateFirstOppCapAsSurplus Q).oppCap1 = S.oppCap2 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [redesignateFirstOppCapAsSurplus, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hi]
+
+/-- The exact-five residual closes after redesignating the first opposite cap
+as surplus.  A fresh common-deletion parent would force the old exact-five cap
+to have at least six points; the other fresh-frontier arm is the protected
+unique-radius terminal.  The legacy profile and outcome arguments remain only
+to preserve this exported theorem's interface. -/
 theorem false_of_frontierBiApexRobustExactFiveGlobalCoverStarResidual
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -64,7 +102,21 @@ theorem false_of_frontierBiApexRobustExactFiveGlobalCoverStarResidual
     (profile : LargeCapUniqueFiveSecondApexRadius D S)
     (outcome : ExactFiveGlobalCoverStarOutcome Q profile) :
     False := by
-  sorry
+  let _outcome := outcome
+  let T : SurplusCapPacket D.A := redesignateFirstOppCapAsSurplus Q
+  have hTfirst : T.oppCap1.card = 5 := by
+    rw [show T.oppCap1 = S.oppCap2 by
+      simp [T]]
+    exact Q.secondOppCap_card_eq_five
+  obtain ⟨freshRadius, _hfreshRadius, hfreshFour, ⟨freshFrontier⟩⟩ :=
+    exists_criticalPairFrontier_of_K4 D T H
+  apply CriticalPairFrontier.false_of_parentResidualConsumers
+    freshFrontier R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
+  · exact false_of_originalFrontierUniqueRadiusArm freshFrontier
+      R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
+  · intro freshParent
+    have hsix : 6 ≤ T.oppCap1.card := first_oppCap_card_ge_six freshParent
+    omega
 
 /-- The exact-five second-cap profile unconditionally supplies a favorable
 global cross-deletion pair and enters its terminal. -/

@@ -36,46 +36,28 @@ the live packet, first missing antecedent, circularity check, and immediate
 spine consumer. A negative compatibility result is a valid deliverable; a
 consumer without its geometric producer is not a closure route.
 
-## Current inventory (updated 2026-07-17)
+## Current inventory (updated 2026-07-22)
 
-The current source surface is **12 direct `sorry` declarations / 32 textual
-holes**, grouped into two Front-A proof clusters.  The liveData case tree is
-still extracted into named helpers, but the T1 and T3 permutation orbits are
-now source-sorry-free after production relabel wiring and remain only
-transitively open through K-A-PAIR.  The 22
-ERASE declarations have source proofs and no longer contribute source holes;
-their P2 native and downstream target builds now pass on the current working
-tree and remain tracked separately from global publication.
+The active A-tail source surface is **two direct `sorry` declarations / two
+textual holes**, both in `ATail/FrontierLiveClosure.lean`.
 
 | # | Cluster | Current source surface | Symbols | Textual holes | Front |
 |---|---|---|---:|---:|---|
-| 1 | Parent two-large-cap contradiction (legacy shared-radius symbol) | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | 1 | 1 | A |
-| 2 | liveData families | Four LIVE-Q helpers and seven LIVE-C center helpers carry direct holes; all LIVE-T1/LIVE-T3 helpers and `u1_largeCap_routeB_tail_liveData_false` itself are source-sorry-free | 11 | 31 | A |
-| **Total** | | | **12** | **32** | |
+| 1 | Original-frontier unique-radius arm | `false_of_originalFrontierUniqueRadiusArm` | 1 | 1 | A |
+| 2 | Large-opposite-caps robust arm | `false_of_frontierLargeOppositeCapsBiApexRobustResidual` | 1 | 1 | A |
+| **Total** | | | **2** | **2** | |
 
-The pinned-surplus general-m and endpoint general-m leaves are closed and are
-not part of the current inventory (matrix K-B-PIN and K-B-END-GENERAL).
-The refreshed source/graph checkpoint reports exactly the 12 declarations
-above.  The T1 and T3 declarations still inherit `sorryAx` through K-A-PAIR,
-but they are not direct source obligations.
-The full P2 fleet, downstream ERASE targets, and target-specific exact-pin gate
-pass from pushed commit `652fdfcb`. The global `CTRL-GRAPH`/publication gate
-remains open for the 12 direct Front-A declarations and shared-tree
-reproducibility. Both production relabel theorems and all 24 T1/T3 helper
-consumers are now in the source graph.
-`sorryAx` is the synthetic kernel marker reached through the remaining
-Front-A declarations and through the source-clean LIVE-T1 helpers' K-A-PAIR
-dependency, not a 25th source obligation.
+The old `DoubleApexOffSurplusSharedRadiusPair` and LIVE Q/C declarations are
+retired inside the commented legacy block of `U1LargeCapRouteBTail.lean`; they
+are not active Lean declarations.  The live caller instead dispatches through
+`CriticalPairFrontier`.  The exact-five child is now source-clean by cap
+redesignation, but its axiom closure still inherits `sorryAx` from the unique
+arm.  The pinned-surplus, endpoint, and ERASE clusters remain source-closed.
 
-The 2026-07-16 live `proof-blueprint` recheck reports the source index in
-sync, exactly these 12 on-spine declarations, and no off-spine placeholder
-sorries. At the K-A compatibility symbol,
-`DoubleApexOffSurplusSharedRadiusPair` is the only open project symbol in its
-31-node subtree; its body still reaches `sorryAx`. This does not make the 11
-LIVE-Q/C declarations closed: they remain separate on-spine frontier symbols
-until the parent contradiction is called before their slot split and
-reference mining proves that the old tree is dead or leaves sorry-free
-compatibility wrappers.
+This inventory is the current source scan.  Refresh proof-blueprint after the
+focused production build before publication; do not substitute the historical
+12-declaration LIVE inventory or count `sorry` tokens inside the commented
+legacy block.
 
 ## Current Front-A closure strategy (refreshed 2026-07-17)
 
@@ -329,24 +311,15 @@ Therefore the positive return cannot be obtained by enlarging the linear
 ordered-distance closure; it must use rank-two Euclidean/MEC or full global
 critical-system information.
 
-The bounded computational discovery gate is a fresh exact-five, card-13
-all-center gate, not a relabeling of the card-14 exact-six role table.
-This covers only the minimum-card slice: production proves `13 ≤ D.A.card`,
-not `D.A.card = 13`, so the honest complementary arm is `14 ≤ D.A.card`.
-No result from the card-13 gate closes that arm unless its extracted theorem
-schema is proved uniformly. The gate must retain the complete star outcome,
-all-center rows, the fixed total critical
-map with exact deletion semantics and explicit negations of the current
-terminal outcomes.  The implemented checkpoint does **not** yet retain the
-parent's stored `B₁/B₂` rows, and its `m[O₂]` row is the second-apex
-double-deletion row rather than retained `B₂`; it is therefore only a
-necessary-condition relaxation. Its escalation ladder is:
-finite incidence and criticality; common strict-convex order/Kalmanson;
-rank-two Euclidean realization; then MEC/nonobtuse support semantics and
-`noM44`. A SAT result at an earlier rung is only a regression for that
-abstraction. An UNSAT result is closure-relevant only after replayable
-coverage and, at the geometric rung, a certificate or theorem schema suitable
-for Lean checking.
+The earlier card-13 discovery gate described above is historical.  The
+source-faithful successor now retains both parent rows, the complete star
+outcome, all-center rows, the fixed total critical map, exact deletion
+semantics, and the current rank/Kalmanson source stream.  Its direct and
+mirror reduced unions are completely certified and feed the unconditional
+scratch theorem `false_of_exactFive_card13`; see the current checkpoint below.
+Production proves only `13 ≤ D.A.card`, so the honest complementary arm is
+still `14 ≤ D.A.card`.  No card-13 certificate is claimed uniformly on that
+arm.
 
 The existing card-at-least-14 survival-cover consumer does not close the
 complementary arm. Its exported robust outcome is already exactly
@@ -501,25 +474,89 @@ certificate was produced. This is only a historical diagnostic: the later
 aggregate LRAT endpoints and exact source dispatcher close the card-13
 all-one arm. Do not resume literal-core accumulation.
 
-For the complementary `7 <= S.oppCap1.card` slice, the source audit in
-`scratch/atail-force/exact5-firstcap-ge-seven-route-audit/` proves
-`14 <= D.A.card`. The existing card-at-least-14 source-faithful consumer can,
-however, return the already-held `B.secondApex_robust`; it is a recurrence,
-not closure. The first live outputs remain the asymmetric first-apex return
-or a genuine alternative short-cap packet, and on the all-one arm a
-`CriticalFiberClosingCore R` or that same short-cap packet.
+### Exact-card-13 distinct-radius closure checkpoint (2026-07-22)
 
-These diagnostics do not change the primary mathematical target. Closure must
-still couple the total fixed critical system to one common rank-two Euclidean
-realization and the actual MEC/cap/`noM44` packet, then return the existing
-co-radial, `CriticalFiberClosingCore`, alternative-`IsM44`, or direct-`False`
-terminal. Freeze the finite gate except for a verified survivor, a compact
-coverage certificate, or a source theorem that supplies genuinely new
-nonlinear parent force.
+The former `338` verified-UNSAT / `237` unresolved distinct-radius aggregate
+checkpoint is superseded. Recursive exact cubing now covers all `512` direct
+and all `512` mirror leaves. Every leaf is kernel-checked, and each complete
+current Lean-emitted selected union is itself connected to a checked
+multipart-LRAT endpoint:
 
-Do not reopen the parent-row bridge, the exact-five all-reverse occurrence,
-or the MEC-extreme packet route.  The cap-six `L` all-reverse program below
-is a distinct branch and is not the live exact-five-cap obligation.
+- direct: `17,537` selected assertions, partitioned into `770` exact packet,
+  `7,898` rank/Kalmanson, and `8,869` base/retained-row producers;
+- mirror: `18,043` selected assertions, partitioned into `781` exact packet,
+  `7,825` rank/Kalmanson, and `9,437` base/retained-row producers.
+
+Both base/retained maps are exhaustive, reclassify every mapped expression
+against the current `58,433`-assertion source stream, and fail closed on a
+missing or duplicate producer, expression/hash drift, or module drift. The
+source adapters include both retained parent rows; the final extended
+pair-center bound uses `R.common.packet.row₂.same_radius` at the physical
+second apex. The generated `h37390` first-row cardinality adapter uses explicit
+Nat-indexed parent/first-row equalities, avoiding the pathological
+definitional-unification build path; the affected generated tail is split
+into bounded modules without changing the theorem map.
+
+`scratch/atail-force/exact5-card13-distinct-radius-source-ingress/coordinator/ExactFiveCard13Closure.lean`
+is the generated final target: it joins the direct and mirror callbacks to
+`false_of_exactFive_card13_distinctRadius`, then combines that result with the
+already-closed same-radius branch in the scratch theorem
+
+```lean
+false_of_exactFive_card13
+```
+
+The source-fresh warning-as-error acceptance gate is in progress across every
+authoritative base and semantic module, both aggregate callbacks, the final
+dispatcher, and an axiom query showing no `sorryAx`. The representative rank,
+exact-class, and connectivity callback smokes pass in both orientations; do
+not promote the final exact-card-13 theorem to source-fresh complete until the
+full generated-module rebuild and axiom query finish. This remains a valuable
+independent exact-card-13 certificate, but it is no longer load-bearing for
+the live exact-five source declaration after the cap-redesignation reduction
+below.
+
+### Exact-five cap-redesignation closure (2026-07-22)
+
+The exact-five leaf is not an independent mathematical frontier.  The checked
+adapter in `scratch/atail-force/cardge14-global-occurrence/` keeps the same MEC
+triangle and cap partition but designates the old first opposite cap as the
+new surplus cap.  For
+
+```text
+T := redesignateFirstOppCapAsSurplus Q
+```
+
+the source-checked cap identities are
+
+```text
+T.surplusCap = S.oppCap1
+T.oppCap1   = S.oppCap2
+T.oppCap2   = S.surplusCap.
+```
+
+`Q.firstOppCap_card_ge_six` makes `T` a valid surplus packet, while
+`Q.secondOppCap_card_eq_five` gives `T.oppCap1.card = 5`.  Extract a fresh
+`CriticalPairFrontier` for `T` using the same arbitrary critical system and
+apply `originalUnique_or_commonDeletionParent`.  The unique arm is exactly an
+input to the existing `false_of_originalFrontierUniqueRadiusArm`.  A common
+parent is impossible: the source-clean theorem `first_oppCap_card_ge_six`
+would give `6 ≤ T.oppCap1.card`, contradicting the exact value five.
+
+This reduction uses neither the exact-five radius profile nor the global-cover
+outcome, has no cardinality split, does not invoke the large-opposite-cap
+theorem, and does not recurse into exact five.  Its only open axiom dependency
+is the already-separate unique-radius theorem.  It is now copied into and
+successfully built from `FrontierLiveClosure.lean`, removing the exact-five
+textual `sorry`; the result is source-closed but remains `sorryAx`-dependent through
+`false_of_originalFrontierUniqueRadiusArm` until that theorem is proved.
+
+The previous card-at-least-14 occurrence/mining route is retired from the live
+exact-five spine.  Its exact nonlinear regression remains a valid negative
+gate against cap-local escape theorems, but no card-at-least-14 producer is
+needed for this declaration.  Likewise, the exact-card-13 LRAT proof remains
+an independent source-clean verification rather than a prerequisite for the
+live reduction.
 
 ### Historical exact-five ownership and provenance correction (2026-07-17; superseded for the exact-five-cap branch)
 
@@ -8141,19 +8178,18 @@ for current A-tail execution.  The live Route-B caller now bypasses the old
 `DoubleApexOffSurplusSharedRadiusPair` and LIVE Q/C tree and dispatches through
 `CriticalPairFrontier`.
 
-Current source truth is three direct declarations with `sorry`, all in
+Current source truth is two direct declarations with `sorry`, both in
 `ATail/FrontierLiveClosure.lean`:
 
 ```text
 false_of_originalFrontierUniqueRadiusArm
-false_of_frontierBiApexRobustExactFiveGlobalCoverStarResidual
 false_of_frontierLargeOppositeCapsBiApexRobustResidual
 ```
 
-The first and the robust dispatcher are the two top-level public arms.  The
-exact-five declaration is directly called beneath the robust dispatcher in
-source, although the current kernel-edge miner drops that dependency and can
-display it as off-spine.  Treat it as a live source obligation.
+These are the unique and robust large-opposite-cap terminal arms.  The
+exact-five declaration remains directly called beneath the robust dispatcher,
+but its body is now source-clean by cap redesignation.  It still reaches
+`sorryAx` only through the unique-arm theorem.
 
 The exact-five theorem is the first closure target.  Its only admissible
 branch outputs are already terminal:
@@ -8211,63 +8247,36 @@ the final three-way source dispatcher imports all three certificates in one
 kernel check. The former six hub/radius `UNKNOWN` cells are historical
 diagnostics, not the current status.
 
-The kernel-checked card-13 parent-row coupling gives the remaining
-mathematical boundary. `false_of_exactFive_card13_allRowsOneHit` now closes the
-exact-card-13 all-one outcome independently of the first-apex radius by
-constructing the complete semantic ingress and dispatching its exact left,
-middle, or right constructor. `false_of_exactFive_card13_sameRadius` combines
-that result with the two asymmetric spoke terminals and closes the entire
-card-13 same-first-apex-radius outcome in scratch. Therefore the only
-exact-card-13 residue is the asymmetric distinct-radius mode: rule out the two
-outside points splitting across the retained and actual-`B1` exact classes.
-The source-faithful aggregate refinement has 338 DRAT-verified first-level
-UNSAT child cubes, 237 unresolved child cubes, and no SAT child, so it remains
-`UNKNOWN`; the separate 55 first-pass UNSAT parent cells now also have retained
-DRAT-replay-verified proofs. For card at least fourteen, the checked
-cardinality dispatcher proves the exact split
-`7 ≤ oppCap1.card ∨ 6 ≤ surplusCap.card`; the existing survival-cover consumer
-only recurs to robustness.  Thus new mathematical work is concentrated in the
-distinct-radius asymmetric and card-at-least-14 branches, while all-one is now
-closed scratch proof work. Do not add another conditional adapter.
-The unique arm remains independent: its
-checked exact-four/five normal forms have no terminal consumer, with the
-exact-five coincident-blocker cell the narrowest honest direct-`False` target.
+Exact card 13 is now one generated scratch proof target, not two open
+radius modes.  `false_of_exactFive_card13_sameRadius` closes the equal-radius
+arm.  On the distinct-radius arm, recursive cubing covers all `512` direct and
+all `512` mirror leaves, and the current Lean source maps account for every
+selected assertion: `770 + 7,898 + 8,869 = 17,537` direct and
+`781 + 7,825 + 9,437 = 18,043` mirror.  The generated callbacks feed
+`false_of_exactFive_card13_distinctRadius`; the exhaustive radius split then
+targets `false_of_exactFive_card13`.  The full source-fresh callback rebuild
+and final axiom audit are in progress. The old `338`-UNSAT /
+`237`-unresolved checkpoint is superseded and must not be described as the
+current boundary.
 
-The card-13 same-radius asymmetric subcase has since advanced from a search
-target to a DRAT-verified finite ordinal certificate for both reflected source
-orbits.  The kernel-checked boundary audit closes the exact `(5,6,5)` apex
-placement, reversal/chirality, the common-label role transport, and the exact
-78-distance rank packing, including the source-valid proof that the blocker
-is canonical index `2`.  The Boolean carrier packing is also kernel-checked.
-The source bridge has now proved all 1,899 selected antecedents: 145 base
-row/shell facts, 25 frontier/role/same-radius facts, 67 rank bounds, 334
-row/shell rank guards, and 1,328 strict-Kalmanson guards.  All 30
-source-to-expression chunks compile.  Lean's verified `BVLogicalExpr`/LRAT
-pipeline checks the factor-free CaDiCaL certificate and proves the finite
-expression unsatisfiable; the public source wrapper has no `sorryAx` and only
-the expected native checker trust boundary.  The full-parent coordinator now
-constructs the canonical role prepacket, semantic table, and appropriate cover
-family for either asymmetric spoke outcome and applies that verified wrapper.
-Both `false_of_exactFive_card13_sameRadius_spoke₁` and
-`false_of_exactFive_card13_sameRadius_spoke₂` compile warning-clean with no
-`sorryAx`. The new three-way dispatcher also proves
-`false_of_exactFive_card13_sameRadius`, so the card-13, exact-five,
-same-radius branch is **PROVEN in scratch**, including its all-one and both
-asymmetric outcomes. This closes a genuine branch but not the production
-exact-five declaration: the asymmetric distinct-radius and card-at-least-14
-leaves remain.
-The distinct-cross local linear packet is exactly SAT, so that sibling still
-requires the total fixed-`H`/cover surface or nonlinear MEC geometry.  A new
-distinct-specific aggregate encoding now retains that total finite surface and
-the two exact-four first-apex classes. Recursive cubing has independently
-verified 338 UNSAT children and leaves 237 children unresolved, with no SAT
-child; therefore the distinct sibling remains `UNKNOWN`. In contrast, all
-three exact-card-13 all-one finite endpoints now have kernel-checked LRAT
-proofs and complete source-semantic ingress. Their final Boolean compositions,
-combined import, and source dispatcher are complete and contain no `sorryAx`.
-No production source `sorry` is closed at this checkpoint because the parent
-exact-five consumer must still cover the asymmetric distinct-radius and
-card-at-least-14 leaves.
+The cap-redesignation reduction supersedes the card-at-least-14 occurrence
+program for the live exact-five declaration. Designating `S.oppCap1` as the
+surplus cap produces a packet whose first opposite cap is the old exact-five
+`S.oppCap2`. A fresh common-deletion parent would force that five-point cap to
+have cardinality at least six, so the fresh frontier can only survive through
+the existing unique-radius arm. The reduction is uniform in carrier
+cardinality, the inherited critical system, the radius profile, and the
+global-cover outcome; it does not call itself or the large-opposite-cap
+theorem.
+
+Accordingly, the live exact-five textual `sorry` is closed by the checked
+redesignation adapter and is no longer an independent proof frontier. Its
+axiom closure still reaches `sorryAx` through
+`false_of_originalFrontierUniqueRadiusArm`. The exact-card-13 LRAT theorem is
+an independent source-clean checkpoint, not a dependency of this source
+closure. The unique first-apex arm remains independent and is now the sole
+open dependency inherited by the exact-five path; its checked exact-four/five
+normal forms still lack a terminal consumer.
 
 ## Change control
 
