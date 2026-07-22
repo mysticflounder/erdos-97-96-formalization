@@ -1,0 +1,117 @@
+{
+  "all_center_global_k4": false,
+  "cap_cards": [
+    6,
+    7,
+    5
+  ],
+  "carrier_bisector_centers_for_strict_pair": [],
+  "carrier_card": 15,
+  "centers_without_global_k4": [
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "J_core_1",
+    "J_core_2",
+    "J_core_3",
+    "K",
+    "t2"
+  ],
+  "coordinate_sha256": "59bb3d81ac298f9f80eca9b0c289ace910724e03e5286ded57694d1cf134978e",
+  "endpoint_checker_sha256": "88ee5fbc55d4e6ffada9be413009ee3e786acc4e4c85eaae481519b8283cb222",
+  "endpoint_source_sha256": "6d51c5ef22e550a4719db31a47d49350bc2a6658fb89cc01a1b18f94ca0e459d",
+  "epistemic_scope": "exact unique-four local residual plus protected singleton transition; not all-center K4, CounterexampleData, D.Minimal, or total CSS",
+  "every_first_class_deletion_blocks_first_apex": true,
+  "first_apex": "O",
+  "first_apex_unique_exact_four_class": [
+    "A",
+    "C",
+    "E",
+    "J"
+  ],
+  "first_isolated_missing_layer": "all-center HasNEquidistantProperty 4",
+  "fresh_center": "t1",
+  "fresh_center_exact_critical_shell": [
+    "J",
+    "J_core_1",
+    "J_core_2",
+    "J_core_3"
+  ],
+  "fresh_center_strictly_inside_mec": true,
+  "frontier_pair": [
+    "C",
+    "E"
+  ],
+  "minimal_blocking_deletion": [
+    "J"
+  ],
+  "no_m44_all_mec_permutations": true,
+  "partial_critical_system_sources": [
+    "A",
+    "C",
+    "E",
+    "J",
+    "J_core_1",
+    "J_core_2",
+    "J_core_3"
+  ],
+  "protected_deletion_set": [
+    "A",
+    "C",
+    "E",
+    "J",
+    "O"
+  ],
+  "protected_set_provenance_realized": true,
+  "same_carrier_global_k4_subcarrier_count": 0,
+  "schema": 1,
+  "second_apex_double_deletion_support": [
+    "G",
+    "H",
+    "K",
+    "O"
+  ],
+  "sources_without_critical_shell_candidate": [
+    "F",
+    "G",
+    "H",
+    "I",
+    "K",
+    "O",
+    "t1",
+    "t2"
+  ],
+  "status": "PASS_EXACT_PROTECTED_SINGLETON_STRICT_INTERIOR",
+  "strict_first_cap_pair": [
+    "E",
+    "J"
+  ],
+  "strict_hull_order": [
+    "O",
+    "t1",
+    "I",
+    "F",
+    "t2",
+    "A",
+    "J",
+    "J_core_1",
+    "J_core_2",
+    "J_core_3",
+    "E",
+    "C",
+    "G",
+    "K",
+    "H"
+  ],
+  "total_critical_shell_system_exists": false,
+  "trust_boundary": "EXACT_SYMBOLIC_SYMPY_NOT_LEAN_KERNEL",
+  "unique_mec_boundary": [
+    "A",
+    "C",
+    "O"
+  ]
+}

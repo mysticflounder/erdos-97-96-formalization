@@ -1,0 +1,270 @@
+{
+  "claim_scope": "This loop audits two fixed n=11 finite projections. It does not by itself prove the Lean unique-four residual or a Euclidean realization.",
+  "epistemic_status": "RUNNING_FAIL_CLOSED",
+  "exact_two_strict_hit_overlay": true,
+  "final_kalmanson_bank_counts": {
+    "kernel": 10,
+    "pending": 36,
+    "total": 46
+  },
+  "final_kalmanson_bank_sha256": "04105ec974d7e15664d9addca6473329f71f943b14a0037dad9ce3560fcda4f3",
+  "final_u5_bank_sha256": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46",
+  "finished_unix": 1784760817.0792162,
+  "initial_kalmanson_bank_counts": {
+    "kernel": 10,
+    "pending": 26
+  },
+  "max_new_rounds": 6,
+  "pair_minimality_overlay": true,
+  "profiles": [
+    4,
+    5
+  ],
+  "rounds": [
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "9e6fb75542596fbbc8b54928b82796e0d624de777035d7af7303bad21ca9c5b1",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "ce243ebdefaa6d881de0ca703bfc3b77669ce2649ae026d2f77e9a0648d04980"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "b49356ba5e07843136546b6127b157ba9028119f9f95ace73ae31b3a9caa932f",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_4.result.json",
+          "result_sha256": "d48481d06003cd12a22cb1756398239ac6df6749f5fed826b3cbd6d4e3df5cb8",
+          "solver_log_retained": false,
+          "solver_log_sha256": "1ac28a5cb1b641ae11a1a5402dcecbbe9b5b8d94b3f7151532adb84437f87c49"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "a88ac3ba6ce835d3f6fd03c1669372b6cebe39167c691b9d15cd896621e507b7",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_5.result.json",
+          "result_sha256": "7ad2ac6213413b395bd4bd0492463d7f3d2664862fc2a48a3bf47dadc7b91c23",
+          "solver_log_retained": false,
+          "solver_log_sha256": "edb0037a64b57854b04cefd797ca2d08eac8195113459a90bffbcc12d75d4a80"
+        }
+      ],
+      "round": 1,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "699e1a5e0c1c8123f4ad9d09c577c3f6d4a559fc89bc3a975691a7d9bf4df3a0",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "ce243ebdefaa6d881de0ca703bfc3b77669ce2649ae026d2f77e9a0648d04980"
+      },
+      "new_u5_catalog_indices": [
+        56
+      ],
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "ab5f763a5a12278ec00afcb27005447e383b6ab3dba6a9beed8bbddbccb8a4c3",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_002/opp1_4.result.json",
+          "result_sha256": "cd074f4a26119b2447f7a660650a1d2cff448a7885d2c772e766313d52a8e0c2",
+          "solver_log_retained": false,
+          "solver_log_sha256": "da7f59214b9fd397646b80aed0b4157138f6c182f6dc26592379aed7e7fa101c"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "2e027821f0819eed348f872504ce8a44aee95385b434c4e53a0ba6d08fb1a8af",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_002/opp1_5.result.json",
+          "result_sha256": "d8782b129b59979fe915e2d6f44330ac5259f840ca77b6425f6bad40fc8c34f2",
+          "solver_log_retained": false,
+          "solver_log_sha256": "f9e20420c9bb4559c8115364244f6fc0a0793ea092dd32563beb4bed853ff314"
+        }
+      ],
+      "round": 2,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_SOURCE_PROVED_U5_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "699e1a5e0c1c8123f4ad9d09c577c3f6d4a559fc89bc3a975691a7d9bf4df3a0",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "1b280bd40129a51ae097e29f6634583960a89ec426a56f12ad37e0c423fb4ea1",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_4.result.json",
+          "result_sha256": "d829e5d6ced4a1efce76b1425241c59c5d2f3818f01e7baeec952687e4b3ea0a",
+          "solver_log_retained": false,
+          "solver_log_sha256": "8d0ef566b280a5ad101b2a6b50321459161038b1d3e88617d41e3b0ad5f863ad"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "5ee48b2a8e8dcc5b3111af779839132264a504598f6c24eda351628eba1f9a23",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_5.result.json",
+          "result_sha256": "f862f0f8a83ba8b7b82dd47dcf95dcde910a03d13f79da1694b144a588d8eccb",
+          "solver_log_retained": false,
+          "solver_log_sha256": "f53004374f51ffc0e899f9510819f2f8747f2bfc4b20759acbb9c9d7eb0b5143"
+        }
+      ],
+      "round": 3,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "ffa2edd241171ae12d0db128f52d713f60ab58c8ec85677860b23e5924c8ed89",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "35934b6e8b89f60203fe3ab2b99684d0dc8d3eddd5070442606856fd4adb6d85",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_4.result.json",
+          "result_sha256": "7c3778af43e125169f901f73ab43811d2e93f1ad960567ecafe227ad61ca0b23",
+          "solver_log_retained": false,
+          "solver_log_sha256": "c6041e1dec560e3f4558142517e8426a256e4fa17e17632b3b5707fac2bcd83b"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "c27b89fff0ea4b6a790ce5bfe6d837244644c3f3c409055234499031ddf210fb",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_5.result.json",
+          "result_sha256": "627c91b9b871a8ff070df1c23d7fdb1e2af67b0f0290f7640a5f6209c0ee79f6",
+          "solver_log_retained": false,
+          "solver_log_sha256": "c429e92c841269acf55356cea167fb962bc9e1547149d7558a17dab055a446b2"
+        }
+      ],
+      "round": 4,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "c6344475ad5d9422ef8ea7c702ed220538f0bf6ab98d8f81b9caa2bf1054618c",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "37db594c49ed93453b6e436f59c99b793154fc9ee71c63a687abde5e1ec4bdbf",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_4.result.json",
+          "result_sha256": "af166e02475e20902acf8d2a25795ed65458ba67b6a24509587b156a5367ef6f",
+          "solver_log_retained": false,
+          "solver_log_sha256": "2a5b3495570a48e40963a2761781861533d7c78b92a98c5c18075ee919928913"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "340d9999aae3bf98628bd5af3c8c11c37f993217bf1f003a936f4068c331df0b",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_5.result.json",
+          "result_sha256": "e6c741bb9786da0a58d12b75b0f941aa77d8977609a5c93b84ef4735a262ac99",
+          "solver_log_retained": false,
+          "solver_log_sha256": "2275bc249418057f69b3ae111f0db51726e1f151e24c3a1e696621b49d22d33c"
+        }
+      ],
+      "round": 5,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "7fa4ca03978671c26d9ae39a4e261217227ca944a7df67dbcd96afacdf73cc1a",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "f58f0f18afd3a5d0b14a66661a5b9361e3ae3c3a304991fb1d3bad764a270cad",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_4.result.json",
+          "result_sha256": "6b396b41a53e1c0a12fd3fe631478d5f47c864c5fb0423e29bb22f20165df57d",
+          "solver_log_retained": false,
+          "solver_log_sha256": "c41e32e235068ff54c87dbb6940810c6fb78c46b6611d63767b135890601bf57"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "b2530cf616b27e1e6ac49af13e8f458283c7be6700c8738593b983785e13d796",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_5.result.json",
+          "result_sha256": "a545b047321bc9464cafa1c057b6d982833daab1c720405a51edb507692c44de",
+          "solver_log_retained": false,
+          "solver_log_sha256": "1e535f3deaf1915fb41dde82f10bb5145b383d6de3f44e8f1940e486e2f02024"
+        }
+      ],
+      "round": 6,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    }
+  ],
+  "schema": "p97-exact-four-two-profile-cegar-run-v1",
+  "started_unix": 1784760091.140645,
+  "strict_cap_minimality_overlay": false,
+  "terminal_status": "ROUND_CAP_REACHED_UNRESOLVED"
+}

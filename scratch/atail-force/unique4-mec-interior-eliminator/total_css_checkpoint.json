@@ -1,0 +1,33 @@
+{
+  "all_center_global_k4": false,
+  "carrier_card": 35,
+  "critical_support": [
+    "J",
+    "J_css_1",
+    "J_css_2",
+    "J_css_3"
+  ],
+  "first_apex_class_card": 5,
+  "model_sha256": "adbc3583b5bfefc0d2cf80af45b3a09a2a0d47ede836168d9bb61683083e1ff7",
+  "protected_deletion_set": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "J",
+    "O"
+  ],
+  "protected_source": "J",
+  "schema": 1,
+  "scope": "total CSS and protected strict-interior singleton are compatible on an exact-five local model; unique-four and all-center K4 are not supplied",
+  "source_deletion_blocks_at_center": true,
+  "status": "PASS_TOTAL_CSS_PROTECTED_SINGLETON_STRICT_INTERIOR",
+  "strict_interior_blocker_center": "F_k4_1",
+  "total_critical_shell_system_exists": true,
+  "trust_boundary": "EXACT_SYMBOLIC_SYMPY_NOT_LEAN_KERNEL",
+  "unique_mec_boundary": [
+    "A",
+    "C",
+    "O"
+  ]
+}

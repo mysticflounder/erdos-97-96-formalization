@@ -1,0 +1,31 @@
+{
+  "all_single_constraint_deletions": "SAT",
+  "all_variable_coefficients_cancel": true,
+  "constraint_count": 16,
+  "deletion_minimal": true,
+  "equality_multipliers": {
+    "row_0_3_5": "-1/8",
+    "row_0_3_9": "1/8",
+    "row_1_2_6": "1/8",
+    "row_1_2_9": "-1/8",
+    "row_2_0_6": "-1/8",
+    "row_2_0_8": "1/8",
+    "row_3_2_5": "1/8",
+    "row_3_2_8": "-1/8"
+  },
+  "independent_qf_lra_replay": "UNSAT",
+  "inequality_multipliers": {
+    "kal2_0_1_5_6": "1/8",
+    "kal2_0_1_6_7": "1/8",
+    "kal2_0_1_7_8": "1/8",
+    "kal2_0_1_8_9": "1/8",
+    "kal2_1_2_5_6": "1/8",
+    "kal2_2_3_5_6": "1/8",
+    "kal2_2_3_6_7": "1/8",
+    "kal2_2_3_7_8": "1/8"
+  },
+  "normalized_weighted_rhs": "1",
+  "schema": "p97-fixed-row-farkas-core-verification-v1",
+  "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_5.full-lra.json",
+  "status": "VERIFIED_EXACT_FARKAS_CORE"
+}

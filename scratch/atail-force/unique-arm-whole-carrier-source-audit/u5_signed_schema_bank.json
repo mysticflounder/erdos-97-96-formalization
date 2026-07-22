@@ -1,7 +1,7 @@
 {
   "epistemic_status": "SOURCE_PROVED_REACHABLE_SELECTED_ROW_ADAPTER_VERIFIED",
   "schema": "p97-exact-four-u5-signed-schema-bank-v1",
-  "schema_count": 7,
+  "schema_count": 8,
   "schemas": [
     {
       "catalog_index": 2,
@@ -868,6 +868,189 @@
         "selected_row_adapters": "scratch/atail-force/general-n-u5-schema-coverage/SelectedRowU5Adapters.lean",
         "source_line": 24,
         "source_path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedOuterAux.lean"
+      },
+      "role_count": 6,
+      "transport": "all_injective_role_maps"
+    },
+    {
+      "catalog_index": 56,
+      "consumer": "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_selected_exact_tail_pair_incompatibility",
+      "consumers": [
+        "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_selected_exact_tail_pair_incompatibility"
+      ],
+      "negative_memberships": [
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "positive_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "provenance": {
+        "catalog": "scratch/atail-force/general-n-u5-schema-coverage/schema_catalog.json",
+        "catalog_digest": "565b29de5bcd7e283abda2d0b983f0aa75ddf2ca6f9b03eafe6ade6162b92866",
+        "selected_row_adapters": "scratch/atail-force/general-n-u5-schema-coverage/SelectedRowU5Adapters.lean",
+        "source_consumers": [
+          {
+            "fq_name": "Problem97.U5QCriticalTripleClass.qcritical_exact_selected_selected_exact_tail_pair_incompatibility",
+            "hypothesis_kinds": [
+              "class_membership",
+              "dangerous_triple",
+              "qdeleted_class",
+              "triple_membership"
+            ],
+            "module": "RVOL.P97.U5GlobalIncidenceQCriticalExactSelectedSelectedExactTailPair",
+            "point_roles": [
+              "q",
+              "p",
+              "t\u2082",
+              "t\u2083",
+              "u",
+              "e"
+            ],
+            "proof_status": "source-proved",
+            "raw_negative_memberships": [
+              [
+                "e",
+                "q"
+              ],
+              [
+                "t\u2082",
+                "q"
+              ],
+              [
+                "t\u2083",
+                "q"
+              ],
+              [
+                "u",
+                "q"
+              ]
+            ],
+            "raw_positive_memberships": [
+              [
+                "e",
+                "p"
+              ],
+              [
+                "e",
+                "t\u2083"
+              ],
+              [
+                "p",
+                "q"
+              ],
+              [
+                "p",
+                "t\u2082"
+              ],
+              [
+                "p",
+                "t\u2083"
+              ],
+              [
+                "t\u2082",
+                "e"
+              ],
+              [
+                "t\u2082",
+                "p"
+              ],
+              [
+                "t\u2083",
+                "e"
+              ],
+              [
+                "t\u2083",
+                "t\u2082"
+              ],
+              [
+                "t\u2083",
+                "u"
+              ],
+              [
+                "u",
+                "p"
+              ],
+              [
+                "u",
+                "t\u2082"
+              ],
+              [
+                "u",
+                "t\u2083"
+              ]
+            ],
+            "source_line": 25,
+            "source_path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactTailPair.lean",
+            "source_reachable": true,
+            "source_shape": "3dcdb3a3f361662b"
+          }
+        ]
       },
       "role_count": 6,
       "transport": "all_injective_role_maps"

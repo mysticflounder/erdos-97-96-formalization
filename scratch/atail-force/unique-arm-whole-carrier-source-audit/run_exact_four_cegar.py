@@ -285,6 +285,7 @@ def encode_and_solve(
     cadical: str,
     strict_cap_minimality_overlay: bool,
     pair_minimality_overlay: bool,
+    exact_two_strict_hit_overlay: bool,
 ) -> dict[str, Any]:
     stem = round_dir / f"opp1_{profile}"
     cnf = stem.with_suffix(".cnf")
@@ -301,6 +302,8 @@ def encode_and_solve(
         command.append("--strict-cap-minimality-overlay")
     if pair_minimality_overlay:
         command.append("--pair-minimality-overlay")
+    if exact_two_strict_hit_overlay:
+        command.append("--exact-two-strict-hit-overlay")
     run_checked(command)
     return {"profile": profile, "cnf": cnf, "result": result, "solver_log": solver_log}
 
@@ -379,6 +382,7 @@ def main() -> int:
     parser.add_argument("--work-dir", type=Path, default=HERE / "cegar")
     parser.add_argument("--strict-cap-minimality-overlay", action="store_true")
     parser.add_argument("--pair-minimality-overlay", action="store_true")
+    parser.add_argument("--exact-two-strict-hit-overlay", action="store_true")
     args = parser.parse_args()
     if args.max_rounds <= 0 or args.sat_timeout_seconds <= 0:
         parser.error("round and timeout limits must be positive")
@@ -395,6 +399,7 @@ def main() -> int:
         "profiles": [4, 5],
         "strict_cap_minimality_overlay": args.strict_cap_minimality_overlay,
         "pair_minimality_overlay": args.pair_minimality_overlay,
+        "exact_two_strict_hit_overlay": args.exact_two_strict_hit_overlay,
         "initial_kalmanson_bank_counts": bank_counts,
         "rounds": [],
         "terminal_status": None,
@@ -419,6 +424,7 @@ def main() -> int:
                     profile, round_dir, args.sat_timeout_seconds, args.cadical,
                     args.strict_cap_minimality_overlay,
                     args.pair_minimality_overlay,
+                    args.exact_two_strict_hit_overlay,
                 ),
                 (4, 5),
             ))

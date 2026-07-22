@@ -200,6 +200,7 @@ def encode(
     u5_bank_path: Path,
     strict_cap_minimality_overlay: bool = False,
     pair_minimality_overlay: bool = False,
+    exact_two_strict_hit_overlay: bool = False,
 ) -> tuple[CNF, dict[str, object]]:
     if n != 11:
         raise ValueError("this bounded correctness-gate prototype is intentionally fixed at n=11")
@@ -358,6 +359,30 @@ def encode(
         for left, right in itertools.combinations(sorted(cap), 2):
             cnf.add(f"first_apex_class_{cap_name}_at_most_one",
                     [-in_class[left], -in_class[right]])
+    # Source-proved exact-two arm of
+    # `exactFour_twoStrict_or_alignedInteriorFrontier`: the exact class has
+    # two strict first-opposite-cap hits and exactly one hit in each adjacent
+    # closed cap.  Keep this independently toggleable; the aligned >=3 arm is
+    # a different Lean residual and must not be silently folded into it.
+    if exact_two_strict_hit_overlay:
+        add_exactly_k(
+            cnf,
+            tuple(in_class[point] for point in first_opposite_strict),
+            2,
+            "exact_two_strict_hits",
+        )
+        add_exactly_k(
+            cnf,
+            tuple(in_class[point] for point in surplus_cap),
+            1,
+            "exact_two_left_adjacent_hit",
+        )
+        add_exactly_k(
+            cnf,
+            tuple(in_class[point] for point in second_opposite_cap),
+            1,
+            "exact_two_right_adjacent_hit",
+        )
     for point in vertices:
         cnf.add("first_apex_row_eq_class", [-member[first_apex, point], in_class[point]])
         cnf.add("first_apex_row_eq_class", [-in_class[point], member[first_apex, point]])
@@ -747,6 +772,11 @@ def encode(
             "source-valid strict-pair blocking-subdeletion: fresh center outside the pair, "
             "nonempty V within the pair, no K4 after V, and K4 after returning every s in V"
         )
+    if exact_two_strict_hit_overlay:
+        encoded_source_projections.append(
+            "kernel-checked exact-two first-apex class distribution: two strict "
+            "first-opposite-cap hits and one hit in each adjacent closed cap"
+        )
 
     deliberately_omitted = [
         "all deletion-survival statements except the separate second-apex surviving class",
@@ -792,6 +822,12 @@ def encode(
             "Direct application to the distinct strict interior pair using only R.minimal, "
             "pair carrier membership, and a remaining carrier point."
             if pair_minimality_overlay else None
+        ),
+        "exact_two_strict_hit_overlay": exact_two_strict_hit_overlay,
+        "exact_two_strict_hit_source_theorem": (
+            "Problem97.ATailUniqueFourClassCapDistributionScratch."
+            "exactFour_twoStrict_or_alignedInteriorFrontier"
+            if exact_two_strict_hit_overlay else None
         ),
         "encoded_source_projections": encoded_source_projections,
         "deliberately_omitted_source_fields": deliberately_omitted,
@@ -1068,6 +1104,7 @@ def main() -> int:
     parser.add_argument("--self-test", action="store_true")
     parser.add_argument("--strict-cap-minimality-overlay", action="store_true")
     parser.add_argument("--pair-minimality-overlay", action="store_true")
+    parser.add_argument("--exact-two-strict-hit-overlay", action="store_true")
     args = parser.parse_args()
     if args.self_test:
         self_test()
@@ -1083,6 +1120,7 @@ def main() -> int:
         args.n, args.opp1_card, args.planar_bank, args.kalmanson_bank, args.u5_bank,
         args.strict_cap_minimality_overlay,
         args.pair_minimality_overlay,
+        args.exact_two_strict_hit_overlay,
     )
     cnf.write_dimacs(args.cnf, metadata)
     result: dict[str, object] = {**metadata, "cnf_path": str(args.cnf), "cnf_sha256": sha256(args.cnf)}

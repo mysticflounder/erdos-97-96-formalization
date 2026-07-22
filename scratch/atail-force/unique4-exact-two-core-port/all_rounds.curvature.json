@@ -1,0 +1,1037 @@
+{
+  "all_have_exact_shell_four_turn_disjoint_arc_witness": false,
+  "all_have_four_separated_arc_witness": false,
+  "all_have_four_turn_disjoint_arc_witness": true,
+  "all_scalar_ledgers_unsat": true,
+  "record_count": 12,
+  "records": [
+    {
+      "deletion_minimal_unsat_core": [
+        "full_turn_sum",
+        "turn_2_positive",
+        "turn_4_positive",
+        "turn_5_positive",
+        "turn_7_positive",
+        "turn_8_positive",
+        "turn_9_positive",
+        "center_1_left_quarter_turn",
+        "center_3_right_quarter_turn",
+        "center_6_right_quarter_turn",
+        "center_10_left_quarter_turn"
+      ],
+      "exact_shell_four_separated_arc_witness_count": 0,
+      "exact_shell_four_turn_disjoint_arc_witness_count": 3,
+      "first_four_separated_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 8,
+        "normalized_arcs": [
+          {
+            "center": 10,
+            "end": 4,
+            "kind": "third_support_to_period_end",
+            "start": 0
+          },
+          {
+            "center": 10,
+            "end": 6,
+            "kind": "center_to_second_support",
+            "start": 4
+          },
+          {
+            "center": 6,
+            "end": 8,
+            "kind": "third_support_to_period_end",
+            "start": 6
+          },
+          {
+            "center": 3,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 9
+          }
+        ]
+      },
+      "first_four_turn_disjoint_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 6,
+        "normalized_arcs": [
+          {
+            "center": 0,
+            "end": 5,
+            "kind": "third_support_to_period_end",
+            "start": 0
+          },
+          {
+            "center": 1,
+            "end": 7,
+            "kind": "center_to_second_support",
+            "start": 4
+          },
+          {
+            "center": 10,
+            "end": 8,
+            "kind": "center_to_second_support",
+            "start": 6
+          },
+          {
+            "center": 6,
+            "end": 10,
+            "kind": "third_support_to_period_end",
+            "start": 8
+          }
+        ]
+      },
+      "five_role_consumer_embedding_count": 0,
+      "four_separated_arc_witness_count": 8,
+      "four_turn_disjoint_arc_witness_count": 165,
+      "solver_status": "UNSAT",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_4.result.json",
+      "strict_hit_checks": {
+        "first_apex_row_equals_exact_class": true,
+        "second_opposite_adjacent_hit_count": 1,
+        "strict_hit_count": 2,
+        "surplus_adjacent_hit_count": 1
+      }
+    },
+    {
+      "deletion_minimal_unsat_core": [
+        "full_turn_sum",
+        "turn_4_positive",
+        "center_3_left_quarter_turn",
+        "center_6_right_quarter_turn",
+        "turn_6_positive",
+        "center_0_left_quarter_turn",
+        "center_2_left_quarter_turn",
+        "turn_5_positive",
+        "turn_7_positive"
+      ],
+      "exact_shell_four_separated_arc_witness_count": 0,
+      "exact_shell_four_turn_disjoint_arc_witness_count": 0,
+      "first_four_separated_arc_witness": null,
+      "first_four_turn_disjoint_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 8,
+        "normalized_arcs": [
+          {
+            "center": 3,
+            "end": 2,
+            "kind": "center_to_second_support",
+            "start": 0
+          },
+          {
+            "center": 2,
+            "end": 4,
+            "kind": "center_to_second_support",
+            "start": 1
+          },
+          {
+            "center": 0,
+            "end": 7,
+            "kind": "center_to_second_support",
+            "start": 3
+          },
+          {
+            "center": 4,
+            "end": 10,
+            "kind": "third_support_to_period_end",
+            "start": 6
+          }
+        ]
+      },
+      "five_role_consumer_embedding_count": 0,
+      "four_separated_arc_witness_count": 0,
+      "four_turn_disjoint_arc_witness_count": 162,
+      "solver_status": "UNSAT",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_5.result.json",
+      "strict_hit_checks": {
+        "first_apex_row_equals_exact_class": true,
+        "second_opposite_adjacent_hit_count": 1,
+        "strict_hit_count": 2,
+        "surplus_adjacent_hit_count": 1
+      }
+    },
+    {
+      "deletion_minimal_unsat_core": [
+        "turn_1_positive",
+        "full_turn_sum",
+        "turn_0_positive",
+        "turn_3_positive",
+        "center_5_right_quarter_turn",
+        "center_7_right_quarter_turn",
+        "center_10_right_quarter_turn",
+        "turn_5_positive",
+        "center_0_right_quarter_turn"
+      ],
+      "exact_shell_four_separated_arc_witness_count": 0,
+      "exact_shell_four_turn_disjoint_arc_witness_count": 8,
+      "first_four_separated_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 10,
+        "normalized_arcs": [
+          {
+            "center": 9,
+            "end": 3,
+            "kind": "third_support_to_period_end",
+            "start": 0
+          },
+          {
+            "center": 7,
+            "end": 5,
+            "kind": "third_support_to_period_end",
+            "start": 3
+          },
+          {
+            "center": 4,
+            "end": 8,
+            "kind": "third_support_to_period_end",
+            "start": 5
+          },
+          {
+            "center": 1,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 8
+          }
+        ]
+      },
+      "first_four_turn_disjoint_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 6,
+        "normalized_arcs": [
+          {
+            "center": 0,
+            "end": 5,
+            "kind": "third_support_to_period_end",
+            "start": 0
+          },
+          {
+            "center": 10,
+            "end": 6,
+            "kind": "third_support_to_period_end",
+            "start": 4
+          },
+          {
+            "center": 0,
+            "end": 10,
+            "kind": "center_to_second_support",
+            "start": 5
+          },
+          {
+            "center": 5,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 9
+          }
+        ]
+      },
+      "five_role_consumer_embedding_count": 0,
+      "four_separated_arc_witness_count": 48,
+      "four_turn_disjoint_arc_witness_count": 445,
+      "solver_status": "UNSAT",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_002/opp1_4.result.json",
+      "strict_hit_checks": {
+        "first_apex_row_equals_exact_class": true,
+        "second_opposite_adjacent_hit_count": 1,
+        "strict_hit_count": 2,
+        "surplus_adjacent_hit_count": 1
+      }
+    },
+    {
+      "deletion_minimal_unsat_core": [
+        "full_turn_sum",
+        "turn_3_positive",
+        "center_10_right_quarter_turn",
+        "center_0_left_quarter_turn",
+        "turn_4_positive",
+        "center_3_right_quarter_turn",
+        "center_4_right_quarter_turn",
+        "turn_8_positive",
+        "turn_7_positive",
+        "turn_9_positive"
+      ],
+      "exact_shell_four_separated_arc_witness_count": 0,
+      "exact_shell_four_turn_disjoint_arc_witness_count": 0,
+      "first_four_separated_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 7,
+        "normalized_arcs": [
+          {
+            "center": 4,
+            "end": 3,
+            "kind": "center_to_second_support",
+            "start": 0
+          },
+          {
+            "center": 10,
+            "end": 5,
+            "kind": "third_support_to_period_end",
+            "start": 3
+          },
+          {
+            "center": 6,
+            "end": 9,
+            "kind": "third_support_to_period_end",
+            "start": 6
+          },
+          {
+            "center": 4,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 9
+          }
+        ]
+      },
+      "first_four_turn_disjoint_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 0,
+        "normalized_arcs": [
+          {
+            "center": 0,
+            "end": 4,
+            "kind": "center_to_second_support",
+            "start": 0
+          },
+          {
+            "center": 8,
+            "end": 7,
+            "kind": "center_to_second_support",
+            "start": 3
+          },
+          {
+            "center": 5,
+            "end": 8,
+            "kind": "center_to_second_support",
+            "start": 6
+          },
+          {
+            "center": 4,
+            "end": 10,
+            "kind": "center_to_second_support",
+            "start": 7
+          }
+        ]
+      },
+      "five_role_consumer_embedding_count": 2,
+      "four_separated_arc_witness_count": 8,
+      "four_turn_disjoint_arc_witness_count": 347,
+      "solver_status": "UNSAT",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_002/opp1_5.result.json",
+      "strict_hit_checks": {
+        "first_apex_row_equals_exact_class": true,
+        "second_opposite_adjacent_hit_count": 1,
+        "strict_hit_count": 2,
+        "surplus_adjacent_hit_count": 1
+      }
+    },
+    {
+      "deletion_minimal_unsat_core": [
+        "full_turn_sum",
+        "center_9_right_quarter_turn",
+        "center_10_right_quarter_turn",
+        "center_8_right_quarter_turn",
+        "turn_3_positive",
+        "turn_2_positive",
+        "turn_9_positive",
+        "center_2_right_quarter_turn",
+        "center_6_left_quarter_turn",
+        "turn_8_positive",
+        "turn_6_positive",
+        "center_5_right_quarter_turn"
+      ],
+      "exact_shell_four_separated_arc_witness_count": 4,
+      "exact_shell_four_turn_disjoint_arc_witness_count": 45,
+      "first_four_separated_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 10,
+        "normalized_arcs": [
+          {
+            "center": 10,
+            "end": 2,
+            "kind": "third_support_to_period_end",
+            "start": 0
+          },
+          {
+            "center": 8,
+            "end": 4,
+            "kind": "third_support_to_period_end",
+            "start": 2
+          },
+          {
+            "center": 5,
+            "end": 7,
+            "kind": "third_support_to_period_end",
+            "start": 5
+          },
+          {
+            "center": 1,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 8
+          }
+        ]
+      },
+      "first_four_turn_disjoint_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 6,
+        "normalized_arcs": [
+          {
+            "center": 0,
+            "end": 5,
+            "kind": "third_support_to_period_end",
+            "start": 0
+          },
+          {
+            "center": 10,
+            "end": 6,
+            "kind": "third_support_to_period_end",
+            "start": 4
+          },
+          {
+            "center": 0,
+            "end": 10,
+            "kind": "center_to_second_support",
+            "start": 5
+          },
+          {
+            "center": 5,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 9
+          }
+        ]
+      },
+      "five_role_consumer_embedding_count": 0,
+      "four_separated_arc_witness_count": 56,
+      "four_turn_disjoint_arc_witness_count": 510,
+      "solver_status": "UNSAT",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_4.result.json",
+      "strict_hit_checks": {
+        "first_apex_row_equals_exact_class": true,
+        "second_opposite_adjacent_hit_count": 1,
+        "strict_hit_count": 2,
+        "surplus_adjacent_hit_count": 1
+      }
+    },
+    {
+      "deletion_minimal_unsat_core": [
+        "turn_1_positive",
+        "full_turn_sum",
+        "turn_2_positive",
+        "center_10_right_quarter_turn",
+        "center_9_right_quarter_turn",
+        "turn_4_positive",
+        "center_1_right_quarter_turn",
+        "center_2_right_quarter_turn",
+        "turn_3_positive",
+        "turn_9_positive"
+      ],
+      "exact_shell_four_separated_arc_witness_count": 0,
+      "exact_shell_four_turn_disjoint_arc_witness_count": 52,
+      "first_four_separated_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 10,
+        "normalized_arcs": [
+          {
+            "center": 10,
+            "end": 2,
+            "kind": "third_support_to_period_end",
+            "start": 0
+          },
+          {
+            "center": 7,
+            "end": 5,
+            "kind": "third_support_to_period_end",
+            "start": 2
+          },
+          {
+            "center": 3,
+            "end": 9,
+            "kind": "third_support_to_period_end",
+            "start": 5
+          },
+          {
+            "center": 1,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 9
+          }
+        ]
+      },
+      "first_four_turn_disjoint_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 10,
+        "normalized_arcs": [
+          {
+            "center": 10,
+            "end": 2,
+            "kind": "third_support_to_period_end",
+            "start": 0
+          },
+          {
+            "center": 0,
+            "end": 5,
+            "kind": "center_to_second_support",
+            "start": 1
+          },
+          {
+            "center": 2,
+            "end": 10,
+            "kind": "third_support_to_period_end",
+            "start": 6
+          },
+          {
+            "center": 1,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 9
+          }
+        ]
+      },
+      "five_role_consumer_embedding_count": 1,
+      "four_separated_arc_witness_count": 48,
+      "four_turn_disjoint_arc_witness_count": 708,
+      "solver_status": "UNSAT",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_5.result.json",
+      "strict_hit_checks": {
+        "first_apex_row_equals_exact_class": true,
+        "second_opposite_adjacent_hit_count": 1,
+        "strict_hit_count": 2,
+        "surplus_adjacent_hit_count": 1
+      }
+    },
+    {
+      "deletion_minimal_unsat_core": [
+        "full_turn_sum",
+        "center_1_right_quarter_turn",
+        "turn_3_positive",
+        "center_9_left_quarter_turn",
+        "center_2_right_quarter_turn",
+        "turn_1_positive",
+        "center_9_right_quarter_turn",
+        "turn_4_positive",
+        "turn_9_positive",
+        "turn_10_positive"
+      ],
+      "exact_shell_four_separated_arc_witness_count": 0,
+      "exact_shell_four_turn_disjoint_arc_witness_count": 0,
+      "first_four_separated_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 10,
+        "normalized_arcs": [
+          {
+            "center": 1,
+            "end": 3,
+            "kind": "center_to_second_support",
+            "start": 0
+          },
+          {
+            "center": 9,
+            "end": 5,
+            "kind": "center_to_second_support",
+            "start": 3
+          },
+          {
+            "center": 4,
+            "end": 8,
+            "kind": "third_support_to_period_end",
+            "start": 5
+          },
+          {
+            "center": 1,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 9
+          }
+        ]
+      },
+      "first_four_turn_disjoint_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 2,
+        "normalized_arcs": [
+          {
+            "center": 6,
+            "end": 3,
+            "kind": "third_support_to_period_end",
+            "start": 0
+          },
+          {
+            "center": 4,
+            "end": 5,
+            "kind": "third_support_to_period_end",
+            "start": 2
+          },
+          {
+            "center": 0,
+            "end": 9,
+            "kind": "third_support_to_period_end",
+            "start": 4
+          },
+          {
+            "center": 1,
+            "end": 11,
+            "kind": "center_to_second_support",
+            "start": 8
+          }
+        ]
+      },
+      "five_role_consumer_embedding_count": 0,
+      "four_separated_arc_witness_count": 32,
+      "four_turn_disjoint_arc_witness_count": 217,
+      "solver_status": "UNSAT",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_4.result.json",
+      "strict_hit_checks": {
+        "first_apex_row_equals_exact_class": true,
+        "second_opposite_adjacent_hit_count": 1,
+        "strict_hit_count": 2,
+        "surplus_adjacent_hit_count": 1
+      }
+    },
+    {
+      "deletion_minimal_unsat_core": [
+        "turn_6_positive",
+        "center_10_left_quarter_turn",
+        "turn_0_positive",
+        "full_turn_sum",
+        "center_10_right_quarter_turn",
+        "turn_4_positive",
+        "turn_7_positive",
+        "turn_9_positive",
+        "turn_2_positive",
+        "center_1_right_quarter_turn",
+        "center_4_right_quarter_turn",
+        "center_8_left_quarter_turn"
+      ],
+      "exact_shell_four_separated_arc_witness_count": 0,
+      "exact_shell_four_turn_disjoint_arc_witness_count": 5,
+      "first_four_separated_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 10,
+        "normalized_arcs": [
+          {
+            "center": 10,
+            "end": 2,
+            "kind": "third_support_to_period_end",
+            "start": 0
+          },
+          {
+            "center": 10,
+            "end": 4,
+            "kind": "center_to_second_support",
+            "start": 2
+          },
+          {
+            "center": 3,
+            "end": 9,
+            "kind": "third_support_to_period_end",
+            "start": 4
+          },
+          {
+            "center": 1,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 9
+          }
+        ]
+      },
+      "first_four_turn_disjoint_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 0,
+        "normalized_arcs": [
+          {
+            "center": 0,
+            "end": 4,
+            "kind": "center_to_second_support",
+            "start": 0
+          },
+          {
+            "center": 8,
+            "end": 5,
+            "kind": "center_to_second_support",
+            "start": 3
+          },
+          {
+            "center": 7,
+            "end": 7,
+            "kind": "center_to_second_support",
+            "start": 4
+          },
+          {
+            "center": 0,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 6
+          }
+        ]
+      },
+      "five_role_consumer_embedding_count": 1,
+      "four_separated_arc_witness_count": 104,
+      "four_turn_disjoint_arc_witness_count": 493,
+      "solver_status": "UNSAT",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_5.result.json",
+      "strict_hit_checks": {
+        "first_apex_row_equals_exact_class": true,
+        "second_opposite_adjacent_hit_count": 1,
+        "strict_hit_count": 2,
+        "surplus_adjacent_hit_count": 1
+      }
+    },
+    {
+      "deletion_minimal_unsat_core": [
+        "turn_10_positive",
+        "turn_6_positive",
+        "turn_3_positive",
+        "turn_1_positive",
+        "full_turn_sum",
+        "center_9_left_quarter_turn",
+        "turn_0_positive",
+        "center_6_left_quarter_turn",
+        "center_1_right_quarter_turn",
+        "turn_9_positive",
+        "center_2_right_quarter_turn",
+        "center_5_right_quarter_turn"
+      ],
+      "exact_shell_four_separated_arc_witness_count": 0,
+      "exact_shell_four_turn_disjoint_arc_witness_count": 0,
+      "first_four_separated_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 10,
+        "normalized_arcs": [
+          {
+            "center": 1,
+            "end": 3,
+            "kind": "center_to_second_support",
+            "start": 0
+          },
+          {
+            "center": 9,
+            "end": 5,
+            "kind": "center_to_second_support",
+            "start": 3
+          },
+          {
+            "center": 3,
+            "end": 9,
+            "kind": "third_support_to_period_end",
+            "start": 5
+          },
+          {
+            "center": 1,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 9
+          }
+        ]
+      },
+      "first_four_turn_disjoint_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 0,
+        "normalized_arcs": [
+          {
+            "center": 0,
+            "end": 5,
+            "kind": "center_to_second_support",
+            "start": 0
+          },
+          {
+            "center": 5,
+            "end": 6,
+            "kind": "third_support_to_period_end",
+            "start": 4
+          },
+          {
+            "center": 6,
+            "end": 7,
+            "kind": "center_to_second_support",
+            "start": 5
+          },
+          {
+            "center": 0,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 6
+          }
+        ]
+      },
+      "five_role_consumer_embedding_count": 0,
+      "four_separated_arc_witness_count": 48,
+      "four_turn_disjoint_arc_witness_count": 561,
+      "solver_status": "UNSAT",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_4.result.json",
+      "strict_hit_checks": {
+        "first_apex_row_equals_exact_class": true,
+        "second_opposite_adjacent_hit_count": 1,
+        "strict_hit_count": 2,
+        "surplus_adjacent_hit_count": 1
+      }
+    },
+    {
+      "deletion_minimal_unsat_core": [
+        "full_turn_sum",
+        "turn_9_positive",
+        "turn_5_positive",
+        "center_5_left_quarter_turn",
+        "center_4_left_quarter_turn",
+        "center_5_right_quarter_turn",
+        "turn_2_positive",
+        "turn_8_positive",
+        "center_10_right_quarter_turn",
+        "center_6_right_quarter_turn",
+        "center_10_left_quarter_turn",
+        "center_9_right_quarter_turn"
+      ],
+      "exact_shell_four_separated_arc_witness_count": 0,
+      "exact_shell_four_turn_disjoint_arc_witness_count": 19,
+      "first_four_separated_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 10,
+        "normalized_arcs": [
+          {
+            "center": 10,
+            "end": 2,
+            "kind": "third_support_to_period_end",
+            "start": 0
+          },
+          {
+            "center": 10,
+            "end": 4,
+            "kind": "center_to_second_support",
+            "start": 2
+          },
+          {
+            "center": 6,
+            "end": 6,
+            "kind": "third_support_to_period_end",
+            "start": 4
+          },
+          {
+            "center": 1,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 6
+          }
+        ]
+      },
+      "first_four_turn_disjoint_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 0,
+        "normalized_arcs": [
+          {
+            "center": 0,
+            "end": 4,
+            "kind": "center_to_second_support",
+            "start": 0
+          },
+          {
+            "center": 7,
+            "end": 7,
+            "kind": "center_to_second_support",
+            "start": 4
+          },
+          {
+            "center": 5,
+            "end": 8,
+            "kind": "center_to_second_support",
+            "start": 6
+          },
+          {
+            "center": 4,
+            "end": 9,
+            "kind": "center_to_second_support",
+            "start": 7
+          }
+        ]
+      },
+      "five_role_consumer_embedding_count": 4,
+      "four_separated_arc_witness_count": 44,
+      "four_turn_disjoint_arc_witness_count": 636,
+      "solver_status": "UNSAT",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_5.result.json",
+      "strict_hit_checks": {
+        "first_apex_row_equals_exact_class": true,
+        "second_opposite_adjacent_hit_count": 1,
+        "strict_hit_count": 2,
+        "surplus_adjacent_hit_count": 1
+      }
+    },
+    {
+      "deletion_minimal_unsat_core": [
+        "turn_0_positive",
+        "full_turn_sum",
+        "turn_2_positive",
+        "turn_5_positive",
+        "center_10_left_quarter_turn",
+        "turn_4_positive",
+        "turn_7_positive",
+        "turn_9_positive",
+        "center_8_left_quarter_turn",
+        "center_1_left_quarter_turn",
+        "center_3_left_quarter_turn",
+        "turn_6_positive"
+      ],
+      "exact_shell_four_separated_arc_witness_count": 0,
+      "exact_shell_four_turn_disjoint_arc_witness_count": 10,
+      "first_four_separated_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 10,
+        "normalized_arcs": [
+          {
+            "center": 1,
+            "end": 2,
+            "kind": "center_to_second_support",
+            "start": 0
+          },
+          {
+            "center": 10,
+            "end": 4,
+            "kind": "center_to_second_support",
+            "start": 2
+          },
+          {
+            "center": 4,
+            "end": 8,
+            "kind": "third_support_to_period_end",
+            "start": 4
+          },
+          {
+            "center": 1,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 8
+          }
+        ]
+      },
+      "first_four_turn_disjoint_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 0,
+        "normalized_arcs": [
+          {
+            "center": 0,
+            "end": 5,
+            "kind": "center_to_second_support",
+            "start": 0
+          },
+          {
+            "center": 7,
+            "end": 7,
+            "kind": "center_to_second_support",
+            "start": 4
+          },
+          {
+            "center": 5,
+            "end": 9,
+            "kind": "center_to_second_support",
+            "start": 6
+          },
+          {
+            "center": 3,
+            "end": 10,
+            "kind": "center_to_second_support",
+            "start": 8
+          }
+        ]
+      },
+      "five_role_consumer_embedding_count": 0,
+      "four_separated_arc_witness_count": 40,
+      "four_turn_disjoint_arc_witness_count": 342,
+      "solver_status": "UNSAT",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_4.result.json",
+      "strict_hit_checks": {
+        "first_apex_row_equals_exact_class": true,
+        "second_opposite_adjacent_hit_count": 1,
+        "strict_hit_count": 2,
+        "surplus_adjacent_hit_count": 1
+      }
+    },
+    {
+      "deletion_minimal_unsat_core": [
+        "center_6_right_quarter_turn",
+        "turn_6_positive",
+        "turn_4_positive",
+        "turn_0_positive",
+        "turn_9_positive",
+        "center_10_right_quarter_turn",
+        "center_10_left_quarter_turn",
+        "full_turn_sum",
+        "turn_2_positive",
+        "center_6_left_quarter_turn",
+        "center_3_left_quarter_turn",
+        "center_2_right_quarter_turn"
+      ],
+      "exact_shell_four_separated_arc_witness_count": 12,
+      "exact_shell_four_turn_disjoint_arc_witness_count": 80,
+      "first_four_separated_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 10,
+        "normalized_arcs": [
+          {
+            "center": 1,
+            "end": 3,
+            "kind": "center_to_second_support",
+            "start": 0
+          },
+          {
+            "center": 6,
+            "end": 6,
+            "kind": "third_support_to_period_end",
+            "start": 4
+          },
+          {
+            "center": 6,
+            "end": 8,
+            "kind": "center_to_second_support",
+            "start": 6
+          },
+          {
+            "center": 2,
+            "end": 10,
+            "kind": "third_support_to_period_end",
+            "start": 8
+          }
+        ]
+      },
+      "first_four_turn_disjoint_arc_witness": {
+        "all_centers_in_blocker_image": false,
+        "cut_global_index_mod_n": 5,
+        "normalized_arcs": [
+          {
+            "center": 6,
+            "end": 2,
+            "kind": "center_to_second_support",
+            "start": 0
+          },
+          {
+            "center": 0,
+            "end": 6,
+            "kind": "third_support_to_period_end",
+            "start": 1
+          },
+          {
+            "center": 0,
+            "end": 10,
+            "kind": "center_to_second_support",
+            "start": 6
+          },
+          {
+            "center": 6,
+            "end": 11,
+            "kind": "third_support_to_period_end",
+            "start": 9
+          }
+        ]
+      },
+      "five_role_consumer_embedding_count": 0,
+      "four_separated_arc_witness_count": 80,
+      "four_turn_disjoint_arc_witness_count": 601,
+      "solver_status": "UNSAT",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_5.result.json",
+      "strict_hit_checks": {
+        "first_apex_row_equals_exact_class": true,
+        "second_opposite_adjacent_hit_count": 1,
+        "strict_hit_count": 2,
+        "surplus_adjacent_hit_count": 1
+      }
+    }
+  ],
+  "schema": "p97-exact-two-shell-curvature-round-audit-v1",
+  "source_scope": "Exact finite incidence and rational scalar-turn replay; neither a Euclidean realization nor arbitrary-cardinality source coverage"
+}

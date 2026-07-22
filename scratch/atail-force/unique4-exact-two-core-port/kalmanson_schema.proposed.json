@@ -1,0 +1,23 @@
+{
+  "core_vertex_count": 5,
+  "epistemic_status": "KERNEL_CHECKED_CONSUMER_WITHOUT_SOURCE_OCCURRENCE",
+  "lean_consumer": "Problem97.ExactTwoKalmansonCoreScratch.false_of_two_k2_three_selected_classes",
+  "normalization": "drop the two intermediate row anchors and retain the direct pair equality in each selected equal-distance class",
+  "order_schema": [
+    [0, 2],
+    [0, 4],
+    [1, 2],
+    [1, 3],
+    [2, 3],
+    [2, 4]
+  ],
+  "source_core": "scratch/atail-force/unique4-exact-two-core-port/round3_opp1_5.full_lra.json",
+  "source_vertices_to_roles": {
+    "0": 0,
+    "1": 1,
+    "10": 4,
+    "2": 2,
+    "3": 3
+  },
+  "transport": "order_preserving_and_reflected_injections"
+}

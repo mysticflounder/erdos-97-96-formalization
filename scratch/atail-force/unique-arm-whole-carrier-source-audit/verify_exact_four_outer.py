@@ -250,6 +250,14 @@ def verify(
             "first-apex class violates the surplus-cap one-hit theorem")
     require(len(exact_class & opp2) <= 1,
             "first-apex class violates the second-opposite-cap one-hit theorem")
+    exact_two_overlay = bool(result.get("exact_two_strict_hit_overlay", False))
+    if exact_two_overlay:
+        require(len(exact_class & strict1) == 2,
+                "exact-two overlay does not have two strict-cap hits")
+        require(len(exact_class & surplus_cap) == 1,
+                "exact-two overlay does not have one surplus-adjacent hit")
+        require(len(exact_class & opp2) == 1,
+                "exact-two overlay does not have one second-adjacent hit")
 
     overlay = bool(result.get("strict_cap_minimality_overlay", False))
     witness = result.get("strict_cap_minimality_witness")
@@ -440,6 +448,7 @@ def verify(
         "all_encoded_semantic_constraints_replayed": True,
         "strict_cap_minimality_overlay_replayed": overlay,
         "pair_minimality_overlay_replayed": pair_overlay,
+        "exact_two_strict_hit_overlay_replayed": exact_two_overlay,
         "claim_scope": (
             "This verifies a SAT witness for the documented finite projection; "
             "it is not a Euclidean realization or a model of every Lean source field."

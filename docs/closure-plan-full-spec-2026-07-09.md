@@ -8624,6 +8624,99 @@ closure. The unique first-apex arm remains independent and is now the sole
 open dependency inherited by the exact-five path; its checked exact-four/five
 normal forms still lack a terminal consumer.
 
+### Unique-four cap distribution and occurrence boundary (2026-07-22)
+
+The original exact-four residual now has a checked source-level physical-cap
+split in
+`scratch/atail-force/unique4-class-cap-distribution/UniqueFourClassCapDistribution.lean`.
+For the complete exact four-point first-apex radius class, either:
+
+- exactly two class members lie in the strict first opposite cap, and the
+  other two lie one apiece in the two adjacent closed caps (`2+1+1`); or
+- at least three strict-cap members exist, in which case two can be selected
+  so their simultaneous deletion preserves K4 at the second apex.  The
+  resulting `AlignedInteriorFrontier` carries a complete rebased
+  `OriginalUniqueFourResidual` and a second-apex witness which omits the
+  selected pair.
+
+The second arm does not enter a common-deletion continuation: exact-four
+criticality makes deletion of either selected member destroy K4 at the first
+apex.  It also has the wrong polarity for a shared-pair terminal because its
+available second-apex row omits the aligned pair.  The exact-two arm supplies
+cap counts but no second row.
+
+Two further source-clean reductions sharpen the missing occurrence.  The
+late critical-system blocker orbit gives either a mutual actual-row two-cycle
+at the first apex or a two-edge path through three distinct actual blocker
+centers.  These rows contain only their mandatory predecessor incidences; no
+reverse or cross hit is implied.  On the equal-radius strict-pair arm, the
+complete fresh-center class meets the first opposite cap exactly in the
+retained pair.  A pair-preserving four-subpacket therefore has exactly two
+outside-cap points, and any second distinct first-cap center bisecting that
+outside pair is immediately impossible by
+`outsidePair_unique_capCenter`.  The parent still does not produce that
+second center.
+
+The exact-two `n = 11` overlay was run for six fail-closed rounds.  Every
+round retained a SAT Boolean projection.  Five rounds were then cut by
+independently replayed exact-Farkas Kalmanson certificates; round two instead
+installed source-proved U5 schema 56.  The run ended
+`ROUND_CAP_REACHED_UNRESOLVED`, adding ten pending exact-Farkas Kalmanson
+schemas and one U5 schema, for final banks of 46 Kalmanson schemas (10
+kernel-checked, 36 pending Lean ports) and eight source-proved U5 schemas.
+This is exact only inside the documented fixed projection and is not coverage
+of `OriginalUniqueFourResidual` at arbitrary carrier cardinality.
+
+The smallest materially new checked consumer found by that run is
+`false_of_two_k2_three_selected_classes`: five cyclically ordered roles,
+three selected rows, two K2 inequalities, and six memberships.  Under the
+natural parent map the exact first-apex row supplies only two memberships;
+the other four cross-row memberships and the compatible role order remain
+unproved.  The older two-row terminal
+`false_of_two_selected_rows_shared_late_pair` is structurally closer: after
+ordering three exact-class members beyond the first apex, it needs one
+additional selected row through the latter two.  This is a smaller interface,
+not evidence that the occurrence is true; the checked finite incidence
+boundary shows that cap counts, row cardinalities, blocker fibers, and
+selected-row connectivity do not force such a hit.
+
+The same twelve stored projections now have a stronger exact scalar-curvature
+audit.  All twelve ledgers are UNSAT, eleven already contain four arcs accepted
+by the production `false_of_four_separated_quarter_turn_arcs`, and the remaining
+projection differs only because two consecutive arcs share a boundary vertex.
+The cardinality-generic scratch theorem
+`ShellCurvature.false_of_four_turnDisjoint_quarter_turn_arcs` proves the sharp
+aggregate consumer using the actual open-turn-support bounds
+`b_i - 1 <= a_(i+1)`.  It is Werror-clean with only the three core axioms.
+Every stored projection contains a matching four-arc witness, but four of the
+twelve do not contain such a witness when centers are restricted to the image
+of the fixed critical system.  Therefore the live occurrence theorem must use
+carrier-wide `D.K4` to choose actual shells at the required carrier centers;
+fixed critical-system rows alone are insufficient.  The finite audit remains
+an exact statement about the six-round `n = 11` projection, not arbitrary-card
+source coverage.
+
+The MEC fallback remains open for the same reason.  Exact regressions show
+that protected singleton provenance is compatible with a strict-MEC-interior
+fresh center on the unique-four local surface, and that a total critical
+system is not a general boundary-localization principle.  Those regressions
+omit carrier-wide K4; neither proves nor refutes the full residual.  A useful
+global-K4 theorem must force a second same-cap row sharing the fresh shell's
+outside pair, or construct a complete alternative `IsM44` packet.  Merely
+restating strict-interior data or total criticality is nonterminal.
+
+Therefore the primary live exact-four producer is now a source-faithful
+global-K4 occurrence of four turn-disjoint quarter-turn shell arcs in one
+transported boundary chart.  This is a smaller and more uniform endpoint than
+the multirow Kalmanson schemas and it exactly matches every current exact-two
+survivor.  A two-point shared row in Kalmanson order or a complete alternative
+`IsM44` packet remains a fallback.  Pure selected-row strong connectivity,
+another fixed-card literal CEGAR stream, and conditional adapters are not
+accepted substitutes.  All new Lean declarations above pass
+warnings-as-errors and have axiom closure exactly
+`[propext, Classical.choice, Quot.sound]`; no production `sorry` is closed by
+this checkpoint.
+
 ## Change control
 
 This document supersedes ad-hoc status narration. Any status change must update
