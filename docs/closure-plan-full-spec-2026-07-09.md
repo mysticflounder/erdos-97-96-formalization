@@ -253,15 +253,18 @@ The older arbitrary mutual packet is no longer the live interface.
 
 This carrier-wide cover is useful but nonterminal. It is a universal negative
 incidence statement, not the positive shared pair required by an existing
-consumer. The stronger regression in
-`docs/audits/2026-07-21-exact-five-global-minimality-regression.md` gives an
-exact 13-point finite metric model with global K4, a total deletion-critical
-map, both robust apex classes, retained rows, the two-edge star, and no proper
-witness-closed subset. It still avoids both the asymmetric co-radial terminal
-and `CriticalFiberClosingCore`. Therefore the next theorem must couple this
-cover to the common rank-two Euclidean/convex/MEC geometry or construct a
-complete alternative `IsM44` packet; pure row incidence, connectivity,
-cardinal minimality, and anonymous blocker multiplicity are exhausted.
+consumer. The 13-point finite metric in
+`docs/audits/2026-07-21-exact-five-global-minimality-regression.md` is no
+longer a regression for the complete live parent: its forced first-apex
+double-deletion row has only one strict `oppCap1` hit, while production
+`nonempty_firstApexShellRolePacket F R` supplies two. The replay and complete
+field audit are in `scratch/atail-force/exact5-production-contract-gap/`.
+The metric remains a valid gate against proofs which omit that cap-localized
+packet, but it cannot justify declaring the full incidence/minimality route
+exhausted. Adding only the missing two-hit cut leaves all tested card-13
+orbits SAT, so the next decision must couple the complete first-apex radius
+split, retained q-deleted rows, and common strict convex order before
+escalating to rank-two/MEC geometry or an alternative `IsM44` packet.
 
 The asymmetric geometry is now sharper as well. Production proves that the
 hub blocker lies strictly between the two physical support points in their
@@ -372,6 +375,34 @@ sampled metric cores remain dominated by generic actual-row Kalmanson
 patterns. The retained rows must not be identified with the stored
 double-deletion rows.
 
+The subsequent live-contract audit found a stronger omitted production cut.
+`FirstApexShellRolePacket F R` gives two strict `oppCap1` hits in both the
+retained frontier row and the first-apex double-deletion row. At card 13 the
+caps are exactly `(5,6,5)`, and
+`scratch/atail-force/exact5-first-apex-card13-normal-form/` kernel-checks the
+complete radius split. If the two first-apex radii agree, their ambient class
+is an exact six-class containing all four strict `oppCap1` points. If they
+differ, the two selected supports are disjoint complete exact-four classes,
+each has exactly two strict hits, and those hits partition the four-point
+strict cap. These statements retain the selected-row/complete-class
+distinction and have only the three standard axioms. The older common-order
+gate and finite-metric regression did not encode this split. Adding only the
+two-hit lower bound remains SAT; the full split plus actual retained `B1/B2`
+is the correct card-13 decision surface.
+
+The follow-up coupling in
+`scratch/atail-force/exact5-first-apex-card13-parent-row-coupling/` is also
+kernel-checked. In the same-radius mode the exact six-class is the unique
+K4-capable first-apex radius, so the actual q-deleted parent row `B1` is a
+four-subrow of it. In the distinct-radius mode the retained and
+double-deletion exact-four classes are the only K4-capable radii, and the
+actual `B1` is exactly the double-deletion class. Consequently an asymmetric
+outside pair which lies in the strict first cap must either be co-radial at
+the first apex and close immediately, or, only in the distinct-radius mode,
+cross the two exact classes. In the same-radius mode the only surviving
+alternative has at least one outside point outside the strict first cap.
+This is the current exact card-13 residual; it is a reduction, not a terminal.
+
 The all-one common-order checkpoint is now recorded in
 `scratch/atail-force/exact5-all-one-card13-card14-gate/`. At card 13, all
 2,729 decoded candidates reached by the bounded run are exact-LRA `UNSAT`:
@@ -402,6 +433,28 @@ another unpartitioned solver run, literal-core queue, MARCO wave, or eager
 schema expansion is not justified. Even such a card-specific certificate
 would not close the uniform Lean theorem without a proved lift to arbitrary
 carrier cardinality.
+
+The field-complete card-13 all-one checkpoint is
+`scratch/atail-force/exact5-full-role-retained-gate/`. It includes the exact
+first-apex split, actual `B1/B2`, total fixed-blocker semantics, the exact-five
+second-apex class, both independent global-cover tables, and one common strict
+order. All six hub/radius cells ended `UNKNOWN` by wall budget after 753 exact
+LRA rejections. Every retained minimized core was an old row-only Kalmanson
+core; zero cores used a new parent field, no cell was exhausted, and no SAT
+survivor appeared. A schema-independent integrated ordinal prefilter rejects
+the six stored representatives, but six 30-second smokes then time out before
+the first outer candidate. This identifies a combined-solver bottleneck, not
+mathematical convergence. Do not spend another long run on this encoding
+without a decomposition which exposes the new fields or a compact coverage
+object.
+
+For the complementary `7 <= S.oppCap1.card` slice, the source audit in
+`scratch/atail-force/exact5-firstcap-ge-seven-route-audit/` proves
+`14 <= D.A.card`. The existing card-at-least-14 source-faithful consumer can,
+however, return the already-held `B.secondApex_robust`; it is a recurrence,
+not closure. The first live outputs remain the asymmetric first-apex return
+or a genuine alternative short-cap packet, and on the all-one arm a
+`CriticalFiberClosingCore R` or that same short-cap packet.
 
 These diagnostics do not change the primary mathematical target. Closure must
 still couple the total fixed critical system to one common rank-two Euclidean
@@ -8059,14 +8112,18 @@ branch outputs are already terminal:
 
 The checked scratch regression
 `exact5-asymmetric-global-minimality-boundary` proves that outside-pair
-minimality can return the existing hub with a singleton core.  The exact
-`exact5-all-one-finite-metric-regression` simultaneously satisfies every
-currently extracted finite-metric, global-K4, total critical-map, robust,
-minimality, retained-row, cap-incidence, and cover-star condition while
-blocking both closing-core ingresses.  The latter is not planar/MEC and is not
-a counterexample; it is a proof-route gate.  Together they retire standalone
-minimal-deletion, finite-incidence, metric-minimality, and local Kalmanson
-extensions on exact five.
+minimality can return the existing hub with a singleton core. The older
+`exact5-all-one-finite-metric-regression` is only a gate for projections that
+omit the complete first-apex role packet: its forced double-deletion row has
+one strict first-cap hit, contradicting the two source-proved hits in
+`FirstApexShellRolePacket F R`. It is therefore not a countermodel to the
+full live parent. `exact5-production-contract-gap` records the replay and
+field matrix. Adding the missing two-hit condition alone remains SAT, while
+the kernel-checked card-13 normal form strengthens it to an exact-six
+same-radius class or two disjoint complete exact-four classes. Standalone
+minimal-deletion and weaker finite-incidence/Kalmanson extensions remain
+retired; the complete role packet is now mandatory input rather than an
+exhausted field.
 
 The newer common-order gate does not reverse that conclusion. Bounded card-13
 search rejects 2,729 reached all-one candidates, and bounded shell-aware
@@ -8079,12 +8136,28 @@ or a uniform proof. Literal/schema CEGAR and longer monolithic linear runs are
 retired unless a compact checked coverage object or a verified survivor is
 produced.
 
-The next theorem/search must combine the total fixed critical system with one
-common rank-two Euclidean realization and the actual MEC/cap/`noM44` packet,
-and it must return one of the terminal outputs above.  Do not add another
-conditional adapter.  The unique arm remains independent: its checked
-exact-four/five normal forms have no terminal consumer, with the exact-five
-coincident-blocker cell the narrowest honest direct-`False` target.
+The strengthened card-13 all-one surface is now a bounded `UNKNOWN`: all six
+hub/radius cells rejected 753 candidates through old row-only Kalmanson cores,
+used none of the new parent fields in a minimized core, exhausted no cell, and
+produced no survivor. Its generic integrated ordinal prefilter removes the
+stored old representatives but times out before the first candidate under a
+30-second smoke. Do not continue this monolithic encoding or accumulate more
+literal cores.
+
+The kernel-checked card-13 parent-row coupling gives the next mathematical
+boundary. In the same-radius mode, rule out an asymmetric outside point
+escaping the strict first cap. In the distinct-radius mode, rule out the two
+outside points splitting across the retained and actual-`B1` exact classes.
+Either result forces their first-apex co-radiality and feeds the existing
+terminal. On the all-one arm, produce `CriticalFiberClosingCore R`, a genuine
+alternative short-cap packet, or direct `False`. For first-cap cardinality at
+least seven, card at least fourteen is available, but the existing survival-
+cover consumer only recurs to robustness. Therefore the next proof/search
+must use rank-two Euclidean geometry, actual MEC/cap/`noM44` data, or a global
+fixed-`H` positive occurrence and return one of those terminal outputs. Do
+not add another conditional adapter. The unique arm remains independent: its
+checked exact-four/five normal forms have no terminal consumer, with the
+exact-five coincident-blocker cell the narrowest honest direct-`False` target.
 
 ## Change control
 

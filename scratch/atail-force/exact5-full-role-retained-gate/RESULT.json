@@ -1,0 +1,139 @@
+{
+  "schema": "p97-exact5-full-role-retained-card13-checkpoint-v1",
+  "date": "2026-07-21",
+  "profile": "5,6,5",
+  "epistemic_status": "UNKNOWN",
+  "source_status": "no source sorry closed",
+  "long_runs": [
+    {
+      "orbit": "allOneHitHubLeft",
+      "radius_arm": "same",
+      "status": "UNKNOWN",
+      "reason": "wall budget",
+      "checked": 125,
+      "focused_core_count": 0
+    },
+    {
+      "orbit": "allOneHitHubLeft",
+      "radius_arm": "distinct",
+      "status": "UNKNOWN",
+      "reason": "wall budget",
+      "checked": 122,
+      "focused_core_count": 0
+    },
+    {
+      "orbit": "allOneHitHubMiddle",
+      "radius_arm": "same",
+      "status": "UNKNOWN",
+      "reason": "wall budget",
+      "checked": 127,
+      "focused_core_count": 0
+    },
+    {
+      "orbit": "allOneHitHubMiddle",
+      "radius_arm": "distinct",
+      "status": "UNKNOWN",
+      "reason": "wall budget",
+      "checked": 125,
+      "focused_core_count": 0
+    },
+    {
+      "orbit": "allOneHitHubRight",
+      "radius_arm": "same",
+      "status": "UNKNOWN",
+      "reason": "wall budget",
+      "checked": 131,
+      "focused_core_count": 0
+    },
+    {
+      "orbit": "allOneHitHubRight",
+      "radius_arm": "distinct",
+      "status": "UNKNOWN",
+      "reason": "wall budget",
+      "checked": 123,
+      "focused_core_count": 0
+    }
+  ],
+  "long_run_totals": {
+    "checked": 753,
+    "sat_survivors": 0,
+    "focused_cores": 0,
+    "completed_unsat_cells": 0,
+    "unknown_cells": 6
+  },
+  "ordinal_prefilter": {
+    "kind": "integrated exact rational strict triangle and Kalmanson theory with selected-row membership implications",
+    "literal_core_bank": false,
+    "recorded_representatives_replayed": 6,
+    "recorded_representatives_rejected": 6,
+    "regression_inputs": [
+      "regressions/left-same.json",
+      "regressions/left-distinct.json",
+      "regressions/middle-same.json",
+      "regressions/middle-distinct.json",
+      "regressions/right-same.json",
+      "regressions/right-distinct.json"
+    ],
+    "regression_status": "PASS",
+    "short_smoke": [
+      {
+        "orbit": "allOneHitHubLeft",
+        "radius_arm": "same",
+        "status": "UNKNOWN",
+        "reason": "timeout",
+        "checked": 0
+      },
+      {
+        "orbit": "allOneHitHubLeft",
+        "radius_arm": "distinct",
+        "status": "UNKNOWN",
+        "reason": "timeout",
+        "checked": 0
+      },
+      {
+        "orbit": "allOneHitHubMiddle",
+        "radius_arm": "same",
+        "status": "UNKNOWN",
+        "reason": "timeout",
+        "checked": 0
+      },
+      {
+        "orbit": "allOneHitHubMiddle",
+        "radius_arm": "distinct",
+        "status": "UNKNOWN",
+        "reason": "timeout",
+        "checked": 0
+      },
+      {
+        "orbit": "allOneHitHubRight",
+        "radius_arm": "same",
+        "status": "UNKNOWN",
+        "reason": "timeout",
+        "checked": 0
+      },
+      {
+        "orbit": "allOneHitHubRight",
+        "radius_arm": "distinct",
+        "status": "UNKNOWN",
+        "reason": "timeout",
+        "checked": 0
+      }
+    ]
+  },
+  "scope": {
+    "included": [
+      "exact card-13 closed-cap profile (5,6,5)",
+      "three allRowsOneHit hub orbits and both first-apex radius arms",
+      "fixed blocker map, synchronized selected critical rows, and independent star cover rows",
+      "actual retained q-deleted parent rows B1 and B2",
+      "FirstApexShellRolePacket incidence and exact same/distinct card-13 normal form",
+      "complete exact-five second-apex radius class and unique K4 radius",
+      "strict triangle and both strict Kalmanson inequalities in one common order"
+    ],
+    "omitted": [
+      "planar Euclidean distance-matrix rank",
+      "minimum-enclosing-circle equations and membership",
+      "no-(m,4,4) support-triangle semantics"
+    ]
+  }
+}

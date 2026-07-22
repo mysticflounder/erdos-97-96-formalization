@@ -1,0 +1,11 @@
+{
+  "schema": "p97-exact5-row-only-prefilter-regression-v1",
+  "orbit": "allOneHitHubLeft",
+  "radius_arm": "distinct",
+  "core": [
+    "row|m|0|1=5",
+    "row|m|0|1=7",
+    "row|m|3|2=7",
+    "row|m|4|2=5"
+  ]
+}
