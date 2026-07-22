@@ -8,12 +8,18 @@ The exact-five profile theorem no longer contains a direct `sorry`.  It
 reduces to the one live consumer:
 
 ```lean
-false_of_frontierBiApexRobustExactFiveMutualParentResidual
+false_of_frontierBiApexRobustExactFiveGlobalCoverStarResidual
 ```
 
-`proof-blueprint` places the exact-five anchor on that declaration.  The
-other two live frontier sorries are the original unique-radius arm and the
-large-opposite-caps robust arm.
+Lean's printed proof of
+`false_of_frontierBiApexRobustExactFiveSecondCapProfile` directly calls that
+declaration, and its live axiom closure contains `sorryAx`.  The current
+`proof-blueprint` mine nevertheless drops this edge and incorrectly lists the
+exact-five declaration off-spine.  Pending that known miner fix, the session
+anchor is set without auto-sinking on the nearest verified parent,
+`false_of_frontierBiApexRobustResidual`; it must not be interpreted as
+ownership of the separate cap-six leaf.  The other two live frontier sorries
+are the original unique-radius arm and the large-opposite-caps robust arm.
 
 ## Production results
 
@@ -50,17 +56,33 @@ proves:
   `AllPhysicalActualCriticalRowsOneHit`: every one of the three physical
   source rows hits the physical set only at its own source.  Distinct
   physical sources then mutually omit one another and have pairwise distinct
-  actual blocker centers.
+  actual blocker centers, and each shell has exactly three support points
+  outside the physical three-set; and
+- `ATail/ExactFiveGlobalCrossDeletionPair.lean` proves that the global-cover
+  graph on the three physical vertices contains two incident edges.  Thus one
+  hub pairs with each spoke so that their singleton deletions cover K4 at
+  every carrier center.  The hub's actual critical row is forced one-hit, and
+  no actual critical support contains both endpoints of either covered edge.
+- `ATail/ExactFiveGlobalCoverStarGeometry.lean` proves that, on either
+  asymmetric spoke arm, the hub blocker is the strict middle point of the
+  three physical vertices in their common cap order.  Equivalently, the
+  angle at that blocker is strictly obtuse.  This is nonlinear cap geometry,
+  but it does not place either named outside support point in a retained row
+  or on a first-apex radius.
 
-The resulting one-hit disjunction is stored as `M.oneHit` in the live
-mutual-parent packet.
+The exact-five profile now passes the provenance-preserving
+`ExactFiveGlobalCoverStarOutcome` to the live consumer.  On an asymmetric arm,
+the two-hit spoke remains paired with the one-hit hub by a carrier-wide cover;
+on the symmetric arm, the complete star is retained with all three one-hit
+rows.  The arbitrary mutual-parent packet is no longer the live interface.
 
 The production proof never identifies a selected four-row with the complete
 five-point ambient class and never reassigns the fixed critical system.
 
 ## Remaining surface
 
-The remaining local classification is now binary:
+The remaining mathematical classification is binary, with global-cover
+provenance retained in both cases:
 
 1. an asymmetric pair supplies a named exact two-point outside-cap pair; or
 2. all three physical actual-critical rows are one-hit.
@@ -72,19 +94,41 @@ collision: the blocker map is injective on those three sources.  It needs a
 genuinely global same-cap shared-pair / `CriticalFiberClosingCore` occurrence,
 or a complete alternative `IsM44` packet.
 
+The favorable-pair theorem is not itself terminal.  Its universal conclusion
+is negative incidence: every actual critical shell omits at least one endpoint.
+An exact `Z/13Z` critical-hypergraph model realizes criticality, strong
+connectivity, all-one-hit, and that carrier-wide cover while having no
+nontrivial blocker fiber.  This is not Euclidean/MEC data, but it rules out a
+pure incidence or connectivity conversion to `CriticalFiberClosingCore`.
+
+The strict-middle theorem also does not make the current shell-curvature
+terminal applicable. A five-row audit strengthens this negative result:
+global K4 rows at all five cap vertices, all cap-hit bounds, outside-pair
+uniqueness, and all twenty per-row quarter-turn inequalities still do not
+force four ordered separated arcs. An exact finite interval/support regression
+has maximum nonoverlap cardinality three. See
+`2026-07-21-exact-five-multirow-curvature-audit.md`. The missing curvature
+input is a cross-row nonlinear order-separation theorem, not another per-row
+adapter.
+
 The cap-six low-hit/common-deletion normal form does not apply here.  Its
 producer requires `6 ≤ S.oppCap2.card`, while this branch has the exact
 identity `S.oppCap2.card = 5`; the available six-point bound is on the other
 cap.  The retained endpoint-row dichotomy also does not mention the
 asymmetric normal form's outside pair.
 
-The surviving occurrence surface is genuinely global.  Existing strict-convex
-MEC regressions realize the one-row geometry, and a stronger regression with
-a total critical system still avoids the missing shared incidence; neither
-is a full counterexample because global all-center K4 is absent.  A closer
-must visibly use global K4 coupled to the named mutual/parent rows,
-`R.minimal`, or construct a complete alternative `IsM44` packet for
-`R.noM44`.
+The surviving occurrence surface is genuinely global. Existing strict-convex
+MEC regressions realize the one-row geometry. In particular,
+`2026-07-21-exact-five-asymmetric-local-regression.md` gives a 14-point
+strict-convex `(6,5,6)` numerical fixture with the exact-five class, the
+strict-middle asymmetric row, and no alternative support triangle. A separate
+exact finite interval/support regression realizes five cap-centered rows and
+every exported curvature consequence while avoiding the aggregate four-arc
+occurrence. Neither is a full counterexample because global all-center K4 and
+the full Euclidean/MEC coupling are absent. A closer must visibly use global
+K4 coupled to the named
+mutual/parent rows, `R.minimal`, or construct a complete alternative `IsM44`
+packet for `R.noM44`.
 
 ## Epistemic status
 
@@ -101,6 +145,13 @@ must visibly use global K4 coupled to the named mutual/parent rows,
 | First-apex co-radial terminal for the asymmetric outside pair | **PROVEN IN PRODUCTION LEAN** |
 | Global split: named asymmetric normal form or all three rows one-hit | **PROVEN IN PRODUCTION LEAN** |
 | Pairwise omission and blocker-center injectivity on the all-three-one-hit arm | **PROVEN IN PRODUCTION LEAN** |
+| Each all-three-one-hit shell has exactly three nonphysical support points | **PROVEN IN PRODUCTION LEAN** |
+| Distinct physical pair with carrier-wide singleton-deletion cover | **PROVEN IN PRODUCTION LEAN** |
+| Two-edge global-cover star with one-hit hub row | **PROVEN IN PRODUCTION LEAN** |
+| No actual critical support contains both favorable endpoints | **PROVEN IN PRODUCTION LEAN** |
+| Asymmetric classification preserves an aligned globally covered pair | **PROVEN IN PRODUCTION LEAN** |
+| Asymmetric blocker is the strict middle physical-cap point and has a strictly obtuse physical angle | **PROVEN IN PRODUCTION LEAN** |
+| Five cap-centered rows plus current cap-hit, outside-pair, and per-row curvature consequences force four separated arcs | **DISPROVEN IN THE EXPORTED FINITE ABSTRACTION** |
 | Asymmetric outside-pair occurrence | **OPEN** |
 | All-three-one-hit `CriticalFiberClosingCore` or alternative-`IsM44` occurrence | **OPEN** |
-| Live exact-five mutual-parent theorem | **OPEN** |
+| Live exact-five global-cover theorem | **OPEN** |

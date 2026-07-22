@@ -25,7 +25,7 @@ adjacent-cap one-hit theorem to the actual packet `S`.
 This bridge is now stored in
 `FrontierBiApexRobustExactFiveMutualParentResidual`; it is not the remaining
 proof target.  The live target is
-`false_of_frontierBiApexRobustExactFiveMutualParentResidual`.
+`false_of_frontierBiApexRobustExactFiveGlobalCoverStarResidual`.
 
 The same production packet now also stores `oneHit`, proving that at least
 one of the two mutual actual-critical supports meets the exact three-point

@@ -206,18 +206,18 @@ least five strict-cap positions, contradicting cardinality three.  Thus the
 all-reverse arm is closed in production Lean.
 
 The live exact-five profile theorem now constructs
-`FrontierBiApexRobustExactFiveMutualParentResidual` and calls the sole open
-consumer:
+`ExactFiveGlobalCoverStarOutcome Q profile` and calls the sole open consumer:
 
 ```lean
-false_of_frontierBiApexRobustExactFiveMutualParentResidual
+false_of_frontierBiApexRobustExactFiveGlobalCoverStarResidual
 ```
 
-That packet retains `F/R/B/Q/profile`, the fixed `H`, the arbitrary mutual
-omission pair, the parent-row bridge, both endpoint incidence disjunctions,
-the sharp same-endpoint/split-endpoint row dichotomy, and `oneHit`: at least
-one mutual actual-critical support meets the exact three-point physical set
-in exactly one point.  The double-two-hit case is closed in production Lean:
+The live consumer retains `F/R/B/Q/profile`, the fixed `H`, and a normalized
+two-edge global-cover-star outcome.  On an asymmetric arm the two-hit spoke
+remains paired with its one-hit hub by a carrier-wide cover; on the symmetric
+arm the full star remains available with all three one-hit rows.  The covered
+pair canonically reconstructs the mutual omission and retained-row parent
+data.  The double-two-hit case is closed in production Lean:
 two hits localize both blockers to the physical set; mutual omission then
 forces the blockers to swap endpoints, making the physical triple
 equilateral and contradicting the non-obtuse convex/MEC obstruction.
@@ -237,8 +237,41 @@ any physical two-hit row reorients with an original endpoint and produces the
 same asymmetric normal form.  Thus the only other residual is
 `AllPhysicalActualCriticalRowsOneHit`: all three physical source rows are
 one-hit, all distinct physical sources mutually omit one another, and their
-actual blocker centers are pairwise distinct.  This excludes an easy
+actual blocker centers are pairwise distinct.  Each exact shell has exactly
+three support points outside the physical three-set.  This excludes an easy
 physical-source fiber collision but is not a terminal.
+
+`ATail/ExactFiveGlobalCrossDeletionPair.lean` now strengthens the ingress
+before that classifier.  The global-cover graph on the three physical
+vertices has at least two incident edges: one hub pairs with both spokes so
+that every carrier center retains K4 after deleting the hub or the spoke.
+The hub's actual critical row is therefore one-hit.  If a spoke row is
+two-hit, the asymmetric normal form is built from that spoke-hub edge, so the
+carrier-wide cover is not lost during reorientation.  If neither spoke row is
+two-hit, all three rows are one-hit and the complete star remains available.
+The older arbitrary mutual packet is no longer the live interface.
+
+This carrier-wide cover is useful but nonterminal.  It is a universal negative
+incidence statement, not the positive shared pair required by an existing
+consumer.  An exact 13-vertex critical-hypergraph model satisfies criticality,
+strong connectivity, all-one-hit, and the global cover while having no
+nontrivial blocker fiber.  Therefore the next theorem must couple this cover
+to the nonlinear convex/MEC cap partition or construct a complete alternative
+`IsM44` packet; pure row incidence and connectivity are exhausted.
+
+The asymmetric geometry is now sharper as well. Production proves that the
+hub blocker lies strictly between the two physical support points in their
+common ordered cap, and that the corresponding physical angle at the blocker
+is strictly obtuse.  This does not close the arm: the named outside pair is
+still absent from the retained first-apex row, and one centered shell does not
+supply the four separated arcs required by the aggregate shell-curvature
+terminal. The stronger five-row route is now audited too: an exact finite
+interval/support model satisfies the five cap-hit bounds, outside-pair
+uniqueness, and all twenty per-row quarter-turn inequalities, but admits at
+most three nonoverlapping arcs in one period. Therefore neither a
+`SelectedFourClass` curvature adapter nor more row-local curvature lemmas are
+load-bearing. Do not resume this route until a source theorem forces four
+cross-row arcs into disjoint boundary sectors.
 
 The exact closing targets are now:
 
@@ -247,6 +280,7 @@ asymmetric normal form
   -> first-apex co-radial outside pair OR alternative IsM44 packet;
 
 all three physical rows one-hit
+  + favorable carrier-wide deletion cover
   -> CriticalFiberClosingCore R OR alternative IsM44 packet.
 ```
 

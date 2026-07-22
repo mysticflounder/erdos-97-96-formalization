@@ -77,6 +77,90 @@ structure SourceTwoHitNormalForm
         S.capByIndex S.oppIndex2 =
       ({outside₁, outside₂} : Finset ℝ²)
 
+/-- The physical angle at the blocker of an asymmetric two-hit row is
+strictly obtuse.  The row makes the two other physical points equidistant
+from the blocker.  The two base angles of that isosceles triangle are
+strictly acute, while the common physical-apex circle and convex
+independence rule out a non-obtuse physical triangle. -/
+theorem SourceTwoHitNormalForm.blocker_inner_neg
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    {Q : FrontierBiApexRobustExactFiveSecondCapResidual B}
+    {profile : LargeCapUniqueFiveSecondApexRadius D S}
+    {M : PhysicalActualCriticalMutualOmissionPair H profile}
+    (N : SourceTwoHitNormalForm Q profile M) :
+    inner ℝ (M.source.1 - M.target.1) (N.third.1 - M.target.1) < 0 := by
+  let K := (H.selectedAt M.source.1
+    (PhysicalVertex.mem_A M.source)).toCriticalFourShell
+  have hsourceThird :
+      dist M.target.1 M.source.1 = dist M.target.1 N.third.1 := by
+    rw [← N.sourceBlocker_eq_target]
+    exact (K.support_eq_radius M.source.1 K.q_mem_support).trans
+      (K.support_eq_radius N.third.1 N.third_mem_sourceSupport).symm
+  have hsourceNeThird : M.source.1 ≠ N.third.1 := by
+    intro h
+    exact N.third_ne_source (Subtype.ext h.symm)
+  have hbaseSource :
+      0 < inner ℝ (M.target.1 - M.source.1)
+        (N.third.1 - M.source.1) := by
+    have hvec :
+        (M.target.1 - M.source.1) - (N.third.1 - M.source.1) =
+          M.target.1 - N.third.1 := by
+      abel
+    have hnormTargetSource :
+        ‖M.target.1 - M.source.1‖ = dist M.target.1 M.source.1 := by
+      rw [dist_eq_norm]
+    have hnormThirdSource :
+        ‖N.third.1 - M.source.1‖ = dist M.source.1 N.third.1 := by
+      rw [dist_eq_norm, norm_sub_rev]
+    have hnormTargetThird :
+        ‖M.target.1 - N.third.1‖ = dist M.target.1 N.third.1 := by
+      rw [dist_eq_norm]
+    have hidentity := norm_sub_sq_real
+      (M.target.1 - M.source.1) (N.third.1 - M.source.1)
+    rw [hvec, hnormTargetSource, hnormThirdSource,
+      hnormTargetThird, ← hsourceThird] at hidentity
+    have hthirdDistPos : 0 < dist M.source.1 N.third.1 :=
+      dist_pos.mpr hsourceNeThird
+    nlinarith [sq_pos_of_pos hthirdDistPos]
+  have hbaseThird :
+      0 < inner ℝ (M.target.1 - N.third.1)
+        (M.source.1 - N.third.1) := by
+    have hvec :
+        (M.target.1 - N.third.1) - (M.source.1 - N.third.1) =
+          M.target.1 - M.source.1 := by
+      abel
+    have hnormTargetThird :
+        ‖M.target.1 - N.third.1‖ = dist M.target.1 N.third.1 := by
+      rw [dist_eq_norm]
+    have hnormSourceThird :
+        ‖M.source.1 - N.third.1‖ = dist M.source.1 N.third.1 := by
+      rw [dist_eq_norm]
+    have hnormTargetSource :
+        ‖M.target.1 - M.source.1‖ = dist M.target.1 M.source.1 := by
+      rw [dist_eq_norm]
+    have hidentity := norm_sub_sq_real
+      (M.target.1 - N.third.1) (M.source.1 - N.third.1)
+    rw [hvec, hnormTargetThird, hnormSourceThird,
+      hnormTargetSource, hsourceThird] at hidentity
+    have hthirdDistPos : 0 < dist M.source.1 N.third.1 :=
+      dist_pos.mpr hsourceNeThird
+    nlinarith [sq_pos_of_pos hthirdDistPos]
+  by_contra hnotNeg
+  have hblockerNonneg :
+      0 ≤ inner ℝ (M.source.1 - M.target.1)
+        (N.third.1 - M.target.1) := le_of_not_gt hnotNeg
+  exact not_nonobtuse_of_three_distinct_physicalVertices
+    M.target M.source N.third
+    (PhysicalActualCriticalMutualOmissionPair.source_ne_target M).symm
+    N.third_ne_target.symm N.third_ne_source.symm
+    ⟨hblockerNonneg,
+      (by simpa [real_inner_comm] using hbaseSource.le),
+      hbaseThird.le⟩
+
 /-- Reverse the orientation of an arbitrary mutual omission pair. -/
 def swapMutualOmissionPair
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
@@ -488,6 +572,51 @@ theorem AllPhysicalActualCriticalRowsOneHit.not_mem_support_of_ne
     simpa [K] using (hall q).le
   exact hqw (Subtype.ext (Finset.card_le_one.mp hle q.1 hqInter w.1 hwInter))
 
+/-- Exact singleton form of the all-one-hit hypothesis. -/
+theorem AllPhysicalActualCriticalRowsOneHit.inter_support_eq_singleton
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {profile : LargeCapUniqueFiveSecondApexRadius D S}
+    (hall : AllPhysicalActualCriticalRowsOneHit H profile)
+    (q : PhysicalVertex profile) :
+    physicalVertices profile ∩
+        (H.selectedAt q.1
+          (PhysicalVertex.mem_A q)).toCriticalFourShell.support =
+      {q.1} := by
+  classical
+  let K := (H.selectedAt q.1
+    (PhysicalVertex.mem_A q)).toCriticalFourShell
+  have hsub : ({q.1} : Finset ℝ²) ⊆
+      physicalVertices profile ∩ K.support := by
+    simp only [Finset.singleton_subset_iff, Finset.mem_inter]
+    exact ⟨q.2, K.q_mem_support⟩
+  have hcard : (physicalVertices profile ∩ K.support).card ≤
+      ({q.1} : Finset ℝ²).card := by
+    simpa [K] using (hall q).le
+  simpa [K] using (Finset.eq_of_subset_of_card_le hsub hcard).symm
+
+/-- Every all-one-hit physical critical shell has exactly three support
+points outside the physical three-set. -/
+theorem AllPhysicalActualCriticalRowsOneHit.support_sdiff_card_eq_three
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {profile : LargeCapUniqueFiveSecondApexRadius D S}
+    (hall : AllPhysicalActualCriticalRowsOneHit H profile)
+    (q : PhysicalVertex profile) :
+    ((H.selectedAt q.1
+        (PhysicalVertex.mem_A q)).toCriticalFourShell.support \
+      physicalVertices profile).card = 3 := by
+  let K := (H.selectedAt q.1
+    (PhysicalVertex.mem_A q)).toCriticalFourShell
+  have hsplit := Finset.card_sdiff_add_card_inter
+    K.support (physicalVertices profile)
+  have hinter : (K.support ∩ physicalVertices profile).card = 1 := by
+    simpa [K, Finset.inter_comm] using hall q
+  have hfour : K.support.card = 4 := K.support_card
+  rw [hinter, hfour] at hsplit
+  change (K.support \ physicalVertices profile).card = 3
+  omega
+
 /-- The three actual blocker centers on the fully symmetric exact-five arm
 are pairwise distinct.  This rules out closing that arm by the easy repeated
 critical-fiber pigeonhole restricted to the physical sources. -/
@@ -681,6 +810,8 @@ theorem nonempty_mutualParentGlobalOneHitOutcome
     (M : FrontierBiApexRobustExactFiveMutualParentResidual Q profile) :
     Nonempty (ExactFiveGlobalOneHitOutcome Q profile) :=
   nonempty_exactFiveGlobalOneHitOutcome Q profile M.pair M.oneHit
+
+#print axioms SourceTwoHitNormalForm.blocker_inner_neg
 
 end
 
