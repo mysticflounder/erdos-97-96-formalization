@@ -1,0 +1,87 @@
+{
+  "schema": "p97-card13-exact5-global-cover-parent-gate-v1",
+  "status": "B0_BOOLEAN_NECESSARY_CONDITION_RELAXATION",
+  "n": 13,
+  "cap_profile": [5, 6, 5],
+  "first_apex": 4,
+  "second_apex": 8,
+  "physical_interior": [1, 2, 3],
+  "orbits": [
+    "asymmetricSourceLeft",
+    "asymmetricSourceRight",
+    "allOneHitHubLeft",
+    "allOneHitHubMiddle",
+    "allOneHitHubRight"
+  ],
+  "cover_row_table_count": 2,
+  "cover_tables_aliased_to_m": false,
+  "selected_second_apex_row_identified_with_complete_shell": false,
+  "terminal_negation": {
+    "asymmetric": "first_apex_outside_pair_not_coradial",
+    "all_one_hit": "NOT_ENCODED"
+  },
+  "b0_terminal_negation": "none",
+  "all_one_hit_metric_rung": "absent",
+  "m_second_apex_role": "selected second-apex double-deletion row",
+  "retained_parent_B1_B2_encoded": false,
+  "l1": {
+    "schema": "p97-card13-exact5-global-cover-parent-l1-v1",
+    "scope": [
+      "asymmetricSourceLeft",
+      "asymmetricSourceRight"
+    ],
+    "signs": [
+      "outsideLowerIndexFarther",
+      "outsideHigherIndexFarther"
+    ],
+    "status": "BOUNDED_UNKNOWN",
+    "latest_core_guided_checked_b0_candidates": 164,
+    "latest_core_guided_exact_lra_unsat_candidates": 164,
+    "latest_core_guided_ordinal_schema_entries": 156,
+    "latest_core_guided_unique_ordinal_schema_ids": 143,
+    "verified_sat_candidates": 0,
+    "certificate": "none; individual UNSAT checks are solver verdicts",
+    "full_assignment_blocking": false,
+    "core_or_schema_generalization": true,
+    "recorded_deletion_minimal_core_per_orbit_sign": true,
+    "first_recorded_core_uses": {
+      "m": true,
+      "g0": false,
+      "g1": false,
+      "b1": false,
+      "shell": false
+    },
+    "all_latest_recorded_core_usage": {
+      "terminal_sign_schema_count": 3,
+      "shell_schema_count": 0,
+      "b1_schema_count": 1,
+      "cover_schema_count": 10,
+      "frontier_schema_count": 8
+    }
+  },
+  "modeled": [
+    "exact card thirteen and contiguous cap profile (5,6,5)",
+    "one selected K4 row at every carrier center",
+    "one fixed actual blocker at every source with blocker-row locking",
+    "both robust apices omitted from the blocker image",
+    "complete exact-five second-apex shell combinatorics",
+    "frontier pair and chosen first/second-apex double-deletion rows",
+    "two separate carrier-wide global-cover witness-row tables",
+    "cover-row equality with m at every fixed-blocker-image center",
+    "cover-row containment in the complete shell at the second apex",
+    "five source-role orbits for the two exact-five outcomes",
+    "selected-row strong connectivity for m and both cover tables",
+    "within-family and cross-family distinct-center convex incidence constraints"
+  ],
+  "omitted": [
+    "metric equalities, positivity, triangle and Kalmanson inequalities",
+    "exact blocker filters and complete no_qfree_at",
+    "terminal-negation distance literals",
+    "retained parent rows R.common.packet.B1 and B2",
+    "all-one-hit terminal negation and metric rung",
+    "full CounterexampleData.Minimal beyond selected-row strong connectivity",
+    "global noM44 over alternative support packets",
+    "planar rank-two realization",
+    "MEC containment, support and nonobtuse inequalities"
+  ]
+}

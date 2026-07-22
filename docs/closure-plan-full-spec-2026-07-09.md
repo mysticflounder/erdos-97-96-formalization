@@ -251,13 +251,17 @@ carrier-wide cover is not lost during reorientation.  If neither spoke row is
 two-hit, all three rows are one-hit and the complete star remains available.
 The older arbitrary mutual packet is no longer the live interface.
 
-This carrier-wide cover is useful but nonterminal.  It is a universal negative
+This carrier-wide cover is useful but nonterminal. It is a universal negative
 incidence statement, not the positive shared pair required by an existing
-consumer.  An exact 13-vertex critical-hypergraph model satisfies criticality,
-strong connectivity, all-one-hit, and the global cover while having no
-nontrivial blocker fiber.  Therefore the next theorem must couple this cover
-to the nonlinear convex/MEC cap partition or construct a complete alternative
-`IsM44` packet; pure row incidence and connectivity are exhausted.
+consumer. The stronger regression in
+`docs/audits/2026-07-21-exact-five-global-minimality-regression.md` gives an
+exact 13-point finite metric model with global K4, a total deletion-critical
+map, both robust apex classes, retained rows, the two-edge star, and no proper
+witness-closed subset. It still avoids both the asymmetric co-radial terminal
+and `CriticalFiberClosingCore`. Therefore the next theorem must couple this
+cover to the common rank-two Euclidean/convex/MEC geometry or construct a
+complete alternative `IsM44` packet; pure row incidence, connectivity,
+cardinal minimality, and anonymous blocker multiplicity are exhausted.
 
 The asymmetric geometry is now sharper as well. Production proves that the
 hub blocker lies strictly between the two physical support points in their
@@ -293,6 +297,83 @@ asymmetric outside pair.  Local one-row and bare-critical-system regressions
 realize the missing-incidence surface, so the producer must visibly use
 convex/MEC geometry coupled to global K4 or `R.minimal`, or make `noM44`
 load-bearing.
+
+The actual critical rows at the asymmetric outside pair have also been split
+exhaustively. Omission arms yield only a nonterminal common-deletion packet;
+mutual membership yields blocker equalities; and a one-direction membership
+closes only with an additional physical-cap localization. The kernel-checked
+boundary in `scratch/atail-force/exact-five-outside-pair-rows/` realizes the
+current incidence/order consequences while avoiding every terminal pair
+input. Do not introduce an outside-row adapter without a new nonlinear
+full-parent premise.
+
+The `noM44` route now has a checked complete packet-assembly boundary in
+`scratch/atail-force/exact-five-nom44-boundary-witness/`. It is enough to
+produce a nonobtuse MEC-boundary triple with two exact four-point boundary
+arcs. The exact-five cap cannot supply a `4+4` split; a one-vertex split of a
+different displayed cap requires that cap to be exactly seven and the new
+boundary vertex to split it `4+4`. Until the full parent forces this complete
+boundary occurrence, the wrapper remains scratch and no partial exchange
+packet should be promoted.
+
+The retained `B₁/B₂` metric rows have also been tested against the complete
+strict triangle/Kalmanson relaxation. The exact rational model in
+`scratch/atail-force/exact-five-retained-rows-lra/` retains their sharp
+physical endpoint distribution, the first-apex frontier class, exact-five
+second-apex class, and strict-obtuse asymmetric row while keeping the outside
+pair non-co-radial at the first apex and without a second physical-cap center.
+Therefore the positive return cannot be obtained by enlarging the linear
+ordered-distance closure; it must use rank-two Euclidean/MEC or full global
+critical-system information.
+
+The bounded computational discovery gate is a fresh exact-five, card-13
+all-center gate, not a relabeling of the card-14 exact-six role table.
+This covers only the minimum-card slice: production proves `13 ≤ D.A.card`,
+not `D.A.card = 13`, so the honest complementary arm is `14 ≤ D.A.card`.
+No result from the card-13 gate closes that arm unless its extracted theorem
+schema is proved uniformly. The gate must retain the complete star outcome,
+all-center rows, the fixed total critical
+map with exact deletion semantics and explicit negations of the current
+terminal outcomes.  The implemented checkpoint does **not** yet retain the
+parent's stored `B₁/B₂` rows, and its `m[O₂]` row is the second-apex
+double-deletion row rather than retained `B₂`; it is therefore only a
+necessary-condition relaxation. Its escalation ladder is:
+finite incidence and criticality; common strict-convex order/Kalmanson;
+rank-two Euclidean realization; then MEC/nonobtuse support semantics and
+`noM44`. A SAT result at an earlier rung is only a regression for that
+abstraction. An UNSAT result is closure-relevant only after replayable
+coverage and, at the geometric rung, a certificate or theorem schema suitable
+for Lean checking.
+
+The existing card-at-least-14 survival-cover consumer does not close the
+complementary arm. Its exported robust outcome is already exactly
+`B.secondApex_robust`. The raw producer is stronger—it chooses a third
+actual blocker and a source-faithful common-deletion packet with the physical
+second apex—but no banked theorem relates that new row to the asymmetric
+outside pair, a repeated critical fiber, or an alternative MEC triangle. See
+`docs/audits/2026-07-21-exact-five-card-ge-14-survival-cover.md`. The
+uniform target must consume that raw packet together with the named star and
+return one of the three existing sinks directly; another robust/common-
+deletion wrapper is nonterminal.
+
+The source-audited implementation is
+`scratch/atail-force/exact5-global-cover-parent-gate/`. Five parent-role
+orbits are required; reflection is not role-preserving because the two
+physical-cap endpoints and adjacent cap sizes differ. The two star edges also
+require independent witness-row tables. The B0 incidence/criticality
+relaxation is SAT in all five orbits.  The independent audit added two missing
+necessary synchronizations: at every fixed-blocker-image center both cover
+rows equal the unique actual row, and both second-apex cover rows lie in the
+unique exact-five class.  All five corrected B0 orbits remain SAT.  On the two
+asymmetric orbits, both signed negations of the co-radial terminal remained
+bounded `UNKNOWN` after 164 decoded candidates; all 164 were exact-LRA UNSAT.
+The corrected runs record 156 normalized schema entries / 143 distinct ids,
+but none uses the exact-five shell and only three use the terminal sign.  This
+is a negative route checkpoint, not convergence or coverage.  Freeze this
+local gate unless a future parent-facing theorem supplies the omitted retained
+rows or an all-one-hit terminal negation; do not resume whole-assignment
+blocking, broad MARCO enumeration, or the integrated Boolean+LRA fallback as
+the primary closure lane.
 
 Do not reopen the parent-row bridge, the exact-five all-reverse occurrence,
 or the MEC-extreme packet route.  The cap-six `L` all-reverse program below
