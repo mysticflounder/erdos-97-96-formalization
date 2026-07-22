@@ -1,0 +1,28 @@
+{
+  "compatible_order_count": 216,
+  "order_semantics": "0, perm(2,4,7), 10, perm(1,3,6), 11, perm(5,8,9)",
+  "profiles": {
+    "rows_complete_apex_classes_plus_triangles": {
+      "status": "UNSAT_ALL_ORDERS",
+      "tested_orders": 216,
+      "unknown_orders": []
+    },
+    "rows_plus_complete_apex_classes": {
+      "status": "UNSAT_ALL_ORDERS",
+      "tested_orders": 216,
+      "unknown_orders": []
+    },
+    "selected_rows_only": {
+      "status": "UNSAT_ALL_ORDERS",
+      "tested_orders": 216,
+      "unknown_orders": []
+    },
+    "selected_rows_plus_triangles": {
+      "status": "UNSAT_ALL_ORDERS",
+      "tested_orders": 216,
+      "unknown_orders": []
+    }
+  },
+  "schema": "unique5-distinct-biapex-kalmanson-v1",
+  "strict_normalization": "all strict homogeneous slacks are normalized to >= 1"
+}

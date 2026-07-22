@@ -1,0 +1,60 @@
+{
+  "audit_sha256": "1601a236e8e91d974b1e5a8187636f2effc67c6592611ef16e33bc596a8cb06d",
+  "boundary": [
+    4,
+    8,
+    9,
+    10,
+    7,
+    1,
+    0,
+    2,
+    6,
+    11,
+    5,
+    3
+  ],
+  "constraint_counts": {
+    "first_class": 4,
+    "kalmanson": 990,
+    "positive": 66,
+    "row": 36,
+    "total": 1756,
+    "triangle": 660
+  },
+  "minimal_core_deletion_check": "PASS",
+  "minimal_core_size": 10,
+  "minimal_extension_stable_core": [
+    "row:1:0:4",
+    "row:1:0:8",
+    "row:4:1:3",
+    "row:4:1:6",
+    "row:6:2:7",
+    "row:6:2:8",
+    "row:7:4:6",
+    "row:8:3:7",
+    "kalmanson:4:8:7:1:outer",
+    "kalmanson:4:8:6:3:outer"
+  ],
+  "rows": [
+    [1, 2, 3, 4],
+    [0, 4, 7, 8],
+    [0, 3, 9, 10],
+    [1, 4, 7, 11],
+    [1, 2, 3, 6],
+    [0, 3, 8, 11],
+    [2, 7, 8, 10],
+    [4, 6, 9, 11],
+    [3, 5, 7, 9],
+    [0, 4, 5, 10],
+    [2, 5, 8, 11],
+    [1, 6, 8, 9]
+  ],
+  "schema": 1,
+  "smoke": {
+    "forced_tight_kalmanson": "UNSAT",
+    "unconstrained_four_cycle": "SAT"
+  },
+  "status": "UNSAT",
+  "strict_slack_normalization": 1
+}

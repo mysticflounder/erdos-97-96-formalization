@@ -1,0 +1,3772 @@
+{
+  "core_schema_count": 2,
+  "coverage": "all 216 cap-compatible cyclic orders for this fixed row table",
+  "order_records": [
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        1,
+        3,
+        6,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        1,
+        3,
+        6,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        1,
+        3,
+        6,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        1,
+        3,
+        6,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        1,
+        3,
+        6,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        1,
+        3,
+        6,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        1,
+        6,
+        3,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        1,
+        6,
+        3,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        1,
+        6,
+        3,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        1,
+        6,
+        3,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        1,
+        6,
+        3,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        1,
+        6,
+        3,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        3,
+        1,
+        6,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        3,
+        1,
+        6,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        3,
+        1,
+        6,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        3,
+        1,
+        6,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        3,
+        1,
+        6,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        3,
+        1,
+        6,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        3,
+        6,
+        1,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        3,
+        6,
+        1,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        3,
+        6,
+        1,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        3,
+        6,
+        1,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        3,
+        6,
+        1,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        3,
+        6,
+        1,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        6,
+        1,
+        3,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        6,
+        1,
+        3,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        6,
+        1,
+        3,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        6,
+        1,
+        3,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        6,
+        1,
+        3,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        6,
+        1,
+        3,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        6,
+        3,
+        1,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        6,
+        3,
+        1,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        6,
+        3,
+        1,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        6,
+        3,
+        1,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        6,
+        3,
+        1,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        4,
+        7,
+        10,
+        6,
+        3,
+        1,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        1,
+        3,
+        6,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        1,
+        3,
+        6,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        1,
+        3,
+        6,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        1,
+        3,
+        6,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        1,
+        3,
+        6,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        1,
+        3,
+        6,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        1,
+        6,
+        3,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        1,
+        6,
+        3,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        1,
+        6,
+        3,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        1,
+        6,
+        3,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        1,
+        6,
+        3,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        1,
+        6,
+        3,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        3,
+        1,
+        6,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        3,
+        1,
+        6,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        3,
+        1,
+        6,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        3,
+        1,
+        6,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        3,
+        1,
+        6,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        3,
+        1,
+        6,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        3,
+        6,
+        1,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        3,
+        6,
+        1,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        3,
+        6,
+        1,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        3,
+        6,
+        1,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        3,
+        6,
+        1,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        3,
+        6,
+        1,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        6,
+        1,
+        3,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        6,
+        1,
+        3,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        6,
+        1,
+        3,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        6,
+        1,
+        3,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        6,
+        1,
+        3,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        6,
+        1,
+        3,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        6,
+        3,
+        1,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        6,
+        3,
+        1,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        6,
+        3,
+        1,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        6,
+        3,
+        1,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        6,
+        3,
+        1,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        2,
+        7,
+        4,
+        10,
+        6,
+        3,
+        1,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        1,
+        3,
+        6,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        1,
+        3,
+        6,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        1,
+        3,
+        6,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        1,
+        3,
+        6,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        1,
+        3,
+        6,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        1,
+        3,
+        6,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        1,
+        6,
+        3,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        1,
+        6,
+        3,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        1,
+        6,
+        3,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        1,
+        6,
+        3,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        1,
+        6,
+        3,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        1,
+        6,
+        3,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        3,
+        1,
+        6,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        3,
+        1,
+        6,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        3,
+        1,
+        6,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        3,
+        1,
+        6,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        3,
+        1,
+        6,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        3,
+        1,
+        6,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        3,
+        6,
+        1,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        3,
+        6,
+        1,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        3,
+        6,
+        1,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        3,
+        6,
+        1,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        3,
+        6,
+        1,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        3,
+        6,
+        1,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        6,
+        1,
+        3,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        6,
+        1,
+        3,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        6,
+        1,
+        3,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        6,
+        1,
+        3,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        6,
+        1,
+        3,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        6,
+        1,
+        3,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        6,
+        3,
+        1,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        6,
+        3,
+        1,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        6,
+        3,
+        1,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        6,
+        3,
+        1,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        6,
+        3,
+        1,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        2,
+        7,
+        10,
+        6,
+        3,
+        1,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        1,
+        3,
+        6,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        1,
+        3,
+        6,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        1,
+        3,
+        6,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        1,
+        3,
+        6,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        1,
+        3,
+        6,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        1,
+        3,
+        6,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        1,
+        6,
+        3,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        1,
+        6,
+        3,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        1,
+        6,
+        3,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        1,
+        6,
+        3,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        1,
+        6,
+        3,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        1,
+        6,
+        3,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        3,
+        1,
+        6,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        3,
+        1,
+        6,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        3,
+        1,
+        6,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        3,
+        1,
+        6,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        3,
+        1,
+        6,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        3,
+        1,
+        6,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        3,
+        6,
+        1,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        3,
+        6,
+        1,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        3,
+        6,
+        1,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        3,
+        6,
+        1,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        3,
+        6,
+        1,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        3,
+        6,
+        1,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        6,
+        1,
+        3,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        6,
+        1,
+        3,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        6,
+        1,
+        3,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        6,
+        1,
+        3,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        6,
+        1,
+        3,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        6,
+        1,
+        3,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        6,
+        3,
+        1,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        6,
+        3,
+        1,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        6,
+        3,
+        1,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        6,
+        3,
+        1,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        6,
+        3,
+        1,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        4,
+        7,
+        2,
+        10,
+        6,
+        3,
+        1,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        1,
+        3,
+        6,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        1,
+        3,
+        6,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        1,
+        3,
+        6,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        1,
+        3,
+        6,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        1,
+        3,
+        6,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        1,
+        3,
+        6,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        1,
+        6,
+        3,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        1,
+        6,
+        3,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        1,
+        6,
+        3,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        1,
+        6,
+        3,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        1,
+        6,
+        3,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        1,
+        6,
+        3,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        3,
+        1,
+        6,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        3,
+        1,
+        6,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        3,
+        1,
+        6,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        3,
+        1,
+        6,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        3,
+        1,
+        6,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        3,
+        1,
+        6,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        3,
+        6,
+        1,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        3,
+        6,
+        1,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        3,
+        6,
+        1,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        3,
+        6,
+        1,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        3,
+        6,
+        1,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        3,
+        6,
+        1,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        6,
+        1,
+        3,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        6,
+        1,
+        3,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        6,
+        1,
+        3,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        6,
+        1,
+        3,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        6,
+        1,
+        3,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        6,
+        1,
+        3,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        6,
+        3,
+        1,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        6,
+        3,
+        1,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        6,
+        3,
+        1,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        6,
+        3,
+        1,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        6,
+        3,
+        1,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        2,
+        4,
+        10,
+        6,
+        3,
+        1,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        1,
+        3,
+        6,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        1,
+        3,
+        6,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        1,
+        3,
+        6,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        1,
+        3,
+        6,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        1,
+        3,
+        6,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        1,
+        3,
+        6,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        1,
+        6,
+        3,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        1,
+        6,
+        3,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        1,
+        6,
+        3,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        1,
+        6,
+        3,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        1,
+        6,
+        3,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        1,
+        6,
+        3,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        3,
+        1,
+        6,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        3,
+        1,
+        6,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        3,
+        1,
+        6,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        3,
+        1,
+        6,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        3,
+        1,
+        6,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_1_slot_3\": -1, \"row_6_slot_2\": 1}, \"inequality\": \"kalmanson_adjacent_0_1_6_8\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        3,
+        1,
+        6,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        3,
+        6,
+        1,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        3,
+        6,
+        1,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        3,
+        6,
+        1,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        3,
+        6,
+        1,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        3,
+        6,
+        1,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        3,
+        6,
+        1,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        6,
+        1,
+        3,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        6,
+        1,
+        3,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        6,
+        1,
+        3,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        6,
+        1,
+        3,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        6,
+        1,
+        3,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        6,
+        1,
+        3,
+        11,
+        9,
+        8,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        6,
+        3,
+        1,
+        11,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        6,
+        3,
+        1,
+        11,
+        5,
+        9,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        6,
+        3,
+        1,
+        11,
+        8,
+        5,
+        9
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        6,
+        3,
+        1,
+        11,
+        8,
+        9,
+        5
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        6,
+        3,
+        1,
+        11,
+        9,
+        5,
+        8
+      ]
+    },
+    {
+      "core_signature": "{\"equality_weights\": {\"row_2_slot_3\": -1, \"row_6_slot_3\": 1}, \"inequality\": \"kalmanson_adjacent_0_2_6_11\"}",
+      "order": [
+        0,
+        7,
+        4,
+        2,
+        10,
+        6,
+        3,
+        1,
+        11,
+        9,
+        8,
+        5
+      ]
+    }
+  ],
+  "schema": "unique5-distinct-biapex-one-kalmanson-farkas-v1",
+  "schemas": [
+    {
+      "core": {
+        "deletion_minimal": true,
+        "equalities": {
+          "row_1_slot_3": [
+            "d_1_8",
+            "d_0_1"
+          ],
+          "row_6_slot_2": [
+            "d_6_8",
+            "d_0_6"
+          ]
+        },
+        "equality_weights": {
+          "row_1_slot_3": -1,
+          "row_6_slot_2": 1
+        },
+        "inequality": "kalmanson_adjacent_0_1_6_8",
+        "lhs": [
+          "d_0_6",
+          "d_1_8"
+        ],
+        "replay": "inequality plus signed equality weights has zero linear left side but normalized right side 1",
+        "rhs": [
+          "d_0_1",
+          "d_6_8"
+        ],
+        "strict_weight": 1
+      },
+      "coverage_count": 108
+    },
+    {
+      "core": {
+        "deletion_minimal": true,
+        "equalities": {
+          "row_2_slot_3": [
+            "d_2_11",
+            "d_0_2"
+          ],
+          "row_6_slot_3": [
+            "d_6_11",
+            "d_0_6"
+          ]
+        },
+        "equality_weights": {
+          "row_2_slot_3": -1,
+          "row_6_slot_3": 1
+        },
+        "inequality": "kalmanson_adjacent_0_2_6_11",
+        "lhs": [
+          "d_0_6",
+          "d_2_11"
+        ],
+        "replay": "inequality plus signed equality weights has zero linear left side but normalized right side 1",
+        "rhs": [
+          "d_0_2",
+          "d_6_11"
+        ],
+        "strict_weight": 1
+      },
+      "coverage_count": 108
+    }
+  ],
+  "universal_core": {
+    "deletion_minimal": true,
+    "equalities": {
+      "row_2_slot_3": [
+        "d_2_11",
+        "d_0_2"
+      ],
+      "row_6_slot_3": [
+        "d_6_11",
+        "d_0_6"
+      ]
+    },
+    "equality_weights": {
+      "row_2_slot_3": -1,
+      "row_6_slot_3": 1
+    },
+    "inequality": "kalmanson_adjacent_0_2_6_11",
+    "lhs": [
+      "d_0_6",
+      "d_2_11"
+    ],
+    "replay": "inequality plus signed equality weights has zero linear left side but normalized right side 1",
+    "rhs": [
+      "d_0_2",
+      "d_6_11"
+    ],
+    "strict_weight": 1
+  },
+  "universal_core_coverage_count": 216
+}
