@@ -155,3 +155,9 @@ import AllOneMiddleBaseInstancesChunk029Part061
 import AllOneMiddleBaseInstancesChunk029Part062
 import AllOneMiddleBaseInstancesChunk029Part063
 import AllOneMiddleBaseInstancesChunk030
+
+/-!
+# Middle base source adapters
+
+Aggregate import for all generated base assertions.
+-/

@@ -1,0 +1,66 @@
+{
+  "schema": "p97-exact5-card13-all-one-current-split-validation-v1",
+  "date": "2026-07-22",
+  "status": "pass",
+  "lean_version": "4.27.0",
+  "warning_as_error": true,
+  "jobs": 24,
+  "raw_certificate_root": "/tmp/exact5-card13-all-one-certificate-endpoints-current",
+  "split_roots": {
+    "left": "/tmp/exact5-card13-all-one-certificate-ingress/left-ingress-split-current",
+    "middle": "/tmp/exact5-card13-all-one-certificate-ingress/middle-ingress-split-current",
+    "right": "/tmp/exact5-card13-all-one-certificate-ingress/right-ingress-split-current"
+  },
+  "core_build": {
+    "started_at": "2026-07-22T12:06:42.714808+00:00",
+    "finished_at": "2026-07-22T12:15:01.855209+00:00",
+    "assignments": 3,
+    "bridges": 342,
+    "endpoints": 3,
+    "passed": 348,
+    "failed": 0,
+    "per_orbit": {
+      "left": {
+        "modules": 116,
+        "sum_elapsed_seconds": 1793.2603195923148,
+        "longest_module": "AllOneLeftVerifiedBridgeChunk029",
+        "longest_elapsed_seconds": 436.6898478749208
+      },
+      "middle": {
+        "modules": 116,
+        "sum_elapsed_seconds": 1551.2720917909173,
+        "longest_module": "AllOneMiddleVerifiedBridgeChunk029",
+        "longest_elapsed_seconds": 425.9773924170295
+      },
+      "right": {
+        "modules": 116,
+        "sum_elapsed_seconds": 1457.3799386277096,
+        "longest_module": "AllOneRightVerifiedBridgeChunk029",
+        "longest_elapsed_seconds": 420.67535237502307
+      }
+    }
+  },
+  "axiom_audit": {
+    "started_at": "2026-07-22T12:25:36.390401+00:00",
+    "finished_at": "2026-07-22T12:25:53.515401+00:00",
+    "audits_passed": 3,
+    "audits_failed": 0,
+    "declarations_per_orbit": 115,
+    "declarations_with_structural_axioms_per_orbit": 102,
+    "declarations_with_native_decision_axioms_per_orbit": 13,
+    "sorryAx": false
+  },
+  "combined_import": {
+    "result": "pass",
+    "automated_by_validator": true,
+    "elapsed_seconds": 2.6987693330738693,
+    "olean_sha256": "a716c337f82430cf9408f95c44c77b6501a855b123d3cd2ae31d3e9c3c4c1499",
+    "checks_all_verifierMain_names": true,
+    "prints_all_endpoint_axioms": true
+  },
+  "superseded_preflight": {
+    "failed_jobs": 3,
+    "classification": "engineering-only",
+    "reason": "Generated axiom-audit sources were initially placed under /tmp and rejected by Lean's source-containment check; the corrected audit-only run passed all three jobs."
+  }
+}

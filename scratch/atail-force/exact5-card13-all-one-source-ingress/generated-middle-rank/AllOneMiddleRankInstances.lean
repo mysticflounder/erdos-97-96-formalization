@@ -82,3 +82,9 @@ import AllOneMiddleRankInstancesChunk110
 import AllOneMiddleRankInstancesChunk111
 import AllOneMiddleRankInstancesChunk112
 import AllOneMiddleRankInstancesChunk113
+
+/-!
+# Middle rank source adapters
+
+Aggregate import for all generated rank assertions.
+-/

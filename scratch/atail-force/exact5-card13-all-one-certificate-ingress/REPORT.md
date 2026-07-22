@@ -2,12 +2,12 @@
 
 Date: 2026-07-22
 
-Status: **GENERATOR AND SOURCE-SURFACE AUDIT COMPLETE. A 7,256-ASSERTION
-SOURCE CORE HAS BEEN REBUILT IN ALL THREE ORBITS, AND ALL THREE LEAN-EMITTED
-CNFS NOW HAVE KERNEL-CHECKED MULTIPART LRAT ENDPOINTS. ALL 7,256 SOURCE
-ADAPTERS ARE GENERATED, AND THE MIDDLE SOURCE COMPOSITION IS KERNEL-CHECKED.
-LEFT/RIGHT COMPOSITION AND THE FINAL THREE-WAY DISPATCH ARE STILL OPEN, SO NO
-PRODUCTION SORRY IS CLOSED YET.**
+Status: **CERTIFICATE INGRESS COMPLETE IN ALL THREE ORBITS. A 7,256-ASSERTION
+SOURCE CORE HAS BEEN REBUILT IN EACH ORBIT; ALL THREE LEAN-EMITTED CNFS HAVE
+KERNEL-CHECKED MULTIPART LRAT ENDPOINTS; ALL 348 SPLIT CORE MODULES AND THREE
+AXIOM AUDITS PASS; AND A COMBINED THREE-ORBIT IMPORT PASSES. SOURCE COMPOSITION
+AND FINAL DISPATCH ARE A SEPARATE LAYER, SO THIS CHECKPOINT ALONE DOES NOT CLOSE
+A PRODUCTION SORRY.**
 
 ## Result
 
@@ -202,6 +202,72 @@ role-independent semantic ingress now supplies every required field, and the
 Boolean adapter sweep is the only remaining gate for this exact-card-13
 all-one arm.
 
+## Import-safe split-ingress validation
+
+The first generated certificate modules exposed a root declaration named
+`main`.  Importing all three modules together therefore caused a declaration
+collision even though each orbit compiled separately.  This was an engineering
+import constraint, not a proof failure.  The generator now emits the three
+orbit-qualified entrypoints
+
+```text
+Problem97.ATailExactFiveCard13AllOneCertificate.Left.verifierMain
+Problem97.ATailExactFiveCard13AllOneCertificate.Middle.verifierMain
+Problem97.ATailExactFiveCard13AllOneCertificate.Right.verifierMain
+```
+
+The persisted modules and certificate manifest were regenerated after that
+change.  The sliced LRAT bytes and their whole-stream hashes did not change.
+The three raw endpoint modules were then rebuilt under Lean 4.27 with warnings
+as errors.  Their current olean hashes are:
+
+| Orbit | Olean bytes | Olean SHA-256 |
+| --- | ---: | --- |
+| left | 118,979,960 | `c58b60c84f7b8de0dadb16a07c2511b6e55abceaea772b5661d463b6dc9d21e2` |
+| middle | 116,653,832 | `a602d9ebcc9ec441fa3b487980f5613efadf342230ee2a75650986e8d5e1a3ac` |
+| right | 118,762,912 | `b83a0ce39372dc98e52e3e2894586e5a599ae88d461183243c6ba1aad698d611` |
+
+`validate_split_ingress.py` next compiled, with 24 workers:
+
+- all three assignment modules;
+- all 342 bridge modules, 114 per orbit;
+- all three itemwise endpoint modules; and
+- all three generated axiom-audit modules.
+
+The 348 core modules completed in about 8 minutes 19 seconds of wall time.  The
+sum of per-module times was 1,793.26 seconds for left, 1,551.27 seconds for
+middle, and 1,457.38 seconds for right.  The longest module in each orbit was
+bridge chunk 29, at 436.69, 425.98, and 420.68 seconds respectively.
+
+Each orbit audit prints 115 declarations: 114 itemwise bridges and the final
+`false_of_sourceChunks_each`.  Of those, 102 have axiom closure exactly
+
+```text
+[propext, Quot.sound]
+```
+
+and 13 have axiom closure exactly
+
+```text
+[propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound]
+```
+
+No audited declaration reaches `sorryAx`.  The validator's three-orbit mode
+also emits a combined smoke module that imports all three split audit modules,
+checks all three qualified `verifierMain` declarations, and prints the axioms
+of all three final itemwise endpoints.  Its latest warning-as-error run passed
+in 2.70 seconds.  The combined smoke olean had
+SHA-256
+`a716c337f82430cf9408f95c44c77b6501a855b123d3cd2ae31d3e9c3c4c1499`.
+
+The first full validator invocation attempted to place its generated audit
+sources under `/tmp`; Lean's source-containment check rejected those three
+audit jobs.  The 348 preceding core jobs had already passed.  The validator was
+then corrected to place audit sources under this scratch directory, and the
+three audits passed in a separate `--audit-only` run.  The three earlier
+nonzero statuses are therefore retained as engineering-preflight history, not
+classified as theorem failures.
+
 ## Exact dependencies
 
 Python generation depends on:
@@ -274,16 +340,12 @@ The LRAT must certify the CNF emitted by the generated Lean source module.
 An LRAT for Z3's externally exported DIMACS is not interchangeable with that
 CNF.
 
-## Remaining gate
+## Next layer
 
-The compact source core, its left/middle/right transports, all three exact
-Lean-emitted CNFs, and all three kernel-checked LRAT endpoints are complete.
-The generated packed-ingress modules expose the exact source obligations. All
-7,256 middle obligations are now composed with the verified middle endpoint in
-`false_of_middleAllOneSourceOrbit`; the theorem is warning-as-error clean and
-has no `sorryAx`.
-
-The remaining gate in this lane is the exact left/right transport, composition
-with those two verified endpoints, and dispatch on the original-frame
-`hubLeft`, `hubMiddle`, and `hubRight` constructors. Until that three-way
-composition lands, no production `sorry` is closed by this directory.
+The certificate-ingress gate is complete.  The generated packed-ingress
+modules expose the exact source obligations for all three original-frame hub
+orbits, and the three verified endpoint families can coexist in one import
+graph.  The next layer is source composition of those obligations and dispatch
+on the `hubLeft`, `hubMiddle`, and `hubRight` constructors.  That work is
+separate from this finite-certificate checkpoint; no production `sorry` is
+claimed closed here.

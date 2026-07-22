@@ -77,8 +77,12 @@ and 5,304 rank/Kalmanson assertions, for 7,256/7,256 obligations. The middle
 source composition is warning-as-error kernel-checked through all 114 chunks.
 `false_of_middleAllOneSourceOrbit` closes under exactly `[propext,
 Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound]`, with no
-`sorryAx`. The left and right compositions still need the same generic
-7,253 adapters plus three orbit-specific cover omissions each. The semantic
+`sorryAx`. The left and right compositions reuse the same 7,253 generic
+adapters and add exactly three source-faithful cover omissions each. Both
+114-chunk compositions and both final source closures are now also
+warnings-as-errors kernel-checked. Their final theorems,
+`false_of_leftAllOneSourceOrbit` and `false_of_rightAllOneSourceOrbit`, have
+the same axiom closure as the middle theorem and no `sorryAx`. The semantic
 ingress itself no longer lacks a source field used by the current formula.
 The current formula does not add strong-connectivity cuts or a `q < w`
 symmetry clause.
@@ -95,6 +99,37 @@ once. All 128 split base modules then pass warnings-as-errors, with formerly
 timed-out representatives compiling in about five seconds. An independent
 statement-hash audit found zero changes among all 158 regenerated base theorem
 declarations.
+
+The non-middle transport is explicit rather than symmetry-quotiented:
+
+- `AllOneOrbitEdgeFacts.lean` proves the four aligned-cover edge omissions
+  `(1,2)`, `(1,3)`, `(3,1)`, and `(3,2)` in the original frame;
+- `AllOneOrbitEdgeInstances.lean` specializes those facts to the six exact
+  source assertions at positions `1947`--`1949`;
+- the parameterized composition generator matches the other 7,253 assertions
+  by their unchanged packed source terms against the checked middle adapters.
+
+The final validation counts are:
+
+| Gate | Passed |
+|---|---:|
+| Middle packed any-pair modules | 128 / 128 |
+| Middle plain base modules | 29 / 29 |
+| Middle source chunks | 114 / 114 |
+| Left source chunks | 114 / 114 |
+| Right source chunks | 114 / 114 |
+| Final source closures | 3 / 3 |
+| Combined three-orbit source-closure import | 1 / 1 |
+
+These counts were re-established from the current namespaced raw-verifier
+sources, not inherited from the pre-namespacing `/tmp` cache.  The clean
+dependency chain was rebuilt in order: three raw verifiers, three assignments,
+342 packed-expression bridges, three packed endpoints, 342 source-composition
+chunks, and the three final source closures.  The combined audit
+`AllOneAllSourceClosureAudit.lean` imports all three closures simultaneously
+and prints the expected axiom set for each one.  A textual no-escape audit over
+the certificate, split-ingress, and source-composition Lean trees finds no
+`sorry`, `admit`, `sorryAx`, declaration-level `axiom`, or `unsafe` escape.
 
 ## Validation
 

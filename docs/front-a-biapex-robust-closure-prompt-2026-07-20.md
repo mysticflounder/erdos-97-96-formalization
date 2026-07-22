@@ -76,12 +76,13 @@ independent DRAT replay verifies each exact proof. A 7,256-assertion source
 core has now been rebuilt in all three original boundary frames, and each exact
 Lean-emitted CNF has a dependency-sliced multipart LRAT endpoint accepted by
 the authoritative Lean 4.27 kernel with no `sorryAx`. The source-semantic
-ingress and all 7,256 generated adapters are complete. The middle source
-composition is warning-as-error kernel-checked through all 114 chunks, and
-`false_of_middleAllOneSourceOrbit` has no `sorryAx`. Only the exact left/right
-transport and final three-way dispatch into the persisted endpoints remains.
-This is engineering work, not a missing mathematical implication, and must not
-be re-solved here.
+ingress and all 7,256 generated adapters are complete in every orbit. All 342
+source chunks and the left/middle/right closures rebuild warning-clean against
+the current certificate chain, and the combined import has no `sorryAx`.
+`false_of_exactFive_card13_allRowsOneHit` dispatches the exact source-orbit
+constructor to those endpoints. Together with the two asymmetric terminals,
+`false_of_exactFive_card13_sameRadius` closes the entire exact-card-13
+same-first-apex-radius outcome. None of these cases should be re-solved here.
 
 The cap-six `LargeCapUniqueFiveLowHit` / common-deletion normal form is not
 available: it requires `6 ≤ S.oppCap2.card`, while this branch has
@@ -100,10 +101,10 @@ held second-apex robustness, so it is not a terminal for either mode.
 ## Required result
 
 Derive `False` from exactly the theorem inputs above.  New mathematical work
-must cover the distinct-first-apex-radius asymmetric cell and the
-higher-cardinality cells.  The exact-card-13 all-one outcome is being closed
-by composing its kernel-checked finite endpoints with the complete semantic
-ingress and should not be re-solved geometrically. It is enough to prove the
+must cover only the distinct-first-apex-radius asymmetric cell and the
+higher-cardinality cells. The exact-card-13 all-one and same-radius outcomes
+are closed scratch proof work and should not be re-solved geometrically. It is
+enough to prove the
 corresponding unsolved portion of the following source-level implication:
 
 ```text

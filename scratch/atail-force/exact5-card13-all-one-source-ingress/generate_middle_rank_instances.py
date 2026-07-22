@@ -265,7 +265,11 @@ def main() -> None:
             encoding="utf-8",
         )
 
-    aggregator = "\n".join(f"import {module}" for module in modules) + "\n"
+    aggregator = (
+        "\n".join(f"import {module}" for module in modules) +
+        "\n\n/-!\n# Middle rank source adapters\n\n"
+        "Aggregate import for all generated rank assertions.\n-/\n"
+    )
     (args.output_dir / "AllOneMiddleRankInstances.lean").write_text(
         aggregator, encoding="utf-8"
     )

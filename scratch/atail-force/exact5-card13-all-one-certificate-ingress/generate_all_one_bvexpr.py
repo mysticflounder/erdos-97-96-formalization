@@ -367,9 +367,13 @@ def run (arguments : List String) : IO Unit := do
 
 end Problem97.ATailExactFiveCard13AllOneCertificate.{lean_namespace}
 
-def main (arguments : List String) : IO Unit :=
+def Problem97.ATailExactFiveCard13AllOneCertificate.{lean_namespace}.verifierMain
+    (arguments : List String) : IO Unit :=
   Problem97.ATailExactFiveCard13AllOneCertificate.{lean_namespace}.run arguments
 """
+    # Keep the generated command-line entrypoint orbit-qualified.  A shared
+    # root `main` makes the three verified certificate modules collide when a
+    # final dispatcher imports them together.
     args.output_lean.parent.mkdir(parents=True, exist_ok=True)
     args.output_map.parent.mkdir(parents=True, exist_ok=True)
     args.output_lean.write_text(lean, encoding="utf-8")

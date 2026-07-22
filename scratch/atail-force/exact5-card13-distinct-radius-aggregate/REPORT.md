@@ -181,6 +181,44 @@ the 55 first-pass UNSAT parents have no retained proof artifacts.  Even a
 complete external UNSAT result would remain conditional on the source-to-CNF
 ingress audit and would not itself be a kernel-checked Lean proof.
 
+## Prepared second-level refinement
+
+`refine_unknown_children.py` consumes exactly the checked `UNKNOWN` children
+from the first-level summary and applies one more bounded cube-and-conquer
+level.  It preserves the first-level parent/child lineage and the pinned
+original/simplified CNF and extension-stack hashes.  Its acceptance rules are
+unchanged: an UNSAT child is retained only after `drat-trim` replay, while a
+SAT child must extend through the CaDiCaL stack and verify against the original
+CNF.
+
+The input-only gate passes and selects exactly 237 children: 97 direct and
+140 mirror. Running the refinement recubes those exact children and retains
+only model-checked SAT or DRAT-replay-checked UNSAT results. Until a complete
+summary exists, this preparation and any partial run change no epistemic
+status. The validated invocation is:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 UV_CACHE_DIR=/tmp/uv-cache \
+  uv run --no-project python \
+  scratch/atail-force/exact5-card13-distinct-radius-aggregate/\
+refine_unknown_children.py --plan-only
+```
+
+`certify_first_pass_unsat.py` separately repairs the other known coverage
+gap: the first 64-cube pass reported 55 UNSAT parents without retaining their
+proofs.  Its input-only gate selected exactly those 55 cells (32 direct and 23
+mirror), checked the same pinned hashes, and the six-worker recertification is
+now complete.  All 55 cells returned UNSAT and all 55 proofs passed
+`drat-trim`; there were zero SAT or UNKNOWN cells.  The summary hash is
+`0d2f3ffa2351a998c4e29f39a5ca8db12c01e4a47bcc3a00616dee729d23bc62`.
+The 55 real compressed proofs and summary are preserved outside git at
+`/opt/nfs/p97-exact5-card13-distinct-first-pass-certification-20260722/`;
+a checksum dry-run against the source bundle reports no content drift.
+
+This closes the missing proof-artifact coverage for the first-pass UNSAT
+parents.  It does not resolve the 237 first-level UNKNOWN children and does
+not supply the still-missing kernel-checked source-to-CNF ingress.
+
 ## Formula block counts
 
 The block counts are identical in both orientations:

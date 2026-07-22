@@ -492,7 +492,9 @@ def main() -> None:
             )
 
     (args.output_dir / "AllOneMiddleBaseInstances.lean").write_text(
-        "\n".join(f"import {module}" for module in modules) + "\n",
+        "\n".join(f"import {module}" for module in modules) +
+        "\n\n/-!\n# Middle base source adapters\n\n"
+        "Aggregate import for all generated base assertions.\n-/\n",
         encoding="utf-8",
     )
     summary = {

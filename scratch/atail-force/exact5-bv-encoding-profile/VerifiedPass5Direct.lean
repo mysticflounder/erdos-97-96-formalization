@@ -2307,5 +2307,6 @@ def run (arguments : List String) : IO Unit := do
 
 end Problem97.ATailExactFiveVerifiedPass5
 
-def main (arguments : List String) : IO Unit :=
+def Problem97.ATailExactFiveVerifiedPass5.verifierMain
+    (arguments : List String) : IO Unit :=
   Problem97.ATailExactFiveVerifiedPass5.run arguments

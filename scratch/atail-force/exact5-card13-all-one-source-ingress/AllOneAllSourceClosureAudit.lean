@@ -1,0 +1,11 @@
+import AllOneLeftSourceClosure
+import AllOneMiddleSourceClosure
+import AllOneRightSourceClosure
+
+/-!
+# Combined all-one source-closure audit
+-/
+
+#print axioms Problem97.ATailExactFiveCard13AllOneSourceIngressScratch.false_of_leftAllOneSourceOrbit
+#print axioms Problem97.ATailExactFiveCard13AllOneSourceIngressScratch.false_of_middleAllOneSourceOrbit
+#print axioms Problem97.ATailExactFiveCard13AllOneSourceIngressScratch.false_of_rightAllOneSourceOrbit

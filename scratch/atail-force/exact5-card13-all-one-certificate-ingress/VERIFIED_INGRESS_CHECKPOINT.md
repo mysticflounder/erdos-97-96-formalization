@@ -1,13 +1,14 @@
-# Left/right verified-ingress checkpoint
+# Three-orbit verified-ingress checkpoint
 
 Date: 2026-07-22
 
 This checkpoint covers only certificate ingress.  It does not claim source
-composition or close a production theorem.
+composition or close a production theorem.  The current post-rename validation
+below supersedes the earlier pending split-validation gate.
 
-## Persisted certificate endpoints: verified
+## Historical pre-rename endpoint replay
 
-The persisted multipart modules
+Before the import-safety rename, the persisted multipart modules
 
 - `certificates/left/AllOneLeftVerified.lean`; and
 - `certificates/right/AllOneRightVerified.lean`
@@ -28,7 +29,8 @@ The exact printed axiom closure for both `sourceExpr_unsat` endpoints is:
 [propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound]
 ```
 
-There is no `sorryAx`.
+There is no `sorryAx`.  These hashes are retained as historical evidence; the
+current post-rename endpoint hashes appear below.
 
 ## Generated monolithic ingresses: engineering-aborted
 
@@ -58,7 +60,7 @@ processes were interrupted explicitly and exited with status 130.
 This status is **ENGINEERING-ABORTED**, not a failed proof check.  No Lean
 diagnostic rejected either ingress.
 
-## Scalable split ingresses: generated
+## Scalable split ingresses: generated and validated
 
 `split_verified_ingress.py` parameterizes the already-used middle-orbit split
 over `left`, `middle`, and `right`.  Regenerating the middle split into `/tmp`
@@ -79,10 +81,75 @@ The new left and right trees each contain:
 The tree digest is the SHA-256 of the sorted per-file `shasum -a 256` output,
 including paths.  Both trees are textually free of `sorry` and `admit`.
 
-No heavy Lean checks of these new split trees were started while the middle
-source-composition jobs were active.  Therefore their per-module compile and
-axiom status remains a validation gate; it is not inferred from the textual
-check.
+After the raw verifier entrypoints were made import-safe, all three split trees
+were rebuilt from the persisted sources and validated under Lean 4.27 with
+warnings as errors.  The current result is recorded in the next section.
+
+## Current post-rename validation
+
+The raw generator formerly emitted a root declaration named `main` in every
+orbit.  Each orbit compiled separately, but importing all three collided at
+that shared name.  The generator and persisted modules now expose:
+
+```text
+Problem97.ATailExactFiveCard13AllOneCertificate.Left.verifierMain
+Problem97.ATailExactFiveCard13AllOneCertificate.Middle.verifierMain
+Problem97.ATailExactFiveCard13AllOneCertificate.Right.verifierMain
+```
+
+This is an engineering import correction only.  Regenerating and rechunking
+left, middle, and right left all LRAT part hashes and whole-stream hashes
+unchanged.
+
+The three raw modules pass the warning-as-error check and have current olean
+artifacts under
+`/tmp/exact5-card13-all-one-certificate-endpoints-current/`:
+
+| Orbit | Olean bytes | Olean SHA-256 |
+| --- | ---: | --- |
+| left | 118,979,960 | `c58b60c84f7b8de0dadb16a07c2511b6e55abceaea772b5661d463b6dc9d21e2` |
+| middle | 116,653,832 | `a602d9ebcc9ec441fa3b487980f5613efadf342230ee2a75650986e8d5e1a3ac` |
+| right | 118,762,912 | `b83a0ce39372dc98e52e3e2894586e5a599ae88d461183243c6ba1aad698d611` |
+
+The full split check compiled 348 core modules: three assignments, 342 bridge
+chunks, and three endpoints.  All 348 passed.  The run began at
+`2026-07-22T12:06:42.714808+00:00` and finished at
+`2026-07-22T12:15:01.855209+00:00`, about 8 minutes 19 seconds wall clock with
+24 workers.
+
+| Orbit | Core modules | Sum of module times | Longest module |
+| --- | ---: | ---: | --- |
+| left | 116 | 1,793.26 s | chunk 29, 436.69 s |
+| middle | 116 | 1,551.27 s | chunk 29, 425.98 s |
+| right | 116 | 1,457.38 s | chunk 29, 420.68 s |
+
+The generated axiom audits then passed for all three orbits.  Each audit covers
+114 bridge theorems plus `false_of_sourceChunks_each`.  In each orbit, 102
+declarations depend exactly on `[propext, Quot.sound]`; 13 depend exactly on
+`[propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
+Quot.sound]`.  No declaration reaches `sorryAx`.
+
+A final combined smoke module imports the left, middle, and right split audit
+modules simultaneously, checks all three qualified command-line entrypoints,
+and prints the axiom closure of all three itemwise endpoints.  The validator
+now emits and compiles this smoke automatically whenever all three orbits are
+selected.  Its latest warning-as-error run passed in 2.70 seconds.  Its olean
+SHA-256 is
+`a716c337f82430cf9408f95c44c77b6501a855b123d3cd2ae31d3e9c3c4c1499`.
+
+The original full validator summary contains three failed audit jobs after its
+348 passing core jobs because those generated audit sources were initially
+placed under `/tmp` and rejected by Lean's source-containment check.  Moving
+the generated audit sources into this scratch directory and rerunning
+`--audit-only` produced three passes.  Those superseded failures are an
+engineering-preflight artifact, not proof failures.
+
+The ephemeral logs for this checkpoint are:
+
+- `/tmp/exact5-card13-all-one-certificate-ingress/validation-results.json`;
+- `/tmp/exact5-card13-all-one-certificate-ingress/validation-axiom-audit-results.json`;
+- per-module logs under each `*-ingress-split-current/logs/`; and
+- `/tmp/exact5-card13-all-one-certificate-ingress/combined-ingress-split-current/logs/AllOneCombinedVerifiedSplitImportSmoke.log`.
 
 ## Exact orbit obligation delta
 
@@ -122,9 +189,9 @@ All three entries lie in chunk 30:
 - right source: `(not (and g1_9_3 g1_9_2))`
 - right packed: `!((rowBit rows 2 9 3 && rowBit rows 2 9 2))`
 
-## Next certificate-ingress gate
+## Next layer
 
-When the active source jobs release the build gate, validate each split orbit
-in dependency order: assignment, the 114 bridge modules in parallel, then the
-itemwise endpoint.  The endpoint olean directory above supplies the persisted
-certificate import.  Source composition is a separate lane.
+There is no remaining certificate-ingress validation gate.  Source composition
+and final three-orbit dispatch are a separate lane.  They should use the raw
+current endpoint root together with all three current split roots so that the
+combined import graph is exercised, not three isolated orbit environments.

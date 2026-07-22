@@ -1,0 +1,11 @@
+import AllOneLeftVerifiedSplitAxiomAudit
+import AllOneMiddleVerifiedSplitAxiomAudit
+import AllOneRightVerifiedSplitAxiomAudit
+
+#check Problem97.ATailExactFiveCard13AllOneCertificate.Left.verifierMain
+#check Problem97.ATailExactFiveCard13AllOneCertificate.Middle.verifierMain
+#check Problem97.ATailExactFiveCard13AllOneCertificate.Right.verifierMain
+
+#print axioms Problem97.ATailExactFiveCard13AllOneCertificate.Left.false_of_sourceChunks_each
+#print axioms Problem97.ATailExactFiveCard13AllOneCertificate.Middle.false_of_sourceChunks_each
+#print axioms Problem97.ATailExactFiveCard13AllOneCertificate.Right.false_of_sourceChunks_each

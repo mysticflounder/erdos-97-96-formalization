@@ -8509,5 +8509,6 @@ def run (arguments : List String) : IO Unit := do
 
 end Problem97.ATailExactFiveCard13AllOneCertificate.Middle
 
-def main (arguments : List String) : IO Unit :=
+def Problem97.ATailExactFiveCard13AllOneCertificate.Middle.verifierMain
+    (arguments : List String) : IO Unit :=
   Problem97.ATailExactFiveCard13AllOneCertificate.Middle.run arguments
