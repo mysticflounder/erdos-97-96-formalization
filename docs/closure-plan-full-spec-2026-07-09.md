@@ -605,6 +605,70 @@ production theorem should become a thin dispatcher only when the leaf
 closers exist; moving three new `sorry`s into production would not advance
 closure.
 
+The first two direct-leaf audits now sharpen where that closure has to occur.
+For exact four,
+`scratch/atail-force/unique4-direct-false/` contains two deliberately
+separate regression gates.  An exact 12-point strict-convex Euclidean/MEC
+model realizes the local cap, unique-class, and two-apex deletion data but is
+not a `CounterexampleData`: it omits all-center K4, minimality, and the common
+critical system.  A kernel-checked finite incidence model realizes the global
+row/connectivity/blocker bookkeeping but is not Euclidean.  Neither model
+realizes their conjunction or refutes `OriginalUniqueFourResidual`.  The
+current residual already retains every required source field through `F`,
+`D.K4`, `minimal`, and `noM44`; the missing theorem is therefore a genuine
+Euclidean coupling of those global continuation rows, not another interface
+adapter or a local cap theorem.
+
+For the coincident exact-five leaf,
+`scratch/atail-force/unique5-coincident-direct-false/` proves a stronger
+source-faithful continuation.  The equal blockers have the same complete
+critical support, that support meets the first cap exactly in the chosen
+pair, and a fresh member of the complete five-point first-apex class yields a
+mutual-omission return cycle.  Each of the two resulting actual critical
+shells meets the complete first-apex class in at most two points, so a fifth
+source is omitted by both.  The checked structure
+`CoincidentBlockerJointDeletion` consequently gives one deletion that
+survives at the first apex and at two distinct actual blockers.  Its exact
+remaining direct consumer is
+
+```text
+CoincidentBlockerJointDeletionClosingStatement R.
+```
+
+This is real progress on the coincident leaf but not closure: no current bank
+turns that three-center joint deletion into `False`.  The next proof must use
+additional MEC/cap geometry, `noM44`, or another full-parent coupling.  In
+particular, a same-cap common-outside-pair target is the wrong producer on the
+on-cap arm: the checked cap-order separation makes the two outside-pair banks
+disjoint there.  Both new Lean audits pass with warnings as errors and depend
+only on `propext`, `Classical.choice`, and `Quot.sound`; the exact-four local
+model also passes its independent exact-arithmetic replay.
+
+The common exact-five base also has a checked reorientation into the existing
+physical omission-cycle machinery in
+`scratch/atail-force/unique5-physical-cycle-reorientation/`.  Swapping the two
+non-surplus roles makes the original `S.oppApex1` the physical second apex,
+constructs `LargeCapUniqueFiveSecondApexRadius` from the complete exact-five
+radius class, and produces a `PhysicalActualCriticalOmissionCycle` for the
+same `H`.  This is plumbing, not a new contradiction.  On the global
+all-reverse arm, the exact first terminal antecedent is
+
+```text
+some transitionReverseOutsidePair contains two distinct points
+co-radial from the original S.oppApex2.
+```
+
+The checked adapter feeds that occurrence directly to
+`false_of_transitionReverseOutsidePair_coRadial_firstApex`.  The retained
+second-apex double-deletion witnesses do not identify either member of a
+transition reverse pair with their witness class, so they do not prove the
+occurrence.  The global mutual-omission arm has no direct consumer under the
+current contract; the closest exact-cap route additionally needs an exact-five
+closed physical cap, a two-hit row, and a co-radial outside pair.  Therefore
+the reorientation must not be counted as closure or extended with another
+cycle adapter.  Current work targets the terminal co-radial occurrence on the
+all-reverse arm and a direct full-residual contradiction on the mutual arm.
+
 ### Historical exact-five ownership and provenance correction (2026-07-17; superseded for the exact-five-cap branch)
 
 The exact-five transition now has a kernel-checked **global relation split**
