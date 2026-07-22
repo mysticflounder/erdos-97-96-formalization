@@ -669,6 +669,32 @@ the reorientation must not be counted as closure or extended with another
 cycle adapter.  Current work targets the terminal co-radial occurrence on the
 all-reverse arm and a direct full-residual contradiction on the mutual arm.
 
+Two exact negative audits further restrict how those targets can be proved.
+First,
+`scratch/atail-force/unique5-reverse-pair-occurrence/` gives a 15-role exact
+finite abstraction with the complete exact-five radius partition, a total
+support-locked critical map, all-center K4 rows, exhaustive abstract
+minimality over every nonempty proper subset, and the global all-reverse
+relation, while every reverse pair splits the original-second-apex radius
+colors.  This is not Euclidean/MEC and does not model the quantified global
+`noM44` field, so it is not a counterexample to the Lean residual.  It does
+block further incidence, selected-row, radius-color, blocker-fiber, or
+abstract-minimality CEGAR as a route to the occurrence.  The live all-reverse
+proof must now use nonlinear Euclidean/MEC geometry or turn the all-split
+configuration into a complete alternative `IsM44` packet.
+
+Second,
+`scratch/atail-force/unique5-coincident-othercap-terminal/` audits the two
+non-first-cap locations of the fresh actual blocker in the coincident leaf.
+In either the strict surplus or strict second-opposite cap, cap-order
+uniqueness forces the fresh critical shell to omit both original sources; its
+intersection with the named exact-five triple is exactly the fresh source.
+Thus those arms negate the natural ordered-Kalmanson cross hit rather than
+produce it.  The first-cap arm already excludes reuse of the common shell's
+outside pair.  Across all three blocker locations, another local occurrence
+or deletion adapter is therefore nonterminal.  The remaining source must be a
+different-row positive hit or a global K4/minimality-to-MEC/`IsM44` theorem.
+
 ### Historical exact-five ownership and provenance correction (2026-07-17; superseded for the exact-five-cap branch)
 
 The exact-five transition now has a kernel-checked **global relation split**
