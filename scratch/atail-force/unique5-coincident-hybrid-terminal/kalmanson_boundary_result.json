@@ -1,0 +1,382 @@
+{
+  "all_order_hit_pairs": 40,
+  "first_cap_center_between_equal_points": {
+    "cases": 14,
+    "rows": [
+      {
+        "hit": "q",
+        "order": [
+          "O",
+          "J",
+          "X",
+          "q",
+          "A",
+          "w"
+        ],
+        "rational_model": {
+          "A-J": "13/2",
+          "A-O": "4",
+          "A-X": "5",
+          "A-q": "5/2",
+          "A-w": "5/2",
+          "J-O": "7/2",
+          "J-X": "5/2",
+          "J-q": "5",
+          "J-w": "7",
+          "O-X": "4",
+          "O-q": "7/2",
+          "O-w": "7/2",
+          "X-q": "5/2",
+          "X-w": "13/2",
+          "q-w": "5"
+        },
+        "verdict": "sat",
+        "x_between_j_and_hit": true,
+        "x_outside_first_cap_block": false
+      },
+      {
+        "hit": "w",
+        "order": [
+          "O",
+          "J",
+          "X",
+          "q",
+          "A",
+          "w"
+        ],
+        "rational_model": {
+          "A-J": "17/2",
+          "A-O": "5",
+          "A-X": "4",
+          "A-q": "5/2",
+          "A-w": "5/2",
+          "J-O": "9/2",
+          "J-X": "11/2",
+          "J-q": "7",
+          "J-w": "9",
+          "O-X": "4",
+          "O-q": "9/2",
+          "O-w": "9/2",
+          "X-q": "3/2",
+          "X-w": "11/2",
+          "q-w": "5"
+        },
+        "verdict": "sat",
+        "x_between_j_and_hit": true,
+        "x_outside_first_cap_block": false
+      },
+      {
+        "hit": "w",
+        "order": [
+          "O",
+          "J",
+          "q",
+          "A",
+          "X",
+          "w"
+        ],
+        "verdict": "unsat",
+        "x_between_j_and_hit": true,
+        "x_outside_first_cap_block": false
+      },
+      {
+        "hit": "w",
+        "order": [
+          "O",
+          "J",
+          "q",
+          "X",
+          "A",
+          "w"
+        ],
+        "rational_model": {
+          "A-J": "5",
+          "A-O": "3",
+          "A-X": "3/2",
+          "A-q": "3",
+          "A-w": "3",
+          "J-O": "3",
+          "J-X": "9/2",
+          "J-q": "3",
+          "J-w": "6",
+          "O-X": "7/2",
+          "O-q": "3",
+          "O-w": "3",
+          "X-q": "3/2",
+          "X-w": "9/2",
+          "q-w": "5"
+        },
+        "verdict": "sat",
+        "x_between_j_and_hit": true,
+        "x_outside_first_cap_block": false
+      },
+      {
+        "hit": "q",
+        "order": [
+          "O",
+          "q",
+          "A",
+          "X",
+          "J",
+          "w"
+        ],
+        "verdict": "unsat",
+        "x_between_j_and_hit": true,
+        "x_outside_first_cap_block": false
+      },
+      {
+        "hit": "q",
+        "order": [
+          "O",
+          "q",
+          "A",
+          "X",
+          "w",
+          "J"
+        ],
+        "rational_model": {
+          "A-J": "5",
+          "A-O": "3",
+          "A-X": "3/2",
+          "A-q": "3",
+          "A-w": "3",
+          "J-O": "3",
+          "J-X": "9/2",
+          "J-q": "6",
+          "J-w": "3",
+          "O-X": "7/2",
+          "O-q": "3",
+          "O-w": "3",
+          "X-q": "9/2",
+          "X-w": "3/2",
+          "q-w": "5"
+        },
+        "verdict": "sat",
+        "x_between_j_and_hit": true,
+        "x_outside_first_cap_block": false
+      },
+      {
+        "hit": "w",
+        "order": [
+          "O",
+          "q",
+          "A",
+          "J",
+          "X",
+          "w"
+        ],
+        "rational_model": {
+          "A-J": "3/2",
+          "A-O": "4",
+          "A-X": "4",
+          "A-q": "11/2",
+          "A-w": "11/2",
+          "J-O": "9/2",
+          "J-X": "5/2",
+          "J-q": "7",
+          "J-w": "5",
+          "O-X": "5",
+          "O-q": "9/2",
+          "O-w": "9/2",
+          "X-q": "17/2",
+          "X-w": "5/2",
+          "q-w": "9"
+        },
+        "verdict": "sat",
+        "x_between_j_and_hit": true,
+        "x_outside_first_cap_block": false
+      },
+      {
+        "hit": "q",
+        "order": [
+          "O",
+          "q",
+          "A",
+          "w",
+          "X",
+          "J"
+        ],
+        "rational_model": {
+          "A-J": "17/2",
+          "A-O": "5",
+          "A-X": "4",
+          "A-q": "5/2",
+          "A-w": "5/2",
+          "J-O": "9/2",
+          "J-X": "11/2",
+          "J-q": "9",
+          "J-w": "7",
+          "O-X": "4",
+          "O-q": "9/2",
+          "O-w": "9/2",
+          "X-q": "11/2",
+          "X-w": "3/2",
+          "q-w": "5"
+        },
+        "verdict": "sat",
+        "x_between_j_and_hit": true,
+        "x_outside_first_cap_block": false
+      },
+      {
+        "hit": "w",
+        "order": [
+          "O",
+          "q",
+          "A",
+          "w",
+          "X",
+          "J"
+        ],
+        "rational_model": {
+          "A-J": "13/2",
+          "A-O": "4",
+          "A-X": "5",
+          "A-q": "5/2",
+          "A-w": "5/2",
+          "J-O": "7/2",
+          "J-X": "5/2",
+          "J-q": "7",
+          "J-w": "5",
+          "O-X": "4",
+          "O-q": "7/2",
+          "O-w": "7/2",
+          "X-q": "13/2",
+          "X-w": "5/2",
+          "q-w": "5"
+        },
+        "verdict": "sat",
+        "x_between_j_and_hit": true,
+        "x_outside_first_cap_block": false
+      },
+      {
+        "hit": "q",
+        "order": [
+          "O",
+          "q",
+          "X",
+          "A",
+          "J",
+          "w"
+        ],
+        "rational_model": {
+          "A-J": "3/2",
+          "A-O": "7/2",
+          "A-X": "3/2",
+          "A-q": "9/2",
+          "A-w": "9/2",
+          "J-O": "3",
+          "J-X": "3",
+          "J-q": "5",
+          "J-w": "3",
+          "O-X": "3",
+          "O-q": "3",
+          "O-w": "3",
+          "X-q": "3",
+          "X-w": "5",
+          "q-w": "6"
+        },
+        "verdict": "sat",
+        "x_between_j_and_hit": true,
+        "x_outside_first_cap_block": false
+      },
+      {
+        "hit": "q",
+        "order": [
+          "O",
+          "q",
+          "X",
+          "A",
+          "w",
+          "J"
+        ],
+        "verdict": "unsat",
+        "x_between_j_and_hit": true,
+        "x_outside_first_cap_block": false
+      },
+      {
+        "hit": "q",
+        "order": [
+          "O",
+          "q",
+          "X",
+          "J",
+          "A",
+          "w"
+        ],
+        "rational_model": {
+          "A-J": "3/2",
+          "A-O": "4",
+          "A-X": "4",
+          "A-q": "11/2",
+          "A-w": "11/2",
+          "J-O": "9/2",
+          "J-X": "5/2",
+          "J-q": "5",
+          "J-w": "7",
+          "O-X": "5",
+          "O-q": "9/2",
+          "O-w": "9/2",
+          "X-q": "5/2",
+          "X-w": "17/2",
+          "q-w": "9"
+        },
+        "verdict": "sat",
+        "x_between_j_and_hit": true,
+        "x_outside_first_cap_block": false
+      },
+      {
+        "hit": "w",
+        "order": [
+          "O",
+          "q",
+          "J",
+          "A",
+          "X",
+          "w"
+        ],
+        "rational_model": {
+          "A-J": "3/2",
+          "A-O": "7/2",
+          "A-X": "3/2",
+          "A-q": "9/2",
+          "A-w": "9/2",
+          "J-O": "3",
+          "J-X": "3",
+          "J-q": "3",
+          "J-w": "5",
+          "O-X": "3",
+          "O-q": "3",
+          "O-w": "3",
+          "X-q": "5",
+          "X-w": "3",
+          "q-w": "6"
+        },
+        "verdict": "sat",
+        "x_between_j_and_hit": true,
+        "x_outside_first_cap_block": false
+      },
+      {
+        "hit": "w",
+        "order": [
+          "O",
+          "q",
+          "J",
+          "X",
+          "A",
+          "w"
+        ],
+        "verdict": "unsat",
+        "x_between_j_and_hit": true,
+        "x_outside_first_cap_block": false
+      }
+    ],
+    "sat": 10,
+    "unsat": 4
+  },
+  "outside_first_cap_block": {
+    "cases": 16,
+    "sat": 0,
+    "unsat": 16
+  },
+  "scope": "exact rational strict-Kalmanson plus metric LRA; not Euclidean, not a CounterexampleData model"
+}

@@ -707,6 +707,49 @@ outside pair.  Across all three blocker locations, another local occurrence
 or deletion adapter is therefore nonterminal.  The remaining source must be a
 different-row positive hit or a global K4/minimality-to-MEC/`IsM44` theorem.
 
+The latest source-faithful branch audits sharpen all three leaves further.
+For exact four,
+`scratch/atail-force/unique4-global-coupling/UniqueFourGlobalDeletionCoupling.lean`
+deletes the complete four-class together with the three physical Moser
+vertices and applies cardinal minimality on the full carrier.  The resulting
+fresh strict-cap center has exactly one of three checked outputs: a genuine
+co-radial collision among deleted sources, a singleton
+`MinimalDeletionCore`, or a nontrivial family of pairwise-disjoint exact
+critical shells satisfying a quantitative cap-complement packing bound.
+This is a global Euclidean/minimality coupling, but none of the three outputs
+is yet an existing terminal; it must not be recorded as closure or replaced
+by a finite named-subcarrier assumption.
+
+For distinct-blocker exact five,
+`scratch/atail-force/unique5-distinct-hybrid-terminal/UniqueFiveDistinctPhysicalSecondApexSplit.lean`
+immediately consumes the directed cross-deletion survival at the physical
+second apex.  The critical outcome is exactly a protected swapped exact-four
+frontier.  The other outcome retains the complete original residual, proves
+full deletion robustness at both physical apices, gives both opposite caps
+cardinality at least five, and derives `12 ≤ D.A.card`.  Redesignation or
+fresh-frontier extraction supplies no strict descent: the swapped branch is
+the same exact-four obligation, while the bi-apex-robust branch still needs a
+direct full-carrier terminal.
+
+For coincident-blocker exact five, the exact rational audit in
+`scratch/atail-force/unique5-coincident-hybrid-terminal/` tests the remaining
+fresh-center order surface against all triangle and strict Kalmanson
+inequalities.  All sixteen orders placing the fresh center outside the first
+cap block are inconsistent, but ten of fourteen first-cap positive-hit orders
+remain exactly satisfiable.  Thus ordinary planarity and local cap order are
+spent: `CoincidentBlockerJointDeletionClosingStatement` must consume global
+all-center K4, the total critical system, minimality, MEC geometry, or
+`noM44`.
+
+Finally, fixed-card global-row searches are coverage evidence only when their
+named roles are the whole carrier.  The live residual has no upper cardinality
+bound, and minimality forces selected-row escape from every proper named
+subcarrier.  A closed 13- or 15-role row table therefore cannot be promoted to
+live coverage without a theorem reducing the actual carrier to those roles.
+Any resumed finite search must encode the arbitrary-cardinality whole-carrier
+surface, including full deletion-criticality, or produce a uniform schema
+whose Lean theorem applies to every carrier extension.
+
 ### Historical exact-five ownership and provenance correction (2026-07-17; superseded for the exact-five-cap branch)
 
 The exact-five transition now has a kernel-checked **global relation split**
