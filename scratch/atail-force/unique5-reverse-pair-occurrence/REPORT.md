@@ -3,11 +3,14 @@
 Date: 2026-07-22
 
 Status: **THE EXISTING TERMINAL IS THE CORRECT CONSUMER, BUT ITS CO-RADIAL
-OCCURRENCE IS NOT FORCED BY THE FINITE RADIUS/CRITICAL-MAP/MINIMALITY
-PROJECTION OF `OriginalUniqueFiveInteriorResidual`.  AN EXACT REORIENTED
-15-ROLE MODEL SATISFIES THAT PROJECTION AND GLOBAL ALL-REVERSE MEMBERSHIP
-WHILE NEGATING EVERY CANDIDATE OCCURRENCE.  THE NEXT PROOF MUST USE GENUINE
-EUCLIDEAN/MEC OR GLOBAL `noM44` FORCE.**
+OCCURRENCE IS NOT FORCED BY THE GEOMETRY-FREE FINITE
+RADIUS/CRITICAL-MAP/MINIMALITY PROJECTION OF
+`OriginalUniqueFiveInteriorResidual`.  THE SAVED REORIENTED 15-ROLE FIXTURE
+NEGATES EVERY CANDIDATE OCCURRENCE, BUT A CORRECTIVE EXACT AUDIT NOW SHOWS
+THAT ITS COMPLETE GLOBAL ROW EQUALITIES VIOLATE STRICT KALMANSON IN EVERY
+CAP-COMPATIBLE CYCLIC ORDER.  THE LIVE TARGET IS THEREFORE THE COUPLED
+GLOBAL-ROW + CYCLIC-ORDER PRODUCER, NOT MORE GEOMETRY-FREE RADIUS-COLOR
+MINING.**
 
 This lane owns only
 `scratch/atail-force/unique5-reverse-pair-occurrence/`.  It does not modify
@@ -156,20 +159,67 @@ proper_abstract_k4_subset=none_exhaustive_32766
 all reverse pairs split original-second-apex radius colors
 ```
 
+## Strict-Kalmanson correction
+
+The fixture above is a valid regression against the **geometry-free** finite
+projection only.  It is not a survivor once the cyclic order forced by the
+three cap chains is coupled to all of its declared complete radius classes.
+
+`check_strict_kalmanson_boundary.py` enumerates all `144` cap-compatible
+orders of the unnamed vertices, quotients distance terms by the fixture's
+complete apex classes, carrier rows, and critical supports, and searches for
+an immediate strict-Kalmanson equal-sum contradiction.  Every order is
+eliminated.  The check uses exact disjoint-set equality closure and integer
+combinatorics only; it has no floating-point or solver trust boundary.
+
+Replay from the repository root:
+
+```bash
+UV_CACHE_DIR=/tmp/p97-unique5-reverse-pair-uv \
+uv run --no-project python \
+  scratch/atail-force/unique5-reverse-pair-occurrence/\
+  check_strict_kalmanson_boundary.py
+```
+
+Expected verdict:
+
+```text
+PASS: every cap-compatible cyclic order is strict-Kalmanson UNSAT
+status=EXACT_FINITE_EQUALITY_QUOTIENT_NOT_EUCLIDEAN
+orders=144 core_signatures=6
+```
+
+A representative core has cyclic quadruple `0,5,7,14`.  The complete class
+at center `0` identifies the distances from `0` to `7` and `14`, while the
+complete row at center `5` identifies the distances from `5` to the same two
+points.  The second strict Kalmanson inequality then has equal left and right
+sums, a contradiction.
+
+This does **not** close the live branch.  The predecessor
+`cycle-three-rows-kalmanson` audit found `990` exact-QF_LRA survivors for the
+three physical reverse rows alone, including every six-distinct outside-role
+case.  The correction instead identifies the missing coupling: some
+additional complete global critical/carrier row can make cyclic order
+terminal even when the three local reverse rows do not.  A proof must now
+derive such a bad equality schema from the source-level total critical
+system, or produce a Kalmanson-compatible global-row survivor showing that
+still stronger geometry is needed.
+
 ## Trust boundary
 
-The regression is **exact within its finite radius abstraction**.  It is not
-a symmetric planar Euclidean distance table, not a realization of the MEC
-cap packet, and not a model of the production quantifier over every
-alternative `SurplusCapPacket` in `R.noM44`.  It is therefore not a Problem-97
-counterexample and does not refute the full Euclidean theorem.
+The regression is **exact within its geometry-free finite radius
+abstraction**.  It is not a symmetric planar Euclidean distance table, not a
+realization of the MEC cap packet, not compatible with the strict Kalmanson
+inequalities forced by its own cap order, and not a model of the production
+quantifier over every alternative `SurplusCapPacket` in `R.noM44`.  It is
+therefore not a Problem-97 counterexample and does not refute the full
+Euclidean theorem.
 
-It does rule out deriving the occurrence from the currently exposed finite
-incidence, complete-radius partition, total critical-map, deletion, and
-abstract-minimality consequences.  In particular, adding another anonymous
-row, blocker-fiber count, selected-row connectivity lemma, or finite
-radius-color CEGAR round cannot prove this producer unless it also introduces
-new Euclidean/MEC or alternative-support-triangle information.
+It does rule out deriving the occurrence from those finite fields **without
+also using their cyclic placement**.  It does not rule out a theorem coupling
+the total critical rows already present in the fixture to strict Kalmanson;
+indeed, the corrective audit proves that this particular global assignment
+is eliminated by exactly that coupling.
 
 ## Route verdict
 
@@ -179,14 +229,19 @@ rename the open equality.
 
 The first genuinely stronger theorem must retain `W.base` and use one of:
 
-1. nonlinear Euclidean/MEC geometry coupling a complete reverse outside pair
+1. the total source-indexed critical/carrier rows together with cap-compatible
+   cyclic order, producing a strict-Kalmanson equal-sum core or the existing
+   co-radial occurrence;
+2. nonlinear Euclidean/MEC geometry coupling a complete reverse outside pair
    to one original-second-apex radius class; or
-2. a packet exchange showing that the all-split configuration constructs an
+3. a packet exchange showing that the all-split configuration constructs an
    alternative `SurplusCapPacket` with `IsM44`, contradicting `R.noM44`.
 
-Any such theorem must visibly consume information absent from the regression.
-The original pair's second-apex deletion survival, exact-five uniqueness,
-the total critical map, and abstract minimality are already present there.
+The next finite search object must include both the global rows and cyclic
+order.  Another literal radius-color fixture without strict Kalmanson is not
+a valid geometry-aware survivor.  Conversely, the three reverse rows alone
+are already exhausted and insufficient, so another local three-row
+Kalmanson pass would also mine the wrong object.
 
 ## Epistemic ledger
 
@@ -195,6 +250,9 @@ the total critical map, and abstract minimality are already present there.
 | Reorientation constructs the production omission cycle | **PROVEN / KERNEL-CHECKED in predecessor scratch** |
 | A co-radial reverse pair closes through the production terminal | **PROVEN / KERNEL-CHECKED in predecessor scratch** |
 | The finite radius/critical-map/minimality projection forces such a pair | **REFUTED by exact finite abstraction** |
+| The saved 15-role fixture is compatible with cap-order Kalmanson | **REFUTED exactly for all 144 compatible orders** |
+| The three reverse rows alone force a Kalmanson contradiction | **REFUTED by 990 exact-QF_LRA survivors in predecessor audit** |
+| Global source-indexed rows plus cyclic order force a terminal schema | **OPEN; supported only by elimination of the saved fixture** |
 | The full Euclidean unique-five residual forces such a pair | **OPEN** |
 | Euclidean/MEC geometry or `noM44` closes the all-split residual | **CONJECTURAL** |
 | A production `sorry` is closed by this audit | **NO** |

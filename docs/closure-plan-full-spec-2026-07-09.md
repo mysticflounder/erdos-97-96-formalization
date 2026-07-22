@@ -669,7 +669,7 @@ the reorientation must not be counted as closure or extended with another
 cycle adapter.  Current work targets the terminal co-radial occurrence on the
 all-reverse arm and a direct full-residual contradiction on the mutual arm.
 
-Two exact negative audits further restrict how those targets can be proved.
+Two exact audits further restrict how those targets can be proved.
 First,
 `scratch/atail-force/unique5-reverse-pair-occurrence/` gives a 15-role exact
 finite abstraction with the complete exact-five radius partition, a total
@@ -678,10 +678,22 @@ minimality over every nonempty proper subset, and the global all-reverse
 relation, while every reverse pair splits the original-second-apex radius
 colors.  This is not Euclidean/MEC and does not model the quantified global
 `noM44` field, so it is not a counterexample to the Lean residual.  It does
-block further incidence, selected-row, radius-color, blocker-fiber, or
-abstract-minimality CEGAR as a route to the occurrence.  The live all-reverse
-proof must now use nonlinear Euclidean/MEC geometry or turn the all-split
-configuration into a complete alternative `IsM44` packet.
+block deriving the occurrence from those geometry-free fields alone.
+
+A corrective exact replay now adds every declared complete-row equality to
+the cap-compatible cyclic order.  All `144` orders are immediately strict-
+Kalmanson UNSAT, with six one-inequality equal-sum core schemas.  Thus this
+particular 15-role fixture is **not** a geometry-aware survivor and must not
+be cited as evidence that cyclic-order coupling has been exhausted.  The
+opposite overclaim is also excluded: the three physical reverse rows alone
+still have `990` independently replayed exact-QF_LRA survivors.  The current
+finite target is therefore the coupled total-critical-row plus cyclic-order
+surface.  It must either force a reusable same-pair/Kalmanson core for every
+source-valid global assignment or produce a Kalmanson-compatible global-row
+survivor.  Do not resume geometry-free radius-color CEGAR, and do not present
+elimination of the saved fixture as live coverage.  Nonlinear Euclidean/MEC
+geometry and a complete alternative `IsM44` packet remain fallbacks only
+after this corrected coupled surface is decided.
 
 Second,
 `scratch/atail-force/unique5-coincident-othercap-terminal/` audits the two
