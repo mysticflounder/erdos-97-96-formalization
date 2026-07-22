@@ -18,6 +18,11 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--seconds", type=float, default=600.0)
     parser.add_argument("--seed", type=int, default=17)
+    parser.add_argument(
+        "--no-minimize",
+        action="store_true",
+        help="Request one cheap assumption-core pass without subset minimization.",
+    )
     args = parser.parse_args()
 
     old = json.loads(args.input.read_text(encoding="utf-8"))
@@ -31,11 +36,13 @@ def main() -> None:
         indices.append(saved["index"])
 
     solver = z3.Solver()
-    solver.set(
-        timeout=max(1, int(1000 * args.seconds)),
-        random_seed=args.seed,
-        **{"core.minimize": True},
-    )
+    options: dict[str, object] = {
+        "timeout": max(1, int(1000 * args.seconds)),
+        "random_seed": args.seed,
+    }
+    if not args.no_minimize:
+        options["core.minimize"] = True
+    solver.set(**options)
     markers = [z3.Bool(f"core_assertion_{index}") for index in indices]
     solver.add(*(z3.Implies(marker, assertions[index])
                  for marker, index in zip(markers, indices, strict=True)))

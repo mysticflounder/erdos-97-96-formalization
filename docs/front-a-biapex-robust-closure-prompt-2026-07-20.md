@@ -54,14 +54,31 @@ Thus there are exactly two mathematical outcomes:
    each exact shell has exactly three support points outside the physical
    three-set.
 
+## Completed leaf
+
+Do not spend effort on the exact-card-13, same-first-apex-radius asymmetric
+cell.  Scratch Lean now proves both spoke orientations through the actual
+parent data:
+
+```lean
+false_of_exactFive_card13_sameRadius_spoke₁
+false_of_exactFive_card13_sameRadius_spoke₂
+```
+
+The proof constructs the canonical role/table/cover objects, proves all 1,899
+finite source assertions, and reaches a verified LRAT contradiction.  Its
+warning-as-error axiom audit has no `sorryAx`.
+
 The cap-six `LargeCapUniqueFiveLowHit` / common-deletion normal form is not
 available: it requires `6 ≤ S.oppCap2.card`, while this branch has
 `S.oppCap2.card = 5`.
 
 ## Required result
 
-Derive `False` from exactly the theorem inputs above.  It is enough to prove
-both of the following source-level implications:
+Derive `False` from exactly the theorem inputs above.  The remaining work must
+cover the distinct-first-apex-radius asymmetric cell, the all-one-hit outcome,
+and the higher-cardinality cells.  It is enough to prove the corresponding
+unsolved portions of the following source-level implications:
 
 ```text
 asymmetric normal form

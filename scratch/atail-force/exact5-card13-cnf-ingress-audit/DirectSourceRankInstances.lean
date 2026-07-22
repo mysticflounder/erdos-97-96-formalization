@@ -1,0 +1,35 @@
+import DirectSourceRankInstancesChunk002
+import DirectSourceRankInstancesChunk003
+import DirectSourceRankInstancesChunk004
+import DirectSourceRankInstancesChunk005
+import DirectSourceRankInstancesChunk006
+import DirectSourceRankInstancesChunk007
+import DirectSourceRankInstancesChunk008
+import DirectSourceRankInstancesChunk009
+import DirectSourceRankInstancesChunk010
+import DirectSourceRankInstancesChunk011
+import DirectSourceRankInstancesChunk012
+import DirectSourceRankInstancesChunk013
+import DirectSourceRankInstancesChunk014
+import DirectSourceRankInstancesChunk015
+import DirectSourceRankInstancesChunk016
+import DirectSourceRankInstancesChunk017
+import DirectSourceRankInstancesChunk018
+import DirectSourceRankInstancesChunk019
+import DirectSourceRankInstancesChunk020
+import DirectSourceRankInstancesChunk021
+import DirectSourceRankInstancesChunk022
+import DirectSourceRankInstancesChunk023
+import DirectSourceRankInstancesChunk024
+import DirectSourceRankInstancesChunk025
+import DirectSourceRankInstancesChunk026
+import DirectSourceRankInstancesChunk027
+import DirectSourceRankInstancesChunk028
+import DirectSourceRankInstancesChunk029
+
+/-!
+# Exact pass-5 rank-source instances
+
+This coordinator imports the source-clean 64-assertion chunks for
+the literal pass-5 hypotheses `h0170`--`h1898`.
+-/

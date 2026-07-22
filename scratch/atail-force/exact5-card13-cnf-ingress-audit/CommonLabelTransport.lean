@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Card13BoundaryNormalization
+import KalmansonParentOrderAdapter
 import Erdos9796Proof.P97.ATail.ExactFiveGlobalCoverStarGeometry
 
 /-!
@@ -31,9 +32,11 @@ open ATailCriticalPairFrontier
 open ATailExactFiveCard13CnfIngressScratch
 open ATailExactFiveGlobalCoverStarGeometry
 open ATailExactFiveMutualOneHitGeometry
+open ATailFirstApexShellRole
 open ATailLargeCapUniqueFive
 open ATailLargeCapUniqueFivePhysicalOmissionCycle
 open ATailLargeCapUniqueFivePhysicalOmissionTransitionGlobal
+open ATailKalmansonParentOrderScratch
 open ATailOrientedPhysicalApexIngress
 open ATailParentExactFiveSecondCap
 open ATailPhysicalSecondApexCommonDeletion
@@ -90,6 +93,365 @@ private theorem strictKalmanson_pair_of_ccw13
       (CapCrossingKalmansonBridge.complementary_dist_add_dist_lt_diagonal_sum_of_ccw
         hA hphiCard_inj hphiCard_image hccwCard habCard hbcCard hcdCard)
 
+private theorem capByIndex_surplusIdx_eq_surplusCap
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.capByIndex S.surplusIdx = S.surplusCap := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
+
+private theorem capByIndex_oppIndex1_eq_oppCap1
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.capByIndex S.oppIndex1 = S.oppCap1 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppCap1, hi]
+
+private theorem capByIndex_oppIndex2_eq_oppCap2
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.capByIndex S.oppIndex2 = S.oppCap2 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppCap2, hi]
+
+private theorem mem_surplusCap_iff_middle_block_direct
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (phi : Fin 13 → ℝ²) (hinj : Function.Injective phi)
+    (himage : Finset.univ.image phi = D.A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    (hzero : phi 0 = S.oppositeVertexByIndex S.surplusIdx)
+    (hfirst : phi 4 = S.oppositeVertexByIndex S.oppIndex1)
+    (hsecond : phi 8 = S.oppositeVertexByIndex S.oppIndex2)
+    (i : Fin 13) :
+    phi i ∈ S.surplusCap ↔ (4 : Fin 13) ≤ i ∧ i ≤ (8 : Fin 13) := by
+  have hcap : ∀ x : ℝ², x ∈ S.surplusCap ↔
+      ∃ q : Fin 13, (4 : Fin 13) ≤ q ∧ q ≤ (8 : Fin 13) ∧ phi q = x := by
+    rw [← capByIndex_surplusIdx_eq_surplusCap S]
+    exact S.capByIndex_interval_of_global_indices S.surplusIdx hccw hinj himage
+      (ia := (4 : Fin 13)) (ib := (8 : Fin 13)) (ic := (0 : Fin 13))
+      (by decide) (Or.inl (by decide))
+      (by simpa [S.triangleByIndex_v1_eq_oppositeVertexByIndex] using hzero)
+      (by simpa [S.triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1]
+        using hfirst)
+      (by simpa [S.triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2]
+        using hsecond)
+  constructor
+  · intro hi
+    rcases (hcap _).mp hi with ⟨q, hq4, hq8, hqi⟩
+    have : q = i := hinj hqi
+    simpa only [this] using And.intro hq4 hq8
+  · intro hi
+    exact (hcap _).mpr ⟨i, hi.1, hi.2, rfl⟩
+
+private theorem mem_oppCap2_iff_initial_block_direct
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (phi : Fin 13 → ℝ²) (hinj : Function.Injective phi)
+    (himage : Finset.univ.image phi = D.A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    (hzero : phi 0 = S.oppositeVertexByIndex S.surplusIdx)
+    (hfirst : phi 4 = S.oppositeVertexByIndex S.oppIndex1)
+    (hsecond : phi 8 = S.oppositeVertexByIndex S.oppIndex2)
+    (i : Fin 13) :
+    phi i ∈ S.oppCap2 ↔ i ≤ (4 : Fin 13) := by
+  have hcap : ∀ x : ℝ², x ∈ S.oppCap2 ↔
+      ∃ q : Fin 13, (0 : Fin 13) ≤ q ∧ q ≤ (4 : Fin 13) ∧ phi q = x := by
+    rw [← capByIndex_oppIndex2_eq_oppCap2 S]
+    exact S.capByIndex_interval_of_global_indices S.oppIndex2 hccw hinj himage
+      (ia := (0 : Fin 13)) (ib := (4 : Fin 13)) (ic := (8 : Fin 13))
+      (by decide) (Or.inr (by decide))
+      (by simpa [S.triangleByIndex_v1_eq_oppositeVertexByIndex] using hsecond)
+      (by simpa [S.triangleByIndex_oppIndex2_v2_eq_oppositeVertexByIndex_surplusIdx]
+        using hzero)
+      (by simpa [S.triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1]
+        using hfirst)
+  constructor
+  · intro hi
+    rcases (hcap _).mp hi with ⟨q, _hq0, hq4, hqi⟩
+    have : q = i := hinj hqi
+    simpa only [this] using hq4
+  · intro hi
+    exact (hcap _).mpr ⟨i, by omega, hi, rfl⟩
+
+private theorem mem_surplusCap_iff_middle_block_reflected
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (phi : Fin 13 → ℝ²) (hinj : Function.Injective phi)
+    (himage : Finset.univ.image phi = D.A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    (hzero : phi 0 = S.oppositeVertexByIndex S.surplusIdx)
+    (hsecond : phi 5 = S.oppositeVertexByIndex S.oppIndex2)
+    (hfirst : phi 9 = S.oppositeVertexByIndex S.oppIndex1)
+    (i : Fin 13) :
+    phi (reverseCyclicIndex13 i) ∈ S.surplusCap ↔
+      (4 : Fin 13) ≤ i ∧ i ≤ (8 : Fin 13) := by
+  have hcap : ∀ x : ℝ², x ∈ S.surplusCap ↔
+      ∃ q : Fin 13, (5 : Fin 13) ≤ q ∧ q ≤ (9 : Fin 13) ∧ phi q = x := by
+    rw [← capByIndex_surplusIdx_eq_surplusCap S]
+    exact S.capByIndex_reverse_interval_of_global_indices S.surplusIdx
+      hccw hinj himage (ib := (5 : Fin 13)) (ia := (9 : Fin 13))
+      (ic := (0 : Fin 13)) (by decide) (Or.inl (by decide))
+      (by simpa [S.triangleByIndex_v1_eq_oppositeVertexByIndex] using hzero)
+      (by simpa [S.triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1]
+        using hfirst)
+      (by simpa [S.triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2]
+        using hsecond)
+  constructor
+  · intro hi
+    rcases (hcap _).mp hi with ⟨q, hq5, hq9, hqPoint⟩
+    have hq : q = reverseCyclicIndex13 i := hinj hqPoint
+    have hiPos : (0 : Fin 13) < i := by
+      by_contra hnot
+      have hi0 : i = 0 := by apply Fin.ext; omega
+      subst i
+      have hq0 : q = 0 := by simpa [reverseCyclicIndex13] using hq
+      subst q
+      omega
+    have hrev := reverseCyclicIndex13_val_of_pos hiPos
+    rw [hq] at hq5 hq9
+    change 5 ≤ (reverseCyclicIndex13 i).val at hq5
+    change (reverseCyclicIndex13 i).val ≤ 9 at hq9
+    rw [hrev] at hq5 hq9
+    constructor <;> omega
+  · intro hi
+    have hiPos : (0 : Fin 13) < i := by omega
+    have hrev := reverseCyclicIndex13_val_of_pos hiPos
+    apply (hcap _).mpr
+    refine ⟨reverseCyclicIndex13 i, ?_, ?_, rfl⟩
+    · rw [Fin.le_def, hrev]
+      omega
+    · rw [Fin.le_def, hrev]
+      omega
+
+private theorem mem_oppCap2_iff_initial_block_reflected
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (phi : Fin 13 → ℝ²) (hinj : Function.Injective phi)
+    (himage : Finset.univ.image phi = D.A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    (hzero : phi 0 = S.oppositeVertexByIndex S.surplusIdx)
+    (hsecond : phi 5 = S.oppositeVertexByIndex S.oppIndex2)
+    (hfirst : phi 9 = S.oppositeVertexByIndex S.oppIndex1)
+    (i : Fin 13) :
+    phi (reverseCyclicIndex13 i) ∈ S.oppCap2 ↔ i ≤ (4 : Fin 13) := by
+  have hcap : ∀ x : ℝ², x ∈ S.oppCap2 ↔
+      ∃ q : Fin 13, (q ≤ (0 : Fin 13) ∨ (9 : Fin 13) ≤ q) ∧ phi q = x := by
+    rw [← capByIndex_oppIndex2_eq_oppCap2 S]
+    exact S.capByIndex_complement_interval_of_global_indices S.oppIndex2
+      hccw hinj himage (ia := (0 : Fin 13)) (ic := (5 : Fin 13))
+      (ib := (9 : Fin 13)) (by decide) (by decide)
+      (by simpa [S.triangleByIndex_v1_eq_oppositeVertexByIndex] using hsecond)
+      (by simpa [S.triangleByIndex_oppIndex2_v2_eq_oppositeVertexByIndex_surplusIdx]
+        using hzero)
+      (by simpa [S.triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1]
+        using hfirst)
+  constructor
+  · intro hi
+    rcases (hcap _).mp hi with ⟨q, hqSide, hqPoint⟩
+    have hq : q = reverseCyclicIndex13 i := hinj hqPoint
+    by_cases hi0 : i = 0
+    · subst i
+      decide
+    · have hiPos : (0 : Fin 13) < i := by
+        apply lt_of_le_of_ne (Fin.zero_le i)
+        exact Ne.symm hi0
+      have hrev := reverseCyclicIndex13_val_of_pos hiPos
+      rw [hq] at hqSide
+      rcases hqSide with hq0 | hq9
+      · rw [Fin.le_def, hrev] at hq0
+        omega
+      · rw [Fin.le_def, hrev] at hq9
+        omega
+  · intro hi
+    apply (hcap _).mpr
+    by_cases hi0 : i = 0
+    · subst i
+      exact ⟨0, Or.inl (by decide), by simp [reverseCyclicIndex13]⟩
+    · have hiPos : (0 : Fin 13) < i := by
+        apply lt_of_le_of_ne (Fin.zero_le i)
+        exact Ne.symm hi0
+      have hrev := reverseCyclicIndex13_val_of_pos hiPos
+      refine ⟨reverseCyclicIndex13 i, Or.inr ?_, rfl⟩
+      rw [Fin.le_def, hrev]
+      omega
+
+/-- In the direct canonical boundary frame, the private first-opposite cap is
+exactly the four-index block `9,10,11,12`. -/
+private theorem mem_strictFirstOppositeCap_iff_index_gt_eight_direct
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (phi : Fin 13 → ℝ²) (hinj : Function.Injective phi)
+    (himage : Finset.univ.image phi = D.A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    (hzero : phi 0 = S.oppositeVertexByIndex S.surplusIdx)
+    (hfirst : phi 4 = S.oppositeVertexByIndex S.oppIndex1)
+    (hsecond : phi 8 = S.oppositeVertexByIndex S.oppIndex2)
+    (i : Fin 13) :
+    phi i ∈ strictFirstOppositeCap S ↔ (8 : Fin 13) < i := by
+  have hOpp1 : ∀ x : ℝ², x ∈ S.oppCap1 ↔
+      ∃ q : Fin 13, (q ≤ (0 : Fin 13) ∨ (8 : Fin 13) ≤ q) ∧ phi q = x := by
+    rw [← capByIndex_oppIndex1_eq_oppCap1 S]
+    exact S.capByIndex_reverse_complement_interval_of_global_indices
+      S.oppIndex1 hccw hinj himage (ib := (0 : Fin 13))
+      (ic := (4 : Fin 13)) (ia := (8 : Fin 13)) (by decide) (by decide)
+      (by simpa [S.triangleByIndex_v1_eq_oppositeVertexByIndex] using hfirst)
+      (by simpa [S.triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2]
+        using hsecond)
+      (by simpa [S.triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx]
+        using hzero)
+  have hSurplus : ∀ x : ℝ², x ∈ S.surplusCap ↔
+      ∃ q : Fin 13, (4 : Fin 13) ≤ q ∧ q ≤ (8 : Fin 13) ∧ phi q = x := by
+    rw [← capByIndex_surplusIdx_eq_surplusCap S]
+    exact S.capByIndex_interval_of_global_indices S.surplusIdx hccw hinj himage
+      (ia := (4 : Fin 13)) (ib := (8 : Fin 13)) (ic := (0 : Fin 13))
+      (by decide) (Or.inl (by decide))
+      (by simpa [S.triangleByIndex_v1_eq_oppositeVertexByIndex] using hzero)
+      (by simpa [S.triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1]
+        using hfirst)
+      (by simpa [S.triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2]
+        using hsecond)
+  have hOpp2 : ∀ x : ℝ², x ∈ S.oppCap2 ↔
+      ∃ q : Fin 13, (0 : Fin 13) ≤ q ∧ q ≤ (4 : Fin 13) ∧ phi q = x := by
+    rw [← capByIndex_oppIndex2_eq_oppCap2 S]
+    exact S.capByIndex_interval_of_global_indices S.oppIndex2 hccw hinj himage
+      (ia := (0 : Fin 13)) (ib := (4 : Fin 13)) (ic := (8 : Fin 13))
+      (by decide) (Or.inr (by decide))
+      (by simpa [S.triangleByIndex_v1_eq_oppositeVertexByIndex] using hsecond)
+      (by simpa [S.triangleByIndex_oppIndex2_v2_eq_oppositeVertexByIndex_surplusIdx]
+        using hzero)
+      (by simpa [S.triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1]
+        using hfirst)
+  constructor
+  · intro hi
+    rcases Finset.mem_sdiff.mp hi with ⟨hiOpp1, hiAdjacent⟩
+    rcases (hOpp1 _).mp hiOpp1 with ⟨q, hqSide, hqi⟩
+    have hqiIndex : q = i := hinj hqi
+    subst q
+    rcases hqSide with hiZero | hiEight
+    · have hiEq : i = 0 := by apply Fin.ext; omega
+      apply False.elim
+      apply hiAdjacent
+      apply Finset.mem_union.mpr
+      exact Or.inr ((hOpp2 _).mpr ⟨0, by decide, by simp [hiEq]⟩)
+    · rcases lt_or_eq_of_le hiEight with hiStrict | hiEq
+      · exact hiStrict
+      · apply False.elim
+        apply hiAdjacent
+        apply Finset.mem_union.mpr
+        exact Or.inl ((hSurplus _).mpr ⟨8, by decide, by simp [hiEq]⟩)
+  · intro hi
+    apply Finset.mem_sdiff.mpr
+    refine ⟨(hOpp1 _).mpr ⟨i, Or.inr hi.le, rfl⟩, ?_⟩
+    intro hiAdjacent
+    rcases Finset.mem_union.mp hiAdjacent with hiSurplus | hiOpp2
+    · rcases (hSurplus _).mp hiSurplus with ⟨q, _hqFour, hqEight, hqi⟩
+      have hqiIndex : q = i := hinj hqi
+      subst q
+      omega
+    · rcases (hOpp2 _).mp hiOpp2 with ⟨q, _hqZero, hqFour, hqi⟩
+      have hqiIndex : q = i := hinj hqi
+      subst q
+      omega
+
+/-- The reflected canonical boundary frame has the same private-cap index
+block after applying `reverseCyclicIndex13`. -/
+private theorem mem_strictFirstOppositeCap_iff_index_gt_eight_reflected
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (phi : Fin 13 → ℝ²) (hinj : Function.Injective phi)
+    (himage : Finset.univ.image phi = D.A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
+    (hzero : phi 0 = S.oppositeVertexByIndex S.surplusIdx)
+    (hsecond : phi 5 = S.oppositeVertexByIndex S.oppIndex2)
+    (hfirst : phi 9 = S.oppositeVertexByIndex S.oppIndex1)
+    (i : Fin 13) :
+    phi (reverseCyclicIndex13 i) ∈ strictFirstOppositeCap S ↔
+      (8 : Fin 13) < i := by
+  have hOpp1 : ∀ x : ℝ², x ∈ S.oppCap1 ↔
+      ∃ q : Fin 13, (0 : Fin 13) ≤ q ∧ q ≤ (5 : Fin 13) ∧ phi q = x := by
+    rw [← capByIndex_oppIndex1_eq_oppCap1 S]
+    exact S.capByIndex_reverse_interval_of_global_indices S.oppIndex1
+      hccw hinj himage (ib := (0 : Fin 13)) (ia := (5 : Fin 13))
+      (ic := (9 : Fin 13)) (by decide) (Or.inr (by decide))
+      (by simpa [S.triangleByIndex_v1_eq_oppositeVertexByIndex] using hfirst)
+      (by simpa [S.triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2]
+        using hsecond)
+      (by simpa [S.triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx]
+        using hzero)
+  have hSurplus : ∀ x : ℝ², x ∈ S.surplusCap ↔
+      ∃ q : Fin 13, (5 : Fin 13) ≤ q ∧ q ≤ (9 : Fin 13) ∧ phi q = x := by
+    rw [← capByIndex_surplusIdx_eq_surplusCap S]
+    exact S.capByIndex_reverse_interval_of_global_indices S.surplusIdx
+      hccw hinj himage (ib := (5 : Fin 13)) (ia := (9 : Fin 13))
+      (ic := (0 : Fin 13)) (by decide) (Or.inl (by decide))
+      (by simpa [S.triangleByIndex_v1_eq_oppositeVertexByIndex] using hzero)
+      (by simpa [S.triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1]
+        using hfirst)
+      (by simpa [S.triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2]
+        using hsecond)
+  have hOpp2 : ∀ x : ℝ², x ∈ S.oppCap2 ↔
+      ∃ q : Fin 13, (q ≤ (0 : Fin 13) ∨ (9 : Fin 13) ≤ q) ∧ phi q = x := by
+    rw [← capByIndex_oppIndex2_eq_oppCap2 S]
+    exact S.capByIndex_complement_interval_of_global_indices S.oppIndex2
+      hccw hinj himage (ia := (0 : Fin 13)) (ic := (5 : Fin 13))
+      (ib := (9 : Fin 13)) (by decide) (by decide)
+      (by simpa [S.triangleByIndex_v1_eq_oppositeVertexByIndex] using hsecond)
+      (by simpa [S.triangleByIndex_oppIndex2_v2_eq_oppositeVertexByIndex_surplusIdx]
+        using hzero)
+      (by simpa [S.triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1]
+        using hfirst)
+  constructor
+  · intro hi
+    rcases Finset.mem_sdiff.mp hi with ⟨hiOpp1, hiAdjacent⟩
+    rcases (hOpp1 _).mp hiOpp1 with ⟨q, hqZero, hqFive, hqPoint⟩
+    have hqIndex : q = reverseCyclicIndex13 i := hinj hqPoint
+    have hqNeZero : q ≠ 0 := by
+      intro hq
+      apply hiAdjacent
+      apply Finset.mem_union.mpr
+      exact Or.inr ((hOpp2 _).mpr ⟨q, Or.inl (by omega), hqPoint⟩)
+    have hqNeFive : q ≠ 5 := by
+      intro hq
+      apply hiAdjacent
+      apply Finset.mem_union.mpr
+      exact Or.inl ((hSurplus _).mpr ⟨q, by omega, by omega, hqPoint⟩)
+    have hqPos : (0 : Fin 13) < q := lt_of_le_of_ne hqZero hqNeZero.symm
+    have hqLtFive : q < (5 : Fin 13) := lt_of_le_of_ne hqFive hqNeFive
+    have hiPos : (0 : Fin 13) < i := by
+      by_contra hiZero
+      have hiEq : i = 0 := by apply Fin.ext; omega
+      subst i
+      have hqEq : q = 0 := by simpa using hqIndex
+      exact hqNeZero hqEq
+    rw [hqIndex] at hqPos hqLtFive
+    have hrevVal := reverseCyclicIndex13_val_of_pos hiPos
+    change 0 < (reverseCyclicIndex13 i).val at hqPos
+    change (reverseCyclicIndex13 i).val < 5 at hqLtFive
+    rw [hrevVal] at hqPos hqLtFive
+    omega
+  · intro hi
+    have hiPos : (0 : Fin 13) < i := by omega
+    have hrevVal : (reverseCyclicIndex13 i).val = 13 - i.val :=
+      reverseCyclicIndex13_val_of_pos hiPos
+    have hrevZero : (0 : Fin 13) < reverseCyclicIndex13 i := by
+      rw [Fin.lt_def, hrevVal]
+      omega
+    have hrevFive : reverseCyclicIndex13 i < (5 : Fin 13) := by
+      rw [Fin.lt_def, hrevVal]
+      omega
+    apply Finset.mem_sdiff.mpr
+    refine ⟨(hOpp1 _).mpr
+      ⟨reverseCyclicIndex13 i, hrevZero.le, hrevFive.le, rfl⟩, ?_⟩
+    intro hiAdjacent
+    rcases Finset.mem_union.mp hiAdjacent with hiSurplus | hiOpp2
+    · rcases (hSurplus _).mp hiSurplus with ⟨q, hqFive, _hqNine, hqPoint⟩
+      have hqIndex : q = reverseCyclicIndex13 i := hinj hqPoint
+      subst q
+      exact (not_le_of_gt hrevFive) hqFive
+    · rcases (hOpp2 _).mp hiOpp2 with ⟨q, hqSide, hqPoint⟩
+      have hqIndex : q = reverseCyclicIndex13 i := hinj hqPoint
+      subst q
+      rcases hqSide with hqZero | hqNine
+      · exact (not_le_of_gt hrevZero) hqZero
+      · omega
+
 /-- Source-valid common frame for the asymmetric card-thirteen certificate.
 The three role indices are pairwise distinct strict physical-cap indices, and
 the blocker is the middle index `2`; hence the source roles have exactly the
@@ -113,6 +475,12 @@ structure CanonicalAsymmetricRolePrepacket
     point 4 = S.oppositeVertexByIndex S.oppIndex1
   secondApex_at_eight :
     point 8 = S.oppositeVertexByIndex S.oppIndex2
+  surplusCap_mem_iff_middle_block : ∀ i : Fin 13,
+    point i ∈ S.surplusCap ↔ (4 : Fin 13) ≤ i ∧ i ≤ (8 : Fin 13)
+  secondOppCap_mem_iff_initial_block : ∀ i : Fin 13,
+    point i ∈ S.oppCap2 ↔ i ≤ (4 : Fin 13)
+  strictFirstOppositeCap_mem_iff_index_gt_eight : ∀ i : Fin 13,
+    point i ∈ strictFirstOppositeCap S ↔ (8 : Fin 13) < i
   strictKalmanson : ∀ {a b c d : Fin 13}, a < b → b < c → c < d →
     (dist (point b) (point c) + dist (point a) (point d) <
         dist (point a) (point c) + dist (point b) (point d)) ∧
@@ -149,6 +517,72 @@ structure CanonicalAsymmetricRolePrepacket
   sharedCapOrder : SourceTwoHitSharedCapOrder N
 
 namespace CanonicalAsymmetricRolePrepacket
+
+/-- Set-valued form of the exact first-opposite private-cap localization. -/
+theorem strictFirstOppositeCap_index_filter_eq
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    {Q : FrontierBiApexRobustExactFiveSecondCapResidual B}
+    {profile : LargeCapUniqueFiveSecondApexRadius D S}
+    {M : PhysicalActualCriticalMutualOmissionPair H profile}
+    {N : SourceTwoHitNormalForm Q profile M}
+    (P : CanonicalAsymmetricRolePrepacket N) :
+    Finset.univ.filter (fun i : Fin 13 ↦
+      P.point i ∈ strictFirstOppositeCap S) = {9, 10, 11, 12} := by
+  ext i
+  simp only [Finset.mem_filter, Finset.mem_univ, true_and,
+    Finset.mem_insert, Finset.mem_singleton]
+  rw [P.strictFirstOppositeCap_mem_iff_index_gt_eight]
+  omega
+
+/-- The private first-opposite cap used by the shell-role packet is exactly
+the indexed cap interior.  This is a definitional cap-name transport, not a
+new geometric localization hypothesis. -/
+theorem mem_strictFirstOppositeCap_iff_mem_capInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    {Q : FrontierBiApexRobustExactFiveSecondCapResidual B}
+    {profile : LargeCapUniqueFiveSecondApexRadius D S}
+    {M : PhysicalActualCriticalMutualOmissionPair H profile}
+    {N : SourceTwoHitNormalForm Q profile M}
+    (_P : CanonicalAsymmetricRolePrepacket N) {x : ℝ²} :
+    x ∈ strictFirstOppositeCap S ↔
+      x ∈ S.capInteriorByIndex S.oppIndex1 := by
+  constructor
+  · exact mem_firstOppositeInterior_of_mem_strictFirstOppositeCap S
+  · intro hx
+    have hprivate := S.capInteriorByIndex_mem_private S.oppIndex1 hx
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i <;>
+      simpa [strictFirstOppositeCap, SurplusCapPacket.oppCap1,
+        SurplusCapPacket.surplusCap, SurplusCapPacket.oppCap2,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.capByIndex,
+        SurplusCapPacket.leftAdjacentCapByIndex,
+        SurplusCapPacket.rightAdjacentCapByIndex, hi, and_left_comm,
+        and_comm, and_assoc] using hprivate
+
+/-- Exact index normal form for the indexed first-opposite cap interior. -/
+theorem capInterior_mem_iff_index_gt_eight
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    {Q : FrontierBiApexRobustExactFiveSecondCapResidual B}
+    {profile : LargeCapUniqueFiveSecondApexRadius D S}
+    {M : PhysicalActualCriticalMutualOmissionPair H profile}
+    {N : SourceTwoHitNormalForm Q profile M}
+    (P : CanonicalAsymmetricRolePrepacket N) (i : Fin 13) :
+    P.point i ∈ S.capInteriorByIndex S.oppIndex1 ↔
+      (8 : Fin 13) < i := by
+  rw [← P.mem_strictFirstOppositeCap_iff_mem_capInterior]
+  exact P.strictFirstOppositeCap_mem_iff_index_gt_eight i
 
 /-- The three pairwise-distinct strict indices have exactly the two source-role
 orbits used by the external certificate. -/
@@ -711,6 +1145,15 @@ theorem nonempty_canonicalAsymmetricRolePrepacket
       surplusOpposite_at_zero := hzero
       firstApex_at_four := hfirst
       secondApex_at_eight := hsecond
+      surplusCap_mem_iff_middle_block :=
+        mem_surplusCap_iff_middle_block_direct
+          phi hinj himage hccw hzero hfirst hsecond
+      secondOppCap_mem_iff_initial_block :=
+        mem_oppCap2_iff_initial_block_direct
+          phi hinj himage hccw hzero hfirst hsecond
+      strictFirstOppositeCap_mem_iff_index_gt_eight :=
+        mem_strictFirstOppositeCap_iff_index_gt_eight_direct
+          phi hinj himage hccw hzero hfirst hsecond
       strictKalmanson := ?_
       sourceIndex := sourceIndex
       blockerIndex := blockerIndex
@@ -794,6 +1237,15 @@ theorem nonempty_canonicalAsymmetricRolePrepacket
       surplusOpposite_at_zero := point_zero
       firstApex_at_four := point_four
       secondApex_at_eight := point_eight
+      surplusCap_mem_iff_middle_block :=
+        mem_surplusCap_iff_middle_block_reflected
+          phi hinj himage hccw hzero hsecond hfirst
+      secondOppCap_mem_iff_initial_block :=
+        mem_oppCap2_iff_initial_block_reflected
+          phi hinj himage hccw hzero hsecond hfirst
+      strictFirstOppositeCap_mem_iff_index_gt_eight :=
+        mem_strictFirstOppositeCap_iff_index_gt_eight_reflected
+          phi hinj himage hccw hzero hsecond hfirst
       strictKalmanson := ?_
       sourceIndex := sourceIndex
       blockerIndex := blockerIndex
@@ -839,6 +1291,7 @@ theorem nonempty_canonicalAsymmetricRolePrepacket
       hcard D.convex phi hinj himage hccw hab hbc hcd
 
 #print axioms nonempty_canonicalAsymmetricRolePrepacket
+#print axioms CanonicalAsymmetricRolePrepacket.strictFirstOppositeCap_index_filter_eq
 #print axioms CanonicalAsymmetricRolePrepacket.source_role_orbits_of_blockerIndex_eq_two
 #print axioms CanonicalAsymmetricRolePrepacket.source_role_orbits
 

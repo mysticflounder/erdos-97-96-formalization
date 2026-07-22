@@ -8214,13 +8214,26 @@ orbits.  The kernel-checked boundary audit closes the exact `(5,6,5)` apex
 placement, reversal/chirality, the common-label role transport, and the exact
 78-distance rank packing, including the source-valid proof that the blocker
 is canonical index `2`.  The Boolean carrier packing is also kernel-checked.
-It does not yet close the source branch: semantic instantiation of those
-packed tables, aggregate predicate-block proofs, and the kernel contradiction
-remain.  These are the immediate implementation target.
+The source bridge has now proved all 1,899 selected antecedents: 145 base
+row/shell facts, 25 frontier/role/same-radius facts, 67 rank bounds, 334
+row/shell rank guards, and 1,328 strict-Kalmanson guards.  All 30
+source-to-expression chunks compile.  Lean's verified `BVLogicalExpr`/LRAT
+pipeline checks the factor-free CaDiCaL certificate and proves the finite
+expression unsatisfiable; the public source wrapper has no `sorryAx` and only
+the expected native checker trust boundary.  The full-parent coordinator now
+constructs the canonical role prepacket, semantic table, and appropriate cover
+family for either asymmetric spoke outcome and applies that verified wrapper.
+Both `false_of_exactFive_card13_sameRadius_spoke₁` and
+`false_of_exactFive_card13_sameRadius_spoke₂` compile warning-clean with no
+`sorryAx`.  The card-13, exact-five, same-radius, asymmetric leaf is therefore
+**PROVEN in scratch**.  This closes a genuine leaf but not the production
+exact-five declaration: the distinct-radius, all-one-hit, and
+card-at-least-14 leaves remain.
 The distinct-cross local linear packet is exactly SAT, so that sibling still
 requires global fixed-`H`/cover information or nonlinear MEC geometry.  The
 decomposed all-one gate rejects 7,402 tested assignments by ordinal cycles but
-proves no cell coverage.  No source `sorry` is closed at this checkpoint.
+proves no cell coverage.  No production source `sorry` is closed at this
+checkpoint.
 
 ## Change control
 

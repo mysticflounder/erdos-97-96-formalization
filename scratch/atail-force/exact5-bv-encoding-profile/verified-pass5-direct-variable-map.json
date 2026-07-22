@@ -1,0 +1,980 @@
+{
+  "chunk_size": 64,
+  "chunks": 30,
+  "lowered_operators": [
+    "and",
+    "bool-eq",
+    "bv-eq",
+    "bv-ult",
+    "implies",
+    "not",
+    "or",
+    "pb-at-least-unit",
+    "pb-at-most-unit",
+    "pb-exact-unit"
+  ],
+  "orbit": "asymmetricSourceLeft",
+  "schema": "p97-exact5-pass5-verified-bvlogicalexpr-map-v1",
+  "source_assertions": 1899,
+  "source_bits": 668,
+  "source_core": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-same-radius-terminal/direct.source-core.pass5.json",
+  "source_variables": 191,
+  "unsupported_operators": [],
+  "variables": {
+    "b1_0": {
+      "index": 0,
+      "sort": "Bool",
+      "width": 1
+    },
+    "b1_1": {
+      "index": 1,
+      "sort": "Bool",
+      "width": 1
+    },
+    "b1_10": {
+      "index": 10,
+      "sort": "Bool",
+      "width": 1
+    },
+    "b1_11": {
+      "index": 11,
+      "sort": "Bool",
+      "width": 1
+    },
+    "b1_12": {
+      "index": 12,
+      "sort": "Bool",
+      "width": 1
+    },
+    "b1_2": {
+      "index": 2,
+      "sort": "Bool",
+      "width": 1
+    },
+    "b1_3": {
+      "index": 3,
+      "sort": "Bool",
+      "width": 1
+    },
+    "b1_4": {
+      "index": 4,
+      "sort": "Bool",
+      "width": 1
+    },
+    "b1_5": {
+      "index": 5,
+      "sort": "Bool",
+      "width": 1
+    },
+    "b1_6": {
+      "index": 6,
+      "sort": "Bool",
+      "width": 1
+    },
+    "b1_7": {
+      "index": 7,
+      "sort": "Bool",
+      "width": 1
+    },
+    "b1_8": {
+      "index": 8,
+      "sort": "Bool",
+      "width": 1
+    },
+    "b1_9": {
+      "index": 9,
+      "sort": "Bool",
+      "width": 1
+    },
+    "blocker_0": {
+      "index": 13,
+      "sort": "Int-as-unsigned-4",
+      "width": 4
+    },
+    "blocker_1": {
+      "index": 14,
+      "sort": "Int-as-unsigned-4",
+      "width": 4
+    },
+    "blocker_10": {
+      "index": 23,
+      "sort": "Int-as-unsigned-4",
+      "width": 4
+    },
+    "blocker_11": {
+      "index": 24,
+      "sort": "Int-as-unsigned-4",
+      "width": 4
+    },
+    "blocker_12": {
+      "index": 25,
+      "sort": "Int-as-unsigned-4",
+      "width": 4
+    },
+    "blocker_2": {
+      "index": 15,
+      "sort": "Int-as-unsigned-4",
+      "width": 4
+    },
+    "blocker_3": {
+      "index": 16,
+      "sort": "Int-as-unsigned-4",
+      "width": 4
+    },
+    "blocker_4": {
+      "index": 17,
+      "sort": "Int-as-unsigned-4",
+      "width": 4
+    },
+    "blocker_5": {
+      "index": 18,
+      "sort": "Int-as-unsigned-4",
+      "width": 4
+    },
+    "blocker_6": {
+      "index": 19,
+      "sort": "Int-as-unsigned-4",
+      "width": 4
+    },
+    "blocker_7": {
+      "index": 20,
+      "sort": "Int-as-unsigned-4",
+      "width": 4
+    },
+    "blocker_8": {
+      "index": 21,
+      "sort": "Int-as-unsigned-4",
+      "width": 4
+    },
+    "blocker_9": {
+      "index": 22,
+      "sort": "Int-as-unsigned-4",
+      "width": 4
+    },
+    "frontier_q": {
+      "index": 26,
+      "sort": "Int-as-unsigned-4",
+      "width": 4
+    },
+    "frontier_w": {
+      "index": 27,
+      "sort": "Int-as-unsigned-4",
+      "width": 4
+    },
+    "g0_2_0": {
+      "index": 28,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_2_1": {
+      "index": 29,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_2_10": {
+      "index": 38,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_2_11": {
+      "index": 39,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_2_12": {
+      "index": 40,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_2_2": {
+      "index": 30,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_2_3": {
+      "index": 31,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_2_4": {
+      "index": 32,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_2_5": {
+      "index": 33,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_2_6": {
+      "index": 34,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_2_7": {
+      "index": 35,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_2_8": {
+      "index": 36,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_2_9": {
+      "index": 37,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_6_0": {
+      "index": 41,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_6_1": {
+      "index": 42,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_6_10": {
+      "index": 51,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_6_11": {
+      "index": 52,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_6_12": {
+      "index": 53,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_6_2": {
+      "index": 43,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_6_3": {
+      "index": 44,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_6_4": {
+      "index": 45,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_6_5": {
+      "index": 46,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_6_6": {
+      "index": 47,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_6_7": {
+      "index": 48,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_6_8": {
+      "index": 49,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g0_6_9": {
+      "index": 50,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g1_5_0": {
+      "index": 54,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g1_5_1": {
+      "index": 55,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g1_5_10": {
+      "index": 64,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g1_5_11": {
+      "index": 65,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g1_5_12": {
+      "index": 66,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g1_5_2": {
+      "index": 56,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g1_5_3": {
+      "index": 57,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g1_5_4": {
+      "index": 58,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g1_5_5": {
+      "index": 59,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g1_5_6": {
+      "index": 60,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g1_5_7": {
+      "index": 61,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g1_5_8": {
+      "index": 62,
+      "sort": "Bool",
+      "width": 1
+    },
+    "g1_5_9": {
+      "index": 63,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_0_0": {
+      "index": 67,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_0_1": {
+      "index": 68,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_0_10": {
+      "index": 77,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_0_11": {
+      "index": 78,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_0_12": {
+      "index": 79,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_0_2": {
+      "index": 69,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_0_3": {
+      "index": 70,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_0_4": {
+      "index": 71,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_0_5": {
+      "index": 72,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_0_6": {
+      "index": 73,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_0_7": {
+      "index": 74,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_0_8": {
+      "index": 75,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_0_9": {
+      "index": 76,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_2_0": {
+      "index": 80,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_2_1": {
+      "index": 81,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_2_10": {
+      "index": 90,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_2_11": {
+      "index": 91,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_2_12": {
+      "index": 92,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_2_2": {
+      "index": 82,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_2_3": {
+      "index": 83,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_2_4": {
+      "index": 84,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_2_5": {
+      "index": 85,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_2_6": {
+      "index": 86,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_2_7": {
+      "index": 87,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_2_8": {
+      "index": 88,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_2_9": {
+      "index": 89,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_4_0": {
+      "index": 93,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_4_1": {
+      "index": 94,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_4_10": {
+      "index": 103,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_4_11": {
+      "index": 104,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_4_12": {
+      "index": 105,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_4_2": {
+      "index": 95,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_4_3": {
+      "index": 96,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_4_4": {
+      "index": 97,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_4_5": {
+      "index": 98,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_4_6": {
+      "index": 99,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_4_7": {
+      "index": 100,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_4_8": {
+      "index": 101,
+      "sort": "Bool",
+      "width": 1
+    },
+    "m_4_9": {
+      "index": 102,
+      "sort": "Bool",
+      "width": 1
+    },
+    "ord_rank_0_1": {
+      "index": 106,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_0_10": {
+      "index": 115,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_0_11": {
+      "index": 116,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_0_12": {
+      "index": 117,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_0_2": {
+      "index": 107,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_0_3": {
+      "index": 108,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_0_4": {
+      "index": 109,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_0_5": {
+      "index": 110,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_0_6": {
+      "index": 111,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_0_7": {
+      "index": 112,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_0_8": {
+      "index": 113,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_0_9": {
+      "index": 114,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_1_10": {
+      "index": 126,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_1_11": {
+      "index": 127,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_1_12": {
+      "index": 128,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_1_2": {
+      "index": 118,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_1_3": {
+      "index": 119,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_1_4": {
+      "index": 120,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_1_5": {
+      "index": 121,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_1_6": {
+      "index": 122,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_1_7": {
+      "index": 123,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_1_8": {
+      "index": 124,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_1_9": {
+      "index": 125,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_2_10": {
+      "index": 136,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_2_11": {
+      "index": 137,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_2_12": {
+      "index": 138,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_2_3": {
+      "index": 129,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_2_4": {
+      "index": 130,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_2_5": {
+      "index": 131,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_2_6": {
+      "index": 132,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_2_7": {
+      "index": 133,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_2_8": {
+      "index": 134,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_2_9": {
+      "index": 135,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_3_10": {
+      "index": 145,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_3_11": {
+      "index": 146,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_3_12": {
+      "index": 147,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_3_4": {
+      "index": 139,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_3_5": {
+      "index": 140,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_3_6": {
+      "index": 141,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_3_7": {
+      "index": 142,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_3_8": {
+      "index": 143,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_3_9": {
+      "index": 144,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_4_10": {
+      "index": 153,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_4_11": {
+      "index": 154,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_4_12": {
+      "index": 155,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_4_5": {
+      "index": 148,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_4_6": {
+      "index": 149,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_4_7": {
+      "index": 150,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_4_8": {
+      "index": 151,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_4_9": {
+      "index": 152,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_5_10": {
+      "index": 160,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_5_11": {
+      "index": 161,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_5_12": {
+      "index": 162,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_5_6": {
+      "index": 156,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_5_7": {
+      "index": 157,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_5_8": {
+      "index": 158,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_5_9": {
+      "index": 159,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_6_10": {
+      "index": 166,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_6_11": {
+      "index": 167,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_6_12": {
+      "index": 168,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_6_7": {
+      "index": 163,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_6_8": {
+      "index": 164,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_6_9": {
+      "index": 165,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_7_10": {
+      "index": 171,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_7_11": {
+      "index": 172,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_7_12": {
+      "index": 173,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_7_8": {
+      "index": 169,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_7_9": {
+      "index": 170,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_8_10": {
+      "index": 175,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_8_11": {
+      "index": 176,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_8_12": {
+      "index": 177,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "ord_rank_8_9": {
+      "index": 174,
+      "sort": "BitVec(7)",
+      "width": 7
+    },
+    "shell_0": {
+      "index": 178,
+      "sort": "Bool",
+      "width": 1
+    },
+    "shell_1": {
+      "index": 179,
+      "sort": "Bool",
+      "width": 1
+    },
+    "shell_10": {
+      "index": 188,
+      "sort": "Bool",
+      "width": 1
+    },
+    "shell_11": {
+      "index": 189,
+      "sort": "Bool",
+      "width": 1
+    },
+    "shell_12": {
+      "index": 190,
+      "sort": "Bool",
+      "width": 1
+    },
+    "shell_2": {
+      "index": 180,
+      "sort": "Bool",
+      "width": 1
+    },
+    "shell_3": {
+      "index": 181,
+      "sort": "Bool",
+      "width": 1
+    },
+    "shell_4": {
+      "index": 182,
+      "sort": "Bool",
+      "width": 1
+    },
+    "shell_5": {
+      "index": 183,
+      "sort": "Bool",
+      "width": 1
+    },
+    "shell_6": {
+      "index": 184,
+      "sort": "Bool",
+      "width": 1
+    },
+    "shell_7": {
+      "index": 185,
+      "sort": "Bool",
+      "width": 1
+    },
+    "shell_8": {
+      "index": 186,
+      "sort": "Bool",
+      "width": 1
+    },
+    "shell_9": {
+      "index": 187,
+      "sort": "Bool",
+      "width": 1
+    }
+  }
+}

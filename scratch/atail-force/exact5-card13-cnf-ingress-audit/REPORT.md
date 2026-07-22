@@ -2,9 +2,9 @@
 
 Date: 2026-07-21
 
-Status: **PARTIAL SOURCE INGRESS PROVEN. THE TWO EXTERNAL CNFS ARE
-DRAT-VERIFIED UNSAT, BUT THEIR SOURCE-TO-CNF MAP IS NOT KERNEL-CHECKED. NO
-PRODUCTION `sorry` IS CLOSED.**
+Status: **THE CARD-13 SAME-RADIUS ASYMMETRIC LEAF IS PROVEN IN LEAN FOR BOTH
+SPOKE ORIENTATIONS. THE 1,899-ASSERTION SOURCE INGRESS AND VERIFIED LRAT
+CONTRADICTION ARE FULLY COMPOSED. NO PRODUCTION `sorry` IS CLOSED.**
 
 ## Scope
 
@@ -97,13 +97,95 @@ shell and first-apex row into their two `BitVec 13` carriers.  Its extraction
 theorems use exactly the generated circuit offsets `169*f + 13*c + p` and
 `4*s`.  Independent focused replay again reports only the three core axioms.
 
-Thus every finite carrier layout is now source-constructible.  The remaining
-ingress is semantic: instantiate those Boolean tables from the actual fixed
-critical and global-cover rows and prove the aggregate selected source-core
-predicate.
+Thus every finite carrier layout is source-constructible.  The semantic
+row-table constructor below supplies the actual fixed-critical and
+global-cover rows, and the later source-ingress modules prove the complete
+selected source core against those values.
+
+### Total source-faithful semantic witness table
+
+`SemanticRowTable.lean` now closes the first half of that semantic ingress.
+It proves
+
+```lean
+CanonicalAsymmetricSemanticRowTable.nonempty_from_parent
+```
+
+from the canonical role prepacket and a physical global-deletion-cover star.
+The table contains:
+
+- an arbitrary selected K4 row at every canonical carrier center, with row
+  `4` fixed to the retained first-apex row;
+- two independently chosen all-center cover-row families, one for each star
+  edge;
+- all thirteen actual blocker indices pulled back through the canonical
+  enumeration;
+- the exact five-point second-apex shell; and
+- the first-apex double-deletion row at canonical center `4`.
+
+The two cover families are separate dependent choices.  They are not assumed
+equal away from blocker-image centers.  The theorem
+`blocker_image_supports_eq` derives their equality with the main row at an
+actual blocker-image center from
+`CriticalShellSystem.selectedFourClass_support_eq_shell`.
+
+The focused replay of the constructor, parent wrapper, and blocker-image
+synchronization theorem reports only `propext`, `Classical.choice`, and
+`Quot.sound`.
 
 All three theorem groups elaborate without `sorry`.  The focused validation reports only
 the standard axioms `propext`, `Classical.choice`, and `Quot.sound`.
+
+### Complete source assertion ingress
+
+The selected pass-five core has now been classified and proved source-first:
+
+| Range | Count | Lean source |
+| --- | ---: | --- |
+| `h0000`--`h0144` | 145 | `DirectSourceBaseFacts.lean` |
+| `h0145`--`h0169` | 25 | `DirectFlatSourceIngress.lean` plus the final coordinator |
+| `h0170`--`h0236` | 67 | exact distance-rank bounds |
+| `h0237`--`h0488` | 252 | selected-row rank guards |
+| `h0489`--`h0527` | 39 | first-apex-row rank guards |
+| `h0528`--`h0570` | 43 | exact-five-shell rank guards |
+| `h0571`--`h1898` | 1,328 | strict Kalmanson cancellation guards |
+
+`DirectSourceBaseAssertions` packages the first 145 facts, and
+`directSource_baseAssertions` constructs that package from the semantic
+table.  `DirectSourceRankInstances.lean` and its generated chunks prove all
+1,729 rank/row/shell/Kalmanson facts.  The generator checks every saved
+pass-five expression against the rebuilt 45,878-assertion source surface
+before emitting Lean.  All generated chunks compile with warnings as errors.
+
+The four-bit `blockers` carrier in the finite certificate is an auxiliary SAT
+witness, not the fixed critical map itself.  Whenever it activates the
+center-two row-equality guards, the source proof separately establishes those
+equalities using `directSource_leftTwo_eq_mainTwo`.  No actual blocker identity
+is inferred from a chosen certificate bit pattern.
+
+### Kernel-verified finite contradiction
+
+`VerifiedPass5Direct.lean` rebuilds the 1,899 assertions as Lean's verified
+`BVLogicalExpr`, uses the factor-free CaDiCaL LRAT proof, and proves
+`directExpr_unsat`.  `VerifiedPass5DirectIngress.lean` constructs the exact
+191-entry packed assignment, proves all 30 source-to-expression chunks, and
+exports:
+
+```lean
+false_of_directChunks_each
+false_of_directSource_flat
+```
+
+The LRAT endpoint compiles in about five seconds.  The complete flat source
+wrapper compiles with warnings as errors in about 125 seconds.  Its axiom
+closure is exactly
+
+```text
+propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound
+```
+
+with no `sorryAx`.  The two compiler axioms are the expected trust boundary of
+Lean's native verified-certificate replay.
 
 ### Reversal-stable Kalmanson transport
 
@@ -165,47 +247,55 @@ assignment.
 | Canonical reversal of the reverse placement | **PROVEN for both strict Kalmanson inequalities** in scratch. |
 | Two asymmetric strict-cap role orbits | **PROVEN in the common global `Fin 13` frame**; the blocker is index `2`, giving exactly `(1,2,3)` or `(3,2,1)`. |
 | Finite Boolean carrier layout | **PROVEN and packed in Lean** for all three row families, blockers, shell, and first-apex row. |
-| Fixed critical blocker/row family | Source data exist in `CriticalShellSystem`; semantic instantiation of the packed table remains. |
-| Two independent global-cover row families | Source constructors exist; semantic instantiation of the two packed tables remains. |
-| Exact-five second-apex shell | Source theorem family exists; semantic instantiation of the packed shell remains. |
-| Same-radius exact-six first-apex class | Source-valid current theorem family; semantic instantiation of the packed first-apex row remains. |
+| Fixed critical blocker/row family | **CONSTRUCTED semantically**; blocker indices and blocker-image support synchronization are kernel-checked. |
+| Two independent global-cover row families | **CONSTRUCTED semantically** as separate choice functions; no false cross-edge equality is assumed. |
+| Exact-five second-apex shell | **CONSTRUCTED semantically** with exact cardinality five. |
+| Same-radius exact-six first-apex class | The retained and double rows are **CONSTRUCTED semantically**; the selected union/saturation predicates remain in the aggregate proof. |
 | Retained parent q-deleted rows | Deliberately omitted from the final CNFs.  This weakens the formula and is safe for UNSAT. |
 | Selected-row strong connectivity | Not present in `asymmetric_ordinal_rank.build`; the exported CNFs do not depend on lazy SCC cuts from the older search driver. |
 | Rank assignment from real distances | **PROVEN and packed in Lean** for the exact 78-pair / 546-bit certificate layout. |
 | Kalmanson cancellation implications | **PROVEN generically in Lean** from a strict distance-sum inequality and one canceled equality; aggregate block instantiation remains. |
-| Boolean CNF contradiction | **DRAT_VERIFIED externally** for both artifacts; not yet replayed by the Lean kernel. |
+| Boolean contradiction | **PROVEN in Lean** for the direct/source-left orbit through the generated `BVLogicalExpr` and factor-free LRAT replay.  The reflected source role is handled by source normalization into the same canonical finite witness. |
 
-The row-table clauses are credible necessary consequences of existing source
-families, but that is not enough for closure.  The final theorem must construct
-one Boolean/rank assignment from an arbitrary live source configuration and
-prove every encoded clause, block by block.
+The total row-table assignment is now a kernel-checked source construction.
+That is not enough for closure: the next theorem must prove every selected
+encoded predicate from this table and the already constructed distance ranks.
 
-## External certificate status
+## Certificate status
 
-The current manifest reports:
+The historical Z3 artifacts report:
 
 | Artifact | Variables | Clauses | Trimmed core clauses | External result |
 | --- | ---: | ---: | ---: | --- |
 | `direct` / source-left | 53,279 | 383,487 | 31,792 | DRAT verified |
 | `mirror` / source-right | 53,279 | 383,465 | 26,490 | DRAT verified |
 
-This is **EMPIRICALLY/EXTERNALLY VERIFIED EXACTLY WITHIN THE ENCODED MODEL**.
-It is not yet a theorem about the Lean parent because neither the full source
-map nor a kernel proof replay has landed.
+Those historical artifacts remain **EMPIRICALLY/EXTERNALLY VERIFIED EXACTLY
+WITHIN THEIR ENCODED MODEL**, but they are no longer the proof boundary.  The
+new pass-five expression is regenerated directly in Lean, its factor-free
+LRAT certificate is checked by Lean's verified replay path, and all 1,899
+finite antecedents have source proofs.  `DirectSourceExactFiveCoordinator.lean`
+now constructs the canonical role/table objects from the exact geometric
+parent and supplies those antecedents.
 
 ## Minimal next implementation sequence
 
-1. Instantiate the checked Boolean packers with the fixed blocker/row system,
-   both independent global-cover row tables, the exact-five shell, and the
-   first-apex double row.
-2. Prove the aggregate selected source-core predicate from those semantic
-   source facts and `packedCardThirteenDistanceRanks`.
-3. Port/replay the finite contradiction in a kernel-accepted form.
+The completed public scratch endpoints are:
 
-Only after all three steps can the certificate close the **card-13,
-exact-five, same-radius, asymmetric** subcase.  It would still not close the
-distinct-radius mode, `allRowsOneHit`, card at least 14, or the entire
-exact-five residual.
+```lean
+false_of_exactFive_card13_sameRadius_spoke₁
+false_of_exactFive_card13_sameRadius_spoke₂
+```
+
+Each constructs the canonical role prepacket, semantic row table, and the
+appropriate spoke cover family, then applies the 1,899-assertion verified
+endpoint.  Both compile with warnings as errors.  Their axiom closure is
+exactly the native certificate boundary listed above, with no `sorryAx`.
+
+This closes the **card-13, exact-five, same-radius, asymmetric** subcase.  It
+does not close the distinct-radius mode, `allRowsOneHit`, card at least 14, or
+the entire exact-five residual.  The next closure work must attack one of
+those remaining source-level siblings rather than extend this finite core.
 
 ## Validation
 
