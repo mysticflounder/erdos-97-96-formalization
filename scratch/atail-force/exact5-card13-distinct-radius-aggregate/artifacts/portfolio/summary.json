@@ -1,0 +1,213 @@
+{
+  "configs": {
+    "default_seed0": [
+      "--default",
+      "--seed=0"
+    ],
+    "phase_false_seed3": [
+      "--default",
+      "--phase=false",
+      "--seed=3"
+    ],
+    "sat_seed1": [
+      "--sat",
+      "--seed=1"
+    ],
+    "unsat_seed2": [
+      "--unsat",
+      "--seed=2"
+    ]
+  },
+  "epistemic_status": "EXTERNAL_EXACT_CNF_PORTFOLIO_ONLY",
+  "results": [
+    {
+      "cnf_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/direct.cnf",
+      "cnf_sha256": "1669221a2e8791256c92038be8577e85ea1dc3204d0acfa106b064460a5dcff8",
+      "config": "default_seed0",
+      "config_args": [
+        "--default",
+        "--seed=0"
+      ],
+      "conflicts": 698764,
+      "decisions": 2333537,
+      "elapsed_seconds": 90.02357908303384,
+      "epistemic_status": "EXTERNAL_EXACT_CNF_PORTFOLIO_VERDICT",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/portfolio/direct/default_seed0/cadical.log",
+      "log_sha256": "bf01ec871cec2bfafd45502ea33277d81c01813b924f91f754c0b3c0f6d46088",
+      "model_check": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-portfolio-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 90,
+      "unsat_certificate": null
+    },
+    {
+      "cnf_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/direct.cnf",
+      "cnf_sha256": "1669221a2e8791256c92038be8577e85ea1dc3204d0acfa106b064460a5dcff8",
+      "config": "sat_seed1",
+      "config_args": [
+        "--sat",
+        "--seed=1"
+      ],
+      "conflicts": 675934,
+      "decisions": 1040140,
+      "elapsed_seconds": 90.02098733303137,
+      "epistemic_status": "EXTERNAL_EXACT_CNF_PORTFOLIO_VERDICT",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/portfolio/direct/sat_seed1/cadical.log",
+      "log_sha256": "93f745e3f0d8b67de77751e4c496eaf7d773ebc4c18af528f849ea2a54b7d964",
+      "model_check": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-portfolio-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 90,
+      "unsat_certificate": null
+    },
+    {
+      "cnf_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/direct.cnf",
+      "cnf_sha256": "1669221a2e8791256c92038be8577e85ea1dc3204d0acfa106b064460a5dcff8",
+      "config": "unsat_seed2",
+      "config_args": [
+        "--unsat",
+        "--seed=2"
+      ],
+      "conflicts": 674356,
+      "decisions": 3204726,
+      "elapsed_seconds": 90.02514987497125,
+      "epistemic_status": "EXTERNAL_EXACT_CNF_PORTFOLIO_VERDICT",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/portfolio/direct/unsat_seed2/cadical.log",
+      "log_sha256": "82b37ec443d3d42d11059217f7436c579fe7ef282afa971853a58326327ca5a3",
+      "model_check": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-portfolio-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 90,
+      "unsat_certificate": null
+    },
+    {
+      "cnf_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/direct.cnf",
+      "cnf_sha256": "1669221a2e8791256c92038be8577e85ea1dc3204d0acfa106b064460a5dcff8",
+      "config": "phase_false_seed3",
+      "config_args": [
+        "--default",
+        "--phase=false",
+        "--seed=3"
+      ],
+      "conflicts": 702028,
+      "decisions": 2391925,
+      "elapsed_seconds": 90.02211687492672,
+      "epistemic_status": "EXTERNAL_EXACT_CNF_PORTFOLIO_VERDICT",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/portfolio/direct/phase_false_seed3/cadical.log",
+      "log_sha256": "0cf4488e0adecc46a6a9ba9b422a5f1a36ad4dc6c4bbe0c3b16b69e68d5afc75",
+      "model_check": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-portfolio-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 90,
+      "unsat_certificate": null
+    },
+    {
+      "cnf_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/mirror.cnf",
+      "cnf_sha256": "347a6a6bcd207be3d142734c118366d91644cd056da27abac88fd7fb0bbd63cf",
+      "config": "default_seed0",
+      "config_args": [
+        "--default",
+        "--seed=0"
+      ],
+      "conflicts": 695719,
+      "decisions": 2440855,
+      "elapsed_seconds": 90.02460662496742,
+      "epistemic_status": "EXTERNAL_EXACT_CNF_PORTFOLIO_VERDICT",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/portfolio/mirror/default_seed0/cadical.log",
+      "log_sha256": "fc983ba9b7deec9211c34fc030972b7768ff514b379dd6f5e4158cb702e1296d",
+      "model_check": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-portfolio-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 90,
+      "unsat_certificate": null
+    },
+    {
+      "cnf_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/mirror.cnf",
+      "cnf_sha256": "347a6a6bcd207be3d142734c118366d91644cd056da27abac88fd7fb0bbd63cf",
+      "config": "sat_seed1",
+      "config_args": [
+        "--sat",
+        "--seed=1"
+      ],
+      "conflicts": 666072,
+      "decisions": 1031921,
+      "elapsed_seconds": 90.03210049995687,
+      "epistemic_status": "EXTERNAL_EXACT_CNF_PORTFOLIO_VERDICT",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/portfolio/mirror/sat_seed1/cadical.log",
+      "log_sha256": "d78c4074b3428e793df5074ec7a00de42e35dad8ef2783ac44fe404996e6136f",
+      "model_check": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-portfolio-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 90,
+      "unsat_certificate": null
+    },
+    {
+      "cnf_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/mirror.cnf",
+      "cnf_sha256": "347a6a6bcd207be3d142734c118366d91644cd056da27abac88fd7fb0bbd63cf",
+      "config": "unsat_seed2",
+      "config_args": [
+        "--unsat",
+        "--seed=2"
+      ],
+      "conflicts": 715831,
+      "decisions": 3137111,
+      "elapsed_seconds": 90.02414975001011,
+      "epistemic_status": "EXTERNAL_EXACT_CNF_PORTFOLIO_VERDICT",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/portfolio/mirror/unsat_seed2/cadical.log",
+      "log_sha256": "85ae833530d00f073bf7242d23727d60f6bad36e6f1d480f299acb6c74af1c5b",
+      "model_check": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-portfolio-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 90,
+      "unsat_certificate": null
+    },
+    {
+      "cnf_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/mirror.cnf",
+      "cnf_sha256": "347a6a6bcd207be3d142734c118366d91644cd056da27abac88fd7fb0bbd63cf",
+      "config": "phase_false_seed3",
+      "config_args": [
+        "--default",
+        "--phase=false",
+        "--seed=3"
+      ],
+      "conflicts": 708730,
+      "decisions": 2381504,
+      "elapsed_seconds": 90.02271004091017,
+      "epistemic_status": "EXTERNAL_EXACT_CNF_PORTFOLIO_VERDICT",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/portfolio/mirror/phase_false_seed3/cadical.log",
+      "log_sha256": "79bf795997f44faef821eb994ecf316d42f4941f44a9d388e02afb721210ee96",
+      "model_check": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-portfolio-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 90,
+      "unsat_certificate": null
+    }
+  ],
+  "schema": "p97-exact5-card13-distinct-portfolio-v1",
+  "timeout_seconds_per_cell": 90,
+  "workers": 8
+}

@@ -1,0 +1,114 @@
+{
+  "orbits": [
+    {
+      "assertions": 45865,
+      "expected_assertions": 45865,
+      "operators": [
+        "and",
+        "bool-eq",
+        "bv-distinct",
+        "bv-eq",
+        "bv-ule",
+        "bv-ult",
+        "implies",
+        "not",
+        "or",
+        "pb-at-most-unit",
+        "pb-exact-unit"
+      ],
+      "orbit": "allOneHitHubLeft",
+      "source_bits": 1139,
+      "source_contract": {
+        "blockers": "actual fixed-H blockerIndex in the original boundary frame",
+        "boundary_frame": "original CanonicalCard13Frame; no role reindexing",
+        "cnf_orbit": "hubLeft",
+        "first_apex_row": "retained double-deletion first-apex row",
+        "frontier_roles": "actual frontier q and w indices; not sorted or quotiented",
+        "g0_family": "independent cover row for hub and g0_spoke",
+        "g0_spoke_index": 2,
+        "g1_family": "independent cover row for hub and g1_spoke",
+        "g1_spoke_index": 3,
+        "hub_index": 1,
+        "m_family": "CanonicalAllOneSemanticRowTable.main; at fixed-H blocker-image centers it is synchronized to the actual fixed-H selected support",
+        "ranks": "ordinal ranks of all 78 distances in original boundary order",
+        "shell": "complete exact-five second-apex radius class"
+      },
+      "status": "PASS",
+      "variables": 626
+    },
+    {
+      "assertions": 45865,
+      "expected_assertions": 45865,
+      "operators": [
+        "and",
+        "bool-eq",
+        "bv-distinct",
+        "bv-eq",
+        "bv-ule",
+        "bv-ult",
+        "implies",
+        "not",
+        "or",
+        "pb-at-most-unit",
+        "pb-exact-unit"
+      ],
+      "orbit": "allOneHitHubMiddle",
+      "source_bits": 1139,
+      "source_contract": {
+        "blockers": "actual fixed-H blockerIndex in the original boundary frame",
+        "boundary_frame": "original CanonicalCard13Frame; no role reindexing",
+        "cnf_orbit": "hubMiddle",
+        "first_apex_row": "retained double-deletion first-apex row",
+        "frontier_roles": "actual frontier q and w indices; not sorted or quotiented",
+        "g0_family": "independent cover row for hub and g0_spoke",
+        "g0_spoke_index": 1,
+        "g1_family": "independent cover row for hub and g1_spoke",
+        "g1_spoke_index": 3,
+        "hub_index": 2,
+        "m_family": "CanonicalAllOneSemanticRowTable.main; at fixed-H blocker-image centers it is synchronized to the actual fixed-H selected support",
+        "ranks": "ordinal ranks of all 78 distances in original boundary order",
+        "shell": "complete exact-five second-apex radius class"
+      },
+      "status": "PASS",
+      "variables": 626
+    },
+    {
+      "assertions": 45865,
+      "expected_assertions": 45865,
+      "operators": [
+        "and",
+        "bool-eq",
+        "bv-distinct",
+        "bv-eq",
+        "bv-ule",
+        "bv-ult",
+        "implies",
+        "not",
+        "or",
+        "pb-at-most-unit",
+        "pb-exact-unit"
+      ],
+      "orbit": "allOneHitHubRight",
+      "source_bits": 1139,
+      "source_contract": {
+        "blockers": "actual fixed-H blockerIndex in the original boundary frame",
+        "boundary_frame": "original CanonicalCard13Frame; no role reindexing",
+        "cnf_orbit": "hubRight",
+        "first_apex_row": "retained double-deletion first-apex row",
+        "frontier_roles": "actual frontier q and w indices; not sorted or quotiented",
+        "g0_family": "independent cover row for hub and g0_spoke",
+        "g0_spoke_index": 1,
+        "g1_family": "independent cover row for hub and g1_spoke",
+        "g1_spoke_index": 2,
+        "hub_index": 3,
+        "m_family": "CanonicalAllOneSemanticRowTable.main; at fixed-H blocker-image centers it is synchronized to the actual fixed-H selected support",
+        "ranks": "ordinal ranks of all 78 distances in original boundary order",
+        "shell": "complete exact-five second-apex radius class"
+      },
+      "status": "PASS",
+      "variables": 626
+    }
+  ],
+  "schema": "p97-exact5-card13-all-one-source-translator-audit-v1",
+  "status": "PASS"
+}

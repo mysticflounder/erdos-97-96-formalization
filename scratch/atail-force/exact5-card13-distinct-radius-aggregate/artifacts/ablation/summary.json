@@ -1,0 +1,393 @@
+{
+  "epistemic_status": "DIAGNOSTIC_ABLATION_ONLY",
+  "profiles": {
+    "full": [],
+    "no_all_unique_k4": [
+      "unique_k4_second",
+      "unique_k4_first",
+      "unique_k4_critical"
+    ],
+    "no_complete_classes": [
+      "complete_classes"
+    ],
+    "no_connectivity": [
+      "connectivity"
+    ],
+    "no_kalmanson": [
+      "kalmanson"
+    ],
+    "no_unique_k4_critical": [
+      "unique_k4_critical"
+    ],
+    "no_unique_k4_first": [
+      "unique_k4_first"
+    ],
+    "no_unique_k4_second": [
+      "unique_k4_second"
+    ]
+  },
+  "results": [
+    {
+      "cnf_clause_count": 677677,
+      "cnf_sha256": "1669221a2e8791256c92038be8577e85ea1dc3204d0acfa106b064460a5dcff8",
+      "cnf_variable_count": 73190,
+      "conflicts": 150902,
+      "decisions": 586300,
+      "disabled_blocks": [],
+      "elapsed_seconds": 20.02159300004132,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/full/direct/cadical.log",
+      "log_sha256": "7fd5891b3d525d64a59f46edce2b71d18e57d4295ad1c6dc89a33b60b7114bd1",
+      "model_check": null,
+      "orientation": "direct",
+      "profile": "full",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 677662,
+      "cnf_sha256": "347a6a6bcd207be3d142734c118366d91644cd056da27abac88fd7fb0bbd63cf",
+      "cnf_variable_count": 73190,
+      "conflicts": 139636,
+      "decisions": 615457,
+      "disabled_blocks": [],
+      "elapsed_seconds": 20.01944724994246,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/full/mirror/cadical.log",
+      "log_sha256": "aa5a5bd17c263c92279c94e8d5e9ca13bbce1176242520deeaf50f66bef6ce70",
+      "model_check": null,
+      "orientation": "mirror",
+      "profile": "full",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 538529,
+      "cnf_sha256": "9079b79715cf028496af4fbace0e86a4b627266105695d2a7b069555dead529f",
+      "cnf_variable_count": 60296,
+      "conflicts": 176367,
+      "decisions": 646424,
+      "disabled_blocks": [
+        "connectivity"
+      ],
+      "elapsed_seconds": 20.020865665981546,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_connectivity/direct/cadical.log",
+      "log_sha256": "87889e44fb15e628d60c207e42e315571e172e47cf43fb3a00d9c1d9f41cd4d3",
+      "model_check": null,
+      "orientation": "direct",
+      "profile": "no_connectivity",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 538503,
+      "cnf_sha256": "dade3c7ad3b97d94d3f7fc1054c9906c25c394b2cbd2b8f384f5f9ff23f8b7b0",
+      "cnf_variable_count": 60296,
+      "conflicts": 169964,
+      "decisions": 686193,
+      "disabled_blocks": [
+        "connectivity"
+      ],
+      "elapsed_seconds": 20.021646833978593,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_connectivity/mirror/cadical.log",
+      "log_sha256": "47812aa17092727248913fe55affc0ed2c1e8856a9e499cb34d82750dd8e7759",
+      "model_check": null,
+      "orientation": "mirror",
+      "profile": "no_connectivity",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 665628,
+      "cnf_sha256": "fd3a2975fcba2dfab301b193492d766d12d87cbcc304b838b82890b8fc650856",
+      "cnf_variable_count": 72204,
+      "conflicts": 142227,
+      "decisions": 637868,
+      "disabled_blocks": [
+        "complete_classes"
+      ],
+      "elapsed_seconds": 20.02294237492606,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_complete_classes/direct/cadical.log",
+      "log_sha256": "e162993159ab79e8bf32993d91e8d982851e1fd310977b8d6ee193b89e943f08",
+      "model_check": null,
+      "orientation": "direct",
+      "profile": "no_complete_classes",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 665665,
+      "cnf_sha256": "928e56bca317d0455008cd9f815e4b1a2357e220af4b862328543928615a0ec6",
+      "cnf_variable_count": 72208,
+      "conflicts": 141158,
+      "decisions": 608181,
+      "disabled_blocks": [
+        "complete_classes"
+      ],
+      "elapsed_seconds": 20.02184225001838,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_complete_classes/mirror/cadical.log",
+      "log_sha256": "003d90edd1bbca979d94241d5645f87a82ffb0cdfd213ba911fbb063ca3eb34a",
+      "model_check": null,
+      "orientation": "mirror",
+      "profile": "no_complete_classes",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 677095,
+      "cnf_sha256": "45962e5ea3493e3a396e988e95caae33a740891b33ebf36dd25c1fbd711860a8",
+      "cnf_variable_count": 73209,
+      "conflicts": 135150,
+      "decisions": 598684,
+      "disabled_blocks": [
+        "unique_k4_second"
+      ],
+      "elapsed_seconds": 20.03795641695615,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_unique_k4_second/direct/cadical.log",
+      "log_sha256": "43948310c11a543bd5e5efb0fd8787720ad38431a3da097cd65f60e01b1ec2b1",
+      "model_check": null,
+      "orientation": "direct",
+      "profile": "no_unique_k4_second",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 676834,
+      "cnf_sha256": "a5ffd9644cfa1e1b63f23dd397242ddbc3cb79090ebfa5306493ce729a8d7379",
+      "cnf_variable_count": 73190,
+      "conflicts": 142102,
+      "decisions": 562923,
+      "disabled_blocks": [
+        "unique_k4_second"
+      ],
+      "elapsed_seconds": 20.024017709074542,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_unique_k4_second/mirror/cadical.log",
+      "log_sha256": "d10410b4023fcb2b412835b12b6e39e0032930c70fc546914704bdd5638c00d0",
+      "model_check": null,
+      "orientation": "mirror",
+      "profile": "no_unique_k4_second",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 669757,
+      "cnf_sha256": "d37c7da0e150dc71c2a4b09b7c01f2a1c926d63cca43ecefd71acd3a5ca4db31",
+      "cnf_variable_count": 73190,
+      "conflicts": 134270,
+      "decisions": 624456,
+      "disabled_blocks": [
+        "unique_k4_first"
+      ],
+      "elapsed_seconds": 20.026167000061832,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_unique_k4_first/direct/cadical.log",
+      "log_sha256": "0793daa8380025c3b51e7c27782b23cca936e741255552f565ef7f1d270aca5f",
+      "model_check": null,
+      "orientation": "direct",
+      "profile": "no_unique_k4_first",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 669742,
+      "cnf_sha256": "6e91b03cc81a3d2a4d80f1a639fff61e3f48184526082797f9a311153f53e8a2",
+      "cnf_variable_count": 73190,
+      "conflicts": 151388,
+      "decisions": 583913,
+      "disabled_blocks": [
+        "unique_k4_first"
+      ],
+      "elapsed_seconds": 20.02337708300911,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_unique_k4_first/mirror/cadical.log",
+      "log_sha256": "10ba2bf8a08976a27206086da91b997b1fb0564fa0d85ab1f1f70240e07718f0",
+      "model_check": null,
+      "orientation": "mirror",
+      "profile": "no_unique_k4_first",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 590573,
+      "cnf_sha256": "91b82fbcc9417632a71c85e41b85ada991d49715abcdc592f1883c5862726536",
+      "cnf_variable_count": 67581,
+      "conflicts": 157662,
+      "decisions": 697557,
+      "disabled_blocks": [
+        "unique_k4_critical"
+      ],
+      "elapsed_seconds": 20.02111779199913,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_unique_k4_critical/direct/cadical.log",
+      "log_sha256": "5ea97c689482ab3d46c8ee1fc51c63578eb52ef83a34f5ae23321b48852fd2e4",
+      "model_check": null,
+      "orientation": "direct",
+      "profile": "no_unique_k4_critical",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 590537,
+      "cnf_sha256": "e5cf8cf5407f1e04c41a8efbe44d861a5b857d20bed41ac2f073481b7dba0feb",
+      "cnf_variable_count": 67573,
+      "conflicts": 174010,
+      "decisions": 695396,
+      "disabled_blocks": [
+        "unique_k4_critical"
+      ],
+      "elapsed_seconds": 20.01758358301595,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_unique_k4_critical/mirror/cadical.log",
+      "log_sha256": "d820eaedb8de43f018341c88f945756785b655f9e47a0f65d0e0182a9cfdb853",
+      "model_check": null,
+      "orientation": "mirror",
+      "profile": "no_unique_k4_critical",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 582010,
+      "cnf_sha256": "4e487a01fccd67da841437cd96651cd0ea9939f489af110502047d31e1c9415a",
+      "cnf_variable_count": 67603,
+      "conflicts": 160844,
+      "decisions": 697576,
+      "disabled_blocks": [
+        "unique_k4_second",
+        "unique_k4_first",
+        "unique_k4_critical"
+      ],
+      "elapsed_seconds": 20.05461395799648,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_all_unique_k4/direct/cadical.log",
+      "log_sha256": "03b33896b7294ae1da177fc4c3878061427541c5d68058cffcdce989e1124fce",
+      "model_check": null,
+      "orientation": "direct",
+      "profile": "no_all_unique_k4",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 581988,
+      "cnf_sha256": "5cd0927781ae707b3c40b4d3ddde120e836acdafcc360bbbcc77d9c5163a0bb3",
+      "cnf_variable_count": 67603,
+      "conflicts": 160705,
+      "decisions": 724995,
+      "disabled_blocks": [
+        "unique_k4_second",
+        "unique_k4_first",
+        "unique_k4_critical"
+      ],
+      "elapsed_seconds": 20.037905166042037,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_all_unique_k4/mirror/cadical.log",
+      "log_sha256": "2325bae73d76d9db392da7c52292d9ef676bde9a9710a1faddbbb5b4761f1a00",
+      "model_check": null,
+      "orientation": "mirror",
+      "profile": "no_all_unique_k4",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 537324,
+      "cnf_sha256": "ec77af3a3507a0b81f4075cbaa416d611729c820aea15342e5478e9b70000a24",
+      "cnf_variable_count": 43641,
+      "conflicts": 3410,
+      "decisions": 34568,
+      "disabled_blocks": [
+        "kalmanson"
+      ],
+      "elapsed_seconds": 2.659045416978188,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_kalmanson/direct/cadical.log",
+      "log_sha256": "8421a4d58a7a954b4d03a391dfd44e18b204a1daed994b8cc614fe36ce61a738",
+      "model_check": {
+        "detail": "all 537324 clauses satisfied",
+        "status": "PASS"
+      },
+      "orientation": "direct",
+      "profile": "no_kalmanson",
+      "returncode": 10,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "SAT",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 537322,
+      "cnf_sha256": "c62dffa60900248ac577e81df10434afa1e700ebc325af06472bf79295256fd7",
+      "cnf_variable_count": 43642,
+      "conflicts": 3633,
+      "decisions": 30508,
+      "disabled_blocks": [
+        "kalmanson"
+      ],
+      "elapsed_seconds": 2.7964607919566333,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_kalmanson/mirror/cadical.log",
+      "log_sha256": "bad5bb2fbdac68068e35e46e53f4afab9eb3e061deff08bf2e9b0737c9084271",
+      "model_check": {
+        "detail": "all 537322 clauses satisfied",
+        "status": "PASS"
+      },
+      "orientation": "mirror",
+      "profile": "no_kalmanson",
+      "returncode": 10,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "SAT",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    }
+  ],
+  "schema": "p97-exact5-card13-distinct-ablation-profile-v1",
+  "seed_base": 0,
+  "timeout_seconds_per_cell": 20,
+  "workers": 8
+}

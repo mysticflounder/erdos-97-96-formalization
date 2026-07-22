@@ -1,0 +1,20 @@
+{
+  "build_seconds": 2.476251583080739,
+  "counts": {
+    "base_assertions": 37361,
+    "guarded_exact_five_shell_rank_equalities": 66,
+    "guarded_selected_row_rank_equalities": 2640,
+    "kalmanson_cancellation_implications": 5720,
+    "rank_atoms": 78,
+    "rank_bit_width": 7,
+    "total_source_assertions": 45865
+  },
+  "orbit": "allOneHitHubMiddle",
+  "reason_unknown": "timeout",
+  "result": "unknown",
+  "schema": "p97-exact5-card13-all-one-ordinal-rank-v1",
+  "seed": 17,
+  "solve_seconds": 180.03028820897453,
+  "statistics": "(:added-eqs           150930643\n :arith-make-feasible 1\n :arith-max-columns   4\n :binary-propagations 1271744594\n :bv-bit2core         1582599\n :bv-dynamic-diseqs   32419144\n :bv-dynamic-eqs      213\n :bv->core-eq         86611\n :conflicts           548629\n :decisions           1256790\n :del-clause          179614283\n :max-memory          113.85\n :memory              66.58\n :minimized-lits      5052032\n :mk-bool-var         42395505\n :mk-clause           179764658\n :mk-clause-binary    117896\n :num-allocs          3215064237\n :num-checks          1\n :pb-conflicts        13742\n :pb-predicates       13272\n :pb-propagations     1354762\n :pb-resolves         13610\n :propagations        1827981059\n :restarts            928\n :rlimit-count        2148061909\n :solve-eqs-elim-vars 46\n :solve-eqs-steps     46\n :time                180.03)",
+  "total_seconds": 182.50653979205526
+}

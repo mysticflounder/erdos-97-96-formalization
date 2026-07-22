@@ -1,0 +1,3933 @@
+{
+  "config_assignment": "round-robin by cube index and orientation",
+  "configs": {
+    "default": [
+      "--default"
+    ],
+    "phase_false": [
+      "--default",
+      "--phase=false"
+    ],
+    "sat": [
+      "--sat"
+    ],
+    "unsat": [
+      "--unsat"
+    ]
+  },
+  "counts": {
+    "direct": {
+      "SAT": 0,
+      "UNKNOWN": 32,
+      "UNSAT": 32
+    },
+    "mirror": {
+      "SAT": 0,
+      "UNKNOWN": 41,
+      "UNSAT": 23
+    }
+  },
+  "epistemic_status": "EXTERNAL_BOUNDED_PER_CUBE_PROFILE_ONLY",
+  "inputs": {
+    "direct": {
+      "cube_count": 64,
+      "extension_sha256": "eb3e902f1f72ca2eacbce50686cfccb5716a814a1b4eb34c6340dbd2d2683c54",
+      "icnf_sha256": "c5b091074a0028f669b62f00db314c5183bebd0456ee64bebfe83d63c0d98d91",
+      "original_cnf_sha256": "1669221a2e8791256c92038be8577e85ea1dc3204d0acfa106b064460a5dcff8",
+      "simplified_cnf_sha256": "7ae2f7de798b22a6dd06e78afae1dc819b405986738f79d565451e1c57cdb8be"
+    },
+    "mirror": {
+      "cube_count": 64,
+      "extension_sha256": "8f5c9337aad7b7dea492fb85a88330c8eb58e847c54dea18f06c15cffcb06aee",
+      "icnf_sha256": "1f37ca18bca855bcecfd3fa71f727185353cdb31af579ca944dababc746d6bbb",
+      "original_cnf_sha256": "347a6a6bcd207be3d142734c118366d91644cd056da27abac88fd7fb0bbd63cf",
+      "simplified_cnf_sha256": "21e87780e8303e8092c27f0fb38c75a0e9cb705497440f529e08cc32705dd85b"
+    }
+  },
+  "overall_status": "UNKNOWN",
+  "results": [
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 96827,
+      "cube": [
+        -2071,
+        -86056,
+        16007
+      ],
+      "cube_index": 0,
+      "cube_width": 3,
+      "decisions": 371937,
+      "elapsed_seconds": 15.043700500042178,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-000/cadical.log",
+      "log_sha256": "ec4e56b93e55ad365b8d9fb20626138ab12e2478d31eff9dbe18774ee614e3c8",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1000,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 90046,
+      "cube": [
+        -2071,
+        -86056,
+        -16007
+      ],
+      "cube_index": 1,
+      "cube_width": 3,
+      "decisions": 163135,
+      "elapsed_seconds": 15.04535979195498,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-001/cadical.log",
+      "log_sha256": "7c6e93d3888973ee122a726720850bc1a34daa658e750edc52b3d7e2ac821ee5",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1001,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 102572,
+      "cube": [
+        -2071,
+        86056,
+        -22411,
+        16021
+      ],
+      "cube_index": 2,
+      "cube_width": 4,
+      "decisions": 445882,
+      "elapsed_seconds": 15.05247633298859,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-002/cadical.log",
+      "log_sha256": "836f13b6892efeb19bd9fda88dfa731ee8a0b7ef0cb3b607cffac5a0ee6dc891",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1002,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 60374,
+      "cube": [
+        -2071,
+        86056,
+        -22411,
+        -16021,
+        -86059
+      ],
+      "cube_index": 3,
+      "cube_width": 5,
+      "decisions": 261756,
+      "elapsed_seconds": 10.142449209000915,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-003/cadical.log",
+      "log_sha256": "c4d47d9159baaabcad1da6a770b4d9aa16cb8c2ce65ca894b3ab5b8e802f163e",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1003,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 104751,
+      "cube": [
+        -2071,
+        86056,
+        -22411,
+        -16021,
+        86059
+      ],
+      "cube_index": 4,
+      "cube_width": 5,
+      "decisions": 469724,
+      "elapsed_seconds": 15.043248458066955,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-004/cadical.log",
+      "log_sha256": "d3fbc7044c4334842129016a73d095af5bf2cd0d86300ca299e8059f148bef9b",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1004,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 91303,
+      "cube": [
+        -2071,
+        86056,
+        22411,
+        -1661
+      ],
+      "cube_index": 5,
+      "cube_width": 4,
+      "decisions": 151776,
+      "elapsed_seconds": 15.033632916980423,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-005/cadical.log",
+      "log_sha256": "66dce709d42e4523f544fee4a2c404859b96848f0f5b84c4f69457afd660e1a6",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1005,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 97839,
+      "cube": [
+        -2071,
+        86056,
+        22411,
+        1661,
+        -22425
+      ],
+      "cube_index": 6,
+      "cube_width": 5,
+      "decisions": 652567,
+      "elapsed_seconds": 15.036887250025757,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-006/cadical.log",
+      "log_sha256": "bb3cd5eebbfe7da270b81637ee5d4f137768f506ca7b4e3877ec5ae225145939",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1006,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 108120,
+      "cube": [
+        -2071,
+        86056,
+        22411,
+        1661,
+        22425
+      ],
+      "cube_index": 7,
+      "cube_width": 5,
+      "decisions": 421804,
+      "elapsed_seconds": 15.037082249997184,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-007/cadical.log",
+      "log_sha256": "ac3aa96fa39b7f42d880d6734e3c1d9f5d4bcfbbb13f627980ce636b5b00b847",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1007,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 4904,
+      "cube": [
+        2071,
+        -2106,
+        -86117,
+        15923
+      ],
+      "cube_index": 8,
+      "cube_width": 4,
+      "decisions": 35083,
+      "elapsed_seconds": 0.9807169580599293,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-008/cadical.log",
+      "log_sha256": "4300d17c856639cd223c0c11850be735f3a7a4f3dafa13bef4dfba79d61bd44f",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1008,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 5263,
+      "cube": [
+        2071,
+        -2106,
+        -86117,
+        -15923
+      ],
+      "cube_index": 9,
+      "cube_width": 4,
+      "decisions": 12580,
+      "elapsed_seconds": 0.6735896249301732,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-009/cadical.log",
+      "log_sha256": "ab9ac08d155ad9dbe1d269b79453107ba5ae414d8a67c1b8d75d7830f84cb6ad",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1009,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 91366,
+      "cube": [
+        2071,
+        -2106,
+        86117,
+        -22618,
+        16161
+      ],
+      "cube_index": 10,
+      "cube_width": 5,
+      "decisions": 366353,
+      "elapsed_seconds": 12.794786707963794,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-010/cadical.log",
+      "log_sha256": "c49c4068c23359326c72c32561fed0cd5668b2f20b7b64e630c7c207bdfa797b",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1010,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 96867,
+      "cube": [
+        2071,
+        -2106,
+        86117,
+        -22618,
+        -16161
+      ],
+      "cube_index": 11,
+      "cube_width": 5,
+      "decisions": 446984,
+      "elapsed_seconds": 15.025668042013422,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-011/cadical.log",
+      "log_sha256": "eae8388a51d2902899a4244916321c3ea19a040187dc1d8495c9f53723ce28c6",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1011,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 65596,
+      "cube": [
+        2071,
+        -2106,
+        86117,
+        22618,
+        -22663,
+        16168
+      ],
+      "cube_index": 12,
+      "cube_width": 6,
+      "decisions": 232550,
+      "elapsed_seconds": 10.571381042012945,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-012/cadical.log",
+      "log_sha256": "458c92a4c874740b33bbd736fe1f53f7beec288bf4f599a946482d287de2be25",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1012,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 100509,
+      "cube": [
+        2071,
+        -2106,
+        86117,
+        22618,
+        -22663,
+        -16168
+      ],
+      "cube_index": 13,
+      "cube_width": 6,
+      "decisions": 189235,
+      "elapsed_seconds": 15.073029415914789,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-013/cadical.log",
+      "log_sha256": "1344a87b957234e6e753055535b76d0cd516c0d91bd7188f5d0e67b5517acfbf",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1013,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 114633,
+      "cube": [
+        2071,
+        -2106,
+        86117,
+        22618,
+        22663
+      ],
+      "cube_index": 14,
+      "cube_width": 5,
+      "decisions": 584233,
+      "elapsed_seconds": 15.028430917067453,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-014/cadical.log",
+      "log_sha256": "cf4895402d760ac2da443871710dca95fbf9b339d89d1465ff749133edd70bba",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1014,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 7914,
+      "cube": [
+        2071,
+        2106,
+        313,
+        -2739,
+        -2396,
+        1537
+      ],
+      "cube_index": 15,
+      "cube_width": 6,
+      "decisions": 50591,
+      "elapsed_seconds": 1.6381320409709588,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-015/cadical.log",
+      "log_sha256": "a79ae2165ca910353259bad51afe233bf1532c3178919a906b89708ea1d9a036",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1015,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 13430,
+      "cube": [
+        2071,
+        2106,
+        313,
+        -2739,
+        -2396,
+        -1537,
+        1531
+      ],
+      "cube_index": 16,
+      "cube_width": 7,
+      "decisions": 66524,
+      "elapsed_seconds": 2.3329510419862345,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-016/cadical.log",
+      "log_sha256": "6ec0e1e6a1f0cae92e5cc230f5d16ef75a1d4ddb4f33b4531fe7760deace82f7",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1016,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 6239,
+      "cube": [
+        2071,
+        2106,
+        313,
+        -2739,
+        -2396,
+        -1537,
+        -1531,
+        -2401
+      ],
+      "cube_index": 17,
+      "cube_width": 8,
+      "decisions": 16329,
+      "elapsed_seconds": 1.2486216250108555,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-017/cadical.log",
+      "log_sha256": "3a68cd5066e06c3cc37570d3bd0ef45cd5a9b000f67b67781910bca3834d6bb6",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1017,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 17030,
+      "cube": [
+        2071,
+        2106,
+        313,
+        -2739,
+        -2396,
+        -1537,
+        -1531,
+        2401
+      ],
+      "cube_index": 18,
+      "cube_width": 8,
+      "decisions": 117754,
+      "elapsed_seconds": 2.7242969159269705,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-018/cadical.log",
+      "log_sha256": "b25d6c8fd38e5ab459f1e6256f0fc0c96ebf8d6365d92bb34a03e75c3438a413",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1018,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 4146,
+      "cube": [
+        2071,
+        2106,
+        313,
+        -2739,
+        2396,
+        1538,
+        16036
+      ],
+      "cube_index": 19,
+      "cube_width": 7,
+      "decisions": 28134,
+      "elapsed_seconds": 0.7632103330688551,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-019/cadical.log",
+      "log_sha256": "eccee8ed69c9a5f0e956ca6e084f244a5d5d4cfd3ab04a7498ff3694081386d0",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1019,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 3434,
+      "cube": [
+        2071,
+        2106,
+        313,
+        -2739,
+        2396,
+        1538,
+        -16036
+      ],
+      "cube_index": 20,
+      "cube_width": 7,
+      "decisions": 26499,
+      "elapsed_seconds": 0.6631900829961523,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-020/cadical.log",
+      "log_sha256": "b23cfe1d2027ba85841a4efcc4690cb8a352594fb6afb9ee2469e47e913ad0ff",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1020,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 9102,
+      "cube": [
+        2071,
+        2106,
+        313,
+        -2739,
+        2396,
+        -1538,
+        1531
+      ],
+      "cube_index": 21,
+      "cube_width": 7,
+      "decisions": 17986,
+      "elapsed_seconds": 1.6755499580176547,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-021/cadical.log",
+      "log_sha256": "9912cafca4c3c51c5640932e7aaf04d8dfda48fc0ecbe1ec7706a888ce05a7d4",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1021,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 21773,
+      "cube": [
+        2071,
+        2106,
+        313,
+        -2739,
+        2396,
+        -1538,
+        -1531,
+        1532
+      ],
+      "cube_index": 22,
+      "cube_width": 8,
+      "decisions": 109997,
+      "elapsed_seconds": 3.108449500054121,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-022/cadical.log",
+      "log_sha256": "b5aeffd1b02786e52302dbfc0840fdb6f2be71a3181aaf344eff93748c2baa20",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1022,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 21104,
+      "cube": [
+        2071,
+        2106,
+        313,
+        -2739,
+        2396,
+        -1538,
+        -1531,
+        -1532
+      ],
+      "cube_index": 23,
+      "cube_width": 8,
+      "decisions": 124406,
+      "elapsed_seconds": 3.3298244579927996,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-023/cadical.log",
+      "log_sha256": "6d3b9bf3097946f3400b5933ea68cd47e39e14fa3102476ed1637a802ec6bd03",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1023,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 6862,
+      "cube": [
+        2071,
+        2106,
+        313,
+        2739,
+        -2378,
+        1530
+      ],
+      "cube_index": 24,
+      "cube_width": 6,
+      "decisions": 44655,
+      "elapsed_seconds": 1.5529303749790415,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-024/cadical.log",
+      "log_sha256": "9c59687c0297564d22f7e50fc65843ca8bb809544d5288d550da3f96c36d1ca8",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1024,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 8519,
+      "cube": [
+        2071,
+        2106,
+        313,
+        2739,
+        -2378,
+        -1530,
+        -68692
+      ],
+      "cube_index": 25,
+      "cube_width": 7,
+      "decisions": 19456,
+      "elapsed_seconds": 1.5684273339575157,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-025/cadical.log",
+      "log_sha256": "bc243d1ab41887dcb92e493b97b00744ee8f2dea73d871e89fcd1406e36183e6",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1025,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 7901,
+      "cube": [
+        2071,
+        2106,
+        313,
+        2739,
+        -2378,
+        -1530,
+        68692,
+        1533
+      ],
+      "cube_index": 26,
+      "cube_width": 8,
+      "decisions": 116513,
+      "elapsed_seconds": 1.2626473330892622,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-026/cadical.log",
+      "log_sha256": "fd857e07682f8131ef9688f9f2ea65909fbc71552ae5e46a08526e48174c2652",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1026,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 20688,
+      "cube": [
+        2071,
+        2106,
+        313,
+        2739,
+        -2378,
+        -1530,
+        68692,
+        -1533
+      ],
+      "cube_index": 27,
+      "cube_width": 8,
+      "decisions": 101530,
+      "elapsed_seconds": 2.9081893750699237,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-027/cadical.log",
+      "log_sha256": "72b8792a22c61ab9ca703edccb70893f3ad3546d4ae0b968d211e5251d282bce",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1027,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 3945,
+      "cube": [
+        2071,
+        2106,
+        313,
+        2739,
+        2378,
+        1538,
+        16036
+      ],
+      "cube_index": 28,
+      "cube_width": 7,
+      "decisions": 25795,
+      "elapsed_seconds": 0.67918550001923,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-028/cadical.log",
+      "log_sha256": "ce5722c8b0221845aa8ee61680f3da1f7f1b7d28b5f83f6ee9bd411346c61271",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1028,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 2293,
+      "cube": [
+        2071,
+        2106,
+        313,
+        2739,
+        2378,
+        1538,
+        -16036
+      ],
+      "cube_index": 29,
+      "cube_width": 7,
+      "decisions": 9360,
+      "elapsed_seconds": 0.542294541024603,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-029/cadical.log",
+      "log_sha256": "3c642f37107b6a4f5d396dbffc12a46452067c29822bbbe2688bce18151a118f",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1029,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 17177,
+      "cube": [
+        2071,
+        2106,
+        313,
+        2739,
+        2378,
+        -1538,
+        1531,
+        16036
+      ],
+      "cube_index": 30,
+      "cube_width": 8,
+      "decisions": 138038,
+      "elapsed_seconds": 3.440390417003073,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-030/cadical.log",
+      "log_sha256": "2b0f668e44c3fc6179e4b6e16b24adcd7a1202ff9e0eb733d5a4fd4345595c33",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1030,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 7063,
+      "cube": [
+        2071,
+        2106,
+        313,
+        2739,
+        2378,
+        -1538,
+        1531,
+        -16036
+      ],
+      "cube_index": 31,
+      "cube_width": 8,
+      "decisions": 51766,
+      "elapsed_seconds": 1.4127504579955712,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-031/cadical.log",
+      "log_sha256": "167b1ff0a3b9b08a52c61f865e5ad77ddda5a71777fdfb064c4b161d2a57a1bb",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1031,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 20129,
+      "cube": [
+        2071,
+        2106,
+        313,
+        2739,
+        2378,
+        -1538,
+        -1531,
+        1532
+      ],
+      "cube_index": 32,
+      "cube_width": 8,
+      "decisions": 106441,
+      "elapsed_seconds": 3.3707009579520673,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-032/cadical.log",
+      "log_sha256": "60ff5931e753999f6d6b2ec3e34cc70d4f578457c4a193b077823199afa0c376",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1032,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 15173,
+      "cube": [
+        2071,
+        2106,
+        313,
+        2739,
+        2378,
+        -1538,
+        -1531,
+        -1532
+      ],
+      "cube_index": 33,
+      "cube_width": 8,
+      "decisions": 31352,
+      "elapsed_seconds": 2.1865862080594525,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-033/cadical.log",
+      "log_sha256": "791ddffee42e92d8c0af1b43fd01203d9c493a66302da10688f49604f9501c15",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1033,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 109902,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        16036,
+        -16031,
+        -16034,
+        16098
+      ],
+      "cube_index": 34,
+      "cube_width": 8,
+      "decisions": 666708,
+      "elapsed_seconds": 15.056087041972205,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-034/cadical.log",
+      "log_sha256": "db5568050a0e08192214a4c1d7f0f290389a5cb7c6fd842438a576342782abea",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1034,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 94252,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        16036,
+        -16031,
+        -16034,
+        -16098
+      ],
+      "cube_index": 35,
+      "cube_width": 8,
+      "decisions": 467636,
+      "elapsed_seconds": 15.024747667019255,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-035/cadical.log",
+      "log_sha256": "76b870073e5c629f34b26b4819081ab5f57f7cf1cfd8fd707d6aab29ae272b34",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1035,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 106527,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        16036,
+        -16031,
+        16034,
+        -16033
+      ],
+      "cube_index": 36,
+      "cube_width": 8,
+      "decisions": 453481,
+      "elapsed_seconds": 15.026853541960008,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-036/cadical.log",
+      "log_sha256": "6332978c2a6912a4e93076ef964b7f47843e9f6a2643323bbbc9a3f56f0527c9",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1036,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 89219,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        16036,
+        -16031,
+        16034,
+        16033
+      ],
+      "cube_index": 37,
+      "cube_width": 8,
+      "decisions": 149244,
+      "elapsed_seconds": 15.022802083054557,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-037/cadical.log",
+      "log_sha256": "a4f0fa5477b4708e449a7b4d7f1592c13de4e9db22c539e6513ad056e9c15fe3",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1037,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 106335,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        16036,
+        16031,
+        -16033,
+        -16034
+      ],
+      "cube_index": 38,
+      "cube_width": 8,
+      "decisions": 597107,
+      "elapsed_seconds": 15.020599707961082,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-038/cadical.log",
+      "log_sha256": "7ff975c2bcd9ef62883a1ffd30417eeba522649e51727edd7b020bb1381fd350",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1038,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 106966,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        16036,
+        16031,
+        -16033,
+        16034
+      ],
+      "cube_index": 39,
+      "cube_width": 8,
+      "decisions": 476478,
+      "elapsed_seconds": 15.023533208062872,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-039/cadical.log",
+      "log_sha256": "c721450761bc64dc9def0e251f1dec4967aca66af1d8db377ac5d09421c148b9",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1039,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 108617,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        16036,
+        16031,
+        16033,
+        -16034
+      ],
+      "cube_index": 40,
+      "cube_width": 8,
+      "decisions": 474890,
+      "elapsed_seconds": 15.025400749989785,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-040/cadical.log",
+      "log_sha256": "954d3091e52eb8c169c2445d8afe1a847ff72105f2ffa008124bcaf6e107a001",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1040,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 90569,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        16036,
+        16031,
+        16033,
+        16034
+      ],
+      "cube_index": 41,
+      "cube_width": 8,
+      "decisions": 152525,
+      "elapsed_seconds": 15.026136207976379,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-041/cadical.log",
+      "log_sha256": "ca4b0267cf0597c23729c061c73e91182b99abdf3504834162e642dfc1cb44d3",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1041,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 109573,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        -16036,
+        16037,
+        -16031,
+        -16033
+      ],
+      "cube_index": 42,
+      "cube_width": 8,
+      "decisions": 624792,
+      "elapsed_seconds": 15.026672499952838,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-042/cadical.log",
+      "log_sha256": "6b172fd076c74c21499ae91c73be315a6b6e14485c81e17be308038fc55f88d2",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1042,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 112556,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        -16036,
+        16037,
+        -16031,
+        16033
+      ],
+      "cube_index": 43,
+      "cube_width": 8,
+      "decisions": 532682,
+      "elapsed_seconds": 15.024737291969359,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-043/cadical.log",
+      "log_sha256": "49c94730cbe19c031254bb2aa7377c6791504ffe3f5adc86f4ac8b280913bf1b",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1043,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 110474,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        -16036,
+        16037,
+        16031,
+        -16033
+      ],
+      "cube_index": 44,
+      "cube_width": 8,
+      "decisions": 510113,
+      "elapsed_seconds": 15.023919624974951,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-044/cadical.log",
+      "log_sha256": "d4f991339ef54a425edce97ea393316e391d915bc712f98b1385c1f3f8d9f459",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1044,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 98017,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        -16036,
+        16037,
+        16031,
+        16033
+      ],
+      "cube_index": 45,
+      "cube_width": 8,
+      "decisions": 178033,
+      "elapsed_seconds": 15.023674125084653,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-045/cadical.log",
+      "log_sha256": "4c730edc14254f8085af724be76afaf1c02f8bafb708d0a475c14c75b3aa1311",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1045,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 108493,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        -16036,
+        -16037,
+        -16031,
+        -16033
+      ],
+      "cube_index": 46,
+      "cube_width": 8,
+      "decisions": 588573,
+      "elapsed_seconds": 15.037609958089888,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-046/cadical.log",
+      "log_sha256": "80e4ca586f43de8ba455b4d7ee6c0447e9bbcad7fff05ea55cfdd5d1b89c1e24",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1046,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 101773,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        -16036,
+        -16037,
+        -16031,
+        16033
+      ],
+      "cube_index": 47,
+      "cube_width": 8,
+      "decisions": 455844,
+      "elapsed_seconds": 15.02544762508478,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-047/cadical.log",
+      "log_sha256": "47b232b4287ab235eaecd013bbef43296d1ca015371172c40acced08545af02f",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1047,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 107977,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        -16036,
+        -16037,
+        16031,
+        -16033
+      ],
+      "cube_index": 48,
+      "cube_width": 8,
+      "decisions": 432316,
+      "elapsed_seconds": 15.024062875076197,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-048/cadical.log",
+      "log_sha256": "e17299c3ca767d3f2dbcd9ff9212b276e07b3cd1eaf8c8738646cbfa109a497b",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1048,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 92156,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        195,
+        -16036,
+        -16037,
+        16031,
+        16033
+      ],
+      "cube_index": 49,
+      "cube_width": 8,
+      "decisions": 166954,
+      "elapsed_seconds": 15.02022316691,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-049/cadical.log",
+      "log_sha256": "00dd5e740f401b39a7a7ba1309c92b8c3507695c1cc95603116a731203ff42d2",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1049,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 15822,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        -195,
+        1829,
+        314,
+        -2739,
+        -2396
+      ],
+      "cube_index": 50,
+      "cube_width": 8,
+      "decisions": 113017,
+      "elapsed_seconds": 2.699860458029434,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-050/cadical.log",
+      "log_sha256": "d60646d80e120097f47c88d4b7bca8433e10e22efedb2b9ce276eb98a29e05f9",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1050,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 9417,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        -195,
+        1829,
+        314,
+        -2739,
+        2396
+      ],
+      "cube_index": 51,
+      "cube_width": 8,
+      "decisions": 43102,
+      "elapsed_seconds": 1.50708341691643,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-051/cadical.log",
+      "log_sha256": "aaf10b9a2daa499a30a712973bf09caebd8cc3c631fed9216f0621648150d95b",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1051,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 15174,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        -195,
+        1829,
+        314,
+        2739,
+        -2378
+      ],
+      "cube_index": 52,
+      "cube_width": 8,
+      "decisions": 67806,
+      "elapsed_seconds": 2.450000667013228,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-052/cadical.log",
+      "log_sha256": "d719a4bcb8ce680b60bc233548103719ba97e1216f39f5fa83bebad0e59b681b",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1052,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 19455,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        -195,
+        1829,
+        314,
+        2739,
+        2378
+      ],
+      "cube_index": 53,
+      "cube_width": 8,
+      "decisions": 32269,
+      "elapsed_seconds": 2.240680917049758,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-053/cadical.log",
+      "log_sha256": "2d09b498f4ae8c8a5c4de0b3672fe1bf11b2d9dca3acb733db65eaa696bb1972",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1053,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 122314,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        -195,
+        1829,
+        -314,
+        192
+      ],
+      "cube_index": 54,
+      "cube_width": 7,
+      "decisions": 625365,
+      "elapsed_seconds": 15.03235470794607,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-054/cadical.log",
+      "log_sha256": "817be00bb83b63bed6637887b03b98bee209b8398d1031c4a4c90cdb9dba23f0",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1054,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 118626,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        -195,
+        1829,
+        -314,
+        -192,
+        -1705
+      ],
+      "cube_index": 55,
+      "cube_width": 8,
+      "decisions": 419901,
+      "elapsed_seconds": 15.020118708023801,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-055/cadical.log",
+      "log_sha256": "e0921e2e3fcd7232e84838e1c83d68e707bb41c2af2266af921b2f100743196b",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1055,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 122384,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        -195,
+        1829,
+        -314,
+        -192,
+        1705
+      ],
+      "cube_index": 56,
+      "cube_width": 8,
+      "decisions": 466565,
+      "elapsed_seconds": 15.049051207955927,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-056/cadical.log",
+      "log_sha256": "0b77805e3a04e9d7b8af1563bb960b1ae9c73d830fa9a001507aef268aa5500e",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1056,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 19036,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        -195,
+        -1829,
+        314,
+        -2739,
+        -2396
+      ],
+      "cube_index": 57,
+      "cube_width": 8,
+      "decisions": 39235,
+      "elapsed_seconds": 2.862618124927394,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-057/cadical.log",
+      "log_sha256": "d6fab0fc3b280cfaa2d7dbbf36b4e3c77042f79b92d527ddcb99a565122fb93c",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1057,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 14940,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        -195,
+        -1829,
+        314,
+        -2739,
+        2396
+      ],
+      "cube_index": 58,
+      "cube_width": 8,
+      "decisions": 66424,
+      "elapsed_seconds": 1.7539657090092078,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-058/cadical.log",
+      "log_sha256": "630f16e521db01d41dd93aceed9b522d2dc0a351e7940d639124e153994ca50b",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1058,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 12301,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        -195,
+        -1829,
+        314,
+        2739,
+        -2378
+      ],
+      "cube_index": 59,
+      "cube_width": 8,
+      "decisions": 57034,
+      "elapsed_seconds": 2.097641250002198,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-059/cadical.log",
+      "log_sha256": "5eed99062628197a44ee104ca9c97e9ba8a50086bbb155b037fbb38bd74d5720",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1059,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 21241,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        -195,
+        -1829,
+        314,
+        2739,
+        2378
+      ],
+      "cube_index": 60,
+      "cube_width": 8,
+      "decisions": 91165,
+      "elapsed_seconds": 2.8124347910052165,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-060/cadical.log",
+      "log_sha256": "b98b8f64b96ca40d7e664cc8b9c5ba40c26eb242838c2329b7eb6c619b0b4cbe",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 20,
+      "seed": 1060,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 93167,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        -195,
+        -1829,
+        -314,
+        192
+      ],
+      "cube_index": 61,
+      "cube_width": 7,
+      "decisions": 181060,
+      "elapsed_seconds": 15.025214374996722,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-061/cadical.log",
+      "log_sha256": "a3e0f299775fb67afa929490744f18b80f880a7e00eb49261beaae16317f9ebf",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1061,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 122224,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        -195,
+        -1829,
+        -314,
+        -192,
+        -1705
+      ],
+      "cube_index": 62,
+      "cube_width": 8,
+      "decisions": 656456,
+      "elapsed_seconds": 15.043810999952257,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-062/cadical.log",
+      "log_sha256": "4f293d069ecca6f5a58c0ab78acf606f259c9e86e2cd76a6ec7614456287767a",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1062,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 119800,
+      "cube": [
+        2071,
+        2106,
+        -313,
+        -195,
+        -1829,
+        -314,
+        -192,
+        1705
+      ],
+      "cube_index": 63,
+      "cube_width": 8,
+      "decisions": 474798,
+      "elapsed_seconds": 15.019319833954796,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/direct/cube-063/cadical.log",
+      "log_sha256": "a45bcfe273f3cea8dcfb425bb2a48094fac99ed4284be5faf967862fc3a2304b",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "direct",
+      "returncode": 0,
+      "seed": 1063,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 94301,
+      "cube": [
+        -2070,
+        -86065,
+        16007
+      ],
+      "cube_index": 0,
+      "cube_width": 3,
+      "decisions": 162473,
+      "elapsed_seconds": 15.027025041054003,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-000/cadical.log",
+      "log_sha256": "844672cd3b80a1f3d1821344d669f4dad068dbfb6236762f3d9da516f8017cdf",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1100,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 108676,
+      "cube": [
+        -2070,
+        -86065,
+        -16007
+      ],
+      "cube_index": 1,
+      "cube_width": 3,
+      "decisions": 593372,
+      "elapsed_seconds": 15.019880292005837,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-001/cadical.log",
+      "log_sha256": "85a26c2faa3d9d698685b7e4e4ec4fc69ec01e56ae8f35d8633ae846bd54fb48",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1101,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 98201,
+      "cube": [
+        -2070,
+        86065,
+        -1663
+      ],
+      "cube_index": 2,
+      "cube_width": 3,
+      "decisions": 385501,
+      "elapsed_seconds": 15.025493332999758,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-002/cadical.log",
+      "log_sha256": "0fc8b026b631e819dc4ee910ea211f6f248d83a3a3fe2d2b3b8cd205f82b6134",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1102,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 101854,
+      "cube": [
+        -2070,
+        86065,
+        1663,
+        -22411,
+        16021
+      ],
+      "cube_index": 3,
+      "cube_width": 5,
+      "decisions": 362517,
+      "elapsed_seconds": 15.025011250050738,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-003/cadical.log",
+      "log_sha256": "997296012088b3fa4418ade936c5ae2f10e36b244802cb347a422a0b55d9ad7a",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1103,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 81805,
+      "cube": [
+        -2070,
+        86065,
+        1663,
+        -22411,
+        -16021,
+        -86068
+      ],
+      "cube_index": 4,
+      "cube_width": 6,
+      "decisions": 151190,
+      "elapsed_seconds": 12.316494332975708,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-004/cadical.log",
+      "log_sha256": "6f19d9bbb72b90bc6749465acc41a9e2a7b132025f77fce7eb1dafa35fec3d7b",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1104,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 100867,
+      "cube": [
+        -2070,
+        86065,
+        1663,
+        -22411,
+        -16021,
+        86068
+      ],
+      "cube_index": 5,
+      "cube_width": 6,
+      "decisions": 564323,
+      "elapsed_seconds": 15.024337542010471,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-005/cadical.log",
+      "log_sha256": "3ee320c5af90ff60f686c413878f8fdbe678e043413209ae00d6010e087d0436",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1105,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 100632,
+      "cube": [
+        -2070,
+        86065,
+        1663,
+        22411,
+        -22425
+      ],
+      "cube_index": 6,
+      "cube_width": 5,
+      "decisions": 471232,
+      "elapsed_seconds": 15.02784337499179,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-006/cadical.log",
+      "log_sha256": "487c10e6136b4c3d9ec8ffb252b923b8759a430ab7720f645c479b4f65152106",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1106,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 113811,
+      "cube": [
+        -2070,
+        86065,
+        1663,
+        22411,
+        22425
+      ],
+      "cube_index": 7,
+      "cube_width": 5,
+      "decisions": 444052,
+      "elapsed_seconds": 15.026919874944724,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-007/cadical.log",
+      "log_sha256": "bbdbeb0d1150a2c01ae329cf91b6aefec65e26e014d7666584955302cb2fc4f3",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1107,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 5658,
+      "cube": [
+        2070,
+        -2106,
+        -86126
+      ],
+      "cube_index": 8,
+      "cube_width": 3,
+      "decisions": 12422,
+      "elapsed_seconds": 0.7769568749936298,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-008/cadical.log",
+      "log_sha256": "586bf240919e394bd81b6682480506f221f9cbaa802abd623655094bba034800",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1108,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 117901,
+      "cube": [
+        2070,
+        -2106,
+        86126,
+        -1578
+      ],
+      "cube_index": 9,
+      "cube_width": 4,
+      "decisions": 508242,
+      "elapsed_seconds": 15.02495779201854,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-009/cadical.log",
+      "log_sha256": "ed2700bdddb3ae2cabe12a1aa5a2d1994bf53a2e266e3769a8c89c5cbe512acf",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1109,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 49665,
+      "cube": [
+        2070,
+        -2106,
+        86126,
+        1578,
+        22605,
+        15923
+      ],
+      "cube_index": 10,
+      "cube_width": 6,
+      "decisions": 186611,
+      "elapsed_seconds": 7.825604625046253,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-010/cadical.log",
+      "log_sha256": "de677d4d5eb80a794605c5a018adab1c42cda15118081f60e1ca89683194daf1",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1110,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 97148,
+      "cube": [
+        2070,
+        -2106,
+        86126,
+        1578,
+        22605,
+        -15923
+      ],
+      "cube_index": 11,
+      "cube_width": 6,
+      "decisions": 377494,
+      "elapsed_seconds": 15.033791749970987,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-011/cadical.log",
+      "log_sha256": "75d90b8acdff02e56a5a5554988c9b34931d50dd52eb867171cbf1203a29c4f4",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1111,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 100663,
+      "cube": [
+        2070,
+        -2106,
+        86126,
+        1578,
+        -22605,
+        -22652
+      ],
+      "cube_index": 12,
+      "cube_width": 6,
+      "decisions": 200167,
+      "elapsed_seconds": 15.025900083011948,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-012/cadical.log",
+      "log_sha256": "954f5f2c8691266cd88ef56e8069c05e224345109603afc2c2a5f854316479ed",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1112,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 113954,
+      "cube": [
+        2070,
+        -2106,
+        86126,
+        1578,
+        -22605,
+        22652
+      ],
+      "cube_index": 13,
+      "cube_width": 6,
+      "decisions": 554370,
+      "elapsed_seconds": 15.024966540979221,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-013/cadical.log",
+      "log_sha256": "09a1bffd54a1bd1f2d2ce2fa378f7d964d32015235c1102526416a44254ddbd5",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1113,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 15632,
+      "cube": [
+        2070,
+        2106,
+        313,
+        -2740,
+        -2396,
+        1534
+      ],
+      "cube_index": 14,
+      "cube_width": 6,
+      "decisions": 67675,
+      "elapsed_seconds": 2.2500795830274,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-014/cadical.log",
+      "log_sha256": "7ed6ecea38b6c84cdf9f9757d150a71407b67028767d5a14a27180102f211ad7",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1114,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 12029,
+      "cube": [
+        2070,
+        2106,
+        313,
+        -2740,
+        -2396,
+        -1534,
+        89205
+      ],
+      "cube_index": 15,
+      "cube_width": 7,
+      "decisions": 53444,
+      "elapsed_seconds": 1.9781210829969496,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-015/cadical.log",
+      "log_sha256": "97891f5c5c36f20c8e9677fb33c3e7aee1570e8dd15645ee1110cfe679f0221f",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1115,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 9199,
+      "cube": [
+        2070,
+        2106,
+        313,
+        -2740,
+        -2396,
+        -1534,
+        -89205
+      ],
+      "cube_index": 16,
+      "cube_width": 7,
+      "decisions": 18971,
+      "elapsed_seconds": 1.7359971250407398,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-016/cadical.log",
+      "log_sha256": "37ea8f5a738d7cf8e78b7f31dd55609fef19bbf14bed4c59b2f3e0176faaaa3b",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1116,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 8738,
+      "cube": [
+        2070,
+        2106,
+        313,
+        -2740,
+        2396,
+        1538,
+        16037
+      ],
+      "cube_index": 17,
+      "cube_width": 7,
+      "decisions": 68770,
+      "elapsed_seconds": 1.9608873749384657,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-017/cadical.log",
+      "log_sha256": "36d14d3d662f552b9b1dbae76499e4fcb5580b7831b19cf6e15ffbc84ff5ebae",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1117,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 4007,
+      "cube": [
+        2070,
+        2106,
+        313,
+        -2740,
+        2396,
+        1538,
+        -16037
+      ],
+      "cube_index": 18,
+      "cube_width": 7,
+      "decisions": 27627,
+      "elapsed_seconds": 0.6911838330561295,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-018/cadical.log",
+      "log_sha256": "6995d6d2f73f7647c1756a4cfca9b9bdb4d596c0d38bc08a67e7af4acbdf5793",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1118,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 17528,
+      "cube": [
+        2070,
+        2106,
+        313,
+        -2740,
+        2396,
+        -1538,
+        1531
+      ],
+      "cube_index": 19,
+      "cube_width": 7,
+      "decisions": 70559,
+      "elapsed_seconds": 2.4920062500750646,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-019/cadical.log",
+      "log_sha256": "eaeefbc21c79747bc21901851d9a6e8a80ea3810d3e2e71bbc497888c13fa9ab",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1119,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 18928,
+      "cube": [
+        2070,
+        2106,
+        313,
+        -2740,
+        2396,
+        -1538,
+        -1531,
+        1532
+      ],
+      "cube_index": 20,
+      "cube_width": 8,
+      "decisions": 30800,
+      "elapsed_seconds": 2.6667459580348805,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-020/cadical.log",
+      "log_sha256": "75e863bd7ecf6fea7125d63ac269c6b05955254d64d7f11cd9c4a83aa43b7cb0",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1120,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 11050,
+      "cube": [
+        2070,
+        2106,
+        313,
+        -2740,
+        2396,
+        -1538,
+        -1531,
+        -1532
+      ],
+      "cube_index": 21,
+      "cube_width": 8,
+      "decisions": 62388,
+      "elapsed_seconds": 1.7532916250638664,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-021/cadical.log",
+      "log_sha256": "7e64db024ea21e5925591b38dfe7660342abb209e4ab73c910c76da7c6823953",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1121,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 7364,
+      "cube": [
+        2070,
+        2106,
+        313,
+        2740,
+        -2378,
+        1530
+      ],
+      "cube_index": 22,
+      "cube_width": 6,
+      "decisions": 53489,
+      "elapsed_seconds": 1.7025354999350384,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-022/cadical.log",
+      "log_sha256": "29bed2778a0ef750d77815d512aa689bb37113d723f07f00984333c99323248c",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1122,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 14638,
+      "cube": [
+        2070,
+        2106,
+        313,
+        2740,
+        -2378,
+        -1530,
+        -68692
+      ],
+      "cube_index": 23,
+      "cube_width": 7,
+      "decisions": 76058,
+      "elapsed_seconds": 2.293433125014417,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-023/cadical.log",
+      "log_sha256": "041b6e6bced51809df91269ba10479e3cc779bb5d28b639d69402a4b413b1ecb",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1123,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 8345,
+      "cube": [
+        2070,
+        2106,
+        313,
+        2740,
+        -2378,
+        -1530,
+        68692,
+        1533
+      ],
+      "cube_index": 24,
+      "cube_width": 8,
+      "decisions": 19274,
+      "elapsed_seconds": 1.5748086250387132,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-024/cadical.log",
+      "log_sha256": "7633299ea9d5d894b4a67b7b36f46ad02fb9b62930da1ef170500e670e8a8bce",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1124,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 20580,
+      "cube": [
+        2070,
+        2106,
+        313,
+        2740,
+        -2378,
+        -1530,
+        68692,
+        -1533
+      ],
+      "cube_index": 25,
+      "cube_width": 8,
+      "decisions": 127678,
+      "elapsed_seconds": 2.978900625021197,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-025/cadical.log",
+      "log_sha256": "db74f5933acbe3c75d7301eed2a7735af7c1cf724788e04bc7df25648b5eecf6",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1125,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 3729,
+      "cube": [
+        2070,
+        2106,
+        313,
+        2740,
+        2378,
+        1538,
+        16037
+      ],
+      "cube_index": 26,
+      "cube_width": 7,
+      "decisions": 33900,
+      "elapsed_seconds": 0.7620447920635343,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-026/cadical.log",
+      "log_sha256": "076380208e99049598ada38b2c4951b37209d9db4cc60f5da4354e3f7ab8f4e4",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1126,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 6567,
+      "cube": [
+        2070,
+        2106,
+        313,
+        2740,
+        2378,
+        1538,
+        -16037
+      ],
+      "cube_index": 27,
+      "cube_width": 7,
+      "decisions": 41680,
+      "elapsed_seconds": 1.464522915892303,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-027/cadical.log",
+      "log_sha256": "fc1eacb16a14a3c76e50888077a87c2a09eda09eedf8d3f300c62bff0a936e22",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1127,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 12593,
+      "cube": [
+        2070,
+        2106,
+        313,
+        2740,
+        2378,
+        -1538,
+        1531,
+        16037
+      ],
+      "cube_index": 28,
+      "cube_width": 8,
+      "decisions": 24891,
+      "elapsed_seconds": 1.8091951250098646,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-028/cadical.log",
+      "log_sha256": "837408adabf4de0268debe74821c660d311ac5bb8f5858d530ad81b62275accf",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1128,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 13307,
+      "cube": [
+        2070,
+        2106,
+        313,
+        2740,
+        2378,
+        -1538,
+        1531,
+        -16037
+      ],
+      "cube_index": 29,
+      "cube_width": 8,
+      "decisions": 75868,
+      "elapsed_seconds": 2.204536624951288,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-029/cadical.log",
+      "log_sha256": "d2486829c8a70d13e5c3cbe7bd7c1058ccc8bb482095673984b7d4615ec6bb31",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1129,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 12134,
+      "cube": [
+        2070,
+        2106,
+        313,
+        2740,
+        2378,
+        -1538,
+        -1531,
+        1532
+      ],
+      "cube_index": 30,
+      "cube_width": 8,
+      "decisions": 64831,
+      "elapsed_seconds": 2.3212391670094803,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-030/cadical.log",
+      "log_sha256": "159ca49573f9aa8eadb8175133fb852df5e8abf3b018cdc8eeed0be4b99c80bf",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1130,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 7756,
+      "cube": [
+        2070,
+        2106,
+        313,
+        2740,
+        2378,
+        -1538,
+        -1531,
+        -1532
+      ],
+      "cube_index": 31,
+      "cube_width": 8,
+      "decisions": 40494,
+      "elapsed_seconds": 1.2385304169729352,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-031/cadical.log",
+      "log_sha256": "47cdccc937e7e70b7703784d9d7a2a1b0462f21e31e15829c9a0e195c31419d1",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1131,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 103239,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        16037,
+        -16031,
+        -16033,
+        16098
+      ],
+      "cube_index": 32,
+      "cube_width": 8,
+      "decisions": 168842,
+      "elapsed_seconds": 15.022673125029542,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-032/cadical.log",
+      "log_sha256": "cdda3eaa3c76c09109802a6fda2044f644edcd7c1fec773b56dd031541801eee",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1132,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 108272,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        16037,
+        -16031,
+        -16033,
+        -16098
+      ],
+      "cube_index": 33,
+      "cube_width": 8,
+      "decisions": 876509,
+      "elapsed_seconds": 15.024100542068481,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-033/cadical.log",
+      "log_sha256": "846089a844eb001716817f83d449482fb9db92a3dde5e41b3115ab9c8c74864d",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1133,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 107704,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        16037,
+        -16031,
+        16033,
+        -16034
+      ],
+      "cube_index": 34,
+      "cube_width": 8,
+      "decisions": 500555,
+      "elapsed_seconds": 15.02602458302863,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-034/cadical.log",
+      "log_sha256": "afa2e8ad500a63ac2e7ba4a0cc58bbfe01fd16ddf70303e4db97e5762384b46c",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1134,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 108790,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        16037,
+        -16031,
+        16033,
+        16034
+      ],
+      "cube_index": 35,
+      "cube_width": 8,
+      "decisions": 470013,
+      "elapsed_seconds": 15.023874665959738,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-035/cadical.log",
+      "log_sha256": "e18d748c3b424d72ab5dc26e2a7d4678c26ef83c8cb6792572f62d123da2f072",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1135,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 92940,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        16037,
+        16031,
+        -16034,
+        -16033
+      ],
+      "cube_index": 36,
+      "cube_width": 8,
+      "decisions": 168626,
+      "elapsed_seconds": 15.023031999939121,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-036/cadical.log",
+      "log_sha256": "e15220ad359617a5dc1b5e22c55b43e0f5be58e9b2099af2d18fb69f033cb0e4",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1136,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 107141,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        16037,
+        16031,
+        -16034,
+        16033
+      ],
+      "cube_index": 37,
+      "cube_width": 8,
+      "decisions": 686281,
+      "elapsed_seconds": 15.020079499925487,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-037/cadical.log",
+      "log_sha256": "253f31a18fcfdc1e649936bc29c69ea8582b567ada96318daf5970c59fd0b8e3",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1137,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 106640,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        16037,
+        16031,
+        16034,
+        -16033
+      ],
+      "cube_index": 38,
+      "cube_width": 8,
+      "decisions": 463764,
+      "elapsed_seconds": 15.027459666016512,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-038/cadical.log",
+      "log_sha256": "51b19b19e92da97fbf51a7def4e0709a1ef0db672b1149fb17f8407dee2e8651",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1138,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 94718,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        16037,
+        16031,
+        16034,
+        16033
+      ],
+      "cube_index": 39,
+      "cube_width": 8,
+      "decisions": 409466,
+      "elapsed_seconds": 15.025081958970986,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-039/cadical.log",
+      "log_sha256": "11f5240e932b20187aab9d767684b2596db65a0f31dda00716bfb1aeb7934ca9",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1139,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 96153,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        -16037,
+        16036,
+        -16031,
+        -16034
+      ],
+      "cube_index": 40,
+      "cube_width": 8,
+      "decisions": 169000,
+      "elapsed_seconds": 15.024926834041253,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-040/cadical.log",
+      "log_sha256": "74e139c19faee76bb5056720d074f822ca8c6184d1d5c3fd80e69ca2b55f0df2",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1140,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 109979,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        -16037,
+        16036,
+        -16031,
+        16034
+      ],
+      "cube_index": 41,
+      "cube_width": 8,
+      "decisions": 605605,
+      "elapsed_seconds": 15.0235117910197,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-041/cadical.log",
+      "log_sha256": "ecea55a80c21fcd63ffb1ff192293a5098ae87493b4b278b16481049f3990051",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1141,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 112687,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        -16037,
+        16036,
+        16031,
+        -16034
+      ],
+      "cube_index": 42,
+      "cube_width": 8,
+      "decisions": 512073,
+      "elapsed_seconds": 15.025692124967463,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-042/cadical.log",
+      "log_sha256": "3199423522127bc64bcb7a07159764c514ce3b4215ffb64e8521a4db8d0fb08f",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1142,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 102688,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        -16037,
+        16036,
+        16031,
+        16034
+      ],
+      "cube_index": 43,
+      "cube_width": 8,
+      "decisions": 448078,
+      "elapsed_seconds": 15.024002459016629,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-043/cadical.log",
+      "log_sha256": "93d79170dc3a50ced2a416141b0f886adf4e6cd3a18b857c560f05984fce6432",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1143,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 97835,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        -16037,
+        -16036,
+        -16031,
+        -16034
+      ],
+      "cube_index": 44,
+      "cube_width": 8,
+      "decisions": 187331,
+      "elapsed_seconds": 15.02492291701492,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-044/cadical.log",
+      "log_sha256": "90e624bcf7f0b26ac823c6f40cb5ced87819ed83bb6cdc2313eb0659468b3ddb",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1144,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 106551,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        -16037,
+        -16036,
+        -16031,
+        16034
+      ],
+      "cube_index": 45,
+      "cube_width": 8,
+      "decisions": 614979,
+      "elapsed_seconds": 15.023923665983602,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-045/cadical.log",
+      "log_sha256": "222fb6d54ce7176a2e51667bd4c4823df7645128d362229ca4b496f55f686802",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1145,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 102737,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        -16037,
+        -16036,
+        16031,
+        -16034
+      ],
+      "cube_index": 46,
+      "cube_width": 8,
+      "decisions": 464278,
+      "elapsed_seconds": 15.023724583094008,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-046/cadical.log",
+      "log_sha256": "f5821b32c1c7f2bbf609c0a6055f39aefbc01ee454868f50a7ceeb85134cc5da",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1146,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 99647,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        195,
+        -16037,
+        -16036,
+        16031,
+        16034
+      ],
+      "cube_index": 47,
+      "cube_width": 8,
+      "decisions": 439270,
+      "elapsed_seconds": 15.024054499925114,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-047/cadical.log",
+      "log_sha256": "657593b4e771f23d54630fc5cb2d3aab852b611a9fe9fc034f863dffb2de4836",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1147,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 99924,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        1829,
+        200,
+        -176,
+        -88313
+      ],
+      "cube_index": 48,
+      "cube_width": 8,
+      "decisions": 155173,
+      "elapsed_seconds": 15.024273792048916,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-048/cadical.log",
+      "log_sha256": "9346e15109593de4dfa4c3f632a494c987ccff47edce28ba0e960a2bc0d4ef04",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1148,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 18145,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        1829,
+        200,
+        -176,
+        88313
+      ],
+      "cube_index": 49,
+      "cube_width": 8,
+      "decisions": 120176,
+      "elapsed_seconds": 3.210958124953322,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-049/cadical.log",
+      "log_sha256": "0cbe05414c8b16f9329c53e36c19a026e59e8c73142a620d3263d034c83957fd",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 20,
+      "seed": 1149,
+      "status": "UNSAT",
+      "timed_out": false,
+      "unsat_certificate": "not emitted by bounded profiling probe"
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 102733,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        1829,
+        200,
+        176,
+        -88313
+      ],
+      "cube_index": 50,
+      "cube_width": 8,
+      "decisions": 442755,
+      "elapsed_seconds": 15.024666958022863,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-050/cadical.log",
+      "log_sha256": "e4920b64d79461a5a6bf0e83c88babee38707b6dcc03f19bd7f652749af5d962",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1150,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 115111,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        1829,
+        200,
+        176,
+        88313
+      ],
+      "cube_index": 51,
+      "cube_width": 8,
+      "decisions": 409257,
+      "elapsed_seconds": 15.023853541933931,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-051/cadical.log",
+      "log_sha256": "a654f9d0083e47691ca59a41cde9c146ca474473a0ff06c2731d84aeeb4b80f8",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1151,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 98563,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        1829,
+        -200,
+        -222,
+        -221
+      ],
+      "cube_index": 52,
+      "cube_width": 8,
+      "decisions": 180274,
+      "elapsed_seconds": 15.025732834008522,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-052/cadical.log",
+      "log_sha256": "cd7a122d30ad26fcbf3eb7bd586356c1efd076943a15d7b6b7827ce76a8264ef",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1152,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 101474,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        1829,
+        -200,
+        -222,
+        221
+      ],
+      "cube_index": 53,
+      "cube_width": 8,
+      "decisions": 635306,
+      "elapsed_seconds": 15.02479466702789,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-053/cadical.log",
+      "log_sha256": "294af13eee9a9de110f0a233b655b5c06b8049a4f43fa7e764b64a1305b6ec73",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1153,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 101179,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        1829,
+        -200,
+        222,
+        221
+      ],
+      "cube_index": 54,
+      "cube_width": 8,
+      "decisions": 430618,
+      "elapsed_seconds": 15.021573167061433,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-054/cadical.log",
+      "log_sha256": "d0f4326c7144e90fadbfc92969dea8a82a5ba6592dfa837165b6e9226fc753cf",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1154,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 97258,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        1829,
+        -200,
+        222,
+        -221
+      ],
+      "cube_index": 55,
+      "cube_width": 8,
+      "decisions": 393465,
+      "elapsed_seconds": 15.076888958923519,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-055/cadical.log",
+      "log_sha256": "f63888f8c7a4c5ea8d8c9ebebc6f14801e083ca52247e9c0064f862f67e3a469",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1155,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 91557,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        -1829,
+        200,
+        -176,
+        -88313
+      ],
+      "cube_index": 56,
+      "cube_width": 8,
+      "decisions": 160940,
+      "elapsed_seconds": 15.025108666042797,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-056/cadical.log",
+      "log_sha256": "a2888b0a21fdb7b14d5a63add0fce605d78d975e081eff310154105f2cc04bdc",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1156,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 100782,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        -1829,
+        200,
+        -176,
+        88313
+      ],
+      "cube_index": 57,
+      "cube_width": 8,
+      "decisions": 529315,
+      "elapsed_seconds": 15.023127124994062,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-057/cadical.log",
+      "log_sha256": "5fd4095383e82713315a765a814b08e0348c1acf27805bf74c0fcbe897b4ec6f",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1157,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 102952,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        -1829,
+        200,
+        176,
+        -88313
+      ],
+      "cube_index": 58,
+      "cube_width": 8,
+      "decisions": 458128,
+      "elapsed_seconds": 15.025034500053152,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-058/cadical.log",
+      "log_sha256": "b0cd49cbb2e2b4993dbc1071ed93b648a193a61ae94e4eaadebbecef2d256d59",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1158,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 118058,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        -1829,
+        200,
+        176,
+        88313
+      ],
+      "cube_index": 59,
+      "cube_width": 8,
+      "decisions": 386403,
+      "elapsed_seconds": 15.022422209032811,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-059/cadical.log",
+      "log_sha256": "be1b6a6f7676a5f566497c10cd9c38a4ffe0c7c04447b6d95e73d0d08015a4c3",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1159,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "sat",
+      "config_args": [
+        "--sat"
+      ],
+      "conflicts": 100610,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        -1829,
+        -200,
+        -222,
+        -221
+      ],
+      "cube_index": 60,
+      "cube_width": 8,
+      "decisions": 197345,
+      "elapsed_seconds": 15.051778333960101,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-060/cadical.log",
+      "log_sha256": "c9d2b6ecd11c2792c72f9e3091d2c4867cd0f94976976bb3000720a18d2911e6",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1160,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "unsat",
+      "config_args": [
+        "--unsat"
+      ],
+      "conflicts": 98825,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        -1829,
+        -200,
+        -222,
+        221
+      ],
+      "cube_index": 61,
+      "cube_width": 8,
+      "decisions": 592138,
+      "elapsed_seconds": 15.024426707997918,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-061/cadical.log",
+      "log_sha256": "53114f1354db985e74f33851c17e38f1b49be8a0f4d41bd0a4bd3f884b3ba5bd",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1161,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "phase_false",
+      "config_args": [
+        "--default",
+        "--phase=false"
+      ],
+      "conflicts": 109843,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        -1829,
+        -200,
+        222,
+        221
+      ],
+      "cube_index": 62,
+      "cube_width": 8,
+      "decisions": 424398,
+      "elapsed_seconds": 15.023498250055127,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-062/cadical.log",
+      "log_sha256": "96f57f613f8c1d021af4aad0aaecaf5542039c65d2565f6e5fb5c34cec21f7ce",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1162,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    },
+    {
+      "config": "default",
+      "config_args": [
+        "--default"
+      ],
+      "conflicts": 108964,
+      "cube": [
+        2070,
+        2106,
+        -313,
+        -195,
+        -1829,
+        -200,
+        222,
+        -221
+      ],
+      "cube_index": 63,
+      "cube_width": 8,
+      "decisions": 420031,
+      "elapsed_seconds": 15.021810250007547,
+      "extended_model_check_against_original_cnf": null,
+      "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/per-cube-probe/mirror/cube-063/cadical.log",
+      "log_sha256": "6882abc25d4715cd020d1d804d56918977b21f5526f7f4ea0cb75a38943a5bfc",
+      "model_check_against_simplified_cnf": null,
+      "orientation": "mirror",
+      "returncode": 0,
+      "seed": 1163,
+      "status": "UNKNOWN",
+      "timed_out": false,
+      "unsat_certificate": null
+    }
+  ],
+  "schema": "p97-exact5-card13-distinct-per-cube-probe-v1",
+  "timeout_seconds_per_cube": 15,
+  "unsat_certificate": null,
+  "workers": 8
+}

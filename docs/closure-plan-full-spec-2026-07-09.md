@@ -442,15 +442,22 @@ pair.  It is not a planar/MEC realization or a Problem 97 counterexample, but
 it proves that the distinct arm needs total fixed-`H`/global-cover force or
 genuinely nonlinear rank-two/MEC geometry.
 
-The all-one common-order checkpoint is now recorded in
-`scratch/atail-force/exact5-all-one-card13-card14-gate/`. At card 13, all
-2,729 decoded candidates reached by the bounded run are exact-LRA `UNSAT`:
-2,529 have an equality-quotient ordinal Kalmanson cycle, while the remaining
-200 need a multi-term Kalmanson/Farkas combination. Removing every triangle
-inequality leaves all 200 residuals `UNSAT`. This is strong pruning evidence,
-not coverage: no orbit was exhausted, and the 2,529 ordinal cores still give
-1,337 cyclic/gap-normalized schemas. Literal or eager schema CEGAR is therefore
-retired rather than extended.
+The historical all-one common-order CEGAR checkpoint is recorded in
+`scratch/atail-force/exact5-all-one-card13-card14-gate/`.  Its non-covering
+candidate counts are now superseded at exact card 13 by the aggregate decision
+in `scratch/atail-force/exact5-all-one-ordinal-rank/`.  The new source-faithful
+necessary-condition formulas retain the fixed critical row family, both
+independent cover families, the complete exact-five shell, the parent frontier
+projection, and one common ordinal distance rank.  All three physical-hub
+orbits are CaDiCaL `UNSAT`, and independent `drat-trim` replay reports
+`s VERIFIED` for each exact CNF/proof pair. A guarded proof then projected a
+7,256-assertion source core. Rebuilding that core in the unquotiented left,
+middle, and right source frames yields three exact Lean-emitted CNFs whose
+direct LRAT certificates are accepted by the authoritative Lean 4.27 kernel.
+The canonical source ingress is also complete and source-clean. The only
+remaining exact-card-13 all-one gate is the generated source-to-packed Boolean
+composition; no live source theorem is closed until that composition lands.
+Literal or eager schema CEGAR stays retired.
 
 The same source-valid shell-aware gate was instantiated at the only card-14
 profiles compatible with the proved cap bounds, `(5,7,5)` and `(6,6,5)`. Its
@@ -461,17 +468,15 @@ cycles, but every run ends bounded `UNKNOWN`; none reaches an exact linear
 survivor and none proves orbit coverage. Thus the card-13 behavior is not yet
 known to be a uniform theorem.
 
-`scratch/atail-force/exact5-allone-aggregate-kalmanson-cegar/` records the
-aggregate decision audit. Direct mixed Boolean/rank encodings ran for 600
-seconds on each card-13 all-one orbit and returned `UNKNOWN` after roughly
-three million SAT conflicts per orbit. Preloading literal cores or hundreds
-of thousands of schema embeddings only increases the first-solve cost. The
-only proof-facing continuation of this linear route would be a compact
-source-level cut/gap circulation theorem or a checkable finite coverage tree;
-another unpartitioned solver run, literal-core queue, MARCO wave, or eager
-schema expansion is not justified. Even such a card-specific certificate
-would not close the uniform Lean theorem without a proved lift to arbitrary
-carrier cardinality.
+`scratch/atail-force/exact5-allone-aggregate-kalmanson-cegar/` remains the
+historical record of the earlier mixed-Z3 timeout.  It is no longer the live
+decision boundary: direct Z3 still times out on the new formula, but the
+deterministic Z3 bit-blast followed by CaDiCaL and DRAT checking decides all
+three exact-card-13 all-one orbits. The live continuation is the mechanical
+Boolean adapter composition into the already kernel-checked certificate
+endpoints, not another unpartitioned solver run, literal-core queue, MARCO
+wave, or eager schema expansion. This card-specific result does not cover card
+at least fourteen.
 
 The field-complete card-13 all-one checkpoint is
 `scratch/atail-force/exact5-full-role-retained-gate/`. It includes the exact
@@ -8185,26 +8190,41 @@ or a uniform proof. Literal/schema CEGAR and longer monolithic linear runs are
 retired unless a compact checked coverage object or a verified survivor is
 produced.
 
-The strengthened card-13 all-one surface is now a bounded `UNKNOWN`: all six
-hub/radius cells rejected 753 candidates through old row-only Kalmanson cores,
-used none of the new parent fields in a minimized core, exhausted no cell, and
-produced no survivor. Its generic integrated ordinal prefilter removes the
-stored old representatives but times out before the first candidate under a
-30-second smoke. Do not continue this monolithic encoding or accumulate more
-literal cores.
+The strengthened exact-card-13 all-one finite surface is now kernel-decided:
+the three hub orbits produce deterministic CNFs with 54,851--54,897 variables
+and 409,442--411,083 clauses, all independently DRAT-verified `UNSAT`.  The
+formula is weaker than the old full gate because it omits the lazy selected-row
+connectivity cuts, so its UNSAT verdict does not depend on that omitted
+minimality consequence. A 7,256-source core of that formula has additionally
+been replayed through Lean's verified `BVLogicalExpr` pipeline in all three
+original boundary frames. Each `sourceExpr_unsat` endpoint is warning-clean
+and has no `sorryAx`. Do not claim the live source leaf closed yet: the
+all 7,256/7,256 source-to-packed Boolean adapters are generated. The middle
+source composition is now warning-as-error kernel-checked: all 114 source
+chunks feed `false_of_middleAllOneSourceOrbit`, whose axiom closure contains
+no `sorryAx`. The left/right source compositions and final three-way dispatcher
+are not complete. The generated layer consists of 1,952 base
+assertions and 5,304 rank/Kalmanson assertions. Its explicit trust boundary is
+ten small `native_decide` finite helpers plus the generated `bv_decide`
+normalization bridges. The former six hub/radius `UNKNOWN` cells are historical
+diagnostics, not the current status.
 
-The kernel-checked card-13 parent-row coupling gives the next mathematical
-boundary. In the same-radius mode, rule out an asymmetric outside point
-escaping the strict first cap. In the distinct-radius mode, rule out the two
-outside points splitting across the retained and actual-`B1` exact classes.
-Either result forces their first-apex co-radiality and feeds the existing
-terminal. On the all-one arm, produce `CriticalFiberClosingCore R`, a genuine
-alternative short-cap packet, or direct `False`. For first-cap cardinality at
-least seven, card at least fourteen is available, but the existing survival-
-cover consumer only recurs to robustness. Therefore the next proof/search
-must use rank-two Euclidean geometry, actual MEC/cap/`noM44` data, or a global
-fixed-`H` positive occurrence and return one of those terminal outputs. Do
-not add another conditional adapter. The unique arm remains independent: its
+The kernel-checked card-13 parent-row coupling gives the remaining
+mathematical boundary.  The same-radius asymmetric leaf is closed in scratch.
+For exact-card-13 all-one, transport the three orbit-specific cover assertions
+to left and right, kernel-check those compositions, and dispatch all three
+verified endpoints from the complete semantic ingress. In the
+distinct-radius mode, rule out the two outside
+points splitting across the retained and actual-`B1` exact classes; the new
+source-faithful aggregate refinement has 338 DRAT-verified UNSAT child cubes,
+237 unresolved child cubes, and no SAT child, so it remains `UNKNOWN`. For card
+at least fourteen, the checked
+cardinality dispatcher proves the exact split
+`7 ≤ oppCap1.card ∨ 6 ≤ surplusCap.card`; the existing survival-cover consumer
+only recurs to robustness.  Thus new mathematical work is concentrated in the
+distinct-radius asymmetric and card-at-least-14 branches, while all-one is now
+a formal certificate-ingress task.  Do not add another conditional adapter.
+The unique arm remains independent: its
 checked exact-four/five normal forms have no terminal consumer, with the
 exact-five coincident-blocker cell the narrowest honest direct-`False` target.
 
@@ -8230,10 +8250,14 @@ Both `false_of_exactFive_card13_sameRadius_spoke₁` and
 exact-five declaration: the distinct-radius, all-one-hit, and
 card-at-least-14 leaves remain.
 The distinct-cross local linear packet is exactly SAT, so that sibling still
-requires global fixed-`H`/cover information or nonlinear MEC geometry.  The
-decomposed all-one gate rejects 7,402 tested assignments by ordinal cycles but
-proves no cell coverage.  No production source `sorry` is closed at this
-checkpoint.
+requires the total fixed-`H`/cover surface or nonlinear MEC geometry.  A new
+distinct-specific aggregate encoding now retains that total finite surface and
+the two exact-four first-apex classes. Recursive cubing has independently
+verified 338 UNSAT children and leaves 237 children unresolved, with no SAT
+child; therefore the distinct sibling remains `UNKNOWN`. In contrast, all
+three exact-card-13 all-one finite endpoints now have kernel-checked LRAT
+proofs and complete source-semantic ingress. Their final Boolean composition
+is not complete, so no production source `sorry` is closed at this checkpoint.
 
 ## Change control
 

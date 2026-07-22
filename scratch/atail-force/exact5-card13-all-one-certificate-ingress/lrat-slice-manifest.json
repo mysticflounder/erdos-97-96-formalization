@@ -1,0 +1,116 @@
+{
+  "axiom_closure": [
+    "propext",
+    "Classical.choice",
+    "Lean.ofReduceBool",
+    "Lean.trustCompiler",
+    "Quot.sound"
+  ],
+  "checker": {
+    "command_shape": "cd lean && lake env lean -M 16384 -DwarningAsError=true -R .. ../scratch/.../AllOne<Orbit>VerifiedSliced.lean",
+    "lean_version": "4.27.0",
+    "sorryAx": false,
+    "status": "KERNEL_CHECKED_ALL_ORBITS"
+  },
+  "orbits": {
+    "left": {
+      "cnf": {
+        "bytes": 3416095,
+        "clauses": 202760,
+        "sha256": "4d3bf4389ad4569b10d6a8c2962965901e49e74a4d675e05343442c2f4c19464",
+        "variables": 69042
+      },
+      "generated_map": {
+        "bytes": 53251,
+        "path": "generated-left-candidate/left.verified-sliced.map.json",
+        "sha256": "9c4f4672aeeb1fc2fc229533347a74f224ce801d69b10ae7e3951899b8dc211d"
+      },
+      "generated_module": {
+        "bytes": 876458,
+        "path": "generated-left-candidate/AllOneLeftVerifiedSliced.lean",
+        "sha256": "7bb1aaf328052183c21006ac7c581cc028dd9d797967524e5b0484226211c5bf"
+      },
+      "input_lrat": {
+        "additions": 894981,
+        "bytes": 330461614,
+        "deletions": 146592,
+        "sha256": "2f3d591409a9eeb4974068095da571fd2e40b10b68a3f1c4e2f098ee7f4de5f6"
+      },
+      "sliced_lrat": {
+        "additions": 293977,
+        "bytes": 77424971,
+        "path": "generated-left-candidate/left.candidate.lean-direct-unsat22-427.slice.lrat",
+        "reduction_fraction": 0.7657066124478833,
+        "sha256": "630932bf22d73b81a20a0aafa3ef93d98b22b39a07bfe47552363e91a9cc1565"
+      }
+    },
+    "middle": {
+      "cnf": {
+        "bytes": 3416193,
+        "clauses": 202766,
+        "sha256": "ccbcb7745cec6976d1fecf427123cbaf9e27ad6a11a4a134ecd41631a974cb7a",
+        "variables": 69044
+      },
+      "generated_map": {
+        "bytes": 53265,
+        "path": "generated-middle-candidate/middle.verified-sliced.map.json",
+        "sha256": "276386762afd9ac45acdd5529df7951e6fa8b6c524c92a0ebf4a088f5b24082b"
+      },
+      "generated_module": {
+        "bytes": 876470,
+        "path": "generated-middle-candidate/AllOneMiddleVerifiedSliced.lean",
+        "sha256": "76ecda96b4c357e3c9f8d43944c9c4485aef230df492c6a6076a860e9e3ecb76"
+      },
+      "input_lrat": {
+        "additions": 1007048,
+        "bytes": 357826547,
+        "deletions": 176238,
+        "sha256": "16e35deae23cd85246bb949f01c249f8b8ccf78fc6361e049d1101f765bea0d7"
+      },
+      "sliced_lrat": {
+        "additions": 314007,
+        "bytes": 75096168,
+        "path": "generated-middle-candidate/middle.candidate.lean-direct-unsat22-427.slice.lrat",
+        "reduction_fraction": 0.7901324856146015,
+        "sha256": "e0b27040666abfce101fc5e11453d9e5a9c6a89baf8e72cd62ae8c01f9dbd2e2"
+      }
+    },
+    "right": {
+      "cnf": {
+        "bytes": 3416143,
+        "clauses": 202763,
+        "sha256": "78ad638630f65011cbd32fecd7ef4328a5466e59f7b491074da32774f6384939",
+        "variables": 69043
+      },
+      "generated_map": {
+        "bytes": 53259,
+        "path": "generated-right-candidate/right.verified-sliced.map.json",
+        "sha256": "e2c6a064bd50b4cc516c25fa9aa1bef6950ff8994edff3eab27544cffd6c9da2"
+      },
+      "generated_module": {
+        "bytes": 876464,
+        "path": "generated-right-candidate/AllOneRightVerifiedSliced.lean",
+        "sha256": "b6ddf6107921f9a47eaa04fd11718b549c7eb280ba46a45d3414d58458ba9f88"
+      },
+      "input_lrat": {
+        "additions": 948941,
+        "bytes": 353287580,
+        "deletions": 152259,
+        "sha256": "981ca7b41049ead0e9ce846076b15676c020aa13fb0ab37fed674dd4d44cde80"
+      },
+      "sliced_lrat": {
+        "additions": 298942,
+        "bytes": 77204554,
+        "path": "generated-right-candidate/right.candidate.lean-direct-unsat22-427.slice.lrat",
+        "reduction_fraction": 0.7814682474826882,
+        "sha256": "af334daf1529acc07b2f30be044000b7643526391d321bcebd4cd1b59a25e1d4"
+      }
+    }
+  },
+  "schema": "p97-exact5-card13-all-one-lrat-slices-v1",
+  "slicer": {
+    "mode": "dense-derived-ids-drop-deletions",
+    "path": "slice_pure_rup_lrat.py",
+    "pure_rup": true
+  }
+}

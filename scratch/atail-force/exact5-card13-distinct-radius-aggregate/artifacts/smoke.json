@@ -1,0 +1,21 @@
+{
+  "hand_expectations": {
+    "sat": "x=0,y=1 satisfies y>x",
+    "unsat": "x=y and x>y is impossible"
+  },
+  "sat": {
+    "cadical": "SAT",
+    "cadical_output_tail": "\nc stable glue 5 used 0 clauses 0.000% accumulated 0.000%\nc stable glue 6 used 0 clauses 0.000% accumulated 0.000% tier2\nc \nc \nc --- [ resources ] ----------------------------------------------------------\nc \nc total process time since initialization:         0.00    seconds\nc total real time since initialization:            0.00    seconds\nc maximum resident set size of process:         2496.00    MB\nc \nc --- [ shutting down ] ------------------------------------------------------\nc \nc exit 10\n",
+    "cadical_returncode": 10,
+    "drat_verified": null,
+    "source_z3": "SAT"
+  },
+  "schema": "p97-distinct-aggregate-bitblast-smoke-v1",
+  "unsat": {
+    "cadical": "UNSAT",
+    "cadical_output_tail": "\nc stable glue 5 used 0 clauses 0.000% accumulated 0.000%\nc stable glue 6 used 0 clauses 0.000% accumulated 0.000% tier2\nc \nc \nc --- [ resources ] ----------------------------------------------------------\nc \nc total process time since initialization:         0.00    seconds\nc total real time since initialization:            0.00    seconds\nc maximum resident set size of process:         2384.00    MB\nc \nc --- [ shutting down ] ------------------------------------------------------\nc \nc exit 20\n",
+    "cadical_returncode": 20,
+    "drat_verified": true,
+    "source_z3": "UNSAT"
+  }
+}

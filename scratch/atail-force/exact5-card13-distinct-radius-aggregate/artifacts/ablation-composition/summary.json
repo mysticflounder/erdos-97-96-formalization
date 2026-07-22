@@ -1,0 +1,232 @@
+{
+  "epistemic_status": "DIAGNOSTIC_ABLATION_ONLY",
+  "profiles": {
+    "kalmanson_only": [
+      "connectivity",
+      "complete_classes",
+      "unique_k4_second",
+      "unique_k4_first",
+      "unique_k4_critical"
+    ],
+    "kalmanson_plus_complete": [
+      "connectivity",
+      "unique_k4_second",
+      "unique_k4_first",
+      "unique_k4_critical"
+    ],
+    "kalmanson_plus_connectivity": [
+      "complete_classes",
+      "unique_k4_second",
+      "unique_k4_first",
+      "unique_k4_critical"
+    ],
+    "kalmanson_plus_unique": [
+      "connectivity",
+      "complete_classes"
+    ]
+  },
+  "results": [
+    {
+      "cnf_clause_count": 438347,
+      "cnf_sha256": "88de5b27136c4e5914750cbb701fcfd13d823d0c062656d5ea2435f03f8a1f2d",
+      "cnf_variable_count": 54480,
+      "conflicts": 199722,
+      "decisions": 814152,
+      "disabled_blocks": [
+        "connectivity",
+        "complete_classes",
+        "unique_k4_second",
+        "unique_k4_first",
+        "unique_k4_critical"
+      ],
+      "elapsed_seconds": 20.01825925009325,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation-composition/kalmanson_only/direct/cadical.log",
+      "log_sha256": "29932777f600026a5082e28a268cc58bd14270991ee0441025cdf37f31e4d2da",
+      "model_check": null,
+      "orientation": "direct",
+      "profile": "kalmanson_only",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 438325,
+      "cnf_sha256": "94756352f3ea4a565d6131eb2eb8311c52c286e93bc0495d06126298dd46ae32",
+      "cnf_variable_count": 54480,
+      "conflicts": 202870,
+      "decisions": 898797,
+      "disabled_blocks": [
+        "connectivity",
+        "complete_classes",
+        "unique_k4_second",
+        "unique_k4_first",
+        "unique_k4_critical"
+      ],
+      "elapsed_seconds": 20.01514291705098,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation-composition/kalmanson_only/mirror/cadical.log",
+      "log_sha256": "f175912d801ccc0e7d60a8feb9b94b24ba945d421ba05202d99aedcd9c6963f1",
+      "model_check": null,
+      "orientation": "mirror",
+      "profile": "kalmanson_only",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 568901,
+      "cnf_sha256": "2a978afdd0b67e7d43f791c18eff00a4ced54846abd896074f1051dc9c03ff32",
+      "cnf_variable_count": 66543,
+      "conflicts": 160748,
+      "decisions": 677459,
+      "disabled_blocks": [
+        "complete_classes",
+        "unique_k4_second",
+        "unique_k4_first",
+        "unique_k4_critical"
+      ],
+      "elapsed_seconds": 20.016543917008676,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation-composition/kalmanson_plus_connectivity/direct/cadical.log",
+      "log_sha256": "e1b1ca6dfa56b3e06abecd6f820f0d0f2c9c218b43e55c1261c1635ba9df61c9",
+      "model_check": null,
+      "orientation": "direct",
+      "profile": "kalmanson_plus_connectivity",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 568879,
+      "cnf_sha256": "1754893dc99430a57414122ba8e23429145285d75a9bff445579582748183897",
+      "cnf_variable_count": 66543,
+      "conflicts": 162063,
+      "decisions": 760297,
+      "disabled_blocks": [
+        "complete_classes",
+        "unique_k4_second",
+        "unique_k4_first",
+        "unique_k4_critical"
+      ],
+      "elapsed_seconds": 20.02543504210189,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation-composition/kalmanson_plus_connectivity/mirror/cadical.log",
+      "log_sha256": "8ecff46d378c18b1faa52ce72df632f66c9c13742260118580e17588ba481aaf",
+      "model_check": null,
+      "orientation": "mirror",
+      "profile": "kalmanson_plus_connectivity",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 449353,
+      "cnf_sha256": "fb5860dfdbf6f85ce4afd908a54a96392a5ec3d3701b3267ba00c29ef002e80d",
+      "cnf_variable_count": 55346,
+      "conflicts": 201134,
+      "decisions": 784615,
+      "disabled_blocks": [
+        "connectivity",
+        "unique_k4_second",
+        "unique_k4_first",
+        "unique_k4_critical"
+      ],
+      "elapsed_seconds": 20.01725041703321,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation-composition/kalmanson_plus_complete/direct/cadical.log",
+      "log_sha256": "f9fd1226cfe9247d6bffbe2b555a052a7e13cbbf22dbaa80b3072ea9c31082cf",
+      "model_check": null,
+      "orientation": "direct",
+      "profile": "kalmanson_plus_complete",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 449331,
+      "cnf_sha256": "7e0d1b09a96464543dea6bf15bd5e91ee42028ab6d3ee63d980bf7c1539af90e",
+      "cnf_variable_count": 55346,
+      "conflicts": 195695,
+      "decisions": 727843,
+      "disabled_blocks": [
+        "connectivity",
+        "unique_k4_second",
+        "unique_k4_first",
+        "unique_k4_critical"
+      ],
+      "elapsed_seconds": 20.020542916026898,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation-composition/kalmanson_plus_complete/mirror/cadical.log",
+      "log_sha256": "cd5e478729467daa576af7eb3468414ec4b72bc4556b11eee3b0509560102542",
+      "model_check": null,
+      "orientation": "mirror",
+      "profile": "kalmanson_plus_complete",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 527557,
+      "cnf_sha256": "d183155933d7087fdcca0932d0f760f036c29ce1c902976d2c12700435f7e627",
+      "cnf_variable_count": 59440,
+      "conflicts": 168779,
+      "decisions": 763010,
+      "disabled_blocks": [
+        "connectivity",
+        "complete_classes"
+      ],
+      "elapsed_seconds": 20.020544333965518,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation-composition/kalmanson_plus_unique/direct/cadical.log",
+      "log_sha256": "79f7ced9f0e40d6150131cd4924c9dd7cf8e30aa782c36ea6f5b636590c7435f",
+      "model_check": null,
+      "orientation": "direct",
+      "profile": "kalmanson_plus_unique",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    },
+    {
+      "cnf_clause_count": 527531,
+      "cnf_sha256": "c1a03cb599e83fb34e246e266c494259b3e1f60659585268f98affe227598c31",
+      "cnf_variable_count": 59440,
+      "conflicts": 174791,
+      "decisions": 613572,
+      "disabled_blocks": [
+        "connectivity",
+        "complete_classes"
+      ],
+      "elapsed_seconds": 20.04461524996441,
+      "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+      "log_path": "scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation-composition/kalmanson_plus_unique/mirror/cadical.log",
+      "log_sha256": "c74f98da4968bbb5bb956b2b896d656e473d70061912f3259715cac1c4e42f42",
+      "model_check": null,
+      "orientation": "mirror",
+      "profile": "kalmanson_plus_unique",
+      "returncode": 0,
+      "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+      "status": "UNKNOWN",
+      "subprocess_timeout": false,
+      "timeout_seconds": 20
+    }
+  ],
+  "schema": "p97-exact5-card13-distinct-ablation-profile-v1",
+  "seed_base": 100,
+  "timeout_seconds_per_cell": 20,
+  "workers": 8
+}

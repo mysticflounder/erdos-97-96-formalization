@@ -1,0 +1,14 @@
+{
+  "checker": "drat-trim",
+  "cnf_path": "middle.cnf",
+  "cnf_sha256": "a0e90b23eb76d83f4601165a63ca53f724693fa34a33dd76dc0418514dec3a39",
+  "elapsed_seconds": 132.5887438749196,
+  "log_path": "middle.drat-trim.log",
+  "log_sha256": "73a23c1a06c586bdf95ef592d055f858ad98453069258c16c46f899353ff6617",
+  "not_a_lean_proof": true,
+  "proof_path": "middle.drat",
+  "proof_sha256": "0716db8a9547ce68b54f09b317a029d3f0d090bf3b7cb87c43d6d6c46a01b6d6",
+  "returncode": 0,
+  "schema": "p97-exact5-card13-all-one-ordinal-drat-check-v1",
+  "status": "DRAT_VERIFIED"
+}

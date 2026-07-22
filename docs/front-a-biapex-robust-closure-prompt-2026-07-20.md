@@ -69,16 +69,42 @@ The proof constructs the canonical role/table/cover objects, proves all 1,899
 finite source assertions, and reaches a verified LRAT contradiction.  Its
 warning-as-error axiom audit has no `sorryAx`.
 
+The exact-card-13 `allRowsOneHit` surface is also no longer a mathematical
+search target.  Three deterministic aggregate ordinal-rank CNFs cover the
+left-, middle-, and right-hub orbits; CaDiCaL returns `UNSAT` for all three and
+independent DRAT replay verifies each exact proof. A 7,256-assertion source
+core has now been rebuilt in all three original boundary frames, and each exact
+Lean-emitted CNF has a dependency-sliced multipart LRAT endpoint accepted by
+the authoritative Lean 4.27 kernel with no `sorryAx`. The source-semantic
+ingress and all 7,256 generated adapters are complete. The middle source
+composition is warning-as-error kernel-checked through all 114 chunks, and
+`false_of_middleAllOneSourceOrbit` has no `sorryAx`. Only the exact left/right
+transport and final three-way dispatch into the persisted endpoints remains.
+This is engineering work, not a missing mathematical implication, and must not
+be re-solved here.
+
 The cap-six `LargeCapUniqueFiveLowHit` / common-deletion normal form is not
 available: it requires `6 ≤ S.oppCap2.card`, while this branch has
 `S.oppCap2.card = 5`.
 
+The source-clean cardinality dispatcher proves `13 ≤ D.A.card`.  Card 13 is
+exactly the `(5,6,5)` cap profile.  Card at least 14 splits as
+
+```text
+7 ≤ S.oppCap1.card  OR  6 ≤ S.surplusCap.card.
+```
+
+The existing card-at-least-14 survival-cover consumer can return the already
+held second-apex robustness, so it is not a terminal for either mode.
+
 ## Required result
 
-Derive `False` from exactly the theorem inputs above.  The remaining work must
-cover the distinct-first-apex-radius asymmetric cell, the all-one-hit outcome,
-and the higher-cardinality cells.  It is enough to prove the corresponding
-unsolved portions of the following source-level implications:
+Derive `False` from exactly the theorem inputs above.  New mathematical work
+must cover the distinct-first-apex-radius asymmetric cell and the
+higher-cardinality cells.  The exact-card-13 all-one outcome is being closed
+by composing its kernel-checked finite endpoints with the complete semantic
+ingress and should not be re-solved geometrically. It is enough to prove the
+corresponding unsolved portion of the following source-level implication:
 
 ```text
 asymmetric normal form
@@ -86,16 +112,16 @@ asymmetric normal form
   -> its named outside pair is co-radial from S.oppApex1
      OR a genuine alternative IsM44 SurplusCapPacket;
 
-AllPhysicalActualCriticalRowsOneHit H profile
-  + the retained two-edge star and the full F/R/B/Q/profile parent
-  -> Nonempty (CriticalFiberClosingCore R)
+14 <= D.A.card
+  + any of the three global-cover-star outcomes
+  + the full F/R/B/Q/profile parent
+  -> False directly, a terminal co-radial/closing-core occurrence,
      OR a genuine alternative IsM44 SurplusCapPacket.
 ```
 
 The first co-radial output feeds
-`SourceTwoHitNormalForm.false_of_firstApex_coRadial`.  The closing-core output
-feeds `false_of_criticalFiberClosingCore`.  Either packet output contradicts
-`R.noM44`.
+`SourceTwoHitNormalForm.false_of_firstApex_coRadial`.  The packet output
+contradicts `R.noM44`.
 
 The star is not terminal: each covered edge gives only negative support
 incidence.  An exact 13-vertex critical-hypergraph model satisfies criticality,

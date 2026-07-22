@@ -1,0 +1,18 @@
+{
+  "cadical_returncode": 0,
+  "cnf_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/direct.cnf",
+  "cnf_sha256": "1669221a2e8791256c92038be8577e85ea1dc3204d0acfa106b064460a5dcff8",
+  "drat_check": null,
+  "elapsed_seconds": 60.02287166600581,
+  "epistemic_status": "EXTERNAL_CNF_VERDICT_ENCODING_MAP_NOT_KERNEL_CHECKED",
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/direct.cadical.log",
+  "log_sha256": "9307e9205e308cd3386d7b7b46881c6b16c25dcdab662cc5e70e287493621483",
+  "proof_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/direct.drat",
+  "proof_sha256": "ca02456c72a0f992ee60727fbad0b4bf8a9290da75a4fa9e6fdeb6ce93eb1d88",
+  "proof_size_bytes": 61112772,
+  "sat_model_check": null,
+  "schema": "p97-exact5-card13-distinct-aggregate-cadical-v1",
+  "status": "UNKNOWN",
+  "timed_out": false,
+  "timeout_seconds": 60
+}

@@ -1,0 +1,31 @@
+{
+  "cnf_clause_count": 409442,
+  "cnf_sha256": "8677e269986f8650f086c89bd5daa4ecec7966a6b039be1759af4d05e7b3e1e5",
+  "cnf_variable_count": 54851,
+  "counts": {
+    "base_assertions": 37361,
+    "guarded_exact_five_shell_rank_equalities": 66,
+    "guarded_selected_row_rank_equalities": 2640,
+    "kalmanson_cancellation_implications": 5720,
+    "rank_atoms": 78,
+    "rank_bit_width": 7,
+    "total_source_assertions": 45865
+  },
+  "epistemic_status": "SEMANTICS_PRESERVING_EXTERNAL_Z3_TACTIC_EXPORT",
+  "formula_build_seconds": 2.4960600829217583,
+  "not_a_formal_proof": true,
+  "orbit": "allOneHitHubLeft",
+  "schema": "p97-exact5-card13-all-one-ordinal-bitblast-v1",
+  "seed": 11,
+  "tactic_pipeline": [
+    "simplify",
+    "propagate-values",
+    "elim-term-ite",
+    "solve-eqs",
+    "lia2card",
+    "card2bv",
+    "bit-blast",
+    "tseitin-cnf"
+  ],
+  "total_seconds": 3.7442515419097617
+}

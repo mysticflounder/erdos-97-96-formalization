@@ -1,0 +1,89 @@
+{
+  "max_part_bytes": 50331648,
+  "orbits": {
+    "left": {
+      "generated_map": {
+        "bytes": 53649,
+        "path": "left.verified.map.json",
+        "sha256": "731af40323bf86e6ce07fae257b427e90e420b160cc3a9052d908e8d243eae6b"
+      },
+      "generated_module": {
+        "bytes": 876487,
+        "path": "AllOneLeftVerified.lean",
+        "sha256": "c449ee436179d20d392dcf620310da80eeb57c32e2a728d1b90e0532776a4297"
+      },
+      "input_path": "generated-left-candidate/left.candidate.lean-direct-unsat22-427.slice.lrat",
+      "parts": [
+        {
+          "bytes": 50331213,
+          "path": "part-000.lrat.txt",
+          "sha256": "df54bb26bf1f12c5a984a001f4310909feef734e7eda2ffedc97c39a8a98d123"
+        },
+        {
+          "bytes": 27093758,
+          "path": "part-001.lrat.txt",
+          "sha256": "7ffa680dbaa92c03fdc2c213709ee224583095307b83284f7fa211a5aab2c12e"
+        }
+      ],
+      "whole_bytes": 77424971,
+      "whole_sha256": "630932bf22d73b81a20a0aafa3ef93d98b22b39a07bfe47552363e91a9cc1565"
+    },
+    "middle": {
+      "generated_map": {
+        "bytes": 53661,
+        "path": "middle.verified.map.json",
+        "sha256": "977a4a4e3f6ea95141d986e8e2767491fda433c1e1e05ba4b4a88cf13e4caaa0"
+      },
+      "generated_module": {
+        "bytes": 876497,
+        "path": "AllOneMiddleVerified.lean",
+        "sha256": "968f1eba76fd8420ea8a88dbed1acf5dc7d9daecb3a0183bd4b68f4f7b1c31b4"
+      },
+      "input_path": "generated-middle-candidate/middle.candidate.lean-direct-unsat22-427.slice.lrat",
+      "parts": [
+        {
+          "bytes": 50331580,
+          "path": "part-000.lrat.txt",
+          "sha256": "cca14576afcd3f411c7abfef9837222c81ce27c0906dbb35788279d16269d59d"
+        },
+        {
+          "bytes": 24764588,
+          "path": "part-001.lrat.txt",
+          "sha256": "a6b3353c1e3100543e99ff99032cba5b8e745f13780b2377bfa1bd6e05824bc7"
+        }
+      ],
+      "whole_bytes": 75096168,
+      "whole_sha256": "e0b27040666abfce101fc5e11453d9e5a9c6a89baf8e72cd62ae8c01f9dbd2e2"
+    },
+    "right": {
+      "generated_map": {
+        "bytes": 53656,
+        "path": "right.verified.map.json",
+        "sha256": "10c403a073e2adcb484f926a2a90ce99ee9d2c8abcff9c3dca9eac1924cd2b94"
+      },
+      "generated_module": {
+        "bytes": 876492,
+        "path": "AllOneRightVerified.lean",
+        "sha256": "cfbe7dbadf357cd6453e002a399124dc54f2c48a167a6f74151cd7781799b587"
+      },
+      "input_path": "generated-right-candidate/right.candidate.lean-direct-unsat22-427.slice.lrat",
+      "parts": [
+        {
+          "bytes": 50330953,
+          "path": "part-000.lrat.txt",
+          "sha256": "e50e11b9a7ba509d1b37e615399727be7b3dd81fabbc8ef9cf249a7a09428192"
+        },
+        {
+          "bytes": 26873601,
+          "path": "part-001.lrat.txt",
+          "sha256": "1da633b7ff8198eb0c5b7b333871c4375ab72709188851e4ecdd12b94ec9d23a"
+        }
+      ],
+      "whole_bytes": 77204554,
+      "whole_sha256": "af334daf1529acc07b2f30be044000b7643526391d321bcebd4cd1b59a25e1d4"
+    }
+  },
+  "schema": "p97-exact5-card13-all-one-chunked-lrat-v1",
+  "slice_manifest": "lrat-slice-manifest.json",
+  "slice_manifest_sha256": "72e31a201c5f2e1530242c1cccf85101336dd90c204f804c0bd34cbf3a39be4a"
+}

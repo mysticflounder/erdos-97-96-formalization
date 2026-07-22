@@ -1,0 +1,39 @@
+{
+  "artifacts": {
+    "cnf": {
+      "bytes": 10463742,
+      "path": "left.cnf",
+      "sha256": "8677e269986f8650f086c89bd5daa4ecec7966a6b039be1759af4d05e7b3e1e5"
+    },
+    "core_cnf": {
+      "bytes": 1613046,
+      "path": "left.core.cnf",
+      "sha256": "63a3298fc2c438cc8001fbc6c6e7b12e0afd734ee6716041e4d262d889b27ea7"
+    },
+    "drat": {
+      "bytes": 205097426,
+      "path": "left.drat",
+      "sha256": "c4cc540bf0bfa29b5303a08f8cbf74e6f67840062299658d67dc897fdc6c25fb"
+    },
+    "log": {
+      "bytes": 457,
+      "path": "left.trim.log",
+      "sha256": "50d4e0b528ef8a832d9b6715bcaf43cbad0281e5101d3e4d0de3c99c57ff5291"
+    },
+    "lrat": {
+      "bytes": 329678893,
+      "path": "left.lrat",
+      "sha256": "4b98a248fa902f67de5494a2256bc9d732d766e5383cbd23ebc4e4fcd6682c2d"
+    }
+  },
+  "core_num_clauses": 74115,
+  "core_num_variables": 54851,
+  "elapsed_seconds": 95.54065300000366,
+  "lrat_checker_note": "drat-trim emitted LRAT while verifying the source DRAT; kernel replay is still required",
+  "lrat_independently_checked": false,
+  "original_num_clauses": 409442,
+  "original_num_variables": 54851,
+  "returncode": 0,
+  "schema": "p97-exact5-card13-all-one-ordinal-trimmed-lrat-v1",
+  "status": "DRAT_VERIFIED_LRAT_EMITTED"
+}
