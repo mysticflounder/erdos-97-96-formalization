@@ -1,0 +1,162 @@
+{
+  "attempts": [
+    {
+      "candidate": 0,
+      "cnf_sha256": "932d6a116d4ac060ae772f7e1be387c8981fc44f395995523c34c9c6b602d84c",
+      "kept_clause_count": 31279,
+      "proposed_dropped": [
+        0
+      ],
+      "solver_elapsed_seconds": 7.2801,
+      "solver_status": "UNSAT"
+    },
+    {
+      "candidate": 2,
+      "cnf_sha256": "7fba1d52ad55f2fbb0f2cbd69c9ff2cad70211a19bda03b5a488b942e1b331c4",
+      "kept_clause_count": 30619,
+      "proposed_dropped": [
+        0,
+        2
+      ],
+      "solver_elapsed_seconds": 5.005446,
+      "solver_status": "UNSAT"
+    },
+    {
+      "candidate": 3,
+      "cnf_sha256": "7c90066e8c85de5e077a559e2a92e927a08727e7ca7f7f79d5e8445c63a37a2d",
+      "kept_clause_count": 29695,
+      "proposed_dropped": [
+        0,
+        2,
+        3
+      ],
+      "solver_elapsed_seconds": 5.065393,
+      "solver_status": "UNSAT"
+    },
+    {
+      "candidate": 4,
+      "cnf_sha256": "d84d60750a98bb245ecda7d45c440fc56fbd713c95e5c94247a13ddfc631e9fe",
+      "kept_clause_count": 28771,
+      "proposed_dropped": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "solver_elapsed_seconds": 2.761944,
+      "solver_status": "SAT"
+    },
+    {
+      "candidate": 5,
+      "cnf_sha256": "ce814827a9d02ee35aca024b94539b90eadb94075769b4e74db1db8627aebbfa",
+      "kept_clause_count": 28771,
+      "proposed_dropped": [
+        0,
+        2,
+        3,
+        5
+      ],
+      "solver_elapsed_seconds": 4.531346,
+      "solver_status": "UNSAT"
+    },
+    {
+      "candidate": 6,
+      "cnf_sha256": "849ed85367d9d17dfc7274cd1d55e7acb360d315c138764c185445f0d14d8fc5",
+      "kept_clause_count": 27847,
+      "proposed_dropped": [
+        0,
+        2,
+        3,
+        5,
+        6
+      ],
+      "solver_elapsed_seconds": 0.979561,
+      "solver_status": "SAT"
+    },
+    {
+      "candidate": 7,
+      "cnf_sha256": "9ca182b528dba7ccbe9915bb7ff5919bb6bc1d186a36e05498f0824933b3ef2e",
+      "kept_clause_count": 28111,
+      "proposed_dropped": [
+        0,
+        2,
+        3,
+        5,
+        7
+      ],
+      "solver_elapsed_seconds": 4.795929,
+      "solver_status": "UNSAT"
+    },
+    {
+      "candidate": 8,
+      "cnf_sha256": "081ba956b308c643fa9e845e0340017647de405aea42e6d0601679a1267f12f4",
+      "kept_clause_count": 27781,
+      "proposed_dropped": [
+        0,
+        2,
+        3,
+        5,
+        7,
+        8
+      ],
+      "solver_elapsed_seconds": 4.264566,
+      "solver_status": "UNSAT"
+    },
+    {
+      "candidate": 9,
+      "cnf_sha256": "4ccf7ca1af608c6299d48ecd06a8fae186d9e2c6713ba1a81c6a315999a8bad0",
+      "kept_clause_count": 26857,
+      "proposed_dropped": [
+        0,
+        2,
+        3,
+        5,
+        7,
+        8,
+        9
+      ],
+      "solver_elapsed_seconds": 3.78033,
+      "solver_status": "SAT"
+    }
+  ],
+  "base_omissions": [
+    "aligned_pair",
+    "pair_minimality",
+    "single_minimality",
+    "curvature",
+    "seeded_kalmanson",
+    "bank_planar",
+    "bank_u5",
+    "critical_system"
+  ],
+  "claim_limit": "The result concerns only the generated fixed-n=11 CNF and is not a source-to-CNF proof or Lean theorem.",
+  "deletion_order": [
+    0,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "epistemic_status": "EXACT WITHIN THE STRIPPED FINITE CNF PROJECTION",
+  "final_dropped_schema_indices": [
+    0,
+    2,
+    3,
+    5,
+    7,
+    8
+  ],
+  "final_kept_schema_indices": [
+    1,
+    4,
+    6,
+    9
+  ],
+  "minimality_scope": "Greedy inclusion-minimal relative to the recorded deletion order; not a complete enumeration of minimal schema banks.",
+  "permanently_kept_schema": 1,
+  "schema": "p97-aligned-p5-greedy-kalmanson-bank-ablation-v1"
+}

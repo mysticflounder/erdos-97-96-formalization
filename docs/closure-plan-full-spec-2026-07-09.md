@@ -8831,6 +8831,45 @@ Lean-defined terminal CNF, a source-to-satisfying-valuation theorem for every
 enabled clause family, and kernel LRAT replay of that same formula.  No
 source `sorry` is closed by either certificate.
 
+The previously omitted card-eleven aligned-p5 arm has now also reached exact
+fixed-CNF UNSAT.  The source audit found no overstrong aligned field: the
+three strict first-opposite-cap points are all in the exact first-apex class,
+the residual preserves the retained pair in order, and the selected
+second-apex deletion row omits that pair.  The generated formula has 15,192
+variables and 2,791,032 clauses, with CNF SHA-256
+`50a8062cb9b089cc6f3a47497face0a46ceacb5e86152ec04fc5f3c6557b9c7f`.
+CaDiCaL emitted a 120,497,715-byte proof with SHA-256
+`6a58c8c26732122f53f1d883c44fcd9a0ddee34f501d61e24dd94605abe127f4`;
+`drat-trim` independently returned one literal `s VERIFIED` and found an
+18,821-clause backward core.
+
+Clause-family ablation removes the entire sibling U5 bank, planar bank,
+critical-system encoding, both minimality overlays, shell-curvature overlay,
+seeded cuts, and retained/strict pair identification.  The stripped formula
+is still UNSAT at 32,203 clauses.  Greedy schema deletion reduces the ten
+locally kernel-checked order-preserving Kalmanson families to indices
+`1, 4, 6, 9`; the corresponding checked consumers are
+`false_of_endpoint_k2_endpoint_k1_three_selected_rows_long`,
+`false_of_one_k2_two_k1_three_selected_rows`,
+`false_of_one_k1_two_endpoint_k2_three_selected_rows`, and
+`false_of_endpoint_k2_endpoint_k1_three_selected_rows_postBankEight`.
+The resulting 27,781-clause compact formula has CNF SHA-256
+`081ba956b308c643fa9e845e0340017647de405aea42e6d0601679a1267f12f4`
+and DRAT SHA-256
+`f7008bc65433436329029c0b2f041847f5464d3a68046e6377f5a2d1a7511c72`;
+`drat-trim` returns `s VERIFIED` with a 6,350-clause input core.  Its exact
+generator map has no unmatched clauses and does not use selected-row strong
+connectivity, the retained pair, the second-apex deletion row, or any of the
+removed families.  This greedy bank is not claimed globally minimal.  The
+exact next formal target is a source occurrence theorem producing one of
+those four patterns from the aligned card-eleven packet, or a Lean-defined
+compact CNF plus a source-to-valuation theorem and kernel LRAT replay.  This
+completes the external finite decision of all three card-eleven source
+constructors, but not their Lean ingress and not the arbitrary-card
+unique-radius theorem.  No source `sorry` is closed by this checkpoint.  The
+scoped artifacts are in
+`scratch/atail-force/unique4-aligned-p5-terminal/`.
+
 The arbitrary-cardinality source route has now advanced past the earlier
 occurrence-only boundary.  The warning-clean scratch development
 `scratch/atail-force/unique4-source-closer/ExactFourSurvivalCover.lean`

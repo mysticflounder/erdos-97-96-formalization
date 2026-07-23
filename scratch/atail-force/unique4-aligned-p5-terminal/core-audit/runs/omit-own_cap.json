@@ -1,0 +1,25 @@
+{
+  "baseline_clause_count": 2791032,
+  "claim_limit": "A SAT/UNSAT result concerns only this generated CNF. It is neither a Lean proof nor a source-to-CNF correspondence proof.",
+  "cnf_sha256": "1d20f614ff7d8d0dc843b6a8a59a023c4767367418ea29b335d8bc89bebd32c4",
+  "epistemic_status": "EXACT WITHIN THE ABLATED CNF PROJECTION",
+  "family": "own_cap",
+  "kept_clause_count": 2790958,
+  "omitted_blocks": {
+    "selected_row_endpoint_own_cap_at_most_one_0": 12,
+    "selected_row_endpoint_own_cap_at_most_one_1": 12,
+    "selected_row_endpoint_own_cap_at_most_one_2": 6,
+    "selected_row_own_cap_at_most_two_0": 20,
+    "selected_row_own_cap_at_most_two_1": 20,
+    "selected_row_own_cap_at_most_two_2": 4
+  },
+  "omitted_clause_count": 74,
+  "schema": "p97-aligned-p5-clause-family-ablation-v1",
+  "solver_elapsed_seconds": 180.026278,
+  "solver_exit_code": 0,
+  "solver_status": "UNKNOWN",
+  "source_driver": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-aligned-p5-terminal/run_aligned_p5_full_linear_cegar.py",
+  "source_driver_sha256": "113c1a9b7340c9e57efab5bbe9037f31d55fe9cfaae764b60c2747341e4e3d67",
+  "timeout_seconds": 180,
+  "variable_count": 15192
+}

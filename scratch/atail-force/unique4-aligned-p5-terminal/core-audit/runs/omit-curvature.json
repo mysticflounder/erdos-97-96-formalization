@@ -1,0 +1,24 @@
+{
+  "baseline_clause_count": 2791032,
+  "claim_limit": "A SAT/UNSAT result concerns only this generated CNF. It is neither a Lean proof nor a source-to-CNF correspondence proof.",
+  "cnf_sha256": "bac293759db8eec583ad435a93e653c7439d3ccf419c5302a898d4cc6f78a546",
+  "epistemic_status": "EXACT WITHIN THE ABLATED CNF PROJECTION",
+  "family": "curvature",
+  "kept_clause_count": 2623876,
+  "omitted_blocks": {
+    "direct_memberships_imply_row_pattern": 2310,
+    "direct_no_four_turn_disjoint_outer_arcs": 150832,
+    "direct_outer_arc_implies_some_row_pattern": 154,
+    "direct_row_pattern_implies_membership": 9240,
+    "direct_row_pattern_implies_outer_arc": 4620
+  },
+  "omitted_clause_count": 167156,
+  "schema": "p97-aligned-p5-clause-family-ablation-v1",
+  "solver_elapsed_seconds": 69.94367,
+  "solver_exit_code": 20,
+  "solver_status": "UNSAT",
+  "source_driver": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-aligned-p5-terminal/run_aligned_p5_full_linear_cegar.py",
+  "source_driver_sha256": "113c1a9b7340c9e57efab5bbe9037f31d55fe9cfaae764b60c2747341e4e3d67",
+  "timeout_seconds": 180,
+  "variable_count": 15192
+}

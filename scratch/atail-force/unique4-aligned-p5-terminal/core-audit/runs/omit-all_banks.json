@@ -1,0 +1,24 @@
+{
+  "baseline_clause_count": 2791032,
+  "claim_limit": "A SAT/UNSAT result concerns only this generated CNF. It is neither a Lean proof nor a source-to-CNF correspondence proof.",
+  "cnf_retained": false,
+  "cnf_sha256": "37d4e7c81344d41c120807b86daee81f65c49dcbb0b2b0e6694243d86f25afd1",
+  "epistemic_status": "EXACT WITHIN THE ABLATED CNF PROJECTION",
+  "family": "all_banks",
+  "kept_clause_count": 340542,
+  "omitted_blocks": {
+    "seeded_full_linear_kalmanson_cut": 3012,
+    "verified_kalmanson_order_schema_cut": 8118,
+    "verified_planar_schema_cut": 332640,
+    "verified_u5_signed_schema_cut": 2106720
+  },
+  "omitted_clause_count": 2450490,
+  "schema": "p97-aligned-p5-clause-family-ablation-v1",
+  "solver_elapsed_seconds": 2.662123,
+  "solver_exit_code": 10,
+  "solver_status": "SAT",
+  "source_driver": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-aligned-p5-terminal/run_aligned_p5_full_linear_cegar.py",
+  "source_driver_sha256": "113c1a9b7340c9e57efab5bbe9037f31d55fe9cfaae764b60c2747341e4e3d67",
+  "timeout_seconds": 180,
+  "variable_count": 15192
+}
