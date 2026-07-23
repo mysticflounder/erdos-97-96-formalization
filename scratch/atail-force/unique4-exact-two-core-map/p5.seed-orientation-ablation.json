@@ -1,0 +1,213 @@
+{
+  "core": {
+    "clause_count": 61065,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/p5.input-core.cnf",
+    "sha256": "1532d4d1c6fb90d89ce14697728f18b9db8b37fce2acf2f5a3244ec42e25b7a8",
+    "variable_count": 12672
+  },
+  "epistemic_status": "SOLVER-REPORTED CLAUSE-DELETION AUDIT; SAT/UNSAT RESULTS ARE NOT YET REPLAY-CERTIFIED; NOT A SOURCE-LEVEL LEAN THEOREM",
+  "interpretation": {
+    "ERROR": "solver invocation failed",
+    "SAT": "the removed group is collectively load-bearing relative to the remaining clauses of this fixed input core",
+    "TIMEOUT": "unresolved under the recorded solver budget",
+    "UNSAT": "the removed group is not required by this fixed input core"
+  },
+  "map": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/p5.input-core-map.json",
+    "sha256": "9c43ca5fadd445ba22bde5dc5617ea9414caf4df8c82de198706c6076ee51747"
+  },
+  "mode": "seed-orientation",
+  "profile": 5,
+  "result_count": 8,
+  "results": [
+    {
+      "elapsed_seconds": 46.9864452079637,
+      "group": "p5_seeded:record:corrected-owncap-p4-four-k2|orientation:forward",
+      "kept_clause_count": 61018,
+      "removed_clause_count": 47,
+      "solver_exit_code": 20,
+      "solver_tail": [
+        "c stable glue 3 used 440804 clauses 9.303% accumulated 79.03% tier2",
+        "c ",
+        "c ",
+        "c --- [ resources ] ----------------------------------------------------------",
+        "c ",
+        "c total process time since initialization:        46.96    seconds",
+        "c total real time since initialization:           46.97    seconds",
+        "c maximum resident set size of process:        97616.00    MB",
+        "c ",
+        "c --- [ shutting down ] ------------------------------------------------------",
+        "c ",
+        "c exit 20"
+      ],
+      "status": "UNSAT"
+    },
+    {
+      "elapsed_seconds": 69.42819358292036,
+      "group": "p5_seeded:record:corrected-owncap-p4-four-k2|orientation:reflected",
+      "kept_clause_count": 61061,
+      "removed_clause_count": 4,
+      "solver_exit_code": 20,
+      "solver_tail": [
+        "c stable glue 3 used 524066 clauses 8.095% accumulated 78.86% tier2",
+        "c ",
+        "c ",
+        "c --- [ resources ] ----------------------------------------------------------",
+        "c ",
+        "c total process time since initialization:        69.36    seconds",
+        "c total real time since initialization:           69.37    seconds",
+        "c maximum resident set size of process:        93968.00    MB",
+        "c ",
+        "c --- [ shutting down ] ------------------------------------------------------",
+        "c ",
+        "c exit 20"
+      ],
+      "status": "UNSAT"
+    },
+    {
+      "elapsed_seconds": 50.33035337505862,
+      "group": "p5_seeded:record:corrected-owncap-p5-two-k1-two-k2|orientation:forward",
+      "kept_clause_count": 61038,
+      "removed_clause_count": 27,
+      "solver_exit_code": 20,
+      "solver_tail": [
+        "c stable glue 3 used 429999 clauses 8.672% accumulated 78.89% tier2",
+        "c ",
+        "c ",
+        "c --- [ resources ] ----------------------------------------------------------",
+        "c ",
+        "c total process time since initialization:        50.30    seconds",
+        "c total real time since initialization:           50.31    seconds",
+        "c maximum resident set size of process:       100544.00    MB",
+        "c ",
+        "c --- [ shutting down ] ------------------------------------------------------",
+        "c ",
+        "c exit 20"
+      ],
+      "status": "UNSAT"
+    },
+    {
+      "elapsed_seconds": 46.54463087499607,
+      "group": "p5_seeded:record:corrected-owncap-p5-two-k1-two-k2|orientation:reflected",
+      "kept_clause_count": 61043,
+      "removed_clause_count": 22,
+      "solver_exit_code": 20,
+      "solver_tail": [
+        "c stable glue 3 used 380914 clauses 8.465% accumulated 76.68% tier2",
+        "c ",
+        "c ",
+        "c --- [ resources ] ----------------------------------------------------------",
+        "c ",
+        "c total process time since initialization:        46.52    seconds",
+        "c total real time since initialization:           46.53    seconds",
+        "c maximum resident set size of process:        94032.00    MB",
+        "c ",
+        "c --- [ shutting down ] ------------------------------------------------------",
+        "c ",
+        "c exit 20"
+      ],
+      "status": "UNSAT"
+    },
+    {
+      "elapsed_seconds": 78.31035425001755,
+      "group": "p5_seeded:record:corrected-p5-six-role-k2-triangle-block-reflected|orientation:forward",
+      "kept_clause_count": 60856,
+      "removed_clause_count": 209,
+      "solver_exit_code": 20,
+      "solver_tail": [
+        "c stable glue 2 used 1580388 clauses 21.61% accumulated 72.12% tier2",
+        "c ",
+        "c ",
+        "c --- [ resources ] ----------------------------------------------------------",
+        "c ",
+        "c total process time since initialization:        78.29    seconds",
+        "c total real time since initialization:           78.31    seconds",
+        "c maximum resident set size of process:       100928.00    MB",
+        "c ",
+        "c --- [ shutting down ] ------------------------------------------------------",
+        "c ",
+        "c exit 20"
+      ],
+      "status": "UNSAT"
+    },
+    {
+      "elapsed_seconds": 54.48458237503655,
+      "group": "p5_seeded:record:corrected-p5-six-role-k2-triangle-block-reflected|orientation:reflected",
+      "kept_clause_count": 60903,
+      "removed_clause_count": 162,
+      "solver_exit_code": 20,
+      "solver_tail": [
+        "c stable glue 3 used 462741 clauses 8.847% accumulated 78.71% tier2",
+        "c ",
+        "c ",
+        "c --- [ resources ] ----------------------------------------------------------",
+        "c ",
+        "c total process time since initialization:        54.46    seconds",
+        "c total real time since initialization:           54.47    seconds",
+        "c maximum resident set size of process:       105008.00    MB",
+        "c ",
+        "c --- [ shutting down ] ------------------------------------------------------",
+        "c ",
+        "c exit 20"
+      ],
+      "status": "UNSAT"
+    },
+    {
+      "elapsed_seconds": 58.47558383294381,
+      "group": "p5_seeded:record:corrected-unseeded-p5-six-role-k2-triangle|orientation:forward",
+      "kept_clause_count": 60822,
+      "removed_clause_count": 243,
+      "solver_exit_code": 20,
+      "solver_tail": [
+        "c stable glue 3 used 552164 clauses 9.063% accumulated 77.83% tier2",
+        "c ",
+        "c ",
+        "c --- [ resources ] ----------------------------------------------------------",
+        "c ",
+        "c total process time since initialization:        58.45    seconds",
+        "c total real time since initialization:           58.46    seconds",
+        "c maximum resident set size of process:        94256.00    MB",
+        "c ",
+        "c --- [ shutting down ] ------------------------------------------------------",
+        "c ",
+        "c exit 20"
+      ],
+      "status": "UNSAT"
+    },
+    {
+      "elapsed_seconds": 48.404521582997404,
+      "group": "p5_seeded:record:corrected-unseeded-p5-six-role-k2-triangle|orientation:reflected",
+      "kept_clause_count": 60884,
+      "removed_clause_count": 181,
+      "solver_exit_code": 20,
+      "solver_tail": [
+        "c stable glue 2 used 976423 clauses 20.45% accumulated 71.09% tier2",
+        "c ",
+        "c ",
+        "c --- [ resources ] ----------------------------------------------------------",
+        "c ",
+        "c total process time since initialization:        48.39    seconds",
+        "c total real time since initialization:           48.40    seconds",
+        "c maximum resident set size of process:        99248.00    MB",
+        "c ",
+        "c --- [ shutting down ] ------------------------------------------------------",
+        "c ",
+        "c exit 20"
+      ],
+      "status": "UNSAT"
+    }
+  ],
+  "schema": "p97-unique4-exact-two-input-core-ablation-v1",
+  "solver": {
+    "path": "/Users/adam/.local/bin/cadical",
+    "sha256": "66b34e225d5661f8e9b33fb8f77f2e9ae4c5639d8fe2a19067edb06c6d97d9d8"
+  },
+  "status_counts": {
+    "ERROR": 0,
+    "SAT": 0,
+    "TIMEOUT": 0,
+    "UNSAT": 8
+  },
+  "timeout_seconds": 900,
+  "workers": 8
+}

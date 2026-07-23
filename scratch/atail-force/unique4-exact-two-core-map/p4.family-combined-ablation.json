@@ -1,0 +1,59 @@
+{
+  "core": {
+    "clause_count": 48605,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/p4.input-core.cnf",
+    "sha256": "739a55ce7a818cbcdfb8c9fa0731b19b564933e546c303b17c2366871078241b",
+    "variable_count": 12672
+  },
+  "epistemic_status": "SOLVER-REPORTED CLAUSE-DELETION AUDIT; SAT/UNSAT RESULTS ARE NOT YET REPLAY-CERTIFIED; NOT A SOURCE-LEVEL LEAN THEOREM",
+  "interpretation": {
+    "ERROR": "solver invocation failed",
+    "SAT": "the removed group is collectively load-bearing relative to the remaining clauses of this fixed input core",
+    "TIMEOUT": "unresolved under the recorded solver budget",
+    "UNSAT": "the removed group is not required by this fixed input core"
+  },
+  "map": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/p4.input-core-map.json",
+    "sha256": "af829a7c99e0f969f410d398d7c32c2ba5dd945f3a7ebb2ef3f8d7679633d64b"
+  },
+  "mode": "family-combined",
+  "profile": 4,
+  "result_count": 1,
+  "results": [
+    {
+      "elapsed_seconds": 134.78823641699273,
+      "group": "family_remove_all_individually_removable",
+      "kept_clause_count": 19046,
+      "removed_clause_count": 29559,
+      "solver_exit_code": 10,
+      "solver_tail": [
+        "c stable glue 2 used 2758241 clauses 21.41% accumulated 72.12% tier2",
+        "c ",
+        "c ",
+        "c --- [ resources ] ----------------------------------------------------------",
+        "c ",
+        "c total process time since initialization:       134.75    seconds",
+        "c total real time since initialization:          134.78    seconds",
+        "c maximum resident set size of process:       109728.00    MB",
+        "c ",
+        "c --- [ shutting down ] ------------------------------------------------------",
+        "c ",
+        "c exit 10"
+      ],
+      "status": "SAT"
+    }
+  ],
+  "schema": "p97-unique4-exact-two-input-core-ablation-v1",
+  "solver": {
+    "path": "/Users/adam/.local/bin/cadical",
+    "sha256": "66b34e225d5661f8e9b33fb8f77f2e9ae4c5639d8fe2a19067edb06c6d97d9d8"
+  },
+  "status_counts": {
+    "ERROR": 0,
+    "SAT": 1,
+    "TIMEOUT": 0,
+    "UNSAT": 0
+  },
+  "timeout_seconds": 900,
+  "workers": 1
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "p97-exacttwo-drat-core-extraction-v1",
+  "profile": 5,
+  "n": 11,
+  "generated_at": "2026-07-23T00:28:32-0700",
+  "command": [
+    "drat-trim",
+    "/tmp/p97_u4_seeded_v3_full_linear_p5.cnf",
+    "/tmp/p97_u4_seeded_v3_full_linear_p5.replay.drat",
+    "-c",
+    "scratch/atail-force/unique4-exact-two-core-map/p5.input-core.cnf",
+    "-t",
+    "20000"
+  ],
+  "returncode": 0,
+  "verdict": "s VERIFIED",
+  "terminal_cnf": {
+    "path": "/tmp/p97_u4_seeded_v3_full_linear_p5.cnf",
+    "sha256": "cbfd6ad9559dce5c9da5874a15da0ba7b5c876dfbaa056fc6eb009fc107119a1",
+    "variable_count": 12672,
+    "clause_count": 2768417,
+    "byte_count": 158403304
+  },
+  "proof": {
+    "path": "/tmp/p97_u4_seeded_v3_full_linear_p5.replay.drat",
+    "sha256": "21d83f574691d268aabe24badc7d4cb2a836a4a0b80a851845334096293d0841",
+    "byte_count": 184212068,
+    "format": "CaDiCaL binary DRAT"
+  },
+  "checker": {
+    "path": "/Users/adam/bin/drat-trim",
+    "sha256": "eb781b99f2aaf5c9102eb6efd07c2d0aa71b44a0e8002a74e3dda1030be96a92"
+  },
+  "input_core": {
+    "path": "scratch/atail-force/unique4-exact-two-core-map/p5.input-core.cnf",
+    "sha256": "1532d4d1c6fb90d89ce14697728f18b9db8b37fce2acf2f5a3244ec42e25b7a8",
+    "variable_count": 12672,
+    "clause_count": 61065,
+    "byte_count": 1061491
+  },
+  "checker_summary": {
+    "proof_bytes_read": 184212068,
+    "core_input_clause_count": 61065,
+    "input_clause_count": 2768417,
+    "core_lemma_count": 570242,
+    "proof_lemma_count": 2549793,
+    "resolution_step_count": 36541217,
+    "core_rat_lemma_count": 29341,
+    "redundant_literal_count": 396364,
+    "verification_seconds": 3053.923
+  },
+  "stdout_lines": [
+    "c turning on binary mode checking",
+    "c parsing input formula with 12672 variables and 2768417 clauses",
+    "c finished parsing, read 184212068 bytes from proof file",
+    "c detected empty clause; start verification via backward checking",
+    "c 61065 of 2768417 clauses in core",
+    "c 570242 of 2549793 lemmas in core using 36541217 resolution steps",
+    "c 29341 RAT lemmas in core; 396364 redundant literals in core lemmas",
+    "s VERIFIED",
+    "c verification time: 3053.923 seconds"
+  ]
+}

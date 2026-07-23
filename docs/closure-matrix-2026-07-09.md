@@ -844,3 +844,20 @@ excluded. Literal ordinal, linear-distance, and Kalmanson-only mining are
 therefore blocked for this target. Any new coverage model must add nonlinear
 planar Euclidean rank, complete exact-radius filters, or actual MEC/cap
 placement coupled to the common critical map.
+
+### Exact-two ingress checkpoint (2026-07-23)
+
+This checkpoint supersedes the stale K-A-UNIQUE-DISPATCH note that both
+exact-two formulas still lack all Lean ingress. The p4 and p5 projections now
+have source-faithful direct/mirror boundary packets and authenticated
+core-to-family maps. The p5 bridge additionally has source-clean retained
+Kalmanson consumers, normalized schema-5/schema-8 mirror terminals, and a
+fail-closed trimmed-occurrence generator.
+
+The remaining p5 ingress is precise: first repair and revalidate the currently
+unfinished trimmed-certificate materializer; then produce and Lean-replay a
+hash-bound trimmed LRAT certificate, map every retained clause occurrence,
+prove the direct and reflected source valuations (including the boundary
+reflection), and compose those results with the existing decoder. P4 follows
+the same pipeline after p5. This checkpoint closes no production `sorry`; the
+arbitrary-card unique-radius arm remains a separate mathematical obligation.

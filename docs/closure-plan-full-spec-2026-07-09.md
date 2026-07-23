@@ -8877,13 +8877,40 @@ temporary interface axiom.
 
 This closes the aligned-p5 constructor of
 `CardElevenUniqueFourCoverage`, but not the two exact-two constructors and not
-the arbitrary-card unique-radius theorem.  P4 exact-two and p5 exact-two still
-need source-valid direct/mirror occurrence ingress.  Their old DRAT manifests
-retain only aggregate input-core counts, not clause identities or provenance,
-so the immediate finite task is to regenerate the 48,605- and 61,065-clause
-input cores and map every retained clause to its semantic family and Lean
-consumer before choosing a native classifier surface.  No production source
-`sorry` is closed by this checkpoint.
+the arbitrary-card unique-radius theorem.  The p4 and p5 48,605- and
+61,065-clause input cores have now been regenerated and occurrence-mapped to
+their semantic families, parameters, and named source literals. Source-clean
+direct/mirror card-eleven boundary packets construct actual
+`FaithfulCarrierPattern`s and
+identify the selected first-apex row with the distinguished exact-radius
+class.  The checked p5 consumer layer covers the four seeded Kalmanson
+families; the retained-Kalmanson adapter covers all recorded orientations;
+and normalized schema-5/schema-8 mirror terminals close the only missing
+consumer orientation after reflection.  These theorems use only
+`[propext, Classical.choice, Quot.sound]`.
+
+The current p5 candidate is the largest-first greedy family core: 18 retained
+families, 9,412 clauses, and 616 dense variables.  Every dense variable is an
+authenticated source atom (`m`, `eq`, or the distinguished first-apex class);
+there are no auxiliary or Tseitin variables.  CaDiCaL reports this fixed CNF
+UNSAT, but the earlier direct LRAT replay was too large.  A fail-closed
+trimmed-occurrence generator now audits the full 61,065-clause map and is
+ready to bind each eventual `drat-trim` core clause to its exact family,
+parameters, named source atoms, and dense signed clause.  It intentionally
+refuses production output until a hash-bound trimmed-certificate report
+exists.
+
+The remaining p5 bridge is therefore precise. First repair and revalidate
+`materialize_trimmed_reduced_core.py`, whose current draft has undefined
+publication-stage names and is intentionally not part of this checkpoint.
+Then materialize and Lean-replay a trimmed LRAT certificate; generate its
+authenticated occurrence map; prove the direct and reflected `m/eq/class`
+valuations satisfy every retained trimmed clause (including the explicit
+`i ↦ -i mod 11` mirror occurrence transport); and compose that satisfying
+valuation with the verified UNSAT theorem. Only after that theorem is wired
+to the p5 exact-two constructor should the same process be repeated for p4.
+This checkpoint does not yet close a production source `sorry`, and it does
+not affect the separate arbitrary-card unique-radius obligation.
 
 The arbitrary-cardinality source route has now advanced past the earlier
 occurrence-only boundary.  The warning-clean scratch development
