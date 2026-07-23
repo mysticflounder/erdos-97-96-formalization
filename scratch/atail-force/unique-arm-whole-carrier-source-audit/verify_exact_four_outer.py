@@ -217,6 +217,20 @@ def verify(
         require(any(support <= component for component in partitions[center]),
                 f"row {center} is not contained in one complete radius class")
 
+    # Independently replay the cross-center equality chain used by the
+    # complete-radius mutual-triangle producer.  This is not a local
+    # equivalence-partition condition: it transports equalities between three
+    # different centers using symmetry of the underlying metric.
+    for anchor, middle, blocker_center in itertools.permutations(range(n), 3):
+        if not ({middle, blocker_center} <= rows[anchor]
+                and {anchor, blocker_center} <= rows[middle]):
+            continue
+        require(
+            eq(equality, blocker_center, anchor, middle),
+            "mutual selected-row triangle does not transport to the blocker radius: "
+            f"anchor={anchor}, middle={middle}, blocker={blocker_center}",
+        )
+
     # Replay full-class geometry rather than only selected-row projections.
     for left, right in itertools.combinations(range(n), 2):
         for left_class in partitions[left]:
@@ -357,6 +371,20 @@ def verify(
         if blockers[left] == blockers[right]:
             require(supports[left] == supports[right],
                     f"sources {left},{right} share a blocker but not a support")
+
+    blocker_image = set(blockers.values())
+    for anchor, middle, blocker_center in itertools.permutations(range(n), 3):
+        if blocker_center not in blocker_image:
+            continue
+        if not ({middle, blocker_center} <= rows[anchor]
+                and {anchor, blocker_center} <= rows[middle]
+                and middle in rows[blocker_center]):
+            continue
+        require(
+            anchor in rows[blocker_center],
+            "blocker-image mutual triangle omits its forced reverse membership: "
+            f"anchor={anchor}, middle={middle}, blocker={blocker_center}",
+        )
 
     for center in range(n):
         if center != first_apex and center not in strict1:

@@ -292,6 +292,23 @@ def encode(
                  eq_var(center, left, right)],
             )
 
+    # Cross-center metric transport.  If the rows at ``anchor`` and
+    # ``middle`` both contain the other center and a common ``blocker``, then
+    # symmetry of distance identifies the anchor--blocker and
+    # middle--blocker lengths.  Therefore anchor and middle lie in one
+    # complete radius class at blocker.  This is the equality prefix of the
+    # kernel-checked complete-radius producer
+    # ``mem_blockerImageSelectedRow_of_twoStep_mutualTriangle``; when blocker
+    # lies in the fixed critical-map image, the existing support-lock clauses
+    # turn this equality into the forced reverse row membership.
+    for anchor, middle, blocker_center in itertools.permutations(vertices, 3):
+        cnf.add(
+            "mutual_triangle_cross_center_radius_transport",
+            [-member[anchor, middle], -member[anchor, blocker_center],
+             -member[middle, anchor], -member[middle, blocker_center],
+             eq_var(blocker_center, anchor, middle)],
+        )
+
     # Euclidean/convex consequences for every complete radius class, not only
     # for the selected four-subsets.
     for left, right in itertools.combinations(vertices, 2):
@@ -501,6 +518,22 @@ def encode(
                     [-blocker[source_left, center], -blocker[source_right, center],
                      -critical_support[source_right, point], critical_support[source_left, point]],
                 )
+
+    # Checked final form of the complete-radius mutual-triangle producer.
+    # The first four row incidences force anchor/middle to be co-radial at the
+    # blocker center.  If that center is in the fixed critical-map image, its
+    # selected row is the exact complete critical shell; one membership of
+    # ``middle`` therefore forces the reverse membership of ``anchor``.
+    for source in vertices:
+        for anchor, middle, blocker_center in itertools.permutations(vertices, 3):
+            cnf.add(
+                "blocker_image_mutual_triangle_membership_closure",
+                [-blocker[source, blocker_center],
+                 -member[anchor, middle], -member[anchor, blocker_center],
+                 -member[middle, anchor], -member[middle, blocker_center],
+                 -member[blocker_center, middle],
+                 member[blocker_center, anchor]],
+            )
 
     # Ordered role variables for the retained frontier pair.  Their two points
     # are distinct, lie in the class, and lie outside the surplus cap.
@@ -746,11 +779,13 @@ def encode(
     encoded_source_projections = [
         "complete positive-radius equality partition at every carrier center with explicit false atoms",
         "one selected nonself four-row at every center",
+        "cross-center mutual-triangle radius transport from Euclidean distance symmetry",
         "full-class circle intersection, pair-center, and cyclic-alternation constraints",
         "selected-row strong connectivity",
         "fixed-point-free total blocker map with exact full critical class through each source",
         "critical no_qfree: every class after deleting the source has size at most three",
         "one selected-row completion equal to the H support at every used blocker center",
+        "blocker-image complete-radius closure for two-step mutual selected-row triangles",
         "late-system first-apex blocker fiber exactly the four-class",
         "first-apex unique K4 class, selected row, and class-source critical supports",
         "first-apex class has at most one hit in each adjacent closed cap",

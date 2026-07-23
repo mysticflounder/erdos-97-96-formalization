@@ -1,0 +1,53 @@
+{
+  "schema": "p97-unique4-support-lock-no-triangle-regression-v1",
+  "epistemic_status": "EXACT_FINITE_REPLAY_OF_PINNED_N11_PROJECTION",
+  "claim_scope": "This finite incidence model refutes universal occurrence only inside the documented selected-row projection; it is not a Euclidean realization or a Lean countermodel to OriginalUniqueFourResidual.",
+  "source_result": "scratch/atail-force/unique4-curvature-occurrence-census/exact_two_opp1_4_a61b34a6/round_004/result.json",
+  "source_result_sha256": "7b231f5002a1717e3d95873519e6bc34106fc7d05109a989194c726778df6322",
+  "source_curvature_sha256": "3ce4997bb7c647fd8747ddf8383a7aeacb37c38cc5c4b721f0d29b1db3b798b8",
+  "source_curvature_terminal_summary": {
+    "solver_status": "UNSAT",
+    "checked_terminal_witness_count": 326,
+    "checked_terminal_unique_center_set_count": 136,
+    "all_checked_terminal_witnesses_replayed": true,
+    "strict_open_window_count": 318,
+    "full_cover_count": 8
+  },
+  "n": 11,
+  "first_apex": 0,
+  "first_apex_exact_class": [1, 5, 6, 7],
+  "first_opposite_strict": [5, 6],
+  "blockers": [10, 0, 10, 5, 8, 0, 0, 0, 4, 10, 9],
+  "rows": [
+    [1, 5, 6, 7],
+    [2, 3, 7, 10],
+    [0, 3, 6, 8],
+    [1, 2, 4, 9],
+    [3, 5, 8, 10],
+    [1, 3, 4, 6],
+    [5, 7, 8, 9],
+    [2, 4, 6, 10],
+    [0, 4, 7, 9],
+    [0, 1, 8, 10],
+    [0, 2, 5, 9]
+  ],
+  "critical_supports_by_source": [
+    [0, 2, 5, 9],
+    [1, 5, 6, 7],
+    [0, 2, 5, 9],
+    [1, 3, 4, 6],
+    [0, 4, 7, 9],
+    [1, 5, 6, 7],
+    [1, 5, 6, 7],
+    [1, 5, 6, 7],
+    [3, 5, 8, 10],
+    [0, 2, 5, 9],
+    [0, 1, 8, 10]
+  ],
+  "expected": {
+    "support_lock_holds_at_every_blocker_image_center": true,
+    "exact_first_apex_fiber_equals_exact_class": true,
+    "complete_radius_triangle_omission_certificate_count": 0,
+    "separate_checked_curvature_terminal_exists": true
+  }
+}

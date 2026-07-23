@@ -53,6 +53,11 @@ AGGREGATE_TERMINAL = (
     / "unique4-turn-disjoint-curvature-terminal"
     / "TurnDisjointCurvatureTerminal.lean"
 )
+COMPLETE_RADIUS_PRODUCER = (
+    HERE.parent
+    / "unique4-complete-radius-placement-audit"
+    / "CompleteRadiusPlacement.lean"
+)
 
 CORE_ROW_RE = re.compile(r"^center_(\d+)_(left|right)_quarter_turn$")
 
@@ -87,6 +92,7 @@ def source_hash_bindings(kalmanson_bank: Path) -> dict[str, dict[str, str]]:
         "stored_curvature_seed_registry": STORED_CURVATURE,
         "source_terminal_consumers": SOURCE_TERMINAL,
         "aggregate_curvature_consumers": AGGREGATE_TERMINAL,
+        "complete_radius_mutual_triangle_producer": COMPLETE_RADIUS_PRODUCER,
     }
     return {
         name: {

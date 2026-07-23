@@ -1,0 +1,138 @@
+{
+  "all_counterpatterns_rejected_by_complete_radius_triangle_closure": true,
+  "audit_source": "scratch/atail-force/unique4-complete-radius-placement-audit/audit_counterpatterns.py",
+  "audit_source_sha256": "244bc016f10077e482e87c8a71cc439d2d7ae322276bd887ab913689ad777141",
+  "checked_lean_producer": "Problem97.ATailUniqueFourCompleteRadiusPlacementAuditScratch.mem_blockerImageSelectedRow_of_twoStep_mutualTriangle",
+  "claim_scope": "The two n=11 fixtures only; this is not a source-level occurrence theorem and not arbitrary-cardinality coverage",
+  "epistemic_status": "EXACT_FINITE_REPLAY_OF_TWO_STORED_COUNTERPATTERNS",
+  "existing_negative_consumer": "Problem97.false_of_mutualClassPair_sharedMember_thirdClassExcludes",
+  "records": [
+    {
+      "all_certificates": [
+        {
+          "anchor": 0,
+          "blocker_center": 6,
+          "conditions": {
+            "anchor_mem_middle_row": true,
+            "anchor_omitted_by_blocker_row": true,
+            "blocker_mem_anchor_row": true,
+            "blocker_mem_middle_row": true,
+            "middle_mem_anchor_row": true,
+            "middle_mem_blocker_row": true
+          },
+          "critical_sources_at_blocker": [
+            7
+          ],
+          "forced_conclusion": {
+            "membership": true,
+            "point": 0,
+            "support_center": 6
+          },
+          "middle": 8,
+          "recorded_fixture_membership": false
+        }
+      ],
+      "all_fixture_constraints_replayed": true,
+      "blocker_image": [
+        0,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "certificate_count": 1,
+      "fixture": "scratch/atail-force/unique4-three-row-placement-source-audit/critical_map_profile4.json",
+      "fixture_sha256": "d64891ea0e9aee73f5b67cdc3cf45a7416def03fee7884466dce2c9d8abf9e9c",
+      "fixture_violates_complete_radius_triangle_closure": true,
+      "lexicographically_first_certificate": {
+        "anchor": 0,
+        "blocker_center": 6,
+        "conditions": {
+          "anchor_mem_middle_row": true,
+          "anchor_omitted_by_blocker_row": true,
+          "blocker_mem_anchor_row": true,
+          "blocker_mem_middle_row": true,
+          "middle_mem_anchor_row": true,
+          "middle_mem_blocker_row": true
+        },
+        "critical_sources_at_blocker": [
+          7
+        ],
+        "forced_conclusion": {
+          "membership": true,
+          "point": 0,
+          "support_center": 6
+        },
+        "middle": 8,
+        "recorded_fixture_membership": false
+      },
+      "profile": 4
+    },
+    {
+      "all_certificates": [
+        {
+          "anchor": 5,
+          "blocker_center": 3,
+          "conditions": {
+            "anchor_mem_middle_row": true,
+            "anchor_omitted_by_blocker_row": true,
+            "blocker_mem_anchor_row": true,
+            "blocker_mem_middle_row": true,
+            "middle_mem_anchor_row": true,
+            "middle_mem_blocker_row": true
+          },
+          "critical_sources_at_blocker": [
+            10
+          ],
+          "forced_conclusion": {
+            "membership": true,
+            "point": 5,
+            "support_center": 3
+          },
+          "middle": 0,
+          "recorded_fixture_membership": false
+        }
+      ],
+      "all_fixture_constraints_replayed": true,
+      "blocker_image": [
+        0,
+        1,
+        3,
+        4,
+        7,
+        8
+      ],
+      "certificate_count": 1,
+      "fixture": "scratch/atail-force/unique4-three-row-placement-source-audit/critical_map_profile5.json",
+      "fixture_sha256": "8ae5b7c5ed277ef933d40fffc5db900fe5241ca99baed5829d1127d1f024d11c",
+      "fixture_violates_complete_radius_triangle_closure": true,
+      "lexicographically_first_certificate": {
+        "anchor": 5,
+        "blocker_center": 3,
+        "conditions": {
+          "anchor_mem_middle_row": true,
+          "anchor_omitted_by_blocker_row": true,
+          "blocker_mem_anchor_row": true,
+          "blocker_mem_middle_row": true,
+          "middle_mem_anchor_row": true,
+          "middle_mem_blocker_row": true
+        },
+        "critical_sources_at_blocker": [
+          10
+        ],
+        "forced_conclusion": {
+          "membership": true,
+          "point": 5,
+          "support_center": 3
+        },
+        "middle": 0,
+        "recorded_fixture_membership": false
+      },
+      "profile": 5
+    }
+  ],
+  "schema": "p97-unique4-complete-radius-placement-audit-v1",
+  "two_completion_rows_note": "Each fixture exports only one selected row per center, so it cannot test a packet whose left and right completion arcs use distinct rows at one center",
+  "two_completion_rows_same_center_adjudicated": false
+}

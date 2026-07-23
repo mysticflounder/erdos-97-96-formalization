@@ -1,0 +1,213 @@
+{
+  "epistemic_status": "EXACT_FINITE_REGRESSION_FOR_SPLIT_ROBUST_COMPLETION_ROWS",
+  "interpretation": "A non-null regression shows that merely having two completion rows at the omitted robust center, even in the five-class or disjoint-class mode, does not force a four-arc packing after bisector localization. The singleton arm is intentionally outside this audit.",
+  "records": [
+    {
+      "disjoint_classes_regression": {
+        "bisector_localization_holds": true,
+        "completion_center": 1,
+        "first_support": [
+          2,
+          4,
+          8,
+          10
+        ],
+        "four_arc_packing_absent_with_both_rows": true,
+        "joint_curvature_status": "SAT",
+        "joint_turn_model": [
+          "17/18",
+          "1/18",
+          "1/18",
+          "19/18",
+          "1/18",
+          "5/9",
+          "1/18",
+          "19/18",
+          "1/18",
+          "1/18",
+          "1/18"
+        ],
+        "mode": "disjoint_classes",
+        "second_row_contains_strict_pair": false,
+        "second_support": [
+          0,
+          3,
+          5,
+          7
+        ],
+        "strict_pair": [
+          5,
+          6
+        ],
+        "support_intersection": [],
+        "support_union": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          10
+        ]
+      },
+      "five_class_regression": {
+        "bisector_localization_holds": true,
+        "completion_center": 1,
+        "first_support": [
+          2,
+          4,
+          8,
+          10
+        ],
+        "four_arc_packing_absent_with_both_rows": true,
+        "joint_curvature_status": "SAT",
+        "joint_turn_model": [
+          "1",
+          "1/20",
+          "1/20",
+          "21/20",
+          "1/20",
+          "11/20",
+          "1/20",
+          "21/20",
+          "1/20",
+          "1/20",
+          "1/20"
+        ],
+        "mode": "five_class",
+        "second_row_contains_strict_pair": false,
+        "second_support": [
+          2,
+          4,
+          9,
+          10
+        ],
+        "strict_pair": [
+          5,
+          6
+        ],
+        "support_intersection": [
+          2,
+          4,
+          10
+        ],
+        "support_union": [
+          2,
+          4,
+          8,
+          9,
+          10
+        ]
+      },
+      "profile": 4,
+      "source": "scratch/atail-force/unique4-three-row-placement-source-audit/critical_map_profile4.json",
+      "source_sha256": "d64891ea0e9aee73f5b67cdc3cf45a7416def03fee7884466dce2c9d8abf9e9c"
+    },
+    {
+      "disjoint_classes_regression": {
+        "bisector_localization_holds": true,
+        "completion_center": 2,
+        "first_support": [
+          1,
+          4,
+          5,
+          9
+        ],
+        "four_arc_packing_absent_with_both_rows": true,
+        "joint_curvature_status": "SAT",
+        "joint_turn_model": [
+          "1/16",
+          "1/16",
+          "1",
+          "1/16",
+          "9/16",
+          "1/16",
+          "1",
+          "1/16",
+          "1/8",
+          "15/16",
+          "1/16"
+        ],
+        "mode": "disjoint_classes",
+        "second_row_contains_strict_pair": false,
+        "second_support": [
+          0,
+          3,
+          6,
+          7
+        ],
+        "strict_pair": [
+          5,
+          6
+        ],
+        "support_intersection": [],
+        "support_union": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          6,
+          7,
+          9
+        ]
+      },
+      "five_class_regression": {
+        "bisector_localization_holds": true,
+        "completion_center": 2,
+        "first_support": [
+          1,
+          4,
+          5,
+          9
+        ],
+        "four_arc_packing_absent_with_both_rows": true,
+        "joint_curvature_status": "SAT",
+        "joint_turn_model": [
+          "1/18",
+          "1/18",
+          "1",
+          "1/18",
+          "5/9",
+          "1/18",
+          "1",
+          "1/18",
+          "1/18",
+          "19/18",
+          "1/18"
+        ],
+        "mode": "five_class",
+        "second_row_contains_strict_pair": false,
+        "second_support": [
+          0,
+          1,
+          5,
+          9
+        ],
+        "strict_pair": [
+          5,
+          6
+        ],
+        "support_intersection": [
+          1,
+          5,
+          9
+        ],
+        "support_union": [
+          0,
+          1,
+          4,
+          5,
+          9
+        ]
+      },
+      "profile": 5,
+      "source": "scratch/atail-force/unique4-three-row-placement-source-audit/critical_map_profile5.json",
+      "source_sha256": "8ae5b7c5ed277ef933d40fffc5db900fe5241ca99baed5829d1127d1f024d11c"
+    }
+  ],
+  "scope_warning": "n=11 selected-row abstraction only; the two-row packets are not claimed Euclidean or source-realizable, and this gives no arbitrary-cardinality coverage",
+  "search_script": "scratch/atail-force/unique4-three-row-placement-source-audit/search_arc_packing_critical_map.py",
+  "search_script_sha256": "cbf83b69e5d8d5eb3968a7c0a1fcf886ce4ac5f1a71cbb5bb566ad9ec0f3df40"
+}

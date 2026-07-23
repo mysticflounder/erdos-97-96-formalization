@@ -8700,13 +8700,22 @@ three-row witness: two fixed-critical-image rows contribute one outer arc each,
 and one carrier-wide global-K4 completion row contributes both of its outer
 arcs.  The fixed-row side is chosen source-faithfully; quotient reflection is
 not treated as a free operation on the fixed CCW chart.  Seven coarse
-provenance schemas are common to all twelve records; no
-common two-row or exact local-offset schema exists.  Four records still have no
-witness using only centers in the image of the fixed critical system.  Thus the
-live occurrence theorem must choose one completion shell late from `D.K4` and
-must permit both sides of that row; fixed critical rows alone remain
-insufficient.  This is exact finite evidence about the stored `n = 11`
-projections, not arbitrary-card source coverage.
+provenance schemas are common to all twelve records; no common two-row or exact
+local-offset schema exists.  Four records still have no witness using only
+centers in the image of the fixed critical system.  This remains exact finite
+evidence about the stored `n = 11` projections, not arbitrary-card source
+coverage.
+
+The one-completion-row interface is not the correct uniform robust-arm
+contract.  Full deletion robustness at an arbitrary carrier center now has a
+checked exact radius classification: either one complete class has cardinality
+at least five, or two distinct K4 radii admit support-disjoint selected rows.
+The large-class arm supplies two support-distinct four-subsets of its common
+class.  Consequently `TwoCompletionRowMiddleArcPlacement` permits independent
+left and right completion rows at one common center and still maps directly to
+the checked four-arc curvature terminal.  The older
+`ThreeRowMiddleArcPlacement` embeds by choosing the same row twice.  This
+strictly weakens the producer interface, but it does not prove the cyclic gaps.
 
 The source side of that empirical distinction is now kernel-checked.  The late
 blocker endomap has two distinct sources in its exact four-source first-apex
@@ -8715,23 +8724,35 @@ fiber, so it is noninjective and therefore nonsurjective on the finite carrier.
 center outside the entire fixed blocker image and, from global `D.K4`, a
 selected four-point completion row there.  Together with
 `exists_fixedImageTwoRowIngress`, the live inputs therefore supply the two
-fixed-image rows and a genuinely late omitted-image completion row.  The exact
-remaining producer is only their cyclic placement: choose one transported
-outer side from each fixed row so that the three explicit gap inequalities of
-`ThreeRowMiddleArcPlacement` hold between the completion row's two native outer
-arcs.
+fixed-image rows and a genuinely late omitted-image completion row.
+`CompleteRadiusSpineIngress` sharpens this source packet: every selected row at
+either fixed blocker-image center is locked to that center's complete critical
+shell, the omitted completion center is distinct from both fixed centers, and
+the checked two-step mutual-triangle metric chain forces its sixth membership
+whenever the other five incidences occur.  The source declarations still do not
+produce those five cross-row incidences or the three cyclic gaps.
 
-This remaining placement is not a selected-row incidence theorem in disguise.
-Exact `n = 11` counterpatterns survive after simultaneously imposing the
-distinct-center support-intersection bound `<= 2`, a fixed-point-free total
-blocker map, source membership in the corresponding blocker row, the exact
-first-apex fiber, selected-row strong connectivity, the exact-two cap profile,
-and an exact rational scalar-curvature model.  Both physical profiles still
-admit no four-arc packing in that abstraction.  These are not Euclidean
-counterexamples, but they retire complete-row intersection and critical-map
-incidence as sufficient inputs.  The next proof must consume information the
-counterpatterns omit: complete ambient radius partitions with deletion
-criticality/robustness, or MEC/cap geometry together with `noM44`.
+The former two no-packing counterpatterns are not source-valid.  Each violates
+the newly checked complete-radius support lock at exactly one blocker-image
+center: profile four at `(anchor,middle,blocker) = (0,8,6)` and profile five at
+`(5,0,3)`.  Symmetry of distance transports the two mutual row equalities to
+the blocker radius, and erased-source criticality makes the blocker row the
+complete shell, forcing the omitted reverse membership.  The Lean producer
+`mem_blockerImageSelectedRow_of_twoStep_mutualTriangle` is source-clean, and
+the independent replay rejects both obsolete fixtures.  They must no longer
+be cited as obstructions to the curvature route.
+
+That triangle is not universal.  A pinned profile-four round-four projection
+satisfies every blocker-image support lock and contains no such omission; it
+is separately eliminated by 326 checked curvature witnesses.  Thus the live
+coverage target is a disjunction: a checked strict-window/full-cover curvature
+terminal, or a violation of a blocker-image support lock (impossible at the
+Lean source level).  For the robust global-deletion arms, exact split-row
+regressions also show that two arbitrary rows at the omitted center, even with
+bisector localization and circle-intersection bounds, do not force the four
+arcs.  Any robust proof must visibly retain the five-class collision or
+minimal-core/cap-complement provenance.  The singleton minimal-core arm remains
+separate.
 
 The first batched continuation exposed and then corrected a cut-classification
 bug: mask-disjoint arcs whose union was the whole cyclic period were being
@@ -8747,9 +8768,16 @@ UNSAT scalar ledger with no checked four-arc terminal now stops fail-closed as
 also refuses nonempty output directories, hash-binds the encoder, verifier,
 banks, seed registry, and both Lean consumers, asserts every semantic replay
 flag, and checks the final DIMACS/manifest/in-memory clause counts after a
-round-cap rewrite.  All integrity regressions pass.  No corrected primary run
-is live at this checkpoint, and no pre-repair round-cap result is proof
-evidence or current coverage status.
+round-cap rewrite.  The outer encoder and independent verifier now also replay
+the kernel-backed cross-center radius transport and direct blocker-image
+membership closure; the driver hash-binds that Lean producer.  Fresh corrected
+profile-four and profile-five runs are active in the
+`exact_two_opp1_{4,5}_complete_radius_v2_a61b34a6` output directories.  Their
+current published prefixes are five SAT/curvature-UNSAT rounds for profile four
+and two for profile five.  Every completed round passed semantic replay and
+installed only checked strict-window/full-cover terminal-orbit cuts; both runs
+remain active, so no terminal coverage claim is made.  No pre-repair or
+pre-support-lock result is proof evidence or current coverage status.
 
 The aligned three-strict-hit arm now retains that premise directly in
 `AlignedInteriorFrontier`; no compatibility wrapper or data-losing rebase
@@ -8772,18 +8800,19 @@ global-K4 theorem must force a second same-cap row sharing the fresh shell's
 outside pair, or construct a complete alternative `IsM44` packet.  Merely
 restating strict-interior data or total criticality is nonterminal.
 
-Therefore the primary live exact-four producer is now a source-faithful
-three-row global-K4 occurrence of four quarter-turn shell arcs in one
-transported boundary lift, landing either in the strict-window packet or the
-cyclic full-cover packet.  This is a smaller and more uniform endpoint than the
-multirow Kalmanson schemas and it exactly matches every current stored
-exact-two survivor.  A two-point shared row in Kalmanson order or a complete
-alternative `IsM44` packet remains a fallback.  Pure selected-row strong
-connectivity, universal subset escape by itself, another unclassified
-fixed-card literal CEGAR stream, and conditional adapters are not accepted
-substitutes.  All new Lean declarations above pass warnings-as-errors and have
-axiom closure exactly `[propext, Classical.choice, Quot.sound]`; no production
-`sorry` is closed by this checkpoint.
+Therefore the primary exact-four coverage question is now source-faithful and
+two-tiered.  On the ordinary exact-two source surface, combine complete-radius
+support-lock closure with the checked strict-window/full-cover curvature
+terminals.  On the global-deletion robust arms, use the weaker two-completion-
+row consumer while retaining the actual collision or packed-core provenance;
+solve the singleton core separately.  A two-point shared row in Kalmanson
+order or a complete alternative `IsM44` packet remains fallback.  Pure
+selected-row strong connectivity, universal subset escape by itself, arbitrary
+completion-row availability, another unclassified fixed-card literal CEGAR
+stream, and conditional adapters are not accepted substitutes.  All new Lean
+declarations above pass warnings-as-errors and have axiom closure exactly
+`[propext, Classical.choice, Quot.sound]`; no production `sorry` is closed by
+this checkpoint.
 
 ## Change control
 

@@ -1,0 +1,54 @@
+{
+  "conclusion": "Strict-pair bisector localization does not force any of the three ThreeRowMiddleArcPlacement gaps in either exact-two profile",
+  "epistemic_status": "EXACT_FINITE_COUNTERPATTERN_TO_SELECTED_ROW_PLUS_BISECTOR_LOCALIZATION",
+  "profiles": [
+    {
+      "bisector_localization_holds": true,
+      "four_arc_packing_absent": true,
+      "nonfirst_pair_hit_centers": [],
+      "pair_hit_centers": [
+        0
+      ],
+      "placement_reason": "ThreeRowMiddleArcPlacement maps to four disjoint turn arcs, while the independently replayed source model has no such packing",
+      "profile": 4,
+      "source": "scratch/atail-force/unique4-three-row-placement-source-audit/critical_map_profile4.json",
+      "source_sha256": "d64891ea0e9aee73f5b67cdc3cf45a7416def03fee7884466dce2c9d8abf9e9c",
+      "source_status": "SAT_NO_FOUR_ARC_PACKING",
+      "strict_cap": [
+        5,
+        6
+      ],
+      "strict_pair": [
+        5,
+        6
+      ],
+      "three_row_middle_arc_placement_absent": true
+    },
+    {
+      "bisector_localization_holds": true,
+      "four_arc_packing_absent": true,
+      "nonfirst_pair_hit_centers": [],
+      "pair_hit_centers": [
+        0
+      ],
+      "placement_reason": "ThreeRowMiddleArcPlacement maps to four disjoint turn arcs, while the independently replayed source model has no such packing",
+      "profile": 5,
+      "source": "scratch/atail-force/unique4-three-row-placement-source-audit/critical_map_profile5.json",
+      "source_sha256": "8ae5b7c5ed277ef933d40fffc5db900fe5241ca99baed5829d1127d1f024d11c",
+      "source_status": "SAT_NO_FOUR_ARC_PACKING",
+      "strict_cap": [
+        5,
+        6,
+        7
+      ],
+      "strict_pair": [
+        5,
+        6
+      ],
+      "three_row_middle_arc_placement_absent": true
+    }
+  ],
+  "scope_warning": "n=11 selected-row abstraction only; not Euclidean realizability, MEC/noM44, complete radius partitions, or arbitrary-cardinality coverage",
+  "search_script": "scratch/atail-force/unique4-three-row-placement-source-audit/search_arc_packing_critical_map.py",
+  "search_script_sha256": "cbf83b69e5d8d5eb3968a7c0a1fcf886ce4ac5f1a71cbb5bb566ad9ec0f3df40"
+}
