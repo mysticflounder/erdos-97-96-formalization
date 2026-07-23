@@ -8799,7 +8799,7 @@ profile five additionally needs the six-role generic consumer
 `false_of_two_k2_three_row_triangle`.  An exact transport audit found that the
 apparent extra p5 refinement was the same theorem after boundary reflection
 and a cyclic re-cut; the v3 seed bank installs all four required oriented
-families.  The p4 terminal is now externally exact DRAT-verified.  Its
+families.  The p4 terminal is externally exact DRAT-verified.  Its
 hash-bound formula has 12,672 variables and 2,765,403 clauses; CaDiCaL
 produced a 248,900,779-byte proof and `drat-trim` returned exact verdict
 `s VERIFIED`.  The CNF and proof SHA-256 digests are respectively
@@ -8809,9 +8809,19 @@ and
 The independent checker also replays the exact transported tail clauses and
 their order-preserving restriction to the kernel-checked p4 consumer.  This
 is an external certificate for the fixed Boolean projection, not a Lean proof
-of the encoder or an arbitrary-card occurrence theorem.  P5 remains
-`BOOLEAN_UNSAT_PENDING_PROOF_REPLAY`; its p5-v3 run used zero refinements after
-installing the complete oriented seed family.
+of the encoder or an arbitrary-card occurrence theorem.  The p5-v3 terminal
+is now independently exact DRAT-verified as well.  Its formula has 12,672
+variables and 2,768,417 clauses, CNF SHA-256
+`cbfd6ad9559dce5c9da5874a15da0ba7b5c876dfbaa056fc6eb009fc107119a1`,
+and a 184,212,068-byte proof with SHA-256
+`21d83f574691d268aabe24badc7d4cb2a836a4a0b80a851845334096293d0841`.
+`drat-trim` returned literal verdict `s VERIFIED` after 2,698.113 seconds.
+The independent manifest reconstructs all 3,012 unique seeded clauses from
+3,102 oriented embeddings and replays the four order-preserving occurrences
+against the kernel-checked generic consumers.  Thus both fixed-`n = 11`
+profiles are externally certified; neither certificate proves the Python
+source encoding, an arbitrary-cardinality occurrence theorem, or a Lean
+source closure.
 
 The arbitrary-cardinality source route has now advanced past the earlier
 occurrence-only boundary.  The warning-clean scratch development
@@ -8842,6 +8852,42 @@ consume the original `OriginalUniqueFourResidual` together with the new
 physical common-deletion ingress.  All six public source-reduction theorems
 have axiom closure exactly `[propext, Classical.choice, Quot.sound]`; no source
 `sorry` is closed at this checkpoint.
+
+The protected swapped constructor has now been coupled source-cleanly to the
+original residual in
+`scratch/atail-force/unique4-swapped-terminal/SwappedExactFourCoupling.lean`.
+The physical second-apex ingress row is the complete swapped exact-four class;
+the original and swapped retained pairs avoid the opposite class and are
+disjoint; each exact class has at least two points in its own strict opposite
+cap; and the two classes meet in at most two points.  The existing
+`biApex_two_by_two_survival_normal_form` applies, but its four outputs are only
+two `CommonDeletionTwoCenterPacket` arms and two `CrossedCriticalNormalForm`
+arms.  None supplies the common outside pair, dangerous-triple incidence, or
+metric tail required by a terminal.
+
+The swapped audit's first linear fixture was rejected because it violated
+endpoint one-hit.  The corrected audit enforces endpoint one-hit at both
+physical apices, cap-chain one-hit at the third center, all triangle
+inequalities, and every strict Kalmanson inequality.  That corrected QF_LRA
+surface is still `SAT`.  This is exact only in the stated rational linear
+distance abstraction: it omits a globally coherent critical system,
+minimality, MEC geometry, and `noM44`, and is not a Euclidean or Problem 97
+counterexample.  It does establish that another local linear continuation is
+not the missing terminal.
+
+The robust physical-second-apex arm has an equally sharp local boundary in
+`scratch/atail-force/unique4-robust-o2-terminal/`.  Every nonalternating
+two-point overlap between the original first-apex class and the retained
+physical-second-apex row is already impossible by the four production
+two-center bisector-parity terminals.  Hence the honest exhaustive overlap
+split is cardinality at most one, or cardinality two with the common pair
+alternating around the convex boundary.  Exact full-linear witnesses survive
+both overlap shapes in the exact-five large-radius-class subarm.  Those
+witnesses deliberately do not cover the other robust radius alternative of
+two disjoint K4 radii.  Consequently the robust arm is not closed by the three
+local rows or by a shared-pair consumer; it needs global K4/minimality,
+full-fiber provenance, nonlinear/MEC geometry, or a complete alternative
+`IsM44` packet.
 
 The finite exhaustion does not supply the arbitrary-card lift.  Exact `n = 12`
 SAT tables exist which satisfy the selected-row/cardinality/blocker/

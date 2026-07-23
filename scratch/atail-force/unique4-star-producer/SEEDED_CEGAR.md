@@ -99,13 +99,21 @@ refinements.  Its terminal CNF SHA-256 is
 `cbfd6ad9559dce5c9da5874a15da0ba7b5c876dfbaa056fc6eb009fc107119a1`.
 
 Thus the corrected fixed-`n = 11` p4 and p5 projections are both Boolean UNSAT
-after the generic oriented seed families.  This does **not** close a Lean
-source obligation: the CNFs still need checked proof replay, and fixed-cardinal
-occurrence/coverage is not the arbitrary-cardinality source producer.
+after the generic oriented seed families.  The p5-v3 terminal now has an
+independently checked DRAT certificate, recorded in
+`../unique4-p5-v3-full-linear-certificate/`.  `drat-trim` returned literal
+`s VERIFIED` for the exact CNF with SHA-256
+`cbfd6ad9559dce5c9da5874a15da0ba7b5c876dfbaa056fc6eb009fc107119a1`.
+The untracked 184,212,068-byte proof has SHA-256
+`21d83f574691d268aabe24badc7d4cb2a836a4a0b80a851845334096293d0841`.
 
-Their solver statuses are discovery evidence only.  A Boolean UNSAT still
-needs proof replay, and any newly mined full-linear schema still needs exact
-certificate replay and a Lean consumer before it can become a trusted cut.
+This does **not** close a Lean source obligation.  The p4 terminal is also
+independently DRAT-verified in
+`../unique4-p4-full-linear-certificate/`, so both hashed fixed-`n = 11`
+projections are exact at the external certificate boundary.  Any source-level
+use still needs a coverage lift from the actual arbitrary-cardinality parent
+data.  Any newly mined full-linear schema still needs exact certificate replay
+and a Lean consumer before it can become a trusted cut.
 
 Replay the static validation with:
 

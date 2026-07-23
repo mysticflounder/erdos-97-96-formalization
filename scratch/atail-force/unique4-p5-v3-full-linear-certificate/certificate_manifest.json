@@ -1,0 +1,325 @@
+{
+  "checkpoint": {
+    "path": "scratch/atail-force/unique4-star-producer/seeded_v3_full_linear_cegar_p5.json",
+    "sha256": "b793427bfb70f2a2c82de093baeb3dc1e538757499d31542acda57f31200b6a2",
+    "stored_terminal_status": "BOOLEAN_UNSAT_PENDING_PROOF_REPLAY"
+  },
+  "cnf": {
+    "byte_count": 158403304,
+    "clause_count": 2768417,
+    "max_variable_used": 12672,
+    "sha256": "cbfd6ad9559dce5c9da5874a15da0ba7b5c876dfbaa056fc6eb009fc107119a1",
+    "syntax_status": "VERIFIED_STREAMING_DIMACS",
+    "variable_count": 12672
+  },
+  "encoder_source_hashes": {
+    "scratch/atail-force/unique-arm-whole-carrier-source-audit/exact_four_outer.py": "7da28c7f16218cbd6ef2dc7fbca9c00485d5be5493e6e1b0da8f7dd67702ecbd",
+    "scratch/atail-force/unique-arm-whole-carrier-source-audit/u5_signed_schema_bank.json": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46",
+    "scratch/atail-force/unique4-curvature-direct-overlay/direct_curvature_overlay.py": "9f01ebd1650d987d1498a9e17d77e7bf14b9cadf056a7b7f8e96396a1e66693b",
+    "scratch/atail-force/unique4-curvature-occurrence-census/kalmanson_schema_bank.kernel_only.json": "26ccfafca4308a7415aa82fdc0cc32a4348363a9633c30663c181df8951c679e",
+    "scratch/atail-force/unique4-star-producer/kalmanson_row_instance_schemas_seeded_v3.json": "46b3d5f52029f1bab83f455717e7532b0669e2763f8ad882eabeff1749e69473",
+    "scratch/atail-force/unique4-star-producer/run_direct_overlay_with_own_cap.py": "ce27d4775187ac16a995e997248ff89f4dc100ec90de6ed37738f6b40c647762",
+    "scratch/atail-force/unique4-star-producer/run_full_linear_cegar.py": "c30637593c29d57189707101622dfebfb75cb2a0d9ff5e5a5d8e3f4c03f46a9c",
+    "scratch/atail-force/unique4-star-producer/run_seeded_full_linear_cegar.py": "6c89c38586e6ac60d79ec6b534cc2be2479a9033767fbd0eb57c0f8c86bd1927",
+    "scratch/atail-force/whole-carrier-ordinal-coverage/full_linear_replay.py": "661237bf8d084fc62332b675504a539b4a6f43ee039120bfc013618fd86cb085",
+    "scratch/atail-force/whole-carrier-planar-rank-cegar/planar_schema_bank.json": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72"
+  },
+  "epistemic_status": "EXACT_DRAT_VERIFIED_BOOLEAN_UNSAT_FOR_HASHED_FIXED_N11_CNF",
+  "kernel_consumer_occurrences": {
+    "lean_consumer_sources": {
+      "scratch/atail-force/unique4-kalmanson-occurrence/SixRoleKalmansonTriangle.lean": {
+        "sha256": "641e6f7346f3fe524352053ba8d7cc0ce85aeeb4f5ac7397ed267645767916c1",
+        "textual_hole_scan": "PASS"
+      },
+      "scratch/atail-force/unique4-source-field-audit/CorrectedOwnCapKalmansonCores.lean": {
+        "sha256": "834fe68450744119221e9952f35871f9626e3db9f9108eb0ad3e34144d6908cc",
+        "textual_hole_scan": "PASS"
+      }
+    },
+    "record_count": 4,
+    "records": [
+      {
+        "checked_memberships": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            10
+          ]
+        ],
+        "lean_consumer": "Problem97.CorrectedOwnCapKalmansonCoresScratch.false_of_four_endpoint_k2_three_row_instances",
+        "record_id": "corrected-owncap-p4-four-k2",
+        "record_sha256": "459fac93093b305078aff79e067fab2ba0968305ba8a5f494c91f6c69648424b",
+        "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p4.json",
+        "source_artifact_sha256": "8a1662080001c1041219bf91ed82588835b79ba0069fdb044a204de2e2db14e3",
+        "source_vertices_by_role": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          9,
+          10
+        ],
+        "status": "VERIFIED_PRESERVED_ORDERED_OCCURRENCE"
+      },
+      {
+        "checked_memberships": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            10
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            10,
+            8
+          ]
+        ],
+        "lean_consumer": "Problem97.CorrectedOwnCapKalmansonCoresScratch.false_of_two_k1_two_k2_four_row_instances",
+        "record_id": "corrected-owncap-p5-two-k1-two-k2",
+        "record_sha256": "61f123c8b6fb874291d2579c022e6a6d5df925efcf9dfe2117cf2a1e5280a6ec",
+        "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p5.json",
+        "source_artifact_sha256": "77649d222a14aecd3847905f724332e82c441f66bfda359a374c288dcbc8af27",
+        "source_vertices_by_role": [
+          0,
+          1,
+          2,
+          7,
+          8,
+          10
+        ],
+        "status": "VERIFIED_PRESERVED_ORDERED_OCCURRENCE"
+      },
+      {
+        "checked_memberships": [
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            10
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            8
+          ]
+        ],
+        "lean_consumer": "Problem97.UniqueFourKalmansonOccurrenceScratch.false_of_two_k2_three_row_triangle",
+        "record_id": "corrected-unseeded-p5-six-role-k2-triangle",
+        "record_sha256": "588c20e85ac805049802c81b7d97d2f2a19cad139e72fab3343ea1b42bd222f4",
+        "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p5.json",
+        "source_artifact_sha256": "77649d222a14aecd3847905f724332e82c441f66bfda359a374c288dcbc8af27",
+        "source_vertices_by_role": [
+          0,
+          1,
+          2,
+          7,
+          8,
+          10
+        ],
+        "status": "VERIFIED_PRESERVED_ORDERED_OCCURRENCE"
+      },
+      {
+        "checked_memberships": [
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            10
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            10
+          ]
+        ],
+        "lean_consumer": "Problem97.UniqueFourKalmansonOccurrenceScratch.false_of_two_k2_three_row_triangle",
+        "record_id": "corrected-p5-six-role-k2-triangle-block-reflected",
+        "record_sha256": "b0692de7d61c6c5d03c9818477b319b65fab71bf12bfd8081110b979b700ffb3",
+        "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p5.json",
+        "source_artifact_sha256": "77649d222a14aecd3847905f724332e82c441f66bfda359a374c288dcbc8af27",
+        "source_vertices_by_role": [
+          0,
+          3,
+          4,
+          5,
+          6,
+          10
+        ],
+        "status": "VERIFIED_PRESERVED_ORDERED_OCCURRENCE"
+      }
+    ],
+    "schema_bank": "scratch/atail-force/unique4-star-producer/kalmanson_row_instance_schemas_seeded_v3.json",
+    "schema_bank_sha256": "46b3d5f52029f1bab83f455717e7532b0669e2763f8ad882eabeff1749e69473",
+    "status": "VERIFIED_ALL_DISTINCT_ROW_INSTANCE_OCCURRENCES"
+  },
+  "proof": {
+    "byte_count": 184212068,
+    "format": "CaDiCaL binary DRAT",
+    "path_role": "external replay artifact; intentionally not tracked",
+    "sha256": "21d83f574691d268aabe24badc7d4cb2a836a4a0b80a851845334096293d0841",
+    "verification": {
+      "checker": "drat-trim",
+      "command": [
+        "drat-trim",
+        "<exact-cnf>",
+        "<exact-proof>"
+      ],
+      "elapsed_seconds": 2698.1396822910756,
+      "output_sha256": "90d73a30aeddbe3e7b8f53d2824eda0951de9edc6846c6eae088fb1970807525",
+      "output_tail": [
+        "c turning on binary mode checking",
+        "c parsing input formula with 12672 variables and 2768417 clauses",
+        "c finished parsing, read 184212068 bytes from proof file",
+        "c detected empty clause; start verification via backward checking",
+        "c 61065 of 2768417 clauses in core                            ",
+        "c 570242 of 2549793 lemmas in core using 36541217 resolution steps",
+        "c 29341 RAT lemmas in core; 396364 redundant literals in core lemmas",
+        "s VERIFIED",
+        "c verification time: 2698.113 seconds"
+      ],
+      "returncode": 0,
+      "verdict": "s VERIFIED"
+    }
+  },
+  "schema": "p97-unique4-p5-v3-full-linear-drat-certificate-v1",
+  "scope": "The hashed fixed n=11 opp1_card=5 Boolean projection only; not an arbitrary-cardinality theorem and not a Lean sorry closure.",
+  "seeded_cut_replay": {
+    "combined_cut_set_sha256": "983e6e8d8553089efd1797eef3ee8c5389308ea23b2ad3128fb32200f244869d",
+    "record_count": 4,
+    "records": [
+      {
+        "covered_oriented_embedding_count": 330,
+        "cut_set_sha256": "77a75df19301a7ee4502a12d4daa4040df0e5e3b236915f26b530e64bed029fd",
+        "id": "corrected-owncap-p4-four-k2",
+        "overlap_with_prior_record_cut_count": 0,
+        "record_sha256": "459fac93093b305078aff79e067fab2ba0968305ba8a5f494c91f6c69648424b",
+        "unique_record_cut_count": 240
+      },
+      {
+        "covered_oriented_embedding_count": 924,
+        "cut_set_sha256": "7cfce6bd14b487048e43589dcc8eb3909e67d6a9685f199ed6b50fad16bc7783",
+        "id": "corrected-owncap-p5-two-k1-two-k2",
+        "overlap_with_prior_record_cut_count": 0,
+        "record_sha256": "61f123c8b6fb874291d2579c022e6a6d5df925efcf9dfe2117cf2a1e5280a6ec",
+        "unique_record_cut_count": 924
+      },
+      {
+        "covered_oriented_embedding_count": 924,
+        "cut_set_sha256": "74bc3f88645acbd41eff448aed52bb9c1dd4ecb9d92b03ff67646c7bce39144e",
+        "id": "corrected-unseeded-p5-six-role-k2-triangle",
+        "overlap_with_prior_record_cut_count": 0,
+        "record_sha256": "588c20e85ac805049802c81b7d97d2f2a19cad139e72fab3343ea1b42bd222f4",
+        "unique_record_cut_count": 924
+      },
+      {
+        "covered_oriented_embedding_count": 924,
+        "cut_set_sha256": "5b286c8d2dc7f5503ed525919e8215eb82003e0c2c009008f116aea99fb5d272",
+        "id": "corrected-p5-six-role-k2-triangle-block-reflected",
+        "overlap_with_prior_record_cut_count": 0,
+        "record_sha256": "b0692de7d61c6c5d03c9818477b319b65fab71bf12bfd8081110b979b700ffb3",
+        "unique_record_cut_count": 924
+      }
+    ],
+    "total_covered_oriented_embedding_count": 3102,
+    "total_unique_cut_count": 3012
+  },
+  "stored_bare_solver_log": {
+    "sha256": "d494b3f280721d976e2f83790646a9f56aadb7de7695edbdae1ab1cb51916739",
+    "status": "VERIFIED_EXIT20_UNSAT_TEXT"
+  },
+  "trust_boundary": [
+    "drat-trim verifies UNSAT of the exact hashed CNF, not the mathematics",
+    "the encoding-to-fixed-projection map remains an audited Python contract",
+    "the seed cuts use separately kernel-checked generic consumers and exact transport replay",
+    "no arbitrary-cardinality occurrence/coverage theorem is supplied"
+  ]
+}
