@@ -8860,15 +8860,30 @@ and DRAT SHA-256
 `drat-trim` returns `s VERIFIED` with a 6,350-clause input core.  Its exact
 generator map has no unmatched clauses and does not use selected-row strong
 connectivity, the retained pair, the second-apex deletion row, or any of the
-removed families.  This greedy bank is not claimed globally minimal.  The
-exact next formal target is a source occurrence theorem producing one of
-those four patterns from the aligned card-eleven packet, or a Lean-defined
-compact CNF plus a source-to-valuation theorem and kernel LRAT replay.  This
-completes the external finite decision of all three card-eleven source
-constructors, but not their Lean ingress and not the arbitrary-card
-unique-radius theorem.  No source `sorry` is closed by this checkpoint.  The
-scoped artifacts are in
-`scratch/atail-force/unique4-aligned-p5-terminal/`.
+removed families.  This greedy bank is not claimed globally minimal.
+
+The aligned source occurrence theorem is now closed in
+`scratch/atail-force/unique4-aligned-p5-occurrence/`.  Direct and mirror
+card-eleven boundary packets construct actual `FaithfulCarrierPattern`s and
+trace their selected rows through separate closed native searches.  Both
+searches return one of Kalmanson schemas `1, 4, 6, 9`; the common geometric
+decoder transports each executable occurrence into its checked consumer.
+The final theorem
+`ATailUniqueFourAlignedP5BoundaryScratch.false_of_alignedInteriorFrontier`
+compiles warning-clean with axiom footprint exactly
+`[propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
+Quot.sound]`.  It contains no `sorry`, `admit`, project-specific axiom, or
+temporary interface axiom.
+
+This closes the aligned-p5 constructor of
+`CardElevenUniqueFourCoverage`, but not the two exact-two constructors and not
+the arbitrary-card unique-radius theorem.  P4 exact-two and p5 exact-two still
+need source-valid direct/mirror occurrence ingress.  Their old DRAT manifests
+retain only aggregate input-core counts, not clause identities or provenance,
+so the immediate finite task is to regenerate the 48,605- and 61,065-clause
+input cores and map every retained clause to its semantic family and Lean
+consumer before choosing a native classifier surface.  No production source
+`sorry` is closed by this checkpoint.
 
 The arbitrary-cardinality source route has now advanced past the earlier
 occurrence-only boundary.  The warning-clean scratch development
