@@ -7,6 +7,7 @@ Authors: Adam McKenna
 import GenericFamilies
 import Erdos9796Proof.P97.SurplusM44Packet.Shard02
 import Erdos9796Proof.P97.CapSelectedRowCounting
+import Erdos9796Proof.P97.Census554.GeometryBridge
 
 /-!
 # Direct-branch cap-position family satisfaction
@@ -37,8 +38,9 @@ open ATailUniqueFourAlignedP5BoundaryScratch
 open ATailUniqueFourClassCapDistributionScratch
 open ATailUniqueFourExactTwoBoundaryScratch
 open ATailUniqueFourExactTwoSchemaDecoderScratch
+open Census554
 
-/-! ## Cap identification helpers (clones of private aligned-boundary
+/- ## Cap identification helpers (clones of private aligned-boundary
 helpers) -/
 
 private theorem capByIndex_surplusIdx_eq_surplusCap
@@ -121,7 +123,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     S.oppCap1.card = 5 ∧ S.oppCap2.card = 4}
   {distribution : ExactTwoStrictHitDistribution R}
 
-/-! ## Closed-cap image lemmas on the bare direct aligned boundary -/
+/- ## Closed-cap image lemmas on the bare direct aligned boundary -/
 
 theorem directSurplusClosedIndices_image (B : DirectAlignedBoundary S)
     (hprofile : S.surplusCap.card = 5 ∧
@@ -230,7 +232,8 @@ theorem strict_interior_index_mem (B : DirectAlignedBoundary S)
   have hsubcap := S.capInteriorByIndex_subset_capByIndex
     (i := S.oppIndex1) h
   fin_cases idx
-  · rw [B.boundary_zero, oppApex1_eq_indexedVertex] at h
+  · replace h : B.boundary 0 ∈ S.capInteriorByIndex S.oppIndex1 := h
+    rw [B.boundary_zero, oppApex1_eq_indexedVertex] at h
     exact absurd (S.oppositeVertexByIndex_mem_triangle_verts _)
       (S.capInteriorByIndex_not_mem_triangle_verts h)
   · have hmem : B.boundary 1 ∈ S.capInteriorByIndex S.surplusIdx := by
@@ -251,13 +254,15 @@ theorem strict_interior_index_mem (B : DirectAlignedBoundary S)
     exact absurd hsubcap
       (S.capInteriorByIndex_not_mem_capByIndex_of_ne hmem
         S.surplusIdx_ne_oppIndex1)
-  · rw [B.boundary_four, oppApex2_eq_indexedVertex] at h
+  · replace h : B.boundary 4 ∈ S.capInteriorByIndex S.oppIndex1 := h
+    rw [B.boundary_four, oppApex2_eq_indexedVertex] at h
     exact absurd (S.oppositeVertexByIndex_mem_triangle_verts _)
       (S.capInteriorByIndex_not_mem_triangle_verts h)
   · decide
   · decide
   · decide
-  · rw [B.boundary_eight] at h
+  · replace h : B.boundary 8 ∈ S.capInteriorByIndex S.oppIndex1 := h
+    rw [B.boundary_eight] at h
     exact absurd (S.oppositeVertexByIndex_mem_triangle_verts _)
       (S.capInteriorByIndex_not_mem_triangle_verts h)
   · have hmem : B.boundary 9 ∈ S.capInteriorByIndex S.oppIndex2 := by
@@ -281,16 +286,16 @@ theorem boundary_mem_capByIndex_of_position
     {k : Fin 3} {p : Label} (hp : p ∈ cnfCapPositions k) :
     B.boundary p ∈ S.capByIndex (sCapIdx S k) := by
   fin_cases k
-  · rw [show sCapIdx S 0 = S.surplusIdx from rfl,
-      capByIndex_surplusIdx_eq_surplusCap,
+  · show B.boundary p ∈ S.capByIndex S.surplusIdx
+    rw [capByIndex_surplusIdx_eq_surplusCap,
       ← directSurplusClosedIndices_image B hprofile]
     exact Finset.mem_image_of_mem _ hp
-  · rw [show sCapIdx S 1 = S.oppIndex1 from rfl,
-      capByIndex_oppIndex1_eq_oppCap1,
+  · show B.boundary p ∈ S.capByIndex S.oppIndex1
+    rw [capByIndex_oppIndex1_eq_oppCap1,
       ← directFirstOppositeClosedIndices_image B hprofile]
     exact Finset.mem_image_of_mem _ hp
-  · rw [show sCapIdx S 2 = S.oppIndex2 from rfl,
-      capByIndex_oppIndex2_eq_oppCap2,
+  · show B.boundary p ∈ S.capByIndex S.oppIndex2
+    rw [capByIndex_oppIndex2_eq_oppCap2,
       ← directSecondOppositeClosedIndices_image B hprofile]
     exact Finset.mem_image_of_mem _ hp
 
@@ -303,21 +308,27 @@ theorem boundary_endpoint_eq (B : DirectAlignedBoundary S)
   fin_cases k <;>
     simp only [cnfCapEndpoints, Finset.mem_insert,
       Finset.mem_singleton] at hc
-  · rcases hc with rfl | rfl
+  · show B.boundary c = (S.triangleByIndex S.surplusIdx).v2 ∨
+      B.boundary c = (S.triangleByIndex S.surplusIdx).v3
+    rcases hc with rfl | rfl
     · exact Or.inl (by
         rw [B.boundary_zero, oppApex1_eq_indexedVertex,
           S.triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1])
     · exact Or.inr (by
         rw [B.boundary_four, oppApex2_eq_indexedVertex,
           S.triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2])
-  · rcases hc with rfl | rfl
+  · show B.boundary c = (S.triangleByIndex S.oppIndex1).v2 ∨
+      B.boundary c = (S.triangleByIndex S.oppIndex1).v3
+    rcases hc with rfl | rfl
     · exact Or.inl (by
         rw [B.boundary_four, oppApex2_eq_indexedVertex,
           S.triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2])
     · exact Or.inr (by
         rw [B.boundary_eight,
           S.triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx])
-  · rcases hc with rfl | rfl
+  · show B.boundary c = (S.triangleByIndex S.oppIndex2).v2 ∨
+      B.boundary c = (S.triangleByIndex S.oppIndex2).v3
+    rcases hc with rfl | rfl
     · exact Or.inl (by
         rw [B.boundary_eight,
           S.triangleByIndex_oppIndex2_v2_eq_oppositeVertexByIndex_surplusIdx])
@@ -325,7 +336,7 @@ theorem boundary_endpoint_eq (B : DirectAlignedBoundary S)
         rw [B.boundary_zero, oppApex1_eq_indexedVertex,
           S.triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1])
 
-/-! ## Families 8-10 -/
+/- ## Families 8-10 -/
 
 /-- Family `exact_two_strict_hits_at_least_2` on the direct branch. -/
 theorem exactTwoStrictHitsAtLeastTwoSat_direct
@@ -366,9 +377,10 @@ theorem exactTwoStrictHitsAtLeastTwoSat_direct
     (s := ({5, 6, 7} : Finset Label) \ {i, j})
     (f := P.core.boundary)
   have hsdcard : ((({5, 6, 7} : Finset Label)) \ {i, j}).card = 1 := by
-    rw [Finset.card_sdiff hijsub]
-    rw [Finset.card_insert_of_not_mem
-      (by simpa [Finset.mem_singleton] using hij)]
+    have hijcard : ({i, j} : Finset Label).card = 2 := by
+      rw [Finset.card_insert_of_notMem (by simp [hij]),
+        Finset.card_singleton]
+    rw [Finset.card_sdiff_of_subset hijsub, hijcard]
     decide
   rw [h2] at hle
   omega
@@ -415,7 +427,7 @@ theorem exactTwoRightAdjacentHitAtLeastOneSat_direct
   obtain ⟨p, hp, rfl⟩ := Finset.mem_image.mp hxcap
   exact ⟨p, hp, hxclass⟩
 
-/-! ## Families 11-16 -/
+/- ## Families 11-16 -/
 
 /-- The selected row of a CNF endpoint center meets its own closed cap in
 at most one point. -/
@@ -436,27 +448,23 @@ private theorem endpoint_row_inter_cap_card_le_one
     · rw [classAt_support_congr P.core.carrierPattern
         (boundary_mem_carrier P.core c)
         (Packet.mem_A _) (h2.trans hfirst.symm)]
-      exact CapSelectedRowCounting.
-        selectedFourClass_inter_orderedCap_first_card_le_one
+      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one
         Packet Hside Hord _
     · rw [classAt_support_congr P.core.carrierPattern
         (boundary_mem_carrier P.core c)
         (Packet.mem_A _) (h3.trans hlast.symm)]
-      exact CapSelectedRowCounting.
-        selectedFourClass_inter_orderedCap_last_card_le_one
+      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one
         Packet Hside Hord _
   · rcases hend with h2 | h3
     · rw [classAt_support_congr P.core.carrierPattern
         (boundary_mem_carrier P.core c)
         (Packet.mem_A _) (h2.trans hlast.symm)]
-      exact CapSelectedRowCounting.
-        selectedFourClass_inter_orderedCap_last_card_le_one
+      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one
         Packet Hside Hord _
     · rw [classAt_support_congr P.core.carrierPattern
         (boundary_mem_carrier P.core c)
         (Packet.mem_A _) (h3.trans hfirst.symm)]
-      exact CapSelectedRowCounting.
-        selectedFourClass_inter_orderedCap_first_card_le_one
+      exact CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one
         Packet Hside Hord _
 
 /-- Families `selected_row_endpoint_own_cap_at_most_one_{0,1,2}` on the
@@ -487,7 +495,7 @@ theorem selectedRowEndpointOwnCapAtMostOneSat_direct
       exact Finset.mem_inter.mpr ⟨hrq, hbq⟩
   have hpaircard :
       ({P.core.boundary p, P.core.boundary q} : Finset ℝ²).card = 2 := by
-    rw [Finset.card_insert_of_not_mem, Finset.card_singleton]
+    rw [Finset.card_insert_of_notMem, Finset.card_singleton]
     rw [Finset.mem_singleton]
     intro hbad
     exact hpq (P.core.boundary_injective hbad)
@@ -506,8 +514,7 @@ theorem selectedRowOwnCapAtMostTwoSat_direct
     rw [P.boundary_eq]
     exact boundary_mem_capByIndex_of_position P.orientedBoundary
       profile hc
-  have hle := CapSelectedRowCounting.
-    selectedFourClass_inter_capByIndex_card_le_two S D.convex
+  have hle := CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two S D.convex
     (sCapIdx S k)
     (P.core.carrierPattern.classAt (P.core.boundary c)
       (boundary_mem_carrier P.core c)) hcmem
@@ -537,7 +544,7 @@ theorem selectedRowOwnCapAtMostTwoSat_direct
       exact Finset.mem_inter.mpr ⟨hr3, hb3⟩
   have htriplecard : ({P.core.boundary p₁, P.core.boundary p₂,
       P.core.boundary p₃} : Finset ℝ²).card = 3 := by
-    rw [Finset.card_insert_of_not_mem, Finset.card_insert_of_not_mem,
+    rw [Finset.card_insert_of_notMem, Finset.card_insert_of_notMem,
       Finset.card_singleton]
     · rw [Finset.mem_singleton]
       intro hbad

@@ -49,10 +49,13 @@ TASK_LEAN_PATH="${TASK_DIR}:\
 ../scratch/atail-force/unique4-source-field-audit:\
 ../scratch/atail-force/unique4-kalmanson-occurrence"
 
-for module in IndexedSourceValuation GenericFamilies \
+DEFAULT_MODULES="IndexedSourceValuation GenericFamilies \
     CyclicAlternationCore DirectKalmanson DirectCapFamilies \
     DirectSatisfaction MirrorTransport MirrorKalmanson \
-    MirrorCapFamilies MirrorSatisfaction; do
+    MirrorCapFamilies MirrorSatisfaction"
+MODULES="${*:-$DEFAULT_MODULES}"
+
+for module in $MODULES; do
   echo "== $module"
   LEAN_PATH="$TASK_LEAN_PATH" lake env lean -M16384 -DwarningAsError=true \
     -R "$TASK_DIR" \

@@ -33,7 +33,7 @@ open ATailUniqueFourClassCapDistributionScratch
 open ATailUniqueFourExactTwoBoundaryScratch
 open ATailUniqueFourExactTwoSchemaDecoderScratch
 
-/-! ## `Fin 11` to `Fin A.card` bridge -/
+/- ## `Fin 11` to `Fin A.card` bridge -/
 
 def cardBoundary {A : Finset ℝ²} (hcard : A.card = 11)
     (boundary : Label → ℝ²) : Fin A.card → ℝ² :=
@@ -51,7 +51,7 @@ def toCardIndex {A : Finset ℝ²} (hcard : A.card = 11)
 theorem toCardIndex_lt {A : Finset ℝ²} (hcard : A.card = 11)
     {i j : Label} (h : i < j) :
     toCardIndex hcard i < toCardIndex hcard j := by
-  simpa [toCardIndex, Fin.lt_def] using h
+  simpa only [toCardIndex, Fin.lt_def, Fin.val_cast] using h
 
 theorem cardBoundary_injective {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Label → ℝ²} (hinj : Function.Injective boundary) :
@@ -89,7 +89,7 @@ theorem cardBoundary_ccw {A : Finset ℝ²} (hcard : A.card = 11)
   · simpa using hij
   · simpa using hjk
 
-/-! ## Non-alternating two-center contradiction core -/
+/- ## Non-alternating two-center contradiction core -/
 
 /-- Two centers `l < r` and a chord pair `p < q` (all distinct, CNF
 order) that do not alternate cannot both be equidistant from the chord,

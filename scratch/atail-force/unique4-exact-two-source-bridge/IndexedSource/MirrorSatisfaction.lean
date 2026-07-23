@@ -87,9 +87,9 @@ theorem exists_satisfying_p5_packet
     (∃ P : P5MirrorBoundaryPacket R profile distribution,
       MirrorSatisfaction P.core) := by
   rcases nonempty_p5DirectBoundaryPacket_or_mirror R profile
-    distribution with ⟨P⟩ | ⟨P⟩
-  · exact Or.inl ⟨P, directSatisfaction P⟩
-  · exact Or.inr ⟨P, mirrorSatisfaction P⟩
+    distribution with hP | hP
+  · exact hP.elim fun P => Or.inl ⟨P, directSatisfaction P⟩
+  · exact hP.elim fun P => Or.inr ⟨P, mirrorSatisfaction P⟩
 
 end P5IndexedSourceScratch
 end Problem97

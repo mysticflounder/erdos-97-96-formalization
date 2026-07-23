@@ -33,6 +33,8 @@ open ATailUniqueFourClassCapDistributionScratch
 open ATailUniqueFourExactTwoBoundaryScratch
 open ATailUniqueFourExactTwoSchemaDecoderScratch
 
+attribute [local instance] Classical.propDecidable
+
 variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
   {R : OriginalUniqueFourResidual F}
@@ -102,7 +104,8 @@ theorem mutualTriangleCrossCenterRadiusTransportSat
   exact h2
 
 /-- The boundary positions carrying the selected row of a fixed center. -/
-private def rowHitIndices (Q : ExactTwoBoundaryCore R distribution)
+private noncomputable def rowHitIndices
+    (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (c : Label) : Finset Label :=
   Finset.univ.filter fun p => rowMem Q σ c p
 
@@ -127,7 +130,7 @@ private theorem rowHitIndices_image
       Finite.surjective_of_injective hσ
     rcases hsurj i with ⟨p, rfl⟩
     exact Finset.mem_image.mpr
-      ⟨p, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hx⟩, rfl⟩
+      ⟨p, Finset.mem_filter.mpr ⟨Finset.mem_univ p, hx⟩, rfl⟩
 
 private theorem rowHitIndices_card
     (Q : ExactTwoBoundaryCore R distribution) {σ : Label → Label}
@@ -157,8 +160,9 @@ theorem rowAtLeastFourSat (Q : ExactTwoBoundaryCore R distribution)
     · exact hnone p hpT hrow
   have hcard := Finset.card_le_card hsubset
   rw [rowHitIndices_card Q hσ c, Finset.card_compl,
-    Finset.card_insert_of_not_mem hcT, hTcard] at hcard
-  simp at hcard
+    Finset.card_insert_of_notMem hcT, hTcard] at hcard
+  have hlab : Fintype.card Label = 11 := by simp
+  omega
 
 /-- Family `first_apex_not_in_own_class` holds for every transport fixing
 index `0`. -/

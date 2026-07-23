@@ -38,7 +38,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {R : OriginalUniqueFourResidual F}
   {distribution : ExactTwoStrictHitDistribution R}
 
-/-! ## Role reflection of a fully-true mirror cut instance -/
+/- ## Role reflection of a fully-true mirror cut instance -/
 
 private theorem rolePoint_reflected {targets : List Label} {n : Nat}
     (hlen : targets.length = n) {j : Nat} (hj : j < n) :
@@ -49,12 +49,16 @@ private theorem rolePoint_reflected {targets : List Label} {n : Nat}
     rw [List.length_map, hlen]
   have hrevlen : ((targets.map reflFin).reverse).length = n := by
     rw [List.length_reverse, hmaplen]
-  rw [List.getElem!_pos _ _ (by omega : n - 1 - j < _),
-    List.getElem!_pos _ _ (by omega : j < targets.length)]
+  have hrev : n - 1 - j < ((targets.map reflFin).reverse).length := by
+    omega
+  have hjt : j < targets.length := by omega
+  rw [getElem!_pos ((targets.map reflFin).reverse) (n - 1 - j) hrev,
+    getElem!_pos targets j hjt]
   rw [List.getElem_reverse]
   rw [List.getElem_map]
-  congr 1
-  omega
+  have hidx : (targets.map reflFin).length - 1 - (n - 1 - j) = j := by
+    omega
+  simp only [hidx]
 
 /-- A fully-true mirror cut instance is a Boolean occurrence of the
 role-reflected schema at the reversed targets over the shifted
@@ -96,31 +100,31 @@ private theorem false_of_bank_occurrence_mirror
     (shiftedBoundary_injective Q) (shiftedBoundary_image Q)
     (shiftedBoundary_ccw Q) Q.carrierPattern occ
 
-/-! ## Sorted-list to reflected ordered-tuple conversion -/
+/- ## Sorted-list to reflected ordered-tuple conversion -/
 
 private theorem reflectedBankOrderedFour_of_sorted {targets : List Label}
-    (hlen : targets.length = 4) (hchain : targets.Chain' (· < ·)) :
+    (hlen : targets.length = 4) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedFour,
       T.values = (targets.map reflFin).reverse := by
   rcases targets with _ | ⟨t0, _ | ⟨t1, _ | ⟨t2, _ | ⟨t3,
       _ | ⟨t4, rest⟩⟩⟩⟩⟩ <;>
     simp only [List.length_nil, List.length_cons] at hlen <;>
     try omega
-  simp only [List.chain'_cons, List.chain'_singleton, and_true]
+  simp only [List.isChain_cons_cons, List.IsChain.singleton, and_true]
     at hchain
   obtain ⟨h01, h12, h23⟩ := hchain
   exact ⟨⟨reflFin t3, reflFin t2, reflFin t1, reflFin t0,
     reflFin_lt h23, reflFin_lt h12, reflFin_lt h01⟩, rfl⟩
 
 private theorem reflectedBankOrderedFive_of_sorted {targets : List Label}
-    (hlen : targets.length = 5) (hchain : targets.Chain' (· < ·)) :
+    (hlen : targets.length = 5) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedFive,
       T.values = (targets.map reflFin).reverse := by
   rcases targets with _ | ⟨t0, _ | ⟨t1, _ | ⟨t2, _ | ⟨t3, _ | ⟨t4,
       _ | ⟨t5, rest⟩⟩⟩⟩⟩⟩ <;>
     simp only [List.length_nil, List.length_cons] at hlen <;>
     try omega
-  simp only [List.chain'_cons, List.chain'_singleton, and_true]
+  simp only [List.isChain_cons_cons, List.IsChain.singleton, and_true]
     at hchain
   obtain ⟨h01, h12, h23, h34⟩ := hchain
   exact ⟨⟨reflFin t4, reflFin t3, reflFin t2, reflFin t1, reflFin t0,
@@ -128,14 +132,14 @@ private theorem reflectedBankOrderedFive_of_sorted {targets : List Label}
     rfl⟩
 
 private theorem reflectedBankOrderedSix_of_sorted {targets : List Label}
-    (hlen : targets.length = 6) (hchain : targets.Chain' (· < ·)) :
+    (hlen : targets.length = 6) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedSix,
       T.values = (targets.map reflFin).reverse := by
   rcases targets with _ | ⟨t0, _ | ⟨t1, _ | ⟨t2, _ | ⟨t3, _ | ⟨t4,
       _ | ⟨t5, _ | ⟨t6, rest⟩⟩⟩⟩⟩⟩⟩ <;>
     simp only [List.length_nil, List.length_cons] at hlen <;>
     try omega
-  simp only [List.chain'_cons, List.chain'_singleton, and_true]
+  simp only [List.isChain_cons_cons, List.IsChain.singleton, and_true]
     at hchain
   obtain ⟨h01, h12, h23, h34, h45⟩ := hchain
   exact ⟨⟨reflFin t5, reflFin t4, reflFin t3, reflFin t2, reflFin t1,
@@ -143,14 +147,14 @@ private theorem reflectedBankOrderedSix_of_sorted {targets : List Label}
     reflFin_lt h12, reflFin_lt h01⟩, rfl⟩
 
 private theorem reflectedBankOrderedSeven_of_sorted {targets : List Label}
-    (hlen : targets.length = 7) (hchain : targets.Chain' (· < ·)) :
+    (hlen : targets.length = 7) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedSeven,
       T.values = (targets.map reflFin).reverse := by
   rcases targets with _ | ⟨t0, _ | ⟨t1, _ | ⟨t2, _ | ⟨t3, _ | ⟨t4,
       _ | ⟨t5, _ | ⟨t6, _ | ⟨t7, rest⟩⟩⟩⟩⟩⟩⟩⟩ <;>
     simp only [List.length_nil, List.length_cons] at hlen <;>
     try omega
-  simp only [List.chain'_cons, List.chain'_singleton, and_true]
+  simp only [List.isChain_cons_cons, List.IsChain.singleton, and_true]
     at hchain
   obtain ⟨h01, h12, h23, h34, h45, h56⟩ := hchain
   exact ⟨⟨reflFin t6, reflFin t5, reflFin t4, reflFin t3, reflFin t2,
@@ -159,14 +163,14 @@ private theorem reflectedBankOrderedSeven_of_sorted {targets : List Label}
     rfl⟩
 
 private theorem reflectedBankOrderedEight_of_sorted {targets : List Label}
-    (hlen : targets.length = 8) (hchain : targets.Chain' (· < ·)) :
+    (hlen : targets.length = 8) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedEight,
       T.values = (targets.map reflFin).reverse := by
   rcases targets with _ | ⟨t0, _ | ⟨t1, _ | ⟨t2, _ | ⟨t3, _ | ⟨t4,
       _ | ⟨t5, _ | ⟨t6, _ | ⟨t7, _ | ⟨t8, rest⟩⟩⟩⟩⟩⟩⟩⟩⟩ <;>
     simp only [List.length_nil, List.length_cons] at hlen <;>
     try omega
-  simp only [List.chain'_cons, List.chain'_singleton, and_true]
+  simp only [List.isChain_cons_cons, List.IsChain.singleton, and_true]
     at hchain
   obtain ⟨h01, h12, h23, h34, h45, h56, h67⟩ := hchain
   exact ⟨⟨reflFin t7, reflFin t6, reflFin t5, reflFin t4, reflFin t3,
@@ -175,14 +179,14 @@ private theorem reflectedBankOrderedEight_of_sorted {targets : List Label}
     reflFin_lt h01⟩, rfl⟩
 
 private theorem reflectedSeededOrderedSix_of_sorted {targets : List Label}
-    (hlen : targets.length = 6) (hchain : targets.Chain' (· < ·)) :
+    (hlen : targets.length = 6) (hchain : targets.IsChain (· < ·)) :
     ∃ T : ATailUniqueFourExactTwoSchemaDecoderScratch.OrderedSix,
       T.values = (targets.map reflFin).reverse := by
   rcases targets with _ | ⟨t0, _ | ⟨t1, _ | ⟨t2, _ | ⟨t3, _ | ⟨t4,
       _ | ⟨t5, _ | ⟨t6, rest⟩⟩⟩⟩⟩⟩⟩ <;>
     simp only [List.length_nil, List.length_cons] at hlen <;>
     try omega
-  simp only [List.chain'_cons, List.chain'_singleton, and_true]
+  simp only [List.isChain_cons_cons, List.IsChain.singleton, and_true]
     at hchain
   obtain ⟨h01, h12, h23, h34, h45⟩ := hchain
   exact ⟨⟨reflFin t5, reflFin t4, reflFin t3, reflFin t2, reflFin t1,
@@ -191,14 +195,14 @@ private theorem reflectedSeededOrderedSix_of_sorted {targets : List Label}
 
 private theorem reflectedSeededOrderedEight_of_sorted
     {targets : List Label}
-    (hlen : targets.length = 8) (hchain : targets.Chain' (· < ·)) :
+    (hlen : targets.length = 8) (hchain : targets.IsChain (· < ·)) :
     ∃ T : ATailUniqueFourExactTwoSchemaDecoderScratch.OrderedEight,
       T.values = (targets.map reflFin).reverse := by
   rcases targets with _ | ⟨t0, _ | ⟨t1, _ | ⟨t2, _ | ⟨t3, _ | ⟨t4,
       _ | ⟨t5, _ | ⟨t6, _ | ⟨t7, _ | ⟨t8, rest⟩⟩⟩⟩⟩⟩⟩⟩⟩ <;>
     simp only [List.length_nil, List.length_cons] at hlen <;>
     try omega
-  simp only [List.chain'_cons, List.chain'_singleton, and_true]
+  simp only [List.isChain_cons_cons, List.IsChain.singleton, and_true]
     at hchain
   obtain ⟨h01, h12, h23, h34, h45, h56, h67⟩ := hchain
   exact ⟨⟨reflFin t7, reflFin t6, reflFin t5, reflFin t4, reflFin t3,
@@ -206,7 +210,7 @@ private theorem reflectedSeededOrderedEight_of_sorted
     reflFin_lt h45, reflFin_lt h34, reflFin_lt h23, reflFin_lt h12,
     reflFin_lt h01⟩, rfl⟩
 
-/-! ## Family 17: seeded cuts (mirror) -/
+/- ## Family 17: seeded cuts (mirror) -/
 
 /-- Family `seeded_full_linear_kalmanson_cut` on the mirror branch. -/
 theorem seededFullLinearKalmansonCutSat_mirror
@@ -227,7 +231,7 @@ theorem seededFullLinearKalmansonCutSat_mirror
       Q.carrierPattern T
       (by unfold orientedSchemaAt
           rw [hT, hrevlen, hlen]
-          exact Bool.or_eq_true.mpr
+          exact Bool.or_eq_true_iff.mpr
             (Or.inr (schemaAt_reflected_of_mirror Q hlen
               (by decide) hall)))
   · obtain ⟨T, hT⟩ := reflectedSeededOrderedEight_of_sorted hlen hchain
@@ -241,7 +245,7 @@ theorem seededFullLinearKalmansonCutSat_mirror
             show p4FourEndpointK2Schema =
                 reflectSchema 8 (reflectSchema 8 p4FourEndpointK2Schema)
               from by decide]
-          exact Bool.or_eq_true.mpr
+          exact Bool.or_eq_true_iff.mpr
             (Or.inl (schemaAt_reflected_of_mirror Q hlen
               (by decide) hall)))
   · obtain ⟨T, hT⟩ := reflectedSeededOrderedSix_of_sorted hlen hchain
@@ -252,7 +256,7 @@ theorem seededFullLinearKalmansonCutSat_mirror
       Q.carrierPattern T
       (by unfold orientedSchemaAt
           rw [hT, hrevlen, hlen]
-          exact Bool.or_eq_true.mpr
+          exact Bool.or_eq_true_iff.mpr
             (Or.inr (schemaAt_reflected_of_mirror Q hlen
               (by decide) hall)))
   · obtain ⟨T, hT⟩ := reflectedSeededOrderedSix_of_sorted hlen hchain
@@ -266,7 +270,7 @@ theorem seededFullLinearKalmansonCutSat_mirror
             show p5TwoK1TwoK2Schema =
                 reflectSchema 6 (reflectSchema 6 p5TwoK1TwoK2Schema)
               from by decide]
-          exact Bool.or_eq_true.mpr
+          exact Bool.or_eq_true_iff.mpr
             (Or.inl (schemaAt_reflected_of_mirror Q hlen
               (by decide) hall)))
   · obtain ⟨T, hT⟩ := reflectedSeededOrderedSix_of_sorted hlen hchain
@@ -277,7 +281,7 @@ theorem seededFullLinearKalmansonCutSat_mirror
       Q.carrierPattern T
       (by unfold orientedSchemaAt
           rw [hT, hrevlen, hlen]
-          exact Bool.or_eq_true.mpr
+          exact Bool.or_eq_true_iff.mpr
             (Or.inr (schemaAt_reflected_of_mirror Q hlen
               (by decide) hall)))
   · obtain ⟨T, hT⟩ := reflectedSeededOrderedSix_of_sorted hlen hchain
@@ -291,7 +295,7 @@ theorem seededFullLinearKalmansonCutSat_mirror
             show p5TriangleASchema =
                 reflectSchema 6 (reflectSchema 6 p5TriangleASchema)
               from by decide]
-          exact Bool.or_eq_true.mpr
+          exact Bool.or_eq_true_iff.mpr
             (Or.inl (schemaAt_reflected_of_mirror Q hlen
               (by decide) hall)))
   · obtain ⟨T, hT⟩ := reflectedSeededOrderedSix_of_sorted hlen hchain
@@ -302,7 +306,7 @@ theorem seededFullLinearKalmansonCutSat_mirror
       Q.carrierPattern T
       (by unfold orientedSchemaAt
           rw [hT, hrevlen, hlen]
-          exact Bool.or_eq_true.mpr
+          exact Bool.or_eq_true_iff.mpr
             (Or.inr (schemaAt_reflected_of_mirror Q hlen
               (by decide) hall)))
   · obtain ⟨T, hT⟩ := reflectedSeededOrderedSix_of_sorted hlen hchain
@@ -316,11 +320,11 @@ theorem seededFullLinearKalmansonCutSat_mirror
             show p5TriangleBSchema =
                 reflectSchema 6 (reflectSchema 6 p5TriangleBSchema)
               from by decide]
-          exact Bool.or_eq_true.mpr
+          exact Bool.or_eq_true_iff.mpr
             (Or.inl (schemaAt_reflected_of_mirror Q hlen
               (by decide) hall)))
 
-/-! ## Family 18: retained-bank cuts (mirror) -/
+/- ## Family 18: retained-bank cuts (mirror) -/
 
 /-- Family `verified_kalmanson_order_schema_cut` on the mirror branch. -/
 theorem verifiedKalmansonOrderSchemaCutSat_mirror

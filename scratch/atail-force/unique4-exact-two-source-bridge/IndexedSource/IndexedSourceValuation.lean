@@ -78,7 +78,7 @@ theorem mirrorIndex_injective : Function.Injective mirrorIndex :=
 @[simp] theorem mirrorIndex_mirrorIndex (i : Label) :
     mirrorIndex (mirrorIndex i) = i := neg_neg i
 
-/-! ## Dense-atom interpretation -/
+/- ## Dense-atom interpretation -/
 
 /-- Interpretation of the dense atom `m_c_p`: the boundary point at
 transported index `p` lies in the selected four-row of the boundary point
@@ -119,8 +119,10 @@ theorem rowMem_iff_patternCode (Q : ExactTwoBoundaryCore R distribution)
     rowMem Q σ c p ↔
       patternCode (fun i => Q.boundary (σ i))
         (fun i => boundary_mem_carrier Q (σ i)) Q.carrierPattern c p =
-        true :=
-  (patternCode_eq_true_iff _ _ _ _ _).symm
+        true := by
+  unfold rowMem
+  exact (patternCode_eq_true_iff (fun i => Q.boundary (σ i))
+    (fun i => boundary_mem_carrier Q (σ i)) Q.carrierPattern c p).symm
 
 /-- The `class` atom interpretation, unfolded to its defining metric
 equality; carrier membership is automatic. -/
@@ -131,7 +133,7 @@ theorem classHit_iff_dist (Q : ExactTwoBoundaryCore R distribution)
   rw [mem_selectedClass]
   exact and_iff_right (boundary_mem_carrier Q (σ p))
 
-/-! ## Fixed CNF cap layout
+/- ## Fixed CNF cap layout
 
 The encoder's p5 `(5,5,4)` aligned layout (`exact_four_outer.py`,
 `opp1_card = 5`): first apex `0`, second apex `4`, surplus vertex `8`;
@@ -155,7 +157,7 @@ def cnfCapEndpoints : Fin 3 → Finset Label
 /-- CNF positions of the strict first-opposite interior. -/
 def cnfStrictFirstOpposite : Finset Label := {5, 6, 7}
 
-/-! ## Per-family satisfaction predicates
+/- ## Per-family satisfaction predicates
 
 One predicate per retained family of the selected p5 formula, named after
 the family and quantified over the family's full emittable instance set
@@ -263,7 +265,7 @@ def SelectedRowOwnCapAtMostTwoSat
     p₁ ≠ c → p₂ ≠ c → p₃ ≠ c → p₁ ≠ p₂ → p₁ ≠ p₃ → p₂ ≠ p₃ →
       ¬(rowMem Q σ c p₁ ∧ rowMem Q σ c p₂ ∧ rowMem Q σ c p₃)
 
-/-! ## Kalmanson cut families -/
+/- ## Kalmanson cut families -/
 
 /-- One Kalmanson row-instance CNF cut is satisfied: not every membership
 literal of the embedded schema instance is true. -/
@@ -280,7 +282,7 @@ def kalmansonFamilySat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (roleCount : Nat)
     (schema : List Membership) : Prop :=
   ∀ targets : List Label, targets.length = roleCount →
-    targets.Chain' (· < ·) → kalmansonCutSat Q σ targets schema
+    targets.IsChain (· < ·) → kalmansonCutSat Q σ targets schema
 
 /-- Cut satisfaction is the falsity of the corresponding Boolean
 `schemaAt` occurrence over the transported `patternCode`. -/
@@ -337,7 +339,7 @@ def VerifiedKalmansonOrderSchemaCutSat
     (Q : ExactTwoBoundaryCore R distribution) (σ : Label → Label) : Prop :=
   ∀ entry ∈ retainedBankSchemas, kalmansonFamilySat Q σ entry.1 entry.2
 
-/-! ## Aggregate satisfaction target -/
+/- ## Aggregate satisfaction target -/
 
 /-- Full dense-formula satisfaction: one field per retained family of the
 selected p5 formula, each quantified over the family's full emittable

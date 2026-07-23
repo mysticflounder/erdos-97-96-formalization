@@ -50,14 +50,21 @@ theorem exists_satisfying_p5_packet :
 
 ## Validation status
 
-{{NEEDS_PROOF}} — ALL TEN MODULES ARE DRAFTED BUT NOT YET COMPILED. The
-shared `lean/.lake/lake-build.lock` is held by the companion lane's
-materializer (pid 767, 2h budget); `validate.sh` (lock-acquiring, full
-LEAN_PATH chain, `-DwarningAsError=true`) builds all ten modules in
-order once the lock frees. Expected axiom closure after the fix-loop:
-exactly `propext`, `Classical.choice`, `Quot.sound`. No claim in this
-report is validated until `validate.sh` passes and the `#print axioms`
-output is checked.
+VALIDATED 2026-07-23. `validate.sh` (lock-acquiring, full LEAN_PATH
+chain, `-DwarningAsError=true`) builds all ten modules in order with
+zero errors. All 23 `#print axioms` outputs across the ten modules show
+exactly `[propext, Classical.choice, Quot.sound]` — no `sorryAx`, no
+`Lean.ofReduceBool`/`Lean.trustCompiler`, no custom axioms. In
+particular:
+
+```
+'Problem97.P5IndexedSourceScratch.directSatisfaction' depends on
+  axioms: [propext, Classical.choice, Quot.sound]
+'Problem97.P5IndexedSourceScratch.mirrorSatisfaction' depends on
+  axioms: [propext, Classical.choice, Quot.sound]
+'Problem97.P5IndexedSourceScratch.exists_satisfying_p5_packet' depends
+  on axioms: [propext, Classical.choice, Quot.sound]
+```
 
 ## What this does and does not prove
 

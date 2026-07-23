@@ -62,103 +62,103 @@ private theorem false_of_bank_occurrence
     Q.boundary (boundary_mem_carrier Q) Q.boundary_injective
     Q.boundary_image Q.boundary_ccw Q.carrierPattern occ
 
-/-! ## Sorted-list to ordered-tuple conversion -/
+/- ## Sorted-list to ordered-tuple conversion -/
 
 private theorem bankOrderedFour_of_sorted {targets : List Label}
-    (hlen : targets.length = 4) (hchain : targets.Chain' (· < ·)) :
+    (hlen : targets.length = 4) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedFour,
       T.values = targets := by
   rcases targets with _ | ⟨t0, _ | ⟨t1, _ | ⟨t2, _ | ⟨t3,
       _ | ⟨t4, rest⟩⟩⟩⟩⟩ <;>
     simp only [List.length_nil, List.length_cons] at hlen <;>
     try omega
-  simp only [List.chain'_cons, List.chain'_singleton, and_true]
+  simp only [List.isChain_cons_cons, List.IsChain.singleton, and_true]
     at hchain
   obtain ⟨h01, h12, h23⟩ := hchain
   exact ⟨⟨t0, t1, t2, t3, h01, h12, h23⟩, rfl⟩
 
 private theorem bankOrderedFive_of_sorted {targets : List Label}
-    (hlen : targets.length = 5) (hchain : targets.Chain' (· < ·)) :
+    (hlen : targets.length = 5) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedFive,
       T.values = targets := by
   rcases targets with _ | ⟨t0, _ | ⟨t1, _ | ⟨t2, _ | ⟨t3, _ | ⟨t4,
       _ | ⟨t5, rest⟩⟩⟩⟩⟩⟩ <;>
     simp only [List.length_nil, List.length_cons] at hlen <;>
     try omega
-  simp only [List.chain'_cons, List.chain'_singleton, and_true]
+  simp only [List.isChain_cons_cons, List.IsChain.singleton, and_true]
     at hchain
   obtain ⟨h01, h12, h23, h34⟩ := hchain
   exact ⟨⟨t0, t1, t2, t3, t4, h01, h12, h23, h34⟩, rfl⟩
 
 private theorem bankOrderedSix_of_sorted {targets : List Label}
-    (hlen : targets.length = 6) (hchain : targets.Chain' (· < ·)) :
+    (hlen : targets.length = 6) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedSix,
       T.values = targets := by
   rcases targets with _ | ⟨t0, _ | ⟨t1, _ | ⟨t2, _ | ⟨t3, _ | ⟨t4,
       _ | ⟨t5, _ | ⟨t6, rest⟩⟩⟩⟩⟩⟩⟩ <;>
     simp only [List.length_nil, List.length_cons] at hlen <;>
     try omega
-  simp only [List.chain'_cons, List.chain'_singleton, and_true]
+  simp only [List.isChain_cons_cons, List.IsChain.singleton, and_true]
     at hchain
   obtain ⟨h01, h12, h23, h34, h45⟩ := hchain
   exact ⟨⟨t0, t1, t2, t3, t4, t5, h01, h12, h23, h34, h45⟩, rfl⟩
 
 private theorem bankOrderedSeven_of_sorted {targets : List Label}
-    (hlen : targets.length = 7) (hchain : targets.Chain' (· < ·)) :
+    (hlen : targets.length = 7) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedSeven,
       T.values = targets := by
   rcases targets with _ | ⟨t0, _ | ⟨t1, _ | ⟨t2, _ | ⟨t3, _ | ⟨t4,
       _ | ⟨t5, _ | ⟨t6, _ | ⟨t7, rest⟩⟩⟩⟩⟩⟩⟩⟩ <;>
     simp only [List.length_nil, List.length_cons] at hlen <;>
     try omega
-  simp only [List.chain'_cons, List.chain'_singleton, and_true]
+  simp only [List.isChain_cons_cons, List.IsChain.singleton, and_true]
     at hchain
   obtain ⟨h01, h12, h23, h34, h45, h56⟩ := hchain
   exact ⟨⟨t0, t1, t2, t3, t4, t5, t6,
     h01, h12, h23, h34, h45, h56⟩, rfl⟩
 
 private theorem bankOrderedEight_of_sorted {targets : List Label}
-    (hlen : targets.length = 8) (hchain : targets.Chain' (· < ·)) :
+    (hlen : targets.length = 8) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedEight,
       T.values = targets := by
   rcases targets with _ | ⟨t0, _ | ⟨t1, _ | ⟨t2, _ | ⟨t3, _ | ⟨t4,
       _ | ⟨t5, _ | ⟨t6, _ | ⟨t7, _ | ⟨t8, rest⟩⟩⟩⟩⟩⟩⟩⟩⟩ <;>
     simp only [List.length_nil, List.length_cons] at hlen <;>
     try omega
-  simp only [List.chain'_cons, List.chain'_singleton, and_true]
+  simp only [List.isChain_cons_cons, List.IsChain.singleton, and_true]
     at hchain
   obtain ⟨h01, h12, h23, h34, h45, h56, h67⟩ := hchain
   exact ⟨⟨t0, t1, t2, t3, t4, t5, t6, t7,
     h01, h12, h23, h34, h45, h56, h67⟩, rfl⟩
 
 private theorem seededOrderedSix_of_sorted {targets : List Label}
-    (hlen : targets.length = 6) (hchain : targets.Chain' (· < ·)) :
+    (hlen : targets.length = 6) (hchain : targets.IsChain (· < ·)) :
     ∃ T : ATailUniqueFourExactTwoSchemaDecoderScratch.OrderedSix,
       T.values = targets := by
   rcases targets with _ | ⟨t0, _ | ⟨t1, _ | ⟨t2, _ | ⟨t3, _ | ⟨t4,
       _ | ⟨t5, _ | ⟨t6, rest⟩⟩⟩⟩⟩⟩⟩ <;>
     simp only [List.length_nil, List.length_cons] at hlen <;>
     try omega
-  simp only [List.chain'_cons, List.chain'_singleton, and_true]
+  simp only [List.isChain_cons_cons, List.IsChain.singleton, and_true]
     at hchain
   obtain ⟨h01, h12, h23, h34, h45⟩ := hchain
   exact ⟨⟨t0, t1, t2, t3, t4, t5, h01, h12, h23, h34, h45⟩, rfl⟩
 
 private theorem seededOrderedEight_of_sorted {targets : List Label}
-    (hlen : targets.length = 8) (hchain : targets.Chain' (· < ·)) :
+    (hlen : targets.length = 8) (hchain : targets.IsChain (· < ·)) :
     ∃ T : ATailUniqueFourExactTwoSchemaDecoderScratch.OrderedEight,
       T.values = targets := by
   rcases targets with _ | ⟨t0, _ | ⟨t1, _ | ⟨t2, _ | ⟨t3, _ | ⟨t4,
       _ | ⟨t5, _ | ⟨t6, _ | ⟨t7, _ | ⟨t8, rest⟩⟩⟩⟩⟩⟩⟩⟩⟩ <;>
     simp only [List.length_nil, List.length_cons] at hlen <;>
     try omega
-  simp only [List.chain'_cons, List.chain'_singleton, and_true]
+  simp only [List.isChain_cons_cons, List.IsChain.singleton, and_true]
     at hchain
   obtain ⟨h01, h12, h23, h34, h45, h56, h67⟩ := hchain
   exact ⟨⟨t0, t1, t2, t3, t4, t5, t6, t7,
     h01, h12, h23, h34, h45, h56, h67⟩, rfl⟩
 
-/-! ## Family 17: seeded cuts (direct) -/
+/- ## Family 17: seeded cuts (direct) -/
 
 /-- Family `seeded_full_linear_kalmanson_cut` on the direct branch. -/
 theorem seededFullLinearKalmansonCutSat_direct
@@ -176,7 +176,7 @@ theorem seededFullLinearKalmansonCutSat_direct
       Q.carrierPattern T
       (by unfold orientedSchemaAt
           rw [hT, hlen]
-          exact Bool.or_eq_true.mpr (Or.inl hschema))
+          exact Bool.or_eq_true_iff.mpr (Or.inl hschema))
   · obtain ⟨T, hT⟩ := seededOrderedEight_of_sorted hlen hchain
     exact false_of_p4OrientedSchemaAt D.convex
       (carrier_card_eq_eleven Q) Q.boundary (boundary_mem_carrier Q)
@@ -184,7 +184,7 @@ theorem seededFullLinearKalmansonCutSat_direct
       Q.carrierPattern T
       (by unfold orientedSchemaAt
           rw [hT, hlen]
-          exact Bool.or_eq_true.mpr (Or.inr hschema))
+          exact Bool.or_eq_true_iff.mpr (Or.inr hschema))
   · obtain ⟨T, hT⟩ := seededOrderedSix_of_sorted hlen hchain
     exact false_of_p5FourRowOrientedSchemaAt D.convex
       (carrier_card_eq_eleven Q) Q.boundary (boundary_mem_carrier Q)
@@ -192,7 +192,7 @@ theorem seededFullLinearKalmansonCutSat_direct
       Q.carrierPattern T
       (by unfold orientedSchemaAt
           rw [hT, hlen]
-          exact Bool.or_eq_true.mpr (Or.inl hschema))
+          exact Bool.or_eq_true_iff.mpr (Or.inl hschema))
   · obtain ⟨T, hT⟩ := seededOrderedSix_of_sorted hlen hchain
     exact false_of_p5FourRowOrientedSchemaAt D.convex
       (carrier_card_eq_eleven Q) Q.boundary (boundary_mem_carrier Q)
@@ -200,7 +200,7 @@ theorem seededFullLinearKalmansonCutSat_direct
       Q.carrierPattern T
       (by unfold orientedSchemaAt
           rw [hT, hlen]
-          exact Bool.or_eq_true.mpr (Or.inr hschema))
+          exact Bool.or_eq_true_iff.mpr (Or.inr hschema))
   · obtain ⟨T, hT⟩ := seededOrderedSix_of_sorted hlen hchain
     exact false_of_p5TriangleAOrientedSchemaAt D.convex
       (carrier_card_eq_eleven Q) Q.boundary (boundary_mem_carrier Q)
@@ -208,7 +208,7 @@ theorem seededFullLinearKalmansonCutSat_direct
       Q.carrierPattern T
       (by unfold orientedSchemaAt
           rw [hT, hlen]
-          exact Bool.or_eq_true.mpr (Or.inl hschema))
+          exact Bool.or_eq_true_iff.mpr (Or.inl hschema))
   · obtain ⟨T, hT⟩ := seededOrderedSix_of_sorted hlen hchain
     exact false_of_p5TriangleAOrientedSchemaAt D.convex
       (carrier_card_eq_eleven Q) Q.boundary (boundary_mem_carrier Q)
@@ -216,7 +216,7 @@ theorem seededFullLinearKalmansonCutSat_direct
       Q.carrierPattern T
       (by unfold orientedSchemaAt
           rw [hT, hlen]
-          exact Bool.or_eq_true.mpr (Or.inr hschema))
+          exact Bool.or_eq_true_iff.mpr (Or.inr hschema))
   · obtain ⟨T, hT⟩ := seededOrderedSix_of_sorted hlen hchain
     exact false_of_p5TriangleBOrientedSchemaAt D.convex
       (carrier_card_eq_eleven Q) Q.boundary (boundary_mem_carrier Q)
@@ -224,7 +224,7 @@ theorem seededFullLinearKalmansonCutSat_direct
       Q.carrierPattern T
       (by unfold orientedSchemaAt
           rw [hT, hlen]
-          exact Bool.or_eq_true.mpr (Or.inl hschema))
+          exact Bool.or_eq_true_iff.mpr (Or.inl hschema))
   · obtain ⟨T, hT⟩ := seededOrderedSix_of_sorted hlen hchain
     exact false_of_p5TriangleBOrientedSchemaAt D.convex
       (carrier_card_eq_eleven Q) Q.boundary (boundary_mem_carrier Q)
@@ -232,9 +232,9 @@ theorem seededFullLinearKalmansonCutSat_direct
       Q.carrierPattern T
       (by unfold orientedSchemaAt
           rw [hT, hlen]
-          exact Bool.or_eq_true.mpr (Or.inr hschema))
+          exact Bool.or_eq_true_iff.mpr (Or.inr hschema))
 
-/-! ## Family 18: retained-bank cuts (direct) -/
+/- ## Family 18: retained-bank cuts (direct) -/
 
 /-- Family `verified_kalmanson_order_schema_cut` on the direct branch. -/
 theorem verifiedKalmansonOrderSchemaCutSat_direct
