@@ -1,0 +1,238 @@
+{
+  "all_checks_passed": true,
+  "audit_source": "scratch/atail-force/unique4-complete-radius-encoding-audit/regression_complete_radius_encoding.py",
+  "audit_source_sha256": "22d54a97405c61e9b0580cc9de5c55ba45affc960205f1854e7b5abe7a472eff",
+  "claim_scope": "The two named CNF clause families, their encoded support-lock kernel, the independent semantic verifier conclusions, and two stored n=11 fixtures; this is not Euclidean realization or arbitrary-cardinality coverage",
+  "clauses": {
+    "all_direct_clauses_follow_from_support_lock_kernel": true,
+    "direct_clause_count": 10890,
+    "direct_clause_entailment_cases": [
+      {
+        "assignment_count": 512,
+        "base_model_count": 186,
+        "direct_clause_countermodel_count": 0,
+        "source": 0,
+        "source_case": "source_eq_anchor_support_lock_direct",
+        "variable_count": 9
+      },
+      {
+        "assignment_count": 1024,
+        "base_model_count": 370,
+        "direct_clause_countermodel_count": 0,
+        "source": 1,
+        "source_case": "source_eq_middle_transport_then_support_lock",
+        "variable_count": 10
+      },
+      {
+        "assignment_count": 256,
+        "base_model_count": 124,
+        "direct_clause_countermodel_count": 0,
+        "source": 2,
+        "source_case": "source_eq_blocker_antecedent_impossible",
+        "variable_count": 8
+      },
+      {
+        "assignment_count": 4096,
+        "base_model_count": 2080,
+        "direct_clause_countermodel_count": 0,
+        "source": 3,
+        "source_case": "source_distinct_support_lock_radius_transport",
+        "variable_count": 12
+      },
+      {
+        "assignment_count": 4096,
+        "base_model_count": 2080,
+        "direct_clause_countermodel_count": 0,
+        "source": 4,
+        "source_case": "source_distinct_support_lock_radius_transport",
+        "variable_count": 12
+      },
+      {
+        "assignment_count": 4096,
+        "base_model_count": 2080,
+        "direct_clause_countermodel_count": 0,
+        "source": 5,
+        "source_case": "source_distinct_support_lock_radius_transport",
+        "variable_count": 12
+      },
+      {
+        "assignment_count": 4096,
+        "base_model_count": 2080,
+        "direct_clause_countermodel_count": 0,
+        "source": 6,
+        "source_case": "source_distinct_support_lock_radius_transport",
+        "variable_count": 12
+      },
+      {
+        "assignment_count": 4096,
+        "base_model_count": 2080,
+        "direct_clause_countermodel_count": 0,
+        "source": 7,
+        "source_case": "source_distinct_support_lock_radius_transport",
+        "variable_count": 12
+      },
+      {
+        "assignment_count": 4096,
+        "base_model_count": 2080,
+        "direct_clause_countermodel_count": 0,
+        "source": 8,
+        "source_case": "source_distinct_support_lock_radius_transport",
+        "variable_count": 12
+      },
+      {
+        "assignment_count": 4096,
+        "base_model_count": 2080,
+        "direct_clause_countermodel_count": 0,
+        "source": 9,
+        "source_case": "source_distinct_support_lock_radius_transport",
+        "variable_count": 12
+      },
+      {
+        "assignment_count": 4096,
+        "base_model_count": 2080,
+        "direct_clause_countermodel_count": 0,
+        "source": 10,
+        "source_case": "source_distinct_support_lock_radius_transport",
+        "variable_count": 12
+      }
+    ],
+    "direct_truth_tables": [
+      {
+        "assignment_count": 128,
+        "falsifying_assignment_count": 1,
+        "source": 0,
+        "variable_count": 7
+      },
+      {
+        "assignment_count": 128,
+        "falsifying_assignment_count": 1,
+        "source": 1,
+        "variable_count": 7
+      },
+      {
+        "assignment_count": 128,
+        "falsifying_assignment_count": 1,
+        "source": 2,
+        "variable_count": 7
+      },
+      {
+        "assignment_count": 128,
+        "falsifying_assignment_count": 1,
+        "source": 3,
+        "variable_count": 7
+      },
+      {
+        "assignment_count": 128,
+        "falsifying_assignment_count": 1,
+        "source": 4,
+        "variable_count": 7
+      },
+      {
+        "assignment_count": 128,
+        "falsifying_assignment_count": 1,
+        "source": 5,
+        "variable_count": 7
+      },
+      {
+        "assignment_count": 128,
+        "falsifying_assignment_count": 1,
+        "source": 6,
+        "variable_count": 7
+      },
+      {
+        "assignment_count": 128,
+        "falsifying_assignment_count": 1,
+        "source": 7,
+        "variable_count": 7
+      },
+      {
+        "assignment_count": 128,
+        "falsifying_assignment_count": 1,
+        "source": 8,
+        "variable_count": 7
+      },
+      {
+        "assignment_count": 128,
+        "falsifying_assignment_count": 1,
+        "source": 9,
+        "variable_count": 7
+      },
+      {
+        "assignment_count": 128,
+        "falsifying_assignment_count": 1,
+        "source": 10,
+        "variable_count": 7
+      }
+    ],
+    "role_distinctness": "anchor, middle, and blocker are pairwise distinct by permutations; the source is unrestricted, with source=blocker made impossible by the fixed-point-free blocker clause",
+    "transport_clause": [
+      -2,
+      -3,
+      -12,
+      -14,
+      212
+    ],
+    "transport_clause_count": 990,
+    "transport_truth_table": {
+      "assignment_count": 32,
+      "falsifying_assignment_count": 1,
+      "variable_count": 5
+    },
+    "unique_transport_clause_count": 495
+  },
+  "epistemic_status": "DETERMINISTIC_EXHAUSTIVE_BOOLEAN_AND_FIXTURE_REPLAY",
+  "kernel_producer": "scratch/atail-force/unique4-complete-radius-placement-audit/CompleteRadiusPlacement.lean",
+  "kernel_producer_sha256": "337de17a5a3030d3495fd3fe647c4f9416de0d899ab8dc2a6143e65f1d85cdaa",
+  "obsolete_fixtures": {
+    "both_obsolete_fixtures_rejected": true,
+    "certificate_counts": [
+      1,
+      1
+    ],
+    "fixture_audit": "scratch/atail-force/unique4-complete-radius-placement-audit/audit_counterpatterns.py",
+    "fixture_audit_sha256": "244bc016f10077e482e87c8a71cc439d2d7ae322276bd887ab913689ad777141",
+    "fixture_sha256": {
+      "4": "d64891ea0e9aee73f5b67cdc3cf45a7416def03fee7884466dce2c9d8abf9e9c",
+      "5": "8ae5b7c5ed277ef933d40fffc5db900fe5241ca99baed5829d1127d1f024d11c"
+    },
+    "profiles": [
+      4,
+      5
+    ]
+  },
+  "outer_encoder": "scratch/atail-force/unique-arm-whole-carrier-source-audit/exact_four_outer.py",
+  "outer_encoder_sha256": "7da28c7f16218cbd6ef2dc7fbca9c00485d5be5493e6e1b0da8f7dd67702ecbd",
+  "schema": "p97-unique4-complete-radius-encoding-regression-v1",
+  "semantic_verifier": {
+    "both_positive_conclusions_replayed": true,
+    "direct_membership_replay_conclusion": "anchor in rows[blocker_center]",
+    "replayed_guard_conditions": {
+      "blocker_image_guard": "blocker_center not in blocker_image",
+      "direct_membership_guard": "not ({middle, blocker_center} <= rows[anchor] and {anchor, blocker_center} <= rows[middle] and middle in rows[blocker_center])",
+      "transport_guard": "not ({middle, blocker_center} <= rows[anchor] and {anchor, blocker_center} <= rows[middle])"
+    },
+    "semantic_verifier": "scratch/atail-force/unique-arm-whole-carrier-source-audit/verify_exact_four_outer.py",
+    "semantic_verifier_sha256": "0243eef804850d32736716a062277f3b899ca90e184443f21bfa1fcb9f574df0",
+    "transport_replay_conclusion": "eq(equality, blocker_center, anchor, middle)"
+  },
+  "source_hash_bindings": {
+    "cegar_driver": "scratch/atail-force/unique4-curvature-occurrence-census/run_curvature_cegar.py",
+    "cegar_driver_sha256": "7a5f209f0cee616370937e8775c45282556300161e762a023824cee57d1de37d",
+    "checked_bindings": {
+      "complete_radius_mutual_triangle_producer": {
+        "path": "scratch/atail-force/unique4-complete-radius-placement-audit/CompleteRadiusPlacement.lean",
+        "sha256": "337de17a5a3030d3495fd3fe647c4f9416de0d899ab8dc2a6143e65f1d85cdaa"
+      },
+      "outer_encoder": {
+        "path": "scratch/atail-force/unique-arm-whole-carrier-source-audit/exact_four_outer.py",
+        "sha256": "7da28c7f16218cbd6ef2dc7fbca9c00485d5be5493e6e1b0da8f7dd67702ecbd"
+      },
+      "semantic_verifier": {
+        "path": "scratch/atail-force/unique-arm-whole-carrier-source-audit/verify_exact_four_outer.py",
+        "sha256": "0243eef804850d32736716a062277f3b899ca90e184443f21bfa1fcb9f574df0"
+      }
+    },
+    "encoder_verifier_and_kernel_producer_hash_bound": true,
+    "manifest_source_binding_call_count": 1
+  }
+}

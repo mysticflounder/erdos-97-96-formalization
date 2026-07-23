@@ -1,0 +1,112 @@
+{
+  "claim_scope": "The two named static n=11 SAT projections only; neither artifact is a source-faithful residual or a Problem 97 counterexample",
+  "epistemic_status": "EXACT FINITE ARTIFACT REPLAY AGAINST KERNEL THEOREM SHAPES",
+  "records": [
+    {
+      "artifact": "scratch/atail-force/unique4-star-producer/uncorrected_direct_p4.json",
+      "opp1_card": 4,
+      "semantic_replay_status": "VERIFIED_SAT_NO_FOUR_ARC_TERMINAL",
+      "violations": [
+        {
+          "cap": "second_opposite",
+          "center": 9,
+          "kind": "selected-row-interior-own-cap-bound",
+          "own_cap_hits": [
+            0,
+            7,
+            10
+          ],
+          "source_theorem": "Problem97.CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two",
+          "support": [
+            0,
+            3,
+            7,
+            10
+          ]
+        },
+        {
+          "cap": "surplus",
+          "center": 2,
+          "kind": "selected-row-interior-own-cap-bound",
+          "own_cap_hits": [
+            0,
+            3,
+            4
+          ],
+          "source_theorem": "Problem97.CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two",
+          "support": [
+            0,
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "cap": "surplus",
+          "center": 4,
+          "kind": "selected-row-endpoint-own-cap-bound",
+          "own_cap_hits": [
+            2,
+            3
+          ],
+          "source_theorems": [
+            "Problem97.CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one",
+            "Problem97.CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one"
+          ],
+          "support": [
+            2,
+            3,
+            5,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "artifact": "scratch/atail-force/unique4-star-producer/uncorrected_direct_p5.json",
+      "opp1_card": 5,
+      "semantic_replay_status": "VERIFIED_SAT_NO_FOUR_ARC_TERMINAL",
+      "violations": [
+        {
+          "cap": "first_opposite",
+          "center": 8,
+          "kind": "selected-row-endpoint-own-cap-bound",
+          "own_cap_hits": [
+            4,
+            7
+          ],
+          "source_theorems": [
+            "Problem97.CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one",
+            "Problem97.CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one"
+          ],
+          "support": [
+            2,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "cap": "surplus",
+          "center": 4,
+          "kind": "selected-row-endpoint-own-cap-bound",
+          "own_cap_hits": [
+            0,
+            3
+          ],
+          "source_theorems": [
+            "Problem97.CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one",
+            "Problem97.CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one"
+          ],
+          "support": [
+            0,
+            3,
+            5,
+            9
+          ]
+        }
+      ]
+    }
+  ],
+  "schema": "p97-unique4-static-survivor-own-cap-audit-v1"
+}

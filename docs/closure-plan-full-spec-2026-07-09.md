@@ -8754,30 +8754,84 @@ arcs.  Any robust proof must visibly retain the five-class collision or
 minimal-core/cap-complement provenance.  The singleton minimal-core arm remains
 separate.
 
-The first batched continuation exposed and then corrected a cut-classification
-bug: mask-disjoint arcs whose union was the whole cyclic period were being
-labelled as strict-open-window terminals.  Both active runs were stopped and
-all affected outputs were discarded.  After the cyclic full-cover theorem was
-kernel-checked, the repaired gate classified every witness explicitly as
-`STRICT_OPEN_WINDOW` or `FULL_COVER` and rejected anything else.  Recomputed
-seed totals are 323 inclusion-minimal center sets and 7,051 dihedral row cuts:
-309 sets use the strict-window theorem and 14 use the full-cover theorem.  A
-second audit found and removed the remaining certificate-free fallback: an
-UNSAT scalar ledger with no checked four-arc terminal now stops fail-closed as
-`UNPROVED_CURVATURE_CORE_NO_CHECKED_TERMINAL` and installs no cut.  The driver
-also refuses nonempty output directories, hash-binds the encoder, verifier,
-banks, seed registry, and both Lean consumers, asserts every semantic replay
-flag, and checks the final DIMACS/manifest/in-memory clause counts after a
-round-cap rewrite.  The outer encoder and independent verifier now also replay
-the kernel-backed cross-center radius transport and direct blocker-image
-membership closure; the driver hash-binds that Lean producer.  Fresh corrected
-profile-four and profile-five runs are active in the
-`exact_two_opp1_{4,5}_complete_radius_v2_a61b34a6` output directories.  Their
-current published prefixes are five SAT/curvature-UNSAT rounds for profile four
-and two for profile five.  Every completed round passed semantic replay and
-installed only checked strict-window/full-cover terminal-orbit cuts; both runs
-remain active, so no terminal coverage claim is made.  No pre-repair or
-pre-support-lock result is proof evidence or current coverage status.
+The historical iterative curvature runs are no longer active coverage claims.
+Their 25-round support-or-blocker local star was a transient prefix pattern and
+is withdrawn as a producer.  A static direct overlay then produced one
+profile-four and one profile-five no-four-arc assignment, but both were
+source-invalid: they violated the already-proved own-cap `<= 2` or endpoint
+one-hit row bounds.  Those assignments survive only as negative regression
+fixtures.
+
+The corrected static gate now enforces every displayed-cap own-row `<= 2`
+instance and both endpoint `<= 1` instances.  At fixed `n = 11`, both profiles
+remain exact Boolean SAT and contain no checked four-arc terminal.  The compact
+independent replay verifies all cap bounds, the scalar-curvature SAT ledgers,
+and the absence of a four-arc packet.  Crucially, both corrected assignments
+are **UNSAT under the full linear Kalmanson system**.  The first omitted layer
+is therefore incomplete transported linear coverage, not yet nonlinear
+Euclidean, MEC, or `noM44` geometry.
+
+The two full-linear failures compress to new cardinality-generic Lean
+consumers in
+`scratch/atail-force/unique4-source-field-audit/CorrectedOwnCapKalmansonCores.lean`:
+`false_of_four_endpoint_k2_three_row_instances` uses eight ordered roles and
+three concrete row instances, while
+`false_of_two_k1_two_k2_four_row_instances` uses six roles and four row
+instances.  Each is a four-inequality exact cancellation, is Werror-clean with
+only the three core axioms, and is genuinely new relative to all 46 old
+Kalmanson schema records, including the 36 exact-Farkas pending ports.  The
+schema registry preserves row-instance identity; it must not merge distinct
+rows merely because their centers agree.
+
+Full-linear CEGAR is now the immediate fixed-cardinality discovery gate.  It
+transports row-instance-safe schemas over order-preserving and reflected
+embeddings and reruns the corrected Boolean outer until it finds a verified
+full-linear survivor, Boolean exhaustion pending proof replay, or a recorded
+budget boundary.  This remains theorem discovery at `n = 11`: the source proof
+still needs an arbitrary-cardinality occurrence theorem producing one of the
+checked schemas (or a stronger terminal) from the exact-four residual.  No
+pre-cap-correction fixture, transient prefix, solver UNSAT, or finite CEGAR
+coverage closes a source `sorry`.
+
+The robust global-deletion source interface has also been corrected.  It first
+rebases to `lateFirstApexResidual R`, so the collision or packed-core center is
+omitted from the same late critical system that supplies the two fixed rows.
+The collision arm retains its actual ambient class of cardinality at least
+five and two support-distinct subrows; the packed arm retains two actual
+support-disjoint minimal-core shells and the cap-complement packing bound.
+Complete-class/actual-row cap bounds are kernel-checked.  In the corrected
+fixed-`n = 11` audit, profile-four collision is bare-CaDiCaL UNSAT without DRAT
+and the other three profile/mode pairs are timeout-UNKNOWN at 600 seconds.
+These are bounded diagnostics only.  A repeated-center-safe full-linear
+adapter must keep every concrete row instance separate, and the remaining
+source implication is still the cyclic placement consumed by
+`false_of_twoCompletionRowMiddleArcPlacement`.
+
+The singleton minimal-core arm now has a source-clean outside-pair ingress in
+`scratch/atail-force/unique4-singleton-core-terminal/`.  Installing its exact
+critical shell at the strict-cap center and applying the cap/row intersection
+bound produces two distinct support points outside that cap.  Complete-radius
+locking proves that every selected row at the installed center has the same
+support, so repeated selection at that center cannot create a second row.  The
+first proposed continuation, forcing a distinct same-cap actual row through the
+outside pair, is overstrong in the strongest current finite abstraction: both
+card-eleven cap profiles admit exact SAT projections after complete-radius,
+own-cap, and universal-minimality replay.  These are not Euclidean/P97
+countermodels because MEC geometry and the alternative-triangle content of
+`noM44` are omitted.
+
+The source-clean replacement in
+`scratch/atail-force/unique4-singleton-repeat-producer/` is the exact
+`outsideSourceRows_normalForm`.  The two outside sources either return to the
+singleton center, share an outside-cap blocker whose complete row contains the
+pair, or expose three distinct centers with one-sided actual-row incidences.
+No displayed arm is terminal: center return gives too few sources for a fiber
+contradiction; the shared blocker has the wrong cap placement for
+`outsidePair_unique_capCenter`; and the three-center arm lacks the cross hits
+and cyclic placement needed by current Kalmanson or curvature consumers.  The
+next singleton theorem must consume this normal form with Euclidean/MEC,
+alternative-`IsM44`, or new cap-order geometry.  The older first-apex-class
+requirement and the bare same-cap-repeat target are both retired.
 
 The aligned three-strict-hit arm now retains that premise directly in
 `AlignedInteriorFrontier`; no compatibility wrapper or data-losing rebase

@@ -1,0 +1,98 @@
+{
+  "schema": "p97-kalmanson-row-instance-schema-bank-v1",
+  "epistemic_status": "KERNEL_CHECKED_CONSUMERS_FOR_TWO_FIXED_CORRECTED_SURVIVORS",
+  "scope": "The consumers are cardinality-generic, but occurrence is verified here only for the two named n=11 assignments.",
+  "transport": "order-preserving and reflected injections preserving distinct row_instance_id values",
+  "warning": "Do not collapse row instances by center. Collision and packed ingress may carry multiple distinct row instances at one center.",
+  "legacy_bank": {
+    "path": "scratch/atail-force/unique-arm-whole-carrier-source-audit/kalmanson_schema_bank.json",
+    "sha256": "04105ec974d7e15664d9addca6473329f71f943b14a0037dad9ce3560fcda4f3",
+    "schema_count": 46,
+    "kernel_checked_count": 10,
+    "exact_farkas_verified_pending_port_count": 36
+  },
+  "records": [
+    {
+      "id": "corrected-owncap-p4-four-k2",
+      "profile": 4,
+      "core_vertex_count": 8,
+      "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p4.json",
+      "source_artifact_sha256": "8a1662080001c1041219bf91ed82588835b79ba0069fdb044a204de2e2db14e3",
+      "source_vertices_by_role": [0, 1, 2, 3, 5, 6, 9, 10],
+      "row_instances": [
+        {
+          "row_instance_id": "p4_row_0",
+          "center_role": 0,
+          "member_roles": [2, 4, 6]
+        },
+        {
+          "row_instance_id": "p4_row_1",
+          "center_role": 1,
+          "member_roles": [0, 6, 7]
+        },
+        {
+          "row_instance_id": "p4_row_3",
+          "center_role": 3,
+          "member_roles": [2, 4, 7]
+        }
+      ],
+      "strict_inequalities": [
+        {"kind": "K2", "roles": [0, 1, 5, 6]},
+        {"kind": "K2", "roles": [0, 3, 4, 5]},
+        {"kind": "K2", "roles": [1, 2, 5, 7]},
+        {"kind": "K2", "roles": [2, 3, 5, 7]}
+      ],
+      "legacy_center_point_schema": [
+        [0, 2], [0, 4], [0, 6],
+        [1, 0], [1, 6], [1, 7],
+        [3, 2], [3, 4], [3, 7]
+      ],
+      "legacy_bank_match": "NO_EXISTING_46_SCHEMA_SUBSUMES_THIS_SCHEMA",
+      "lean_consumer": "Problem97.CorrectedOwnCapKalmansonCoresScratch.false_of_four_endpoint_k2_three_row_instances"
+    },
+    {
+      "id": "corrected-owncap-p5-two-k1-two-k2",
+      "profile": 5,
+      "core_vertex_count": 6,
+      "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p5.json",
+      "source_artifact_sha256": "77649d222a14aecd3847905f724332e82c441f66bfda359a374c288dcbc8af27",
+      "source_vertices_by_role": [0, 1, 2, 7, 8, 10],
+      "row_instances": [
+        {
+          "row_instance_id": "p5_row_0",
+          "center_role": 0,
+          "member_roles": [1, 3, 5]
+        },
+        {
+          "row_instance_id": "p5_row_1",
+          "center_role": 1,
+          "member_roles": [0, 5]
+        },
+        {
+          "row_instance_id": "p5_row_2",
+          "center_role": 2,
+          "member_roles": [1, 3, 4]
+        },
+        {
+          "row_instance_id": "p5_row_5",
+          "center_role": 5,
+          "member_roles": [0, 4]
+        }
+      ],
+      "strict_inequalities": [
+        {"kind": "K1", "roles": [0, 1, 2, 5]},
+        {"kind": "K2", "roles": [0, 1, 3, 4]},
+        {"kind": "K1", "roles": [0, 2, 4, 5]},
+        {"kind": "K2", "roles": [1, 2, 3, 4]}
+      ],
+      "legacy_center_point_schema": [
+        [0, 1], [0, 3], [0, 5],
+        [1, 0], [1, 5],
+        [2, 1], [2, 3], [2, 4],
+        [5, 0], [5, 4]
+      ],
+      "legacy_bank_match": "NO_EXISTING_46_SCHEMA_SUBSUMES_THIS_SCHEMA",
+      "lean_consumer": "Problem97.CorrectedOwnCapKalmansonCoresScratch.false_of_two_k1_two_k2_four_row_instances"
+    }
+  ]
+}

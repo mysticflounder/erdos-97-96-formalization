@@ -1,0 +1,107 @@
+{
+  "epistemic_status": "EXACT_FIXED_ARTIFACT_REPLAY_PLUS_KERNEL_CHECKED_GENERIC_CONSUMERS; NO_UNIFORM_OCCURRENCE_THEOREM",
+  "records": [
+    {
+      "exact_strict_sum_replay": {
+        "global_equality_kalmanson_single_inequality_consumer_applies": false,
+        "residual_coefficients": {},
+        "single_inequality_closure_count": 0,
+        "status": "EXACT_INTEGER_REPLAY_SUMS_TO_ZERO_LT_ZERO",
+        "strict_inequality_count": 4
+      },
+      "full_radius_cap_audit": {
+        "checked_complete_class_cap_instances": 93,
+        "properties": [
+          "complete radius class intersects own cap in at most two points",
+          "endpoint-centered complete radius class intersects cap in at most one point",
+          "complete radius class has at most one hit on either side of its cap center"
+        ],
+        "status": "PASS"
+      },
+      "id": "corrected-owncap-p4-four-k2",
+      "lean_consumer": "Problem97.CorrectedOwnCapKalmansonCoresScratch.false_of_four_endpoint_k2_three_row_instances",
+      "legacy_bank_audit": {
+        "exact_schema_indices": [],
+        "legacy_schema_count_checked": 46,
+        "pending_exact_schema_indices": [],
+        "status": "GENUINELY_NEW_RELATIVE_TO_LEGACY_46_SCHEMA_BANK",
+        "subsuming_schema_indices": []
+      },
+      "occurrence_audit": {
+        "one_row_instance_per_participating_center": true,
+        "repeated_center_transport": "NOT_CLAIMED_REQUIRES_EXPLICIT_ADAPTER",
+        "row_instance_count": 3,
+        "source_vertices_by_role": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          9,
+          10
+        ],
+        "status": "VERIFIED_DIRECT_ORDER_PRESERVING_OCCURRENCE"
+      },
+      "profile": 4,
+      "same_carrier_minimality_audit": {
+        "proper_nonempty_subsets_checked": 2046,
+        "status": "PASS_NO_PROPER_K4_CLOSED_SUBCARRIER"
+      },
+      "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p4.json"
+    },
+    {
+      "exact_strict_sum_replay": {
+        "global_equality_kalmanson_single_inequality_consumer_applies": false,
+        "residual_coefficients": {},
+        "single_inequality_closure_count": 0,
+        "status": "EXACT_INTEGER_REPLAY_SUMS_TO_ZERO_LT_ZERO",
+        "strict_inequality_count": 4
+      },
+      "full_radius_cap_audit": {
+        "checked_complete_class_cap_instances": 91,
+        "properties": [
+          "complete radius class intersects own cap in at most two points",
+          "endpoint-centered complete radius class intersects cap in at most one point",
+          "complete radius class has at most one hit on either side of its cap center"
+        ],
+        "status": "PASS"
+      },
+      "id": "corrected-owncap-p5-two-k1-two-k2",
+      "lean_consumer": "Problem97.CorrectedOwnCapKalmansonCoresScratch.false_of_two_k1_two_k2_four_row_instances",
+      "legacy_bank_audit": {
+        "exact_schema_indices": [],
+        "legacy_schema_count_checked": 46,
+        "pending_exact_schema_indices": [],
+        "status": "GENUINELY_NEW_RELATIVE_TO_LEGACY_46_SCHEMA_BANK",
+        "subsuming_schema_indices": []
+      },
+      "occurrence_audit": {
+        "one_row_instance_per_participating_center": true,
+        "repeated_center_transport": "NOT_CLAIMED_REQUIRES_EXPLICIT_ADAPTER",
+        "row_instance_count": 4,
+        "source_vertices_by_role": [
+          0,
+          1,
+          2,
+          7,
+          8,
+          10
+        ],
+        "status": "VERIFIED_DIRECT_ORDER_PRESERVING_OCCURRENCE"
+      },
+      "profile": 5,
+      "same_carrier_minimality_audit": {
+        "proper_nonempty_subsets_checked": 2046,
+        "status": "PASS_NO_PROPER_K4_CLOSED_SUBCARRIER"
+      },
+      "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p5.json"
+    }
+  ],
+  "schema": "p97-unique4-corrected-source-field-audit-v1",
+  "source_hashes": {
+    "scratch/atail-force/unique-arm-whole-carrier-source-audit/kalmanson_schema_bank.json": "04105ec974d7e15664d9addca6473329f71f943b14a0037dad9ce3560fcda4f3",
+    "scratch/atail-force/unique4-source-field-audit/CorrectedOwnCapKalmansonCores.lean": "834fe68450744119221e9952f35871f9626e3db9f9108eb0ad3e34144d6908cc",
+    "scratch/atail-force/unique4-source-field-audit/kalmanson_row_instance_schemas.json": "7a00ec6746a89137c29c1304e1872670ca028ff983aaaf0612347eacfb51427e"
+  }
+}

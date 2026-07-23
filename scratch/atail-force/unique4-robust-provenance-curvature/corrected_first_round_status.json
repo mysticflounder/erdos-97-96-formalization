@@ -1,0 +1,48 @@
+{
+  "schema": "p97-unique4-robust-provenance-curvature-first-round-status-v1",
+  "date": "2026-07-22",
+  "epistemic_status": "BARE_CADICAL_EVIDENCE_IN_FIXED_N11_PROJECTION",
+  "claim_scope": "No DRAT, no Lean closure, no arbitrary-cardinality claim; UNKNOWN means unresolved under 600 seconds.",
+  "encoded_corrections": [
+    "every selected row centered in a displayed cap has at most two support points in that cap",
+    "every selected row centered at a triangle endpoint has at most one support point in either incident displayed cap",
+    "collision uses an actual common full radius class of cardinality at least five",
+    "packed uses two actual support-disjoint exact-four minimal-core shells",
+    "the robust center is omitted from the lateFirstApexSystem blocker image"
+  ],
+  "records": [
+    {
+      "profile": 4,
+      "mode": "collision",
+      "status": "UNSAT",
+      "real_seconds": 505.03,
+      "cnf_sha256": "6b60c0a8924b665e56ee96fe53fc63b9cfd8c728872d9565ac5de8d83951e2d0",
+      "cadical_log_sha256": "43ef0b769a7dd4a48aa0fbfc6cc6d7681cd2cea2171d40dd3ac05f137b635643"
+    },
+    {
+      "profile": 5,
+      "mode": "collision",
+      "status": "UNKNOWN",
+      "reason": "CaDiCaL 600-second time limit",
+      "cnf_sha256": "e4c851827bc33cc1cd5b957d9465ebc3548a8c911bda6fcf32b2aa3992013b41",
+      "cadical_log_sha256": "d65c7c4a0fe0087a4e2d97611d8d0627feb93420576c4c9916699963fe961b91"
+    },
+    {
+      "profile": 4,
+      "mode": "packed",
+      "status": "UNKNOWN",
+      "reason": "CaDiCaL 600-second time limit",
+      "cnf_sha256": "402010303d012e0e9ded27a14e123cf846f669ed71790adbe6e07458316773c3",
+      "cadical_log_sha256": "dc4fb5576bc0502784c2a0274884372076957ca34aaf6619271248bf81e8861d"
+    },
+    {
+      "profile": 5,
+      "mode": "packed",
+      "status": "UNKNOWN",
+      "reason": "CaDiCaL 600-second time limit",
+      "cnf_sha256": "9e2a0a145236c9e0965b4a58ab0cebdb172c1565a75d58d891c7768d6fba559e",
+      "cadical_log_sha256": "93cec2d80a3ab9fe49b4237e5943a3bccce692bb4eecf43d4cd8ea4e4a72147f"
+    }
+  ],
+  "full_linear_warning": "No SAT endpoint may be called a survivor before all concrete row instances, including repeated-center collision or packed rows, pass the tracked full-linear Kalmanson checker."
+}

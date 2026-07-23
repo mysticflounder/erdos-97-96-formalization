@@ -1,0 +1,1231 @@
+{
+  "epistemic_status": "EXACT FIXED-ARTIFACT REPLAY; NOT A EUCLIDEAN MODEL OR LEAN PROOF",
+  "initial_outer_semantic_replay": [
+    {
+      "all_encoded_semantic_constraints_replayed": true,
+      "artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p4.json",
+      "artifact_sha256": "8a1662080001c1041219bf91ed82588835b79ba0069fdb044a204de2e2db14e3",
+      "checked_kalmanson_embedding_count": 8118,
+      "checked_planar_injection_count": 332640,
+      "checked_u5_embedding_count": 2106720,
+      "cnf_sha256": "8e4d86a411a40ddaae5dbfab64f558bfe9bf14f65634ec040a4a796bae16f3c0",
+      "status": "VERIFIED_SAT_PROJECTION"
+    },
+    {
+      "all_encoded_semantic_constraints_replayed": true,
+      "artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p5.json",
+      "artifact_sha256": "77649d222a14aecd3847905f724332e82c441f66bfda359a374c288dcbc8af27",
+      "checked_kalmanson_embedding_count": 8118,
+      "checked_planar_injection_count": 332640,
+      "checked_u5_embedding_count": 2106720,
+      "cnf_sha256": "bd7e05dbe3e471ffc90f312ac8b57c38aaabc7a319a1773c3488fd7ee3319065",
+      "status": "VERIFIED_SAT_PROJECTION"
+    }
+  ],
+  "records": [
+    {
+      "artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p4.json",
+      "artifact_sha256": "8a1662080001c1041219bf91ed82588835b79ba0069fdb044a204de2e2db14e3",
+      "derived_final_dimacs_counts": {
+        "clause_count": 2765381,
+        "variable_count": 12672
+      },
+      "full_linear_kalmanson_replay": {
+        "constraint_kinds": [
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "row_equality",
+          "row_equality",
+          "row_equality",
+          "row_equality",
+          "row_equality",
+          "row_equality"
+        ],
+        "core_vertices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "dependency_centers": [
+          0,
+          1,
+          4
+        ],
+        "metric_core": [
+          "kal2_0_1_6_7",
+          "kal2_0_1_7_8",
+          "kal2_0_1_8_9",
+          "kal2_1_2_6_7",
+          "kal2_1_2_7_8",
+          "kal2_1_2_8_9",
+          "kal2_1_2_9_10",
+          "kal2_2_3_6_7",
+          "kal2_2_3_7_8",
+          "kal2_2_3_8_9",
+          "kal2_2_3_9_10",
+          "kal2_3_4_6_7",
+          "kal2_3_4_7_8",
+          "kal2_3_4_8_9",
+          "kal2_3_4_9_10",
+          "row_0_2_6",
+          "row_0_2_9",
+          "row_1_0_9",
+          "row_1_0_10",
+          "row_4_3_6",
+          "row_4_3_10"
+        ],
+        "required_memberships": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            10
+          ]
+        ],
+        "solver_status": "UNSAT"
+      },
+      "opp1_card": 4,
+      "outer_arc_replay": {
+        "arcs": [
+          {
+            "center": 0,
+            "mask": 15,
+            "side": "left"
+          },
+          {
+            "center": 0,
+            "mask": 960,
+            "side": "right"
+          },
+          {
+            "center": 1,
+            "mask": 1024,
+            "side": "left"
+          },
+          {
+            "center": 1,
+            "mask": 508,
+            "side": "right"
+          },
+          {
+            "center": 2,
+            "mask": 1543,
+            "side": "left"
+          },
+          {
+            "center": 2,
+            "mask": 224,
+            "side": "right"
+          },
+          {
+            "center": 3,
+            "mask": 1792,
+            "side": "left"
+          },
+          {
+            "center": 3,
+            "mask": 64,
+            "side": "right"
+          },
+          {
+            "center": 4,
+            "mask": 1920,
+            "side": "left"
+          },
+          {
+            "center": 4,
+            "mask": 56,
+            "side": "right"
+          },
+          {
+            "center": 5,
+            "mask": 192,
+            "side": "left"
+          },
+          {
+            "center": 5,
+            "mask": 28,
+            "side": "right"
+          },
+          {
+            "center": 6,
+            "mask": 992,
+            "side": "left"
+          },
+          {
+            "center": 6,
+            "mask": 8,
+            "side": "right"
+          },
+          {
+            "center": 7,
+            "mask": 112,
+            "side": "left"
+          },
+          {
+            "center": 7,
+            "mask": 1031,
+            "side": "right"
+          },
+          {
+            "center": 8,
+            "mask": 248,
+            "side": "left"
+          },
+          {
+            "center": 8,
+            "mask": 1027,
+            "side": "right"
+          },
+          {
+            "center": 9,
+            "mask": 28,
+            "side": "left"
+          },
+          {
+            "center": 9,
+            "mask": 1025,
+            "side": "right"
+          },
+          {
+            "center": 10,
+            "mask": 62,
+            "side": "left"
+          },
+          {
+            "center": 10,
+            "mask": 1792,
+            "side": "right"
+          }
+        ],
+        "pairwise_disjoint_four_packing_count": 0,
+        "selected_arc_count": 22,
+        "status": "PASS_NO_PAIRWISE_DISJOINT_FOUR_PACKING"
+      },
+      "own_cap_endpoint_replay": {
+        "checked_center_cap_incidence_count": 14,
+        "ledger": [
+          {
+            "cap": "first_opposite",
+            "center": 4,
+            "endpoint": true,
+            "hits": [
+              6
+            ]
+          },
+          {
+            "cap": "first_opposite",
+            "center": 5,
+            "endpoint": false,
+            "hits": [
+              4,
+              7
+            ]
+          },
+          {
+            "cap": "first_opposite",
+            "center": 6,
+            "endpoint": false,
+            "hits": [
+              5,
+              7
+            ]
+          },
+          {
+            "cap": "first_opposite",
+            "center": 7,
+            "endpoint": true,
+            "hits": [
+              6
+            ]
+          },
+          {
+            "cap": "second_opposite",
+            "center": 0,
+            "endpoint": true,
+            "hits": [
+              9
+            ]
+          },
+          {
+            "cap": "second_opposite",
+            "center": 7,
+            "endpoint": true,
+            "hits": [
+              9
+            ]
+          },
+          {
+            "cap": "second_opposite",
+            "center": 8,
+            "endpoint": false,
+            "hits": [
+              0,
+              7
+            ]
+          },
+          {
+            "cap": "second_opposite",
+            "center": 9,
+            "endpoint": false,
+            "hits": [
+              8,
+              10
+            ]
+          },
+          {
+            "cap": "second_opposite",
+            "center": 10,
+            "endpoint": false,
+            "hits": [
+              0,
+              8
+            ]
+          },
+          {
+            "cap": "surplus",
+            "center": 0,
+            "endpoint": true,
+            "hits": [
+              2
+            ]
+          },
+          {
+            "cap": "surplus",
+            "center": 1,
+            "endpoint": false,
+            "hits": [
+              0,
+              3
+            ]
+          },
+          {
+            "cap": "surplus",
+            "center": 2,
+            "endpoint": false,
+            "hits": [
+              1,
+              4
+            ]
+          },
+          {
+            "cap": "surplus",
+            "center": 3,
+            "endpoint": false,
+            "hits": [
+              2,
+              4
+            ]
+          },
+          {
+            "cap": "surplus",
+            "center": 4,
+            "endpoint": true,
+            "hits": [
+              3
+            ]
+          }
+        ],
+        "status": "PASS"
+      },
+      "rows": {
+        "0": [
+          2,
+          5,
+          6,
+          9
+        ],
+        "1": [
+          0,
+          3,
+          9,
+          10
+        ],
+        "10": [
+          0,
+          3,
+          4,
+          8
+        ],
+        "2": [
+          1,
+          4,
+          6,
+          7
+        ],
+        "3": [
+          2,
+          4,
+          5,
+          10
+        ],
+        "4": [
+          3,
+          6,
+          8,
+          10
+        ],
+        "5": [
+          2,
+          4,
+          7,
+          9
+        ],
+        "6": [
+          0,
+          5,
+          7,
+          8
+        ],
+        "7": [
+          1,
+          3,
+          6,
+          9
+        ],
+        "8": [
+          0,
+          1,
+          2,
+          7
+        ],
+        "9": [
+          1,
+          5,
+          8,
+          10
+        ]
+      },
+      "scalar_curvature_replay": {
+        "constraint_scope": "sum turns = 4; every turn in (0,2); both outer row arcs have sum > 1",
+        "exact_model_replayed": true,
+        "row_ledger": [
+          {
+            "center": 0,
+            "left_turn_indices": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "right_turn_indices": [
+              6,
+              7,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 1,
+            "left_turn_indices": [
+              10
+            ],
+            "right_turn_indices": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 2,
+            "left_turn_indices": [
+              9,
+              10,
+              0,
+              1,
+              2
+            ],
+            "right_turn_indices": [
+              5,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 3,
+            "left_turn_indices": [
+              8,
+              9,
+              10
+            ],
+            "right_turn_indices": [
+              6
+            ]
+          },
+          {
+            "center": 4,
+            "left_turn_indices": [
+              7,
+              8,
+              9,
+              10
+            ],
+            "right_turn_indices": [
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "center": 5,
+            "left_turn_indices": [
+              6,
+              7
+            ],
+            "right_turn_indices": [
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 6,
+            "left_turn_indices": [
+              5,
+              6,
+              7,
+              8,
+              9
+            ],
+            "right_turn_indices": [
+              3
+            ]
+          },
+          {
+            "center": 7,
+            "left_turn_indices": [
+              4,
+              5,
+              6
+            ],
+            "right_turn_indices": [
+              10,
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "center": 8,
+            "left_turn_indices": [
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "right_turn_indices": [
+              10,
+              0,
+              1
+            ]
+          },
+          {
+            "center": 9,
+            "left_turn_indices": [
+              2,
+              3,
+              4
+            ],
+            "right_turn_indices": [
+              10,
+              0
+            ]
+          },
+          {
+            "center": 10,
+            "left_turn_indices": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "right_turn_indices": [
+              8,
+              9,
+              10
+            ]
+          }
+        ],
+        "solver_status": "SAT",
+        "turn_model": [
+          "1/22",
+          "1/22",
+          "1/22",
+          "23/22",
+          "1/22",
+          "1/22",
+          "23/22",
+          "1/22",
+          "6/11",
+          "1/22",
+          "23/22"
+        ]
+      }
+    },
+    {
+      "artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p5.json",
+      "artifact_sha256": "77649d222a14aecd3847905f724332e82c441f66bfda359a374c288dcbc8af27",
+      "derived_final_dimacs_counts": {
+        "clause_count": 2765405,
+        "variable_count": 12672
+      },
+      "full_linear_kalmanson_replay": {
+        "constraint_kinds": [
+          "row_equality",
+          "row_equality",
+          "row_equality",
+          "row_equality",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ab_cd",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ab_cd",
+          "kalmanson_diagonals_vs_ab_cd",
+          "kalmanson_diagonals_vs_ab_cd",
+          "kalmanson_diagonals_vs_ab_cd",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ab_cd",
+          "kalmanson_diagonals_vs_ad_bc",
+          "kalmanson_diagonals_vs_ad_bc"
+        ],
+        "core_vertices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "dependency_centers": [
+          0,
+          1,
+          8
+        ],
+        "metric_core": [
+          "row_0_1_7",
+          "row_0_1_10",
+          "row_1_0_10",
+          "row_8_0_7",
+          "kal2_3_4_9_10",
+          "kal2_3_4_8_9",
+          "kal1_0_2_3_10",
+          "kal2_0_1_9_10",
+          "kal2_0_1_8_9",
+          "kal2_2_3_9_10",
+          "kal2_2_3_8_9",
+          "kal2_1_2_9_10",
+          "kal2_1_2_8_9",
+          "kal1_0_1_2_10",
+          "kal1_0_6_7_10",
+          "kal1_0_5_6_10",
+          "kal1_0_4_5_10",
+          "kal2_6_7_9_10",
+          "kal2_6_7_8_9",
+          "kal2_5_6_9_10",
+          "kal2_5_6_8_9",
+          "kal1_0_3_4_10",
+          "kal2_4_5_9_10",
+          "kal2_4_5_8_9"
+        ],
+        "required_memberships": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            10
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            8,
+            7
+          ]
+        ],
+        "solver_status": "UNSAT"
+      },
+      "opp1_card": 5,
+      "outer_arc_replay": {
+        "arcs": [
+          {
+            "center": 0,
+            "mask": 7,
+            "side": "left"
+          },
+          {
+            "center": 0,
+            "mask": 992,
+            "side": "right"
+          },
+          {
+            "center": 1,
+            "mask": 1024,
+            "side": "left"
+          },
+          {
+            "center": 1,
+            "mask": 504,
+            "side": "right"
+          },
+          {
+            "center": 2,
+            "mask": 1539,
+            "side": "left"
+          },
+          {
+            "center": 2,
+            "mask": 240,
+            "side": "right"
+          },
+          {
+            "center": 3,
+            "mask": 1807,
+            "side": "left"
+          },
+          {
+            "center": 3,
+            "mask": 64,
+            "side": "right"
+          },
+          {
+            "center": 4,
+            "mask": 1920,
+            "side": "left"
+          },
+          {
+            "center": 4,
+            "mask": 60,
+            "side": "right"
+          },
+          {
+            "center": 5,
+            "mask": 64,
+            "side": "left"
+          },
+          {
+            "center": 5,
+            "mask": 1055,
+            "side": "right"
+          },
+          {
+            "center": 6,
+            "mask": 992,
+            "side": "left"
+          },
+          {
+            "center": 6,
+            "mask": 12,
+            "side": "right"
+          },
+          {
+            "center": 7,
+            "mask": 240,
+            "side": "left"
+          },
+          {
+            "center": 7,
+            "mask": 4,
+            "side": "right"
+          },
+          {
+            "center": 8,
+            "mask": 120,
+            "side": "left"
+          },
+          {
+            "center": 8,
+            "mask": 1539,
+            "side": "right"
+          },
+          {
+            "center": 9,
+            "mask": 12,
+            "side": "left"
+          },
+          {
+            "center": 9,
+            "mask": 1537,
+            "side": "right"
+          },
+          {
+            "center": 10,
+            "mask": 30,
+            "side": "left"
+          },
+          {
+            "center": 10,
+            "mask": 1024,
+            "side": "right"
+          }
+        ],
+        "pairwise_disjoint_four_packing_count": 0,
+        "selected_arc_count": 22,
+        "status": "PASS_NO_PAIRWISE_DISJOINT_FOUR_PACKING"
+      },
+      "own_cap_endpoint_replay": {
+        "checked_center_cap_incidence_count": 14,
+        "ledger": [
+          {
+            "cap": "first_opposite",
+            "center": 4,
+            "endpoint": true,
+            "hits": [
+              5
+            ]
+          },
+          {
+            "cap": "first_opposite",
+            "center": 5,
+            "endpoint": false,
+            "hits": [
+              4,
+              6
+            ]
+          },
+          {
+            "cap": "first_opposite",
+            "center": 6,
+            "endpoint": false,
+            "hits": [
+              4,
+              7
+            ]
+          },
+          {
+            "cap": "first_opposite",
+            "center": 7,
+            "endpoint": false,
+            "hits": [
+              5,
+              8
+            ]
+          },
+          {
+            "cap": "first_opposite",
+            "center": 8,
+            "endpoint": true,
+            "hits": [
+              7
+            ]
+          },
+          {
+            "cap": "second_opposite",
+            "center": 0,
+            "endpoint": true,
+            "hits": [
+              10
+            ]
+          },
+          {
+            "cap": "second_opposite",
+            "center": 8,
+            "endpoint": true,
+            "hits": [
+              0
+            ]
+          },
+          {
+            "cap": "second_opposite",
+            "center": 9,
+            "endpoint": false,
+            "hits": [
+              8,
+              10
+            ]
+          },
+          {
+            "cap": "second_opposite",
+            "center": 10,
+            "endpoint": false,
+            "hits": [
+              0,
+              8
+            ]
+          },
+          {
+            "cap": "surplus",
+            "center": 0,
+            "endpoint": true,
+            "hits": [
+              1
+            ]
+          },
+          {
+            "cap": "surplus",
+            "center": 1,
+            "endpoint": false,
+            "hits": [
+              0,
+              3
+            ]
+          },
+          {
+            "cap": "surplus",
+            "center": 2,
+            "endpoint": false,
+            "hits": [
+              1,
+              4
+            ]
+          },
+          {
+            "cap": "surplus",
+            "center": 3,
+            "endpoint": false,
+            "hits": [
+              2,
+              4
+            ]
+          },
+          {
+            "cap": "surplus",
+            "center": 4,
+            "endpoint": true,
+            "hits": [
+              3
+            ]
+          }
+        ],
+        "status": "PASS"
+      },
+      "rows": {
+        "0": [
+          1,
+          6,
+          7,
+          10
+        ],
+        "1": [
+          0,
+          3,
+          8,
+          10
+        ],
+        "10": [
+          0,
+          1,
+          5,
+          8
+        ],
+        "2": [
+          1,
+          4,
+          7,
+          8
+        ],
+        "3": [
+          2,
+          4,
+          5,
+          6
+        ],
+        "4": [
+          3,
+          5,
+          9,
+          10
+        ],
+        "5": [
+          1,
+          3,
+          4,
+          6
+        ],
+        "6": [
+          0,
+          4,
+          7,
+          9
+        ],
+        "7": [
+          2,
+          5,
+          8,
+          9
+        ],
+        "8": [
+          0,
+          2,
+          3,
+          7
+        ],
+        "9": [
+          2,
+          6,
+          8,
+          10
+        ]
+      },
+      "scalar_curvature_replay": {
+        "constraint_scope": "sum turns = 4; every turn in (0,2); both outer row arcs have sum > 1",
+        "exact_model_replayed": true,
+        "row_ledger": [
+          {
+            "center": 0,
+            "left_turn_indices": [
+              0,
+              1,
+              2
+            ],
+            "right_turn_indices": [
+              5,
+              6,
+              7,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 1,
+            "left_turn_indices": [
+              10
+            ],
+            "right_turn_indices": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 2,
+            "left_turn_indices": [
+              9,
+              10,
+              0,
+              1
+            ],
+            "right_turn_indices": [
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 3,
+            "left_turn_indices": [
+              8,
+              9,
+              10,
+              0,
+              1,
+              2,
+              3
+            ],
+            "right_turn_indices": [
+              6
+            ]
+          },
+          {
+            "center": 4,
+            "left_turn_indices": [
+              7,
+              8,
+              9,
+              10
+            ],
+            "right_turn_indices": [
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "center": 5,
+            "left_turn_indices": [
+              6
+            ],
+            "right_turn_indices": [
+              10,
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 6,
+            "left_turn_indices": [
+              5,
+              6,
+              7,
+              8,
+              9
+            ],
+            "right_turn_indices": [
+              2,
+              3
+            ]
+          },
+          {
+            "center": 7,
+            "left_turn_indices": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "right_turn_indices": [
+              2
+            ]
+          },
+          {
+            "center": 8,
+            "left_turn_indices": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "right_turn_indices": [
+              9,
+              10,
+              0,
+              1
+            ]
+          },
+          {
+            "center": 9,
+            "left_turn_indices": [
+              2,
+              3
+            ],
+            "right_turn_indices": [
+              9,
+              10,
+              0
+            ]
+          },
+          {
+            "center": 10,
+            "left_turn_indices": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "right_turn_indices": [
+              10
+            ]
+          }
+        ],
+        "solver_status": "SAT",
+        "turn_model": [
+          "1/22",
+          "1/22",
+          "23/22",
+          "1/22",
+          "1/22",
+          "1/22",
+          "17/11",
+          "1/22",
+          "1/22",
+          "1/22",
+          "23/22"
+        ]
+      }
+    }
+  ],
+  "schema": "p97-unique4-corrected-survivor-independent-replay-v1",
+  "source_hashes": {
+    "scratch/atail-force/generic-biapex-kalmanson-search/cegar.py": "7d81e96cf1a44d1d262104df6df2176ec66736ed1456bf54876c0646398f02e6",
+    "scratch/atail-force/unique-arm-whole-carrier-source-audit/exact_four_outer.py": "7da28c7f16218cbd6ef2dc7fbca9c00485d5be5493e6e1b0da8f7dd67702ecbd",
+    "scratch/atail-force/unique-arm-whole-carrier-source-audit/u5_signed_schema_bank.json": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46",
+    "scratch/atail-force/unique-arm-whole-carrier-source-audit/verify_exact_four_outer.py": "0243eef804850d32736716a062277f3b899ca90e184443f21bfa1fcb9f574df0",
+    "scratch/atail-force/unique4-curvature-direct-overlay/direct_curvature_overlay.py": "9f01ebd1650d987d1498a9e17d77e7bf14b9cadf056a7b7f8e96396a1e66693b",
+    "scratch/atail-force/unique4-curvature-occurrence-census/kalmanson_schema_bank.kernel_only.json": "26ccfafca4308a7415aa82fdc0cc32a4348363a9633c30663c181df8951c679e",
+    "scratch/atail-force/unique4-star-producer/run_direct_overlay_with_own_cap.py": "ce27d4775187ac16a995e997248ff89f4dc100ec90de6ed37738f6b40c647762",
+    "scratch/atail-force/unique4-star-producer/verify_corrected_survivors.py": "86cc6ee1b30333d67208568faf2d9df5f2c1de60b8ac4e607a0d0a1e751458a4",
+    "scratch/atail-force/whole-carrier-ordinal-coverage/full_linear_replay.py": "661237bf8d084fc62332b675504a539b4a6f43ee039120bfc013618fd86cb085",
+    "scratch/atail-force/whole-carrier-planar-rank-cegar/planar_schema_bank.json": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72"
+  }
+}
