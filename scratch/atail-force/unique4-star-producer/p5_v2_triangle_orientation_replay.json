@@ -1,0 +1,123 @@
+{
+  "checkpoint": {
+    "attempt": 1,
+    "path": "scratch/atail-force/unique4-star-producer/seeded_v2_full_linear_cegar_p5.json",
+    "semantic_sha256": "6f7867338b9442e8480e9bce1c6327ec34fd1bf6bd585462a13912fb24e0ddd1"
+  },
+  "epistemic_status": "EXACT_FIXED_REFINEMENT_TRANSPORT_TO_KERNEL_CHECKED_GENERIC_CONSUMER; NO UNIFORM SOURCE OCCURRENCE THEOREM",
+  "exact_endpoint_replay": {
+    "residual_coefficients": {},
+    "status": "EXACT_INTEGER_REPLAY_SUMS_TO_ZERO_LT_ZERO",
+    "strict_inequalities": [
+      "K2(i0,i1,i4,i5)",
+      "K2(i1,i2,i3,i5)"
+    ]
+  },
+  "fixed_occurrence": {
+    "required_memberships": [
+      [
+        1,
+        6
+      ],
+      [
+        1,
+        9
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        9
+      ]
+    ],
+    "source_vertices_by_role": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      9
+    ],
+    "status": "VERIFIED_SUBSET_OF_REFINEMENT_MEMBERSHIPS"
+  },
+  "lean_consumer": "Problem97.UniqueFourKalmansonOccurrenceScratch.false_of_two_k2_three_row_triangle",
+  "schema": "p97-p5-v2-six-role-triangle-oriented-transport-v1",
+  "seed_audit": "The v2 loader emitted only forward and un-recut linear reflection. The next seed expansion must include cyclic re-cuts of reflected schemas.",
+  "source_hashes": {
+    "scratch/atail-force/unique4-kalmanson-occurrence/SixRoleKalmansonTriangle.lean": "641e6f7346f3fe524352053ba8d7cc0ce85aeeb4f5ac7397ed267645767916c1",
+    "scratch/atail-force/unique4-kalmanson-occurrence/six_role_k2_triangle_schema.json": "2329e817479f9b6c3e56eee9ee0ad64f9953491ad99e707f01a0dd9faf0f968c"
+  },
+  "transport": {
+    "description": "boundary reflection followed by cyclic re-cut by three roles; equivalently reverse the center block and the point block",
+    "original_pairs": [
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    "role_map": [
+      2,
+      1,
+      0,
+      5,
+      4,
+      3
+    ],
+    "transported_pairs": [
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        5
+      ]
+    ]
+  }
+}

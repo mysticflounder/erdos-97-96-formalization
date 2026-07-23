@@ -1,0 +1,1324 @@
+{
+  "driver_path": "scratch/atail-force/unique4-star-producer/run_seeded_full_linear_cegar.py",
+  "driver_sha256": "6c89c38586e6ac60d79ec6b534cc2be2479a9033767fbd0eb57c0f8c86bd1927",
+  "epistemic_status": "EXACT DRIVER REPLAY; NOT A LEAN PROOF",
+  "profiles": [
+    {
+      "clause_count_after_seed": 2767469,
+      "clause_count_before_seed": 2765381,
+      "profile": 4,
+      "seed_summary": {
+        "combined_cut_set_sha256": "3252b8d1a87ee55763253ce78196761d8cdc54c0da2766b6a44d0b3580872a29",
+        "records": [
+          {
+            "canonical_order_schema": [
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                0,
+                6
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                1,
+                7
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "core_vertex_count": 8,
+            "covered_oriented_embedding_count": 330,
+            "cut_set_sha256": "77a75df19301a7ee4502a12d4daa4040df0e5e3b236915f26b530e64bed029fd",
+            "duplicate_embedding_cut_count": 90,
+            "forward_order_schema": [
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                0,
+                6
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                1,
+                7
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "id": "corrected-owncap-p4-four-k2",
+            "lean_consumer": "Problem97.CorrectedOwnCapKalmansonCoresScratch.false_of_four_endpoint_k2_three_row_instances",
+            "order_preserving_embedding_count": 165,
+            "orientation_count": 2,
+            "overlap_with_prior_record_cut_count": 0,
+            "profile": 4,
+            "record_sha256": "459fac93093b305078aff79e067fab2ba0968305ba8a5f494c91f6c69648424b",
+            "reflected_order_schema": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                6,
+                1
+              ],
+              [
+                6,
+                7
+              ],
+              [
+                7,
+                1
+              ],
+              [
+                7,
+                3
+              ],
+              [
+                7,
+                5
+              ]
+            ],
+            "row_instances": [
+              {
+                "center_role": 0,
+                "member_roles": [
+                  2,
+                  4,
+                  6
+                ],
+                "row_instance_id": "p4_row_0"
+              },
+              {
+                "center_role": 1,
+                "member_roles": [
+                  0,
+                  6,
+                  7
+                ],
+                "row_instance_id": "p4_row_1"
+              },
+              {
+                "center_role": 3,
+                "member_roles": [
+                  2,
+                  4,
+                  7
+                ],
+                "row_instance_id": "p4_row_3"
+              }
+            ],
+            "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p4.json",
+            "source_artifact_sha256": "8a1662080001c1041219bf91ed82588835b79ba0069fdb044a204de2e2db14e3",
+            "source_vertices_by_role": [
+              0,
+              1,
+              2,
+              3,
+              5,
+              6,
+              9,
+              10
+            ],
+            "strict_inequalities": [
+              {
+                "kind": "K2",
+                "roles": [
+                  0,
+                  1,
+                  5,
+                  6
+                ]
+              },
+              {
+                "kind": "K2",
+                "roles": [
+                  0,
+                  3,
+                  4,
+                  5
+                ]
+              },
+              {
+                "kind": "K2",
+                "roles": [
+                  1,
+                  2,
+                  5,
+                  7
+                ]
+              },
+              {
+                "kind": "K2",
+                "roles": [
+                  2,
+                  3,
+                  5,
+                  7
+                ]
+              }
+            ],
+            "unique_record_cut_count": 240
+          },
+          {
+            "canonical_order_schema": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                4
+              ]
+            ],
+            "core_vertex_count": 6,
+            "covered_oriented_embedding_count": 924,
+            "cut_set_sha256": "7cfce6bd14b487048e43589dcc8eb3909e67d6a9685f199ed6b50fad16bc7783",
+            "duplicate_embedding_cut_count": 0,
+            "forward_order_schema": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                4
+              ]
+            ],
+            "id": "corrected-owncap-p5-two-k1-two-k2",
+            "lean_consumer": "Problem97.CorrectedOwnCapKalmansonCoresScratch.false_of_two_k1_two_k2_four_row_instances",
+            "order_preserving_embedding_count": 462,
+            "orientation_count": 2,
+            "overlap_with_prior_record_cut_count": 0,
+            "profile": 5,
+            "record_sha256": "61f123c8b6fb874291d2579c022e6a6d5df925efcf9dfe2117cf2a1e5280a6ec",
+            "reflected_order_schema": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                2
+              ],
+              [
+                5,
+                4
+              ]
+            ],
+            "row_instances": [
+              {
+                "center_role": 0,
+                "member_roles": [
+                  1,
+                  3,
+                  5
+                ],
+                "row_instance_id": "p5_row_0"
+              },
+              {
+                "center_role": 1,
+                "member_roles": [
+                  0,
+                  5
+                ],
+                "row_instance_id": "p5_row_1"
+              },
+              {
+                "center_role": 2,
+                "member_roles": [
+                  1,
+                  3,
+                  4
+                ],
+                "row_instance_id": "p5_row_2"
+              },
+              {
+                "center_role": 5,
+                "member_roles": [
+                  0,
+                  4
+                ],
+                "row_instance_id": "p5_row_5"
+              }
+            ],
+            "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p5.json",
+            "source_artifact_sha256": "77649d222a14aecd3847905f724332e82c441f66bfda359a374c288dcbc8af27",
+            "source_vertices_by_role": [
+              0,
+              1,
+              2,
+              7,
+              8,
+              10
+            ],
+            "strict_inequalities": [
+              {
+                "kind": "K1",
+                "roles": [
+                  0,
+                  1,
+                  2,
+                  5
+                ]
+              },
+              {
+                "kind": "K2",
+                "roles": [
+                  0,
+                  1,
+                  3,
+                  4
+                ]
+              },
+              {
+                "kind": "K1",
+                "roles": [
+                  0,
+                  2,
+                  4,
+                  5
+                ]
+              },
+              {
+                "kind": "K2",
+                "roles": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              }
+            ],
+            "unique_record_cut_count": 924
+          },
+          {
+            "canonical_order_schema": [
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "core_vertex_count": 6,
+            "covered_oriented_embedding_count": 924,
+            "cut_set_sha256": "74bc3f88645acbd41eff448aed52bb9c1dd4ecb9d92b03ff67646c7bce39144e",
+            "duplicate_embedding_cut_count": 0,
+            "forward_order_schema": [
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "id": "corrected-unseeded-p5-six-role-k2-triangle",
+            "lean_consumer": "Problem97.UniqueFourKalmansonOccurrenceScratch.false_of_two_k2_three_row_triangle",
+            "order_preserving_embedding_count": 462,
+            "orientation_count": 2,
+            "overlap_with_prior_record_cut_count": 0,
+            "profile": 5,
+            "record_sha256": "588c20e85ac805049802c81b7d97d2f2a19cad139e72fab3343ea1b42bd222f4",
+            "reflected_order_schema": [
+              [
+                3,
+                1
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                1
+              ],
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                2
+              ]
+            ],
+            "row_instances": [
+              {
+                "center_role": 0,
+                "member_roles": [
+                  3,
+                  5
+                ],
+                "row_instance_id": "triangle_row_0"
+              },
+              {
+                "center_role": 1,
+                "member_roles": [
+                  4,
+                  5
+                ],
+                "row_instance_id": "triangle_row_1"
+              },
+              {
+                "center_role": 2,
+                "member_roles": [
+                  3,
+                  4
+                ],
+                "row_instance_id": "triangle_row_2"
+              }
+            ],
+            "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p5.json",
+            "source_artifact_sha256": "77649d222a14aecd3847905f724332e82c441f66bfda359a374c288dcbc8af27",
+            "source_vertices_by_role": [
+              0,
+              1,
+              2,
+              7,
+              8,
+              10
+            ],
+            "strict_inequalities": [
+              {
+                "kind": "K2",
+                "roles": [
+                  0,
+                  1,
+                  3,
+                  5
+                ]
+              },
+              {
+                "kind": "K2",
+                "roles": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              }
+            ],
+            "unique_record_cut_count": 924
+          }
+        ],
+        "total_covered_oriented_embedding_count": 2178,
+        "total_unique_cut_count": 2088
+      }
+    },
+    {
+      "clause_count_after_seed": 2767493,
+      "clause_count_before_seed": 2765405,
+      "profile": 5,
+      "seed_summary": {
+        "combined_cut_set_sha256": "3252b8d1a87ee55763253ce78196761d8cdc54c0da2766b6a44d0b3580872a29",
+        "records": [
+          {
+            "canonical_order_schema": [
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                0,
+                6
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                1,
+                7
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "core_vertex_count": 8,
+            "covered_oriented_embedding_count": 330,
+            "cut_set_sha256": "77a75df19301a7ee4502a12d4daa4040df0e5e3b236915f26b530e64bed029fd",
+            "duplicate_embedding_cut_count": 90,
+            "forward_order_schema": [
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                0,
+                6
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                1,
+                7
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                3,
+                7
+              ]
+            ],
+            "id": "corrected-owncap-p4-four-k2",
+            "lean_consumer": "Problem97.CorrectedOwnCapKalmansonCoresScratch.false_of_four_endpoint_k2_three_row_instances",
+            "order_preserving_embedding_count": 165,
+            "orientation_count": 2,
+            "overlap_with_prior_record_cut_count": 0,
+            "profile": 4,
+            "record_sha256": "459fac93093b305078aff79e067fab2ba0968305ba8a5f494c91f6c69648424b",
+            "reflected_order_schema": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                3
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                6,
+                0
+              ],
+              [
+                6,
+                1
+              ],
+              [
+                6,
+                7
+              ],
+              [
+                7,
+                1
+              ],
+              [
+                7,
+                3
+              ],
+              [
+                7,
+                5
+              ]
+            ],
+            "row_instances": [
+              {
+                "center_role": 0,
+                "member_roles": [
+                  2,
+                  4,
+                  6
+                ],
+                "row_instance_id": "p4_row_0"
+              },
+              {
+                "center_role": 1,
+                "member_roles": [
+                  0,
+                  6,
+                  7
+                ],
+                "row_instance_id": "p4_row_1"
+              },
+              {
+                "center_role": 3,
+                "member_roles": [
+                  2,
+                  4,
+                  7
+                ],
+                "row_instance_id": "p4_row_3"
+              }
+            ],
+            "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p4.json",
+            "source_artifact_sha256": "8a1662080001c1041219bf91ed82588835b79ba0069fdb044a204de2e2db14e3",
+            "source_vertices_by_role": [
+              0,
+              1,
+              2,
+              3,
+              5,
+              6,
+              9,
+              10
+            ],
+            "strict_inequalities": [
+              {
+                "kind": "K2",
+                "roles": [
+                  0,
+                  1,
+                  5,
+                  6
+                ]
+              },
+              {
+                "kind": "K2",
+                "roles": [
+                  0,
+                  3,
+                  4,
+                  5
+                ]
+              },
+              {
+                "kind": "K2",
+                "roles": [
+                  1,
+                  2,
+                  5,
+                  7
+                ]
+              },
+              {
+                "kind": "K2",
+                "roles": [
+                  2,
+                  3,
+                  5,
+                  7
+                ]
+              }
+            ],
+            "unique_record_cut_count": 240
+          },
+          {
+            "canonical_order_schema": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                4
+              ]
+            ],
+            "core_vertex_count": 6,
+            "covered_oriented_embedding_count": 924,
+            "cut_set_sha256": "7cfce6bd14b487048e43589dcc8eb3909e67d6a9685f199ed6b50fad16bc7783",
+            "duplicate_embedding_cut_count": 0,
+            "forward_order_schema": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                2,
+                4
+              ],
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                4
+              ]
+            ],
+            "id": "corrected-owncap-p5-two-k1-two-k2",
+            "lean_consumer": "Problem97.CorrectedOwnCapKalmansonCoresScratch.false_of_two_k1_two_k2_four_row_instances",
+            "order_preserving_embedding_count": 462,
+            "orientation_count": 2,
+            "overlap_with_prior_record_cut_count": 0,
+            "profile": 5,
+            "record_sha256": "61f123c8b6fb874291d2579c022e6a6d5df925efcf9dfe2117cf2a1e5280a6ec",
+            "reflected_order_schema": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                3,
+                1
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                3,
+                4
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                5
+              ],
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                2
+              ],
+              [
+                5,
+                4
+              ]
+            ],
+            "row_instances": [
+              {
+                "center_role": 0,
+                "member_roles": [
+                  1,
+                  3,
+                  5
+                ],
+                "row_instance_id": "p5_row_0"
+              },
+              {
+                "center_role": 1,
+                "member_roles": [
+                  0,
+                  5
+                ],
+                "row_instance_id": "p5_row_1"
+              },
+              {
+                "center_role": 2,
+                "member_roles": [
+                  1,
+                  3,
+                  4
+                ],
+                "row_instance_id": "p5_row_2"
+              },
+              {
+                "center_role": 5,
+                "member_roles": [
+                  0,
+                  4
+                ],
+                "row_instance_id": "p5_row_5"
+              }
+            ],
+            "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p5.json",
+            "source_artifact_sha256": "77649d222a14aecd3847905f724332e82c441f66bfda359a374c288dcbc8af27",
+            "source_vertices_by_role": [
+              0,
+              1,
+              2,
+              7,
+              8,
+              10
+            ],
+            "strict_inequalities": [
+              {
+                "kind": "K1",
+                "roles": [
+                  0,
+                  1,
+                  2,
+                  5
+                ]
+              },
+              {
+                "kind": "K2",
+                "roles": [
+                  0,
+                  1,
+                  3,
+                  4
+                ]
+              },
+              {
+                "kind": "K1",
+                "roles": [
+                  0,
+                  2,
+                  4,
+                  5
+                ]
+              },
+              {
+                "kind": "K2",
+                "roles": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              }
+            ],
+            "unique_record_cut_count": 924
+          },
+          {
+            "canonical_order_schema": [
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "core_vertex_count": 6,
+            "covered_oriented_embedding_count": 924,
+            "cut_set_sha256": "74bc3f88645acbd41eff448aed52bb9c1dd4ecb9d92b03ff67646c7bce39144e",
+            "duplicate_embedding_cut_count": 0,
+            "forward_order_schema": [
+              [
+                0,
+                3
+              ],
+              [
+                0,
+                5
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                2,
+                3
+              ],
+              [
+                2,
+                4
+              ]
+            ],
+            "id": "corrected-unseeded-p5-six-role-k2-triangle",
+            "lean_consumer": "Problem97.UniqueFourKalmansonOccurrenceScratch.false_of_two_k2_three_row_triangle",
+            "order_preserving_embedding_count": 462,
+            "orientation_count": 2,
+            "overlap_with_prior_record_cut_count": 0,
+            "profile": 5,
+            "record_sha256": "588c20e85ac805049802c81b7d97d2f2a19cad139e72fab3343ea1b42bd222f4",
+            "reflected_order_schema": [
+              [
+                3,
+                1
+              ],
+              [
+                3,
+                2
+              ],
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                1
+              ],
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                2
+              ]
+            ],
+            "row_instances": [
+              {
+                "center_role": 0,
+                "member_roles": [
+                  3,
+                  5
+                ],
+                "row_instance_id": "triangle_row_0"
+              },
+              {
+                "center_role": 1,
+                "member_roles": [
+                  4,
+                  5
+                ],
+                "row_instance_id": "triangle_row_1"
+              },
+              {
+                "center_role": 2,
+                "member_roles": [
+                  3,
+                  4
+                ],
+                "row_instance_id": "triangle_row_2"
+              }
+            ],
+            "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p5.json",
+            "source_artifact_sha256": "77649d222a14aecd3847905f724332e82c441f66bfda359a374c288dcbc8af27",
+            "source_vertices_by_role": [
+              0,
+              1,
+              2,
+              7,
+              8,
+              10
+            ],
+            "strict_inequalities": [
+              {
+                "kind": "K2",
+                "roles": [
+                  0,
+                  1,
+                  3,
+                  5
+                ]
+              },
+              {
+                "kind": "K2",
+                "roles": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              }
+            ],
+            "unique_record_cut_count": 924
+          }
+        ],
+        "total_covered_oriented_embedding_count": 2178,
+        "total_unique_cut_count": 2088
+      }
+    }
+  ],
+  "repeated_center_fail_closed": {
+    "message": "corrected-owncap-p4-four-k2: repeated center role 0; this outer CNF has one row per center, so row-instance identity would be lost",
+    "status": "VERIFIED_REJECTED"
+  },
+  "schema": "p97-unique4-seeded-full-linear-cegar-validation-v1",
+  "seed_bank": {
+    "epistemic_status": "KERNEL_CHECKED_CONSUMERS_FOR_TWO_FIXED_CORRECTED_SURVIVORS",
+    "path": "scratch/atail-force/unique4-star-producer/kalmanson_row_instance_schemas_seeded_v2.json",
+    "record_count": 3,
+    "schema": "p97-kalmanson-row-instance-schema-bank-v1",
+    "sha256": "2b0ff57785fa93ca5682a9c75ecae6c1ad1c8f952fee181869699e953c94bdd0"
+  },
+  "source_occurrences": [
+    {
+      "checked_memberships": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          10
+        ]
+      ],
+      "id": "corrected-owncap-p4-four-k2",
+      "profile": 4,
+      "status": "VERIFIED_SOURCE_OCCURRENCE"
+    },
+    {
+      "checked_memberships": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          8
+        ]
+      ],
+      "id": "corrected-owncap-p5-two-k1-two-k2",
+      "profile": 5,
+      "status": "VERIFIED_SOURCE_OCCURRENCE"
+    },
+    {
+      "checked_memberships": [
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          8
+        ]
+      ],
+      "id": "corrected-unseeded-p5-six-role-k2-triangle",
+      "profile": 5,
+      "status": "VERIFIED_SOURCE_OCCURRENCE"
+    }
+  ]
+}

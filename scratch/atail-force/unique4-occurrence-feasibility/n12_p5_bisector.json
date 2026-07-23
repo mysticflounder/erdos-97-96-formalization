@@ -1,0 +1,200 @@
+{
+  "bisector_localization": true,
+  "blockers": {
+    "0": 1,
+    "1": 0,
+    "10": 0,
+    "11": 3,
+    "2": 4,
+    "3": 8,
+    "4": 7,
+    "5": 0,
+    "6": 0,
+    "7": 6,
+    "8": 5,
+    "9": 4
+  },
+  "boundary_order": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "claim_scope": "SAT refutes occurrence from this incidence projection only; it does not refute a source theorem using an omitted geometric field",
+  "clause_block_counts": {
+    "blocker_fixed_point_free": 12,
+    "blocker_total_at_least_1": 12,
+    "blocker_total_at_most_1": 660,
+    "cap_0_endpoint_row_hit_at_most_one": 20,
+    "cap_0_row_hit_at_most_two": 120,
+    "cap_1_endpoint_row_hit_at_most_one": 20,
+    "cap_1_row_hit_at_most_two": 120,
+    "cap_2_endpoint_row_hit_at_most_one": 20,
+    "cap_2_row_hit_at_most_two": 120,
+    "completion_center_omitted_from_image": 12,
+    "exact_pair_bisector_center_mem_interior": 24,
+    "exact_row_left_adjacent_hit_at_least_1": 1,
+    "exact_row_left_adjacent_hit_at_most_1": 10,
+    "exact_row_right_adjacent_hit_at_least_1": 1,
+    "exact_row_right_adjacent_hit_at_most_1": 10,
+    "exact_row_two_strict_hits_at_least_2": 3,
+    "exact_row_two_strict_hits_at_most_2": 1,
+    "first_apex_fiber_eq_exact_row": 24,
+    "forbid_global_six_role_triangle": 11088,
+    "mutual_first_step": 1,
+    "mutual_return": 1,
+    "pair_hit_definition": 2376,
+    "row_card_eq_four_at_least_4": 1980,
+    "row_card_eq_four_at_most_4": 5544,
+    "row_nonself": 12,
+    "row_pair_intersection_at_most_two": 14520,
+    "selected_witness_strong_connectivity": 4094,
+    "source_mem_actual_blocker_row": 144
+  },
+  "clause_count": 40950,
+  "closed_caps": [
+    [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    [
+      0,
+      8,
+      9,
+      10,
+      11
+    ]
+  ],
+  "cnf_model_checked": true,
+  "cnf_path": "/tmp/unique4_occurrence_bisector_p5.cnf",
+  "cnf_sha256": "83508a243251d6aaf3b2007f19f6d0509fbe5fb188716a0f0ec85d1e7ae4eb8b",
+  "completion_center": 2,
+  "deliberately_omitted": [
+    "nonlinear Euclidean distance realization",
+    "complete ambient radius partitions outside the displayed rows",
+    "MEC and nonobtuse support-triangle geometry",
+    "alternative-triangle content of noM44",
+    "full subset-minimality beyond selected-witness strong connectivity"
+  ],
+  "encoded_source_projection": [
+    "one nonself four-row at every carrier center",
+    "selected-witness strong connectivity",
+    "displayed cap row-hit bounds and endpoint one-hit bounds",
+    "total fixed-point-free blocker map with source in actual blocker row",
+    "first-apex blocker fiber equal to its exact selected row",
+    "anchored mutual blocker two-cycle",
+    "completion center omitted from the whole blocker image",
+    "exact first-apex row 2+1+1 cap distribution",
+    "pairwise selected-row intersections have cardinality at most two",
+    "exact strict-pair bisector center lies in the strict cap interior"
+  ],
+  "epistemic_status": "EXACT_CNF_FOR_DOCUMENTED_INCIDENCE_PROJECTION",
+  "first_apex": 0,
+  "first_opposite_strict": [
+    5,
+    6,
+    7
+  ],
+  "n": 12,
+  "occurrence_cut_count": 11088,
+  "opp1_card": 5,
+  "rows": {
+    "0": [
+      1,
+      5,
+      6,
+      10
+    ],
+    "1": [
+      0,
+      2,
+      7,
+      10
+    ],
+    "10": [
+      1,
+      5,
+      7,
+      9
+    ],
+    "11": [
+      3,
+      7,
+      9,
+      10
+    ],
+    "2": [
+      0,
+      4,
+      7,
+      9
+    ],
+    "3": [
+      1,
+      5,
+      8,
+      11
+    ],
+    "4": [
+      2,
+      5,
+      9,
+      11
+    ],
+    "5": [
+      1,
+      3,
+      7,
+      8
+    ],
+    "6": [
+      0,
+      3,
+      5,
+      7
+    ],
+    "7": [
+      0,
+      4,
+      5,
+      10
+    ],
+    "8": [
+      2,
+      3,
+      7,
+      11
+    ],
+    "9": [
+      4,
+      7,
+      10,
+      11
+    ]
+  },
+  "schema": "p97-unique4-global-six-role-occurrence-feasibility-v2",
+  "solver": "CaDiCaL",
+  "solver_elapsed_seconds": 0.05713279091287404,
+  "solver_returncode": 10,
+  "solver_status": "SAT",
+  "successor": 1,
+  "variable_count": 1080
+}

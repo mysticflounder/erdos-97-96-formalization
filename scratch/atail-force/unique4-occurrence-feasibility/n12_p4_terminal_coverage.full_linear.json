@@ -1,0 +1,95 @@
+{
+  "dependency_centers": [
+    0,
+    1,
+    10
+  ],
+  "epistemic_status": "BOUNDED_Z3_REPLAY_NOT_LEAN_CERTIFICATE",
+  "metric_core": [
+    "kal1_0_1_2_11",
+    "kal2_0_1_6_7",
+    "kal2_0_1_7_8",
+    "kal2_0_1_8_9",
+    "kal2_0_1_9_10",
+    "kal1_0_2_3_11",
+    "kal1_0_3_4_11",
+    "kal1_0_4_5_11",
+    "kal1_0_5_6_11",
+    "kal1_0_6_7_11",
+    "kal1_0_7_8_11",
+    "kal1_0_8_9_11",
+    "kal1_0_9_10_11",
+    "row_0_1_6",
+    "row_1_0_6",
+    "row_1_0_11",
+    "row_10_1_11"
+  ],
+  "n": 12,
+  "payload": {
+    "constraint_kinds": [
+      "kalmanson_diagonals_vs_ab_cd",
+      "kalmanson_diagonals_vs_ad_bc",
+      "kalmanson_diagonals_vs_ad_bc",
+      "kalmanson_diagonals_vs_ad_bc",
+      "kalmanson_diagonals_vs_ad_bc",
+      "kalmanson_diagonals_vs_ab_cd",
+      "kalmanson_diagonals_vs_ab_cd",
+      "kalmanson_diagonals_vs_ab_cd",
+      "kalmanson_diagonals_vs_ab_cd",
+      "kalmanson_diagonals_vs_ab_cd",
+      "kalmanson_diagonals_vs_ab_cd",
+      "kalmanson_diagonals_vs_ab_cd",
+      "kalmanson_diagonals_vs_ab_cd",
+      "row_equality",
+      "row_equality",
+      "row_equality",
+      "row_equality"
+    ],
+    "core_vertices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "required_memberships": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        1,
+        11
+      ],
+      [
+        10,
+        1
+      ],
+      [
+        10,
+        11
+      ]
+    ]
+  },
+  "schema": "p97-ordinal-shadow-full-linear-replay-v1",
+  "status": "UNSAT"
+}

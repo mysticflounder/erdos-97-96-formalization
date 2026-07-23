@@ -1,0 +1,407 @@
+{
+  "cegar_checkpoints": {
+    "append_robustness": "Only the named attempt records are hashed; later appended refinements do not invalidate this replay.",
+    "named_refinements": [
+      {
+        "attempt": 1,
+        "checkpoint": "scratch/atail-force/unique4-star-producer/full_linear_cegar_p5.json",
+        "id": "p5_attempt_1",
+        "semantic_sha256": "6c7a87c926d271bbbbe117c2adf8edc20ab8968437de8080c713f2126040b1f4",
+        "source_core_vertices": [
+          0,
+          1,
+          2,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source_metric_core": [
+          "kal2_0_1_7_8",
+          "kal2_0_1_8_9",
+          "kal2_0_1_9_10",
+          "kal2_1_2_7_8",
+          "row_0_1_7",
+          "row_0_1_10",
+          "row_1_0_8",
+          "row_1_0_10",
+          "row_2_1_7",
+          "row_2_1_8"
+        ],
+        "source_required_memberships": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            10
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            8
+          ]
+        ]
+      },
+      {
+        "attempt": 2,
+        "checkpoint": "scratch/atail-force/unique4-star-producer/full_linear_cegar_p5.json",
+        "id": "p5_attempt_2",
+        "semantic_sha256": "2b9eb924eec2585b98a7e7fea7461aa9b5195152de76ad449f8ae5df20a9ce0b",
+        "source_core_vertices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "source_metric_core": [
+          "kal2_0_1_8_9",
+          "kal2_0_1_7_8",
+          "kal2_2_3_4_5",
+          "kal2_0_1_6_7",
+          "kal2_0_1_5_6",
+          "kal2_1_2_8_9",
+          "kal2_0_1_4_5",
+          "kal2_1_2_7_8",
+          "kal2_1_2_6_7",
+          "kal2_1_2_5_6",
+          "kal2_1_2_4_5",
+          "row_0_4_9",
+          "row_2_0_5",
+          "row_2_0_9",
+          "row_3_1_4",
+          "row_3_1_5"
+        ],
+        "source_required_memberships": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
+      {
+        "attempt": 1,
+        "checkpoint": "scratch/atail-force/unique4-star-producer/seeded_full_linear_cegar_p5.json",
+        "id": "p5_seeded_attempt_1",
+        "semantic_sha256": "a5b96da623a2fa014285f83eae2d1b2a8f034a90f02cc5ee7f566cddc8d5938e",
+        "source_core_vertices": [
+          0,
+          1,
+          2,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source_metric_core": [
+          "kal2_0_1_6_7",
+          "kal2_0_1_7_8",
+          "kal2_0_1_8_9",
+          "kal2_0_1_9_10",
+          "kal2_1_2_6_7",
+          "kal2_1_2_7_8",
+          "row_0_1_6",
+          "row_0_1_10",
+          "row_1_0_8",
+          "row_1_0_10",
+          "row_2_1_6",
+          "row_2_1_8"
+        ],
+        "source_required_memberships": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            10
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            8
+          ]
+        ]
+      }
+    ]
+  },
+  "claim_scope": "Two corrected n=11 p5 refinements instantiate the six-role row-instance schema. The first also replays against its preserved decoded assignment; the second replays against the exact memberships stored in its refinement. No arbitrary-cardinality occurrence claim is made.",
+  "epistemic_status": "EXACT_STORED_REFINEMENT_OCCURRENCE_REPLAY_PLUS_KERNEL_CHECKED_GENERIC_CONSUMER; NO_UNIFORM_SOURCE_OCCURRENCE_THEOREM",
+  "exact_endpoint_compressed_replay": {
+    "occurrence_count": 3,
+    "status": "ALL_EXACT_INTEGER_REPLAYS_SUM_TO_ZERO_LT_ZERO"
+  },
+  "lean_consumer": "Problem97.UniqueFourKalmansonOccurrenceScratch.false_of_two_k2_three_row_triangle",
+  "legacy_bank_audit": {
+    "schema_count": 46,
+    "status": "NO_EXISTING_46_SCHEMA_SUBSUMES_THE_SIX_ROLE_TRIANGLE",
+    "subsuming_embeddings": []
+  },
+  "normalized_occurrences": [
+    {
+      "direct_strict_inequalities": [
+        "K2(0,1,7,10)",
+        "K2(1,2,7,8)"
+      ],
+      "id": "p5_attempt_1",
+      "residual_coefficients": {},
+      "row_instances": [
+        {
+          "center": 0,
+          "evidence": "preserved decoded assignment plus refinement required memberships",
+          "preserved_assignment_support": [
+            1,
+            6,
+            7,
+            10
+          ],
+          "required_members": [
+            7,
+            10
+          ],
+          "row_instance_id": "p5_attempt_1_triangle_row_0",
+          "status": "PASS"
+        },
+        {
+          "center": 1,
+          "evidence": "preserved decoded assignment plus refinement required memberships",
+          "preserved_assignment_support": [
+            0,
+            3,
+            8,
+            10
+          ],
+          "required_members": [
+            8,
+            10
+          ],
+          "row_instance_id": "p5_attempt_1_triangle_row_1",
+          "status": "PASS"
+        },
+        {
+          "center": 2,
+          "evidence": "preserved decoded assignment plus refinement required memberships",
+          "preserved_assignment_support": [
+            1,
+            4,
+            7,
+            8
+          ],
+          "required_members": [
+            7,
+            8
+          ],
+          "row_instance_id": "p5_attempt_1_triangle_row_2",
+          "status": "PASS"
+        }
+      ],
+      "source_vertices_by_role": [
+        0,
+        1,
+        2,
+        7,
+        8,
+        10
+      ],
+      "status": "VERIFIED_DIRECT_ORDER_PRESERVING_OCCURRENCE",
+      "strict_role_order": true
+    },
+    {
+      "direct_strict_inequalities": [
+        "K2(0,2,4,9)",
+        "K2(2,3,4,5)"
+      ],
+      "id": "p5_attempt_2",
+      "residual_coefficients": {},
+      "row_instances": [
+        {
+          "center": 0,
+          "evidence": "refinement required memberships; decoded table was not serialized",
+          "preserved_assignment_support": null,
+          "required_members": [
+            4,
+            9
+          ],
+          "row_instance_id": "p5_attempt_2_triangle_row_0",
+          "status": "PASS"
+        },
+        {
+          "center": 2,
+          "evidence": "refinement required memberships; decoded table was not serialized",
+          "preserved_assignment_support": null,
+          "required_members": [
+            5,
+            9
+          ],
+          "row_instance_id": "p5_attempt_2_triangle_row_1",
+          "status": "PASS"
+        },
+        {
+          "center": 3,
+          "evidence": "refinement required memberships; decoded table was not serialized",
+          "preserved_assignment_support": null,
+          "required_members": [
+            4,
+            5
+          ],
+          "row_instance_id": "p5_attempt_2_triangle_row_2",
+          "status": "PASS"
+        }
+      ],
+      "source_vertices_by_role": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        9
+      ],
+      "status": "VERIFIED_DIRECT_ORDER_PRESERVING_OCCURRENCE",
+      "strict_role_order": true
+    },
+    {
+      "direct_strict_inequalities": [
+        "K2(0,1,6,10)",
+        "K2(1,2,6,8)"
+      ],
+      "id": "p5_seeded_attempt_1",
+      "residual_coefficients": {},
+      "row_instances": [
+        {
+          "center": 0,
+          "evidence": "refinement required memberships; decoded table was not serialized",
+          "preserved_assignment_support": null,
+          "required_members": [
+            6,
+            10
+          ],
+          "row_instance_id": "p5_seeded_attempt_1_triangle_row_0",
+          "status": "PASS"
+        },
+        {
+          "center": 1,
+          "evidence": "refinement required memberships; decoded table was not serialized",
+          "preserved_assignment_support": null,
+          "required_members": [
+            8,
+            10
+          ],
+          "row_instance_id": "p5_seeded_attempt_1_triangle_row_1",
+          "status": "PASS"
+        },
+        {
+          "center": 2,
+          "evidence": "refinement required memberships; decoded table was not serialized",
+          "preserved_assignment_support": null,
+          "required_members": [
+            6,
+            8
+          ],
+          "row_instance_id": "p5_seeded_attempt_1_triangle_row_2",
+          "status": "PASS"
+        }
+      ],
+      "source_vertices_by_role": [
+        0,
+        1,
+        2,
+        6,
+        8,
+        10
+      ],
+      "status": "VERIFIED_DIRECT_ORDER_PRESERVING_OCCURRENCE",
+      "strict_role_order": true
+    }
+  ],
+  "schema": "p97-unique4-six-role-k2-triangle-replay-v1",
+  "source_hashes": {
+    "scratch/atail-force/unique-arm-whole-carrier-source-audit/kalmanson_schema_bank.json": "04105ec974d7e15664d9addca6473329f71f943b14a0037dad9ce3560fcda4f3",
+    "scratch/atail-force/unique4-kalmanson-occurrence/ExactTwoSourceOccurrenceBoundary.lean": "fd84dfe9c6e03f16a5bcac65adcb899c1bbe937275a30e2694150fff7730d057",
+    "scratch/atail-force/unique4-kalmanson-occurrence/SixRoleKalmansonTriangle.lean": "641e6f7346f3fe524352053ba8d7cc0ce85aeeb4f5ac7397ed267645767916c1",
+    "scratch/atail-force/unique4-kalmanson-occurrence/audit_six_role_triangle.py": "5a1838fe03cf233cb96a5b43d25b5f4b258434b6631f49b71951fc1d4a32fd52",
+    "scratch/atail-force/unique4-kalmanson-occurrence/six_role_k2_triangle_schema.json": "2329e817479f9b6c3e56eee9ee0ad64f9953491ad99e707f01a0dd9faf0f968c",
+    "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p5.json": "77649d222a14aecd3847905f724332e82c441f66bfda359a374c288dcbc8af27"
+  }
+}

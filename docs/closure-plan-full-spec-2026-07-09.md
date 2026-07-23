@@ -8793,6 +8793,76 @@ checked schemas (or a stronger terminal) from the exact-four residual.  No
 pre-cap-correction fixture, transient prefix, solver UNSAT, or finite CEGAR
 coverage closes a source `sorry`.
 
+That fixed-card discovery gate has now reached Boolean exhaustion in both
+profiles.  Profile four terminates from the two corrected own-cap consumers;
+profile five additionally needs the six-role generic consumer
+`false_of_two_k2_three_row_triangle`.  An exact transport audit found that the
+apparent extra p5 refinement was the same theorem after boundary reflection
+and a cyclic re-cut; the v3 seed bank installs all four required oriented
+families.  The p4 terminal is now externally exact DRAT-verified.  Its
+hash-bound formula has 12,672 variables and 2,765,403 clauses; CaDiCaL
+produced a 248,900,779-byte proof and `drat-trim` returned exact verdict
+`s VERIFIED`.  The CNF and proof SHA-256 digests are respectively
+`d1ff6359442edebbafa2ea9a01aa77c439a681b62a186e73cdbf528028fdb536`
+and
+`8460ec3f078691772de38bf2d47e5a973917cb4290cb9e8aea3adfe30f881f62`.
+The independent checker also replays the exact transported tail clauses and
+their order-preserving restriction to the kernel-checked p4 consumer.  This
+is an external certificate for the fixed Boolean projection, not a Lean proof
+of the encoder or an arbitrary-card occurrence theorem.  P5 remains
+`BOOLEAN_UNSAT_PENDING_PROOF_REPLAY`; its p5-v3 run used zero refinements after
+installing the complete oriented seed family.
+
+The arbitrary-cardinality source route has now advanced past the earlier
+occurrence-only boundary.  The warning-clean scratch development
+`scratch/atail-force/unique4-source-closer/ExactFourSurvivalCover.lean`
+rebases to the late critical system, whose first-apex blocker fiber is exactly
+the complete four-point first-apex class.  At least seven sources lie outside
+that fiber.  Call such a source bad when neither retained singleton deletion
+preserves K4 at its actual blocker.  Complete-shell locking and the convex
+perpendicular-bisector bound force every bad source into the same critical
+four-shell through the retained pair; that shell has only two positions
+outside the first-apex class.  Hence there are at most two bad sources and at
+least five good ones.  Two good sources have distinct actual blockers, so one
+blocker differs from the physical second apex.  For that source, one retained
+deletion survives at both its actual blocker and the physical second apex,
+giving a source-faithful `CommonDeletionTwoCenterPacket`.
+
+Applying the existing physical-second-apex consumer gives the exhaustive
+`ExactFourPhysicalConsumerOutcome`: either `S.oppApex2` is fully
+singleton-deletion robust, or the late critical system supplies a protected
+`SwappedFirstApexUniqueFourFrontier`.  This is a genuine source reduction, not
+a terminal.  The robust output cannot enter the bi-apex-robust theorem because
+the original first apex has exact-four, hence nonrobust, polarity.  The swapped
+output cannot be sent back through the unique-four dispatcher after discarding
+the original residual and ingress, because that only recreates the same open
+obligation.  The immediate aggregate target is now
+`false_of_exactFourPhysicalConsumerOutcome R O`, and each arm must visibly
+consume the original `OriginalUniqueFourResidual` together with the new
+physical common-deletion ingress.  All six public source-reduction theorems
+have axiom closure exactly `[propext, Classical.choice, Quot.sound]`; no source
+`sorry` is closed at this checkpoint.
+
+The finite exhaustion does not supply the arbitrary-card lift.  Exact `n = 12`
+SAT tables exist which satisfy the selected-row/cardinality/blocker/
+connectivity projection while avoiding every cyclic or reflected occurrence
+of `false_of_two_k2_three_row_triangle`.  The first pair of tables omitted and
+violated `OriginalUniqueFourResidual.bisector_center_mem_interior`; after that
+source theorem was added, both profiles were still SAT.  Those corrected
+tables were full-linear UNSAT through the existing production four-role
+two-center shared-pair terminals.  Adding all 1,980 cyclic transports of those
+terminals still leaves new `n = 12` incidence SAT tables avoiding the six-role
+consumer; the new tables again fail only at a larger full-linear row core.
+
+Therefore the fixed-card bank is a useful conditional leaf, but literal
+schema enumeration is no longer the primary source-closure strategy.  The
+source theorem must visibly use a field absent from the `n = 12` projection:
+complete ambient radius partitions and support locking, the retained
+second-apex deletion class, choice-independent minimality, or nonlinear
+Euclidean/MEC/`noM44` geometry.  Its output must be an immediate existing
+consumer occurrence or `False`; another local metric consumer or another
+fixed-card literal core does not advance the live spine.
+
 The robust global-deletion source interface has also been corrected.  It first
 rebases to `lateFirstApexResidual R`, so the collision or packed-core center is
 omitted from the same late critical system that supplies the two fixed rows.
@@ -8854,19 +8924,19 @@ global-K4 theorem must force a second same-cap row sharing the fresh shell's
 outside pair, or construct a complete alternative `IsM44` packet.  Merely
 restating strict-interior data or total criticality is nonterminal.
 
-Therefore the primary exact-four coverage question is now source-faithful and
-two-tiered.  On the ordinary exact-two source surface, combine complete-radius
-support-lock closure with the checked strict-window/full-cover curvature
-terminals.  On the global-deletion robust arms, use the weaker two-completion-
-row consumer while retaining the actual collision or packed-core provenance;
-solve the singleton core separately.  A two-point shared row in Kalmanson
-order or a complete alternative `IsM44` packet remains fallback.  Pure
-selected-row strong connectivity, universal subset escape by itself, arbitrary
-completion-row availability, another unclassified fixed-card literal CEGAR
-stream, and conditional adapters are not accepted substitutes.  All new Lean
-declarations above pass warnings-as-errors and have axiom closure exactly
-`[propext, Classical.choice, Quot.sound]`; no production `sorry` is closed by
-this checkpoint.
+Therefore the primary exact-four target is the enriched terminal
+`false_of_exactFourPhysicalConsumerOutcome`, split into the physical-second-
+apex robust arm and the coupled original/swapped exact-four arm.  The earlier
+curvature, two-completion-row, singleton-core, and fixed-card certificate work
+remains a bank of possible consumers and regression gates, but is no longer a
+substitute for proving those source-generated arms.  A two-point shared row in
+Kalmanson order or a complete alternative `IsM44` packet remains fallback.
+Pure selected-row strong connectivity, universal subset escape by itself,
+arbitrary completion-row availability, another unclassified fixed-card
+literal CEGAR stream, and conditional adapters are not accepted substitutes.
+All new Lean declarations above pass warnings-as-errors and have axiom closure
+exactly `[propext, Classical.choice, Quot.sound]`; no production `sorry` is
+closed by this checkpoint.
 
 ## Change control
 

@@ -1,0 +1,561 @@
+{
+  "claim_scope": "The two stored n=12 incidence models are rejected by an omitted source localization field and by an existing generic Kalmanson consumer; this is not a proof that every source residual has such a row.",
+  "compressed_metric_core": {
+    "background": "ab, ac, bd, cd >= 1",
+    "constraints": {
+      "first_center_equidistant": "ab = ac",
+      "last_center_equidistant": "bd = cd",
+      "strict_kalmanson": "ac + bd >= ab + cd + 1"
+    },
+    "deletion_minimal": true,
+    "deletion_witnesses": {
+      "first_center_equidistant": {
+        "ab": "1",
+        "ac": "2",
+        "bd": "1",
+        "cd": "1"
+      },
+      "last_center_equidistant": {
+        "ab": "1",
+        "ac": "1",
+        "bd": "2",
+        "cd": "1"
+      },
+      "strict_kalmanson": {
+        "ab": "1",
+        "ac": "1",
+        "bd": "1",
+        "cd": "1"
+      }
+    },
+    "status": "UNSAT"
+  },
+  "corrected_localization_profiles": [
+    {
+      "existing_consumer_transport": {
+        "match": "EXACT_WITHOUT_REFLECTION",
+        "role_map": {
+          "i1_first_point": 6,
+          "i2_second_point": 9,
+          "j1_first_center_after_pair": 10,
+          "j2_second_center_after_pair": 11
+        },
+        "strict_order": [
+          6,
+          9,
+          10,
+          11
+        ],
+        "theorem": "Problem97.false_of_two_centers_equidistant_pair_after"
+      },
+      "globally_minimized_direct_core": {
+        "arrangement": "POINT_POINT_CENTER_CENTER",
+        "compressed_constraints": [
+          "one strict Kalmanson inequality",
+          "first center equidistant from the shared pair",
+          "second center equidistant from the shared pair"
+        ],
+        "deletion_minimality": "verified by compressed_metric_core with positive distances",
+        "local_kalmanson_constraint": "kal2_6_9_10_11",
+        "row_memberships": [
+          [
+            10,
+            6
+          ],
+          [
+            10,
+            9
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            11,
+            9
+          ]
+        ]
+      },
+      "input_model": {
+        "bisector_localization": true,
+        "cnf_model_checked": true,
+        "cnf_sha256": "b727800041423358d246ef176852062455c8dc7ff8ef388bab1eec5535a0c2aa",
+        "path": "scratch/atail-force/unique4-occurrence-feasibility/n12_p4_bisector.json",
+        "sha256": "08877790255707f4578a00bb77d65a857d2421e45692a4e1e4553d68468bc998"
+      },
+      "profile": "p4_bisector",
+      "source_localization_check": {
+        "exact_strict_pair": [
+          5,
+          6
+        ],
+        "outside_pair_centers": [],
+        "status": "PASSES_ENCODED_LOCALIZATION"
+      },
+      "tracked_full_linear_replay": {
+        "dependency_centers": [
+          10,
+          11
+        ],
+        "metric_core": [
+          "kal2_6_7_10_11",
+          "kal2_7_8_10_11",
+          "kal2_8_9_10_11",
+          "row_10_3_6",
+          "row_10_3_9",
+          "row_11_4_6",
+          "row_11_4_9"
+        ],
+        "path": "scratch/atail-force/unique4-occurrence-metric-audit/n12_p4_bisector_full_linear.json",
+        "payload": {
+          "constraint_kinds": [
+            "kalmanson_diagonals_vs_ad_bc",
+            "kalmanson_diagonals_vs_ad_bc",
+            "kalmanson_diagonals_vs_ad_bc",
+            "row_equality",
+            "row_equality",
+            "row_equality",
+            "row_equality"
+          ],
+          "core_vertices": [
+            3,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "required_memberships": [
+            [
+              10,
+              3
+            ],
+            [
+              10,
+              6
+            ],
+            [
+              10,
+              9
+            ],
+            [
+              11,
+              4
+            ],
+            [
+              11,
+              6
+            ],
+            [
+              11,
+              9
+            ]
+          ]
+        },
+        "sha256": "807324d9720aecf2aa05c0523314d25ced5ee07ae1b2d2869d8b1c48386ae3ec",
+        "status": "UNSAT"
+      }
+    },
+    {
+      "existing_consumer_transport": {
+        "match": "EXACT_WITHOUT_REFLECTION",
+        "role_map": {
+          "i1_first_point": 1,
+          "i2_second_point": 5,
+          "j1_last_center": 10,
+          "j2_first_center": 0
+        },
+        "strict_order": [
+          0,
+          1,
+          5,
+          10
+        ],
+        "theorem": "Problem97.false_of_two_centers_equidistant_pair_split"
+      },
+      "globally_minimized_direct_core": {
+        "arrangement": "CENTER_POINT_POINT_CENTER",
+        "compressed_constraints": [
+          "one strict Kalmanson inequality",
+          "first center equidistant from the shared pair",
+          "second center equidistant from the shared pair"
+        ],
+        "deletion_minimality": "verified by compressed_metric_core with positive distances",
+        "local_kalmanson_constraint": "kal1_0_1_5_10",
+        "row_memberships": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            10,
+            5
+          ]
+        ]
+      },
+      "input_model": {
+        "bisector_localization": true,
+        "cnf_model_checked": true,
+        "cnf_sha256": "83508a243251d6aaf3b2007f19f6d0509fbe5fb188716a0f0ec85d1e7ae4eb8b",
+        "path": "scratch/atail-force/unique4-occurrence-feasibility/n12_p5_bisector.json",
+        "sha256": "8c5bdac334697c848b7dacf55674f8e1ca5d95d4513a9e009577a4515645275b"
+      },
+      "profile": "p5_bisector",
+      "source_localization_check": {
+        "exact_strict_pair": [
+          5,
+          6
+        ],
+        "outside_pair_centers": [],
+        "status": "PASSES_ENCODED_LOCALIZATION"
+      },
+      "tracked_full_linear_replay": {
+        "dependency_centers": [
+          0,
+          10
+        ],
+        "metric_core": [
+          "kal1_0_1_2_11",
+          "kal1_0_2_3_11",
+          "kal1_0_3_4_11",
+          "kal1_0_4_5_11",
+          "kal2_1_2_10_11",
+          "kal2_2_3_10_11",
+          "kal2_3_4_10_11",
+          "kal2_4_5_10_11",
+          "row_0_1_5",
+          "row_10_1_5"
+        ],
+        "path": "scratch/atail-force/unique4-occurrence-metric-audit/n12_p5_bisector_full_linear.json",
+        "payload": {
+          "constraint_kinds": [
+            "kalmanson_diagonals_vs_ab_cd",
+            "kalmanson_diagonals_vs_ab_cd",
+            "kalmanson_diagonals_vs_ab_cd",
+            "kalmanson_diagonals_vs_ab_cd",
+            "kalmanson_diagonals_vs_ad_bc",
+            "kalmanson_diagonals_vs_ad_bc",
+            "kalmanson_diagonals_vs_ad_bc",
+            "kalmanson_diagonals_vs_ad_bc",
+            "row_equality",
+            "row_equality"
+          ],
+          "core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            10,
+            11
+          ],
+          "required_memberships": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              10,
+              1
+            ],
+            [
+              10,
+              5
+            ]
+          ]
+        },
+        "sha256": "337fb97b4d9e70b9756609499d9d12deb5762ca86024ed07ecdafef36802b54d",
+        "status": "UNSAT"
+      }
+    }
+  ],
+  "epistemic_status": "EXACT_STORED_MODEL_REPLAY_AND_KERNEL_CONSUMER_MATCH",
+  "existing_consumer": {
+    "axioms_checked_separately": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "path": "lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean",
+    "sha256": "240824a900787efc1df483c8501c1f2dda53b6e8a837a44365796cb2f16d1fd8",
+    "theorems": [
+      "Problem97.false_of_two_centers_equidistant_pair_after",
+      "Problem97.false_of_two_centers_equidistant_pair_split"
+    ]
+  },
+  "schema": "p97-unique4-n12-occurrence-metric-audit-v1",
+  "source_hashes": {
+    "certificates/erdos97_legacy_general_n_mining.json": "54d8a255afd4ec1395b8aa724136f0f425056647442ce935ae2e3504b9e90444",
+    "certificates/erdos97_legacy_general_n_mining.md": "3987241b4be66a237810c476af9c9050427549f7e93be6ada22d3da3679d228d",
+    "certificates/erdos_general_theorem_p97_mining.json": "18a215eb4787d415d86173140b2a2cb0b6919d4e8250bf92719f06123235510e",
+    "certificates/erdos_general_theorem_p97_mining.md": "dd851b4993e3742ef1fe5727e27ac293f26eb0ff839b6d2ab07e857aeaed02b1",
+    "certificates/p97_rvol_general_n_mining.json": "818c955558ef3e80e218baf9ba8c94c342d87115d5d91d9ff130d2778f9b01d8",
+    "certificates/p97_rvol_general_n_mining.md": "4b6b38f1c8623122267e22fc386fd6afab4d7d393d3ea62a46f10f2424bb0b46",
+    "docs/general-n-certificate-bank-mining-2026-07-09.md": "313f6ab712bfd8d554b1ae44b342a01c793524479c6c7dc06ece466e85df8c8a",
+    "scratch/atail-force/generic-biapex-kalmanson-search/cegar.py": "7d81e96cf1a44d1d262104df6df2176ec66736ed1456bf54876c0646398f02e6",
+    "scratch/atail-force/unique4-occurrence-metric-audit/audit_n12_metric_core.py": "0b1d1956915731475389ffe30473f6e44bea62d2546a10b926c17deb11264a15",
+    "scratch/atail-force/whole-carrier-ordinal-coverage/full_linear_replay.py": "661237bf8d084fc62332b675504a539b4a6f43ee039120bfc013618fd86cb085"
+  },
+  "source_localization_field": {
+    "declaration": "OriginalUniqueFourResidual.bisector_center_mem_interior",
+    "path": "scratch/atail-force/unique-arm-route-audit/OriginalUniqueResidualDispatch.lean",
+    "sha256": "bb09df4ffd691ca485ac97edf1470e54ffc3de7ab3b9a562af99cc7f36abe03c"
+  },
+  "stale_pre_localization_profiles": [
+    {
+      "existing_consumer_transport": {
+        "match": "EXACT_WITHOUT_REFLECTION",
+        "role_map": {
+          "i1_first_point": 5,
+          "i2_second_point": 6,
+          "j1_last_center": 11,
+          "j2_first_center": 0
+        },
+        "row_memberships": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            11,
+            6
+          ]
+        ],
+        "strict_order": [
+          0,
+          5,
+          6,
+          11
+        ],
+        "theorem": "Problem97.false_of_two_centers_equidistant_pair_split"
+      },
+      "input_model": {
+        "cnf_model_checked": true,
+        "cnf_sha256": "09e999818162f0df1ce9e635bf981e2c0b506484c2856b1e99a006b955b122b4",
+        "path": "scratch/atail-force/unique4-occurrence-feasibility/n12_p4.json",
+        "sha256": "98047f996522f608bd3ae29ef37e6649b4ce3a9c42f5be8b1cd3c175703ec55f"
+      },
+      "profile": "p4",
+      "source_localization_rejection": {
+        "field": "OriginalUniqueFourResidual.bisector_center_mem_interior",
+        "outside_pair_center": 11,
+        "outside_pair_center_not_in_strict_cap": true,
+        "outside_pair_center_row": [
+          5,
+          6,
+          9,
+          10
+        ],
+        "status": "VIOLATED_BY_FINITE_TABLE",
+        "strict_pair": [
+          5,
+          6
+        ]
+      },
+      "tracked_full_linear_replay": {
+        "dependency_centers": [
+          0,
+          11
+        ],
+        "metric_core": [
+          "kal1_0_5_6_11",
+          "row_0_1_5",
+          "row_0_1_6",
+          "row_11_5_6"
+        ],
+        "path": "scratch/atail-force/unique4-occurrence-metric-audit/n12_p4_full_linear.json",
+        "payload": {
+          "constraint_kinds": [
+            "kalmanson_diagonals_vs_ab_cd",
+            "row_equality",
+            "row_equality",
+            "row_equality"
+          ],
+          "core_vertices": [
+            0,
+            1,
+            5,
+            6,
+            11
+          ],
+          "required_memberships": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              11,
+              5
+            ],
+            [
+              11,
+              6
+            ]
+          ]
+        },
+        "sha256": "29cdb7c5f8b1f820a44b1e9198e9a20b60e849254338e2c41104c2036aee2c4a",
+        "status": "UNSAT"
+      }
+    },
+    {
+      "existing_consumer_transport": {
+        "match": "EXACT_WITHOUT_REFLECTION",
+        "role_map": {
+          "i1_first_point": 6,
+          "i2_second_point": 7,
+          "j1_last_center": 11,
+          "j2_first_center": 0
+        },
+        "row_memberships": [
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            11,
+            7
+          ]
+        ],
+        "strict_order": [
+          0,
+          6,
+          7,
+          11
+        ],
+        "theorem": "Problem97.false_of_two_centers_equidistant_pair_split"
+      },
+      "input_model": {
+        "cnf_model_checked": true,
+        "cnf_sha256": "873dd5651fada7f42c8a3789322c9f62f1e26e2ce223f11d37a68833f27d0f74",
+        "path": "scratch/atail-force/unique4-occurrence-feasibility/n12_p5.json",
+        "sha256": "a0a3c622b6f2d404c49cbcaf5e6f48dde1c2a493875e32a287ff015c2c340e32"
+      },
+      "profile": "p5",
+      "source_localization_rejection": {
+        "field": "OriginalUniqueFourResidual.bisector_center_mem_interior",
+        "outside_pair_center": 11,
+        "outside_pair_center_not_in_strict_cap": true,
+        "outside_pair_center_row": [
+          6,
+          7,
+          9,
+          10
+        ],
+        "status": "VIOLATED_BY_FINITE_TABLE",
+        "strict_pair": [
+          6,
+          7
+        ]
+      },
+      "tracked_full_linear_replay": {
+        "dependency_centers": [
+          0,
+          11
+        ],
+        "metric_core": [
+          "kal1_0_6_7_11",
+          "row_0_1_6",
+          "row_0_1_7",
+          "row_11_6_7"
+        ],
+        "path": "scratch/atail-force/unique4-occurrence-metric-audit/n12_p5_full_linear.json",
+        "payload": {
+          "constraint_kinds": [
+            "kalmanson_diagonals_vs_ab_cd",
+            "row_equality",
+            "row_equality",
+            "row_equality"
+          ],
+          "core_vertices": [
+            0,
+            1,
+            6,
+            7,
+            11
+          ],
+          "required_memberships": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              11,
+              6
+            ],
+            [
+              11,
+              7
+            ]
+          ]
+        },
+        "sha256": "e1017dca987fdbad74f021db82fa5d7aeaabe8b268a3ecfbcab3a4eeaa439454",
+        "status": "UNSAT"
+      }
+    }
+  ],
+  "theorem_bank_preflight": {
+    "nthdegree_queries": [
+      "two selected rows centered at endpoints share both middle boundary vertices Kalmanson contradiction",
+      "false_of_two_centers_equidistant_pair_split / two centers equidistant pair split boundary",
+      "false_of_two_centers_equidistant_pair_after / two centers equidistant pair after boundary",
+      "two distinct centers equidistant from same pair cyclic alternation convex"
+    ],
+    "registries": [
+      "docs/general-n-certificate-bank-mining-2026-07-09.md",
+      "certificates/p97_rvol_general_n_mining.md",
+      "certificates/p97_rvol_general_n_mining.json",
+      "certificates/erdos97_legacy_general_n_mining.md",
+      "certificates/erdos97_legacy_general_n_mining.json",
+      "certificates/erdos_general_theorem_p97_mining.md",
+      "certificates/erdos_general_theorem_p97_mining.json"
+    ],
+    "result": "EXISTING_PRODUCTION_CONSUMER"
+  }
+}

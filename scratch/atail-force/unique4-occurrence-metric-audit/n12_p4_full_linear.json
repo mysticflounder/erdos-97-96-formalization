@@ -1,0 +1,53 @@
+{
+  "dependency_centers": [
+    0,
+    11
+  ],
+  "epistemic_status": "BOUNDED_Z3_REPLAY_NOT_LEAN_CERTIFICATE",
+  "metric_core": [
+    "kal1_0_5_6_11",
+    "row_0_1_5",
+    "row_0_1_6",
+    "row_11_5_6"
+  ],
+  "n": 12,
+  "payload": {
+    "constraint_kinds": [
+      "kalmanson_diagonals_vs_ab_cd",
+      "row_equality",
+      "row_equality",
+      "row_equality"
+    ],
+    "core_vertices": [
+      0,
+      1,
+      5,
+      6,
+      11
+    ],
+    "required_memberships": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        11,
+        5
+      ],
+      [
+        11,
+        6
+      ]
+    ]
+  },
+  "schema": "p97-ordinal-shadow-full-linear-replay-v1",
+  "status": "UNSAT"
+}

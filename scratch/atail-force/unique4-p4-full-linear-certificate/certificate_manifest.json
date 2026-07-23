@@ -1,0 +1,311 @@
+{
+  "checkpoint": {
+    "path": "scratch/atail-force/unique4-star-producer/full_linear_cegar_p4.json",
+    "sha256": "298ba63035250747de30a45ca12ef3690a028ab44bd880f1b84720125d695eb4",
+    "stored_terminal_status": "BOOLEAN_UNSAT_PENDING_PROOF_REPLAY"
+  },
+  "cnf": {
+    "byte_count": 158304678,
+    "clause_count": 2765403,
+    "max_variable_used": 12672,
+    "sha256": "d1ff6359442edebbafa2ea9a01aa77c439a681b62a186e73cdbf528028fdb536",
+    "syntax_status": "VERIFIED_STREAMING_DIMACS",
+    "variable_count": 12672
+  },
+  "encoder_source_hashes": {
+    "scratch/atail-force/unique-arm-whole-carrier-source-audit/exact_four_outer.py": "7da28c7f16218cbd6ef2dc7fbca9c00485d5be5493e6e1b0da8f7dd67702ecbd",
+    "scratch/atail-force/unique-arm-whole-carrier-source-audit/u5_signed_schema_bank.json": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46",
+    "scratch/atail-force/unique4-curvature-direct-overlay/direct_curvature_overlay.py": "9f01ebd1650d987d1498a9e17d77e7bf14b9cadf056a7b7f8e96396a1e66693b",
+    "scratch/atail-force/unique4-curvature-occurrence-census/kalmanson_schema_bank.kernel_only.json": "26ccfafca4308a7415aa82fdc0cc32a4348363a9633c30663c181df8951c679e",
+    "scratch/atail-force/unique4-star-producer/run_direct_overlay_with_own_cap.py": "ce27d4775187ac16a995e997248ff89f4dc100ec90de6ed37738f6b40c647762",
+    "scratch/atail-force/unique4-star-producer/run_full_linear_cegar.py": "c30637593c29d57189707101622dfebfb75cb2a0d9ff5e5a5d8e3f4c03f46a9c",
+    "scratch/atail-force/whole-carrier-ordinal-coverage/full_linear_replay.py": "661237bf8d084fc62332b675504a539b4a6f43ee039120bfc013618fd86cb085",
+    "scratch/atail-force/whole-carrier-planar-rank-cegar/planar_schema_bank.json": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72"
+  },
+  "epistemic_status": "EXACT_DRAT_VERIFIED_BOOLEAN_UNSAT_FOR_HASHED_FIXED_N11_CNF",
+  "kernel_consumer_occurrence": {
+    "checked_memberships": [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        0,
+        9
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        9
+      ],
+      [
+        1,
+        10
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        3,
+        10
+      ]
+    ],
+    "lean_consumer": "Problem97.CorrectedOwnCapKalmansonCoresScratch.false_of_four_endpoint_k2_three_row_instances",
+    "record_id": "corrected-owncap-p4-four-k2",
+    "record_sha256": "459fac93093b305078aff79e067fab2ba0968305ba8a5f494c91f6c69648424b",
+    "schema_bank": "scratch/atail-force/unique4-source-field-audit/kalmanson_row_instance_schemas.json",
+    "schema_bank_sha256": "7a00ec6746a89137c29c1304e1872670ca028ff983aaaf0612347eacfb51427e",
+    "source_assignment": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p4.json",
+    "source_assignment_sha256": "8a1662080001c1041219bf91ed82588835b79ba0069fdb044a204de2e2db14e3",
+    "source_vertices_by_role": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      9,
+      10
+    ],
+    "status": "VERIFIED_EXACT_ORDER_PRESERVING_CONSUMER_OCCURRENCE",
+    "transported_core_restriction_roles": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      8,
+      9
+    ]
+  },
+  "lean_consumer_source": {
+    "kernel_check": "Run the recorded Werror Lean command in REPORT.md; this Python checker does not substitute for the Lean kernel.",
+    "path": "scratch/atail-force/unique4-source-field-audit/CorrectedOwnCapKalmansonCores.lean",
+    "sha256": "834fe68450744119221e9952f35871f9626e3db9f9108eb0ad3e34144d6908cc",
+    "textual_hole_scan": "PASS"
+  },
+  "proof": {
+    "byte_count": 248900779,
+    "format": "CaDiCaL binary DRAT",
+    "path_role": "external replay artifact; intentionally not tracked",
+    "sha256": "8460ec3f078691772de38bf2d47e5a973917cb4290cb9e8aea3adfe30f881f62",
+    "verification": {
+      "checker": "drat-trim",
+      "command": [
+        "drat-trim",
+        "<exact-cnf>",
+        "<exact-proof>"
+      ],
+      "elapsed_seconds": 3033.565274792025,
+      "output_sha256": "c593a87af3ac9c97b9ee8335d9c283b49242d0b02f8560219564ff767fc4cb8e",
+      "output_tail": [
+        "c turning on binary mode checking",
+        "c parsing input formula with 12672 variables and 2765403 clauses",
+        "c finished parsing, read 248900779 bytes from proof file",
+        "c detected empty clause; start verification via backward checking",
+        "c 48605 of 2765403 clauses in core                            ",
+        "c 950245 of 3039936 lemmas in core using 81326475 resolution steps",
+        "c 30854 RAT lemmas in core; 1050785 redundant literals in core lemmas",
+        "s VERIFIED",
+        "c verification time: 3033.589 seconds"
+      ],
+      "returncode": 0,
+      "verdict": "s VERIFIED"
+    }
+  },
+  "schema": "p97-unique4-p4-full-linear-drat-certificate-v1",
+  "scope": "The hashed fixed n=11 opp1_card=4 Boolean projection only; not an arbitrary-cardinality theorem and not a Lean sorry closure.",
+  "stored_bare_solver_log": {
+    "sha256": "4fad5ef557b31153527ad8d6cd5f8704f7478b685fa88b60d865162d40055601",
+    "status": "VERIFIED_EXIT20_UNSAT_TEXT"
+  },
+  "transported_cut_replay": {
+    "canonical_order_schema": [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        8
+      ],
+      [
+        1,
+        9
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        9
+      ]
+    ],
+    "core_vertices": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "cut_set_sha256": "cbff1428cbc61e126b6e64c213ab1ea708e342748e2e611e6ca3362b7e3c57cb",
+    "duplicate_clause_count": 6,
+    "forward_order_schema": [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        8
+      ],
+      [
+        1,
+        9
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        9
+      ]
+    ],
+    "oriented_embedding_count": 22,
+    "reflected_order_schema": [
+      [
+        6,
+        0
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        8,
+        0
+      ],
+      [
+        8,
+        1
+      ],
+      [
+        8,
+        9
+      ],
+      [
+        9,
+        1
+      ],
+      [
+        9,
+        5
+      ],
+      [
+        9,
+        7
+      ]
+    ],
+    "required_memberships": [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        0,
+        9
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        9
+      ],
+      [
+        1,
+        10
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        3,
+        10
+      ]
+    ],
+    "unique_clause_count": 16
+  },
+  "trust_boundary": [
+    "drat-trim verifies UNSAT of the exact hashed CNF, not the mathematics",
+    "the encoding-to-fixed-projection map remains an audited Python contract",
+    "the new schema cut is justified by a separately kernel-checked generic consumer",
+    "no arbitrary-cardinality occurrence/coverage theorem is supplied"
+  ]
+}

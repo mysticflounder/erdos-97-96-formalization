@@ -1,0 +1,96 @@
+{
+  "schema": "p97-kalmanson-row-instance-schema-v1",
+  "epistemic_status": "KERNEL_CHECKED_GENERIC_CONSUMER; FIXED_N11_OCCURRENCE_ONLY",
+  "id": "corrected-unseeded-p5-six-role-k2-triangle",
+  "scope": "The consumer is cardinality-generic. Occurrence is verified only in the named corrected n=11 assignment.",
+  "core_vertex_count": 6,
+  "row_instances": [
+    {
+      "row_instance_id": "triangle_row_0",
+      "center_role": 0,
+      "member_roles": [3, 5]
+    },
+    {
+      "row_instance_id": "triangle_row_1",
+      "center_role": 1,
+      "member_roles": [4, 5]
+    },
+    {
+      "row_instance_id": "triangle_row_2",
+      "center_role": 2,
+      "member_roles": [3, 4]
+    }
+  ],
+  "strict_inequalities": [
+    {"kind": "K2", "roles": [0, 1, 3, 5]},
+    {"kind": "K2", "roles": [1, 2, 3, 4]}
+  ],
+  "source_occurrences": [
+    {
+      "id": "p5_attempt_1",
+      "checkpoint": "full_linear_cegar_p5.json",
+      "attempt": 1,
+      "source_vertices_by_role": [0, 1, 2, 7, 8, 10],
+      "source_metric_core": [
+        "kal2_0_1_7_8",
+        "kal2_0_1_8_9",
+        "kal2_0_1_9_10",
+        "kal2_1_2_7_8",
+        "row_0_1_7",
+        "row_0_1_10",
+        "row_1_0_8",
+        "row_1_0_10",
+        "row_2_1_7",
+        "row_2_1_8"
+      ],
+      "compression": "The first three consecutive K2 inequalities telescope to endpoint K2(0,1,7,10). Reference memberships are dropped after extracting the three pair equalities."
+    },
+    {
+      "id": "p5_attempt_2",
+      "checkpoint": "full_linear_cegar_p5.json",
+      "attempt": 2,
+      "source_vertices_by_role": [0, 2, 3, 4, 5, 9],
+      "source_metric_core": [
+        "kal2_0_1_8_9",
+        "kal2_0_1_7_8",
+        "kal2_2_3_4_5",
+        "kal2_0_1_6_7",
+        "kal2_0_1_5_6",
+        "kal2_1_2_8_9",
+        "kal2_0_1_4_5",
+        "kal2_1_2_7_8",
+        "kal2_1_2_6_7",
+        "kal2_1_2_5_6",
+        "kal2_1_2_4_5",
+        "row_0_4_9",
+        "row_2_0_5",
+        "row_2_0_9",
+        "row_3_1_4",
+        "row_3_1_5"
+      ],
+      "compression": "Delete path-only role 1 and use the direct K2 inequalities K2(0,2,4,9) and K2(2,3,4,5). Reference memberships are dropped after extracting the three pair equalities."
+    },
+    {
+      "id": "p5_seeded_attempt_1",
+      "checkpoint": "seeded_full_linear_cegar_p5.json",
+      "attempt": 1,
+      "source_vertices_by_role": [0, 1, 2, 6, 8, 10],
+      "source_metric_core": [
+        "kal2_0_1_6_7",
+        "kal2_0_1_7_8",
+        "kal2_0_1_8_9",
+        "kal2_0_1_9_10",
+        "kal2_1_2_6_7",
+        "kal2_1_2_7_8",
+        "row_0_1_6",
+        "row_0_1_10",
+        "row_1_0_8",
+        "row_1_0_10",
+        "row_2_1_6",
+        "row_2_1_8"
+      ],
+      "compression": "The consecutive K2 paths compress directly to K2(0,1,6,10) and K2(1,2,6,8). Roles 7 and 9 and the three reference memberships are unnecessary."
+    }
+  ],
+  "lean_consumer": "Problem97.UniqueFourKalmansonOccurrenceScratch.false_of_two_k2_three_row_triangle"
+}

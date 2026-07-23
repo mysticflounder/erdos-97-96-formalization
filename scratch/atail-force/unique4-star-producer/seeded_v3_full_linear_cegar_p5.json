@@ -1,0 +1,777 @@
+{
+  "claim_scope": "fixed n=11 corrected finite projection plus kernel-consumer-backed seed cuts and an exact full-linear Kalmanson/triangle oracle",
+  "direct_curvature_overlay": {
+    "outer_arc_type_count": 154,
+    "row_pattern_count": 2310,
+    "turn_disjoint_four_arc_packing_count": 150832
+  },
+  "elapsed_seconds": 488.0362225830322,
+  "epistemic_status": "BOUNDED THEOREM DISCOVERY; NOT A LEAN PROOF",
+  "final_clause_count": 2768417,
+  "final_variable_count": 12672,
+  "n": 11,
+  "opp1_card": 5,
+  "own_cap_clause_counts": {
+    "endpoint_own_cap_at_most_one_clause_count": 30,
+    "own_cap_at_most_two_clause_count": 44
+  },
+  "refinement_count": 0,
+  "refinements": [],
+  "schema": "p97-unique4-seeded-owncap-curvature-full-linear-cegar-v1",
+  "seed_bank": {
+    "epistemic_status": "KERNEL_CHECKED_CONSUMERS_FOR_TWO_FIXED_CORRECTED_SURVIVORS",
+    "path": "scratch/atail-force/unique4-star-producer/kalmanson_row_instance_schemas_seeded_v3.json",
+    "record_count": 4,
+    "schema": "p97-kalmanson-row-instance-schema-bank-v1",
+    "sha256": "46b3d5f52029f1bab83f455717e7532b0669e2763f8ad882eabeff1749e69473"
+  },
+  "seeded_cuts": {
+    "combined_cut_set_sha256": "983e6e8d8553089efd1797eef3ee8c5389308ea23b2ad3128fb32200f244869d",
+    "records": [
+      {
+        "canonical_order_schema": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            7
+          ]
+        ],
+        "core_vertex_count": 8,
+        "covered_oriented_embedding_count": 330,
+        "cut_set_sha256": "77a75df19301a7ee4502a12d4daa4040df0e5e3b236915f26b530e64bed029fd",
+        "duplicate_embedding_cut_count": 90,
+        "forward_order_schema": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            7
+          ]
+        ],
+        "id": "corrected-owncap-p4-four-k2",
+        "lean_consumer": "Problem97.CorrectedOwnCapKalmansonCoresScratch.false_of_four_endpoint_k2_three_row_instances",
+        "order_preserving_embedding_count": 165,
+        "orientation_count": 2,
+        "overlap_with_prior_record_cut_count": 0,
+        "profile": 4,
+        "record_sha256": "459fac93093b305078aff79e067fab2ba0968305ba8a5f494c91f6c69648424b",
+        "reflected_order_schema": [
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            7,
+            5
+          ]
+        ],
+        "row_instances": [
+          {
+            "center_role": 0,
+            "member_roles": [
+              2,
+              4,
+              6
+            ],
+            "row_instance_id": "p4_row_0"
+          },
+          {
+            "center_role": 1,
+            "member_roles": [
+              0,
+              6,
+              7
+            ],
+            "row_instance_id": "p4_row_1"
+          },
+          {
+            "center_role": 3,
+            "member_roles": [
+              2,
+              4,
+              7
+            ],
+            "row_instance_id": "p4_row_3"
+          }
+        ],
+        "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p4.json",
+        "source_artifact_sha256": "8a1662080001c1041219bf91ed82588835b79ba0069fdb044a204de2e2db14e3",
+        "source_vertices_by_role": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          9,
+          10
+        ],
+        "strict_inequalities": [
+          {
+            "kind": "K2",
+            "roles": [
+              0,
+              1,
+              5,
+              6
+            ]
+          },
+          {
+            "kind": "K2",
+            "roles": [
+              0,
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "kind": "K2",
+            "roles": [
+              1,
+              2,
+              5,
+              7
+            ]
+          },
+          {
+            "kind": "K2",
+            "roles": [
+              2,
+              3,
+              5,
+              7
+            ]
+          }
+        ],
+        "unique_record_cut_count": 240
+      },
+      {
+        "canonical_order_schema": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "core_vertex_count": 6,
+        "covered_oriented_embedding_count": 924,
+        "cut_set_sha256": "7cfce6bd14b487048e43589dcc8eb3909e67d6a9685f199ed6b50fad16bc7783",
+        "duplicate_embedding_cut_count": 0,
+        "forward_order_schema": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "id": "corrected-owncap-p5-two-k1-two-k2",
+        "lean_consumer": "Problem97.CorrectedOwnCapKalmansonCoresScratch.false_of_two_k1_two_k2_four_row_instances",
+        "order_preserving_embedding_count": 462,
+        "orientation_count": 2,
+        "overlap_with_prior_record_cut_count": 0,
+        "profile": 5,
+        "record_sha256": "61f123c8b6fb874291d2579c022e6a6d5df925efcf9dfe2117cf2a1e5280a6ec",
+        "reflected_order_schema": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "row_instances": [
+          {
+            "center_role": 0,
+            "member_roles": [
+              1,
+              3,
+              5
+            ],
+            "row_instance_id": "p5_row_0"
+          },
+          {
+            "center_role": 1,
+            "member_roles": [
+              0,
+              5
+            ],
+            "row_instance_id": "p5_row_1"
+          },
+          {
+            "center_role": 2,
+            "member_roles": [
+              1,
+              3,
+              4
+            ],
+            "row_instance_id": "p5_row_2"
+          },
+          {
+            "center_role": 5,
+            "member_roles": [
+              0,
+              4
+            ],
+            "row_instance_id": "p5_row_5"
+          }
+        ],
+        "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p5.json",
+        "source_artifact_sha256": "77649d222a14aecd3847905f724332e82c441f66bfda359a374c288dcbc8af27",
+        "source_vertices_by_role": [
+          0,
+          1,
+          2,
+          7,
+          8,
+          10
+        ],
+        "strict_inequalities": [
+          {
+            "kind": "K1",
+            "roles": [
+              0,
+              1,
+              2,
+              5
+            ]
+          },
+          {
+            "kind": "K2",
+            "roles": [
+              0,
+              1,
+              3,
+              4
+            ]
+          },
+          {
+            "kind": "K1",
+            "roles": [
+              0,
+              2,
+              4,
+              5
+            ]
+          },
+          {
+            "kind": "K2",
+            "roles": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "unique_record_cut_count": 924
+      },
+      {
+        "canonical_order_schema": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "core_vertex_count": 6,
+        "covered_oriented_embedding_count": 924,
+        "cut_set_sha256": "74bc3f88645acbd41eff448aed52bb9c1dd4ecb9d92b03ff67646c7bce39144e",
+        "duplicate_embedding_cut_count": 0,
+        "forward_order_schema": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "id": "corrected-unseeded-p5-six-role-k2-triangle",
+        "lean_consumer": "Problem97.UniqueFourKalmansonOccurrenceScratch.false_of_two_k2_three_row_triangle",
+        "order_preserving_embedding_count": 462,
+        "orientation_count": 2,
+        "overlap_with_prior_record_cut_count": 0,
+        "profile": 5,
+        "record_sha256": "588c20e85ac805049802c81b7d97d2f2a19cad139e72fab3343ea1b42bd222f4",
+        "reflected_order_schema": [
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        "row_instances": [
+          {
+            "center_role": 0,
+            "member_roles": [
+              3,
+              5
+            ],
+            "row_instance_id": "triangle_row_0"
+          },
+          {
+            "center_role": 1,
+            "member_roles": [
+              4,
+              5
+            ],
+            "row_instance_id": "triangle_row_1"
+          },
+          {
+            "center_role": 2,
+            "member_roles": [
+              3,
+              4
+            ],
+            "row_instance_id": "triangle_row_2"
+          }
+        ],
+        "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p5.json",
+        "source_artifact_sha256": "77649d222a14aecd3847905f724332e82c441f66bfda359a374c288dcbc8af27",
+        "source_vertices_by_role": [
+          0,
+          1,
+          2,
+          7,
+          8,
+          10
+        ],
+        "strict_inequalities": [
+          {
+            "kind": "K2",
+            "roles": [
+              0,
+              1,
+              3,
+              5
+            ]
+          },
+          {
+            "kind": "K2",
+            "roles": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "unique_record_cut_count": 924
+      },
+      {
+        "canonical_order_schema": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        "core_vertex_count": 6,
+        "covered_oriented_embedding_count": 924,
+        "cut_set_sha256": "5b286c8d2dc7f5503ed525919e8215eb82003e0c2c009008f116aea99fb5d272",
+        "duplicate_embedding_cut_count": 0,
+        "forward_order_schema": [
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        "id": "corrected-p5-six-role-k2-triangle-block-reflected",
+        "lean_consumer": "Problem97.UniqueFourKalmansonOccurrenceScratch.false_of_two_k2_three_row_triangle",
+        "order_preserving_embedding_count": 462,
+        "orientation_count": 2,
+        "overlap_with_prior_record_cut_count": 0,
+        "profile": 5,
+        "record_sha256": "b0692de7d61c6c5d03c9818477b319b65fab71bf12bfd8081110b979b700ffb3",
+        "reflected_order_schema": [
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "row_instances": [
+          {
+            "center_role": 0,
+            "member_roles": [
+              4,
+              5
+            ],
+            "row_instance_id": "triangle_block_reflected_row_0"
+          },
+          {
+            "center_role": 1,
+            "member_roles": [
+              3,
+              4
+            ],
+            "row_instance_id": "triangle_block_reflected_row_1"
+          },
+          {
+            "center_role": 2,
+            "member_roles": [
+              3,
+              5
+            ],
+            "row_instance_id": "triangle_block_reflected_row_2"
+          }
+        ],
+        "source_artifact": "scratch/atail-force/unique4-star-producer/direct_owncap_endpoint_p5.json",
+        "source_artifact_sha256": "77649d222a14aecd3847905f724332e82c441f66bfda359a374c288dcbc8af27",
+        "source_vertices_by_role": [
+          0,
+          3,
+          4,
+          5,
+          6,
+          10
+        ],
+        "strict_inequalities": [
+          {
+            "kind": "K2",
+            "roles": [
+              0,
+              1,
+              4,
+              5
+            ]
+          },
+          {
+            "kind": "K2",
+            "roles": [
+              1,
+              2,
+              3,
+              5
+            ]
+          }
+        ],
+        "unique_record_cut_count": 924
+      }
+    ],
+    "total_covered_oriented_embedding_count": 3102,
+    "total_unique_cut_count": 3012
+  },
+  "source_hashes": {
+    "scratch/atail-force/unique-arm-whole-carrier-source-audit/exact_four_outer.py": "7da28c7f16218cbd6ef2dc7fbca9c00485d5be5493e6e1b0da8f7dd67702ecbd",
+    "scratch/atail-force/unique-arm-whole-carrier-source-audit/u5_signed_schema_bank.json": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46",
+    "scratch/atail-force/unique4-curvature-direct-overlay/direct_curvature_overlay.py": "9f01ebd1650d987d1498a9e17d77e7bf14b9cadf056a7b7f8e96396a1e66693b",
+    "scratch/atail-force/unique4-curvature-occurrence-census/kalmanson_schema_bank.kernel_only.json": "26ccfafca4308a7415aa82fdc0cc32a4348363a9633c30663c181df8951c679e",
+    "scratch/atail-force/unique4-star-producer/kalmanson_row_instance_schemas_seeded_v3.json": "46b3d5f52029f1bab83f455717e7532b0669e2763f8ad882eabeff1749e69473",
+    "scratch/atail-force/unique4-star-producer/run_direct_overlay_with_own_cap.py": "ce27d4775187ac16a995e997248ff89f4dc100ec90de6ed37738f6b40c647762",
+    "scratch/atail-force/unique4-star-producer/run_full_linear_cegar.py": "c30637593c29d57189707101622dfebfb75cb2a0d9ff5e5a5d8e3f4c03f46a9c",
+    "scratch/atail-force/unique4-star-producer/run_seeded_full_linear_cegar.py": "6c89c38586e6ac60d79ec6b534cc2be2479a9033767fbd0eb57c0f8c86bd1927",
+    "scratch/atail-force/whole-carrier-ordinal-coverage/full_linear_replay.py": "661237bf8d084fc62332b675504a539b4a6f43ee039120bfc013618fd86cb085",
+    "scratch/atail-force/whole-carrier-planar-rank-cegar/planar_schema_bank.json": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72"
+  },
+  "terminal_cnf_sha256": "cbfd6ad9559dce5c9da5874a15da0ba7b5c876dfbaa056fc6eb009fc107119a1",
+  "terminal_solver_log_sha256": "d494b3f280721d976e2f83790646a9f56aadb7de7695edbdae1ab1cb51916739",
+  "terminal_status": "BOOLEAN_UNSAT_PENDING_PROOF_REPLAY"
+}

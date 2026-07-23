@@ -1,0 +1,177 @@
+{
+  "claim_scope": "fixed n=11 corrected finite projection plus exact full-linear Kalmanson/triangle oracle",
+  "direct_curvature_overlay": {
+    "outer_arc_type_count": 154,
+    "row_pattern_count": 2310,
+    "turn_disjoint_four_arc_packing_count": 150832
+  },
+  "elapsed_seconds": 709.8859205000335,
+  "epistemic_status": "BOUNDED THEOREM DISCOVERY; NOT A LEAN PROOF",
+  "final_clause_count": 2765403,
+  "final_variable_count": 12672,
+  "n": 11,
+  "opp1_card": 4,
+  "own_cap_clause_counts": {
+    "endpoint_own_cap_at_most_one_clause_count": 30,
+    "own_cap_at_most_two_clause_count": 44
+  },
+  "refinement_count": 1,
+  "refinements": [
+    {
+      "attempt": 1,
+      "canonical_order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          9
+        ]
+      ],
+      "cnf_sha256_before_cut": "dd97df77a4c9a529e8aa21419f49e4e50ac780b0fbf64c0eaf097c27fdfd7537",
+      "constraint_kinds": [
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "kalmanson_diagonals_vs_ad_bc",
+        "row_equality",
+        "row_equality",
+        "row_equality",
+        "row_equality",
+        "row_equality",
+        "row_equality"
+      ],
+      "core_vertices": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "dependency_centers": [
+        0,
+        1,
+        3
+      ],
+      "metric_core": [
+        "kal2_0_1_5_6",
+        "kal2_0_1_6_7",
+        "kal2_0_1_7_8",
+        "kal2_0_1_8_9",
+        "kal2_1_2_5_6",
+        "kal2_1_2_6_7",
+        "kal2_1_2_7_8",
+        "kal2_1_2_8_9",
+        "kal2_1_2_9_10",
+        "kal2_2_3_5_6",
+        "kal2_2_3_6_7",
+        "kal2_2_3_7_8",
+        "kal2_2_3_8_9",
+        "kal2_2_3_9_10",
+        "row_0_2_5",
+        "row_0_2_9",
+        "row_1_0_9",
+        "row_1_0_10",
+        "row_3_2_5",
+        "row_3_2_10"
+      ],
+      "order_embedding_cut_count": 22,
+      "required_memberships": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          3,
+          10
+        ]
+      ]
+    }
+  ],
+  "schema": "p97-unique4-owncap-curvature-full-linear-cegar-v1",
+  "source_hashes": {
+    "scratch/atail-force/unique-arm-whole-carrier-source-audit/exact_four_outer.py": "7da28c7f16218cbd6ef2dc7fbca9c00485d5be5493e6e1b0da8f7dd67702ecbd",
+    "scratch/atail-force/unique-arm-whole-carrier-source-audit/u5_signed_schema_bank.json": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46",
+    "scratch/atail-force/unique4-curvature-direct-overlay/direct_curvature_overlay.py": "9f01ebd1650d987d1498a9e17d77e7bf14b9cadf056a7b7f8e96396a1e66693b",
+    "scratch/atail-force/unique4-curvature-occurrence-census/kalmanson_schema_bank.kernel_only.json": "26ccfafca4308a7415aa82fdc0cc32a4348363a9633c30663c181df8951c679e",
+    "scratch/atail-force/unique4-star-producer/run_direct_overlay_with_own_cap.py": "ce27d4775187ac16a995e997248ff89f4dc100ec90de6ed37738f6b40c647762",
+    "scratch/atail-force/unique4-star-producer/run_full_linear_cegar.py": "c30637593c29d57189707101622dfebfb75cb2a0d9ff5e5a5d8e3f4c03f46a9c",
+    "scratch/atail-force/whole-carrier-ordinal-coverage/full_linear_replay.py": "661237bf8d084fc62332b675504a539b4a6f43ee039120bfc013618fd86cb085",
+    "scratch/atail-force/whole-carrier-planar-rank-cegar/planar_schema_bank.json": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72"
+  },
+  "terminal_cnf_sha256": "d1ff6359442edebbafa2ea9a01aa77c439a681b62a186e73cdbf528028fdb536",
+  "terminal_solver_log_sha256": "4fad5ef557b31153527ad8d6cd5f8704f7478b685fa88b60d865162d40055601",
+  "terminal_status": "BOOLEAN_UNSAT_PENDING_PROOF_REPLAY"
+}
