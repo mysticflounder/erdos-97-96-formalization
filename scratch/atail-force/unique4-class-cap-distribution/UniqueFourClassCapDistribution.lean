@@ -154,12 +154,17 @@ theorem exists_interiorDoubleDeletionPair_of_three_strict_hits
       simpa [SelectedClass] using hfourDouble⟩ }⟩
 
 /-- A late-selected strict-interior frontier, together with the original
-exact-four residual transported to that frontier. -/
+exact-four residual transported to that frontier.  The source three-hit
+premise is retained because it describes the complete first-apex class, not
+only the selected pair. -/
 structure AlignedInteriorFrontier
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
     (R : OriginalUniqueFourResidual F) : Type where
   interiorPair : CardFiveInteriorDoubleDeletionPair D S radius
+  three_strict_hits :
+    3 ≤ (SelectedClass D.A S.oppApex1 radius ∩
+      S.capInteriorByIndex S.oppIndex1).card
 
 def AlignedInteriorFrontier.frontier
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
@@ -287,7 +292,7 @@ theorem exactFour_twoStrict_or_alignedInteriorFrontier
   · right
     rcases exists_interiorDoubleDeletionPair_of_three_strict_hits
         D S (by simpa [T, I] using hthree) with ⟨P⟩
-    exact ⟨⟨P⟩⟩
+    exact ⟨⟨P, by simpa [T, I] using hthree⟩⟩
   · left
     have hcenter := oppApex1_eq_oppositeVertexByIndex S
     have hstrict : (T ∩ I).card = 2 := by omega

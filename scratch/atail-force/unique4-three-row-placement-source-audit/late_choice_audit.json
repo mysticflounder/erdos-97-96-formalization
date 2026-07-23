@@ -1,0 +1,728 @@
+{
+  "epistemic_status": "EXACT_FINITE_REPLAY_OF_EXPORTED_SELECTED_ROWS",
+  "prior_audit_script": "scratch/atail-force/unique4-three-row-occurrence-producer/audit_three_row_occurrence.py",
+  "prior_audit_script_sha256": "194afedc63f96d9df968c0d107f0b7d9eb7ae2e0127087523873386a02f3918b",
+  "record_count": 12,
+  "records": [
+    {
+      "blocker_image": [
+        0,
+        7,
+        8,
+        9,
+        10
+      ],
+      "every_fixed_image_pair_favorable": false,
+      "every_omitted_center_favorable": false,
+      "favorable_fixed_image_pairs": [
+        [
+          8,
+          10
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "favorable_joint_choice_count": 4,
+      "favorable_omitted_completion_centers": [
+        1,
+        3,
+        6
+      ],
+      "fixed_image_pair_count": 10,
+      "omitted_centers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sha256": "d48481d06003cd12a22cb1756398239ac6df6749f5fed826b3cbd6d4e3df5cb8",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_4.result.json",
+      "unfavorable_fixed_image_pair_count": 8,
+      "unfavorable_omitted_completion_centers": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "blocker_image": [
+        0,
+        1,
+        7,
+        9,
+        10
+      ],
+      "every_fixed_image_pair_favorable": false,
+      "every_omitted_center_favorable": false,
+      "favorable_fixed_image_pairs": [
+        [
+          7,
+          9
+        ]
+      ],
+      "favorable_joint_choice_count": 2,
+      "favorable_omitted_completion_centers": [
+        4,
+        6
+      ],
+      "fixed_image_pair_count": 10,
+      "omitted_centers": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        8
+      ],
+      "sha256": "7ad2ac6213413b395bd4bd0492463d7f3d2664862fc2a48a3bf47dadc7b91c23",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_5.result.json",
+      "unfavorable_fixed_image_pair_count": 9,
+      "unfavorable_omitted_completion_centers": [
+        2,
+        3,
+        5,
+        8
+      ]
+    },
+    {
+      "blocker_image": [
+        0,
+        1,
+        8,
+        9,
+        10
+      ],
+      "every_fixed_image_pair_favorable": false,
+      "every_omitted_center_favorable": false,
+      "favorable_fixed_image_pairs": [
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "favorable_joint_choice_count": 11,
+      "favorable_omitted_completion_centers": [
+        3,
+        4,
+        5,
+        7
+      ],
+      "fixed_image_pair_count": 10,
+      "omitted_centers": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "sha256": "cd074f4a26119b2447f7a660650a1d2cff448a7885d2c772e766313d52a8e0c2",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_002/opp1_4.result.json",
+      "unfavorable_fixed_image_pair_count": 4,
+      "unfavorable_omitted_completion_centers": [
+        2,
+        6
+      ]
+    },
+    {
+      "blocker_image": [
+        0,
+        8,
+        9,
+        10
+      ],
+      "every_fixed_image_pair_favorable": false,
+      "every_omitted_center_favorable": false,
+      "favorable_fixed_image_pairs": [
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "favorable_joint_choice_count": 5,
+      "favorable_omitted_completion_centers": [
+        3,
+        4,
+        6
+      ],
+      "fixed_image_pair_count": 6,
+      "omitted_centers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "sha256": "d8782b129b59979fe915e2d6f44330ac5259f840ca77b6425f6bad40fc8c34f2",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_002/opp1_5.result.json",
+      "unfavorable_fixed_image_pair_count": 2,
+      "unfavorable_omitted_completion_centers": [
+        1,
+        2,
+        5,
+        7
+      ]
+    },
+    {
+      "blocker_image": [
+        0,
+        1,
+        6,
+        7,
+        9,
+        10
+      ],
+      "every_fixed_image_pair_favorable": false,
+      "every_omitted_center_favorable": false,
+      "favorable_fixed_image_pairs": [
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          7,
+          10
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "favorable_joint_choice_count": 10,
+      "favorable_omitted_completion_centers": [
+        4,
+        5,
+        8
+      ],
+      "fixed_image_pair_count": 15,
+      "omitted_centers": [
+        2,
+        3,
+        4,
+        5,
+        8
+      ],
+      "sha256": "d829e5d6ced4a1efce76b1425241c59c5d2f3818f01e7baeec952687e4b3ea0a",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_4.result.json",
+      "unfavorable_fixed_image_pair_count": 7,
+      "unfavorable_omitted_completion_centers": [
+        2,
+        3
+      ]
+    },
+    {
+      "blocker_image": [
+        0,
+        4,
+        5,
+        8,
+        9,
+        10
+      ],
+      "every_fixed_image_pair_favorable": false,
+      "every_omitted_center_favorable": false,
+      "favorable_fixed_image_pairs": [
+        [
+          0,
+          10
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "favorable_joint_choice_count": 7,
+      "favorable_omitted_completion_centers": [
+        2,
+        3,
+        6,
+        7
+      ],
+      "fixed_image_pair_count": 15,
+      "omitted_centers": [
+        1,
+        2,
+        3,
+        6,
+        7
+      ],
+      "sha256": "f862f0f8a83ba8b7b82dd47dcf95dcde910a03d13f79da1694b144a588d8eccb",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_5.result.json",
+      "unfavorable_fixed_image_pair_count": 10,
+      "unfavorable_omitted_completion_centers": [
+        1
+      ]
+    },
+    {
+      "blocker_image": [
+        0,
+        5,
+        7,
+        8,
+        9,
+        10
+      ],
+      "every_fixed_image_pair_favorable": false,
+      "every_omitted_center_favorable": false,
+      "favorable_fixed_image_pairs": [
+        [
+          8,
+          9
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "favorable_joint_choice_count": 6,
+      "favorable_omitted_completion_centers": [
+        1,
+        3,
+        4,
+        6
+      ],
+      "fixed_image_pair_count": 15,
+      "omitted_centers": [
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "sha256": "7c3778af43e125169f901f73ab43811d2e93f1ad960567ecafe227ad61ca0b23",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_4.result.json",
+      "unfavorable_fixed_image_pair_count": 12,
+      "unfavorable_omitted_completion_centers": [
+        2
+      ]
+    },
+    {
+      "blocker_image": [
+        0,
+        8,
+        9,
+        10
+      ],
+      "every_fixed_image_pair_favorable": false,
+      "every_omitted_center_favorable": false,
+      "favorable_fixed_image_pairs": [
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          8,
+          10
+        ]
+      ],
+      "favorable_joint_choice_count": 7,
+      "favorable_omitted_completion_centers": [
+        3,
+        4,
+        7
+      ],
+      "fixed_image_pair_count": 6,
+      "omitted_centers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "sha256": "627c91b9b871a8ff070df1c23d7fdb1e2af67b0f0290f7640a5f6209c0ee79f6",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_5.result.json",
+      "unfavorable_fixed_image_pair_count": 3,
+      "unfavorable_omitted_completion_centers": [
+        1,
+        2,
+        5,
+        6
+      ]
+    },
+    {
+      "blocker_image": [
+        0,
+        1,
+        7,
+        9,
+        10
+      ],
+      "every_fixed_image_pair_favorable": false,
+      "every_omitted_center_favorable": false,
+      "favorable_fixed_image_pairs": [
+        [
+          1,
+          7
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "favorable_joint_choice_count": 6,
+      "favorable_omitted_completion_centers": [
+        3,
+        8
+      ],
+      "fixed_image_pair_count": 10,
+      "omitted_centers": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        8
+      ],
+      "sha256": "af166e02475e20902acf8d2a25795ed65458ba67b6a24509587b156a5367ef6f",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_4.result.json",
+      "unfavorable_fixed_image_pair_count": 5,
+      "unfavorable_omitted_completion_centers": [
+        2,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "blocker_image": [
+        0,
+        2,
+        3,
+        8,
+        9,
+        10
+      ],
+      "every_fixed_image_pair_favorable": false,
+      "every_omitted_center_favorable": false,
+      "favorable_fixed_image_pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          3,
+          9
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "favorable_joint_choice_count": 7,
+      "favorable_omitted_completion_centers": [
+        5,
+        6
+      ],
+      "fixed_image_pair_count": 15,
+      "omitted_centers": [
+        1,
+        4,
+        5,
+        6,
+        7
+      ],
+      "sha256": "e6c741bb9786da0a58d12b75b0f941aa77d8977609a5c93b84ef4735a262ac99",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_5.result.json",
+      "unfavorable_fixed_image_pair_count": 10,
+      "unfavorable_omitted_completion_centers": [
+        1,
+        4,
+        7
+      ]
+    },
+    {
+      "blocker_image": [
+        0,
+        7,
+        8,
+        9,
+        10
+      ],
+      "every_fixed_image_pair_favorable": false,
+      "every_omitted_center_favorable": false,
+      "favorable_fixed_image_pairs": [
+        [
+          0,
+          7
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          7,
+          10
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "favorable_joint_choice_count": 8,
+      "favorable_omitted_completion_centers": [
+        1,
+        3,
+        4
+      ],
+      "fixed_image_pair_count": 10,
+      "omitted_centers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "sha256": "6b396b41a53e1c0a12fd3fe631478d5f47c864c5fb0423e29bb22f20165df57d",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_4.result.json",
+      "unfavorable_fixed_image_pair_count": 4,
+      "unfavorable_omitted_completion_centers": [
+        2,
+        5,
+        6
+      ]
+    },
+    {
+      "blocker_image": [
+        0,
+        2,
+        3,
+        8,
+        9,
+        10
+      ],
+      "every_fixed_image_pair_favorable": false,
+      "every_omitted_center_favorable": false,
+      "favorable_fixed_image_pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          3,
+          8
+        ],
+        [
+          3,
+          9
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "favorable_joint_choice_count": 15,
+      "favorable_omitted_completion_centers": [
+        1,
+        5,
+        6,
+        7
+      ],
+      "fixed_image_pair_count": 15,
+      "omitted_centers": [
+        1,
+        4,
+        5,
+        6,
+        7
+      ],
+      "sha256": "a545b047321bc9464cafa1c057b6d982833daab1c720405a51edb507692c44de",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_5.result.json",
+      "unfavorable_fixed_image_pair_count": 3,
+      "unfavorable_omitted_completion_centers": [
+        4
+      ]
+    }
+  ],
+  "round20_full_partition_projection": {
+    "blocker_image": [
+      0,
+      7,
+      8,
+      9,
+      10
+    ],
+    "every_fixed_image_pair_favorable": false,
+    "every_omitted_center_favorable": false,
+    "favorable_fixed_image_pairs": [
+      [
+        7,
+        9
+      ],
+      [
+        7,
+        10
+      ],
+      [
+        9,
+        10
+      ]
+    ],
+    "favorable_joint_choice_count": 6,
+    "favorable_omitted_completion_centers": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "fixed_image_pair_count": 10,
+    "omitted_centers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "sha256": "e15973fae56cfda0ff3d9a4fcf7e065d5644941a1f1111f0a3d044ebfd5cdc14",
+    "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_020/opp1_4.result.json",
+    "unfavorable_fixed_image_pair_count": 7,
+    "unfavorable_omitted_completion_centers": [
+      1,
+      2
+    ]
+  },
+  "scope_warning": "Not Euclidean realizability and not coverage of every possible global-K4 row",
+  "some_record_refutes_every_fixed_image_pair": true,
+  "some_record_refutes_every_omitted_center": true
+}

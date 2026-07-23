@@ -1,0 +1,2156 @@
+{
+  "all_have_fixed_blocker_image_only_witness": false,
+  "all_have_turn_disjoint_witness": true,
+  "designated_source_orientation_invariant_schema": {
+    "meaning": "Three selected rows in the retained CCW orientation: one arbitrary global-K4 completion row contributes both outer arcs; each of two fixed-blocker-image rows contributes one outer arc of either side, with the two fixed arcs cyclically placed between the completion arcs",
+    "record_count_with_literal_fixed_left_left_witness": 8,
+    "reflection_used": false,
+    "representatives": [
+      {
+        "arcs": [
+          {
+            "center": 1,
+            "center_provenance": "global_k4_completion",
+            "center_role": "exact_surplus_adjacent_hit",
+            "curvature_endpoint": 9,
+            "curvature_endpoint_role": "second_opposite_other_1",
+            "end": 3,
+            "fixed_blocker_sources": [],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              3,
+              5,
+              10
+            ],
+            "row_support": [
+              0,
+              2,
+              7,
+              9
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "surplus_other_1",
+              "surplus_vertex",
+              "second_opposite_other_1"
+            ],
+            "start": 0
+          },
+          {
+            "center": 10,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "exact_second_adjacent_hit",
+            "curvature_endpoint": 8,
+            "curvature_endpoint_role": "second_opposite_other_0",
+            "end": 4,
+            "fixed_blocker_sources": [
+              0,
+              3,
+              8,
+              9
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              2,
+              7,
+              10
+            ],
+            "row_support": [
+              0,
+              3,
+              8,
+              9
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "surplus_other_2",
+              "second_opposite_other_0",
+              "second_opposite_other_1"
+            ],
+            "start": 2
+          },
+          {
+            "center": 9,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "second_opposite_other_1",
+            "curvature_endpoint": 6,
+            "curvature_endpoint_role": "exact_strict_hit_1",
+            "end": 6,
+            "fixed_blocker_sources": [
+              2
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              3,
+              7,
+              10
+            ],
+            "row_support": [
+              2,
+              6,
+              8,
+              10
+            ],
+            "row_support_roles": [
+              "surplus_other_1",
+              "exact_strict_hit_1",
+              "second_opposite_other_0",
+              "exact_second_adjacent_hit"
+            ],
+            "start": 3
+          },
+          {
+            "center": 1,
+            "center_provenance": "global_k4_completion",
+            "center_role": "exact_surplus_adjacent_hit",
+            "curvature_endpoint": 7,
+            "curvature_endpoint_role": "surplus_vertex",
+            "end": 11,
+            "fixed_blocker_sources": [],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              1,
+              3,
+              5,
+              10
+            ],
+            "row_support": [
+              0,
+              2,
+              7,
+              9
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "surplus_other_1",
+              "surplus_vertex",
+              "second_opposite_other_1"
+            ],
+            "start": 5
+          }
+        ],
+        "cut": 10,
+        "record_index": 0,
+        "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_4.result.json"
+      },
+      {
+        "arcs": [
+          {
+            "center": 4,
+            "center_provenance": "global_k4_completion",
+            "center_role": "second_apex",
+            "curvature_endpoint": 1,
+            "curvature_endpoint_role": "exact_surplus_adjacent_hit",
+            "end": 3,
+            "fixed_blocker_sources": [],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              3,
+              7,
+              9
+            ],
+            "row_support": [
+              1,
+              3,
+              6,
+              8
+            ],
+            "row_support_roles": [
+              "exact_surplus_adjacent_hit",
+              "surplus_other_2",
+              "first_opposite_other_1",
+              "surplus_vertex"
+            ],
+            "start": 0
+          },
+          {
+            "center": 9,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "exact_second_adjacent_hit",
+            "curvature_endpoint": 2,
+            "curvature_endpoint_role": "surplus_other_1",
+            "end": 6,
+            "fixed_blocker_sources": [
+              2,
+              3
+            ],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              2,
+              6,
+              7,
+              9
+            ],
+            "row_support": [
+              0,
+              2,
+              3,
+              7
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "surplus_other_1",
+              "surplus_other_2",
+              "exact_strict_hit_1"
+            ],
+            "start": 2
+          },
+          {
+            "center": 7,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "exact_strict_hit_1",
+            "curvature_endpoint": 10,
+            "curvature_endpoint_role": "second_opposite_other_1",
+            "end": 8,
+            "fixed_blocker_sources": [
+              10
+            ],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              2,
+              4,
+              8,
+              9
+            ],
+            "row_support": [
+              3,
+              5,
+              9,
+              10
+            ],
+            "row_support_roles": [
+              "surplus_other_2",
+              "exact_strict_hit_0",
+              "exact_second_adjacent_hit",
+              "second_opposite_other_1"
+            ],
+            "start": 5
+          },
+          {
+            "center": 4,
+            "center_provenance": "global_k4_completion",
+            "center_role": "second_apex",
+            "curvature_endpoint": 8,
+            "curvature_endpoint_role": "surplus_vertex",
+            "end": 11,
+            "fixed_blocker_sources": [],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              1,
+              3,
+              7,
+              9
+            ],
+            "row_support": [
+              1,
+              3,
+              6,
+              8
+            ],
+            "row_support_roles": [
+              "exact_surplus_adjacent_hit",
+              "surplus_other_2",
+              "first_opposite_other_1",
+              "surplus_vertex"
+            ],
+            "start": 7
+          }
+        ],
+        "cut": 7,
+        "record_index": 1,
+        "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_5.result.json"
+      },
+      {
+        "arcs": [
+          {
+            "center": 4,
+            "center_provenance": "global_k4_completion",
+            "center_role": "second_apex",
+            "curvature_endpoint": 1,
+            "curvature_endpoint_role": "surplus_other_0",
+            "end": 3,
+            "fixed_blocker_sources": [],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              3,
+              8,
+              10
+            ],
+            "row_support": [
+              1,
+              3,
+              5,
+              7
+            ],
+            "row_support_roles": [
+              "surplus_other_0",
+              "surplus_other_2",
+              "exact_strict_hit_0",
+              "surplus_vertex"
+            ],
+            "start": 0
+          },
+          {
+            "center": 10,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "exact_second_adjacent_hit",
+            "curvature_endpoint": 1,
+            "curvature_endpoint_role": "surplus_other_0",
+            "end": 5,
+            "fixed_blocker_sources": [
+              0,
+              1,
+              7,
+              9
+            ],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              1,
+              3,
+              9,
+              10
+            ],
+            "row_support": [
+              0,
+              1,
+              7,
+              9
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "surplus_other_0",
+              "surplus_vertex",
+              "second_opposite_other_1"
+            ],
+            "start": 3
+          },
+          {
+            "center": 0,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "first_apex",
+            "curvature_endpoint": 6,
+            "curvature_endpoint_role": "exact_strict_hit_1",
+            "end": 9,
+            "fixed_blocker_sources": [
+              2,
+              5,
+              6,
+              10
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              5,
+              6,
+              9
+            ],
+            "row_support": [
+              2,
+              5,
+              6,
+              10
+            ],
+            "row_support_roles": [
+              "exact_surplus_adjacent_hit",
+              "exact_strict_hit_0",
+              "exact_strict_hit_1",
+              "exact_second_adjacent_hit"
+            ],
+            "start": 4
+          },
+          {
+            "center": 4,
+            "center_provenance": "global_k4_completion",
+            "center_role": "second_apex",
+            "curvature_endpoint": 7,
+            "curvature_endpoint_role": "surplus_vertex",
+            "end": 11,
+            "fixed_blocker_sources": [],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              1,
+              3,
+              8,
+              10
+            ],
+            "row_support": [
+              1,
+              3,
+              5,
+              7
+            ],
+            "row_support_roles": [
+              "surplus_other_0",
+              "surplus_other_2",
+              "exact_strict_hit_0",
+              "surplus_vertex"
+            ],
+            "start": 8
+          }
+        ],
+        "cut": 7,
+        "record_index": 2,
+        "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_002/opp1_4.result.json"
+      },
+      {
+        "arcs": [
+          {
+            "center": 3,
+            "center_provenance": "global_k4_completion",
+            "center_role": "surplus_other_2",
+            "curvature_endpoint": 10,
+            "curvature_endpoint_role": "exact_second_adjacent_hit",
+            "end": 4,
+            "fixed_blocker_sources": [],
+            "kind": "center_to_second_support",
+            "offsets": [
+              3,
+              4,
+              9,
+              10
+            ],
+            "row_support": [
+              0,
+              4,
+              5,
+              10
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "second_apex",
+              "first_opposite_other_0",
+              "exact_second_adjacent_hit"
+            ],
+            "start": 0
+          },
+          {
+            "center": 0,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "first_apex",
+            "curvature_endpoint": 7,
+            "curvature_endpoint_role": "exact_strict_hit_1",
+            "end": 7,
+            "fixed_blocker_sources": [
+              1,
+              6,
+              7,
+              10
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              4,
+              5,
+              10
+            ],
+            "row_support": [
+              1,
+              6,
+              7,
+              10
+            ],
+            "row_support_roles": [
+              "exact_surplus_adjacent_hit",
+              "exact_strict_hit_0",
+              "exact_strict_hit_1",
+              "exact_second_adjacent_hit"
+            ],
+            "start": 3
+          },
+          {
+            "center": 8,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "surplus_vertex",
+            "curvature_endpoint": 4,
+            "curvature_endpoint_role": "second_apex",
+            "end": 10,
+            "fixed_blocker_sources": [
+              4,
+              9
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              4,
+              8,
+              10
+            ],
+            "row_support": [
+              0,
+              4,
+              7,
+              9
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "second_apex",
+              "exact_strict_hit_1",
+              "second_opposite_other_0"
+            ],
+            "start": 6
+          },
+          {
+            "center": 3,
+            "center_provenance": "global_k4_completion",
+            "center_role": "surplus_other_2",
+            "curvature_endpoint": 5,
+            "curvature_endpoint_role": "first_opposite_other_0",
+            "end": 11,
+            "fixed_blocker_sources": [],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              3,
+              4,
+              9,
+              10
+            ],
+            "row_support": [
+              0,
+              4,
+              5,
+              10
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "second_apex",
+              "first_opposite_other_0",
+              "exact_second_adjacent_hit"
+            ],
+            "start": 9
+          }
+        ],
+        "cut": 8,
+        "record_index": 3,
+        "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_002/opp1_5.result.json"
+      },
+      {
+        "arcs": [
+          {
+            "center": 5,
+            "center_provenance": "global_k4_completion",
+            "center_role": "exact_strict_hit_0",
+            "curvature_endpoint": 1,
+            "curvature_endpoint_role": "surplus_other_0",
+            "end": 4,
+            "fixed_blocker_sources": [],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              4,
+              9,
+              10
+            ],
+            "row_support": [
+              1,
+              4,
+              6,
+              7
+            ],
+            "row_support_roles": [
+              "surplus_other_0",
+              "second_apex",
+              "exact_strict_hit_1",
+              "surplus_vertex"
+            ],
+            "start": 0
+          },
+          {
+            "center": 10,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "exact_second_adjacent_hit",
+            "curvature_endpoint": 1,
+            "curvature_endpoint_role": "surplus_other_0",
+            "end": 6,
+            "fixed_blocker_sources": [
+              0,
+              1
+            ],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              1,
+              3,
+              9,
+              10
+            ],
+            "row_support": [
+              0,
+              1,
+              7,
+              9
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "surplus_other_0",
+              "surplus_vertex",
+              "second_opposite_other_1"
+            ],
+            "start": 4
+          },
+          {
+            "center": 0,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "first_apex",
+            "curvature_endpoint": 6,
+            "curvature_endpoint_role": "exact_strict_hit_1",
+            "end": 10,
+            "fixed_blocker_sources": [
+              2,
+              5,
+              6,
+              10
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              5,
+              6,
+              9
+            ],
+            "row_support": [
+              2,
+              5,
+              6,
+              10
+            ],
+            "row_support_roles": [
+              "exact_surplus_adjacent_hit",
+              "exact_strict_hit_0",
+              "exact_strict_hit_1",
+              "exact_second_adjacent_hit"
+            ],
+            "start": 5
+          },
+          {
+            "center": 5,
+            "center_provenance": "global_k4_completion",
+            "center_role": "exact_strict_hit_0",
+            "curvature_endpoint": 7,
+            "curvature_endpoint_role": "surplus_vertex",
+            "end": 11,
+            "fixed_blocker_sources": [],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              1,
+              4,
+              9,
+              10
+            ],
+            "row_support": [
+              1,
+              4,
+              6,
+              7
+            ],
+            "row_support_roles": [
+              "surplus_other_0",
+              "second_apex",
+              "exact_strict_hit_1",
+              "surplus_vertex"
+            ],
+            "start": 9
+          }
+        ],
+        "cut": 6,
+        "record_index": 4,
+        "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_4.result.json"
+      },
+      {
+        "arcs": [
+          {
+            "center": 3,
+            "center_provenance": "global_k4_completion",
+            "center_role": "surplus_other_2",
+            "curvature_endpoint": 1,
+            "curvature_endpoint_role": "surplus_other_0",
+            "end": 2,
+            "fixed_blocker_sources": [],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              2,
+              7,
+              10
+            ],
+            "row_support": [
+              1,
+              2,
+              4,
+              7
+            ],
+            "row_support_roles": [
+              "surplus_other_0",
+              "exact_surplus_adjacent_hit",
+              "second_apex",
+              "exact_strict_hit_1"
+            ],
+            "start": 0
+          },
+          {
+            "center": 10,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "exact_second_adjacent_hit",
+            "curvature_endpoint": 1,
+            "curvature_endpoint_role": "surplus_other_0",
+            "end": 4,
+            "fixed_blocker_sources": [
+              0,
+              1,
+              9
+            ],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              1,
+              3,
+              9,
+              10
+            ],
+            "row_support": [
+              0,
+              1,
+              7,
+              9
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "surplus_other_0",
+              "exact_strict_hit_1",
+              "second_opposite_other_0"
+            ],
+            "start": 2
+          },
+          {
+            "center": 0,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "first_apex",
+            "curvature_endpoint": 7,
+            "curvature_endpoint_role": "exact_strict_hit_1",
+            "end": 7,
+            "fixed_blocker_sources": [
+              2,
+              5,
+              7,
+              10
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              4,
+              6,
+              9
+            ],
+            "row_support": [
+              2,
+              5,
+              7,
+              10
+            ],
+            "row_support_roles": [
+              "exact_surplus_adjacent_hit",
+              "exact_strict_hit_0",
+              "exact_strict_hit_1",
+              "exact_second_adjacent_hit"
+            ],
+            "start": 3
+          },
+          {
+            "center": 3,
+            "center_provenance": "global_k4_completion",
+            "center_role": "surplus_other_2",
+            "curvature_endpoint": 7,
+            "curvature_endpoint_role": "exact_strict_hit_1",
+            "end": 11,
+            "fixed_blocker_sources": [],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              1,
+              2,
+              7,
+              10
+            ],
+            "row_support": [
+              1,
+              2,
+              4,
+              7
+            ],
+            "row_support_roles": [
+              "surplus_other_0",
+              "exact_surplus_adjacent_hit",
+              "second_apex",
+              "exact_strict_hit_1"
+            ],
+            "start": 7
+          }
+        ],
+        "cut": 8,
+        "record_index": 5,
+        "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_5.result.json"
+      },
+      {
+        "arcs": [
+          {
+            "center": 1,
+            "center_provenance": "global_k4_completion",
+            "center_role": "exact_surplus_adjacent_hit",
+            "curvature_endpoint": 9,
+            "curvature_endpoint_role": "second_opposite_other_1",
+            "end": 3,
+            "fixed_blocker_sources": [],
+            "kind": "center_to_second_support",
+            "offsets": [
+              2,
+              3,
+              9,
+              10
+            ],
+            "row_support": [
+              2,
+              3,
+              9,
+              10
+            ],
+            "row_support_roles": [
+              "surplus_other_1",
+              "surplus_other_2",
+              "second_opposite_other_1",
+              "second_opposite_other_2"
+            ],
+            "start": 0
+          },
+          {
+            "center": 9,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "second_opposite_other_1",
+            "curvature_endpoint": 7,
+            "curvature_endpoint_role": "surplus_vertex",
+            "end": 5,
+            "fixed_blocker_sources": [
+              7,
+              10
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              2,
+              9,
+              10
+            ],
+            "row_support": [
+              0,
+              7,
+              8,
+              10
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "surplus_vertex",
+              "exact_second_adjacent_hit",
+              "second_opposite_other_2"
+            ],
+            "start": 3
+          },
+          {
+            "center": 8,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "exact_second_adjacent_hit",
+            "curvature_endpoint": 2,
+            "curvature_endpoint_role": "surplus_other_1",
+            "end": 10,
+            "fixed_blocker_sources": [
+              2
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              3,
+              6,
+              8,
+              10
+            ],
+            "row_support": [
+              0,
+              2,
+              5,
+              9
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "surplus_other_1",
+              "exact_strict_hit_0",
+              "second_opposite_other_1"
+            ],
+            "start": 4
+          },
+          {
+            "center": 1,
+            "center_provenance": "global_k4_completion",
+            "center_role": "exact_surplus_adjacent_hit",
+            "curvature_endpoint": 3,
+            "curvature_endpoint_role": "surplus_other_2",
+            "end": 11,
+            "fixed_blocker_sources": [],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              2,
+              3,
+              9,
+              10
+            ],
+            "row_support": [
+              2,
+              3,
+              9,
+              10
+            ],
+            "row_support_roles": [
+              "surplus_other_1",
+              "surplus_other_2",
+              "second_opposite_other_1",
+              "second_opposite_other_2"
+            ],
+            "start": 9
+          }
+        ],
+        "cut": 10,
+        "record_index": 6,
+        "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_4.result.json"
+      },
+      {
+        "arcs": [
+          {
+            "center": 3,
+            "center_provenance": "global_k4_completion",
+            "center_role": "surplus_other_2",
+            "curvature_endpoint": 1,
+            "curvature_endpoint_role": "surplus_other_0",
+            "end": 2,
+            "fixed_blocker_sources": [],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              2,
+              6,
+              9
+            ],
+            "row_support": [
+              1,
+              2,
+              5,
+              8
+            ],
+            "row_support_roles": [
+              "surplus_other_0",
+              "exact_surplus_adjacent_hit",
+              "exact_strict_hit_0",
+              "surplus_vertex"
+            ],
+            "start": 0
+          },
+          {
+            "center": 10,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "exact_second_adjacent_hit",
+            "curvature_endpoint": 1,
+            "curvature_endpoint_role": "surplus_other_0",
+            "end": 4,
+            "fixed_blocker_sources": [
+              0,
+              1,
+              8,
+              9
+            ],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              1,
+              2,
+              9,
+              10
+            ],
+            "row_support": [
+              0,
+              1,
+              8,
+              9
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "surplus_other_0",
+              "surplus_vertex",
+              "second_opposite_other_0"
+            ],
+            "start": 2
+          },
+          {
+            "center": 0,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "first_apex",
+            "curvature_endpoint": 7,
+            "curvature_endpoint_role": "exact_strict_hit_1",
+            "end": 7,
+            "fixed_blocker_sources": [
+              2,
+              5,
+              7,
+              10
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              4,
+              6,
+              9
+            ],
+            "row_support": [
+              2,
+              5,
+              7,
+              10
+            ],
+            "row_support_roles": [
+              "exact_surplus_adjacent_hit",
+              "exact_strict_hit_0",
+              "exact_strict_hit_1",
+              "exact_second_adjacent_hit"
+            ],
+            "start": 3
+          },
+          {
+            "center": 3,
+            "center_provenance": "global_k4_completion",
+            "center_role": "surplus_other_2",
+            "curvature_endpoint": 8,
+            "curvature_endpoint_role": "surplus_vertex",
+            "end": 11,
+            "fixed_blocker_sources": [],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              1,
+              2,
+              6,
+              9
+            ],
+            "row_support": [
+              1,
+              2,
+              5,
+              8
+            ],
+            "row_support_roles": [
+              "surplus_other_0",
+              "exact_surplus_adjacent_hit",
+              "exact_strict_hit_0",
+              "surplus_vertex"
+            ],
+            "start": 6
+          }
+        ],
+        "cut": 8,
+        "record_index": 7,
+        "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_5.result.json"
+      },
+      {
+        "arcs": [
+          {
+            "center": 3,
+            "center_provenance": "global_k4_completion",
+            "center_role": "surplus_other_2",
+            "curvature_endpoint": 1,
+            "curvature_endpoint_role": "exact_surplus_adjacent_hit",
+            "end": 2,
+            "fixed_blocker_sources": [],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              2,
+              7,
+              9
+            ],
+            "row_support": [
+              1,
+              2,
+              5,
+              7
+            ],
+            "row_support_roles": [
+              "exact_surplus_adjacent_hit",
+              "surplus_other_1",
+              "exact_strict_hit_0",
+              "surplus_vertex"
+            ],
+            "start": 0
+          },
+          {
+            "center": 1,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "exact_surplus_adjacent_hit",
+            "curvature_endpoint": 9,
+            "curvature_endpoint_role": "second_opposite_other_1",
+            "end": 5,
+            "fixed_blocker_sources": [
+              2
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              2,
+              3,
+              9,
+              10
+            ],
+            "row_support": [
+              2,
+              3,
+              9,
+              10
+            ],
+            "row_support_roles": [
+              "surplus_other_1",
+              "surplus_other_2",
+              "second_opposite_other_1",
+              "second_opposite_other_2"
+            ],
+            "start": 2
+          },
+          {
+            "center": 7,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "surplus_vertex",
+            "curvature_endpoint": 10,
+            "curvature_endpoint_role": "second_opposite_other_2",
+            "end": 7,
+            "fixed_blocker_sources": [
+              3
+            ],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              4,
+              7,
+              8,
+              10
+            ],
+            "row_support": [
+              0,
+              3,
+              8,
+              10
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "surplus_other_2",
+              "exact_second_adjacent_hit",
+              "second_opposite_other_2"
+            ],
+            "start": 4
+          },
+          {
+            "center": 3,
+            "center_provenance": "global_k4_completion",
+            "center_role": "surplus_other_2",
+            "curvature_endpoint": 7,
+            "curvature_endpoint_role": "surplus_vertex",
+            "end": 11,
+            "fixed_blocker_sources": [],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              1,
+              2,
+              7,
+              9
+            ],
+            "row_support": [
+              1,
+              2,
+              5,
+              7
+            ],
+            "row_support_roles": [
+              "exact_surplus_adjacent_hit",
+              "surplus_other_1",
+              "exact_strict_hit_0",
+              "surplus_vertex"
+            ],
+            "start": 7
+          }
+        ],
+        "cut": 8,
+        "record_index": 8,
+        "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_4.result.json"
+      },
+      {
+        "arcs": [
+          {
+            "center": 5,
+            "center_provenance": "global_k4_completion",
+            "center_role": "exact_strict_hit_0",
+            "curvature_endpoint": 3,
+            "curvature_endpoint_role": "exact_surplus_adjacent_hit",
+            "end": 2,
+            "fixed_blocker_sources": [],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              2,
+              9,
+              10
+            ],
+            "row_support": [
+              3,
+              4,
+              6,
+              7
+            ],
+            "row_support_roles": [
+              "exact_surplus_adjacent_hit",
+              "second_apex",
+              "first_opposite_other_1",
+              "exact_strict_hit_1"
+            ],
+            "start": 0
+          },
+          {
+            "center": 3,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "exact_surplus_adjacent_hit",
+            "curvature_endpoint": 10,
+            "curvature_endpoint_role": "second_opposite_other_1",
+            "end": 6,
+            "fixed_blocker_sources": [
+              2
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              4,
+              6,
+              9
+            ],
+            "row_support": [
+              2,
+              5,
+              8,
+              10
+            ],
+            "row_support_roles": [
+              "surplus_other_1",
+              "exact_strict_hit_0",
+              "surplus_vertex",
+              "second_opposite_other_1"
+            ],
+            "start": 2
+          },
+          {
+            "center": 0,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "first_apex",
+            "curvature_endpoint": 7,
+            "curvature_endpoint_role": "exact_strict_hit_1",
+            "end": 9,
+            "fixed_blocker_sources": [
+              3,
+              5,
+              7,
+              9
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              2,
+              4,
+              6,
+              8
+            ],
+            "row_support": [
+              3,
+              5,
+              7,
+              9
+            ],
+            "row_support_roles": [
+              "exact_surplus_adjacent_hit",
+              "exact_strict_hit_0",
+              "exact_strict_hit_1",
+              "exact_second_adjacent_hit"
+            ],
+            "start": 5
+          },
+          {
+            "center": 5,
+            "center_provenance": "global_k4_completion",
+            "center_role": "exact_strict_hit_0",
+            "curvature_endpoint": 7,
+            "curvature_endpoint_role": "exact_strict_hit_1",
+            "end": 11,
+            "fixed_blocker_sources": [],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              1,
+              2,
+              9,
+              10
+            ],
+            "row_support": [
+              3,
+              4,
+              6,
+              7
+            ],
+            "row_support_roles": [
+              "exact_surplus_adjacent_hit",
+              "second_apex",
+              "first_opposite_other_1",
+              "exact_strict_hit_1"
+            ],
+            "start": 9
+          }
+        ],
+        "cut": 6,
+        "record_index": 9,
+        "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_5.result.json"
+      },
+      {
+        "arcs": [
+          {
+            "center": 1,
+            "center_provenance": "global_k4_completion",
+            "center_role": "surplus_other_0",
+            "curvature_endpoint": 10,
+            "curvature_endpoint_role": "second_opposite_other_2",
+            "end": 2,
+            "fixed_blocker_sources": [],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              2,
+              8,
+              10
+            ],
+            "row_support": [
+              0,
+              2,
+              4,
+              10
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "exact_surplus_adjacent_hit",
+              "second_apex",
+              "second_opposite_other_2"
+            ],
+            "start": 0
+          },
+          {
+            "center": 0,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "first_apex",
+            "curvature_endpoint": 6,
+            "curvature_endpoint_role": "exact_strict_hit_1",
+            "end": 6,
+            "fixed_blocker_sources": [
+              2,
+              5,
+              6,
+              9
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              2,
+              5,
+              6,
+              9
+            ],
+            "row_support": [
+              2,
+              5,
+              6,
+              9
+            ],
+            "row_support_roles": [
+              "exact_surplus_adjacent_hit",
+              "exact_strict_hit_0",
+              "exact_strict_hit_1",
+              "exact_second_adjacent_hit"
+            ],
+            "start": 1
+          },
+          {
+            "center": 7,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "surplus_vertex",
+            "curvature_endpoint": 4,
+            "curvature_endpoint_role": "second_apex",
+            "end": 8,
+            "fixed_blocker_sources": [
+              3
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              2,
+              3,
+              4,
+              9
+            ],
+            "row_support": [
+              3,
+              4,
+              5,
+              9
+            ],
+            "row_support_roles": [
+              "surplus_other_2",
+              "second_apex",
+              "exact_strict_hit_0",
+              "exact_second_adjacent_hit"
+            ],
+            "start": 5
+          },
+          {
+            "center": 1,
+            "center_provenance": "global_k4_completion",
+            "center_role": "surplus_other_0",
+            "curvature_endpoint": 4,
+            "curvature_endpoint_role": "second_apex",
+            "end": 11,
+            "fixed_blocker_sources": [],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              1,
+              2,
+              8,
+              10
+            ],
+            "row_support": [
+              0,
+              2,
+              4,
+              10
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "exact_surplus_adjacent_hit",
+              "second_apex",
+              "second_opposite_other_2"
+            ],
+            "start": 8
+          }
+        ],
+        "cut": 10,
+        "record_index": 10,
+        "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_4.result.json"
+      },
+      {
+        "arcs": [
+          {
+            "center": 0,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "first_apex",
+            "curvature_endpoint": 7,
+            "curvature_endpoint_role": "exact_strict_hit_1",
+            "end": 4,
+            "fixed_blocker_sources": [
+              3,
+              5,
+              7,
+              10
+            ],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              4,
+              6,
+              8
+            ],
+            "row_support": [
+              3,
+              5,
+              7,
+              10
+            ],
+            "row_support_roles": [
+              "exact_surplus_adjacent_hit",
+              "exact_strict_hit_0",
+              "exact_strict_hit_1",
+              "exact_second_adjacent_hit"
+            ],
+            "start": 0
+          },
+          {
+            "center": 6,
+            "center_provenance": "global_k4_completion",
+            "center_role": "first_opposite_other_1",
+            "curvature_endpoint": 8,
+            "curvature_endpoint_role": "surplus_vertex",
+            "end": 5,
+            "fixed_blocker_sources": [],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              1,
+              2,
+              9,
+              10
+            ],
+            "row_support": [
+              4,
+              5,
+              7,
+              8
+            ],
+            "row_support_roles": [
+              "second_apex",
+              "exact_strict_hit_0",
+              "exact_strict_hit_1",
+              "surplus_vertex"
+            ],
+            "start": 3
+          },
+          {
+            "center": 6,
+            "center_provenance": "global_k4_completion",
+            "center_role": "first_opposite_other_1",
+            "curvature_endpoint": 4,
+            "curvature_endpoint_role": "second_apex",
+            "end": 7,
+            "fixed_blocker_sources": [],
+            "kind": "center_to_second_support",
+            "offsets": [
+              1,
+              2,
+              9,
+              10
+            ],
+            "row_support": [
+              4,
+              5,
+              7,
+              8
+            ],
+            "row_support_roles": [
+              "second_apex",
+              "exact_strict_hit_0",
+              "exact_strict_hit_1",
+              "surplus_vertex"
+            ],
+            "start": 5
+          },
+          {
+            "center": 2,
+            "center_provenance": "fixed_blocker_image",
+            "center_role": "surplus_other_1",
+            "curvature_endpoint": 4,
+            "curvature_endpoint_role": "second_apex",
+            "end": 9,
+            "fixed_blocker_sources": [
+              0
+            ],
+            "kind": "third_support_to_period_end",
+            "offsets": [
+              2,
+              7,
+              9,
+              10
+            ],
+            "row_support": [
+              0,
+              3,
+              4,
+              6
+            ],
+            "row_support_roles": [
+              "first_apex",
+              "exact_surplus_adjacent_hit",
+              "second_apex",
+              "first_opposite_other_1"
+            ],
+            "start": 7
+          }
+        ],
+        "cut": 0,
+        "record_index": 11,
+        "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_5.result.json"
+      }
+    ],
+    "schema": "two_fixed_either_plus_one_completion_both_outer_v1"
+  },
+  "epistemic_status": "EXACT_ENUMERATION_OF_12_STORED_N11_PROJECTIONS",
+  "quotient": {
+    "exact_dihedral_rows": {
+      "common_schema_count": 0,
+      "common_schemas": [],
+      "minimum_cover": [
+        {
+          "record_indices": [
+            0,
+            7
+          ],
+          "schema": "[[0,\"L\",[1,2,7,10]],[0,\"R\",[1,2,7,10]],[4,\"L\",[2,3,5,8]],[4,\"R\",[2,3,5,8]]]"
+        },
+        {
+          "record_indices": [
+            4
+          ],
+          "schema": "[[0,\"L\",[1,2,4,10]],[0,\"R\",[1,2,4,10]],[1,\"R\",[0,2,3,9]],[10,\"R\",[0,1,3,8]]]"
+        },
+        {
+          "record_indices": [
+            8
+          ],
+          "schema": "[[0,\"L\",[1,2,4,9]],[0,\"R\",[1,2,4,9]],[1,\"L\",[0,2,7,10]],[2,\"R\",[0,3,5,8]]]"
+        },
+        {
+          "record_indices": [
+            3
+          ],
+          "schema": "[[0,\"L\",[1,2,4,9]],[0,\"R\",[1,2,4,9]],[1,\"L\",[0,3,4,10]],[1,\"R\",[0,3,4,10]]]"
+        },
+        {
+          "record_indices": [
+            11
+          ],
+          "schema": "[[0,\"L\",[1,2,4,9]],[0,\"R\",[1,2,4,9]],[1,\"L\",[0,4,6,10]],[4,\"L\",[2,3,5,6]]]"
+        },
+        {
+          "record_indices": [
+            9
+          ],
+          "schema": "[[0,\"L\",[1,2,5,8]],[0,\"R\",[1,2,5,8]],[1,\"L\",[0,2,3,10]],[1,\"R\",[0,2,3,10]]]"
+        },
+        {
+          "record_indices": [
+            2
+          ],
+          "schema": "[[0,\"L\",[1,2,6,10]],[0,\"R\",[1,2,6,10]],[2,\"R\",[0,3,4,9]],[3,\"R\",[1,5,6,9]]]"
+        },
+        {
+          "record_indices": [
+            10
+          ],
+          "schema": "[[0,\"L\",[1,2,6,10]],[0,\"R\",[1,2,6,10]],[2,\"R\",[1,3,4,10]],[4,\"R\",[2,5,6,7]]]"
+        },
+        {
+          "record_indices": [
+            5
+          ],
+          "schema": "[[0,\"L\",[1,2,7,10]],[0,\"R\",[1,2,7,10]],[1,\"R\",[0,2,4,8]],[3,\"R\",[1,4,7,9]]]"
+        },
+        {
+          "record_indices": [
+            1
+          ],
+          "schema": "[[0,\"L\",[1,2,7,10]],[0,\"R\",[1,2,7,10]],[1,\"R\",[3,4,8,10]],[3,\"R\",[1,5,7,8]]]"
+        },
+        {
+          "record_indices": [
+            6
+          ],
+          "schema": "[[0,\"L\",[1,2,8,9]],[0,\"R\",[1,2,8,9]],[1,\"R\",[2,5,6,10]],[4,\"R\",[0,3,5,9]]]"
+        }
+      ],
+      "minimum_cover_size": 11,
+      "schema_count": 2382
+    },
+    "exact_dihedral_rows_provenance": {
+      "common_schema_count": 0,
+      "common_schemas": [],
+      "minimum_cover": [
+        {
+          "record_indices": [
+            0,
+            7
+          ],
+          "schema": "[[0,\"L\",[1,2,7,10],\"fixed_blocker_image\"],[0,\"R\",[1,2,7,10],\"fixed_blocker_image\"],[4,\"L\",[2,3,5,8],\"global_k4_completion\"],[4,\"R\",[2,3,5,8],\"global_k4_completion\"]]"
+        },
+        {
+          "record_indices": [
+            4
+          ],
+          "schema": "[[0,\"L\",[1,2,4,10],\"fixed_blocker_image\"],[0,\"R\",[1,2,4,10],\"fixed_blocker_image\"],[1,\"R\",[0,2,3,9],\"fixed_blocker_image\"],[10,\"R\",[0,1,3,8],\"global_k4_completion\"]]"
+        },
+        {
+          "record_indices": [
+            11
+          ],
+          "schema": "[[0,\"L\",[1,2,4,9],\"fixed_blocker_image\"],[0,\"R\",[1,2,4,9],\"fixed_blocker_image\"],[1,\"L\",[0,4,6,10],\"fixed_blocker_image\"],[4,\"L\",[2,3,5,6],\"global_k4_completion\"]]"
+        },
+        {
+          "record_indices": [
+            8
+          ],
+          "schema": "[[0,\"L\",[1,2,4,9],\"global_k4_completion\"],[0,\"R\",[1,2,4,9],\"global_k4_completion\"],[1,\"L\",[0,2,7,10],\"global_k4_completion\"],[2,\"R\",[0,3,5,8],\"global_k4_completion\"]]"
+        },
+        {
+          "record_indices": [
+            3
+          ],
+          "schema": "[[0,\"L\",[1,2,4,9],\"global_k4_completion\"],[0,\"R\",[1,2,4,9],\"global_k4_completion\"],[1,\"L\",[0,3,4,10],\"global_k4_completion\"],[1,\"R\",[0,3,4,10],\"global_k4_completion\"]]"
+        },
+        {
+          "record_indices": [
+            9
+          ],
+          "schema": "[[0,\"L\",[1,2,5,8],\"fixed_blocker_image\"],[0,\"R\",[1,2,5,8],\"fixed_blocker_image\"],[1,\"L\",[0,2,3,10],\"fixed_blocker_image\"],[1,\"R\",[0,2,3,10],\"fixed_blocker_image\"]]"
+        },
+        {
+          "record_indices": [
+            2
+          ],
+          "schema": "[[0,\"L\",[1,2,6,10],\"global_k4_completion\"],[0,\"R\",[1,2,6,10],\"global_k4_completion\"],[2,\"R\",[0,3,4,9],\"global_k4_completion\"],[3,\"R\",[1,5,6,9],\"fixed_blocker_image\"]]"
+        },
+        {
+          "record_indices": [
+            10
+          ],
+          "schema": "[[0,\"L\",[1,2,6,10],\"global_k4_completion\"],[0,\"R\",[1,2,6,10],\"global_k4_completion\"],[2,\"R\",[1,3,4,10],\"global_k4_completion\"],[4,\"R\",[2,5,6,7],\"fixed_blocker_image\"]]"
+        },
+        {
+          "record_indices": [
+            5
+          ],
+          "schema": "[[0,\"L\",[1,2,7,10],\"global_k4_completion\"],[0,\"R\",[1,2,7,10],\"global_k4_completion\"],[1,\"R\",[0,2,4,8],\"global_k4_completion\"],[3,\"R\",[1,4,7,9],\"fixed_blocker_image\"]]"
+        },
+        {
+          "record_indices": [
+            1
+          ],
+          "schema": "[[0,\"L\",[1,2,7,10],\"global_k4_completion\"],[0,\"R\",[1,2,7,10],\"global_k4_completion\"],[1,\"R\",[3,4,8,10],\"fixed_blocker_image\"],[3,\"R\",[1,5,7,8],\"fixed_blocker_image\"]]"
+        },
+        {
+          "record_indices": [
+            6
+          ],
+          "schema": "[[0,\"L\",[1,2,8,9],\"global_k4_completion\"],[0,\"R\",[1,2,8,9],\"global_k4_completion\"],[1,\"R\",[2,5,6,10],\"global_k4_completion\"],[4,\"R\",[0,3,5,9],\"fixed_blocker_image\"]]"
+        }
+      ],
+      "minimum_cover_size": 11,
+      "schema_count": 2382
+    },
+    "kind_center": {
+      "common_schema_count": 7,
+      "common_schemas": [
+        "[[\"L\",0],[\"L\",1],[\"L\",2],[\"L\",3]]",
+        "[[\"L\",0],[\"L\",1],[\"L\",2],[\"R\",0]]",
+        "[[\"L\",0],[\"L\",1],[\"L\",2],[\"R\",1]]",
+        "[[\"L\",0],[\"L\",1],[\"L\",2],[\"R\",3]]",
+        "[[\"L\",0],[\"L\",1],[\"R\",0],[\"R\",2]]",
+        "[[\"L\",0],[\"L\",1],[\"R\",2],[\"R\",0]]",
+        "[[\"L\",0],[\"L\",1],[\"R\",2],[\"R\",3]]"
+      ],
+      "minimum_cover": [
+        {
+          "record_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "schema": "[[\"L\",0],[\"L\",1],[\"L\",2],[\"L\",3]]"
+        }
+      ],
+      "minimum_cover_size": 1,
+      "schema_count": 11
+    },
+    "kind_center_provenance": {
+      "common_schema_count": 7,
+      "common_schemas": [
+        "[[\"L\",0,\"fixed_blocker_image\"],[\"L\",1,\"fixed_blocker_image\"],[\"L\",2,\"global_k4_completion\"],[\"L\",3,\"global_k4_completion\"]]",
+        "[[\"L\",0,\"fixed_blocker_image\"],[\"L\",1,\"fixed_blocker_image\"],[\"R\",2,\"global_k4_completion\"],[\"L\",2,\"global_k4_completion\"]]",
+        "[[\"L\",0,\"fixed_blocker_image\"],[\"L\",1,\"fixed_blocker_image\"],[\"R\",2,\"global_k4_completion\"],[\"R\",0,\"fixed_blocker_image\"]]",
+        "[[\"L\",0,\"fixed_blocker_image\"],[\"L\",1,\"global_k4_completion\"],[\"L\",2,\"global_k4_completion\"],[\"R\",0,\"fixed_blocker_image\"]]",
+        "[[\"L\",0,\"fixed_blocker_image\"],[\"L\",1,\"global_k4_completion\"],[\"L\",2,\"global_k4_completion\"],[\"R\",3,\"fixed_blocker_image\"]]",
+        "[[\"L\",0,\"fixed_blocker_image\"],[\"L\",1,\"global_k4_completion\"],[\"R\",2,\"fixed_blocker_image\"],[\"R\",3,\"global_k4_completion\"]]",
+        "[[\"L\",0,\"fixed_blocker_image\"],[\"R\",1,\"global_k4_completion\"],[\"L\",2,\"global_k4_completion\"],[\"L\",3,\"global_k4_completion\"]]"
+      ],
+      "minimum_cover": [
+        {
+          "record_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "schema": "[[\"L\",0,\"fixed_blocker_image\"],[\"L\",1,\"fixed_blocker_image\"],[\"L\",2,\"global_k4_completion\"],[\"L\",3,\"global_k4_completion\"]]"
+        }
+      ],
+      "minimum_cover_size": 1,
+      "schema_count": 81
+    },
+    "local_row_offsets": {
+      "common_schema_count": 0,
+      "common_schemas": [],
+      "minimum_cover": [
+        {
+          "record_indices": [
+            0,
+            7
+          ],
+          "schema": "[[\"L\",0,[1,2,7,10]],[\"R\",1,[1,4,9,10]],[\"L\",1,[1,4,9,10]],[\"R\",0,[1,2,7,10]]]"
+        },
+        {
+          "record_indices": [
+            9,
+            11
+          ],
+          "schema": "[[\"L\",0,[1,2,9,10]],[\"L\",1,[1,5,8,9]],[\"L\",2,[1,2,9,10]],[\"R\",0,[1,2,9,10]]]"
+        },
+        {
+          "record_indices": [
+            10
+          ],
+          "schema": "[[\"L\",0,[1,2,3,9]],[\"L\",1,[1,2,8,10]],[\"L\",2,[1,2,6,10]],[\"L\",3,[1,2,8,10]]]"
+        },
+        {
+          "record_indices": [
+            4
+          ],
+          "schema": "[[\"L\",0,[1,2,4,10]],[\"L\",1,[1,2,6,10]],[\"L\",2,[1,2,7,10]],[\"R\",3,[1,2,8,10]]]"
+        },
+        {
+          "record_indices": [
+            1
+          ],
+          "schema": "[[\"L\",0,[1,2,4,10]],[\"L\",1,[1,5,6,8]],[\"R\",2,[1,3,7,9]],[\"L\",3,[1,3,7,10]]]"
+        },
+        {
+          "record_indices": [
+            8
+          ],
+          "schema": "[[\"L\",0,[1,2,4,9]],[\"L\",1,[1,2,5,10]],[\"L\",2,[1,3,4,7]],[\"L\",3,[1,2,8,9]]]"
+        },
+        {
+          "record_indices": [
+            3
+          ],
+          "schema": "[[\"L\",0,[1,2,4,9]],[\"L\",1,[1,3,4,10]],[\"L\",2,[1,4,5,10]],[\"L\",3,[1,4,8,10]]]"
+        },
+        {
+          "record_indices": [
+            2
+          ],
+          "schema": "[[\"L\",0,[1,2,6,10]],[\"L\",1,[1,2,7,9]],[\"L\",2,[1,2,8,10]],[\"L\",3,[2,3,7,9]]]"
+        },
+        {
+          "record_indices": [
+            5
+          ],
+          "schema": "[[\"L\",0,[1,2,7,10]],[\"L\",1,[1,3,6,8]],[\"L\",2,[1,2,8,10]],[\"L\",3,[1,2,8,10]]]"
+        },
+        {
+          "record_indices": [
+            6
+          ],
+          "schema": "[[\"L\",0,[1,2,8,9]],[\"L\",1,[1,3,8,9]],[\"L\",2,[1,3,8,9]],[\"L\",3,[1,2,9,10]]]"
+        }
+      ],
+      "minimum_cover_size": 10,
+      "schema_count": 2286
+    },
+    "local_row_offsets_provenance": {
+      "common_schema_count": 0,
+      "common_schemas": [],
+      "minimum_cover": [
+        {
+          "record_indices": [
+            0,
+            7
+          ],
+          "schema": "[[\"L\",0,[1,2,7,10],\"fixed_blocker_image\"],[\"R\",1,[1,4,9,10],\"global_k4_completion\"],[\"L\",1,[1,4,9,10],\"global_k4_completion\"],[\"R\",0,[1,2,7,10],\"fixed_blocker_image\"]]"
+        },
+        {
+          "record_indices": [
+            9,
+            11
+          ],
+          "schema": "[[\"L\",0,[1,2,9,10],\"fixed_blocker_image\"],[\"L\",1,[1,5,8,9],\"global_k4_completion\"],[\"L\",2,[1,2,9,10],\"global_k4_completion\"],[\"R\",0,[1,2,9,10],\"fixed_blocker_image\"]]"
+        },
+        {
+          "record_indices": [
+            10
+          ],
+          "schema": "[[\"L\",0,[1,2,3,9],\"fixed_blocker_image\"],[\"L\",1,[1,2,8,10],\"fixed_blocker_image\"],[\"L\",2,[1,2,6,10],\"global_k4_completion\"],[\"L\",3,[1,2,8,10],\"global_k4_completion\"]]"
+        },
+        {
+          "record_indices": [
+            4
+          ],
+          "schema": "[[\"L\",0,[1,2,4,10],\"fixed_blocker_image\"],[\"L\",1,[1,2,6,10],\"global_k4_completion\"],[\"L\",2,[1,2,7,10],\"global_k4_completion\"],[\"R\",3,[1,2,8,10],\"fixed_blocker_image\"]]"
+        },
+        {
+          "record_indices": [
+            1
+          ],
+          "schema": "[[\"L\",0,[1,2,4,10],\"global_k4_completion\"],[\"L\",1,[1,5,6,8],\"fixed_blocker_image\"],[\"R\",2,[1,3,7,9],\"global_k4_completion\"],[\"L\",3,[1,3,7,10],\"global_k4_completion\"]]"
+        },
+        {
+          "record_indices": [
+            8
+          ],
+          "schema": "[[\"L\",0,[1,2,4,9],\"global_k4_completion\"],[\"L\",1,[1,2,5,10],\"global_k4_completion\"],[\"L\",2,[1,3,4,7],\"fixed_blocker_image\"],[\"L\",3,[1,2,8,9],\"fixed_blocker_image\"]]"
+        },
+        {
+          "record_indices": [
+            3
+          ],
+          "schema": "[[\"L\",0,[1,2,4,9],\"global_k4_completion\"],[\"L\",1,[1,3,4,10],\"global_k4_completion\"],[\"L\",2,[1,4,5,10],\"fixed_blocker_image\"],[\"L\",3,[1,4,8,10],\"fixed_blocker_image\"]]"
+        },
+        {
+          "record_indices": [
+            2
+          ],
+          "schema": "[[\"L\",0,[1,2,6,10],\"global_k4_completion\"],[\"L\",1,[1,2,7,9],\"global_k4_completion\"],[\"L\",2,[1,2,8,10],\"fixed_blocker_image\"],[\"L\",3,[2,3,7,9],\"fixed_blocker_image\"]]"
+        },
+        {
+          "record_indices": [
+            5
+          ],
+          "schema": "[[\"L\",0,[1,2,7,10],\"global_k4_completion\"],[\"L\",1,[1,3,6,8],\"global_k4_completion\"],[\"L\",2,[1,2,8,10],\"fixed_blocker_image\"],[\"L\",3,[1,2,8,10],\"fixed_blocker_image\"]]"
+        },
+        {
+          "record_indices": [
+            6
+          ],
+          "schema": "[[\"L\",0,[1,2,8,9],\"global_k4_completion\"],[\"L\",1,[1,3,8,9],\"global_k4_completion\"],[\"L\",2,[1,3,8,9],\"global_k4_completion\"],[\"L\",3,[1,2,9,10],\"fixed_blocker_image\"]]"
+        }
+      ],
+      "minimum_cover_size": 10,
+      "schema_count": 2320
+    }
+  },
+  "quotient_warning": "The quotient tables canonicalize by cyclic rotation and reflection; their literal L/R tokens are not fixed-CCW source claims",
+  "record_count": 12,
+  "records": [
+    {
+      "fixed_blocker_image_only_witness_count": 3,
+      "literal_fixed_left_left_witness_count": 6,
+      "opp1_card": 4,
+      "requires_global_k4_completion": false,
+      "schema_counts": {
+        "exact_dihedral_rows": 79,
+        "exact_dihedral_rows_provenance": 79,
+        "kind_center": 10,
+        "kind_center_provenance": 29,
+        "local_row_offsets": 79,
+        "local_row_offsets_provenance": 79
+      },
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_4.result.json",
+      "source_orientation_invariant_three_row_witness_count": 9,
+      "source_sha256": "d48481d06003cd12a22cb1756398239ac6df6749f5fed826b3cbd6d4e3df5cb8",
+      "witness_count": 165
+    },
+    {
+      "fixed_blocker_image_only_witness_count": 0,
+      "literal_fixed_left_left_witness_count": 0,
+      "opp1_card": 5,
+      "requires_global_k4_completion": true,
+      "schema_counts": {
+        "exact_dihedral_rows": 100,
+        "exact_dihedral_rows_provenance": 100,
+        "kind_center": 7,
+        "kind_center_provenance": 27,
+        "local_row_offsets": 100,
+        "local_row_offsets_provenance": 100
+      },
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_5.result.json",
+      "source_orientation_invariant_three_row_witness_count": 3,
+      "source_sha256": "7ad2ac6213413b395bd4bd0492463d7f3d2664862fc2a48a3bf47dadc7b91c23",
+      "witness_count": 162
+    },
+    {
+      "fixed_blocker_image_only_witness_count": 8,
+      "literal_fixed_left_left_witness_count": 0,
+      "opp1_card": 4,
+      "requires_global_k4_completion": false,
+      "schema_counts": {
+        "exact_dihedral_rows": 214,
+        "exact_dihedral_rows_provenance": 214,
+        "kind_center": 10,
+        "kind_center_provenance": 41,
+        "local_row_offsets": 214,
+        "local_row_offsets_provenance": 214
+      },
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_002/opp1_4.result.json",
+      "source_orientation_invariant_three_row_witness_count": 24,
+      "source_sha256": "cd074f4a26119b2447f7a660650a1d2cff448a7885d2c772e766313d52a8e0c2",
+      "witness_count": 445
+    },
+    {
+      "fixed_blocker_image_only_witness_count": 0,
+      "literal_fixed_left_left_witness_count": 1,
+      "opp1_card": 5,
+      "requires_global_k4_completion": true,
+      "schema_counts": {
+        "exact_dihedral_rows": 179,
+        "exact_dihedral_rows_provenance": 179,
+        "kind_center": 11,
+        "kind_center_provenance": 35,
+        "local_row_offsets": 179,
+        "local_row_offsets_provenance": 179
+      },
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_002/opp1_5.result.json",
+      "source_orientation_invariant_three_row_witness_count": 10,
+      "source_sha256": "d8782b129b59979fe915e2d6f44330ac5259f840ca77b6425f6bad40fc8c34f2",
+      "witness_count": 347
+    },
+    {
+      "fixed_blocker_image_only_witness_count": 45,
+      "literal_fixed_left_left_witness_count": 0,
+      "opp1_card": 4,
+      "requires_global_k4_completion": false,
+      "schema_counts": {
+        "exact_dihedral_rows": 219,
+        "exact_dihedral_rows_provenance": 219,
+        "kind_center": 11,
+        "kind_center_provenance": 47,
+        "local_row_offsets": 219,
+        "local_row_offsets_provenance": 219
+      },
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_4.result.json",
+      "source_orientation_invariant_three_row_witness_count": 18,
+      "source_sha256": "d829e5d6ced4a1efce76b1425241c59c5d2f3818f01e7baeec952687e4b3ea0a",
+      "witness_count": 510
+    },
+    {
+      "fixed_blocker_image_only_witness_count": 52,
+      "literal_fixed_left_left_witness_count": 0,
+      "opp1_card": 5,
+      "requires_global_k4_completion": false,
+      "schema_counts": {
+        "exact_dihedral_rows": 340,
+        "exact_dihedral_rows_provenance": 340,
+        "kind_center": 10,
+        "kind_center_provenance": 65,
+        "local_row_offsets": 261,
+        "local_row_offsets_provenance": 285
+      },
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_5.result.json",
+      "source_orientation_invariant_three_row_witness_count": 22,
+      "source_sha256": "f862f0f8a83ba8b7b82dd47dcf95dcde910a03d13f79da1694b144a588d8eccb",
+      "witness_count": 708
+    },
+    {
+      "fixed_blocker_image_only_witness_count": 0,
+      "literal_fixed_left_left_witness_count": 2,
+      "opp1_card": 4,
+      "requires_global_k4_completion": true,
+      "schema_counts": {
+        "exact_dihedral_rows": 100,
+        "exact_dihedral_rows_provenance": 100,
+        "kind_center": 10,
+        "kind_center_provenance": 35,
+        "local_row_offsets": 95,
+        "local_row_offsets_provenance": 100
+      },
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_4.result.json",
+      "source_orientation_invariant_three_row_witness_count": 11,
+      "source_sha256": "7c3778af43e125169f901f73ab43811d2e93f1ad960567ecafe227ad61ca0b23",
+      "witness_count": 217
+    },
+    {
+      "fixed_blocker_image_only_witness_count": 5,
+      "literal_fixed_left_left_witness_count": 7,
+      "opp1_card": 5,
+      "requires_global_k4_completion": false,
+      "schema_counts": {
+        "exact_dihedral_rows": 212,
+        "exact_dihedral_rows_provenance": 212,
+        "kind_center": 10,
+        "kind_center_provenance": 44,
+        "local_row_offsets": 210,
+        "local_row_offsets_provenance": 210
+      },
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_5.result.json",
+      "source_orientation_invariant_three_row_witness_count": 15,
+      "source_sha256": "627c91b9b871a8ff070df1c23d7fdb1e2af67b0f0290f7640a5f6209c0ee79f6",
+      "witness_count": 493
+    },
+    {
+      "fixed_blocker_image_only_witness_count": 0,
+      "literal_fixed_left_left_witness_count": 7,
+      "opp1_card": 4,
+      "requires_global_k4_completion": true,
+      "schema_counts": {
+        "exact_dihedral_rows": 237,
+        "exact_dihedral_rows_provenance": 237,
+        "kind_center": 10,
+        "kind_center_provenance": 50,
+        "local_row_offsets": 237,
+        "local_row_offsets_provenance": 237
+      },
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_4.result.json",
+      "source_orientation_invariant_three_row_witness_count": 14,
+      "source_sha256": "af166e02475e20902acf8d2a25795ed65458ba67b6a24509587b156a5367ef6f",
+      "witness_count": 561
+    },
+    {
+      "fixed_blocker_image_only_witness_count": 19,
+      "literal_fixed_left_left_witness_count": 7,
+      "opp1_card": 5,
+      "requires_global_k4_completion": false,
+      "schema_counts": {
+        "exact_dihedral_rows": 286,
+        "exact_dihedral_rows_provenance": 286,
+        "kind_center": 11,
+        "kind_center_provenance": 54,
+        "local_row_offsets": 285,
+        "local_row_offsets_provenance": 286
+      },
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_5.result.json",
+      "source_orientation_invariant_three_row_witness_count": 27,
+      "source_sha256": "e6c741bb9786da0a58d12b75b0f941aa77d8977609a5c93b84ef4735a262ac99",
+      "witness_count": 636
+    },
+    {
+      "fixed_blocker_image_only_witness_count": 10,
+      "literal_fixed_left_left_witness_count": 16,
+      "opp1_card": 4,
+      "requires_global_k4_completion": false,
+      "schema_counts": {
+        "exact_dihedral_rows": 148,
+        "exact_dihedral_rows_provenance": 148,
+        "kind_center": 10,
+        "kind_center_provenance": 37,
+        "local_row_offsets": 147,
+        "local_row_offsets_provenance": 148
+      },
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_4.result.json",
+      "source_orientation_invariant_three_row_witness_count": 26,
+      "source_sha256": "6b396b41a53e1c0a12fd3fe631478d5f47c864c5fb0423e29bb22f20165df57d",
+      "witness_count": 342
+    },
+    {
+      "fixed_blocker_image_only_witness_count": 80,
+      "literal_fixed_left_left_witness_count": 8,
+      "opp1_card": 5,
+      "requires_global_k4_completion": false,
+      "schema_counts": {
+        "exact_dihedral_rows": 269,
+        "exact_dihedral_rows_provenance": 269,
+        "kind_center": 10,
+        "kind_center_provenance": 54,
+        "local_row_offsets": 265,
+        "local_row_offsets_provenance": 268
+      },
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_5.result.json",
+      "source_orientation_invariant_three_row_witness_count": 56,
+      "source_sha256": "a545b047321bc9464cafa1c057b6d982833daab1c720405a51edb507692c44de",
+      "witness_count": 601
+    }
+  ],
+  "schema": "p97-unique4-curvature-occurrence-census-v1",
+  "scope_warning": "No arbitrary-cardinality or source-level occurrence coverage is claimed"
+}

@@ -8686,15 +8686,82 @@ by the production `false_of_four_separated_quarter_turn_arcs`, and the remaining
 projection differs only because two consecutive arcs share a boundary vertex.
 The cardinality-generic scratch theorem
 `ShellCurvature.false_of_four_turnDisjoint_quarter_turn_arcs` proves the sharp
-aggregate consumer using the actual open-turn-support bounds
-`b_i - 1 <= a_(i+1)`.  It is Werror-clean with only the three core axioms.
-Every stored projection contains a matching four-arc witness, but four of the
-twelve do not contain such a witness when centers are restricted to the image
-of the fixed critical system.  Therefore the live occurrence theorem must use
-carrier-wide `D.K4` to choose actual shells at the required carrier centers;
-fixed critical-system rows alone are insufficient.  The finite audit remains
-an exact statement about the six-round `n = 11` projection, not arbitrary-card
-source coverage.
+strict-open-window aggregate consumer using the actual turn-support bounds
+`b_i - 1 <= a_(i+1)`.  Its cyclic companion
+`false_of_four_turnCovering_quarter_turn_arcs` handles four disjoint supports
+which meet exactly and partition a complete boundary period, using the exact
+`edgeLift_add_period` identity instead of an omitted-turn cut.  Both consumers
+and their selected-row source packets are Werror-clean with only the three core
+axioms.
+
+The corrected strict-window quotient gives a smaller common source shape than
+the former four-distinct-left-row target.  Every stored projection has a
+three-row witness: two fixed-critical-image rows contribute one outer arc each,
+and one carrier-wide global-K4 completion row contributes both of its outer
+arcs.  The fixed-row side is chosen source-faithfully; quotient reflection is
+not treated as a free operation on the fixed CCW chart.  Seven coarse
+provenance schemas are common to all twelve records; no
+common two-row or exact local-offset schema exists.  Four records still have no
+witness using only centers in the image of the fixed critical system.  Thus the
+live occurrence theorem must choose one completion shell late from `D.K4` and
+must permit both sides of that row; fixed critical rows alone remain
+insufficient.  This is exact finite evidence about the stored `n = 11`
+projections, not arbitrary-card source coverage.
+
+The source side of that empirical distinction is now kernel-checked.  The late
+blocker endomap has two distinct sources in its exact four-source first-apex
+fiber, so it is noninjective and therefore nonsurjective on the finite carrier.
+`exists_omittedCenter_with_completionRow` consequently produces a carrier
+center outside the entire fixed blocker image and, from global `D.K4`, a
+selected four-point completion row there.  Together with
+`exists_fixedImageTwoRowIngress`, the live inputs therefore supply the two
+fixed-image rows and a genuinely late omitted-image completion row.  The exact
+remaining producer is only their cyclic placement: choose one transported
+outer side from each fixed row so that the three explicit gap inequalities of
+`ThreeRowMiddleArcPlacement` hold between the completion row's two native outer
+arcs.
+
+This remaining placement is not a selected-row incidence theorem in disguise.
+Exact `n = 11` counterpatterns survive after simultaneously imposing the
+distinct-center support-intersection bound `<= 2`, a fixed-point-free total
+blocker map, source membership in the corresponding blocker row, the exact
+first-apex fiber, selected-row strong connectivity, the exact-two cap profile,
+and an exact rational scalar-curvature model.  Both physical profiles still
+admit no four-arc packing in that abstraction.  These are not Euclidean
+counterexamples, but they retire complete-row intersection and critical-map
+incidence as sufficient inputs.  The next proof must consume information the
+counterpatterns omit: complete ambient radius partitions with deletion
+criticality/robustness, or MEC/cap geometry together with `noM44`.
+
+The first batched continuation exposed and then corrected a cut-classification
+bug: mask-disjoint arcs whose union was the whole cyclic period were being
+labelled as strict-open-window terminals.  Both active runs were stopped and
+all affected outputs were discarded.  After the cyclic full-cover theorem was
+kernel-checked, the repaired gate classified every witness explicitly as
+`STRICT_OPEN_WINDOW` or `FULL_COVER` and rejected anything else.  Recomputed
+seed totals are 323 inclusion-minimal center sets and 7,051 dihedral row cuts:
+309 sets use the strict-window theorem and 14 use the full-cover theorem.  A
+second audit found and removed the remaining certificate-free fallback: an
+UNSAT scalar ledger with no checked four-arc terminal now stops fail-closed as
+`UNPROVED_CURVATURE_CORE_NO_CHECKED_TERMINAL` and installs no cut.  The driver
+also refuses nonempty output directories, hash-binds the encoder, verifier,
+banks, seed registry, and both Lean consumers, asserts every semantic replay
+flag, and checks the final DIMACS/manifest/in-memory clause counts after a
+round-cap rewrite.  All integrity regressions pass.  No corrected primary run
+is live at this checkpoint, and no pre-repair round-cap result is proof
+evidence or current coverage status.
+
+The aligned three-strict-hit arm now retains that premise directly in
+`AlignedInteriorFrontier`; no compatibility wrapper or data-losing rebase
+remains.  It source-cleanly supplies the exact first-apex row, a second-apex
+row omitting the aligned pair, intersection upper bounds, and transported
+curvature for both rows.  Exhaustive `n = 11` cyclic replay finds zero favorable
+four-arc terminals among all 1,470 retained two-row pairs, so a closure must
+select at least one additional row or produce positive row overlap.  The
+universal minimality adapter is also checked, but the current complete-class
+round-20 finite survivor satisfies that all-row subset-escape condition for all
+2,046 nonempty proper subsets.  Universal subset closure alone is therefore
+not the missing producer.
 
 The MEC fallback remains open for the same reason.  Exact regressions show
 that protected singleton provenance is compatible with a strict-MEC-interior
@@ -8706,16 +8773,17 @@ outside pair, or construct a complete alternative `IsM44` packet.  Merely
 restating strict-interior data or total criticality is nonterminal.
 
 Therefore the primary live exact-four producer is now a source-faithful
-global-K4 occurrence of four turn-disjoint quarter-turn shell arcs in one
-transported boundary chart.  This is a smaller and more uniform endpoint than
-the multirow Kalmanson schemas and it exactly matches every current exact-two
-survivor.  A two-point shared row in Kalmanson order or a complete alternative
-`IsM44` packet remains a fallback.  Pure selected-row strong connectivity,
-another fixed-card literal CEGAR stream, and conditional adapters are not
-accepted substitutes.  All new Lean declarations above pass
-warnings-as-errors and have axiom closure exactly
-`[propext, Classical.choice, Quot.sound]`; no production `sorry` is closed by
-this checkpoint.
+three-row global-K4 occurrence of four quarter-turn shell arcs in one
+transported boundary lift, landing either in the strict-window packet or the
+cyclic full-cover packet.  This is a smaller and more uniform endpoint than the
+multirow Kalmanson schemas and it exactly matches every current stored
+exact-two survivor.  A two-point shared row in Kalmanson order or a complete
+alternative `IsM44` packet remains a fallback.  Pure selected-row strong
+connectivity, universal subset escape by itself, another unclassified
+fixed-card literal CEGAR stream, and conditional adapters are not accepted
+substitutes.  All new Lean declarations above pass warnings-as-errors and have
+axiom closure exactly `[propext, Classical.choice, Quot.sound]`; no production
+`sorry` is closed by this checkpoint.
 
 ## Change control
 

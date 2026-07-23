@@ -1,0 +1,512 @@
+{
+  "epistemic_status": "KERNEL_CHECKED_ONLY_FILTER",
+  "exact_farkas_verified_pending_port_schema_count": 0,
+  "kernel_checked_schema_count": 10,
+  "schema": "p97-exact-four-kalmanson-order-schema-bank-v1",
+  "schema_count": 10,
+  "schemas": [
+    {
+      "core_vertex_count": 6,
+      "farkas_verification": "scratch/atail-force/unique4-kalmanson-core-port/exact4_opp1_4.farkas.verify.json",
+      "lean_consumer": "Problem97.UniqueFourKalmansonCoresScratch.false_of_endpoint_k2_endpoint_k1_three_selected_rows",
+      "normalization": "replace each consecutive Kalmanson path by its direct endpoint inequality, drop path-interior roles, then reflect",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique4-kalmanson-core-port/exact4_opp1_4.full_lra.json",
+      "source_vertices_to_unreflected_roles": {
+        "0": 0,
+        "1": 1,
+        "10": 5,
+        "4": 2,
+        "6": 3,
+        "7": 4
+      },
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "KERNEL_CHECKED"
+    },
+    {
+      "core_vertex_count": 6,
+      "farkas_verification": "scratch/atail-force/unique4-kalmanson-core-port/exact4_opp1_5.farkas.verify.json",
+      "lean_consumer": "Problem97.UniqueFourKalmansonCoresScratch.false_of_endpoint_k2_endpoint_k1_three_selected_rows_long",
+      "normalization": "replace each consecutive Kalmanson path by its direct endpoint inequality, drop path-interior roles, then reflect",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique4-kalmanson-core-port/exact4_opp1_5.full_lra.json",
+      "source_vertices_to_unreflected_roles": {
+        "0": 0,
+        "1": 1,
+        "10": 5,
+        "2": 2,
+        "6": 3,
+        "8": 4
+      },
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "KERNEL_CHECKED"
+    },
+    {
+      "core_vertex_count": 4,
+      "farkas_verification": "scratch/atail-force/unique4-kalmanson-core-port/fullpart_opp1_4.farkas.verify.json",
+      "lean_consumer": "Problem97.UniqueFourKalmansonCoresScratch.false_of_one_k1_three_cyclic_selected_rows",
+      "normalization": "boundary-rank compression followed by reflection canonicalization",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique4-kalmanson-core-port/fullpart_opp1_4.full_lra.json",
+      "source_vertices_to_unreflected_roles": {
+        "0": 0,
+        "1": 1,
+        "10": 3,
+        "2": 2
+      },
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "KERNEL_CHECKED"
+    },
+    {
+      "core_vertex_count": 6,
+      "farkas_verification": "scratch/atail-force/unique4-kalmanson-core-port/fullpart_opp1_5.farkas.verify.json",
+      "lean_consumer": "Problem97.UniqueFourKalmansonCoresScratch.false_of_four_k2_five_selected_row_equalities",
+      "normalization": "boundary-rank compression; already reflection canonical",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique4-kalmanson-core-port/fullpart_opp1_5.full_lra.json",
+      "source_vertices_to_unreflected_roles": {
+        "0": 0,
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5
+      },
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "KERNEL_CHECKED"
+    },
+    {
+      "core_vertex_count": 5,
+      "farkas_verification": "scratch/atail-force/unique4-kalmanson-core-port/round2_opp1_5.farkas.verify.json",
+      "lean_consumer": "Problem97.UniqueFourKalmansonCoresScratch.false_of_one_k2_two_k1_three_selected_rows",
+      "normalization": "boundary-rank compression followed by reflection canonicalization",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique4-kalmanson-core-port/round2_opp1_5.full_lra.json",
+      "source_vertices_to_unreflected_roles": {
+        "0": 0,
+        "1": 1,
+        "10": 4,
+        "2": 2,
+        "3": 3
+      },
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "KERNEL_CHECKED"
+    },
+    {
+      "core_vertex_count": 5,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/round3_opp1_4.farkas.verify.json",
+      "lean_consumer": "Problem97.UniqueFourKalmansonCoresScratch.false_of_endpoint_k1_four_selected_rows",
+      "normalization": "replace the three-term K1 path by K1(0,2,5,10), drop path-interior roles, then reflect",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/round3_opp1_4.full_lra.json",
+      "source_vertices_to_unreflected_roles": {
+        "0": 0,
+        "1": 1,
+        "10": 4,
+        "2": 2,
+        "5": 3
+      },
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "KERNEL_CHECKED"
+    },
+    {
+      "core_vertex_count": 6,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/round3_opp1_5.farkas.verify.json",
+      "lean_consumer": "Problem97.UniqueFourKalmansonCoresScratch.false_of_one_k1_two_endpoint_k2_three_selected_rows",
+      "normalization": "replace both consecutive K2 paths by endpoint inequalities and drop path-interior roles",
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/round3_opp1_5.full_lra.json",
+      "source_vertices_to_unreflected_roles": {
+        "0": 0,
+        "1": 1,
+        "10": 5,
+        "2": 2,
+        "4": 3,
+        "7": 4
+      },
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "KERNEL_CHECKED"
+    },
+    {
+      "core_vertex_count": 7,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/round2_opp1_4.farkas.verify.json",
+      "lean_consumer": "Problem97.UniqueFourKalmansonCoresScratch.false_of_roundTwoFour_endpoint_rows",
+      "normalization": "replace the three consecutive K2 path families by four endpoint inequalities, retaining the repeated weight layer",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/round2_opp1_4.full_lra.json",
+      "source_vertices_to_unreflected_roles": {
+        "0": 0,
+        "1": 1,
+        "10": 6,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5
+      },
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "KERNEL_CHECKED"
+    },
+    {
+      "core_vertex_count": 8,
+      "farkas_verification": "scratch/atail-force/unique4-kalmanson-core-port/root_bank8_opp1_4.farkas.verify.json",
+      "lean_consumer": "Problem97.UniqueFourKalmansonCoresScratch.false_of_three_endpoint_kalmanson_four_selected_rows",
+      "normalization": "replace three consecutive paths by three endpoint inequalities, drop path-interior roles, then reflect",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          6
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique4-kalmanson-core-port/root_bank8_opp1_4.full_lra.json",
+      "source_vertices_to_unreflected_roles": {
+        "0": 0,
+        "1": 1,
+        "10": 7,
+        "2": 2,
+        "3": 3,
+        "5": 4,
+        "6": 5,
+        "8": 6
+      },
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "KERNEL_CHECKED"
+    },
+    {
+      "core_vertex_count": 6,
+      "farkas_verification": "scratch/atail-force/unique4-kalmanson-core-port/root_bank8_opp1_5.farkas.verify.json",
+      "lean_consumer": "Problem97.UniqueFourKalmansonCoresScratch.false_of_endpoint_k2_endpoint_k1_three_selected_rows_postBankEight",
+      "normalization": "replace both consecutive paths by endpoint inequalities, drop path-interior and row-reference roles, then reflect",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique4-kalmanson-core-port/root_bank8_opp1_5.full_lra.json",
+      "source_vertices_to_unreflected_roles": {
+        "0": 0,
+        "1": 1,
+        "10": 5,
+        "2": 2,
+        "7": 3,
+        "9": 4
+      },
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "KERNEL_CHECKED"
+    }
+  ],
+  "source_full_bank": "scratch/atail-force/unique-arm-whole-carrier-source-audit/kalmanson_schema_bank.json",
+  "source_full_bank_sha256": "04105ec974d7e15664d9addca6473329f71f943b14a0037dad9ce3560fcda4f3"
+}

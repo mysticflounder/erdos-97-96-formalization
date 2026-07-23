@@ -2,7 +2,7 @@
 
 Date: 2026-07-22
 
-Status: **CARDINALITY-GENERIC DIRECT-`False` CONSUMER KERNEL-CHECKED. THE
+Status: **TWO CARDINALITY-GENERIC DIRECT-`False` CONSUMERS KERNEL-CHECKED. THE
 12 STORED EXACT-TWO SURVIVORS EACH HAVE A MATCHING FINITE TURN-DISJOINT
 WITNESS. SOURCE OCCURRENCE FROM `OriginalUniqueFourResidual` IS NOT PROVED.**
 
@@ -46,6 +46,26 @@ strict budget.
 The theorem is independent of the carrier cardinality.  Its index hypotheses
 are exactly the ordered disjoint-turn-support conditions plus nonemptiness and
 containment in one open fundamental window.
+
+The same file now also proves the cyclic full-cover companion
+
+```lean
+Problem97.ShellCurvature
+  .false_of_four_turnCovering_quarter_turn_arcs
+```
+
+for four disjoint turn supports which meet exactly and partition one complete
+boundary period.  In this case there is no omitted turn from which to choose
+the strict open-window cut used by the first theorem.  Instead, the four
+curvatures telescope to the exact period identity
+
+```text
+edgeArg periodEnd = edgeArg periodStart + 2 * π,
+```
+
+so four strict quarter turns again give an immediate contradiction.  The
+period start is arbitrary; the source adapter instantiates the identity with
+`edgeLift_add_period`.
 
 ## Relation to the 12 exact-two survivors
 
@@ -91,9 +111,10 @@ Before proving the consumer, the required registries were searched:
 - `certificates/erdos_general_theorem_p97_mining.{md,json}`.
 
 Focused indexed Lean searches covered shell curvature, quarter-turn
-aggregation, turn-support separation, and direct-`False` consumers.  They
-found the current production construction/rows/aggregate/transport stack but
-no theorem with the weakened `b - 1 ≤ a'` interface.
+aggregation, turn-support separation, cyclic full-period partitions, and
+direct-`False` consumers.  They found the current production
+construction/rows/aggregate/transport stack but no theorem with either the
+weakened `b - 1 ≤ a'` interface or the exact cyclic full-cover interface.
 
 ## Validation
 
@@ -105,7 +126,7 @@ lake env lean -DwarningAsError=true \
     TurnDisjointCurvatureTerminal.lean
 ```
 
-Result: exit 0.  `#print axioms` reports exactly:
+Result: exit 0 for both aggregate consumers.  `#print axioms` reports exactly:
 
 ```text
 propext

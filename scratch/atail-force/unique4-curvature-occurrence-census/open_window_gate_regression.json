@@ -1,0 +1,311 @@
+{
+  "all_source_hash_bindings_replayed": true,
+  "center_set": [
+    1,
+    3,
+    4
+  ],
+  "curvature_sat_with_terminal_rejected": true,
+  "epistemic_status": "DETERMINISTIC_SEMANTIC_GATE_REPLAY",
+  "first_full_cover_witness": [
+    {
+      "center": 1,
+      "lifted_finish": 4,
+      "lifted_start": 0,
+      "side": "left",
+      "terminal_kind": "FULL_COVER",
+      "terminal_span": 11,
+      "turn_indices": [
+        0,
+        1,
+        2
+      ],
+      "window_start_mod_n": 0
+    },
+    {
+      "center": 3,
+      "lifted_finish": 7,
+      "lifted_start": 3,
+      "side": "right",
+      "terminal_kind": "FULL_COVER",
+      "terminal_span": 11,
+      "turn_indices": [
+        3,
+        4,
+        5
+      ],
+      "window_start_mod_n": 0
+    },
+    {
+      "center": 4,
+      "lifted_finish": 10,
+      "lifted_start": 6,
+      "side": "left",
+      "terminal_kind": "FULL_COVER",
+      "terminal_span": 11,
+      "turn_indices": [
+        6,
+        7,
+        8
+      ],
+      "window_start_mod_n": 0
+    },
+    {
+      "center": 4,
+      "lifted_finish": 12,
+      "lifted_start": 9,
+      "side": "right",
+      "terminal_kind": "FULL_COVER",
+      "terminal_span": 11,
+      "turn_indices": [
+        9,
+        10
+      ],
+      "window_start_mod_n": 0
+    }
+  ],
+  "first_one_turn_gap_witness": [
+    {
+      "center": 1,
+      "lifted_finish": 4,
+      "lifted_start": 0,
+      "side": "left",
+      "terminal_kind": "STRICT_OPEN_WINDOW",
+      "terminal_span": 10,
+      "turn_indices": [
+        0,
+        1,
+        2
+      ],
+      "window_start_mod_n": 0
+    },
+    {
+      "center": 3,
+      "lifted_finish": 7,
+      "lifted_start": 3,
+      "side": "right",
+      "terminal_kind": "STRICT_OPEN_WINDOW",
+      "terminal_span": 10,
+      "turn_indices": [
+        3,
+        4,
+        5
+      ],
+      "window_start_mod_n": 0
+    },
+    {
+      "center": 4,
+      "lifted_finish": 10,
+      "lifted_start": 6,
+      "side": "left",
+      "terminal_kind": "STRICT_OPEN_WINDOW",
+      "terminal_span": 10,
+      "turn_indices": [
+        6,
+        7,
+        8
+      ],
+      "window_start_mod_n": 0
+    },
+    {
+      "center": 4,
+      "lifted_finish": 11,
+      "lifted_start": 9,
+      "side": "right",
+      "terminal_kind": "STRICT_OPEN_WINDOW",
+      "terminal_span": 10,
+      "turn_indices": [
+        9
+      ],
+      "window_start_mod_n": 0
+    }
+  ],
+  "full_cover_arcs": [
+    {
+      "center": 1,
+      "finish": 4,
+      "side": "left",
+      "start": 0,
+      "turn_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "center": 3,
+      "finish": 7,
+      "side": "right",
+      "start": 3,
+      "turn_indices": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "center": 4,
+      "finish": 10,
+      "side": "left",
+      "start": 6,
+      "turn_indices": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "center": 4,
+      "finish": 12,
+      "side": "right",
+      "start": 9,
+      "turn_indices": [
+        9,
+        10
+      ]
+    }
+  ],
+  "full_cover_checked_terminal_witness_count": 4,
+  "full_cover_classified_only_as_full_cover": true,
+  "full_cover_is_pairwise_disjoint": true,
+  "full_cover_terminal_kinds": [
+    "FULL_COVER"
+  ],
+  "full_cover_turn_union": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "full_cover_uses_every_turn": true,
+  "n": 11,
+  "nonempty_run_directory_rejected": true,
+  "one_turn_gap_arcs": [
+    {
+      "center": 1,
+      "finish": 4,
+      "side": "left",
+      "start": 0,
+      "turn_indices": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "center": 3,
+      "finish": 7,
+      "side": "right",
+      "start": 3,
+      "turn_indices": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "center": 4,
+      "finish": 10,
+      "side": "left",
+      "start": 6,
+      "turn_indices": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "center": 4,
+      "finish": 11,
+      "side": "right",
+      "start": 9,
+      "turn_indices": [
+        9
+      ]
+    }
+  ],
+  "one_turn_gap_checked_terminal_witness_count": 1,
+  "one_turn_gap_classified_only_as_strict": true,
+  "one_turn_gap_terminal_kinds": [
+    "STRICT_OPEN_WINDOW"
+  ],
+  "one_turn_gap_turn_union": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "round_cap_final_cnf_checkpoint": {
+    "all_final_cnf_counts_replayed": true,
+    "checked_curvature_terminal_orbit_cut_count": 7,
+    "clause_block_counts": {
+      "checked_curvature_terminal_orbit_cut": 7
+    },
+    "clause_count": 3,
+    "cnf_sha256": "ae8a60b8e3fd19c99cb52456f7d12cc81c03fd32b64587482939c671399a7df7",
+    "rewritten_after_last_refinement": true,
+    "variable_count": 2
+  },
+  "round_cap_final_cnf_counts_replayed": true,
+  "schema": "p97-curvature-open-window-gate-regression-v1",
+  "source_hash_bindings": {
+    "aggregate_curvature_consumers": {
+      "path": "scratch/atail-force/unique4-turn-disjoint-curvature-terminal/TurnDisjointCurvatureTerminal.lean",
+      "sha256": "50f3ce3bf696dc7fc35ed3c24d304b5beac684504194412deda4f24c4e01b712"
+    },
+    "driver": {
+      "path": "scratch/atail-force/unique4-curvature-occurrence-census/run_curvature_cegar.py",
+      "sha256": "f1404d91f3591462d0579016ccd50945cddb8319eb89baad2457566ba531e8a4"
+    },
+    "kalmanson_full_diagnostic_bank": {
+      "path": "scratch/atail-force/unique-arm-whole-carrier-source-audit/kalmanson_schema_bank.json",
+      "sha256": "04105ec974d7e15664d9addca6473329f71f943b14a0037dad9ce3560fcda4f3"
+    },
+    "kalmanson_kernel_only_bank": {
+      "path": "scratch/atail-force/unique4-curvature-occurrence-census/kalmanson_schema_bank.kernel_only.json",
+      "sha256": "26ccfafca4308a7415aa82fdc0cc32a4348363a9633c30663c181df8951c679e"
+    },
+    "outer_encoder": {
+      "path": "scratch/atail-force/unique-arm-whole-carrier-source-audit/exact_four_outer.py",
+      "sha256": "07ee044c972cbd9a21ff58a5b6b1b73544f068fe28a8a17ce3fe17759347cd42"
+    },
+    "planar_bank": {
+      "path": "scratch/atail-force/whole-carrier-planar-rank-cegar/planar_schema_bank.json",
+      "sha256": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72"
+    },
+    "semantic_verifier": {
+      "path": "scratch/atail-force/unique-arm-whole-carrier-source-audit/verify_exact_four_outer.py",
+      "sha256": "dec60ea275d88430593b96f8e374b4f6ce8fd02580c1ee57b0b1bfaaa8aab59d"
+    },
+    "source_terminal_consumers": {
+      "path": "scratch/atail-force/unique4-turn-disjoint-source-occurrence/UniqueFourTurnDisjointSourceOccurrence.lean",
+      "sha256": "0d85986aac26ae1e14ecf9048293df193204e2db78f18fd5848186db55bf6256"
+    },
+    "stored_curvature_seed_registry": {
+      "path": "scratch/atail-force/unique4-exact-two-core-port/all_rounds.curvature.json",
+      "sha256": "c2b22b97f721c79dfa23ba6a6726a313b452f00592c0a272345adb2148c14551"
+    },
+    "u5_bank": {
+      "path": "scratch/atail-force/unique-arm-whole-carrier-source-audit/u5_signed_schema_bank.json",
+      "sha256": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46"
+    }
+  },
+  "uncertified_core_decision": {
+    "install_cut": false,
+    "status": "UNPROVED_CURVATURE_CORE_NO_CHECKED_TERMINAL"
+  },
+  "uncertified_core_fails_closed_without_cut": true
+}

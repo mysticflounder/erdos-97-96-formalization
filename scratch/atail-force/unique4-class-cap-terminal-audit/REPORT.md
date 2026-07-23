@@ -70,6 +70,7 @@ membership between rows.
 `AlignedInteriorFrontier R` late-selects distinct strict-cap members `q,w` of
 `C` and returns:
 
+- the retained source proof that `C` has at least three strict-cap members;
 - a reselected `CriticalPairFrontier` whose pair is definitionally `q,w`;
 - the full `OriginalUniqueFourResidual` transported to that frontier;
 - K4 at the second apex after deleting both `q,w`;
@@ -159,7 +160,8 @@ The cap-distribution arms add no edge of this graph:
 
 - `ExactTwoStrictHitDistribution` locates the four members of `C` as
   `2+1+1` across the three caps, but supplies no row at either non-apex role.
-- `AlignedInteriorFrontier` supplies two strict members of `C` and a
+- `AlignedInteriorFrontier` supplies at least three strict members of `C`, two
+  named strict members of `C`, and a
   second-apex deletion witness.  That witness is centered at the second
   apex, not at `i1` or `i2`, and its lifted class omits the aligned pair.
   It therefore supplies none of the four missing positive memberships.

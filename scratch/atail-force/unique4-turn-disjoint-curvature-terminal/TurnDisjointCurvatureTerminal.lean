@@ -67,7 +67,37 @@ theorem false_of_four_turnDisjoint_quarter_turn_arcs
   have hsub := openWindowArcCurvature_le_full chart ha₁ ha₁b₄ hb₄End
   linarith
 
+/-- Four open arcs whose edge-turn supports partition one complete boundary
+period cannot each have curvature greater than `π / 2`.
+
+This is the cyclic full-cover companion to
+`false_of_four_turnDisjoint_quarter_turn_arcs`.  The latter leaves at least
+one turn outside the four supports and uses the strict open-window budget;
+here the adjacent supports meet exactly and telescope to the exact `2π`
+period identity. -/
+theorem false_of_four_turnCovering_quarter_turn_arcs
+    (chart : OpenFundamentalWindowAngleChart)
+    {periodStart periodEnd a₁ b₁ a₂ b₂ a₃ b₃ a₄ b₄ : ℕ}
+    (ha₁ : a₁ = periodStart)
+    (hb₁a₂ : b₁ - 1 = a₂)
+    (hb₂a₃ : b₂ - 1 = a₃)
+    (hb₃a₄ : b₃ - 1 = a₄)
+    (hb₄ : b₄ - 1 = periodEnd)
+    (hperiod :
+      chart.edgeArg periodEnd = chart.edgeArg periodStart + 2 * Real.pi)
+    (h₁ : Real.pi / 2 < openWindowArcCurvature chart a₁ b₁)
+    (h₂ : Real.pi / 2 < openWindowArcCurvature chart a₂ b₂)
+    (h₃ : Real.pi / 2 < openWindowArcCurvature chart a₃ b₃)
+    (h₄ : Real.pi / 2 < openWindowArcCurvature chart a₄ b₄) : False := by
+  simp only [openWindowArcCurvature] at h₁ h₂ h₃ h₄
+  rw [ha₁, hb₁a₂] at h₁
+  rw [hb₂a₃] at h₂
+  rw [hb₃a₄] at h₃
+  rw [hb₄] at h₄
+  linarith
+
 #print axioms false_of_four_turnDisjoint_quarter_turn_arcs
+#print axioms false_of_four_turnCovering_quarter_turn_arcs
 
 end ShellCurvature
 

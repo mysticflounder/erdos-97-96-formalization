@@ -1,0 +1,116 @@
+{
+  "all_centers_have_one_exact_four_class_equal_to_selected_row": true,
+  "center_facts": [
+    {
+      "center": 0,
+      "k4_capable_class_cards": [
+        4
+      ],
+      "k4_capable_class_count": 1,
+      "unique_k4_class_equals_selected_row": true
+    },
+    {
+      "center": 1,
+      "k4_capable_class_cards": [
+        4
+      ],
+      "k4_capable_class_count": 1,
+      "unique_k4_class_equals_selected_row": true
+    },
+    {
+      "center": 2,
+      "k4_capable_class_cards": [
+        4
+      ],
+      "k4_capable_class_count": 1,
+      "unique_k4_class_equals_selected_row": true
+    },
+    {
+      "center": 3,
+      "k4_capable_class_cards": [
+        4
+      ],
+      "k4_capable_class_count": 1,
+      "unique_k4_class_equals_selected_row": true
+    },
+    {
+      "center": 4,
+      "k4_capable_class_cards": [
+        4
+      ],
+      "k4_capable_class_count": 1,
+      "unique_k4_class_equals_selected_row": true
+    },
+    {
+      "center": 5,
+      "k4_capable_class_cards": [
+        4
+      ],
+      "k4_capable_class_count": 1,
+      "unique_k4_class_equals_selected_row": true
+    },
+    {
+      "center": 6,
+      "k4_capable_class_cards": [
+        4
+      ],
+      "k4_capable_class_count": 1,
+      "unique_k4_class_equals_selected_row": true
+    },
+    {
+      "center": 7,
+      "k4_capable_class_cards": [
+        4
+      ],
+      "k4_capable_class_count": 1,
+      "unique_k4_class_equals_selected_row": true
+    },
+    {
+      "center": 8,
+      "k4_capable_class_cards": [
+        4
+      ],
+      "k4_capable_class_count": 1,
+      "unique_k4_class_equals_selected_row": true
+    },
+    {
+      "center": 9,
+      "k4_capable_class_cards": [
+        4
+      ],
+      "k4_capable_class_count": 1,
+      "unique_k4_class_equals_selected_row": true
+    },
+    {
+      "center": 10,
+      "k4_capable_class_cards": [
+        4
+      ],
+      "k4_capable_class_count": 1,
+      "unique_k4_class_equals_selected_row": true
+    }
+  ],
+  "closed_proper_subsets": [],
+  "deterministic_first_escape_center_histogram": {
+    "0": 960,
+    "1": 536,
+    "10": 1,
+    "2": 277,
+    "3": 145,
+    "4": 64,
+    "5": 33,
+    "6": 16,
+    "7": 8,
+    "8": 4,
+    "9": 2
+  },
+  "epistemic_status": "EXACT_FINITE_REPLAY_OF_EXPORTED_RADIUS_CLASSES",
+  "expected_nonempty_proper_subset_count": 2046,
+  "n": 11,
+  "nonempty_proper_subset_count": 2046,
+  "schema": "p97-round20-universal-minimality-radius-class-audit-v1",
+  "scope_warning": "The source is a Boolean projection survivor, not a Euclidean realization; this is not arbitrary-cardinality coverage",
+  "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_020/opp1_4.result.json",
+  "source_sha256": "e15973fae56cfda0ff3d9a4fcf7e065d5644941a1f1111f0a3d044ebfd5cdc14",
+  "universal_minimality_closure_passes": true
+}

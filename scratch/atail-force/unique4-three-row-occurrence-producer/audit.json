@@ -1,0 +1,456 @@
+{
+  "all_positive_have_actual_fixed_left_only_schema": false,
+  "all_positive_have_three_row_schema": true,
+  "epistemic_status": "EXACT_FINITE_REPLAY_OF_EXPORTED_CYCLIC_ROWS",
+  "positive_record_count": 12,
+  "positive_records": [
+    {
+      "all_four_arc_witnesses": 165,
+      "representative": [
+        {
+          "center": 1,
+          "end": 3,
+          "side": "center_to_second_support",
+          "start": 0
+        },
+        {
+          "center": 10,
+          "end": 4,
+          "side": "center_to_second_support",
+          "start": 2
+        },
+        {
+          "center": 9,
+          "end": 6,
+          "side": "center_to_second_support",
+          "start": 3
+        },
+        {
+          "center": 1,
+          "end": 11,
+          "side": "third_support_to_period_end",
+          "start": 5
+        }
+      ],
+      "sha256": "d48481d06003cd12a22cb1756398239ac6df6749f5fed826b3cbd6d4e3df5cb8",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_4.result.json",
+      "three_row_fixed_actual_left_only_witnesses": 6,
+      "three_row_fixed_image_completion_witnesses": 9
+    },
+    {
+      "all_four_arc_witnesses": 162,
+      "representative": [
+        {
+          "center": 4,
+          "end": 3,
+          "side": "center_to_second_support",
+          "start": 0
+        },
+        {
+          "center": 9,
+          "end": 6,
+          "side": "third_support_to_period_end",
+          "start": 2
+        },
+        {
+          "center": 7,
+          "end": 8,
+          "side": "third_support_to_period_end",
+          "start": 5
+        },
+        {
+          "center": 4,
+          "end": 11,
+          "side": "third_support_to_period_end",
+          "start": 7
+        }
+      ],
+      "sha256": "7ad2ac6213413b395bd4bd0492463d7f3d2664862fc2a48a3bf47dadc7b91c23",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_5.result.json",
+      "three_row_fixed_actual_left_only_witnesses": 0,
+      "three_row_fixed_image_completion_witnesses": 3
+    },
+    {
+      "all_four_arc_witnesses": 445,
+      "representative": [
+        {
+          "center": 4,
+          "end": 3,
+          "side": "center_to_second_support",
+          "start": 0
+        },
+        {
+          "center": 10,
+          "end": 5,
+          "side": "third_support_to_period_end",
+          "start": 3
+        },
+        {
+          "center": 0,
+          "end": 9,
+          "side": "center_to_second_support",
+          "start": 4
+        },
+        {
+          "center": 4,
+          "end": 11,
+          "side": "third_support_to_period_end",
+          "start": 8
+        }
+      ],
+      "sha256": "cd074f4a26119b2447f7a660650a1d2cff448a7885d2c772e766313d52a8e0c2",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_002/opp1_4.result.json",
+      "three_row_fixed_actual_left_only_witnesses": 0,
+      "three_row_fixed_image_completion_witnesses": 24
+    },
+    {
+      "all_four_arc_witnesses": 347,
+      "representative": [
+        {
+          "center": 3,
+          "end": 4,
+          "side": "center_to_second_support",
+          "start": 0
+        },
+        {
+          "center": 0,
+          "end": 7,
+          "side": "center_to_second_support",
+          "start": 3
+        },
+        {
+          "center": 8,
+          "end": 10,
+          "side": "center_to_second_support",
+          "start": 6
+        },
+        {
+          "center": 3,
+          "end": 11,
+          "side": "third_support_to_period_end",
+          "start": 9
+        }
+      ],
+      "sha256": "d8782b129b59979fe915e2d6f44330ac5259f840ca77b6425f6bad40fc8c34f2",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_002/opp1_5.result.json",
+      "three_row_fixed_actual_left_only_witnesses": 1,
+      "three_row_fixed_image_completion_witnesses": 10
+    },
+    {
+      "all_four_arc_witnesses": 510,
+      "representative": [
+        {
+          "center": 5,
+          "end": 4,
+          "side": "center_to_second_support",
+          "start": 0
+        },
+        {
+          "center": 10,
+          "end": 6,
+          "side": "third_support_to_period_end",
+          "start": 4
+        },
+        {
+          "center": 0,
+          "end": 10,
+          "side": "center_to_second_support",
+          "start": 5
+        },
+        {
+          "center": 5,
+          "end": 11,
+          "side": "third_support_to_period_end",
+          "start": 9
+        }
+      ],
+      "sha256": "d829e5d6ced4a1efce76b1425241c59c5d2f3818f01e7baeec952687e4b3ea0a",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_4.result.json",
+      "three_row_fixed_actual_left_only_witnesses": 5,
+      "three_row_fixed_image_completion_witnesses": 29
+    },
+    {
+      "all_four_arc_witnesses": 708,
+      "representative": [
+        {
+          "center": 3,
+          "end": 2,
+          "side": "center_to_second_support",
+          "start": 0
+        },
+        {
+          "center": 10,
+          "end": 4,
+          "side": "third_support_to_period_end",
+          "start": 2
+        },
+        {
+          "center": 0,
+          "end": 7,
+          "side": "center_to_second_support",
+          "start": 3
+        },
+        {
+          "center": 3,
+          "end": 11,
+          "side": "third_support_to_period_end",
+          "start": 7
+        }
+      ],
+      "sha256": "f862f0f8a83ba8b7b82dd47dcf95dcde910a03d13f79da1694b144a588d8eccb",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_5.result.json",
+      "three_row_fixed_actual_left_only_witnesses": 0,
+      "three_row_fixed_image_completion_witnesses": 22
+    },
+    {
+      "all_four_arc_witnesses": 217,
+      "representative": [
+        {
+          "center": 1,
+          "end": 3,
+          "side": "center_to_second_support",
+          "start": 0
+        },
+        {
+          "center": 9,
+          "end": 5,
+          "side": "center_to_second_support",
+          "start": 3
+        },
+        {
+          "center": 8,
+          "end": 10,
+          "side": "center_to_second_support",
+          "start": 4
+        },
+        {
+          "center": 1,
+          "end": 11,
+          "side": "third_support_to_period_end",
+          "start": 9
+        }
+      ],
+      "sha256": "7c3778af43e125169f901f73ab43811d2e93f1ad960567ecafe227ad61ca0b23",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_4.result.json",
+      "three_row_fixed_actual_left_only_witnesses": 2,
+      "three_row_fixed_image_completion_witnesses": 11
+    },
+    {
+      "all_four_arc_witnesses": 493,
+      "representative": [
+        {
+          "center": 3,
+          "end": 2,
+          "side": "center_to_second_support",
+          "start": 0
+        },
+        {
+          "center": 10,
+          "end": 4,
+          "side": "third_support_to_period_end",
+          "start": 2
+        },
+        {
+          "center": 0,
+          "end": 7,
+          "side": "center_to_second_support",
+          "start": 3
+        },
+        {
+          "center": 3,
+          "end": 11,
+          "side": "third_support_to_period_end",
+          "start": 6
+        }
+      ],
+      "sha256": "627c91b9b871a8ff070df1c23d7fdb1e2af67b0f0290f7640a5f6209c0ee79f6",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_5.result.json",
+      "three_row_fixed_actual_left_only_witnesses": 7,
+      "three_row_fixed_image_completion_witnesses": 17
+    },
+    {
+      "all_four_arc_witnesses": 561,
+      "representative": [
+        {
+          "center": 3,
+          "end": 2,
+          "side": "center_to_second_support",
+          "start": 0
+        },
+        {
+          "center": 1,
+          "end": 5,
+          "side": "center_to_second_support",
+          "start": 2
+        },
+        {
+          "center": 7,
+          "end": 7,
+          "side": "third_support_to_period_end",
+          "start": 4
+        },
+        {
+          "center": 3,
+          "end": 11,
+          "side": "third_support_to_period_end",
+          "start": 7
+        }
+      ],
+      "sha256": "af166e02475e20902acf8d2a25795ed65458ba67b6a24509587b156a5367ef6f",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_4.result.json",
+      "three_row_fixed_actual_left_only_witnesses": 7,
+      "three_row_fixed_image_completion_witnesses": 15
+    },
+    {
+      "all_four_arc_witnesses": 636,
+      "representative": [
+        {
+          "center": 5,
+          "end": 2,
+          "side": "center_to_second_support",
+          "start": 0
+        },
+        {
+          "center": 3,
+          "end": 6,
+          "side": "center_to_second_support",
+          "start": 2
+        },
+        {
+          "center": 0,
+          "end": 9,
+          "side": "center_to_second_support",
+          "start": 5
+        },
+        {
+          "center": 5,
+          "end": 11,
+          "side": "third_support_to_period_end",
+          "start": 9
+        }
+      ],
+      "sha256": "e6c741bb9786da0a58d12b75b0f941aa77d8977609a5c93b84ef4735a262ac99",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_5.result.json",
+      "three_row_fixed_actual_left_only_witnesses": 7,
+      "three_row_fixed_image_completion_witnesses": 27
+    },
+    {
+      "all_four_arc_witnesses": 342,
+      "representative": [
+        {
+          "center": 1,
+          "end": 2,
+          "side": "center_to_second_support",
+          "start": 0
+        },
+        {
+          "center": 0,
+          "end": 6,
+          "side": "center_to_second_support",
+          "start": 1
+        },
+        {
+          "center": 7,
+          "end": 8,
+          "side": "center_to_second_support",
+          "start": 5
+        },
+        {
+          "center": 1,
+          "end": 11,
+          "side": "third_support_to_period_end",
+          "start": 8
+        }
+      ],
+      "sha256": "6b396b41a53e1c0a12fd3fe631478d5f47c864c5fb0423e29bb22f20165df57d",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_4.result.json",
+      "three_row_fixed_actual_left_only_witnesses": 16,
+      "three_row_fixed_image_completion_witnesses": 26
+    },
+    {
+      "all_four_arc_witnesses": 601,
+      "representative": [
+        {
+          "center": 0,
+          "end": 4,
+          "side": "center_to_second_support",
+          "start": 0
+        },
+        {
+          "center": 6,
+          "end": 5,
+          "side": "third_support_to_period_end",
+          "start": 3
+        },
+        {
+          "center": 6,
+          "end": 7,
+          "side": "center_to_second_support",
+          "start": 5
+        },
+        {
+          "center": 2,
+          "end": 9,
+          "side": "third_support_to_period_end",
+          "start": 7
+        }
+      ],
+      "sha256": "a545b047321bc9464cafa1c057b6d982833daab1c720405a51edb507692c44de",
+      "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_5.result.json",
+      "three_row_fixed_actual_left_only_witnesses": 8,
+      "three_row_fixed_image_completion_witnesses": 56
+    }
+  ],
+  "round20_full_partition_projection": {
+    "all_four_arc_witnesses": 214,
+    "representative": [
+      {
+        "center": 3,
+        "end": 4,
+        "side": "center_to_second_support",
+        "start": 0
+      },
+      {
+        "center": 9,
+        "end": 5,
+        "side": "third_support_to_period_end",
+        "start": 3
+      },
+      {
+        "center": 7,
+        "end": 7,
+        "side": "third_support_to_period_end",
+        "start": 4
+      },
+      {
+        "center": 3,
+        "end": 11,
+        "side": "third_support_to_period_end",
+        "start": 7
+      }
+    ],
+    "sha256": "e15973fae56cfda0ff3d9a4fcf7e065d5644941a1f1111f0a3d044ebfd5cdc14",
+    "source": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_020/opp1_4.result.json",
+    "three_row_fixed_actual_left_only_witnesses": 0,
+    "three_row_fixed_image_completion_witnesses": 16
+  },
+  "scope_warning": "Not a Euclidean realization test and not arbitrary-cardinality coverage",
+  "weaker_interface_regressions": [
+    {
+      "declared_status": "SAT_NO_FOUR_ARC_PACKING",
+      "replayed_four_arc_witnesses": 0,
+      "require_curvature_sat": true,
+      "require_strong_connectivity": true,
+      "sha256": "746a6b902fca23f9651e5bcf9e3d142c4425c82011deff103cac8dff1523208b",
+      "source": "scratch/atail-force/unique4-global-k4-curvature-packing/exacttwo-opp1-4-strong.json"
+    },
+    {
+      "declared_status": "SAT_NO_FOUR_ARC_PACKING",
+      "replayed_four_arc_witnesses": 0,
+      "require_curvature_sat": true,
+      "require_strong_connectivity": true,
+      "sha256": "61b9f4e886b9641d8739c18e761f09838cbac58214de4852d22a13e5685a6deb",
+      "source": "scratch/atail-force/unique4-global-k4-curvature-packing/exacttwo-opp1-5-strong.json"
+    }
+  ]
+}
