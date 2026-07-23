@@ -8818,10 +8818,18 @@ and a 184,212,068-byte proof with SHA-256
 `drat-trim` returned literal verdict `s VERIFIED` after 2,698.113 seconds.
 The independent manifest reconstructs all 3,012 unique seeded clauses from
 3,102 oriented embeddings and replays the four order-preserving occurrences
-against the kernel-checked generic consumers.  Thus both fixed-`n = 11`
-profiles are externally certified; neither certificate proves the Python
-source encoding, an arbitrary-cardinality occurrence theorem, or a Lean
-source closure.
+against the kernel-checked generic consumers.  These results certify both
+exact hashed formulas, not both complete source profiles.  The warning-clean
+source audit
+`scratch/atail-force/unique4-n11-source-lift/CardElevenUniqueFourCoverage.lean`
+proves that card eleven splits exhaustively into p4 exact-two, p5 exact-two,
+or a p5 `AlignedInteriorFrontier` with at least three strict hits.  P4 is
+therefore profile-complete, but the p5 formula was generated with
+`exact_two_strict_hit_overlay = true` and omits the aligned p5 arm.  Neither
+certificate is yet a Lean theorem: the remaining fixed-card bridge is a
+Lean-defined terminal CNF, a source-to-satisfying-valuation theorem for every
+enabled clause family, and kernel LRAT replay of that same formula.  No
+source `sorry` is closed by either certificate.
 
 The arbitrary-cardinality source route has now advanced past the earlier
 occurrence-only boundary.  The warning-clean scratch development
@@ -8887,6 +8895,52 @@ witnesses deliberately do not cover the other robust radius alternative of
 two disjoint K4 radii.  Consequently the robust arm is not closed by the three
 local rows or by a shared-pair consumer; it needs global K4/minimality,
 full-fiber provenance, nonlinear/MEC geometry, or a complete alternative
+`IsM44` packet.
+
+The subsequent global-terminal audits make that missing layer more precise.
+In `scratch/atail-force/unique4-swapped-global-terminal/`, all four corrected
+two-by-two continuation outcomes remain exact QF_LRA `SAT` after adding one
+universal-minimality escape; re-search with a K4 row at the unused strict
+second-cap point is also `SAT` in all four arms.  Freezing four particular
+tables and requiring K4 at every named center makes those tables `UNSAT`, but
+that result is fixture-specific and supplies no arbitrary-card occurrence
+theorem.  The narrow existing consumer remains
+`false_of_four_endpoint_k2_three_row_instances`; the missing producer must
+construct its three selected rows and nine memberships collectively from the
+full parent, or return another already-terminal outcome.
+
+The companion robust audit in
+`scratch/atail-force/unique4-robust-global-terminal/` reaches the same
+boundary for both robustness causes: an exact-five large radius class and two
+disjoint exact-four radii both admit exact local models with the strongest
+single `B`-minimality escape.  Named-role all-center K4 kills the frozen
+fixtures, but a real ambient K4 row may use unenumerated carrier points.  The
+next source theorem must therefore localize an arbitrary escaping global row
+using cap order, complete critical fibers, MEC geometry, or `noM44` into an
+existing Kalmanson, two-center, `CriticalFiberClosingCore`, or alternative
+`IsM44` terminal.  A bare escape-row adapter and one-more-preselected-row
+search are explicitly retired.
+
+The stronger swapped re-search requiring K4 simultaneously at every center
+of the protected parent set is already exact QF_LRA `SAT` on the
+`common_delete_5` outcome; the other three outcomes remain unresolved under
+the checkpoint budget.  Thus even collective availability of local rows on
+that set does not by itself force the current Kalmanson occurrence.  Any
+positive source theorem must use information still absent from that model,
+notably the complete critical-system coupling, nonlinear Euclidean/MEC
+geometry, or the alternative-triangle content of `noM44`.
+
+The protected-set audit
+`scratch/atail-force/unique4-escape-localization/` sharpens the source-valid
+minimality statement without adding a nonterminal declaration.  It is enough
+to take `B` to be the union of the two displayed apex-row supports and the two
+apices, so `B.card <= 10`; the minimality escape center cannot be either apex
+and therefore lies in one of the two displayed supports.  An exact incidence
+regression still realizes an escaping row with only alternating shared pairs
+and no source-faithful second-center or same-cap placement.  Thus even this
+localized one-row output is insufficient.  The remaining theorem must use a
+collective protected-row closure to produce the existing profile-four
+three-row occurrence, a `CriticalFiberClosingCore`, or a complete alternative
 `IsM44` packet.
 
 The finite exhaustion does not supply the arbitrary-card lift.  Exact `n = 12`
