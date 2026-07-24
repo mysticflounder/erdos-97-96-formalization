@@ -14,8 +14,16 @@ cd818224ca4c418c084363f82c508460e4ed95c17d457ed04650fe4fa5e938d1
 ```
 
 `--verify-package` independently re-verifies every artifact hash, the
-checkpoint chain, the shard-boundary identities, the caps, the window roles,
-and every window map's totality and injectivity: **VERIFIED**.
+checkpoint chain, the shard-boundary identities, the caps, and the window
+roles, then semantically replays every window: it streams each window from
+its shared start checkpoint through `actions.lrat`, reconstructs the active
+clause state, and requires the result to equal the referenced end
+checkpoint exactly. Map rows are authenticated against the actual start
+clauses and dense in-window additions, with global ids re-derived (shard-1
+identity, shard-2 addition offset) and range/monotonicity/cross-window
+consistency checks for shard-2 checkpoint rows; recorded window counts and
+addition spans must match the replay. RUP itself is not decided. The real
+p5 package: **VERIFIED** (27 s).
 
 ## Real p5 window counts
 
@@ -83,7 +91,7 @@ generated/p5-largest-windows/
   `checkpoint.cnf`, so the two major logical shards are preserved intact.
 - **Provenance.** The manifest binds the parent package digest, the parent
   artifact hashes, the windowed and parent materializer sources, and the
-  29,091-byte Lean checker record; `package_sha256` is relocation-stable.
+  32,211-byte Lean checker record; `package_sha256` is relocation-stable.
 
 ## Fail-closed behavior and tests
 
@@ -92,11 +100,14 @@ verifies. Windows never split an LRAT line; a single action exceeding the
 byte cap fails closed, as do unseen/inactive/unmapped references, non-dense
 addition ids, noncanonical spellings, an empty clause outside the terminal
 shard, any action after the empty clause, and overwrite of an existing
-output directory. `test_materialize_windowed_rup.py` adds 21 deterministic
+output directory. `test_materialize_windowed_rup.py` adds 27 deterministic
 tests (drift of window artifacts, checkpoints, and the manifest digest;
 decoupled shared-checkpoint references; invalid references; cap and
-boundary errors; determinism and relocation stability). The directory suite
-is 44/44 with the existing materializer tests.
+boundary errors; determinism and relocation stability; and coordinated
+rehashes, where an artifact and its manifest record are tampered together
+and the package digest recomputed — caught semantically by the replay and
+map authentication). The directory suite is 54/54 with the existing
+materializer, emitter, and attestation tests.
 
 ## Claim boundary
 
