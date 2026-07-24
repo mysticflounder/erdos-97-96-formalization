@@ -819,27 +819,16 @@ def materialize_windows(
         raise
 
 
-def verify_window_map(
-    map_path: Path,
-    *,
-    label: str,
-    start_clause_count: int,
-    additions: int,
-) -> None:
+def load_window_map(map_path: Path, *, label: str) -> list[tuple[int, int, int]]:
+    """Load one window map, rejecting any deviation from the row grammar."""
+
     try:
         rows = map_path.read_text(encoding="ascii").splitlines()
     except (OSError, UnicodeDecodeError) as exc:
         raise MaterializationError(f"cannot read {label}") from exc
     if not rows or rows[0] != MAP_HEADER:
         raise MaterializationError(f"{label} has no canonical header")
-    expected_rows = start_clause_count + additions
-    if len(rows) - 1 != expected_rows:
-        raise MaterializationError(
-            f"{label} row-count drift: expected {expected_rows}, found "
-            f"{len(rows) - 1}"
-        )
-    shard_ids: set[int] = set()
-    global_ids: set[int] = set()
+    parsed: list[tuple[int, int, int]] = []
     for expected_local, row in enumerate(rows[1:], 1):
         fields = row.split("\t")
         if len(fields) != 3:
@@ -862,14 +851,171 @@ def verify_window_map(
             raise MaterializationError(
                 f"non-positive {label} clause id in row {expected_local}"
             )
-        shard_ids.add(shard_id)
-        global_ids.add(global_id)
-    if len(shard_ids) != expected_rows or len(global_ids) != expected_rows:
+        parsed.append((local_id, shard_id, global_id))
+    return parsed
+
+
+def authenticate_window_map(
+    rows: list[tuple[int, int, int]],
+    *,
+    label: str,
+    start_shard_ids: list[int],
+    addition_shard_ids: list[int],
+) -> None:
+    """Require map rows to name the actual start clauses and additions."""
+
+    expected = [*start_shard_ids, *addition_shard_ids]
+    if len(rows) != len(expected):
+        raise MaterializationError(
+            f"{label} row-count drift: expected {len(expected)}, found "
+            f"{len(rows)}"
+        )
+    for (local_id, shard_id, _), expected_shard in zip(rows, expected):
+        if shard_id != expected_shard:
+            raise MaterializationError(
+                f"{label} shard-local id drift in row {local_id}: expected "
+                f"{expected_shard}, found {shard_id}"
+            )
+    global_ids = [global_id for _, _, global_id in rows]
+    if len(set(global_ids)) != len(global_ids):
         raise MaterializationError(f"{label} is not injective")
 
 
+def replay_window_actions(
+    actions_path: Path,
+    *,
+    label: str,
+    start_clauses: tuple[tuple[int, ...], ...],
+    variable_count: int,
+    allow_empty: bool,
+) -> tuple[base.ActionCounts, dict[int, tuple[int, ...]], list[int], bool]:
+    """Structurally replay one window from its start checkpoint.
+
+    Reconstructs the window-local active clause state action by action.
+    Every reference must name an active local clause and every addition id
+    must be dense; RUP itself is not decided.  Returns the observed action
+    counts, the final active state, the deleted local ids in order, and
+    whether the empty clause was derived.
+    """
+
+    local_active: dict[int, tuple[int, ...]] = {
+        local_id: clause
+        for local_id, clause in enumerate(start_clauses, 1)
+    }
+    next_local = len(start_clauses) + 1
+    counts = base.ActionCounts()
+    deleted_locals: list[int] = []
+    empty_seen = False
+    with actions_path.open("rb") as source:
+        for line_number, raw_line in enumerate(source, 1):
+            if not raw_line.endswith(b"\n") or b"\r" in raw_line:
+                raise MaterializationError(
+                    f"{label} line {line_number} is not LF-terminated ASCII"
+                )
+            try:
+                line = raw_line.decode("ascii")
+            except UnicodeDecodeError as exc:
+                raise MaterializationError(
+                    f"non-ASCII {label} line {line_number}"
+                ) from exc
+            fields = line.split()
+            if len(fields) < 2:
+                raise MaterializationError(
+                    f"blank or malformed {label} line {line_number}"
+                )
+            if empty_seen:
+                raise MaterializationError(
+                    f"action follows the empty clause on {label} line "
+                    f"{line_number}"
+                )
+            counts.lines += 1
+            if fields[1] == "d":
+                action_id, deleted = base.parse_deletion(
+                    fields,
+                    line_number=line_number,
+                )
+                if action_id != 1:
+                    raise MaterializationError(
+                        f"noncanonical deletion action id on {label} line "
+                        f"{line_number}"
+                    )
+                if len(set(deleted)) != len(deleted):
+                    raise MaterializationError(
+                        f"duplicate id within deletion on {label} line "
+                        f"{line_number}"
+                    )
+                if line[:-1] != base.format_deletion(deleted):
+                    raise MaterializationError(
+                        f"noncanonical deletion spelling on {label} line "
+                        f"{line_number}"
+                    )
+                for local_id in deleted:
+                    if local_id >= next_local:
+                        raise MaterializationError(
+                            f"deletion references unseen local clause "
+                            f"{local_id} on {label} line {line_number}"
+                        )
+                    if local_id not in local_active:
+                        raise MaterializationError(
+                            f"deletion references inactive local clause "
+                            f"{local_id} on {label} line {line_number}"
+                        )
+                    local_active.pop(local_id)
+                deleted_locals.extend(deleted)
+                counts.deletions += 1
+                counts.deleted_ids += len(deleted)
+                continue
+            action_id, clause, hints = base.parse_addition(
+                fields,
+                line_number=line_number,
+                variable_count=variable_count,
+            )
+            if action_id != next_local:
+                raise MaterializationError(
+                    f"non-dense addition id on {label} line {line_number}: "
+                    f"expected {next_local}, got {action_id}"
+                )
+            if line[:-1] != base.format_addition(action_id, clause, hints):
+                raise MaterializationError(
+                    f"noncanonical addition spelling on {label} line "
+                    f"{line_number}"
+                )
+            for hint in hints:
+                if hint >= action_id:
+                    raise MaterializationError(
+                        f"RUP hint {hint} is not earlier than addition "
+                        f"{action_id} on {label} line {line_number}"
+                    )
+                if hint not in local_active:
+                    raise MaterializationError(
+                        f"RUP hint {hint} is inactive on {label} line "
+                        f"{line_number}"
+                    )
+            local_active[next_local] = clause
+            next_local += 1
+            counts.additions += 1
+            counts.hints += len(hints)
+            if not clause:
+                if not allow_empty:
+                    raise MaterializationError(
+                        f"{label} derives an empty clause outside the "
+                        "terminal window"
+                    )
+                empty_seen = True
+    return counts, local_active, deleted_locals, empty_seen
+
+
 def verify_windowed_package(package_dir: Path) -> dict[str, Any]:
-    """Recompute all artifact hashes and structural window invariants."""
+    """Recompute all artifact hashes and semantically replay every window.
+
+    Beyond hash and chain checks, every window is independently streamed
+    from its shared start checkpoint through its action slice, the active
+    clause state is reconstructed, and the result must equal the referenced
+    end checkpoint exactly.  Map rows are authenticated against the actual
+    start clauses and in-window additions, with global ids re-derived where
+    they are determined and cross-window consistent elsewhere.  RUP itself
+    is not decided.
+    """
 
     package_dir = package_dir.resolve()
     manifest_path = package_dir / "manifest.json"
@@ -892,6 +1038,24 @@ def verify_windowed_package(package_dir: Path) -> dict[str, Any]:
     if max_actions < 1 or max_lrat_bytes < 1:
         raise MaterializationError("package caps must be positive")
 
+    variable_count = int(payload["counts"]["variable_count"])
+    parent_numbering = payload["numbering"]["parent"]
+    base_clause_count = int(parent_numbering["base_clause_count"])
+    checkpoint_clause_count = int(
+        parent_numbering["checkpoint_active_clause_count"]
+    )
+    second_shard_first_local = int(
+        parent_numbering["second_shard_first_local_addition"]
+    )
+    second_shard_first_global = int(
+        parent_numbering["second_shard_first_global_addition"]
+    )
+    if second_shard_first_local != checkpoint_clause_count + 1:
+        raise MaterializationError(
+            "parent numbering drift: the second shard's first local "
+            "addition must follow the checkpoint clauses"
+        )
+
     checkpoints = payload["checkpoints"]
     if not isinstance(checkpoints, list) or not checkpoints:
         raise MaterializationError("package manifest has no checkpoints")
@@ -909,6 +1073,31 @@ def verify_windowed_package(package_dir: Path) -> dict[str, Any]:
             record,
             label=f"checkpoint {expected_index}",
         )
+
+    parsed_checkpoints: dict[int, base.Cnf] = {}
+
+    def checkpoint_cnf(index: int) -> base.Cnf:
+        cached = parsed_checkpoints.get(index)
+        if cached is not None:
+            return cached
+        record = checkpoints[index]
+        cnf = base.parse_dimacs(
+            resolve_package_relative(
+                package_dir,
+                record,
+                label=f"checkpoint {index}",
+            )
+        )
+        if cnf.variable_count != variable_count:
+            raise MaterializationError(
+                f"checkpoint {index} variable-count drift"
+            )
+        if len(cnf.clauses) != int(record["clause_count"]):
+            raise MaterializationError(
+                f"checkpoint {index} clause-count drift"
+            )
+        parsed_checkpoints[index] = cnf
+        return cnf
 
     parent_artifacts = payload["source"]["parent_package"]["artifacts"]
     boundary_index = int(
@@ -935,15 +1124,39 @@ def verify_windowed_package(package_dir: Path) -> dict[str, Any]:
 
     windows = payload["windows"]
     shard_specs = (
-        ("shard_1", 0, boundary_index, False),
-        ("shard_2", boundary_index, len(checkpoints) - 1, True),
+        ("shard_1", 0, boundary_index, False, base_clause_count),
+        (
+            "shard_2",
+            boundary_index,
+            len(checkpoints) - 1,
+            True,
+            checkpoint_clause_count,
+        ),
     )
-    for shard_key, first_start, last_end, is_terminal in shard_specs:
+    shard_2_checkpoint_globals: dict[int, int] = {}
+    for (
+        shard_key,
+        first_start,
+        last_end,
+        is_terminal,
+        shard_start_count,
+    ) in shard_specs:
         records = windows.get(shard_key)
         if not isinstance(records, list) or not records:
             raise MaterializationError(
                 f"package manifest has no {shard_key} windows"
             )
+        if int(checkpoints[first_start]["clause_count"]) != shard_start_count:
+            raise MaterializationError(
+                f"{shard_key} start checkpoint clause-count drift from "
+                "the parent numbering"
+            )
+        active_shard_ids = set(range(1, shard_start_count + 1))
+        next_shard_addition = (
+            base_clause_count + 1
+            if shard_key == "shard_1"
+            else second_shard_first_local
+        )
         expected_start = first_start
         for position, record in enumerate(records, 1):
             label = f"{shard_key} window {position}"
@@ -960,21 +1173,18 @@ def verify_windowed_package(package_dir: Path) -> dict[str, Any]:
                     "checkpoint"
                 )
             expected_start += 1
+            is_last = position == len(records)
             expected_role = (
-                "terminal"
-                if is_terminal and position == len(records)
-                else "rebase"
+                "terminal" if is_terminal and is_last else "rebase"
             )
             if record.get("role") != expected_role:
                 raise MaterializationError(
                     f"{label} role drift: expected {expected_role!r}"
                 )
-            counts = record["counts"]
-            if counts["lines"] != counts["additions"] + counts["deletions"]:
-                raise MaterializationError(
-                    f"{label} action-count accounting drift"
-                )
-            if counts["lines"] < 1 or counts["lines"] > max_actions:
+            recorded_counts = record["counts"]
+            if recorded_counts["lines"] < 1 or (
+                recorded_counts["lines"] > max_actions
+            ):
                 raise MaterializationError(
                     f"{label} violates the action cap"
                 )
@@ -983,12 +1193,13 @@ def verify_windowed_package(package_dir: Path) -> dict[str, Any]:
                 raise MaterializationError(
                     f"{label} violates the LRAT byte cap"
                 )
+            actions_path = resolve_package_relative(
+                package_dir,
+                actions_record,
+                label=f"{label} actions",
+            )
             base.validate_expected_artifact(
-                resolve_package_relative(
-                    package_dir,
-                    actions_record,
-                    label=f"{label} actions",
-                ),
+                actions_path,
                 actions_record,
                 label=f"{label} actions",
             )
@@ -1003,37 +1214,149 @@ def verify_windowed_package(package_dir: Path) -> dict[str, Any]:
                 map_record,
                 label=f"{label} map",
             )
+
+            start_index = int(record["start_checkpoint"])
+            end_index = int(record["end_checkpoint"])
+            start_cnf = checkpoint_cnf(start_index)
+            observed_counts, local_active, deleted_locals, empty_seen = (
+                replay_window_actions(
+                    actions_path,
+                    label=f"{label} actions",
+                    start_clauses=start_cnf.clauses,
+                    variable_count=variable_count,
+                    allow_empty=is_terminal and is_last,
+                )
+            )
+            end_cnf = checkpoint_cnf(end_index)
+            reconstructed = tuple(
+                local_active[local_id]
+                for local_id in sorted(local_active)
+            )
+            if reconstructed != end_cnf.clauses:
+                raise MaterializationError(
+                    f"{label} does not replay to its shared end checkpoint"
+                )
+            if is_terminal and is_last and not empty_seen:
+                raise MaterializationError(
+                    f"{label} does not derive the empty clause"
+                )
+
+            observed = observed_counts.as_json()
+            recorded = {
+                key: int(recorded_counts[key]) for key in observed
+            }
+            if observed != recorded:
+                raise MaterializationError(
+                    f"{label} recorded counts drift from the replayed "
+                    "actions"
+                )
             numbering = record["numbering"]
-            start_clause_count = int(numbering["start_clause_count"])
-            end_clause_count = int(numbering["end_clause_count"])
             if (
-                checkpoints[record["start_checkpoint"]]["clause_count"]
-                != start_clause_count
-                or checkpoints[record["end_checkpoint"]]["clause_count"]
-                != end_clause_count
+                int(numbering["start_clause_count"])
+                != len(start_cnf.clauses)
+                or int(numbering["end_clause_count"])
+                != len(end_cnf.clauses)
             ):
                 raise MaterializationError(
                     f"{label} endpoint clause counts drift from the "
                     "shared checkpoints"
                 )
-            verify_window_map(
-                map_path,
-                label=f"{shard_key} window {position} map",
-                start_clause_count=start_clause_count,
-                additions=int(counts["additions"]),
+            if (
+                int(numbering["first_local_addition_id"])
+                != len(start_cnf.clauses) + 1
+            ):
+                raise MaterializationError(
+                    f"{label} first local addition id drift"
+                )
+            addition_shard_ids = list(
+                range(
+                    next_shard_addition,
+                    next_shard_addition + observed_counts.additions,
+                )
             )
+            expected_span = (
+                [addition_shard_ids[0], addition_shard_ids[-1]]
+                if addition_shard_ids
+                else None
+            )
+            if numbering["addition_shard_ids"] != expected_span:
+                raise MaterializationError(
+                    f"{label} addition shard-id span drift"
+                )
+
+            start_shard_ids = sorted(active_shard_ids)
+            if len(start_shard_ids) != len(start_cnf.clauses):
+                raise MaterializationError(
+                    f"{label} start checkpoint drifts from the shard "
+                    "reconstruction"
+                )
+            rows = load_window_map(map_path, label=f"{label} map")
+            authenticate_window_map(
+                rows,
+                label=f"{label} map",
+                start_shard_ids=start_shard_ids,
+                addition_shard_ids=addition_shard_ids,
+            )
+            if shard_key == "shard_1":
+                for local_id, shard_id, global_id in rows:
+                    if global_id != shard_id:
+                        raise MaterializationError(
+                            f"{label} map global id drift in row "
+                            f"{local_id}"
+                        )
+            else:
+                previous_checkpoint_global = 0
+                for local_id, shard_id, global_id in rows:
+                    if shard_id >= second_shard_first_local:
+                        expected_global = second_shard_first_global + (
+                            shard_id - second_shard_first_local
+                        )
+                        if global_id != expected_global:
+                            raise MaterializationError(
+                                f"{label} map global id drift in row "
+                                f"{local_id}"
+                            )
+                        continue
+                    if not 1 <= global_id < second_shard_first_global:
+                        raise MaterializationError(
+                            f"{label} map global id out of range in row "
+                            f"{local_id}"
+                        )
+                    if global_id <= previous_checkpoint_global:
+                        raise MaterializationError(
+                            f"{label} map checkpoint global ids are not "
+                            f"increasing at row {local_id}"
+                        )
+                    previous_checkpoint_global = global_id
+                    known = shard_2_checkpoint_globals.get(shard_id)
+                    if known is None:
+                        shard_2_checkpoint_globals[shard_id] = global_id
+                    elif known != global_id:
+                        raise MaterializationError(
+                            f"{label} map global id for shard clause "
+                            f"{shard_id} is inconsistent across windows"
+                        )
+
+            local_to_shard = {
+                local_id: shard_id for local_id, shard_id, _ in rows
+            }
+            active_shard_ids.update(addition_shard_ids)
+            for local_id in deleted_locals:
+                shard_id = local_to_shard[local_id]
+                if shard_id not in active_shard_ids:
+                    raise MaterializationError(
+                        f"{label} deletes shard clause {shard_id} that "
+                        "the shard reconstruction has no longer active"
+                    )
+                active_shard_ids.remove(shard_id)
+            next_shard_addition += observed_counts.additions
+            parsed_checkpoints.pop(start_index, None)
         if expected_start != last_end:
             raise MaterializationError(
                 f"{shard_key} windows do not end at checkpoint {last_end}"
             )
 
-    terminal_cnf = base.parse_dimacs(
-        resolve_package_relative(
-            package_dir,
-            checkpoints[-1],
-            label="terminal checkpoint",
-        )
-    )
+    terminal_cnf = checkpoint_cnf(len(checkpoints) - 1)
     if not any(not clause for clause in terminal_cnf.clauses):
         raise MaterializationError(
             "terminal checkpoint does not contain the empty clause"

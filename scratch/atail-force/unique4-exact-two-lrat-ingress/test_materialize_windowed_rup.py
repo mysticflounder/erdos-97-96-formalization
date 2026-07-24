@@ -471,24 +471,185 @@ class MaterializeWindowedRupTest(unittest.TestCase):
             ):
                 subject.verify_windowed_package(output)
 
-    def test_map_verifier_rejects_noninjective_rows(self) -> None:
+    def test_map_authentication_rejects_noninjective_global_ids(self) -> None:
+        with self.assertRaisesRegex(
+            subject.MaterializationError,
+            "not injective",
+        ):
+            subject.authenticate_window_map(
+                [(1, 1, 7), (2, 2, 7)],
+                label="test map",
+                start_shard_ids=[1, 2],
+                addition_shard_ids=[],
+            )
+
+    def rehash_manifest(self, output: Path, mutate) -> None:
+        """Apply a coordinated tamper: mutate, then recompute the digest."""
+
+        manifest_path = output / "manifest.json"
+        payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+        mutate(payload)
+        payload["package_sha256"] = subject.compute_package_digest(payload)
+        manifest_path.write_text(
+            json.dumps(payload, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+
+    def refresh_artifact(self, output: Path, record: dict) -> None:
+        path = output / record["path"]
+        record["sha256"] = base.sha256(path)
+        record["byte_count"] = path.stat().st_size
+
+    def test_replay_rejects_rehashed_end_checkpoint_reorder(self) -> None:
         with tempfile.TemporaryDirectory() as raw_root:
             root = Path(raw_root)
-            map_path = root / "map.tsv"
-            map_path.write_text(
-                subject.MAP_HEADER + "\n1\t1\t1\n2\t1\t2\n",
+            output = self.window(root, max_actions=1)
+            (output / "checkpoints/checkpoint-0001.cnf").write_text(
+                "p cnf 2 4\n1 2 0\n-2 0\n-1 0\n2 0\n",
                 encoding="ascii",
+            )
+            self.rehash_manifest(
+                output,
+                lambda payload: self.refresh_artifact(
+                    output, payload["checkpoints"][1]
+                ),
             )
             with self.assertRaisesRegex(
                 subject.MaterializationError,
-                "not injective",
+                "does not replay to its shared end checkpoint",
             ):
-                subject.verify_window_map(
-                    map_path,
-                    label="test map",
-                    start_clause_count=2,
-                    additions=0,
-                )
+                subject.verify_windowed_package(output)
+
+    def test_replay_rejects_rehashed_action_tamper(self) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            output = self.window(root, max_actions=1)
+            (output / "shard-1/window-0002/actions.lrat").write_text(
+                "1 d 1 3 0\n",
+                encoding="ascii",
+            )
+            self.rehash_manifest(
+                output,
+                lambda payload: self.refresh_artifact(
+                    output,
+                    payload["windows"]["shard_1"][1]["artifacts"][
+                        "actions_lrat"
+                    ],
+                ),
+            )
+            with self.assertRaisesRegex(
+                subject.MaterializationError,
+                "does not replay to its shared end checkpoint",
+            ):
+                subject.verify_windowed_package(output)
+
+    def test_replay_rejects_rehashed_hint_tamper(self) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            output = self.window(root, max_actions=1)
+            (output / "shard-1/window-0001/actions.lrat").write_text(
+                "4 2 0 1 4 0\n",
+                encoding="ascii",
+            )
+            self.rehash_manifest(
+                output,
+                lambda payload: self.refresh_artifact(
+                    output,
+                    payload["windows"]["shard_1"][0]["artifacts"][
+                        "actions_lrat"
+                    ],
+                ),
+            )
+            with self.assertRaisesRegex(
+                subject.MaterializationError,
+                "not earlier than addition",
+            ):
+                subject.verify_windowed_package(output)
+
+    def test_map_rejects_rehashed_shard_id_tamper(self) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            output = self.window(root, max_actions=1)
+            (output / "shard-2/window-0001/map.tsv").write_text(
+                subject.MAP_HEADER + "\n1\t1\t3\n2\t5\t4\n3\t3\t5\n",
+                encoding="ascii",
+            )
+            self.rehash_manifest(
+                output,
+                lambda payload: self.refresh_artifact(
+                    output,
+                    payload["windows"]["shard_2"][0]["artifacts"]["map"],
+                ),
+            )
+            with self.assertRaisesRegex(
+                subject.MaterializationError,
+                "shard-local id drift",
+            ):
+                subject.verify_windowed_package(output)
+
+    def test_map_rejects_rehashed_global_id_tampers(self) -> None:
+        cases = {
+            "addition-offset": (
+                subject.MAP_HEADER + "\n1\t1\t3\n2\t2\t4\n3\t3\t7\n",
+                "global id drift",
+            ),
+            "checkpoint-range": (
+                subject.MAP_HEADER + "\n1\t1\t9\n2\t2\t4\n3\t3\t5\n",
+                "global id out of range",
+            ),
+        }
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            for name, (map_text, message) in cases.items():
+                with self.subTest(name=name):
+                    output = self.window(root / name, max_actions=1)
+                    (output / "shard-2/window-0001/map.tsv").write_text(
+                        map_text,
+                        encoding="ascii",
+                    )
+                    self.rehash_manifest(
+                        output,
+                        lambda payload: self.refresh_artifact(
+                            output,
+                            payload["windows"]["shard_2"][0]["artifacts"][
+                                "map"
+                            ],
+                        ),
+                    )
+                    with self.assertRaisesRegex(
+                        subject.MaterializationError,
+                        message,
+                    ):
+                        subject.verify_windowed_package(output)
+
+    def test_verifier_rejects_rehashed_count_and_span_drift(self) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            count_output = self.window(root / "counts", max_actions=1)
+
+            def bump_hints(payload: dict) -> None:
+                payload["windows"]["shard_1"][0]["counts"]["hints"] += 1
+
+            self.rehash_manifest(count_output, bump_hints)
+            with self.assertRaisesRegex(
+                subject.MaterializationError,
+                "recorded counts drift from the replayed actions",
+            ):
+                subject.verify_windowed_package(count_output)
+
+            span_output = self.window(root / "span", max_actions=1)
+
+            def stretch_span(payload: dict) -> None:
+                payload["windows"]["shard_1"][0]["numbering"][
+                    "addition_shard_ids"
+                ] = [4, 5]
+
+            self.rehash_manifest(span_output, stretch_span)
+            with self.assertRaisesRegex(
+                subject.MaterializationError,
+                "addition shard-id span drift",
+            ):
+                subject.verify_windowed_package(span_output)
 
 
 if __name__ == "__main__":
