@@ -2,4 +2,5 @@ surface.cnf
 surface.drat
 surface.cadical.log
 surface.model
+cegar-work/
 __pycache__/
