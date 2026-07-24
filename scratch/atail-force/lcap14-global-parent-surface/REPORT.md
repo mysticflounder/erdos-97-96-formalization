@@ -33,6 +33,23 @@ metric-infeasible, with the certificate pipeline
 (schema mining → family cover → single UNSAT CNF → LRAT → Lean) as the
 closure vehicle on exhaustion, and Euclidean escalation on any survivor.
 
+Schema mining record (`schema_mine.py`, output `schemas.json`):
+
+4. Across both banks (182 lane cores + 812 probe cores at mining time),
+   994 cores canonicalize to 641 distinct order-isomorphism schemas
+   (dihedral canonical form; supports 4–12, mode 7), and **all 641 are
+   support-local UNSAT**: each is jointly infeasible with only
+   positivity + strict triangle + strict Kalmanson on its own induced
+   cyclic suborder, hence a cardinality-free refutation-lemma shape.
+   Zero cores depend on ambient points.
+5. `run_cegar2.py` upgrades the loop to schema-generalized blocking:
+   each core is deletion-minimized at rank level (re-verified UNSAT per
+   deletion) and its full dihedral-embedding orbit into the 14-cycle is
+   blocked at once (incremental CaDiCaL via pysat).  Trial: 40 raw cores
+   → 28 minimal schemas → 1.17M orbit clauses in 8 s, with the Q(sqrt(3))
+   ground-truth gate (a genuine carrier must satisfy every instantiated
+   clause) passing on all of them.
+
 ## Scope
 
 Source-indexed finite decision surface for the open production theorem
