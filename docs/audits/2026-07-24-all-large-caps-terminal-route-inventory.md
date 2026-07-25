@@ -971,3 +971,38 @@ fifteen points with four-point classes.
 {{NEEDS_PROOF}} — whether tri-apex robustness is derivable (which would exclude
 the surplus apex from `U` as well) is untested; the redesignation route supplies
 fresh frontiers but a fresh parent residual is assumed, not built.
+
+## The all-large-caps terminal reduces to a tri-apex strengthening
+
+{{PROVEN}} 2026-07-25.  `false_of_frontierAllLargeCapsBiApexRobustResidual` no
+longer carries a `sorry`; it discharges into
+`false_of_frontierAllLargeCapsTriApexRobustResidual`, which does.
+
+Mechanism.  At the all-large-caps terminal every cap has at least six points, so
+the first opposite cap can take the surplus role.  The rotated packet
+`redesignateFirstOppCapAsSurplusAtAllLarge` puts the ORIGINAL surplus apex into
+the *second* opposite role (`..._oppApex2 : T.oppApex2 = S.surplusApex`, proved
+by case analysis on `surplusIdx`).  Building a fresh `CriticalPairFrontier` on
+the rotated packet and applying `false_of_parentResidualConsumers` gives two
+arms: the protected unique-radius arm (the other open target) and a fresh
+common-deletion parent.  `frontierCommonDeletionParent_biApexRobust_or_critical`
+splits that parent into robust-at-`T.oppApex2` — which is robustness at the
+original surplus apex — or prescribed-critical there, which
+`false_of_physicalSecondApexCriticalResidual` already refutes.
+
+`FullyDeletionRobustAt D c` mentions only `D` and `c`, not the packet, so the
+robustness harvested from the rotated packet composes with the original bi-apex
+robustness.  The new residual therefore carries robustness at all three Moser
+apices.
+
+**This is a reduction, not a proof.**  The mathematics of the terminal is not
+closed.  What changed is the hypothesis set of the open obligation: it is
+strictly larger by one robustness statement.  Note the earlier finding that
+packet ROTATION FREEDOM IS EXHAUSTED still stands — that finding was about cap
+*role* redesignation yielding new cap bounds, and `(6,6,6)` is its fixed point.
+This rotation harvests a robustness statement, not a cap bound, which is why it
+still has something to give.
+
+Combined with `not_isUniqueFourCenter_of_fullyDeletionRobust`, all three Moser
+apices are now excluded from the unique-four witness set `U`.  That is still not
+a contradiction: `|A| <= 4 * |U|` with `|U| <= n - 3` is consistent for `n >= 4`.
