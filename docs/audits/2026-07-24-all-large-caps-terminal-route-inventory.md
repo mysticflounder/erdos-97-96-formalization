@@ -931,3 +931,43 @@ covering problem measured closed in `mixed-law-family/REPORT.md`.
 This correction is recorded because the one-fact framing makes the route look
 one lemma deep when it is an indexed family, and because the rigid base case is
 a materially better solver target than anything attempted in this lane so far.
+
+## Minimality carries unused positive content: the unique-four cover
+
+{{PROVEN}} 2026-07-25, sorry-free, axioms exactly `propext`, `Classical.choice`,
+`Quot.sound`.  Module `lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean`.
+
+`D.Minimal` reaches the terminal unchanged (`FrontierCommonDeletionParentResidual.minimal`),
+but every existing consumer spends it the same way: a residual manufactures a
+removable vertex and `not_isRemovableVertex_of_minimal` refutes it.  The
+positive direction was never extracted.
+
+Extracted now.  For every `x` in `A`, `A.erase x` fails `HasNEquidistantProperty 4`
+at some center `p != x`.  Selected classes at a common center with distinct radii
+are disjoint, so if `p` had two K4 radii, at most one class could contain `x` and
+the other would survive the deletion intact.  Hence `p` carries exactly one K4
+radius, its class has exactly four points, and `x` is one of them.
+
+* `exists_isUniqueFourCenter_of_minimal` — every carrier point lies in the
+  four-point class of a unique-four center distinct from it.
+* `not_isUniqueFourCenter_of_fullyDeletionRobust` — a deletion-robust center is
+  never a unique-four center.  So `oppApex1` and `oppApex2` are excluded from the
+  witness set at the terminal.
+* `card_le_four_mul_uniqueFourCenters` — `|A| <= 4 * |U|`, where `U` is the set of
+  unique-four centers.
+
+General in `n`; no cap, packet, frontier or shell data is consumed.  This is the
+first constraint in this lane that applies at every cardinality rather than at a
+fixed one, which is what the terminal's docstring demands of its eventual proof.
+
+**It does not close the terminal.**  At `|A| = n` the bound gives `|U| >= n/4`
+with `U` disjoint from the two robust apices, and `|U| <= n - 2` is freely
+available, so the counting alone is consistent.  What it does is delete target
+freedom: the residual configuration must now also carry at least `ceil(n/4)`
+centers with exactly one K4 radius and exactly four points on it, whose classes
+cover the whole carrier.  At `n = 15` that is at least four such centers covering
+fifteen points with four-point classes.
+
+{{NEEDS_PROOF}} — whether tri-apex robustness is derivable (which would exclude
+the surplus apex from `U` as well) is untested; the redesignation route supplies
+fresh frontiers but a fresh parent residual is assumed, not built.
