@@ -1075,3 +1075,118 @@ existing simp lemma, not yet proved for the apex accessor.
 This does not close anything by itself.  It narrows the base case from "three
 apices each in one of three shapes" toward "three apices each in one of two",
 and it is the kind of statement the solver gate can consume directly.
+
+## Correction: two sorry-free files in this lane were OFF-SPINE
+
+{{PROVEN}} 2026-07-25 by inspection of the import graph.  When
+`ApexTripleEquidistance.lean` and `MinimalUniqueFourCover.lean` were committed,
+NO file in the project imported either of them.  The project root
+(`Erdos9796Proof.lean`) imports only the two upstream bridges, so neither file
+was in the publish targets' import closure.
+
+By the spine rule in `math-projects/CLAUDE.md` — "a lemma that builds clean but
+is not imported into the target's call chain is OFF-SPINE and counts for
+nothing" — neither file counted as progress at the point the sections above
+recorded it.  The sections above are therefore correct about the mathematics and
+wrong about its status.
+
+Both are now import-reachable from the publish targets, through
+`ApexRichClassStructure.lean` into `FrontierLiveClosure.lean`, and both are
+consumed rather than merely imported: their conclusions are fields of the
+tri-apex residual, discharged at its construction site.
+
+## Both rotations run; the dichotomy now holds at all three apices
+
+{{PROVEN}} 2026-07-25.  The role map is no longer {{UNVALIDATED}}: with
+`apexOf(j) = v_(j+1)` the two simp lemmas
+
+  `redesignateFirstOppCapAsSurplusAtAllLarge_oppApex1 : T.oppApex1 = S.oppApex2`
+  `redesignateSecondOppCapAsSurplusOf_oppApex1        : T'.oppApex1 = S.surplusApex`
+
+are proved by case analysis on `surplusIdx`.  The first corrects the plan
+recorded above: the rotation that was already in place carries `S.oppApex2` into
+the FIRST opposite role for free, so only ONE further rotation is needed, not
+two.  `redesignateSecondOppCapAsSurplusOf` supplies it, stated against a bare
+`4 < S.oppCap2.card` rather than against a residual, so it is reusable.
+
+`ApexRichClassStructure A p` is the radius-free form of the dichotomy: some
+positive radius carries at least six carrier points, or two distinct positive
+radii each carry at least four.  It is strictly stronger than failing to be an
+`IsUniqueFourCenter`, which only yields a five-point class in the first branch.
+
+`false_of_frontierAllLargeCapsBiApexRobustResidual` now runs both rotations and
+discharges six new fields of `FrontierAllLargeCapsTriApexRobustResidual`:
+
+* `oppApex1_rich`, `oppApex2_rich`, `surplusApex_rich` — the dichotomy at each
+  of the three Moser apices;
+* `uniqueFourCover_card` — `|A| <= 4 * |uniqueFourCenters A|`;
+* `apices_not_uniqueFour` — no Moser apex is a covering centre;
+* `no_center_covers_all_apices` — no centre carries all three apices on one
+  radius, so at least two distinct covering centres are spent on the apices.
+
+Each is sorry-free with axioms exactly `propext` / `Classical.choice` /
+`Quot.sound`.  Consequence for the base case: shape (T2) — a unique K4 radius
+with a five-point class — is now excluded at ALL THREE apices, not just at
+`oppApex1`.  Each apex is in (T1) or (T3), and `Sigma_i = 4` exactly at
+`|A| = 15`.
+
+**This is narrowing, not closure.**  The terminal
+`false_of_frontierAllLargeCapsTriApexRobustResidual` still carries the `sorry`.
+Its hypothesis set is strictly larger by six proved statements; the counting
+obstruction recorded above is unchanged, since `Sigma_i >= 4` at all three
+apices summed against `Sigma_i <= c_i - 2` only reproduces `|A| >= 15`.
+
+## Non-robust = unique-four centre, and what that measures
+
+{{PROVEN}} 2026-07-25, Lean-checked and sorry-free with core axioms only.
+`MinimalUniqueFourCover` had only one direction of this.  The converse is now
+proved:
+
+  `isUniqueFourCenter_of_not_fullyDeletionRobust` — for `p in A`,
+  `not (FullyDeletionRobustAt D p)` implies `IsUniqueFourCenter D.A p`.
+
+Proof, via two new public lemmas in the same file.  Classes at a common centre
+with distinct radii are disjoint, so one deletion breaks at most one class.
+Hence `fullyDeletionRobustAt_of_two_K4_radii` (two distinct K4 radii survive any
+single deletion) and `fullyDeletionRobustAt_of_large_class` (a class of five or
+more survives any single deletion).  `D.K4` gives every carrier point at least
+one K4 radius, so a non-robust point has exactly one K4 radius carrying exactly
+four points — which is `IsUniqueFourCenter`.
+
+With the existing direction this is an equivalence on `A`, so the cover bound
+restates as
+
+  `card_le_four_mul_notRobustCenters` :  `|A| <= 4 * |{p in A : NOT robust}|`.
+
+### What this measures, and the bound it puts on the harvesting technique
+
+A contradiction from the cover needs `|{p : NOT robust}| < |A| / 4`, i.e. MORE
+THAN THREE QUARTERS of the carrier deletion-robust.  At the terminal we have
+three robust points (the Moser apices).  At `|A| = 15` the requirement is 12
+robust points against the 3 in hand; in general the shortfall is
+`|A| - 3 - ceil(|A|/4) + 1`, which GROWS LINEARLY IN `|A|`.
+
+Packet rotation harvests robustness at distinguished points, of which a packet
+has three.  So no fixed number of rotations can close this route, at any `n`.
+That is a statement about the reach of the technique, not about the terminal's
+truth: the terminal may still be true, but its proof cannot come from harvesting
+robustness at finitely many named points.
+
+The useful consequence is that the terminal is now a single measurable target —
+a lower bound on the DENSITY of deletion-robust carrier points — rather than an
+unquantified configuration statement.  A statement of the shape "a positive
+fraction of carrier points carry either a five-point class or two K4 radii" is
+uniform in `n` by construction and would close it.
+
+### Directions reported dead by the closing-content sweep
+
+{{UNVALIDATED}} by me — reported by a sub-agent sweep on 2026-07-25 and NOT
+re-derived here.  Recorded so the directions are not reopened without checking:
+the convex-position arc bound is a strictly weaker consequence of convexity than
+the existing `CGN6b` non-acute cap-chain lemma; the apex-triple exclusion is
+already in its strongest form and no branch datum forces a common apex radius;
+the two-circle intersection route is the mechanism already measured dead above;
+and the interior-centre cap bound exists in-corpus for the cap CONTAINING the
+centre (`selectedFourClass_inter_capByIndex_card_le_two`) but was reported
+refuted by explicit witness for any other cap.  Each needs its own audit before
+being treated as settled.

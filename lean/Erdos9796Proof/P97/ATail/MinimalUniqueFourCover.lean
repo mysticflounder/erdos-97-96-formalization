@@ -177,6 +177,78 @@ theorem not_isUniqueFourCenter_of_fullyDeletionRobust
   rw [Finset.card_erase_of_mem hz, hcard] at hρcard'
   omega
 
+/-- A center carrying a class of five or more points is deletion robust: one
+deletion leaves at least four. -/
+theorem fullyDeletionRobustAt_of_large_class
+    {D : CounterexampleData} {c : ℝ²} {r : ℝ} (hr : 0 < r)
+    (hcard : 5 ≤ (SelectedClass D.A c r).card) :
+    FullyDeletionRobustAt D c := by
+  classical
+  refine ⟨fun z _ => ⟨r, hr, ?_⟩⟩
+  have hEq : SelectedClass (D.A.erase z) c r =
+      (SelectedClass D.A c r).erase z := selectedClass_erase_eq D.A z c r
+  have hpred := Finset.pred_card_le_card_erase (s := SelectedClass D.A c r) (a := z)
+  have hfour : 4 ≤ (SelectedClass (D.A.erase z) c r).card := by
+    rw [hEq]; omega
+  simpa [SelectedClass] using hfour
+
+/-- A center carrying two distinct K4 radii is deletion robust: classes at a
+common center with distinct radii are disjoint, so one deletion cannot break
+both. -/
+theorem fullyDeletionRobustAt_of_two_K4_radii
+    {D : CounterexampleData} {c : ℝ²} {r₁ r₂ : ℝ}
+    (hr₁ : 0 < r₁) (hr₂ : 0 < r₂) (hne : r₁ ≠ r₂)
+    (h₁ : 4 ≤ (SelectedClass D.A c r₁).card)
+    (h₂ : 4 ≤ (SelectedClass D.A c r₂).card) :
+    FullyDeletionRobustAt D c := by
+  classical
+  refine ⟨fun z _ => ?_⟩
+  by_cases hz : z ∈ SelectedClass D.A c r₁
+  · -- `z` cannot also lie on the second radius, so that class survives whole.
+    have hznot : z ∉ SelectedClass D.A c r₂ := fun hz₂ =>
+      hne (selectedClass_radius_unique_of_mem hz hz₂)
+    refine ⟨r₂, hr₂, ?_⟩
+    have hEq : SelectedClass (D.A.erase z) c r₂ =
+        (SelectedClass D.A c r₂).erase z := selectedClass_erase_eq D.A z c r₂
+    have hsub : SelectedClass D.A c r₂ ⊆ (SelectedClass D.A c r₂).erase z :=
+      Finset.subset_erase.mpr ⟨Finset.Subset.refl _, hznot⟩
+    have hfour : 4 ≤ (SelectedClass (D.A.erase z) c r₂).card := by
+      rw [hEq]; exact h₂.trans (Finset.card_le_card hsub)
+    simpa [SelectedClass] using hfour
+  · refine ⟨r₁, hr₁, ?_⟩
+    have hEq : SelectedClass (D.A.erase z) c r₁ =
+        (SelectedClass D.A c r₁).erase z := selectedClass_erase_eq D.A z c r₁
+    have hsub : SelectedClass D.A c r₁ ⊆ (SelectedClass D.A c r₁).erase z :=
+      Finset.subset_erase.mpr ⟨Finset.Subset.refl _, hz⟩
+    have hfour : 4 ≤ (SelectedClass (D.A.erase z) c r₁).card := by
+      rw [hEq]; exact h₁.trans (Finset.card_le_card hsub)
+    simpa [SelectedClass] using hfour
+
+/-- **Converse of `not_isUniqueFourCenter_of_fullyDeletionRobust`.**  A carrier
+point that fails deletion robustness is exactly a unique-four center.
+
+Together the two directions say `¬ FullyDeletionRobustAt D p ↔
+IsUniqueFourCenter D.A p` for `p ∈ D.A`, which turns the cover bound into a
+statement about robustness alone: at most a quarter of the carrier can be
+deletion robust's complement, i.e. `|A| ≤ 4 * |{p ∈ A : ¬ robust at p}|`. -/
+theorem isUniqueFourCenter_of_not_fullyDeletionRobust
+    {D : CounterexampleData} {c : ℝ²} (hc : c ∈ D.A)
+    (hnr : ¬ FullyDeletionRobustAt D c) :
+    IsUniqueFourCenter D.A c := by
+  classical
+  obtain ⟨r, hrpos, hrcard⟩ := D.K4 c hc
+  have hr4 : 4 ≤ (SelectedClass D.A c r).card := by
+    simpa [SelectedClass] using hrcard
+  have huniq : ∀ ρ : ℝ, 0 < ρ → 4 ≤ (SelectedClass D.A c ρ).card → ρ = r := by
+    intro ρ hρ hρcard
+    by_contra hne
+    exact hnr (fullyDeletionRobustAt_of_two_K4_radii hρ hrpos hne hρcard hr4)
+  have hle : (SelectedClass D.A c r).card ≤ 4 := by
+    by_contra hgt
+    push_neg at hgt
+    exact hnr (fullyDeletionRobustAt_of_large_class hrpos (by omega))
+  exact ⟨hc, r, hrpos, le_antisymm hle hr4, huniq⟩
+
 /-- **Cover bound.**  The unique-four centers of a minimal counterexample cover
 the carrier by classes of exactly four points, so the carrier has at most four
 times as many points as there are unique-four centers. -/
@@ -202,6 +274,29 @@ theorem card_le_four_mul_uniqueFourCenters
       Finset.sum_le_sum fun p _ => uniqueFourClass_card_le D.A p
     _ = 4 * U.card := by
       rw [Finset.sum_const, smul_eq_mul, mul_comm]
+
+/-- The carrier points at which deletion robustness fails. -/
+noncomputable def notRobustCenters (D : CounterexampleData) : Finset ℝ² :=
+  D.A.filter (fun p => ¬ FullyDeletionRobustAt D p)
+
+/-- **The cover bound in robustness form.**  By the two directions above the
+unique-four centers are exactly the points where deletion robustness fails, so
+the cover bound reads `|A| ≤ 4 * |non-robust points|`.
+
+This is the sharpest statement of what an ATAIL terminal has to produce: a
+contradiction needs MORE than three quarters of the carrier to be deletion
+robust.  Harvesting robustness at distinguished points yields a bounded number
+of them, so no fixed number of such harvests reaches this bound as `n` grows. -/
+theorem card_le_four_mul_notRobustCenters
+    {D : CounterexampleData} (hmin : D.Minimal) :
+    D.A.card ≤ 4 * (notRobustCenters D).card := by
+  classical
+  refine (card_le_four_mul_uniqueFourCenters hmin).trans ?_
+  refine Nat.mul_le_mul_left 4 (Finset.card_le_card ?_)
+  intro p hp
+  rcases Finset.mem_filter.mp hp with ⟨hpA, hpU⟩
+  exact Finset.mem_filter.mpr
+    ⟨hpA, fun hrob => not_isUniqueFourCenter_of_fullyDeletionRobust hrob hpU⟩
 
 end ATailMinimalUniqueFourCover
 end Problem97

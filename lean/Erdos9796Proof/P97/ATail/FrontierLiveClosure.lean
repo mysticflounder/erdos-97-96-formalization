@@ -4,7 +4,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.ATail.ExactFiveGlobalCoverStarGeometry
+import Erdos9796Proof.P97.ATail.ApexRichClassStructure
+import Erdos9796Proof.P97.ATail.BiApexRobustCapBounds
 import Erdos9796Proof.P97.ATail.PhysicalSecondApexSwap
 
 /-!
@@ -26,14 +27,14 @@ shared-radius pair.
 namespace Problem97
 namespace ATailFrontierLiveClosure
 
+open ATailApexRichClassStructure
 open ATailCriticalPairFrontier
 open ATailBiApexRobustCapBounds
 open ATailDeletionRobustness
-open ATailExactFiveGlobalCrossDeletionPair
+open ATailMinimalUniqueFourCover
 open ATailLargeCapUniqueFive
 open ATailLargeOppositeCapsBiApexSurface
 open ATailOrientedPhysicalApexIngress
-open ATailParentExactFiveSecondCap
 open ATailPhysicalSecondApexCommonDeletion
 open ATailPhysicalSecondApexSwap
 
@@ -89,21 +90,17 @@ private noncomputable def redesignateFirstOppCapAsSurplus
       SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hi]
 
 /-- The exact-five residual closes after redesignating the first opposite cap
-as surplus.  A fresh common-deletion parent would force the old exact-five cap
+as surplus. A fresh common-deletion parent would force the old exact-five cap
 to have at least six points; the other fresh-frontier arm is the protected
-unique-radius terminal.  The legacy profile and outcome arguments remain only
-to preserve this exported theorem's interface. -/
-theorem false_of_frontierBiApexRobustExactFiveGlobalCoverStarResidual
+unique-radius terminal. -/
+theorem false_of_frontierBiApexRobustExactFiveSecondCapResidual
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     (F : CriticalPairFrontier D S radius H)
     (R : FrontierCommonDeletionParentResidual F)
     (B : FrontierBiApexRobustResidual R)
-    (Q : FrontierBiApexRobustExactFiveSecondCapResidual B)
-    (profile : LargeCapUniqueFiveSecondApexRadius D S)
-    (outcome : ExactFiveGlobalCoverStarOutcome Q profile) :
+    (Q : FrontierBiApexRobustExactFiveSecondCapResidual B) :
     False := by
-  let _outcome := outcome
   let T : SurplusCapPacket D.A := redesignateFirstOppCapAsSurplus Q
   have hTfirst : T.oppCap1.card = 5 := by
     rw [show T.oppCap1 = S.oppCap2 by
@@ -118,35 +115,6 @@ theorem false_of_frontierBiApexRobustExactFiveGlobalCoverStarResidual
   · intro freshParent
     have hsix : 6 ≤ T.oppCap1.card := first_oppCap_card_ge_six freshParent
     omega
-
-/-- The exact-five second-cap profile unconditionally supplies a favorable
-global cross-deletion pair and enters its terminal. -/
-theorem false_of_frontierBiApexRobustExactFiveSecondCapProfile
-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
-    {H : CriticalShellSystem D.A}
-    (F : CriticalPairFrontier D S radius H)
-    (R : FrontierCommonDeletionParentResidual F)
-    (B : FrontierBiApexRobustResidual R)
-    (Q : FrontierBiApexRobustExactFiveSecondCapResidual B)
-    (profile : LargeCapUniqueFiveSecondApexRadius D S) :
-    False := by
-  rcases nonempty_exactFiveGlobalCoverStarOutcome Q profile with ⟨outcome⟩
-  exact false_of_frontierBiApexRobustExactFiveGlobalCoverStarResidual
-    F R B Q profile outcome
-
-/-- The exact-five second-cap robust residual. It first produces the forced
-unique ambient five-point profile before entering its terminal. -/
-theorem false_of_frontierBiApexRobustExactFiveSecondCapResidual
-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
-    {H : CriticalShellSystem D.A}
-    (F : CriticalPairFrontier D S radius H)
-    (R : FrontierCommonDeletionParentResidual F)
-    (B : FrontierBiApexRobustResidual R)
-    (Q : FrontierBiApexRobustExactFiveSecondCapResidual B) :
-    False := by
-  rcases nonempty_largeCapUniqueFiveSecondApexRadius_of_exactFiveSecondCap Q with
-    ⟨profile⟩
-  exact false_of_frontierBiApexRobustExactFiveSecondCapProfile F R B Q profile
 
 /-- Keep the MEC triangle and cap partition fixed, but designate the old second
 opposite cap as the new surplus cap.  Its cardinality bound comes from the
@@ -297,6 +265,23 @@ Moser apex the bi-apex residual says nothing about. -/
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppApex2,
       SurplusCapPacket.surplusApex, hi]
 
+/-- The same rotation carries the original *second* opposite apex into the
+first opposite role, so the fresh parent's first-apex dichotomy reports on
+`S.oppApex2`.  The bi-apex surface never supplies that dichotomy there. -/
+@[simp] private theorem redesignateFirstOppCapAsSurplusAtAllLarge_oppApex1
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B) :
+    (redesignateFirstOppCapAsSurplusAtAllLarge L).oppApex1 = S.oppApex2 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [redesignateFirstOppCapAsSurplusAtAllLarge,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppApex1,
+      SurplusCapPacket.oppApex2, hi]
+
 /-- The all-large-caps residual with robustness at **all three** Moser apices.
 
 The bi-apex surface only ever reports `oppApex1` and `oppApex2`.  Rotating the
@@ -316,6 +301,30 @@ structure FrontierAllLargeCapsTriApexRobustResidual
     (N : FrontierAllLargeCapsBiApexRobustResidual L) : Prop where
   /-- The Moser apex opposite the surplus cap is deletion-robust too. -/
   surplusApex_robust : FullyDeletionRobustAt D S.surplusApex
+  /-- Every Moser apex carries a six-point class or two distinct K4 radii.
+  Robustness alone only gives a five-point class in the first branch; the
+  strengthening comes from the first-apex dichotomy, run at each apex in turn
+  by rotating the packet. -/
+  oppApex1_rich : ApexRichClassStructure D.A S.oppApex1
+  /-- Rich class structure at the second opposite apex. -/
+  oppApex2_rich : ApexRichClassStructure D.A S.oppApex2
+  /-- Rich class structure at the surplus apex. -/
+  surplusApex_rich : ApexRichClassStructure D.A S.surplusApex
+  /-- Minimality's positive content, in robustness form: the carrier is covered
+  by four-point classes of centres carrying exactly one K4 radius, and those are
+  exactly the points where deletion robustness fails. -/
+  notRobustCover_card : D.A.card ≤ 4 * (notRobustCenters D).card
+  /-- No Moser apex is one of those covering centres. -/
+  apices_not_uniqueFour :
+    ¬ IsUniqueFourCenter D.A S.oppApex1 ∧ ¬ IsUniqueFourCenter D.A S.oppApex2 ∧
+      ¬ IsUniqueFourCenter D.A S.surplusApex
+  /-- No centre covers all three Moser apices on one radius, so at least two
+  distinct covering centres are spent on the apices. -/
+  no_center_covers_all_apices :
+    ∀ p ∈ D.A, ∀ r : ℝ, 0 < r →
+      ¬ (S.triangle.v1 ∈ SelectedClass D.A p r ∧
+        S.triangle.v2 ∈ SelectedClass D.A p r ∧
+        S.triangle.v3 ∈ SelectedClass D.A p r)
 
 /-- The tri-apex all-large-caps terminal.  Its proof must consume the complete
 large-cap surface at every cardinality at least fifteen, not a locally
@@ -350,6 +359,8 @@ theorem false_of_frontierAllLargeCapsBiApexRobustResidual
     (N : FrontierAllLargeCapsBiApexRobustResidual L) :
     False := by
   let T : SurplusCapPacket D.A := redesignateFirstOppCapAsSurplusAtAllLarge L
+  have hTapex1 : T.oppApex1 = S.oppApex2 := by
+    simp [T]
   have hTapex2 : T.oppApex2 = S.surplusApex := by
     simp [T]
   obtain ⟨freshRadius, _hfreshRadius, hfreshFour, ⟨freshFrontier⟩⟩ :=
@@ -359,10 +370,43 @@ theorem false_of_frontierAllLargeCapsBiApexRobustResidual
   · exact false_of_originalFrontierUniqueRadiusArm freshFrontier
       R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
   · intro freshParent
+    -- The rotation reports the dichotomy at the original second opposite apex.
+    have hrich2 : ApexRichClassStructure D.A S.oppApex2 := by
+      have h := apexRichClassStructure_oppApex1 freshParent
+      rwa [hTapex1] at h
     rcases frontierCommonDeletionParent_biApexRobust_or_critical freshParent with
       hrobust | hcritical
-    · refine false_of_frontierAllLargeCapsTriApexRobustResidual F R B L N ?_
-      exact ⟨hTapex2 ▸ hrobust.some.secondApex_robust⟩
+    · have hsurplusRobust : FullyDeletionRobustAt D S.surplusApex := by
+        have h := hrobust.some.secondApex_robust
+        rwa [hTapex2] at h
+      -- Rotate the other way to put the surplus apex in the *first* opposite
+      -- role, the role the dichotomy is stated for.
+      have hsecondGtFour : 4 < S.oppCap2.card :=
+        lt_of_lt_of_le (by omega) L.secondOppCap_card_ge_six
+      let T' : SurplusCapPacket D.A :=
+        redesignateSecondOppCapAsSurplusOf S hsecondGtFour
+      have hT'apex1 : T'.oppApex1 = S.surplusApex :=
+        redesignateSecondOppCapAsSurplusOf_oppApex1 S hsecondGtFour
+      obtain ⟨freshRadius', _hfreshRadius', hfreshFour', ⟨freshFrontier'⟩⟩ :=
+        exists_criticalPairFrontier_of_K4 D T' H
+      apply CriticalPairFrontier.false_of_parentResidualConsumers
+        freshFrontier' R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour'
+      · exact false_of_originalFrontierUniqueRadiusArm freshFrontier'
+          R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour'
+      · intro freshParent'
+        have hrich3 : ApexRichClassStructure D.A S.surplusApex := by
+          have h := apexRichClassStructure_oppApex1 freshParent'
+          rwa [hT'apex1] at h
+        have hcover := uniqueFourCover_of_triApexRobust R.minimal S
+          B.firstApex_robust B.secondApex_robust hsurplusRobust
+        exact false_of_frontierAllLargeCapsTriApexRobustResidual F R B L N
+          { surplusApex_robust := hsurplusRobust
+            oppApex1_rich := apexRichClassStructure_oppApex1 R
+            oppApex2_rich := hrich2
+            surplusApex_rich := hrich3
+            notRobustCover_card := hcover.1
+            apices_not_uniqueFour := hcover.2.1
+            no_center_covers_all_apices := hcover.2.2 }
     · exact false_of_physicalSecondApexCriticalResidual
         freshFrontier freshParent hcritical.some
 
