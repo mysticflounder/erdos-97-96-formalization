@@ -271,3 +271,64 @@ not established here that every layer model is realizable as an actual branch
 configuration. A `DECISIVE-SAT` witness would need its own realizability check
 against the packet hypotheses before it could be called a refutation of the
 covering route.
+
+## Faithfulness audit of the Boolean layer
+
+An adversarial audit of `build_layer` against the Lean definitions, run
+block by block with the instruction to find clauses *not* implied by the branch
+hypotheses, returned **all eleven blocks SOUND** — no block unsound, none left
+undetermined. So the layer is a genuine over-approximation and a LAYER-UNSAT
+verdict transfers.
+
+The specific leak worth recording, because it was the reason for the audit: the
+`A` block is a plain inclusive disjunction `nr ∨ w5 ∨ w44`, so nothing textually
+forbids `nr[y] ∧ w44[y]`, which would break the non-removability reading of `H`.
+It is nevertheless unsatisfiable. If `y` carried a second co-radial four-set
+disjoint from its `nr` class, the `N`-uniqueness clauses force all four of its
+members into the `m` set, and then some five-subset of `m`-true literals
+violates the `N` at-most-four clause. Symmetrically `nr[y] ∧ w44[y]` forces at
+least four `g1`-true and four `g2`-true literals into `m`, so either at-most-four
+fires or the co-radiality clause forces `ev` on a `g1 × g2` pair, contradicting
+the cross-non-co-radiality clause. Hence in every model `nr[y]` entails that `y`
+has exactly one class of size at least four, of size exactly four, equal to its
+`m` set — and `h[(x,y)]` does encode "erasing `x` destroys `y`'s only
+four-class". No extra binary clause is needed.
+
+Consequently the `H` block is the encoding of the branch's minimality content:
+`R.minimal` with `not_isRemovableVertex_of_minimal` gives
+`¬ HasNEquidistantProperty 4 (A.erase x)` for every `x`, whose failure point `p`
+must have exactly one four-class and it must contain `x`. **The equality-only
+CEGAR is therefore testing the descent route, not only the covering route** — a
+LAYER-UNSAT would say no configuration at that cardinality and profile can have
+every vertex non-removable.
+
+Two findings to carry forward:
+
+- The `C` block's comment miscites `selectedFourClass_inter_capByIndex_card_le_two`
+  (`.../P97/CapSelectedRowCounting.lean:257`), which only constrains radii
+  carrying a support-exactly-four class. The clause as encoded forbids in-cap
+  co-radial triples at *any* radius. That stronger form is still branch-implied,
+  but by the radius-generic `sameRadiusIndices_card_le_two`
+  (`.../P97/CapSelectedRowCounting.lean:53`) together with
+  `capByIndex_cgn4g_capData` and `oneSidedDistanceInjective_of_mecCapPacket`.
+  The triple rendering itself is exactly "at most two", not stronger.
+- The `X` block is `OrderedCrossRowCore.false`
+  (`.../P97/ATail/CriticalFiberClosingCore.lean:117,155`). Its proof consumes
+  only six carrier points at increasing CCW indices plus three distance
+  equalities; the shell-system provenance fields are not load-bearing, which is
+  what licenses the clause's projection onto `h`, `m` and `ev` literals.
+
+**Two named assumptions** that a LAYER-UNSAT write-up must state, both
+elementary consequences of `ConvexIndep` that the audit attacked and could not
+break, and neither backed by a Lean lemma:
+
+1. *Cap contiguity.* Each cap is a single contiguous arc of the convex vertex
+   cycle. Caps are closed chord-side filters and a closed half-plane cuts a
+   convex polygon's vertex cycle in one arc.
+2. *Per-side bisector bound.* At most one vertex on each side of a chord `uv`
+   is equidistant from `u` and `v`. Lean has only the total bound of two
+   (`Dumitrescu.perpBisector_apex_bound`, `.../P97/Dumitrescu/L1.lean:128`).
+
+The blocked metric laws' own soundness was stipulated, not audited: the oracle's
+axiom family is valid for convex-position carriers, and the dihedral orbit
+instantiation respects the cyclic-order semantics.
