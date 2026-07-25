@@ -128,6 +128,60 @@ All gates pass:
    endpoint-two-hit, and no-pair-minimality-witness corruptions are each
    UNSAT.
 
+## Farkas certificates (`farkas.py`, output `farkas.json`)
+
+6. **All 802 schemas carry an exact rational Farkas certificate**, each
+   verified independently in `Fraction` arithmetic (every distance-variable
+   coefficient cancels to zero; strict multipliers sum to one): 802/802
+   certified, 0 failures, certificate sizes 4–23 with median 9. Full
+   extraction costs seconds. Each certificate is directly a Lean `linarith`
+   hint list, so the leaf lemmas are mechanically generatable rather than
+   hand-written. Self-test gates both directions (a satisfiable isoceles
+   pattern must admit no certificate; schema 0 must admit one).
+
+## Outer decision: monolithic CNF is the wrong lever
+
+7. Scaling ladder via `emit_bank_cnf.py` (instance construction separated
+   from solving). `bank100.cnf` = surface + the 100 smallest-orbit schemas,
+   3.74M clauses: **no result in 900 s under default CaDiCaL, and no result
+   in 900 s with `--no-elim --no-vivify --no-subsume --no-probe`.** The
+   working hypothesis that the earlier 5.5 h stall was bounded variable
+   elimination on dense occurrence lists is therefore **refuted** — memory
+   is unremarkable at these sizes (1.4–2.2 GB) and both configurations fail
+   alike, so this is CDCL search hardness on the orbit-blocked surface.
+   Support-≤6 orbits over the full surface (6.34M clauses) likewise did not
+   return in 600 s.
+
+## Covering step probes (`avoid_probe.py`)
+
+Because the schemas are support-local UNSAT they are cardinality-free, so
+their embedding orbits can be blocked at **any** n. This probe asks the
+covering question directly: can a structure with a complete radius
+partition at every point and all-center K4 avoid every schema of support
+≤ s? UNSAT would mean a general-n covering lemma over a small family; SAT
+means the remaining global fields are load-bearing. Results (Boolean
+abstraction only, not Euclidean realizability):
+
+| constraints | schemas | n | verdict |
+|---|---|---|---|
+| all-center K4 | 21 (supp ≤5) | 6, 7 | UNSAT |
+| all-center K4 | 21 (supp ≤5) | 8, 9, 10 | SAT |
+| + shell cover | 21 (supp ≤5) | 8–12 | SAT |
+| + shell cover | 172 (supp ≤6) | 8–11 | SAT |
+
+So avoidance becomes possible from n = 8 up, and neither the minimality
+shell cover (the prior analysis's Theorem C) nor widening to all 172
+support-≤6 schemas restores contradiction. **A general-n covering lemma
+over the small-support subfamily is not available on these fields alone.**
+
+Caveat found and corrected mid-probe: the lcap14 surface already contains
+the partition-level geometric families, so mined cores never needed to
+rediscover them and the bank omits their patterns; a probe lacking them
+tests a strictly weaker constraint set than the one that produced the
+schemas. `--geometry` adds bisector capacity, alternation, and the
+two-circle bound (all cardinality-free); that run is in progress and its
+verdict supersedes the table rows above for interpretation purposes.
+
 ## Next steps
 
 1. ~~Decide `surface.cnf`~~ — SAT; replay passed.
