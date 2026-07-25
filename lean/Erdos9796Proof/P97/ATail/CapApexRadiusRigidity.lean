@@ -145,5 +145,65 @@ theorem oppositeVertex_distinct_K4_radii_force_cap_card_ge_six
   have hcap := capInteriorByIndex_card_add_two S i
   omega
 
+/-- Sharp two-radius interior bound.  Each class contributes all but two of its
+members to the strict cap interior, and classes at distinct radii are disjoint,
+so the two contributions add.  The `4 ≤ card` hypotheses are not needed: this is
+a statement about the two cardinalities themselves. -/
+theorem oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_sum_sub_four
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3) {r ρ : ℝ}
+    (hr : 0 < r) (hρ : 0 < ρ) (hrρ : r ≠ ρ) :
+    (SelectedClass A (S.oppositeVertexByIndex i) r).card +
+        (SelectedClass A (S.oppositeVertexByIndex i) ρ).card - 4 ≤
+      (S.capInteriorByIndex i).card := by
+  classical
+  let Ir := SelectedClass A (S.oppositeVertexByIndex i) r ∩
+    S.capInteriorByIndex i
+  let Iρ := SelectedClass A (S.oppositeVertexByIndex i) ρ ∩
+    S.capInteriorByIndex i
+  have hIr :
+      (SelectedClass A (S.oppositeVertexByIndex i) r).card - 2 ≤ Ir.card := by
+    simpa [Ir] using
+      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two hconv i hr
+  have hIρ :
+      (SelectedClass A (S.oppositeVertexByIndex i) ρ).card - 2 ≤ Iρ.card := by
+    simpa [Iρ] using
+      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two hconv i hρ
+  have hdisjoint : Disjoint Ir Iρ := by
+    rw [Finset.disjoint_left]
+    intro x hxIr hxIρ
+    have hxr : dist (S.oppositeVertexByIndex i) x = r :=
+      (mem_selectedClass.mp (Finset.mem_inter.mp hxIr).1).2
+    have hxρ : dist (S.oppositeVertexByIndex i) x = ρ :=
+      (mem_selectedClass.mp (Finset.mem_inter.mp hxIρ).1).2
+    exact hrρ (hxr.symm.trans hxρ)
+  have hsub : Ir ∪ Iρ ⊆ S.capInteriorByIndex i := by
+    intro x hx
+    rcases Finset.mem_union.mp hx with hx | hx
+    · exact (Finset.mem_inter.mp hx).2
+    · exact (Finset.mem_inter.mp hx).2
+  have hunion : (Ir ∪ Iρ).card = Ir.card + Iρ.card :=
+    Finset.card_union_of_disjoint hdisjoint
+  have hle := Finset.card_le_card hsub
+  omega
+
+/-- Sharp two-radius cap bound.  Two distinct positive radii at a Moser apex,
+with classes of cardinality `m` and `m'`, force the closed opposite cap to have
+cardinality at least `m + m' - 2`.  At `m = m' = 4` this is exactly
+`oppositeVertex_distinct_K4_radii_force_cap_card_ge_six`; at `(4, 5)` it gives
+seven, which the flat two-per-class count does not. -/
+theorem oppositeVertex_distinct_K4_radii_force_cap_card_ge_sum_sub_two
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3) {r ρ : ℝ}
+    (hr : 0 < r) (hρ : 0 < ρ) (hrρ : r ≠ ρ) :
+    (SelectedClass A (S.oppositeVertexByIndex i) r).card +
+        (SelectedClass A (S.oppositeVertexByIndex i) ρ).card - 2 ≤
+      (S.capByIndex i).card := by
+  have hinter :=
+    oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_sum_sub_four
+      S hconv i hr hρ hrρ
+  have hcap := capInteriorByIndex_card_add_two S i
+  omega
+
 end ATailCapApexRadiusRigidity
 end Problem97

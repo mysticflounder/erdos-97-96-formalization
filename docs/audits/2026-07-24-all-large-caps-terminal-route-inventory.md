@@ -805,8 +805,35 @@ What it needs at each step does NOT stay fixed, and this corrects the natural
 reading of "the missing fact is a third K4 radius".
 
 Write `Sigma_i := sum over K4 radii r at apex u_i of (|C(u_i,r)| - 2)`, so that
-the sharp cap bound is `c_i >= 2 + Sigma_i`.  Since that is a LOWER bound on
-`c_i`, proving `c_i >= c+1` through it requires
+the sharp cap bound is `c_i >= 2 + Sigma_i`.
+
+**Provenance (2026-07-25).**  When this section was first written the sharp
+bound was asserted, not proved; the corpus carried only the flat form "a class
+of card `>= 4` contributes at least two points to the cap interior".  The
+per-class refinement is now PROVEN in Lean, sorry-free, with axiom closure
+exactly `propext`, `Classical.choice`, `Quot.sound`:
+
+- `SurplusCapPacket.selectedClass_capInteriorByIndex_card_ge_card_sub_two`
+  (`ATail/CapInteriorRadiusCounting.lean`) — `|C(u_i,r) ∩ I_i| >= |C(u_i,r)| - 2`
+  for any positive radius, with NO cardinality hypothesis.  The mechanism is
+  that class members outside the cap interior lie in an adjacent cap, and each
+  adjacent cap meets the class in at most one point, so the outside count is at
+  most two INDEPENDENT of class size.  The pre-existing
+  `selectedClass_capInteriorByIndex_card_ge_two` is this statement at
+  `4 <= card`, weakened by its final `omega`.
+- `oppositeVertex_distinct_K4_radii_force_cap_card_ge_sum_sub_two`
+  (`ATail/CapApexRadiusRigidity.lean`) — two distinct positive radii with
+  classes of card `m` and `m'` force `c_i >= m + m' - 2`.  At `(4,4)` this
+  reproduces `oppositeVertex_distinct_K4_radii_force_cap_card_ge_six`; at
+  `(4,5)` it yields the seven the table below records.
+
+The `k`-radius sum for `k > 2` remains unwritten.  It is the same disjoint
+union over `k` classes and needs no new geometry.  The table's `(4,5)` and
+third-radius rows are therefore backed at `k = 2` and by extension at `k = 3`
+respectively, the latter pending that mechanical step.
+
+Since the bound is a LOWER bound on `c_i`, proving `c_i >= c+1` through it
+requires
 
     Sigma_i >= c - 1
 

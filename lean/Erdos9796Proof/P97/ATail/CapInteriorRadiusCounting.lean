@@ -72,4 +72,58 @@ theorem SurplusCapPacket.selectedClass_capInteriorByIndex_card_ge_two
   change 2 ≤ (T ∩ S.capInteriorByIndex i).card
   omega
 
+/-- Sharp form of the cap-interior hit count: a positive-radius class centered
+at a Moser apex places all but at most two of its members in the strict
+interior of its opposite cap.
+
+The two adjacent one-hit bounds carry the whole argument and neither depends on
+the class size, so the `2 ≤` form above is the `4 ≤ card` specialization of
+this statement.  The strengthening matters when several radii are summed: it
+gives each class of cardinality `m` a contribution of `m - 2` to the interior
+rather than a flat `2`. -/
+theorem SurplusCapPacket.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3) {radius : ℝ}
+    (hradius : 0 < radius) :
+    (SelectedClass A (S.oppositeVertexByIndex i) radius).card - 2 ≤
+      (SelectedClass A (S.oppositeVertexByIndex i) radius ∩
+        S.capInteriorByIndex i).card := by
+  classical
+  let T : Finset ℝ² :=
+    SelectedClass A (S.oppositeVertexByIndex i) radius
+  have hleftOne :
+      (T ∩ S.leftAdjacentCapByIndex i).card ≤ 1 := by
+    simpa [T] using
+      S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
+        hconv i radius
+  have hrightOne :
+      (T ∩ S.rightAdjacentCapByIndex i).card ≤ 1 := by
+    simpa [T] using
+      S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
+        hconv i radius
+  have hcover :
+      T \ S.capInteriorByIndex i ⊆
+        (T ∩ S.leftAdjacentCapByIndex i) ∪
+          (T ∩ S.rightAdjacentCapByIndex i) := by
+    simpa [T] using
+      S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps i hradius
+  have houtside :
+      (T \ S.capInteriorByIndex i).card ≤ 2 := by
+    calc
+      (T \ S.capInteriorByIndex i).card
+          ≤ ((T ∩ S.leftAdjacentCapByIndex i) ∪
+              (T ∩ S.rightAdjacentCapByIndex i)).card :=
+        Finset.card_le_card hcover
+      _ ≤ (T ∩ S.leftAdjacentCapByIndex i).card +
+            (T ∩ S.rightAdjacentCapByIndex i).card :=
+        Finset.card_union_le _ _
+      _ ≤ 1 + 1 := by omega
+      _ = 2 := by norm_num
+  have hsplit :
+      (T \ S.capInteriorByIndex i).card +
+          (T ∩ S.capInteriorByIndex i).card = T.card := by
+    simp [T, Finset.card_sdiff_add_card_inter]
+  change T.card - 2 ≤ (T ∩ S.capInteriorByIndex i).card
+  omega
+
 end Problem97
