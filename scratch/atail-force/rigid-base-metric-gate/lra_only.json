@@ -1,0 +1,8 @@
+{
+  "constraint_count": 4200,
+  "elapsed_seconds": 0.13962054206058383,
+  "note": "positivity + strict triangle + both strict Kalmanson, n=15",
+  "per_solve_timeout_ms": 300000,
+  "schema": "p97-rigid-base-metric-gate-lra-only-v1",
+  "status": "SAT"
+}

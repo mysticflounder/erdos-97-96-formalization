@@ -1,0 +1,394 @@
+{
+  "all_pass": true,
+  "results": [
+    {
+      "actual": "SAT",
+      "expected": "SAT",
+      "id": "P0_pure_lra_surface_sat",
+      "note": "strict triangle + both strict Kalmanson on 15 boundary points",
+      "pass": true
+    },
+    {
+      "actual": "0 violations",
+      "expected": "no violation",
+      "id": "P_planar_replay_center_and_arc",
+      "largest_exact_coradial_class_per_point": {
+        "0": 14,
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 2,
+        "9": 1,
+        "10": 1,
+        "11": 1,
+        "12": 1,
+        "13": 1,
+        "14": 1
+      },
+      "note": "exact-Fraction replay of a genuine strictly convex rational planar 15-point set against the full encoded LRA surface",
+      "pass": true,
+      "scale": "10384",
+      "violations": []
+    },
+    {
+      "actual": "SAT",
+      "expected": "SAT",
+      "id": "P_smt_accepts_center_and_arc",
+      "note": "full LRA surface + all 19 exact co-radial equalities of the genuine planar configuration",
+      "pass": true
+    },
+    {
+      "actual": "UNSAT",
+      "directly_violated_kalmanson_count": 719,
+      "expected": "UNSAT",
+      "first_violations": [
+        [
+          "kal1",
+          0,
+          1,
+          3,
+          4
+        ],
+        [
+          "kal2",
+          0,
+          1,
+          3,
+          4
+        ],
+        [
+          "kal1",
+          0,
+          1,
+          3,
+          5
+        ],
+        [
+          "kal2",
+          0,
+          1,
+          3,
+          5
+        ],
+        [
+          "kal2",
+          0,
+          1,
+          3,
+          6
+        ]
+      ],
+      "id": "N_wrong_cyclic_order_rejected",
+      "note": "same planar distance matrix, boundary labels 3 and 9 transposed, so the declared cyclic order is wrong",
+      "pass": true
+    },
+    {
+      "actual": "0 violations",
+      "expected": "no violation",
+      "id": "P_planar_replay_two_radii",
+      "largest_exact_coradial_class_per_point": {
+        "0": 1,
+        "1": 4,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "10": 1,
+        "11": 1,
+        "12": 1,
+        "13": 1,
+        "14": 1
+      },
+      "note": "exact-Fraction replay of a genuine strictly convex rational planar 15-point set against the full encoded LRA surface",
+      "pass": true,
+      "scale": "19600",
+      "violations": []
+    },
+    {
+      "actual": "SAT",
+      "expected": "SAT",
+      "id": "P_smt_accepts_two_radii",
+      "note": "full LRA surface + all 10 exact co-radial equalities of the genuine planar configuration",
+      "pass": true
+    },
+    {
+      "actual": "SAT",
+      "expected": "SAT",
+      "id": "P_cap_injectivity_layer_not_vacuous",
+      "note": "LRA surface + all 120 one-sided cap-distance injectivity disequalities is satisfiable",
+      "pass": true
+    },
+    {
+      "actual": "UNSAT",
+      "expected": "UNSAT",
+      "id": "C_cap_injectivity_same_side_after",
+      "note": "d(0,1) = d(0,2) with 0,1,2 all in cap C_A = [0, 1, 2, 3, 4, 5]",
+      "pass": true
+    },
+    {
+      "actual": "UNSAT",
+      "expected": "UNSAT",
+      "id": "C_cap_injectivity_same_side_before",
+      "note": "d(3,1) = d(3,2) with 3,1,2 all in cap C_A = [0, 1, 2, 3, 4, 5]",
+      "pass": true
+    },
+    {
+      "actual": "SAT",
+      "expected": "SAT",
+      "id": "C_cap_injectivity_opposite_sides",
+      "note": "d(3,2) = d(3,4) with 3,2,4 all in cap C_A = [0, 1, 2, 3, 4, 5]",
+      "pass": true
+    },
+    {
+      "actual": "4/4 correct",
+      "cases": [
+        {
+          "case": "pure_row_core_transports",
+          "expected": true,
+          "pass": true,
+          "transported": true
+        },
+        {
+          "case": "cap_injectivity_core_blocked",
+          "expected": false,
+          "pass": true,
+          "transported": false
+        },
+        {
+          "case": "apex_class_core_blocked",
+          "expected": false,
+          "pass": true,
+          "transported": false
+        },
+        {
+          "case": "kalmanson_plus_row_core_transports",
+          "expected": true,
+          "pass": true,
+          "transported": true
+        }
+      ],
+      "expected": "only order-invariant cores transport",
+      "id": "R_core_transport_guard",
+      "note": "regression guard: transporting a core that references a specific cap block or apex is unsound",
+      "pass": true
+    },
+    {
+      "actual": "UNSAT",
+      "expected": "UNSAT",
+      "id": "N_triangle_violation_rejected",
+      "note": "d(0,2) >= d(0,1) + d(1,2) against the strict triangle family",
+      "pass": true
+    },
+    {
+      "actual": "4/4 UNSAT",
+      "cases": [
+        {
+          "actual": "UNSAT",
+          "core_vertex_count": 5,
+          "expected": "UNSAT",
+          "order_schema": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "pass": true,
+          "schema_index": 0
+        },
+        {
+          "actual": "UNSAT",
+          "core_vertex_count": 5,
+          "expected": "UNSAT",
+          "order_schema": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "pass": true,
+          "schema_index": 1
+        },
+        {
+          "actual": "UNSAT",
+          "core_vertex_count": 5,
+          "expected": "UNSAT",
+          "order_schema": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              2
+            ]
+          ],
+          "pass": true,
+          "schema_index": 2
+        },
+        {
+          "actual": "UNSAT",
+          "core_vertex_count": 5,
+          "expected": "UNSAT",
+          "order_schema": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "pass": true,
+          "schema_index": 3
+        }
+      ],
+      "expected": "UNSAT (all)",
+      "id": "N_mined_bank_schemas_still_unsat_at_n15",
+      "mined_bank_sha256": "25aac2f8f0b2bc89c37610737aa5df55cb01b58207fe9810dd5cf5935e272b2a",
+      "note": "deletion-minimal exact-LRA-UNSAT row schemas mined independently by the n=14 exact6-allcenter lane, embedded increasingly into the n=15 boundary order",
+      "pass": true
+    },
+    {
+      "actual": "unsat",
+      "expected": "unsat",
+      "id": "N_boolean_cap_hit_bound_rejects_two_adjacent_cap_points",
+      "note": "a radius class at chord endpoint 0 may meet the adjacent cap C_A = {0..5} in at most one point",
+      "pass": true
+    },
+    {
+      "actual": "sat",
+      "expected": "(informational)",
+      "id": "B_boolean_layer_status",
+      "note": "status of the incidence layer with no metric constraints; unsat here would already be a purely combinatorial verdict",
+      "pass": true
+    },
+    {
+      "actual": "4/4 agree",
+      "expected": "agree on every pinned Boolean model",
+      "id": "X_staged_and_integrated_encodings_agree",
+      "note": "independent cross-validation of the CEGAR metric stages against the single-model integrated encoding",
+      "pass": true,
+      "trials": [
+        {
+          "agree": true,
+          "cap_injectivity": false,
+          "integrated": "UNSAT",
+          "staged": "UNSAT",
+          "trial": 0
+        },
+        {
+          "agree": true,
+          "cap_injectivity": true,
+          "integrated": "UNSAT",
+          "staged": "UNSAT",
+          "trial": 1
+        },
+        {
+          "agree": true,
+          "cap_injectivity": false,
+          "integrated": "UNSAT",
+          "staged": "UNSAT",
+          "trial": 2
+        },
+        {
+          "agree": true,
+          "cap_injectivity": true,
+          "integrated": "UNSAT",
+          "staged": "UNSAT",
+          "trial": 3
+        }
+      ]
+    }
+  ],
+  "schema": "p97-rigid-base-metric-gate-smoke-v1",
+  "timeout_ms": 120000
+}

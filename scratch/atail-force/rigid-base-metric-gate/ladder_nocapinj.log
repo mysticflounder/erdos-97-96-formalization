@@ -1,0 +1,12 @@
+=== rung none (nocapinj, per-solve 300000 ms) ===
+{"mode": "integrated", "output": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/rigid-base-metric-gate/relax_nocapinj_none.json", "status": "SAT_EXACT_RATIONAL_ABSTRACT_DISTANCE_SHADOW"}
+=== rung apex3 (nocapinj, per-solve 300000 ms) ===
+{"mode": "integrated", "output": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/rigid-base-metric-gate/relax_nocapinj_apex3.json", "status": "SAT_EXACT_RATIONAL_ABSTRACT_DISTANCE_SHADOW"}
+=== rung apex3+opp0 (nocapinj, per-solve 300000 ms) ===
+{"mode": "integrated", "output": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/rigid-base-metric-gate/relax_nocapinj_apex3_opp0.json", "status": "SAT_EXACT_RATIONAL_ABSTRACT_DISTANCE_SHADOW"}
+=== rung apex3+opp0+opp5 (nocapinj, per-solve 300000 ms) ===
+{"mode": "integrated", "output": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/rigid-base-metric-gate/relax_nocapinj_apex3_opp0_opp5.json", "status": "UNKNOWN"}
+=== rung interiors (nocapinj, per-solve 300000 ms) ===
+{"mode": "integrated", "output": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/rigid-base-metric-gate/relax_nocapinj_interiors.json", "status": "UNKNOWN"}
+=== rung all (nocapinj, per-solve 300000 ms) ===
+{"mode": "integrated", "output": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/rigid-base-metric-gate/relax_nocapinj_all.json", "status": "UNKNOWN"}

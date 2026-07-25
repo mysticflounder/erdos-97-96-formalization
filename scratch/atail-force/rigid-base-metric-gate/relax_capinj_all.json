@@ -1,0 +1,33 @@
+{
+  "assertion_count": 13812,
+  "elapsed_seconds": 300.92904412490316,
+  "epistemic_label": "SAT = EXACT RATIONAL ABSTRACT-DISTANCE SHADOW ONLY (not a planar Euclidean realization, not a counterexample to Erdos 97). UNSAT = bounded solver verdict over the encoded surface, quantified over the entire Boolean incidence space. UNKNOWN = timeout.",
+  "options": {
+    "apex_exactness": true,
+    "bisector_alternation": true,
+    "cap_hit_bounds": true,
+    "is_relaxation": false,
+    "one_sided_cap_injectivity": true,
+    "row_centers": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ]
+  },
+  "per_solve_timeout_ms": 300000,
+  "reason": "timeout",
+  "schema": "p97-rigid-base-metric-gate-integrated-v1",
+  "status": "UNKNOWN"
+}
