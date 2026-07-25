@@ -757,3 +757,39 @@ quantity.
   residual — it is the `(m,4,4)` descent repo, `D.IsM44` throughout.
 * The ATail chain has exactly two `sorry`s: `FrontierLiveClosure.lean:51`
   (`false_of_originalFrontierUniqueRadiusArm`) and `:249` (this terminal).
+
+## Checked negative: the robustness dichotomy does not reduce the terminal
+
+At line 249 the hypotheses `L` and `B` supply exactly the inputs of
+`largePhysicalRadius_or_exactTwoFourRadii_of_robust`
+(`ATail/OrientedPhysicalApexIngress.lean:506`): `6 <= S.oppCap1.card`,
+`6 <= S.oppCap2.card`, and `FullyDeletionRobustAt D S.oppApex2`.  So the terminal
+can be case-split immediately into
+
+    Nonempty (LargePhysicalSecondApexRadiusIngress D S)
+      \/ Nonempty (PhysicalSecondApexExactTwoFourRadiusResidual D S)
+
+This looks like a free halving of the residual.  It is not.  Grepping source
+`.lean` files (excluding `.lake` build artifacts, which otherwise dominate the
+hits), **neither branch has any consumer concluding `False`**:
+
+* `LargePhysicalSecondApexRadiusIngress` occurs at exactly three source sites —
+  its definition (`:165`), the leaf constructor `largePhysicalRadius` of
+  `U1LeafPhysicalApexIngressOutcome` (`:208`), and the dichotomy's own
+  conclusion (`:511`).
+* `PhysicalSecondApexExactTwoFourRadiusResidual` occurs at its definition
+  (`:176`), the leaf constructor `exactTwoFourRadii` (`:210`), the coupled
+  wrapper `FrontierCoupledPhysicalSecondApexExactTwoFourRadiusResidual`
+  (`:213`, `:218`), the coupled dichotomy (`:483`), the dichotomy conclusion
+  (`:512`), and `ParentExactFiveAssembler.lean:199` — which is on the
+  exact-five-second-cap branch that this terminal's `6 <=` hypothesis excludes.
+
+`U1LeafPhysicalApexIngressOutcome` (`:198`) is an inductive enumerating leaf
+outcomes, not a discharge.  Splitting therefore replaces one `sorry` with two
+open branches and no consumer for either, which is a strictly worse residual and
+is forbidden by spine discipline.
+
+This is recorded because the split is the obvious first move from line 249 —
+every hypothesis it needs is already in scope — and the cost of discovering that
+it goes nowhere is two greps that are swamped by build artifacts unless
+`--include=*.lean` is used.
