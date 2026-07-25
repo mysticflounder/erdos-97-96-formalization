@@ -307,3 +307,35 @@ residual is strictly narrower.
     magnitude more work than all of k = 6: a k = 7 run at the 6-atom cutoff
     is a session-scale job, and the bank's k = 7 schemas peak at 6 atoms
     with 72 of 316 lying above that cutoff.
+
+## Mirror-antitonicity: independent audit (2026-07-25)
+
+A general-n law offered by the covering analysis, re-verified here against
+this lane's own oracle rather than taken on report:
+
+> Let `z1, z2` be two centers, with the two open arcs between them `A1`,
+> `A2`. Let `{u_i, v_i}` be disjoint pairs with `u_i in A1`, `v_i in A2`,
+> each pair equidistant from **both** centers. Then `i -> (u_i, v_i)` must
+> be **antitone**: `u_i` before `u_j` in `A1` forces `v_i` after `v_j`.
+
+Verified with `schema_mine.decide_schema` (positivity + strict triangle +
+both strict Kalmanson on the support):
+
+- two pairs, support 6: the antitone placement is SAT, the order-preserving
+  placement is UNSAT;
+- three pairs, support 8: of the six pairings, only the fully antitone one
+  (slots `v3, v2, v1`) is SAT; all five with at least one ascent are UNSAT,
+  including both single-ascent cases.
+
+So the law is exactly antitonicity — not merely a bound on inversions.
+
+It is strictly beyond the interleaving family by construction: each pair
+has one endpoint in each arc, so every pair on its own separates `z1` from
+`z2` and satisfies interleaving. The constraint is on how the pairs are
+matched *across* the arcs, which no single-pair family can express.
+
+Relevance: this is a **forced-order** law on equalities, cardinality-free,
+and it applies at the live `(6, 6, 6)`, `n >= 15` residual rather than the
+dispatched card-14 profile. Per the covering analysis, laws of a shape the
+pure-equality bank cannot express are what the general-n covering step
+appears to need.
