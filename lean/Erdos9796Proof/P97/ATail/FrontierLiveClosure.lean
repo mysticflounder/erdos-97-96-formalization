@@ -147,8 +147,111 @@ theorem false_of_frontierBiApexRobustExactFiveSecondCapResidual
     ⟨profile⟩
   exact false_of_frontierBiApexRobustExactFiveSecondCapProfile F R B Q profile
 
+/-- Keep the MEC triangle and cap partition fixed, but designate the old second
+opposite cap as the new surplus cap.  Its cardinality bound comes from the
+large-opposite-caps residual, so this redesignation is available exactly on that
+branch.  Cap indices rotate, so the old surplus cap becomes the new first
+opposite cap — the mirror of `redesignateFirstOppCapAsSurplus`. -/
+private noncomputable def redesignateSecondOppCapAsSurplus
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B) :
+    SurplusCapPacket D.A where
+  hA := S.hA
+  hncol := S.hncol
+  triangleNonObtuse := S.triangleNonObtuse
+  hCirc := S.hCirc
+  partition := S.partition
+  surplusIdx := S.oppIndex2
+  surplus := by
+    have hgt : 4 < S.oppCap2.card :=
+      lt_of_lt_of_le (by omega) L.secondOppCap_card_ge_six
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i <;>
+      simpa [SurplusCapPacket.oppIndex2, SurplusCapPacket.oppCap2, hi]
+        using hgt
+
+@[simp] private theorem redesignateSecondOppCapAsSurplus_oppCap1
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B) :
+    (redesignateSecondOppCapAsSurplus L).oppCap1 = S.surplusCap := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [redesignateSecondOppCapAsSurplus, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppCap1, SurplusCapPacket.surplusCap, hi]
+
+/-- On the large-opposite-caps branch the surplus cap carries at least six
+points as well, so all three caps are large.  Redesignating the second opposite
+cap as surplus turns the old surplus cap into the fresh first opposite cap; a
+fresh common-deletion parent would then force six points there, and the other
+fresh-frontier arm is the protected unique-radius terminal.
+
+Because the cap cardinalities sum to `D.A.card + 3`, this deletes every profile
+with a five-point cap from the branch — in particular the whole of cardinality
+fourteen, whose only profile is `(5, 6, 6)`.  The least surviving profile is
+`(6, 6, 6)` at cardinality fifteen. -/
+theorem surplusCap_card_ge_six_of_largeOppositeCaps
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B) :
+    6 ≤ S.surplusCap.card := by
+  by_contra hlt
+  push_neg at hlt
+  let T : SurplusCapPacket D.A := redesignateSecondOppCapAsSurplus L
+  have hTfirst : T.oppCap1 = S.surplusCap := by simp [T]
+  obtain ⟨freshRadius, _hfreshRadius, hfreshFour, ⟨freshFrontier⟩⟩ :=
+    exists_criticalPairFrontier_of_K4 D T H
+  apply CriticalPairFrontier.false_of_parentResidualConsumers
+    freshFrontier R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
+  · exact false_of_originalFrontierUniqueRadiusArm freshFrontier
+      R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
+  · intro freshParent
+    have hsix : 6 ≤ T.oppCap1.card := first_oppCap_card_ge_six freshParent
+    rw [hTfirst] at hsix
+    omega
+
+/-- The all-large-caps residual: every cap of the partition carries at least six
+points, so the carrier has at least fifteen points and the least profile is
+`(6, 6, 6)`.  This is the honest residual of the cap-six continuation after the
+five-point-cap profiles are dispatched. -/
+structure FrontierAllLargeCapsBiApexRobustResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B) : Prop where
+  /-- The surplus cap is large as well, not merely the two opposite caps. -/
+  surplusCap_card_ge_six : 6 ≤ S.surplusCap.card
+
+/-- The all-large-caps terminal. Its proof must consume the complete large-cap
+surface at every cardinality at least fifteen, not a locally manufactured
+witness and not a fixed-cardinality certificate. -/
+theorem false_of_frontierAllLargeCapsBiApexRobustResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F)
+    (B : FrontierBiApexRobustResidual R)
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (N : FrontierAllLargeCapsBiApexRobustResidual L) :
+    False := by
+  sorry
+
 /-- The cap-six continuation of the bi-apex robust parent. Its terminal must
-consume the complete large-cap surface, not a locally manufactured witness. -/
+consume the complete large-cap surface, not a locally manufactured witness.
+The five-point-cap profiles are discharged by redesignating the second opposite
+cap as surplus, leaving the all-large-caps residual. -/
 theorem false_of_frontierLargeOppositeCapsBiApexRobustResidual
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -156,8 +259,9 @@ theorem false_of_frontierLargeOppositeCapsBiApexRobustResidual
     (R : FrontierCommonDeletionParentResidual F)
     (B : FrontierBiApexRobustResidual R)
     (L : FrontierLargeOppositeCapsBiApexRobustResidual B) :
-    False := by
-  sorry
+    False :=
+  false_of_frontierAllLargeCapsBiApexRobustResidual F R B L
+    ⟨surplusCap_card_ge_six_of_largeOppositeCaps L⟩
 
 /-- The source-faithful common-deletion arm after both physical opposite
 apices are deletion-robust. It retains the complete parent residual and

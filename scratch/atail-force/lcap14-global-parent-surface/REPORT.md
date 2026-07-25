@@ -205,3 +205,33 @@ complete enumeration at supports 4, 5, 6 is in progress to settle that.
    once, emit schema clauses into one global CNF, `drat-trim`, kernel
    bridge (unique4-exact-two architecture); mine recurring schemas for
    the human argument feeding the general-n covering lemma (L6).
+
+## Profile realignment (2026-07-25): this lane's target profile is dispatched
+
+`FrontierLiveClosure.lean` now derives `6 ≤ S.surplusCap.card` on the
+large-opposite-caps branch, by redesignating the **second** opposite cap as
+surplus (legal because `L.secondOppCap_card_ge_six` gives it more than four
+points). Cap indices rotate, so the old surplus cap becomes the fresh first
+opposite cap; a fresh common-deletion parent then forces six points there via
+the packet-generic `first_oppCap_card_ge_six`, and the other fresh-frontier arm
+is the protected unique-radius terminal. This is the mirror of the existing
+exact-five dispatch at the same file's `redesignateFirstOppCapAsSurplus`.
+
+Consequence, since the cap cardinalities sum to `D.A.card + 3`: **every profile
+with a five-point cap is dispatched, which is all of cardinality fourteen —
+whose only profile is (5, 6, 6).** The least surviving profile is `(6, 6, 6)` at
+cardinality fifteen.
+
+Status of this lane in light of that: the 802 schemas and their Farkas
+certificates remain valid, because each is support-local UNSAT and therefore a
+cardinality-free lemma. What is superseded is the **surface** they were mined
+against — a card-14 `(5, 6, 6)` structure that the branch no longer has to
+refute. Any continuation of the certificate route must re-target the surface at
+`(6, 6, 6)` and cardinality at least fifteen, and must be general in `n` rather
+than fixed-cardinality.
+
+Caveat: the dispatch routes through `false_of_originalFrontierUniqueRadiusArm`,
+which is itself an open sorry (owned by the p5 exact-two lanes), exactly as the
+pre-existing exact-five dispatch already does. So the spine's total sorry count
+is unchanged; what changed is that the anchored theorem is `[closed]` and its
+residual is strictly narrower.
