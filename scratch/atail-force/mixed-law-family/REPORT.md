@@ -372,3 +372,79 @@ whether the terminal is true, and it does not shrink the `sorry` at
 is the assumption that a support-`>= 6` forced law already exists in the mined
 banks and merely needed wiring: it does not, and the 21 that come closest are
 avoidable at `n = 15`.
+
+## Result 7 — the robustness field closes n = 10 and nothing above it
+
+Results 5 and 6 exhausted the law axis: no support-`<=`5 law under any
+placement, and no Lean-proven support-6..8 law, refutes the layer.  So the
+closing content must be a FIELD the layer abstracts away rather than a law it
+fails to contain.
+
+`FullyDeletionRobustAt` is the strongest field the terminal carries, and at
+`FrontierLiveClosure.lean:249` it holds at BOTH opposite apices:
+
+    lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:27
+    structure FullyDeletionRobustAt (D : CounterexampleData) (center : R^2)
+      survives : forall z in D.A, HasNEquidistantPointsAt 4 (D.A.erase z) center
+
+Deleting any single carrier point still leaves a 4-point equidistant class at
+that apex; equivalently the apex carries a class of size `>= 5` or two disjoint
+classes of size `>= 4`.  The `cover` block encodes the opposite property — a
+critical center whose shell is its ONLY `>=4` class — and says nothing about
+robust centers, so this is new content, not a re-encoding.
+
+`robust_apex_probe.py` transcribes the Lean structure quantifier for quantifier:
+for each deleted point `z`, some 4-subset of the survivors is pairwise co-radial
+at the apex.  No paraphrase, so a verdict is about the terminal's own field.
+
+The encoding is smoke-tested against a known result in both directions.  At
+`n = 5` a center has four others and any deletion leaves three, so robustness is
+unsatisfiable on its own clauses; at `n = 6` five others survive any deletion
+with exactly four remaining, so it is satisfiable.  **The smoke test caught a
+real bug**: the first version skipped the obligation when fewer than four
+survivors remained instead of asserting it unsatisfiable, and reported SAT at
+`n = 5`.  Every verdict below is post-fix.
+
+| n | robust centers | verdict | model max class |
+|---|---|---|---|
+| 10 | 0 | SAT | 4 |
+| 10 | 1 | **UNSAT** | — |
+| 10 | 2 | **UNSAT** | — |
+| 11 | 2 | SAT | — |
+| 12 | 2 | SAT | — |
+| 13 | 2 | SAT | — |
+| 14 | 2 | SAT | — |
+| 15 | 0 | SAT | 4 |
+| 15 | 1 | SAT | 5 |
+| 15 | 2 | SAT | 6 |
+
+This is the first field in this lane that refutes the `n = 10` layer at all —
+every law-based route left it SAT.  The threshold is sharp at 10/11.
+
+At `n = 15` the model escapes by growing a radius class to size 5, then 6.  That
+suggests a class-size cap as the missing content, so it was tested directly: an
+added constraint forbidding any radius class larger than 4, at `n = 15` with
+both apices robust, is **still SAT** (4,339,122 clauses).  Capping class size
+does not close it either; the escape at `n = 15` is simply room.
+
+### Scope of Result 7
+
+The `n = 10` UNSAT is not transferable to the terminal.  `all_center_K4` and the
+shell cover are NOT hereditary — a 10-point subset of a 15-point configuration
+need not have each of its ten centers holding four co-radial points *within the
+subset* — so UNSAT at `n = 10` does not restrict `n = 15`.  And the layer's
+direction is the wrong one for scaling: it is UNSAT at `n = 8, 9` and SAT at
+`n = 10` even before robustness, so added points give added freedom.
+
+Taken with Results 5 and 6, everything encodable in this layer has now been
+tried at the terminal's own cardinality — all-center K4, the shell cover,
+bisector capacity, interleaving, circle-pair, the complete support-`<=`5 bank
+under maximal placement, 21 Lean-proven support-6..8 laws, full deletion
+robustness at both apices, and a class-size cap — and `n = 15` remains SAT under
+all of it.  The closing content is not cardinality-free and not pattern-local.
+
+What the layer structurally cannot see is `D.Minimal`: it is a statement about
+the non-existence of a smaller counterexample, not a constraint on this
+configuration's radius pattern, so no amount of clause content in this encoding
+can express it.  That is the remaining field, and it is where the terminal's
+proof has to come from.

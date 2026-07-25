@@ -1,0 +1,98 @@
+{
+ "results": [
+  {
+   "n": 10,
+   "robust": 0,
+   "verdict": "SAT",
+   "base_clauses": 88220,
+   "total_clauses": 88220,
+   "build_seconds": 0.4,
+   "solve_seconds": 1.9,
+   "audit": {
+    "all_center_k4": true,
+    "max_class": 4,
+    "critical_centers": 10,
+    "covered_points": 10,
+    "n": 10,
+    "cover_complete": true
+   },
+   "oracle_on_model": "unsat"
+  },
+  {
+   "n": 10,
+   "robust": 1,
+   "verdict": "UNSAT",
+   "base_clauses": 88220,
+   "total_clauses": 92766,
+   "build_seconds": 0.4,
+   "solve_seconds": 23.7,
+   "audit": null,
+   "oracle_on_model": null
+  },
+  {
+   "n": 10,
+   "robust": 2,
+   "verdict": "UNSAT",
+   "base_clauses": 88220,
+   "total_clauses": 97312,
+   "build_seconds": 0.4,
+   "solve_seconds": 2.0,
+   "audit": null,
+   "oracle_on_model": null
+  },
+  {
+   "n": 15,
+   "robust": 0,
+   "verdict": "SAT",
+   "base_clauses": 4176930,
+   "total_clauses": 4176930,
+   "build_seconds": 20.3,
+   "solve_seconds": 0.0,
+   "audit": {
+    "all_center_k4": true,
+    "max_class": 4,
+    "critical_centers": 15,
+    "covered_points": 15,
+    "n": 15,
+    "cover_complete": true
+   },
+   "oracle_on_model": "unsat"
+  },
+  {
+   "n": 15,
+   "robust": 1,
+   "verdict": "SAT",
+   "base_clauses": 4176930,
+   "total_clauses": 4243011,
+   "build_seconds": 19.6,
+   "solve_seconds": 0.3,
+   "audit": {
+    "all_center_k4": true,
+    "max_class": 5,
+    "critical_centers": 13,
+    "covered_points": 15,
+    "n": 15,
+    "cover_complete": true
+   },
+   "oracle_on_model": "unsat"
+  },
+  {
+   "n": 15,
+   "robust": 2,
+   "verdict": "SAT",
+   "base_clauses": 4176930,
+   "total_clauses": 4309092,
+   "build_seconds": 20.3,
+   "solve_seconds": 1.2,
+   "audit": {
+    "all_center_k4": true,
+    "max_class": 6,
+    "critical_centers": 13,
+    "covered_points": 15,
+    "n": 15,
+    "cover_complete": true
+   },
+   "oracle_on_model": "unsat"
+  }
+ ]
+}

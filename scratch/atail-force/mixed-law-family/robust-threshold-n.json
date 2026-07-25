@@ -1,0 +1,52 @@
+{
+ "results": [
+  {
+   "n": 11,
+   "robust": 2,
+   "max_class": null,
+   "verdict": "SAT",
+   "base_clauses": 185812,
+   "total_clauses": 203474,
+   "build_seconds": 1.1,
+   "solve_seconds": 41.1,
+   "audit": null,
+   "oracle_on_model": null
+  },
+  {
+   "n": 12,
+   "robust": 2,
+   "max_class": null,
+   "verdict": "SAT",
+   "base_clauses": 399984,
+   "total_clauses": 431688,
+   "build_seconds": 2.1,
+   "solve_seconds": 9.6,
+   "audit": null,
+   "oracle_on_model": null
+  },
+  {
+   "n": 13,
+   "robust": 2,
+   "max_class": null,
+   "verdict": "SAT",
+   "base_clauses": 879476,
+   "total_clauses": 932962,
+   "build_seconds": 4.3,
+   "solve_seconds": 38.8,
+   "audit": null,
+   "oracle_on_model": null
+  },
+  {
+   "n": 14,
+   "robust": 2,
+   "max_class": null,
+   "verdict": "SAT",
+   "base_clauses": 1935962,
+   "total_clauses": 2021790,
+   "build_seconds": 8.9,
+   "solve_seconds": 6.4,
+   "audit": null,
+   "oracle_on_model": null
+  }
+ ]
+}
