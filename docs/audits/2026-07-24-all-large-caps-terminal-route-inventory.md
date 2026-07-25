@@ -332,3 +332,281 @@ break, and neither backed by a Lean lemma:
 The blocked metric laws' own soundness was stipulated, not audited: the oracle's
 axiom family is valid for convex-position carriers, and the dihedral orbit
 instantiation respects the cyclic-order semantics.
+
+## Consumer hunt for the shortest-side exclusion: negative
+
+The shortest-side bi-equidistance exclusion
+(`docs/shortest-side-biequidistance-exclusion-2026-07-24.md`) was pushed for a
+consumer inside this terminal. It does not close it, and the specific mechanism
+one would reach for provably does not exist here.
+
+### The sharpening is real, and its target is named
+
+Verified by reading source, not inferred:
+
+- `CommonDeletionTwoCenterPacket.overlap_le_two`
+  (`.../P97/ATail/CommonDeletionTwoCenter.lean:46`) is discharged at lines 94-95
+  by `U5QDeletedK4Class.inter_card_le_two R₁ R₂ hcenters` — it is nothing but
+  the generic two-distinct-circles bound. `B₁`, `B₂` are four-point co-radial
+  rows at `center₁`, `center₂` inside `D.A.erase q`, and at this terminal the
+  two centers are exactly `S.oppApex1`, `S.oppApex2`
+  (`.../P97/ATail/OrientedPhysicalApexIngress.lean:246`).
+- With the apex chord a shortest Moser side, the exclusion sharpens that bound
+  from `≤ 2` to `≤ 1`.
+- The half that was missing is precisely the surplus-cap-touching case. If
+  `u, w ∈ B₁ ∩ B₂` then `u, w` are bi-equidistant at both apices, and
+  `U2NonSurplusSqueeze.oppCap2_escape_gen`
+  (`.../P97/U2NonSurplusOneHit.lean:273`) already refutes that when both lie
+  outside the surplus cap. So `|B₁ ∩ B₂| = 2` already forces one of the two
+  points into the surplus cap; the new law removes that escape.
+
+### The WLOG rotation is a real Lean move
+
+`redesignateFirstOppCapAsSurplus` and `redesignateSecondOppCapAsSurplus`
+(`.../P97/ATail/FrontierLiveClosure.lean:55,155`) copy `hA`, `hncol`,
+`triangleNonObtuse`, `hCirc` and `partition` unchanged and set only
+`surplusIdx`. So the MEC triangle and its three inscribed vertices are invariant
+across all three rotations, and the only side condition is the packet's
+`surplus` field, `4 < (capByIndex i).card`, which holds for all three indices
+when every cap has at least six points. The exclusion's hypotheses are
+therefore literally packet fields: `triangleNonObtuse` is
+`MEC.NonObtuseCircumscribedMoserTriangle`, and `hCirc` pins the inscribed case.
+The surplus cap's chord endpoints *are* the two opposite apices (for
+`surplusIdx = 0`, `surplusCap = C1` with `v2_mem_C1`, `v3_mem_C1`,
+`v1_notin_C1`, while `oppApex1 = v2`, `oppApex2 = v3`; same for the other two
+indices).
+
+Caveat for any implementation: there is no lemma anywhere comparing the three
+Moser side lengths, and no WLOG relabelling machinery. Identifying "the shortest
+side" is a three-way `le_total` split — elementary, but new work.
+
+### Why the counting collision does not exist
+
+Injectivity of `x ↦ (d(v_a,x), d(v_b,x))` gives `n ≤ k_a · k_b` where `k_a`,
+`k_b` count distinct radii at the two apices, plus
+`k_b ≥ max_r |SelectedClass A v_a r|` and symmetrically. **Every one of these is
+a lower bound on radius counts.** A contradiction needs `k_a k_b < n`.
+
+An exhaustive sweep of this repo, the `p97-rvol`, `erdos/97` and
+`erdos-general-theorem/97` trees, and the indexed Lean corpora found **no**
+declaration bounding the number of distinct distances or radii from a point.
+Structural reason: no `Finset ℝ` of radii exists anywhere in any tree, so the
+cardinality is not currently expressible. Every "unique radius" statement in the
+corpus is a hypothesis (`LargeCapUniqueFive.lean:36`,
+`OrientedPhysicalApexIngress.lean:226`, `CriticalPairFrontier.lean:544`), or a
+consequence of a *small cap*, or of `IsM44` (killed by `R.noM44`), or of a
+*blocked deletion* — none available with caps ≥ 6 and both apices robust.
+`largePhysicalRadius_or_exactTwoFourRadii_of_robust`
+(`OrientedPhysicalApexIngress.lean:506`) is existential, not an upper bound.
+
+This reproduces, from a different angle, the verdict already recorded in
+`docs/audits/2026-07-13-atail-apex-filter-assessment.md:5-20`: "It cannot arise
+from an upper bound on the opposite-radius image of one apex class: that image is
+provably at least three." Confirmed against that file.
+
+### Proposition A — the only radius-counting upper bound on the branch (PROVEN)
+
+Let `S : SurplusCapPacket A`, `hconv : ConvexIndep A`, `i : Fin 3`, and
+`c_i = (S.capByIndex i).card`. Then the number of distinct positive radii `r`
+with `4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r).card` is at most
+`⌊(c_i − 2)/2⌋`.
+
+*Proof.* Distinct radii give disjoint classes. Each such class meets
+`S.capInteriorByIndex i` in at least two points, by the public IMPORTED
+`SurplusCapPacket.selectedClass_capInteriorByIndex_card_ge_two`
+(`.../P97/ATail/CapInteriorRadiusCounting.lean:27` — verified public, not
+`private`). Disjointness gives `2m ≤ (S.capInteriorByIndex i).card`, and
+`capInteriorByIndex_card_add_two` gives `(S.capInteriorByIndex i).card = c_i−2`. ∎
+
+This strictly generalises `oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_four`
+from `m = 2` to arbitrary `m`, and is not in the corpus. On the `(6,6,6)`
+profile it reads: **at most two K4-radii at each apex.**
+
+It cannot supply the missing collision, because it bounds the number of
+*K4-radii* — radii whose class has at least four points — whereas injectivity's
+lower bounds are on the number of *distinct* radii. `K4` forces only one large
+class per point, so `k_a` may be as large as `n−4`, and `(n−4)² ≥ n` for
+`n ≥ 15`. **The two bounds constrain disjoint quantities and never meet.** The
+cap bound `|class| ≤ c_i` pushes `k_a ≥ (n−1)/c_i`, i.e. the wrong way.
+
+Dual counting is also slack. With `Dumitrescu.perpBisector_apex_bound`
+(`.../P97/Dumitrescu/L1.lean:128`), summing over pairs gives
+`Σ_z Σ_r C(|class(z,r)|,2) ≤ 2·C(n,2)`. Robustness forces a point's
+contribution to at least 10, non-robustness to at least 6; at `n = 15` that is
+`10·6 + 6·9 = 114 ≤ 210`.
+
+### The apex bi-equidistance family is dead at the incidence level
+
+An independent incidence abstraction at `n = 15`, apices at `0,5,10`, caps
+`{0..5}` surplus, `{5..10}`, `{10..14,0}`, asserting K4 at every point, the
+adjacent one-hit bounds at all three apices, full deletion robustness at both
+opposite apices, the minimality covering condition from
+`not_isRemovableVertex_of_minimal`, `perpBisector_apex_bound`, and the crossing
+law below:
+
+| variant | z3 |
+|---|---|
+| no shortest-side law, no in-cap bound | sat |
+| + shortest-side law at the surplus chord | sat |
+| + in-cap co-radial bound | sat |
+| shortest-side law at **all three** chords, all three apices robust | sat |
+
+EMPIRICALLY VERIFIED, and sound as a negative result: the model caps each point
+at two rows, so a satisfying assignment of the restricted model is a fortiori
+one of the unrestricted model. Saturating the entire apex-bi-equidistance family
+leaves the abstraction satisfiable. This abstraction is *weaker* than the Boolean
+layer above (no metric oracle, no Kalmanson), so it does not settle the layer —
+but it does close off the family.
+
+### Lemma C (crossing), and the master criterion
+
+**Lemma C (PROVEN, elementary).** If `z₁ ≠ z₂ ∈ A` are both equidistant from
+`u ≠ w ∈ A`, all four distinct, and `A` is in strictly convex position, then the
+open segments `(u,w)` and `(z₁,z₂)` cross; equivalently `{u,w}` and `{z₁,z₂}`
+interleave in the convex cyclic order.
+
+The "opposite sides" half is `Problem97.twoCircle_sameSide_reflection_false`
+(`.../P97/U2/WitnessReflectionKernel.lean:200`) and needs no convexity. The
+interleaving half is the content of the four proved terminals
+`false_of_two_centers_equidistant_pair_{after,enclosed,split,before}`
+(`.../P97/ATail/TwoCenterBisectorParity.lean:53,74,112,134`), which cover the
+four same-arc arrangements. Two free corollaries: injectivity at any chord whose
+endpoints are cyclically **adjacent**, and `≤ 1` bisector point for any **hull
+edge**, sharpening `perpBisector_apex_bound`. Neither helps here: the two
+opposite apices are never adjacent, since the surplus cap has at least six
+points so at least four lie strictly between them.
+
+**Master criterion (PROVEN).** For `z₁ ≠ z₂ ∈ A`, `L = line(z₁,z₂)`,
+`h = dist(O,L)`, coordinates with `L` the x-axis and `O = (0,h)`, `h ≥ 0`, and
+`ζ₁ < ζ₂` the coordinates of `z₁,z₂`, set
+
+    Reg(z₁,z₂) = {(x,y) : y > 0, x² + (y+h)² ≤ R², ζ₁ < x < ζ₂}.
+
+The member of a bi-equidistant pair at `(z₁,z₂)` lying on the `O` side of `L`
+belongs to `Reg`. So `A ∩ Reg = ∅` gives injectivity at `(z₁,z₂)`, and that
+follows from `Reg ⊆ conv(V)` for any `V ⊆ A` disjoint from `Reg`, by
+`ConvexIndep`. For the shortest Moser side this is exactly the proven law, with
+`V = {v₁,v₂,v₃}` and `Reg ⊆ T`. Independently validated: over **100,147**
+random non-obtuse inscribed triangles the algebraic criterion
+`a(a+|p|) > hq ∨ q ≤ R−h`, the angle criterion `γ₃ > min(γ₁,γ₂)`, and the
+geometric statement "the reflection of the minor segment across `v₁v₂` lies
+inside `T`" agree with **zero mismatches**.
+
+### Chord variants: all refuted, with witnesses at the branch profile
+
+Scope note governing what a numerical refutation means: a candidate law of this
+family may use only the geometric hypotheses (strict convex position, non-obtuse
+inscribed Moser triangle, MEC containment, cap cardinalities). `K4` and
+minimality cannot be used *and* tested — a configuration satisfying them would
+refute Erdős 97. So a configuration meeting the geometric hypotheses and
+carrying a bi-equidistant pair refutes the candidate.
+
+Control first, against the proven law: 399,676 sampled mirror pairs across
+Moser–Moser chords gave 71,657 realizable strictly-convex configurations, and in
+**every one** the chord was not a shortest side — zero shortest-side
+realizations. Repeated at `n = 15`, caps `(6,6,6)`: 388 hits, again zero with
+the chord shortest. The generator finds configurations where they exist and none
+where the law forbids them.
+
+- **(a) Chord `(v_i, x)`, `x` a cap-interior point — FALSE.** 253
+  branch-compatible hits in 3000 trials, across all nine (vertex, cap)
+  combinations. Verified witness at `n = 15`, caps `(6,6,6)`, min hull cross
+  `5.7e−5`, max angle `1.4249 < π/2`, residuals `−5.6e−17`, `−2.2e−16`.
+- **(b) Two cap-interior centres in the same cap — FALSE.** 1 hit in 20,000
+  trials; witness with min hull cross `1.54e−4`, max angle `1.4876`, residuals
+  exactly `0.0`.
+- **(c) Two cap-interior centres in different caps — FALSE.** 144 hits in 3000
+  trials; witness with min hull cross `1.33e−4`.
+- **Neighbour-localization strengthening — FALSE.** Of 431 verified
+  non-shortest-side hits at `n = 15`, only 174 had the pair as the two cyclic
+  neighbours of an endpoint; the rest sat at cyclic distance up to 4.
+
+Reason, in the master criterion's language: for a Moser side both `z₁,z₂` lie on
+`∂D(O,R)`, so the lens height vanishes at both ends of the strip and `Reg`
+closes into the reflected minor segment, whose only possible `A`-point is `v₃`,
+excluded by `q > R − h` (Step 5 of the law's proof). For any chord with an
+endpoint strictly inside the disk the lens height there is strictly positive,
+`Reg` acquires a corner at positive depth, and no subset of
+`{v₁,v₂,v₃,z₁,z₂}` has `Reg ⊆ conv(V)`. The counterexamples occupy exactly that
+region.
+
+**Do not spend further effort on chord variants of the reflection law.**
+
+### The one real gain, and it is off-spine
+
+The sharpening's demonstrated value is case-elimination, not counting.
+`frontierCommonDeletionResidual_secondRow_inter_marginal_card_le_one` bounds
+`|B₂ ∩ (first-apex class minus the surplus cap)| ≤ 1`, and that off-surplus
+restriction is why `FrontierSecondRowOffConfinementEscape` carries the
+disjunctive field `point_mem_surplus_or_firstApexRadius_ne`
+(`.../P97/ATail/FrontierCommonDeletionEscape.lean:220`). The new law removes the
+restriction, giving `|B₂ ∩ SelectedClass A oppApex1 radius| ≤ 1` outright, which
+makes `FrontierEscapeLocationOutcome.onRadiusSurplus` unreachable and collapses
+`FrontierRefinedEscapeOutcome`
+(`.../P97/ATail/FrontierCommonDeletionSurplusEscape.lean:490`) from three
+constructors to one. This is the exact shape `oppCap2_escape_gen` cannot reach,
+because the escape point is *inside* the surplus cap.
+
+**No `sorry` shrinks.** The only sorries in all of `ATail/` are the two in
+`FrontierLiveClosure.lean` (`:51`, `:249`); the whole escape subtree is already
+closed. By the project's spine rule this stays unlanded until the collapsed form
+is used inside the terminal. Proposition A is likewise unlanded.
+
+## The closing statement
+
+Unfolding `CounterexampleData.not_isRemovableVertex_of_minimal`
+(`.../P97/U1TwoShortCapReduction.lean:164`): non-removability of every `x` means
+that for every `x ∈ A` there is `p ∈ A` with a unique class of size at least
+four, of size exactly four, containing `x`. Since each such class has exactly
+four members, the non-robust set `B` must satisfy `4|B| ≥ n`. Hence
+
+    (S1)   4 · |{p ∈ A : ¬ FullyDeletionRobustAt D p}| < |A|
+
+closes the terminal immediately: covering fails, so some vertex is removable,
+contradicting `R.minimal`.
+
+Status of (S1): **genuinely open**, and outside the reflection/MEC technique's
+reach. That technique produces per-chord exclusions attached to at most three
+distinguished points, whereas (S1) is uniform over all `n` points. The
+incidence-level witness above has `|B| = 9 > 15/4`, so (S1) is not derivable
+from anything currently on the branch. Everything apex-local is now measured and
+closed off.
+
+## Blocking policy: the stall is clause count, and it is a hard ceiling
+
+Measured at `n = 15`, profile `(6,6,6)`, with the shortest-side clause family
+added, same layer (2534 vars / 162,085 clauses) in all three runs:
+
+| policy | laws mined | wall |
+|---|---|---|
+| eager (whole dihedral orbit per law, up front) | 30 | 630 s, then stalls |
+| lazy (only the violated placements of each model) | 8 | 440 s |
+| hybrid (eager under a clause budget, lazy past it) | 24 / 28 / 30 | 110 s / 240 s / 752 s |
+
+The hybrid reaches 24 laws in 110 s against the eager policy's 630 s for 30, so
+per-law it is roughly six times faster while the database is small — one solve
+absorbs an orbit instead of thousands of refine rounds. But it converges to the
+same wall at **30 laws / ~2.4M clauses**, within 20% of the eager policy's
+wall. The ceiling is clause-count-driven CDCL search hardness and is
+**independent of blocking policy**; a better policy postpones it, it does not
+remove it. Lazy enforcement was smoke-validated against eager enumeration:
+with exactly one orbit member's atoms true it returns that member and nothing
+else, an empty model returns nothing, and every returned clause is a genuine
+orbit member.
+
+A combined single-query formulation was also built and smoke-validated — the
+Boolean layer as z3 `Bool`s plus the 105 distances as `Real`s under the
+support-local family, linked by the one-way `ev(y,u,v) → d(y,u) = d(y,v)`, so
+CDCL(T) derives each pure-equality law as a theory lemma instead of by clause
+expansion. Both halves check out (the mined support-7 law UNSAT with all four
+proper subsets SAT; z3's layer model satisfies all 110,608 DIMACS clauses on
+independent re-evaluation in python). It produced no verdict within the session
+at `n = 15` `(6,6,6)` or `n = 14` `(5,6,6)`.
+
+**Scope limit, stated so it is not overread.** A `LAYER-UNSAT` at `n = 15`
+would *not* close `false_of_frontierAllLargeCapsBiApexRobustResidual`. The
+obligation is general in `n` with no upper bound on carrier cardinality; UNSAT
+at `n = 15` refutes only cardinality 15 at profile `(6,6,6)` and hands back the
+law set, leaving general-`n` coverage as a separate argument. `DECISIVE-SAT`
+would kill the pure-equality covering route outright. Either way this is a
+route-viability test, not a closure route.
