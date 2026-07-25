@@ -235,3 +235,75 @@ which is itself an open sorry (owned by the p5 exact-two lanes), exactly as the
 pre-existing exact-five dispatch already does. So the spine's total sorry count
 is unchanged; what changed is that the anchored theorem is `[closed]` and its
 residual is strictly narrower.
+
+## Complete small-support enumeration (`enumerate_schemas.py`)
+
+10. The CEGAR bank is **not** the small-support family; it is a sample of
+    it.  `enumerate_schemas.py` enumerates *every* minimal support-local
+    UNSAT positive-equality schema at a fixed support k by increasing atom
+    count: candidates are one-atom extensions of the level-below
+    *satisfiable* representatives (every proper subset of a minimal UNSAT
+    set is satisfiable, so this is complete and subsumes superset
+    pruning), deduplicated by the canonical form under the dihedral group
+    of the k-cycle acting inside the fixed k-point universe, decided in
+    batched z3 (`push`/`check-sat`/`pop`) over the axiom block taken
+    verbatim from `schema_mine.schema_smt` — a start-up gate asserts the
+    batched per-candidate text equals `schema_mine.schema_smt(k, atoms)`
+    character for character — and minimality is settled by looking every
+    single-atom deletion up in the complete level-below satisfiable table,
+    then re-verified by explicit `decide_schema` calls.  Only schemas whose
+    support is *exactly* `{0,…,k-1}` are recorded at k; smaller-support
+    minimal sets are reported separately and must reappear in their own
+    support's family.  Output: `complete-schemas.json`, plus
+    `complete-bank.json` in the `avoid_probe` bank shape.
+
+    | k | complete family | CEGAR bank | bank reproduced | absent from bank | atom counts | stop |
+    |---|---|---|---|---|---|---|
+    | 4 | **7** | 1 | 1/1 | 6 | 2:1, 3:2, 4:4 | exhausted (no satisfiable 9-atom set) — complete at every atom count |
+    | 5 | **405** | 20 | 20/20 | 385 | 3:6, 4:50, 5:154, 6:188, 7:7 | exhausted (no satisfiable 15-atom set) — complete at every atom count |
+    | 6 | **11,245** | 151 | 146/151 | 11,099 | 3:4, 4:148, 5:1646, 6:9447 | `--max-atoms 6` cutoff — complete **only up to 6 atoms** |
+
+    The five bank k=6 schemas not reproduced are exactly the five with
+    seven atoms, i.e. beyond the cutoff; within the cutoff nothing is
+    missing in either direction, and the k=4/k=5 families are complete
+    unconditionally.  Cost (jobs=8, z3 batches of 20k): 0.1 s at k=4,
+    1.3 s at k=6-atom k=5 (12.6 s exhaustive), 138.8 s at k=6 — 4.02 M z3
+    decisions, 14.85 M generated children, 10.82 M canonical cache hits.
+    Gates, all clean: every recorded schema re-decided UNSAT; every
+    single-atom deletion satisfiable in both the ambient-k and the
+    re-ranked support-local reading, with the two readings agreeing
+    everywhere (plus 200-schema samples per k through the unbatched
+    `schema_mine.decide_schema` path, and 200 sampled sub-support sets per
+    k); all 2,023 smaller-support minimal sets found inside the k=6
+    universe and all 23 inside the k=5 universe land in their own
+    support's complete family.
+
+    Smallest schema of all, absent from the bank: `{d(0,1)=d(0,2),
+    d(3,1)=d(3,2)}` on cyclic 0,1,2,3 — two atoms, killed by one strict
+    Kalmanson inequality.  It is an instance of the bisector-capacity
+    family, which is exactly why a bank mined from a surface that already
+    contains the geometric families never had to produce it.
+
+11. Covering probe with the complete family
+    (`avoid_probe.py --bank complete-bank.json --max-support 6 --cover
+    --geometry --n 8 9 10 11 --timeout 400`, 11,650 schemas): **n = 8
+    UNSAT** (4,011,576 clauses), **n = 9 UNSAT** (11,858,760 clauses).
+    Control at identical flags with the incomplete 172-schema bank: n = 8
+    UNSAT, n = 9 UNSAT.  So at these n the flip against the SAT rows above
+    is produced by `--geometry`, not by the bank's incompleteness: the
+    geometric families were the missing content, and completing the
+    small-support family does not change the verdict where the control is
+    already UNSAT.  At n = 10 **neither** run decides inside the 400 s
+    budget: complete family TIMEOUT at 29,388,260 clauses, control TIMEOUT
+    at 468,740 clauses — so n >= 10 is open at this budget and no
+    comparison can be drawn there.  (The first n = 10 attempts of both runs
+    were killed externally mid-build and were relaunched.)
+
+    Scaling datum for k = 7 (105-atom universe, jobs=6, `--max-atoms 5`):
+    **5,858** minimal schemas of support exactly 7 with at most 5 atoms
+    (plus 13,962 of smaller support), 335.8 s, 7.08 M z3 decisions, 29.2 M
+    generated children — all gates clean.  The 6-atom level would be
+    ~4.5 M satisfiable 5-atom classes x 100 extensions, i.e. two orders of
+    magnitude more work than all of k = 6: a k = 7 run at the 6-atom cutoff
+    is a session-scale job, and the bank's k = 7 schemas peak at 6 atoms
+    with 72 of 316 lying above that cutoff.
