@@ -168,19 +168,31 @@ abstraction only, not Euclidean realizability):
 | all-center K4 | 21 (supp ≤5) | 8, 9, 10 | SAT |
 | + shell cover | 21 (supp ≤5) | 8–12 | SAT |
 | + shell cover | 172 (supp ≤6) | 8–11 | SAT |
+| + shell cover + geometry | 172 (supp ≤6) | 8, 9 | **UNSAT** |
+| + shell cover + geometry | 172 (supp ≤6) | 10, 11 | timeout (400 s) |
+| + shell cover + geometry | 172 (supp ≤6) | 12 | **SAT** |
 
-So avoidance becomes possible from n = 8 up, and neither the minimality
-shell cover (the prior analysis's Theorem C) nor widening to all 172
-support-≤6 schemas restores contradiction. **A general-n covering lemma
-over the small-support subfamily is not available on these fields alone.**
+Correction to the reading of the first four rows: they omit the
+partition-level geometric families. The lcap14 surface already contains
+those families, so mined cores never needed to rediscover them and the
+bank omits their patterns; a probe lacking them tests a strictly weaker
+constraint set than the one that produced the schemas. With `--geometry`
+supplying bisector capacity, alternation, and the two-circle bound (all
+cardinality-free), avoidance is **impossible at n = 8, 9** — so the
+geometric families are load-bearing, not incidental.
 
-Caveat found and corrected mid-probe: the lcap14 surface already contains
-the partition-level geometric families, so mined cores never needed to
-rediscover them and the bank omits their patterns; a probe lacking them
-tests a strictly weaker constraint set than the one that produced the
-schemas. `--geometry` adds bisector capacity, alternation, and the
-two-circle bound (all cardinality-free); that run is in progress and its
-verdict supersedes the table rows above for interpretation purposes.
+Net verdict for the branch is nevertheless unchanged, because the target
+cardinality is n ≥ 14 and avoidance is already possible at n = 12: **the
+mined small-support family does not carry the covering step at the
+cardinalities that matter.** Where the transition happens (n = 10, 11 are
+unresolved at a 400 s budget) is worth pinning, since a sharp threshold
+would say something about the mechanism.
+
+Open caveat on this negative result: the 172 schemas are what CEGAR
+sampling happened to hit, and the complete minimal family at support ≤ 6
+is not known. If it is substantially larger, the n = 12 SAT verdict is an
+artifact of an incomplete bank rather than a fact about the geometry. A
+complete enumeration at supports 4, 5, 6 is in progress to settle that.
 
 ## Next steps
 
