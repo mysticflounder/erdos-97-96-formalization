@@ -1,0 +1,16 @@
+{
+ "support": 5,
+ "seconds": 138.1,
+ "raw_patterns": 759375,
+ "patterns": 759375,
+ "classes": 76731,
+ "sat": 1813,
+ "unsat": 2563,
+ "unknown": 0,
+ "equality_only_unsat": 72355,
+ "forced_equality": 2563,
+ "forced_equality_algebraic": 2563,
+ "forced_equality_geometric": 0,
+ "distinct_laws": 0,
+ "laws": []
+}

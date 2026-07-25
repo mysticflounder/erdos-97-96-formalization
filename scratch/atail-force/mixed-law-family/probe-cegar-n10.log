@@ -1,0 +1,2 @@
+[n=10] probe layer: 2880 vars, 1050860 clauses, {'orbit_clauses': 1014720, 'cover_clauses': 20170, 'geometry_clauses': 5880}
+[n=10] it1: law 1 support=6 atoms=6 (0 disequalities, geometric), new, +2520 clauses, 2520 total (15s)

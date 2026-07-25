@@ -610,3 +610,78 @@ at `n = 15` refutes only cardinality 15 at profile `(6,6,6)` and hands back the
 law set, leaving general-`n` coverage as a separate argument. `DECISIVE-SAT`
 would kill the pure-equality covering route outright. Either way this is a
 route-viability test, not a closure route.
+
+## Mixed laws: the disequality half is inert below support 6 (2026-07-25)
+
+The three combined single-query `eqonly_direct.py` runs above produced no
+verdict in 7 h 26 m and were stopped. The support-minimized incremental hybrid
+reached 25 laws / 2.06 M clauses in 17,060 s, a regression against the 36 laws /
+2.57 M / 3,747 s baseline, so `minimize_support` is a production loss rather
+than marginal: the mined laws stay at support 8 and each minimization pass costs
+more than the orbit it saves. Equality-only covering at the cap layer is closed.
+
+Why it was equality-only at all is a property of the oracle, not the
+mathematics: `eqonly_direct.py:213` links atoms **one way**, so a false atom
+constrains nothing and a realization may satisfy extra equalities the layer's N
+block forbids. The faithful oracle is biconditional, and its cores are mixed
+equality/disequality laws — the forced-equality laws that
+`lcap14-global-parent-surface/REPORT.md` identifies as the missing general-`n`
+content. New lane: `scratch/atail-force/mixed-law-family/`.
+
+**Result, exhaustive and negative.** `pattern_family.py` decides every complete
+pattern (a tuple of set partitions, one per center) at support 4 and 5, then
+classifies each UNSAT one as equality-only-UNSAT, algebraic (UNSAT under
+positivity alone, hence equality-graph transitivity the layer's T block already
+enforces), or geometric forced-equality.
+
+| k | raw | classes | equality-only UNSAT | realizable | forced-eq | algebraic | **geometric** | unknown |
+|---|---|---|---|---|---|---|---|---|
+| 4 | 625 | 100 | 54 | 24 | 22 | 22 | **0** | 0 |
+| 5 | 759,375 | 76,731 | 72,355 | 1,813 | 2,563 | 2,563 | **0** | 0 |
+
+Both rows account exactly. Asserting the complete pattern is the strongest
+possible use of disequalities at a given support, so this is not sampling:
+**no support-`<=`5 mixed law has geometric content**, and any forced-equality law
+the covering step needs has support `>= 6`. 15 smoke gates clean, including that
+minimizing the complete pattern extending the known Kalmanson law discards every
+disequality — so `minimize` cannot manufacture a fake forced-equality law.
+
+**Result, positive.** `probe_model_test.py` settles the `n >= 10` frontier of
+`avoid_probe.py` on content rather than budget. Every probe blocking clause
+comes from a schema the support-local axioms refute, so a model whose complete
+pattern is realizable under those axioms cannot be refuted by any schema of the
+family. The 21-schema bank plus `--cover --geometry` reproduces the recorded
+`n = 8`/`n = 9` UNSAT verdicts, and at `n = 10` it is SAT (88,220 clauses,
+1.0 s) with a model that audits — in python, independently of the solver — as
+all-center K4, maximum class exactly 4, all 10 centers critical, cover
+complete. The biconditional oracle refutes that model in **0.0 s**. So the
+family has content at `n = 10` and the bank lacks it; `n >= 10` is a bank
+completeness question.
+
+`probe_cegar.py` runs the consequent loop at the cardinality-free probe layer.
+Assumption-based cores do not return at this size — the failure mode that made
+`coord_cegar.py` unusable — so the core is found by searching point-subsets in
+increasing size, which yields the smallest-support law available. Blocking
+reproduces `avoid_probe.build`'s placement count and polarity convention
+(gated). 12 smoke checks clean.
+
+**Counting is closed on this terminal**, from the repo's own proven bounds:
+`Dumitrescu.perpBisector_apex_bound` (`P97/Dumitrescu/L1.lean:128`) gives pair
+capacity `2*C(n,2)` against demand `6n`; `eq_of_equidistant_three_noncollinear`
+(`P97/U5GlobalIncidenceBasic.lean:129`) makes the 4-classes a
+pair-multiplicity-`<=`2 packing, the same `Theta(n^2)` vs `Theta(n)` slack;
+`docs/closure-plan-full-spec-2026-07-09.md:2294` already records the checked
+`4 * V.card <= D.A.card` as "not a cardinality contradiction for unbounded
+carriers" and line 5116 records `|A| <= 4 * |image(centerAt)|` as slack at card
+12 and 13. The terminal's `N` gives all caps `>= 6`, i.e. a **lower** bound
+`|A| >= 15`, which loosens every packing inequality it touches. The closing
+content is a forced law, not a count.
+
+**Closure-plan drift.** `docs/closure-plan-full-spec-2026-07-09.md:44-48`,
+marked "updated 2026-07-22", still lists the second A-tail hole as
+`false_of_frontierLargeOppositeCapsBiApexRobustResidual`. That theorem is now
+closed in source (`FrontierLiveClosure.lean:255-264`, via
+`surplusCap_card_ge_six_of_largeOppositeCaps` at line 200); the live hole at
+line 249 is `false_of_frontierAllLargeCapsBiApexRobustResidual`. The hole count
+(2) is right, the second symbol is one refinement behind, and the plan has no
+route section for the current target.
