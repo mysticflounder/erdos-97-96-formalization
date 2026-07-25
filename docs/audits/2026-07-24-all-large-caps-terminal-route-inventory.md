@@ -851,6 +851,36 @@ So a third K4 radius advances the induction from `c = 6` to `c = 7` and from
 `Sigma_i >= 7`, which no listed fact provides.  The common-deletion parent
 supplies `Sigma >= 4` independently of `c`.
 
+### What the sharp bound upgrades in the existing case split
+
+`first_oppCap_card_ge_six` (`ATail/BiApexRobustCapBounds.lean:121`) splits on
+whether the double-deletion radius from `R.common.firstApexDouble` equals the
+frontier radius.  Reading its two branches gives a dichotomy at `oppApex1` that
+holds throughout this branch:
+
+- (a) `|C(oppApex1, r)| >= 6` — the same-radius branch, where `q` and `w` both
+  lie in the frontier class, so erasing them drops the count by exactly two and
+  four survivors force six; or
+- (b) there are two distinct K4 radii at `oppApex1`.
+
+Under the OLD flat two-per-class count both branches yield only `c_1 >= 6`.
+Under the sharp bound, branch (a) TOGETHER WITH any second K4 radius at
+`oppApex1` yields
+
+    c_1 >= 6 + 4 - 2 = 8
+
+by `oppositeVertex_distinct_K4_radii_force_cap_card_ge_sum_sub_two`.  That is a
+strict improvement and is exactly the kind of `c`-indexed yield the bootstrap
+needs.
+
+**It does not fire here.**  Robustness at `oppApex1` does not force the second
+radius in branch (a): with `|C(oppApex1, r)| >= 6`, deleting any single point
+leaves at least five members of that one class, so `FullyDeletionRobustAt` is
+already satisfied without a second radius.  The second radius has to come from
+somewhere else, and no hypothesis in the terminal's chain supplies it.
+{{NEEDS_PROOF}} — that no such hypothesis exists is an exhaustion claim over the
+chain as read, not a proof of unavailability.
+
 **Consequence.** "Force a third K4 radius, or a `(4,5)` radius pair, at a
 doubly-constrained apex" is NECESSARY for the bootstrap route but NOT
 SUFFICIENT.  Closing the route requires a family of facts indexed by `c` — a
