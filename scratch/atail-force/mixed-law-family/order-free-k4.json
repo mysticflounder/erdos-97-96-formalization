@@ -1,0 +1,13 @@
+{
+ "rows": [
+  {
+   "support": 4,
+   "laws": 7,
+   "order_free": 0,
+   "order_dependent": 7,
+   "mean_relabeling_coverage": 0.619
+  }
+ ],
+ "order_free_laws": 0,
+ "laws": []
+}

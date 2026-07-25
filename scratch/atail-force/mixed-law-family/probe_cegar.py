@@ -261,6 +261,12 @@ def main() -> int:
     parser.add_argument("--max-law-support", type=int, default=7,
                         help="largest support searched for a refutation")
     parser.add_argument("--out", type=Path)
+    parser.add_argument("--laws-in", type=Path,
+                        help="mined laws from a previous n, in bank shape; "
+                        "carried in unfiltered so a law set can be tested "
+                        "across cardinalities")
+    parser.add_argument("--laws-out", type=Path,
+                        help="write the mined law set after every new law")
     args = parser.parse_args()
 
     if args.smoke:
@@ -268,6 +274,13 @@ def main() -> int:
 
     n = args.n
     schemas = load_schemas(args.bank, args.max_support)
+    if args.laws_in:
+        carried = json.loads(args.laws_in.read_text())["schemas"]
+        extra = [(r["support"], tuple(tuple(a) for a in r["atoms"]))
+                 for r in carried if r["support"] <= n]
+        print(f"[n={n}] carried {len(extra)} laws from {args.laws_in}",
+              flush=True)
+        schemas = schemas + extra
     cnf, stats = AP.build(n, schemas, k4=True, cover=True, geometry=True)
     ids = cnf.ids
 
@@ -287,6 +300,7 @@ def main() -> int:
     result = None
 
     for it in range(1, args.budget + 1):
+        tsolve = time.time()
         if not solver.solve():
             result = dict(verdict="LAYER-UNSAT", iterations=it)
             print(f"[n={n}] it{it}: LAYER-UNSAT after {len(laws)} mined laws "
@@ -295,9 +309,12 @@ def main() -> int:
         model = {lit for lit in solver.get_model() if lit > 0}
         eqs, _ = read_pattern(n, ids, model)
         neqs = universe - eqs
+        dsolve = time.time() - tsolve
 
+        tsearch = time.time()
         pts, sub, nsub = smallest_refuting_subset(
             n, eqs, args.min_law_support, args.max_law_support)
+        dsearch = time.time() - tsearch
         if pts is None:
             # No sub-support up to the cap refutes the pattern.  Fall back to
             # the whole instance so the loop still advances, and count it so
@@ -321,9 +338,11 @@ def main() -> int:
             continue
 
         k = len(pts)
+        tmin = time.time()
         reduced = tuple(minimize_core(
             k, [("+", *a) for a in sorted(sub)]
             + [("-", *a) for a in sorted(nsub)]))
+        dmin = time.time() - tmin
         law = [(s, pts[y], pts[u], pts[v]) for s, y, u, v in reduced]
         key = canonical_law(k, reduced)
         algebraic = decide(k, *split(reduced),
@@ -344,7 +363,13 @@ def main() -> int:
               f"{len(reduced)} ({neg} disequalities, "
               f"{'ALGEBRAIC' if algebraic else 'geometric'}), "
               f"{'new' if fresh else 'repeat'}, +{len(batch)} clauses, "
-              f"{added} total ({time.time() - t0:.0f}s)", flush=True)
+              f"{added} total [solve {dsolve:.1f}s search {dsearch:.1f}s "
+              f"min {dmin:.1f}s] ({time.time() - t0:.0f}s)", flush=True)
+        if args.laws_out:
+            args.laws_out.write_text(json.dumps(
+                dict(schemas=[dict(support=law["support"],
+                                   atoms=law["atoms"]) for law in laws]),
+                indent=1) + "\n")
 
     if result is None:
         result = dict(verdict="BUDGET", iterations=args.budget)

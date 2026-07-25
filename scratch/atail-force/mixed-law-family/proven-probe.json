@@ -1,0 +1,102 @@
+{
+ "results": [
+  {
+   "n": 8,
+   "placement": "order-preserving",
+   "verdict": "UNSAT",
+   "placement_clauses": 560,
+   "total_clauses": 18776,
+   "audit": null,
+   "oracle_on_model": null,
+   "base": {
+    "orbit_clauses": 11760,
+    "cover_clauses": 2528,
+    "geometry_clauses": 1400
+   }
+  },
+  {
+   "n": 8,
+   "placement": "ORDER-FREE",
+   "verdict": "UNSAT",
+   "placement_clauses": 6720,
+   "total_clauses": 24936,
+   "audit": null,
+   "oracle_on_model": null,
+   "base": {
+    "orbit_clauses": 11760,
+    "cover_clauses": 2528,
+    "geometry_clauses": 1400
+   }
+  },
+  {
+   "n": 9,
+   "placement": "order-preserving",
+   "verdict": "UNSAT",
+   "placement_clauses": 1260,
+   "total_clauses": 42732,
+   "audit": null,
+   "oracle_on_model": null,
+   "base": {
+    "orbit_clauses": 26208,
+    "cover_clauses": 6939,
+    "geometry_clauses": 3024
+   }
+  },
+  {
+   "n": 9,
+   "placement": "ORDER-FREE",
+   "verdict": "UNSAT",
+   "placement_clauses": 15120,
+   "total_clauses": 56592,
+   "audit": null,
+   "oracle_on_model": null,
+   "base": {
+    "orbit_clauses": 26208,
+    "cover_clauses": 6939,
+    "geometry_clauses": 3024
+   }
+  },
+  {
+   "n": 10,
+   "placement": "order-preserving",
+   "verdict": "SAT",
+   "placement_clauses": 2520,
+   "total_clauses": 90740,
+   "audit": {
+    "all_center_k4": true,
+    "max_class": 4,
+    "critical_centers": 10,
+    "covered_points": 10,
+    "n": 10,
+    "cover_complete": true
+   },
+   "oracle_on_model": "unsat",
+   "base": {
+    "orbit_clauses": 52080,
+    "cover_clauses": 20170,
+    "geometry_clauses": 5880
+   }
+  },
+  {
+   "n": 10,
+   "placement": "ORDER-FREE",
+   "verdict": "SAT",
+   "placement_clauses": 30240,
+   "total_clauses": 118460,
+   "audit": {
+    "all_center_k4": true,
+    "max_class": 4,
+    "critical_centers": 10,
+    "covered_points": 10,
+    "n": 10,
+    "cover_complete": true
+   },
+   "oracle_on_model": "unsat",
+   "base": {
+    "orbit_clauses": 52080,
+    "cover_clauses": 20170,
+    "geometry_clauses": 5880
+   }
+  }
+ ]
+}

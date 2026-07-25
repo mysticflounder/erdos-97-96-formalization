@@ -155,3 +155,80 @@ own proven bounds rather than estimates:
   bound `|A| >= 15`, which loosens every packing inequality it touches.
 
 So the closing content is a forced law, not a count.
+
+## Result 4: order-free placement (2026-07-25)
+
+`avoid_probe.build` places every schema **order-preservingly**, over
+`C(n,k) * 2k` images.  That convention is forced by the axiom family: the strict
+Kalmanson inequalities are asserted per cyclic 4-subset and so presume the
+support sits in that cyclic order.  A law refuted in **every** relabeling of its
+support carries no such presumption and may be placed over all `k!` images.
+
+`order_free.py` measures this by deciding each law under all `k!` relabelings.
+(Dropping Kalmanson is NOT the right test — see the gate below.)
+
+| k | complete family | **order-free** | order-dependent | mean relabeling coverage |
+|---|---|---|---|---|
+| 4 | 7 | **0** | 7 | 0.619 |
+| 5 | 398 | **96** | 302 | 0.758 |
+
+Clause content per law, order-preserving vs order-free: `k=4` is 3x at every n;
+`k=5` is 12x — at `n = 15`, 30,030 vs 360,360.  So the 96 order-free support-5
+laws afford roughly 2.9 M clauses at `n = 10` against 761 K for the remaining
+302 placed order-preservingly: about 3.7 M total, an order of magnitude under
+the 29.4 M that the complete support-6 family costs at the same n.  **Not yet
+run** — this is the next experiment.
+
+### `u1TwoLargeCapObstruction` is stronger than this lane's oracle
+
+The registry-named sibling theorem (`lean/RVOL/P97/U1TwoLargeCapObstruction.lean`)
+is 5 points, 7 equality atoms, conclusion `False`, with **no** convexity or
+cyclic-order hypothesis:
+
+```text
+(h1 : dist c a = dist c d)  (h2 : dist c a = dist c f)
+(h3 : dist d c = dist d e)  (h4 : dist d c = dist d f)
+(h5 : dist f a = dist f d)  (h6 : dist f a = dist f e)
+(h7 : dist e a = dist e c)  : False
+```
+
+- The relaxation refutes it in **120/120** relabelings, so it is certifiably
+  order-free, consistent with the theorem having no order hypothesis.
+- It is **SAT under positivity + strict triangle**, so it is a PLANAR fact, not
+  a metric-space one.  This is why the first version of the classifier was
+  wrong: "survives dropping Kalmanson" is not order-freeness, and the gate
+  caught it — a Lean-proven order-free law was being rejected.
+- Consequence: no amount of mining against a metric relaxation produces this
+  law.  It is content the lane's oracle cannot reach.
+
+`proven_probe.py` runs the probe layer against it, order-free versus an
+order-preserving control so any flip is attributable to placement rather than to
+the law.  Result: `n = 8` UNSAT and `n = 9` UNSAT under both placements;
+`n = 10` **SAT under both** (+30,240 order-free clauses, 118,460 total), with the
+model auditing as all-center K4, all 10 centers critical, cover complete — and
+its complete pattern still oracle-refuted.  So one order-free law, at 12x
+content, does not flip `n = 10`; the bank is still incomplete there.
+
+### Candidate pool of proven laws
+
+`proven-metric-laws.json` extracts 150 declarations from
+`certificates/p97_rvol_general_n_mining.json` whose statement concludes `False`,
+mentions `dist`, and binds no carrier/convexity structure.  **Caveat, stated:**
+these are candidates, not 150 usable schemas — the pool includes area, disk and
+lane hypotheses, and a naive binder count identifies only `u1TwoLargeCapObstruction`
+itself as being in the pure equality-atom shape.  How many are usable as
+order-free schemas is not determined here.
+
+## Route arithmetic, as measured
+
+The covering route needs the complete support-6 family at the residual's
+cardinality.  Measured costs: 29.4 M clauses at `n = 10` (timeout, per
+`lcap14-global-parent-surface/REPORT.md`) and `C(15,6) * 12 * 11,245 = 675 M`
+clauses at `n = 15`.  Lazy mining does not avoid this — `probe_cegar.py` at
+`n = 10` mines support-6 3-atom laws one at a time, i.e. it re-derives members of
+an 11,245-law family, and the per-iteration cost is dominated by the CaDiCaL
+solve (12.5 s at 1.05 M clauses, >100 s as clauses accumulate).  This is an
+instrument limit, not a budget question.
+
+Order-free placement is the one lever that raises content without raising the
+law count, and the 96 order-free support-5 laws are the untried configuration.

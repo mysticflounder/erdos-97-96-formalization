@@ -1,0 +1,752 @@
+[
+  {
+    "name": "fixedLaneLeft_empty_of_dist_disk_area",
+    "file": "lean/RVOL/P97/C5D3BPacket.lean",
+    "stmt": "theorem fixedLaneLeft_empty_of_dist_disk_area {x y h : ℝ} (hh_pos : 0 < h) (hu_dist : dist (normalizedPoint 1 0) (normalizedPoint x y) = 1) (hu_disk : x ^ 2 + y ^ 2 ≤ 1) (hleft : 0 < signedArea2 (normalizedPoint ((1 : ℝ) / 2) h) (normalizedPoint ((1 : ℝ) / 2) (-h)) (normalizedPoint x y)) : False"
+  },
+  {
+    "name": "fixedLane_empty_of_dist_area",
+    "file": "lean/RVOL/P97/C5D3BPacket.lean",
+    "stmt": "theorem fixedLane_empty_of_dist_area {x y h : ℝ} (hh_pos : 0 < h) (hh_sq : h ^ 2 = (3 : ℝ) / 4) (hu_dist : dist (normalizedPoint 1 0) (normalizedPoint x y) = 1) (hy_lower : -h < y) (hy_neg : y < 0) (hleft : 0 < signedArea2 (normalizedPoint ((1 : ℝ) / 2) h) (normalizedPoint ((1 : ℝ) / 2) (-h)) (normalizedPoint x y)) (hqu : 0 < signedArea2 (normalizedPoint ((1 : ℝ) / 2) h) (normalizedPoint x y) (normalizedPoint 1 0)) : False"
+  },
+  {
+    "name": "no_adjacent_escape_on_apex_radius",
+    "file": "lean/RVOL/P97/U2NonSurplusOneHit.lean",
+    "stmt": "theorem no_adjacent_escape_on_apex_radius (x y u v r : ℝ) (hcircle : x ^ 2 + y ^ 2 = 1) (hv1dist : x ^ 2 + (y + 1) ^ 2 = r) (hpdist : u ^ 2 + (v + 1) ^ 2 = r) (hr : 0 < r) (hpDisk : u ^ 2 + v ^ 2 ≤ 1) (hApex : 0 < (-2 * x) * (1 + y)) (hOutC2 : 0 < (-2 * x) * (y - v)) : False"
+  },
+  {
+    "name": "u1TwoLargeCapObstruction",
+    "file": "lean/RVOL/P97/U1TwoLargeCapObstruction.lean",
+    "stmt": "theorem u1TwoLargeCapObstruction (a c d e f : ℝ²) (hac : a ≠ c) (h1 : dist c a = dist c d) (h2 : dist c a = dist c f) (h3 : dist d c = dist d e) (h4 : dist d c = dist d f) (h5 : dist f a = dist f d) (h6 : dist f a = dist f e) (h7 : dist e a = dist e c) : False"
+  },
+  {
+    "name": "u5_antipodal_aux_center_coord_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalAntipodalAuxScalar.lean",
+    "stmt": "theorem u5_antipodal_aux_center_coord_incompatibility {q0 q1 c0 c1 x0 x1 R : ℝ} (hR : 0 < R) (hqc0 : q0 + c0 = 0) (hqc1 : q1 + c1 = 0) (hxqdot : x0 * q0 + x1 * q1 = R / 2) (hdist_coord : (c0 - x0) ^ 2 + (c1 - x1) ^ 2 = (q0 - x0) ^ 2 + (q1 - x1) ^ 2) : False"
+  },
+  {
+    "name": "u5_chain_antipodal_aux_center_coord_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalAntipodalAuxScalar.lean",
+    "stmt": "theorem u5_chain_antipodal_aux_center_coord_incompatibility {q0 q1 a0 a1 b0 b1 c0 c1 x0 x1 R : ℝ} (hR : 0 < R) (hqq : q0 ^ 2 + q1 ^ 2 = R) (haa : a0 ^ 2 + a1 ^ 2 = R) (hbb : b0 ^ 2 + b1 ^ 2 = R) (hcc : c0 ^ 2 + c1 ^ 2 = R) (hqadot : q0 * a0 + q1 * a1 = R / 2) (habdot : a0 * b0 + a1 * b1 = R / 2) (hbcdot : b0 * c0 + b1 * c1 = R / 2) (hxqdot : x0 * q0 + x1 * q1 = R / 2) (hQ2_ne_R : q0 * b0 + q1 * b1 ≠ R) (hA3_ne_R : a0 * c0 + a1 * c1 ≠ R) (hdist_coord : (c0 - x0) ^ 2 + (c1 - x1) ^ 2 = (q0 - x0) ^ 2 + (q1 - x1) ^ 2) : False"
+  },
+  {
+    "name": "u5_circumcenter_antipodal_coord_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalScalar.lean",
+    "stmt": "theorem u5_circumcenter_antipodal_coord_incompatibility {q0 q1 a0 a1 b0 b1 c0 c1 x0 x1 R S : ℝ} (hR : 0 < R) (hqq : q0 ^ 2 + q1 ^ 2 = R) (haa : a0 ^ 2 + a1 ^ 2 = R) (hbb : b0 ^ 2 + b1 ^ 2 = R) (hcc : c0 ^ 2 + c1 ^ 2 = R) (hS : x0 ^ 2 + x1 ^ 2 = S) (hqadot : q0 * a0 + q1 * a1 = R / 2) (habdot : a0 * b0 + a1 * b1 = R / 2) (hbcdot : b0 * c0 + b1 * c1 = R / 2) (hxqdot : x0 * q0 + x1 * q1 = R / 2) (hxadot : x0 * a0 + x1 * a1 = R / 2) (hQ2_ne_R : q0 * b0 + q1 * b1 ≠ R) (hA3_ne_R : a0 * c0 + a1 * c1 ≠ R) (hdist_coord : (c0 - x0) ^ 2 + (c1 - x1) ^ 2 = (c0 - q0) ^ 2 + (c1 - q1) ^ 2) : False"
+  },
+  {
+    "name": "u5_equilateral_bisector_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceKernels.lean",
+    "stmt": "theorem u5_equilateral_bisector_metric_incompatibility {p a b c x : ℝ²} {r : ℝ} (hr : 0 < r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (hab : dist a b = r) (hax : dist a x = r) (hbx : dist b x = r) (hxpc : dist x p = dist x c) (hcab : dist c a = dist c b) : False"
+  },
+  {
+    "name": "u5_equilateral_circumcenter_on_p_circle_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceKernels.lean",
+    "stmt": "theorem u5_equilateral_circumcenter_on_p_circle_metric_incompatibility {p a b c x : ℝ²} {r : ℝ} (hr : 0 < r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (hab_eq_hac : dist a b = dist a c) (hab_eq_hbc : dist a b = dist b c) (hab_pos : 0 < dist a b) (hxpa : dist x p = dist x a) (hxpb : dist x p = dist x b) (hx_off : dist p x ≠ r) : False"
+  },
+  {
+    "name": "u5_equilateral_opposite_point_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceKernels.lean",
+    "stmt": "theorem u5_equilateral_opposite_point_metric_incompatibility {p a b c x : ℝ²} {r : ℝ} (hr : 0 < r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (hab : dist a b = r) (hac : dist a c = r) (hax : dist a x = r) (hbx : dist b x = r) (hxpc : dist x p = dist x c) : False"
+  },
+  {
+    "name": "u5_equilateral_outer_point_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceKernels.lean",
+    "stmt": "theorem u5_equilateral_outer_point_metric_incompatibility {p a b c x : ℝ²} {r : ℝ} (hr : 0 < r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (hab_eq_hac : dist a b = dist a c) (hab_eq_hbc : dist a b = dist b c) (hab_pos : 0 < dist a b) (hax_side : dist a x = dist a b) (hbx_side : dist b x = dist a b) (hxpc : dist x p = dist x c) : False"
+  },
+  {
+    "name": "u5_phase_one_antipodal_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalPhaseOneAntipodal.lean",
+    "stmt": "theorem u5_phase_one_antipodal_metric_incompatibility {p q a b c x : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (hab : dist a b = r) (hac : dist a c = r) (hbq_hbc : dist b q = dist b c) (hcq_hcb : dist c q = dist c b) (hxp_hxq : dist x p = dist x q) (hxp_hxa : dist x p = dist x a) (hbc_ne : b ≠ c) (hqa_ne : q ≠ a) : False"
+  },
+  {
+    "name": "u5_phase_one_exact_companion_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalPhaseOneAntipodal.lean",
+    "stmt": "theorem u5_phase_one_exact_companion_metric_incompatibility {p q a b c d x : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (hab : dist a b = r) (hac : dist a c = r) (hbq_hbc : dist b q = dist b c) (hcq_hcb : dist c q = dist c b) (hdp_hdq : dist d p = dist d q) (hdp_hdc : dist d p = dist d c) (hxp_hxb : dist x p = dist x b) (hxp_hxd : dist x p = dist x d) (hbc_ne : b ≠ c) (hqa_ne : q ≠ a) : False"
+  },
+  {
+    "name": "u5_phase_one_shared_companion_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalPhaseOneAntipodal.lean",
+    "stmt": "theorem u5_phase_one_shared_companion_metric_incompatibility {p q a b c d x : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (hab : dist a b = r) (hac : dist a c = r) (hbq_hbc : dist b q = dist b c) (hcq_hcb : dist c q = dist c b) (hdp_hdq : dist d p = dist d q) (hdp_hdc : dist d p = dist d c) (hxp_hxa : dist x p = dist x a) (hxp_hxc : dist x p = dist x c) (hxp_hxd : dist x p = dist x d) (hbc_ne : b ≠ c) (hqa_ne : q ≠ a) : False"
+  },
+  {
+    "name": "u5_qcritical_antipodal_aux_center_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalAntipodalAux.lean",
+    "stmt": "theorem u5_qcritical_antipodal_aux_center_metric_incompatibility {p q t₁ t₂ t₃ x : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hxpq : dist x p = dist x q) (hxt₃q : dist x t₃ = dist x q) : False"
+  },
+  {
+    "name": "u5_qcritical_aux_base_collision_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalAuxBaseCollision.lean",
+    "stmt": "theorem u5_qcritical_aux_base_collision_metric_incompatibility {p q t₁ t₂ t₃ x : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hx_ne_p : x ≠ p) (ht₃x : dist t₃ x = r) (hxt₃q : dist x t₃ = dist x q) : False"
+  },
+  {
+    "name": "u5_qcritical_aux_center_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceKernels.lean",
+    "stmt": "theorem u5_qcritical_aux_center_metric_incompatibility {p q t₁ t₂ t₃ a : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hapq : dist a p = dist a q) (ht₃a : dist t₃ a = r) : False"
+  },
+  {
+    "name": "u5_qcritical_chain_right_radius_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalTQpT0N2AdjacentMetric.lean",
+    "stmt": "theorem u5_qcritical_chain_right_radius_metric_incompatibility {p q t₁ t₂ t₃ : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (ht₃qt₂ : dist t₃ q = dist t₃ t₂) : False"
+  },
+  {
+    "name": "u5_qcritical_circumcenter_antipodal_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExtra.lean",
+    "stmt": "theorem u5_qcritical_circumcenter_antipodal_metric_incompatibility {p q t₁ t₂ t₃ x : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hxpq : dist x p = dist x q) (hxt₁q : dist x t₁ = dist x q) (ht₃xq : dist t₃ x = dist t₃ q) : False"
+  },
+  {
+    "name": "u5_qcritical_collinear_aux_center_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceKernels.lean",
+    "stmt": "theorem u5_qcritical_collinear_aux_center_metric_incompatibility {p q t₁ t₂ u a : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₁u : dist t₁ u = r) (ht₂u : dist t₂ u = r) (hq_ne_t₂ : q ≠ t₂) (hp_ne_u : p ≠ u) (hat₁q : dist a t₁ = dist a q) (hauq : dist a u = dist a q) : False"
+  },
+  {
+    "name": "u5_qcritical_et1n3_leader_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalET1N3Leader.lean",
+    "stmt": "theorem u5_qcritical_et1n3_leader_metric_incompatibility {p q a u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (haq_hau : dist a q = dist a u) (haq_had : dist a q = dist a d) (hup_huq : dist u p = dist u q) (hup_hua : dist u p = dist u a) (hup_hud : dist u p = dist u d) (hdp_hda : dist d p = dist d a) (hqa_ne : q ≠ a) : False"
+  },
+  {
+    "name": "u5_qcritical_et1n3_shifted_anchor_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalET1N3Leader.lean",
+    "stmt": "theorem u5_qcritical_et1n3_shifted_anchor_metric_incompatibility {p q a b u e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (haq_hab : dist a q = dist a b) (haq_hau : dist a q = dist a u) (hup_huq : dist u p = dist u q) (hup_hua : dist u p = dist u a) (hbq_hbe : dist b q = dist b e) (hep_hea : dist e p = dist e a) (hep_heb : dist e p = dist e b) (hep_heu : dist e p = dist e u) (hqa_ne : q ≠ a) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_aux_base_collision_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactAuxBaseCollision.lean",
+    "stmt": "theorem u5_qcritical_exact_aux_base_collision_metric_incompatibility {p q t₁ t₂ t₃ x : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hx_ne_p : x ≠ p) (ht₃x : dist t₃ x = r) (hxt₁t₂ : dist x t₁ = dist x t₂) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_aux_chain_bridge_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalExactAuxUBridge.lean",
+    "stmt": "theorem u5_qcritical_exact_aux_chain_bridge_metric_incompatibility {p q a b c u x y : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (hbq_hbc : dist b q = dist b c) (hbq_hbu : dist b q = dist b u) (hbq_hby : dist b q = dist b y) (hca_hcb : dist c a = dist c b) (hca_hcu : dist c a = dist c u) (hup_huc : dist u p = dist u c) (hup_hux : dist u p = dist u x) (hxp_hxc : dist x p = dist x c) (hxp_hxy : dist x p = dist x y) (hyp_hyb : dist y p = dist y b) (hyp_hyx : dist y p = dist y x) (hp_ne_u : p ≠ u) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_aux_u_bridge_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalExactAuxUBridge.lean",
+    "stmt": "theorem u5_qcritical_exact_aux_u_bridge_metric_incompatibility {p q a b c u x : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (hbq_hbc : dist b q = dist b c) (hbq_hbu : dist b q = dist b u) (hca_hcb : dist c a = dist c b) (hca_hcu : dist c a = dist c u) (hup_huc : dist u p = dist u c) (hup_hux : dist u p = dist u x) (hxp_hxc : dist x p = dist x c) (hxp_hxu : dist x p = dist x u) (hp_ne_u : p ≠ u) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_circumcenter_antipodal_coord_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactCircumcenterScalar.lean",
+    "stmt": "theorem u5_qcritical_exact_circumcenter_antipodal_coord_incompatibility {q0 q1 a0 a1 b0 b1 c0 c1 d0 d1 R T : ℝ} (hR : 0 < R) (hqq : q0 ^ 2 + q1 ^ 2 = R) (haa : a0 ^ 2 + a1 ^ 2 = R) (hbb : b0 ^ 2 + b1 ^ 2 = R) (hcc : c0 ^ 2 + c1 ^ 2 = R) (hT : d0 ^ 2 + d1 ^ 2 = T) (hqadot : q0 * a0 + q1 * a1 = R / 2) (habdot : a0 * b0 + a1 * b1 = R / 2) (hbcdot : b0 * c0 + b1 * c1 = R / 2) (hdadot : d0 * a0 + d1 * a1 = R / 2) (hdbdot : d0 * b0 + d1 * b1 = R / 2) (hQ2_ne_R : q0 * b0 + q1 * b1 ≠ R) (hA3_ne_R : a0 * c0 + a1 * c1 ≠ R) (hdist_coord : (c0 - d0) ^ 2 + (c1 - d1) ^ 2 = (c0 - q0) ^ 2 + (c1 - q1) ^ 2) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_circumcenter_antipodal_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactCircumcenter.lean",
+    "stmt": "theorem u5_qcritical_exact_circumcenter_antipodal_metric_incompatibility {p q t₁ t₂ t₃ x : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hxp_t₁ : dist x p = dist x t₁) (hxp_t₂ : dist x p = dist x t₂) (ht₃xq : dist t₃ x = dist t₃ q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_collinear_tail_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalCollinearTail.lean",
+    "stmt": "theorem u5_qcritical_exact_collinear_tail_metric_incompatibility {p q t₁ t₂ t₃ u a : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₁u : dist t₁ u = r) (ht₂u : dist t₂ u = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hp_ne_u : p ≠ u) (hat₂t₃ : dist a t₂ = dist a t₃) (hat₂u : dist a t₂ = dist a u) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_outer_aux_eq_mid_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedOuterAuxMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_outer_aux_eq_mid_metric_incompatibility {p q t₁ t₂ u e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (hut₁t₂ : dist u t₁ = dist u t₂) (hep_t₁ : dist e p = dist e t₁) (hep_u : dist e p = dist e u) (he_ne_t₂ : e ≠ t₂) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_outer_no_base_aux_eq_mid_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedOuterNoBaseAuxMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_outer_no_base_aux_eq_mid_metric_incompatibility {p q t₁ t₂ t₃ u e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (hut₁t₂ : dist u t₁ = dist u t₂) (het₁t₃ : dist e t₁ = dist e t₃) (het₁u : dist e t₁ = dist e u) (he_ne_t₂ : e ≠ t₂) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_outer_right_aux_eq_mid_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedOuterRightAuxMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_outer_right_aux_eq_mid_metric_incompatibility {p q t₁ t₂ t₃ u e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (hut₁t₂ : dist u t₁ = dist u t₂) (hep_t₃ : dist e p = dist e t₃) (hep_u : dist e p = dist e u) (he_ne_t₂ : e ≠ t₂) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_qcritical_antipodal_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceKernels.lean",
+    "stmt": "theorem u5_qcritical_exact_qcritical_antipodal_metric_incompatibility {p q t₁ t₂ t₃ : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (ht₃t₁q : dist t₃ t₁ = dist t₃ q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_right_selected_antipodal_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalRightSelectedAntipodal.lean",
+    "stmt": "theorem u5_qcritical_exact_right_selected_antipodal_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (ht₁u : dist t₁ u = r) (ht₂u : dist t₂ u = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (ht₃u_eq_t₃t₁ : dist t₃ u = dist t₃ t₁) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_antipodal_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceKernels.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_antipodal_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₁u : dist t₁ u = r) (ht₂t₃ : dist t₂ t₃ = r) (ht₂u : dist t₂ u = r) (ht₃u : dist t₃ u = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hp_ne_u : p ≠ u) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_aux_circumcenter_mid_radius_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedAuxCircumcenterMidRadiusMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_aux_circumcenter_mid_radius_metric_incompatibility {p q t₁ t₂ d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hdt₂ : dist d t₂ = r) (hdpq : dist d p = dist d q) (hdt₁q : dist d t₁ = dist d q) (hq_ne_t₂ : q ≠ t₂) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_aux_equiangular_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedAuxEquiangularMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_aux_equiangular_metric_incompatibility {p q t₁ t₂ t₃ d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hdpq : dist d p = dist d q) (hdt₁q : dist d t₁ = dist d q) (ht₃dt₁ : dist t₃ d = dist t₃ t₁) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_aux_exact_collision_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedAuxExactCollisionMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_aux_exact_collision_metric_incompatibility {p q t₁ t₂ d u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (ht₂d : dist t₂ d = r) (hdt₁p : dist d t₁ = dist d p) (hudt₁ : dist u d = dist u t₁) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_aux_left_tail_exact_tail_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactAuxLeftTailExactTailQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_aux_left_tail_exact_tail_qcritical_metric_incompatibility {p q t₁ t₂ t₃ d e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₃t₁t₂ : dist t₃ t₁ = dist t₃ t₂) (ht₃t₁d : dist t₃ t₁ = dist t₃ d) (ht₂dp : dist t₂ d = dist t₂ p) (ht₂ep : dist t₂ e = dist t₂ p) (hdt₁t₃ : dist d t₁ = dist d t₃) (hdt₁e : dist d t₁ = dist d e) (heqt₃ : dist e q = dist e t₃) (heqd : dist e q = dist e d) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_aux_right_collision_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedAuxRightCollisionMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_aux_right_collision_metric_incompatibility {p q t₁ t₂ t₃ d u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (ht₂d : dist t₂ d = r) (hudt₁ : dist u d = dist u t₁) (hdup : dist d u = dist d p) (hdt₃p : dist d t₃ = dist d p) (ht₃dq : dist t₃ d = dist t₃ q) (ht₃uq : dist t₃ u = dist t₃ q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_aux_right_radius_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedAuxRightRadiusMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_aux_right_radius_metric_incompatibility {p q t₁ t₂ t₃ d u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (hudt₁ : dist u d = dist u t₁) (hdt₃du : dist d t₃ = dist d u) (ht₃dq : dist t₃ d = dist t₃ q) (ht₃uq : dist t₃ u = dist t₃ q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_bisector_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalSelectedBisector.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_bisector_metric_incompatibility {p q t₁ t₂ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₁u : dist t₁ u = r) (ht₂u : dist t₂ u = r) (hq_ne_t₂ : q ≠ t₂) (hupq : dist u p = dist u q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_circumcenter_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedCircumcenter.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_circumcenter_metric_incompatibility {p q t₁ t₂ t₃ x : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hx_ne_p : x ≠ p) (hxp_t₂ : dist x p = dist x t₂) (hxp_t₃ : dist x p = dist x t₃) (ht₁xq : dist t₁ x = dist t₁ q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_double_bisector_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedDoubleBisectorMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_double_bisector_metric_incompatibility {p q t₁ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁uq : dist t₁ u = dist t₁ q) (hupq : dist u p = dist u q) (ht₃t₁q : dist t₃ t₁ = dist t₃ q) (ht₃uq : dist t₃ u = dist t₃ q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_equilateral_tangent_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedEquilateralTangentMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_equilateral_tangent_metric_incompatibility {p q t₁ t₂ t₃ d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₃pq : dist t₃ p = dist t₃ q) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hd_ne_p : d ≠ p) (hdt₂ : dist d t₂ = r) (hdt₃ : dist d t₃ = r) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_mid_aux_left_qcritical_right_exact_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedMidAuxLeftQCriticalRightExactMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_mid_aux_left_qcritical_right_exact_metric_incompatibility {p q t₁ t₂ t₃ d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₃t₁t₂ : dist t₃ t₁ = dist t₃ t₂) (ht₃t₁d : dist t₃ t₁ = dist t₃ d) (ht₂dp : dist t₂ d = dist t₂ p) (hdqt₁ : dist d q = dist d t₁) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_mid_aux_qcritical_collision_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedMidAuxQCriticalCollisionMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_mid_aux_qcritical_collision_metric_incompatibility {p q t₁ t₂ d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂d : dist t₂ d = r) (hdpq : dist d p = dist d q) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_d : t₁ ≠ d) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_aux_radius_coord_core",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalAuxRadiusCore.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_aux_radius_coord_core {q0 q1 a0 a1 b0 b1 c0 c1 u0 u1 d0 d1 R S T : ℝ} (hR : 0 < R) (hqq : q0 ^ 2 + q1 ^ 2 = R) (haa : a0 ^ 2 + a1 ^ 2 = R) (hS : u0 ^ 2 + u1 ^ 2 = S) (hT : d0 ^ 2 + d1 ^ 2 = T) (hqadot : q0 * a0 + q1 * a1 = R / 2) (hb0 : q0 + b0 - a0 = 0) (hb1 : q1 + b1 - a1 = 0) (hc0 : q0 + c0 = 0) (hc1 : q1 + c1 = 0) (hleft_dist : (a0 - u0) ^ 2 + (a1 - u1) ^ 2 = (a0 - q0) ^ 2 + (a1 - q1) ^ 2) (hubq_eq : (u0 - b0) ^ 2 + (u1 - b1) ^ 2 = (u0 - q0) ^ 2 + (u1 - q1) ^ 2) (hcu_sq : (u0 - c0) ^ 2 + (u1 - c1) ^ 2 = (a0 - c0) ^ 2 + (a1 - c1) ^ 2) (hcd_sq : (d0 - c0) ^ 2 + (d1 - c1) ^ 2 = (a0 - c0) ^ 2 + (a1 - c1) ^ 2) (hdc_base : d0 ^ 2 + d1 ^ 2 = (d0 - c0) ^ 2 + (d1 - c1) ^ 2) (hdu_base : d0 ^ 2 + d1 ^ 2 = (d0 - u0) ^ 2 + (d1 - u1) ^ 2) (hudq_eq : (u0 - d0) ^ 2 + (u1 - d1) ^ 2 = (u0 - q0) ^ 2 + (u1 - q1) ^ 2) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_aux_radius_coord_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalAuxRadiusScalar.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_aux_radius_coord_incompatibility {q0 q1 a0 a1 b0 b1 c0 c1 u0 u1 d0 d1 R S T : ℝ} (hR : 0 < R) (hqq : q0 ^ 2 + q1 ^ 2 = R) (haa : a0 ^ 2 + a1 ^ 2 = R) (hbb : b0 ^ 2 + b1 ^ 2 = R) (hcc : c0 ^ 2 + c1 ^ 2 = R) (hS : u0 ^ 2 + u1 ^ 2 = S) (hT : d0 ^ 2 + d1 ^ 2 = T) (hqadot : q0 * a0 + q1 * a1 = R / 2) (habdot : a0 * b0 + a1 * b1 = R / 2) (hbcdot : b0 * c0 + b1 * c1 = R / 2) (hleft_dist : (a0 - u0) ^ 2 + (a1 - u1) ^ 2 = (a0 - q0) ^ 2 + (a1 - q1) ^ 2) (hubq_eq : (u0 - b0) ^ 2 + (u1 - b1) ^ 2 = (u0 - q0) ^ 2 + (u1 - q1) ^ 2) (hcu_sq : (u0 - c0) ^ 2 + (u1 - c1) ^ 2 = (a0 - c0) ^ 2 + (a1 - c1) ^ 2) (hcd_sq : (d0 - c0) ^ 2 + (d1 - c1) ^ 2 = (a0 - c0) ^ 2 + (a1 - c1) ^ 2) (hdc_base : d0 ^ 2 + d1 ^ 2 = (d0 - c0) ^ 2 + (d1 - c1) ^ 2) (hdu_base : d0 ^ 2 + d1 ^ 2 = (d0 - u0) ^ 2 + (d1 - u1) ^ 2) (hudq_eq : (u0 - d0) ^ 2 + (u1 - d1) ^ 2 = (u0 - q0) ^ 2 + (u1 - q1) ^ 2) (hQ2_ne_R : q0 * b0 + q1 * b1 ≠ R) (hA3_ne_R : a0 * c0 + a1 * c1 ≠ R) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_aux_radius_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalAuxRadiusMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_aux_radius_metric_incompatibility {p q t₁ t₂ t₃ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (ht₁uq : dist t₁ u = dist t₁ q) (hut₂q : dist u t₂ = dist u q) (ht₃ut₁ : dist t₃ u = dist t₃ t₁) (ht₃dt₁ : dist t₃ d = dist t₃ t₁) (hdpt₃ : dist d p = dist d t₃) (hdpu : dist d p = dist d u) (hudq : dist u d = dist u q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_aux_radius_qcritical_coord_core",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalAuxRadiusQCriticalCore.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_aux_radius_qcritical_coord_core {q0 q1 a0 a1 b0 b1 c0 c1 u0 u1 d0 d1 R S T : ℝ} (hR : 0 < R) (hqq : q0 ^ 2 + q1 ^ 2 = R) (haa : a0 ^ 2 + a1 ^ 2 = R) (hS : u0 ^ 2 + u1 ^ 2 = S) (hT : d0 ^ 2 + d1 ^ 2 = T) (hqadot : q0 * a0 + q1 * a1 = R / 2) (hb0 : q0 + b0 - a0 = 0) (hb1 : q1 + b1 - a1 = 0) (hc0 : q0 + c0 = 0) (hc1 : q1 + c1 = 0) (hleft_dist : (a0 - u0) ^ 2 + (a1 - u1) ^ 2 = (a0 - q0) ^ 2 + (a1 - q1) ^ 2) (hubq_eq : (u0 - b0) ^ 2 + (u1 - b1) ^ 2 = (u0 - q0) ^ 2 + (u1 - q1) ^ 2) (hcu_sq : (u0 - c0) ^ 2 + (u1 - c1) ^ 2 = (a0 - c0) ^ 2 + (a1 - c1) ^ 2) (hcd_sq : (d0 - c0) ^ 2 + (d1 - c1) ^ 2 = (a0 - c0) ^ 2 + (a1 - c1) ^ 2) (hdcq_eq : (d0 - c0) ^ 2 + (d1 - c1) ^ 2 = (d0 - q0) ^ 2 + (d1 - q1) ^ 2) (hudq_eq : (u0 - d0) ^ 2 + (u1 - d1) ^ 2 = (u0 - q0) ^ 2 + (u1 - q1) ^ 2) (hduq_eq : (d0 - u0) ^ 2 + (d1 - u1) ^ 2 = (d0 - q0) ^ 2 + (d1 - q1) ^ 2) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_aux_radius_qcritical_coord_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalAuxRadiusQCriticalScalar.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_aux_radius_qcritical_coord_incompatibility {q0 q1 a0 a1 b0 b1 c0 c1 u0 u1 d0 d1 R S T : ℝ} (hR : 0 < R) (hqq : q0 ^ 2 + q1 ^ 2 = R) (haa : a0 ^ 2 + a1 ^ 2 = R) (hbb : b0 ^ 2 + b1 ^ 2 = R) (hcc : c0 ^ 2 + c1 ^ 2 = R) (hS : u0 ^ 2 + u1 ^ 2 = S) (hT : d0 ^ 2 + d1 ^ 2 = T) (hqadot : q0 * a0 + q1 * a1 = R / 2) (habdot : a0 * b0 + a1 * b1 = R / 2) (hbcdot : b0 * c0 + b1 * c1 = R / 2) (hleft_dist : (a0 - u0) ^ 2 + (a1 - u1) ^ 2 = (a0 - q0) ^ 2 + (a1 - q1) ^ 2) (hubq_eq : (u0 - b0) ^ 2 + (u1 - b1) ^ 2 = (u0 - q0) ^ 2 + (u1 - q1) ^ 2) (hcu_sq : (u0 - c0) ^ 2 + (u1 - c1) ^ 2 = (a0 - c0) ^ 2 + (a1 - c1) ^ 2) (hcd_sq : (d0 - c0) ^ 2 + (d1 - c1) ^ 2 = (a0 - c0) ^ 2 + (a1 - c1) ^ 2) (hdcq_eq : (d0 - c0) ^ 2 + (d1 - c1) ^ 2 = (d0 - q0) ^ 2 + (d1 - q1) ^ 2) (hudq_eq : (u0 - d0) ^ 2 + (u1 - d1) ^ 2 = (u0 - q0) ^ 2 + (u1 - q1) ^ 2) (hduq_eq : (d0 - u0) ^ 2 + (d1 - u1) ^ 2 = (d0 - q0) ^ 2 + (d1 - q1) ^ 2) (hQ2_ne_R : q0 * b0 + q1 * b1 ≠ R) (hA3_ne_R : a0 * c0 + a1 * c1 ≠ R) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_aux_radius_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalAuxRadiusQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_aux_radius_qcritical_metric_incompatibility {p q t₁ t₂ t₃ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (ht₁uq : dist t₁ u = dist t₁ q) (hut₂q : dist u t₂ = dist u q) (ht₃ut₁ : dist t₃ u = dist t₃ t₁) (ht₃dt₁ : dist t₃ d = dist t₃ t₁) (hdt₃q : dist d t₃ = dist d q) (hduq : dist d u = dist d q) (hudq : dist u d = dist u q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_left_right_mid_coord_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalLeftRightMidScalar.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_left_right_mid_coord_incompatibility {q0 q1 a0 a1 b0 b1 c0 c1 u0 u1 R S : ℝ} (hR : 0 < R) (hqq : q0 ^ 2 + q1 ^ 2 = R) (haa : a0 ^ 2 + a1 ^ 2 = R) (hbb : b0 ^ 2 + b1 ^ 2 = R) (hcc : c0 ^ 2 + c1 ^ 2 = R) (hS : u0 ^ 2 + u1 ^ 2 = S) (hqadot : q0 * a0 + q1 * a1 = R / 2) (habdot : a0 * b0 + a1 * b1 = R / 2) (hbcdot : b0 * c0 + b1 * c1 = R / 2) (hleft_dist : (a0 - u0) ^ 2 + (a1 - u1) ^ 2 = (a0 - q0) ^ 2 + (a1 - q1) ^ 2) (hcu_mid : (u0 - c0) ^ 2 + (u1 - c1) ^ 2 = (b0 - c0) ^ 2 + (b1 - c1) ^ 2) (huaq_eq : (u0 - a0) ^ 2 + (u1 - a1) ^ 2 = (u0 - q0) ^ 2 + (u1 - q1) ^ 2) (hSpos : 0 < S) (hQ2_ne_R : q0 * b0 + q1 * b1 ≠ R) (hA3_ne_R : a0 * c0 + a1 * c1 ≠ R) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_left_right_mid_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalLeftRightMidMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_left_right_mid_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₃ut₂ : dist t₃ u = dist t₃ t₂) (hut₁q : dist u t₁ = dist u q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_mid_aux_base_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalMidAuxBase.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_mid_aux_base_metric_incompatibility {p q t₁ t₂ d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₂qd : dist t₂ q = dist t₂ d) (hdpq : dist d p = dist d q) (hdqa : dist d q = dist d t₁) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_mid_aux_exact_base_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalMidAuxExactBase.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_mid_aux_exact_base_metric_incompatibility {p q t₁ t₂ d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₂qd : dist t₂ q = dist t₂ d) (hdpa : dist d p = dist d t₁) (hdpb : dist d p = dist d t₂) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_mid_right_base_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalMidRightBase.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_mid_right_base_metric_incompatibility {p q t₁ t₂ t₃ : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₂qt₃ : dist t₂ q = dist t₂ t₃) (ht₃qp : dist t₃ q = dist t₃ p) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_mid_right_exact_left_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalMidRightBase.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_mid_right_exact_left_metric_incompatibility {p q t₁ t₂ t₃ : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hq_ne_t₃ : q ≠ t₃) (ht₂qt₃ : dist t₂ q = dist t₂ t₃) (ht₃pt₁ : dist t₃ p = dist t₃ t₁) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_mid_selected_aux_exact_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalMidSelectedAuxExact.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_mid_selected_aux_exact_metric_incompatibility {p q t₁ t₂ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂qu : dist t₂ q = dist t₂ u) (ht₂qd : dist t₂ q = dist t₂ d) (huqb : dist u q = dist u t₂) (hdat₂ : dist d t₁ = dist d t₂) (hdau : dist d t₁ = dist d u) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_mid_selected_aux_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalMidSelectedAuxQCritical.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_mid_selected_aux_qcritical_metric_incompatibility {p q t₁ t₂ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂qu : dist t₂ q = dist t₂ u) (ht₂qd : dist t₂ q = dist t₂ d) (huqb : dist u q = dist u t₂) (hdqa : dist d q = dist d t₁) (hdqu : dist d q = dist d u) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_mid_selected_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalMidSelected.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_mid_selected_metric_incompatibility {p q t₁ t₂ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂qu : dist t₂ q = dist t₂ u) (huqa : dist u q = dist u t₁) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_right_aux_equiangular_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalRightAuxEquiangularMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_right_aux_equiangular_metric_incompatibility {p q t₁ t₂ t₃ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (hudp : dist u d = dist u p) (ht₃dq : dist t₃ d = dist t₃ q) (ht₃dt₁ : dist t₃ d = dist t₃ t₁) (hdt₃u : dist d t₃ = dist d u) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_right_mid_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalRightMidMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_right_mid_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (ht₃ut₂ : dist t₃ u = dist t₃ t₂) (hupq : dist u p = dist u q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_right_pair_coord_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalRightPairScalar.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_right_pair_coord_incompatibility {q0 q1 a0 a1 b0 b1 c0 c1 u0 u1 R S : ℝ} (hR : 0 < R) (hqq : q0 ^ 2 + q1 ^ 2 = R) (haa : a0 ^ 2 + a1 ^ 2 = R) (hbb : b0 ^ 2 + b1 ^ 2 = R) (hcc : c0 ^ 2 + c1 ^ 2 = R) (hS : u0 ^ 2 + u1 ^ 2 = S) (hqadot : q0 * a0 + q1 * a1 = R / 2) (habdot : a0 * b0 + a1 * b1 = R / 2) (hbcdot : b0 * c0 + b1 * c1 = R / 2) (hleft_dist : (a0 - u0) ^ 2 + (a1 - u1) ^ 2 = (a0 - q0) ^ 2 + (a1 - q1) ^ 2) (hqudot : q0 * u0 + q1 * u1 = R / 2) (hcu_sq : (u0 - c0) ^ 2 + (u1 - c1) ^ 2 = (a0 - c0) ^ 2 + (a1 - c1) ^ 2) (hQ2_ne_R : q0 * b0 + q1 * b1 ≠ R) (hA3_ne_R : a0 * c0 + a1 * c1 ≠ R) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_right_pair_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalRightPairMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_right_pair_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (ht₁uq : dist t₁ u = dist t₁ q) (hupq : dist u p = dist u q) (ht₃ut₁ : dist t₃ u = dist t₃ t₁) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_qcritical_right_right_mid_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedQCriticalRightRightMidMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_qcritical_right_right_mid_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hu_ne_p : u ≠ p) (ht₃ut₂ : dist t₃ u = dist t₃ t₂) (hut₃q : dist u t₃ = dist u q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_base_coord_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedScalar.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_base_coord_incompatibility {q0 q1 a0 a1 b0 b1 c0 c1 d0 d1 R T : ℝ} (hR : 0 < R) (hqq : q0 ^ 2 + q1 ^ 2 = R) (haa : a0 ^ 2 + a1 ^ 2 = R) (hbb : b0 ^ 2 + b1 ^ 2 = R) (hcc : c0 ^ 2 + c1 ^ 2 = R) (hT : d0 ^ 2 + d1 ^ 2 = T) (hqadot : q0 * a0 + q1 * a1 = R / 2) (habdot : a0 * b0 + a1 * b1 = R / 2) (hbcdot : b0 * c0 + b1 * c1 = R / 2) (hdbdot : d0 * b0 + d1 * b1 = R / 2) (hleft_dist : (a0 - d0) ^ 2 + (a1 - d1) ^ 2 = (a0 - q0) ^ 2 + (a1 - q1) ^ 2) (hright_dist : (c0 - d0) ^ 2 + (c1 - d1) ^ 2 = (c0 - q0) ^ 2 + (c1 - q1) ^ 2) (hQ2_ne_R : q0 * b0 + q1 * b1 ≠ R) (hA3_ne_R : a0 * c0 + a1 * c1 ≠ R) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_base_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightBase.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_base_metric_incompatibility {p q t₁ t₂ t₃ x : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hxp_t₂ : dist x p = dist x t₂) (ht₁xq : dist t₁ x = dist t₁ q) (ht₃xq : dist t₃ x = dist t₃ q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_exact_center_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightExactCenterMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_exact_center_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (ht₃t₁t₂ : dist t₃ t₁ = dist t₃ t₂) (ht₃t₁u : dist t₃ t₁ = dist t₃ u) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_exact_selected_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightExactSelectedQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_exact_selected_qcritical_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (ht₃t₁t₂ : dist t₃ t₁ = dist t₃ t₂) (hut₃q : dist u t₃ = dist u q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_mid_selected_radius_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightMidSelectedRadiusMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_mid_selected_radius_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (ht₃t₂u : dist t₃ t₂ = dist t₃ u) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_pair_coord_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightPairScalar.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_pair_coord_incompatibility {q0 q1 a0 a1 b0 b1 c0 c1 u0 u1 R S : ℝ} (hR : 0 < R) (hqq : q0 ^ 2 + q1 ^ 2 = R) (haa : a0 ^ 2 + a1 ^ 2 = R) (hbb : b0 ^ 2 + b1 ^ 2 = R) (hcc : c0 ^ 2 + c1 ^ 2 = R) (hS : u0 ^ 2 + u1 ^ 2 = S) (hqadot : q0 * a0 + q1 * a1 = R / 2) (habdot : a0 * b0 + a1 * b1 = R / 2) (hbcdot : b0 * c0 + b1 * c1 = R / 2) (hleft_dist : (a0 - u0) ^ 2 + (a1 - u1) ^ 2 = (a0 - q0) ^ 2 + (a1 - q1) ^ 2) (hubc_eq : (b0 - u0) ^ 2 + (b1 - u1) ^ 2 = (c0 - u0) ^ 2 + (c1 - u1) ^ 2) (hSpos : 0 < S) (hQ2_ne_R : q0 * b0 + q1 * b1 ≠ R) (hA3_ne_R : a0 * c0 + a1 * c1 ≠ R) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_pair_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightPairMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_pair_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₂t₃ : dist t₂ t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (hut₂t₃ : dist u t₂ = dist u t₃) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_qcritical_aux_exact_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightQCriticalAuxExactQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_qcritical_aux_exact_qcritical_metric_incompatibility {p q t₁ t₂ t₃ d e u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (hut₃t₁ : dist u t₃ = dist u t₁) (huet₁ : dist u e = dist u t₁) (hdt₃p : dist d t₃ = dist d p) (hdep : dist d e = dist d p) (hdt₃q : dist t₃ d = dist t₃ q) (ht₃qt₂ : dist t₃ q = dist t₃ t₂) (heteq : dist e q = dist e p) (het₃q : dist e t₃ = dist e q) (hedq : dist e d = dist e q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_qcritical_aux_exact_selected_outer_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightQCriticalAuxExactSelectedOuterQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_qcritical_aux_exact_selected_outer_qcritical_metric_incompatibility {p q t₁ t₂ t₃ d e u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (hut₃t₁ : dist u t₃ = dist u t₁) (hdt₂t₃ : dist d t₂ = dist d t₃) (hdt₃u : dist d t₃ = dist d u) (hdt₃e : dist d t₃ = dist d e) (hedp : dist e d = dist e p) (hepq : dist e p = dist e q) (heqt₃ : dist e q = dist e t₃) (hude : dist u d = dist u e) (ht₃qt₂ : dist t₃ q = dist t₃ t₂) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_qcritical_aux_exact_selected_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightQCriticalAuxExactSelectedQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_qcritical_aux_exact_selected_qcritical_metric_incompatibility {p q t₁ t₂ t₃ e u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (hut₃t₁ : dist u t₃ = dist u t₁) (heq_t₃ : dist e q = dist e t₃) (heuq : dist e u = dist e q) (ht₃qt₂ : dist t₃ q = dist t₃ t₂) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_qcritical_aux_selected_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightQCriticalAuxSelectedQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_qcritical_aux_selected_qcritical_metric_incompatibility {p q t₁ t₂ t₃ e u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (hut₃t₁ : dist u t₃ = dist u t₁) (heq_t₃ : dist e q = dist e t₃) (heuq : dist e u = dist e q) (ht₃qt₂ : dist t₃ q = dist t₃ t₂) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_qcritical_collinear_coord_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightQCriticalCollinearScalar.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_qcritical_collinear_coord_incompatibility {q0 q1 a0 a1 b0 b1 c0 c1 u0 u1 R S : ℝ} (hR : 0 < R) (hqq : q0 ^ 2 + q1 ^ 2 = R) (haa : a0 ^ 2 + a1 ^ 2 = R) (hbb : b0 ^ 2 + b1 ^ 2 = R) (hS : u0 ^ 2 + u1 ^ 2 = S) (hqadot : q0 * a0 + q1 * a1 = R / 2) (habdot : a0 * b0 + a1 * b1 = R / 2) (hleft_dist : (a0 - u0) ^ 2 + (a1 - u1) ^ 2 = (a0 - q0) ^ 2 + (a1 - q1) ^ 2) (hbu_sq : (u0 - b0) ^ 2 + (u1 - b1) ^ 2 = R) (hca_q : (c0 - a0) ^ 2 + (c1 - a1) ^ 2 = (c0 - q0) ^ 2 + (c1 - q1) ^ 2) (hcu_q : (c0 - u0) ^ 2 + (c1 - u1) ^ 2 = (c0 - q0) ^ 2 + (c1 - q1) ^ 2) (hSpos : 0 < S) (hQ2_ne_R : q0 * b0 + q1 * b1 ≠ R) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_qcritical_collinear_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightQCriticalCollinearMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_qcritical_collinear_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (ht₃t₁q : dist t₃ t₁ = dist t₃ q) (ht₃uq : dist t₃ u = dist t₃ q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_qcritical_left_right_selected_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightQCriticalLeftRightSelectedMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_qcritical_left_right_selected_metric_incompatibility {p q t₁ t₂ t₃ d u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (hut₃t₁ : dist u t₃ = dist u t₁) (hudt₁ : dist u d = dist u t₁) (hdpq : dist d p = dist d q) (hdt₃q : dist d t₃ = dist d q) (hdt₂ : dist d t₂ = r) (ht₃qt₂ : dist t₃ q = dist t₃ t₂) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_qcritical_mid_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightQCriticalMidMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_qcritical_mid_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (hut₃t₂ : dist u t₃ = dist u t₂) (ht₃qt₁ : dist t₃ q = dist t₃ t₁) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_qcritical_selected_aux_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightQCriticalSelectedAuxQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_qcritical_selected_aux_qcritical_metric_incompatibility {p q t₁ t₂ t₃ e u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (heuq : dist e u = r) (hepq : dist e p = dist e q) (heqt₃ : dist e q = dist e t₃) (ht₃uq : dist t₃ u = dist t₃ q) (ht₃eq : dist t₃ e = dist t₃ q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_right_qcritical_selected_radius_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightQCriticalSelectedRadiusMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_right_qcritical_selected_radius_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (hup_t₃ : dist u p = dist u t₃) (ht₃qt₂ : dist t₃ q = dist t₃ t₂) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_exact_aux_exact_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactAuxExactMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_exact_aux_exact_metric_incompatibility {p q t₁ t₂ t₃ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (hut₂p : dist u t₂ = dist u p) (hut₃p : dist u t₃ = dist u p) (hudp : dist u d = dist u p) (hdt₃p : dist d t₃ = dist d p) (hdup : dist d u = dist d p) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_exact_aux_exact_tail_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactAuxExactTailQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_exact_aux_exact_tail_qcritical_metric_incompatibility {p q t₁ t₂ t₃ u d e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₃t₁t₂ : dist t₃ t₁ = dist t₃ t₂) (ht₃t₁d : dist t₃ t₁ = dist t₃ d) (hdt₁p : dist d t₁ = dist d p) (hdt₃p : dist d t₃ = dist d p) (hdup : dist d u = dist d p) (ht₂ep : dist t₂ e = dist t₂ p) (hued : dist u e = dist u d) (hedu : dist e d = dist e u) (hecd : dist e t₃ = dist e d) (heqc : dist e q = dist e t₃) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_exact_aux_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactAuxQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_exact_aux_qcritical_metric_incompatibility {p q t₁ t₂ t₃ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hut₂p : dist u t₂ = dist u p) (hut₃p : dist u t₃ = dist u p) (hudp : dist u d = dist u p) (ht₂dp : dist t₂ d = dist t₂ p) (ht₃t₂u : dist t₃ t₂ = dist t₃ u) (ht₃t₂d : dist t₃ t₂ = dist t₃ d) (hdt₁q : dist d t₁ = dist d q) (hdqu : dist d q = dist d u) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_exact_aux_right_tail_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactAuxRightTailQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_exact_aux_right_tail_qcritical_metric_incompatibility {p q t₁ t₂ t₃ u d e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hut₂p : dist u t₂ = dist u p) (hut₃p : dist u t₃ = dist u p) (hudp : dist u d = dist u p) (ht₂dp : dist t₂ d = dist t₂ p) (ht₂ep : dist t₂ e = dist t₂ p) (ht₃t₂u : dist t₃ t₂ = dist t₃ u) (ht₃t₂d : dist t₃ t₂ = dist t₃ d) (ht₃t₂e : dist t₃ t₂ = dist t₃ e) (hdt₁t₃ : dist d t₁ = dist d t₃) (hdt₁e : dist d t₁ = dist d e) (hequ : dist e q = dist e u) (heqd : dist e q = dist e d) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_exact_aux_tail_exact_tail_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactAuxTailExactTailQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_exact_aux_tail_exact_tail_qcritical_metric_incompatibility {p q t₁ t₂ t₃ u d e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₃t₁t₂ : dist t₃ t₁ = dist t₃ t₂) (ht₃t₁d : dist t₃ t₁ = dist t₃ d) (ht₂dp : dist t₂ d = dist t₂ p) (hdt₃p : dist d t₃ = dist d p) (hdup : dist d u = dist d p) (ht₂ep : dist t₂ e = dist t₂ p) (hued : dist u e = dist u d) (hedu : dist e d = dist e u) (hecd : dist e t₃ = dist e d) (heqc : dist e q = dist e t₃) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_exact_right_exact_pair_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactRightExactPairMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_exact_right_exact_pair_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (hut₂p : dist u t₂ = dist u p) (hut₃p : dist u t₃ = dist u p) (ht₃t₁t₂ : dist t₃ t₁ = dist t₃ t₂) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_exact_right_mid_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactRightMidMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_exact_right_mid_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (hut₂p : dist u t₂ = dist u p) (hut₃p : dist u t₃ = dist u p) (ht₃t₂q : dist t₃ t₂ = dist t₃ q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_exact_right_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactRightQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_exact_right_qcritical_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (hupt₂ : dist u p = dist u t₂) (hupt₃ : dist u p = dist u t₃) (ht₃t₁q : dist t₃ t₁ = dist t₃ q) (ht₃uq : dist t₃ u = dist t₃ q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_exact_right_qcritical_mid_right_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactRightQCriticalMidRightMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_exact_right_qcritical_mid_right_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (ht₃t₁q : dist t₃ t₁ = dist t₃ q) (ht₃uq : dist t₃ u = dist t₃ q) (hut₂t₃ : dist u t₂ = dist u t₃) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_exact_right_qcritical_tail_exact_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactRightQCriticalTailExactMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_exact_right_qcritical_tail_exact_metric_incompatibility {p q t₁ t₂ t₃ u e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (hut₂p : dist u t₂ = dist u p) (hut₃p : dist u t₃ = dist u p) (ht₃eu : dist t₃ e = dist t₃ u) (het₃p : dist e t₃ = dist e p) (heup : dist e u = dist e p) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_exact_tail_pair_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactTailPairMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_exact_tail_pair_metric_incompatibility {p t₂ t₃ u e : ℝ²} {r : ℝ} (hr : 0 < r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (hut₂p : dist u t₂ = dist u p) (hut₃p : dist u t₃ = dist u p) (ht₃t₂u : dist t₃ t₂ = dist t₃ u) (ht₃t₂e : dist t₃ t₂ = dist t₃ e) (ht₂ep : dist t₂ e = dist t₂ p) (het₃p : dist e t₃ = dist e p) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_exact_tail_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactTailQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_exact_tail_qcritical_metric_incompatibility {p q t₁ t₂ t₃ u e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hut₂p : dist u t₂ = dist u p) (hut₃p : dist u t₃ = dist u p) (ht₃t₂u : dist t₃ t₂ = dist t₃ u) (ht₂ep : dist t₂ e = dist t₂ p) (het₁q : dist e t₁ = dist e q) (hequ : dist e q = dist e u) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_mid_right_radius_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedMidRightRadiusMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_mid_right_radius_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (hut₃t₂ : dist u t₃ = dist u t₂) (ht₃uq : dist t₃ u = dist t₃ q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_aux_exact_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalAuxExactMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_aux_exact_metric_incompatibility {p q t₁ t₂ t₃ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (hupq : dist u p = dist u q) (hut₃p : dist u t₃ = dist u p) (hudp : dist u d = dist u p) (hdt₃p : dist d t₃ = dist d p) (hdup : dist d u = dist d p) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_aux_qcritical_right_exact_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalAuxQCriticalRightExactMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_aux_qcritical_right_exact_metric_incompatibility {p q t₁ t₂ t₃ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (hupq : dist u p = dist u q) (hut₃p : dist u t₃ = dist u p) (ht₂dp : dist t₂ d = dist t₂ p) (hdqt₁ : dist d q = dist d t₁) (ht₃du : dist t₃ d = dist t₃ u) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_aux_qcritical_tail_exact_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalAuxQCriticalTailExactMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_aux_qcritical_tail_exact_metric_incompatibility {p q t₁ t₂ t₃ u d e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁up : dist t₁ u = dist t₁ p) (hupq : dist u p = dist u q) (hupt₃ : dist u p = dist u t₃) (hupd : dist u p = dist u d) (ht₃t₂u : dist t₃ t₂ = dist t₃ u) (ht₃t₂d : dist t₃ t₂ = dist t₃ d) (ht₃t₂e : dist t₃ t₂ = dist t₃ e) (ht₂dp : dist t₂ d = dist t₂ p) (ht₂ep : dist t₂ e = dist t₂ p) (hepc : dist e p = dist e t₃) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_aux_radius_chain_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalAuxRadiusChainMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_aux_radius_chain_metric_incompatibility {p q t₁ t₂ u d e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (hupq : dist u p = dist u q) (hudp : dist u d = dist u p) (hdue : dist d u = dist d e) (hedt₂ : dist e d = dist e t₂) (ht₂ep : dist t₂ e = dist t₂ p) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_aux_radius_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalAuxRadiusMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_aux_radius_metric_incompatibility {p q t₁ t₂ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (hupq : dist u p = dist u q) (hudp : dist u d = dist u p) (ht₂dp : dist t₂ d = dist t₂ p) (hdut₂ : dist d u = dist d t₂) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_mid_aux_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalMidAuxQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_mid_aux_qcritical_metric_incompatibility {p q t₁ t₂ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (huqt₂ : dist u q = dist u t₂) (hudq : dist u d = dist u q) (ht₂dp : dist t₂ d = dist t₂ p) (hdqt₁ : dist d q = dist d t₁) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_mid_aux_right_exact_aux_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalMidAuxRightExactAuxQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_mid_aux_right_exact_aux_qcritical_metric_incompatibility {p q t₁ t₂ t₃ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (huqt₂ : dist u q = dist u t₂) (hudq : dist u d = dist u q) (hdt₃u : dist d t₃ = dist d u) (ht₃t₁t₂ : dist t₃ t₁ = dist t₃ t₂) (ht₃t₁d : dist t₃ t₁ = dist t₃ d) (ht₃du : dist t₃ d = dist t₃ u) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_mid_aux_right_exact_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalMidAuxRightExactMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_mid_aux_right_exact_metric_incompatibility {p q t₁ t₂ t₃ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (huqt₂ : dist u q = dist u t₂) (hudq : dist u d = dist u q) (hdt₃p : dist d t₃ = dist d p) (hdup : dist d u = dist d p) (ht₃t₁t₂ : dist t₃ t₁ = dist t₃ t₂) (ht₃t₁d : dist t₃ t₁ = dist t₃ d) (ht₃du : dist t₃ d = dist t₃ u) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_right_aux_qcritical_radius_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalRightAuxQCriticalRadiusMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_right_aux_qcritical_radius_metric_incompatibility {p q t₁ t₂ t₃ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (huqt₃ : dist u q = dist u t₃) (hudq : dist u d = dist u q) (ht₂dp : dist t₂ d = dist t₂ p) (hdqt₁ : dist d q = dist d t₁) (ht₃du : dist t₃ d = dist t₃ u) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_right_exact_pair_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalRightExactPairMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_right_exact_pair_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (hupq : dist u p = dist u q) (hut₃p : dist u t₃ = dist u p) (ht₃t₁t₂ : dist t₃ t₁ = dist t₃ t₂) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_right_mid_aux_exact_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalRightMidAuxExactMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_right_mid_aux_exact_metric_incompatibility {p q t₁ t₂ t₃ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (hupq : dist u p = dist u q) (hut₃p : dist u t₃ = dist u p) (hudp : dist u d = dist u p) (ht₃t₂q : dist t₃ t₂ = dist t₃ q) (ht₃dq : dist t₃ d = dist t₃ q) (hdt₃p : dist d t₃ = dist d p) (hdup : dist d u = dist d p) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_right_mid_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalRightMidMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_right_mid_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (hupq : dist u p = dist u q) (hut₃p : dist u t₃ = dist u p) (ht₃t₂q : dist t₃ t₂ = dist t₃ q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_right_qcritical_aux_bridge_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalRightQCriticalAuxBridgeMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_right_qcritical_aux_bridge_metric_incompatibility {p q t₁ t₂ t₃ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁uq : dist t₁ u = dist t₁ q) (hupq : dist u p = dist u q) (hut₃p : dist u t₃ = dist u p) (ht₃uq : dist t₃ u = dist t₃ q) (ht₃dq : dist t₃ d = dist t₃ q) (hdt₃p : dist d t₃ = dist d p) (hdup : dist d u = dist d p) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_right_qcritical_aux_exact_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalRightQCriticalAuxExactMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_right_qcritical_aux_exact_metric_incompatibility {p q t₁ t₃ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁uq : dist t₁ u = dist t₁ q) (hut₃q : dist u t₃ = dist u q) (ht₃t₁q : dist t₃ t₁ = dist t₃ q) (ht₃uq : dist t₃ u = dist t₃ q) (ht₃dq : dist t₃ d = dist t₃ q) (hdt₃t₁ : dist d t₃ = dist d t₁) (hdut₁ : dist d u = dist d t₁) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_right_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalRightQCriticalMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_right_qcritical_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (hut₂q : dist u t₂ = dist u q) (ht₃t₁q : dist t₃ t₁ = dist t₃ q) (ht₃uq : dist t₃ u = dist t₃ q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_qcritical_tail_pair_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalTailPairMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_qcritical_tail_pair_metric_incompatibility {p q t₁ t₂ t₃ u e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁up : dist t₁ u = dist t₁ p) (hupq : dist u p = dist u q) (hupt₃ : dist u p = dist u t₃) (ht₃t₂u : dist t₃ t₂ = dist t₃ u) (ht₃t₂e : dist t₃ t₂ = dist t₃ e) (ht₂ep : dist t₂ e = dist t₂ p) (heut₃ : dist e u = dist e t₃) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_right_radius_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedRightRadiusMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_right_radius_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁_ne_t₃ : t₁ ≠ t₃) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (hut₃t₁ : dist u t₃ = dist u t₁) (ht₃uq : dist t₃ u = dist t₃ q) : False"
+  },
+  {
+    "name": "u5_qcritical_exact_selected_selected_right_tail_exact_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedRightTailExactMetric.lean",
+    "stmt": "theorem u5_qcritical_exact_selected_selected_right_tail_exact_metric_incompatibility {p q t₁ t₂ t₃ u e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₃t₁t₂ : dist t₃ t₁ = dist t₃ t₂) (hut₂t₃ : dist u t₂ = dist u t₃) (hut₂e : dist u t₂ = dist u e) (hepa : dist e p = dist e t₁) (hepc : dist e p = dist e t₃) (hepu : dist e p = dist e u) : False"
+  },
+  {
+    "name": "u5_qcritical_grampair_mutual_aux_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalGramPairMutualAuxMetric.lean",
+    "stmt": "theorem u5_qcritical_grampair_mutual_aux_metric_incompatibility {p q ti tj g e f : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpti : dist p ti = r) (hptj : dist p tj = r) (hep_pos : 0 < dist e p) (heq : dist e p = dist e q) (hef : dist e p = dist e f) (hfq : dist f p = dist f q) (hfe : dist f p = dist f e) (hti_tj : dist ti p = dist ti tj) (hti_g : dist ti p = dist ti g) (htj_g : dist tj p = dist tj g) (hg_ef : dist g e = dist g f) (hg_eti : dist g e = dist g ti) : False"
+  },
+  {
+    "name": "u5_qcritical_mid_right_selected_qcritical_aux_exact_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalMidRightSelectedQCriticalAuxExact.lean",
+    "stmt": "theorem u5_qcritical_mid_right_selected_qcritical_aux_exact_metric_incompatibility {p q a b c u x : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (hbq_hbc : dist b q = dist b c) (hbq_hbu : dist b q = dist b u) (hca_hcb : dist c a = dist c b) (hca_hcu : dist c a = dist c u) (hup_huq : dist u p = dist u q) (hup_hub : dist u p = dist u b) (hxp_hxb : dist x p = dist x b) (hxp_hxc : dist x p = dist x c) (hxp_hxu : dist x p = dist x u) (hp_ne_u : p ≠ u) : False"
+  },
+  {
+    "name": "u5_qcritical_mid_selected_right_exact_aux_bridge_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalMidSelectedRightExactAuxBridge.lean",
+    "stmt": "theorem u5_qcritical_mid_selected_right_exact_aux_bridge_metric_incompatibility {p q a b c u x y : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (hbq_hbc : dist b q = dist b c) (hbq_hbu : dist b q = dist b u) (hbq_hby : dist b q = dist b y) (hca_hcb : dist c a = dist c b) (hca_hcu : dist c a = dist c u) (hca_hcy : dist c a = dist c y) (hup_hub : dist u p = dist u b) (hup_huy : dist u p = dist u y) (hxp_hxa : dist x p = dist x a) (hxp_hxc : dist x p = dist x c) (hxp_hxu : dist x p = dist x u) (hyp_hyb : dist y p = dist y b) (hyp_hyc : dist y p = dist y c) (hyp_hyx : dist y p = dist y x) (hp_ne_u : p ≠ u) : False"
+  },
+  {
+    "name": "u5_qcritical_mid_selected_right_u_exact_aux_bridge_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalMidSelectedRightUExactAuxBridge.lean",
+    "stmt": "theorem u5_qcritical_mid_selected_right_u_exact_aux_bridge_metric_incompatibility {p q a b c u x y : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (hbq_hbc : dist b q = dist b c) (hbq_hbu : dist b q = dist b u) (hca_hcb : dist c a = dist c b) (hca_hcu : dist c a = dist c u) (hca_hcy : dist c a = dist c y) (hup_hub : dist u p = dist u b) (hup_huy : dist u p = dist u y) (hxp_hxb : dist x p = dist x b) (hxp_hxc : dist x p = dist x c) (hxp_hxu : dist x p = dist x u) (hyp_hyu : dist y p = dist y u) (hyp_hyx : dist y p = dist y x) (hp_ne_u : p ≠ u) : False"
+  },
+  {
+    "name": "u5_qcritical_mid_selected_right_u_exact_chain_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalMidSelectedRightUExactChain.lean",
+    "stmt": "theorem u5_qcritical_mid_selected_right_u_exact_chain_metric_incompatibility {p q a b c u x y : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (hbq_hbc : dist b q = dist b c) (hbq_hbu : dist b q = dist b u) (hbq_hby : dist b q = dist b y) (hca_hcb : dist c a = dist c b) (hca_hcu : dist c a = dist c u) (hca_hcy : dist c a = dist c y) (hup_hub : dist u p = dist u b) (hup_huy : dist u p = dist u y) (hxp_hxa : dist x p = dist x a) (hxp_hxc : dist x p = dist x c) (hxp_hxu : dist x p = dist x u) (hyp_hya : dist y p = dist y a) (hyp_hyb : dist y p = dist y b) (hyp_hyx : dist y p = dist y x) (hq_ne_c : q ≠ c) (hp_ne_u : p ≠ u) : False"
+  },
+  {
+    "name": "u5_qcritical_mutual_no_p_exact_center_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalMutualNoPExactCenter.lean",
+    "stmt": "theorem u5_qcritical_mutual_no_p_exact_center_metric_incompatibility {p q a b u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (haq_hab : dist a q = dist a b) (hau_hab : dist a u = dist a b) (hbq_hba : dist b q = dist b a) (hbu_hba : dist b u = dist b a) (hup_hua : dist u p = dist u a) (hq_ne_b : q ≠ b) : False"
+  },
+  {
+    "name": "u5_qcritical_no_p_selected_left_exact_anchor_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalNoPSelectedLeftExactAnchor.lean",
+    "stmt": "theorem u5_qcritical_no_p_selected_left_exact_anchor_metric_incompatibility {p q a b u x : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (haq_hab : dist a q = dist a b) (haq_hau : dist a q = dist a u) (haq_hax : dist a q = dist a x) (hup_huq : dist u p = dist u q) (hup_hua : dist u p = dist u a) (hup_hux : dist u p = dist u x) (hxp_hxa : dist x p = dist x a) (hxp_hxb : dist x p = dist x b) : False"
+  },
+  {
+    "name": "u5_qcritical_selected_right_double_exact_chain_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalSelectedRightDoubleExactChain.lean",
+    "stmt": "theorem u5_qcritical_selected_right_double_exact_chain_metric_incompatibility {p c a u x y : ℝ²} {r : ℝ} (hr : 0 < r) (hpc : dist p c = r) (hpa : dist p a = r) (hup_huc : dist u p = dist u c) (hup_hux : dist u p = dist u x) (hca_cu : dist c a = dist c u) (hca_cy : dist c a = dist c y) (hxp_hxc : dist x p = dist x c) (hxp_hxu : dist x p = dist x u) (hyp_hyu : dist y p = dist y u) (hyp_hyx : dist y p = dist y x) (hp_ne_u : p ≠ u) : False"
+  },
+  {
+    "name": "u5_qcritical_selected_tail_radius_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceKernels.lean",
+    "stmt": "theorem u5_qcritical_selected_tail_radius_metric_incompatibility {p q t₁ t₂ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (ht₁u : dist t₁ u = r) (ht₂u : dist t₂ u = r) (hq_ne_t₂ : q ≠ t₂) (hp_ne_u : p ≠ u) (huq : dist u q = r) : False"
+  },
+  {
+    "name": "u5_qcritical_selected_u_exact_antipodal_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalTQpT0N2AdjacentMetric.lean",
+    "stmt": "theorem u5_qcritical_selected_u_exact_antipodal_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (ht₃u : dist t₃ u = r) (ht₃qt₁ : dist t₃ q = dist t₃ t₁) : False"
+  },
+  {
+    "name": "u5_qcritical_selected_witness_antipodal_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalTQpT0N2AdjacentMetric.lean",
+    "stmt": "theorem u5_qcritical_selected_witness_antipodal_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁q : dist t₁ q = r) (ht₁t₂ : dist t₁ t₂ = r) (hq_ne_t₂ : q ≠ t₂) (hu_ne_p : u ≠ p) (ht₁uq : dist t₁ u = dist t₁ q) (ht₂u : dist t₂ u = r) (hup_t₃ : dist u p = dist u t₃) (ht₃qt₁ : dist t₃ q = dist t₃ t₁) : False"
+  },
+  {
+    "name": "u5_qcritical_shifted_exact_aux_bridge_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalShiftedExactAuxBridge.lean",
+    "stmt": "theorem u5_qcritical_shifted_exact_aux_bridge_metric_incompatibility {p q a b c u x y : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (hbq_hbc : dist b q = dist b c) (hbq_hbu : dist b q = dist b u) (hbq_hby : dist b q = dist b y) (hca_hcb : dist c a = dist c b) (hca_hcu : dist c a = dist c u) (hca_hcy : dist c a = dist c y) (hup_huc : dist u p = dist u c) (hup_hux : dist u p = dist u x) (hxp_hxb : dist x p = dist x b) (hxp_hxc : dist x p = dist x c) (hxp_hxy : dist x p = dist x y) (hyp_hyu : dist y p = dist y u) (hyp_hyx : dist y p = dist y x) (hp_ne_u : p ≠ u) : False"
+  },
+  {
+    "name": "u5_qcritical_singleton_nontriple_pq_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalSingletonTailMetric.lean",
+    "stmt": "theorem u5_qcritical_singleton_nontriple_pq_metric_incompatibility {p q t₁ t₂ t₃ u a₀ a₁ : ℝ²} {r : ℝ} (hr : 0 < r) (hpt₂ : dist p t₂ = r) (ht₂u_t₂p : dist t₂ u = dist t₂ p) (ht₃t₂_t₃t₁ : dist t₃ t₂ = dist t₃ t₁) (ht₃a₁_t₃t₁ : dist t₃ a₁ = dist t₃ t₁) (hup_huq : dist u p = dist u q) (hua₀_huq : dist u a₀ = dist u q) (hua₁_huq : dist u a₁ = dist u q) (ha₀t₂_ha₀p : dist a₀ t₂ = dist a₀ p) (ha₀t₃_ha₀p : dist a₀ t₃ = dist a₀ p) (ha₀a₁_ha₀p : dist a₀ a₁ = dist a₀ p) (ha₁t₃_ha₁p : dist a₁ t₃ = dist a₁ p) (ha₁a₀_ha₁p : dist a₁ a₀ = dist a₁ p) : False"
+  },
+  {
+    "name": "u5_qcritical_t_qpt0n2_anchor_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalTQpT0N2AnchorMetric.lean",
+    "stmt": "theorem u5_qcritical_t_qpt0n2_anchor_metric_incompatibility {p q t₂ t₃ u a₀ a₁ : ℝ²} (hr : 0 < dist p q) (ht₂u : dist t₂ u = dist p q) (ht₃u_t₃q : dist t₃ u = dist t₃ q) (ht₃a₁_t₃q : dist t₃ a₁ = dist t₃ q) (hut₂_huq : dist u t₂ = dist u q) (hua₀_huq : dist u a₀ = dist u q) (hua₁_huq : dist u a₁ = dist u q) (ha₀t₂_ha₀p : dist a₀ t₂ = dist a₀ p) (ha₀t₃_ha₀p : dist a₀ t₃ = dist a₀ p) (ha₀a₁_ha₀p : dist a₀ a₁ = dist a₀ p) (ha₁t₂_ha₁p : dist a₁ t₂ = dist a₁ p) (ha₁a₀_ha₁p : dist a₁ a₀ = dist a₁ p) : False"
+  },
+  {
+    "name": "u5_qcritical_top_profile_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalTopProfileMetric.lean",
+    "stmt": "theorem u5_qcritical_top_profile_metric_incompatibility {p q a b c d e u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (haq_hau : dist a q = dist a u) (haq_had : dist a q = dist a d) (hbc_hbe : dist b c = dist b e) (hca_hcb : dist c a = dist c b) (hup_hua : dist u p = dist u a) (hup_hud : dist u p = dist u d) (hdp_hda : dist d p = dist d a) (hdp_hdc : dist d p = dist d c) (hdp_hde : dist d p = dist d e) (hep_heb : dist e p = dist e b) (hep_hec : dist e p = dist e c) (hep_heu : dist e p = dist e u) (hqa_ne : q ≠ a) : False"
+  },
+  {
+    "name": "u5_qcritical_top_profile_tail_pair_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalTopProfileMetric.lean",
+    "stmt": "theorem u5_qcritical_top_profile_tail_pair_metric_incompatibility {p q a b c d e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (haq_hab : dist a q = dist a b) (haq_had : dist a q = dist a d) (hbq_hbc : dist b q = dist b c) (hbc_hbe : dist b c = dist b e) (hdp_hda : dist d p = dist d a) (hdp_hde : dist d p = dist d e) (hep_heb : dist e p = dist e b) (hep_hec : dist e p = dist e c) (hep_hed : dist e p = dist e d) (hqa_ne : q ≠ a) : False"
+  },
+  {
+    "name": "u5_qcritical_two_no_p_mid_selected_double_exact_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalTwoNoPMidSelectedDoubleExact.lean",
+    "stmt": "theorem u5_qcritical_two_no_p_mid_selected_double_exact_metric_incompatibility {p q a b c u x y : ℝ²} {r : ℝ} (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (haq_hab : dist a q = dist a b) (haq_hax : dist a q = dist a x) (hbq_hbc : dist b q = dist b c) (hbq_hbu : dist b q = dist b u) (hca_hcb : dist c a = dist c b) (hup_hub : dist u p = dist u b) (hup_huy : dist u p = dist u y) (hxp_hxa : dist x p = dist x a) (hxp_hxy : dist x p = dist x y) (hyp_hyu : dist y p = dist y u) (hyp_hyx : dist y p = dist y x) (hq_ne_b : q ≠ b) (hq_ne_c : q ≠ c) : False"
+  },
+  {
+    "name": "u5_qcritical_two_no_p_mid_selected_left_exact_aux_bridge_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalTwoNoPMidSelectedLeftExactAuxBridge.lean",
+    "stmt": "theorem u5_qcritical_two_no_p_mid_selected_left_exact_aux_bridge_metric_incompatibility {p q a b c u x y : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (hbq_hbc : dist b q = dist b c) (hbq_hbu : dist b q = dist b u) (hbq_hby : dist b q = dist b y) (hca_hcb : dist c a = dist c b) (hca_hcu : dist c a = dist c u) (hca_hcy : dist c a = dist c y) (hup_hub : dist u p = dist u b) (hup_huy : dist u p = dist u y) (hxp_hxa : dist x p = dist x a) (hxp_hxy : dist x p = dist x y) (hyp_hya : dist y p = dist y a) (hyp_hyb : dist y p = dist y b) (hyp_hyx : dist y p = dist y x) (hp_ne_u : p ≠ u) : False"
+  },
+  {
+    "name": "u5_qcritical_two_no_p_right_exact_selected_qcritical_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalTwoNoPRightExactSelectedQCritical.lean",
+    "stmt": "theorem u5_qcritical_two_no_p_right_exact_selected_qcritical_metric_incompatibility {p q a b c u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (haq_hab : dist a q = dist a b) (haq_hau : dist a q = dist a u) (hbq_hbc : dist b q = dist b c) (hbq_hbu : dist b q = dist b u) (hca_hcb : dist c a = dist c b) (hca_hcu : dist c a = dist c u) (hup_huq : dist u p = dist u q) (hup_hua : dist u p = dist u a) (hp_ne_u : p ≠ u) : False"
+  },
+  {
+    "name": "u5_qcritical_two_no_p_right_selected_left_exact_aux_bridge_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalTwoNoPRightSelectedLeftExactAuxBridge.lean",
+    "stmt": "theorem u5_qcritical_two_no_p_right_selected_left_exact_aux_bridge_metric_incompatibility {p q a b c u x y : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hpc : dist p c = r) (haq_hab : dist a q = dist a b) (haq_hau : dist a q = dist a u) (haq_hax : dist a q = dist a x) (hbq_hbc : dist b q = dist b c) (hca_hcb : dist c a = dist c b) (hca_hcu : dist c a = dist c u) (hup_huq : dist u p = dist u q) (hup_huc : dist u p = dist u c) (hup_hux : dist u p = dist u x) (hxp_hxa : dist x p = dist x a) (hxp_hxc : dist x p = dist x c) (hxp_hxy : dist x p = dist x y) (hyp_hya : dist y p = dist y a) (hyp_hyu : dist y p = dist y u) (hyp_hyx : dist y p = dist y x) (_hp_ne_u : p ≠ u) : False"
+  },
+  {
+    "name": "u5_rank_one_exact_child_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalRankOneExactChild.lean",
+    "stmt": "theorem u5_rank_one_exact_child_metric_incompatibility {p q t₁ t₂ t₃ d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (hq_ne_t₁ : q ≠ t₁) (ht₁q_t₁t₂ : dist t₁ q = dist t₁ t₂) (ht₁q_t₁d : dist t₁ q = dist t₁ d) (ht₂q_t₂t₁ : dist t₂ q = dist t₂ t₁) (ht₃t₁_t₃t₂ : dist t₃ t₁ = dist t₃ t₂) (ht₃t₁_t₃d : dist t₃ t₁ = dist t₃ d) (hdp_hdt₂ : dist d p = dist d t₂) (hdp_hdt₃ : dist d p = dist d t₃) : False"
+  },
+  {
+    "name": "u5_rank_one_radius_child_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalRankOneRadiusChild.lean",
+    "stmt": "theorem u5_rank_one_radius_child_metric_incompatibility {p q t u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt : dist p t = r) (hq_ne_t : q ≠ t) (htq_htu : dist t q = dist t u) (htq_htd : dist t q = dist t d) (hup_huq : dist u p = dist u q) (hup_hut : dist u p = dist u t) (hup_hud : dist u p = dist u d) (hdp_hdt : dist d p = dist d t) (hdp_hdu : dist d p = dist d u) : False"
+  },
+  {
+    "name": "u5_rank_two_mixed_equidistant_triangle_coord_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalRankTwoMixed.lean",
+    "stmt": "theorem u5_rank_two_mixed_equidistant_triangle_coord_incompatibility {q0 q1 b0 b1 v0 v1 R : ℝ} (hR : 0 < R) (hqq : q0 ^ 2 + q1 ^ 2 = R) (hbb : b0 ^ 2 + b1 ^ 2 = R) (hvv : v0 ^ 2 + v1 ^ 2 = R) (hqb : q0 * b0 + q1 * b1 = R / 2) (hqv : q0 * v0 + q1 * v1 = R / 2) (hbv : b0 * v0 + b1 * v1 = R / 2) : False"
+  },
+  {
+    "name": "u5_rank_two_mixed_equidistant_triangle_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalRankTwoMixed.lean",
+    "stmt": "theorem u5_rank_two_mixed_equidistant_triangle_metric_incompatibility {p q b v : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpb : dist p b = r) (hpv : dist p v = r) (hqb : dist q b = r) (hqv : dist q v = r) (hbv : dist b v = r) : False"
+  },
+  {
+    "name": "u5_rank_two_mixed_short_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalRankTwoMixed.lean",
+    "stmt": "theorem u5_rank_two_mixed_short_metric_incompatibility {p q a b u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (haq_hab : dist a q = dist a b) (hau_hab : dist a u = dist a b) (hba : dist b a = r) (hbu : dist b u = r) (hup_huq : dist u p = dist u q) : False"
+  },
+  {
+    "name": "u5_rank_two_mixed_triple_anchor_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalRankTwoMixed.lean",
+    "stmt": "theorem u5_rank_two_mixed_triple_anchor_metric_incompatibility {p q a b u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpa : dist p a = r) (hpb : dist p b = r) (hq_ne_b : q ≠ b) (haq_hab : dist a q = dist a b) (hau_haq : dist a u = dist a q) (hba : dist b a = r) (hbu : dist b u = r) (hup_huq : dist u p = dist u q) (hup_hua : dist u p = dist u a) : False"
+  },
+  {
+    "name": "u5_t_qpt0n2_selected_u_exact_coord_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalTQpT0N2AdjacentMetric.lean",
+    "stmt": "theorem u5_t_qpt0n2_selected_u_exact_coord_incompatibility {q0 q1 a0 a1 b0 b1 c0 c1 u0 u1 R S : ℝ} (hR : 0 < R) (hqq : q0 ^ 2 + q1 ^ 2 = R) (haa : a0 ^ 2 + a1 ^ 2 = R) (hbb : b0 ^ 2 + b1 ^ 2 = R) (hcc : c0 ^ 2 + c1 ^ 2 = R) (hS : u0 ^ 2 + u1 ^ 2 = S) (hqadot : q0 * a0 + q1 * a1 = R / 2) (habdot : a0 * b0 + a1 * b1 = R / 2) (hleft_dist : (a0 - u0) ^ 2 + (a1 - u1) ^ 2 = (a0 - q0) ^ 2 + (a1 - q1) ^ 2) (hbu_sq : (u0 - b0) ^ 2 + (u1 - b1) ^ 2 = R) (huc_sq : (c0 - u0) ^ 2 + (c1 - u1) ^ 2 = R) (hcqa_eq : (q0 - c0) ^ 2 + (q1 - c1) ^ 2 = (a0 - c0) ^ 2 + (a1 - c1) ^ 2) (hSpos : 0 < S) (hQ2_ne_R : q0 * b0 + q1 * b1 ≠ R) : False"
+  },
+  {
+    "name": "u5_t_qpt0n2_selected_witness_coord_incompatibility",
+    "file": "lean/RVOL/P97/U5QCriticalTQpT0N2AdjacentMetric.lean",
+    "stmt": "theorem u5_t_qpt0n2_selected_witness_coord_incompatibility {q0 q1 a0 a1 b0 b1 c0 c1 u0 u1 R S : ℝ} (hR : 0 < R) (hqq : q0 ^ 2 + q1 ^ 2 = R) (haa : a0 ^ 2 + a1 ^ 2 = R) (hbb : b0 ^ 2 + b1 ^ 2 = R) (hcc : c0 ^ 2 + c1 ^ 2 = R) (hS : u0 ^ 2 + u1 ^ 2 = S) (hqadot : q0 * a0 + q1 * a1 = R / 2) (habdot : a0 * b0 + a1 * b1 = R / 2) (hleft_dist : (a0 - u0) ^ 2 + (a1 - u1) ^ 2 = (a0 - q0) ^ 2 + (a1 - q1) ^ 2) (hbu_sq : (u0 - b0) ^ 2 + (u1 - b1) ^ 2 = R) (hupc_eq : u0 ^ 2 + u1 ^ 2 = (c0 - u0) ^ 2 + (c1 - u1) ^ 2) (hcqa_eq : (q0 - c0) ^ 2 + (q1 - c1) ^ 2 = (a0 - c0) ^ 2 + (a1 - c1) ^ 2) (hSpos : 0 < S) (hQ2_ne_R : q0 * b0 + q1 * b1 ≠ R) : False"
+  },
+  {
+    "name": "u5_two_qtransport_chain_exact_anchor_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedTwoTransportChain.lean",
+    "stmt": "theorem u5_two_qtransport_chain_exact_anchor_metric_incompatibility {p q t₁ t₂ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hq_ne_t₂ : q ≠ t₂) (ht₂q_t₂t₁ : dist t₂ q = dist t₂ t₁) (ht₂q_t₂u : dist t₂ q = dist t₂ u) (ht₁t₂_t₁u : dist t₁ t₂ = dist t₁ u) (ht₁t₂_t₁d : dist t₁ t₂ = dist t₁ d) (hup_huq : dist u p = dist u q) (hup_hut₁ : dist u p = dist u t₁) (hdp_hdt₁ : dist d p = dist d t₁) (hdp_hdu : dist d p = dist d u) : False"
+  },
+  {
+    "name": "u5_two_qtransport_exact_root_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedTwoTransportExactRoot.lean",
+    "stmt": "theorem u5_two_qtransport_exact_root_metric_incompatibility {p q t₁ t₂ t₃ : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (ht₁p_t₁t₂ : dist t₁ p = dist t₁ t₂) (ht₁p_t₁t₃ : dist t₁ p = dist t₁ t₃) (ht₂q_t₂t₁ : dist t₂ q = dist t₂ t₁) (ht₃q_t₃t₂ : dist t₃ q = dist t₃ t₂) : False"
+  },
+  {
+    "name": "u5_two_qtransport_mutual_delayed_anchor_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedTwoTransportMutual.lean",
+    "stmt": "theorem u5_two_qtransport_mutual_delayed_anchor_metric_incompatibility {p q t₁ t₂ t₃ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁p_t₁t₂ : dist t₁ p = dist t₁ t₂) (ht₁p_t₁u : dist t₁ p = dist t₁ u) (ht₂q_t₂t₃ : dist t₂ q = dist t₂ t₃) (ht₂q_t₂u : dist t₂ q = dist t₂ u) (ht₃q_t₃t₂ : dist t₃ q = dist t₃ t₂) (hup_ut₂ : dist u p = dist u t₂) : False"
+  },
+  {
+    "name": "u5_two_qtransport_mutual_no_p_delayed_anchor_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedTwoTransportNoPDelayed.lean",
+    "stmt": "theorem u5_two_qtransport_mutual_no_p_delayed_anchor_metric_incompatibility {p q t₂ t₃ u d : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₂q_t₂t₃ : dist t₂ q = dist t₂ t₃) (ht₂q_t₂u : dist t₂ q = dist t₂ u) (ht₂q_t₂d : dist t₂ q = dist t₂ d) (ht₃q_t₃t₂ : dist t₃ q = dist t₃ t₂) (hdp_hdq : dist d p = dist d q) (hdp_hdu : dist d p = dist d u) (hut₂_hud : dist u t₂ = dist u d) : False"
+  },
+  {
+    "name": "u5_two_qtransport_mutual_off_anchor_no_p_delayed_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedTwoTransportOffAnchor.lean",
+    "stmt": "theorem u5_two_qtransport_mutual_off_anchor_no_p_delayed_metric_incompatibility {p q t₁ t₂ t₃ d e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hpt₃ : dist p t₃ = r) (hq_ne_t₂ : q ≠ t₂) (ht₁p_t₁t₂ : dist t₁ p = dist t₁ t₂) (ht₂q_t₂t₃ : dist t₂ q = dist t₂ t₃) (ht₂q_t₂d : dist t₂ q = dist t₂ d) (ht₃q_t₃t₂ : dist t₃ q = dist t₃ t₂) (hdp_hdt₁ : dist d p = dist d t₁) (hdp_hde : dist d p = dist d e) (hep_het₁ : dist e p = dist e t₁) (hep_het₂ : dist e p = dist e t₂) (hep_hed : dist e p = dist e d) : False"
+  },
+  {
+    "name": "u5_two_qtransport_panchored_exact_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedTwoTransportPAnchoredExact.lean",
+    "stmt": "theorem u5_two_qtransport_panchored_exact_metric_incompatibility {p q t₁ t₂ e : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hq_ne_t₁ : q ≠ t₁) (ht₁q_t₁t₂ : dist t₁ q = dist t₁ t₂) (ht₂q_t₂t₁ : dist t₂ q = dist t₂ t₁) (ht₂q_t₂e : dist t₂ q = dist t₂ e) (het₁ : dist e p = dist e t₁) (het₂ : dist e p = dist e t₂) : False"
+  },
+  {
+    "name": "u5_two_qtransport_qanchored_metric_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedTwoTransportQAnchored.lean",
+    "stmt": "theorem u5_two_qtransport_qanchored_metric_incompatibility {p q t₁ t₂ u : ℝ²} {r : ℝ} (hr : 0 < r) (hpq : dist p q = r) (hpt₁ : dist p t₁ = r) (hpt₂ : dist p t₂ = r) (hq_ne_t₁ : q ≠ t₁) (ht₁q_t₁t₂ : dist t₁ q = dist t₁ t₂) (ht₁q_t₁u : dist t₁ q = dist t₁ u) (ht₂q_t₂t₁ : dist t₂ q = dist t₂ t₁) (hupq : dist u p = dist u q) (hupt₁ : dist u p = dist u t₁) : False"
+  },
+  {
+    "name": "u5_unit_triangle_on_p_circle_incompatibility",
+    "file": "lean/RVOL/P97/U5GlobalIncidenceKernels.lean",
+    "stmt": "theorem u5_unit_triangle_on_p_circle_incompatibility {p t1 t2 t3 : ℝ²} {r : ℝ} (hr : 0 < r) (hp1 : dist p t1 = r) (hp2 : dist p t2 = r) (hp3 : dist p t3 = r) (h12 : dist t1 t2 = r) (h13 : dist t1 t3 = r) (h23 : dist t2 t3 = r) : False"
+  }
+]

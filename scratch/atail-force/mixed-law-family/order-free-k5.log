@@ -1,0 +1,8 @@
+u1TwoLargeCapObstruction: relaxation refutes 120/120 distinct relabelings; the Lean theorem refutes all of them (no order hypothesis). Planar, not metric: it is SAT under positivity+triangle = sat
+gate two-atom kalmanson law: refuted in 4/6 relabelings (want strictly fewer than all) OK
+support 5: 398 laws -> 96 ORDER-FREE (refuted in every relabeling), 302 order-dependent; mean relabeling coverage 0.758
+
+clause counts per law:
+  k=5 n=10: order-preserving 2,520 vs order-free 30,240 (12x)
+  k=5 n=12: order-preserving 7,920 vs order-free 95,040 (12x)
+  k=5 n=15: order-preserving 30,030 vs order-free 360,360 (12x)

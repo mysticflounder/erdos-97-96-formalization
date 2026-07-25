@@ -141,6 +141,31 @@ def positivity_only(s, k):
     return d, lambda u, v: d[(min(u, v), max(u, v))]
 
 
+def no_kalmanson(s, k):
+    """Positivity and strict triangle, but NOT Kalmanson.
+
+    Kalmanson is the only order-dependent part of the support-local family: it
+    is asserted per cyclic 4-subset and presumes the points sit in that cyclic
+    order.  So a law that stays UNSAT with Kalmanson dropped holds for EVERY
+    relabeling of its support, not just the order-preserving ones, and may be
+    placed over all k! images instead of C(n,k)*2k.  That is a strictly larger
+    body of blocking content from the same law.
+    """
+    d = {}
+    for u, v in itertools.combinations(range(k), 2):
+        d[(u, v)] = Real(f"d_{u}_{v}")
+        s.add(d[(u, v)] > 0)
+
+    def D(u, v):
+        return d[(min(u, v), max(u, v))]
+
+    for x, y, z in itertools.combinations(range(k), 3):
+        s.add(D(x, z) < D(x, y) + D(y, z))
+        s.add(D(x, y) < D(x, z) + D(y, z))
+        s.add(D(y, z) < D(x, y) + D(x, z))
+    return d, D
+
+
 def decide(k, eqs, neqs, timeout_ms=0, axioms=metric_axioms):
     """Realizability of a mixed law under `axioms`.
 
