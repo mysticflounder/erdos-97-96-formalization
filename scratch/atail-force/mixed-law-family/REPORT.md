@@ -448,3 +448,22 @@ the non-existence of a smaller counterexample, not a constraint on this
 configuration's radius pattern, so no amount of clause content in this encoding
 can express it.  That is the remaining field, and it is where the terminal's
 proof has to come from.
+
+### Result 7 addendum — the robust-count sweep returned no verdict
+
+A sweep at `n = 15` over 3, 5, 8, 11 and 15 fully-robust centers was run to
+locate how much robustness the terminal's cardinality would need.  It was killed
+at its 3000 s timeout **without completing the first point**, and wrote no
+results file.  So `n = 15` with three or more robust centers is UNMEASURED here:
+not SAT, not UNSAT, no verdict.
+
+For contrast, at `n = 15` the same layer with two robust centers solves in 1 s
+(SAT).  That gap is suggestive but is not evidence — SAT solving times are not
+monotone in instance difficulty, and a timeout is not a verdict.  Recorded so a
+later session does not mistake the gap for a measurement.
+
+An independent incidence-level measurement of the "all three apices robust"
+configuration is recorded at
+`docs/audits/2026-07-24-all-large-caps-terminal-route-inventory.md:452` as SAT.
+That is a different and weaker encoding than this one; it is cited here because
+it bears on the same question, not because it settles this run.
