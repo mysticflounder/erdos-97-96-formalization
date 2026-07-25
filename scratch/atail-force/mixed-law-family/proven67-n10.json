@@ -1,0 +1,27 @@
+{
+ "results": [
+  {
+   "n": 10,
+   "placement": "PROVEN ORDER-FREE",
+   "verdict": "SAT",
+   "placement_clauses": 3628800,
+   "total_clauses": 3717020,
+   "build_seconds": 31.6,
+   "solve_seconds": 157.2,
+   "audit": {
+    "all_center_k4": true,
+    "max_class": 4,
+    "critical_centers": 10,
+    "covered_points": 10,
+    "n": 10,
+    "cover_complete": true
+   },
+   "oracle_on_model": "unsat",
+   "base": {
+    "orbit_clauses": 52080,
+    "cover_clauses": 20170,
+    "geometry_clauses": 5880
+   }
+  }
+ ]
+}

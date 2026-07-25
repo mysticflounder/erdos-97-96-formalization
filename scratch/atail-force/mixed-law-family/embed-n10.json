@@ -1,0 +1,124 @@
+{
+ "n": 10,
+ "base": {
+  "orbit_clauses": 52080,
+  "cover_clauses": 20170,
+  "geometry_clauses": 5880
+ },
+ "audit": {
+  "all_center_k4": true,
+  "max_class": 4,
+  "critical_centers": 10,
+  "covered_points": 10,
+  "n": 10,
+  "cover_complete": true
+ },
+ "embeds": [],
+ "avoids": [
+  {
+   "name": "u5_qcritical_two_no_p_right_selected_left_exact_aux_bridge_metric_incompatibility",
+   "support": 8,
+   "embedding": null
+  },
+  {
+   "name": "u5_qcritical_mid_selected_right_exact_aux_bridge_metric_incompatibility",
+   "support": 8,
+   "embedding": null
+  },
+  {
+   "name": "u5_qcritical_mid_selected_right_u_exact_chain_metric_incompatibility",
+   "support": 8,
+   "embedding": null
+  },
+  {
+   "name": "u5_qcritical_shifted_exact_aux_bridge_metric_incompatibility",
+   "support": 8,
+   "embedding": null
+  },
+  {
+   "name": "u5_qcritical_two_no_p_mid_selected_left_exact_aux_bridge_metric_incompatibility",
+   "support": 8,
+   "embedding": null
+  },
+  {
+   "name": "u5_qcritical_mid_selected_right_u_exact_aux_bridge_metric_incompatibility",
+   "support": 8,
+   "embedding": null
+  },
+  {
+   "name": "u5_qcritical_top_profile_metric_incompatibility",
+   "support": 8,
+   "embedding": null
+  },
+  {
+   "name": "u5_qcritical_exact_aux_chain_bridge_metric_incompatibility",
+   "support": 8,
+   "embedding": null
+  },
+  {
+   "name": "u5_qcritical_two_no_p_mid_selected_double_exact_metric_incompatibility",
+   "support": 8,
+   "embedding": null
+  },
+  {
+   "name": "u5_qcritical_mid_right_selected_qcritical_aux_exact_metric_incompatibility",
+   "support": 7,
+   "embedding": null
+  },
+  {
+   "name": "u5_qcritical_top_profile_tail_pair_metric_incompatibility",
+   "support": 7,
+   "embedding": null
+  },
+  {
+   "name": "u5_two_qtransport_mutual_off_anchor_no_p_delayed_metric_incompatibility",
+   "support": 7,
+   "embedding": null
+  },
+  {
+   "name": "u5_qcritical_exact_aux_u_bridge_metric_incompatibility",
+   "support": 7,
+   "embedding": null
+  },
+  {
+   "name": "u5_qcritical_two_no_p_right_exact_selected_qcritical_metric_incompatibility",
+   "support": 6,
+   "embedding": null
+  },
+  {
+   "name": "u5_qcritical_et1n3_shifted_anchor_metric_incompatibility",
+   "support": 6,
+   "embedding": null
+  },
+  {
+   "name": "u5_qcritical_no_p_selected_left_exact_anchor_metric_incompatibility",
+   "support": 6,
+   "embedding": null
+  },
+  {
+   "name": "u5_rank_one_exact_child_metric_incompatibility",
+   "support": 6,
+   "embedding": null
+  },
+  {
+   "name": "u5_two_qtransport_chain_exact_anchor_metric_incompatibility",
+   "support": 6,
+   "embedding": null
+  },
+  {
+   "name": "u5_qcritical_selected_right_double_exact_chain_metric_incompatibility",
+   "support": 6,
+   "embedding": null
+  },
+  {
+   "name": "u5_two_qtransport_mutual_delayed_anchor_metric_incompatibility",
+   "support": 6,
+   "embedding": null
+  },
+  {
+   "name": "u5_two_qtransport_mutual_no_p_delayed_anchor_metric_incompatibility",
+   "support": 6,
+   "embedding": null
+  }
+ ]
+}

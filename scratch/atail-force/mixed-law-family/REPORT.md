@@ -280,3 +280,95 @@ facts the closure plan names on the minimal-deletion arms
 (`docs/closure-plan-full-spec-2026-07-09.md:2307-2317`): physical-second-apex
 co-radiality of the collision pair; one repeated outside pair at a second
 same-cap center; a rank or nonreturn theorem for the installed-singleton arm.
+
+## Result 6 — the Lean-proven support-6..8 family does not force
+
+Result 5 concluded that the closing content must live at support `>= 6`, and
+that mining it from the support-local relaxation costs 29.4 M clauses at
+`n = 10`.  It does not have to be mined: the sibling banks already contain
+proven laws at that support, and they were missed because of two shape
+conventions rather than any mathematical difference.
+
+`mine_support6.py` scans all six census files named by the repo's mandatory
+theorem-bank registry — 2,930 unique declarations — for the pure equality-atom
+shape.  Under a strict reading it finds exactly **one**, at support 5:
+`u1TwoLargeCapObstruction`, the law already known to this lane.
+
+`mine_radius_laws.py` relaxes two conventions that carry no content:
+
+* **implicit point binders.**  `{p q a b c u x y : R^2}` states the same law as
+  the explicit form; implicit-vs-explicit is elaboration, not mathematics.
+* **the scalar radius witness.**  The large `p97-rvol` families bind
+  `{r : R} (hr : 0 < r)` and write `dist p q = r`, `dist p a = r`,
+  `dist p b = r`.  That says exactly that `q, a, b` are equidistant from `p` —
+  center atoms at `p`, with `r` eliminated by transitivity.
+
+`r` is eliminable **iff** its `= r` edges share a common vertex.  A star at `p`
+gives center atoms; a non-star family such as `dist p q = r` together with
+`dist t1 t2 = r` asserts a unit-distance equality between two edges with no
+shared endpoint, which the probe layer's `eq_{center}_{left}_{right}` variables
+cannot express.  Those are reported and **not** emitted — 98 of them.
+
+The result is **29 laws in the exact shape `avoid_probe.build` consumes, 21 of
+them at support `>= 6`**: nine at `k = 8`, four at `k = 7`, eight at `k = 6`,
+carrying 9 to 18 atoms each.  All nineteen source files exist in the sibling
+`p97-rvol` tree and are free of `sorry` and of `axiom`.  The census records them
+`source-proved`; per its own note that is not a kernel axiom audit, and none was
+run here.  None carries a convexity or cyclic-order hypothesis, so each is
+order-free **by the theorem** rather than by this lane's relaxation oracle, and
+admits placement over all injective images `P(n,k)`.  Injective placement also
+discharges each law's distinctness hypotheses, since distinct indices are
+distinct points.
+
+Placed into the probe layer (`proven6_probe.py`):
+
+| laws placed | n | placement clauses | total | verdict |
+|---|---|---|---|---|
+| support 6 (8 laws) | 8 | 161,280 | 179,496 | UNSAT |
+| support 6 (8 laws) | 9 | 483,840 | 525,312 | UNSAT |
+| support 6 (8 laws) | 10 | 1,209,600 | 1,297,820 | **SAT** |
+| support 6+7 (12 laws) | 10 | 3,628,800 | 3,717,020 | **SAT** |
+
+The `n = 8` and `n = 9` rows reproduce the recorded verdicts, so the placement
+is calibrated.  Note the direction: the layer is UNSAT at 8 and 9 and SAT at 10,
+so **added points give added freedom**.  Raising `n` toward the terminal's
+`>= 15` makes the layer more satisfiable, not less; no larger-`n` run can
+recover an UNSAT the `n = 10` run lost.
+
+Placing the support-8 block would cost `P(10,8) = 1,814,400` clauses per law,
+16.3 M for the block.  `embed_check.py` decides the question without spending
+it.  Placement is only a way of asserting "no model contains this pattern", so
+instead: solve the **base** layer, take a model, and search each proven law for
+an injective embedding directly.  No embedding for any law means that model
+avoids the whole family, and no placement budget can change that.
+
+The search is backtracking with propagation over the atom list, not brute force
+over `P(n,k)`; it is smoke-tested on all 21 laws against their own atom sets
+(positive), against the empty pattern (negative), and for injectivity and
+per-atom satisfaction of every embedding returned.
+
+| n | base model | proven laws embedding |
+|---|---|---|
+| 10 | SAT, all-center K4, max class 4, cover complete | **0 of 21** |
+| 15 | SAT, all-center K4, max class 4, cover complete | **0 of 21** |
+
+`n = 15` is the terminal's own cardinality.  A base-layer model at that
+cardinality avoids the entire Lean-proven support-6..8 family, so placing those
+laws cannot refute the layer at any budget.
+
+The avoidance is not a coarse structural mismatch.  The `cover` block forces
+every center's largest radius class to be exactly 4, and a law needing a class
+of size `>= 5` at some center could never embed in any cover-complete model at
+any `n`.  Measured per law, **0 of 21 require a class of size `>= 5`** — every
+one has max class exactly 4 or 3.  The patterns are therefore compatible with
+the layer's structure and simply are not forced to occur.
+
+### Scope of Result 6
+
+This eliminates the sibling proven bank as a source of the covering step's
+closing content, at the terminal's own cardinality.  It says nothing about
+whether the terminal is true, and it does not shrink the `sorry` at
+`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:249`.  What it removes
+is the assumption that a support-`>= 6` forced law already exists in the mined
+banks and merely needed wiring: it does not, and the 21 that come closest are
+avoidable at `n = 15`.

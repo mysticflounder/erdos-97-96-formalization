@@ -1,0 +1,61 @@
+{
+ "laws": [
+  {
+   "name": "u1TwoLargeCapObstruction",
+   "file": "lean/RVOL/P97/U1TwoLargeCapObstruction.lean",
+   "support": 5,
+   "points": [
+    "a",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "atoms": [
+    [
+     1,
+     0,
+     2
+    ],
+    [
+     1,
+     0,
+     4
+    ],
+    [
+     2,
+     1,
+     3
+    ],
+    [
+     2,
+     1,
+     4
+    ],
+    [
+     4,
+     0,
+     2
+    ],
+    [
+     4,
+     0,
+     3
+    ],
+    [
+     3,
+     0,
+     1
+    ]
+   ],
+   "distinct": [
+    [
+     0,
+     1
+    ]
+   ],
+   "proof_status": "?",
+   "n_atoms": 7
+  }
+ ]
+}

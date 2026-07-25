@@ -1,0 +1,12 @@
+{
+ "recoverable": [
+  {
+   "name": "u1TwoLargeCapObstruction",
+   "file": "lean/RVOL/P97/U1TwoLargeCapObstruction.lean",
+   "support": 5,
+   "n_atoms": 7,
+   "order_hyps": []
+  }
+ ],
+ "heads": []
+}
