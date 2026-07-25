@@ -438,3 +438,53 @@ cap-injectivity constraint can enter a core.
 3. If a full-LRA survivor ever appears, the next oracles are the stage-2
    exactness filter (already implemented) and then a Euclidean equality-ideal /
    Cayley-Menger pass, which this lane does not have.
+
+## 10. Unique-four cover and apex-triple exclusion in the outer search
+
+Added 2026-07-25, behind two flags, both defaulting off:
+
+    --unique-four    unique-four centre cover, families (U1)/(U2)/(U3)
+    --apex-triple    no carrier point equidistant from all three Moser apices
+
+New kinds: `unique_four_class_equality`, `unique_four_class_exactness`,
+`unique_four_uniqueness`, `apex_triple_exclusion`.  **None is in
+`TRANSPORTABLE`**, and `TRANSPORTABLE` is assigned exactly once and never
+mutated — verified by inspection.  Adding any of them there would be unsound:
+a unique-four class is attached to a specific centre and is not order-invariant.
+
+Validation, 2026-07-25:
+
+* `--mode smoke` 16/16 pass, `"actual"` values identical to the committed
+  `smoke.json` baseline, including `R_core_transport_guard` (4/4) and
+  `N_wrong_cyclic_order_rejected` (UNSAT).
+* Two runs, same configuration, 550 s internal wall cap, seed 0, cap
+  injectivity on:
+
+  | | baseline (off) | enabled |
+  |---|---|---|
+  | file | `gate_baseline_600s.json` | `gate_unique_apex_600s.json` |
+  | status / reason | UNKNOWN / `outer: timeout` | UNKNOWN / `wall budget exhausted` |
+  | attempts | 2253 | 4974 |
+  | `counters.stage1_cuts` | 2252 | 4973 |
+  | transported schemas | 680 | 146 |
+  | transported applications | 1122134 | 177856 |
+
+  Both are UNKNOWN BY TIMEOUT.  **UNKNOWN is not UNSAT**; neither run proves
+  anything.  Enabling the families roughly doubled the raw cut rate while
+  cutting transport reuse by about six times, so the net effect on time-to-
+  decision is not established by these two runs.
+
+### Open defects in this addition
+
+* {{NEEDS_UPDATE}} `Outer.__init__` defaults `use_unique_four` and
+  `use_apex_triple` to `True`, so `smoke()` and `run_boolean_only`, which
+  construct `Outer(...)` without kwargs, silently run WITH the new families.
+  This contradicts the flags' `default=False`.  No smoke verdict changed, but
+  the two paths disagree about what "default" means.
+* {{NEEDS_UPDATE}} In `verify_exact_shadow` the apex-triple violation check is
+  unconditional, unlike the unique-four block which is gated on
+  `"uf_centers" in decoded`.  A SAT witness produced with `--apex-triple` off
+  would raise an uncaught `AssertionError` instead of returning a verdict.
+  Not reached in either run above, since both ended UNKNOWN.
+* {{NEEDS_UPDATE}} `run_gate`'s `"encoded"` prose list names both layers even
+  when both flags are off.  Metadata only.

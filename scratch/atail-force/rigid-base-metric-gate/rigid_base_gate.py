@@ -150,6 +150,8 @@ class Outer:
         use_cap_hit_bounds: bool = True,
         use_bisector_alternation: bool = True,
         use_cap_injectivity: bool = True,
+        use_unique_four: bool = True,
+        use_apex_triple: bool = True,
         row_centers: Iterable[int] | None = None,
     ) -> None:
         self.solver = z3.SolverFor("QF_FD") if engine == "qffd" else z3.Solver()
@@ -157,6 +159,8 @@ class Outer:
         self.use_cap_hit_bounds = use_cap_hit_bounds
         self.use_bisector_alternation = use_bisector_alternation
         self.use_cap_injectivity = use_cap_injectivity
+        self.use_unique_four = use_unique_four
+        self.use_apex_triple = use_apex_triple
         # Centers at which the K4 hypothesis is actually imposed.  Dropping a
         # center is a sound RELAXATION: every solution of the full problem
         # yields one of the relaxation by emptying the dropped rows, so UNSAT of
@@ -173,7 +177,16 @@ class Outer:
                 self.vars[("rA", u, p)] = z3.Bool(f"rA_{u}_{p}")
                 self.vars[("rB", u, p)] = z3.Bool(f"rB_{u}_{p}")
             self.vars[("single", u)] = z3.Bool(f"single_{u}")
+        if use_unique_four:
+            for c in VERTICES:
+                self.vars[("uf", c)] = z3.Bool(f"uf_{c}")
+                for p in VERTICES:
+                    self.vars[("uf4", c, p)] = z3.Bool(f"uf4_{c}_{p}")
         self._add_base()
+        if use_unique_four:
+            self._add_unique_four()
+        if use_apex_triple:
+            self._add_apex_triple_exclusion()
 
     def v(self, key: tuple) -> z3.BoolRef:
         return self.vars[key]
@@ -302,6 +315,99 @@ class Outer:
                             s.add(z3.Not(z3.And(rB(p1), rB(p2),
                                                 m(c, p1), m(c, p2))))
 
+    # -- unique-four center layer (U1/U2/U3) -------------------------------
+    #
+    # PROVEN, general in n, from global minimality of the counterexample
+    # alone (no cap, packet, frontier or shell data):
+    # `lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean`.
+    #
+    #   (U1) every x in A lies in the four-point class of some unique-four
+    #        center p != x (`exists_isUniqueFourCenter_of_minimal`);
+    #   (U2) a deletion-robust center is never a unique-four center
+    #        (`not_isUniqueFourCenter_of_fullyDeletionRobust`); at this gate
+    #        that means the robust apices 0 and 5;
+    #   (U3) |A| <= 4 * |U|, so at n=15, |U| >= 4
+    #        (`card_le_four_mul_uniqueFourCenters`).
+    #
+    # `uf[c]` / `uf4[c][p]` are a SEPARATE variable family from `m`, and are
+    # NOT gated by `row_centers` -- exactly like `rA`/`rB` at the robust
+    # apices, they are always fully present.  U1/U2/U3 are consequences of
+    # minimality plus the FULL (unrelaxed) K4 hypothesis, not of whichever
+    # row_centers subset a given ladder rung happens to impose; keeping them
+    # decoupled preserves "dropping a center is a sound relaxation" --
+    # emptying `m`-rows at non-row-center vertices leaves a genuine full
+    # solution's uf/uf4 assignment untouched, so a relaxed-rung UNSAT still
+    # transfers upward.  Reusing `m` itself for the unique-four class would
+    # break that (forcing uf[c]=False whenever c drops out of row_centers,
+    # which can make the covering condition (U1) unsatisfiable for reasons
+    # that have nothing to do with the relaxed rung's own claim).
+
+    def _add_unique_four(self) -> None:
+        s = self.solver
+        uf = lambda c: self.vars[("uf", c)]
+        uf4 = lambda c, p: self.vars[("uf4", c, p)]
+
+        for c in VERTICES:
+            s.add(z3.Not(uf4(c, c)))
+            s.add(z3.Implies(uf(c), z3.PbEq([(uf4(c, p), 1) for p in VERTICES], 4)))
+            s.add(z3.Implies(z3.Not(uf(c)),
+                             z3.And(*[z3.Not(uf4(c, p)) for p in VERTICES])))
+
+        # (U2) robust apices are never unique-four centers.
+        for u in ROBUST_APICES:
+            s.add(z3.Not(uf(u)))
+
+        # (U3) covering by 4-point classes forces |U| >= ceil(|A| / 4) = 4.
+        s.add(z3.PbGe([(uf(c), 1) for c in VERTICES], 4))
+
+        # (U1) every carrier point lies in some other unique-four center's
+        # class.  This is the strong part -- a full covering condition.
+        for x in VERTICES:
+            s.add(z3.Or(*[z3.And(uf(p), uf4(p, x))
+                          for p in VERTICES if p != x]))
+
+    # -- apex-triple exclusion ----------------------------------------------
+    #
+    # PROVEN, general in n, metric content (consumes the non-obtuse Moser
+    # promotion + MEC containment, but is itself purely an incidence fact):
+    # `lean/Erdos9796Proof/P97/ATail/ApexTripleEquidistance.lean`,
+    # `Problem97.ATailApexTripleEquidistance.not_equidistant_from_three_apices`.
+    #
+    # No carrier point is equidistant from all three Moser apices 0, 5, 10.
+    # Equivalently: no radius class at any center contains all three apices.
+    # This is imported here as a pure BOOLEAN projection onto the EXISTING
+    # designated-row variables (`m`, `rA`/`rB`, and -- if enabled -- `uf4`):
+    # if a designated row contained all of {0,5,10}, the row's co-radiality
+    # equations (model_equalities / model_equalities_unique_four) would force
+    # d(c,0)=d(c,5)=d(c,10), i.e. c equidistant from all three apices,
+    # contradicting the theorem.  So the negation is sound to assert directly
+    # at the Boolean level -- no metric-oracle call is needed to prune it.
+    # The FULLY GENERAL metric-level form (over every possible radius class,
+    # not just the designated rows) is `apex_triple_exclusion_surface`; the
+    # two are logically consistent restatements at different layers, and
+    # this Boolean projection is a strictly cheaper necessary condition of
+    # the metric-level family.  References fixed apex labels 0, 5, 10, so it
+    # is NOT order-invariant -- never add its kind to TRANSPORTABLE.
+
+    def _add_apex_triple_exclusion(self) -> None:
+        s = self.solver
+        m = lambda c, p: self.vars[("m", c, p)]
+        triple = APICES
+
+        def forbid(members) -> None:
+            s.add(z3.Not(z3.And(*[members(a) for a in triple])))
+
+        for c in VERTICES:
+            forbid(lambda a, c=c: m(c, a))
+        for u in ROBUST_APICES:
+            rA = lambda a, u=u: self.vars[("rA", u, a)]
+            rB = lambda a, u=u: self.vars[("rB", u, a)]
+            forbid(rA)
+            forbid(rB)
+        if self.use_unique_four:
+            for c in VERTICES:
+                forbid(lambda a, c=c: self.vars[("uf4", c, a)])
+
     # -- decoding and cuts ------------------------------------------------
 
     def decode(self, model: z3.ModelRef) -> dict[str, object]:
@@ -322,8 +428,19 @@ class Outer:
             a = tuple(p for p in VERTICES if truth(("rA", u, p)))
             b = () if single else tuple(p for p in VERTICES if truth(("rB", u, p)))
             apex[u] = {"mode": "SINGLE" if single else "TWIN", "A": a, "B": b}
-        return {"rows": rows, "apex": apex,
-                "row_centers": tuple(sorted(self.row_centers))}
+        decoded = {"rows": rows, "apex": apex,
+                  "row_centers": tuple(sorted(self.row_centers))}
+        if self.use_unique_four:
+            uf_centers = {}
+            for c in VERTICES:
+                if truth(("uf", c)):
+                    support = tuple(p for p in VERTICES if truth(("uf4", c, p)))
+                    if len(support) != 4 or c in support:
+                        raise AssertionError(
+                            f"bad unique-four class at {c}: {support}")
+                    uf_centers[c] = support
+            decoded["uf_centers"] = uf_centers
+        return decoded
 
     def add_literal_cut(self, literals: Iterable[tuple[tuple, bool]]) -> None:
         disjuncts = []
@@ -358,6 +475,14 @@ class Outer:
             for p in VERTICES:
                 literals.append((("rA", u, p), p in record["A"]))
                 literals.append((("rB", u, p), p in record["B"]))
+        if "uf_centers" in decoded:
+            uf_centers = decoded["uf_centers"]
+            for c in VERTICES:
+                literals.append((("uf", c), c in uf_centers))
+                if c in uf_centers:
+                    support = uf_centers[c]
+                    for p in VERTICES:
+                        literals.append((("uf4", c, p), p in support))
         self.add_literal_cut(literals)
 
 
@@ -453,6 +578,35 @@ def cap_injectivity_surface(table) -> list[Tracked]:
     return out
 
 
+def apex_triple_exclusion_surface(table) -> list[Tracked]:
+    """No carrier point is equidistant from all three Moser apices 0, 5, 10.
+
+    PROVEN, general in n:
+    `Problem97.ATailApexTripleEquidistance.not_equidistant_from_three_apices`
+    (`lean/Erdos9796Proof/P97/ATail/ApexTripleEquidistance.lean`).  A point
+    equidistant from the three apices would be the circumcenter of the
+    (non-obtuse) Moser triangle, hence in its closed hull; a carrier point
+    cannot lie in the hull of three other carrier points under convex
+    independence.  Model independent -- holds for every candidate exactly as
+    triangle/Kalmanson do -- so this is added to the same "base" family.
+    References the fixed apex labels 0, 5, 10: NOT order-invariant, never
+    add its kind to TRANSPORTABLE.  Vacuous (but harmless) at c in {0,5,10}
+    itself, since two of the three apex-distances there include d(c,c)=0.
+    """
+    out: list[Tracked] = []
+    for c in VERTICES:
+        if c in APICES:
+            continue
+        a, b, e = APICES
+        out.append(Tracked(
+            f"apextriple_{c}",
+            z3.Not(z3.And(dist(table, c, a) == dist(table, c, b),
+                         dist(table, c, b) == dist(table, c, e))),
+            "apex_triple_exclusion",
+        ))
+    return out
+
+
 def model_equalities(decoded, table) -> list[Tracked]:
     """Co-radiality equations forced by the Boolean incidence model."""
     out: list[Tracked] = []
@@ -512,6 +666,90 @@ def model_exactness(decoded, table) -> list[Tracked]:
                 ((("rA", u, record["A"][0]), True),
                  (("rB", u, record["B"][0]), True),
                  (("single", u), False)),
+            ))
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Unique-four center layer (U1/U2/U3).  See Outer._add_unique_four for the
+# Boolean side; these three functions are its Stage 1 (equality) and Stage 2
+# (exactness + uniqueness) metric-layer counterparts, in the same style as
+# model_equalities / model_exactness above.  Kinds are NOT in TRANSPORTABLE:
+# a unique-four class is attached to a specific center, not order-invariant.
+# ---------------------------------------------------------------------------
+
+
+def unique_four_leftover(center: int, support: tuple[int, ...]) -> tuple[int, ...]:
+    excluded = {center, *support}
+    return tuple(p for p in VERTICES if p not in excluded)
+
+
+def model_equalities_unique_four(decoded, table) -> list[Tracked]:
+    """Co-radiality equations for the designated unique-four classes.
+
+    Stage 1 (pure necessary condition, mirrors model_equalities): the four
+    marked points of a unique-four center's class share a distance to it.
+    """
+    out: list[Tracked] = []
+    for c, support in decoded.get("uf_centers", {}).items():
+        ref = support[0]
+        for p in support[1:]:
+            out.append(Tracked(
+                f"ufrow_{c}_{ref}_{p}",
+                dist(table, c, p) == dist(table, c, ref),
+                "unique_four_class_equality",
+                ((("uf4", c, ref), True), (("uf4", c, p), True)),
+            ))
+    return out
+
+
+def model_exactness_unique_four(decoded, table) -> list[Tracked]:
+    """The designated unique-four class is a FULL radius class of exactly
+    four points (stage 2, mirrors model_exactness): no point outside it
+    shares the class radius."""
+    out: list[Tracked] = []
+    for c, support in decoded.get("uf_centers", {}).items():
+        ref = support[0]
+        for p in VERTICES:
+            if p == c or p in support:
+                continue
+            out.append(Tracked(
+                f"ufexact_{c}_{ref}_{p}",
+                dist(table, c, p) != dist(table, c, ref),
+                "unique_four_class_exactness",
+                ((("uf4", c, ref), True), (("uf4", c, p), False)),
+            ))
+    return out
+
+
+def model_uniqueness_unique_four(decoded, table) -> list[Tracked]:
+    """No OTHER K4 radius at a unique-four center (stage 2): among the ten
+    points outside {center} u {designated class}, no four are mutually
+    equidistant from the center.
+
+    Combined with exactness above (which already rules out any point outside
+    the class sharing the class radius), this rules out every 4-subset at
+    any OTHER radius too, hence "exactly one K4 radius" -- the uniqueness
+    clause of the (U1)/(U2)/(U3) definition.  Any 5+-point class at another
+    radius contains a 4-subset, so subsets of size exactly 4 already cover
+    that case; no need to separately enumerate larger subsets.  Literals use
+    only the four NEGATIVE uf4 memberships (plus uf[c] itself, which they do
+    NOT imply): the fact that t1..t4 are outside c's class is what licenses
+    the disequality, independent of what the rest of the class contains.
+    """
+    out: list[Tracked] = []
+    for c, support in decoded.get("uf_centers", {}).items():
+        leftover = sorted(unique_four_leftover(c, support))
+        for t1, t2, t3, t4 in itertools.combinations(leftover, 4):
+            out.append(Tracked(
+                f"ufuniq_{c}_{t1}_{t2}_{t3}_{t4}",
+                z3.Not(z3.And(dist(table, c, t1) == dist(table, c, t2),
+                             dist(table, c, t2) == dist(table, c, t3),
+                             dist(table, c, t3) == dist(table, c, t4))),
+                "unique_four_uniqueness",
+                ((("uf", c), True),
+                 (("uf4", c, t1), False), (("uf4", c, t2), False),
+                 (("uf4", c, t3), False), (("uf4", c, t4), False)),
             ))
     return out
 
@@ -761,6 +999,58 @@ def verify_exact_shadow(decoded, distances, exactness: bool) -> dict[str, object
                             {"cap": name, "center": center, "side": side,
                              "points": [r0, s0]})
 
+    # Unique-four center layer (U1/U2/U3), when present.  Recomputed directly
+    # from the exact distances via radius_classes -- no need to re-derive the
+    # leftover/4-subset encoding used by the solver, since we have concrete
+    # numbers here.
+    unique_four_report: dict[str, object] = {}
+    if "uf_centers" in decoded:
+        uf_centers = decoded["uf_centers"]
+        for u in ROBUST_APICES:
+            if u in uf_centers:
+                errors.append(f"robust apex {u} is marked unique-four (violates U2)")
+        if len(uf_centers) < 4:
+            errors.append(
+                f"only {len(uf_centers)} unique-four centers (violates U3, need >= 4)")
+        covered: set[int] = set()
+        for c, support in uf_centers.items():
+            if len(set(support)) != 4 or c in support:
+                errors.append(f"unique-four class at {c} is not a clean 4-set: {support}")
+                continue
+            classes = radius_classes(distances, c)
+            big = [members for members in classes.values() if len(members) >= 4]
+            if len(big) != 1:
+                errors.append(
+                    f"unique-four center {c} has {len(big)} classes of size >= 4, want 1")
+            elif sorted(big[0]) != sorted(support):
+                errors.append(
+                    f"unique-four center {c} declared class {support} but the "
+                    f"actual size>=4 class is {big[0]}")
+            elif len(big[0]) != 4:
+                errors.append(
+                    f"unique-four center {c} class has size {len(big[0])}, want 4")
+            covered.update(support)
+        uncovered = [x for x in VERTICES if x not in covered]
+        if uncovered:
+            errors.append(f"carrier points not covered by any unique-four class: {uncovered}")
+        unique_four_report = {
+            "center_count": len(uf_centers),
+            "centers": sorted(uf_centers),
+            "covered_all_carrier_points": not uncovered,
+        }
+
+    # Apex-triple exclusion, when the run declared it: no center's ACTUAL
+    # radius classes (not just the designated rows) contain all of 0, 5, 10.
+    apex_triple_violations = []
+    a0, a1, a2 = APICES
+    for c in VERTICES:
+        if c in APICES:
+            continue
+        if (dvalue(distances, c, a0) == dvalue(distances, c, a1)
+                and dvalue(distances, c, a1) == dvalue(distances, c, a2)):
+            apex_triple_violations.append(c)
+            errors.append(f"apex-triple exclusion failed: {c} equidistant from 0,5,10")
+
     if errors:
         raise AssertionError("; ".join(sorted(set(errors))[:20]))
     return {
@@ -772,6 +1062,8 @@ def verify_exact_shadow(decoded, distances, exactness: bool) -> dict[str, object
         "k4_max_class_size_per_point": k4_sizes,
         "robustness": robustness,
         "cap_hit_bound_violations_in_full_classes": cap_hit_violations,
+        "unique_four": unique_four_report,
+        "apex_triple_exclusion_violations": apex_triple_violations,
     }
 
 
@@ -1269,12 +1561,16 @@ def run_gate(args) -> dict[str, object]:
         use_cap_hit_bounds=not args.no_cap_hit_bounds,
         use_bisector_alternation=not args.no_bisector_alternation,
         use_cap_injectivity=not args.no_cap_injectivity,
+        use_unique_four=args.unique_four,
+        use_apex_triple=args.apex_triple,
         row_centers=centers,
     )
     table = distance_table()
     base = base_surface(table)
     if not args.no_cap_injectivity:
         base = base + cap_injectivity_surface(table)
+    if args.apex_triple:
+        base = base + apex_triple_exclusion_surface(table)
 
     bank_record = None
     if args.mined_bank and MINED_BANK.exists():
@@ -1315,6 +1611,8 @@ def run_gate(args) -> dict[str, object]:
             result = {"status": "UNKNOWN", "reason": "wall budget exhausted"}
             break
         eqs = model_equalities(decoded, table)
+        if args.unique_four:
+            eqs = eqs + model_equalities_unique_four(decoded, table)
         stage1 = solve_tracked(base + eqs, budget, args.random_seed + attempt, True)
 
         if stage1["status"] == "UNKNOWN":
@@ -1377,6 +1675,9 @@ def run_gate(args) -> dict[str, object]:
                 result = {"status": "UNKNOWN", "reason": "wall budget exhausted"}
                 break
             ex = model_exactness(decoded, table)
+            if args.unique_four:
+                ex = (ex + model_exactness_unique_four(decoded, table)
+                      + model_uniqueness_unique_four(decoded, table))
             stage2 = solve_tracked(base + eqs + ex, budget,
                                    args.random_seed + attempt, True)
             if stage2["status"] == "UNKNOWN":
@@ -1422,6 +1723,9 @@ def run_gate(args) -> dict[str, object]:
                 "apex": {str(u): {"mode": r["mode"], "A": list(r["A"]),
                                   "B": list(r["B"])}
                          for u, r in decoded["apex"].items()},
+                **({"uf_centers": {str(c): list(v) for c, v in
+                                   decoded["uf_centers"].items()}}
+                   if "uf_centers" in decoded else {}),
             },
             "distances": {k: qstr(v) for k, v in distances.items()},
             "verification": verification,
@@ -1451,6 +1755,8 @@ def run_gate(args) -> dict[str, object]:
             "core_minimization": bool(args.minimize_cores),
             "core_transport": bool(args.transport_cores),
             "one_sided_cap_injectivity": not args.no_cap_injectivity,
+            "unique_four_cover": args.unique_four,
+            "apex_triple_exclusion": args.apex_triple,
             "mined_bank_preload": bank_record,
             "row_centers": sorted(centers),
             "is_relaxation": sorted(centers) != list(VERTICES),
@@ -1468,12 +1774,21 @@ def run_gate(args) -> dict[str, object]:
             "both strict Kalmanson inequalities on every cyclic quadruple",
             "exact rational arithmetic throughout (QF_LRA, slack normalized "
             "to integral >= 1)",
+            "unique-four center layer (U1/U2/U3): minimality forces every "
+            "carrier point into some unique-four center's exact 4-class "
+            "(U1), robust apices 0/5 are never unique-four (U2), and "
+            "|U| >= 4 (U3) -- MinimalUniqueFourCover.lean, general in n, "
+            "independent of row_centers",
+            "apex-triple exclusion: no carrier point equidistant from all "
+            "three Moser apices 0, 5, 10 -- ApexTripleEquidistance.lean, "
+            "general in n",
         ],
         "not_encoded": [
             "planar Euclidean coordinate realizability (rank-two Gram / CM "
             "determinant conditions)",
             "minimal-enclosing-circle containment",
-            "the non-obtuse condition on the Moser triangle",
+            "the non-obtuse condition on the Moser triangle (consumed only "
+            "indirectly, via cap injectivity and apex-triple exclusion)",
             "the orientation content of 'far side of the chord' beyond "
             "contiguity of the cap blocks",
             "Ptolemy and other higher-order convex-position inequalities",
@@ -1531,12 +1846,16 @@ def run_integrated(args) -> dict[str, object]:
         use_cap_hit_bounds=not args.no_cap_hit_bounds,
         use_bisector_alternation=not args.no_bisector_alternation,
         use_cap_injectivity=not args.no_cap_injectivity,
+        use_unique_four=args.unique_four,
+        use_apex_triple=args.apex_triple,
         row_centers=centers,
     )
     table = distance_table()
     solver = build_integrated_solver(
         outer, table, exactness, args.metric_timeout_ms, args.random_seed,
         cap_injectivity=not args.no_cap_injectivity,
+        unique_four=args.unique_four,
+        apex_triple=args.apex_triple,
     )
     st = solver.check()
     payload: dict[str, object] = {
@@ -1549,6 +1868,8 @@ def run_integrated(args) -> dict[str, object]:
             "cap_hit_bounds": not args.no_cap_hit_bounds,
             "bisector_alternation": not args.no_bisector_alternation,
             "one_sided_cap_injectivity": not args.no_cap_injectivity,
+            "unique_four_cover": args.unique_four,
+            "apex_triple_exclusion": args.apex_triple,
             "row_centers": sorted(centers),
             "is_relaxation": sorted(centers) != list(VERTICES),
         },
@@ -1573,6 +1894,9 @@ def run_integrated(args) -> dict[str, object]:
             "apex": {str(u): {"mode": r["mode"], "A": list(r["A"]),
                               "B": list(r["B"])}
                      for u, r in decoded["apex"].items()},
+            **({"uf_centers": {str(c): list(v) for c, v in
+                               decoded["uf_centers"].items()}}
+               if "uf_centers" in decoded else {}),
         }
         payload["distances"] = {k: qstr(v) for k, v in distances.items()}
         payload["verification"] = verify_exact_shadow(decoded, distances, exactness)
@@ -1586,7 +1910,8 @@ def run_integrated(args) -> dict[str, object]:
 
 
 def build_integrated_solver(outer, table, exactness, timeout_ms, seed,
-                            cap_injectivity=True):
+                            cap_injectivity=True, unique_four=True,
+                            apex_triple=True):
     solver = z3.Solver()
     solver.set(timeout=timeout_ms, random_seed=seed)
     solver.add(*outer.solver.assertions())
@@ -1594,6 +1919,9 @@ def build_integrated_solver(outer, table, exactness, timeout_ms, seed,
         solver.add(item.formula)
     if cap_injectivity:
         for item in cap_injectivity_surface(table):
+            solver.add(item.formula)
+    if apex_triple:
+        for item in apex_triple_exclusion_surface(table):
             solver.add(item.formula)
 
     rad = {c: z3.Real(f"rad_{c}") for c in VERTICES}
@@ -1623,6 +1951,36 @@ def build_integrated_solver(outer, table, exactness, timeout_ms, seed,
                     dist(table, u, p) != radB[u]))
         if exactness:
             solver.add(z3.Implies(z3.Not(single), radA[u] != radB[u]))
+
+    # Unique-four center layer (U1/U2/U3), symbolic form: radUF[c] is real
+    # only when uf[c] holds; uf4[c][p] pins d(c,p) = radUF[c], and (with
+    # exactness) every p outside the class is pinned away from it.  The
+    # uniqueness clause cannot be pre-restricted to a ground "leftover" set
+    # here (no decoded model yet), so it is guarded symbolically over every
+    # 4-subset of VERTICES \ {c} that is disjoint from uf4[c] -- C(14,4) =
+    # 1001 guarded assertions per center, 15015 total.  Correct, not cheap;
+    # see REPORT-uniquefour.md for the measured cost.
+    if unique_four and outer.use_unique_four:
+        radUF = {c: z3.Real(f"radUF_{c}") for c in VERTICES}
+        for c in VERTICES:
+            uf_c = outer.v(("uf", c))
+            solver.add(radUF[c] >= 1)
+            others = [p for p in VERTICES if p != c]
+            for p in others:
+                uf4_cp = outer.v(("uf4", c, p))
+                solver.add(z3.Implies(uf4_cp, dist(table, c, p) == radUF[c]))
+                solver.add(z3.Implies(z3.And(uf_c, z3.Not(uf4_cp)),
+                                      dist(table, c, p) != radUF[c]))
+            for t1, t2, t3, t4 in itertools.combinations(others, 4):
+                outside = z3.And(z3.Not(outer.v(("uf4", c, t1))),
+                                 z3.Not(outer.v(("uf4", c, t2))),
+                                 z3.Not(outer.v(("uf4", c, t3))),
+                                 z3.Not(outer.v(("uf4", c, t4))))
+                not_coradial = z3.Not(z3.And(
+                    dist(table, c, t1) == dist(table, c, t2),
+                    dist(table, c, t2) == dist(table, c, t3),
+                    dist(table, c, t3) == dist(table, c, t4)))
+                solver.add(z3.Implies(z3.And(uf_c, outside), not_coradial))
     return solver
 
 
@@ -1699,6 +2057,12 @@ def main() -> None:
     parser.add_argument("--mined-bank", action="store_true", default=False,
                         help="preload the n=14 lane's mined LRA-UNSAT row schemas")
     parser.add_argument("--mined-max-k", type=int, default=6)
+    parser.add_argument("--unique-four", action="store_true", default=False,
+                        help="enable the unique-four center cover constraint "
+                             "family (U1/U2/U3)")
+    parser.add_argument("--apex-triple", action="store_true", default=False,
+                        help="enable the apex-triple equidistance exclusion "
+                             "constraint")
     parser.add_argument("--row-centers", default="all",
                         help=("centers at which the K4 row hypothesis is "
                               "imposed: a preset ("
