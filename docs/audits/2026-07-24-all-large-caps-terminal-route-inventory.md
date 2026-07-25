@@ -1006,3 +1006,72 @@ still has something to give.
 Combined with `not_isUniqueFourCenter_of_fullyDeletionRobust`, all three Moser
 apices are now excluded from the unique-four witness set `U`.  That is still not
 a contradiction: `|A| <= 4 * |U|` with `|U| <= n - 3` is consistent for `n >= 4`.
+
+## Summing the sharp bound over ALL radii, not just K4 radii
+
+Status: the per-radius ingredient is Lean-proven
+(`selectedClass_capInteriorByIndex_card_ge_card_sub_two`, equivalently
+`|C(u_i,r) \ I_i| <= 2` for EVERY positive radius).  The summation below is
+elementary and NOT yet formalized — {{NEEDS_PROOF}} in the sense of "not in
+Lean", not in the sense of "unclear".
+
+The classes at apex `u_i` partition `A \ {u_i}`, and `I_i` is disjoint from
+`{u_i}`, so with `k_i` the number of distinct distances from `u_i` to the rest
+of `A`:
+
+  sum over all radii of |C(u_i,r)|         = n - 1
+  sum over all radii of |C(u_i,r) cap I_i| = |I_i| = c_i - 2
+  each term |C(u_i,r) \ I_i|              <= 2
+
+giving `n + 1 - c_i <= 2 k_i`, i.e. `k_i >= (n + 1 - c_i) / 2`.  Restated
+without the counting: FROM AN APEX, ALL POINTS OF AN ADJACENT CAP LIE AT
+PAIRWISE DISTINCT DISTANCES.  That is just the `<= 1` adjacent-cap lemma read
+the other way, but it is the sharpest available metric statement about an apex
+and it applies at every cardinality.
+
+Restricting the same sum to radii with at least three points gives the budget
+
+  Sigma_i := sum over {r : |C(u_i,r)| >= 3} of (|C(u_i,r)| - 2)  <=  c_i - 2.
+
+### Consequence at the rigid base |A| = 15
+
+All caps are exactly 6, so `|I_i| = 4` and `Sigma_i <= 4`.  Full deletion
+robustness at `u_i` supplies either a class of size >= 5 or two disjoint classes
+of size >= 4.  Against a budget of 4 that leaves exactly three shapes per apex:
+
+* (T1) exactly two K4 radii, both classes of size exactly 4; their `I_i`-parts
+  have size 2 each and partition `I_i`; each class has exactly one point in each
+  adjacent cap.  `Sigma_i = 4`.
+* (T2) a unique K4 radius with class of size exactly 5; `|C cap I_i|` is 3 or 4;
+  at most one further radius carries exactly 3 points.  `Sigma_i = 3`.
+* (T3) a unique K4 radius with class of size exactly 6; then `I_i` is contained
+  in the class and exactly one point lies in each adjacent cap; no other radius
+  carries 3 or more points.  `Sigma_i = 4`.
+
+A class of size 7 or more at an apex is impossible at `|A| = 15`
+(`Sigma_i <= 4`, and independently `|C| <= c_i`).
+
+### This corrects the earlier rigid-base description above
+
+The earlier section asserts that the base case "forces `Sigma = 4` exactly at
+`oppApex1` — exactly two 4-classes".  That is right at `oppApex1` and for the
+wrong-looking reason: (T2) is excluded there not by the budget but by
+`first_oppCap_card_ge_six`, whose case split gives at `oppApex1` either a class
+of size >= 6 (T3) or two distinct K4 radii (T1).  It never gives (T2).  But the
+earlier section does not say this, and (T2) IS available at the other two
+apices, where no such dichotomy has been run.  So "the completely rigid
+configuration" as described is the shape at `oppApex1` only, not at all three.
+
+### Concrete next Lean step
+
+`redesignateSecondOppCapAsSurplus` puts the surplus apex into the FIRST opposite
+role (`T'.surplusIdx = S.oppIndex2`, hence `T'.oppIndex1 = S.surplusIdx`).
+Running the fresh-frontier pattern on it — the same pattern that harvested
+tri-apex robustness — would deliver the `first_oppCap_card_ge_six` dichotomy at
+the surplus apex, excluding (T2) there.  A third rotation would be needed for
+`oppApex2`.  {{UNVALIDATED}} — the role map for that rotation is read off the
+existing simp lemma, not yet proved for the apex accessor.
+
+This does not close anything by itself.  It narrows the base case from "three
+apices each in one of three shapes" toward "three apices each in one of two",
+and it is the kind of statement the solver gate can consume directly.

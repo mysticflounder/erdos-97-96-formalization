@@ -116,6 +116,46 @@ private theorem frontierRadius_pos
     (Finset.mem_filter.mp (Finset.mem_sdiff.mp F.pair.q_mem_marginal).1).2
   simpa only [dist_comm, hqRadius] using hpos
 
+/-- The radius dichotomy at the first physical opposite apex, in exportable
+form.  `first_oppCap_card_ge_six` derives this and then discards it, keeping
+only the cap bound; consumers that need the apex's radius structure — rather
+than its cap size — need the dichotomy itself.
+
+Either the frontier radius already carries six points at `oppApex1`, or a
+second, distinct K4 radius is present there.  The `(4, 5)`-class shape at
+`oppApex1` — a unique K4 radius with a five-point class — is therefore not
+available: it is neither branch. -/
+theorem firstApex_largeClass_or_secondRadius
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F) :
+    6 ≤ (SelectedClass D.A S.oppApex1 radius).card ∨
+      ∃ ρ : ℝ, 0 < ρ ∧ ρ ≠ radius ∧
+        4 ≤ (SelectedClass D.A S.oppApex1 ρ).card := by
+  rcases R.common.firstApexDouble with ⟨otherRadius, hotherPos, hfourRaw⟩
+  have hfourDouble :
+      4 ≤ (SelectedClass ((D.A.erase F.pair.q).erase F.pair.w)
+        S.oppApex1 otherRadius).card := by
+    simpa [SelectedClass] using hfourRaw
+  have hfourOther : 4 ≤ (SelectedClass D.A S.oppApex1 otherRadius).card := by
+    refine hfourDouble.trans (Finset.card_le_card ?_)
+    intro x hx
+    rcases mem_selectedClass.mp hx with ⟨hxA, hxRadius⟩
+    exact mem_selectedClass.mpr
+      ⟨Finset.mem_of_mem_erase (Finset.mem_of_mem_erase hxA), hxRadius⟩
+  by_cases hsame : otherRadius = radius
+  · subst otherRadius
+    left
+    have hwAfterQ : F.pair.w ∈
+        (SelectedClass D.A S.oppApex1 radius).erase F.pair.q :=
+      Finset.mem_erase.mpr
+        ⟨F.pair.q_ne_w.symm, frontier_pair_w_mem_firstClass F⟩
+    rw [selectedClass_erase_eq, selectedClass_erase_eq,
+      Finset.card_erase_of_mem hwAfterQ,
+      Finset.card_erase_of_mem (frontier_pair_q_mem_firstClass F)] at hfourDouble
+    omega
+  · exact Or.inr ⟨otherRadius, hotherPos, hsame, hfourOther⟩
+
 /-- The retained two-source common-deletion witness forces the first physical
 opposite cap to have cardinality at least six. -/
 theorem first_oppCap_card_ge_six
