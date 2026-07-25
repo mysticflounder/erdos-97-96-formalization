@@ -95,6 +95,22 @@ theorem oppositeVertex_selectedClass_card_le_four_of_cap_card_eq_four
   apply selectedClass_card_le_of_small_cap S hconv i hr (n := 2)
   rw [S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four i hcap]
 
+/-- General class-versus-cap ladder: a positive radius class at a Moser apex
+never exceeds its opposite cap in cardinality, at any cap size.
+
+The two special cases above are the `card = 5` and `card = 4` instances.  The
+`card = 6` instance, which the ladder previously lacked, is the one the
+all-large-caps terminal operates at. -/
+theorem oppositeVertex_selectedClass_card_le_cap_card
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3) {r : ℝ} (hr : 0 < r) :
+    (SelectedClass A (S.oppositeVertexByIndex i) r).card ≤
+      (S.capByIndex i).card := by
+  have hle := selectedClass_card_le_of_small_cap S hconv i hr
+    (n := (S.capInteriorByIndex i).card) le_rfl
+  have hcap := capInteriorByIndex_card_add_two S i
+  omega
+
 /-- Two distinct positive K4 radii at a Moser apex force four points in the
 strict interior of its opposite cap. -/
 theorem oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_four
