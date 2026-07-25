@@ -793,3 +793,52 @@ This is recorded because the split is the obvious first move from line 249 —
 every hypothesis it needs is already in scope — and the cost of discovering that
 it goes nowhere is two greps that are swamped by build artifacts unless
 `--include=*.lean` is used.
+
+## Correction: the cap bootstrap needs an unbounded family, not one extra radius
+
+The cap-bootstrap route (C1) — "all caps `>= c` implies `oppCap1.card >= c+1`,
+then rotate and induct, contradicting `c_i <= n` for fixed `D`" — is sound as an
+induction.  The induction terminates because `D` is fixed, so `n = D.A.card` is a
+fixed number while `c` grows without bound.
+
+What it needs at each step does NOT stay fixed, and this corrects the natural
+reading of "the missing fact is a third K4 radius".
+
+Write `Sigma_i := sum over K4 radii r at apex u_i of (|C(u_i,r)| - 2)`, so that
+the sharp cap bound is `c_i >= 2 + Sigma_i`.  Since that is a LOWER bound on
+`c_i`, proving `c_i >= c+1` through it requires
+
+    Sigma_i >= c - 1
+
+which grows with `c`.  The candidate facts supply only constants:
+
+| extra structure at the apex | `Sigma_i` | gives | closes step for |
+|---|---|---|---|
+| robustness alone (one class `>=5`) | 3 | `c_i >= 5` | — |
+| robustness alone (two radii, each `>=4`) | 4 | `c_i >= 6` | — |
+| a `(4,5)` radius pair | 5 | `c_i >= 7` | `c <= 6` only |
+| a third K4 radius (three 4-classes) | 6 | `c_i >= 8` | `c <= 7` only |
+
+So a third K4 radius advances the induction from `c = 6` to `c = 7` and from
+`c = 7` to `c = 8`, and then stalls: the step `c = 8 -> 9` needs
+`Sigma_i >= 7`, which no listed fact provides.  The common-deletion parent
+supplies `Sigma >= 4` independently of `c`.
+
+**Consequence.** "Force a third K4 radius, or a `(4,5)` radius pair, at a
+doubly-constrained apex" is NECESSARY for the bootstrap route but NOT
+SUFFICIENT.  Closing the route requires a family of facts indexed by `c` — a
+mechanism whose radius yield scales with the cap — or a different argument that
+does not route through `c_i >= 2 + Sigma_i`.
+
+Note also the ceiling: `Sigma_i <= c_i - 2` always, so at a cap of exactly 6 a
+third K4 radius is outright impossible (`Sigma <= 4 < 6`).  The base case
+`c = 6` with all caps exactly 6, i.e. `|A| = 15`, forces `Sigma = 4` exactly at
+`oppApex1` — the completely rigid configuration: exactly two 4-classes, each
+contributing exactly 2 points to the cap interior, together filling it, each
+with exactly one point in each adjacent cap.  Refuting THAT rigid configuration
+is the true base case, and it is finite and fully specified — unlike the general
+covering problem measured closed in `mixed-law-family/REPORT.md`.
+
+This correction is recorded because the one-fact framing makes the route look
+one lemma deep when it is an indexed family, and because the rigid base case is
+a materially better solver target than anything attempted in this lane so far.
