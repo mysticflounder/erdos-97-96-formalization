@@ -851,6 +851,38 @@ So a third K4 radius advances the induction from `c = 6` to `c = 7` and from
 `Sigma_i >= 7`, which no listed fact provides.  The common-deletion parent
 supplies `Sigma >= 4` independently of `c`.
 
+### The alternate-MEC-triple route is closed
+
+Raised and settled 2026-07-25.  A `SurplusCapPacket` fixes one MEC-promoted
+non-obtuse Moser triangle (`Cap/PartitionFromMEC.lean:332-346`, circumscribed
+Sylvester branch).  When MORE than three points of `A` lie on the MEC boundary
+several triples are non-obtuse — equivalently, contain the MEC center — and
+each induces a DIFFERENT cap partition.  So the packet is NOT determined by
+`A`, and it is natural to ask whether some admissible triple yields a cap of
+cardinality at most five, which the small-cap machinery would then close.
+
+**It does not help.**  Every cap lower bound in this chain is conditioned on
+frontier data derived for the SPECIFIC packet, not on `A`:
+
+- `first_oppCap_card_ge_six` (`ATail/BiApexRobustCapBounds.lean:121`) consumes
+  `R : FrontierCommonDeletionParentResidual F`;
+- `surplusCap_card_ge_six_of_largeOppositeCaps`
+  (`ATail/FrontierLiveClosure.lean:200`) consumes `L`;
+- the small-cap dispatch works by REDESIGNATING a cap within a fixed triangle,
+  which is why it terminates at the all-large-caps fixed point.
+
+A packet `T` built from a different triple arrives with no
+`CriticalShellSystem`, no `CriticalPairFrontier`, no common-deletion parent and
+no bi-apex robustness, so none of those bounds apply to it.  Reaching a
+contradiction through `T` would require rebuilding the entire chain for `T`,
+which is the whole proof, not a shortcut into it.
+
+PROVEN: the structural requirement on the triangle (it is a definition).
+PROVEN: the frontier-conditioning of the bounds above (read off their binders).
+The route is therefore closed as a SHORTCUT.  It remains formally open whether
+some `A`-level argument exploits multiple admissible triples; nothing here
+rules that out, and nothing here supplies it.
+
 ### What the sharp bound upgrades in the existing case split
 
 `first_oppCap_card_ge_six` (`ATail/BiApexRobustCapBounds.lean:121`) splits on
