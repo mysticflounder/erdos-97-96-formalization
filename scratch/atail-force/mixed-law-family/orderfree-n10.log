@@ -1,0 +1,3 @@
+base bank: 405 schemas of support <= 5; order-free laws: 96
+[n=10] order-preserving control: SAT  +235,620 placement clauses, 1,286,480 total  [build 6s solve 86s]  audit={'all_center_k4': True, 'max_class': 4, 'critical_centers': 10, 'covered_points': 10, 'n': 10, 'cover_complete': True} oracle=unsat
+[n=10] ORDER-FREE: SAT  +1,413,720 placement clauses, 2,464,580 total  [build 17s solve 49s]  audit={'all_center_k4': True, 'max_class': 4, 'critical_centers': 10, 'covered_points': 10, 'n': 10, 'cover_complete': True} oracle=unsat

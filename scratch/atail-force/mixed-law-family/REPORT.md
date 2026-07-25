@@ -232,3 +232,51 @@ instrument limit, not a budget question.
 
 Order-free placement is the one lever that raises content without raising the
 law count, and the 96 order-free support-5 laws are the untried configuration.
+
+## Result 5: the order-free configuration is RUN, and negative (2026-07-25)
+
+`orderfree_probe.py`, complete support-`<=`5 bank (405 schemas) on the probe
+layer, with the 96 order-free laws placed over all `k!` images against an
+order-preserving control differing in nothing else:
+
+| configuration | placement clauses | total clauses | verdict | build | solve |
+|---|---|---|---|---|---|
+| order-preserving control | 235,620 | 1,286,480 | SAT | 6 s | 86 s |
+| **ORDER-FREE** | **1,413,720** | 2,464,580 | **SAT** | 17 s | 49 s |
+
+Both models audit as all-center K4, maximum class exactly 4, all 10 centers
+critical, cover complete — the live structure — and **both complete patterns are
+still refuted by the biconditional oracle**.  So 6x the placement content from
+the same laws does not flip `n = 10`, and the missing content is genuinely at
+support `>= 6`.
+
+## The covering route cannot reach this terminal
+
+Stated unequivocally, with the measurement behind each step:
+
+1. Pure-equality cap layer at `n = 15` `(6,6,6)`: stalls at 30–36 laws /
+   ~2.5 M clauses under eager, lazy and hybrid blocking, and an `n = 15`
+   verdict would not close a general-`n` obligation regardless.
+2. Biconditional oracle: the disequality half is **provably inert below support
+   6** (exhaustive at support 4 and 5, accounting closing exactly).
+3. Probe-layer lazy CEGAR: mines support-6 3-atom laws one at a time, i.e.
+   re-derives an 11,245-law family, solve-dominated (12.5 s at 1.05 M clauses,
+   >100 s as clauses accumulate).
+4. Complete support-`<=`5 bank, order-preserving: SAT at `n = 10`.
+5. Complete support-`<=`5 bank, **order-free** — the maximal placement any
+   support-5 law admits: SAT at `n = 10`.
+6. Therefore the required content is support `>= 6`, whose cost is 29.4 M
+   clauses at `n = 10` (measured timeout) and
+   `C(15,6) * 12 * 11,245 = 675 M` at `n = 15`.
+
+Step 5 is the load-bearing one: it exhausts the placement axis, which was the
+only lever that raises content without raising the law count.  Steps 2 and 5
+together mean no support-`<=`5 law of any polarity, under any placement, refutes
+the `n = 10` layer — while the terminal needs `n >= 15`.
+
+This is an instrument limit, not a budget question.  The terminal's closing
+content is a forced geometric law at support `>= 6`, or the positive-incidence
+facts the closure plan names on the minimal-deletion arms
+(`docs/closure-plan-full-spec-2026-07-09.md:2307-2317`): physical-second-apex
+co-radiality of the collision pair; one repeated outside pair at a second
+same-cap center; a rank or nonreturn theorem for the installed-singleton arm.

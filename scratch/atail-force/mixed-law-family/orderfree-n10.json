@@ -1,0 +1,50 @@
+{
+ "results": [
+  {
+   "n": 10,
+   "placement": "order-preserving control",
+   "verdict": "SAT",
+   "placement_clauses": 235620,
+   "total_clauses": 1286480,
+   "build_seconds": 6.1,
+   "solve_seconds": 85.7,
+   "audit": {
+    "all_center_k4": true,
+    "max_class": 4,
+    "critical_centers": 10,
+    "covered_points": 10,
+    "n": 10,
+    "cover_complete": true
+   },
+   "oracle_on_model": "unsat",
+   "base": {
+    "orbit_clauses": 1014720,
+    "cover_clauses": 20170,
+    "geometry_clauses": 5880
+   }
+  },
+  {
+   "n": 10,
+   "placement": "ORDER-FREE",
+   "verdict": "SAT",
+   "placement_clauses": 1413720,
+   "total_clauses": 2464580,
+   "build_seconds": 17.2,
+   "solve_seconds": 48.9,
+   "audit": {
+    "all_center_k4": true,
+    "max_class": 4,
+    "critical_centers": 10,
+    "covered_points": 10,
+    "n": 10,
+    "cover_complete": true
+   },
+   "oracle_on_model": "unsat",
+   "base": {
+    "orbit_clauses": 1014720,
+    "cover_clauses": 20170,
+    "geometry_clauses": 5880
+   }
+  }
+ ]
+}
