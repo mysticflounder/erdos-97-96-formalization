@@ -685,3 +685,75 @@ closed in source (`FrontierLiveClosure.lean:255-264`, via
 line 249 is `false_of_frontierAllLargeCapsBiApexRobustResidual`. The hole count
 (2) is right, the second symbol is one refinement behind, and the plan has no
 route section for the current target.
+
+## The minimality machinery is a cap-lower-bound engine (2026-07-25)
+
+An exhaustive inventory of what consumes `FullyDeletionRobustAt` and `D.Minimal`
+on this surface settles why the terminal sits where it does.
+
+`D.Minimal` is discharged by exactly three mechanisms in this repo:
+
+* **no removable vertex** — `U1TwoShortCapReduction.lean:164`, chained to
+  `U1CarrierInjection.lean:1329` `exists_criticalShellSystem_of_minimal`.  This
+  is how `H : CriticalShellSystem D.A` enters scope at all.
+* **proper-subset closure** — `U1CarrierInjection.lean:1427`, `:1452`.
+* **the global finite-deletion core** — `GlobalMinimalDeletion.lean:32`, `:101`,
+  `:143`.  This is the live one for the all-large-caps branch.
+
+The third reaches this terminal directly.  `frontierPair_globalDeletion_split`
+(`FrontierPairGlobalDeletionSplit.lean:40`) takes exactly
+`L : FrontierLargeOppositeCapsBiApexRobustResidual B` — in scope at line 249 —
+and returns a fresh center in `D.A \ {q, w}` with a minimal blocking deletion
+`V ⊆ {q, w}`, `V.card ∈ {1, 2}`.  On the pair arm with cross membership,
+`nonempty_minimalDeletionCore_of_full_frontierPair_core` (`:218`) upgrades it to
+`MinimalDeletionCore D.A V center`.
+
+That core's payload is `MinimalDeletionCore.capByIndex_card_ge_six_of_two_sources`
+(`MinimalDeletionCore.lean:226`): two members of the core at an indexed Moser
+opposite vertex force four points into the strict cap interior, and
+`capInteriorByIndex_card_add_two` turns four into `6 ≤ (S.capByIndex k).card`.
+
+**Every one of these produces a cap LOWER bound.**  The cap-sum identity
+`c1 + c2 + c3 = |A| + 3` converts cap lower bounds into lower bounds on `|A|`,
+which loosen every packing inequality they touch.  The all-large-caps terminal
+is precisely the fixed point at which all three such bounds are already
+satisfied, so no further application of the same machinery can close it.  This
+is the structural reason the redesignation trick at
+`FrontierLiveClosure.lean:200` stops working here: it contradicts a cap of card
+`<= 5` against `first_oppCap_card_ge_six`, and at all-caps-`>=`6 there is no cap
+of card `<= 5` left to contradict.
+
+### The one cap upper bound does not collide
+
+`CapSelectedRowCounting.lean:769`
+`SurplusCapPacket.surplus_card_le_six_of_convexIndep_K4` is the only cap upper
+bound in the library.  It requires `hM44 : S.IsM44`, which this terminal
+explicitly negates via `R.noM44`, so it does not apply as stated.
+
+Its engine, `orderedCap_card_add_four_le_choose_outside`, is more general and
+does not need `IsM44`: it gives `m + 4 <= C(B.card, 2)` for `m` the cap size and
+`B` the outside set.  `IsM44` was used only to evaluate `B.card = 5`.  Under the
+terminal's profile, `B.card = c2 + c3 - 3`, so the general form reads
+
+    c1 + 4 <= C(c2 + c3 - 3, 2)
+
+At the least profile `(6,6,6)` that is `10 <= 36`.  It is the same quadratic-vs-
+linear slack already recorded for the bisector-capacity and 4-class-packing
+counts, and it grows with the carrier rather than closing on it.  Sharpening the
+counting is therefore not a route, in either direction: the terminal supplies
+lower bounds, and the only available upper bound is quadratic in the same
+quantity.
+
+### Verified negatives
+
+* No theorem in either repo mentions `15` in a cardinality bound.
+* `HasNEquidistantPointsAt 5` occurs nowhere; the "class of size `>=` 5" idiom is
+  always `5 <= (SelectedClass D.A center radius).card`.
+* No theorem takes `FullyDeletionRobustAt D S.oppApex1` and
+  `FullyDeletionRobustAt D S.oppApex2` as two side-by-side hypotheses; the
+  bi-apex form is always packaged as `FrontierBiApexRobustResidual`.
+* The sibling `p97-rvol` tree contains zero occurrences of
+  `FullyDeletionRobustAt`, `MinimalDeletionCore`, or any all-large-caps
+  residual — it is the `(m,4,4)` descent repo, `D.IsM44` throughout.
+* The ATail chain has exactly two `sorry`s: `FrontierLiveClosure.lean:51`
+  (`false_of_originalFrontierUniqueRadiusArm`) and `:249` (this terminal).
