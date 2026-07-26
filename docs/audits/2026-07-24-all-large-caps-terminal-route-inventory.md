@@ -1187,6 +1187,17 @@ the existing `CGN6b` non-acute cap-chain lemma; the apex-triple exclusion is
 already in its strongest form and no branch datum forces a common apex radius;
 the two-circle intersection route is the mechanism already measured dead above;
 and the interior-centre cap bound exists in-corpus for the cap CONTAINING the
-centre (`selectedFourClass_inter_capByIndex_card_le_two`) but was reported
-refuted by explicit witness for any other cap.  Each needs its own audit before
-being treated as settled.
+centre but was reported refuted by explicit witness for any other cap.  Each
+needs its own audit before being treated as settled.
+
+Two points of that report ARE checked, 2026-07-25:
+
+* `selectedFourClass_inter_capByIndex_card_le_two`
+  (`P97/CapSelectedRowCounting.lean:257`) exists, is public, and reads
+  `(K.support ∩ S.capByIndex i).card ≤ 2` for a `SelectedFourClass` whose centre
+  lies in `capByIndex i`.  So the in-cap bound for interior centres is real.
+* Its module is ALREADY spine-reachable, as are
+  `ATail/CapInteriorRadiusCounting` and `ATail/CapApexRadiusRigidity`.  The
+  report's claim that `CapSelectedRowCounting` is "neither imported nor
+  downstream" is wrong on the first half — three modules import it.  Nothing
+  new has to be imported to use any of these at the terminal.
