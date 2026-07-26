@@ -1223,3 +1223,93 @@ Two points of that report ARE checked, 2026-07-25:
   report's claim that `CapSelectedRowCounting` is "neither imported nor
   downstream" is wrong on the first half — three modules import it.  Nothing
   new has to be imported to use any of these at the terminal.
+
+## The cardinality machinery is exhausted at the tri-apex terminal (2026-07-25)
+
+Authoritative measurement, run after the lake lock cleared.  Full
+`./scripts/lake-build.sh`: exit 0, 9554 jobs, **0 errors**.
+`proof-blueprint refs --refresh`: already fresh at build `6b6e090106ab`.
+`proof-blueprint spine`: both publish targets reduce to **exactly two** open
+sorries — `false_of_frontierAllLargeCapsTriApexRobustResidual` and
+`false_of_originalFrontierUniqueRadiusArm`.  For `Problem97.erdos97_rhs`: 2266
+spine nodes, 66839 lines of Lean across 2274 decls, approved axioms core +
+`Lean.trustCompiler`, 20 trusted certificate leaves.  Nothing else is open.
+
+### The adjacent-cap distance ceiling (N1) is TRUE
+
+PROVEN here, not taken second-hand.  For `p` in a cap adjacent to apex `v_i`
+(the arc from `v_i` to `v_j`), `dist v_i p ≤ dist v_i v_j`.
+
+Proof.  `p` lies in the circular segment cut from the MEC disk by the chord
+`v_i v_j`, on the far side from `v_k`.  Distance-to-`v_i` is convex, so it is
+maximized at an extreme point of that segment; the extreme points lie on the arc
+from `v_i` to `v_j` not containing `v_k`, whose central angle is `2·∠v_k ≤ π` by
+non-obtuseness.  Along that arc `dist v_i · = 2R·sin(θ/2)` is increasing in `θ`,
+so the maximum is at `θ = 2∠v_k`, giving the chord `dist v_i v_j`.  ∎
+
+EMPIRICALLY VERIFIED (`scratch/.../ceiling_check.py`, not committed): 0
+violations in 240k samples across arcs `0.25 … π`, ratio `→ 1.000000` at `θ = π`
+(sharp).  Non-obtuseness is load-bearing, not decorative: past `π` the
+violations appear immediately and grow — 303, 4101, 13896 at arcs
+`π+0.05`, `π+0.5`, `π+1.2`.
+
+### But N1 does not add a bound the repo lacks
+
+`ATail/CapInteriorRadiusCounting.lean:84` already proves
+`|class| - 2 ≤ |class ∩ capInteriorByIndex i|` for a class centred at the apex
+opposite cap `i`, built from `leftAdjacentCap_at_opposite_card_le_one` and its
+right twin.  N1 only converts that `2` into `0` for radii above `max(b,c)` — a
+condition on a radius nothing in the residual controls.  No new cardinality
+bound.
+
+### There is no upper bound in the apex/opposite-cap configuration
+
+Verified directly in source, three claims:
+
+* `Census554/GeometryBridge.lean:1092` `support_inter_capByIndex_card_le_one`
+  carries `(hji : j ≠ i)` and its docstring says "either **other** closed cap".
+  The opposite-cap case is excluded by hypothesis, not proved.
+* `Cap/Structure.lean` `CapTriple.v1_notin_C1` — "the opposite apex is *not* in
+  its opposite cap".  So every `≤ 1` / `≤ 2` bound in the repo, all of which
+  require the centre to lie ON the cap being intersected (including
+  `selectedFourClass_inter_capByIndex_card_le_two`, hypothesis
+  `hcenter : center ∈ S.capByIndex i`), is **provably inapplicable** here.
+* The one unconstrained-centre `≤ 2` kernel,
+  `N8ApexArcWitness.selectedClass_inter_card_le_two`
+  (`N8/N8aArcTwoCircle.lean:91`), has no producer anywhere in `lean/`.  That is
+  STRUCTURAL, not an unfinished chore: `N8ArcCircle` requires
+  `on_circle : ∀ x ∈ support, dist circleCenter x = circleRadius`, i.e. the
+  whole cap concyclic.  Only the three MEC apices lie on the MEC circle; the
+  remaining carrier points are strictly inside.  The packet cannot be built for
+  a general cap.  {{NEEDS_PROOF}} that no *other* circle carries a full cap —
+  the MEC argument rules out the MEC only.
+
+### Why no refinement of this family can close the terminal
+
+Distinct radii give disjoint interior hits, so summing
+`CapInteriorRadiusCounting.lean:84` over radii yields the sharp
+`Σ_i ≤ c_i − 2`, where `Σ_i = Σ_r (|C(u_i,r)| − 2)` over radii carrying `≥ 3`.
+
+`ApexRichClassStructure` contributes exactly `4` to `Σ_i` either way: `6 − 2`
+from the six-point branch, `2 + 2` from the two-radius branch.  So it yields
+`c_i ≥ 6` — which is the all-large-caps hypothesis itself — and with
+`Σ c_i = n + 3` gives `n ≥ 15` and nothing further.
+
+The general point, which subsumes the rotation measurement recorded above:
+**every argument in this family produces a floor on `n`, and a floor cannot
+contradict anything at large `n`.**  Strengthening rich structure to `Σ_i ≥ 5`
+would move the floor to `n ≥ 16`.  The extremal profile `(6,6,6)` at `|A| = 15`
+sits exactly at equality and is not refuted by any cardinality fact in the repo;
+for larger `n` the caps only gain slack.
+
+Closure therefore requires content that fails for ALL `n` — geometric rigidity
+of the three simultaneous conditions "four points of cap `i` lie on a circle
+centred at the opposite apex `u_i`", `i = 1,2,3` — not a sharper count.
+
+### Directions now closed off
+
+* More packet rotations (recorded above: `O(1)` against a linear shortfall).
+* Any refinement of the `Σ_i ≤ c_i − 2` count, by the floor argument.
+* N1 as a closure route.  It is true and worth having if a consumer ever needs
+  the ceiling, but it does not discharge the residual and is not currently
+  formalized.
