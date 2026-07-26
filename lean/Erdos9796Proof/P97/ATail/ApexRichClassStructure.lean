@@ -95,6 +95,21 @@ theorem apexRichClassStructure_oppApex1
   · exact Or.inr ⟨radius, ρ, hpos, hρpos, fun h => hne h.symm,
       R.frontierRadius_class_card_ge_four, hfour⟩
 
+/-- **Rich class structure implies deletion robustness.**  In the first branch
+the six-point class is a K4 radius carrying more than four points; in the second
+there are two K4 radii.  Either way the centre is not a unique-four centre, and
+by `isUniqueFourCenter_of_not_fullyDeletionRobust` that is exactly robustness.
+
+So `ApexRichClassStructure` is strictly stronger than `FullyDeletionRobustAt`,
+and a residual carrying the former need not also carry the latter. -/
+theorem fullyDeletionRobustAt_of_apexRichClassStructure
+    {D : CounterexampleData} {p : ℝ²}
+    (hrich : ApexRichClassStructure D.A p) :
+    FullyDeletionRobustAt D p := by
+  rcases hrich with ⟨r, hr, hsix⟩ | ⟨r₁, r₂, hr₁, hr₂, hne, hc₁, hc₂⟩
+  · exact fullyDeletionRobustAt_of_large_class hr (by omega)
+  · exact fullyDeletionRobustAt_of_two_K4_radii hr₁ hr₂ hne hc₁ hc₂
+
 /-- Keep the MEC triangle and cap partition fixed, but designate the old
 *second* opposite cap as the new surplus cap.  Stated against a bare cardinality
 hypothesis so that it is available from any residual that bounds `oppCap2`. -/

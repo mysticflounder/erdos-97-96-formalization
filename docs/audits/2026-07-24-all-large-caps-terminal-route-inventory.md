@@ -1178,6 +1178,28 @@ unquantified configuration statement.  A statement of the shape "a positive
 fraction of carrier points carry either a five-point class or two K4 radii" is
 uniform in `n` by construction and would close it.
 
+### Rich structure subsumes robustness, and the residual shrinks
+
+{{PROVEN}} 2026-07-25, Lean-checked.
+`fullyDeletionRobustAt_of_apexRichClassStructure`: `ApexRichClassStructure D.A p`
+implies `FullyDeletionRobustAt D p`.  In the six-point branch the K4 radius
+carries more than four points; in the two-radius branch the K4 radius is not
+unique.  Either way `p` is not an `IsUniqueFourCenter`, and by the converse
+above that is exactly robustness.
+
+Consequences for `FrontierAllLargeCapsTriApexRobustResidual`:
+
+* `surplusApex_robust` and `apices_not_uniqueFour` are DERIVABLE from the three
+  rich fields and have been removed.  The residual is five fields, not seven.
+* The discharge no longer needs the robust-or-critical split on the first
+  rotation's fresh parent: that split existed only to obtain robustness at the
+  surplus apex, which the second rotation's rich field now supplies directly.
+  `false_of_physicalSecondApexCriticalResidual` remains in use by
+  `false_of_frontierBiApexRobustResidual`, so nothing became dead.
+
+The residual is therefore strictly stronger than before AND strictly smaller as
+an interface — the rich fields carry everything the robustness fields did.
+
 ### Directions reported dead by the closing-content sweep
 
 {{UNVALIDATED}} by me — reported by a sub-agent sweep on 2026-07-25 and NOT

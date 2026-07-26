@@ -299,8 +299,6 @@ structure FrontierAllLargeCapsTriApexRobustResidual
     {B : FrontierBiApexRobustResidual R}
     {L : FrontierLargeOppositeCapsBiApexRobustResidual B}
     (N : FrontierAllLargeCapsBiApexRobustResidual L) : Prop where
-  /-- The Moser apex opposite the surplus cap is deletion-robust too. -/
-  surplusApex_robust : FullyDeletionRobustAt D S.surplusApex
   /-- Every Moser apex carries a six-point class or two distinct K4 radii.
   Robustness alone only gives a five-point class in the first branch; the
   strengthening comes from the first-apex dichotomy, run at each apex in turn
@@ -314,10 +312,6 @@ structure FrontierAllLargeCapsTriApexRobustResidual
   by four-point classes of centres carrying exactly one K4 radius, and those are
   exactly the points where deletion robustness fails. -/
   notRobustCover_card : D.A.card ≤ 4 * (notRobustCenters D).card
-  /-- No Moser apex is one of those covering centres. -/
-  apices_not_uniqueFour :
-    ¬ IsUniqueFourCenter D.A S.oppApex1 ∧ ¬ IsUniqueFourCenter D.A S.oppApex2 ∧
-      ¬ IsUniqueFourCenter D.A S.surplusApex
   /-- No centre covers all three Moser apices on one radius, so at least two
   distinct covering centres are spent on the apices. -/
   no_center_covers_all_apices :
@@ -361,8 +355,6 @@ theorem false_of_frontierAllLargeCapsBiApexRobustResidual
   let T : SurplusCapPacket D.A := redesignateFirstOppCapAsSurplusAtAllLarge L
   have hTapex1 : T.oppApex1 = S.oppApex2 := by
     simp [T]
-  have hTapex2 : T.oppApex2 = S.surplusApex := by
-    simp [T]
   obtain ⟨freshRadius, _hfreshRadius, hfreshFour, ⟨freshFrontier⟩⟩ :=
     exists_criticalPairFrontier_of_K4 D T H
   apply CriticalPairFrontier.false_of_parentResidualConsumers
@@ -374,41 +366,37 @@ theorem false_of_frontierAllLargeCapsBiApexRobustResidual
     have hrich2 : ApexRichClassStructure D.A S.oppApex2 := by
       have h := apexRichClassStructure_oppApex1 freshParent
       rwa [hTapex1] at h
-    rcases frontierCommonDeletionParent_biApexRobust_or_critical freshParent with
-      hrobust | hcritical
-    · have hsurplusRobust : FullyDeletionRobustAt D S.surplusApex := by
-        have h := hrobust.some.secondApex_robust
-        rwa [hTapex2] at h
-      -- Rotate the other way to put the surplus apex in the *first* opposite
-      -- role, the role the dichotomy is stated for.
-      have hsecondGtFour : 4 < S.oppCap2.card :=
-        lt_of_lt_of_le (by omega) L.secondOppCap_card_ge_six
-      let T' : SurplusCapPacket D.A :=
-        redesignateSecondOppCapAsSurplusOf S hsecondGtFour
-      have hT'apex1 : T'.oppApex1 = S.surplusApex :=
-        redesignateSecondOppCapAsSurplusOf_oppApex1 S hsecondGtFour
-      obtain ⟨freshRadius', _hfreshRadius', hfreshFour', ⟨freshFrontier'⟩⟩ :=
-        exists_criticalPairFrontier_of_K4 D T' H
-      apply CriticalPairFrontier.false_of_parentResidualConsumers
-        freshFrontier' R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour'
-      · exact false_of_originalFrontierUniqueRadiusArm freshFrontier'
-          R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour'
-      · intro freshParent'
-        have hrich3 : ApexRichClassStructure D.A S.surplusApex := by
-          have h := apexRichClassStructure_oppApex1 freshParent'
-          rwa [hT'apex1] at h
-        have hcover := uniqueFourCover_of_triApexRobust R.minimal S
-          B.firstApex_robust B.secondApex_robust hsurplusRobust
-        exact false_of_frontierAllLargeCapsTriApexRobustResidual F R B L N
-          { surplusApex_robust := hsurplusRobust
-            oppApex1_rich := apexRichClassStructure_oppApex1 R
-            oppApex2_rich := hrich2
-            surplusApex_rich := hrich3
-            notRobustCover_card := hcover.1
-            apices_not_uniqueFour := hcover.2.1
-            no_center_covers_all_apices := hcover.2.2 }
-    · exact false_of_physicalSecondApexCriticalResidual
-        freshFrontier freshParent hcritical.some
+    -- Rotate the other way to put the surplus apex in the *first* opposite
+    -- role, the role the dichotomy is stated for.  Rich structure subsumes
+    -- robustness, so the robust-or-critical split is no longer needed here.
+    have hsecondGtFour : 4 < S.oppCap2.card :=
+      lt_of_lt_of_le (by omega) L.secondOppCap_card_ge_six
+    let T' : SurplusCapPacket D.A :=
+      redesignateSecondOppCapAsSurplusOf S hsecondGtFour
+    have hT'apex1 : T'.oppApex1 = S.surplusApex :=
+      redesignateSecondOppCapAsSurplusOf_oppApex1 S hsecondGtFour
+    obtain ⟨freshRadius', _hfreshRadius', hfreshFour', ⟨freshFrontier'⟩⟩ :=
+      exists_criticalPairFrontier_of_K4 D T' H
+    apply CriticalPairFrontier.false_of_parentResidualConsumers
+      freshFrontier' R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour'
+    · exact false_of_originalFrontierUniqueRadiusArm freshFrontier'
+        R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour'
+    · intro freshParent'
+      have hrich1 : ApexRichClassStructure D.A S.oppApex1 :=
+        apexRichClassStructure_oppApex1 R
+      have hrich3 : ApexRichClassStructure D.A S.surplusApex := by
+        have h := apexRichClassStructure_oppApex1 freshParent'
+        rwa [hT'apex1] at h
+      have hcover := uniqueFourCover_of_triApexRobust R.minimal S
+        (fullyDeletionRobustAt_of_apexRichClassStructure hrich1)
+        (fullyDeletionRobustAt_of_apexRichClassStructure hrich2)
+        (fullyDeletionRobustAt_of_apexRichClassStructure hrich3)
+      exact false_of_frontierAllLargeCapsTriApexRobustResidual F R B L N
+        { oppApex1_rich := hrich1
+          oppApex2_rich := hrich2
+          surplusApex_rich := hrich3
+          notRobustCover_card := hcover.1
+          no_center_covers_all_apices := hcover.2.2 }
 
 /-- The cap-six continuation of the bi-apex robust parent. Its terminal must
 consume the complete large-cap surface, not a locally manufactured witness.
