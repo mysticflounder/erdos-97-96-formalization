@@ -7,6 +7,8 @@ Authors: Adam McKenna
 import Erdos9796Proof.P97.ATail.ApexRichClassStructure
 import Erdos9796Proof.P97.ATail.BiApexRobustCapBounds
 import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificateIngress
+import Erdos9796Proof.P97.ATail.ExactFourPhysicalConsumer
+import Erdos9796Proof.P97.ATail.ExactFourRobustCapExpansion
 import Erdos9796Proof.P97.ATail.FirstApexUniqueRadiusResidual
 import Erdos9796Proof.P97.ATail.LocalizedCollisionMutualOmissionCycle
 import Erdos9796Proof.P97.ATail.PhysicalSecondApexSwap
@@ -38,6 +40,8 @@ open ATailApexRichClassStructure
 open ATailCriticalPairFrontier
 open ATailBiApexRobustCapBounds
 open ATailDeletionRobustness
+open ATailExactFourPhysicalConsumer
+open ATailExactFourRobustCapExpansion
 open ATailMinimalUniqueFourCover
 open ATailLargeCapUniqueFive
 open ATailLargeOppositeCapsBiApexSurface
@@ -65,15 +69,101 @@ theorem false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven
     Problem97.ATailCardElevenUniqueFourCertificate.false_of_firstApexUniqueRadiusExactFourResidual
       R hcard
 
-/-- Open genuinely large-cardinality remainder of the exact-four residual. -/
+/-- The narrowed post-card-eleven robust exact-four terminal.  Its surface
+retains the physical common-deletion ingress, full second-apex deletion
+robustness, both checked opposite-cap lower bounds, the complete
+deletion-robust radius classification, and the exhaustive cap-growth arm. -/
+theorem false_of_exactFourPostCardElevenRobustSurface
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (_hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R) :
+    False := by
+  have _radiusOutcome :=
+    interiorPairGood_or_twoDistinctExactFourInteriorRows R surface
+  obtain ⟨_rho, _source, _ingress, _lateRow, _secondRow,
+      _hrho, _hsource, _hsecondRadius, _hcenters,
+      _hsourceLate, _hsourceSecond⟩ :=
+    nonempty_radiusAnchoredPhysicalRowCrossHit R surface
+  sorry
+
+/-- The robust physical-second-apex outcome reduces to the checked
+post-card-eleven surface.  The remaining contradiction is exposed directly
+by `false_of_exactFourPostCardElevenRobustSurface`. -/
+theorem false_of_exactFourPhysicalConsumerRobustOutcome
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (_R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (_hcard : 12 ≤ D.A.card)
+    (_ingress : ExactFourPhysicalCommonDeletionIngress _R)
+    (_secondApex_robust : FullyDeletionRobustAt D S.oppApex2) :
+    False := by
+  rcases nonempty_postCardElevenRobustSurface_of_robust
+      _hcard _ingress _secondApex_robust with ⟨surface⟩
+  exact false_of_exactFourPostCardElevenRobustSurface _R _hcard surface
+
+/-- The swapped protected-exact-four terminal remaining after the checked
+exact-four source reduction.  Both the original residual and the physical
+common-deletion ingress are retained, so this is not a data-erasing recursive
+return to the first-apex exact-four statement. -/
+theorem false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (_R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (_hcard : 12 ≤ D.A.card)
+    (_ingress : ExactFourPhysicalCommonDeletionIngress _R)
+    (_swapped : SwappedFirstApexUniqueFourFrontier D S
+      (ATailUniqueFourLateChoiceTerminalScratch.lateFirstApexSystem _R)) :
+    False := by
+  sorry
+
+/-- Field-for-field adapter from the live exact-four residual to the source
+residual consumed by the physical-second-apex producer. -/
+private def toOriginalUniqueFourResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFourResidual F) :
+    ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F where
+  minimal := R.minimal
+  noM44 := R.noM44
+  carrier_card_gt_nine := R.carrier_card_gt_nine
+  class_card_eq_four := R.class_card_eq_four
+  unique_K4_radius := R.unique_fourClass_radius
+  every_class_member_blocks := R.every_class_member_obstructs
+  interior_q := R.interior_q
+  interior_w := R.interior_w
+  interior_q_mem := R.interior_q_mem
+  interior_w_mem := R.interior_w_mem
+  interior_q_ne_w := R.interior_q_ne_w
+  bisector_center_mem_interior := R.bisector_center_mem_interior
+
+/-- Checked two-way source reduction for the genuinely large-cardinality
+exact-four remainder.  The former undifferentiated obligation is narrowed to
+the robust physical-second-apex and swapped protected-exact-four terminals
+above. -/
 theorem false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
-    (_R : FirstApexUniqueRadiusExactFourResidual F)
-    (_hcard : 12 ≤ D.A.card) :
+    (R : FirstApexUniqueRadiusExactFourResidual F)
+    (hcard : 12 ≤ D.A.card) :
     False := by
-  sorry
+  let original := toOriginalUniqueFourResidual R
+  rcases nonempty_exactFourPhysicalConsumerOutcome original with ⟨outcome⟩
+  cases outcome with
+  | robust ingress secondApex_robust =>
+      exact
+        false_of_exactFourPhysicalConsumerRobustOutcome
+          original hcard ingress secondApex_robust
+  | swappedUniqueFour ingress swapped =>
+      exact
+        false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome
+          original hcard ingress swapped
 
 /-- Checked exhaustive cardinality dispatch for the exact-four residual.
 The no-`(m,4,4)` field excludes carrier cardinality ten; the remaining cases
