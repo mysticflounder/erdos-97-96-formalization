@@ -1,0 +1,12 @@
+import MirrorBaseRetainedInstancesChunk145Part00
+import MirrorBaseRetainedInstancesChunk145Part01
+import MirrorBaseRetainedInstancesChunk145Part02
+import MirrorBaseRetainedInstancesChunk145Part03
+import MirrorBaseRetainedInstancesChunk145Part04
+import MirrorBaseRetainedInstancesChunk145Part05
+import MirrorBaseRetainedInstancesChunk145Part06
+import MirrorBaseRetainedInstancesChunk145Part07
+
+/-!
+# Generated bounded-leaf wrapper
+-/

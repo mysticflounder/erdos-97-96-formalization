@@ -1,0 +1,12 @@
+import MirrorBaseRetainedInstancesChunk145Part06Item00
+import MirrorBaseRetainedInstancesChunk145Part06Item01
+import MirrorBaseRetainedInstancesChunk145Part06Item02
+import MirrorBaseRetainedInstancesChunk145Part06Item03
+import MirrorBaseRetainedInstancesChunk145Part06Item04
+import MirrorBaseRetainedInstancesChunk145Part06Item05
+import MirrorBaseRetainedInstancesChunk145Part06Item06
+import MirrorBaseRetainedInstancesChunk145Part06Item07
+
+/-!
+# Generated singleton-leaf wrapper
+-/

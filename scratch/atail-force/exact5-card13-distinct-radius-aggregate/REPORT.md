@@ -2,8 +2,18 @@
 
 Date: 2026-07-22
 
-Status: **ONE BOUNDED RECURSIVE CUBE REFINEMENT COMPLETE.  NO SAT WITNESS;
-OVERALL STATUS REMAINS UNKNOWN.**
+Status: **HISTORICAL FIRST-LEVEL REFINEMENT. SUPERSEDED BY THE COMPLETE
+512-DIRECT / 512-MIRROR CHECKED CUBE COVER AND SOURCE-SEMANTIC INGRESS.**
+
+The `338` verified-UNSAT / `237` unresolved counts below describe this dated
+first-level run only. They are not the current exact-card-13 status. Recursive
+exact cubing later closed every direct and mirror leaf; the checked artifacts
+and complete current-source callbacks are documented in
+`../exact5-card13-distinct-radius-cube-proof-combiner/` and
+`../exact5-card13-distinct-radius-source-ingress/coordinator/`. Together with
+the same-radius dispatcher they feed the unconditional scratch theorem
+`false_of_exactFive_card13`. The remaining live exact-five mathematical arm is
+card at least fourteen.
 
 This isolated scratch lane encodes the two asymmetric spoke orientations of
 the exact-five, card-13, distinct-first-apex-radius branch.  It retains the

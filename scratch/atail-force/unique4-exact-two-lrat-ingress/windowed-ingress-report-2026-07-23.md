@@ -50,6 +50,20 @@ checkpoint `checkpoint-0369.cnf` is `p cnf 616 28` and contains the empty
 clause. All per-shard totals equal the parent package's shard counts
 exactly.
 
+## Full Lean replay checkpoint
+
+All 369 windows, both shard coordinators, and the final checkpoint-0 UNSAT
+composition have been emitted and kernel-checked under the project-pinned
+Lean 4.27 toolchain with warnings as errors. The complete replay tree has
+742 Lean modules. The structurally verified replay package digest is
+`9238dc18ee65a0d1023c786d40b149591759dbafa91eb9d0cc2f75d4385328ad`.
+
+The exact axiom closure of both shard theorems and
+`WindowedRupReplay.startUnsatisfiable` is `propext`, `Classical.choice`,
+`Quot.sound`, `Lean.ofReduceBool`, and the explicitly approved
+`Lean.trustCompiler`. The closure contains no `sorryAx` or generated custom
+axiom and therefore matches the repository trust profile.
+
 ## Package schema
 
 `p97-windowed-pure-rup-package-v1`:
@@ -106,13 +120,16 @@ decoupled shared-checkpoint references; invalid references; cap and
 boundary errors; determinism and relocation stability; and coordinated
 rehashes, where an artifact and its manifest record are tampered together
 and the package digest recomputed — caught semantically by the replay and
-map authentication). The directory suite is 54/54 with the existing
-materializer, emitter, and attestation tests.
+map authentication). The directory suite is 60/60 with the full-package
+emitter, forbidden-source injection, materializer, emitter, and attestation
+tests.
 
 ## Claim boundary
 
 This package re-encodes the already-validated pure-RUP proof into bounded
-windows; it does not decide RUP, does not provide the source-to-CNF bridge,
-does not close either live production `sorry`, and no Lean theorem is
-claimed here. Window-by-window kernel replay and composition in Lean are
-the next lane's work.
+windows; its structural verifier does not decide RUP. The separate Lean build
+establishes UNSAT of the exact checkpoint-0 trimmed CNF. The completed
+`P5ExactTwoClosure.lean` composition now supplies the source-to-CNF bridge and
+proves the geometric `(5,5,4)` exact-two p5 contradiction in scratch. The
+ignored generated import closure is not yet clean-checkout production code,
+so this still closes neither production `sorry`.

@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+# Execute Lean/Lake commands from this checkout with the pinned Lean 4.27 toolchain.
+set -euo pipefail
+
+readonly CANONICAL_TOOLCHAIN='leanprover/lean4:v4.27.0'
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+LEAN_ROOT="$ROOT/lean"
+
+usage() {
+  cat >&2 <<'EOF'
+usage: scripts/lean427 [--assert] <lean|lake> [arguments...]
+
+Runs from <repository>/lean after selecting and checking
+leanprover/lean4:v4.27.0.  --assert checks the selected Lean and Lake versions
+without building a module.
+EOF
+}
+
+if [[ ! -f "$LEAN_ROOT/lean-toolchain" ]]; then
+  echo "missing repository toolchain file: $LEAN_ROOT/lean-toolchain" >&2
+  exit 1
+fi
+
+IFS= read -r repository_toolchain <"$LEAN_ROOT/lean-toolchain"
+if [[ "$repository_toolchain" != "$CANONICAL_TOOLCHAIN" ]]; then
+  echo "unexpected repository toolchain: $repository_toolchain" >&2
+  echo "expected: $CANONICAL_TOOLCHAIN" >&2
+  exit 1
+fi
+
+# Override an ambient ELAN_TOOLCHAIN deliberately: generated replay oleans and
+# source bridges in this repository are promoted only from the pinned compiler.
+export ELAN_TOOLCHAIN="$CANONICAL_TOOLCHAIN"
+
+assert_tool_version() {
+  local tool=$1
+  local version
+  if ! command -v "$tool" >/dev/null 2>&1; then
+    echo "$tool not on PATH; install elan with $CANONICAL_TOOLCHAIN" >&2
+    exit 1
+  fi
+  version="$($tool --version 2>&1 | head -n 1)"
+  if [[ "$version" != *'4.27.0'* ]]; then
+    echo "$tool did not select $CANONICAL_TOOLCHAIN: $version" >&2
+    exit 1
+  fi
+}
+
+if [[ "${1:-}" == '--assert' ]]; then
+  if [[ $# -ne 1 ]]; then
+    usage
+    exit 2
+  fi
+  assert_tool_version lean
+  assert_tool_version lake
+  printf '%s\n' "$CANONICAL_TOOLCHAIN"
+  exit 0
+fi
+
+if [[ $# -lt 1 ]]; then
+  usage
+  exit 2
+fi
+
+tool=$1
+shift
+case "$tool" in
+  lean|lake) ;;
+  *)
+    usage
+    exit 2
+    ;;
+esac
+
+assert_tool_version lean
+assert_tool_version "$tool"
+cd "$LEAN_ROOT"
+exec "$tool" "$@"

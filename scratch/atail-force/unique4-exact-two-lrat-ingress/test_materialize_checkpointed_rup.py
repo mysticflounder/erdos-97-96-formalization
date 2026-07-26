@@ -58,25 +58,42 @@ class MaterializeCheckpointedRupTest(unittest.TestCase):
         )
         return output
 
-    def write_source_certificate(self, root: Path) -> Path:
+    def write_source_certificate(
+        self,
+        root: Path,
+        *,
+        schema: str = subject.EXPECTED_SOURCE_SCHEMA,
+    ) -> Path:
         root.mkdir(parents=True, exist_ok=True)
         cnf_path, lrat_path = self.write_inputs(root)
         certificate_path = root / "certificate.json"
-        certificate = {
-            "schema": subject.EXPECTED_SOURCE_SCHEMA,
-            "artifacts": {
-                "trimmed_core_cnf": {
-                    "path": cnf_path.name,
-                    "sha256": subject.sha256(cnf_path),
-                    "byte_count": cnf_path.stat().st_size,
-                },
-                "trimmed_lrat": {
-                    "path": lrat_path.name,
-                    "sha256": subject.sha256(lrat_path),
-                    "byte_count": lrat_path.stat().st_size,
-                },
+        old_artifacts = {
+            "trimmed_core_cnf": {
+                "path": cnf_path.name,
+                "sha256": subject.sha256(cnf_path),
+                "byte_count": cnf_path.stat().st_size,
+            },
+            "trimmed_lrat": {
+                "path": lrat_path.name,
+                "sha256": subject.sha256(lrat_path),
+                "byte_count": lrat_path.stat().st_size,
             },
         }
+        if schema == subject.P4_PLAIN_RUP_SOURCE_SCHEMA:
+            certificate = {
+                "schema": schema,
+                "compact_input_authentication": {
+                    "cnf": old_artifacts["trimmed_core_cnf"],
+                },
+                "normalization": {
+                    "normalized_dense_lrat": old_artifacts["trimmed_lrat"],
+                },
+            }
+        else:
+            certificate = {
+                "schema": schema,
+                "artifacts": old_artifacts,
+            }
         certificate_path.write_text(
             json.dumps(certificate, indent=2, sort_keys=True) + "\n",
             encoding="utf-8",
@@ -101,6 +118,23 @@ class MaterializeCheckpointedRupTest(unittest.TestCase):
             source_certificate_record=certificate_record,
         )
         return output
+
+    def test_accepts_p4_plain_rup_source_certificate_schema(self) -> None:
+        with tempfile.TemporaryDirectory() as raw_root:
+            root = Path(raw_root)
+            certificate_path = self.write_source_certificate(
+                root,
+                schema=subject.P4_PLAIN_RUP_SOURCE_SCHEMA,
+            )
+            certificate, _record, cnf_path, lrat_path = (
+                subject.load_source_certificate(certificate_path)
+            )
+            self.assertEqual(
+                certificate["schema"],
+                subject.P4_PLAIN_RUP_SOURCE_SCHEMA,
+            )
+            self.assertEqual(cnf_path, (root / "input.cnf").resolve())
+            self.assertEqual(lrat_path, (root / "input.lrat").resolve())
 
     def test_compacts_active_state_and_rebases_second_shard(self) -> None:
         with tempfile.TemporaryDirectory() as raw_root:

@@ -1,0 +1,19 @@
+import P4RightCapSourceBridge
+
+/-! Trust-profile audit for the direct P4 right-cap source bridge. -/
+
+namespace Problem97.P4RightCapSourceBridgeScratch
+
+#print axioms rightCapPositions_image_surplusCap
+#print axioms secondOppositeCapPositions_image_oppCap2
+#print axioms shortCapPositions_image_oppCap1
+#print axioms secondOppositeCapEndpointOwnCapAtMostOneSat_direct
+#print axioms shortCapEndpointOwnCapAtMostOneSat_direct
+#print axioms rightCapEndpointOwnCapAtMostOneSat_direct
+#print axioms secondOppositeCapOwnCapAtMostTwoSat_direct
+#print axioms shortCapOwnCapAtMostTwoSat_direct
+#print axioms rightCapOwnCapAtMostTwoSat_direct
+#print axioms secondOppositeCapClassHitAtLeastOne_direct
+#print axioms rightCapClassHitAtLeastOne_direct
+
+end Problem97.P4RightCapSourceBridgeScratch

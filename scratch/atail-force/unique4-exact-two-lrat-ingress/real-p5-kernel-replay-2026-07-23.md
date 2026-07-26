@@ -2,9 +2,11 @@
 
 ## Result
 
-**EMPIRICALLY UNFINISHED:** the bounded checker and text-ingress fixture pass,
-but the real first shard is not tractable as one `by decide` computation. This
-is a resource result, not a logical rejection of the certificate.
+**KERNEL-CHECKED CERTIFICATE RESULT:** the real one-shot first shard is not
+tractable as one computation, but all 369 independently rebased windows, both
+shard coordinators, and the final checkpoint-0 UNSAT theorem compile under the
+project-pinned Lean 4.27 toolchain with warnings as errors. The one-shot
+failure was a resource result, not a logical rejection of the certificate.
 
 The verified structural package is `generated/p5-largest/`, with
 relocation-stable package SHA-256:
@@ -42,7 +44,7 @@ clause ID 992,908.
   constructs.
 - The canonical text parser is kernel-decided on bounded DIMACS and LRAT
   fixtures, including duplicate-clause and tautology rejection.
-- All 23 materializer, emitter, and attestation tests pass.
+- All 60 materializer, emitter, and attestation tests pass.
 - The real package verifies independently against its hashes, exact
   checkpoint, rebase map, and checker binding.
 
@@ -64,31 +66,84 @@ thousands of actions, the replay state, and the final nested checkpoint
 signature equality. Raising limits lets the computation proceed farther but
 does not bound any of these objects.
 
-## Required next endpoint
+## Full bounded-window result
 
-Preserve the major two-shard checkpoint, but split each logical shard into
-independently rebased windows. Each window must contain:
+The verified windowed package has digest
+`cd818224ca4c418c084363f82c508460e4ed95c17d457ed04650fe4fa5e938d1`
+and contains 183 shard-1 windows plus 186 shard-2 windows.
+The first emitter checkpoint used `emit_windowed_rup_replay.py` on shard 1,
+window 1:
 
-1. its exact dense start CNF;
-2. a whole-line LRAT action slice;
-3. its exact dense end CNF; and
-4. a total, injective global/local clause-ID map.
+- checkpoint 0: 8,703 clauses;
+- actions: 4,000 lines, comprising 2,477 additions, 1,523 deletions,
+  2,279 deleted clause IDs, and 24,532 hints;
+- checkpoint 1: 8,901 clauses; and
+- rebased LRAT text: 256,795 bytes.
 
-Use configurable initial caps of 4,000 actions and 4 MiB of LRAT text per
-window, and monitor endpoint-CNF size. Each window gets its own bounded
-`checkRebaseText = true` theorem in a separate module. Compose the resulting
-logical implications transitively, with the final shard-2 window deriving the
-empty clause.
+Its `WindowedRupReplay.accepted` theorem uses `native_decide` and compiled in
+0.61 seconds with 489,701,376 bytes maximum resident set size. Both
+`WindowedRupReplay.accepted` and its logical implication
+`WindowedRupReplay.sound` have the exact axiom closure:
 
-Adjacent modules must use the same shared canonical checkpoint array
-definition. The checker exposes caller-named parsed endpoints and replay-free
-implication/terminal composition for this purpose.
+```text
+propext
+Classical.choice
+Quot.sound
+Lean.ofReduceBool
+Lean.trustCompiler
+```
 
-Plain action-list chunking is insufficient: without exact rebased endpoints,
-the checker still retains the full preceding clause state and the giant
-terminal equality.
+This matches `.blueprint.toml`: the first four are approved Lean core axioms
+under the project policy, and `Lean.trustCompiler` is explicitly approved.
+There is no `sorryAx`, `unsafe`, `implemented_by`, `extern` decision
+procedure, or generated per-theorem axiom.
+
+`emit_windowed_rup_replay_package.py` then emitted the complete replay tree:
+
+- 369 consumed shared checkpoint modules;
+- 183 shard-1 window modules and 186 shard-2 window modules;
+- two shallow shard coordinators; and
+- `WindowedRupReplay.startUnsatisfiable`, which closes shard 1 into the
+  shard-2 terminal contradiction.
+
+The replay package digest is
+`9238dc18ee65a0d1023c786d40b149591759dbafa91eb9d0cc2f75d4385328ad`.
+Its manifest is explicitly structural and records `audit_status =
+NOT_AUDITED`; the actual Lean build and axiom audit are separate gates.
+
+All 742 modules compiled with `-DwarningAsError=true`. Eleven representative
+modules were compiled first; the remaining 731 compiled in 496.57 seconds.
+The slowest bounded module took 1.80 seconds, and the largest observed maximum
+resident set size was 547,553,280 bytes. The two shard coordinators took
+0.32 and 0.31 seconds; the final coordinator took 0.24 seconds.
+
+Exact axiom reports for `Shard1.sound`, `Shard2.sound`, and
+`startUnsatisfiable` are identical:
+
+```text
+propext
+Classical.choice
+Lean.ofReduceBool
+Lean.trustCompiler
+Quot.sound
+```
+
+This is exactly the repository-approved trust profile. There is no
+`sorryAx`, custom axiom, or hidden coordinator replay.
+
+## Focused p5 composition
+
+The companion occurrence/source lane is now complete.
+`P5ExactTwoClosure.lean` checks the exact ground equality between the parsed
+checkpoint-0 clause list and its `bridgeClauses`, transfers the bridge
+valuation into the checker's native formula semantics, and proves
+`false_of_p5ExactTwo` for the `(5,5,4)` exact-two residual. See
+[`p5-exact-two-closure-2026-07-23.md`](p5-exact-two-closure-2026-07-23.md).
 
 ## Claim boundary
 
-This work does not establish the p5 UNSAT theorem, does not provide the
-source-to-CNF theorem, and does not close either live production `sorry`.
+This now establishes the geometric `(5,5,4)` exact-two p5 contradiction in
+the scratch proof stack. The replay import closure still depends on an
+ignored generated package, so the result is not yet clean-checkout production
+code and closes neither live production `sorry`. The p4 exact-two profile and
+the arbitrary-cardinality reduction also remain.

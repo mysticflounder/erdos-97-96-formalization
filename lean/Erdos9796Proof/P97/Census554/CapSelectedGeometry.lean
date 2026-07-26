@@ -342,7 +342,7 @@ theorem BoundaryBlocks.nonempty_canonicalLabeling
           simpa [pointOf, hullIndex,
             Card11SelectedCube.apexAt_eq_oppositeVertexByIndex] using hopp1
         point_two := by
-          simpa [pointOf, hullIndex,
+          simpa [pointOf, hullIndex, frame,
             Card11SelectedCube.apexAt_eq_oppositeVertexByIndex] using hopp2 }
     have hSlabels :
         L.labelsOf (S.capInteriorByIndex S.surplusIdx) = intS := by
@@ -460,7 +460,7 @@ theorem BoundaryBlocks.nonempty_canonicalLabeling
           simpa [pointOf, hullIndex, card11BoundaryReflection,
             Card11SelectedCube.apexAt_eq_oppositeVertexByIndex] using hopp1
         point_two := by
-          simpa [pointOf, hullIndex, card11BoundaryReflection,
+          simpa [pointOf, hullIndex, card11BoundaryReflection, frame,
             Card11SelectedCube.apexAt_eq_oppositeVertexByIndex] using hopp2 }
     have hSlabels :
         L.labelsOf (S.capInteriorByIndex S.surplusIdx) = intS := by

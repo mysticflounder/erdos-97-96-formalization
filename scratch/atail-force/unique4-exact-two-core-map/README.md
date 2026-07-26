@@ -193,3 +193,105 @@ The next replayable endpoint is:
 
 No production `sorry` is closed by this checkpoint.  The analogous p4 bridge
 starts only after p5 is complete.
+
+## 2026-07-23 p5 trimmed-replay result
+
+`materialize_trimmed_reduced_core.py` now passes its isolated fallback
+self-test and accepts an optional deterministic CaDiCaL seed.  It publishes a
+production package with explicit clause-numbering provenance.  For
+`p5.greedy-family-largest-seed0.json`, the externally checked seed-7 pipeline
+(`--factor=false --no-binary --seed=7`) produced:
+
+- 9,412 dense input clauses and an 8,703-clause trimmed core;
+- a core-relative, normalized 334,607,857-byte LRAT;
+- 984,205 pure-RUP additions, 487,508 deletions, and 44,826,270 hint
+  occurrences; and
+- an authenticated 8,703-clause occurrence map with bindings SHA-256
+  `992588fb49758399b5ce0a0fa16385a7e0f347c2d6332a292fbf8effdfebf330`
+  and artifact SHA-256
+  `7ddd7a6fcdf46a8185bab0672a54130776322d24ad1dd74828b1d3812d4a6249`.
+
+CaDiCaL and both `drat-trim` verification passes succeeded.  The generated
+one-shot `Std.Sat.Reflect.verifyCert` theorem for the preceding seed-0
+363,172,369-byte certificate did not fail logically, but its Lean process
+timed out after 7,200 seconds with no diagnostic output while still consuming
+approximately one CPU core.  The seed-7 certificate has 7.5% fewer hint
+occurrences, but was not sent through another two-hour one-shot replay.  Its
+published report therefore correctly says `LEAN REPLAY SKIPPED`; this is not
+a kernel-checked UNSAT endpoint.
+
+Dependency slicing retains every addition and saves only about 2.9% by
+discarding deletions.  The remaining bottleneck is the monolithic Std LRAT
+path, which parses the whole proof and retains all actions before checking.
+Newline file chunking alone still rejoins one proof and is not expected to
+remove that bottleneck.  A successful revision needs either a substantially
+smaller certificate or a sound state-threaded/checkpointed checker
+representation.
+
+The occurrence map is source-name and occurrence provenance only.  The
+direct/reflected `IndexedSource` valuation, a kernel-checked UNSAT theorem, and
+their composition are all still required before the p5 exact-two constructor
+is closed.  Neither live production `sorry` is discharged here.
+
+## 2026-07-23 two-shard checkpointed RUP prototype
+
+`lean/Erdos9796Proof/P97/Certificate/CheckpointedRup.lean` is an importable,
+sound checker for splitting a pure-RUP certificate across one compact
+checkpoint. The first shard checks
+RUP additions and deletions against the original clause identifiers, then
+requires its active semantic clause list to equal the checkpoint clause list.
+The second shard starts from that compact array with fresh local identifiers
+and must derive the empty clause.
+
+The proved composition theorem is `checkTwo_sound`.  Its first-shard invariant
+is logical implication, not equivalence: a successful RUP addition preserves
+the formula, while deletion weakens it.  Exact semantic clause-list equality
+at the rebase boundary transfers the checkpoint result soundly.  The
+`Action` type has no RAT constructor, so unsupported RAT additions are
+rejected structurally.
+
+The in-file kernel-decided self-test exercises all four required operations:
+
+1. derive a RUP unit;
+2. delete the two clauses consumed by that derivation;
+3. rebase the two surviving units onto compact local identifiers; and
+4. derive the empty clause in the second shard.
+
+It also checks that a checkpoint missing one active clause is rejected.
+Running
+
+```bash
+cd lean
+lake-build Erdos9796Proof.P97.Certificate.CheckpointedRup
+```
+
+currently succeeds.
+
+An audit of the current `piqd`/`piqd-lrat` implementation found reusable
+whole-proof parsing, dense renumbering, content-addressed blob storage, and
+manifest patterns, but no sound resumable checker or sequential shard state.
+Its existing chunking only splits emitted Lean clause definitions; it does not
+split LRAT checking.
+
+The streaming materializer now lives in
+`../unique4-exact-two-lrat-ingress/`. It emits only pure-RUP actions,
+computes and checks the active checkpoint and local-ID rebase, hash-binds the
+package and exact checker, and rejects structural drift. Its 23-test suite and
+the bounded Lean text-ingress replay pass.
+
+The real seed-7 package has also been generated and independently reverified:
+
+- package SHA-256
+  `4229c86fd26f38e812d20467c68fbefa04838101611b6e73b00210cb0a444232`;
+- 8,703 base clauses and 23,857 checkpoint clauses;
+- shard 1: 492,102 additions and 21,491,717 hints; and
+- shard 2: 492,103 additions and 23,334,553 hints.
+
+This is still `STRUCTURALLY VALIDATED PURE-RUP SHARDS; LEAN REPLAY REQUIRED`.
+The checker now has separate sound text entry points for the first and second
+shards. A real first-shard one-shot replay nevertheless retained more than
+23 GiB without producing an `olean` and was interrupted after more than
+20 minutes. The next endpoint is therefore independently rebased windows
+inside each logical shard, initially capped at 4,000 actions and 4 MiB of LRAT
+text. Therefore this work does not yet establish the p5 UNSAT theorem and does
+not close either production `sorry`.

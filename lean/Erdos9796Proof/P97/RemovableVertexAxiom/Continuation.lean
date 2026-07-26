@@ -2,6 +2,7 @@ import Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusBank
 import Erdos9796Proof.P97.RemovableVertexAxiom.ErasedPinRowResiduals
 import Erdos9796Proof.P97.ErasedCertificate.P4UClosure
 import Erdos9796Proof.P97.ErasedCertificate.P4SClosure
+import Erdos9796Proof.P97.U1LargeCapRouteBTail
 
 /-!
 # Removable-vertex continuation branch

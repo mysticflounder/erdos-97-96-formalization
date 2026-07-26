@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.MultiCenter.Realization
-import Erdos9796Proof.P97.U1LargeCapRouteBTail
+import Erdos9796Proof.P97.U1CardElevenCapProfile
 
 /-!
 # Multi-center census: cap-profile handoff

@@ -16,6 +16,12 @@ build/
 # proof-blueprint DB (build artifact; intent/ is the checked-in record)
 data/
 
+# Source-promoted card-11 replay inputs are load-bearing Lean source assets.
+!lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/data/
+!lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/data/**
+!lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P5LargestWindowedReplay/data/
+!lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P5LargestWindowedReplay/data/**
+
 # tooling junk
 .nthdegree/
 scripts/__pycache__/

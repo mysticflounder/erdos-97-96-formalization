@@ -1,0 +1,82 @@
+theorem DoubleApexOffSurplusSharedRadiusPair
+    {D : Problem97.CounterexampleData} {p q t1 t2 t3 u : ℝ²}
+    {hncol : ¬ Collinear ℝ (D.A : Set ℝ²)}
+    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+    (hCirc : ∃ h12 h23 h13,
+      MT.toMoserTriangle.case_split = Or.inl ⟨h12, h23, h13⟩)
+    {M : MoserTriangle D.A} (CP : CapTriple D.A M) (i j : Fin 3)
+    (rows : U1Depth5.CriticalSourceRows D q t1 t2 t3 u)
+    (hM : M = MT.toMoserTriangle.toStructural hCirc)
+    (hqCap : q ∈ CP.capAt i)
+    (hsurplus : 4 < (CP.capAt i).card)
+    (hqNonMoser : q ∉ M.verts)
+    (hjne : j ≠ i)
+    (hj5 : 5 ≤ (CP.capAt j).card)
+    (hNoM44 : ¬ (∃ S : SurplusCapPacket D.A, S.IsM44))
+    (hcard : 9 < D.A.card)
+    (hcritical : Nonempty (CriticalShellSystem D.A))
+    (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
+    (hfixed : U3FixedTriplePacket D q p t1 t2 t3)
+    (hbase : List.Pairwise (fun x y : ℝ² => x ≠ y) [p, q, t1, t2, t3, u])
+    (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
+    (hcenter : (rows.rowAt U1Depth5.CriticalSource.t2).center = p)
+    (hsupport :
+      (rows.rowAt U1Depth5.CriticalSource.t2).selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²)) :
+    ∃ x w' : ℝ², x ∈ D.A ∧ w' ∈ D.A ∧ x ≠ w' ∧
+      x ∉ (Problem97.U1LargeCapRouteBTailMetricResidualTarget.leafSurplusPacket
+          (D := D) (MT := MT) (hCirc := hCirc) (CP := CP) (i := i)
+          (hM := hM) (hsurplus := hsurplus)).surplusCap ∧
+      w' ∉ (Problem97.U1LargeCapRouteBTailMetricResidualTarget.leafSurplusPacket
+          (D := D) (MT := MT) (hCirc := hCirc) (CP := CP) (i := i)
+          (hM := hM) (hsurplus := hsurplus)).surplusCap ∧
+      ∃ r ρ : ℝ,
+        dist x (Problem97.U1LargeCapRouteBTailMetricResidualTarget.leafSurplusPacket
+            (D := D) (MT := MT) (hCirc := hCirc) (CP := CP) (i := i)
+            (hM := hM) (hsurplus := hsurplus)).oppApex1 = r ∧
+        dist w' (Problem97.U1LargeCapRouteBTailMetricResidualTarget.leafSurplusPacket
+            (D := D) (MT := MT) (hCirc := hCirc) (CP := CP) (i := i)
+            (hM := hM) (hsurplus := hsurplus)).oppApex1 = r ∧
+        dist x (Problem97.U1LargeCapRouteBTailMetricResidualTarget.leafSurplusPacket
+            (D := D) (MT := MT) (hCirc := hCirc) (CP := CP) (i := i)
+            (hM := hM) (hsurplus := hsurplus)).oppApex2 = ρ ∧
+        dist w' (Problem97.U1LargeCapRouteBTailMetricResidualTarget.leafSurplusPacket
+            (D := D) (MT := MT) (hCirc := hCirc) (CP := CP) (i := i)
+            (hM := hM) (hsurplus := hsurplus)).oppApex2 = ρ := by
+  simpa using
+    Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair
+      (D := D) (p := p) (q := q) (t1 := t1) (t2 := t2) (t3 := t3) (u := u)
+      (hncol := hncol) MT hCirc (M := M) CP i j rows hM hqCap hsurplus
+      hqNonMoser hjne hj5 hNoM44 hcard hcritical hlocalNoQFree hfixed hbase H
+      hcenter hsupport
+
+theorem exists_removableVertex_of_twoLargeCaps
+    {D : Problem97.CounterexampleData} {p q t1 t2 t3 u : ℝ²}
+    {hncol : ¬ Collinear ℝ (D.A : Set ℝ²)}
+    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+    (hCirc : ∃ h12 h23 h13,
+      MT.toMoserTriangle.case_split = Or.inl ⟨h12, h23, h13⟩)
+    {M : MoserTriangle D.A} (CP : CapTriple D.A M) (i j : Fin 3)
+    (rows : U1Depth5.CriticalSourceRows D q t1 t2 t3 u)
+    (hM : M = MT.toMoserTriangle.toStructural hCirc)
+    (hqCap : q ∈ CP.capAt i)
+    (hsurplus : 4 < (CP.capAt i).card)
+    (hqNonMoser : q ∉ M.verts)
+    (hjne : j ≠ i)
+    (hj5 : 5 ≤ (CP.capAt j).card)
+    (hNoM44 : ¬ (∃ S : SurplusCapPacket D.A, S.IsM44))
+    (hcard : 9 < D.A.card)
+    (hcritical : Nonempty (CriticalShellSystem D.A))
+    (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
+    (hfixed : U3FixedTriplePacket D q p t1 t2 t3)
+    (hbase : List.Pairwise (fun x y : ℝ² => x ≠ y) [p, q, t1, t2, t3, u])
+    (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
+    (hcenter : (rows.rowAt U1Depth5.CriticalSource.t2).center = p)
+    (hsupport :
+      (rows.rowAt U1Depth5.CriticalSource.t2).selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²)) :
+    ∃ x : ℝ², IsRemovableVertex D.A x := by
+  simpa using
+    Problem97.U1LargeCapRouteBTailMetricResidualTarget.exists_removableVertex_of_twoLargeCaps
+      (p := p) MT hCirc CP i j rows hM hqCap hsurplus hqNonMoser hjne hj5
+      hNoM44 hcard hcritical hlocalNoQFree hfixed hbase H hcenter hsupport

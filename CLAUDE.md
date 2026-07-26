@@ -32,3 +32,40 @@ The sibling census has already identified:
 - 18 unimported U1 source-unit contradiction consumers for ordinals
   `2, 12, 40, 47, 88, 136, 169, 206`; and
 - `Problem97.U1LargeCapRouteBTailMetricResidualTarget.u1TwoLargeCapObstruction`.
+
+## Proof obligations and promotion
+
+Represent every active in-project proof obligation loudly in Lean. An active
+obligation must be a theorem with an explicit mathematical statement and
+`sorry`, transitively consumed by a publish target. Do not hide active
+obligations solely as proposition-valued `def`s, structure fields,
+higher-order contradiction arguments, or prose-only steps.
+
+It is permitted to replace one load-bearing `sorry` by several load-bearing
+leaf `sorry`s when all of the following hold:
+
+1. a kernel-checked producer or case split proves that the new leaves
+   collectively cover the parent;
+2. the change records an auditable narrowing measure for each leaf, such as
+   strictly stronger hypotheses, a smaller cardinality range, or a decrease in
+   another stated well-founded complexity measure; stronger hypotheses count
+   only when the parent proves them for that branch;
+3. every leaf is wired to the parent and a publish target in the same change;
+4. the split is acyclic and does not call the parent after erasing data;
+5. the leaf statements are stable enough to be the next direct proof targets;
+6. superseded outcome, adapter, or closer interfaces are removed, made private,
+   or explicitly classified as compatibility-only; and
+7. the change records the coordinator-interface frontier before and after,
+   including the chosen granularity and immediate constructor fan-out, not only
+   the raw `sorry` count.
+
+Do not introduce orphan or off-spine `sorry`s. Exploratory specifications that
+are not ready for promotion must be marked `PARKED-SPEC` and must not be called
+current obligations or proof progress.
+
+A conditional theorem that assumes the missing contradiction, a
+`...Closers` package, or an outcome enumerator is bookkeeping until it either
+eliminates a case or feeds a proved terminal. A source-clean wrapper does not by
+itself count as closure. Such assumptions and fields must still be listed in the
+coordinator-interface frontier even though they do not satisfy the loud
+Lean-obligation gate.

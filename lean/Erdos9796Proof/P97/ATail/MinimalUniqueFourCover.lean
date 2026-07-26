@@ -34,6 +34,7 @@ Recorded here, all general in `n` and free of cap or packet data:
 -/
 
 open scoped EuclideanGeometry
+open EuclideanGeometry
 
 namespace Problem97
 namespace ATailMinimalUniqueFourCover
@@ -248,6 +249,144 @@ theorem isUniqueFourCenter_of_not_fullyDeletionRobust
     push_neg at hgt
     exact hnr (fullyDeletionRobustAt_of_large_class hrpos (by omega))
   exact ⟨hc, r, hrpos, le_antisymm hle hr4, huniq⟩
+
+/-- The blocker chosen by a critical-shell system for a source is a
+unique-four center.  This is the source-faithful form of the cover: the
+blocker is the named center already carried by `H`, not a fresh existential
+choice recovered from minimality. -/
+theorem isUniqueFourCenter_centerAt
+    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+    (q : ℝ²) (hq : q ∈ D.A) :
+    IsUniqueFourCenter D.A (H.centerAt q hq) := by
+  have hcenterA : H.centerAt q hq ∈ D.A :=
+    Finset.mem_of_mem_erase
+      (H.selectedAt q hq).toCriticalFourShell.center_mem
+  exact isUniqueFourCenter_of_not_fullyDeletionRobust hcenterA (by
+    intro hrob
+    exact H.no_qfree_at q hq (hrob.survives q hq))
+
+/-- A critical-shell system's chosen blocker is distinct from its source. -/
+theorem centerAt_ne_source
+    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+    (q : ℝ²) (hq : q ∈ D.A) :
+    H.centerAt q hq ≠ q :=
+  Finset.ne_of_mem_erase
+    (H.selectedAt q hq).toCriticalFourShell.center_mem
+
+/-- The chosen critical shell through a source is exactly the unique four-class
+of its chosen blocker. -/
+theorem uniqueFourClass_centerAt_eq_selectedAt_support
+    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+    (q : ℝ²) (hq : q ∈ D.A) :
+    uniqueFourClass D.A (H.centerAt q hq) =
+      (H.selectedAt q hq).toCriticalFourShell.support := by
+  have hcard :
+      (SelectedClass D.A (H.centerAt q hq)
+        (H.selectedAt q hq).toCriticalFourShell.radius).card = 4 := by
+    simpa [SelectedClass,
+      (H.selectedAt q hq).toCriticalFourShell.support_eq] using
+        (H.selectedAt q hq).toCriticalFourShell.support_card
+  rw [uniqueFourClass_eq (isUniqueFourCenter_centerAt H q hq)
+    (H.selectedAt q hq).toCriticalFourShell.radius_pos hcard]
+  simpa [SelectedClass] using
+    (H.selectedAt q hq).toCriticalFourShell.support_eq.symm
+
+/-- Every source lies in the canonical unique four-class of its chosen
+critical-shell blocker. -/
+theorem source_mem_uniqueFourClass_centerAt
+    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+    (q : ℝ²) (hq : q ∈ D.A) :
+    q ∈ uniqueFourClass D.A (H.centerAt q hq) := by
+  rw [uniqueFourClass_centerAt_eq_selectedAt_support H q hq]
+  exact (H.selectedAt q hq).toCriticalFourShell.q_mem_support
+
+/-- A critical shell and an arbitrary radius class at a distinct center meet
+in at most two points.  Unlike `SelectedFourClass.inter_card_le_two`, the
+second circle need not contain four carrier points. -/
+theorem criticalFourShell_inter_selectedClass_card_le_two
+    {A : Finset ℝ²} {q center p : ℝ²} {radius : ℝ}
+    (K : CriticalFourShell A q center) (hcenters : center ≠ p) :
+    (K.support ∩ SelectedClass A p radius).card ≤ 2 := by
+  classical
+  by_contra hle
+  have hthree :
+      3 ≤ (K.support ∩ SelectedClass A p radius).card := by
+    omega
+  rcases Finset.exists_subset_card_eq
+      (s := K.support ∩ SelectedClass A p radius) hthree with
+    ⟨E, hEsubset, hEcard⟩
+  rw [Finset.card_eq_three] at hEcard
+  rcases hEcard with ⟨a, b, c, hab, hac, hbc, hEeq⟩
+  have haE : a ∈ E := by simp [hEeq]
+  have hbE : b ∈ E := by simp [hEeq]
+  have hcE : c ∈ E := by simp [hEeq]
+  have haK : a ∈ K.support := (Finset.mem_inter.mp (hEsubset haE)).1
+  have hbK : b ∈ K.support := (Finset.mem_inter.mp (hEsubset hbE)).1
+  have hcK : c ∈ K.support := (Finset.mem_inter.mp (hEsubset hcE)).1
+  have haClass : a ∈ SelectedClass A p radius :=
+    (Finset.mem_inter.mp (hEsubset haE)).2
+  have hbClass : b ∈ SelectedClass A p radius :=
+    (Finset.mem_inter.mp (hEsubset hbE)).2
+  have hcClass : c ∈ SelectedClass A p radius :=
+    (Finset.mem_inter.mp (hEsubset hcE)).2
+  let shellSphere : Sphere ℝ² := ⟨center, K.radius⟩
+  let classSphere : Sphere ℝ² := ⟨p, radius⟩
+  have hspheres : shellSphere ≠ classSphere := by
+    intro h
+    exact hcenters (congrArg (fun s : Sphere ℝ² => s.1) h)
+  have haShell : a ∈ shellSphere := by
+    rw [mem_sphere]
+    calc
+      dist a center = dist center a := dist_comm a center
+      _ = K.radius := K.support_eq_radius a haK
+  have hbShell : b ∈ shellSphere := by
+    rw [mem_sphere]
+    calc
+      dist b center = dist center b := dist_comm b center
+      _ = K.radius := K.support_eq_radius b hbK
+  have hcShell : c ∈ shellSphere := by
+    rw [mem_sphere]
+    calc
+      dist c center = dist center c := dist_comm c center
+      _ = K.radius := K.support_eq_radius c hcK
+  have haSelected : a ∈ classSphere := by
+    rw [mem_sphere]
+    calc
+      dist a p = dist p a := dist_comm a p
+      _ = radius := (mem_selectedClass.mp haClass).2
+  have hbSelected : b ∈ classSphere := by
+    rw [mem_sphere]
+    calc
+      dist b p = dist p b := dist_comm b p
+      _ = radius := (mem_selectedClass.mp hbClass).2
+  have hcSelected : c ∈ classSphere := by
+    rw [mem_sphere]
+    calc
+      dist c p = dist p c := dist_comm c p
+      _ = radius := (mem_selectedClass.mp hcClass).2
+  rcases two_circle_common_point_eq_endpoint hspheres hab
+      haShell hbShell haSelected hbSelected hcShell hcSelected with hca | hcb
+  · exact hac hca.symm
+  · exact hbc hcb.symm
+
+/-- A canonical critical shell cannot share three points with a selected
+four-class at a distinct center.  This is the terminal two-circle consumer for
+the remaining all-large-caps collision problem. -/
+theorem false_of_centerAt_selectedFourClass_inter_card_ge_three
+    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+    (q : ℝ²) (hq : q ∈ D.A) {p : ℝ²}
+    (K : SelectedFourClass D.A p)
+    (hcenters : H.centerAt q hq ≠ p)
+    (hthree :
+      3 ≤ ((H.selectedAt q hq).toCriticalFourShell.support ∩
+        K.support).card) :
+    False := by
+  have htwo :
+      ((H.selectedAt q hq).toCriticalFourShell.support ∩
+        K.support).card ≤ 2 :=
+    SelectedFourClass.inter_card_le_two
+      (H.selectedAt q hq).toSelectedFourClass K hcenters
+  omega
 
 /-- **Cover bound.**  The unique-four centers of a minimal counterexample cover
 the carrier by classes of exactly four points, so the carrier has at most four

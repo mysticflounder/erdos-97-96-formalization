@@ -1,0 +1,15 @@
+import Families
+
+/-! Trust audit for the P4 critical-support source semantics. -/
+
+#print axioms Problem97.P4CriticalSupportOccurrenceBridgeScratch.rowMem_of_blockerVal_criticalSupportVal
+#print axioms Problem97.P4CriticalSupportOccurrenceBridgeScratch.criticalSupportVal_of_blockerVal_radiusEq
+#print axioms Problem97.P4CriticalSupportOccurrenceBridgeScratch.not_criticalSupportVal_zero_of_blockerVal
+#print axioms Problem97.P4CriticalSupportOccurrenceBridgeScratch.radiusEq_zero_of_classHits
+#print axioms Problem97.P4CriticalSupportOccurrenceBridgeScratch.criticalSupport_card_le_of_cover
+#print axioms Problem97.P4CriticalSupportOccurrenceBridgeScratch.bridgeEntries_wf
+#print axioms Problem97.P4CriticalSupportOccurrenceBridgeScratch.atLeastEntries_eq_filter
+#print axioms Problem97.P4CriticalSupportOccurrenceBridgeScratch.ordinaryShapeSat
+#print axioms Problem97.P4CriticalSupportOccurrenceBridgeScratch.atLeastFour_4_litsSat
+#print axioms Problem97.P4CriticalSupportOccurrenceBridgeScratch.atLeastFour_8_litsSat
+#print axioms Problem97.P4CriticalSupportOccurrenceBridgeScratch.bridgeEntries_sat

@@ -1,0 +1,10 @@
+import P4RadiusPartitionOccurrenceBridge.AxiomAudit
+import P4RowAtLeastFourOccurrenceBridge.AxiomAudit
+import P4RowRadiusOccurrenceBridge.AxiomAudit
+
+/-! Import smoke test for the three collision-free P4 occurrence closures. -/
+
+#check Problem97.P4RadiusPartitionOccurrenceBridgeScratch.bridgeClauses_sat
+#check Problem97.P4RowAtLeastFourOccurrenceBridgeScratch.bridgeClauses_sat
+#check Problem97.P4RowRadiusOccurrenceBridgeScratch.bridgeClauses_sat_direct
+#check Problem97.P4RowRadiusOccurrenceBridgeScratch.bridgeClauses_sat_mirror

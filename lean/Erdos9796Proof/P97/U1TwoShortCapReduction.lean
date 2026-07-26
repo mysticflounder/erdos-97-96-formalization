@@ -20,11 +20,10 @@ Upstream prose statement:
 > with a surplus cap admits a Moser triangle with cap multiset
 > `(m, 4, 4)`, `m ≥ 5`.
 
-The genuine geometric content of U1 — five sub-lemmas about MEC
-boundary structure, cap monotonicity, Apollonius arcs, and
-equilateral transfer — is *not* proved in this session.  Those
-sub-lemmas are listed at the bottom and tracked as separate
-obligations in the blueprint DB.
+The historical U1 decomposition included five proposition-valued interfaces
+about MEC boundary structure, cap monotonicity, Apollonius arcs, and
+equilateral transfer. They are classified below as `PARKED-SPEC` or
+`COMPAT-ONLY/BANK`; they are not current publish-spine obligations.
 
 What *is* proved here:
 
@@ -42,16 +41,19 @@ What *is* proved here:
   follow from cap-arithmetic alone — they are useful precursors for
   U2 and U3.
 
-What is *not* proved here (and stays `sorry`-free by being stated
-without proof bodies — these are the U1 sub-lemma obligations):
+Interface classification:
 
-The five geometric sub-lemmas of U1 — short-cap existence,
-exactness-from-minimality, endpoint-equality, equilateral transfer,
-short-cap Apollonius — each require minimum-enclosing-circle and
-Apollonius-arc machinery that does not yet exist for general
-`Finset ℝ²` configurations.  They are recorded as *propositions* in
-this file (without bodies) and as new blueprint obligations under the
-`p97-u1-*` slug family.
+* `U1ShortCapExistence` and `U1ExactnessFromMinimality` are
+  `PARKED-SPEC`: no current producer or publish-spine consumer is assigned.
+* `U1EndpointEquality` is a `COMPAT-ONLY/BANK` hypothesis interface used by
+  older U1/U2 theorem banks; it is not itself a proved theorem.
+* `U1EquilateralTransfer` and the loose `U1ShortCapApollonius` are
+  `BANK` interfaces whose consequences from endpoint equality are proved
+  below.
+
+Turning any of these interfaces into an active obligation requires an explicit
+on-spine consumer and the promotion preflight; proposition-valued `def`s do not
+count as hidden proof progress.
 
 ## Hard rule reminder (from closure plan §"Hard Rule")
 
@@ -315,19 +317,17 @@ def SurplusCapPacket.surplusApex {A : Finset ℝ²} (S : SurplusCapPacket A) :
   | ⟨1, _⟩ => S.triangle.v2
   | _      => S.triangle.v3
 
-/- ### Sub-lemma signatures (currently open obligations)
+/- ### Historical sub-lemma interfaces
 
 The five sub-lemmas of U1 are listed below as Lean *propositions*
 (no bodies, no `sorry`).  They are not declared as theorems or
 axioms — they are pure type-level statements that consumers can refer
 to.  Future work will instantiate each by formally proving a
-`theorem` of that type.
-
-When the geometric infrastructure is built, each of these `def`s
-becomes a `theorem`.
+`theorem` of that type if an on-spine consumer makes it active. Their status is
+the classification above, not “open” merely because they are propositions.
 -/
 
-/-- **U1 sub-lemma 1: short-cap existence.**  Starting from a surplus
+/-- **PARKED-SPEC — U1 sub-lemma 1: short-cap existence.** Starting from a surplus
 cap, some choice of Moser triangle has at least two caps of size at
 most `4 + defect-min`.  Closure-plan note: this is the entry point of
 the U1 prose. -/
@@ -335,7 +335,7 @@ def U1ShortCapExistence (D : CounterexampleData) : Prop :=
   D.Minimal → ∃ D' : CounterexampleData, D'.A = D.A ∧
     D'.packet.oppCap1.card ≤ 4 ∧ D'.packet.oppCap2.card ≤ 4
 
-/-- **U1 sub-lemma 2: exactness-from-minimality.**  If a chosen Moser
+/-- **PARKED-SPEC — U1 sub-lemma 2: exactness-from-minimality.** If a chosen Moser
 triangle has fewer than two exact `4`-caps, then either a new Moser
 triangle improves the cap multiset, or an immediate removable vertex /
 incompatible contradiction is found. -/
@@ -625,7 +625,7 @@ theorem U1NoExit.not_isM44_packet {D : CounterexampleData}
   intro hPacket
   exact hNoExit.not_exactPacket (exactnessBranch_of_isM44_packet hPacket)
 
-/-- **U1 sub-lemma 3: endpoint-equality.**  In any exact `4`-cap, the
+/-- **COMPAT-ONLY/BANK — U1 sub-lemma 3: endpoint-equality.** In any exact `4`-cap, the
 opposite Moser-triangle vertex sees the full cap at one common radius:
 in the `(m, 4, 4)` regime there exist radii `r₁, r₂` such that every
 point of `oppCap1` lies at distance `r₁` from `oppApex1` and every
@@ -645,7 +645,7 @@ def U1EndpointEquality (D : CounterexampleData) : Prop :=
       (∀ a ∈ D.packet.oppCap1, dist a D.packet.oppApex1 = r₁) ∧
       (∀ a ∈ D.packet.oppCap2, dist a D.packet.oppApex2 = r₂)
 
-/-- **U1 sub-lemma 4: equilateral transfer.**  Two exact short caps
+/-- **BANK — U1 sub-lemma 4: equilateral transfer.** Two exact short caps
 force the Moser triangle equilateral: given `D.IsM44` and the
 endpoint-equality hypothesis on `D`, the three Moser-triangle side
 lengths coincide. -/
@@ -746,7 +746,7 @@ theorem u1EquilateralTransfer_proof (D : CounterexampleData) :
     · -- dist v2 v3 = dist v3 v1 : v2 v3 = r₂ = r₁ = v3 v1.
       rw [d23_r2, ← hrr, ← d31]
 
-/-- **U1 sub-lemma 5: short-cap Apollonius (loose form).**  Each
+/-- **BANK — U1 sub-lemma 5: short-cap Apollonius (loose form).** Each
 exact short cap lies on a single circle: there exist `(c₁, r₁)` and
 `(c₂, r₂)` such that `oppCap1` lies on the circle `(c₁, r₁)` and
 `oppCap2` on `(c₂, r₂)`.  The full geometric content is that these

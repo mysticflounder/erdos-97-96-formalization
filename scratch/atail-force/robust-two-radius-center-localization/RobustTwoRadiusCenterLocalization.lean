@@ -503,6 +503,111 @@ theorem exists_commonDeletion_of_singletonCore_and_disjointPhysicalRow
     nonempty_commonDeletionTwoCenterPacket H hdeletedA hcenterA
       (oppApex2_mem_A S) hcenterNe hfreshSurvives hphysicalSurvives⟩
 
+/-- Regard an ambient selected four-class avoiding `q` as the exact
+`q`-deleted row with the same support and radius. -/
+private def qDeletedK4Class_of_selectedFourClass
+    {D : CounterexampleData} {q center : ℝ²}
+    (K : SelectedFourClass D.A center)
+    (hq : q ∉ K.support) :
+    U5QDeletedK4Class D q center K.support where
+  subset := by
+    intro y hy
+    apply Finset.mem_erase.mpr
+    refine ⟨?_, ?_⟩
+    · intro hycenter
+      exact K.center_not_mem (hycenter ▸ hy)
+    · apply Finset.mem_erase.mpr
+      refine ⟨?_, K.support_subset_A hy⟩
+      intro hyq
+      exact hq (hyq ▸ hy)
+  card_four := by simp [K.support_card]
+  q_not_mem := hq
+  radius := K.radius
+  radius_pos := K.radius_pos
+  same_radius := K.support_eq_radius
+
+/-- Singleton-core common deletion with its physical row aligned to the
+original first row.  The deleted point is chosen from the disjoint second
+row, so both the fresh row and the first physical row survive with their
+supports unchanged. -/
+theorem exists_alignedCommonDeletion_of_singletonCore_and_disjointRows
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {V : Finset ℝ²} {center : ℝ²}
+    (firstRow secondRow : SelectedFourClass D.A S.oppApex2)
+    (hdisjoint : Disjoint firstRow.support secondRow.support)
+    (K : MinimalDeletionCore D.A V center)
+    (hVone : V.card = 1)
+    (hcenterA : center ∈ D.A)
+    (hcenterNe : center ≠ S.oppApex2) :
+    ∃ deleted : ℝ²,
+      ∃ packet : CommonDeletionTwoCenterPacket
+          D H deleted center S.oppApex2,
+        deleted ∈ secondRow.support ∧
+        deleted ∉ firstRow.support ∧
+        packet.B₂ = firstRow.support := by
+  classical
+  rcases Finset.card_eq_one.mp hVone with ⟨source, hVeq⟩
+  have hsourceV : source ∈ V := by simp [hVeq]
+  let source' : {x : ℝ² // x ∈ V} := ⟨source, hsourceV⟩
+  let freshRow : SelectedFourClass D.A center :=
+    (K.shellAt source').toSelectedFourClass
+  have hinter : (secondRow.support ∩ freshRow.support).card ≤ 2 :=
+    SelectedFourClass.inter_card_le_two secondRow freshRow hcenterNe.symm
+  have hsplit := Finset.card_sdiff_add_card_inter
+    secondRow.support freshRow.support
+  have houtside : 2 ≤ (secondRow.support \ freshRow.support).card := by
+    rw [secondRow.support_card] at hsplit
+    omega
+  rcases Finset.card_pos.mp (by omega :
+      0 < (secondRow.support \ freshRow.support).card) with
+    ⟨deleted, hdeleted⟩
+  have hdeletedSecond : deleted ∈ secondRow.support :=
+    (Finset.mem_sdiff.mp hdeleted).1
+  have hdeletedFresh : deleted ∉ freshRow.support :=
+    (Finset.mem_sdiff.mp hdeleted).2
+  have hdeletedFirst : deleted ∉ firstRow.support := by
+    intro hfirst
+    exact Finset.disjoint_left.mp hdisjoint hfirst hdeletedSecond
+  have hdeletedA : deleted ∈ D.A :=
+    secondRow.support_subset_A hdeletedSecond
+  have hfreshSurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase deleted) center :=
+    selectedFourClass_survives_erase_of_not_mem freshRow hdeletedFresh
+  have hfirstSurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase deleted) S.oppApex2 :=
+    selectedFourClass_survives_erase_of_not_mem firstRow hdeletedFirst
+  let row₁ : U5QDeletedK4Class D deleted center freshRow.support :=
+    qDeletedK4Class_of_selectedFourClass freshRow hdeletedFresh
+  let row₂ : U5QDeletedK4Class
+      D deleted S.oppApex2 firstRow.support :=
+    qDeletedK4Class_of_selectedFourClass firstRow hdeletedFirst
+  let packet : CommonDeletionTwoCenterPacket
+      D H deleted center S.oppApex2 := {
+    q_mem_A := hdeletedA
+    center₁_mem_A := hcenterA
+    center₂_mem_A := oppApex2_mem_A S
+    centers_ne := hcenterNe
+    survives₁ := hfreshSurvives
+    survives₂ := hfirstSurvives
+    actual_blocker_ne_center₁ := by
+      intro hcenter
+      apply H.no_qfree_at deleted hdeletedA
+      simpa only [hcenter] using hfreshSurvives
+    actual_blocker_ne_center₂ := by
+      intro hcenter
+      apply H.no_qfree_at deleted hdeletedA
+      simpa only [hcenter] using hfirstSurvives
+    B₁ := freshRow.support
+    B₂ := firstRow.support
+    row₁ := row₁
+    row₂ := row₂
+    B₁_card := freshRow.support_card
+    B₂_card := firstRow.support_card
+    overlap_le_two :=
+      SelectedFourClass.inter_card_le_two freshRow firstRow hcenterNe }
+  exact ⟨deleted, packet, hdeletedSecond, hdeletedFirst, rfl⟩
+
 /-- Equal-radius endpoint after applying global minimality to two strict
 second-cap members of one physical row.  The interval is local to this
 fixed source pair; no descent or nonreturn property is asserted. -/
@@ -516,9 +621,16 @@ structure StrictPairCollisionIntervalEndpoint
   center_mem_A : center ∈ D.A
   center_ne_secondApex : center ≠ S.oppApex2
   deleted_nonempty : deleted.Nonempty
+  deleted_card_eq_two : deleted.card = 2
+  deleted_subset_A : deleted ⊆ D.A
+  deleted_subset_row : deleted ⊆ firstRow.support
+  deleted_mem_strictSecondCap :
+    ∀ z ∈ deleted, z ∈ S.capInteriorByIndex S.oppIndex2
+  center_not_mem_deleted : center ∉ deleted
   source_mem_deleted : source ∈ deleted
   partner_mem_deleted : partner ∈ deleted
   source_ne_partner : source ≠ partner
+  deleted_eq_sources : deleted = {source, partner}
   source_mem_row : source ∈ firstRow.support
   partner_mem_row : partner ∈ firstRow.support
   source_mem_strictSecondCap :
@@ -574,10 +686,16 @@ structure StrictPairSingletonCommonDeletionEndpoint
     (H : CriticalShellSystem D.A) : Type where
   center : ℝ²
   deleted : ℝ²
+  firstRow : SelectedFourClass D.A S.oppApex2
+  secondRow : SelectedFourClass D.A S.oppApex2
+  rows_disjoint : Disjoint firstRow.support secondRow.support
   center_mem_A : center ∈ D.A
   center_ne_secondApex : center ≠ S.oppApex2
+  deleted_mem_secondRow : deleted ∈ secondRow.support
+  deleted_not_mem_firstRow : deleted ∉ firstRow.support
   packet : CommonDeletionTwoCenterPacket
     D H deleted center S.oppApex2
+  packet_physicalRow_eq_firstRow : packet.B₂ = firstRow.support
 
 /-- Exact normal form obtained by applying minimality to two strict
 `oppCap2` members of a support-disjoint physical row pair.
@@ -658,6 +776,30 @@ theorem exists_strictPair_minimalDeletionNormalForm
         source ≠ partner ∧ dist center source = dist center partner
   · rcases hcollision with
       ⟨source, hsource, partner, hpartner, hsourcePartner, hdist⟩
+    have hdeletedCardLe : deleted.card ≤ 2 := by
+      calc
+        deleted.card ≤ pair.card := Finset.card_le_card hdeletedSub
+        _ = 2 := hpairCard
+    have hsourcesSub :
+        ({source, partner} : Finset ℝ²) ⊆ deleted := by
+      intro z hz
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+      rcases hz with rfl | rfl
+      · exact hsource
+      · exact hpartner
+    have hdeletedCardLeSources :
+        deleted.card ≤ ({source, partner} : Finset ℝ²).card := by
+      simpa [Finset.card_pair hsourcePartner] using hdeletedCardLe
+    have hdeletedEq :
+        deleted = ({source, partner} : Finset ℝ²) :=
+      (Finset.eq_of_subset_of_card_le
+        hsourcesSub hdeletedCardLeSources).symm
+    have hdeletedCard : deleted.card = 2 := by
+      rw [hdeletedEq, Finset.card_pair hsourcePartner]
+    have hcenterNotDeleted : center ∉ deleted := by
+      intro hcenterDeleted
+      exact (Finset.mem_sdiff.mp hcenterFresh).2
+        (hdeletedSub hcenterDeleted)
     have hsourceRow := hdeletedRow hsource
     have hpartnerRow := hdeletedRow hpartner
     have hsourceStrict := hdeletedStrict source hsource
@@ -699,9 +841,15 @@ theorem exists_strictPair_minimalDeletionNormalForm
       center_mem_A := hcenterA
       center_ne_secondApex := hcenterNe
       deleted_nonempty := hdeletedNe
+      deleted_card_eq_two := hdeletedCard
+      deleted_subset_A := hdeletedSub.trans hpairSub
+      deleted_subset_row := hdeletedRow
+      deleted_mem_strictSecondCap := hdeletedStrict
+      center_not_mem_deleted := hcenterNotDeleted
       source_mem_deleted := hsource
       partner_mem_deleted := hpartner
       source_ne_partner := hsourcePartner
+      deleted_eq_sources := hdeletedEq
       source_mem_row := hsourceRow
       partner_mem_row := hpartnerRow
       source_mem_strictSecondCap := hsourceStrict
@@ -729,15 +877,21 @@ theorem exists_strictPair_minimalDeletionNormalForm
         deleted.card ≤ pair.card := Finset.card_le_card hdeletedSub
         _ = 2 := hpairCard
     by_cases hsingleton : deleted.card = 1
-    · rcases exists_commonDeletion_of_singletonCore_and_disjointPhysicalRow
-          R secondRow core hsingleton hcenterA hcenterNe with
-        ⟨source, ⟨packet⟩⟩
+    · rcases exists_alignedCommonDeletion_of_singletonCore_and_disjointRows
+          firstRow secondRow hdisjoint core hsingleton hcenterA hcenterNe with
+        ⟨source, packet, hsourceSecond, hsourceFirst, hpacketRow⟩
       exact Or.inr (Or.inl ⟨{
         center := center
         deleted := source
+        firstRow := firstRow
+        secondRow := secondRow
+        rows_disjoint := hdisjoint
         center_mem_A := hcenterA
         center_ne_secondApex := hcenterNe
+        deleted_mem_secondRow := hsourceSecond
+        deleted_not_mem_firstRow := hsourceFirst
         packet := packet
+        packet_physicalRow_eq_firstRow := hpacketRow
       }⟩)
     · have hdeletedCard : deleted.card = 2 := by
         have hpositive : 0 < deleted.card := Finset.card_pos.mpr hdeletedNe
@@ -773,6 +927,7 @@ theorem exists_strictPair_minimalDeletionNormalForm
 #print axioms nonempty_strictSecondCapInterval
 #print axioms MinimalDeletionCore.freshSecondApexCorePacking
 #print axioms exists_commonDeletion_of_singletonCore_and_disjointPhysicalRow
+#print axioms exists_alignedCommonDeletion_of_singletonCore_and_disjointRows
 #print axioms exists_strictPair_minimalDeletionNormalForm
 
 end ATailRobustTwoRadiusCenterLocalizationScratch

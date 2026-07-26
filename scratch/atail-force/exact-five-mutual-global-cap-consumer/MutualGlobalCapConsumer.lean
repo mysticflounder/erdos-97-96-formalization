@@ -1,5 +1,5 @@
 import MutualOmissionCrissCross
-import PhysicalOmissionCycleParentAdapter
+import Erdos9796Proof.P97.ATail.PhysicalOmissionCycleParentResidual
 import Erdos9796Proof.P97.CapSelectedRowCounting
 
 /-!
@@ -33,7 +33,7 @@ open ATailCommonDeletionTwoCenter
 open ATailCriticalPairFrontier
 open ATailExactFiveMutualOmissionClosureScratch
 open ATailLargeCapUniqueFivePhysicalOmissionCycle
-open ATailPhysicalOmissionCycleParentAdapterScratch
+open ATailPhysicalOmissionCycleParentResidual
 
 attribute [local instance] Classical.propDecidable
 
@@ -145,17 +145,16 @@ structure MutualCrossSurvivingSourceFamily
         (H.blockerVertex source).1
 
 /-- The at-most-two-source exceptional blocker fiber leaves at least eight
-cross-surviving sources on the full robust parent surface. -/
-theorem nonempty_mutualCrossSurvivingSourceFamily
+cross-surviving sources whenever the ambient carrier has at least ten points. -/
+theorem nonempty_mutualCrossSurvivingSourceFamily_of_card_ge_ten
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {H : CriticalShellSystem D.A}
-    {F : ATailRobustLargeRadius.RobustLargeRadiusParentSurface D S}
-    (R : FrontierCoupledExactFivePhysicalCycleParentResidual H F)
-    (E : PhysicalActualCriticalMutualOmissionEdge R.exactFive.cycle) :
+    {profile : ATailLargeCapUniqueFive.LargeCapUniqueFiveSecondApexRadius D S}
+    {K : PhysicalActualCriticalOmissionCycle H profile}
+    (hcard : 10 ≤ D.A.card)
+    (E : PhysicalActualCriticalMutualOmissionEdge K) :
     Nonempty (MutualCrossSurvivingSourceFamily E) := by
   classical
-  have hcard : 10 ≤ D.A.card :=
-    ten_le_card_of_robustLargeRadiusParentSurface F
   rcases (nonempty_mutualOmissionGlobalNormalForm E).2 with
     hall | ⟨exceptional, hexceptionalA, _hqBlocked, _hwBlocked,
       hcover, hfiber⟩
@@ -199,6 +198,18 @@ theorem nonempty_mutualCrossSurvivingSourceFamily
     · exact False.elim (hnotFiber (Finset.mem_filter.mpr
         ⟨Finset.mem_univ source, Subtype.ext hcenter⟩))
 
+/-- The robust parent surface supplies the cardinality hypothesis needed by
+the cycle-indexed source-family theorem. -/
+theorem nonempty_mutualCrossSurvivingSourceFamily
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {F : ATailRobustLargeRadius.RobustLargeRadiusParentSurface D S}
+    (R : FrontierCoupledExactFivePhysicalCycleParentResidual H F)
+    (E : PhysicalActualCriticalMutualOmissionEdge R.exactFive.cycle) :
+    Nonempty (MutualCrossSurvivingSourceFamily E) :=
+  nonempty_mutualCrossSurvivingSourceFamily_of_card_ge_ten
+    (ten_le_card_of_robustLargeRadiusParentSurface F) E
+
 /-- Color a source by one surviving deletion; color zero is chosen whenever
 the first deletion survives. -/
 noncomputable def mutualCrossSurvivalColor
@@ -239,7 +250,39 @@ theorem mutualCrossSurvivalColor_eq_one_iff
   simp [mutualCrossSurvivalColor]
 
 /-- Two cross-surviving source vertices of one deletion color whose actual
-blockers occupy one indexed closed cap. -/
+blockers occupy one indexed closed cap, indexed only by the physical cycle. -/
+structure CycleSameCapMutualCrossSurvivalPair
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {profile : ATailLargeCapUniqueFive.LargeCapUniqueFiveSecondApexRadius D S}
+    (K : PhysicalActualCriticalOmissionCycle H profile)
+    (E : PhysicalActualCriticalMutualOmissionEdge K) where
+  family : MutualCrossSurvivingSourceFamily E
+  source₁ : CriticalShellSystem.CarrierVertex D.A
+  source₂ : CriticalShellSystem.CarrierVertex D.A
+  capIndex : Fin 3
+  sources_ne : source₁ ≠ source₂
+  source₁_mem : source₁ ∈ family.sources
+  source₂_mem : source₂ ∈ family.sources
+  blocker₁_mem_cap :
+    (H.blockerVertex source₁).1 ∈ S.capByIndex capIndex
+  blocker₂_mem_cap :
+    (H.blockerVertex source₂).1 ∈ S.capByIndex capIndex
+  sameSurvival :
+    ((HasNEquidistantPointsAt 4
+          (D.A.erase (K.source E.index).1)
+          (H.blockerVertex source₁).1 ∧
+        HasNEquidistantPointsAt 4
+          (D.A.erase (K.source E.index).1)
+          (H.blockerVertex source₂).1) ∨
+      (HasNEquidistantPointsAt 4
+          (D.A.erase (K.source (K.successorIndex E.index)).1)
+          (H.blockerVertex source₁).1 ∧
+        HasNEquidistantPointsAt 4
+          (D.A.erase (K.source (K.successorIndex E.index)).1)
+          (H.blockerVertex source₂).1))
+
+/-- Frontier-coupled compatibility form of the cycle-indexed same-cap pair. -/
 structure SameCapMutualCrossSurvivalPair
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {H : CriticalShellSystem D.A}
@@ -276,16 +319,17 @@ structure SameCapMutualCrossSurvivalPair
           (H.blockerVertex source₂).1))
 
 /-- Eight sources in the six boxes
-`surviving deletion × actual-blocker cap` force a collision. -/
-theorem nonempty_sameCapMutualCrossSurvivalPair
+`surviving deletion × actual-blocker cap` force a cycle-indexed collision. -/
+theorem nonempty_cycleSameCapMutualCrossSurvivalPair_of_card_ge_ten
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {H : CriticalShellSystem D.A}
-    {F : ATailRobustLargeRadius.RobustLargeRadiusParentSurface D S}
-    (R : FrontierCoupledExactFivePhysicalCycleParentResidual H F)
-    (E : PhysicalActualCriticalMutualOmissionEdge R.exactFive.cycle) :
-    Nonempty (SameCapMutualCrossSurvivalPair R E) := by
+    {profile : ATailLargeCapUniqueFive.LargeCapUniqueFiveSecondApexRadius D S}
+    {K : PhysicalActualCriticalOmissionCycle H profile}
+    (hcard : 10 ≤ D.A.card)
+    (E : PhysicalActualCriticalMutualOmissionEdge K) :
+    Nonempty (CycleSameCapMutualCrossSurvivalPair K E) := by
   classical
-  rcases nonempty_mutualCrossSurvivingSourceFamily R E with ⟨family⟩
+  rcases nonempty_mutualCrossSurvivingSourceFamily_of_card_ge_ten hcard E with ⟨family⟩
   let Box := Fin 2 × Fin 3
   let assignment : {source // source ∈ family.sources} → Box :=
     fun source ↦
@@ -320,23 +364,19 @@ theorem nonempty_sameCapMutualCrossSurvivalPair
   let capIndex := actualBlockerCapIndex S H source₁.1
   have hsameSurvival :
       ((HasNEquidistantPointsAt 4
-            (D.A.erase (R.exactFive.cycle.source E.index).1)
+            (D.A.erase (K.source E.index).1)
             (H.blockerVertex source₁.1).1 ∧
           HasNEquidistantPointsAt 4
-            (D.A.erase (R.exactFive.cycle.source E.index).1)
+            (D.A.erase (K.source E.index).1)
             (H.blockerVertex source₂.1).1) ∨
         (HasNEquidistantPointsAt 4
-            (D.A.erase
-              (R.exactFive.cycle.source
-                (R.exactFive.cycle.successorIndex E.index)).1)
+            (D.A.erase (K.source (K.successorIndex E.index)).1)
             (H.blockerVertex source₁.1).1 ∧
           HasNEquidistantPointsAt 4
-            (D.A.erase
-              (R.exactFive.cycle.source
-                (R.exactFive.cycle.successorIndex E.index)).1)
+            (D.A.erase (K.source (K.successorIndex E.index)).1)
             (H.blockerVertex source₂.1).1)) := by
     by_cases hq₁ : HasNEquidistantPointsAt 4
-        (D.A.erase (R.exactFive.cycle.source E.index).1)
+        (D.A.erase (K.source E.index).1)
         (H.blockerVertex source₁.1).1
     · left
       refine ⟨hq₁, ?_⟩
@@ -345,7 +385,7 @@ theorem nonempty_sameCapMutualCrossSurvivalPair
       exact (mutualCrossSurvivalColor_eq_zero_iff E source₁.1).2 hq₁
     · right
       have hq₂ : ¬ HasNEquidistantPointsAt 4
-          (D.A.erase (R.exactFive.cycle.source E.index).1)
+          (D.A.erase (K.source E.index).1)
           (H.blockerVertex source₂.1).1 := by
         apply (mutualCrossSurvivalColor_eq_one_iff E source₂.1).1
         rw [← hcolor]
@@ -366,7 +406,82 @@ theorem nonempty_sameCapMutualCrossSurvivalPair
       simpa [capIndex, hcap] using actualBlocker_mem_chosenCap S H source₂.1
     sameSurvival := hsameSurvival }⟩
 
-/-- Distinct same-cap blockers give a banked common-deletion packet. -/
+private def frontierSameCapPairOfCyclePair
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {F : ATailRobustLargeRadius.RobustLargeRadiusParentSurface D S}
+    (R : FrontierCoupledExactFivePhysicalCycleParentResidual H F)
+    (E : PhysicalActualCriticalMutualOmissionEdge R.exactFive.cycle)
+    (pair : CycleSameCapMutualCrossSurvivalPair R.exactFive.cycle E) :
+    SameCapMutualCrossSurvivalPair R E where
+  family := pair.family
+  source₁ := pair.source₁
+  source₂ := pair.source₂
+  capIndex := pair.capIndex
+  sources_ne := pair.sources_ne
+  source₁_mem := pair.source₁_mem
+  source₂_mem := pair.source₂_mem
+  blocker₁_mem_cap := pair.blocker₁_mem_cap
+  blocker₂_mem_cap := pair.blocker₂_mem_cap
+  sameSurvival := pair.sameSurvival
+
+/-- The robust parent surface supplies the cardinality hypothesis needed by
+the cycle-indexed same-cap pigeonhole theorem. -/
+theorem nonempty_sameCapMutualCrossSurvivalPair
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {F : ATailRobustLargeRadius.RobustLargeRadiusParentSurface D S}
+    (R : FrontierCoupledExactFivePhysicalCycleParentResidual H F)
+    (E : PhysicalActualCriticalMutualOmissionEdge R.exactFive.cycle) :
+    Nonempty (SameCapMutualCrossSurvivalPair R E) := by
+  rcases nonempty_cycleSameCapMutualCrossSurvivalPair_of_card_ge_ten
+      (ten_le_card_of_robustLargeRadiusParentSurface F) E with ⟨pair⟩
+  exact ⟨frontierSameCapPairOfCyclePair R E pair⟩
+
+/-- Distinct same-cap blockers give a banked common-deletion packet, indexed
+only by the physical cycle and mutual edge. -/
+structure CycleSameCapCommonDeletionResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {profile : ATailLargeCapUniqueFive.LargeCapUniqueFiveSecondApexRadius D S}
+    (K : PhysicalActualCriticalOmissionCycle H profile)
+    (E : PhysicalActualCriticalMutualOmissionEdge K) where
+  pair : CycleSameCapMutualCrossSurvivalPair K E
+  deleted : ℝ²
+  deleted_eq :
+    deleted = (K.source E.index).1 ∨
+      deleted = (K.source (K.successorIndex E.index)).1
+  blockers_ne :
+    (H.blockerVertex pair.source₁).1 ≠ (H.blockerVertex pair.source₂).1
+  packet : CommonDeletionTwoCenterPacket D H deleted
+    (H.blockerVertex pair.source₁).1 (H.blockerVertex pair.source₂).1
+
+/-- Equal blockers leave one exact critical shell containing both sources and
+omitting the shared surviving deletion, indexed only by the physical cycle. -/
+structure CycleEqualBlockerShellResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {profile : ATailLargeCapUniqueFive.LargeCapUniqueFiveSecondApexRadius D S}
+    (K : PhysicalActualCriticalOmissionCycle H profile)
+    (E : PhysicalActualCriticalMutualOmissionEdge K) where
+  pair : CycleSameCapMutualCrossSurvivalPair K E
+  deleted : ℝ²
+  deleted_eq :
+    deleted = (K.source E.index).1 ∨
+      deleted = (K.source (K.successorIndex E.index)).1
+  blockers_eq :
+    (H.blockerVertex pair.source₁).1 = (H.blockerVertex pair.source₂).1
+  source₁_mem_shell :
+    pair.source₁.1 ∈
+      (H.selectedAt pair.source₁.1 pair.source₁.2).toCriticalFourShell.support
+  source₂_mem_shell :
+    pair.source₂.1 ∈
+      (H.selectedAt pair.source₁.1 pair.source₁.2).toCriticalFourShell.support
+  deleted_not_mem_shell :
+    deleted ∉
+      (H.selectedAt pair.source₁.1 pair.source₁.2).toCriticalFourShell.support
+
+/-- Frontier-coupled compatibility form of the distinct-blocker residual. -/
 structure SameCapCommonDeletionResidual
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {H : CriticalShellSystem D.A}
@@ -385,8 +500,7 @@ structure SameCapCommonDeletionResidual
   packet : CommonDeletionTwoCenterPacket D H deleted
     (H.blockerVertex pair.source₁).1 (H.blockerVertex pair.source₂).1
 
-/-- Equal blockers leave one exact critical shell containing both sources and
-omitting the shared surviving deletion. -/
+/-- Frontier-coupled compatibility form of the equal-blocker residual. -/
 structure EqualBlockerShellResidual
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {H : CriticalShellSystem D.A}
@@ -414,19 +528,20 @@ structure EqualBlockerShellResidual
 
 /-- Exact terminal split after the global cap pigeonhole.  The distinct arm
 reaches an existing bank packet; the equal arm records the remaining exact
-shell without inventing an incidence that the parent does not supply. -/
-theorem sameCapCommonDeletion_or_equalBlockerShellResidual
+shell without inventing an incidence that the cycle does not supply. -/
+theorem cycleSameCapCommonDeletion_or_equalBlockerShellResidual_of_card_ge_ten
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {H : CriticalShellSystem D.A}
-    {F : ATailRobustLargeRadius.RobustLargeRadiusParentSurface D S}
-    (R : FrontierCoupledExactFivePhysicalCycleParentResidual H F)
-    (E : PhysicalActualCriticalMutualOmissionEdge R.exactFive.cycle) :
-    Nonempty (SameCapCommonDeletionResidual R E) ∨
-      Nonempty (EqualBlockerShellResidual R E) := by
+    {profile : ATailLargeCapUniqueFive.LargeCapUniqueFiveSecondApexRadius D S}
+    {K : PhysicalActualCriticalOmissionCycle H profile}
+    (hcard : 10 ≤ D.A.card)
+    (E : PhysicalActualCriticalMutualOmissionEdge K) :
+    Nonempty (CycleSameCapCommonDeletionResidual K E) ∨
+      Nonempty (CycleEqualBlockerShellResidual K E) := by
   classical
-  rcases nonempty_sameCapMutualCrossSurvivalPair R E with ⟨pair⟩
+  rcases nonempty_cycleSameCapMutualCrossSurvivalPair_of_card_ge_ten hcard E with ⟨pair⟩
   rcases pair.sameSurvival with hfirst | hsecond
-  · let deleted := (R.exactFive.cycle.source E.index).1
+  · let deleted := (K.source E.index).1
     by_cases hblockers :
         (H.blockerVertex pair.source₁).1 = (H.blockerVertex pair.source₂).1
     · right
@@ -451,7 +566,7 @@ theorem sameCapCommonDeletion_or_equalBlockerShellResidual
           H pair.source₁.2).mp hfirst.1
     · left
       rcases nonempty_commonDeletionTwoCenterPacket H
-          (PhysicalVertex.mem_A (R.exactFive.cycle.source E.index))
+          (PhysicalVertex.mem_A (K.source E.index))
           (blocker_mem_A H pair.source₁) (blocker_mem_A H pair.source₂)
           hblockers hfirst.1 hfirst.2 with ⟨packet⟩
       exact ⟨{
@@ -461,8 +576,7 @@ theorem sameCapCommonDeletion_or_equalBlockerShellResidual
         blockers_ne := hblockers
         packet := packet }⟩
   · let deleted :=
-      (R.exactFive.cycle.source
-        (R.exactFive.cycle.successorIndex E.index)).1
+      (K.source (K.successorIndex E.index)).1
     by_cases hblockers :
         (H.blockerVertex pair.source₁).1 = (H.blockerVertex pair.source₂).1
     · right
@@ -488,8 +602,7 @@ theorem sameCapCommonDeletion_or_equalBlockerShellResidual
     · left
       rcases nonempty_commonDeletionTwoCenterPacket H
           (PhysicalVertex.mem_A
-            (R.exactFive.cycle.source
-              (R.exactFive.cycle.successorIndex E.index)))
+            (K.source (K.successorIndex E.index)))
           (blocker_mem_A H pair.source₁) (blocker_mem_A H pair.source₂)
           hblockers hsecond.1 hsecond.2 with ⟨packet⟩
       exact ⟨{
@@ -499,9 +612,46 @@ theorem sameCapCommonDeletion_or_equalBlockerShellResidual
         blockers_ne := hblockers
         packet := packet }⟩
 
+/-- The robust parent surface supplies the cardinality hypothesis needed by
+the cycle-indexed terminal split. -/
+theorem sameCapCommonDeletion_or_equalBlockerShellResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {F : ATailRobustLargeRadius.RobustLargeRadiusParentSurface D S}
+    (R : FrontierCoupledExactFivePhysicalCycleParentResidual H F)
+    (E : PhysicalActualCriticalMutualOmissionEdge R.exactFive.cycle) :
+    Nonempty (SameCapCommonDeletionResidual R E) ∨
+      Nonempty (EqualBlockerShellResidual R E) := by
+  rcases cycleSameCapCommonDeletion_or_equalBlockerShellResidual_of_card_ge_ten
+      (ten_le_card_of_robustLargeRadiusParentSurface F) E with hdistinct | hequal
+  · left
+    rcases hdistinct with ⟨residual⟩
+    exact ⟨{
+      pair := frontierSameCapPairOfCyclePair R E residual.pair
+      deleted := residual.deleted
+      deleted_eq := residual.deleted_eq
+      blockers_ne := residual.blockers_ne
+      packet := residual.packet }⟩
+  · right
+    rcases hequal with ⟨residual⟩
+    exact ⟨{
+      pair := frontierSameCapPairOfCyclePair R E residual.pair
+      deleted := residual.deleted
+      deleted_eq := residual.deleted_eq
+      blockers_eq := residual.blockers_eq
+      source₁_mem_shell := residual.source₁_mem_shell
+      source₂_mem_shell := residual.source₂_mem_shell
+      deleted_not_mem_shell := residual.deleted_not_mem_shell }⟩
+
 #print axioms ten_le_card_of_robustLargeRadiusParentSurface
+#print axioms nonempty_mutualCrossSurvivingSourceFamily_of_card_ge_ten
 #print axioms nonempty_mutualCrossSurvivingSourceFamily
+#print axioms CycleSameCapMutualCrossSurvivalPair
+#print axioms nonempty_cycleSameCapMutualCrossSurvivalPair_of_card_ge_ten
 #print axioms nonempty_sameCapMutualCrossSurvivalPair
+#print axioms CycleSameCapCommonDeletionResidual
+#print axioms CycleEqualBlockerShellResidual
+#print axioms cycleSameCapCommonDeletion_or_equalBlockerShellResidual_of_card_ge_ten
 #print axioms sameCapCommonDeletion_or_equalBlockerShellResidual
 
 end

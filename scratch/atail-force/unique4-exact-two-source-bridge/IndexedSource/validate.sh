@@ -57,7 +57,7 @@ MODULES="${*:-$DEFAULT_MODULES}"
 
 for module in $MODULES; do
   echo "== $module"
-  LEAN_PATH="$TASK_LEAN_PATH" lake env lean -M16384 -DwarningAsError=true \
+  LEAN_PATH="$TASK_LEAN_PATH" "$ROOT/scripts/lean427" lake env lean -M16384 -DwarningAsError=true \
     -R "$TASK_DIR" \
     -o "$TASK_DIR/$module.olean" \
     "$TASK_DIR/$module.lean"

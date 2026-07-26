@@ -1,0 +1,5 @@
+import CompactWindowedRupReplay.Compose
+import WindowedRupReplay.Compose
+
+#check CompactWindowedRupReplay.startUnsatisfiable
+#check WindowedRupReplay.startUnsatisfiable

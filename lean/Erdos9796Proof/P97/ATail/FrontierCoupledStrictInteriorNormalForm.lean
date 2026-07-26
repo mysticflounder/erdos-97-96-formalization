@@ -10,6 +10,11 @@ import Erdos9796Proof.P97.ATail.RetainedStrictInteriorParentNormalForm
 /-!
 # Coupled frontier and strict-interior parent normal form
 
+Status: `COMPAT-ONLY/BANK`. The module is source-proved but has no production
+import consumer and is not on either current publish spine. It remains a
+reusable normal-form bank; it receives no live-frontier closure credit unless a
+consumer is promoted through the standard preflight.
+
 The strict-interior selector and the original frontier escape analysis are
 both unconditional consequences of the same common-deletion parent residual.
 Keep them together.  This prevents the cap-local reductions from discarding

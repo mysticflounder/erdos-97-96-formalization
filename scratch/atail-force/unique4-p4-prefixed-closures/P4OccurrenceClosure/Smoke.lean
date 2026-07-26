@@ -1,0 +1,11 @@
+import P4OccurrenceClosure.MutualTransport.Orientation
+import P4OccurrenceClosure.CyclicAlternation.Main
+import P4OccurrenceClosure.Kalmanson.Main
+
+/-! Simultaneous-import smoke test for the three prefixed P4 occurrence closures. -/
+
+#check Problem97.P4MutualTransportOccurrenceBridgeScratch.bridgeClauses_sat_direct
+#check Problem97.P4MutualTransportOccurrenceBridgeScratch.bridgeClauses_sat_mirror
+#check Problem97.P4CyclicAlternationOccurrenceBridgeScratch.bridgeClauses_sat
+#check Problem97.P4KalmansonOccurrenceBridgeScratch.bridgeClauses_sat_direct
+#check Problem97.P4KalmansonOccurrenceBridgeScratch.bridgeClauses_sat_mirror

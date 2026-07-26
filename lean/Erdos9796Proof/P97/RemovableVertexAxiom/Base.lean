@@ -4,7 +4,6 @@ import Erdos9796Proof.P97.SurplusCOMPGBankDFS
 import Erdos9796Proof.P97.SurplusCOMPGBankGeometry
 import Erdos9796Proof.P97.CapBridgeFromK4
 import Erdos9796Proof.P97.NoDiameterUnderK4
-import Erdos9796Proof.P97.U1LargeCapRouteBTail
 import Erdos9796Proof.P97.EndpointCertificate.ResidualCoreData
 import Erdos9796Proof.P97.PinnedHullOrder
 import Erdos9796Proof.P97.EndpointCertificate.GeometryProducer

@@ -1,0 +1,9 @@
+import Erdos9796Proof.P97.UpstreamBridge
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure
+open Problem97 Problem97.ATailFrontierLiveClosure
+#print axioms Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven
+#print axioms Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm
+#print axioms Problem97.ATailFrontierLiveClosure.false_of_criticalPairFrontier
+#print axioms Problem97.ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap
+#print axioms Problem97.RemovableVertexOfLarge
+#print axioms Problem97.UniversalProblem97

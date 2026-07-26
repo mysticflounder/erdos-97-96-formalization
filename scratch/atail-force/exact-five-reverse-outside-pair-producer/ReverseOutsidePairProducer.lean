@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import PhysicalOmissionCycleParentAdapter
+import Erdos9796Proof.P97.ATail.PhysicalOmissionCycleParentResidual
 import ReverseMembershipClosure
 
 /-!
@@ -29,7 +29,7 @@ open ATailCriticalPairFrontier
 open ATailLargeCapUniqueFive
 open ATailLargeCapUniqueFivePhysicalOmissionCycle
 open ATailExactFiveReverseMembershipClosureScratch
-open ATailPhysicalOmissionCycleParentAdapterScratch
+open ATailPhysicalOmissionCycleParentResidual
 
 attribute [local instance] Classical.propDecidable
 

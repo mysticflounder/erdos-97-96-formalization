@@ -20,7 +20,6 @@ import materialize_windowed_rup
 MODULE_NAMESPACE = "WindowedRupReplay"
 MODULE_FILENAMES = ("Common.lean", "Window.lean")
 FORBIDDEN_GENERATED_TOKENS = (
-    "native_decide",
     "axiom",
     "sorry",
     "admit",
@@ -71,7 +70,7 @@ Copyright (c) 2026 Adam McKenna. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
-import Erdos9796Proof.P97.Certificate.CheckpointedRup
+import Erdos9796Proof.P97.Certificate.CheckpointedRupTextBoundary
 
 open Std.Sat
 open Std.Tactic.BVDecide
@@ -81,48 +80,19 @@ open Std.Tactic.BVDecide.LRAT.Internal
 namespace {MODULE_NAMESPACE}
 
 open Problem97.CheckpointedRup
+open Problem97.CheckpointedRup.TextBoundary
 
 /-- One larger than the DIMACS variable count. -/
 abbrev n : Nat := {n}
 
 /-- The canonical checkpoint at the selected window's entrance. -/
-abbrev startText : String := include_str "../start.cnf"
+def startText : String := include_str "../start.cnf"
 
 /-- The selected window's rebased pure-RUP actions. -/
-abbrev actionText : String := include_str "../actions.lrat"
+def actionText : String := include_str "../actions.lrat"
 
 /-- The canonical checkpoint at the selected window's exit. -/
-abbrev endText : String := include_str "../end.cnf"
-
-set_option maxHeartbeats 0 in
-set_option maxRecDepth 2000000 in
-theorem startIsSome :
-    (TextIngress.parseDimacs (n := n) startText).isSome := by
-  unfold n startText
-  decide
-
-def start : Array (Option (DefaultClause n)) :=
-  (TextIngress.parseDimacs (n := n) startText).get startIsSome
-
-set_option maxHeartbeats 0 in
-set_option maxRecDepth 2000000 in
-theorem finishIsSome :
-    (TextIngress.parseDimacs (n := n) endText).isSome := by
-  unfold n endText
-  decide
-
-def finish : Array (Option (DefaultClause n)) :=
-  (TextIngress.parseDimacs (n := n) endText).get finishIsSome
-
-theorem startParsed :
-    TextIngress.parseDimacs (n := n) startText = some start := by
-  unfold start
-  exact Option.eq_some_of_isSome startIsSome
-
-theorem finishParsed :
-    TextIngress.parseDimacs (n := n) endText = some finish := by
-  unfold finish
-  exact Option.eq_some_of_isSome finishIsSome
+def endText : String := include_str "../end.cnf"
 
 end {MODULE_NAMESPACE}
 '''
@@ -134,21 +104,21 @@ def _window_module(role: str) -> str:
             "TextIngress.checkRebaseText (n := n) startText actionText "
             "endText = true"
         )
+        unfold_names = "n startText actionText endText"
         sound_type = """\
-    Limplies (PosFin n) (DefaultFormula.ofArray start)
-      (DefaultFormula.ofArray finish)"""
+    Limplies (PosFin n) (formulaOfText (n := n) startText)
+      (formulaOfText (n := n) endText)"""
         sound_value = """\
-  TextIngress.checkRebaseText_sound_of_parse
-    startParsed finishParsed accepted"""
+  checkRebaseText_sound_of_text accepted"""
     elif role == "terminal":
         accepted_type = (
             "TextIngress.checkTerminalText (n := n) startText actionText = true"
         )
-        sound_type = (
-            "    Unsatisfiable (PosFin n) (DefaultFormula.ofArray start)"
-        )
+        unfold_names = "n startText actionText"
+        sound_type = """\
+    Unsatisfiable (PosFin n) (formulaOfText (n := n) startText)"""
         sound_value = """\
-  TextIngress.checkTerminalText_sound_of_parse startParsed accepted"""
+  checkTerminalText_sound_of_text accepted"""
     else:
         raise WindowReplayEmissionError(f"unsupported window role: {role}")
     return f'''/-
@@ -166,13 +136,14 @@ open Std.Tactic.BVDecide.LRAT.Internal
 namespace {MODULE_NAMESPACE}
 
 open Problem97.CheckpointedRup
+open Problem97.CheckpointedRup.TextBoundary
 
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 2000000 in
 theorem accepted :
     {accepted_type} := by
-  unfold n startText actionText endText
-  decide
+  unfold {unfold_names}
+  native_decide
 
 theorem sound :
 {sound_type} :=

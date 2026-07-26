@@ -18,6 +18,19 @@ import time
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
+import sys
+
+
+HERE = Path(__file__).resolve().parent
+REPO = HERE.parents[2]
+ATAIL_ROOT = REPO / "scratch" / "atail-force"
+if str(ATAIL_ROOT) not in sys.path:
+    sys.path.insert(0, str(ATAIL_ROOT))
+from lean427_runtime import (  # noqa: E402
+    assert_lean427,
+    lean427_environment,
+    require_canonical_lean_dir,
+)
 
 
 ORBIT_NAMES = {
@@ -58,7 +71,7 @@ def compile_job(job: Job, lean_dir: Path, certificate_dir: Path) -> Result:
     olean = job.output_dir / f"{job.module}.olean"
     ilean = job.output_dir / f"{job.module}.ilean"
     log = logs_dir / f"{job.module}.log"
-    env = os.environ.copy()
+    env = lean427_environment(lean_dir)
     import_roots = (certificate_dir, *job.import_dirs, job.output_dir)
     env["LEAN_PATH"] = os.pathsep.join(
         dict.fromkeys(str(path) for path in import_roots)
@@ -256,6 +269,9 @@ def main() -> None:
     if args.jobs < 1:
         raise ValueError("--jobs must be positive")
 
+    lean_dir = require_canonical_lean_dir(args.lean_dir, REPO, "--lean-dir")
+    assert_lean427(lean_dir, lean427_environment(lean_dir))
+
     started_at = datetime.now(timezone.utc).isoformat()
     requested_orbits = set(args.orbit)
     all_orbits_requested = requested_orbits == set(ORBIT_NAMES)
@@ -273,7 +289,7 @@ def main() -> None:
             for orbit in args.orbit
         ]
         all_results = run_parallel(
-            audit_jobs, min(args.jobs, len(audit_jobs)), args.lean_dir, args.certificate_dir
+            audit_jobs, min(args.jobs, len(audit_jobs)), lean_dir, args.certificate_dir
         )
         if all_orbits_requested and all(
             result.returncode == 0 for result in all_results
@@ -284,7 +300,7 @@ def main() -> None:
                 orbit_output_dirs,
             )
             all_results += run_parallel(
-                [combined_job], 1, args.lean_dir, args.certificate_dir
+                [combined_job], 1, lean_dir, args.certificate_dir
             )
     else:
         assignments: list[Job] = []
@@ -299,14 +315,14 @@ def main() -> None:
         results = run_parallel(
             assignments,
             min(args.jobs, len(assignments)),
-            args.lean_dir,
+            lean_dir,
             args.certificate_dir,
         )
         if any(result.returncode != 0 for result in results):
             all_results = results
         else:
             all_results = results + run_parallel(
-                remainder, args.jobs, args.lean_dir, args.certificate_dir
+                remainder, args.jobs, lean_dir, args.certificate_dir
             )
 
         if all(result.returncode == 0 for result in all_results) and len(all_results) == (
@@ -323,7 +339,7 @@ def main() -> None:
             all_results += run_parallel(
                 audit_jobs,
                 min(args.jobs, len(audit_jobs)),
-                args.lean_dir,
+                lean_dir,
                 args.certificate_dir,
             )
             if all_orbits_requested and all(
@@ -335,7 +351,7 @@ def main() -> None:
                     orbit_output_dirs,
                 )
                 all_results += run_parallel(
-                    [combined_job], 1, args.lean_dir, args.certificate_dir
+                    [combined_job], 1, lean_dir, args.certificate_dir
                 )
 
     summary = {

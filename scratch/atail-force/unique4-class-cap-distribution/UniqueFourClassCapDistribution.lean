@@ -302,21 +302,24 @@ theorem exactFour_twoStrict_or_alignedInteriorFrontier
       omega
     have hleft :
         (T ∩ S.leftAdjacentCapByIndex S.oppIndex1).card ≤ 1 := by
-      simpa [T, hcenter] using
-        S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
-          D.convex S.oppIndex1 radius
+      dsimp [T]
+      rw [hcenter]
+      exact S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
+        D.convex S.oppIndex1 radius
     have hright :
         (T ∩ S.rightAdjacentCapByIndex S.oppIndex1).card ≤ 1 := by
-      simpa [T, hcenter] using
-        S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
-          D.convex S.oppIndex1 radius
+      dsimp [T]
+      rw [hcenter]
+      exact S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
+        D.convex S.oppIndex1 radius
     have hcover :
         T \ I ⊆
           (T ∩ S.leftAdjacentCapByIndex S.oppIndex1) ∪
             (T ∩ S.rightAdjacentCapByIndex S.oppIndex1) := by
-      simpa [T, I, hcenter] using
-        S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
-          S.oppIndex1 hradius
+      dsimp [T, I]
+      rw [hcenter]
+      exact S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
+        S.oppIndex1 hradius
     have hunionGe :
         2 ≤ ((T ∩ S.leftAdjacentCapByIndex S.oppIndex1) ∪
           (T ∩ S.rightAdjacentCapByIndex S.oppIndex1)).card := by

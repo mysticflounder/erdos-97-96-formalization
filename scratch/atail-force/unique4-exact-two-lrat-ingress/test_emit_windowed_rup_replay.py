@@ -67,11 +67,10 @@ class EmitWindowedRupReplayTest(unittest.TestCase):
             self.assertIn('include_str "../start.cnf"', common)
             self.assertIn('include_str "../actions.lrat"', common)
             self.assertIn('include_str "../end.cnf"', common)
-            self.assertEqual(common.count("set_option maxHeartbeats 0 in"), 2)
-            self.assertIn("Option.eq_some_of_isSome startIsSome", common)
-            self.assertIn("Option.eq_some_of_isSome finishIsSome", common)
+            self.assertNotIn("parseDimacs", common)
             self.assertIn("checkRebaseText", window)
-            self.assertIn("checkRebaseText_sound_of_parse", window)
+            self.assertIn("checkRebaseText_sound_of_text", window)
+            self.assertIn("native_decide", window)
 
     def test_emits_terminal_window_with_terminal_checker(self) -> None:
         with tempfile.TemporaryDirectory() as raw_root:
@@ -85,7 +84,7 @@ class EmitWindowedRupReplayTest(unittest.TestCase):
                 output / "WindowedRupReplay/Window.lean"
             ).read_text(encoding="utf-8")
             self.assertIn("checkTerminalText", window)
-            self.assertIn("checkTerminalText_sound_of_parse", window)
+            self.assertIn("checkTerminalText_sound_of_text", window)
             self.assertNotIn("checkRebaseText", window)
 
     def test_is_deterministic_and_refuses_overwrite(self) -> None:

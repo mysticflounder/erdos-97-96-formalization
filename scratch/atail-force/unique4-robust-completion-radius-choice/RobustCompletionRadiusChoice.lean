@@ -80,6 +80,9 @@ inductive DeletionRobustRadiusClassification
       (second_class_card_ge_four :
         4 ≤ (SelectedClass D.A center otherRadius).card)
       (radii_ne : otherRadius ≠ radius)
+      (all_positive_radius_class_card_lt_five :
+        ∀ candidateRadius : ℝ, 0 < candidateRadius →
+          (SelectedClass D.A center candidateRadius).card < 5)
       (firstRow secondRow : SelectedFourClass D.A center)
       (firstRow_radius : firstRow.radius = radius)
       (secondRow_radius : secondRow.radius = otherRadius)
@@ -94,13 +97,26 @@ theorem fullyDeletionRobustAt_radiusClassification
     (hcenter : center ∈ D.A)
     (R : FullyDeletionRobustAt D center) :
     DeletionRobustRadiusClassification D center := by
-  obtain ⟨radius, hradius, hfour⟩ :=
-    exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
-      (D.K4 center hcenter)
-  by_cases hfive : 5 ≤ (SelectedClass D.A center radius).card
-  · exact DeletionRobustRadiusClassification.fivePointRadius
+  by_cases hfive :
+      ∃ radius : ℝ, 0 < radius ∧
+        5 ≤ (SelectedClass D.A center radius).card
+  · rcases hfive with ⟨radius, hradius, hfive⟩
+    exact DeletionRobustRadiusClassification.fivePointRadius
       radius hradius hfive
-  · have hcard : (SelectedClass D.A center radius).card = 4 := by
+  · have hnoFive :
+        ∀ candidateRadius : ℝ, 0 < candidateRadius →
+          (SelectedClass D.A center candidateRadius).card < 5 := by
+      intro candidateRadius hcandidate
+      have hnotFive :
+          ¬ 5 ≤ (SelectedClass D.A center candidateRadius).card := by
+        intro hfiveCandidate
+        exact hfive ⟨candidateRadius, hcandidate, hfiveCandidate⟩
+      omega
+    obtain ⟨radius, hradius, hfour⟩ :=
+      exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+        (D.K4 center hcenter)
+    have hcard : (SelectedClass D.A center radius).card = 4 := by
+      have hlt := hnoFive radius hradius
       omega
     have hnonempty : (SelectedClass D.A center radius).Nonempty :=
       Finset.card_pos.mp (by omega)
@@ -135,7 +151,7 @@ theorem fullyDeletionRobustAt_radiusClassification
         _ = firstRow.radius := firstRow.support_eq_radius x hxFirst
         _ = radius := hfirstRadius
     exact DeletionRobustRadiusClassification.twoDistinctRadii
-      radius otherRadius hradius hotherRadius hfour hfourOther hradii
+      radius otherRadius hradius hotherRadius hfour hfourOther hradii hnoFive
       firstRow secondRow hfirstRadius hsecondRadius hdisjoint
 
 /-- Either radius alternative is sufficient for full singleton-deletion
@@ -147,7 +163,7 @@ theorem fullyDeletionRobustAt_of_radiusClassification
   rcases C with
     ⟨radius, hradius, hfive⟩ |
       ⟨_radius, _otherRadius, _hradius, _hotherRadius,
-        _hfour, _hfourOther, _hradii, firstRow, secondRow,
+        _hfour, _hfourOther, _hradii, _hnoFive, firstRow, secondRow,
         _hfirstRadius, _hsecondRadius, hdisjoint⟩
   · exact fullyDeletionRobustAt_of_five_le_selectedClass hradius hfive
   · exact fullyDeletionRobustAt_of_two_disjoint_selectedFourClasses
@@ -258,7 +274,7 @@ theorem nonempty_robustCompletionRowChoice_of_radiusClassification
   rcases C with
     ⟨radius, hradius, hfive⟩ |
       ⟨radius, otherRadius, _hradius, _hotherRadius,
-        _hfour, _hfourOther, hradii, firstRow, secondRow,
+        _hfour, _hfourOther, hradii, _hnoFive, firstRow, secondRow,
         hfirstRadius, hsecondRadius, hdisjoint⟩
   · rcases exists_two_supportDistinct_selectedFourClasses_of_five_le
         hradius hfive with

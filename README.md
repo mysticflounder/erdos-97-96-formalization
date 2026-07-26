@@ -4,12 +4,16 @@ A Lean 4 formalization of the resolutions of two Erdős problems on convex
 point sets in the plane, checked against the canonical problem statements
 in [`formal-conjectures`](https://github.com/google-deepmind/formal-conjectures).
 
-The remaining proof surface is **12 `sorry`-carrying symbols / 32 textual
-holes in two Front-A source clusters**, all descending from the route-B tail of the
-removable-vertex core. The endpoint, pinned-surplus, and erased-pin Front-B
-branches are closed; the ERASE card-{10,11} classifier closure is committed at
-`652fdfcb`. **This is the main repo where the proof is being closed.** The
-former companion repo
+The remaining direct production proof surface is **5 `sorry`-carrying symbols /
+5 textual holes**, all in the A-tail frontier below the route-B tail of the
+removable-vertex core. The former two parent obligations are now source-clean
+checked coordinators: the unique-radius arm dispatches to the closed card-11
+exact-four certificate plus three open exact-four/exact-five leaves, and the
+all-large-caps tri-apex arm dispatches to two concrete low-hit leaves. The
+endpoint, pinned-surplus, and erased-pin
+Front-B branches are closed; the ERASE card-{10,11} classifier closure is
+committed at `652fdfcb`. **This is the main repo where the proof is being
+closed.** The former companion repo
 `p97-rvol` is historical as of 2026-07-06: its U-lane route-B tail was
 imported here on 2026-07-05, and its status docs are superseded by this
 repo. See **Proof status** below for the kernel-reported state.
@@ -56,23 +60,34 @@ convex `A` ([`unit_distance_pairs_bound`](lean/Erdos9796Proof/P96/EuclideanPeeli
 
 ## Proof status
 
-**Both published claims still reach `sorryAx` through two Front-A proof
-clusters.** The hard core of the descent step —
+**Both published claims still reach `sorryAx` through five direct Front-A
+leaf theorems.** The hard core of the descent step —
 [`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom.lean#L546)
 (*every nonempty convex `HasNEquidistantProperty 4` set with `9 < |A|` that is
 minimal under the strong-induction hypothesis contains a removable vertex*) —
 is assembled from a three-way split (surplus-cap packet extraction, the
 `IsM44` pinned-surplus branch, the non-`IsM44` descent branch). The
-current source obligations are all in `U1LargeCapRouteBTail.lean`:
+current direct source obligations are all in
+`P97/ATail/FrontierLiveClosure.lean`:
 
-| Cluster | Source surface | Symbols | Textual holes |
+| Arm | Source surface | Symbols | Textual holes |
 |---|---|---:|---:|
-| Shared-radius pair | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | 1 | 1 |
-| liveData families | Four LIVE-Q helpers and seven LIVE-C helpers consumed by the now-sorry-free `u1_largeCap_routeB_tail_liveData_false`; LIVE-T1/T3 are source-sorry-free | 11 | 31 |
-| **Total** | | **12** | **32** |
+| Unique radius, exact four, card at least 12 | `false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve` | 1 | 1 |
+| Unique radius, exact five, distinct obstruction centers | `false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual` | 1 | 1 |
+| Unique radius, exact five, common obstruction center | `false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual` | 1 | 1 |
+| Tri-apex low-hit, equal blockers | `false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits` | 1 | 1 |
+| Tri-apex low-hit, distinct blockers | `false_of_retainedInteriorDirectedOmission_and_all_low_hits` | 1 | 1 |
+| **Total** | | **5** | **5** |
 
-`proof-blueprint symbols --with-sorry` reports exactly those 12 symbols. The
-former Front-B obligations `isM44EndpointResidualsExcluded`,
+The source census reports exactly those five symbols. The checked parent
+coordinators `false_of_originalFrontierUniqueRadiusArm` and
+`false_of_frontierAllLargeCapsTriApexRobustResidual` are source-clean and
+dispatch exhaustively to these leaves, with the exact-four card-11 branch
+closed by the promoted certificate ingress. Refreshing `proof-blueprint` after
+the production build confirms their publish-spine reachability. The former
+shared-radius and LIVE-Q/C declarations were bypassed and retired when the
+caller moved to `CriticalPairFrontier`; they were not individually proved.
+The former Front-B obligations `isM44EndpointResidualsExcluded`,
 `isM44PinnedSurplusResidualsExcluded`, and
 `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` are source-clean
 and kernel-connected. The downstream exact-pin ERASE target is 0/1376 open
@@ -82,44 +97,48 @@ axiom set.
 The Lean kernel reports the axiom closure of both published claims as the
 Lean core axioms plus:
 
-- `sorryAx` — traces exactly to the 12 Front-A symbols above;
+- `sorryAx` — traces exactly to the five Front-A leaves above;
 - `Lean.ofReduceBool` and `Lean.trustCompiler` — from `native_decide` in the
   generated finite-bank certificate shards (`SurplusCOMPGBank*`,
   `EndpointCertificate/*`), allowed under the project's `native_decide`
   policy (kernel-checked closure + the evaluated checkers are plain verified
   Lean with no `unsafe` / `@[implemented_by]` / `@[extern]`).
 
-Once those two clusters are proven, `sorryAx` drops out and both closures
+Once those five leaves are proven, `sorryAx` drops out and both closures
 become the core axioms plus the two compiler axioms — the declared trust
 boundary of the certificate infrastructure.
 
 You can reproduce this check after building (see below):
 
 ```bash
-cd lean
-echo 'import Erdos9796Proof.P97.UpstreamBridge
+mkdir -p scratch/checks
+printf '%s\n' 'import Erdos9796Proof.P97.UpstreamBridge
 import Erdos9796Proof.P96.UpstreamBridge
 #print axioms Problem97.erdos97_rhs
-#print axioms Problem96.erdos96_rhs' > /tmp/ax_check.lean
-lake env lean /tmp/ax_check.lean
+#print axioms Problem96.erdos96_rhs' > scratch/checks/ax_check.lean
+cd lean
+lake env lean ../scratch/checks/ax_check.lean
 ```
 
 ## Building from a clean checkout
 
 Requires [`elan`](https://leanprover-community.github.io/install/) (the Lean
-toolchain manager); the pinned toolchain is `leanprover/lean4:v4.27.0` and is
-fetched automatically.
+toolchain manager) and `uv`; the pinned toolchain is
+`leanprover/lean4:v4.27.0` and is fetched automatically.
 
 ```bash
 git clone <this-repo>
-cd <this-repo>/lean
+cd <this-repo>
+
+cd lean
 
 # Fetch the prebuilt mathlib cache (also materializes the pinned dependencies
 # from lake-manifest.json: mathlib v4.27.0 and formal-conjectures).
 lake exe cache get
 
-# Build both library roots (statements + proofs).
-lake build
+# Return to the repository root and use the serialized build wrapper.
+cd ..
+./scripts/lake-build.sh
 ```
 
 Or use the convenience wrapper from the repository root, which holds a build
@@ -129,16 +148,28 @@ lock so concurrent invocations serialize:
 ./scripts/lake-build.sh
 ```
 
-A successful build prints `declaration uses 'sorry'` warnings for
-`U1LargeCapRouteBTail.lean`, the sole current source file carrying proof holes,
-and nothing else of
-substance. (Lean's mathlib-style linters emit a handful of cosmetic
+A successful build prints `declaration uses 'sorry'` warnings for the five
+leaf theorems in `P97/ATail/FrontierLiveClosure.lean` and nothing else of
+substance.
+(Lean's mathlib-style linters emit a handful of cosmetic
 style/`simp` hints; these are not errors.)
 
 **Note on dependencies.** `lake-manifest.json` is committed and pins exact
 dependency revisions, so the build is reproducible. Do **not** run
 `lake update` - it would re-resolve `formal-conjectures` to the latest `main`
 and break the pin.
+
+The promoted card-eleven certificate source graph is on the published import
+spine and closes the card-11 exact-four branch. Its 922 compact and 742
+windowed replay modules, together with their 1,656 directly referenced source
+assets, are committed under the main `Erdos9796Proof` library, so a clean
+checkout needs no historical-tree path, vendor package, or separately
+distributed replay bundle. The promotion manifest supports a self-contained
+`--check`; scratch provenance is consulted only by the explicit
+`--check-source` regeneration audit. The promoted graph has no `sorryAx`;
+generated `native_decide` proofs contribute
+`Lean.ofReduceBool` and `Lean.trustCompiler`, both included in the project's
+approved trust boundary.
 
 ## Repository layout
 
@@ -152,8 +183,11 @@ lean/
       UniversalProblem97.lean   -- the strong-induction wrapper
       Counting.lean             -- counting engine (forces |A| ≥ 9)
       Descent.lean              -- descent engine (kills |A| > 9)
-      RemovableVertexAxiom.lean -- removable-vertex assembly + 3 residual sorries
-      U1LargeCapRouteBTail.lean -- imported U-lane route-B tail (2 residual sorries)
+      RemovableVertexAxiom.lean -- removable-vertex assembly; A-tail leaves downstream
+      U1LargeCapRouteBTail.lean -- imported U-lane route-B tail; source-clean coordinator
+      ATail/
+        FrontierLiveClosure.lean -- five load-bearing production leaf obligations
+        CardElevenUniqueFourCertificateIngress.lean -- closed card-11 exact-four branch
       Foundation.lean           -- shared vocabulary + signed-area primitives
       Dumitrescu/               -- isosceles-counting lemma chain (L1 … Lc3)
       CGN/                      -- cap-witness counting bridge (CGN … CGN8)
@@ -183,10 +217,12 @@ scripts/
 docs/                         -- working plans, dead-ends log, audits
 ```
 
-The default `lake build` compiles the import closure of the two published
-theorems (~160 modules); the generated certificate corpus under
-`EndpointCertificate/Patterns/` builds only when targeted explicitly and is
-the input material for wiring the endpoint residual obligation.
+The default `lake build` compiles the full import closure of the two published
+theorems. That closure now includes the 2,061-module promoted card-eleven
+certificate graph described above. The generated corpus under
+`EndpointCertificate/Patterns/` is also transitively imported on the published
+spine and supports the already-closed endpoint branch; it is no longer
+explicit-target-only input for a pending endpoint residual.
 
 ## Proof architecture - where to look
 
@@ -303,7 +339,7 @@ a final single-apex exhaustion:
 
 ### Status of the removable-vertex lemma: current residuals
 
-The two Front-A clusters in the **Proof status** table are the open frontier;
+The five Front-A leaves in the **Proof status** table are the open frontier;
 everything else on the descent path is closed and kernel-audited: the base
 case `FiniteN9Closure` (axiom closure: `propext, Classical.choice,
 Quot.sound`), the cap-sum bridge (`|A| > 9 ⇒ some opposite cap is surplus`),
@@ -342,8 +378,8 @@ other companion repos are historical — frozen references, not live work
 targets; their status docs are superseded by this repo.
 
 The former off-spine `U2OppCap2Escape.lean` work is archived under `attic/`.
-No current source file outside `U1LargeCapRouteBTail.lean` carries a proof
-`sorry`.
+All current production proof `sorry`s are in
+`P97/ATail/FrontierLiveClosure.lean`.
 
 ### Problem 96
 

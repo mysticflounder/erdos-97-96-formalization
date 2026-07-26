@@ -1,0 +1,17 @@
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeLeaf1
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeLeaf2
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeLeaf3
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeLeaf4
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeLeaf8
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeLeaf9
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeLeaf10
+
+namespace Problem97.ATailAlignedP5NativeClassifierScratch
+
+theorem placementCheck_eq_true : placementCheck = true := by
+  simp [placementCheck, alignedExtraPoints, placementCheckForExtra_one,
+    placementCheckForExtra_two, placementCheckForExtra_three,
+    placementCheckForExtra_four, placementCheckForExtra_eight,
+    placementCheckForExtra_nine, placementCheckForExtra_ten]
+
+end Problem97.ATailAlignedP5NativeClassifierScratch

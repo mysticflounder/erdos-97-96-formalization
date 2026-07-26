@@ -1,0 +1,143 @@
+/- Generated directly from a saved Z3 source-assertion core. -/
+import ExactFiveCard13BVCircuitChunks.Base
+
+namespace Problem97.ATailExactFiveCard13BVCircuit
+
+set_option maxRecDepth 100000
+set_option maxHeartbeats 0
+set_option linter.unusedVariables false
+
+def direct006 (rows : RowBits) (blockers : BlockerBits) (shell : ShellBits) (q w : RoleBits) (b1 : FirstRowBits) (ranks : RankBits) : Bool :=
+  (!((rowBit rows 1 6 2 && rowBit rows 1 6 9)) || ((rankAtom ranks 26 == rankAtom ranks 59))) &&
+    (!((rowBit rows 1 6 2 && rowBit rows 1 6 10)) || ((rankAtom ranks 26 == rankAtom ranks 60))) &&
+    (!((rowBit rows 1 6 2 && rowBit rows 1 6 11)) || ((rankAtom ranks 26 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 2 && rowBit rows 1 6 12)) || ((rankAtom ranks 26 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 4)) || ((rankAtom ranks 35 == rankAtom ranks 43))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 5)) || ((rankAtom ranks 35 == rankAtom ranks 50))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 7)) || ((rankAtom ranks 35 == rankAtom ranks 57))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 8)) || ((rankAtom ranks 35 == rankAtom ranks 58))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 9)) || ((rankAtom ranks 35 == rankAtom ranks 59))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 10)) || ((rankAtom ranks 35 == rankAtom ranks 60))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 11)) || ((rankAtom ranks 35 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 12)) || ((rankAtom ranks 35 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 4 && rowBit rows 1 6 5)) || ((rankAtom ranks 43 == rankAtom ranks 50))) &&
+    (!((rowBit rows 1 6 4 && rowBit rows 1 6 7)) || ((rankAtom ranks 43 == rankAtom ranks 57))) &&
+    (!((rowBit rows 1 6 4 && rowBit rows 1 6 8)) || ((rankAtom ranks 43 == rankAtom ranks 58))) &&
+    (!((rowBit rows 1 6 4 && rowBit rows 1 6 9)) || ((rankAtom ranks 43 == rankAtom ranks 59))) &&
+    (!((rowBit rows 1 6 4 && rowBit rows 1 6 10)) || ((rankAtom ranks 43 == rankAtom ranks 60))) &&
+    (!((rowBit rows 1 6 4 && rowBit rows 1 6 11)) || ((rankAtom ranks 43 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 4 && rowBit rows 1 6 12)) || ((rankAtom ranks 43 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 5 && rowBit rows 1 6 7)) || ((rankAtom ranks 50 == rankAtom ranks 57))) &&
+    (!((rowBit rows 1 6 5 && rowBit rows 1 6 8)) || ((rankAtom ranks 50 == rankAtom ranks 58))) &&
+    (!((rowBit rows 1 6 5 && rowBit rows 1 6 9)) || ((rankAtom ranks 50 == rankAtom ranks 59))) &&
+    (!((rowBit rows 1 6 5 && rowBit rows 1 6 10)) || ((rankAtom ranks 50 == rankAtom ranks 60))) &&
+    (!((rowBit rows 1 6 5 && rowBit rows 1 6 11)) || ((rankAtom ranks 50 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 5 && rowBit rows 1 6 12)) || ((rankAtom ranks 50 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 7 && rowBit rows 1 6 8)) || ((rankAtom ranks 57 == rankAtom ranks 58))) &&
+    (!((rowBit rows 1 6 7 && rowBit rows 1 6 9)) || ((rankAtom ranks 57 == rankAtom ranks 59))) &&
+    (!((rowBit rows 1 6 7 && rowBit rows 1 6 10)) || ((rankAtom ranks 57 == rankAtom ranks 60))) &&
+    (!((rowBit rows 1 6 7 && rowBit rows 1 6 11)) || ((rankAtom ranks 57 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 7 && rowBit rows 1 6 12)) || ((rankAtom ranks 57 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 8 && rowBit rows 1 6 9)) || ((rankAtom ranks 58 == rankAtom ranks 59))) &&
+    (!((rowBit rows 1 6 8 && rowBit rows 1 6 10)) || ((rankAtom ranks 58 == rankAtom ranks 60))) &&
+    (!((rowBit rows 1 6 8 && rowBit rows 1 6 11)) || ((rankAtom ranks 58 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 8 && rowBit rows 1 6 12)) || ((rankAtom ranks 58 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 9 && rowBit rows 1 6 10)) || ((rankAtom ranks 59 == rankAtom ranks 60))) &&
+    (!((rowBit rows 1 6 9 && rowBit rows 1 6 11)) || ((rankAtom ranks 59 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 9 && rowBit rows 1 6 12)) || ((rankAtom ranks 59 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 10 && rowBit rows 1 6 11)) || ((rankAtom ranks 60 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 10 && rowBit rows 1 6 12)) || ((rankAtom ranks 60 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 11 && rowBit rows 1 6 12)) || ((rankAtom ranks 61 == rankAtom ranks 62))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 1)) || ((rankAtom ranks 4 == rankAtom ranks 15))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 2)) || ((rankAtom ranks 4 == rankAtom ranks 25))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 3)) || ((rankAtom ranks 4 == rankAtom ranks 34))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 4)) || ((rankAtom ranks 4 == rankAtom ranks 42))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 6)) || ((rankAtom ranks 4 == rankAtom ranks 50))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 7)) || ((rankAtom ranks 4 == rankAtom ranks 51))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 8)) || ((rankAtom ranks 4 == rankAtom ranks 52))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 9)) || ((rankAtom ranks 4 == rankAtom ranks 53))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 10)) || ((rankAtom ranks 4 == rankAtom ranks 54))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 11)) || ((rankAtom ranks 4 == rankAtom ranks 55))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 12)) || ((rankAtom ranks 4 == rankAtom ranks 56))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 2)) || ((rankAtom ranks 15 == rankAtom ranks 25))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 3)) || ((rankAtom ranks 15 == rankAtom ranks 34))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 4)) || ((rankAtom ranks 15 == rankAtom ranks 42))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 6)) || ((rankAtom ranks 15 == rankAtom ranks 50))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 7)) || ((rankAtom ranks 15 == rankAtom ranks 51))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 8)) || ((rankAtom ranks 15 == rankAtom ranks 52))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 9)) || ((rankAtom ranks 15 == rankAtom ranks 53))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 10)) || ((rankAtom ranks 15 == rankAtom ranks 54))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 11)) || ((rankAtom ranks 15 == rankAtom ranks 55))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 12)) || ((rankAtom ranks 15 == rankAtom ranks 56))) &&
+    (!((rowBit rows 2 5 2 && rowBit rows 2 5 4)) || ((rankAtom ranks 25 == rankAtom ranks 42))) &&
+    (!((rowBit rows 2 5 2 && rowBit rows 2 5 6)) || ((rankAtom ranks 25 == rankAtom ranks 50))) &&
+    (!((rowBit rows 2 5 2 && rowBit rows 2 5 7)) || ((rankAtom ranks 25 == rankAtom ranks 51)))
+
+@[bv_normalize]
+theorem direct006_eq (rows : RowBits) (blockers : BlockerBits) (shell : ShellBits) (q w : RoleBits) (b1 : FirstRowBits) (ranks : RankBits) :
+    direct006 rows blockers shell q w b1 ranks = ((!((rowBit rows 1 6 2 && rowBit rows 1 6 9)) || ((rankAtom ranks 26 == rankAtom ranks 59))) &&
+    (!((rowBit rows 1 6 2 && rowBit rows 1 6 10)) || ((rankAtom ranks 26 == rankAtom ranks 60))) &&
+    (!((rowBit rows 1 6 2 && rowBit rows 1 6 11)) || ((rankAtom ranks 26 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 2 && rowBit rows 1 6 12)) || ((rankAtom ranks 26 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 4)) || ((rankAtom ranks 35 == rankAtom ranks 43))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 5)) || ((rankAtom ranks 35 == rankAtom ranks 50))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 7)) || ((rankAtom ranks 35 == rankAtom ranks 57))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 8)) || ((rankAtom ranks 35 == rankAtom ranks 58))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 9)) || ((rankAtom ranks 35 == rankAtom ranks 59))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 10)) || ((rankAtom ranks 35 == rankAtom ranks 60))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 11)) || ((rankAtom ranks 35 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 3 && rowBit rows 1 6 12)) || ((rankAtom ranks 35 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 4 && rowBit rows 1 6 5)) || ((rankAtom ranks 43 == rankAtom ranks 50))) &&
+    (!((rowBit rows 1 6 4 && rowBit rows 1 6 7)) || ((rankAtom ranks 43 == rankAtom ranks 57))) &&
+    (!((rowBit rows 1 6 4 && rowBit rows 1 6 8)) || ((rankAtom ranks 43 == rankAtom ranks 58))) &&
+    (!((rowBit rows 1 6 4 && rowBit rows 1 6 9)) || ((rankAtom ranks 43 == rankAtom ranks 59))) &&
+    (!((rowBit rows 1 6 4 && rowBit rows 1 6 10)) || ((rankAtom ranks 43 == rankAtom ranks 60))) &&
+    (!((rowBit rows 1 6 4 && rowBit rows 1 6 11)) || ((rankAtom ranks 43 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 4 && rowBit rows 1 6 12)) || ((rankAtom ranks 43 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 5 && rowBit rows 1 6 7)) || ((rankAtom ranks 50 == rankAtom ranks 57))) &&
+    (!((rowBit rows 1 6 5 && rowBit rows 1 6 8)) || ((rankAtom ranks 50 == rankAtom ranks 58))) &&
+    (!((rowBit rows 1 6 5 && rowBit rows 1 6 9)) || ((rankAtom ranks 50 == rankAtom ranks 59))) &&
+    (!((rowBit rows 1 6 5 && rowBit rows 1 6 10)) || ((rankAtom ranks 50 == rankAtom ranks 60))) &&
+    (!((rowBit rows 1 6 5 && rowBit rows 1 6 11)) || ((rankAtom ranks 50 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 5 && rowBit rows 1 6 12)) || ((rankAtom ranks 50 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 7 && rowBit rows 1 6 8)) || ((rankAtom ranks 57 == rankAtom ranks 58))) &&
+    (!((rowBit rows 1 6 7 && rowBit rows 1 6 9)) || ((rankAtom ranks 57 == rankAtom ranks 59))) &&
+    (!((rowBit rows 1 6 7 && rowBit rows 1 6 10)) || ((rankAtom ranks 57 == rankAtom ranks 60))) &&
+    (!((rowBit rows 1 6 7 && rowBit rows 1 6 11)) || ((rankAtom ranks 57 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 7 && rowBit rows 1 6 12)) || ((rankAtom ranks 57 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 8 && rowBit rows 1 6 9)) || ((rankAtom ranks 58 == rankAtom ranks 59))) &&
+    (!((rowBit rows 1 6 8 && rowBit rows 1 6 10)) || ((rankAtom ranks 58 == rankAtom ranks 60))) &&
+    (!((rowBit rows 1 6 8 && rowBit rows 1 6 11)) || ((rankAtom ranks 58 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 8 && rowBit rows 1 6 12)) || ((rankAtom ranks 58 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 9 && rowBit rows 1 6 10)) || ((rankAtom ranks 59 == rankAtom ranks 60))) &&
+    (!((rowBit rows 1 6 9 && rowBit rows 1 6 11)) || ((rankAtom ranks 59 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 9 && rowBit rows 1 6 12)) || ((rankAtom ranks 59 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 10 && rowBit rows 1 6 11)) || ((rankAtom ranks 60 == rankAtom ranks 61))) &&
+    (!((rowBit rows 1 6 10 && rowBit rows 1 6 12)) || ((rankAtom ranks 60 == rankAtom ranks 62))) &&
+    (!((rowBit rows 1 6 11 && rowBit rows 1 6 12)) || ((rankAtom ranks 61 == rankAtom ranks 62))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 1)) || ((rankAtom ranks 4 == rankAtom ranks 15))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 2)) || ((rankAtom ranks 4 == rankAtom ranks 25))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 3)) || ((rankAtom ranks 4 == rankAtom ranks 34))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 4)) || ((rankAtom ranks 4 == rankAtom ranks 42))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 6)) || ((rankAtom ranks 4 == rankAtom ranks 50))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 7)) || ((rankAtom ranks 4 == rankAtom ranks 51))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 8)) || ((rankAtom ranks 4 == rankAtom ranks 52))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 9)) || ((rankAtom ranks 4 == rankAtom ranks 53))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 10)) || ((rankAtom ranks 4 == rankAtom ranks 54))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 11)) || ((rankAtom ranks 4 == rankAtom ranks 55))) &&
+    (!((rowBit rows 2 5 0 && rowBit rows 2 5 12)) || ((rankAtom ranks 4 == rankAtom ranks 56))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 2)) || ((rankAtom ranks 15 == rankAtom ranks 25))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 3)) || ((rankAtom ranks 15 == rankAtom ranks 34))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 4)) || ((rankAtom ranks 15 == rankAtom ranks 42))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 6)) || ((rankAtom ranks 15 == rankAtom ranks 50))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 7)) || ((rankAtom ranks 15 == rankAtom ranks 51))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 8)) || ((rankAtom ranks 15 == rankAtom ranks 52))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 9)) || ((rankAtom ranks 15 == rankAtom ranks 53))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 10)) || ((rankAtom ranks 15 == rankAtom ranks 54))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 11)) || ((rankAtom ranks 15 == rankAtom ranks 55))) &&
+    (!((rowBit rows 2 5 1 && rowBit rows 2 5 12)) || ((rankAtom ranks 15 == rankAtom ranks 56))) &&
+    (!((rowBit rows 2 5 2 && rowBit rows 2 5 4)) || ((rankAtom ranks 25 == rankAtom ranks 42))) &&
+    (!((rowBit rows 2 5 2 && rowBit rows 2 5 6)) || ((rankAtom ranks 25 == rankAtom ranks 50))) &&
+    (!((rowBit rows 2 5 2 && rowBit rows 2 5 7)) || ((rankAtom ranks 25 == rankAtom ranks 51)))) := rfl
+
+end Problem97.ATailExactFiveCard13BVCircuit

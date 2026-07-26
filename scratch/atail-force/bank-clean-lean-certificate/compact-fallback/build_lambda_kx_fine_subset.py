@@ -17,7 +17,16 @@ from typing import Any, Mapping
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[3]
-LEAN_DIR = REPO / "lean"
+ATAIL_ROOT = REPO / "scratch" / "atail-force"
+if str(ATAIL_ROOT) not in sys.path:
+    sys.path.insert(0, str(ATAIL_ROOT))
+from lean427_runtime import (  # noqa: E402
+    assert_lean427,
+    canonical_lean_dir,
+    lean427_environment,
+)
+
+LEAN_DIR = canonical_lean_dir(REPO)
 GENERATOR = HERE / "generate_lambda_kx_fine_modules.py"
 OUTPUT_DIR = HERE / "LambdaKxFine"
 BUILD_DIR = HERE / "LambdaKxFineBuild"
@@ -210,6 +219,8 @@ def main() -> None:
             print(artifact.module)
         return
 
+    lean_env = lean427_environment(LEAN_DIR)
+    assert_lean427(LEAN_DIR, lean_env)
     BUILD_DIR.mkdir(parents=True, exist_ok=True)
     log_dir = BUILD_DIR / f"logs-{arguments.label}"
     log_dir.mkdir(parents=True, exist_ok=True)
@@ -307,7 +318,7 @@ def main() -> None:
             str(output),
             str(source),
         )
-        environment = os.environ.copy()
+        environment = dict(lean_env)
         inherited = environment.get("LEAN_PATH", "")
         environment["LEAN_PATH"] = (
             f"{HERE}:{inherited}" if inherited else str(HERE)

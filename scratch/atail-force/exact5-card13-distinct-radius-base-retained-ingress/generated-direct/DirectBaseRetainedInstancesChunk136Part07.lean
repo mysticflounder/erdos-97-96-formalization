@@ -1,0 +1,12 @@
+import DirectBaseRetainedInstancesChunk136Part07Item00
+import DirectBaseRetainedInstancesChunk136Part07Item01
+import DirectBaseRetainedInstancesChunk136Part07Item02
+import DirectBaseRetainedInstancesChunk136Part07Item03
+import DirectBaseRetainedInstancesChunk136Part07Item04
+import DirectBaseRetainedInstancesChunk136Part07Item05
+import DirectBaseRetainedInstancesChunk136Part07Item06
+import DirectBaseRetainedInstancesChunk136Part07Item07
+
+/-!
+# Generated singleton-leaf wrapper
+-/

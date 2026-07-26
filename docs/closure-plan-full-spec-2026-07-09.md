@@ -36,25 +36,79 @@ the live packet, first missing antecedent, circularity check, and immediate
 spine consumer. A negative compatibility result is a valid deliverable; a
 consumer without its geometric producer is not a closure route.
 
-## Current inventory (updated 2026-07-22)
+### Obligation-frontier and promotion protocol
 
-The active A-tail source surface is **two direct `sorry` declarations / two
-textual holes**, both in `ATail/FrontierLiveClosure.lean`.
+Track two frontiers separately:
+
+- the **direct kernel frontier**: explicit theorem declarations containing
+  `sorry`; and
+- the **coordinator-interface frontier**: every still-unproved contradiction
+  function, closer field, outcome consumer, or prose step accepted by the
+  selected checked coordinator, at a named interface granularity.
+
+Promotion is judged by aggregate tractability, not by requiring the direct
+`sorry` count to stay flat or decrease. One load-bearing `sorry` may be replaced
+by several load-bearing leaf `sorry`s when the repository policy in
+`CLAUDE.md` is satisfied. In particular, the producer must be exhaustive and
+kernel-checked, every leaf must have a recorded narrowing measure and immediate
+consumer, the split must be acyclic, and all leaves must reach both publish
+targets in the same change. Hidden `def`/function-field/prose obligations do not
+receive closure credit.
+
+Every checkpoint that changes this frontier must report:
+
+- direct `sorry` symbols before and after;
+- coordinator-interface obligations before and after, with chosen granularity
+  and immediate constructor fan-out;
+- obligations proved;
+- obligations bypassed or retired, explicitly not described as proved;
+- new load-bearing leaves and the narrowing measure for each;
+- production import and refreshed publish-spine reachability;
+- root axiom closure, including any approved native-decision trust boundary.
+
+## Current inventory (updated 2026-07-26)
+
+The active A-tail source surface is **five direct `sorry` declarations / five
+textual holes**, all in `ATail/FrontierLiveClosure.lean`.
 
 | # | Cluster | Current source surface | Symbols | Textual holes | Front |
 |---|---|---|---:|---:|---|
-| 1 | Original-frontier unique-radius arm | `false_of_originalFrontierUniqueRadiusArm` | 1 | 1 | A |
-| 2 | Large-opposite-caps robust arm | `false_of_frontierLargeOppositeCapsBiApexRobustResidual` | 1 | 1 | A |
-| **Total** | | | **2** | **2** | |
+| 1 | Exact four, card at least 12 | `false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve` | 1 | 1 | A |
+| 2 | Exact five, distinct obstruction centers | `false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual` | 1 | 1 | A |
+| 3 | Exact five, common obstruction center | `false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual` | 1 | 1 | A |
+| 4 | Tri-apex low-hit, equal blockers | `false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits` | 1 | 1 | A |
+| 5 | Tri-apex low-hit, distinct blockers | `false_of_retainedInteriorDirectedOmission_and_all_low_hits` | 1 | 1 | A |
+| **Total** | | | **5** | **5** | |
 
-The old `DoubleApexOffSurplusSharedRadiusPair` and LIVE Q/C declarations are
-retired inside the commented legacy block of `U1LargeCapRouteBTail.lean`; they
-are not active Lean declarations.  The live caller instead dispatches through
-`CriticalPairFrontier`.  The exact-five child is now source-clean by cap
-redesignation, but its axiom closure still inherits `sorryAx` from the unique
-arm.  The pinned-surplus, endpoint, and ERASE clusters remain source-closed.
+The coordinator-interface frontier changed from two undifferentiated parent
+contradictions to five load-bearing open leaves. The parent
+`false_of_originalFrontierUniqueRadiusArm` now has two checked constructors:
+exact four and exact five. Exact four dispatches exhaustively by carrier
+cardinality to the closed card-11 certificate ingress or the open uniform
+card-at-least-12 leaf; exact five dispatches by equality of the selected
+obstruction centers to the
+distinct-center or common-center leaf. The parent
+`false_of_frontierAllLargeCapsTriApexRobustResidual` reaches the checked
+low-hit coordinator, whose immediate constructors are equal canonical blockers
+and distinct blockers with a directed omission.
 
-This inventory is the current source scan.  Refresh proof-blueprint after the
+Each open leaf strictly retains and narrows its parent data: a stronger lower
+bound for the remaining exact-four leaf; a concrete center-equality branch for
+the exact-five leaves; and concrete
+collision/exact-two or directed-omission packets for the two tri-apex leaves.
+The checked splits are exhaustive, acyclic, and source-clean, and every leaf is
+consumed on the production route. This is the current production
+coordinator-interface census, not merely a scratch proposal.
+
+The old `DoubleApexOffSurplusSharedRadiusPair` and LIVE Q/C implementation was
+removed from production comments and preserved under
+`docs/archive/2026-07-25-u1-route-b-tail-retired/`; it was bypassed/retired,
+not proved. The live caller instead dispatches through `CriticalPairFrontier`.
+The exact-five child is now source-clean by cap redesignation, but its axiom
+closure still inherits `sorryAx` from the unique arm. The pinned-surplus,
+endpoint, and ERASE clusters remain source-closed.
+
+This inventory is the current source scan. Refresh proof-blueprint after the
 focused production build before publication; do not substitute the historical
 12-declaration LIVE inventory or count `sorry` tokens inside the commented
 legacy block.
@@ -164,7 +218,13 @@ alternative-packet proof therefore needs new MEC-boundary/retriangulation
 geometry, as recorded in
 `docs/audits/2026-07-20-exact-five-short-cap-terminal-audit.md`.
 
-### Authoritative exact-five second-cap reduction (2026-07-21)
+### Historical exact-five second-cap route (2026-07-21; superseded)
+
+This subsection records the former global-cover-star route. It is not current
+work: the exact-five branch was source-closed by the cap-redesignation
+reduction recorded below, and the exported global-cover-star/profile wrappers
+were retired on 2026-07-25. References in this subsection to an “open
+consumer” are historical and receive no current obligation or closure credit.
 
 **PROVEN REDUCTION; ONE MUTUAL-PARENT CONSUMER OPEN.** Production module
 `ATail/ParentExactFiveSecondCap.lean` now closes the two preliminary gaps on
@@ -557,6 +617,38 @@ gate against cap-local escape theorems, but no card-at-least-14 producer is
 needed for this declaration.  Likewise, the exact-card-13 LRAT proof remains
 an independent source-clean verification rather than a prerequisite for the
 live reduction.
+
+### Unique-arm post-card-eleven promotion state (2026-07-26)
+
+The preflight blockers recorded on 2026-07-25 were resolved by an acyclic
+production extraction. This checkpoint contains the promoted card-eleven
+source graph under `P97/ATail/CardElevenUniqueFourCertificate/` (2,061 Lean
+modules plus its promotion manifest), together with
+`CardElevenUniqueFourCertificateIngress.lean`. The promotion checker resolves
+all internal imports to fully qualified production names and promotes both
+generated checkpointed replay families—922 compact modules and 742 windowed
+modules—together with all 1,656 directly referenced source assets into the main
+`Erdos9796Proof` library. Its checked-in manifest supports a self-contained
+`--check` that reads only production-tree files; the explicit `--check-source`
+mode separately reconstructs the promotion from the in-repository scratch
+provenance.
+
+This source graph is now production-wired. `FrontierLiveClosure.lean` imports
+the ingress and closes
+`false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven` by
+`Problem97.ATailCardElevenUniqueFourCertificate.false_of_firstApexUniqueRadiusExactFourResidual`.
+The source-promoted graph builds under Lean 4.27, and the ingress theorem has
+axiom closure
+`[propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
+Quot.sound]`, with no `sorryAx`. That is not a pure-kernel closure claim:
+generated `native_decide` proofs account for the compiler-trust dependency.
+The graph is now on both published spines, and the project explicitly approves
+`Lean.trustCompiler` together with `Lean.ofReduceBool` for this checked native
+replay boundary. A clean checkout needs no historical Lean-tree path,
+precompiled replay payload, vendor package, or separately installed bundle.
+The historical
+preflight and its import-cycle findings remain in
+`docs/audits/2026-07-25-unique-arm-post11-promotion-preflight.md`.
 
 ### Original unique-radius residual dispatch (2026-07-22)
 
@@ -3492,12 +3584,15 @@ five declarations / 87 holes; P97 spine 23/1827 open; P96 spine 27/1835
 open; endpoint umbrella then at `Base.lean:10070` with holes
 `:10097`/`:10119`.
 
-The matrix decomposes the 32 holes into producer families and also records
-non-`sorry` publication gates. Front-B/ERASE card 11 is closed. Front-A card 11
-is not: the live declarations carry only `9 < D.A.card`, the two-large-cap
-bridge gives `11 ≤ D.A.card`, and no named card-11 contradiction is imported.
-Census554 is a conditional alternative: it is unnecessary only if the uniform
-ATAIL producer covers card 11.
+At this historical checkpoint, the matrix decomposed the 32 holes into producer
+families and also recorded non-`sorry` publication gates. Front-B/ERASE card 11
+was closed, while Front-A card 11 was still open: the live declarations carried
+only `9 < D.A.card`, the two-large-cap bridge gave `11 ≤ D.A.card`, and no named
+card-11 contradiction was then imported. This is superseded in the current
+tree. The promoted non-Census card-eleven certificate closes the exact-four
+Front-A branch, and the checked parent now splits card 11 from the genuinely
+large `12 ≤ D.A.card` remainder. Census554 is no longer a production
+dependency.
 
 **Reproducibility checkpoint (dated 2026-07-09).** The focused pinned-surplus
 build was green, and proof-blueprint reported build fingerprint
@@ -3579,15 +3674,20 @@ The archive preserves detailed logs; these constraints remain active here:
   every `CubeOk` clause. At card 11 every point of `A` is labeled, so no
   additional unlabeled-point confinement condition is needed.
 
-### A.1 Census554 card-11 alternative — paused, conditionally critical
+### A.1 Census554 card-11 alternative — superseded, non-production
 
-**Dependency correction, 2026-07-13.** No current theorem closes the Front-A
-card-11 slice. `Census554.false_of_cardEleven_twoLargeCaps` is still absent, and
-the live declarations do not split away `D.A.card = 11`. Census554 may remain
-paused while ATAIL targets the complete card-at-least-11 signature. If ATAIL is
-weakened to `CARD-GE-12`, the terminal cover, Lean replay, card-11 consumer,
-and leaf wiring become proof-critical rather than optional. The detailed
-pipeline below remains the specification for that alternate discharge.
+**Historical dependency correction, 2026-07-13; superseded 2026-07-26.** At
+that checkpoint no theorem closed the Front-A card-11 slice:
+`Census554.false_of_cardEleven_twoLargeCaps` was absent, and the live
+declarations did not split away `D.A.card = 11`. The current production tree
+instead imports the promoted non-Census certificate through
+`ATail/CardElevenUniqueFourCertificateIngress.lean`.
+`false_of_firstApexUniqueRadiusExactFourResidual` now performs the checked
+cardinality split, sends card 11 to
+`false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven`, and leaves
+only the `12 ≤ D.A.card` exact-four remainder open. The Census554 pipeline below
+is retained as a historical alternate specification, not a current obligation
+or publication dependency.
 
 Pipeline (`scratch/census-554/frontier_loop.py`): lazy motif-embedding cover +
 CEGAR mining at genuine frontiers, to UNSAT.
@@ -4293,9 +4393,10 @@ corresponding closure-matrix gate, not by prose completion claims.
    `coverCore_covers`, and `not_realizesCube_of_coverCore`, and returns `False`
    without any liveData row hypotheses. Then invoke it in both Front-A
    declarations before any `CARD-GE-12` residual proofs. This theorem and
-   its wires are required if the ATAIL producer does not cover card 11. They
-   become unnecessary only after a uniform card-at-least-11 producer closes the
-   existing declarations directly (matrix A11-CONSUME/A11-WIRE-*).
+   its wires were proposed if the then-current ATAIL producer did not cover
+   card 11. This historical condition is now discharged differently: the
+   promoted non-Census ingress closes card 11 and the source-visible parent
+   splits off the card-at-least-12 remainder (matrix K-A-UNIQUE-POST11).
 
 ### A.2b Leaf wiring facts (U1LargeCapRouteBTail.lean, refreshed 2026-07-14)
 
@@ -4800,9 +4901,12 @@ from `p`, which is equidistant from that dangerous-row outside pair. The
 existing `outsidePair_unique_capCenter` theorem then gives `False`; no
 opposite-apex identification is needed. Direct Lean validation passes, and
 the four audited endpoints depend only on `propext`, `Classical.choice`, and
-`Quot.sound`. The live declaration still includes card 11, so this producer
-must be uniform from card 11 unless A11-CONSUME and the source-visible
-cardinality split land first. Strategy and circularity audit:
+`Quot.sound`. At this checkpoint the live declaration still included card 11,
+so this producer had to be uniform from card 11 unless A11-CONSUME and a
+source-visible cardinality split landed first. The current tree has the
+source-visible split and closes card 11 through the promoted non-Census
+certificate; only the card-at-least-12 exact-four remainder is open. Strategy
+and circularity audit:
 `docs/audits/2026-07-13-atail-missing-ingredient-strategy.md`.
 
 The same scratch file now also kernel-checks
@@ -6054,7 +6158,13 @@ inventory(25)` or the parent two-large-cap contradiction.
 
 ---
 
-## Ordering and sizing
+## Historical ordering and sizing — superseded production topology
+
+The remainder of this section records the pre-`CriticalPairFrontier`
+producer plan. It is preserved for route provenance, not as the current
+coordinator-interface frontier. The live production topology is the five-leaf
+frontier recorded in the README and matrix K-A-LIVE, with card-11 exact-four
+closed by the promoted certificate.
 
 There is one open-mathematics cluster with two explicit producer/consumer
 surfaces plus one proved exact-five ingress:
@@ -8517,25 +8627,43 @@ branch-complete parent route.  The reciprocal critical arm is a checked
 dependency edge into the protected owner lane.  The protected paused
 `FA-UNIQ4` / `FA-UNIQ5` lane remains a separate final-closure dependency.
 
-## Authoritative A-tail terminal boundary (2026-07-21)
+## Authoritative A-tail terminal boundary (refreshed 2026-07-26)
 
 This section supersedes the historical coherent-R and LIVE helper queue above
 for current A-tail execution.  The live Route-B caller now bypasses the old
 `DoubleApexOffSurplusSharedRadiusPair` and LIVE Q/C tree and dispatches through
 `CriticalPairFrontier`.
 
-Current source truth is two direct declarations with `sorry`, both in
+Current source truth is five direct leaf declarations with `sorry`, all in
 `ATail/FrontierLiveClosure.lean`:
 
 ```text
-false_of_originalFrontierUniqueRadiusArm
-false_of_frontierLargeOppositeCapsBiApexRobustResidual
+false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve
+false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits
+false_of_retainedInteriorDirectedOmission_and_all_low_hits
 ```
 
-These are the unique and robust large-opposite-cap terminal arms.  The
-exact-five declaration remains directly called beneath the robust dispatcher,
-but its body is now source-clean by cap redesignation.  It still reaches
-`sorryAx` only through the unique-arm theorem.
+The first three are the immediate load-bearing leaves below the source-clean
+`false_of_originalFrontierUniqueRadiusArm`; the last two are the immediate
+low-hit leaves below the source-clean
+`false_of_frontierAllLargeCapsTriApexRobustResidual`. The proved
+`false_of_frontierLargeOppositeCapsBiApexRobustResidual` dispatcher reaches the
+tri-apex parent after its source-clean all-large reduction.
+
+The coordinator-interface frontier before promotion was two undifferentiated
+parent contradictions. It is now these five open leaves: three children below
+the unique-radius parent and two below the tri-apex low-hit coordinator. The
+card-11 exact-four child is closed by the production-wired certificate ingress.
+The cardinality, obstruction-center equality, and blocker-equality splits are
+checked and exhaustive; this is a narrowing of the live frontier, not five
+off-spine specifications.
+
+The strategy notes below predate this leaf promotion. They remain useful
+as provenance for the exact-five and all-large routes, but whenever their
+older parent-level target names or scratch-only boundary conflict with the
+five-leaf census above, the census above is authoritative.
 
 The exact-five theorem is the first closure target.  Its only admissible
 branch outputs are already terminal:
@@ -8625,6 +8753,13 @@ open dependency inherited by the exact-five path; its checked exact-four/five
 normal forms still lack a terminal consumer.
 
 ### Unique-four cap distribution and occurrence boundary (2026-07-22)
+
+**Historical checkpoint, superseded for fixed card 11 by the production wiring
+recorded in “Unique-arm post-card-eleven promotion state” above.** The
+development chronology below remains evidence for the promoted certificate;
+its statements that fixed-card ingress or production closure is still open are
+not current. The arbitrary-card exact-four remainder at card at least 12
+remains live.
 
 The original exact-four residual now has a checked source-level physical-cap
 split in
@@ -9118,6 +9253,27 @@ literal CEGAR stream, and conditional adapters are not accepted substitutes.
 All new Lean declarations above pass warnings-as-errors and have axiom closure
 exactly `[propext, Classical.choice, Quot.sound]`; no production `sorry` is
 closed by this checkpoint.
+
+### Obligation-frontier delta
+
+- Publish target:
+- Direct `sorry` symbols before / after:
+- Coordinator-interface obligations before / after:
+- Chosen interface granularity and immediate constructor fan-out:
+- Proved in this change:
+- Bypassed or retired, not proved:
+- New load-bearing leaves:
+- Kernel-checked exhaustive producer/case split:
+- Auditable narrowing measure for each new leaf:
+- Immediate consumer and refreshed spine path:
+- Transitive dependency, import-cost, and namespace-migration audit:
+- Superseded interfaces removed or classified:
+- Focused build:
+- `#print axioms Problem97.erdos97_rhs`:
+- `#print axioms Problem96.erdos96_rhs`:
+- `proof-blueprint symbols --with-sorry` corpus census:
+- Refreshed `proof-blueprint` refs and both publish-target spines:
+- `proof-blueprint verify-publish`:
 
 ## Change control
 

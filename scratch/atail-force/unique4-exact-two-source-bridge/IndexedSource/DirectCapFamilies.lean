@@ -7,7 +7,6 @@ Authors: Adam McKenna
 import GenericFamilies
 import Erdos9796Proof.P97.SurplusM44Packet.Shard02
 import Erdos9796Proof.P97.CapSelectedRowCounting
-import Erdos9796Proof.P97.Census554.GeometryBridge
 
 /-!
 # Direct-branch cap-position family satisfaction
@@ -38,7 +37,6 @@ open ATailUniqueFourAlignedP5BoundaryScratch
 open ATailUniqueFourClassCapDistributionScratch
 open ATailUniqueFourExactTwoBoundaryScratch
 open ATailUniqueFourExactTwoSchemaDecoderScratch
-open Census554
 
 /- ## Cap identification helpers (clones of private aligned-boundary
 helpers) -/
@@ -70,9 +68,22 @@ private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
     {A : Finset ℝ²} (S : SurplusCapPacket A) {i j : Fin 3}
     (hji : j ≠ i) :
     S.oppositeVertexByIndex j ∈ S.capByIndex i := by
-  rw [Card11SelectedCube.capByIndex_eq_capAt]
-  rw [← Card11SelectedCube.apexAt_eq_oppositeVertexByIndex]
-  exact apexAt_mem_capAt_of_ne S.partition hji
+  fin_cases i <;> fin_cases j
+  · exact False.elim (hji rfl)
+  · simpa [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.capByIndex] using S.partition.v2_mem_C1
+  · simpa [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.capByIndex] using S.partition.v3_mem_C1
+  · simpa [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.capByIndex] using S.partition.v1_mem_C2
+  · exact False.elim (hji rfl)
+  · simpa [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.capByIndex] using S.partition.v3_mem_C2
+  · simpa [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.capByIndex] using S.partition.v1_mem_C3
+  · simpa [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.capByIndex] using S.partition.v2_mem_C3
+  · exact False.elim (hji rfl)
 
 private theorem oppApex1_eq_indexedVertex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :

@@ -21,7 +21,11 @@ forecloses it.  This is exactly the bridge that was missing — it ties the
 abstract `Sphere` circles of `TwoCircleCrossing.lean` to genuine `K4`
 equidistance classes inside the point set `A`.
 
-What is **not** proved here is the *production* direction — that the cap/witness
+The core selected-class and erased-pin interfaces are active shared
+infrastructure. The U2/U1 terminal packet structures and
+contradiction-given-configuration lemmas are `COMPAT-ONLY/BANK`.
+
+What is **not** proved here is the historical *production* direction — that the cap/witness
 configuration actually yields a packet/config of the required shape:
 
 * U2 (`d3f1b`, "strict interior witness count"): that the strict member of the
@@ -32,9 +36,11 @@ configuration actually yields a packet/config of the required shape:
   source/target push toward opposite cap ends) from `U1k-b`/`U1m-b0`/`U1m-b1c`/
   `U1m-c1a0`, which is not yet formalized in Lean.
 
-Those production steps remain prose-only obligations; this module does not state
-their antecedents (doing so faithfully requires the unformalized machinery
-above) and does not discharge them.  See `docs/97-uniform-theorem-closure-plan.md`.
+Those production directions are `PARKED-SPEC`, not current Lean obligations.
+This module does not state their antecedents (doing so faithfully requires the
+unformalized machinery above) and does not discharge them. Activating either
+direction requires an explicit publish-spine consumer and the promotion
+preflight. See `docs/97-uniform-theorem-closure-plan.md`.
 
 All declarations are axiom-clean (`{propext, Classical.choice, Quot.sound}`).
 -/

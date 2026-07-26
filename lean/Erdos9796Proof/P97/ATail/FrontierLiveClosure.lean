@@ -6,7 +6,12 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.ApexRichClassStructure
 import Erdos9796Proof.P97.ATail.BiApexRobustCapBounds
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificateIngress
+import Erdos9796Proof.P97.ATail.FirstApexUniqueRadiusResidual
+import Erdos9796Proof.P97.ATail.LocalizedCollisionMutualOmissionCycle
 import Erdos9796Proof.P97.ATail.PhysicalSecondApexSwap
+import Erdos9796Proof.P97.ATail.RetainedStrictInteriorPairSelector
+import Erdos9796Proof.P97.ATail.TwoCenterCapLocalization
 
 /-!
 # Live large-cap frontier closure boundary
@@ -27,6 +32,8 @@ shared-radius pair.
 namespace Problem97
 namespace ATailFrontierLiveClosure
 
+open scoped EuclideanGeometry
+
 open ATailApexRichClassStructure
 open ATailCriticalPairFrontier
 open ATailBiApexRobustCapBounds
@@ -34,12 +41,101 @@ open ATailDeletionRobustness
 open ATailMinimalUniqueFourCover
 open ATailLargeCapUniqueFive
 open ATailLargeOppositeCapsBiApexSurface
+open ATailLocalizedCollisionMutualOmissionCycle
 open ATailOrientedPhysicalApexIngress
 open ATailPhysicalSecondApexCommonDeletion
 open ATailPhysicalSecondApexSwap
+open ATailRetainedMatchingGeometricReduction
+open ATailRetainedStrictInteriorPairSelector
+open ATailTwoCenterCapLocalization
+open FirstApexUniqueRadiusResidual
 
-/-- The protected exact-four-or-five first-apex radius arm, with the live
-minimality and no-M44 context retained. -/
+attribute [local instance] Classical.propDecidable
+
+/-- The checked card-eleven certificate closes the fixed-cardinality-eleven
+exact-four residual. -/
+theorem false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFourResidual F)
+    (hcard : D.A.card = 11) :
+    False := by
+  exact
+    Problem97.ATailCardElevenUniqueFourCertificate.false_of_firstApexUniqueRadiusExactFourResidual
+      R hcard
+
+/-- Open genuinely large-cardinality remainder of the exact-four residual. -/
+theorem false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (_R : FirstApexUniqueRadiusExactFourResidual F)
+    (_hcard : 12 ≤ D.A.card) :
+    False := by
+  sorry
+
+/-- Checked exhaustive cardinality dispatch for the exact-four residual.
+The no-`(m,4,4)` field excludes carrier cardinality ten; the remaining cases
+are the fixed card-eleven certificate ingress and the card-at-least-twelve
+remainder. -/
+theorem false_of_firstApexUniqueRadiusExactFourResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFourResidual F) :
+    False := by
+  have hopposite := oppositeCaps_card_ge_four D S
+  have hsum := S.capSum
+  have hsurplus := S.surplus_card_gt_four
+  have hopp1 : 4 ≤ S.oppCap1.card := by
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i <;>
+      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+        SurplusCapPacket.oppCap1, hi] using hopposite.1
+  have hopp2 : 4 ≤ S.oppCap2.card := by
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i <;>
+      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+        SurplusCapPacket.oppCap2, hi] using hopposite.2
+  have hge11 : 11 ≤ D.A.card := by
+    by_contra hnot
+    have hcard10 : D.A.card = 10 := by omega
+    have hcap1 : S.oppCap1.card = 4 := by omega
+    have hcap2 : S.oppCap2.card = 4 := by omega
+    exact R.noM44 ⟨S, hcap1, hcap2⟩
+  by_cases hcard11 : D.A.card = 11
+  · exact
+      false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven
+        R hcard11
+  · exact
+      false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve
+        R (by omega)
+
+/-- Open exact-five residual with distinct selected obstruction centers.
+This is a load-bearing production obligation for
+`false_of_originalFrontierUniqueRadiusArm`. -/
+theorem false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (_R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F) :
+    False := by
+  sorry
+
+/-- Open exact-five residual with a common selected obstruction center.
+This is a load-bearing production obligation for
+`false_of_originalFrontierUniqueRadiusArm`. -/
+theorem false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (_R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F) :
+    False := by
+  sorry
+
+/-- The protected exact-four-or-five first-apex radius alternative, with the
+live minimality and no-M44 context retained. -/
 theorem false_of_originalFrontierUniqueRadiusArm
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -47,10 +143,19 @@ theorem false_of_originalFrontierUniqueRadiusArm
     (hmin : D.Minimal)
     (hNoM44 : ¬ ∃ T : SurplusCapPacket D.A, T.IsM44)
     (hcard : 9 < D.A.card)
-    (hfour : 4 ≤ (SelectedClass D.A S.oppApex1 radius).card)
     (hunique : OriginalFrontierUniqueRadiusArm F) :
     False := by
-  sorry
+  rcases firstApexUniqueRadius_residualCases
+      F hmin hNoM44 hcard hunique with hfourResidual | hfiveResidual
+  · exact false_of_firstApexUniqueRadiusExactFourResidual
+      hfourResidual.some
+  · rcases hfiveResidual with hdistinct | hcommon
+    · exact
+        false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+          hdistinct.some
+    · exact
+        false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+          hcommon.some
 
 /-- Keep the MEC triangle and cap partition fixed, but designate the old first
 opposite cap as the new surplus cap. -/
@@ -111,7 +216,7 @@ theorem false_of_frontierBiApexRobustExactFiveSecondCapResidual
   apply CriticalPairFrontier.false_of_parentResidualConsumers
     freshFrontier R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
   · exact false_of_originalFrontierUniqueRadiusArm freshFrontier
-      R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
+      R.minimal R.noM44 R.carrier_card_gt_nine
   · intro freshParent
     have hsix : 6 ≤ T.oppCap1.card := first_oppCap_card_ge_six freshParent
     omega
@@ -183,7 +288,7 @@ theorem surplusCap_card_ge_six_of_largeOppositeCaps
   apply CriticalPairFrontier.false_of_parentResidualConsumers
     freshFrontier R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
   · exact false_of_originalFrontierUniqueRadiusArm freshFrontier
-      R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
+      R.minimal R.noM44 R.carrier_card_gt_nine
   · intro freshParent
     have hsix : 6 ≤ T.oppCap1.card := first_oppCap_card_ge_six freshParent
     rw [hTfirst] at hsix
@@ -217,8 +322,7 @@ theorem false_of_physicalSecondApexCriticalResidual
       (H := H) P.shell P.deletion_blocked with ⟨U⟩
   apply false_of_originalFrontierUniqueRadiusArm (H := H)
     U.frontier R.minimal R.noM44 R.carrier_card_gt_nine
-  · rw [U.firstClass_card_eq_four]
-  · exact ⟨Or.inl U.firstClass_card_eq_four, U.firstClass_unique_radius⟩
+  exact ⟨Or.inl U.firstClass_card_eq_four, U.firstClass_unique_radius⟩
 
 /-- Keep the MEC triangle and cap partition fixed, but designate the old first
 opposite cap as the new surplus cap.  Available at the all-large-caps terminal
@@ -320,9 +424,353 @@ structure FrontierAllLargeCapsTriApexRobustResidual
         S.triangle.v2 ∈ SelectedClass D.A p r ∧
         S.triangle.v3 ∈ SelectedClass D.A p r)
 
-/-- The tri-apex all-large-caps terminal.  Its proof must consume the complete
-large-cap surface at every cardinality at least fifteen, not a locally
-manufactured witness and not a fixed-cardinality certificate. -/
+/-- Two hits of one rich opposite-apex class in a canonical critical shell
+force that shell's blocker center into the same indexed strict cap.  This is
+the uniform ordered-cap localization needed by the tri-apex terminal. -/
+theorem criticalShellCenter_mem_capInteriorByIndex_of_two_hits
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A} {i : Fin 3}
+    {x : ℝ²} (hx : x ∈ D.A)
+    (hrich : ApexRichClassStructure D.A (S.oppositeVertexByIndex i))
+    (hunique : IsUniqueFourCenter D.A (H.centerAt x hx))
+    {r : ℝ}
+    (htwo :
+      2 ≤ ((H.selectedAt x hx).toCriticalFourShell.support ∩
+        (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+          S.capInteriorByIndex i)).card) :
+    H.centerAt x hx ∈ S.capInteriorByIndex i := by
+  classical
+  have hone :
+      1 < ((H.selectedAt x hx).toCriticalFourShell.support ∩
+        (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+          S.capInteriorByIndex i)).card := by
+    omega
+  rw [Finset.one_lt_card] at hone
+  obtain ⟨q, hq, w, hw, hqw⟩ := hone
+  have hq' := Finset.mem_inter.mp hq
+  have hw' := Finset.mem_inter.mp hw
+  have hqClassInterior := Finset.mem_inter.mp hq'.2
+  have hwClassInterior := Finset.mem_inter.mp hw'.2
+  have hcenterA : H.centerAt x hx ∈ D.A :=
+    (Finset.mem_erase.mp
+      (H.selectedAt x hx).toCriticalFourShell.center_mem).2
+  have hcenterNe :
+      H.centerAt x hx ≠ S.oppositeVertexByIndex i := by
+    intro hcenter
+    apply not_isUniqueFourCenter_of_fullyDeletionRobust
+      (fullyDeletionRobustAt_of_apexRichClassStructure hrich)
+    simpa [hcenter] using hunique
+  have hcenterEq :
+      dist (H.centerAt x hx) q = dist (H.centerAt x hx) w :=
+    ((H.selectedAt x hx).toCriticalFourShell.support_eq_radius q hq'.1).trans
+      ((H.selectedAt x hx).toCriticalFourShell.support_eq_radius w hw'.1).symm
+  have hapexEq :
+      dist (S.oppositeVertexByIndex i) q =
+        dist (S.oppositeVertexByIndex i) w :=
+    (mem_selectedClass.mp hqClassInterior.1).2.trans
+      (mem_selectedClass.mp hwClassInterior.1).2.symm
+  exact commonPhysicalPair_center_mem_capInteriorByIndex i
+    hcenterA hcenterNe hqClassInterior.2 hwClassInterior.2 hqw
+    hcenterEq hapexEq
+
+private theorem retainedInteriorBlockerCollision_firstShell_retainedSlice_eq_sources
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R) :
+    (H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.support ∩
+        (SelectedClass D.A
+            (S.oppositeVertexByIndex S.oppIndex1) radius ∩
+          S.capInteriorByIndex S.oppIndex1) =
+      {P.source₁, P.source₂} := by
+  classical
+  apply Finset.Subset.antisymm
+  · intro z hz
+    rw [← P.shell_inter_cap_eq_sources]
+    exact Finset.mem_inter.mpr
+      ⟨(Finset.mem_inter.mp hz).1,
+        S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+          (Finset.mem_inter.mp (Finset.mem_inter.mp hz).2).2⟩
+  · intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl
+    · exact Finset.mem_inter.mpr
+        ⟨(H.selectedAt P.source₁
+            P.source₁_mem_A).toCriticalFourShell.q_mem_support,
+          Finset.mem_inter.mpr
+            ⟨by simpa using P.source₁_mem_radius,
+              P.source₁_mem_capInterior⟩⟩
+    · exact Finset.mem_inter.mpr
+        ⟨P.source₂_mem_source₁_shell,
+          Finset.mem_inter.mpr
+            ⟨by simpa using P.source₂_mem_radius,
+              P.source₂_mem_capInterior⟩⟩
+
+/-- Exact-two source-exact mutual-omission branch of the low-hit tri-apex
+contradiction.
+
+The equal-blocker strict-interior pair has already produced a fresh point in
+the same cap, a common deletion at the first apex and collision blocker, and a
+chosen collision source whose deletion also survives at the first apex and
+fresh point's blocker.  The two source shells omit one another and their actual
+blockers are distinct.  Moreover the collision shell's retained first-apex
+strict-cap slice is exactly the two collision sources, so this branch saturates
+rather than contradicts the live low-hit bound.  The remaining work must
+produce a distinct canonical row through both collision sources, a three-hit
+rich-cap shell, or an equivalent direct planar contradiction.
+
+Narrowing measure: `C`, `M`, and `hexactTwo` are concrete common-deletion,
+source-exact mutual-omission, and exact-slice data produced from `P` by checked
+theorems below.  This is the load-bearing collision leaf with no immediate
+constructor fan-out. -/
+theorem false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F)
+    (P : RetainedInteriorBlockerCollision R)
+    (C : LocalizedCollisionCommonDeletion P)
+    (M : LocalizedCollisionMutualOmissionCycle P C)
+    (hexactTwo :
+      (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support ∩
+          (SelectedClass D.A
+              (S.oppositeVertexByIndex S.oppIndex1) radius ∩
+            S.capInteriorByIndex S.oppIndex1) =
+        {P.source₁, P.source₂})
+    (B : FrontierBiApexRobustResidual R)
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (N : FrontierAllLargeCapsBiApexRobustResidual L)
+    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+    (hcriticalShellUniqueFourCover :
+      ∀ x : ℝ², ∀ hx : x ∈ D.A,
+        H.centerAt x hx ≠ x ∧
+          IsUniqueFourCenter D.A (H.centerAt x hx) ∧
+          uniqueFourClass D.A (H.centerAt x hx) =
+            (H.selectedAt x hx).toCriticalFourShell.support)
+    (hfirst : OppositeCapRichClassInteriorPattern D.A S S.oppIndex1)
+    (hsecond : OppositeCapRichClassInteriorPattern D.A S S.oppIndex2)
+    (hsurplus : OppositeCapRichClassInteriorPattern D.A S S.surplusIdx)
+    (hlow :
+      ∀ i : Fin 3, ∀ x : ℝ², ∀ hx : x ∈ D.A, ∀ r : ℝ,
+        ApexRichClassStructure D.A (S.oppositeVertexByIndex i) →
+          ((H.selectedAt x hx).toCriticalFourShell.support ∩
+            (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+              S.capInteriorByIndex i)).card ≤ 2) :
+    False := by
+  sorry
+
+/-- Checked equal-blocker coordinator for the low-hit tri-apex contradiction.
+
+The checked strict-interior selector supplies two distinct sources on the
+retained first-apex radius inside its strict opposite cap.  This branch records
+that their actual canonical blockers agree.  The existing collision producer
+then supplies a fresh common deletion and a source-exact mutual-omission cycle,
+which are passed to the load-bearing leaf above. -/
+theorem false_of_retainedInteriorBlockerCollision_and_all_low_hits
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F)
+    (P : RetainedInteriorBlockerCollision R)
+    (B : FrontierBiApexRobustResidual R)
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (N : FrontierAllLargeCapsBiApexRobustResidual L)
+    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+    (hcriticalShellUniqueFourCover :
+      ∀ x : ℝ², ∀ hx : x ∈ D.A,
+        H.centerAt x hx ≠ x ∧
+          IsUniqueFourCenter D.A (H.centerAt x hx) ∧
+          uniqueFourClass D.A (H.centerAt x hx) =
+            (H.selectedAt x hx).toCriticalFourShell.support)
+    (hfirst : OppositeCapRichClassInteriorPattern D.A S S.oppIndex1)
+    (hsecond : OppositeCapRichClassInteriorPattern D.A S S.oppIndex2)
+    (hsurplus : OppositeCapRichClassInteriorPattern D.A S S.surplusIdx)
+    (hlow :
+      ∀ i : Fin 3, ∀ x : ℝ², ∀ hx : x ∈ D.A, ∀ r : ℝ,
+        ApexRichClassStructure D.A (S.oppositeVertexByIndex i) →
+          ((H.selectedAt x hx).toCriticalFourShell.support ∩
+            (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+              S.capInteriorByIndex i)).card ≤ 2) :
+    False := by
+  rcases P.nonempty_commonDeletion with ⟨C⟩
+  rcases nonempty_localizedCollisionMutualOmissionCycle P C with ⟨M⟩
+  exact
+    false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits
+      F R P C M
+        (retainedInteriorBlockerCollision_firstShell_retainedSlice_eq_sources P)
+        B L N T hcriticalShellUniqueFourCover hfirst hsecond hsurplus hlow
+
+/-- Distinct-blocker branch of the low-hit tri-apex contradiction.
+
+For the same concrete strict-interior first-apex pair, this branch records
+distinct actual blockers together with the source-faithful directed omission
+and deletion-survival packet.  The remaining work must combine that packet with
+the original frontier pair and the other two rich apex patterns.
+
+Narrowing measure: `P` is concrete directed-omission branch data produced by
+the exhaustive selector below, strictly strengthening the unsplit low-hit
+residual.  This is a load-bearing leaf with no immediate constructor fan-out. -/
+theorem false_of_retainedInteriorDirectedOmission_and_all_low_hits
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F)
+    (P : RetainedInteriorDirectedOmission R)
+    (B : FrontierBiApexRobustResidual R)
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (N : FrontierAllLargeCapsBiApexRobustResidual L)
+    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+    (hcriticalShellUniqueFourCover :
+      ∀ x : ℝ², ∀ hx : x ∈ D.A,
+        H.centerAt x hx ≠ x ∧
+          IsUniqueFourCenter D.A (H.centerAt x hx) ∧
+          uniqueFourClass D.A (H.centerAt x hx) =
+            (H.selectedAt x hx).toCriticalFourShell.support)
+    (hfirst : OppositeCapRichClassInteriorPattern D.A S S.oppIndex1)
+    (hsecond : OppositeCapRichClassInteriorPattern D.A S S.oppIndex2)
+    (hsurplus : OppositeCapRichClassInteriorPattern D.A S S.surplusIdx)
+    (hlow :
+      ∀ i : Fin 3, ∀ x : ℝ², ∀ hx : x ∈ D.A, ∀ r : ℝ,
+        ApexRichClassStructure D.A (S.oppositeVertexByIndex i) →
+          ((H.selectedAt x hx).toCriticalFourShell.support ∩
+            (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+              S.capInteriorByIndex i)).card ≤ 2) :
+    False := by
+  sorry
+
+/-- Exact low-hit contradiction coordinator.
+
+The previous coordinator-interface frontier was one undifferentiated
+anti-matching obligation.  The checked strict-interior selector now narrows it
+to two immediate constructors: equal canonical blockers and distinct blockers
+with a directed omission.  Each child retains all original data and gains the
+corresponding concrete pair packet; the split is exhaustive and acyclic. -/
+theorem false_of_frontierAllLargeCapsTriApex_all_low_hits
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F)
+    (B : FrontierBiApexRobustResidual R)
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (N : FrontierAllLargeCapsBiApexRobustResidual L)
+    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+    (hcriticalShellUniqueFourCover :
+      ∀ x : ℝ², ∀ hx : x ∈ D.A,
+        H.centerAt x hx ≠ x ∧
+          IsUniqueFourCenter D.A (H.centerAt x hx) ∧
+          uniqueFourClass D.A (H.centerAt x hx) =
+            (H.selectedAt x hx).toCriticalFourShell.support)
+    (hfirst : OppositeCapRichClassInteriorPattern D.A S S.oppIndex1)
+    (hsecond : OppositeCapRichClassInteriorPattern D.A S S.oppIndex2)
+    (hsurplus : OppositeCapRichClassInteriorPattern D.A S S.surplusIdx)
+    (hlow :
+      ∀ i : Fin 3, ∀ x : ℝ², ∀ hx : x ∈ D.A, ∀ r : ℝ,
+        ApexRichClassStructure D.A (S.oppositeVertexByIndex i) →
+          ((H.selectedAt x hx).toCriticalFourShell.support ∩
+            (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+              S.capInteriorByIndex i)).card ≤ 2) :
+    False := by
+  rcases nonempty_retainedInteriorPairOutcome R with ⟨outcome⟩
+  cases outcome with
+  | collision data =>
+      exact false_of_retainedInteriorBlockerCollision_and_all_low_hits
+        F R data B L N T hcriticalShellUniqueFourCover hfirst hsecond
+          hsurplus hlow
+  | omission data =>
+      exact false_of_retainedInteriorDirectedOmission_and_all_low_hits
+        F R data B L N T hcriticalShellUniqueFourCover hfirst hsecond
+          hsurplus hlow
+
+/-- The planar/MEC concentration leaf at the tri-apex all-large-caps terminal.
+
+It receives the source-faithful exact-four cover carried by `H` and the three
+concrete strict-opposite-cap rich patterns.  Its conclusion is one explicit
+collision: a named canonical blocker shell shares at least three points with
+one rich apex-radius class inside that apex's strict opposite cap.  The rich
+structure is returned with the witness so the checked consumer below does not
+need to recover which of the three packet roles the index names.
+
+This is deliberately not a cover-counting obligation.  Cover cardinalities,
+pairwise two-circle bounds, and the three rich patterns admit incidence models
+with every such intersection of size at most two.  A proof here must therefore
+use genuinely planar MEC/cap/frontier geometry to produce the collision.
+
+Frontier accounting: this theorem is now a checked compatibility consumer of
+the low-hit contradiction coordinator above.  Its impossible concentration
+witness follows by ex falso; the load-bearing frontier is the coordinator's two
+source-faithful strict-interior branches. -/
+theorem exists_criticalShell_oppositeCapClassInterior_card_ge_three_of_frontierAllLargeCapsTriApex
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F)
+    (B : FrontierBiApexRobustResidual R)
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (N : FrontierAllLargeCapsBiApexRobustResidual L)
+    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+    (hcriticalShellUniqueFourCover :
+      ∀ x : ℝ², ∀ hx : x ∈ D.A,
+        H.centerAt x hx ≠ x ∧
+          IsUniqueFourCenter D.A (H.centerAt x hx) ∧
+          uniqueFourClass D.A (H.centerAt x hx) =
+            (H.selectedAt x hx).toCriticalFourShell.support)
+    (hfirst : OppositeCapRichClassInteriorPattern D.A S S.oppIndex1)
+    (hsecond : OppositeCapRichClassInteriorPattern D.A S S.oppIndex2)
+    (hsurplus : OppositeCapRichClassInteriorPattern D.A S S.surplusIdx) :
+    ∃ i : Fin 3, ∃ x : ℝ², ∃ hx : x ∈ D.A, ∃ r : ℝ,
+      ApexRichClassStructure D.A (S.oppositeVertexByIndex i) ∧
+        3 ≤ ((H.selectedAt x hx).toCriticalFourShell.support ∩
+          (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+            S.capInteriorByIndex i)).card := by
+  have hlow :
+      ∀ i : Fin 3, ∀ x : ℝ², ∀ hx : x ∈ D.A, ∀ r : ℝ,
+        ApexRichClassStructure D.A (S.oppositeVertexByIndex i) →
+          ((H.selectedAt x hx).toCriticalFourShell.support ∩
+            (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+              S.capInteriorByIndex i)).card ≤ 2 := by
+    intro i x hx r hrich
+    exact criticalShell_inter_oppositeCapClassInterior_card_le_two_of_apexRich
+      S i H x hx hrich r
+  exact False.elim
+    (false_of_frontierAllLargeCapsTriApex_all_low_hits
+      F R B L N T hcriticalShellUniqueFourCover hfirst hsecond hsurplus hlow)
+
+/-- The uniform tri-apex metric terminal is a checked consumer of the planar
+concentration leaf: distinct circles have at most two common points, while the
+leaf supplies at least three. -/
+theorem false_of_frontierAllLargeCapsTriApexUniformMetricResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F)
+    (B : FrontierBiApexRobustResidual R)
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (N : FrontierAllLargeCapsBiApexRobustResidual L)
+    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+    (hcriticalShellUniqueFourCover :
+      ∀ x : ℝ², ∀ hx : x ∈ D.A,
+        H.centerAt x hx ≠ x ∧
+          IsUniqueFourCenter D.A (H.centerAt x hx) ∧
+          uniqueFourClass D.A (H.centerAt x hx) =
+            (H.selectedAt x hx).toCriticalFourShell.support)
+    (hfirst : OppositeCapRichClassInteriorPattern D.A S S.oppIndex1)
+    (hsecond : OppositeCapRichClassInteriorPattern D.A S S.oppIndex2)
+    (hsurplus : OppositeCapRichClassInteriorPattern D.A S S.surplusIdx) :
+    False := by
+  obtain ⟨i, x, hx, r, hrich, hthree⟩ :=
+    exists_criticalShell_oppositeCapClassInterior_card_ge_three_of_frontierAllLargeCapsTriApex
+      F R B L N T hcriticalShellUniqueFourCover hfirst hsecond hsurplus
+  have htwo :=
+    criticalShell_inter_oppositeCapClassInterior_card_le_two_of_apexRich
+      S i H x hx hrich r
+  omega
+
+/-- The tri-apex all-large-caps terminal.  Its abstract rich-class fields
+kernel-produce the three concrete strict-cap metric patterns consumed by the
+uniform all-cardinality leaf above. -/
 theorem false_of_frontierAllLargeCapsTriApexRobustResidual
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -333,7 +781,17 @@ theorem false_of_frontierAllLargeCapsTriApexRobustResidual
     (N : FrontierAllLargeCapsBiApexRobustResidual L)
     (T : FrontierAllLargeCapsTriApexRobustResidual N) :
     False := by
-  sorry
+  apply false_of_frontierAllLargeCapsTriApexUniformMetricResidual F R B L N T
+  · intro x hx
+    exact ⟨centerAt_ne_source H x hx,
+      isUniqueFourCenter_centerAt H x hx,
+      uniqueFourClass_centerAt_eq_selectedAt_support H x hx⟩
+  · exact oppositeCapRichClassInteriorPattern_of_apexRichClassStructure
+      S D.convex S.oppIndex1 (by simpa using T.oppApex1_rich)
+  · exact oppositeCapRichClassInteriorPattern_of_apexRichClassStructure
+      S D.convex S.oppIndex2 (by simpa using T.oppApex2_rich)
+  · exact oppositeCapRichClassInteriorPattern_of_apexRichClassStructure
+      S D.convex S.surplusIdx (by simpa using T.surplusApex_rich)
 
 /-- The all-large-caps terminal reduces to its tri-apex strengthening.
 
@@ -360,7 +818,7 @@ theorem false_of_frontierAllLargeCapsBiApexRobustResidual
   apply CriticalPairFrontier.false_of_parentResidualConsumers
     freshFrontier R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
   · exact false_of_originalFrontierUniqueRadiusArm freshFrontier
-      R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
+      R.minimal R.noM44 R.carrier_card_gt_nine
   · intro freshParent
     -- The rotation reports the dichotomy at the original second opposite apex.
     have hrich2 : ApexRichClassStructure D.A S.oppApex2 := by
@@ -380,7 +838,7 @@ theorem false_of_frontierAllLargeCapsBiApexRobustResidual
     apply CriticalPairFrontier.false_of_parentResidualConsumers
       freshFrontier' R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour'
     · exact false_of_originalFrontierUniqueRadiusArm freshFrontier'
-        R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour'
+        R.minimal R.noM44 R.carrier_card_gt_nine
     · intro freshParent'
       have hrich1 : ApexRichClassStructure D.A S.oppApex1 :=
         apexRichClassStructure_oppApex1 R
@@ -453,7 +911,7 @@ theorem false_of_criticalPairFrontier
     False := by
   apply CriticalPairFrontier.false_of_parentResidualConsumers
     F hmin hNoM44 hcard hfour
-  · exact false_of_originalFrontierUniqueRadiusArm F hmin hNoM44 hcard hfour
+  · exact false_of_originalFrontierUniqueRadiusArm F hmin hNoM44 hcard
   · intro R
     exact false_of_frontierCommonDeletionPhysicalSecondApex F R
 

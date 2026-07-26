@@ -83,6 +83,18 @@ structure RobustLargeRadiusParentSurface
   radius_class_card_ge_five :
     5 ≤ (SelectedClass D.A S.oppApex2 radius).card
 
+/-- The fields actually consumed by the first minimal-deletion reduction of a
+five-point radius at the physical second apex.  In particular, this reduction
+does not require a six-point second opposite cap; that bound is needed only by
+the later exact-unique-five continuation. -/
+structure FivePointSecondApexRadiusSurface
+    (D : CounterexampleData) (S : SurplusCapPacket D.A) : Type where
+  minimal : D.Minimal
+  radius : ℝ
+  radius_pos : 0 < radius
+  radius_class_card_ge_five :
+    5 ≤ (SelectedClass D.A S.oppApex2 radius).card
+
 /-- The singleton-core residual: two strict opposite-cap points share the
 physical-apex radius and one exact fresh critical shell.  Deleting either
 point blocks the fresh center, while deleting either point preserves K4 at
@@ -240,12 +252,12 @@ private theorem singleton_core_transition
     exact ⟨RobustLargeRadiusMinimalDeletionOutcome.commonDeletion
       partner center P⟩
 
-/-- Global minimality converts the large physical-apex radius arm into an
-existing common-deletion packet or one of two exact large-cap residuals. -/
-theorem nonempty_minimalDeletionOutcome_of_largeSecondApexRadius
+/-- Global minimality converts any five-point physical-second-apex radius into
+an existing common-deletion packet or one of two exact residuals. -/
+theorem nonempty_minimalDeletionOutcome_of_fivePointSecondApexRadius
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (H : CriticalShellSystem D.A)
-    (F : RobustLargeRadiusParentSurface D S) :
+    (F : FivePointSecondApexRadiusSurface D S) :
     Nonempty (RobustLargeRadiusMinimalDeletionOutcome
       D S H F.radius) := by
   classical
@@ -422,6 +434,20 @@ theorem nonempty_minimalDeletionOutcome_of_largeSecondApexRadius
             F.radius_pos F.radius_class_card_ge_five b) with ⟨P⟩
       exact ⟨RobustLargeRadiusMinimalDeletionOutcome.commonDeletion
         b center P⟩
+
+/-- Backward-compatible large-cap wrapper around the field-minimal
+five-point-radius reduction. -/
+theorem nonempty_minimalDeletionOutcome_of_largeSecondApexRadius
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (H : CriticalShellSystem D.A)
+    (F : RobustLargeRadiusParentSurface D S) :
+    Nonempty (RobustLargeRadiusMinimalDeletionOutcome
+      D S H F.radius) := by
+  exact nonempty_minimalDeletionOutcome_of_fivePointSecondApexRadius H {
+    minimal := F.minimal
+    radius := F.radius
+    radius_pos := F.radius_pos
+    radius_class_card_ge_five := F.radius_class_card_ge_five }
 
 end ATailRobustLargeRadius
 end Problem97

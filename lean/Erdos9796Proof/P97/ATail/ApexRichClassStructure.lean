@@ -110,6 +110,108 @@ theorem fullyDeletionRobustAt_of_apexRichClassStructure
   · exact fullyDeletionRobustAt_of_large_class hr (by omega)
   · exact fullyDeletionRobustAt_of_two_K4_radii hr₁ hr₂ hne hc₁ hc₂
 
+/-- Every canonical critical shell meets every radius class at a rich apex in
+at most two points.  Richness supplies deletion robustness, hence separates
+the shell's blocker center from the apex; the rest is the two-circle bound. -/
+theorem criticalShell_inter_selectedClass_card_le_two_of_apexRich
+    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+    (x : ℝ²) (hx : x ∈ D.A) {p : ℝ²}
+    (hrich : ApexRichClassStructure D.A p) (radius : ℝ) :
+    ((H.selectedAt x hx).toCriticalFourShell.support ∩
+      SelectedClass D.A p radius).card ≤ 2 := by
+  exact criticalFourShell_inter_selectedClass_card_le_two
+    (H.selectedAt x hx).toCriticalFourShell
+    ((fullyDeletionRobustAt_of_apexRichClassStructure hrich).centerAt_ne
+      H x hx)
+
+/-- Restricting an apex radius class to its strict opposite cap preserves the
+same two-point upper bound against every canonical critical shell. -/
+theorem criticalShell_inter_oppositeCapClassInterior_card_le_two_of_apexRich
+    {D : CounterexampleData} (S : SurplusCapPacket D.A) (i : Fin 3)
+    (H : CriticalShellSystem D.A) (x : ℝ²) (hx : x ∈ D.A)
+    (hrich : ApexRichClassStructure D.A (S.oppositeVertexByIndex i))
+    (radius : ℝ) :
+    ((H.selectedAt x hx).toCriticalFourShell.support ∩
+      (SelectedClass D.A (S.oppositeVertexByIndex i) radius ∩
+        S.capInteriorByIndex i)).card ≤ 2 := by
+  apply le_trans (Finset.card_le_card ?_)
+    (criticalShell_inter_selectedClass_card_le_two_of_apexRich
+      H x hx hrich radius)
+  intro z hz
+  exact Finset.mem_inter.mpr
+    ⟨(Finset.mem_inter.mp hz).1, (Finset.mem_inter.mp (Finset.mem_inter.mp hz).2).1⟩
+
+/-- The concrete strict-opposite-cap metric content of rich class structure at
+an indexed Moser apex.  The first arm supplies four points on one
+apex-centred circle.  The second supplies two points on each of two distinct
+apex-centred circles.
+
+Keeping the two arms visible is essential at the all-large-caps terminal:
+collapsing them to the common cardinality consequence
+`4 ≤ (S.capInteriorByIndex i).card` loses the radius data on which the uniform
+geometric obstruction must operate. -/
+def OppositeCapRichClassInteriorPattern
+    (A : Finset ℝ²) (S : SurplusCapPacket A) (i : Fin 3) : Prop :=
+  (∃ r : ℝ, 0 < r ∧
+      4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r ∩
+        S.capInteriorByIndex i).card) ∨
+    (∃ r₁ r₂ : ℝ, 0 < r₁ ∧ 0 < r₂ ∧ r₁ ≠ r₂ ∧
+      2 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r₁ ∩
+        S.capInteriorByIndex i).card ∧
+      2 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r₂ ∩
+        S.capInteriorByIndex i).card)
+
+/-- Rich class structure at an indexed Moser apex produces its exact binary
+strict-cap metric pattern.  This is a witness-producing refinement, not a new
+cardinality estimate: the six-point arm contributes four strict-cap points,
+while the two-K4-radii arm contributes two points at each radius. -/
+theorem oppositeCapRichClassInteriorPattern_of_apexRichClassStructure
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3)
+    (hrich : ApexRichClassStructure A (S.oppositeVertexByIndex i)) :
+    OppositeCapRichClassInteriorPattern A S i := by
+  rcases hrich with ⟨r, hr, hsix⟩ |
+      ⟨r₁, r₂, hr₁, hr₂, hne, hfour₁, hfour₂⟩
+  · left
+    refine ⟨r, hr, ?_⟩
+    have hinter :=
+      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two hconv i hr
+    omega
+  · right
+    exact ⟨r₁, r₂, hr₁, hr₂, hne,
+      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₁ hfour₁,
+      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₂ hfour₂⟩
+
+/-- The indexed opposite vertex at the first non-surplus index is the first
+named opposite apex. -/
+@[simp] theorem oppositeVertexByIndex_oppIndex1
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppositeVertexByIndex S.oppIndex1 = S.oppApex1 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.oppositeVertexByIndex, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppApex1, hi]
+
+/-- The indexed opposite vertex at the second non-surplus index is the second
+named opposite apex. -/
+@[simp] theorem oppositeVertexByIndex_oppIndex2
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppositeVertexByIndex S.oppIndex2 = S.oppApex2 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.oppositeVertexByIndex, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppApex2, hi]
+
+/-- The indexed opposite vertex at the designated surplus index is the named
+surplus apex. -/
+@[simp] theorem oppositeVertexByIndex_surplusIdx
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppositeVertexByIndex S.surplusIdx = S.surplusApex := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.surplusApex, hi]
+
 /-- Keep the MEC triangle and cap partition fixed, but designate the old
 *second* opposite cap as the new surplus cap.  Stated against a bare cardinality
 hypothesis so that it is available from any residual that bounds `oppCap2`. -/

@@ -41,13 +41,13 @@ BASE_LEAN_PATH="../scratch/atail-force/unique4-exact-two-occurrence:\
 ../scratch/atail-force/unique-arm-route-audit:\
 ../scratch/atail-force/unique-row-producer"
 
-LEAN_PATH="$BASE_LEAN_PATH" lake env lean -M16384 -DwarningAsError=true \
+LEAN_PATH="$BASE_LEAN_PATH" "$ROOT/scripts/lean427" lake env lean -M16384 -DwarningAsError=true \
   -R ../scratch/atail-force/unique4-selected-class-curvature-adapter \
   -o "$MODULE_DIR/SelectedFourClassCurvature.olean" \
   ../scratch/atail-force/unique4-selected-class-curvature-adapter/\
 SelectedFourClassCurvature.lean
 
-LEAN_PATH="$BASE_LEAN_PATH:$MODULE_DIR" lake env lean -M16384 \
+LEAN_PATH="$BASE_LEAN_PATH:$MODULE_DIR" "$ROOT/scripts/lean427" lake env lean -M16384 \
   -DwarningAsError=true \
   -R ../scratch/atail-force/unique4-exact-two-source-bridge/Curvature \
   ../scratch/atail-force/unique4-exact-two-source-bridge/Curvature/\

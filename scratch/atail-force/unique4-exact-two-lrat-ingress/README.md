@@ -1,11 +1,12 @@
 # Two-shard pure-RUP ingress
 
-**Status:** the real p5 normalized LRAT has been deterministically split and
-structurally validated. The Lean checker and canonical text ingress pass a
-bounded end-to-end replay. A real one-shot first-shard replay was attempted
-and exposed a structural elaboration bottleneck, so the next endpoint is a
-sequence of bounded, independently rebased windows. This is not yet a
-kernel-checked p5 UNSAT theorem.
+**Status:** all 369 real p5 windows, both shard coordinators, and the final
+checkpoint-0 UNSAT composition are kernel-checked under the project-pinned
+Lean 4.27 toolchain with warnings as errors. The final theorem has exactly the
+approved `native_decide` trust closure and no `sorryAx`. The completed
+occurrence bridge is now composed with that replay in
+`P5ExactTwoClosure.lean`, closing the `(5,5,4)` exact-two p5 residual in
+scratch. Clean-checkout production packaging and production wiring remain.
 
 ## Data flow
 
@@ -72,10 +73,13 @@ env UV_CACHE_DIR=../../../.uv-cache \
   --verify-package generated/p5-largest
 ```
 
-The suite has 23 tests covering deterministic rebasing, relocation-stable
+The suite has 60 tests covering deterministic rebasing, relocation-stable
 digests, deletion translation, parser mismatches, RAT rejection, inactive
 hints, duplicate and tautological clauses, output overwrite refusal, package
-drift, and replay-attestation drift.
+drift, replay-attestation drift, bounded-window replay, and map
+authentication. The full-package emitter tests additionally cover shared
+checkpoint modules, deterministic whole-package emission, replay-package
+drift, and adversarial rehashed Lean-source injection.
 
 To reproduce the real package:
 
@@ -155,20 +159,40 @@ and retains a 160 MB character list, the parsed line and action structures,
 the entire replay state, and a giant final checkpoint equality. Merely raising
 Lean limits does not bound that state.
 
-The next replayable design preserves the two logical shards but subdivides
-each into independently checked windows. Every window must carry an exact
+The implemented windowed design preserves the two logical shards but
+subdivides each into independently checked windows. Every window carries an exact
 dense start CNF, a bounded LRAT action file, an exact dense end CNF, and the
 global/local ID map. No LRAT line may be split. Initial caps are 4,000 actions
 and 4 MiB per action file, with endpoint-CNF size monitored as well. The
 window implications then compose transitively; the last window of shard 2
 derives the empty clause.
 
-Adjacent window modules must reference the same shared canonical checkpoint
-array definition. `TextIngress.checkRebaseText_sound_of_parse` exports each
-accepted window as a plain implication over caller-named arrays;
-`TextIngress.composeRebase` and `TextIngress.closeRebase` let the coordinator
-join only those imported facts without parsing or replay.
+Adjacent window modules reference the same shared canonical checkpoint text
+definition. `TextBoundary.checkRebaseText_sound_of_text` exports each
+accepted window as a plain implication over caller-named formulas;
+`TextBoundary.composeRebaseText` and `TextBoundary.closeRebaseText` let the
+coordinator join only those imported facts without parsing or replay.
+
+## Full real bounded-window replay
+
+`emit_windowed_rup_replay_package.py` emitted 369 window modules, 369 consumed
+checkpoint modules, two shallow shard coordinators, `Common`, and `Compose`.
+The structurally verified replay package has digest
+`9238dc18ee65a0d1023c786d40b149591759dbafa91eb9d0cc2f75d4385328ad`.
+Its manifest deliberately says `NOT_AUDITED`: structural verification checks
+hashes, path sets, provenance, and forbidden generated constructs, while the
+separate Lean build and axiom audit establish the trust result.
+
+All 742 modules compiled with `-DwarningAsError=true`. The final
+`WindowedRupReplay.startUnsatisfiable` theorem, plus both shard `sound`
+theorems, contain exactly `propext`, `Classical.choice`, `Quot.sound`,
+`Lean.ofReduceBool`, and the explicitly approved `Lean.trustCompiler`; they
+contain no `sorryAx` or generated custom axiom.
 
 See [`real-p5-kernel-replay-2026-07-23.md`](real-p5-kernel-replay-2026-07-23.md)
-for the empirical replay record. Until the windowed replay succeeds, this
-package closes no Lean theorem and no production `sorry`.
+for the empirical replay record and
+[`p5-exact-two-closure-2026-07-23.md`](p5-exact-two-closure-2026-07-23.md)
+for the checked source-to-UNSAT composition. The latter proves
+`false_of_p5ExactTwo` with the exact approved trust profile. It still closes
+no production `sorry` because the generated replay package is not yet a
+tracked, clean-checkout import dependency.

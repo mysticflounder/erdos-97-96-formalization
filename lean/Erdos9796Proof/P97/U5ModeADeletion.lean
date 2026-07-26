@@ -52,7 +52,7 @@ content — the chart-bijection lift is itself open.
   class cardinality in `S ∖ {p}`).
 * `U5ModeA` — Mode A predicate per closure-plan U4 lines 326–328
   (radius `d`, two endpoints, ≥ 2 interior).
-* Sublemma `def` signatures for the three work packages 4A
+* Sublemma interfaces for the three work packages 4A
   (`U5_4A_preservation/lowerBound/tripleCircle`), 4B
   (`U5_4B_saturatedFinite`), 4C (`U5_4C_positiveDimensional`).
 * `U5StrictOrderViolation` — strict-order / circle-incidence
@@ -60,25 +60,24 @@ content — the chart-bijection lift is itself open.
   classification lands).
 * `U5ModeADeletion` — combined U5 statement.
 
-## What is *not* yet proved
+## Interface classification
 
-All seven `def`s above are open obligations.  The closure-plan path:
+These proposition-valued `def`s are not seven hidden proof obligations:
 
-* **4A first** (skeleton multiplicity lemmas from Finset cardinality).
-* **4B chart-bijection lift** — `{{NEEDS_ADAM_INPUT}}`: is the
-  10-point → 432-row chart bijection already proved in
-  `97-c39-certificate-audit.md`, or is it itself an open obligation?
-  Per the math-professor design 2026-05-21 (this scaffold's source
-  spec), 4B's status depends on this answer.
-* **4C** (variety classification) — explicitly marked CONJECTURED by
-  closure plan line 454.
+* the three 4A interfaces are `BANK` and have proofs below, including the
+  bundled trichotomies;
+* `U5_4B_saturatedFinite` and `U5_4C_positiveDimensional` are `PARKED-SPEC`;
+* `U5StrictOrderViolation := True` is a vacuous `PARKED-SPEC` placeholder;
+* `U5ModeADeletion` is `COMPAT-ONLY/BANK`, retained for older U3/U5 adapters.
 
-## Downstream consumers
+No current publish-spine consumer requires a producer for the parked
+interfaces. If one becomes load-bearing, promote a faithful, nonvacuous
+statement through the obligation preflight instead of treating this historical
+scaffold as already active.
 
-After 4A / 4B / 4C close, a composition lemma will derive
-`U5ModeADeletion D` by case-split on `muP (D.skeleton q) p`.  That
-composition is intentionally NOT included in this scaffold — it would
-require sorry / open proof, which the project policy forbids.
+The proved `u5ModeADeletion_of_components` theorem at the end is a pure
+assembly kernel with the geometric existence statement made explicit as a
+hypothesis. It receives no closure credit for that hypothesis.
 -/
 
 namespace Problem97
@@ -149,36 +148,35 @@ def U5ModeA (D : CounterexampleData) : Prop :=
 
 /- ### Strict order / circle-incidence violation placeholder -/
 
-/-- **Strict convex order / circle-incidence constraint violation.**
+/-- **PARKED-SPEC — strict convex order / circle-incidence constraint violation.**
 
 The alternative arm of the 4C variety classification: along a
 fixed-triple variety on which `q` would have to sit, the resulting
 convex-position / Apollonius-arc incidences are mutually inconsistent.
 
 {{NEEDS_UPDATE}}: refine once 4C variety work begins.  Currently
-`True` placeholder so the combined `U5ModeADeletion` statement is
-well-formed; this is `weaker` than the closure-plan prose but
-correctly hides the work behind a named obligation. -/
+`True` placeholder so the compatibility interface remains well-formed. It is
+strictly weaker than the closure-plan prose and is not an active obligation. -/
 def U5StrictOrderViolation (_D : CounterexampleData) (_q _p : ℝ²) : Prop :=
   True
 
 /- ### Work-package sublemma signatures -/
 
-/-- **4A.1 — Preservation.**  `μ_p(S) ≥ 4` ⇒ `K4` survives at `p`
+/-- **BANK, proved below — 4A.1 Preservation.** `μ_p(S) ≥ 4` ⇒ `K4` survives at `p`
 after deletion of `q`.  Closure plan line 401. -/
 def U5_4A_preservation (D : CounterexampleData) (q p : ℝ²) : Prop :=
   q ∈ D.A → p ∈ D.A → p ≠ q →
     4 ≤ muP (D.skeleton q) p →
     HasNEquidistantPointsAt 4 (D.skeleton q) p
 
-/-- **4A.2 — Lower bound.**  `μ_p(S) ≤ 2` ⇒ no placement of `q`
+/-- **BANK, proved below — 4A.2 Lower bound.** `μ_p(S) ≤ 2` ⇒ no placement of `q`
 re-establishes `K4` at `p`.  Closure plan line 402. -/
 def U5_4A_lowerBound (D : CounterexampleData) (q p : ℝ²) : Prop :=
   q ∈ D.A → p ∈ D.A → p ≠ q →
     muP (D.skeleton q) p ≤ 2 →
     ¬ HasNEquidistantPointsAt 4 D.A p
 
-/-- **4A.3 — Triple circle.**  `μ_p(S) = 3` ⇒ `K4(p)` on the original
+/-- **BANK, proved below — 4A.3 Triple circle.** `μ_p(S) = 3` ⇒ `K4(p)` on the original
 configuration requires `q` to lie on the unique `p`-centered triple
 circle of `S ∖ {p}`.  Closure plan line 403. -/
 def U5_4A_tripleCircle (D : CounterexampleData) (q p : ℝ²) : Prop :=
@@ -188,7 +186,7 @@ def U5_4A_tripleCircle (D : CounterexampleData) (q p : ℝ²) : Prop :=
     ∃ r : ℝ, 0 < r ∧ dist p q = r ∧
       (((D.skeleton q).erase p).filter (fun y => dist p y = r)).card = 3
 
-/-- **4B — Saturated finite branch.**
+/-- **PARKED-SPEC — 4B saturated finite branch.**
 
 The AP-count `≥ 3` saturated families already closed in the `n = 10`
 finite-skeleton certificate, lifted to a deletion-only statement.
@@ -208,7 +206,7 @@ def U5_4B_saturatedFinite (D : CounterexampleData) : Prop :=
                        D.packet.triangle.v3, q} : Finset ℝ²) ∧
         muP (D.skeleton q) p = 3
 
-/-- **4C — Positive-dimensional fixed-triple loci.**
+/-- **PARKED-SPEC — 4C positive-dimensional fixed-triple loci.**
 
 For surviving one-free-shaped families with `|A| ≥ 11`, every
 fixed-triple component is either `q`-free (delivers a 4-class at `p`
@@ -224,7 +222,7 @@ def U5_4C_positiveDimensional (D : CounterexampleData) : Prop :=
 
 /- ### Combined U5 statement -/
 
-/-- **U5 — Mode A deletion theorem (formal statement).**
+/-- **COMPAT-ONLY/BANK — U5 Mode A deletion statement.**
 
 In Mode A, every chosen large-cap point `q ∈ surplusCap` is either
 removable, or witnesses a fixed-arc interior apex `p` with `μ_p(S) = 3`

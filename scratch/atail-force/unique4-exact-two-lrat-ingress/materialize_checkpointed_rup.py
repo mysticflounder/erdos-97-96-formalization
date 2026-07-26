@@ -33,6 +33,12 @@ SCHEMA = "p97-checkpointed-pure-rup-package-v1"
 EXPECTED_SOURCE_SCHEMA = (
     "p97-unique4-exact-two-trimmed-reduced-core-certificate-v1"
 )
+P4_PLAIN_RUP_SOURCE_SCHEMA = (
+    "p97-unique4-exact-two-p4-seed0-plain-rup-certificate-v1"
+)
+SUPPORTED_SOURCE_SCHEMAS = frozenset(
+    {EXPECTED_SOURCE_SCHEMA, P4_PLAIN_RUP_SOURCE_SCHEMA}
+)
 HERE = Path(__file__).resolve().parent
 CHECKER = (
     HERE.parent.parent.parent
@@ -456,6 +462,42 @@ def validate_expected_artifact(
         raise MaterializationError(f"{label} SHA-256 drift: {path}")
 
 
+def source_artifact_records(
+    certificate: dict[str, Any],
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    schema = certificate.get("schema")
+    if schema == EXPECTED_SOURCE_SCHEMA:
+        artifacts = certificate.get("artifacts")
+        if not isinstance(artifacts, dict):
+            raise MaterializationError(
+                "source certificate has no artifacts object"
+            )
+        cnf_record = artifacts.get("trimmed_core_cnf")
+        lrat_record = artifacts.get("trimmed_lrat")
+    elif schema == P4_PLAIN_RUP_SOURCE_SCHEMA:
+        authentication = certificate.get("compact_input_authentication")
+        normalization = certificate.get("normalization")
+        if not isinstance(authentication, dict) or not isinstance(
+            normalization,
+            dict,
+        ):
+            raise MaterializationError(
+                "P4 source certificate lacks authentication/normalization "
+                "objects"
+            )
+        cnf_record = authentication.get("cnf")
+        lrat_record = normalization.get("normalized_dense_lrat")
+    else:
+        raise MaterializationError(
+            f"unexpected source certificate schema: {schema!r}"
+        )
+    if not isinstance(cnf_record, dict) or not isinstance(lrat_record, dict):
+        raise MaterializationError(
+            "source certificate lacks CNF/LRAT artifact records"
+        )
+    return cnf_record, lrat_record
+
+
 def materialize(
     *,
     cnf_path: Path,
@@ -749,20 +791,9 @@ def materialize(
         }
         source_cnf_record = artifact_record(cnf_path)
         if source_certificate is not None:
-            artifacts = source_certificate.get("artifacts")
-            if not isinstance(artifacts, dict):
-                raise MaterializationError(
-                    "source certificate has no artifacts object"
-                )
-            expected_cnf = artifacts.get("trimmed_core_cnf")
-            expected_lrat = artifacts.get("trimmed_lrat")
-            if not isinstance(expected_cnf, dict) or not isinstance(
-                expected_lrat,
-                dict,
-            ):
-                raise MaterializationError(
-                    "source certificate lacks trimmed CNF/LRAT records"
-                )
+            expected_cnf, expected_lrat = source_artifact_records(
+                source_certificate
+            )
             if (
                 source_cnf_record["sha256"] != expected_cnf.get("sha256")
                 or source_cnf_record["byte_count"]
@@ -935,20 +966,13 @@ def load_source_certificate(
         raise MaterializationError(
             f"cannot read source certificate: {certificate_path}"
         ) from exc
-    if certificate.get("schema") != EXPECTED_SOURCE_SCHEMA:
+    if certificate.get("schema") not in SUPPORTED_SOURCE_SCHEMAS:
         raise MaterializationError(
             f"unexpected source certificate schema: "
             f"{certificate.get('schema')!r}"
         )
-    artifacts = certificate.get("artifacts")
-    if not isinstance(artifacts, dict):
-        raise MaterializationError("source certificate has no artifacts object")
-    cnf_record = artifacts.get("trimmed_core_cnf")
-    lrat_record = artifacts.get("trimmed_lrat")
-    if not isinstance(cnf_record, dict) or not isinstance(lrat_record, dict):
-        raise MaterializationError(
-            "source certificate lacks trimmed CNF/LRAT records"
-        )
+    cnf_record, lrat_record = source_artifact_records(certificate)
+
     def certificate_artifact_path(record: dict[str, Any]) -> Path:
         path = Path(str(record["path"]))
         if not path.is_absolute():

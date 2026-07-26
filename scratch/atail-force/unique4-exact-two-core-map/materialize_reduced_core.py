@@ -17,6 +17,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import time
 from typing import Any
 
@@ -25,6 +26,14 @@ import analyze_core_ablation as ablation
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+ATAIL_ROOT = ROOT / "scratch" / "atail-force"
+if str(ATAIL_ROOT) not in sys.path:
+    sys.path.insert(0, str(ATAIL_ROOT))
+from lean427_runtime import (  # noqa: E402
+    assert_lean427,
+    canonical_lean_dir,
+    lean427_environment,
+)
 
 
 def sha256(path: Path) -> str:
@@ -239,6 +248,7 @@ def run_checked(
     *,
     cwd: Path,
     timeout_seconds: int,
+    env: dict[str, str] | None = None,
 ) -> dict[str, Any]:
     started = time.monotonic()
     result = subprocess.run(
@@ -249,6 +259,7 @@ def run_checked(
         text=True,
         timeout=timeout_seconds,
         check=False,
+        env=env,
     )
     return {
         "command": command,
@@ -327,7 +338,8 @@ def main() -> int:
     log_path = stage / final_log.name
     report_path = stage / final_report.name
 
-    build_lock = ROOT / "lean" / ".lake" / "lake-build.lock"
+    lean_dir = canonical_lean_dir(ROOT)
+    build_lock = lean_dir / ".lake" / "lake-build.lock"
     lock_held = False
     try:
         dimacs, family_counts, dense_variable_map = render_dimacs(
@@ -373,6 +385,8 @@ def main() -> int:
 
         lean_result: dict[str, Any] | None = None
         if not args.skip_lean:
+            lean_env = lean427_environment(lean_dir)
+            assert_lean427(lean_dir, lean_env)
             acquire_build_lock(build_lock)
             lock_held = True
             try:
@@ -384,10 +398,11 @@ def main() -> int:
                         "-M16384",
                         "--root=..",
                         "-DwarningAsError=true",
-                        os.path.relpath(lean_path, ROOT / "lean"),
+                        os.path.relpath(lean_path, lean_dir),
                     ],
-                    cwd=ROOT / "lean",
+                    cwd=lean_dir,
                     timeout_seconds=args.timeout_seconds,
+                    env=lean_env,
                 )
             finally:
                 build_lock.unlink(missing_ok=True)

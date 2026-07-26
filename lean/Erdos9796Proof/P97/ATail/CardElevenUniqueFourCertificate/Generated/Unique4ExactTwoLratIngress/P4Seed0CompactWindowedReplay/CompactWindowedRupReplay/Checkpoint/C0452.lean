@@ -1,0 +1,14 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Generated.Unique4ExactTwoLratIngress.P4Seed0CompactWindowedReplay.CompactWindowedRupReplay.Common
+
+namespace CompactWindowedRupReplay.Checkpoint.C0452
+
+/-- Canonical compact text for checkpoint 452. -/
+def text : String :=
+  include_str "../../data/formulas/bed4528e2df3a779a41fd5e5a0b6becae8b250c737ea4cd714644275164fb5cb.cpf85"
+
+end CompactWindowedRupReplay.Checkpoint.C0452
