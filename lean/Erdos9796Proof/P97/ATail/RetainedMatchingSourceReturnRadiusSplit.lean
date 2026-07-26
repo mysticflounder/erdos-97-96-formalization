@@ -9,6 +9,14 @@ import Erdos9796Proof.P97.ATail.RetainedMatchingCommonDeletionCycle
 /-!
 # Retained matching source-return radius split
 
+Status: `COMPAT-ONLY/BANK`. The module is source-proved and builds, but its
+only import consumers are off-spine siblings of the same retained
+strict-interior component, rooted at `FrontierCoupledStrictInteriorNormalForm`.
+It is therefore not on either current publish spine, and `lake build` does not
+reach it from the library roots. It remains a reusable normal-form bank; it
+receives no live-frontier closure credit unless a consumer is promoted through
+the standard preflight.
+
 The source-return arm of the retained matching walk is a genuine mutual-omission
 two-cycle.  This file keeps the complete retained first-apex radius class and
 uses the two-circle intersection bound for both actual critical shells.

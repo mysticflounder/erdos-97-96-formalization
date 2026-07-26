@@ -10,6 +10,12 @@ import Erdos9796Proof.P97.SurplusM44Packet.Shard05
 /-!
 # Unique-five apex versus an alternative short cap
 
+Status: `COMPAT-ONLY/BANK`. The module is source-proved and builds, but it has
+no import consumer anywhere in the tree and is not on either current publish
+spine, so `lake build` does not reach it from the library roots. It remains a
+reusable bank; it receives no live-frontier closure credit unless a consumer is
+promoted through the standard preflight.
+
 An exact four-cap in any alternative nonobtuse MEC packet forces a
 four-point selector class at its opposite apex.  If that apex is the physical
 second apex of `LargeCapUniqueFiveSecondApexRadius`, uniqueness identifies the

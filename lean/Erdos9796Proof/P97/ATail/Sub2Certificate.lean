@@ -11,6 +11,12 @@ import Mathlib.Tactic.LinearCombination
 /-!
 # ATAIL-SUB2: the seven-variable half-disk statement `SUB2-H` is UNSAT
 
+Status: `COMPAT-ONLY/BANK`. The module is source-proved and builds, but it has
+no import consumer anywhere in the tree and is not on either current publish
+spine, so `lake build` does not reach it from the library roots. It remains a
+reusable bank; it receives no live-frontier closure credit unless a consumer is
+promoted through the standard preflight.
+
 Matrix-row deliverable for ATAIL-SUB2 (`docs/closure-matrix-2026-07-09.md`).
 Statement source: `scratch/atail-sub2/STATEMENT.md` — the verbatim
 reconstruction of `census/candidate_d_probe/runs/SUB2_{left,right}.smt2`

@@ -9,6 +9,12 @@ import Erdos9796Proof.P97.U2NonSurplusOneHit
 /-!
 # Second-apex radius classes meet adjacent caps at most once
 
+Status: `COMPAT-ONLY/BANK`. The module is source-proved and builds, but it has
+no import consumer anywhere in the tree and is not on either current publish
+spine, so `lake build` does not reach it from the library roots. It remains a
+reusable bank; it receives no live-frontier closure credit unless a consumer is
+promoted through the standard preflight.
+
 Generic-packet composition of the `U2NonSurplusSqueeze` one-hit bounds at
 `oppApex2`: any exact-radius class at the physical second apex meets the
 closed surplus cap, and the closed first opposite cap, in at most one

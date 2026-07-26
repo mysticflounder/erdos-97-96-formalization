@@ -12,6 +12,14 @@ import Erdos9796Proof.P97.ATail.RetainedStrictInteriorPairSelector
 /-!
 # Strict-interior retained-parent normal form
 
+Status: `COMPAT-ONLY/BANK`. The module is source-proved and builds, but its
+only import consumers are off-spine siblings of the same retained
+strict-interior component, rooted at `FrontierCoupledStrictInteriorNormalForm`.
+It is therefore not on either current publish spine, and `lake build` does not
+reach it from the library roots. It remains a reusable normal-form bank; it
+receives no live-frontier closure credit unless a consumer is promoted through
+the standard preflight.
+
 Select the two guaranteed strict-first-cap retained sources before inspecting
 their actual blockers. The equal-blocker arm is localized to that cap. The
 three distinct strict-cap roles first yield a fresh common deletion and then a

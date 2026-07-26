@@ -9,6 +9,14 @@ import Erdos9796Proof.P97.ATail.RetainedMatchingLargeCapConsumer
 /-!
 # Common-deletion normalization of the retained blocker matching
 
+Status: `COMPAT-ONLY/BANK`. The module is source-proved and builds, but its
+only import consumers are off-spine siblings of the same retained
+strict-interior component, rooted at `FrontierCoupledStrictInteriorNormalForm`.
+It is therefore not on either current publish spine, and `lake build` does not
+reach it from the library roots. It remains a reusable normal-form bank; it
+receives no live-frontier closure credit unless a consumer is promoted through
+the standard preflight.
+
 The second-cap-large reverse-hit arm does not need a separate Kalmanson
 consumer. The reverse shell has cardinality four and exactly two points in
 the first opposite cap. A five-point second cap has at least three strict

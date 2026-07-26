@@ -10,6 +10,14 @@ import Erdos9796Proof.P97.ATail.RetainedMatchingCommonDeletionCycle
 /-!
 # Retained-matching endpoint continuation
 
+Status: `COMPAT-ONLY/BANK`. The module is source-proved and builds, but its
+only import consumers are off-spine siblings of the same retained
+strict-interior component, rooted at `FrontierCoupledStrictInteriorNormalForm`.
+It is therefore not on either current publish spine, and `lake build` does not
+reach it from the library roots. It remains a reusable normal-form bank; it
+receives no live-frontier closure credit unless a consumer is promoted through
+the standard preflight.
+
 The endpoint collision already carries a source-faithful critical fiber and a
 first-apex row hit.  This file chooses a genuinely fourth source from that row:
 it is different from both fiber endpoints and from the middle source of the

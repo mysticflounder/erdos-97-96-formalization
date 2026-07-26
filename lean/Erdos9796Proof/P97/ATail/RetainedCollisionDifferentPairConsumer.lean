@@ -10,6 +10,12 @@ import Erdos9796Proof.P97.ATail.CriticalFiberRetainedRadiusSelector
 /-!
 # A different-pair consumer for a retained blocker collision
 
+Status: `COMPAT-ONLY/BANK`. The module is source-proved and builds, but it has
+no import consumer anywhere in the tree and is not on either current publish
+spine, so `lake build` does not reach it from the library roots. It remains a
+reusable bank; it receives no live-frontier closure credit unless a consumer is
+promoted through the standard preflight.
+
 The collision pair itself cannot acquire a genuinely third actual center.
 This module records the next source-valid Kalmanson consumer: choose a fresh
 point `J` on a first-apex row through one collision source `C`, and ask that

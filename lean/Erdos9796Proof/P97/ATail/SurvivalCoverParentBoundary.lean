@@ -10,6 +10,12 @@ import Erdos9796Proof.P97.ATail.LargeOppositeCapsBiApexSurface
 /-!
 # Parent boundary for the card-≥14 survival cover
 
+Status: `COMPAT-ONLY/BANK`. The module is source-proved and builds, but it has
+no import consumer anywhere in the tree and is not on either current publish
+spine, so `lake build` does not reach it from the library roots. It remains a
+reusable bank; it receives no live-frontier closure credit unless a consumer is
+promoted through the standard preflight.
+
 The source-faithful parent boundary has one explicit exceptional arm: the
 frontier first-apex class may still have exactly four points.  Away from that
 arm, the existing directed blocker split now has a concrete production
