@@ -1,0 +1,446 @@
+  6400	Narrowing measure: before this split the second radius carried only a
+  6401	four-point lower bound and two selected strict-cap points.  This leaf adds a
+  6402	source-faithful common-deletion parent, an equal-blocker collision, exact class
+  6403	cardinality four, and exact strict-cap cardinality two at that radius.  The
+  6404	checked body delegates to the sole positive three-hit producer above and
+  6405	contradicts the live low-hit bound. -/
+  6406	theorem false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits
+  6407	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+  6408	    {H : CriticalShellSystem D.A}
+  6409	    (F : CriticalPairFrontier D S radius H)
+  6410	    (R : FrontierCommonDeletionParentResidual F)
+  6411	    (P : RetainedInteriorBlockerCollision R)
+  6412	    (Fρ : CriticalPairFrontier D S ρ H)
+  6413	    (Rρ : FrontierCommonDeletionParentResidual Fρ)
+  6414	    (Pρ : RetainedInteriorBlockerCollision Rρ)
+  6415	    (hρne : ρ ≠ radius)
+  6416	    (hfrontierFour :
+  6417	      (SelectedClass D.A S.oppApex1 radius).card = 4)
+  6418	    (hρfour :
+  6419	      (SelectedClass D.A S.oppApex1 ρ).card = 4)
+  6420	    (hfrontierInteriorTwo :
+  6421	      (SelectedClass D.A S.oppApex1 radius ∩
+  6422	        S.capInteriorByIndex S.oppIndex1).card = 2)
+  6423	    (hρInteriorTwo :
+  6424	      (SelectedClass D.A S.oppApex1 ρ ∩
+  6425	        S.capInteriorByIndex S.oppIndex1).card = 2)
+  6426	    (B : FrontierBiApexRobustResidual R)
+  6427	    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+  6428	    (N : FrontierAllLargeCapsBiApexRobustResidual L)
+  6429	    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+  6430	    (hcriticalShellUniqueFourCover :
+  6431	      ∀ x : ℝ², ∀ hx : x ∈ D.A,
+  6432	        H.centerAt x hx ≠ x ∧
+  6433	          IsUniqueFourCenter D.A (H.centerAt x hx) ∧
+  6434	          uniqueFourClass D.A (H.centerAt x hx) =
+  6435	            (H.selectedAt x hx).toCriticalFourShell.support)
+  6436	    (hfirst : OppositeCapRichClassInteriorPattern D.A S S.oppIndex1)
+  6437	    (hsecond : OppositeCapRichClassInteriorPattern D.A S S.oppIndex2)
+  6438	    (hsurplus : OppositeCapRichClassInteriorPattern D.A S S.surplusIdx)
+  6439	    (hlow :
+  6440	      ∀ i : Fin 3, ∀ x : ℝ², ∀ hx : x ∈ D.A, ∀ r : ℝ,
+  6441	        ApexRichClassStructure D.A (S.oppositeVertexByIndex i) →
+  6442	          ((H.selectedAt x hx).toCriticalFourShell.support ∩
+  6443	            (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+  6444	              S.capInteriorByIndex i)).card ≤ 2) :
+  6445	    False := by
+  6446	  obtain ⟨i, x, hx, r, hrich, hthree⟩ :=
+  6447	    exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions
+  6448	      F R P Fρ Rρ Pρ hρne hfrontierFour hρfour
+  6449	        hfrontierInteriorTwo hρInteriorTwo B L N T
+  6450	          hcriticalShellUniqueFourCover
+  6451	  exact (not_le_of_gt hthree) (hlow i x hx r hrich)
+  6452	
+  6453	/-- Exact-four, two-radius collision branch of the low-hit tri-apex
+  6454	contradiction.
+  6455	
+  6456	The equal-blocker strict-interior pair has already produced a fresh point in
+  6457	the same cap, a common deletion at the first apex and collision blocker, and a
+  6458	chosen collision source whose deletion also survives at the first apex and
+  6459	fresh point's blocker.  The two source shells omit one another and their actual
+  6460	blockers are distinct.  Moreover the collision shell's retained first-apex
+  6461	strict-cap slice is exactly the two collision sources, so this branch saturates
+  6462	rather than contradicts the live low-hit bound.
+  6463	
+  6464	The retained frontier class is now exactly a K4, and its strict first-cap part
+  6465	has cardinality exactly two, hence consists of the two collision sources.  The
+  6466	first physical apex also has a distinct positive radius carrying at least four
+  6467	points.  The checked proof prefix below selects two distinct strict-cap points
+  6468	on that radius.  Each point is outside the collision shell, has blocker
+  6469	different from the collision blocker, and seeds its own localized
+  6470	mutual-omission cycle.  It then records the exhaustive residual incidence
+  6471	split: one directed cross omission, the reverse directed cross omission, or
+  6472	equal blockers for the two second-radius points.  The remaining work is to
+  6473	close those incidence alternatives using the other apex data or a compatible
+  6474	classification theorem.
+  6475	
+  6476	Narrowing measure: compared with the former exact-two collision leaf, this leaf
+  6477	adds `hfrontierFour`, `hfrontierInteriorTwo`, `hρpos`, `hρne`, and `hρfour`.
+  6478	The checked coordinators below send every branch with at least three strict
+  6479	first-cap frontier members to the existing directed-omission leaf.  The
+  6480	second-radius prefix further replaces the previously unattached K4 witness by
+  6481	two source-exact omission packets and the three-way cross-incidence
+  6482	alternative, without adding a new proof obligation.  Thus this is the sole
+  6483	residual collision constructor and still has one load-bearing `sorry`. -/
+  6484	theorem false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits
+  6485	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  6486	    {H : CriticalShellSystem D.A}
+  6487	    (F : CriticalPairFrontier D S radius H)
+  6488	    (R : FrontierCommonDeletionParentResidual F)
+  6489	    (P : RetainedInteriorBlockerCollision R)
+  6490	    (C : LocalizedCollisionCommonDeletion P)
+  6491	    (M : LocalizedCollisionMutualOmissionCycle P C)
+  6492	    (hexactTwo :
+  6493	      (H.selectedAt P.source₁
+  6494	          P.source₁_mem_A).toCriticalFourShell.support ∩
+  6495	          (SelectedClass D.A
+  6496	              (S.oppositeVertexByIndex S.oppIndex1) radius ∩
+  6497	            S.capInteriorByIndex S.oppIndex1) =
+  6498	        {P.source₁, P.source₂})
+  6499	    (hfrontierFour :
+  6500	      (SelectedClass D.A S.oppApex1 radius).card = 4)
+  6501	    (ρ : ℝ)
+  6502	    (hρpos : 0 < ρ)
+  6503	    (hρne : ρ ≠ radius)
+  6504	    (hρfour : 4 ≤ (SelectedClass D.A S.oppApex1 ρ).card)
+  6505	    (hfrontierInteriorTwo :
+  6506	      (SelectedClass D.A S.oppApex1 radius ∩
+  6507	        S.capInteriorByIndex S.oppIndex1).card = 2)
+  6508	    (B : FrontierBiApexRobustResidual R)
+  6509	    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+  6510	    (N : FrontierAllLargeCapsBiApexRobustResidual L)
+  6511	    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+  6512	    (hcriticalShellUniqueFourCover :
+  6513	      ∀ x : ℝ², ∀ hx : x ∈ D.A,
+  6514	        H.centerAt x hx ≠ x ∧
+  6515	          IsUniqueFourCenter D.A (H.centerAt x hx) ∧
+  6516	          uniqueFourClass D.A (H.centerAt x hx) =
+  6517	            (H.selectedAt x hx).toCriticalFourShell.support)
+  6518	    (hfirst : OppositeCapRichClassInteriorPattern D.A S S.oppIndex1)
+  6519	    (hsecond : OppositeCapRichClassInteriorPattern D.A S S.oppIndex2)
+  6520	    (hsurplus : OppositeCapRichClassInteriorPattern D.A S S.surplusIdx)
+  6521	    (hlow :
+  6522	      ∀ i : Fin 3, ∀ x : ℝ², ∀ hx : x ∈ D.A, ∀ r : ℝ,
+  6523	        ApexRichClassStructure D.A (S.oppositeVertexByIndex i) →
+  6524	          ((H.selectedAt x hx).toCriticalFourShell.support ∩
+  6525	            (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+  6526	              S.capInteriorByIndex i)).card ≤ 2) :
+  6527	    False := by
+  6528	  have hcenter :
+  6529	      S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
+  6530	    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  6531	    interval_cases i <;>
+  6532	      simp [SurplusCapPacket.oppApex1,
+  6533	        SurplusCapPacket.oppositeVertexByIndex,
+  6534	        SurplusCapPacket.oppIndex1, hi]
+  6535	  have hρtwo :
+  6536	      2 ≤
+  6537	        (SelectedClass D.A S.oppApex1 ρ ∩
+  6538	          S.capInteriorByIndex S.oppIndex1).card := by
+  6539	    rw [hcenter]
+  6540	    exact
+  6541	      S.selectedClass_capInteriorByIndex_card_ge_two
+  6542	        D.convex S.oppIndex1 hρpos
+  6543	          (by simpa only [hcenter] using hρfour)
+  6544	  have hρone :
+  6545	      1 <
+  6546	        (SelectedClass D.A S.oppApex1 ρ ∩
+  6547	          S.capInteriorByIndex S.oppIndex1).card := by
+  6548	    omega
+  6549	  rcases Finset.one_lt_card.mp hρone with
+  6550	    ⟨u, hu, v, hv, huv⟩
+  6551	  rcases Finset.mem_inter.mp hu with ⟨huρ, huInterior⟩
+  6552	  rcases Finset.mem_inter.mp hv with ⟨hvρ, hvInterior⟩
+  6553	  have huA : u ∈ D.A := (mem_selectedClass.mp huρ).1
+  6554	  have hvA : v ∈ D.A := (mem_selectedClass.mp hvρ).1
+  6555	  have huNeSource₁ : u ≠ P.source₁ := by
+  6556	    intro huSource₁
+  6557	    apply hρne
+  6558	    calc
+  6559	      ρ = dist S.oppApex1 u := (mem_selectedClass.mp huρ).2.symm
+  6560	      _ = dist S.oppApex1 P.source₁ := by rw [huSource₁]
+  6561	      _ = radius := (mem_selectedClass.mp P.source₁_mem_radius).2
+  6562	  have huNeSource₂ : u ≠ P.source₂ := by
+  6563	    intro huSource₂
+  6564	    apply hρne
+  6565	    calc
+  6566	      ρ = dist S.oppApex1 u := (mem_selectedClass.mp huρ).2.symm
+  6567	      _ = dist S.oppApex1 P.source₂ := by rw [huSource₂]
+  6568	      _ = radius := (mem_selectedClass.mp P.source₂_mem_radius).2
+  6569	  have hvNeSource₁ : v ≠ P.source₁ := by
+  6570	    intro hvSource₁
+  6571	    apply hρne
+  6572	    calc
+  6573	      ρ = dist S.oppApex1 v := (mem_selectedClass.mp hvρ).2.symm
+  6574	      _ = dist S.oppApex1 P.source₁ := by rw [hvSource₁]
+  6575	      _ = radius := (mem_selectedClass.mp P.source₁_mem_radius).2
+  6576	  have hvNeSource₂ : v ≠ P.source₂ := by
+  6577	    intro hvSource₂
+  6578	    apply hρne
+  6579	    calc
+  6580	      ρ = dist S.oppApex1 v := (mem_selectedClass.mp hvρ).2.symm
+  6581	      _ = dist S.oppApex1 P.source₂ := by rw [hvSource₂]
+  6582	      _ = radius := (mem_selectedClass.mp P.source₂_mem_radius).2
+  6583	  have hpairsDisjoint :
+  6584	      Disjoint ({P.source₁, P.source₂} : Finset ℝ²) {u, v} := by
+  6585	    apply Finset.disjoint_left.mpr
+  6586	    intro z hzCollision hzSecond
+  6587	    simp only [Finset.mem_insert, Finset.mem_singleton] at hzCollision hzSecond
+  6588	    rcases hzCollision with rfl | rfl
+  6589	    · rcases hzSecond with hsource₁u | hsource₁v
+  6590	      · exact huNeSource₁ hsource₁u.symm
+  6591	      · exact hvNeSource₁ hsource₁v.symm
+  6592	    · rcases hzSecond with hsource₂u | hsource₂v
+  6593	      · exact huNeSource₂ hsource₂u.symm
+  6594	      · exact hvNeSource₂ hsource₂v.symm
+  6595	  have huBlockerNe :
+  6596	      H.centerAt u huA ≠
+  6597	        H.centerAt P.source₁ P.source₁_mem_A :=
+  6598	    secondRadiusInterior_blocker_ne_collisionBlocker
+  6599	      P hρne huA hu
+  6600	  have hvBlockerNe :
+  6601	      H.centerAt v hvA ≠
+  6602	        H.centerAt P.source₁ P.source₁_mem_A :=
+  6603	    secondRadiusInterior_blocker_ne_collisionBlocker
+  6604	      P hρne hvA hv
+  6605	  rcases exists_secondRadiusInterior_localizedCycle P hρne hu with
+  6606	    ⟨Cu, hCuFresh, ⟨Mu⟩⟩
+  6607	  rcases exists_secondRadiusInterior_localizedCycle P hρne hv with
+  6608	    ⟨Cv, hCvFresh, ⟨Mv⟩⟩
+  6609	  have hsecondRadiusIncidence :
+  6610	      v ∉ (H.selectedAt u huA).toCriticalFourShell.support ∨
+  6611	        u ∉ (H.selectedAt v hvA).toCriticalFourShell.support ∨
+  6612	          H.centerAt u huA = H.centerAt v hvA := by
+  6613	    by_cases hvu :
+  6614	        v ∈ (H.selectedAt u huA).toCriticalFourShell.support
+  6615	    · by_cases huv' :
+  6616	          u ∈ (H.selectedAt v hvA).toCriticalFourShell.support
+  6617	      · exact Or.inr <| Or.inr <|
+  6618	          blocker_centers_eq_of_secondRadius_mutual_cross_membership
+  6619	            R huA hvA huv huρ hvρ hvu huv'
+  6620	      · exact Or.inr (Or.inl huv')
+  6621	    · exact Or.inl hvu
+  6622	  have hsecondRadiusEqualBlockerGeometry :
+  6623	      H.centerAt u huA = H.centerAt v hvA →
+  6624	        H.centerAt u huA ≠
+  6625	            H.centerAt P.source₁ P.source₁_mem_A ∧
+  6626	          H.centerAt u huA ∈
+  6627	              S.capInteriorByIndex S.oppIndex1 ∧
+  6628	            (H.selectedAt u huA).toCriticalFourShell.support ∩
+  6629	                S.capByIndex S.oppIndex1 =
+  6630	              {u, v} := by
+  6631	    intro hblockers
+  6632	    have huIndexed :
+  6633	        u ∈
+  6634	          SelectedClass D.A
+  6635	              (S.oppositeVertexByIndex S.oppIndex1) ρ ∩
+  6636	            S.capInteriorByIndex S.oppIndex1 := by
+  6637	      simpa only [← hcenter] using hu
+  6638	    have hvIndexed :
+  6639	        v ∈
+  6640	          SelectedClass D.A
+  6641	              (S.oppositeVertexByIndex S.oppIndex1) ρ ∩
+  6642	            S.capInteriorByIndex S.oppIndex1 := by
+  6643	      simpa only [← hcenter] using hv
+  6644	    have hgeometry :=
+  6645	      equalBlocker_sameRadiusInterior_shell_inter_cap_eq_pair
+  6646	        huA hvA huIndexed hvIndexed huv hblockers
+  6647	        (by simpa only [← hcenter] using T.oppApex1_rich)
+  6648	        (hcriticalShellUniqueFourCover u huA).2.1
+  6649	    exact ⟨huBlockerNe, hgeometry⟩
+  6650	  have hsecondRadiusEqualBlockerRectangle :
+  6651	      H.centerAt u huA = H.centerAt v hvA →
+  6652	        u ∉
+  6653	            (H.selectedAt P.source₁
+  6654	              P.source₁_mem_A).toCriticalFourShell.support ∧
+  6655	          v ∉
+  6656	              (H.selectedAt P.source₁
+  6657	                P.source₁_mem_A).toCriticalFourShell.support ∧
+  6658	            P.source₁ ∉
+  6659	                (H.selectedAt u huA).toCriticalFourShell.support ∧
+  6660	              P.source₂ ∉
+  6661	                  (H.selectedAt u huA).toCriticalFourShell.support ∧
+  6662	                ((H.selectedAt P.source₁
+  6663	                    P.source₁_mem_A).toCriticalFourShell.support \
+  6664	                    S.capByIndex S.oppIndex1).card = 2 ∧
+  6665	                  ((H.selectedAt u huA).toCriticalFourShell.support \
+  6666	                    S.capByIndex S.oppIndex1).card = 2 := by
+  6667	    intro hblockers
+  6668	    rcases hsecondRadiusEqualBlockerGeometry hblockers with
+  6669	      ⟨_, _, hsecondCap⟩
+  6670	    exact
+  6671	      exact_disjoint_cap_pairs_force_cross_omission_and_two_outside
+  6672	        (H.selectedAt P.source₁
+  6673	          P.source₁_mem_A).toCriticalFourShell.support_card
+  6674	        (H.selectedAt u huA).toCriticalFourShell.support_card
+  6675	        P.shell_inter_cap_eq_sources hsecondCap
+  6676	        P.sources_ne huv hpairsDisjoint
+  6677	  have hcollisionBlockerNeSource₁ :
+  6678	      H.centerAt P.source₁ P.source₁_mem_A ≠ P.source₁ :=
+  6679	    (hcriticalShellUniqueFourCover P.source₁ P.source₁_mem_A).1
+  6680	  have hcollisionBlockerNeSource₂ :
+  6681	      H.centerAt P.source₁ P.source₁_mem_A ≠ P.source₂ := by
+  6682	    intro h
+  6683	    apply (hcriticalShellUniqueFourCover P.source₂ P.source₂_mem_A).1
+  6684	    exact P.blockers_eq.symm.trans h
+  6685	  have hsecondRadiusEqualBlockerLargeCapOrCrossCoincidence :
+  6686	      H.centerAt u huA = H.centerAt v hvA →
+  6687	        8 ≤ (S.capByIndex S.oppIndex1).card ∨
+  6688	          H.centerAt P.source₁ P.source₁_mem_A = u ∨
+  6689	            H.centerAt P.source₁ P.source₁_mem_A = v ∨
+  6690	              H.centerAt u huA = P.source₁ ∨
+  6691	                H.centerAt u huA = P.source₂ := by
+  6692	    intro hblockers
+  6693	    rcases hsecondRadiusEqualBlockerGeometry hblockers with
+  6694	      ⟨hsecondBlockerNeCollision, huBlockerInterior, _⟩
+  6695	    have hsecondBlockerNeU : H.centerAt u huA ≠ u :=
+  6696	      (hcriticalShellUniqueFourCover u huA).1
+  6697	    have hsecondBlockerNeV : H.centerAt u huA ≠ v := by
+  6698	      intro h
+  6699	      apply (hcriticalShellUniqueFourCover v hvA).1
+  6700	      exact hblockers.symm.trans h
+  6701	    rcases
+  6702	        six_interior_or_cross_blocker_coincidence
+  6703	          (S.capInteriorByIndex S.oppIndex1)
+  6704	          P.source₁ P.source₂ u v
+  6705	          (H.centerAt P.source₁ P.source₁_mem_A)
+  6706	          (H.centerAt u huA)
+  6707	          P.sources_ne huv hpairsDisjoint
+  6708	          hsecondBlockerNeCollision.symm
+  6709	          hcollisionBlockerNeSource₁ hcollisionBlockerNeSource₂
+  6710	          hsecondBlockerNeU hsecondBlockerNeV
+  6711	          P.source₁_mem_capInterior P.source₂_mem_capInterior
+  6712	          huInterior hvInterior P.blocker_mem_capInterior huBlockerInterior with
+  6713	      hlargeInterior | hcross
+  6714	    · left
+  6715	      have hcapInterior :=
+  6716	        ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+  6717	          S S.oppIndex1
+  6718	      omega
+  6719	    · exact Or.inr hcross
+  6720	  have hsecondRadiusEqualBlockerCapSixCycle :
+  6721	      H.centerAt u huA = H.centerAt v hvA →
+  6722	        (S.capByIndex S.oppIndex1).card = 6 →
+  6723	          (H.centerAt P.source₁ P.source₁_mem_A = u ∨
+  6724	              H.centerAt P.source₁ P.source₁_mem_A = v) ∧
+  6725	            (H.centerAt u huA = P.source₁ ∨
+  6726	              H.centerAt u huA = P.source₂) := by
+  6727	    intro hblockers hcapSix
+  6728	    rcases hsecondRadiusEqualBlockerGeometry hblockers with
+  6729	      ⟨_, huBlockerInterior, _⟩
+  6730	    have hsecondBlockerNeU : H.centerAt u huA ≠ u :=
+  6731	      (hcriticalShellUniqueFourCover u huA).1
+  6732	    have hsecondBlockerNeV : H.centerAt u huA ≠ v := by
+  6733	      intro h
+  6734	      apply (hcriticalShellUniqueFourCover v hvA).1
+  6735	      exact hblockers.symm.trans h
+  6736	    have hInteriorCard :
+  6737	        (S.capInteriorByIndex S.oppIndex1).card = 4 := by
+  6738	      have hcapInterior :=
+  6739	        ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+  6740	          S S.oppIndex1
+  6741	      omega
+  6742	    exact
+  6743	      four_interior_forces_both_cross_blocker_coincidences
+  6744	        (S.capInteriorByIndex S.oppIndex1)
+  6745	        P.source₁ P.source₂ u v
+  6746	        (H.centerAt P.source₁ P.source₁_mem_A)
+  6747	        (H.centerAt u huA)
+  6748	        P.sources_ne huv hpairsDisjoint
+  6749	        hcollisionBlockerNeSource₁ hcollisionBlockerNeSource₂
+  6750	        hsecondBlockerNeU hsecondBlockerNeV
+  6751	        P.source₁_mem_capInterior P.source₂_mem_capInterior
+  6752	        huInterior hvInterior P.blocker_mem_capInterior huBlockerInterior
+  6753	        hInteriorCard
+  6754	  obtain ⟨Fρ, ⟨Rρ⟩⟩ :=
+  6755	    exists_distinctRadius_commonDeletionParent
+  6756	      F R (by omega) hρne hρfour
+  6757	  let Bρ : FrontierBiApexRobustResidual Rρ :=
+  6758	    { secondApex_robust := B.secondApex_robust }
+  6759	  let Lρ : FrontierLargeOppositeCapsBiApexRobustResidual Bρ :=
+  6760	    { firstOppCap_card_ge_six := L.firstOppCap_card_ge_six
+  6761	      secondOppCap_card_ge_six := L.secondOppCap_card_ge_six }
+  6762	  let Nρ : FrontierAllLargeCapsBiApexRobustResidual Lρ :=
+  6763	    { surplusCap_card_ge_six := N.surplusCap_card_ge_six }
+  6764	  let Tρ : FrontierAllLargeCapsTriApexRobustResidual Nρ :=
+  6765	    { oppApex1_rich := T.oppApex1_rich
+  6766	      oppApex2_rich := T.oppApex2_rich
+  6767	      surplusApex_rich := T.surplusApex_rich
+  6768	      notRobustCover_card := T.notRobustCover_card
+  6769	      no_center_covers_all_apices := T.no_center_covers_all_apices }
+  6770	  have hfalseOfOmission
+  6771	      (Qρ : RetainedInteriorDirectedOmission Rρ) :
+  6772	      False :=
+  6773	    false_of_retainedInteriorDirectedOmission_and_all_low_hits
+  6774	      Fρ Rρ Qρ Bρ Lρ Nρ Tρ hcriticalShellUniqueFourCover
+  6775	        hfirst hsecond hsurplus hlow
+  6776	  by_cases hblockers :
+  6777	      H.centerAt u huA = H.centerAt v hvA
+  6778	  · let Pρ : RetainedInteriorBlockerCollision Rρ :=
+  6779	      { source₁ := u
+  6780	        source₂ := v
+  6781	        source₁_mem_A := huA
+  6782	        source₂_mem_A := hvA
+  6783	        sources_ne := huv
+  6784	        source₁_mem_radius := huρ
+  6785	        source₂_mem_radius := hvρ
+  6786	        source₁_mem_capInterior := huInterior
+  6787	        source₂_mem_capInterior := hvInterior
+  6788	        blockers_eq := hblockers }
+  6789	    by_cases hρfive :
+  6790	        5 ≤ (SelectedClass D.A S.oppApex1 ρ).card
+  6791	    · rcases
+  6792	        nonempty_retainedInteriorDirectedOmission_of_collision_of_frontierClass_card_ge_five
+  6793	          Rρ Pρ hρfive with
+  6794	        ⟨Qρ⟩
+  6795	      exact hfalseOfOmission Qρ
+  6796	    · have hρexactFour :
+  6797	          (SelectedClass D.A S.oppApex1 ρ).card = 4 := by
+  6798	        omega
+  6799	      by_cases hρthree :
+  6800	          3 ≤
+  6801	            (SelectedClass D.A S.oppApex1 ρ ∩
+  6802	              S.capInteriorByIndex S.oppIndex1).card
+  6803	      · rcases
+  6804	          nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three
+  6805	            Rρ Pρ hρthree with
+  6806	          ⟨Qρ⟩
+  6807	        exact hfalseOfOmission Qρ
+  6808	      · have hρInteriorTwo :
+  6809	            (SelectedClass D.A S.oppApex1 ρ ∩
+  6810	              S.capInteriorByIndex S.oppIndex1).card = 2 := by
+  6811	          omega
+  6812	        exact
+  6813	          false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits
+  6814	            F R P Fρ Rρ Pρ hρne hfrontierFour hρexactFour
+  6815	              hfrontierInteriorTwo hρInteriorTwo B L N T
+  6816	                hcriticalShellUniqueFourCover hfirst hsecond hsurplus hlow
+  6817	  · have homission :
+  6818	        v ∉ (H.selectedAt u huA).toCriticalFourShell.support ∨
+  6819	          u ∉ (H.selectedAt v hvA).toCriticalFourShell.support := by
+  6820	      rcases hsecondRadiusIncidence with hvNot | huNot | heq
+  6821	      · exact Or.inl hvNot
+  6822	      · exact Or.inr huNot
+  6823	      · exact (hblockers heq).elim
+  6824	    have hdirected :
+  6825	        (v ∉ (H.selectedAt u huA).toCriticalFourShell.support ∧
+  6826	            HasNEquidistantPointsAt 4 (D.A.erase v)
+  6827	              (H.centerAt u huA)) ∨
+  6828	          (u ∉ (H.selectedAt v hvA).toCriticalFourShell.support ∧
+  6829	            HasNEquidistantPointsAt 4 (D.A.erase u)
+  6830	              (H.centerAt v hvA)) := by
+  6831	      rcases homission with hvNot | huNot
+  6832	      · exact Or.inl
+  6833	          ⟨hvNot,
+  6834	            (cross_deletion_survives_iff_not_mem_selected_support
+  6835	              H huA).mpr hvNot⟩
+  6836	      · exact Or.inr
+  6837	          ⟨huNot,
+  6838	            (cross_deletion_survives_iff_not_mem_selected_support
+  6839	              H hvA).mpr huNot⟩
+  6840	    let Qρ : RetainedInteriorDirectedOmission Rρ :=
+  6841	      { source₁ := u
+  6842	        source₂ := v
+  6843	        source₁_mem_A := huA
+  6844	        source₂_mem_A := hvA
+  6845	        sources_ne := huv

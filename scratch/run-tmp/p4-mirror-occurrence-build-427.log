@@ -1,0 +1,111 @@
+'Problem97.ShellCurvatureRows.ShellBoundaryIndexing.image_selectedCenteredChart_point_supportOrder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ShellCurvatureRows.ShellBoundaryIndexing.selectedFourClass_has_globalSelectedQuarterTurnArcs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ShellCurvatureRows.ShellBoundaryIndexing.exists_globalSelectedQuarterTurnArcs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourExactTwoCurvatureScratch.P5CurvatureSource.image_selectedRowSupport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourExactTwoCurvatureScratch.P5CurvatureSource.selectedRowSupport_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourExactTwoCurvatureScratch.P5CurvatureSource.RetainedOuterArc.maskSum_eq_curvature' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourExactTwoCurvatureScratch.P5CurvatureSource.false_of_four_pairwiseDisjoint_retainedOuterArcMasks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P4DirectOuterArcAdapterScratch.DirectSource.blockerRow_support_eq_shell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P4DirectOuterArcAdapterScratch.direct_memberships_imply_row_pattern' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P4DirectOuterArcAdapterScratch.direct_row_pattern_implies_outer_arc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P4DirectOuterArcAdapterScratch.direct_no_four_turn_disjoint_outer_arcs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P4DirectOuterArcAdapterScratch.nonempty_directSource_or_mirrorPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P4DirectOuterArcAdapterScratch.coveredDirectClauseCount_eq' depends on axioms: [propext]
+'Problem97.P4DirectOuterArcAdapterScratch.selectedCenteredSupportIndices_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P4DirectOuterArcAdapterScratch.retainedArc_turnMask_eq_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P4DirectOuterArcAdapterScratch.DirectRowArcFiniteCertificate.toSchema' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P4DirectOuterArcAdapterScratch.DirectRowArcFiniteDatum.toSchema' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'_private.P4DirectOuterArcFinite.0.Problem97.P4DirectOuterArcAdapterScratch.exampleLeftDatum_valid' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'Problem97.P4DirectOuterArcAdapterScratch.mirror_direct_memberships_imply_row_pattern' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P4DirectOuterArcAdapterScratch.mirror_direct_row_pattern_implies_outer_arc' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P4DirectOuterArcAdapterScratch.mirror_direct_no_four_turn_disjoint_outer_arcs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+../scratch/atail-force/unique4-p4-mirror-outer-occurrence-bridge/generated/Core.lean:2075:37: error: Function expected at
+  CriticalPairFrontier
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  D
+../scratch/atail-force/unique4-p4-mirror-outer-occurrence-bridge/generated/Core.lean:2076:7: error: Function expected at
+  OriginalUniqueFourResidual
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  F
+../scratch/atail-force/unique4-p4-mirror-outer-occurrence-bridge/generated/Core.lean:2077:18: error: Function expected at
+  ExactTwoStrictHitDistribution
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  R
+../scratch/atail-force/unique4-p4-mirror-outer-occurrence-bridge/generated/Core.lean:2077:56: error: Function expected at
+  ExactTwoBoundaryCore
+but this term has type
+  ?m.4
+
+Note: Expected a function because this term is being applied to the argument
+  R
+../scratch/atail-force/unique4-p4-mirror-outer-occurrence-bridge/generated/Core.lean:2079:4: error: declaration uses 'sorry'
+../scratch/atail-force/unique4-p4-mirror-outer-occurrence-bridge/generated/Core.lean:2086:0: error: declaration uses 'sorry'
+../scratch/atail-force/unique4-p4-mirror-outer-occurrence-bridge/generated/Core.lean:2093:5: error: unused variable `agreement`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/atail-force/unique4-p4-mirror-outer-occurrence-bridge/generated/Core.lean:2095:5: error: unused variable `hatom`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/atail-force/unique4-p4-mirror-outer-occurrence-bridge/generated/Core.lean:2100:5: error: unused variable `agreement`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/atail-force/unique4-p4-mirror-outer-occurrence-bridge/generated/Core.lean:2102:5: error: unused variable `hatom`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/atail-force/unique4-p4-mirror-outer-occurrence-bridge/generated/Core.lean:2107:5: error: unused variable `agreement`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/atail-force/unique4-p4-mirror-outer-occurrence-bridge/generated/Core.lean:2109:5: error: unused variable `hatom`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`

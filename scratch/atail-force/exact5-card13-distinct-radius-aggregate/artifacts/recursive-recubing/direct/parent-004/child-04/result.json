@@ -1,0 +1,60 @@
+{
+  "child_cnf_sha256": "d0ddf71f7ac58453c602dfaff5d78089d70d5336913cf04e34b4a2dd00d4d768",
+  "child_cube": [
+    17489,
+    -17496,
+    -17013
+  ],
+  "child_cube_index": 4,
+  "combined_assumptions": [
+    -2071,
+    86056,
+    -22411,
+    -16021,
+    86059,
+    17489,
+    -17496,
+    -17013
+  ],
+  "config": "default",
+  "config_args": [
+    "--default"
+  ],
+  "conflicts": 2421,
+  "decisions": 14311,
+  "drat_check": {
+    "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-004/child-04/drat-trim.log",
+    "log_sha256": "61eb8e4f2420206dec25a90ee8e611e61a608f93fa0f69c659923a9404cc1d81",
+    "returncode": 0,
+    "status": "PASS",
+    "timed_out": false
+  },
+  "elapsed_seconds": 3.9042562909889966,
+  "epistemic_status": "EXTERNAL_EXACT_CHILD_CNF_VERDICT",
+  "extended_model_check_against_original_cnf": null,
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-004/child-04/cadical.log",
+  "log_sha256": "58695036dbed35a96f3e7b47ec3f9966947ce83aff2ca04c34e565ecccf40889",
+  "model_check_against_child_cnf": null,
+  "orientation": "direct",
+  "parent_cube": [
+    -2071,
+    86056,
+    -22411,
+    -16021,
+    86059
+  ],
+  "parent_cube_index": 4,
+  "proof_artifact": {
+    "format": "gzip-compressed CaDiCaL DRAT",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-004/child-04/proof.drat.gz",
+    "sha256": "5c376f81496175f16f211dfd5e473c3d69ded77f67cfd67d9e30fcbf3c784e1c",
+    "size_bytes": 1381208
+  },
+  "returncode": 20,
+  "schema": "p97-exact5-card13-distinct-recube-child-v1",
+  "seed": 2068,
+  "solver_status": "UNSAT",
+  "status": "UNSAT",
+  "timed_out": false,
+  "timeout_seconds": 15
+}

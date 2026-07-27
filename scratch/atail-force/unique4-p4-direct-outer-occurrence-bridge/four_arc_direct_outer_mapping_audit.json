@@ -1,0 +1,58 @@
+{
+  "dense_to_outer_arc_is_functional": true,
+  "dense_to_source_identifier_is_functional": true,
+  "dense_variable_count": 1962,
+  "dense_variables_with_syntactically_distinct_outer_arc_records": 0,
+  "direct_row_count": 10614,
+  "examples": [
+    {
+      "dense_variable": 706,
+      "outer_arc": {
+        "center": 0,
+        "side": "left",
+        "turn_mask": 127
+      },
+      "source_outer_identifier": 10210
+    },
+    {
+      "dense_variable": 707,
+      "outer_arc": {
+        "center": 0,
+        "side": "left",
+        "turn_mask": 63
+      },
+      "source_outer_identifier": 10219
+    },
+    {
+      "dense_variable": 708,
+      "outer_arc": {
+        "center": 0,
+        "side": "left",
+        "turn_mask": 31
+      },
+      "source_outer_identifier": 10226
+    },
+    {
+      "dense_variable": 709,
+      "outer_arc": {
+        "center": 0,
+        "side": "left",
+        "turn_mask": 15
+      },
+      "source_outer_identifier": 10232
+    }
+  ],
+  "families": [
+    "direct_memberships_imply_row_pattern",
+    "direct_no_four_turn_disjoint_outer_arcs",
+    "direct_row_pattern_implies_outer_arc"
+  ],
+  "four_arc_family_outer_dense_variable_count": 120,
+  "four_arc_family_outer_source_identifier_count": 120,
+  "genuine_conflicting_outer_truth_requirements": 0,
+  "retained_outer_dense_variable_count": 136,
+  "retained_outer_source_identifier_count": 136,
+  "semantic_alias_cases_requiring_an_equality_proof": 0,
+  "source_core_position_count": 37363,
+  "source_identifier_to_outer_arc_is_functional": true
+}

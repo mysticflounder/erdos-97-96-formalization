@@ -1,0 +1,30 @@
+'Problem97.ATailExactFiveMutualGlobalCapConsumerScratch.ten_le_card_of_robustLargeRadiusParentSurface' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualGlobalCapConsumerScratch.nonempty_mutualCrossSurvivingSourceFamily_of_card_ge_ten' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualGlobalCapConsumerScratch.nonempty_mutualCrossSurvivingSourceFamily' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualGlobalCapConsumerScratch.CycleSameCapMutualCrossSurvivalPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualGlobalCapConsumerScratch.nonempty_cycleSameCapMutualCrossSurvivalPair_of_card_ge_ten' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualGlobalCapConsumerScratch.nonempty_sameCapMutualCrossSurvivalPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualGlobalCapConsumerScratch.CycleSameCapCommonDeletionResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualGlobalCapConsumerScratch.CycleEqualBlockerShellResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualGlobalCapConsumerScratch.cycleSameCapCommonDeletion_or_equalBlockerShellResidual_of_card_ge_ten' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualGlobalCapConsumerScratch.sameCapCommonDeletion_or_equalBlockerShellResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

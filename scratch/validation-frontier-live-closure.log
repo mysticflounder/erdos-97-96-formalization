@@ -1,0 +1,33 @@
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:76:8: warning: declaration uses 'sorry'
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:112:8: warning: declaration uses 'sorry'
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:208:8: warning: declaration uses 'sorry'
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:219:8: warning: declaration uses 'sorry'
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:713:8: warning: declaration uses 'sorry'
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1363:8: warning: declaration uses 'sorry'
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1452:5: warning: unused variable `hfrontierFour`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1454:5: warning: unused variable `hρfour`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1456:5: warning: unused variable `hfrontierInteriorTwo`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1459:5: warning: unused variable `hρInteriorTwo`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1675:5: warning: unused variable `hfirst`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1676:5: warning: unused variable `hsecond`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1677:5: warning: unused variable `hsurplus`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1730:5: warning: unused variable `M`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1731:5: warning: unused variable `hexactTwo`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`

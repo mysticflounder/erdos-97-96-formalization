@@ -1,0 +1,746 @@
+              P.source.1 P.source.2 =
+            packet.xv := packet.blocker_eq_xv
+          _ = P.other.1 := hother.symm
+      outside_adjacent_orientation :=
+        houtsideAdjacentOrientation
+      first_growth := hfirst
+      firstOppCap_card_add_seven_eq_carrier := hbudget }
+
+/-- Large physical-second-cap leaf below the source-heavy `other = xv`
+placement. -/
+theorem false_of_exactFourRigid221_sourceHeavyOtherXv_secondOppositeLarge
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (_hblockerVRow :
+      (lateFirstApexSystem R).centerAt P.source.1 P.source.2 ∈
+        ((lateFirstApexSystem R).selectedAt
+            P.v.1 P.v.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho)
+    (_hblockerNeV :
+      (lateFirstApexSystem R).centerAt P.source.1 P.source.2 ≠ P.v.1)
+    (_packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (_hother : P.other.1 = _packet.xv)
+    (_hsecond : 6 ≤ S.oppCap2.card)
+    (_hinterior :
+      4 ≤ (S.capInteriorByIndex S.oppIndex2).card)
+    (_hgrowth : ExactFourRobustCapGrowth S) :
+    False := by
+  sorry
+
+/-- Exact-five physical-second-cap leaf with surplus-cap growth below the
+source-heavy `other = xv` placement. -/
+theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFiveSurplusGrowth
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (_hblockerVRow :
+      (lateFirstApexSystem R).centerAt P.source.1 P.source.2 ∈
+        ((lateFirstApexSystem R).selectedAt
+            P.v.1 P.v.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho)
+    (_hblockerNeV :
+      (lateFirstApexSystem R).centerAt P.source.1 P.source.2 ≠ P.v.1)
+    (_packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (_hother : P.other.1 = _packet.xv)
+    (_hsecond : S.oppCap2.card = 5)
+    (_hinterior :
+      (S.capInteriorByIndex S.oppIndex2).card = 3)
+    (_hsurplus : 6 ≤ S.surplusCap.card)
+    (_hbudget :
+      S.surplusCap.card + S.oppCap1.card + 2 = D.A.card)
+    (_hten : 10 ≤ S.surplusCap.card + S.oppCap1.card) :
+    False := by
+  sorry
+
+/-- Terminal form of the exact-five first-growth branch after all cap
+placement consequences have been extracted.  Unlike an outcome package, this
+is the live contradiction itself: the full source/deletion context and row
+traces remain available, and `W` adds the exact three-point interior and
+opposite-adjacent placement forced by the parent. -/
+theorem
+    blocker_centers_eq_of_physicalSecondRadius_mutual_cross_membership
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    {x y : ℝ²}
+    (hxA : x ∈ D.A) (hyA : y ∈ D.A) (hxy : x ≠ y)
+    (hxRadius : x ∈ SelectedClass D.A S.oppApex2 P.rho)
+    (hyRadius : y ∈ SelectedClass D.A S.oppApex2 P.rho)
+    (hyx :
+      y ∈ ((lateFirstApexSystem R).selectedAt
+        x hxA).toCriticalFourShell.support)
+    (hxy' :
+      x ∈ ((lateFirstApexSystem R).selectedAt
+        y hyA).toCriticalFourShell.support) :
+    (lateFirstApexSystem R).centerAt x hxA =
+      (lateFirstApexSystem R).centerAt y hyA := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let cx := Hlate.centerAt x hxA
+  let cy := Hlate.centerAt y hyA
+  let o := S.oppApex2
+  have hoA : o ∈ D.A := by
+    simpa [o] using P.surface.ingress.packet.center₂_mem_A
+  have hcxA : cx ∈ D.A := by
+    simpa [cx, Hlate, CriticalShellSystem.blockerVertex] using
+      (Hlate.blockerVertex ⟨x, hxA⟩).2
+  have hcyA : cy ∈ D.A := by
+    simpa [cy, Hlate, CriticalShellSystem.blockerVertex] using
+      (Hlate.blockerVertex ⟨y, hyA⟩).2
+  have hcxNeO : cx ≠ o := by
+    simpa [cx, o, Hlate] using
+      P.surface.secondApex_robust.centerAt_ne Hlate x hxA
+  have hcyNeO : cy ≠ o := by
+    simpa [cy, o, Hlate] using
+      P.surface.secondApex_robust.centerAt_ne Hlate y hyA
+  by_contra hcxcy
+  have hoEq : dist o x = dist o y :=
+    (mem_selectedClass.mp hxRadius).2.trans
+      (mem_selectedClass.mp hyRadius).2.symm
+  have hcxEq : dist cx x = dist cx y := by
+    exact
+      (Hlate.selectedAt x hxA).toCriticalFourShell.support_eq_radius
+        x (Hlate.selectedAt x hxA).toCriticalFourShell.q_mem_support
+      |>.trans
+        ((Hlate.selectedAt x hxA).toCriticalFourShell.support_eq_radius
+          y hyx).symm
+  have hcyEq : dist cy x = dist cy y := by
+    exact
+      (Hlate.selectedAt y hyA).toCriticalFourShell.support_eq_radius
+        x hxy'
+      |>.trans
+        ((Hlate.selectedAt y hyA).toCriticalFourShell.support_eq_radius
+          y (Hlate.selectedAt y hyA).toCriticalFourShell.q_mem_support).symm
+  have hbound := Dumitrescu.perpBisector_apex_bound D.convex hxA hyA hxy
+  have hoFilter :
+      o ∈ D.A.filter (fun z => dist z x = dist z y) :=
+    Finset.mem_filter.mpr ⟨hoA, hoEq⟩
+  have hcxFilter :
+      cx ∈ D.A.filter (fun z => dist z x = dist z y) :=
+    Finset.mem_filter.mpr ⟨hcxA, hcxEq⟩
+  have hcyFilter :
+      cy ∈ D.A.filter (fun z => dist z x = dist z y) :=
+    Finset.mem_filter.mpr ⟨hcyA, hcyEq⟩
+  have hthree :
+      2 < (D.A.filter (fun z => dist z x = dist z y)).card := by
+    rw [Finset.two_lt_card]
+    exact ⟨o, hoFilter, cx, hcxFilter, cy, hcyFilter,
+      hcxNeO.symm, hcyNeO.symm, hcxcy⟩
+  omega
+
+/-- In the reciprocal incidence arm, the rows at `u` and `xu` coincide.
+The exact class traces then leave both `v` and the original rigid deletion
+outside the rows at `xu` and `xv`, producing two distinct prescribed
+joint-deletion packets for the mutually omitted pair `(xu, xv)`. -/
+theorem
+    false_of_exactFourRigid221_sourceHeavyOtherXv_firstGrowth_reciprocalArm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (_W :
+      ExactFourRigid221SourceHeavyOtherXvFirstGrowthPacket P packet)
+    (hxuA : packet.xu ∈ D.A)
+    (hxvA : packet.xv ∈ D.A)
+    (huXvRow :
+      P.u.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.support)
+    (huXuRow :
+      P.u.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          packet.xu hxuA).toCriticalFourShell.support) :
+    False := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let C := SelectedClass D.A S.oppApex2 P.rho
+  have hxuInter :
+      packet.xu ∈
+        (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.support ∩ C := by
+    simpa [Hlate, C] using
+      (show packet.xu ∈
+          ((lateFirstApexSystem R).selectedAt
+              P.u.1 P.u.2).toCriticalFourShell.support ∩
+            SelectedClass D.A S.oppApex2 P.rho by
+        rw [packet.source_row_trace]
+        simp)
+  have hxvInter :
+      packet.xv ∈
+        (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support ∩ C := by
+    simpa [Hlate, C] using
+      (show packet.xv ∈
+          ((lateFirstApexSystem R).selectedAt
+              P.v.1 P.v.2).toCriticalFourShell.support ∩
+            SelectedClass D.A S.oppApex2 P.rho by
+        rw [packet.opposite_row_trace]
+        simp)
+  have hxuClass : packet.xu ∈ C := (Finset.mem_inter.mp hxuInter).2
+  have hxvClass : packet.xv ∈ C := (Finset.mem_inter.mp hxvInter).2
+  let xu : CarrierVertex D.A := ⟨packet.xu, hxuA⟩
+  let xv : CarrierVertex D.A := ⟨packet.xv, hxvA⟩
+  have hxuURow :
+      packet.xu ∈
+        (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.support :=
+    (Finset.mem_inter.mp hxuInter).1
+  have hxvVRow :
+      packet.xv ∈
+        (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support :=
+    (Finset.mem_inter.mp hxvInter).1
+  have hcenterU :
+      Hlate.centerAt P.u.1 P.u.2 = packet.xv := by
+    simpa [Hlate, P.huSource] using packet.blocker_eq_xv
+  have hxvNotURow :
+      packet.xv ∉
+        (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.support := by
+    intro h
+    rw [← hcenterU] at h
+    exact
+      (Hlate.selectedAt
+        P.u.1 P.u.2).toCriticalFourShell.center_not_mem_support h
+  have huNeXu : P.u.1 ≠ packet.xu := packet.xu_ne_u.symm
+  have huNeXv : P.u.1 ≠ packet.xv := by
+    intro h
+    apply hxvNotURow
+    rw [← h]
+    exact
+      (Hlate.selectedAt
+        P.u.1 P.u.2).toCriticalFourShell.q_mem_support
+  have hxuNeXv : packet.xu ≠ packet.xv := by
+    intro h
+    apply hxvNotURow
+    rw [← h]
+    exact hxuURow
+  have hcenterUXu :
+      Hlate.centerAt P.u.1 P.u.2 =
+        Hlate.centerAt packet.xu hxuA := by
+    exact
+      blocker_centers_eq_of_physicalSecondRadius_mutual_cross_membership
+        P P.u.2 hxuA huNeXu
+          (by simpa [C] using P.huClass)
+          (by simpa [C] using hxuClass)
+          hxuURow
+          (by simpa [Hlate] using huXuRow)
+  have hsupportsUXu :
+      (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.support =
+        (Hlate.selectedAt
+          packet.xu hxuA).toCriticalFourShell.support :=
+    ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+      Hlate P.u.2 hxuA hcenterUXu
+  have hxvNotXuRow :
+      packet.xv ∉
+        (Hlate.selectedAt
+          packet.xu hxuA).toCriticalFourShell.support := by
+    intro h
+    apply hxvNotURow
+    rw [hsupportsUXu]
+    exact h
+  have hcardXv :
+      (((Hlate.selectedAt
+            packet.xv hxvA).toCriticalFourShell.support ∩ C).card ≤ 2) := by
+    simpa [Hlate, C, xv] using
+      actualLateRow_secondClass_card_le_two R P.surface xv
+  have hxvOwnInter :
+      packet.xv ∈
+        (Hlate.selectedAt
+            packet.xv hxvA).toCriticalFourShell.support ∩ C :=
+    Finset.mem_inter.mpr
+      ⟨(Hlate.selectedAt
+          packet.xv hxvA).toCriticalFourShell.q_mem_support,
+        hxvClass⟩
+  have huXvInter :
+      P.u.1 ∈
+        (Hlate.selectedAt
+            packet.xv hxvA).toCriticalFourShell.support ∩ C :=
+    Finset.mem_inter.mpr
+      ⟨by simpa [Hlate] using huXvRow,
+        by simpa [C] using P.huClass⟩
+  have hxuNotXvInter :
+      packet.xu ∉
+        (Hlate.selectedAt
+            packet.xv hxvA).toCriticalFourShell.support ∩ C :=
+    third_not_mem_of_card_le_two
+      hcardXv hxvOwnInter huXvInter huNeXv.symm
+        hxuNeXv.symm huNeXu
+  have hxuNotXvRow :
+      packet.xu ∉
+        (Hlate.selectedAt
+          packet.xv hxvA).toCriticalFourShell.support := by
+    intro h
+    exact hxuNotXvInter (Finset.mem_inter.mpr ⟨h, hxuClass⟩)
+  have hblockersNe :
+      Hlate.centerAt packet.xu hxuA ≠
+        Hlate.centerAt packet.xv hxvA := by
+    intro hcenters
+    have hsupports :=
+      ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+        Hlate hxuA hxvA hcenters
+    apply hxvNotXuRow
+    rw [hsupports]
+    exact
+      (Hlate.selectedAt
+        packet.xv hxvA).toCriticalFourShell.q_mem_support
+  have hpairSubset :
+      ({packet.xv, P.u.1} : Finset ℝ²) ⊆
+        (Hlate.selectedAt
+            packet.xv hxvA).toCriticalFourShell.support ∩ C := by
+    intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl
+    · exact hxvOwnInter
+    · exact huXvInter
+  have hxvTrace :
+      (Hlate.selectedAt
+          packet.xv hxvA).toCriticalFourShell.support ∩ C =
+        {packet.xv, P.u.1} := by
+    symm
+    apply Finset.eq_of_subset_of_card_le hpairSubset
+    calc
+      ((Hlate.selectedAt
+          packet.xv hxvA).toCriticalFourShell.support ∩ C).card ≤ 2 :=
+        hcardXv
+      _ = ({packet.xv, P.u.1} : Finset ℝ²).card := by
+        simp [huNeXv.symm]
+  have hvNotXuRow :
+      P.v.1 ∉
+        (Hlate.selectedAt
+          packet.xu hxuA).toCriticalFourShell.support := by
+    intro h
+    apply P.hvOmitted
+    rw [hsupportsUXu]
+    exact h
+  have hdeletedNotXuRow :
+      P.jointDeletion.deleted.1 ∉
+        (Hlate.selectedAt
+          packet.xu hxuA).toCriticalFourShell.support := by
+    intro h
+    apply P.jointDeletion.deleted_not_mem_uRow
+    rw [hsupportsUXu]
+    exact h
+  have hvNotXvRow :
+      P.v.1 ∉
+        (Hlate.selectedAt
+          packet.xv hxvA).toCriticalFourShell.support := by
+    intro h
+    have hvPair : P.v.1 ∈ ({packet.xv, P.u.1} : Finset ℝ²) := by
+      rw [← hxvTrace]
+      exact Finset.mem_inter.mpr
+        ⟨h, by simpa [C] using P.hvClass⟩
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hvPair
+    rcases hvPair with hvXv | hvU
+    · exact packet.xv_ne_v hvXv.symm
+    · exact P.huNeV (Subtype.ext hvU.symm)
+  have hdeletedNotXvRow :
+      P.jointDeletion.deleted.1 ∉
+        (Hlate.selectedAt
+          packet.xv hxvA).toCriticalFourShell.support := by
+    intro h
+    have hdeletedPair :
+        P.jointDeletion.deleted.1 ∈
+          ({packet.xv, P.u.1} : Finset ℝ²) := by
+      rw [← hxvTrace]
+      exact Finset.mem_inter.mpr
+        ⟨h, by simpa [C] using P.jointDeletion.deleted_mem_class⟩
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hdeletedPair
+    rcases hdeletedPair with hdeletedXv | hdeletedU
+    · apply P.jointDeletion.deleted_not_mem_vRow
+      rw [hdeletedXv]
+      exact hxvVRow
+    · exact P.jointDeletion.deleted_ne_u (Subtype.ext hdeletedU)
+  rcases
+      exactFourMutualOmissionJointDeletion_of_prescribed
+        R P.surface P.rho xu xv P.v
+          (by simpa [C] using P.hvClass)
+          (by simpa [Hlate, xu] using hvNotXuRow)
+          (by simpa [Hlate, xv] using hvNotXvRow)
+          (by simpa [Hlate, xu, xv] using hblockersNe) with
+    ⟨first, hfirst⟩
+  rcases
+      exactFourMutualOmissionJointDeletion_of_prescribed
+        R P.surface P.rho xu xv P.jointDeletion.deleted
+          (by simpa [C] using P.jointDeletion.deleted_mem_class)
+          (by simpa [Hlate, xu] using hdeletedNotXuRow)
+          (by simpa [Hlate, xv] using hdeletedNotXvRow)
+          (by simpa [Hlate, xu, xv] using hblockersNe) with
+    ⟨second, hsecond⟩
+  have hdeletedNe : first.deleted ≠ second.deleted := by
+    intro h
+    exact
+      P.jointDeletion.deleted_ne_v
+        (hsecond.symm.trans (h.symm.trans hfirst))
+  exact
+    false_of_twoDistinctExactFourMutualOmissionJointDeletions
+      R P.hcard P.surface P.rho P.hrho P.hfive xu xv
+        (by
+          intro h
+          exact hxuNeXv (congrArg Subtype.val h))
+        (by simpa [C, xu] using hxuClass)
+        (by simpa [C, xv] using hxvClass)
+        (by simpa [Hlate, xu, xv] using hxvNotXuRow)
+        (by simpa [Hlate, xu, xv] using hxuNotXvRow)
+        first second hdeletedNe
+
+private theorem equilateral_inner_nonneg {a b c : ℝ²}
+    (hab : dist a b = dist a c)
+    (habc : dist a b = dist b c) :
+    0 ≤ inner ℝ (b - a) (c - a) := by
+  rw [real_inner_eq_norm_mul_self_add_norm_mul_self_sub_norm_sub_mul_self_div_two]
+  have hba : ‖b - a‖ = dist a b := by
+    simpa [dist_comm] using (dist_eq_norm b a).symm
+  have hca : ‖c - a‖ = dist a c := by
+    simpa [dist_comm] using (dist_eq_norm c a).symm
+  have hbc : ‖(b - a) - (c - a)‖ = dist b c := by
+    rw [show (b - a) - (c - a) = b - c by abel]
+    simpa [dist_comm] using (dist_eq_norm b c).symm
+  rw [hba, hca, hbc, ← hab, ← habc]
+  nlinarith [sq_nonneg (dist a b)]
+
+/-- If the `xv` row also contains the third physical-cap interior point
+`xu`, its actual blocker is forced to be `u`.  Together with the already
+fixed blocker of the `u` row this makes `u,xu,xv` equilateral around the
+physical apex, contradicting strict convex position. -/
+theorem
+    false_of_exactFourRigid221_sourceHeavyOtherXv_firstGrowth_uXvMutualOmission_xuXvRow
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (W :
+      ExactFourRigid221SourceHeavyOtherXvFirstGrowthPacket P packet)
+    (hxvA : packet.xv ∈ D.A)
+    (huNotXvRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.support)
+    (hxuXvRow :
+      packet.xu ∈
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.support) :
+    False := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let Ku :=
+    (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell
+  let Kxv :=
+    (Hlate.selectedAt packet.xv hxvA).toCriticalFourShell
+
+  have hxuInter :
+      packet.xu ∈
+        (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho := by
+    rw [packet.source_row_trace]
+    simp
+  have hxvInter :
+      packet.xv ∈
+        (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho := by
+    rw [packet.opposite_row_trace]
+    simp
+  have hxuClass :
+      packet.xu ∈ SelectedClass D.A S.oppApex2 P.rho :=
+    (Finset.mem_inter.mp hxuInter).2
+  have hxvClass :
+      packet.xv ∈ SelectedClass D.A S.oppApex2 P.rho :=
+    (Finset.mem_inter.mp hxvInter).2
+
+  have huInterior :
+      P.u.1 ∈ S.capInteriorByIndex S.oppIndex2 := by
+    rw [W.secondInterior_eq_named]
+    simp
+  have hxuInterior :
+      packet.xu ∈ S.capInteriorByIndex S.oppIndex2 := by
+    rw [W.secondInterior_eq_named]
+    simp
+  have hxvInterior :
+      packet.xv ∈ S.capInteriorByIndex S.oppIndex2 := by
+    rw [W.secondInterior_eq_named]
+    simp
+
+  have hcenterU :
+      Hlate.centerAt P.u.1 P.u.2 = packet.xv := by
+    simpa [Hlate, P.huSource] using packet.blocker_eq_xv
+  have hxuURow :
+      packet.xu ∈ Ku.support :=
+    (Finset.mem_inter.mp hxuInter).1
+  have hxvNotURow : packet.xv ∉ Ku.support := by
+    intro h
+    rw [← hcenterU] at h
+    exact Ku.center_not_mem_support h
+  have huNeXu : P.u.1 ≠ packet.xu := packet.xu_ne_u.symm
+  have huNeXv : P.u.1 ≠ packet.xv := by
+    intro h
+    apply hxvNotURow
+    simpa only [← h] using Ku.q_mem_support
+  have hxuNeXv : packet.xu ≠ packet.xv := by
+    intro h
+    apply hxvNotURow
+    rw [← h]
+    exact hxuURow
+
+  have hcxvA : Hlate.centerAt packet.xv hxvA ∈ D.A := by
+    exact Finset.mem_of_mem_erase Kxv.center_mem
+  have hcxvNe :
+      Hlate.centerAt packet.xv hxvA ≠ S.oppApex2 :=
+    P.surface.secondApex_robust.centerAt_ne Hlate packet.xv hxvA
+  have hcxvEq :
+      dist (Hlate.centerAt packet.xv hxvA) packet.xv =
+        dist (Hlate.centerAt packet.xv hxvA) packet.xu :=
+    (Kxv.support_eq_radius _ Kxv.q_mem_support).trans
+      (Kxv.support_eq_radius _ hxuXvRow).symm
+  have hphysicalXvXu :
+      dist S.oppApex2 packet.xv = dist S.oppApex2 packet.xu :=
+    (mem_selectedClass.mp hxvClass).2.trans
+      (mem_selectedClass.mp hxuClass).2.symm
+  have hcxvInterior :
+      Hlate.centerAt packet.xv hxvA ∈
+        S.capInteriorByIndex S.oppIndex2 :=
+    commonPhysicalPair_center_mem_secondCapInterior hcxvA hcxvNe
+      hxvInterior hxuInterior hxuNeXv.symm hcxvEq hphysicalXvXu
+  rw [W.secondInterior_eq_named] at hcxvInterior
+  simp only [Finset.mem_insert, Finset.mem_singleton] at hcxvInterior
+  have hcxv :
+      Hlate.centerAt packet.xv hxvA = P.u.1 := by
+    rcases hcxvInterior with h | h | h
+    · exact h
+    · apply False.elim
+      apply Kxv.center_not_mem_support
+      simpa only [h] using hxuXvRow
+    · exact (centerAt_ne_source Hlate packet.xv hxvA h).elim
+
+  have huxu_eq_uxv :
+      dist P.u.1 packet.xu = dist P.u.1 packet.xv := by
+    simpa [hcxv] using hcxvEq.symm
+  have huxu_eq_xuxv :
+      dist P.u.1 packet.xu = dist packet.xu packet.xv := by
+    have h := (Ku.support_eq_radius _ Ku.q_mem_support).trans
+      (Ku.support_eq_radius _ hxuURow).symm
+    rw [hcenterU] at h
+    calc
+      dist P.u.1 packet.xu = dist P.u.1 packet.xv := huxu_eq_uxv
+      _ = dist packet.xv P.u.1 := dist_comm _ _
+      _ = dist packet.xv packet.xu := h
+      _ = dist packet.xu packet.xv := dist_comm _ _
+
+  have harea :
+      signedArea2 P.u.1 packet.xu packet.xv ≠ 0 := by
+    intro hzero
+    exact D.convex.not_three_collinear P.u.2
+      (mem_selectedClass.mp hxuClass).1 hxvA
+      huNeXu huNeXv hxuNeXv
+      (collinear_of_signedArea2_eq_zero _ _ _ hzero)
+  have hinnerU :
+      0 ≤ inner ℝ (packet.xu - P.u.1) (packet.xv - P.u.1) :=
+    equilateral_inner_nonneg huxu_eq_uxv huxu_eq_xuxv
+  have hinnerXu :
+      0 ≤ inner ℝ (packet.xv - packet.xu) (P.u.1 - packet.xu) := by
+    apply equilateral_inner_nonneg
+    · calc
+        dist packet.xu packet.xv = dist P.u.1 packet.xu :=
+          huxu_eq_xuxv.symm
+        _ = dist packet.xu P.u.1 := dist_comm _ _
+    · calc
+        dist packet.xu packet.xv = dist P.u.1 packet.xu :=
+          huxu_eq_xuxv.symm
+        _ = dist P.u.1 packet.xv := huxu_eq_uxv
+        _ = dist packet.xv P.u.1 := dist_comm _ _
+  have hinnerXv :
+      0 ≤ inner ℝ (P.u.1 - packet.xv) (packet.xu - packet.xv) := by
+    apply equilateral_inner_nonneg
+    · calc
+        dist packet.xv P.u.1 = dist P.u.1 packet.xv := dist_comm _ _
+        _ = dist P.u.1 packet.xu := huxu_eq_uxv.symm
+        _ = dist packet.xu packet.xv := huxu_eq_xuxv
+        _ = dist packet.xv packet.xu := dist_comm _ _
+    · calc
+        dist packet.xv P.u.1 = dist P.u.1 packet.xv := dist_comm _ _
+        _ = dist P.u.1 packet.xu := huxu_eq_uxv.symm
+  have hphysicalU := (mem_selectedClass.mp P.huClass).2
+  have hphysicalXu := (mem_selectedClass.mp hxuClass).2
+  have hphysicalXv := (mem_selectedClass.mp hxvClass).2
+  have hhull :
+      S.oppApex2 ∈
+        convexHull ℝ ({P.u.1, packet.xu, packet.xv} : Set ℝ²) :=
+    mem_convexHull_three_of_equidistant_nonobtuse harea
+      (hphysicalU.trans hphysicalXu.symm)
+      (hphysicalU.trans hphysicalXv.symm)
+      hinnerU hinnerXu hinnerXv
+  have happA : S.oppApex2 ∈ D.A :=
+    P.surface.ingress.packet.center₂_mem_A
+  have hneU : S.oppApex2 ≠ P.u.1 := by
+    intro h
+    rw [h, dist_self] at hphysicalU
+    exact (ne_of_gt P.hrho) hphysicalU.symm
+  have hneXu : S.oppApex2 ≠ packet.xu := by
+    intro h
+    rw [h, dist_self] at hphysicalXu
+    exact (ne_of_gt P.hrho) hphysicalXu.symm
+  have hneXv : S.oppApex2 ≠ packet.xv := by
+    intro h
+    rw [h, dist_self] at hphysicalXv
+    exact (ne_of_gt P.hrho) hphysicalXv.symm
+  have hsub :
+      ({P.u.1, packet.xu, packet.xv} : Set ℝ²) ⊆
+        (D.A : Set ℝ²) \ {S.oppApex2} := by
+    simp only [Set.insert_subset_iff, Set.singleton_subset_iff]
+    exact
+      ⟨⟨Finset.mem_coe.mpr P.u.2, fun h => hneU h.symm⟩,
+       ⟨Finset.mem_coe.mpr (mem_selectedClass.mp hxuClass).1,
+          fun h => hneXu h.symm⟩,
+       ⟨Finset.mem_coe.mpr hxvA, fun h => hneXv h.symm⟩⟩
+  exact D.convex S.oppApex2 (Finset.mem_coe.mpr happA)
+    (convexHull_mono hsub hhull)
+
+/-- If the `xv` row contains none of the other three points outside the
+named physical-cap interior pair, then `v` and the original rigid deletion
+are two distinct prescribed joint deletions for the mutually omitted pair
+`(u,xv)`. -/
+theorem
+    false_of_exactFourRigid221_sourceHeavyOtherXv_firstGrowth_uXvMutualOmission_twoDeletions
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (_W :
+      ExactFourRigid221SourceHeavyOtherXvFirstGrowthPacket P packet)
+    (hxvA : packet.xv ∈ D.A)
+    (huNotXvRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.support)
+    (hvNotXvRow :
+      P.v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.support)
+    (hdeletedNotXvRow :
+      P.jointDeletion.deleted.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.support) :
+    False := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let C := SelectedClass D.A S.oppApex2 P.rho
+  let xv : CarrierVertex D.A := ⟨packet.xv, hxvA⟩
+  have hxvInter :
+      packet.xv ∈
+        (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support ∩ C := by
+    simpa [Hlate, C] using
+      (show packet.xv ∈
+          ((lateFirstApexSystem R).selectedAt
+              P.v.1 P.v.2).toCriticalFourShell.support ∩
+            SelectedClass D.A S.oppApex2 P.rho by
+        rw [packet.opposite_row_trace]
+        simp)
+  have hxvClass : packet.xv ∈ C :=
+    (Finset.mem_inter.mp hxvInter).2
+  have hcenterU :
+      Hlate.centerAt P.u.1 P.u.2 = packet.xv := by
+    simpa [Hlate, P.huSource] using packet.blocker_eq_xv
+  have hxvNotURow :
+      packet.xv ∉
+        (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.support := by
+    intro h
+    rw [← hcenterU] at h
+    exact
+      (Hlate.selectedAt
+        P.u.1 P.u.2).toCriticalFourShell.center_not_mem_support h
+  have huNeXv : P.u.1 ≠ packet.xv := by
+    intro h
+    apply hxvNotURow
+    simpa only [← h] using
+      (Hlate.selectedAt
+        P.u.1 P.u.2).toCriticalFourShell.q_mem_support
+  have hblockersNe :
+      Hlate.centerAt P.u.1 P.u.2 ≠
+        Hlate.centerAt packet.xv hxvA := by
+    intro hcenters
+    have hsupports :=
+      ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+        Hlate P.u.2 hxvA hcenters
+    apply hxvNotURow
+    rw [hsupports]
+    exact
+      (Hlate.selectedAt
+        packet.xv hxvA).toCriticalFourShell.q_mem_support
+  rcases
+      exactFourMutualOmissionJointDeletion_of_prescribed
+        R P.surface P.rho P.u xv P.v P.hvClass P.hvOmitted
+          (by simpa [Hlate, xv] using hvNotXvRow)
+          (by simpa [Hlate, xv] using hblockersNe) with
+    ⟨first, hfirst⟩
+  rcases
+      exactFourMutualOmissionJointDeletion_of_prescribed
+        R P.surface P.rho P.u xv P.jointDeletion.deleted
+          P.jointDeletion.deleted_mem_class
+          P.jointDeletion.deleted_not_mem_uRow
+          (by simpa [Hlate, xv] using hdeletedNotXvRow)
+          (by simpa [Hlate, xv] using hblockersNe) with
+    ⟨second, hsecond⟩
+  have hdeletedNe : first.deleted ≠ second.deleted := by
+    intro h
+    exact
+      P.jointDeletion.deleted_ne_v
+        (hsecond.symm.trans (h.symm.trans hfirst))
+  exact
+    false_of_twoDistinctExactFourMutualOmissionJointDeletions
+      R P.hcard P.surface P.rho P.hrho P.hfive P.u xv
+        (by
+          intro h
+          exact huNeXv (congrArg Subtype.val h))
+        P.huClass
+        (by simpa [C, xv] using hxvClass)
+        (by simpa [Hlate, xv] using hxvNotURow)
+        (by simpa [Hlate, xv] using huNotXvRow)
+        first second hdeletedNe
+
+/-- First-growth residual in which `u` and `xv` mutually omit one another.
+This is strictly narrower than the former undifferentiated packet terminal. -/
+theorem false_of_exactFourRigid221_sourceHeavyOtherXv_firstGrowth_uXvMutualOmission
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (_W :
+      ExactFourRigid221SourceHeavyOtherXvFirstGrowthPacket P packet)
+    (hxvA : packet.xv ∈ D.A)
+    (_huNotXvRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv hxvA).toCriticalFourShell.support) :
+    False := by
+  sorry
+
+/-- First-growth residual in which `xu` and `xv` mutually omit one another
+after `u` occupies the second slot of the `xv` row but is absent from the
+`xu` row. -/
+theorem false_of_exactFourRigid221_sourceHeavyOtherXv_firstGrowth_xuXvMutualOmission
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (W :
+      ExactFourRigid221SourceHeavyOtherXvFirstGrowthPacket P packet)
+    (hxuA : packet.xu ∈ D.A)
+    (hxvA : packet.xv ∈ D.A)

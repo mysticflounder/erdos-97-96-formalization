@@ -1,0 +1,3 @@
+module=Erdos9796Proof.P97.EndpointCertificate.GeometryCoverage
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/d2a5e6d7985d63c1-5502n2ih/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/d2a5e6d7985d63c1-5502n2ih/module.ilean Erdos9796Proof/P97/EndpointCertificate/GeometryCoverage.lean
+

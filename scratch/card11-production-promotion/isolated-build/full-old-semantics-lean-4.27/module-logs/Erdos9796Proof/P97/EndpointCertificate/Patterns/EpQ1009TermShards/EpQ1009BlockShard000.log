@@ -1,0 +1,3 @@
+module=Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1009TermShards.EpQ1009BlockShard000
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/11e41e9478238a65-p0q_pskz/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/11e41e9478238a65-p0q_pskz/module.ilean Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ1009TermShards/EpQ1009BlockShard000.lean
+

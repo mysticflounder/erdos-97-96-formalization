@@ -1,0 +1,9 @@
+module=Erdos9796Proof.P97.Census554.FiveRowCircleIntersectionOrderCore
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/e5aef564005d93fa-8tha230j/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/e5aef564005d93fa-8tha230j/module.ilean Erdos9796Proof/P97/Census554/FiveRowCircleIntersectionOrderCore.lean
+
+'Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core_of_neg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

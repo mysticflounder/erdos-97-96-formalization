@@ -1,0 +1,338 @@
+[
+  {
+    "memory": {
+      "id": "01KWFWMF99RXZC4ADH0PEMGCKS",
+      "content": "U1.2 direct-extra collision artifact is banked in commit 26c4635.  built successfully (, 388s). This supersedes the old hard-f1/rho collision shard for branch consumption. Remaining proof task: write the branch-data replay theorem deriving the generated 26 semantic facts from the live equality-branch hypotheses and call the three direct-extra contradiction theorems.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-06-30T17:09:19.784277Z",
+      "updated_at": "2026-06-30T17:09:19.784277Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 1.8010752688172043
+  },
+  {
+    "memory": {
+      "id": "01KWFWMF9ANWKPEYW34GJCENZ5",
+      "content": "Correction to #1632: U1.2 direct-extra collision artifact is banked in commit 26c4635. Module RVOL.P97.U1Depth5Record001Branch0CollisionDirectExtraUnits built successfully with lake-build RVOL.P97.U1Depth5Record001Branch0CollisionDirectExtraUnits from lean/ in 388s. This supersedes the old hard-f1/rho collision shard for branch consumption. Remaining proof task: write the branch-data replay theorem deriving the generated 26 semantic facts from the live equality-branch hypotheses and call the three direct-extra contradiction theorems.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-06-30T17:09:29.267348Z",
+      "updated_at": "2026-06-30T17:09:29.267348Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 1.6978922716627636
+  },
+  {
+    "memory": {
+      "id": "01KWFWMQV0XGEH4B0AJ3AGR6EA",
+      "content": "Call on #1995: target (3) as the public theorem shape, with (1) as the no-collision branch and (2) only as an implementation lemma if the proof naturally goes through placements.\n\nSmallest theorem-facing statement:\n\n`Record001QTFacingTransportRows baseP baseQ baseT1 baseT2 baseT3 selectedU ∨ Record001Branch0Collision rows baseP`\n\nor equivalently, under an already split `noCollision` hypothesis:\n\n`noCollision -> Record001QTFacingTransportRows baseP baseQ baseT1 baseT2 baseT3 selectedU`\n\nDo not make the public target a stronger centered-placement producer. `PacketLabelCenteredRows.record001QTFacingTransportRows` is the right internal adapter once exact q/t1 placements are available, but those placements are stronger than the consumer needs and they are exactly where the current live-tail provenance gap lives. Making them the exported theorem would overstate the required output and invite another wrapper route.\n\nThe producer should consume live-tail source/provenance inputs and either:\n- construct `hqt` directly, or\n- prove the exact q-row/t1-row placements internally and then call `record001QTFacingTransportRows`, or\n- identify a branch0 collision and route to the existing collision close.\n\nForbidden in this theorem: C/D/F/G residual hrows, `hextra_f1_t2`, q:t3 all-eight ordinals, centered rows from `ofGlobalK4`, or current leave-one-out q/t1 hslot theorem signatures. The point is to shrink the live producer boundary, not to expose a stronger selected-class certificate as a new obligation.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-01T10:27:07.880688Z",
+      "updated_at": "2026-07-01T10:27:07.880688Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 1.5
+  },
+  {
+    "memory": {
+      "id": "01KP8Y8CGX3RWBGTA9JG6CNCC1",
+      "content": "Use LSP tools (goToDefinition, findReferences, hover, documentSymbol, workspaceSymbol) for symbol-level code work in LSP-backed languages instead of grep/sed. LSP resolves symbols structurally — type-aware, alias-aware, scope-aware — whereas grep matches strings and can miss or false-match. Use Edit for the actual file modifications (LSP doesn't write). For plain text / config / docs, grep is still correct. Note: workspaceSymbol and hover can return empty during initial indexing; documentSymbol works immediately per-file.",
+      "memory_type": "feedback",
+      "source": "manual",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-04-15T16:05:44.366086043Z",
+      "updated_at": "2026-04-15T16:05:44.366086043Z",
+      "accessed_at": "2026-06-19T19:45:45.867481Z",
+      "access_count": 1,
+      "expires_at": null
+    },
+    "score": 0.9836065573770493
+  },
+  {
+    "memory": {
+      "id": "01KWFWK5WCD53J1G0VGNZHC4KB",
+      "content": "concyclic-sentinel -> sat-solver-runner + math-consultant: collapse-support engine BUILT + smoke PASS, and it resolves the #270 performance blocker. Committed scratch/u1_2_faithful/collapse_support.py (0d3667a).\n\nTHE #270 FIX (faithfulness lane): the greedy atom-level minimal-support is what hung both your hosts -- deep grevlex GBs on near-minimal 16-var subsets blow up (one of my runs hit 7 min CPU). I replaced it with a NO-RECURSION engine:\n  - necessity_signature (2 GBs): SOUND category test -- is a fresh-free / radical-axis-free support even POSSIBLE? Strictly stronger than 'the minimal support happened to use a fresh atom'.\n  - center_support (single-level, ~#centers near-full GBs, each <1s, NO recursion): which centers are individually indispensable; whether O-pins+necessary-centers self-suffice.\n  - deep atom-level minimal support behind opt-in --atomic only (for targeted single-pattern runs, not sweeps).\nSmoke (PAT5/D2/D3/D4) runs in well under the 90s wall you hit.\n\nDECISIVE STRUCTURAL FINDINGS (smoke, all 4 patterns, all t_i PINNED):\n  1. fresh_load_bearing_necessary = True UNIFORMLY -- including PAT5/D3/D4 which DO have on-O radical-axis rows. So triple collapse cannot be forced by non-fresh equations in ANY recorded pattern; it is fresh-mediated everywhere, not a D2 peculiarity.\n  2. radical_axis_necessary = False UNIFORMLY -- the on-O radical-axis rows are never load-bearing (dispensable), even where they exist. This kills the radical-axis route for (a) more strongly than D2 alone did.\n  3. necessary_centers = [] everywhere (self_sufficient=False) -- NO single center is individually indispensable. The collapse is OVER-DETERMINED / redundantly forced through fresh points. That is why a unique small support does not exist and the deep greedy churns.\n\nIMPLICATION for math-consultant (your lane, (a) proof): (a) is unlikely to reduce to a small fixed local certificate. It is a global, over-determined, fresh-mediated property. The 'small finite support-family template' you hoped for is contraindicated by necessary_centers=[] on the sample -- the redundancy means many overlapping derivations, not one. The proof of (a) probably has to exploit the fresh-pairing/global incidence structure, not a 2-3 equation packet.\n\nSOLVER TASK -> sat-solver-runner: run on the committed engine:\n  (1) `UV_CACHE_DIR=/private/tmp/uv-cache uv run --with sympy python collapse_support.py --smoke` (confirm PASS + speed on your host).\n  (2) `... collapse_support.py --sweep 200 --seed 20260624` and a second seed (e.g. 7). DECISIVE OUTPUT: per-target verdict counts (PINNED / COLLAPSE-ONLY-DISTINCTNESS-FAIL / NOT-PINNED) and the PINNED signature-template histogram (nNecCenters, nNecFresh, freshNEC, radialNEC, selfSuff). The question: across RANDOM faithful wirings, is collapse ALWAYS fresh_load_bearing_necessary=True with necessary_centers=[] (=> uniformly over-determined + fresh-mediated, no local template), OR do some patterns show a small necessary-center set (=> a finite template family worth a Lean lemma)? Any NOT-PINNED target prints inline (potential survivor -- adjudicate via the I+<1-w*PROD dist2>=(1) test). The sweep is fast (no atomic pass).\n\nmath-consultant: hold for sat-solver-runner's sweep histogram; it tells you whether (a) is a template-family target or a single global-structure theorem.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-06-24T20:09:19.958696Z",
+      "updated_at": "2026-06-24T20:09:19.958696Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.967741935483871
+  },
+  {
+    "memory": {
+      "id": "01KWFWKNZKKJNVEK9X2NEW7JMH",
+      "content": "math-consultant Q3 ATTEMPT deliverable. Classification: OPEN, not a proven sketch yet. Obstruction name: U1.2 finite-family normal-form/exhaustion. Evidence: the Lean leaf is broad (U1ExactnessFromMinimality D = D.Minimal -> same-carrier 4,4 packet OR removable); the scratch rank-1 family is only a selected residual-family artifact. A fresh read-only taxonomy snapshot has 12082 residual-like depth-5 prefixes, with top exact families plural: ranks 1/2/3 all have canonical_count=48 and different exact_shape/p_centers; top 12 include several further 36-42 count families. Rank is just 1-based ordering by canonical count in _sp_family_smt_batch.py, not a geometric normal form. So (i) rank-1 is NOT currently the only family needed; absent a new exclusion lemma, the exhaustion must cover the completed depth-5 family manifest, at minimum ranks 1-3 and likely all residual/slow exact-family keys after final shard/adjudication, not just rank-1. (ii) I do not see an argument from minimality+nonexact+nonremovable to the rank-1 skeleton. K4 gives per-vertex 4-classes, but the missing bridge must also choose p,q,t1,t2,t3,fresh labels, prove the depth-5 structural constraints, and show the canonicalized prefix lies in the manifest. Minimality/nonexactness may be the source of such constraints, but no current Lean/prose theorem supplies it. Precise missing lemma: for any minimal nonexact nonremovable CounterexampleData, there exists a labeled depth-5 faithful prefix whose canonical family_key lies in a finite manifest M, together with positive radii/distinctness hypotheses matching the algebraic certificates; then every family in M is discharged by its product-collapse/collision certificate. Until that lemma and manifest checker exist, the finite q=t3/product-collapse work is a strong family killer, not a U1.2 closure.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-06-27T21:06:27.665146Z",
+      "updated_at": "2026-06-27T21:06:27.665146Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.9523809523809523
+  },
+  {
+    "memory": {
+      "id": "01KYHMYDFMJKVECE285VAH6061",
+      "content": "In the P97 exact-four sourceEqU/blockerVRowOther u-heavy exact-five branch, assuming neither xu nor xv is a good outside source, the source dichotomy forces one companion into the first-apex selected class and the other into interiorPairBadOutsideSources. Both resulting selected rows contain R.interior_q and R.interior_w: the first-hit row by lateFirstApexSystem_support_eq_class, the bad row because failure of each cross deletion implies incidence via cross_deletion_survives_iff_not_mem_selected_support. This still does not yield False without a cyclic separation/order placing the two row centers before the shared pair, or equivalently another metric argument producing dist source xu <= dist source other against the proved Kalmanson strict reverse. Source-clean proof: scratch/ExactFourRigid221SourceEqUVRowOtherUHeavyExactFiveFirstHitBadClosure.lean.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-27T11:21:45.069568Z",
+      "updated_at": "2026-07-27T11:21:45.069568Z",
+      "accessed_at": "2026-07-27T16:13:42.607493Z",
+      "access_count": 48,
+      "expires_at": null
+    },
+    "score": 0.9523809523809523
+  },
+  {
+    "memory": {
+      "id": "01KWFWMF9DY1M905C6NA3N7FS0",
+      "content": "[sat-solver-runner] Poll update: I see #1633 confirms direct-extra collision module is now banked in commit 26c4635 and notes remaining proof-task is the branch-data replay bridge from live equality-branch hypotheses to generated 26 semantic facts. I am not in that Lean-authored lane now; please assign if you want me to draft that replay theorem next. Meanwhile s55 adjudication is still live at 22/3269 (all B so far).",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-06-30T17:11:37.331013Z",
+      "updated_at": "2026-06-30T17:11:37.331013Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.9375
+  },
+  {
+    "memory": {
+      "id": "01KYGE4G3WS9SMNPWDJ26QBZM9",
+      "content": "In /Users/adam/projects/math-projects/erdos-97-96-formalization, the sibling theorem Problem97.u5_qcritical_mutual_no_p_exact_center_metric_incompatibility (source: /Users/adam/projects/math-projects/p97-rvol/lean/RVOL/P97/U5QCriticalMutualNoPExactCenter.lean:33) cannot currently close the live P97 ATAIL exact-two reciprocal-blocker/collision branch. Import reachability: FrontierLiveClosure.lean imports only Erdos9796Proof modules and lean/lakefile.toml has no RVOL dependency, so the identifier is unknown after importing FrontierLiveClosure. Hypothesis compatibility: the U5 theorem needs two mutually incident rows sharing two further points, a common positive-radius outer center through q,a,b, and a third exact-center row. The live branch instead supplies disjoint source pairs on distinct first-apex radii, the full cross-omission rectangle, and no common outside-support pair or third row. Taking the first Moser apex as the outer center is impossible because the two pairs have radii rho != radius. Reusing this bank theorem would require genuinely new producers for all those missing positive incidences and the third row; similar names are not a bridge.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-27T00:03:29.906104Z",
+      "updated_at": "2026-07-27T00:03:29.906104Z",
+      "accessed_at": "2026-07-27T16:14:00.192403Z",
+      "access_count": 118,
+      "expires_at": null
+    },
+    "score": 0.9375
+  },
+  {
+    "memory": {
+      "id": "01KWFWJTT261GR3MSJRE1NHKMM",
+      "content": "Q1 collision audit. EMPIRICALLY VERIFIED on M128 v512 sample root 0: 3694 simple 5-paths, 504 endpoints, 14334 duplicate-endpoint path-pairs. Shortest-cycle type among duplicate pairs: C4=1512, C5=4, C8=3472, C10=9346, C6=0. Circulant v256 deg6 root 0: 3686 paths, 249 endpoints, 27406 duplicate pairs; C4=1512, C5=104, C8=6726, C10=19064, C6=0. So the obstruction to the proposed non-collision lemma is concrete: most collisions are internally-disjoint pairs of length-5 paths forming allowed C10s, or same-first-branch pairs forming allowed C8s; C6-freeness kills the length-split-3+3 collision but that is not the dominant collision source. Codeg/Theta can bound local C4/short theta multiplicities, but they do not touch the C10 collision bulk. Therefore the right target is not '#collision pairs=O(1)' in a useful sense; pair-collisions are huge at fixed v, and 'O(1)' is vacuous with fixed d. The theorem needs a miss-count/second-moment bound at scale P5(d)^2/v, or an algebraic/group-base mixing fact, not just forbidden-short-structure noncollision.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "614"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-06-24T10:30:39.058413Z",
+      "updated_at": "2026-06-24T10:30:39.058413Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.9230769230769231
+  },
+  {
+    "memory": {
+      "id": "01KWFWMF847Z81XCA7364CNP55",
+      "content": "I confirmed #1597: branch0 no-collision is dead via  (already factored through ). In current tree  still has 21 constructors (q/t1/t2/t3/u for slots 0/1 + p_t21,f11_t21,f12_t21). In , there is already a local helper  built from that theorem, so the concrete source-compatible route is to produce the  collision term directly from branch placements/occurrence rather than no-collision. Also  still only needs either (i) explicit  + collision term to hit , or (ii) a source-compatible collision witness instead of the all-distinct side.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-06-30T14:13:27.731240Z",
+      "updated_at": "2026-06-30T14:13:27.731240Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.9090909090909092
+  },
+  {
+    "memory": {
+      "id": "01KWFWKE3W2BT40MHYS6Q7WAZR",
+      "content": "concyclic-sentinel (lead) -> @math-consultant: gap CONFIRMED + correctly diagnosed, independently. The squeeze (oppApex1_squeeze_of_isM44, :371) gives T = radius-r class: card 4, oppCap1-private {P6,P7} subset T, |T∩surplusCap|=1, |T∩oppCap2|=1. So T = {P6,P7, one-surplusCap-pt, one-oppCap2-pt}. The encoder (scratch/r_cheap/escape_encoder.py:50-53,111-117) ASSUMES the surplusCap hit = v3 and the oppCap2 hit = v1 (the named C1∩C2 / C2∩C3 endpoints) -> its [v1,v3,c,w] class. Lean only knows ONE hit in each adjacent cap, NOT that those hits are v3,v1. That identification is precisely what oppApex1_adjacent_hits_of_u1EndpointEquality (:1051) supplied FROM u1EE -- the leaf we deleted. So the encoder's iso assumption is currently justified only by u1EE.\n\nTHE FAITHFUL OFF-PATTERN PROBE (mine to build, decision-grade, non-circular): relax the encoder so the surplusCap hit and the oppCap2 hit are FREE members of their caps (NOT pinned to v3,v1), constrained only by d2(member,v2)=r (on the radius-r circle), the convex cyclic order (v1->[C3 int]->v2->[C1 int]->v3->[C2 int]->v1), IsM44 cap structure, and the escape witness. Query: does a model exist with surplusCap-hit != v3 OR oppCap2-hit != v1? UNSAT => the adjacent hits ARE the named endpoints, forced by convex-order + equiradius (geometric, INDEPENDENT of u1EE) -> you write the bridge, apex1 closes clean. SAT => off-pattern escape exists -> the 10-pattern enum is NOT exhaustive -> apex1 not solver-decided (real gap, surface immediately).\n\nI build the relaxed encoding (faithfulness mine), smoke-test, route the run to sat-solver-runner. IN PARALLEL, you take the constructive side: is \"convex cyclic order + all-four-at-radius-r => the two adjacent-cap hits are exactly v3 (=C1∩C2) and v1 (=C2∩C3)\" provable directly (the isosceles/arc-midpoint lever) WITHOUT routing through u1EndpointEquality? If yes, that geometric lemma IS the Lean bridge and the probe just corroborates it. If the only proof you can find re-derives u1EE's endpoint equality, STOP and say so -- that means route-B relocated the obligation rather than deleting it, which I must report to Adam. Do NOT add a Lean wrapper until either the probe clears UNSAT or you have the u1EE-free geometric lemma.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-06-27T07:40:22.926718Z",
+      "updated_at": "2026-06-27T07:40:22.926718Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.9090909090909092
+  },
+  {
+    "memory": {
+      "id": "01KWFWKP6C487KWQHAYN9DNKVM",
+      "content": "U1 lead assessment in #847 frame: REACHABLE, with a scope correction. I Lean-scratch-checked the blocker lemma shape: from hK4 : HasNEquidistantProperty 4 A, hq : q in A, and hnrem : not IsRemovableVertex A q, Lean can construct a CriticalFourShell for q. The deletion blocker gives a failing center c in A.erase q; K4 at c gives a radius r with full A-filter card >=4; failure after erasing q forces q on that radius and forces the full A-filter card exactly 4. So the exact full shell is real, not just a selected four-subset. Minimality is not used except as one way to get hnrem/card hypotheses upstream. Correction: this is existential in c for each deleted q, not every center after deleting q. Payoff: finite exactness is bankable if the encoder rows are sourced from these critical full shells and the Lean structure records support = A.filter (dist center . = radius) plus support = named four labels. Then off_row_named_label_forbidden is definitional: z in A and dist center z = radius gives z in support, hence z is one of the four labels. This avoids arbitrary-row H_absorb. Caveat: existing SelectedFourClass is only a trimmed selected four-subset, so it is not enough. We need new CriticalFourShell / CriticalSelectedFourClass plumbing and probably re-mining or annotating the manifest with source q, blocker center c, and named full-shell labels. This does not by itself prove broad U1.2; it makes the finite exactness bridge plausible and non-mysterious.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-06-28T07:48:29.209132Z",
+      "updated_at": "2026-06-28T07:48:29.209132Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.8955223880597015
+  },
+  {
+    "memory": {
+      "id": "01KWFWMF64DFWJZ1BG11PEGTWD",
+      "content": "Checkpoint: committed 07c2eb9 (Bank f1t2 branch collision sink). This lands a proof-carrying consumer for all 23 `Record001Branch0Collision` constructors in the branch-0 `f1:t2` adapter: `Problem97.U1Depth5SourceUnitGenerated.Record001Branch0Collision.false_of_f1t2_extra_omit3_collision` consumes the live cross-distinctness facts, `p ≠ f5`, and the two `f1` row inequalities to prove `False`; RVOLSpine now exposes the corresponding local collision sink. Verified: `LEAN_ROOT=lean MEMORY_MB=8192 lake-build RVOL.P97.RVOLSpine` passes with only the known three sorries; adapter source guard has no sorry/axiom/unsafe/extern/implemented_by hits; direct `#print axioms` for the collision theorem is core-only `{propext, Classical.choice, Quot.sound}`; proof-blueprint remine at build e5a914a34486 leaves open leaves unchanged (U1.2/U2/U3) and unimported table still 28/537. U1.2 remains open: this closes the collision-side adapter for branch0 f1:t2, but the live branch still needs producer facts to enter either packet/payload side with the required hrows/extra atom.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-06-30T10:13:22.671766Z",
+      "updated_at": "2026-06-30T10:13:22.671766Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.8955223880597015
+  },
+  {
+    "memory": {
+      "id": "01KWFWN4ZANABT21QPFJ1YNSAE",
+      "content": "Re #2087. Confirms #2091 independently — no such bridge theorem exists. Checked directly:\n\n- Every producer route to `Record001QTFacingTransportRows` in the imports (`U1Depth5Prefix.lean` L1052 `record001QTFacingTransportRows_of_twoCenteredRows`, L1131 `record001QTFacingTransportRows` off `PacketLabelCenteredRows`, and `U1Depth5QT3PilotRecord001.lean` L1200 off `Record001Branch0Payload`) takes the full exact placement package as raw hypotheses (`hpt_t1_q_2`/`hfix_t1_q_2`, `hpt_f1_q_0`/`hfix_f1_q_0`, `hpt_t2_q_3`/`hfix_t2_q_3` for the q-row; `hpt_p_t1_1`/`hfix_p_t1_1`, `hpt_f1_t1_0`/`hfix_f1_t1_0`, `hpt_q_t1_2`/`hfix_q_t1_2`, `hpt_t3_t1_3`/`hfix_t3_t1_3` for the t1-row) — none accepts the weaker named-support disjunction (`hqCriticalNamed`/`ht1CriticalNamed` style: \"the source label is *some* one of the shell's four labels\") in its place.\n- Grepped the whole tree for any theorem pattern combining an `l1 ∨ l2 ∨ l3 ∨ l4`-shaped hypothesis with a `Record001QTFacingTransportRows`/`Record001Branch0Collision` conclusion: no hits outside the raw named-support facts themselves (`U1LargeCapRouteBTail.lean` L537-578, which just state the disjunction and go nowhere near hqt/collision).\n\nOne point sharper than #2091's framing: the t1-row placement package required by every one of those producer routes (`hfix_p_t1_1, hfix_f1_t1_0, hfix_q_t1_2, hfix_t3_t1_3`) is *exactly* the hypothesis set of the already-banked `CriticalSourceRows.record001Branch0_t1Placements_absurd`. So this isn't just \"no converter exists yet\" — supplying that package (from any source) immediately triggers the banked absurdity. A genuine new producer can't be a converter feeding the existing explicit-placement theorems; it has to reach `Record001QTFacingTransportRows ∨ Record001Branch0Collision` (or the no-collision specialization) by a structurally different route than literal q-row/t1-row slot identification.\n\nFirst exact missing input, stated as a signature gap: a theorem taking `hqCriticalNamed`/`ht1CriticalNamed` (plus `labels_mem`/`labels_on_shell`/`full_shell_exact`, already live) and case-splitting over which shell label matches the source, discharging non-viable cases via known base-six distinctness, and landing on `Record001QTFacingTransportRows ∨ Record001Branch0Collision` — does not exist in current imports. No proof attempt made, no code changed.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-01T14:29:46.751267Z",
+      "updated_at": "2026-07-01T14:29:46.751267Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.8823529411764706
+  }
+]

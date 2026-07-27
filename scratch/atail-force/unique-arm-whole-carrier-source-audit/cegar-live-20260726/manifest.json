@@ -1,0 +1,144 @@
+{
+  "claim_scope": "This loop audits two fixed n=11 finite projections. It does not by itself prove the Lean unique-four residual or a Euclidean realization.",
+  "epistemic_status": "RUNNING_FAIL_CLOSED",
+  "exact_two_strict_hit_overlay": false,
+  "initial_kalmanson_bank_counts": {
+    "kernel": 10,
+    "pending": 36
+  },
+  "max_new_rounds": 20,
+  "pair_minimality_overlay": false,
+  "profiles": [
+    4,
+    5
+  ],
+  "rounds": [
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "85147c41ebccc77b7558d15d5dbd6dbd8a9ab4f566b2b025f4d413d71482f41b",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "c086852bfa84f2b964ef37e617ae3c1941917b080c45436f7d5eadb1321c4da4",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_001/opp1_4.result.json",
+          "result_sha256": "92767ce5e0c27458fcb23768ff87e050b3ef9b2de55fa115dc1b9f90a3a51015",
+          "solver_log_retained": false,
+          "solver_log_sha256": "92afdc24a202c2f4759d825274e14266c3075d5c57e0127aa8873030cfc8fc8f"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "b982947c71df2ee0e678c66f33992f2afb4d8caeea79c8fd8de22f89a2b25cc0",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_001/opp1_5.result.json",
+          "result_sha256": "6c1b88723a89ddaed1596effc0454f96bca13f8d0014966f06f64686fda2ce09",
+          "solver_log_retained": false,
+          "solver_log_sha256": "30c9848255eb081f81eb3a1bf135bb5ecad57d7f528dc6857151b0f123033373"
+        }
+      ],
+      "round": 1,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "b4c8d4f19c6836cac2d2e7ce8bc3f57ce6cb75e6df03f9af30fb39d89a8c9481",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "61e8dcda2aae5435b42ca4bdf24cc5ddd7b548052f104d6e5fe2381828bd4878",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_002/opp1_4.result.json",
+          "result_sha256": "857e611d612a7af3165f7a1914292ff3d67f12f744cc3341fc108cc1b7ac6922",
+          "solver_log_retained": false,
+          "solver_log_sha256": "431d65b4a6416a2c8cf412d9a4bd3020ca84e2a9bc8c1571ea52756315091a4c"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "db1d23fc3f201b5ea24585a5587560d1aad38b93a8b51b27f9dabe578e61776a",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_002/opp1_5.result.json",
+          "result_sha256": "9b787fba6b4e3e78d10649315828cf4cd59d1839d27ca629f74408f70dea488c",
+          "solver_log_retained": false,
+          "solver_log_sha256": "d77e57d56a6bb89941714334edaeb52beb7591520b827aee2f91e6168a18208b"
+        }
+      ],
+      "round": 2,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    },
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "fdb301dea4e840c58adebf7fc55314f0f1cd0c2cb322fabf73cecd146be710cc",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "c54d25bf2010f4860dbb76e4794f9113363f47b39abb67ce93e78d2c3d91917f",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_003/opp1_4.result.json",
+          "result_sha256": "62e3e4274d68f7c0779cc0e3ec600ff326351eea719b4c20b226379d612e10c1",
+          "solver_log_retained": false,
+          "solver_log_sha256": "721a17c37e67ec99b8f8b25f6769e55af247b515b0e77d98c1672cb2df84c357"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "1403b82c3c8f1e2b406ee5ad025ce209b9b7f1b7fb93241251ba22b22e30e4ca",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_003/opp1_5.result.json",
+          "result_sha256": "eb0c5ad04ae4449b68f435c53e65ea51dc3dc3361a02960074a16052f50411fd",
+          "solver_log_retained": false,
+          "solver_log_sha256": "396753fbd84147305acaf48b96f0e1185aa67ebe7ebfcdeac9c782d989af4390"
+        }
+      ],
+      "round": 3,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    }
+  ],
+  "schema": "p97-exact-four-two-profile-cegar-run-v1",
+  "started_unix": 1785128743.518394,
+  "strict_cap_minimality_overlay": false,
+  "terminal_status": null
+}

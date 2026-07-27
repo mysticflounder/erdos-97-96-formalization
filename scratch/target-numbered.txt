@@ -1,0 +1,461 @@
+  4100	        (H.selectedAt y hyA).toCriticalFourShell.support := by
+  4101	    rw [← uniqueFourClass_centerAt_eq_selectedAt_support H x hxA,
+  4102	      ← uniqueFourClass_centerAt_eq_selectedAt_support H y hyA,
+  4103	      hblockers]
+  4104	  have hyShell :
+  4105	      y ∈ (H.selectedAt x hxA).toCriticalFourShell.support := by
+  4106	    rw [hsupports]
+  4107	    exact (H.selectedAt y hyA).toCriticalFourShell.q_mem_support
+  4108	  have hpairSubsetSlice :
+  4109	      ({x, y} : Finset ℝ²) ⊆
+  4110	        (H.selectedAt x hxA).toCriticalFourShell.support ∩
+  4111	          (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+  4112	            S.capInteriorByIndex i) := by
+  4113	    intro z hz
+  4114	    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+  4115	    rcases hz with hzx | hzy
+  4116	    · subst z
+  4117	      exact Finset.mem_inter.mpr
+  4118	        ⟨(H.selectedAt x hxA).toCriticalFourShell.q_mem_support, hx⟩
+  4119	    · subst z
+  4120	      exact Finset.mem_inter.mpr ⟨hyShell, hy⟩
+  4121	  have htwo :
+  4122	      2 ≤
+  4123	        ((H.selectedAt x hxA).toCriticalFourShell.support ∩
+  4124	          (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+  4125	            S.capInteriorByIndex i)).card := by
+  4126	    simpa [hxy] using Finset.card_le_card hpairSubsetSlice
+  4127	  have hcenterInterior :
+  4128	      H.centerAt x hxA ∈ S.capInteriorByIndex i :=
+  4129	    criticalShellCenter_mem_capInteriorByIndex_of_two_hits
+  4130	      hxA hrich hunique htwo
+  4131	  have hpairSubsetCap :
+  4132	      ({x, y} : Finset ℝ²) ⊆
+  4133	        (H.selectedAt x hxA).toCriticalFourShell.support ∩
+  4134	          S.capByIndex i := by
+  4135	    intro z hz
+  4136	    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+  4137	    rcases hz with hzx | hzy
+  4138	    · subst z
+  4139	      exact Finset.mem_inter.mpr
+  4140	        ⟨(H.selectedAt x hxA).toCriticalFourShell.q_mem_support,
+  4141	          S.capInteriorByIndex_subset_capByIndex i
+  4142	            (Finset.mem_inter.mp hx).2⟩
+  4143	    · subst z
+  4144	      exact Finset.mem_inter.mpr
+  4145	        ⟨hyShell,
+  4146	          S.capInteriorByIndex_subset_capByIndex i
+  4147	            (Finset.mem_inter.mp hy).2⟩
+  4148	  have hcapTwo :
+  4149	      ((H.selectedAt x hxA).toCriticalFourShell.support ∩
+  4150	        S.capByIndex i).card ≤ 2 := by
+  4151	    simpa using
+  4152	      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+  4153	        S D.convex i
+  4154	        (H.selectedAt x hxA).toCriticalFourShell.toSelectedFourClass
+  4155	        (S.capInteriorByIndex_subset_capByIndex i hcenterInterior)
+  4156	  exact ⟨hcenterInterior,
+  4157	    (Finset.eq_of_subset_of_card_le hpairSubsetCap (by
+  4158	      simpa [hxy] using hcapTwo)).symm⟩
+  4159	
+  4160	/-- Two exact two-point cap intersections of four-point rows, supported on
+  4161	disjoint pairs, force the complete cross-omission rectangle.  Each row also
+  4162	has exactly two support points outside the cap. -/
+  4163	theorem exact_disjoint_cap_pairs_force_cross_omission_and_two_outside
+  4164	    {α : Type*} [DecidableEq α]
+  4165	    {K₀ K₁ C : Finset α} {a b u v : α}
+  4166	    (hK₀card : K₀.card = 4)
+  4167	    (hK₁card : K₁.card = 4)
+  4168	    (hK₀cap : K₀ ∩ C = {a, b})
+  4169	    (hK₁cap : K₁ ∩ C = {u, v})
+  4170	    (hab : a ≠ b) (huv : u ≠ v)
+  4171	    (hpairs : Disjoint ({a, b} : Finset α) {u, v}) :
+  4172	    u ∉ K₀ ∧ v ∉ K₀ ∧ a ∉ K₁ ∧ b ∉ K₁ ∧
+  4173	      (K₀ \ C).card = 2 ∧ (K₁ \ C).card = 2 := by
+  4174	  have haC : a ∈ C := by
+  4175	    have haInter : a ∈ K₀ ∩ C := by
+  4176	      rw [hK₀cap]
+  4177	      simp
+  4178	    exact (Finset.mem_inter.mp haInter).2
+  4179	  have hbC : b ∈ C := by
+  4180	    have hbInter : b ∈ K₀ ∩ C := by
+  4181	      rw [hK₀cap]
+  4182	      simp
+  4183	    exact (Finset.mem_inter.mp hbInter).2
+  4184	  have huC : u ∈ C := by
+  4185	    have huInter : u ∈ K₁ ∩ C := by
+  4186	      rw [hK₁cap]
+  4187	      simp
+  4188	    exact (Finset.mem_inter.mp huInter).2
+  4189	  have hvC : v ∈ C := by
+  4190	    have hvInter : v ∈ K₁ ∩ C := by
+  4191	      rw [hK₁cap]
+  4192	      simp
+  4193	    exact (Finset.mem_inter.mp hvInter).2
+  4194	  have huNotK₀ : u ∉ K₀ := by
+  4195	    intro huK₀
+  4196	    have huPair₀ : u ∈ ({a, b} : Finset α) := by
+  4197	      rw [← hK₀cap]
+  4198	      exact Finset.mem_inter.mpr ⟨huK₀, huC⟩
+  4199	    exact Finset.disjoint_left.mp hpairs huPair₀ (by simp)
+  4200	  have hvNotK₀ : v ∉ K₀ := by
+  4201	    intro hvK₀
+  4202	    have hvPair₀ : v ∈ ({a, b} : Finset α) := by
+  4203	      rw [← hK₀cap]
+  4204	      exact Finset.mem_inter.mpr ⟨hvK₀, hvC⟩
+  4205	    exact Finset.disjoint_left.mp hpairs hvPair₀ (by simp)
+  4206	  have haNotK₁ : a ∉ K₁ := by
+  4207	    intro haK₁
+  4208	    have haPair₁ : a ∈ ({u, v} : Finset α) := by
+  4209	      rw [← hK₁cap]
+  4210	      exact Finset.mem_inter.mpr ⟨haK₁, haC⟩
+  4211	    exact Finset.disjoint_left.mp hpairs (by simp) haPair₁
+  4212	  have hbNotK₁ : b ∉ K₁ := by
+  4213	    intro hbK₁
+  4214	    have hbPair₁ : b ∈ ({u, v} : Finset α) := by
+  4215	      rw [← hK₁cap]
+  4216	      exact Finset.mem_inter.mpr ⟨hbK₁, hbC⟩
+  4217	    exact Finset.disjoint_left.mp hpairs (by simp) hbPair₁
+  4218	  have hsplit₀ := Finset.card_sdiff_add_card_inter K₀ C
+  4219	  have houtside₀ : (K₀ \ C).card = 2 := by
+  4220	    rw [hK₀card, hK₀cap] at hsplit₀
+  4221	    simp [hab] at hsplit₀
+  4222	    omega
+  4223	  have hsplit₁ := Finset.card_sdiff_add_card_inter K₁ C
+  4224	  have houtside₁ : (K₁ \ C).card = 2 := by
+  4225	    rw [hK₁card, hK₁cap] at hsplit₁
+  4226	    simp [huv] at hsplit₁
+  4227	    omega
+  4228	  exact
+  4229	    ⟨huNotK₀, hvNotK₀, haNotK₁, hbNotK₁, houtside₀, houtside₁⟩
+  4230	
+  4231	/-- Six pairwise accounted-for interior points are forced unless one blocker
+  4232	coincides with a source from the other pair. -/
+  4233	theorem six_interior_or_cross_blocker_coincidence
+  4234	    {α : Type*} [DecidableEq α]
+  4235	    (I : Finset α) (p₁ p₂ u v b₀ b₁ : α)
+  4236	    (hp : p₁ ≠ p₂) (huv : u ≠ v)
+  4237	    (hdisj : Disjoint ({p₁, p₂} : Finset α) {u, v})
+  4238	    (hb₀b₁ : b₀ ≠ b₁)
+  4239	    (hb₀p₁ : b₀ ≠ p₁) (hb₀p₂ : b₀ ≠ p₂)
+  4240	    (hb₁u : b₁ ≠ u) (hb₁v : b₁ ≠ v)
+  4241	    (hp₁I : p₁ ∈ I) (hp₂I : p₂ ∈ I)
+  4242	    (huI : u ∈ I) (hvI : v ∈ I)
+  4243	    (hb₀I : b₀ ∈ I) (hb₁I : b₁ ∈ I) :
+  4244	    6 ≤ I.card ∨ b₀ = u ∨ b₀ = v ∨ b₁ = p₁ ∨ b₁ = p₂ := by
+  4245	  by_cases hb₀u : b₀ = u
+  4246	  · exact Or.inr (Or.inl hb₀u)
+  4247	  by_cases hb₀v : b₀ = v
+  4248	  · exact Or.inr (Or.inr (Or.inl hb₀v))
+  4249	  by_cases hb₁p₁ : b₁ = p₁
+  4250	  · exact Or.inr (Or.inr (Or.inr (Or.inl hb₁p₁)))
+  4251	  by_cases hb₁p₂ : b₁ = p₂
+  4252	  · exact Or.inr (Or.inr (Or.inr (Or.inr hb₁p₂)))
+  4253	  left
+  4254	  let pairUnion : Finset α := {p₁, p₂} ∪ {u, v}
+  4255	  have hpairUnionCard : pairUnion.card = 4 := by
+  4256	    dsimp [pairUnion]
+  4257	    rw [Finset.card_union_of_disjoint hdisj]
+  4258	    simp [hp, huv]
+  4259	  have hb₀NotPairUnion : b₀ ∉ pairUnion := by
+  4260	    simp [pairUnion, hb₀p₁, hb₀p₂, hb₀u, hb₀v]
+  4261	  have hb₁NotInsert : b₁ ∉ insert b₀ pairUnion := by
+  4262	    simp [pairUnion, hb₀b₁.symm, hb₁p₁, hb₁p₂, hb₁u, hb₁v]
+  4263	  have hpacketCard :
+  4264	      (insert b₁ (insert b₀ pairUnion)).card = 6 := by
+  4265	    simp [hb₁NotInsert, hb₀NotPairUnion, hpairUnionCard]
+  4266	  have hpacketSubset : insert b₁ (insert b₀ pairUnion) ⊆ I := by
+  4267	    intro x hx
+  4268	    rcases Finset.mem_insert.mp hx with rfl | hx
+  4269	    · exact hb₁I
+  4270	    rcases Finset.mem_insert.mp hx with rfl | hx
+  4271	    · exact hb₀I
+  4272	    rcases Finset.mem_union.mp hx with hx | hx
+  4273	    · rcases Finset.mem_insert.mp hx with rfl | hx
+  4274	      · exact hp₁I
+  4275	      have : x = p₂ := Finset.mem_singleton.mp hx
+  4276	      simpa [this] using hp₂I
+  4277	    · rcases Finset.mem_insert.mp hx with rfl | hx
+  4278	      · exact huI
+  4279	      have : x = v := Finset.mem_singleton.mp hx
+  4280	      simpa [this] using hvI
+  4281	  calc
+  4282	    6 = (insert b₁ (insert b₀ pairUnion)).card := hpacketCard.symm
+  4283	    _ ≤ I.card := Finset.card_le_card hpacketSubset
+  4284	
+  4285	/-- If the interior consists of the four disjoint source points, each blocker
+  4286	must be one of the sources from the other pair. -/
+  4287	theorem four_interior_forces_both_cross_blocker_coincidences
+  4288	    {α : Type*} [DecidableEq α]
+  4289	    (I : Finset α) (p₁ p₂ u v b₀ b₁ : α)
+  4290	    (hp : p₁ ≠ p₂) (huv : u ≠ v)
+  4291	    (hdisj : Disjoint ({p₁, p₂} : Finset α) {u, v})
+  4292	    (hb₀p₁ : b₀ ≠ p₁) (hb₀p₂ : b₀ ≠ p₂)
+  4293	    (hb₁u : b₁ ≠ u) (hb₁v : b₁ ≠ v)
+  4294	    (hp₁I : p₁ ∈ I) (hp₂I : p₂ ∈ I)
+  4295	    (huI : u ∈ I) (hvI : v ∈ I)
+  4296	    (hb₀I : b₀ ∈ I) (hb₁I : b₁ ∈ I)
+  4297	    (hIcard : I.card = 4) :
+  4298	    (b₀ = u ∨ b₀ = v) ∧ (b₁ = p₁ ∨ b₁ = p₂) := by
+  4299	  let pairUnion : Finset α := {p₁, p₂} ∪ {u, v}
+  4300	  have hpairUnionCard : pairUnion.card = 4 := by
+  4301	    dsimp [pairUnion]
+  4302	    rw [Finset.card_union_of_disjoint hdisj]
+  4303	    simp [hp, huv]
+  4304	  have hpairUnionSubset : pairUnion ⊆ I := by
+  4305	    intro x hx
+  4306	    rcases Finset.mem_union.mp hx with hx | hx
+  4307	    · rcases Finset.mem_insert.mp hx with rfl | hx
+  4308	      · exact hp₁I
+  4309	      have : x = p₂ := Finset.mem_singleton.mp hx
+  4310	      simpa [this] using hp₂I
+  4311	    · rcases Finset.mem_insert.mp hx with rfl | hx
+  4312	      · exact huI
+  4313	      have : x = v := Finset.mem_singleton.mp hx
+  4314	      simpa [this] using hvI
+  4315	  have hpairUnionEq : pairUnion = I :=
+  4316	    Finset.eq_of_subset_of_card_le hpairUnionSubset (by omega)
+  4317	  have hb₀PairUnion : b₀ ∈ pairUnion := by
+  4318	    rw [hpairUnionEq]
+  4319	    exact hb₀I
+  4320	  have hb₁PairUnion : b₁ ∈ pairUnion := by
+  4321	    rw [hpairUnionEq]
+  4322	    exact hb₁I
+  4323	  constructor
+  4324	  · rcases Finset.mem_union.mp hb₀PairUnion with hb₀pair | hb₀pair
+  4325	    · rcases Finset.mem_insert.mp hb₀pair with h | h
+  4326	      · exact False.elim (hb₀p₁ h)
+  4327	      · exact False.elim (hb₀p₂ (Finset.mem_singleton.mp h))
+  4328	    · rcases Finset.mem_insert.mp hb₀pair with h | h
+  4329	      · exact Or.inl h
+  4330	      · exact Or.inr (Finset.mem_singleton.mp h)
+  4331	  · rcases Finset.mem_union.mp hb₁PairUnion with hb₁pair | hb₁pair
+  4332	    · rcases Finset.mem_insert.mp hb₁pair with h | h
+  4333	      · exact Or.inl h
+  4334	      · exact Or.inr (Finset.mem_singleton.mp h)
+  4335	    · rcases Finset.mem_insert.mp hb₁pair with h | h
+  4336	      · exact False.elim (hb₁u h)
+  4337	      · exact False.elim (hb₁v (Finset.mem_singleton.mp h))
+  4338	
+  4339	/-- Every strict first-cap point on the distinct second radius can replace the
+  4340	fresh point in a localized common-deletion packet and hence seed a
+  4341	source-exact mutual-omission cycle. -/
+  4342	theorem exists_secondRadiusInterior_localizedCycle
+  4343	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+  4344	    {H : CriticalShellSystem D.A}
+  4345	    {F : CriticalPairFrontier D S radius H}
+  4346	    {R : FrontierCommonDeletionParentResidual F}
+  4347	    (P : RetainedInteriorBlockerCollision R)
+  4348	    (hρne : ρ ≠ radius)
+  4349	    {z : ℝ²}
+  4350	    (hzρInterior :
+  4351	      z ∈ SelectedClass D.A S.oppApex1 ρ ∩
+  4352	        S.capInteriorByIndex S.oppIndex1) :
+  4353	    ∃ L : LocalizedCollisionCommonDeletion P,
+  4354	      L.fresh = z ∧
+  4355	        Nonempty (LocalizedCollisionMutualOmissionCycle P L) := by
+  4356	  have hzA : z ∈ D.A :=
+  4357	    (mem_selectedClass.mp (Finset.mem_inter.mp hzρInterior).1).1
+  4358	  have hzNotShell :
+  4359	      z ∉
+  4360	        (H.selectedAt P.source₁
+  4361	          P.source₁_mem_A).toCriticalFourShell.support := by
+  4362	    intro hzShell
+  4363	    have hzBoth :
+  4364	        z ∈
+  4365	          (H.selectedAt P.source₁
+  4366	              P.source₁_mem_A).toCriticalFourShell.support ∩
+  4367	            (SelectedClass D.A S.oppApex1 ρ ∩
+  4368	              S.capInteriorByIndex S.oppIndex1) :=
+  4369	      Finset.mem_inter.mpr ⟨hzShell, hzρInterior⟩
+  4370	    rw [secondRadiusInterior_disjoint_collisionShell P hρne] at hzBoth
+  4371	    simp at hzBoth
+  4372	  have hzNeSource₁ : z ≠ P.source₁ := by
+  4373	    intro h
+  4374	    apply hzNotShell
+  4375	    rw [h]
+  4376	    exact
+  4377	      (H.selectedAt P.source₁
+  4378	        P.source₁_mem_A).toCriticalFourShell.q_mem_support
+  4379	  have hzNeSource₂ : z ≠ P.source₂ := by
+  4380	    intro h
+  4381	    apply hzNotShell
+  4382	    rw [h]
+  4383	    exact P.source₂_mem_source₁_shell
+  4384	  have hsurvivesBlocker :
+  4385	      HasNEquidistantPointsAt 4 (D.A.erase z)
+  4386	        (H.centerAt P.source₁ P.source₁_mem_A) :=
+  4387	    (cross_deletion_survives_iff_not_mem_selected_support
+  4388	      H P.source₁_mem_A).mpr hzNotShell
+  4389	  have hsurvivesFirst :
+  4390	      HasNEquidistantPointsAt 4 (D.A.erase z) S.oppApex1 :=
+  4391	    R.firstApexFullyDeletionRobust.survives z hzA
+  4392	  have hblockerA :
+  4393	      H.centerAt P.source₁ P.source₁_mem_A ∈ D.A := by
+  4394	    simpa [CriticalShellSystem.blockerVertex] using
+  4395	      (H.blockerVertex ⟨P.source₁, P.source₁_mem_A⟩).2
+  4396	  rcases ATailCommonDeletionTwoCenter.nonempty_commonDeletionTwoCenterPacket H
+  4397	      hzA R.common.packet.center₁_mem_A hblockerA
+  4398	      (R.actualBlocker_ne_firstApex
+  4399	        P.source₁ P.source₁_mem_A).symm
+  4400	      hsurvivesFirst hsurvivesBlocker with ⟨packet⟩
+  4401	  let L : LocalizedCollisionCommonDeletion P := {
+  4402	    fresh := z
+  4403	    fresh_mem_capInterior := (Finset.mem_inter.mp hzρInterior).2
+  4404	    fresh_ne_source₁ := hzNeSource₁
+  4405	    fresh_ne_source₂ := hzNeSource₂
+  4406	    fresh_not_mem_shell := hzNotShell
+  4407	    packet := packet }
+  4408	  refine ⟨L, rfl, ?_⟩
+  4409	  exact nonempty_localizedCollisionMutualOmissionCycle P L
+  4410	
+  4411	/-- A second first-apex K4 radius cannot enter the protected unique-radius
+  4412	arm.  The surplus-cap one-hit bound first supplies a frontier at the prescribed
+  4413	radius; the original frontier radius then refutes uniqueness, leaving a
+  4414	source-faithful common-deletion parent at the second radius. -/
+  4415	theorem exists_distinctRadius_commonDeletionParent
+  4416	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+  4417	    {H : CriticalShellSystem D.A}
+  4418	    (F : CriticalPairFrontier D S radius H)
+  4419	    (R : FrontierCommonDeletionParentResidual F)
+  4420	    (hfrontierFour :
+  4421	      4 ≤ (SelectedClass D.A S.oppApex1 radius).card)
+  4422	    (hρne : ρ ≠ radius)
+  4423	    (hρfour : 4 ≤ (SelectedClass D.A S.oppApex1 ρ).card) :
+  4424	    ∃ Fρ : CriticalPairFrontier D S ρ H,
+  4425	      Nonempty (FrontierCommonDeletionParentResidual Fρ) := by
+  4426	  let E := SelectedClass D.A S.oppApex1 ρ
+  4427	  let DS : CounterexampleData :=
+  4428	    { A := D.A
+  4429	      nonempty := D.nonempty
+  4430	      convex := D.convex
+  4431	      K4 := D.K4
+  4432	      packet := S }
+  4433	  have hEfour : 4 ≤ E.card := by
+  4434	    simpa [E] using hρfour
+  4435	  have hhit : (E ∩ S.surplusCap).card ≤ 1 := by
+  4436	    simpa [DS, E, SelectedClass, dist_comm] using
+  4437	      U2NonSurplusSqueeze.oppApex1_surplusCap_one_hit DS ρ
+  4438	  have hsplit := Finset.card_sdiff_add_card_inter E S.surplusCap
+  4439	  have hthree : 3 ≤ (E \ S.surplusCap).card := by
+  4440	    omega
+  4441	  rcases exists_criticalPairFrontier D S ρ H
+  4442	      (by simpa [E, SelectedClass, dist_comm] using hthree) with ⟨Fρ⟩
+  4443	  rcases CriticalPairFrontier.originalUnique_or_commonDeletionParent
+  4444	      Fρ R.minimal R.noM44 R.carrier_card_gt_nine hρfour with
+  4445	    hunique | hcommon
+  4446	  · exfalso
+  4447	    have hqNotSurplus : F.pair.q ∉ S.surplusCap :=
+  4448	      (Finset.mem_sdiff.mp F.pair.q_mem_marginal).2
+  4449	    have hfirstNeQ : S.oppApex1 ≠ F.pair.q := by
+  4450	      intro h
+  4451	      apply hqNotSurplus
+  4452	      rw [← h]
+  4453	      rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  4454	      interval_cases i
+  4455	      · simpa [SurplusCapPacket.surplusCap,
+  4456	          SurplusCapPacket.oppApex1, hi] using S.partition.v2_mem_C1
+  4457	      · simpa [SurplusCapPacket.surplusCap,
+  4458	          SurplusCapPacket.oppApex1, hi] using S.partition.v3_mem_C2
+  4459	      · simpa [SurplusCapPacket.surplusCap,
+  4460	          SurplusCapPacket.oppApex1, hi] using S.partition.v1_mem_C3
+  4461	    have hradiusPos : 0 < radius := by
+  4462	      have hpos : 0 < dist S.oppApex1 F.pair.q :=
+  4463	        dist_pos.mpr hfirstNeQ
+  4464	      have hqRadius : dist F.pair.q S.oppApex1 = radius :=
+  4465	        (Finset.mem_filter.mp
+  4466	          (Finset.mem_sdiff.mp F.pair.q_mem_marginal).1).2
+  4467	      simpa only [dist_comm, hqRadius] using hpos
+  4468	    exact hρne
+  4469	      (hunique.2 radius hradiusPos hfrontierFour).symm
+  4470	  · exact ⟨Fρ, hcommon⟩
+  4471	
+  4472	/-- Two selected four-classes with distinct centres in one indexed ordered cap
+  4473	share at most one support point outside that cap. -/
+  4474	theorem selectedFourClass_outside_overlap_card_le_one
+  4475	    {D : CounterexampleData} (S : SurplusCapPacket D.A) (i : Fin 3)
+  4476	    {c d : ℝ²}
+  4477	    (hcCap : c ∈ S.capByIndex i)
+  4478	    (hdCap : d ∈ S.capByIndex i)
+  4479	    (hcd : c ≠ d)
+  4480	    (Kc : SelectedFourClass D.A c)
+  4481	    (Kd : SelectedFourClass D.A d) :
+  4482	    ((Kc.support \ S.capByIndex i) ∩
+  4483	      (Kd.support \ S.capByIndex i)).card ≤ 1 := by
+  4484	  classical
+  4485	  rcases S.capByIndex_cgn4g_capData D.convex i with
+  4486	    ⟨m, L, Packet, _Hside, Hord, hcap⟩
+  4487	  have hcImage : c ∈ Finset.univ.image L.points := by
+  4488	    rw [hcap]
+  4489	    exact hcCap
+  4490	  have hdImage : d ∈ Finset.univ.image L.points := by
+  4491	    rw [hcap]
+  4492	    exact hdCap
+  4493	  rcases Finset.mem_image.mp hcImage with ⟨ic, _hic, hic⟩
+  4494	  rcases Finset.mem_image.mp hdImage with ⟨id, _hid, hid⟩
+  4495	  have hic_ne_id : ic ≠ id := by
+  4496	    intro h
+  4497	    apply hcd
+  4498	    calc
+  4499	      c = L.points ic := hic.symm
+  4500	      _ = L.points id := by simp [h]
+  4501	      _ = d := hid
+  4502	  by_contra hcard
+  4503	  have hone :
+  4504	      1 <
+  4505	        ((Kc.support \ S.capByIndex i) ∩
+  4506	          (Kd.support \ S.capByIndex i)).card := by
+  4507	    omega
+  4508	  rcases Finset.one_lt_card.mp hone with ⟨a, ha, b, hb, hab⟩
+  4509	  rcases Finset.mem_inter.mp ha with ⟨haKcOff, haKdOff⟩
+  4510	  rcases Finset.mem_inter.mp hb with ⟨hbKcOff, hbKdOff⟩
+  4511	  have haKc : a ∈ Kc.support := (Finset.mem_sdiff.mp haKcOff).1
+  4512	  have hbKc : b ∈ Kc.support := (Finset.mem_sdiff.mp hbKcOff).1
+  4513	  have haKd : a ∈ Kd.support := (Finset.mem_sdiff.mp haKdOff).1
+  4514	  have hbKd : b ∈ Kd.support := (Finset.mem_sdiff.mp hbKdOff).1
+  4515	  have haOff : a ∉ S.capByIndex i := (Finset.mem_sdiff.mp haKcOff).2
+  4516	  have hbOff : b ∉ S.capByIndex i := (Finset.mem_sdiff.mp hbKcOff).2
+  4517	  have haOutside : a ∉ Finset.univ.image L.points := by
+  4518	    simpa [hcap] using haOff
+  4519	  have hbOutside : b ∉ Finset.univ.image L.points := by
+  4520	    simpa [hcap] using hbOff
+  4521	  have hcEq : dist c a = dist c b :=
+  4522	    (Kc.support_eq_radius a haKc).trans
+  4523	      (Kc.support_eq_radius b hbKc).symm
+  4524	  have hdEq : dist d a = dist d b :=
+  4525	    (Kd.support_eq_radius a haKd).trans
+  4526	      (Kd.support_eq_radius b hbKd).symm
+  4527	  rcases lt_or_gt_of_ne hic_ne_id with hlt | hgt
+  4528	  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+  4529	      D.convex Hord Packet.mem_A hlt
+  4530	      (Kc.support_subset_A haKc) (Kc.support_subset_A hbKc)
+  4531	      haOutside hbOutside hab
+  4532	      (by simpa [hic] using hcEq)
+  4533	      (by simpa [hid] using hdEq)
+  4534	  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+  4535	      D.convex Hord Packet.mem_A hgt
+  4536	      (Kc.support_subset_A haKc) (Kc.support_subset_A hbKc)
+  4537	      haOutside hbOutside hab
+  4538	      (by simpa [hid] using hdEq)
+  4539	      (by simpa [hic] using hcEq)
+  4540	
+  4541	private def qDeletedK4ClassToSelectedFourClass
+  4542	    {D : CounterexampleData} {q center : ℝ²} {B : Finset ℝ²}
+  4543	    (K : U5QDeletedK4Class D q center B)
+  4544	    (hcard : B.card = 4) :
+  4545	    SelectedFourClass D.A center where
+  4546	  support := B
+  4547	  support_subset_A := by
+  4548	    intro y hy
+  4549	    have hyErase : y ∈ (D.skeleton q).erase center := K.subset hy
+  4550	    have hySkeleton : y ∈ D.skeleton q := (Finset.mem_erase.mp hyErase).2
+  4551	    exact (Finset.mem_erase.mp hySkeleton).2
+  4552	  support_card := hcard
+  4553	  radius := K.radius
+  4554	  radius_pos := K.radius_pos
+  4555	  support_eq_radius := K.same_radius
+  4556	  center_not_mem := by
+  4557	    intro hcenter
+  4558	    exact (Finset.mem_erase.mp (K.subset hcenter)).1 rfl
+  4559	
+  4560	private theorem qDeletedK4Class_support_eq_selectedShell

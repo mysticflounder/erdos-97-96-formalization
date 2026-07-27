@@ -1,0 +1,12 @@
+axioms reported by `#print axioms Problem96.erdos96_rhs` (6):
+      core  propext
+  🪶 CUSTOM  sorryAx
+      core  Classical.choice
+      core  Lean.ofReduceBool
+  🪶 CUSTOM  Lean.trustCompiler
+      core  Quot.sound
+
+❌ 1 unapproved custom axiom(s) on spine:
+  - sorryAx
+
+Either discharge with a real proof, or approve explicitly in .blueprint.toml under [axioms].approved (full FQ name).

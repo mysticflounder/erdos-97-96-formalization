@@ -1,0 +1,5 @@
+'Problem97.P4MirrorValuationScratch.mirrorTotalVal_strictUnitClauses_sat' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]

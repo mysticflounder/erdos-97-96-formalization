@@ -1,0 +1,25 @@
+{
+  "cnf_clause_count": 537322,
+  "cnf_sha256": "c62dffa60900248ac577e81df10434afa1e700ebc325af06472bf79295256fd7",
+  "cnf_variable_count": 43642,
+  "conflicts": 3633,
+  "decisions": 30508,
+  "disabled_blocks": [
+    "kalmanson"
+  ],
+  "elapsed_seconds": 2.7964607919566333,
+  "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_kalmanson/mirror/cadical.log",
+  "log_sha256": "bad5bb2fbdac68068e35e46e53f4afab9eb3e061deff08bf2e9b0737c9084271",
+  "model_check": {
+    "detail": "all 537322 clauses satisfied",
+    "status": "PASS"
+  },
+  "orientation": "mirror",
+  "profile": "no_kalmanson",
+  "returncode": 10,
+  "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+  "status": "SAT",
+  "subprocess_timeout": false,
+  "timeout_seconds": 20
+}

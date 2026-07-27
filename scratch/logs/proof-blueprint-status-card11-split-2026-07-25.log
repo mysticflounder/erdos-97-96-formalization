@@ -1,0 +1,57 @@
+project:       erdos-97-96-formalization (erdos-97-96-formalization)
+root:          /Users/adam/projects/math-projects/erdos-97-96-formalization
+lean_lib:      /Users/adam/projects/math-projects/erdos-97-96-formalization/lean
+target_symbol: 2 targets: Problem97.erdos97_rhs, Problem96.erdos96_rhs
+
+last build:    ✓ passed · cached · 2s · 28m ago
+recent builds  (when · took · result · target):
+    6h ago      2s  cached       Erdos9796Proof.P97.ATail.BiApexRobustCapBounds
+    6h ago      6s  ✗ exit 1     Erdos9796Proof.P97.ATail.FrontierLiveClosure
+    6h ago      6s  built 1      Erdos9796Proof.P97.ATail.FrontierLiveClosure
+    1h ago   2m21s  built 33     full
+   28m ago      2s  cached       Erdos9796Proof.P97.ATail.FirstApexExactFiveInteriorFrontier
+
+lean_files:    2153
+lean_symbols:  17123
+  axioms:      0 (0 sanctioned)
+  with-sorry:  5
+  closures:    0 cached
+
+index:         in sync with source
+uncommitted:   ⚠ 10 lean file(s) not committed — mined state may not be reproducible from git
+     M lean/Erdos9796Proof/P97/ATail/FrontierCoupledStrictInteriorNormalForm.lean
+     M lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean
+     M lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean
+     M lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean
+     M lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean
+     M lean/Erdos9796Proof/P97/U5ModeADeletion.lean
+     M lean/Erdos9796Proof/P97/WitnessPacketInterface.lean
+    ?? lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean
+    ?? lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean
+    ?? lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean
+
+kernel spine (mined call graph — the only structure):
+  build:        ea4bd3821d1b
+  mined fresh:  9098/9118 symbol(s)
+  graph mined:  47s ago
+  trusted:      7880 🔒 (certs excluded by [mining].skip)
+  `Problem97.erdos97_rhs` is OPEN:
+    - reaches sorry via 5 symbol(s)
+    - unapproved axiom on spine: sorryAx
+  `Problem96.erdos96_rhs` is OPEN:
+    - reaches sorry via 5 symbol(s)
+    - unapproved axiom on spine: sorryAx
+
+
+live sorries (fresh @ build ea4bd3821d1b, 2026-07-26T03:49:23+00:00):
+  on-spine (open frontier) (5):
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:119]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:108]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:49]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:59]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApexRobustResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:420]
+  off-spine (placeholder — wire into the spine or remove) (0)
+
+session anchors: 4 total · 4 open · 0 closed
+
+your anchor: ⚓ Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven  (subtree still open)

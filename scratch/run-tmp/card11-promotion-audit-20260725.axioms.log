@@ -1,0 +1,10 @@
+'Problem97.ATailUniqueFourCardElevenCertificateScratch.false_of_cardElevenOriginalFrontierUniqueRadiusArm_of_exactFour' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'Problem97.ATailUniqueFourCardElevenCertificateScratch.nonempty_originalUniqueRadiusArmPostCardEleven' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]

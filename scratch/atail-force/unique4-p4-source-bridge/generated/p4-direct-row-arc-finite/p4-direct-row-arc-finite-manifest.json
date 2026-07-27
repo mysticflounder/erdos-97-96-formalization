@@ -1,0 +1,323 @@
+{
+  "claim_scope": "Joins all retained direct_row_pattern_implies_outer_arc source occurrences to exact finite parameters in compact clause order.",
+  "datum_count": 3179,
+  "epistemic_status": "AUTHENTICATED SOURCE-TO-FINITE-DATUM MATERIALIZATION; GENERATED LEAN BATCH CHECK REQUIRED; NOT AN UNSAT PROOF",
+  "family": "direct_row_pattern_implies_outer_arc",
+  "generator": {
+    "path": "materialize_p4_direct_row_arc_finite.py",
+    "sha256": "c5d4fd8ddc23f3e9fc88b8cd165d8ed8f504bf9984d2a9a350b07108aa514d36"
+  },
+  "lean_chunks": [
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk000_batch_valid",
+      "byte_count": 29156,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk000",
+      "first_output_clause_index": 8430,
+      "last_output_clause_index": 8581,
+      "ordinal": 0,
+      "path": "P4DirectOuterArcFiniteDataChunk000.lean",
+      "sha256": "53e315378bbab3a0090a09cbbdc3f5b0ee0d4b7717f15dcf9eaaec5577e8009b"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk001_batch_valid",
+      "byte_count": 29082,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk001",
+      "first_output_clause_index": 8582,
+      "last_output_clause_index": 8739,
+      "ordinal": 1,
+      "path": "P4DirectOuterArcFiniteDataChunk001.lean",
+      "sha256": "b7339e4092243953b9ec8fbba80944eecc96a1be8f4ac0e3ee998d2d8fac40bf"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk002_batch_valid",
+      "byte_count": 29195,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk002",
+      "first_output_clause_index": 8740,
+      "last_output_clause_index": 8892,
+      "ordinal": 2,
+      "path": "P4DirectOuterArcFiniteDataChunk002.lean",
+      "sha256": "46410815d4c4a6941e2e75e2f2f417a6294e7a3fd7d2b953f742691f4d5c3247"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk003_batch_valid",
+      "byte_count": 29313,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk003",
+      "first_output_clause_index": 8893,
+      "last_output_clause_index": 9075,
+      "ordinal": 3,
+      "path": "P4DirectOuterArcFiniteDataChunk003.lean",
+      "sha256": "1dee356303753533b60e02b337d0652dd52f7a9f4c652ee4bd9ce4824c3f5edb"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk004_batch_valid",
+      "byte_count": 29313,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk004",
+      "first_output_clause_index": 9076,
+      "last_output_clause_index": 9263,
+      "ordinal": 4,
+      "path": "P4DirectOuterArcFiniteDataChunk004.lean",
+      "sha256": "79d3abff270924ad3f3f76859c74dfd37898a0d8c5dd061aaeaf9da00d764d35"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk005_batch_valid",
+      "byte_count": 29342,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk005",
+      "first_output_clause_index": 9264,
+      "last_output_clause_index": 9424,
+      "ordinal": 5,
+      "path": "P4DirectOuterArcFiniteDataChunk005.lean",
+      "sha256": "811832b26a03b93c093b1960f8f973fb04d19099e83a28e083766bbbcc26de76"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk006_batch_valid",
+      "byte_count": 29212,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk006",
+      "first_output_clause_index": 9426,
+      "last_output_clause_index": 9613,
+      "ordinal": 6,
+      "path": "P4DirectOuterArcFiniteDataChunk006.lean",
+      "sha256": "8fb2ca638b36a173f87dd413dda8100767a904bd8b74979ecffd753ecfb86b10"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk007_batch_valid",
+      "byte_count": 29343,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk007",
+      "first_output_clause_index": 9614,
+      "last_output_clause_index": 9801,
+      "ordinal": 7,
+      "path": "P4DirectOuterArcFiniteDataChunk007.lean",
+      "sha256": "52db975d45d5766206518cc93660cee6a2436ade0c2dc693e1e2a9fe374858b2"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk008_batch_valid",
+      "byte_count": 29487,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk008",
+      "first_output_clause_index": 9802,
+      "last_output_clause_index": 9984,
+      "ordinal": 8,
+      "path": "P4DirectOuterArcFiniteDataChunk008.lean",
+      "sha256": "2dd1cdcebf4f81b107f977238d932b9a2e8de7bec0a7ad31091c14a3cead582e"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk009_batch_valid",
+      "byte_count": 29501,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk009",
+      "first_output_clause_index": 9986,
+      "last_output_clause_index": 10176,
+      "ordinal": 9,
+      "path": "P4DirectOuterArcFiniteDataChunk009.lean",
+      "sha256": "b601b6b1406d907e0195ae877ca810f24de87997ec53b259d6e5666d290fcb4b"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk010_batch_valid",
+      "byte_count": 29459,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk010",
+      "first_output_clause_index": 10178,
+      "last_output_clause_index": 10367,
+      "ordinal": 10,
+      "path": "P4DirectOuterArcFiniteDataChunk010.lean",
+      "sha256": "f2835ff712cc1c90a4f00f4f02f9f3dc0564cda69a5790abfa346297c32e9054"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk011_batch_valid",
+      "byte_count": 29434,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk011",
+      "first_output_clause_index": 10368,
+      "last_output_clause_index": 10554,
+      "ordinal": 11,
+      "path": "P4DirectOuterArcFiniteDataChunk011.lean",
+      "sha256": "e0b94e83ab47dd174ac9b121b06260f83e52a8e14680bb090b86c63a3ece4fa5"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk012_batch_valid",
+      "byte_count": 29583,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk012",
+      "first_output_clause_index": 10555,
+      "last_output_clause_index": 10743,
+      "ordinal": 12,
+      "path": "P4DirectOuterArcFiniteDataChunk012.lean",
+      "sha256": "c5a73de9d66a39c923c080624250253734063e8cb06ca3df49a8179ac8564f13"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk013_batch_valid",
+      "byte_count": 29551,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk013",
+      "first_output_clause_index": 10745,
+      "last_output_clause_index": 10927,
+      "ordinal": 13,
+      "path": "P4DirectOuterArcFiniteDataChunk013.lean",
+      "sha256": "a847bd27e796a8f3124fda7897a284a5c395cb2fa6074141c00ba2044faadd94"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk014_batch_valid",
+      "byte_count": 29346,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk014",
+      "first_output_clause_index": 10929,
+      "last_output_clause_index": 11118,
+      "ordinal": 14,
+      "path": "P4DirectOuterArcFiniteDataChunk014.lean",
+      "sha256": "c2f27e9fe471becf034292fddf4a711adaba49a4aa0200487fb7686ea3b11599"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk015_batch_valid",
+      "byte_count": 29663,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk015",
+      "first_output_clause_index": 11120,
+      "last_output_clause_index": 11302,
+      "ordinal": 15,
+      "path": "P4DirectOuterArcFiniteDataChunk015.lean",
+      "sha256": "d243a664beb38b9907369e510c66976dcb9ec80d647b2510cd21fbf1164f186c"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk016_batch_valid",
+      "byte_count": 29609,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk016",
+      "first_output_clause_index": 11304,
+      "last_output_clause_index": 11480,
+      "ordinal": 16,
+      "path": "P4DirectOuterArcFiniteDataChunk016.lean",
+      "sha256": "739db4e896927b41baadd54526a19245ac9ae63d6157d325cf7ecef8d2b1312c"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk017_batch_valid",
+      "byte_count": 29507,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk017",
+      "first_output_clause_index": 11482,
+      "last_output_clause_index": 11648,
+      "ordinal": 17,
+      "path": "P4DirectOuterArcFiniteDataChunk017.lean",
+      "sha256": "2cc6904791b58fb362895c1cd9bbf209bb7d79aef9c9d447e71a32695e334790"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk018_batch_valid",
+      "byte_count": 29577,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk018",
+      "first_output_clause_index": 11649,
+      "last_output_clause_index": 11828,
+      "ordinal": 18,
+      "path": "P4DirectOuterArcFiniteDataChunk018.lean",
+      "sha256": "e79e478001fff7ec55685be923afe620e507f7e23c17c16bd999022ccd3f3f44"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk019_batch_valid",
+      "byte_count": 29499,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk019",
+      "first_output_clause_index": 11829,
+      "last_output_clause_index": 12010,
+      "ordinal": 19,
+      "path": "P4DirectOuterArcFiniteDataChunk019.lean",
+      "sha256": "095f55d2d952fb4eee3693a46456d86718f6ed3ddc786b754c20bca4094b8d15"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk020_batch_valid",
+      "byte_count": 29479,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk020",
+      "first_output_clause_index": 12011,
+      "last_output_clause_index": 12180,
+      "ordinal": 20,
+      "path": "P4DirectOuterArcFiniteDataChunk020.lean",
+      "sha256": "6041a8600d0268bb5fb20d6cee31f79641c142876a13b0b738ce8e7b85530c05"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk021_batch_valid",
+      "byte_count": 29580,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk021",
+      "first_output_clause_index": 12181,
+      "last_output_clause_index": 12363,
+      "ordinal": 21,
+      "path": "P4DirectOuterArcFiniteDataChunk021.lean",
+      "sha256": "41a386e0dc349ac789d2e03fbff55ec18f03b8c6fcaf5bcd99af8e86455562bb"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk022_batch_valid",
+      "byte_count": 29649,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk022",
+      "first_output_clause_index": 12364,
+      "last_output_clause_index": 12543,
+      "ordinal": 22,
+      "path": "P4DirectOuterArcFiniteDataChunk022.lean",
+      "sha256": "de40345c786a97db89d273442a6a9ec38f1c6208957d90e7fade9b597d3c8a68"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk023_batch_valid",
+      "byte_count": 29744,
+      "datum_count": 128,
+      "datum_definition": "directRowArcFiniteDataChunk023",
+      "first_output_clause_index": 12544,
+      "last_output_clause_index": 12715,
+      "ordinal": 23,
+      "path": "P4DirectOuterArcFiniteDataChunk023.lean",
+      "sha256": "c677540246890202c2328bc1d253608352c45523c904786bdf7c37215d5e9959"
+    },
+    {
+      "batch_theorem": "directRowArcFiniteDataChunk024_batch_valid",
+      "byte_count": 25104,
+      "datum_count": 107,
+      "datum_definition": "directRowArcFiniteDataChunk024",
+      "first_output_clause_index": 12717,
+      "last_output_clause_index": 12872,
+      "ordinal": 24,
+      "path": "P4DirectOuterArcFiniteDataChunk024.lean",
+      "sha256": "d3a5abe0376ddbd75b6cdec58a1ff0d75edcae945613fe0166bf82e9f8859ad0"
+    }
+  ],
+  "lean_module": {
+    "batch_theorem": "directRowArcFiniteData_batch_valid",
+    "byte_count": 7999,
+    "datum_definition": "directRowArcFiniteData",
+    "path": "P4DirectOuterArcFiniteData.lean",
+    "sha256": "9df316b2cf784e5931fb9879daac1f4a3d11b0bd6349ae1feb1791ccea8fdd21"
+  },
+  "profile": 4,
+  "provenance_ledger": {
+    "byte_count": 685415,
+    "path": "p4-direct-row-arc-finite-data.jsonl",
+    "record_count": 3179,
+    "schema": "canonical-json-lines in compact occurrence order",
+    "sha256": "d0783e3b23345cdbaba620ae49938b9fe762a67869578d6bb1fcabfbec22c9f3"
+  },
+  "schema": "p97-p4-direct-row-arc-finite-data-v1",
+  "seed": 0,
+  "semantic_data_sha256": "845398403dd0b206c01e1fb57b3f846b902bb541c85d591a1275ffb3aaaccfde",
+  "sources": {
+    "compact_manifest": {
+      "path": "unique4-exact-two-core-map/generated/p4-seed0-compact/p4-seed0-compact-manifest.json",
+      "sha256": "61efb4c99512ef3cff6968f1513ebb8e3c9009ad3fcc7bb013da70a5d3f37305"
+    },
+    "compact_occurrence_ledger": {
+      "path": "unique4-exact-two-core-map/generated/p4-seed0-compact/p4-seed0-compact-occurrences.jsonl",
+      "sha256": "b1c159058e659cbd06c4540e72e2ca94eef0ef27602733db0bc44122dcdb4aac"
+    },
+    "source_occurrence_map": {
+      "path": "unique4-exact-two-core-map/p4.input-core-map.json",
+      "sha256": "af829a7c99e0f969f410d398d7c32c2ba5dd945f3a7ebb2ef3f8d7679633d64b"
+    }
+  },
+  "stable_digest": {
+    "algorithm": "sha256(canonical-json(stable_digest_payload))",
+    "sha256": "b80f8390b22e1e119d96902101a7648c57da9cd8a1450055187e3761c5883e13"
+  }
+}

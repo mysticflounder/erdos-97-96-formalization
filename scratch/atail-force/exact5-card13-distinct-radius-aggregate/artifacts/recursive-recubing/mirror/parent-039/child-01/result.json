@@ -1,0 +1,66 @@
+{
+  "child_cnf_sha256": "7f36c454a255b8b27f4e052c6fa180240a7d452b0b06b0fe6db7d80d93402296",
+  "child_cube": [
+    1531,
+    16204,
+    -16910
+  ],
+  "child_cube_index": 1,
+  "combined_assumptions": [
+    2070,
+    2106,
+    -313,
+    195,
+    16037,
+    16031,
+    16034,
+    16033,
+    1531,
+    16204,
+    -16910
+  ],
+  "config": "sat",
+  "config_args": [
+    "--sat"
+  ],
+  "conflicts": 7994,
+  "decisions": 18034,
+  "drat_check": {
+    "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-039/child-01/drat-trim.log",
+    "log_sha256": "a9c1d96b5b5d883eca1908cb3e4189a95cbf270a1ad71c661ab7d62d8e7dee27",
+    "returncode": 0,
+    "status": "PASS",
+    "timed_out": false
+  },
+  "elapsed_seconds": 8.779393292032182,
+  "epistemic_status": "EXTERNAL_EXACT_CHILD_CNF_VERDICT",
+  "extended_model_check_against_original_cnf": null,
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-039/child-01/cadical.log",
+  "log_sha256": "defa8312c9736d41592aca998902b676550f08dde7448a7561fdf5a0c5a92729",
+  "model_check_against_child_cnf": null,
+  "orientation": "mirror",
+  "parent_cube": [
+    2070,
+    2106,
+    -313,
+    195,
+    16037,
+    16031,
+    16034,
+    16033
+  ],
+  "parent_cube_index": 39,
+  "proof_artifact": {
+    "format": "gzip-compressed CaDiCaL DRAT",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-039/child-01/proof.drat.gz",
+    "sha256": "5e89e8f2184ebcf697b085d0e37a50c687e5b365509c5b6dcafee010982ea3ce",
+    "size_bytes": 1386567
+  },
+  "returncode": 20,
+  "schema": "p97-exact5-card13-distinct-recube-child-v1",
+  "seed": 4625,
+  "solver_status": "UNSAT",
+  "status": "UNSAT",
+  "timed_out": false,
+  "timeout_seconds": 15
+}

@@ -1,0 +1,10 @@
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_blockerVRowOther_terminalResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_blockerVRowOther_cycleResidual' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceEqU_blockerVRowOther_of_terminalExclusion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

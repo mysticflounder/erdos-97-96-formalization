@@ -1,0 +1,60 @@
+{
+  "child_cnf_sha256": "fe1389ca05b72b971ff019284be785fa631759c5e920163837fc993076730a66",
+  "child_cube": [
+    -16960,
+    16968,
+    16976
+  ],
+  "child_cube_index": 4,
+  "combined_assumptions": [
+    -2070,
+    86065,
+    1663,
+    -22411,
+    16021,
+    -16960,
+    16968,
+    16976
+  ],
+  "config": "default",
+  "config_args": [
+    "--default"
+  ],
+  "conflicts": 37927,
+  "decisions": 143292,
+  "drat_check": {
+    "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-003/child-04/drat-trim.log",
+    "log_sha256": "279ddc95e8d949dd660b6d2521429b71fbc2d3fff87b454f9d8592cbf0fade28",
+    "returncode": 0,
+    "status": "PASS",
+    "timed_out": false
+  },
+  "elapsed_seconds": 16.435953250038438,
+  "epistemic_status": "EXTERNAL_EXACT_CHILD_CNF_VERDICT",
+  "extended_model_check_against_original_cnf": null,
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-003/child-04/cadical.log",
+  "log_sha256": "c311ea459b589959d5c273e8d0b50ddf5b95de484aecf43e9f678d5fa5457b62",
+  "model_check_against_child_cnf": null,
+  "orientation": "mirror",
+  "parent_cube": [
+    -2070,
+    86065,
+    1663,
+    -22411,
+    16021
+  ],
+  "parent_cube_index": 3,
+  "proof_artifact": {
+    "format": "gzip-compressed CaDiCaL DRAT",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-003/child-04/proof.drat.gz",
+    "sha256": "0626a0b68732b67a07890baf247afd6fb8fff24541d8f11b942d2cd564924db8",
+    "size_bytes": 4468224
+  },
+  "returncode": 20,
+  "schema": "p97-exact5-card13-distinct-recube-child-v1",
+  "seed": 4052,
+  "solver_status": "UNSAT",
+  "status": "UNSAT",
+  "timed_out": false,
+  "timeout_seconds": 15
+}

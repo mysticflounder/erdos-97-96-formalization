@@ -1,0 +1,23 @@
+'Problem97.P4MirrorValuationScratch.rowVariable_parameterBinding' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'Problem97.P4MirrorValuationScratch.mirrorCompactVal_of_parameterBinding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P4MirrorValuationScratch.mirrorTotalVal_blockerVariable_iff_blockerVal' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'Problem97.P4MirrorValuationScratch.mirrorTotalVal_supportVariable_iff_criticalSupportVal' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'Problem97.P4MirrorValuationScratch.mirrorValAgreement' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]

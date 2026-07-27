@@ -1,0 +1,260 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import ExactFourSingletonSuccessor
+
+/-!
+# Successor-refined exact-four two-radius normal form
+
+The singleton common-deletion constructor of the raw two-radius normal form
+admits a checked source-faithful successor whenever the physical second apex
+is deletion-robust.  This module records that advance without asserting the
+still-missing nonreturn or terminal contradiction.
+-/
+
+open scoped EuclideanGeometry
+
+namespace Problem97
+namespace ATailUniqueFourRobustLargeRadiusContinuationScratch
+
+open ATailRobustTwoRadiusCenterLocalizationScratch
+open ATailCommonDeletionUniformConsumerScratch
+open ATailContinuationBankMatchScratch
+open ATailRFailureProfilesParentLiftScratch
+open ATailRF2SecondApexRadiusTransportScratch
+open ATailRTwoOffLiveHandlerScratch
+
+/-- The physical second apex is one of the three MEC vertices. -/
+private theorem oppApex2_mem_A
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppApex2 ∈ A := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i
+  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
+
+/-- Robustness at the physical second apex eliminates the critical arm of the
+generic common-deletion continuation. -/
+private theorem nonempty_secondRowSuccessor_of_robust
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A} {deleted center : ℝ²}
+    (R : ATailDeletionRobustness.FullyDeletionRobustAt D S.oppApex2)
+    (C : CommonDeletionTwoCenterPacket
+      D H deleted center S.oppApex2) :
+    Nonempty (SecondRowCommonDeletionSuccessor C) := by
+  let Rscratch := rtwoScratchRobust_of_production R
+  rcases secondRowSuccessor_or_secondCenterCritical C with
+    hsuccessor | ⟨source, ⟨P⟩⟩
+  · exact hsuccessor
+  · exact False.elim
+      (P.blocks
+        (Rscratch.survives source P.shell.toCriticalFourShell.q_mem_A))
+
+/-- Regard a selected four-row avoiding the deleted source as the exact
+q-deleted row with unchanged support and radius. -/
+private def qDeletedK4Class_of_selectedFourClass
+    {D : CounterexampleData} {q center : ℝ²}
+    (K : SelectedFourClass D.A center)
+    (hq : q ∉ K.support) :
+    U5QDeletedK4Class D q center K.support where
+  subset := by
+    intro y hy
+    apply Finset.mem_erase.mpr
+    refine ⟨?_, ?_⟩
+    · intro hycenter
+      exact K.center_not_mem (hycenter ▸ hy)
+    · apply Finset.mem_erase.mpr
+      refine ⟨?_, K.support_subset_A hy⟩
+      intro hyq
+      exact hq (hyq ▸ hy)
+  card_four := by rw [K.support_card]
+  q_not_mem := hq
+  radius := K.radius
+  radius_pos := K.radius_pos
+  same_radius := K.support_eq_radius
+
+/-- Replace the anonymous second-center witness of a common-deletion packet
+by a prescribed selected row which survives the deletion.  This preserves the
+fresh-center witness while making the physical row identity source-exact. -/
+private def alignCommonDeletionPacketPhysicalRow
+    {D : CounterexampleData} {H : CriticalShellSystem D.A}
+    {deleted center₁ center₂ : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted center₁ center₂)
+    (physicalRow : SelectedFourClass D.A center₂)
+    (hdeleted : deleted ∉ physicalRow.support) :
+    CommonDeletionTwoCenterPacket D H deleted center₁ center₂ where
+  q_mem_A := C.q_mem_A
+  center₁_mem_A := C.center₁_mem_A
+  center₂_mem_A := C.center₂_mem_A
+  centers_ne := C.centers_ne
+  survives₁ := C.survives₁
+  survives₂ :=
+    selectedFourClass_survives_erase_of_not_mem physicalRow hdeleted
+  actual_blocker_ne_center₁ := C.actual_blocker_ne_center₁
+  actual_blocker_ne_center₂ := C.actual_blocker_ne_center₂
+  B₁ := C.B₁
+  B₂ := physicalRow.support
+  row₁ := C.row₁
+  row₂ := qDeletedK4Class_of_selectedFourClass physicalRow hdeleted
+  B₁_card := C.B₁_card
+  B₂_card := physicalRow.support_card
+  overlap_le_two :=
+    U5QDeletedK4Class.inter_card_le_two C.row₁
+      (qDeletedK4Class_of_selectedFourClass physicalRow hdeleted)
+      C.centers_ne
+
+/-- Both sources of a collision interval give genuine common deletions at the
+fresh center and the physical second apex, and robustness continues both
+packets through their second rows. -/
+structure ExactFourCollisionIntervalContinuation
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (H : CriticalShellSystem D.A)
+    {firstRow : SelectedFourClass D.A S.oppApex2}
+    (endpoint : StrictPairCollisionIntervalEndpoint D S firstRow) : Type where
+  physicalRow : SelectedFourClass D.A S.oppApex2
+  rows_disjoint : Disjoint firstRow.support physicalRow.support
+  sourcePacket :
+    CommonDeletionTwoCenterPacket
+      D H endpoint.source endpoint.center S.oppApex2
+  sourcePacket_physicalSupport :
+    sourcePacket.B₂ = physicalRow.support
+  sourcePacket_physicalRadius :
+    sourcePacket.row₂.radius = physicalRow.radius
+  sourceSuccessor :
+    SecondRowCommonDeletionSuccessor sourcePacket
+  partnerPacket :
+    CommonDeletionTwoCenterPacket
+      D H endpoint.partner endpoint.center S.oppApex2
+  partnerPacket_physicalSupport :
+    partnerPacket.B₂ = physicalRow.support
+  partnerPacket_physicalRadius :
+    partnerPacket.row₂.radius = physicalRow.radius
+  partnerSuccessor :
+    SecondRowCommonDeletionSuccessor partnerPacket
+
+/-- Construct the two source-faithful successors retained by a collision
+interval endpoint. -/
+theorem nonempty_collisionIntervalContinuation
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {firstRow : SelectedFourClass D.A S.oppApex2}
+    (R : ATailDeletionRobustness.FullyDeletionRobustAt D S.oppApex2)
+    (secondRow : SelectedFourClass D.A S.oppApex2)
+    (hrows : Disjoint firstRow.support secondRow.support)
+    (endpoint : StrictPairCollisionIntervalEndpoint D S firstRow) :
+    Nonempty (ExactFourCollisionIntervalContinuation H endpoint) := by
+  have hcenterSource :
+      HasNEquidistantPointsAt 4 (D.A.erase endpoint.source)
+        endpoint.center := by
+    have hrestored :=
+      endpoint.restored_after_each_deletion
+        endpoint.partner endpoint.partner_mem_deleted
+    have herase :
+        endpoint.deleted.erase endpoint.partner = {endpoint.source} := by
+      rw [endpoint.deleted_eq_sources]
+      ext x
+      simp only [Finset.mem_erase, Finset.mem_insert, Finset.mem_singleton]
+      constructor
+      · rintro ⟨_, rfl | rfl⟩
+        · rfl
+        · contradiction
+      · rintro rfl
+        exact ⟨endpoint.source_ne_partner, Or.inl rfl⟩
+    rw [herase, Finset.sdiff_singleton_eq_erase] at hrestored
+    exact hrestored
+  have hcenterPartner :
+      HasNEquidistantPointsAt 4 (D.A.erase endpoint.partner)
+        endpoint.center := by
+    have hrestored :=
+      endpoint.restored_after_each_deletion
+        endpoint.source endpoint.source_mem_deleted
+    have herase :
+        endpoint.deleted.erase endpoint.source = {endpoint.partner} := by
+      rw [endpoint.deleted_eq_sources]
+      ext x
+      simp only [Finset.mem_erase, Finset.mem_insert, Finset.mem_singleton]
+      constructor
+      · rintro ⟨_, rfl | rfl⟩
+        · contradiction
+        · rfl
+      · rintro rfl
+        exact ⟨Ne.symm endpoint.source_ne_partner, Or.inr rfl⟩
+    rw [herase, Finset.sdiff_singleton_eq_erase] at hrestored
+    exact hrestored
+  rcases nonempty_commonDeletionTwoCenterPacket H
+      (endpoint.deleted_subset_A endpoint.source_mem_deleted)
+      endpoint.center_mem_A (oppApex2_mem_A S)
+      endpoint.center_ne_secondApex hcenterSource
+      endpoint.secondApex_survives_source_deletion with
+    ⟨sourcePacket₀⟩
+  have hsourceNotSecond : endpoint.source ∉ secondRow.support := by
+    intro hsourceSecond
+    exact Finset.disjoint_left.mp hrows endpoint.source_mem_row hsourceSecond
+  let sourcePacket :=
+    alignCommonDeletionPacketPhysicalRow
+      sourcePacket₀ secondRow hsourceNotSecond
+  rcases nonempty_secondRowSuccessor_of_robust R sourcePacket with
+    ⟨sourceSuccessor⟩
+  rcases nonempty_commonDeletionTwoCenterPacket H
+      (endpoint.deleted_subset_A endpoint.partner_mem_deleted)
+      endpoint.center_mem_A (oppApex2_mem_A S)
+      endpoint.center_ne_secondApex hcenterPartner
+      endpoint.secondApex_survives_partner_deletion with
+    ⟨partnerPacket₀⟩
+  have hpartnerNotSecond : endpoint.partner ∉ secondRow.support := by
+    intro hpartnerSecond
+    exact Finset.disjoint_left.mp hrows endpoint.partner_mem_row hpartnerSecond
+  let partnerPacket :=
+    alignCommonDeletionPacketPhysicalRow
+      partnerPacket₀ secondRow hpartnerNotSecond
+  rcases nonempty_secondRowSuccessor_of_robust R partnerPacket with
+    ⟨partnerSuccessor⟩
+  exact ⟨{
+    physicalRow := secondRow
+    rows_disjoint := hrows
+    sourcePacket := sourcePacket
+    sourcePacket_physicalSupport := rfl
+    sourcePacket_physicalRadius := rfl
+    sourceSuccessor := sourceSuccessor
+    partnerPacket := partnerPacket
+    partnerPacket_physicalSupport := rfl
+    partnerPacket_physicalRadius := rfl
+    partnerSuccessor := partnerSuccessor }⟩
+
+/-- The other source's critical shell in a two-source unequal-radius core
+survives deletion of the prescribed source. -/
+private theorem unequalCore_freshCenter_survives_delete
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {firstRow : SelectedFourClass D.A S.oppApex2}
+    (endpoint : StrictPairUnequalCoreEndpoint D S firstRow)
+    {source partner : ℝ²}
+    (hsource : source ∈ endpoint.deleted)
+    (hpartner : partner ∈ endpoint.deleted)
+    (hne : source ≠ partner) :
+    HasNEquidistantPointsAt 4 (D.A.erase source) endpoint.center := by
+  let partnerIndex : {x : ℝ² // x ∈ endpoint.deleted} :=
+    ⟨partner, hpartner⟩
+  let partnerRow :=
+    (endpoint.core.shellAt partnerIndex).toCriticalFourShell.toSelectedFourClass
+  apply
+    ATailDeletionRobustness.selectedFourClass_survives_erase_of_not_mem
+      partnerRow
+  intro hsourceSupport
+  have hsourceRadius :
+      dist endpoint.center source = partnerRow.radius :=
+    partnerRow.support_eq_radius source hsourceSupport
+  have hpartnerRadius :
+      partnerRow.radius = dist endpoint.center partner := by
+    simpa [partnerRow, partnerIndex] using
+      endpoint.core.shellAt_radius_eq partnerIndex
+  exact
+    endpoint.source_radii_injective
+      source hsource partner hpartner hne
+      (hsourceRadius.trans hpartnerRadius)
+
+/-- The two distinct sources of an unequal-radius minimal core each give a
+common deletion at the fresh center and physical second apex. -/

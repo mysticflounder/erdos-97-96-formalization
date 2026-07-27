@@ -1,0 +1,331 @@
+      (((Hlate.selectedAt source₁.1
+        source₁.2).toCriticalFourShell.support_eq_radius
+          R.interior_w hpair₁.2).symm)
+  have hc₂Eq :
+      dist c₂ R.interior_q = dist c₂ R.interior_w :=
+    ((Hlate.selectedAt source₂.1 source₂.2).toCriticalFourShell.support_eq_radius
+      R.interior_q hpair₂.1).trans
+      (((Hlate.selectedAt source₂.1
+        source₂.2).toCriticalFourShell.support_eq_radius
+          R.interior_w hpair₂.2).symm)
+  by_contra hc₁c₂
+  have hbound := Dumitrescu.perpBisector_apex_bound D.convex
+    hqA hwA R.interior_q_ne_w
+  have hoFilter :
+      o ∈ D.A.filter
+        (fun z => dist z R.interior_q = dist z R.interior_w) :=
+    Finset.mem_filter.mpr ⟨hoA, hoEq⟩
+  have hc₁Filter :
+      c₁ ∈ D.A.filter
+        (fun z => dist z R.interior_q = dist z R.interior_w) :=
+    Finset.mem_filter.mpr ⟨hc₁A, hc₁Eq⟩
+  have hc₂Filter :
+      c₂ ∈ D.A.filter
+        (fun z => dist z R.interior_q = dist z R.interior_w) :=
+    Finset.mem_filter.mpr ⟨hc₂A, hc₂Eq⟩
+  have hthree :
+      2 < (D.A.filter
+        (fun z => dist z R.interior_q = dist z R.interior_w)).card := by
+    rw [Finset.two_lt_card]
+    exact ⟨o, hoFilter, c₁, hc₁Filter, c₂, hc₂Filter,
+      hc₁_ne_o.symm, hc₂_ne_o.symm, hc₁c₂⟩
+  omega
+
+/-- At one second-apex radius, at most one strict second-cap-interior source
+can block both source-valid interior-pair deletions at its late blocker. -/
+theorem interiorPairBad_secondClassInterior_card_le_one
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius rho : ℝ}
+    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    (R : OriginalUniqueFourResidual F)
+    (hrobust : FullyDeletionRobustAt D S.oppApex2) :
+    ((interiorPairBadOutsideSources R).filter fun source =>
+      source.1 ∈ SelectedClass D.A S.oppApex2 rho ∧
+        source.1 ∈ S.capInteriorByIndex S.oppIndex2).card ≤ 1 := by
+  apply Finset.card_le_one.mpr
+  intro source₁ hsource₁ source₂ hsource₂
+  have hdata₁ := (Finset.mem_filter.mp hsource₁).2
+  have hdata₂ := (Finset.mem_filter.mp hsource₂).2
+  have hbad₁ := (Finset.mem_filter.mp hsource₁).1
+  have hbad₂ := (Finset.mem_filter.mp hsource₂).1
+  have hcenters := interiorPairBad_source_blockers_eq R hbad₁ hbad₂
+  let c :=
+    (lateFirstApexSystem R).centerAt source₁.1 source₁.2
+  have hcA : c ∈ D.A :=
+    (Finset.mem_erase.mp
+      ((lateFirstApexSystem R).selectedAt
+        source₁.1 source₁.2).toCriticalFourShell.center_mem).2
+  have hc_ne_first : c ≠ S.oppApex1 := by
+    simpa [c] using
+      centerAt_ne_firstApex_of_mem_outsideFirstApexFiber R
+        (Finset.mem_filter.mp hbad₁).1
+  have hc_ne_second : c ≠ S.oppApex2 := by
+    simpa [c] using
+      hrobust.centerAt_ne
+        (lateFirstApexSystem R) source₁.1 source₁.2
+  have hsupports :=
+    selectedSupports_eq_of_actualBlockers_eq
+      (lateFirstApexSystem R) source₁.2 source₂.2 hcenters
+  have hsource₁Support :
+      source₁.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          source₁.1 source₁.2).toCriticalFourShell.support :=
+    ((lateFirstApexSystem R).selectedAt
+      source₁.1 source₁.2).toCriticalFourShell.q_mem_support
+  have hsource₂Support :
+      source₂.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          source₁.1 source₁.2).toCriticalFourShell.support := by
+    rw [hsupports]
+    exact ((lateFirstApexSystem R).selectedAt
+      source₂.1 source₂.2).toCriticalFourShell.q_mem_support
+  have hcEq :
+      dist c source₁.1 = dist c source₂.1 := by
+    exact
+      (((lateFirstApexSystem R).selectedAt
+        source₁.1 source₁.2).toCriticalFourShell.support_eq_radius
+          source₁.1 hsource₁Support).trans
+      ((((lateFirstApexSystem R).selectedAt
+        source₁.1 source₁.2).toCriticalFourShell.support_eq_radius
+          source₂.1 hsource₂Support).symm)
+  have hphysicalEq :
+      dist S.oppApex2 source₁.1 =
+        dist S.oppApex2 source₂.1 :=
+    ((mem_selectedClass.mp hdata₁.1).2).trans
+      ((mem_selectedClass.mp hdata₂.1).2).symm
+  by_contra hsources
+  have hsource_ne : source₁.1 ≠ source₂.1 := by
+    intro h
+    apply hsources
+    exact Subtype.ext h
+  have hcFirst :
+      c ∈ S.capInteriorByIndex S.oppIndex1 :=
+    R.bisector_center_mem_interior c hcA hc_ne_first
+      (by
+        simpa [c] using
+          ((interiorPairBad_source_pair_mem_support R hbad₁).1
+            |> fun hq =>
+              (((lateFirstApexSystem R).selectedAt
+                source₁.1 source₁.2).toCriticalFourShell.support_eq_radius
+                  R.interior_q hq).trans
+                ((((lateFirstApexSystem R).selectedAt
+                  source₁.1 source₁.2).toCriticalFourShell.support_eq_radius
+                    R.interior_w
+                    (interiorPairBad_source_pair_mem_support R hbad₁).2).symm)))
+  have hcSecond :
+      c ∈ S.capInteriorByIndex S.oppIndex2 :=
+    commonPhysicalPair_center_mem_secondCapInterior
+      hcA hc_ne_second hdata₁.2 hdata₂.2 hsource_ne hcEq hphysicalEq
+  have hc_not_secondCap :
+      c ∉ S.capByIndex S.oppIndex2 :=
+    S.capInteriorByIndex_not_mem_capByIndex_of_ne
+      hcFirst S.oppIndex1_ne_oppIndex2
+  exact hc_not_secondCap
+    (S.capInteriorByIndex_subset_capByIndex S.oppIndex2 hcSecond)
+
+private theorem mem_outsideFirstApexFiber_of_not_mem_firstClass
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    (R : OriginalUniqueFourResidual F)
+    {source : CarrierVertex D.A}
+    (hnot :
+      source.1 ∉ SelectedClass D.A S.oppApex1 radius) :
+    source ∈ outsideFirstApexFiber R := by
+  apply Finset.mem_sdiff.mpr
+  refine ⟨Finset.mem_univ _, ?_⟩
+  intro hsourceFiber
+  have hblockers := (Finset.mem_filter.mp hsourceFiber).2
+  apply hnot
+  apply
+    (lateFirstApexSystem_centerAt_eq_iff_mem_class R source.2).mp
+  calc
+    (lateFirstApexSystem R).centerAt source.1 source.2 =
+        (lateFirstApexSystem R).centerAt
+          F.pair.q F.pair.q_mem_A :=
+      congrArg Subtype.val hblockers
+    _ = S.oppApex1 :=
+      lateFirstApexSystem_centerAt_eq R F.pair.q_mem_A
+        (frontier_pair_q_mem_firstApexClass F)
+
+private theorem firstSecondClass_inter_card_le_two
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius rho : ℝ}
+    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    (R : OriginalUniqueFourResidual F) :
+    ((SelectedClass D.A S.oppApex1 radius) ∩
+      (SelectedClass D.A S.oppApex2 rho)).card ≤ 2 := by
+  let K :=
+    ((lateFirstApexSystem R).selectedAt
+      F.pair.q F.pair.q_mem_A).toCriticalFourShell
+  have hcenterEq :=
+    lateFirstApexSystem_centerAt_eq R F.pair.q_mem_A
+      (frontier_pair_q_mem_firstApexClass F)
+  have hcenters :
+      (lateFirstApexSystem R).centerAt
+          F.pair.q F.pair.q_mem_A ≠ S.oppApex2 := by
+    simpa [hcenterEq] using oppApex1_ne_oppApex2 S
+  have hbound :=
+    criticalFourShell_inter_selectedClass_card_le_two
+      (radius := rho) K hcenters
+  have hsupport :=
+    lateFirstApexSystem_support_eq_class R F.pair.q_mem_A
+      (frontier_pair_q_mem_firstApexClass F)
+  simpa [K, hsupport] using hbound
+
+private theorem exists_mem_not_mem_pair_of_card_gt
+    {α : Type*} (T X Y : Finset α)
+    (hcard : X.card + Y.card < T.card) :
+    ∃ z ∈ T, z ∉ X ∧ z ∉ Y := by
+  classical
+  by_contra hnone
+  have hsubset : T ⊆ X ∪ Y := by
+    intro z hz
+    rw [Finset.mem_union]
+    by_contra hxy
+    push_neg at hxy
+    exact hnone ⟨z, hz, hxy⟩
+  have hle := Finset.card_le_card hsubset
+  have hunion := Finset.card_union_le X Y
+  omega
+
+private theorem oppApex2_eq_oppositeVertex_oppIndex2
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.oppApex2,
+      SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.oppIndex2, hi]
+
+private theorem secondInterior_not_mem_surplusCap
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.oppIndex2) :
+    x ∉ S.surplusCap := by
+  have hnot := S.capInteriorByIndex_not_mem_capByIndex_of_ne hx
+    S.surplusIdx_ne_oppIndex2.symm
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simpa [SurplusCapPacket.capByIndex,
+      SurplusCapPacket.surplusCap, hi] using hnot
+
+/-- A five-point positive class at the second physical apex contains a strict
+second-cap source outside the first-apex fiber for which at least one member
+of the source-valid strict first-cap pair can be deleted without destroying
+the source's actual late four-point row. -/
+theorem exists_interiorPairGoodOutsideSource_mem_secondClassInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius rho : ℝ}
+    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    (R : OriginalUniqueFourResidual F)
+    (hrobust : FullyDeletionRobustAt D S.oppApex2)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card) :
+    ∃ source : CarrierVertex D.A,
+      source.1 ∈ SelectedClass D.A S.oppApex2 rho ∧
+      source.1 ∈ S.capInteriorByIndex S.oppIndex2 ∧
+      source ∈ outsideFirstApexFiber R ∧
+      (HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+          ((lateFirstApexSystem R).centerAt source.1 source.2) ∨
+        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+          ((lateFirstApexSystem R).centerAt source.1 source.2)) := by
+  let secondInterior :=
+    SelectedClass D.A S.oppApex2 rho ∩
+      S.capInteriorByIndex S.oppIndex2
+  let firstHit :=
+    secondInterior.filter fun z =>
+      z ∈ SelectedClass D.A S.oppApex1 radius
+  let badSources :=
+    (interiorPairBadOutsideSources R).filter fun source =>
+      source.1 ∈ SelectedClass D.A S.oppApex2 rho ∧
+        source.1 ∈ S.capInteriorByIndex S.oppIndex2
+  let badPoints := badSources.image fun source => source.1
+  have hinterior :
+      (SelectedClass D.A S.oppApex2 rho).card - 2 ≤
+        secondInterior.card := by
+    have hbound :=
+      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+        D.convex S.oppIndex2 hrho
+    rw [← oppApex2_eq_oppositeVertex_oppIndex2 S] at hbound
+    simpa [secondInterior] using hbound
+  have hthree : 3 ≤ secondInterior.card := by omega
+  have hfirstHit : firstHit.card ≤ 1 := by
+    have hsubset :
+        firstHit ⊆
+          (((D.A.filter fun x => dist x S.oppApex1 = radius) \
+              S.surplusCap).filter fun x =>
+            x ∈ SelectedClass D.A S.oppApex2 rho) := by
+      intro x hx
+      rcases Finset.mem_filter.mp hx with ⟨hxInterior, hxFirst⟩
+      rcases Finset.mem_inter.mp hxInterior with ⟨hxSecond, hxCapInterior⟩
+      rcases mem_selectedClass.mp hxFirst with ⟨hxA, hxRadius⟩
+      exact Finset.mem_filter.mpr ⟨
+        Finset.mem_sdiff.mpr ⟨
+          Finset.mem_filter.mpr
+            ⟨hxA, by simpa only [dist_comm] using hxRadius⟩,
+          secondInterior_not_mem_surplusCap S hxCapInterior⟩,
+        hxSecond⟩
+    exact le_trans (Finset.card_le_card hsubset)
+      (firstApex_marginal_inter_secondClass_card_le_one
+        D S radius rho)
+  have hbadPoints : badPoints.card ≤ 1 := by
+    calc
+      badPoints.card = badSources.card :=
+        Finset.card_image_of_injective _ Subtype.val_injective
+      _ ≤ 1 := by
+        simpa [badSources] using
+          interiorPairBad_secondClassInterior_card_le_one
+            R hrobust (rho := rho)
+  have hsmall :
+      firstHit.card + badPoints.card < secondInterior.card := by
+    omega
+  obtain ⟨z, hzInterior, hzFirstHit, hzBad⟩ :=
+    exists_mem_not_mem_pair_of_card_gt
+      secondInterior firstHit badPoints hsmall
+  rcases Finset.mem_inter.mp hzInterior with
+    ⟨hzSecond, hzCapInterior⟩
+  have hzFirst :
+      z ∉ SelectedClass D.A S.oppApex1 radius := by
+    intro hzFirst
+    exact hzFirstHit
+      (Finset.mem_filter.mpr ⟨hzInterior, hzFirst⟩)
+  have hzA : z ∈ D.A := (mem_selectedClass.mp hzSecond).1
+  let source : CarrierVertex D.A := ⟨z, hzA⟩
+  have houtside : source ∈ outsideFirstApexFiber R :=
+    mem_outsideFirstApexFiber_of_not_mem_firstClass R
+      (by simpa [source] using hzFirst)
+  have hnotBad :
+      source ∉ interiorPairBadOutsideSources R := by
+    intro hsourceBad
+    apply hzBad
+    apply Finset.mem_image.mpr
+    refine ⟨source, ?_, rfl⟩
+    exact Finset.mem_filter.mpr ⟨hsourceBad,
+      by simpa [source] using And.intro hzSecond hzCapInterior⟩
+  have hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+          ((lateFirstApexSystem R).centerAt source.1 source.2) ∨
+        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+          ((lateFirstApexSystem R).centerAt source.1 source.2) := by
+    by_contra hnone
+    push_neg at hnone
+    exact hnotBad
+      (Finset.mem_filter.mpr ⟨houtside, hnone⟩)
+  exact ⟨source, by simpa [source] using hzSecond,
+    by simpa [source] using hzCapInterior, houtside, hsurvives⟩
+
+/-- A five-point physical radius class supplies another strict second-cap
+source outside the active source's actual late row once that row has the
+checked two-hit bound.  The omitted peer necessarily has a distinct actual
+late blocker. -/
+theorem exists_omittedSecondClassInteriorPeer
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius rho : ℝ}
+    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    (R : OriginalUniqueFourResidual F)
+    (source : CarrierVertex D.A)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (hlateCross :
+      ((((lateFirstApexSystem R).selectedAt
+            source.1 source.2).toCriticalFourShell.support ∩
+          (SelectedClass D.A S.oppApex2 rho ∩
+            S.capInteriorByIndex S.oppIndex2)).card ≤ 2)) :

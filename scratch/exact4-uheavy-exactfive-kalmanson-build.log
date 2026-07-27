@@ -1,0 +1,3 @@
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_blockerVRowOther_uHeavy_exactFive_kalmanson' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

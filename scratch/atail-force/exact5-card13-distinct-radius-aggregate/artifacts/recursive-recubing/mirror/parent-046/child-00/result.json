@@ -1,0 +1,67 @@
+{
+  "child_cnf_sha256": "ecd72cecaa802c773d38580e595bf9c746aea0584be6abecb47267d534669b86",
+  "child_cube": [
+    1531,
+    16203,
+    15992
+  ],
+  "child_cube_index": 0,
+  "combined_assumptions": [
+    2070,
+    2106,
+    -313,
+    195,
+    -16037,
+    -16036,
+    16031,
+    -16034,
+    1531,
+    16203,
+    15992
+  ],
+  "config": "phase_false",
+  "config_args": [
+    "--default",
+    "--phase=false"
+  ],
+  "conflicts": 288,
+  "decisions": 2219,
+  "drat_check": {
+    "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-046/child-00/drat-trim.log",
+    "log_sha256": "e8cae7459a542774d7766131ab3983feac8b263c8ea9e480b338a2bbed3df538",
+    "returncode": 0,
+    "status": "PASS",
+    "timed_out": false
+  },
+  "elapsed_seconds": 2.5777402500389144,
+  "epistemic_status": "EXTERNAL_EXACT_CHILD_CNF_VERDICT",
+  "extended_model_check_against_original_cnf": null,
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-046/child-00/cadical.log",
+  "log_sha256": "052016f01cb7aec51a83586c6843a480aeab3b02ed3d067fde07345a0abbea43",
+  "model_check_against_child_cnf": null,
+  "orientation": "mirror",
+  "parent_cube": [
+    2070,
+    2106,
+    -313,
+    195,
+    -16037,
+    -16036,
+    16031,
+    -16034
+  ],
+  "parent_cube_index": 46,
+  "proof_artifact": {
+    "format": "gzip-compressed CaDiCaL DRAT",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-046/child-00/proof.drat.gz",
+    "sha256": "7e0e56cba25bafbd5a56111cbdee0f0de0a41bf9413eceb546ad20dce7fa5fb8",
+    "size_bytes": 990820
+  },
+  "returncode": 20,
+  "schema": "p97-exact5-card13-distinct-recube-child-v1",
+  "seed": 4736,
+  "solver_status": "UNSAT",
+  "status": "UNSAT",
+  "timed_out": false,
+  "timeout_seconds": 15
+}

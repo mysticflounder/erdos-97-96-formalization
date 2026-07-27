@@ -1,0 +1,18 @@
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.CoincidentBlockerJointU5Ingress' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.CoincidentBlockerJointDeletion.nonempty_u5Ingress' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.CoincidentBlockerU5IngressOutcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.nonempty_coincidentBlockerU5IngressOutcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.CoincidentBlockerU5IngressClosingStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.false_of_u5IngressClosingStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

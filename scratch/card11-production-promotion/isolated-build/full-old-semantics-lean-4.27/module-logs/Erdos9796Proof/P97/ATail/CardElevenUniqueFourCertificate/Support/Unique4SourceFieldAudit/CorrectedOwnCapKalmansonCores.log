@@ -1,0 +1,9 @@
+module=Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4SourceFieldAudit.CorrectedOwnCapKalmansonCores
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/9201494f994cf200-0sa5lnmf/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/9201494f994cf200-0sa5lnmf/module.ilean Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean
+
+'Problem97.CorrectedOwnCapKalmansonCoresScratch.false_of_four_endpoint_k2_three_row_instances' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.CorrectedOwnCapKalmansonCoresScratch.false_of_two_k1_two_k2_four_row_instances' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

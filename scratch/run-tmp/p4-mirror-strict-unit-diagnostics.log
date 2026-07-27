@@ -1,0 +1,489 @@
+[simp] Diagnostics
+  [simp] tried theorems (max: 25, num: 1):
+    [simp] Turing.apply_get_eval ↦ 25 ❌️
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[simp] Diagnostics
+  [simp] tried theorems (max: 25, num: 1):
+    [simp] Turing.apply_get_eval ↦ 25 ❌️
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[simp] Diagnostics
+  [simp] tried theorems (max: 24, num: 1):
+    [simp] Turing.apply_get_eval ↦ 24 ❌️
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[diag] Diagnostics
+  [reduction] unfolded declarations (max: 123, num: 7):
+    [reduction] OfNat.ofNat ↦ 123
+    [reduction] AddGroupWithOne.toSub ↦ 120
+    [reduction] Ring.toSub ↦ 93
+    [reduction] Sub.sub ↦ 39
+    [reduction] HSub.hSub ↦ 30
+    [reduction] EuclideanDomain.remainder ↦ 27
+    [reduction] Fin.rec ↦ 24
+  [reduction] unfolded instances (max: 129, num: 12):
+    [reduction] Field.toCommRing ↦ 129
+    [reduction] CommRing.toRing ↦ 120
+    [reduction] DivisionRing.toRing ↦ 111
+    [reduction] Field.toDivisionRing ↦ 111
+    [reduction] AddGroup.toSubNegMonoid ↦ 97
+    [reduction] AddGroupWithOne.toAddGroup ↦ 93
+    [reduction] Ring.toAddGroupWithOne ↦ 93
+    [reduction] SubNegMonoid.toSub ↦ 93
+    [reduction] instOfNatNat ↦ 54
+    [reduction] instDecidableEqNat ↦ 50
+    [reduction] instHSub ↦ 30
+    [reduction] Field.toEuclideanDomain ↦ 27
+  [reduction] unfolded reducible declarations (max: 90, num: 16):
+    [reduction] Nat.casesOn ↦ 90
+    [reduction] SurplusCapPacket.partition ↦ 63
+    [reduction] SurplusCapPacket.surplusIdx ↦ 57
+    [reduction] Bool.casesOn ↦ 50
+    [reduction] Decidable.casesOn ↦ 50
+    [reduction] Nat.decEq ↦ 50
+    [reduction] Fin.val ↦ 48
+    [reduction] Part.get ↦ 44
+    [reduction] SurplusCapPacket.triangleNonObtuse ↦ 33
+    [reduction] CounterexampleData.A ↦ 30
+    [reduction] MEC.NonObtuseCircumscribedMoserTriangle.toMoserTriangle ↦ 30
+    [reduction] EuclideanSpace ↦ 27
+    [reduction] Fin.casesOn ↦ 24
+    [reduction] CapTriple.C1 ↦ 21
+    [reduction] CapTriple.C2 ↦ 21
+    [reduction] CapTriple.C3 ↦ 21
+  [kernel] unfolded declarations (max: 28, num: 3):
+    [kernel] Fin.val ↦ 28
+    [kernel] Fin.casesOn ↦ 26
+    [kernel] SurplusCapPacket.match_1 ↦ 26
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[diag] Diagnostics
+  [reduction] unfolded declarations (max: 25, num: 1):
+    [reduction] LT.lt ↦ 25
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[simp] Diagnostics
+  [simp] tried theorems (max: 46, num: 1):
+    [simp] Turing.apply_get_eval ↦ 46 ❌️
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[simp] Diagnostics
+  [simp] tried theorems (max: 46, num: 1):
+    [simp] Turing.apply_get_eval ↦ 46 ❌️
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[diag] Diagnostics
+  [reduction] unfolded declarations (max: 53, num: 3):
+    [reduction] OfNat.ofNat ↦ 53
+    [reduction] Nat.rec ↦ 28
+    [reduction] LT.lt ↦ 25
+  [reduction] unfolded instances (max: 240, num: 1):
+    [reduction] AddMonoidWithOne.toNatCast ↦ 240
+  [reduction] unfolded reducible declarations (max: 55, num: 4):
+    [reduction] outParam ↦ 55
+    [reduction] Part.get ↦ 54
+    [reduction] Nat.casesOn ↦ 30
+    [reduction] Fin.val ↦ 26
+  [kernel] unfolded declarations (max: 95, num: 15):
+    [kernel] List.rec ↦ 95
+    [kernel] Int.casesOn ↦ 88
+    [kernel] Int.rec ↦ 79
+    [kernel] OfNat.ofNat ↦ 76
+    [kernel] List.casesOn ↦ 60
+    [kernel] HAdd.hAdd ↦ 54
+    [kernel] Add.add ↦ 52
+    [kernel] Int.add.match_1 ↦ 35
+    [kernel] Nat.casesOn ↦ 31
+    [kernel] Nat.rec ↦ 31
+    [kernel] instDecidableEqList.match_1 ↦ 30
+    [kernel] HSub.hSub ↦ 29
+    [kernel] Sub.sub ↦ 29
+    [kernel] Int.add ↦ 27
+    [kernel] Int.negOfNat.match_1 ↦ 21
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[diag] Diagnostics
+  [reduction] unfolded declarations (max: 27, num: 1):
+    [reduction] LT.lt ↦ 27
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[simp] Diagnostics
+  [simp] tried theorems (max: 36, num: 1):
+    [simp] Turing.apply_get_eval ↦ 36 ❌️
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[diag] Diagnostics
+  [reduction] unfolded declarations (max: 1180, num: 32):
+    [reduction] EquivLike.coe ↦ 1180
+    [reduction] DFunLike.coe ↦ 1174
+    [reduction] Nat.rec ↦ 597
+    [reduction] Add.add ↦ 411
+    [reduction] HAdd.hAdd ↦ 400
+    [reduction] Equiv.symm ↦ 398
+    [reduction] LT.lt ↦ 284
+    [reduction] Fin.rec ↦ 263
+    [reduction] Sum.elim ↦ 240
+    [reduction] Function.comp ↦ 207
+    [reduction] Sum.map ↦ 203
+    [reduction] Nat.ble ↦ 172
+    [reduction] Equiv.trans ↦ 170
+    [reduction] Nat.add ↦ 138
+    [reduction] Equiv.sumCongr ↦ 121
+    [reduction] card11InternalPartPerm ↦ 115
+    [reduction] CoeOTC.coe ↦ 96
+    [reduction] Membership.mem ↦ 94
+    [reduction] OfNat.ofNat ↦ 73
+    [reduction] dite ↦ 65
+    [reduction] Fin.foldr.loop ↦ 60
+    [reduction] CoeHTC.coe ↦ 48
+    [reduction] CoeHTCT.coe ↦ 48
+    [reduction] CoeOut.coe ↦ 48
+    [reduction] CoeT.coe ↦ 48
+    [reduction] Bool.decEq ↦ 43
+    [reduction] card11IndexEquiv ↦ 43
+    [reduction] Mod.mod ↦ 35
+    [reduction] HMod.hMod ↦ 27
+    [reduction] Quot.lift ↦ 26
+    [reduction] Multiset.Mem ↦ 25
+    [reduction] CoeFun.coe ↦ 24
+  [reduction] unfolded instances (max: 86, num: 10):
+    [reduction] EquivLike.toFunLike ↦ 86
+    [reduction] Equiv.instEquivLike ↦ 84
+    [reduction] instHAdd ↦ 76
+    [reduction] instOfNatNat ↦ 60
+    [reduction] instDecidableEqBool ↦ 43
+    [reduction] instDecidableEqNat ↦ 39
+    [reduction] instAddNat ↦ 34
+    [reduction] Nat.decLe ↦ 32
+    [reduction] instLTNat ↦ 28
+    [reduction] instCoeTOfCoeHTCT ↦ 24
+  [reduction] unfolded reducible declarations (max: 1231, num: 25):
+    [reduction] MirrorP4Boundary.mirror ↦ 1231
+    [reduction] Nat.casesOn ↦ 1102
+    [reduction] Equiv.toFun ↦ 1099
+    [reduction] Fin.val ↦ 712
+    [reduction] Card11MirrorMacroCcwLabeling.order ↦ 696
+    [reduction] Prod.fst ↦ 567
+    [reduction] outParam ↦ 535
+    [reduction] Equiv.invFun ↦ 392
+    [reduction] Fin.casesOn ↦ 263
+    [reduction] Sum.casesOn ↦ 240
+    [reduction] semiOutParam ↦ 144
+    [reduction] Equiv.Perm ↦ 89
+    [reduction] Bool.casesOn ↦ 82
+    [reduction] FunLike ↦ 81
+    [reduction] Decidable.casesOn ↦ 78
+    [reduction] MirrorP4Boundary.labeling ↦ 52
+    [reduction] DecidableEq ↦ 48
+    [reduction] Card11InternalOrder ↦ 48
+    [reduction] Nat.decEq ↦ 39
+    [reduction] Card11CapLabeling.toCard11Labeling ↦ 39
+    [reduction] Card11MirrorMacroCcwLabeling.boundary ↦ 35
+    [reduction] SurplusCapPacket.surplusIdx ↦ 32
+    [reduction] Quot.liftOn ↦ 29
+    [reduction] Finset.val ↦ 27
+    [reduction] Part.get ↦ 21
+  [type_class] used instances (max: 72, num: 18):
+    [type_class] instCoeTC ↦ 72
+    [type_class] instCoeTCOfCoe ↦ 72
+    [type_class] instCoeTCOfCoe_1 ↦ 72
+    [type_class] instCoeOTC ↦ 48
+    [type_class] instOfNatPNatOfNeZeroNat ↦ 36
+    [type_class] coePNatNat ↦ 24
+    [type_class] instCoeHTC ↦ 24
+    [type_class] instCoeHTCOfCoeOTC ↦ 24
+    [type_class] instCoeHTCT ↦ 24
+    [type_class] instCoeHTCTOfCoeHTC ↦ 24
+    [type_class] instCoeOTCOfCoeOut ↦ 24
+    [type_class] instCoeOTCOfCoeTC ↦ 24
+    [type_class] instCoeT ↦ 24
+    [type_class] instCoeTOfCoeDep ↦ 24
+    [type_class] instCoeTOfCoeHTCT ↦ 24
+    [type_class] Fin.coeToNat ↦ 24
+    [type_class] Nat.Primes.coeNat ↦ 24
+    [type_class] Nat.Primes.coePNat ↦ 24
+  [def_eq] heuristic for solving `f a =?= f b` (max: 25, num: 2):
+    [def_eq] LE.le ↦ 25
+    [def_eq] instHAdd ↦ 23
+  [kernel] unfolded declarations (max: 536, num: 78):
+    [kernel] Int.casesOn ↦ 536
+    [kernel] List.rec ↦ 526
+    [kernel] Int.rec ↦ 482
+    [kernel] OfNat.ofNat ↦ 367
+    [kernel] List.casesOn ↦ 330
+    [kernel] HAdd.hAdd ↦ 322
+    [kernel] Add.add ↦ 296
+    [kernel] Int.add.match_1 ↦ 208
+    [kernel] LT.lt ↦ 196
+    [kernel] Nat.casesOn ↦ 190
+    [kernel] HSub.hSub ↦ 187
+    [kernel] Sub.sub ↦ 185
+    [kernel] Nat.rec ↦ 166
+    [kernel] instDecidableEqList.match_1 ↦ 165
+    [kernel] Int.add ↦ 156
+    [kernel] Int.negOfNat.match_1 ↦ 137
+    [kernel] Int.neg.match_1 ↦ 120
+    [kernel] List.brecOn ↦ 114
+    [kernel] List.brecOn.go ↦ 107
+    [kernel] Option.rec ↦ 105
+    [kernel] Int.negOfNat ↦ 102
+    [kernel] Int.neg ↦ 92
+    [kernel] Neg.neg ↦ 92
+    [kernel] Option.casesOn ↦ 91
+    [kernel] HMul.hMul ↦ 82
+    [kernel] Mul.mul ↦ 82
+    [kernel] Bool.rec ↦ 80
+    [kernel] Bool.casesOn ↦ 75
+    [kernel] Int.sub ↦ 74
+    [kernel] Lean.Omega.Coeffs ↦ 74
+    [kernel] Lean.Omega.IntList ↦ 74
+    [kernel] outParam ↦ 72
+    [kernel] List.getLast?.match_1 ↦ 71
+    [kernel] Decidable.casesOn ↦ 64
+    [kernel] Decidable.rec ↦ 64
+    [kernel] Lean.Omega.Coeffs.dot ↦ 63
+    [kernel] DFunLike.coe ↦ 57
+    [kernel] Option.getD.match_1 ↦ 55
+    [kernel] Fin.val ↦ 54
+    [kernel] Lean.Omega.LinearCombo.coeffs ↦ 52
+    [kernel] Lean.Omega.LinearCombo.const ↦ 52
+    [kernel] Lean.Omega.Constraint.sat' ↦ 48
+    [kernel] instOfNatNat ↦ 40
+    [kernel] Int.mul ↦ 39
+    [kernel] Option.getD ↦ 37
+    [kernel] List.map ↦ 36
+    [kernel] Lean.Omega.LinearCombo.eval ↦ 36
+    [kernel] Int.subNatNat ↦ 35
+    [kernel] Equiv.toFun ↦ 33
+    [kernel] EquivLike.coe ↦ 33
+    [kernel] LE.le ↦ 32
+    [kernel] Nat.cast ↦ 31
+    [kernel] NatCast.natCast ↦ 31
+    [kernel] instOfNat ↦ 30
+    [kernel] Membership.mem ↦ 30
+    [kernel] Lean.Omega.Constraint.lowerBound ↦ 30
+    [kernel] Lean.Omega.Constraint.upperBound ↦ 30
+    [kernel] Lean.Omega.UpperBound ↦ 28
+    [kernel] instDecidableEqNat ↦ 27
+    [kernel] List.foldr ↦ 27
+    [kernel] Nat.decEq ↦ 27
+    [kernel] Nat.decEq.match_1 ↦ 27
+    [kernel] decide ↦ 26
+    [kernel] List.zipWithAll.match_1 ↦ 26
+    [kernel] instHAdd ↦ 25
+    [kernel] instHSub ↦ 25
+    [kernel] Lean.Omega.IntList.set.match_1 ↦ 25
+    [kernel] Int.le ↦ 24
+    [kernel] List.zipWithAll ↦ 24
+    [kernel] Prod.casesOn ↦ 24
+    [kernel] Prod.rec ↦ 24
+    [kernel] ite ↦ 23
+    [kernel] List.filter.match_1 ↦ 22
+    [kernel] List.zipWith ↦ 21
+    [kernel] List.zipWith.match_1 ↦ 21
+    [kernel] Lean.Omega.IntList.dot ↦ 21
+    [kernel] Lean.Omega.IntList.mul ↦ 21
+    [kernel] Lean.Omega.IntList.sum ↦ 21
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[diag] Diagnostics
+  [reduction] unfolded declarations (max: 33, num: 1):
+    [reduction] LE.le ↦ 33
+  [reduction] unfolded reducible declarations (max: 81, num: 3):
+    [reduction] DecidableEq ↦ 81
+    [reduction] EuclideanSpace ↦ 50
+    [reduction] PiLp ↦ 46
+  [kernel] unfolded declarations (max: 272, num: 43):
+    [kernel] Int.casesOn ↦ 272
+    [kernel] Int.rec ↦ 266
+    [kernel] List.rec ↦ 262
+    [kernel] List.casesOn ↦ 160
+    [kernel] HAdd.hAdd ↦ 131
+    [kernel] Add.add ↦ 127
+    [kernel] OfNat.ofNat ↦ 125
+    [kernel] Int.add.match_1 ↦ 111
+    [kernel] HSub.hSub ↦ 91
+    [kernel] Sub.sub ↦ 89
+    [kernel] Int.add ↦ 83
+    [kernel] Nat.casesOn ↦ 81
+    [kernel] Int.negOfNat.match_1 ↦ 70
+    [kernel] Nat.rec ↦ 65
+    [kernel] Option.rec ↦ 62
+    [kernel] Option.casesOn ↦ 58
+    [kernel] Int.neg.match_1 ↦ 50
+    [kernel] List.brecOn ↦ 47
+    [kernel] Int.negOfNat ↦ 46
+    [kernel] HMul.hMul ↦ 45
+    [kernel] Mul.mul ↦ 45
+    [kernel] Decidable.casesOn ↦ 42
+    [kernel] Decidable.rec ↦ 42
+    [kernel] List.brecOn.go ↦ 42
+    [kernel] Option.getD.match_1 ↦ 42
+    [kernel] instDecidableEqList.match_1 ↦ 41
+    [kernel] Int.neg ↦ 40
+    [kernel] Neg.neg ↦ 40
+    [kernel] List.zipWithAll.match_1 ↦ 40
+    [kernel] Int.sub ↦ 35
+    [kernel] Lean.Omega.Coeffs.dot ↦ 35
+    [kernel] Lean.Omega.Coeffs ↦ 34
+    [kernel] Lean.Omega.IntList ↦ 34
+    [kernel] Option.map ↦ 30
+    [kernel] Bool.casesOn ↦ 29
+    [kernel] List.getLast?.match_1 ↦ 29
+    [kernel] Lean.Omega.Constraint.sat' ↦ 28
+    [kernel] Bool.rec ↦ 27
+    [kernel] ite ↦ 26
+    [kernel] Int.subNatNat ↦ 24
+    [kernel] Lean.Omega.Constraint.lowerBound ↦ 23
+    [kernel] Int.mul ↦ 22
+    [kernel] Lean.Omega.Constraint.upperBound ↦ 22
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[simp] Diagnostics
+  [simp] tried theorems (max: 111, num: 1):
+    [simp] Turing.apply_get_eval ↦ 111 ❌️
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[diag] Diagnostics
+  [reduction] unfolded declarations (max: 40, num: 7):
+    [reduction] AddGroupWithOne.toSub ↦ 40
+    [reduction] Ring.toSub ↦ 31
+    [reduction] Sub.sub ↦ 29
+    [reduction] Neg.neg ↦ 28
+    [reduction] OfNat.ofNat ↦ 28
+    [reduction] HSub.hSub ↦ 26
+    [reduction] Mod.mod ↦ 22
+  [reduction] unfolded instances (max: 43, num: 8):
+    [reduction] Field.toCommRing ↦ 43
+    [reduction] CommRing.toRing ↦ 37
+    [reduction] DivisionRing.toRing ↦ 37
+    [reduction] Field.toDivisionRing ↦ 37
+    [reduction] AddGroup.toSubNegMonoid ↦ 31
+    [reduction] AddGroupWithOne.toAddGroup ↦ 31
+    [reduction] Ring.toAddGroupWithOne ↦ 31
+    [reduction] SubNegMonoid.toSub ↦ 31
+  [reduction] unfolded reducible declarations (max: 61, num: 10):
+    [reduction] CounterexampleData.A ↦ 61
+    [reduction] Part.get ↦ 60
+    [reduction] EuclideanSpace ↦ 45
+    [reduction] Nat.casesOn ↦ 42
+    [reduction] P4MirrorBoundaryPacket.orientedBoundary ↦ 42
+    [reduction] Fin.val ↦ 39
+    [reduction] PiLp ↦ 37
+    [reduction] ExactTwoBoundaryCore.boundary ↦ 26
+    [reduction] ATailUniqueFourExactTwoSchemaDecoderScratch.Label ↦ 22
+    [reduction] P4MirrorBoundaryPacket.core ↦ 21
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[simp] Diagnostics
+  [simp] tried theorems (max: 111, num: 1):
+    [simp] Turing.apply_get_eval ↦ 111 ❌️
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[diag] Diagnostics
+  [reduction] unfolded declarations (max: 40, num: 7):
+    [reduction] AddGroupWithOne.toSub ↦ 40
+    [reduction] OfNat.ofNat ↦ 36
+    [reduction] Ring.toSub ↦ 31
+    [reduction] Sub.sub ↦ 29
+    [reduction] Neg.neg ↦ 28
+    [reduction] HSub.hSub ↦ 26
+    [reduction] Mod.mod ↦ 22
+  [reduction] unfolded instances (max: 46, num: 8):
+    [reduction] CommRing.toRing ↦ 46
+    [reduction] Field.toCommRing ↦ 43
+    [reduction] DivisionRing.toRing ↦ 37
+    [reduction] Field.toDivisionRing ↦ 37
+    [reduction] AddGroup.toSubNegMonoid ↦ 35
+    [reduction] AddGroupWithOne.toAddGroup ↦ 31
+    [reduction] Ring.toAddGroupWithOne ↦ 31
+    [reduction] SubNegMonoid.toSub ↦ 31
+  [reduction] unfolded reducible declarations (max: 61, num: 10):
+    [reduction] CounterexampleData.A ↦ 61
+    [reduction] Part.get ↦ 60
+    [reduction] EuclideanSpace ↦ 45
+    [reduction] Nat.casesOn ↦ 43
+    [reduction] P4MirrorBoundaryPacket.orientedBoundary ↦ 42
+    [reduction] Fin.val ↦ 39
+    [reduction] PiLp ↦ 37
+    [reduction] ExactTwoBoundaryCore.boundary ↦ 26
+    [reduction] ATailUniqueFourExactTwoSchemaDecoderScratch.Label ↦ 22
+    [reduction] P4MirrorBoundaryPacket.core ↦ 21
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[simp] Diagnostics
+  [simp] tried theorems (max: 50, num: 1):
+    [simp] Turing.apply_get_eval ↦ 50 ❌️
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[diag] Diagnostics
+  [reduction] unfolded declarations (max: 24, num: 2):
+    [reduction] NatCast.natCast ↦ 24
+    [reduction] OfNat.ofNat ↦ 24
+  [reduction] unfolded instances (max: 22, num: 1):
+    [reduction] AddMonoidWithOne.toNatCast ↦ 22
+  [reduction] unfolded reducible declarations (max: 49, num: 2):
+    [reduction] Part.get ↦ 49
+    [reduction] outParam ↦ 35
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[simp] Diagnostics
+  [simp] tried theorems (max: 104, num: 1):
+    [simp] Turing.apply_get_eval ↦ 104 ❌️
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[diag] Diagnostics
+  [reduction] unfolded declarations (max: 40, num: 3):
+    [reduction] AddGroupWithOne.toSub ↦ 40
+    [reduction] Ring.toSub ↦ 31
+    [reduction] OfNat.ofNat ↦ 24
+  [reduction] unfolded instances (max: 43, num: 8):
+    [reduction] Field.toCommRing ↦ 43
+    [reduction] CommRing.toRing ↦ 37
+    [reduction] DivisionRing.toRing ↦ 37
+    [reduction] Field.toDivisionRing ↦ 37
+    [reduction] AddGroup.toSubNegMonoid ↦ 31
+    [reduction] AddGroupWithOne.toAddGroup ↦ 31
+    [reduction] Ring.toAddGroupWithOne ↦ 31
+    [reduction] SubNegMonoid.toSub ↦ 31
+  [reduction] unfolded reducible declarations (max: 95, num: 4):
+    [reduction] asLabel ↦ 95
+    [reduction] Part.get ↦ 81
+    [reduction] P4MirrorBoundaryPacket.core ↦ 79
+    [reduction] Nat.casesOn ↦ 30
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[simp] Diagnostics
+  [simp] tried theorems (max: 104, num: 1):
+    [simp] Turing.apply_get_eval ↦ 104 ❌️
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[diag] Diagnostics
+  [reduction] unfolded declarations (max: 40, num: 3):
+    [reduction] AddGroupWithOne.toSub ↦ 40
+    [reduction] Ring.toSub ↦ 31
+    [reduction] OfNat.ofNat ↦ 24
+  [reduction] unfolded instances (max: 43, num: 8):
+    [reduction] Field.toCommRing ↦ 43
+    [reduction] CommRing.toRing ↦ 37
+    [reduction] DivisionRing.toRing ↦ 37
+    [reduction] Field.toDivisionRing ↦ 37
+    [reduction] AddGroup.toSubNegMonoid ↦ 31
+    [reduction] AddGroupWithOne.toAddGroup ↦ 31
+    [reduction] Ring.toAddGroupWithOne ↦ 31
+    [reduction] SubNegMonoid.toSub ↦ 31
+  [reduction] unfolded reducible declarations (max: 95, num: 4):
+    [reduction] asLabel ↦ 95
+    [reduction] Part.get ↦ 81
+    [reduction] P4MirrorBoundaryPacket.core ↦ 79
+    [reduction] Nat.casesOn ↦ 30
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+[diag] Diagnostics
+  [reduction] unfolded declarations (max: 1837, num: 13):
+    [reduction] dite ↦ 1837
+    [reduction] Bool.rec ↦ 1837
+    [reduction] Decidable.rec ↦ 1837
+    [reduction] Add.add ↦ 1274
+    [reduction] HAdd.hAdd ↦ 1274
+    [reduction] List.length ↦ 1022
+    [reduction] List.rec ↦ 1022
+    [reduction] Bool.decEq ↦ 919
+    [reduction] Nat.rec ↦ 914
+    [reduction] Array.foldlM.loop ↦ 914
+    [reduction] bind ↦ 910
+    [reduction] pure ↦ 768
+    [reduction] Array.push ↦ 765
+  [reduction] unfolded instances (max: 919, num: 3):
+    [reduction] instDecidableEqBool ↦ 919
+    [reduction] Nat.decLe ↦ 919
+    [reduction] Nat.decLt ↦ 915
+  [reduction] unfolded reducible declarations (max: 1839, num: 5):
+    [reduction] Decidable.casesOn ↦ 1839
+    [reduction] Bool.casesOn ↦ 1838
+    [reduction] List.casesOn ↦ 1788
+    [reduction] Nat.casesOn ↦ 914
+    [reduction] Array.toList ↦ 770
+  use `set_option diagnostics.threshold <num>` to control threshold for reporting counters
+../scratch/atail-force/unique4-p4-mirror-valuation/MirrorStrictUnitSatisfaction.lean:176:0: error: (deterministic) timeout at `whnf`, maximum number of heartbeats (1000000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.

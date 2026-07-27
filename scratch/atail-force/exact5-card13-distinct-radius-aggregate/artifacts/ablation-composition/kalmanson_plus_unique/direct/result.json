@@ -1,0 +1,23 @@
+{
+  "cnf_clause_count": 527557,
+  "cnf_sha256": "d183155933d7087fdcca0932d0f760f036c29ce1c902976d2c12700435f7e627",
+  "cnf_variable_count": 59440,
+  "conflicts": 168779,
+  "decisions": 763010,
+  "disabled_blocks": [
+    "connectivity",
+    "complete_classes"
+  ],
+  "elapsed_seconds": 20.020544333965518,
+  "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+  "log_path": "scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation-composition/kalmanson_plus_unique/direct/cadical.log",
+  "log_sha256": "79f7ced9f0e40d6150131cd4924c9dd7cf8e30aa782c36ea6f5b636590c7435f",
+  "model_check": null,
+  "orientation": "direct",
+  "profile": "kalmanson_plus_unique",
+  "returncode": 0,
+  "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+  "status": "UNKNOWN",
+  "subprocess_timeout": false,
+  "timeout_seconds": 20
+}

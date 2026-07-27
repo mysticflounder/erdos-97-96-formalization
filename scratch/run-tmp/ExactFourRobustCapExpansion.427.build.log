@@ -1,0 +1,12 @@
+'Problem97.ATailUniqueFourRobustCapExpansionScratch.ExactFourFirstOppositeCapGrowth' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustCapExpansionScratch.ExactFourSecondOppositeCapGrowth' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustCapExpansionScratch.robust_capGrowth_of_card_ge_twelve' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustCapExpansionScratch.nonempty_postCardElevenRobustSurface_of_robust' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

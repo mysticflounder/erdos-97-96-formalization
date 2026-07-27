@@ -1,0 +1,10 @@
+note: 1087 module(s) / 7889 symbol(s) trusted (🔒 excluded from mine by [mining].skip; still covered by `#print axioms` on the target and the off-spine sorry scan)
+note: skipping 15 indexed module(s) with no olean (unbuilt WIP, not in the verified build) — --verbose to list
+mining call graph: 3 changed module(s) (153 symbols) in 1 batch(es), 3101 unchanged (43901 symbols skipped), 1087 trusted 🔒 skipped — invoking Lean kernel per batch...
+batch 1/1: 3 module(s), 153 symbol(s), 4 MB oleans …
+   ✓ batch 1/1 committed (1587 edges, 13 into axioms)
+✅ mined 1587 edge(s) (13 into axioms), marked 153 symbol(s) across 1 batch(es) at build fefbb67b2648.
+   (43901 symbol(s) in unchanged modules — stamps updated, no re-mine)
+[packet-audit] mining type facts: 3 module(s) (153 symbols) in 1 batch(es)...
+[packet-audit] ✓ type facts: 153 symbol(s), 19 type-former(s), 1000 type ref(s).
+Use `proof-blueprint spine` to view the kernel-rooted structural state.

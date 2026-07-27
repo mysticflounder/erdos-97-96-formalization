@@ -1,0 +1,33 @@
+'Problem97.ATailUniqueFourLateChoiceTerminalScratch.lateFirstApexResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourLateChoiceTerminalScratch.lateFirstApexSystem_centerAt_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourLateChoiceTerminalScratch.lateFirstApexSystem_support_eq_class' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourLateChoiceTerminalScratch.frontier_pair_q_mem_firstApexClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourLateChoiceTerminalScratch.frontier_pair_w_mem_firstApexClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourLateChoiceTerminalScratch.lateFirstApexSystem_frontierPair_normalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourLateChoiceTerminalScratch.lateFirstApexSystem_centerAt_eq_iff_mem_class' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourLateChoiceTerminalScratch.lateFirstApexSystem_class_blockers_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourLateChoiceTerminalScratch.firstApex_not_fullyDeletionRobustAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourLateChoiceTerminalScratch.lateFirstApex_actualBlockerFiber_points_eq_class' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourLateChoiceTerminalScratch.lateFirstApex_actualBlockerFiber_card_eq_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,401 @@
+  · intro h
+    exact K.center_not_mem (Finset.mem_inter.mp h).1
+  · intro x hx
+    exact K.support_eq_radius x (Finset.mem_inter.mp hx).1
+
+/-- A selected four-class centered at a point of an indexed cap contains at
+most two points of that cap. -/
+theorem selectedFourClass_inter_capByIndex_card_le_two
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3) {center : ℝ²}
+    (K : SelectedFourClass A center)
+    (hcenter : center ∈ S.capByIndex i) :
+    (K.support ∩ S.capByIndex i).card ≤ 2 := by
+  classical
+  rcases S.capByIndex_cgn4g_capData hconv i with
+    ⟨m, L, Packet, Hside, Hord, hcap⟩
+  have hcenterImage : center ∈ Finset.univ.image L.points := by
+    rw [hcap]
+    exact hcenter
+  rcases Finset.mem_image.mp hcenterImage with ⟨j, _hj, hjcenter⟩
+  have hinj := CGN.oneSidedDistanceInjective_of_mecCapPacket Packet Hside Hord
+  apply sameRadiusIndices_card_le_two L hinj j
+  · intro x hx
+    rw [hcap]
+    exact (Finset.mem_inter.mp hx).2
+  · intro hj
+    apply K.center_not_mem
+    simpa [hjcenter] using (Finset.mem_inter.mp hj).1
+  · intro x hx
+    simpa [hjcenter] using K.support_eq_radius x (Finset.mem_inter.mp hx).1
+
+/-- Two distinct centers of one ordered cap cannot both be equidistant from
+the same two distinct points outside that cap. -/
+theorem outsidePair_unique_capCenter
+    {A : Finset ℝ²} {m : ℕ} {L : CGN.OrderedCap m}
+    (hconv : ConvexIndep A) (Hord : CGN.StrictCapOrder A L)
+    (hmem : ∀ t : Fin m, L.points t ∈ A)
+    {r s : Fin m} (hrs : r < s) {a b : ℝ²}
+    (haA : a ∈ A) (hbA : b ∈ A)
+    (haOutside : a ∉ Finset.univ.image L.points)
+    (hbOutside : b ∉ Finset.univ.image L.points)
+    (hab : a ≠ b)
+    (hra : dist (L.points r) a = dist (L.points r) b)
+    (hsa : dist (L.points s) a = dist (L.points s) b) : False := by
+  have hrA : L.points r ∈ A := hmem r
+  have hsA : L.points s ∈ A := hmem s
+  have hrsPoint : L.points r ≠ L.points s := by
+    intro h
+    exact (ne_of_lt hrs) (L.injective h)
+  have hrImage : L.points r ∈ Finset.univ.image L.points :=
+    Finset.mem_image.mpr ⟨r, Finset.mem_univ _, rfl⟩
+  have hsImage : L.points s ∈ Finset.univ.image L.points :=
+    Finset.mem_image.mpr ⟨s, Finset.mem_univ _, rfl⟩
+  have har : a ≠ L.points r := fun h => haOutside (h ▸ hrImage)
+  have has : a ≠ L.points s := fun h => haOutside (h ▸ hsImage)
+  have hbr : b ≠ L.points r := fun h => hbOutside (h ▸ hrImage)
+  have hbs : b ≠ L.points s := fun h => hbOutside (h ▸ hsImage)
+  have ha_nonpos : signedArea2 (L.points r) (L.points s) a ≤ 0 := by
+    apply le_of_not_gt
+    intro hpos
+    rcases (Hord.subchord_open_side_iff_A hrs haA).mp hpos with ⟨j, _hrj, _hjs, hj⟩
+    exact haOutside (Finset.mem_image.mpr ⟨j, Finset.mem_univ _, hj⟩)
+  have hb_nonpos : signedArea2 (L.points r) (L.points s) b ≤ 0 := by
+    apply le_of_not_gt
+    intro hpos
+    rcases (Hord.subchord_open_side_iff_A hrs hbA).mp hpos with ⟨j, _hrj, _hjs, hj⟩
+    exact hbOutside (Finset.mem_image.mpr ⟨j, Finset.mem_univ _, hj⟩)
+  have ha_ne : signedArea2 (L.points r) (L.points s) a ≠ 0 := by
+    intro hzero
+    exact hconv.not_three_collinear hrA hsA haA
+      hrsPoint
+      har.symm has.symm
+      (collinear_of_signedArea2_eq_zero _ _ _ hzero)
+  have hb_ne : signedArea2 (L.points r) (L.points s) b ≠ 0 := by
+    intro hzero
+    exact hconv.not_three_collinear hrA hsA hbA
+      hrsPoint
+      hbr.symm hbs.symm
+      (collinear_of_signedArea2_eq_zero _ _ _ hzero)
+  have ha_neg : signedArea2 (L.points r) (L.points s) a < 0 :=
+    lt_of_le_of_ne ha_nonpos ha_ne
+  have hb_neg : signedArea2 (L.points r) (L.points s) b < 0 :=
+    lt_of_le_of_ne hb_nonpos hb_ne
+  have hsep := SurplusCOMPGBank.sep_signedArea2 a b (L.points r) (L.points s)
+    (by simpa [dist_comm] using hra) (by simpa [dist_comm] using hsa) hab
+  have hcyc_a :
+      signedArea2 a (L.points r) (L.points s) =
+        signedArea2 (L.points r) (L.points s) a := by
+    unfold signedArea2
+    ring
+  have hcyc_b :
+      signedArea2 b (L.points r) (L.points s) =
+        signedArea2 (L.points r) (L.points s) b := by
+    unfold signedArea2
+    ring
+  rw [hcyc_a, hcyc_b] at hsep
+  nlinarith
+
+/-- Outside pairs selected by distinct centers of one ordered cap are
+disjoint, so their total pair incidence is bounded by all pairs in the cap
+complement. -/
+theorem orderedCap_outsidePairCount_sum_le
+    {A : Finset ℝ²} {m : ℕ} {L : CGN.OrderedCap m}
+    (Packet : CGN.MecCapPacket A L)
+    (Hord : CGN.StrictCapOrder A L)
+    (hconv : ConvexIndep A) (F : FaithfulCarrierPattern A) :
+    (∑ j : Fin m,
+      Nat.choose
+        ((F.classAt (L.points j) (Packet.mem_A j)).support \
+          Finset.univ.image L.points).card 2) ≤
+      Nat.choose (A \ Finset.univ.image L.points).card 2 := by
+  classical
+  let C : Finset ℝ² := Finset.univ.image L.points
+  let B : Finset ℝ² := A \ C
+  let K : ∀ j : Fin m, SelectedFourClass A (L.points j) :=
+    fun j => F.classAt (L.points j) (Packet.mem_A j)
+  let hits : Fin m → Finset ℝ² := fun j => (K j).support \ C
+  let pairs : Fin m → Finset (Finset ℝ²) :=
+    fun j => (hits j).powersetCard 2
+  have hdisjoint :
+      ((Finset.univ : Finset (Fin m)) : Set (Fin m)).PairwiseDisjoint pairs := by
+    rintro r _hr s _hs hrs
+    change Disjoint (pairs r) (pairs s)
+    rw [Finset.disjoint_left]
+    intro xy hxr hxs
+    have hrData := Finset.mem_powersetCard.mp hxr
+    have hsData := Finset.mem_powersetCard.mp hxs
+    have hxyCard : xy.card = 2 := hrData.2
+    rw [Finset.card_eq_two] at hxyCard
+    rcases hxyCard with ⟨a, b, hab, rfl⟩
+    have haR : a ∈ hits r := hrData.1 (by simp)
+    have hbR : b ∈ hits r := hrData.1 (by simp)
+    have haS : a ∈ hits s := hsData.1 (by simp)
+    have hbS : b ∈ hits s := hsData.1 (by simp)
+    have haK : a ∈ (K r).support := (Finset.mem_sdiff.mp haR).1
+    have hbK : b ∈ (K r).support := (Finset.mem_sdiff.mp hbR).1
+    have haKS : a ∈ (K s).support := (Finset.mem_sdiff.mp haS).1
+    have hbKS : b ∈ (K s).support := (Finset.mem_sdiff.mp hbS).1
+    have hra : dist (L.points r) a = dist (L.points r) b :=
+      ((K r).support_eq_radius a haK).trans
+        ((K r).support_eq_radius b hbK).symm
+    have hsa : dist (L.points s) a = dist (L.points s) b :=
+      ((K s).support_eq_radius a haKS).trans
+        ((K s).support_eq_radius b hbKS).symm
+    have haA : a ∈ A := (K r).support_subset_A haK
+    have hbA : b ∈ A := (K r).support_subset_A hbK
+    have haOutside : a ∉ C := (Finset.mem_sdiff.mp haR).2
+    have hbOutside : b ∉ C := (Finset.mem_sdiff.mp hbR).2
+    rcases lt_or_gt_of_ne hrs with hrs' | hsr'
+    · exact outsidePair_unique_capCenter hconv Hord Packet.mem_A hrs'
+        haA hbA haOutside hbOutside hab hra hsa
+    · exact outsidePair_unique_capCenter hconv Hord Packet.mem_A hsr'
+        haA hbA haOutside hbOutside hab hsa hra
+  have hallPairsSubset :
+      (Finset.univ.biUnion pairs) ⊆ B.powersetCard 2 := by
+    intro xy hxy
+    rcases Finset.mem_biUnion.mp hxy with ⟨j, _hj, hjxy⟩
+    have hjData := Finset.mem_powersetCard.mp hjxy
+    apply Finset.mem_powersetCard.mpr
+    refine ⟨?_, hjData.2⟩
+    intro x hx
+    have hx' : x ∈ hits j := hjData.1 hx
+    exact Finset.mem_sdiff.mpr
+      ⟨(K j).support_subset_A (Finset.mem_sdiff.mp hx').1,
+        (Finset.mem_sdiff.mp hx').2⟩
+  change (∑ j : Fin m, Nat.choose (hits j).card 2) ≤ Nat.choose B.card 2
+  calc
+    (∑ j : Fin m, Nat.choose (hits j).card 2) =
+        ∑ j : Fin m, (pairs j).card := by
+      apply Finset.sum_congr rfl
+      intro j _hj
+      rw [Finset.card_powersetCard]
+    _ = (Finset.univ.biUnion pairs).card := by
+      rw [Finset.card_biUnion hdisjoint]
+    _ ≤ (B.powersetCard 2).card := Finset.card_le_card hallPairsSubset
+    _ = Nat.choose B.card 2 := Finset.card_powersetCard 2 B
+
+/-- In the equality case of the cap pair count, every endpoint row has exactly
+one cap member and every interior row has exactly two. -/
+theorem orderedCap_selected_support_inter_card_eq_of_six_five
+    {A : Finset ℝ²} {L : CGN.OrderedCap 6}
+    (Packet : CGN.MecCapPacket A L)
+    (Hside : CGN.MinorCapSideHypotheses Packet)
+    (Hord : CGN.StrictCapOrder A L)
+    (hconv : ConvexIndep A) (F : FaithfulCarrierPattern A)
+    (houtside : (A \ Finset.univ.image L.points).card = 5)
+    (j : Fin 6) :
+    ((F.classAt (L.points j) (Packet.mem_A j)).support ∩
+        Finset.univ.image L.points).card =
+      if j = CGN.firstIndex Packet.hm then 1
+      else if j = CGN.lastIndex Packet.hm then 1 else 2 := by
+  classical
+  let C : Finset ℝ² := Finset.univ.image L.points
+  let K : ∀ j : Fin 6, SelectedFourClass A (L.points j) :=
+    fun j => F.classAt (L.points j) (Packet.mem_A j)
+  let hits : Fin 6 → Finset ℝ² := fun j => (K j).support \ C
+  have hinj := CGN.oneSidedDistanceInjective_of_mecCapPacket Packet Hside Hord
+  have hcapTwo (i : Fin 6) : ((K i).support ∩ C).card ≤ 2 := by
+    apply sameRadiusIndices_card_le_two L hinj i
+    · exact Finset.inter_subset_right
+    · intro h
+      exact (K i).center_not_mem (Finset.mem_inter.mp h).1
+    · intro x hx
+      exact (K i).support_eq_radius x (Finset.mem_inter.mp hx).1
+  have hfirstCap :
+      ((K (CGN.firstIndex Packet.hm)).support ∩ C).card ≤ 1 := by
+    simpa [C] using selectedFourClass_inter_orderedCap_first_card_le_one
+      Packet Hside Hord (K (CGN.firstIndex Packet.hm))
+  have hlastCap :
+      ((K (CGN.lastIndex Packet.hm)).support ∩ C).card ≤ 1 := by
+    simpa [C] using selectedFourClass_inter_orderedCap_last_card_le_one
+      Packet Hside Hord (K (CGN.lastIndex Packet.hm))
+  have hsplit (i : Fin 6) :
+      (hits i).card + ((K i).support ∩ C).card = 4 := by
+    change ((K i).support \ C).card + ((K i).support ∩ C).card = 4
+    rw [Finset.card_sdiff_add_card_inter, (K i).support_card]
+  have houtsideTwo (i : Fin 6) : 2 ≤ (hits i).card := by
+    have := hsplit i
+    have := hcapTwo i
+    omega
+  have hfirstOutside : 3 ≤ (hits (CGN.firstIndex Packet.hm)).card := by
+    have := hsplit (CGN.firstIndex Packet.hm)
+    omega
+  have hlastOutside : 3 ≤ (hits (CGN.lastIndex Packet.hm)).card := by
+    have := hsplit (CGN.lastIndex Packet.hm)
+    omega
+  have hchooseOne (i : Fin 6) : 1 ≤ Nat.choose (hits i).card 2 := by
+    calc
+      1 = Nat.choose 2 2 := by norm_num
+      _ ≤ Nat.choose (hits i).card 2 := Nat.choose_le_choose 2 (houtsideTwo i)
+  have hfirstChoose :
+      3 ≤ Nat.choose (hits (CGN.firstIndex Packet.hm)).card 2 := by
+    calc
+      3 = Nat.choose 3 2 := by norm_num
+      _ ≤ Nat.choose (hits (CGN.firstIndex Packet.hm)).card 2 :=
+        Nat.choose_le_choose 2 hfirstOutside
+  have hlastChoose :
+      3 ≤ Nat.choose (hits (CGN.lastIndex Packet.hm)).card 2 := by
+    calc
+      3 = Nat.choose 3 2 := by norm_num
+      _ ≤ Nat.choose (hits (CGN.lastIndex Packet.hm)).card 2 :=
+        Nat.choose_le_choose 2 hlastOutside
+  have hfirstLast : CGN.firstIndex Packet.hm ≠ CGN.lastIndex Packet.hm := by
+    intro h
+    have hval : (0 : ℕ) = 6 - 1 := by
+      simpa [CGN.firstIndex_val, CGN.lastIndex_val] using congrArg Fin.val h
+    omega
+  let weight : Fin 6 → ℕ := fun i =>
+    1 + (if i = CGN.firstIndex Packet.hm then 2 else 0) +
+      (if i = CGN.lastIndex Packet.hm then 2 else 0)
+  have hweight (i : Fin 6) : weight i ≤ Nat.choose (hits i).card 2 := by
+    by_cases hfirst : i = CGN.firstIndex Packet.hm
+    · subst i
+      simpa [weight, hfirstLast] using hfirstChoose
+    · by_cases hlast : i = CGN.lastIndex Packet.hm
+      · subst i
+        simpa [weight, hfirstLast.symm] using hlastChoose
+      · simpa [weight, hfirst, hlast] using hchooseOne i
+  have hweightSum : ∑ i : Fin 6, weight i = 10 := by
+    simp [weight, Finset.sum_add_distrib, Nat.add_assoc]
+  have hsumLower : 10 ≤ ∑ i : Fin 6, Nat.choose (hits i).card 2 := by
+    rw [← hweightSum]
+    exact Finset.sum_le_sum fun i _hi => hweight i
+  have hsumUpper := orderedCap_outsidePairCount_sum_le Packet Hord hconv F
+  change (∑ i : Fin 6, Nat.choose (hits i).card 2) ≤
+    Nat.choose (A \ C).card 2 at hsumUpper
+  rw [houtside] at hsumUpper
+  norm_num [Nat.choose] at hsumUpper
+  have hsumEq : ∑ i : Fin 6, Nat.choose (hits i).card 2 = 10 := by omega
+  have hpairEq (i : Fin 6) : Nat.choose (hits i).card 2 = weight i := by
+    by_contra hne
+    have hlt : weight i < Nat.choose (hits i).card 2 :=
+      lt_of_le_of_ne (hweight i) (fun h => hne h.symm)
+    have hsumLt : (∑ k : Fin 6, weight k) <
+        ∑ k : Fin 6, Nat.choose (hits k).card 2 := by
+      apply Finset.sum_lt_sum
+      · intro k _hk
+        exact hweight k
+      · exact ⟨i, Finset.mem_univ _, hlt⟩
+    rw [hweightSum, hsumEq] at hsumLt
+    omega
+  change ((K j).support ∩ C).card = _
+  by_cases hfirst : j = CGN.firstIndex Packet.hm
+  · subst j
+    simp only [if_pos]
+    by_contra hne
+    have hzero :
+        ((K (CGN.firstIndex Packet.hm)).support ∩ C).card = 0 := by omega
+    have houtFour : (hits (CGN.firstIndex Packet.hm)).card = 4 := by
+      have := hsplit (CGN.firstIndex Packet.hm)
+      omega
+    have hp := hpairEq (CGN.firstIndex Packet.hm)
+    have hp' : Nat.choose 4 2 = 3 := by
+      simpa [houtFour, weight, hfirstLast] using hp
+    norm_num [Nat.choose] at hp'
+  · by_cases hlast : j = CGN.lastIndex Packet.hm
+    · subst j
+      simp only [if_neg hfirstLast.symm, if_pos]
+      by_contra hne
+      have hzero :
+          ((K (CGN.lastIndex Packet.hm)).support ∩ C).card = 0 := by omega
+      have houtFour : (hits (CGN.lastIndex Packet.hm)).card = 4 := by
+        have := hsplit (CGN.lastIndex Packet.hm)
+        omega
+      have hp := hpairEq (CGN.lastIndex Packet.hm)
+      have hp' : Nat.choose 4 2 = 3 := by
+        simpa [houtFour, weight, hfirstLast.symm] using hp
+      norm_num [Nat.choose] at hp'
+    · simp only [if_neg hfirst, if_neg hlast]
+      by_contra hne
+      have hcapOne : ((K j).support ∩ C).card ≤ 1 := by
+        have := hcapTwo j
+        omega
+      have houtThree : 3 ≤ (hits j).card := by
+        have := hsplit j
+        omega
+      have hchooseThree : 3 ≤ Nat.choose (hits j).card 2 := by
+        calc
+          3 = Nat.choose 3 2 := by norm_num
+          _ ≤ Nat.choose (hits j).card 2 :=
+            Nat.choose_le_choose 2 houtThree
+      have hp := hpairEq j
+      have hp' : Nat.choose (hits j).card 2 = 1 := by
+        simpa [weight, hfirst, hlast] using hp
+      omega
+
+/-- Pair-incidence double count for one ordered cap. Each cap-center row has at
+least two support points outside the cap, while the endpoint rows have at least
+three. Outside pairs are unique to their cap center. -/
+theorem orderedCap_card_add_four_le_choose_outside
+    {A : Finset ℝ²} {m : ℕ} {L : CGN.OrderedCap m}
+    (Packet : CGN.MecCapPacket A L)
+    (Hside : CGN.MinorCapSideHypotheses Packet)
+    (Hord : CGN.StrictCapOrder A L)
+    (hconv : ConvexIndep A) (F : FaithfulCarrierPattern A) :
+    m + 4 ≤ Nat.choose (A \ Finset.univ.image L.points).card 2 := by
+  classical
+  let C : Finset ℝ² := Finset.univ.image L.points
+  let B : Finset ℝ² := A \ C
+  let K : ∀ j : Fin m, SelectedFourClass A (L.points j) :=
+    fun j => F.classAt (L.points j) (Packet.mem_A j)
+  let hits : Fin m → Finset ℝ² := fun j => (K j).support ∩ B
+  let pairs : Fin m → Finset (Finset ℝ²) :=
+    fun j => (hits j).powersetCard 2
+  have hinj := CGN.oneSidedDistanceInjective_of_mecCapPacket Packet Hside Hord
+  have hcapTwo (j : Fin m) : ((K j).support ∩ C).card ≤ 2 := by
+    apply sameRadiusIndices_card_le_two L hinj j
+    · exact Finset.inter_subset_right
+    · intro h
+      exact (K j).center_not_mem (Finset.mem_inter.mp h).1
+    · intro x hx
+      exact (K j).support_eq_radius x (Finset.mem_inter.mp hx).1
+  have houtsideTwo (j : Fin m) : 2 ≤ (hits j).card := by
+    have hsdiff : (K j).support \ C = hits j := by
+      ext x
+      constructor
+      · intro hx
+        rcases Finset.mem_sdiff.mp hx with ⟨hxK, hxC⟩
+        exact Finset.mem_inter.mpr
+          ⟨hxK, Finset.mem_sdiff.mpr ⟨(K j).support_subset_A hxK, hxC⟩⟩
+      · intro hx
+        rcases Finset.mem_inter.mp hx with ⟨hxK, hxB⟩
+        exact Finset.mem_sdiff.mpr ⟨hxK, (Finset.mem_sdiff.mp hxB).2⟩
+    have hsplit :
+        ((K j).support \ C).card + ((K j).support ∩ C).card =
+          (K j).support.card :=
+      Finset.card_sdiff_add_card_inter _ _
+    rw [hsdiff, (K j).support_card] at hsplit
+    have := hcapTwo j
+    omega
+  have hfirstOutside : 3 ≤ (hits (CGN.firstIndex Packet.hm)).card := by
+    have hcapOne := selectedFourClass_inter_orderedCap_first_card_le_one
+      Packet Hside Hord (K (CGN.firstIndex Packet.hm))
+    change ((K (CGN.firstIndex Packet.hm)).support ∩ C).card ≤ 1 at hcapOne
+    have hsdiff :
+        (K (CGN.firstIndex Packet.hm)).support \ C =
+          hits (CGN.firstIndex Packet.hm) := by
+      ext x
+      constructor
+      · intro hx
+        rcases Finset.mem_sdiff.mp hx with ⟨hxK, hxC⟩
+        exact Finset.mem_inter.mpr
+          ⟨hxK, Finset.mem_sdiff.mpr
+            ⟨(K (CGN.firstIndex Packet.hm)).support_subset_A hxK, hxC⟩⟩
+      · intro hx
+        rcases Finset.mem_inter.mp hx with ⟨hxK, hxB⟩
+        exact Finset.mem_sdiff.mpr ⟨hxK, (Finset.mem_sdiff.mp hxB).2⟩
+    have hsplit :
+        ((K (CGN.firstIndex Packet.hm)).support \ C).card +
+            ((K (CGN.firstIndex Packet.hm)).support ∩ C).card =
+          (K (CGN.firstIndex Packet.hm)).support.card :=
+      Finset.card_sdiff_add_card_inter _ _
+    rw [hsdiff, (K (CGN.firstIndex Packet.hm)).support_card] at hsplit
+    omega
+  have hlastOutside : 3 ≤ (hits (CGN.lastIndex Packet.hm)).card := by
+    have hcapOne := selectedFourClass_inter_orderedCap_last_card_le_one
+      Packet Hside Hord (K (CGN.lastIndex Packet.hm))
+    change ((K (CGN.lastIndex Packet.hm)).support ∩ C).card ≤ 1 at hcapOne
+    have hsdiff :
+        (K (CGN.lastIndex Packet.hm)).support \ C =
+          hits (CGN.lastIndex Packet.hm) := by

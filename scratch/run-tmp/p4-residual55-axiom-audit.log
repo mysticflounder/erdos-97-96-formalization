@@ -1,0 +1,14 @@
+'Problem97.P4DirectOuterValuationScratch.residual55Entries_direct_wf' depends on axioms: [propext,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'Problem97.P4DirectOuterValuationScratch.residual55Entries_sat_direct' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'Problem97.P4DirectOuterValuationScratch.directTotalVal_residual55Entries_sat' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]

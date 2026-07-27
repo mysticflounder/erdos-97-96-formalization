@@ -1,0 +1,6 @@
+module=Erdos9796Proof.P97.ATail.FirstApexCriticalFiberRow
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/cae70f3787a0d3b5-xgr3ye_7/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/cae70f3787a0d3b5-xgr3ye_7/module.ilean Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean
+
+'Problem97.ATailFirstApexCriticalFiberRow.criticalShell_inter_frontierRadiusClass_card_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

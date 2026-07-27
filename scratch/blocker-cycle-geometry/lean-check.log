@@ -1,0 +1,6 @@
+../scratch/blocker-cycle-geometry/TwoCycle.lean:204:6: warning: Try `simp at hzdist` instead of `simpa using hzdist`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+../scratch/blocker-cycle-geometry/TwoCycle.lean:227:6: warning: Try `simp at hzdist` instead of `simpa using hzdist`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`

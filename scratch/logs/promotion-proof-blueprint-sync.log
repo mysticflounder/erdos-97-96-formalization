@@ -1,0 +1,17 @@
+[1/2] indexing source (index --refresh) ...
+indexed 2150 files: 1 new, 7 changed, 2142 unchanged, 0 removed
+symbols total: 241 writes
+
+[2/2] mining call graph (refs --refresh) ...
+note: 1087 module(s) / 7889 symbol(s) trusted (🔒 excluded from mine by [mining].skip; still covered by `#print axioms` on the target and the off-spine sorry scan)
+note: skipping 16 indexed module(s) with no olean (unbuilt WIP, not in the verified build) — --verbose to list
+mining call graph: 6 changed module(s) (56 symbols) in 1 batch(es), 1041 unchanged (9111 symbols skipped), 1087 trusted 🔒 skipped — invoking Lean kernel per batch...
+batch 1/1: 6 module(s), 56 symbol(s), 1 MB oleans …
+   ✓ batch 1/1 committed (389 edges, 4 into axioms)
+✅ mined 389 edge(s) (4 into axioms), marked 56 symbol(s) across 1 batch(es) at build 2e855264435b.
+   (9111 symbol(s) in unchanged modules — stamps updated, no re-mine)
+[packet-audit] mining type facts: 6 module(s) (56 symbols) in 1 batch(es)...
+[packet-audit] ✓ type facts: 56 symbol(s), 4 type-former(s), 267 type ref(s).
+Use `proof-blueprint spine` to view the kernel-rooted structural state.
+
+✅ sync complete — index and kernel call graph match the current build.

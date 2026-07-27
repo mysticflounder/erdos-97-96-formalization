@@ -1,0 +1,9 @@
+module=Erdos9796Proof.P97.Census554.SevenPointTwinFourCircleCollision
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/31166e86b9d0cd55-5bztbrnq/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/31166e86b9d0cd55-5bztbrnq/module.ilean Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean
+
+Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:30:0: warning: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 12000000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`

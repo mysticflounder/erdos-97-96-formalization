@@ -1,0 +1,139 @@
+  1640	      P.source₂ ∈
+  1641	        SelectedClass D.A S.oppApex1 radius ∩
+  1642	          S.capInteriorByIndex S.oppIndex1 :=
+  1643	    Finset.mem_inter.mpr
+  1644	      ⟨P.source₂_mem_radius, P.source₂_mem_capInterior⟩
+  1645	  have hρ₁ne₁ : Pρ.source₁ ≠ P.source₁ := by
+  1646	    intro h
+  1647	    apply hρne
+  1648	    calc
+  1649	      ρ = dist S.oppApex1 Pρ.source₁ :=
+  1650	        (mem_selectedClass.mp Pρ.source₁_mem_radius).2.symm
+  1651	      _ = dist S.oppApex1 P.source₁ := by rw [h]
+  1652	      _ = radius := (mem_selectedClass.mp P.source₁_mem_radius).2
+  1653	  have hρ₁ne₂ : Pρ.source₁ ≠ P.source₂ := by
+  1654	    intro h
+  1655	    apply hρne
+  1656	    calc
+  1657	      ρ = dist S.oppApex1 Pρ.source₁ :=
+  1658	        (mem_selectedClass.mp Pρ.source₁_mem_radius).2.symm
+  1659	      _ = dist S.oppApex1 P.source₂ := by rw [h]
+  1660	      _ = radius := (mem_selectedClass.mp P.source₂_mem_radius).2
+  1661	  have hρ₂ne₁ : Pρ.source₂ ≠ P.source₁ := by
+  1662	    intro h
+  1663	    apply hρne
+  1664	    calc
+  1665	      ρ = dist S.oppApex1 Pρ.source₂ :=
+  1666	        (mem_selectedClass.mp Pρ.source₂_mem_radius).2.symm
+  1667	      _ = dist S.oppApex1 P.source₁ := by rw [h]
+  1668	      _ = radius := (mem_selectedClass.mp P.source₁_mem_radius).2
+  1669	  have hρ₂ne₂ : Pρ.source₂ ≠ P.source₂ := by
+  1670	    intro h
+  1671	    apply hρne
+  1672	    calc
+  1673	      ρ = dist S.oppApex1 Pρ.source₂ :=
+  1674	        (mem_selectedClass.mp Pρ.source₂_mem_radius).2.symm
+  1675	      _ = dist S.oppApex1 P.source₂ := by rw [h]
+  1676	      _ = radius := (mem_selectedClass.mp P.source₂_mem_radius).2
+  1677	  have hpairsDisjoint :
+  1678	      Disjoint
+  1679	        ({P.source₁, P.source₂} : Finset ℝ²)
+  1680	        {Pρ.source₁, Pρ.source₂} := by
+  1681	    apply Finset.disjoint_left.mpr
+  1682	    intro z hzP hzPρ
+  1683	    simp only [Finset.mem_insert, Finset.mem_singleton] at hzP hzPρ
+  1684	    rcases hzP with rfl | rfl
+  1685	    · rcases hzPρ with h | h
+  1686	      · exact hρ₁ne₁ h.symm
+  1687	      · exact hρ₂ne₁ h.symm
+  1688	    · rcases hzPρ with h | h
+  1689	      · exact hρ₁ne₂ h.symm
+  1690	      · exact hρ₂ne₂ h.symm
+  1691	  have hblockersNe :
+  1692	      H.centerAt Pρ.source₁ Pρ.source₁_mem_A ≠
+  1693	        H.centerAt P.source₁ P.source₁_mem_A :=
+  1694	    secondRadiusInterior_blocker_ne_collisionBlocker
+  1695	      P hρne Pρ.source₁_mem_A hPρ₁
+  1696	  have hPBlockerNe₁ :
+  1697	      H.centerAt P.source₁ P.source₁_mem_A ≠ P.source₁ :=
+  1698	    (hcriticalShellUniqueFourCover P.source₁ P.source₁_mem_A).1
+  1699	  have hPBlockerNe₂ :
+  1700	      H.centerAt P.source₁ P.source₁_mem_A ≠ P.source₂ := by
+  1701	    intro h
+  1702	    apply (hcriticalShellUniqueFourCover P.source₂ P.source₂_mem_A).1
+  1703	    exact P.blockers_eq.symm.trans h
+  1704	  have hPρBlockerNe₁ :
+  1705	      H.centerAt Pρ.source₁ Pρ.source₁_mem_A ≠ Pρ.source₁ :=
+  1706	    (hcriticalShellUniqueFourCover Pρ.source₁ Pρ.source₁_mem_A).1
+  1707	  have hPρBlockerNe₂ :
+  1708	      H.centerAt Pρ.source₁ Pρ.source₁_mem_A ≠ Pρ.source₂ := by
+  1709	    intro h
+  1710	    apply (hcriticalShellUniqueFourCover Pρ.source₂ Pρ.source₂_mem_A).1
+  1711	    exact Pρ.blockers_eq.symm.trans h
+  1712	  have hcrossOmissions :
+  1713	      Pρ.source₁ ∉
+  1714	          (H.selectedAt P.source₁
+  1715	            P.source₁_mem_A).toCriticalFourShell.support ∧
+  1716	        Pρ.source₂ ∉
+  1717	            (H.selectedAt P.source₁
+  1718	              P.source₁_mem_A).toCriticalFourShell.support ∧
+  1719	          P.source₁ ∉
+  1720	              (H.selectedAt Pρ.source₁
+  1721	                Pρ.source₁_mem_A).toCriticalFourShell.support ∧
+  1722	            P.source₂ ∉
+  1723	                (H.selectedAt Pρ.source₁
+  1724	                  Pρ.source₁_mem_A).toCriticalFourShell.support ∧
+  1725	              ((H.selectedAt P.source₁
+  1726	                    P.source₁_mem_A).toCriticalFourShell.support \
+  1727	                  S.capByIndex S.oppIndex1).card = 2 ∧
+  1728	                ((H.selectedAt Pρ.source₁
+  1729	                    Pρ.source₁_mem_A).toCriticalFourShell.support \
+  1730	                  S.capByIndex S.oppIndex1).card = 2 :=
+  1731	    exact_disjoint_cap_pairs_force_cross_omission_and_two_outside
+  1732	      (H.selectedAt P.source₁
+  1733	        P.source₁_mem_A).toCriticalFourShell.support_card
+  1734	      (H.selectedAt Pρ.source₁
+  1735	        Pρ.source₁_mem_A).toCriticalFourShell.support_card
+  1736	      P.shell_inter_cap_eq_sources Pρ.shell_inter_cap_eq_sources
+  1737	      P.sources_ne Pρ.sources_ne hpairsDisjoint
+  1738	  rcases exists_secondRadiusInterior_localizedCycle P hρne hPρ₁ with
+  1739	    ⟨LPρ, hLPρ, ⟨MPρ⟩⟩
+  1740	  rcases exists_secondRadiusInterior_localizedCycle Pρ hρne.symm hP₁ with
+  1741	    ⟨LP, hLP, ⟨MP⟩⟩
+  1742	  have hcapEightOrCross :
+  1743	      8 ≤ (S.capByIndex S.oppIndex1).card ∨
+  1744	        H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₁ ∨
+  1745	          H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₂ ∨
+  1746	            H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₁ ∨
+  1747	              H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₂ := by
+  1748	    rcases
+  1749	        six_interior_or_cross_blocker_coincidence
+  1750	          (S.capInteriorByIndex S.oppIndex1)
+  1751	          P.source₁ P.source₂ Pρ.source₁ Pρ.source₂
+  1752	          (H.centerAt P.source₁ P.source₁_mem_A)
+  1753	          (H.centerAt Pρ.source₁ Pρ.source₁_mem_A)
+  1754	          P.sources_ne Pρ.sources_ne hpairsDisjoint hblockersNe.symm
+  1755	          hPBlockerNe₁ hPBlockerNe₂ hPρBlockerNe₁ hPρBlockerNe₂
+  1756	          P.source₁_mem_capInterior P.source₂_mem_capInterior
+  1757	          Pρ.source₁_mem_capInterior Pρ.source₂_mem_capInterior
+  1758	          P.blocker_mem_capInterior Pρ.blocker_mem_capInterior with
+  1759	      hlargeInterior | hcross
+  1760	    · left
+  1761	      have hcapInterior :=
+  1762	        ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+  1763	          S S.oppIndex1
+  1764	      omega
+  1765	    · exact Or.inr hcross
+  1766	  exact
+  1767	    exists_three_hit_of_two_collisionRows_capCross_normalForm
+  1768	      P Pρ hρne hfrontierFour hρfour hfrontierInteriorTwo hρInteriorTwo
+  1769	        T hcriticalShellUniqueFourCover hpairsDisjoint hblockersNe
+  1770	          hcrossOmissions LPρ hLPρ MPρ LP hLP MP hcapEightOrCross
+  1771	
+  1772	/-- The symmetric two-radius collision normal form.
+  1773	
+  1774	Both distinct first-apex radii have cardinality exactly four, exactly two
+  1775	members of each radius lie in the strict first opposite cap, and the selected
+  1776	pair on each radius has a common actual blocker.  Every weaker second-radius
+  1777	outcome is already consumed by
+  1778	`false_of_retainedInteriorDirectedOmission_and_all_low_hits`: distinct

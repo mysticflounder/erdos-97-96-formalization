@@ -1,0 +1,121 @@
+{
+  "certificate_manifest_digest": {
+    "algorithm": "sha256(canonical-json(manifest-without-this-field))",
+    "sha256": "9980d1359efc3efb16bd4650b6fc0baee2a6f7db19a0cc8348c9a0324ce9352c"
+  },
+  "compact_input_authentication": {
+    "clause_count": 19048,
+    "cnf": {
+      "byte_count": 383127,
+      "path": "../p4-seed0-compact/p4-seed0-compact.cnf",
+      "sha256": "449cea2217bf144caafdd2dadb2ae7083d7ca34816bd226c2ab776f52ea58dae"
+    },
+    "manifest": {
+      "byte_count": 117899,
+      "path": "../p4-seed0-compact/p4-seed0-compact-manifest.json",
+      "sha256": "61efb4c99512ef3cff6968f1513ebb8e3c9009ad3fcc7bb013da70a5d3f37305"
+    },
+    "method": "materialize_p4_compact_seed0.verify_generated",
+    "stable_formula_digest": "8d5b8f5adf40cda367e7e7f72f6afc58e75201011e140ff198ace1c836521dd1",
+    "variable_count": 2557
+  },
+  "epistemic_status": {
+    "classification": "EXTERNALLY VERIFIED PURE-RUP NORMALIZED CERTIFICATE",
+    "does_not_establish": [
+      "Lean replay of the normalized certificate",
+      "source satisfaction of the compact CNF clauses",
+      "closure of a production Problem 97 theorem"
+    ],
+    "establishes": [
+      "the pinned compact P4 seed-0 CNF is externally UNSAT",
+      "drat-trim verified the pinned binary DRAT proof",
+      "the extracted core contains zero RAT lemmas",
+      "the pinned normalized LRAT has the recorded dense append shape"
+    ]
+  },
+  "external_drat_verification": {
+    "checker": "drat-trim",
+    "core_addition_line": "c 1232281 of 2415940 lemmas in core using 65185265 resolution steps",
+    "log": {
+      "byte_count": 462,
+      "path": "drat-trim-verify.log",
+      "sha256": "bf19a7241a7cf5abe920ae9303d25d03ddabef8c9ec23a18d2b8dd04e4c62ffe"
+    },
+    "pure_rup_line": "c 0 RAT lemmas in core; 1181014 redundant literals in core lemmas",
+    "time_log": {
+      "byte_count": 106,
+      "path": "drat-trim-verify.time",
+      "sha256": "113d48937e65867ac72d157e649521cfdc41f2495cff46dfb9eb2a9914cdee0f"
+    },
+    "verdict_line": "s VERIFIED"
+  },
+  "lrat_extraction": {
+    "checker": "drat-trim -L",
+    "core_addition_line": "c 1232281 of 2415940 lemmas in core using 65185265 resolution steps",
+    "log": {
+      "byte_count": 456,
+      "path": "drat-trim-lrat.log",
+      "sha256": "390420b5b1be2cb4939274ca861c96e2778510c861829ea3e21d59e5ec46d41a"
+    },
+    "pure_rup_line": "c 0 RAT lemmas in core; 0 redundant literals in core lemmas",
+    "raw_lrat": {
+      "byte_count": 508993098,
+      "path": "p4-seed0-compact-plain.raw.lrat",
+      "sha256": "7f91da73ea8e20db05fdcb87e5458ca53f7a41f04078f0d956e3295712680aba"
+    },
+    "time_log": {
+      "byte_count": 106,
+      "path": "drat-trim-lrat.time",
+      "sha256": "c4b301bb3339145f6553e5b53ea7e22f04069b3154b59ac1ca3edd2f3e7cb7da"
+    },
+    "verdict_line": "s VERIFIED"
+  },
+  "normalization": {
+    "addition_count": 1232281,
+    "deletion_action_count": 598140,
+    "first_dense_addition_id": 19049,
+    "last_dense_addition_id": 1251329,
+    "log": {
+      "byte_count": 124,
+      "path": "normalize-lrat.log",
+      "sha256": "d21471f664b46a069886d20b8d2a2fea3815676b47399c3e72dca7c015a73f2d"
+    },
+    "normalized_dense_lrat": {
+      "byte_count": 493108597,
+      "path": "p4-seed0-compact-plain.lrat",
+      "sha256": "0974cec710f1920cb89d6204f63cc9cd93e719385c3d27d4e1c0e4988f733212"
+    },
+    "skipped_out_of_range": 0,
+    "skipped_tautologies": 0,
+    "summary_line": "kept_additions=1232281 skipped_tautologies=0 skipped_out_of_range=0 retained_deletions=598140 dense_id_range=19049..1251329",
+    "time_log": {
+      "byte_count": 106,
+      "path": "normalize-lrat.time",
+      "sha256": "1b72b7af74b70abe9539afbcc01c8c6408414a1b4cfd75f25a63234d6dc751fc"
+    }
+  },
+  "path_base": "directory_containing_this_certificate_manifest",
+  "profile": 4,
+  "schema": "p97-unique4-exact-two-p4-seed0-plain-rup-certificate-v1",
+  "seed": 0,
+  "solver_run": {
+    "binary_drat": {
+      "byte_count": 185423304,
+      "path": "p4-seed0-compact-plain.drat",
+      "sha256": "e6d8166c9bc1a5a45cbf5a10ec69304314fdb3a13fd7770fff7cac3f010b8357"
+    },
+    "exit_line": "c exit 20",
+    "solver": "CaDiCaL",
+    "stdout": {
+      "byte_count": 35207,
+      "path": "cadical-plain.stdout",
+      "sha256": "2bbc04c990aa9f83bd8cd877eab2122e187e84984ce215ce74f07c12175a1c34"
+    },
+    "time_log": {
+      "byte_count": 106,
+      "path": "cadical-plain.time",
+      "sha256": "0a2dcd7b578b2b588e3c138dceaacea198556dbd5f72e997720af8f53fc793b5"
+    },
+    "verdict_line": "s UNSATISFIABLE"
+  }
+}

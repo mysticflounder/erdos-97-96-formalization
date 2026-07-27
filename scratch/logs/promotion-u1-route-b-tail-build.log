@@ -1,0 +1,3082 @@
+⚠ [8003/8194] Replayed Erdos9796Proof.P97.Cap.Partition
+warning: Erdos9796Proof/P97/Cap/Partition.lean:15:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [8005/8194] Replayed Erdos9796Proof.P97.Dumitrescu.L9
+warning: Erdos9796Proof/P97/Dumitrescu/L9.lean:53:20: unused variable `h₁`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Dumitrescu/L9.lean:53:34: unused variable `h₂`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Dumitrescu/L9.lean:53:48: unused variable `h₃`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8014/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part01
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part01.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part01.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part01.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part01.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8015/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part02
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part02.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part02.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part02.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part02.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8016/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part03
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part03.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part03.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part03.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part03.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8017/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part08
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part08.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part08.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part08.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part08.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8018/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part09
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part09.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part09.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part09.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part09.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8019/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part12
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part12.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part12.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part12.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part12.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8020/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage03
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage03.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage03.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage03.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x3x-x2y^2+2*x2y*x3y'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage03.lean:27:23: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x3x-x2y^2+2*x2y*x3y'
+should be written as
+  'x2x * x3x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage03.lean:27:27: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x3x-x2y^2+2*x2y*x3y'
+should be written as
+  'x3x - x2y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage03.lean:27:31: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x3x-x2y^2+2*x2y*x3y'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage03.lean:27:39: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x3x-x2y^2+2*x2y*x3y ='
+should be written as
+  'x2y * x3y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8021/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage04
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage04.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage04.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage04.lean:27:12: missing space in the source
+
+This part of the code
+  '2*x3x*x6x+2*x3y*x6y-x6x^2-x6y^2'
+should be written as
+  '2 * x3x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage04.lean:27:16: missing space in the source
+
+This part of the code
+  '2*x3x*x6x+2*x3y*x6y-x6x^2-x6y^2'
+should be written as
+  'x3x * x6x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage04.lean:27:20: missing space in the source
+
+This part of the code
+  '2*x3x*x6x+2*x3y*x6y-x6x^2-x6y^2'
+should be written as
+  'x6x + 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage04.lean:27:26: missing space in the source
+
+This part of the code
+  '2*x3x*x6x+2*x3y*x6y-x6x^2-x6y^2'
+should be written as
+  'x3y * x6y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage04.lean:27:30: missing space in the source
+
+This part of the code
+  '2*x3x*x6x+2*x3y*x6y-x6x^2-x6y^2'
+should be written as
+  'x6y - x6x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage04.lean:27:34: missing space in the source
+
+This part of the code
+  '2*x3x*x6x+2*x3y*x6y-x6x^2-x6y^2'
+should be written as
+  'x6x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage04.lean:27:40: missing space in the source
+
+This part of the code
+  '2*x3x*x6x+2*x3y*x6y-x6x^2-x6y^2 = 0)'
+should be written as
+  'x6y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8022/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage07
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage07.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage07.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage07.lean:27:12: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1'
+should be written as
+  '2 * x4x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage07.lean:27:16: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1'
+should be written as
+  'x4x * x6x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage07.lean:27:20: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1'
+should be written as
+  'x6x - 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage07.lean:27:26: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1'
+should be written as
+  'x4x + 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage07.lean:27:32: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1'
+should be written as
+  'x4y * x6y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage07.lean:27:36: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1'
+should be written as
+  'x6y - x6x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage07.lean:27:40: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1'
+should be written as
+  'x6x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage07.lean:27:46: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1 = 0)'
+should be written as
+  'x6y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8023/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage08
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage08.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage08.lean:27:12: missing space in the source
+
+This part of the code
+  '2*x5x-1'
+should be written as
+  '2 * x5x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage08.lean:27:16: missing space in the source
+
+This part of the code
+  '2*x5x-1 = 0)'
+should be written as
+  'x5x - 1'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8024/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage09
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage09.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage09.lean:27:15: missing space in the source
+
+This part of the code
+  '-x4x^2+2*x4x*x5x-x4y^2+2*x4y*x5y'
+should be written as
+  '-x4x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage09.lean:27:23: missing space in the source
+
+This part of the code
+  '-x4x^2+2*x4x*x5x-x4y^2+2*x4y*x5y'
+should be written as
+  'x4x * x5x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage09.lean:27:27: missing space in the source
+
+This part of the code
+  '-x4x^2+2*x4x*x5x-x4y^2+2*x4y*x5y'
+should be written as
+  'x5x - x4y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage09.lean:27:31: missing space in the source
+
+This part of the code
+  '-x4x^2+2*x4x*x5x-x4y^2+2*x4y*x5y'
+should be written as
+  'x4y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage09.lean:27:39: missing space in the source
+
+This part of the code
+  '-x4x^2+2*x4x*x5x-x4y^2+2*x4y*x5y ='
+should be written as
+  'x4y * x5y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8025/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage11
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage11.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage11.lean:27:16: missing space in the source
+
+This part of the code
+  '-x5x^2+2*x5x*x6x-x5y^2+2*x5y*x6y'
+should be written as
+  '-x5x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage11.lean:27:24: missing space in the source
+
+This part of the code
+  '-x5x^2+2*x5x*x6x-x5y^2+2*x5y*x6y'
+should be written as
+  'x5x * x6x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage11.lean:27:28: missing space in the source
+
+This part of the code
+  '-x5x^2+2*x5x*x6x-x5y^2+2*x5y*x6y'
+should be written as
+  'x6x - x5y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage11.lean:27:32: missing space in the source
+
+This part of the code
+  '-x5x^2+2*x5x*x6x-x5y^2+2*x5y*x6y'
+should be written as
+  'x5y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage11.lean:27:40: missing space in the source
+
+This part of the code
+  '-x5x^2+2*x5x*x6x-x5y^2+2*x5y*x6y ='
+should be written as
+  'x5y * x6y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8029/8224] Replayed Erdos9796Proof.P97.Cap.Structure
+warning: Erdos9796Proof/P97/Cap/Structure.lean:282:0: This file has more than one module docstring (`/-! ... -/`). Only the first one is treated as module documentation; convert additional ones to regular comments (`/- ... -/`).
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+⚠ [8059/8224] Replayed Erdos9796Proof.P97.CGN.CGN
+warning: Erdos9796Proof/P97/CGN/CGN.lean:300:4: 'simp [edgeAt] at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN.lean:301:4: 'rcases hx with rfl | rfl' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN.lean:300:4: 'simp [edgeAt] at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN.lean:302:6: 'exact hmem r' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN.lean:300:4: 'simp [edgeAt] at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN.lean:303:6: 'exact hmem s' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN.lean:336:33: Try `simp at hp_lt` instead of `simpa using hp_lt`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN.lean:344:33: Try `simp at hp_lt` instead of `simpa using hp_lt`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN.lean:324:2: 'simp [edgeAt] at hp1mem hp2mem' is a flexible tactic modifying 'hp1mem'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN.lean:325:2: 'have hp1idx : p.1 = q.1 ∨ p.1 = q.2 := by
+  rcases hp1mem with hp1mem | hp1mem
+  · exact Or.inl (L.injective hp1mem)
+  · exact Or.inr (L.injective hp1mem)' uses 'hp1mem'!
+warning: Erdos9796Proof/P97/CGN/CGN.lean:324:2: 'simp [edgeAt] at hp1mem hp2mem' is a flexible tactic modifying 'hp2mem'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN.lean:329:2: 'have hp2idx : p.2 = q.1 ∨ p.2 = q.2 := by
+  rcases hp2mem with hp2mem | hp2mem
+  · exact Or.inl (L.injective hp2mem)
+  · exact Or.inr (L.injective hp2mem)' uses 'hp2mem'!
+⚠ [8062/8224] Replayed Erdos9796Proof.P97.ConvexCyclicOrder.Construct
+warning: Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:1296:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [8063/8224] Replayed Erdos9796Proof.P97.CGN.CGN4g
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:585:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:593:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:610:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:616:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:623:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:752:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1334:12: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1345:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1376:20: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1376:52: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1471:23: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1479:23: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1518:20: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1518:52: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1613:23: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1621:23: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1650:8: unused variable `Hside`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1651:8: unused variable `Hord`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1696:8: unused variable `Hside`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1697:8: unused variable `Hord`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8065/8224] Replayed Erdos9796Proof.P97.CGN.CGN6
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:205:20: unused variable `hn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:216:5: unused variable `he`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:229:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:236:64: This simp argument is unused:
+  inner_add_right
+
+Hint: Omit it from the simp argument list.
+  simp [chordFrame, inner_add_left,̵ ̵i̵n̵n̵e̵r̵_̵a̵d̵d̵_̵r̵i̵g̵h̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:240:65: This simp argument is unused:
+  inner_smul_right
+
+Hint: Omit it from the simp argument list.
+  simp [chordFrame, inner_smul_left,̵ ̵i̵n̵n̵e̵r̵_̵s̵m̵u̵l̵_̵r̵i̵g̵h̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:236:10: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:240:10: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:252:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:254:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:256:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:272:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:285:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:289:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:343:8: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:410:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:412:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:421:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:491:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:556:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:558:33: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:561:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:596:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:376:40: unused variable `tau`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:513:40: This simp argument is unused:
+  map_sub
+
+Hint: Omit it from the simp argument list.
+  simp [T, sub_eq_add_neg, map_add, m̵ap̵_̵s̵u̵b̵,̵ ̵a̵dd_comm, add_left_comm, add_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:513:59: This simp argument is unused:
+  add_left_comm
+
+Hint: Omit it from the simp argument list.
+  simp [T, sub_eq_add_neg, map_add, map_sub, add_comm, a̵d̵d̵_̵l̵e̵f̵t̵_̵c̵o̵m̵m̵,̵ ̵add_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:513:74: This simp argument is unused:
+  add_assoc
+
+Hint: Omit it from the simp argument list.
+  simp [T, sub_eq_add_neg, map_add, map_sub, add_comm, add_left_comm,̵ ̵a̵d̵d̵_̵a̵s̵s̵o̵c̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:603:78: This simp argument is unused:
+  EuclideanSpace.ofLp_single
+
+Hint: Omit it from the simp argument list.
+  simp [T, F, chordLinear, chordFrame, vec2, EuclideanSpace.single_apply,̵ ̵E̵u̵c̵l̵i̵d̵e̵a̵n̵S̵p̵a̵c̵e̵.̵o̵f̵L̵p̵_̵s̵i̵n̵g̵l̵e̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:657:43: This simp argument is unused:
+  real_inner_self_eq_norm_sq
+
+Hint: Omit it from the simp argument list.
+  simp [e, u, real_inner_smul_right, r̵e̵a̵l̵_̵i̵n̵n̵e̵r̵_̵s̵e̵l̵f̵_̵e̵q̵_̵n̵o̵r̵m̵_̵s̵q̵,̵ ̵hu_norm.ne']
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:464:12: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:467:12: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:602:10: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:756:16: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:366:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 600000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:461:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:603:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:775:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:847:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1120:6: 'simp [xCoord, ht0, ht1]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN6.lean:1121:6: 'exact L.x_strict (by simp [finIndex])' uses '⊢'!
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1138:10: 'simp [xCoord, ht0, ht1]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN6.lean:1141:10: 'exact L.x_strict hlt_fin' uses '⊢'!
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1382:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1409:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1415:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1435:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1491:47: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1263:6: 'simp [xCoord, ht0, ht1]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN6.lean:1264:6: 'exact L.x_strict (by simp [finIndex])' uses '⊢'!
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1300:10: 'simp [xCoord, ht0, ht1]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN6.lean:1303:10: 'exact L.x_strict hlt_fin' uses '⊢'!
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1524:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1581:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1586:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1771:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:2053:5: unused variable `Model`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8071/8224] Replayed Erdos9796Proof.P97.NoDiameterUnderK4
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:29: 'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:29: Try this:
+  [apply] simp only [Nat.succ_eq_add_one, Nat.reduceAdd, Fin.zero_eta, Fin.isValue, Matrix.cons_val_zero]
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:38: 'assumption' uses '⊢'!
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:29: 'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:29: Try this:
+  [apply] simp only [Nat.succ_eq_add_one, Nat.reduceAdd, Fin.mk_one, Fin.isValue, Matrix.cons_val_one,
+    Matrix.cons_val_zero]
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:38: 'assumption' uses '⊢'!
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:29: 'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:29: Try this:
+  [apply] simp only [Nat.succ_eq_add_one, Nat.reduceAdd, Fin.reduceFinMk, Matrix.cons_val]
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:38: 'assumption' uses '⊢'!
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:325:4: 'simp [Fin.sum_univ_three]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:325:4: Try this:
+  [apply] simp only [Nat.succ_eq_add_one, Nat.reduceAdd]
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:326:4: 'exact hq' uses '⊢'!
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:333:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 600000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:576:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 400000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:886:8: 'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:886:8: Try this:
+  [apply] simp only [mem_singleton]
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:886:14: 'exact hq_b.symm' uses '⊢'!
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:887:8: 'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:887:8: Try this:
+  [apply] simp only [mem_insert, mem_singleton, not_or]
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:888:10: 'exact hab_ne' uses '⊢'!
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:887:8: 'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:887:8: Try this:
+  [apply] simp only [mem_insert, mem_singleton, not_or]
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:889:10: 'exact hq_a.symm' uses '⊢'!
+⚠ [8072/8224] Replayed Erdos9796Proof.P97.CGN.CGN7
+warning: Erdos9796Proof/P97/CGN/CGN7.lean:209:10: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN7.lean:211:10: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN7.lean:76:5: unused variable `Hord`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN7.lean:77:5: unused variable `hconv`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN7.lean:78:5: unused variable `hmem`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN7.lean:119:32: This simp argument is unused:
+  ih
+
+Hint: Omit it from the simp argument list.
+  simp [Finset.sigma, ha, i̵h̵,̵ ̵Finset.card_disjUnion]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN7.lean:119:36: This simp argument is unused:
+  Finset.card_disjUnion
+
+Hint: Omit it from the simp argument list.
+  simp [Finset.sigma, ha, ih,̵ ̵F̵i̵n̵s̵e̵t̵.̵c̵a̵r̵d̵_̵d̵i̵s̵j̵U̵n̵i̵o̵n̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8073/8224] Replayed Erdos9796Proof.P97.ArcPartitionCount
+warning: Erdos9796Proof/P97/ArcPartitionCount.lean:67:12: please avoid 'open (scoped) Classical' statements: this can hide theorem statements which would be better stated with explicit decidability statements.
+Instead, use `open Classical in` for definitions or instances, the `classical` tactic for proofs.
+For theorem statements, either add missing decidability assumptions or use `open Classical in`.
+
+Note: This linter can be disabled with `set_option linter.style.openClassical false`
+warning: Erdos9796Proof/P97/ArcPartitionCount.lean:605:8: 'simp [Fin.sum_univ_three]
+        -- a • V1 + b • V2 + (1 - a - b) • V3 = v.
+        -- From h_decomp: v - V3 = a • (V1 - V3) + b • (V2 - V3).
+        -- So v = a • V1 + b • V2 + (1 - a - b) • V3.' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/ArcPartitionCount.lean:618:8: 'rw [h_decomp']' uses '⊢'!
+⚠ [8076/8224] Replayed Erdos9796Proof.P97.Dumitrescu.L10
+warning: Erdos9796Proof/P97/Dumitrescu/L10.lean:85:0: This file has more than one module docstring (`/-! ... -/`). Only the first one is treated as module documentation; convert additional ones to regular comments (`/- ... -/`).
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+⚠ [8077/8224] Replayed Erdos9796Proof.P97.CGN.CGN8
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:277:12: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:280:12: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:175:34: This simp argument is unused:
+  ih
+
+Hint: Omit it from the simp argument list.
+  simp [Finset.sigma, ha, i̵h̵,̵ ̵Finset.card_disjUnion]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:175:38: This simp argument is unused:
+  Finset.card_disjUnion
+
+Hint: Omit it from the simp argument list.
+  simp [Finset.sigma, ha, ih,̵ ̵F̵i̵n̵s̵e̵t̵.̵c̵a̵r̵d̵_̵d̵i̵s̵j̵U̵n̵i̵o̵n̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:485:34: This simp argument is unused:
+  nsmul_eq_mul
+
+Hint: Omit it from the simp argument list.
+  simp [Finset.sum_const, n̵s̵m̵u̵l̵_̵e̵q̵_̵m̵u̵l̵,̵ ̵Nat.mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:551:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:552:6: 'rcases hx with rfl | rfl' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:551:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:553:8: 'exact CP.v2_mem_C1' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:551:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:554:8: 'exact CP.v3_mem_C1' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:562:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:563:6: 'rcases hx with rfl | rfl' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:562:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:564:8: 'exact CP.v3_mem_C2' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:562:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:565:8: 'exact CP.v1_mem_C2' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:573:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:574:6: 'rcases hx with rfl | rfl' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:573:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:575:8: 'exact CP.v1_mem_C3' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:573:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:576:8: 'exact CP.v2_mem_C3' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:214:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [8079/8224] Replayed Erdos9796Proof.P97.N9Endpoint.Shell
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:214:12: Try `simp at hone` instead of `simpa using hone`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:293:12: Try `simp at hone` instead of `simpa using hone`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:372:12: Try `simp at hone` instead of `simpa using hone`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:410:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:411:6: 'rcases hx with rfl | rfl' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:410:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:412:8: 'exact S.CP.v2_mem_C1' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:410:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:413:8: 'exact S.CP.v3_mem_C1' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:439:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:440:6: 'rcases hx with rfl | rfl' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:439:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:441:8: 'exact S.CP.v3_mem_C2' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:439:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:442:8: 'exact S.CP.v1_mem_C2' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:475:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:476:6: 'rcases hx with rfl | rfl' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:475:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:477:8: 'exact S.CP.v1_mem_C3' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:475:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:478:8: 'exact S.CP.v2_mem_C3' uses 'hx'!
+⚠ [8083/8224] Replayed Erdos9796Proof.P97.N4d.SmallSReductions
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:699:14: missing space in the source
+
+This part of the code
+  '(bx-1)^2'
+should be written as
+  '(bx - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:699:17: missing space in the source
+
+This part of the code
+  '(bx-1)^2 + bw^2'
+should be written as
+  '1) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:699:24: missing space in the source
+
+This part of the code
+  'bw^2 = (X-1)^2+Y^2)'
+should be written as
+  'bw ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:699:31: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)'
+should be written as
+  '(X - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:699:34: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)
+ '
+should be written as
+  '1) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:700:14: missing space in the source
+
+This part of the code
+  '(bx-X)^2'
+should be written as
+  '(bx - X)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:700:17: missing space in the source
+
+This part of the code
+  '(bx-X)^2 + (bw-Y)^2'
+should be written as
+  'X) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:700:25: missing space in the source
+
+This part of the code
+  '(bw-Y)^2'
+should be written as
+  '(bw - Y)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:700:28: missing space in the source
+
+This part of the code
+  '(bw-Y)^2 = (X-1)^2+Y^2)'
+should be written as
+  'Y) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:700:35: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)'
+should be written as
+  '(X - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:700:38: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)
+ '
+should be written as
+  '1) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:702:21: missing space in the source
+
+This part of the code
+  'X)/2 - Oy*(bw'
+should be written as
+  'X) / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:702:28: missing space in the source
+
+This part of the code
+  'Oy*(bw -'
+should be written as
+  'Oy * (bw'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:703:18: missing space in the source
+
+This part of the code
+  '(X^2 - X'
+should be written as
+  '(X ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:703:28: missing space in the source
+
+This part of the code
+  'Y^2)/(2*Y))'
+should be written as
+  'Y ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:703:31: missing space in the source
+
+This part of the code
+  'Y^2)/(2*Y))'
+should be written as
+  '2) / (2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:703:34: missing space in the source
+
+This part of the code
+  'Y^2)/(2*Y))
+'
+should be written as
+  '(2 * Y))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:749:14: missing space in the source
+
+This part of the code
+  '(bx-1)^2'
+should be written as
+  '(bx - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:749:17: missing space in the source
+
+This part of the code
+  '(bx-1)^2 + bw^2'
+should be written as
+  '1) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:749:24: missing space in the source
+
+This part of the code
+  'bw^2 = (X-1)^2+Y^2)'
+should be written as
+  'bw ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:749:31: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)'
+should be written as
+  '(X - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:749:34: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)
+ '
+should be written as
+  '1) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:750:14: missing space in the source
+
+This part of the code
+  '(bx-X)^2'
+should be written as
+  '(bx - X)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:750:17: missing space in the source
+
+This part of the code
+  '(bx-X)^2 + (bw-Y)^2'
+should be written as
+  'X) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:750:25: missing space in the source
+
+This part of the code
+  '(bw-Y)^2'
+should be written as
+  '(bw - Y)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:750:28: missing space in the source
+
+This part of the code
+  '(bw-Y)^2 = (X-1)^2+Y^2)'
+should be written as
+  'Y) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:750:35: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)'
+should be written as
+  '(X - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:750:38: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)
+ '
+should be written as
+  '1) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:752:19: missing space in the source
+
+This part of the code
+  'Y/2 + Real.sqrt'
+should be written as
+  'Y / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:752:40: missing space in the source
+
+This part of the code
+  '(X-1)/2)'
+should be written as
+  '(X - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:752:43: missing space in the source
+
+This part of the code
+  '(X-1)/2) :'
+should be written as
+  '1) / 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:956:20: missing space in the source
+
+This part of the code
+  'X/2 - Real.sqrt'
+should be written as
+  'X / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:956:40: missing space in the source
+
+This part of the code
+  'Y/2 + 1/2)'
+should be written as
+  'Y / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:956:46: missing space in the source
+
+This part of the code
+  '1/2)
+ '
+should be written as
+  '1 / 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:957:20: missing space in the source
+
+This part of the code
+  'Y/2 + Real.sqrt'
+should be written as
+  'Y / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:957:41: missing space in the source
+
+This part of the code
+  '(X-1)/2)'
+should be written as
+  '(X - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:957:44: missing space in the source
+
+This part of the code
+  '(X-1)/2)
+ '
+should be written as
+  '1) / 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1220:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1400:8: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1308:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 4000000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1412:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 1000000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1508:2: 'simp [familyBChordEqLowerAnglePoint, vec2, EuclideanSpace.single_apply]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1508:2: Try this:
+  [apply] simp only [Fin.isValue, gt_iff_lt]
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1509:2: 'positivity' uses '⊢'!
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1538:4: 'simp [familyBChordEqLowerAnglePoint, vec2, EuclideanSpace.single_apply]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1538:4: Try this:
+  [apply] simp only [Fin.isValue]
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1539:4: 'rw [show Real.sqrt (4 - s ^ 2) = R by exact hR.symm]' uses '⊢'!
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1538:4: 'simp [familyBChordEqLowerAnglePoint, vec2, EuclideanSpace.single_apply]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1538:4: Try this:
+  [apply] simp only [Fin.isValue]
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1540:4: 'have hcalc :
+  (1 + s * R / 4 - Real.sqrt 3 * s ^ 2 / 4 - 1) ^ 2 + (s * (s + Real.sqrt 3 * R) / 4) ^ 2 =
+    s ^ 2 * R ^ 2 / 4 + s ^ 4 / 4 :=
+  by
+  ring_nf
+  rw [familyBChordEq_sqrt3_sq]
+  ring_nf' uses '⊢'!
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1538:4: 'simp [familyBChordEqLowerAnglePoint, vec2, EuclideanSpace.single_apply]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1538:4: Try this:
+  [apply] simp only [Fin.isValue]
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1546:4: 'rw [hcalc, hR_sq]' uses '⊢'!
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1560:4: 'simp [familyBChordEqHigherAnglePoint, vec2, EuclideanSpace.single_apply]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1560:4: Try this:
+  [apply] simp only [Fin.isValue]
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1561:4: 'rw [show Real.sqrt (4 - s ^ 2) = R by exact hR.symm]' uses '⊢'!
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1560:4: 'simp [familyBChordEqHigherAnglePoint, vec2, EuclideanSpace.single_apply]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1560:4: Try this:
+  [apply] simp only [Fin.isValue]
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1562:4: 'have hcalc :
+  (1 - s * R / 4 - Real.sqrt 3 * s ^ 2 / 4 - 1) ^ 2 + (s * (Real.sqrt 3 * R - s) / 4) ^ 2 =
+    s ^ 2 * R ^ 2 / 4 + s ^ 4 / 4 :=
+  by
+  ring_nf
+  rw [familyBChordEq_sqrt3_sq]
+  ring_nf' uses '⊢'!
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1560:4: 'simp [familyBChordEqHigherAnglePoint, vec2, EuclideanSpace.single_apply]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1560:4: Try this:
+  [apply] simp only [Fin.isValue]
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1568:4: 'rw [hcalc, hR_sq]' uses '⊢'!
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1662:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [8084/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part04
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part04.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part04.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part04.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part04.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8085/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part05
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part05.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part05.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part05.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part05.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8086/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part06
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part06.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part06.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part06.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part06.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8087/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part07
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part07.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part07.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part07.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part07.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8088/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part10
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part10.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part10.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part10.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part10.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8089/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part11
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part11.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part11.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part11.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part11.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8090/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part13
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part13.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part13.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part13.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part13.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8091/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part14
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part14.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part14.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part14.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part14.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8092/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part15
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part15.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part15.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part15.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part15.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8093/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage01Part16
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part16.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part16.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part16.lean:27:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part16.lean:27:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8094/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage02
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage02.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage02.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage02.lean:27:15: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x-x3y^2'
+should be written as
+  '-x3x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage02.lean:27:23: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x-x3y^2'
+should be written as
+  'x3x - x3y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage02.lean:27:27: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x-x3y^2 = 0)'
+should be written as
+  'x3y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8095/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage05
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage05.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage05.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage05.lean:27:15: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x*x4x-x3y^2+2*x3y*x4y-2*x4x+1'
+should be written as
+  '-x3x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage05.lean:27:23: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x*x4x-x3y^2+2*x3y*x4y-2*x4x+1'
+should be written as
+  'x3x * x4x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage05.lean:27:27: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x*x4x-x3y^2+2*x3y*x4y-2*x4x+1'
+should be written as
+  'x4x - x3y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage05.lean:27:31: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x*x4x-x3y^2+2*x3y*x4y-2*x4x+1'
+should be written as
+  'x3y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage05.lean:27:39: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x*x4x-x3y^2+2*x3y*x4y-2*x4x+1'
+should be written as
+  'x3y * x4y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage05.lean:27:43: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x*x4x-x3y^2+2*x3y*x4y-2*x4x+1'
+should be written as
+  'x4y - 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage05.lean:27:49: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x*x4x-x3y^2+2*x3y*x4y-2*x4x+1 = 0)'
+should be written as
+  'x4x + 1'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8096/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage06
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage06.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage06.lean:27:12: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1'
+should be written as
+  '2 * x4x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage06.lean:27:16: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1'
+should be written as
+  'x4x * x5x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage06.lean:27:20: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1'
+should be written as
+  'x5x - 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage06.lean:27:26: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1'
+should be written as
+  'x4x + 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage06.lean:27:32: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1'
+should be written as
+  'x4y * x5y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage06.lean:27:36: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1'
+should be written as
+  'x5y - x5x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage06.lean:27:40: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1'
+should be written as
+  'x5x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage06.lean:27:46: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1 = 0)'
+should be written as
+  'x5y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8097/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificateStage10
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage10.lean:18:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage10.lean:26:29: unused variable `x5x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage10.lean:27:16: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x6x-x2y^2+2*x2y*x6y'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage10.lean:27:24: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x6x-x2y^2+2*x2y*x6y'
+should be written as
+  'x2x * x6x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage10.lean:27:28: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x6x-x2y^2+2*x2y*x6y'
+should be written as
+  'x6x - x2y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage10.lean:27:32: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x6x-x2y^2+2*x2y*x6y'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage10.lean:27:40: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x6x-x2y^2+2*x2y*x6y ='
+should be written as
+  'x2y * x6y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8098/8224] Replayed Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionBCertificate
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:43:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:52:15: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:52:21: missing space in the source
+
+This part of the code
+  '-x2x^2-x2y^2+1 = 0)'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:53:15: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x-x3y^2'
+should be written as
+  '-x3x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:53:23: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x-x3y^2'
+should be written as
+  'x3x - x3y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:53:27: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x-x3y^2 = 0)'
+should be written as
+  'x3y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:54:15: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x3x-x2y^2+2*x2y*x3y'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:54:23: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x3x-x2y^2+2*x2y*x3y'
+should be written as
+  'x2x * x3x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:54:27: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x3x-x2y^2+2*x2y*x3y'
+should be written as
+  'x3x - x2y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:54:31: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x3x-x2y^2+2*x2y*x3y'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:54:39: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x3x-x2y^2+2*x2y*x3y ='
+should be written as
+  'x2y * x3y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:55:12: missing space in the source
+
+This part of the code
+  '2*x3x*x6x+2*x3y*x6y-x6x^2-x6y^2'
+should be written as
+  '2 * x3x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:55:16: missing space in the source
+
+This part of the code
+  '2*x3x*x6x+2*x3y*x6y-x6x^2-x6y^2'
+should be written as
+  'x3x * x6x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:55:20: missing space in the source
+
+This part of the code
+  '2*x3x*x6x+2*x3y*x6y-x6x^2-x6y^2'
+should be written as
+  'x6x + 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:55:26: missing space in the source
+
+This part of the code
+  '2*x3x*x6x+2*x3y*x6y-x6x^2-x6y^2'
+should be written as
+  'x3y * x6y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:55:30: missing space in the source
+
+This part of the code
+  '2*x3x*x6x+2*x3y*x6y-x6x^2-x6y^2'
+should be written as
+  'x6y - x6x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:55:34: missing space in the source
+
+This part of the code
+  '2*x3x*x6x+2*x3y*x6y-x6x^2-x6y^2'
+should be written as
+  'x6x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:55:40: missing space in the source
+
+This part of the code
+  '2*x3x*x6x+2*x3y*x6y-x6x^2-x6y^2 = 0)'
+should be written as
+  'x6y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:56:15: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x*x4x-x3y^2+2*x3y*x4y-2*x4x+1'
+should be written as
+  '-x3x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:56:23: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x*x4x-x3y^2+2*x3y*x4y-2*x4x+1'
+should be written as
+  'x3x * x4x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:56:27: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x*x4x-x3y^2+2*x3y*x4y-2*x4x+1'
+should be written as
+  'x4x - x3y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:56:31: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x*x4x-x3y^2+2*x3y*x4y-2*x4x+1'
+should be written as
+  'x3y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:56:39: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x*x4x-x3y^2+2*x3y*x4y-2*x4x+1'
+should be written as
+  'x3y * x4y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:56:43: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x*x4x-x3y^2+2*x3y*x4y-2*x4x+1'
+should be written as
+  'x4y - 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:56:49: missing space in the source
+
+This part of the code
+  '-x3x^2+2*x3x*x4x-x3y^2+2*x3y*x4y-2*x4x+1 = 0)'
+should be written as
+  'x4x + 1'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:57:12: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1'
+should be written as
+  '2 * x4x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:57:16: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1'
+should be written as
+  'x4x * x5x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:57:20: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1'
+should be written as
+  'x5x - 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:57:26: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1'
+should be written as
+  'x4x + 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:57:32: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1'
+should be written as
+  'x4y * x5y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:57:36: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1'
+should be written as
+  'x5y - x5x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:57:40: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1'
+should be written as
+  'x5x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:57:46: missing space in the source
+
+This part of the code
+  '2*x4x*x5x-2*x4x+2*x4y*x5y-x5x^2-x5y^2+1 = 0)'
+should be written as
+  'x5y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:58:12: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1'
+should be written as
+  '2 * x4x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:58:16: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1'
+should be written as
+  'x4x * x6x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:58:20: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1'
+should be written as
+  'x6x - 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:58:26: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1'
+should be written as
+  'x4x + 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:58:32: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1'
+should be written as
+  'x4y * x6y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:58:36: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1'
+should be written as
+  'x6y - x6x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:58:40: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1'
+should be written as
+  'x6x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:58:46: missing space in the source
+
+This part of the code
+  '2*x4x*x6x-2*x4x+2*x4y*x6y-x6x^2-x6y^2+1 = 0)'
+should be written as
+  'x6y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:59:12: missing space in the source
+
+This part of the code
+  '2*x5x-1'
+should be written as
+  '2 * x5x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:59:16: missing space in the source
+
+This part of the code
+  '2*x5x-1 = 0)'
+should be written as
+  'x5x - 1'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:60:15: missing space in the source
+
+This part of the code
+  '-x4x^2+2*x4x*x5x-x4y^2+2*x4y*x5y'
+should be written as
+  '-x4x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:60:23: missing space in the source
+
+This part of the code
+  '-x4x^2+2*x4x*x5x-x4y^2+2*x4y*x5y'
+should be written as
+  'x4x * x5x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:60:27: missing space in the source
+
+This part of the code
+  '-x4x^2+2*x4x*x5x-x4y^2+2*x4y*x5y'
+should be written as
+  'x5x - x4y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:60:31: missing space in the source
+
+This part of the code
+  '-x4x^2+2*x4x*x5x-x4y^2+2*x4y*x5y'
+should be written as
+  'x4y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:60:39: missing space in the source
+
+This part of the code
+  '-x4x^2+2*x4x*x5x-x4y^2+2*x4y*x5y ='
+should be written as
+  'x4y * x5y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:61:16: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x6x-x2y^2+2*x2y*x6y'
+should be written as
+  '-x2x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:61:24: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x6x-x2y^2+2*x2y*x6y'
+should be written as
+  'x2x * x6x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:61:28: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x6x-x2y^2+2*x2y*x6y'
+should be written as
+  'x6x - x2y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:61:32: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x6x-x2y^2+2*x2y*x6y'
+should be written as
+  'x2y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:61:40: missing space in the source
+
+This part of the code
+  '-x2x^2+2*x2x*x6x-x2y^2+2*x2y*x6y ='
+should be written as
+  'x2y * x6y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:62:16: missing space in the source
+
+This part of the code
+  '-x5x^2+2*x5x*x6x-x5y^2+2*x5y*x6y'
+should be written as
+  '-x5x ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:62:24: missing space in the source
+
+This part of the code
+  '-x5x^2+2*x5x*x6x-x5y^2+2*x5y*x6y'
+should be written as
+  'x5x * x6x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:62:28: missing space in the source
+
+This part of the code
+  '-x5x^2+2*x5x*x6x-x5y^2+2*x5y*x6y'
+should be written as
+  'x6x - x5y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:62:32: missing space in the source
+
+This part of the code
+  '-x5x^2+2*x5x*x6x-x5y^2+2*x5y*x6y'
+should be written as
+  'x5y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:62:40: missing space in the source
+
+This part of the code
+  '-x5x^2+2*x5x*x6x-x5y^2+2*x5y*x6y ='
+should be written as
+  'x5y * x6y'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+✔ [8099/8224] Built Erdos9796Proof.P97.WitnessPacketInterface (4.6s)
+✔ [8100/8224] Built Erdos9796Proof.P97.U1TwoShortCapReduction (4.9s)
+✔ [8101/8224] Built Erdos9796Proof.P97.U2.OneHitBound (3.0s)
+⚠ [8102/8224] Built Erdos9796Proof.P97.U2EquilateralMECFromM44 (4.7s)
+warning: Erdos9796Proof/P97/U2EquilateralMECFromM44.lean:9:0: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+✔ [8103/8224] Built Erdos9796Proof.P97.U1CarrierInjection (6.7s)
+⚠ [8104/8224] Built Erdos9796Proof.P97.U2.OneHitMonotone (5.7s)
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:107:71: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:148:66: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:162:64: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:164:34: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:164:40: missing space in the source
+
+This part of the code
+  '(π/3))
+'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:172:0: This file has more than one module docstring (`/-! ... -/`). Only the first one is treated as module documentation; convert additional ones to regular comments (`/- ... -/`).
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:212:71: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:273:66: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:290:67: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:292:34: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:292:40: missing space in the source
+
+This part of the code
+  '(π/3))
+'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8105/8224] Built Erdos9796Proof.P97.U5ModeADeletion (4.0s)
+warning: Erdos9796Proof/P97/U5ModeADeletion.lean:11:0: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+✔ [8106/8224] Built Erdos9796Proof.P97.U2SqueezePort (5.3s)
+✔ [8107/8224] Built Erdos9796Proof.P97.ATail.DeletionRobustness (4.6s)
+⚠ [8108/8224] Built Erdos9796Proof.P97.U2.OneHitRealization (4.4s)
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:58:0: This file has more than one module docstring (`/-! ... -/`). Only the first one is treated as module documentation; convert additional ones to regular comments (`/- ... -/`).
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:115:38: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:116:50: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:116:56: missing space in the source
+
+This part of the code
+  '(π/3)) (hγmono'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:127:38: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:128:50: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:128:56: missing space in the source
+
+This part of the code
+  '(π/3)) (hδanti'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+✔ [8109/8224] Built Erdos9796Proof.P97.U5GlobalIncidenceBasic (5.0s)
+✔ [8110/8224] Built Erdos9796Proof.P97.N8.N8aArcTwoCircle (4.7s)
+ℹ [8111/8224] Built Erdos9796Proof.P97.ATail.CapCrossingKalmanson (11s)
+info: Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:456:0: 'Problem97.CapCrossingKalmansonBridge.exists_mem_openSegment_diagonals_of_ccw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:457:0: 'Problem97.CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_openSegment_diagonals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:458:0: 'Problem97.CapCrossingKalmansonBridge.complementary_dist_add_dist_lt_diagonal_sum_of_openSegment_diagonals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:459:0: 'Problem97.CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:460:0: 'Problem97.CapCrossingKalmansonBridge.complementary_dist_add_dist_lt_diagonal_sum_of_ccw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:461:0: 'Problem97.CapCrossingKalmansonBridge.dist_lt_of_ccw_of_dist_diagonal_eq_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:462:0: 'Problem97.CapCrossingKalmansonBridge.dist_first_side_lt_second_diagonal_of_ccw_of_dist_diagonal_eq_last_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:463:0: 'Problem97.CapCrossingKalmansonBridge.false_of_five_ccw_three_shell_equalities' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:464:0: 'Problem97.CapCrossingKalmansonBridge.false_of_selected_rows_in_five_ccw_order' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:465:0: 'Problem97.CapCrossingKalmansonBridge.false_of_two_selected_rows_shared_late_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [8112/8224] Built Erdos9796Proof.P97.U2.SimilarityNormalization (7.2s)
+⚠ [8113/8224] Built Erdos9796Proof.P97.U3ToU5DangerousTriple (5.6s)
+warning: Erdos9796Proof/P97/U3ToU5DangerousTriple.lean:232:4: 'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/U3ToU5DangerousTriple.lean:232:4: Try this:
+  [apply] simp only [dist_self]
+info: Erdos9796Proof/P97/U3ToU5DangerousTriple.lean:233:4: 'exact ne_of_lt hr' uses '⊢'!
+✔ [8114/8224] Built Erdos9796Proof.P97.U5GlobalIncidenceSupport (7.2s)
+✔ [8115/8224] Built Erdos9796Proof.P97.ATail.OrdinalKalmansonCycle (4.8s)
+✔ [8116/8224] Built Erdos9796Proof.P97.N8.N8bEndpointPair (5.3s)
+✔ [8117/8224] Built Erdos9796Proof.P97.Census554.MotifTransfer (4.3s)
+✔ [8118/8224] Built Erdos9796Proof.P97.U5FiniteAudit (10s)
+✔ [8119/8224] Built Erdos9796Proof.P97.U1Depth5Prefix (19s)
+✔ [8120/8224] Built Erdos9796Proof.P97.ATail.CommonDeletionTwoCenter (4.8s)
+✔ [8121/8224] Built Erdos9796Proof.P97.N8.FourSubpacket (9.1s)
+⚠ [8122/8224] Built Erdos9796Proof.P97.N8.N8CapCoordNorm (16s)
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:633:22: 'simp [Fin.sum_univ_three] at hg'' is a flexible tactic modifying 'hg''. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:633:22: Try this:
+  [apply] simp only [Fin.isValue] at hg'
+info: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:634:6: 'convert hg' using 2' uses 'hg''!
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:893:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:911:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:930:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:1020:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:975:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:996:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:1018:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+✔ [8123/8224] Built Erdos9796Proof.P97.SurplusM44Packet.Shard01 (24s)
+✔ [8124/8224] Built Erdos9796Proof.P97.U1Depth5HrowRecord001PostAll8Independent (46s)
+✔ [8125/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1T2CoreSeedQT2 (47s)
+✔ [8126/8224] Built Erdos9796Proof.P97.U1Record001Cycle5CoreCollisionProductManifest (48s)
+✔ [8127/8224] Built Erdos9796Proof.P97.SurplusM44Packet.Shard02 (10s)
+✔ [8128/8224] Built Erdos9796Proof.P97.U1Depth5HSlotQT1Record001 (50s)
+✔ [8129/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1T2SupportPToF1F4 (53s)
+✔ [8130/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1T2SupportPToF1F3Manifest (54s)
+✔ [8131/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1T2SupportPToF1F4Manifest (53s)
+✔ [8132/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1T2SupportPToF1F3 (54s)
+✔ [8133/8224] Built Erdos9796Proof.P97.U1Depth5SourceUnitQT3Ordinal001Manifest (54s)
+✔ [8134/8224] Built Erdos9796Proof.P97.U1Depth5SourceUnitQT3Ordinal001 (55s)
+✔ [8135/8224] Built Erdos9796Proof.P97.SurplusM44Packet.Shard03 (9.8s)
+✔ [8136/8224] Built Erdos9796Proof.P97.U1Depth5HrowRecord001PostAll8Manifest (15s)
+✔ [8137/8224] Built Erdos9796Proof.P97.SurplusM44Packet.Shard04 (8.6s)
+✔ [8138/8224] Built Erdos9796Proof.P97.SurplusM44Packet.Shard05 (10s)
+✔ [8139/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001NonF1 (75s)
+✔ [8140/8224] Built Erdos9796Proof.P97.SurplusM44Packet.Shard06 (10s)
+✔ [8141/8224] Built Erdos9796Proof.P97.SurplusM44Packet.Shard07 (10s)
+✔ [8142/8224] Built Erdos9796Proof.P97.SurplusM44Packet.Shard08 (6.4s)
+✔ [8143/8224] Built Erdos9796Proof.P97.U1Depth5QT3PilotRecord001 (13s)
+✔ [8144/8224] Built Erdos9796Proof.P97.SurplusM44Packet.Shard09 (5.6s)
+✔ [8145/8224] Built Erdos9796Proof.P97.SurplusM44Packet (4.4s)
+⚠ [8146/8224] Built Erdos9796Proof.P97.CapSelectedRowCounting (7.7s)
+warning: Erdos9796Proof/P97/CapSelectedRowCounting.lean:707:42: This simp argument is unused:
+  hfirstLast
+
+Hint: Omit it from the simp argument list.
+  simp [weight, Finset.sum_add_distrib, h̵f̵i̵r̵s̵t̵L̵a̵s̵t̵,̵ ̵Nat.add_assoc, Nat.add_comm, Nat.add_left_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CapSelectedRowCounting.lean:708:6: This simp argument is unused:
+  Nat.add_comm
+
+Hint: Omit it from the simp argument list.
+  simp [weight, Finset.sum_add_distrib, hfirstLast, Nat.add_assoc, N̵a̵t̵.̵a̵d̵d̵_̵c̵o̵m̵m̵,̵ ̵Nat.add_left_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CapSelectedRowCounting.lean:708:20: This simp argument is unused:
+  Nat.add_left_comm
+
+Hint: Omit it from the simp argument list.
+  simp [weight, Finset.sum_add_distrib, hfirstLast, Nat.add_assoc, N̵a̵t̵.̵a̵d̵d̵_̵c̵o̵m̵m̵,̵ ̵N̵a̵t̵.̵a̵d̵d̵_̵l̵e̵f̵t̵_̵c̵o̵m̵m̵]̵N̲a̲t̲.̲a̲d̲d̲_̲c̲o̲m̲m̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CapSelectedRowCounting.lean:832:8: unused variable `Hside`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CapSelectedRowCounting.lean:833:8: unused variable `Hord`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CapSelectedRowCounting.lean:884:8: unused variable `Hside`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CapSelectedRowCounting.lean:885:8: unused variable `Hord`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8147/8224] Built Erdos9796Proof.P97.Q3SharedInterior (12s)
+warning: Erdos9796Proof/P97/Q3SharedInterior.lean:1004:4: Try `simp at hq` instead of `simpa using hq`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/Q3SharedInterior.lean:1034:2: Try `simp at hqInter` instead of `simpa using hqInter`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/Q3SharedInterior.lean:1096:4: Try `simp at hq` instead of `simpa using hq`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/Q3SharedInterior.lean:1126:2: Try `simp at hqInter` instead of `simpa using hqInter`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+✔ [8148/8224] Built Erdos9796Proof.P97.ATail.TwoCenterCapLocalization (5.5s)
+✔ [8149/8224] Built Erdos9796Proof.P97.U2NonSurplusOneHit (13s)
+✔ [8150/8224] Built Erdos9796Proof.P97.ATail.CriticalPairFrontier (6.6s)
+✔ [8151/8224] Built Erdos9796Proof.P97.ATail.CapInteriorRadiusCounting (5.8s)
+✔ [8152/8224] Built Erdos9796Proof.P97.ATail.ThirdCenterCommonPair (5.9s)
+✔ [8153/8224] Built Erdos9796Proof.P97.ATail.CriticalSystemRebase (5.9s)
+✔ [8154/8224] Built Erdos9796Proof.P97.ATail.LargeCapUniqueFive (6.7s)
+✔ [8155/8224] Built Erdos9796Proof.P97.ATail.CapApexRadiusRigidity (6.7s)
+✔ [8156/8224] Built Erdos9796Proof.P97.ATail.AnchoredDoubleDeletionProducer (6.8s)
+✔ [8157/8224] Built Erdos9796Proof.P97.ATail.MinimalDeletionCore (6.8s)
+✔ [8158/8224] Built Erdos9796Proof.P97.ATail.GlobalMinimalDeletion (5.2s)
+✔ [8159/8224] Built Erdos9796Proof.P97.ATail.LargeCapUniqueFiveCrossIncidence (5.5s)
+✔ [8160/8224] Built Erdos9796Proof.P97.ATail.LargeCapUniqueFiveLowHit (5.0s)
+✔ [8161/8224] Built Erdos9796Proof.P97.ATail.RobustLargeRadius (7.4s)
+✔ [8162/8224] Built Erdos9796Proof.P97.ATail.LargeCapUniqueFiveCommonDeletionNormalForm (5.4s)
+✔ [8163/8224] Built Erdos9796Proof.P97.ATail.OrientedPhysicalApexIngress (5.9s)
+✔ [8164/8224] Built Erdos9796Proof.P97.ATail.LargeCapUniqueFivePhysicalOmissionSuccessor (5.4s)
+✔ [8165/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1ExtraOmit3004 (151s)
+✔ [8166/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1ExtraOmit3003 (152s)
+✔ [8167/8224] Built Erdos9796Proof.P97.ATail.FirstApexCriticalFiber (6.1s)
+✔ [8168/8224] Built Erdos9796Proof.P97.ATail.PhysicalSecondApexCommonDeletion (6.1s)
+✔ [8169/8224] Built Erdos9796Proof.P97.ATail.FrontierCommonDeletionEscape (6.8s)
+✔ [8170/8224] Built Erdos9796Proof.P97.ATail.BiApexBlockerMultiplicity (6.3s)
+✔ [8171/8224] Built Erdos9796Proof.P97.ATail.LargeOppositeCapsBiApexSurface (6.3s)
+✔ [8172/8224] Built Erdos9796Proof.P97.ATail.PhysicalSecondApexSwap (6.6s)
+ℹ [8173/8224] Built Erdos9796Proof.P97.ATail.FirstApexCriticalFiberRow (7.0s)
+info: Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean:246:0: 'Problem97.ATailFirstApexCriticalFiberRow.criticalShell_inter_frontierRadiusClass_card_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [8174/8224] Built Erdos9796Proof.P97.ATail.FrontierCommonDeletionSurplusEscape (7.1s)
+✔ [8175/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1ExtraOmit3002 (162s)
+✔ [8176/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1ExtraOmit3007 (163s)
+✔ [8177/8224] Built Erdos9796Proof.P97.ATail.BiApexRobustCapBounds (5.7s)
+✔ [8178/8224] Built Erdos9796Proof.P97.ATail.CriticalFiberClosingCore (5.7s)
+ℹ [8179/8224] Built Erdos9796Proof.P97.ATail.LargeCapUniqueFivePhysicalOmissionCycle (15s)
+info: Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:549:0: 'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.physicalVertices_card_ge_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:550:0: 'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.nonempty_physicalActualCriticalOmissionTransition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:551:0: 'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.PhysicalActualCriticalOmissionCycle.source_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:552:0: 'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.PhysicalActualCriticalOmissionCycle.actualBlocker_ne_physicalApex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:553:0: 'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.PhysicalActualCriticalOmissionCycle.successor_not_mem_actualCriticalSupport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:554:0: 'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.PhysicalActualCriticalOmissionCycle.successor_deletion_survives_actualBlocker' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:555:0: 'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.PhysicalActualCriticalOmissionCycle.successor_actualBlockers_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:556:0: 'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.PhysicalActualCriticalOmissionCycle.period_le_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:557:0: 'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.PhysicalActualCriticalMutualOmissionEdge.reverse_deletion_survives_actualBlocker' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:558:0: 'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.nonempty_mutualOmissionEdge_or_all_reverseMembership' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:559:0: 'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.nonempty_physicalActualCriticalOmissionCycle_from_start' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:560:0: 'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.nonempty_physicalActualCriticalOmissionCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8180/8224] Built Erdos9796Proof.P97.ATail.FrontierLiveClosure (5.2s)
+warning: Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:40:8: declaration uses 'sorry'
+warning: Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:288:8: declaration uses 'sorry'
+✔ [8181/8224] Built Erdos9796Proof.P97.ATail.RobustLargeRadiusReduction (4.7s)
+ℹ [8182/8224] Built Erdos9796Proof.P97.ATail.PhysicalOmissionCycleParentResidual (7.0s)
+info: Erdos9796Proof/P97/ATail/PhysicalOmissionCycleParentResidual.lean:180:0: 'Problem97.ATailPhysicalOmissionCycleParentResidual.nonempty_exactFivePhysicalCycleParentResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/PhysicalOmissionCycleParentResidual.lean:181:0: 'Problem97.ATailPhysicalOmissionCycleParentResidual.nonempty_frontierCoupledExactFivePhysicalCycleParentResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/PhysicalOmissionCycleParentResidual.lean:182:0: 'Problem97.ATailPhysicalOmissionCycleParentResidual.commonDeletion_or_frontierCoupledExactFivePhysicalCycleParentResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/PhysicalOmissionCycleParentResidual.lean:183:0: 'Problem97.ATailPhysicalOmissionCycleParentResidual.false_of_largeSecondApexRadius_of_residualConsumers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [8183/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1T2ProductPAReverse (202s)
+✔ [8184/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1T2ProductPBReverse (203s)
+✔ [8185/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1T2ProductPBReverseManifest (204s)
+✔ [8186/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1T2ProductPAReverseManifest (206s)
+✔ [8187/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1ExtraOmit3000 (251s)
+✔ [8188/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1ExtraOmit3006 (251s)
+✔ [8189/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1ExtraOmit3010 (259s)
+✔ [8190/8224] Built Erdos9796Proof.P97.U1Depth5QT3PilotRecord001F1QOmit3 (4.1s)
+✔ [8191/8224] Built Erdos9796Proof.P97.U5GlobalIncidenceKernels (333s)
+✔ [8192/8224] Built Erdos9796Proof.P97.Census554.EqualityCore (5.2s)
+✔ [8193/8224] Built Erdos9796Proof.P97.Census554.SevenPointOrbitCollision (21s)
+✔ [8194/8224] Built Erdos9796Proof.P97.Census554.SixPointCircleChainCollision (21s)
+✔ [8195/8224] Built Erdos9796Proof.P97.Census554.SeparationCore (21s)
+✔ [8196/8224] Built Erdos9796Proof.P97.Census554.SevenPointSixCircleCollision (21s)
+✔ [8197/8224] Built Erdos9796Proof.P97.Census554.SixPointTwoPairCollision (21s)
+✔ [8198/8224] Built Erdos9796Proof.P97.Census554.SixPointFiveCircleCollisions (22s)
+✔ [8199/8224] Built Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionB (22s)
+ℹ [8200/8224] Built Erdos9796Proof.P97.Census554.FivePointCircleIsoscelesOrderCore (23s)
+info: Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderCore.lean:167:0: 'Problem97.Census554.FivePointCircleIsoscelesOrderCore.metric_order_incompatibility' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderCore.lean:168:0: 'Problem97.Census554.FivePointCircleIsoscelesOrderCore.false_of_core' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderCore.lean:169:0: 'Problem97.Census554.FivePointCircleIsoscelesOrderCore.false_of_core_of_neg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [8201/8224] Built Erdos9796Proof.P97.Census554.FiveRowCircleIntersectionGeometry (23s)
+✔ [8202/8224] Built Erdos9796Proof.P97.Census554.SevenEightPointFiveCircleCollisions (23s)
+✔ [8203/8224] Built Erdos9796Proof.P97.Census554.ConvexFivePointCore (24s)
+✔ [8204/8224] Built Erdos9796Proof.P97.Census554.SixRowAnchorCollision (25s)
+ℹ [8205/8224] Built Erdos9796Proof.P97.Census554.FivePointCircleIsoscelesOrderBridge (5.2s)
+info: Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean:64:0: 'Problem97.Census554.FivePointCircleIsoscelesOrderBridge.false_of_core_of_ccw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [8206/8224] Built Erdos9796Proof.P97.Census554.SurplusSourceCollision (28s)
+✔ [8207/8224] Built Erdos9796Proof.P97.Census554.SevenPointCircleNetworkCollision (29s)
+ℹ [8208/8224] Built Erdos9796Proof.P97.Census554.FiveRowCircleIntersectionOrderCore (6.1s)
+info: Erdos9796Proof/P97/Census554/FiveRowCircleIntersectionOrderCore.lean:125:0: 'Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: Erdos9796Proof/P97/Census554/FiveRowCircleIntersectionOrderCore.lean:126:0: 'Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core_of_neg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [8209/8224] Built Erdos9796Proof.P97.Census554.ConvexRhombusCore (13s)
+✔ [8210/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1ExtraOmit3009 (377s)
+✔ [8211/8224] Built Erdos9796Proof.P97.U1Depth5QT3PilotRecord001F1T1Omit3 (4.2s)
+✔ [8212/8224] Built Erdos9796Proof.P97.U5FiniteExtraction (61s)
+✔ [8213/8224] Built Erdos9796Proof.P97.Census554.ThreeTriadCollision (58s)
+✔ [8214/8224] Built Erdos9796Proof.P97.U3ToU5Terminal (4.3s)
+✔ [8215/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1T2SeedF1PAfterQT2Manifest (403s)
+✔ [8216/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1T2SeedF1PAfterQT2 (404s)
+✔ [8217/8224] Built Erdos9796Proof.P97.Census554.FivePointCollision (86s)
+✔ [8218/8224] Built Erdos9796Proof.P97.U1Depth5QT3PilotRecord001F1T2Omit3 (19s)
+✔ [8219/8224] Built Erdos9796Proof.P97.U1Depth5HSlotRecord001F1ExtraOmit3008 (685s)
+✔ [8220/8224] Built Erdos9796Proof.P97.U1Depth5QT3PilotRecord001F1T3Omit3 (3.9s)
+⚠ [8221/8224] Built Erdos9796Proof.P97.Census554.SevenPointTwinFourCircleCollision (5214s)
+warning: Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:30:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 12000000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+✔ [8222/8224] Built Erdos9796Proof.P97.Census554.GeneralCarrierBridge (5.1s)
+✔ [8223/8224] Built Erdos9796Proof.P97.ATail.CriticalFiberRetainedRadiusSelector (3.0s)
+⚠ [8224/8224] Built Erdos9796Proof.P97.U1LargeCapRouteBTail (8.2s)
+warning: Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:3453:5: unused variable `hlocalNoQFree`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:3454:5: unused variable `hfixed`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:3455:5: unused variable `hbase`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:3463:5: unused variable `hqCap`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:3465:5: unused variable `hqNonMoser`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:3466:5: unused variable `hnotOppExact`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:3470:5: unused variable `hnoRem`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:3477:5: unused variable `hf2Center_eq_rowAt_center`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:3482:5: unused variable `hf2Selected_l1_eq_rowAt_l1`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:3487:5: unused variable `H`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully (8224 jobs).

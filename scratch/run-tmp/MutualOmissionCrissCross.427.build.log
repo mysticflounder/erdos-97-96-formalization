@@ -1,0 +1,24 @@
+'Problem97.ATailExactFiveMutualOmissionClosureScratch.commonDeletion_blockerRow_eq_actualCriticalSupport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualOmissionClosureScratch.commonDeletion_physicalRow_eq_exactFiveClass_erase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualOmissionClosureScratch.nonempty_mutualOmissionCrissCrossNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualOmissionClosureScratch.actualBlocker_ne_physicalApex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualOmissionClosureScratch.allActualBlockers_crossSurvive_or_uniqueDoubleBlockingCenter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualOmissionClosureScratch.doubleBlockingActualSource_not_mem_physicalCap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualOmissionClosureScratch.doubleBlockingActualBlockerFiber_card_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveMutualOmissionClosureScratch.nonempty_mutualOmissionGlobalNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

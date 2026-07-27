@@ -1,0 +1,33 @@
+module=Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4KalmansonCorePort.UniqueFourKalmansonCores
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/ec4e18f80100c4b0-ivq6_oe3/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/ec4e18f80100c4b0-ivq6_oe3/module.ilean Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonCorePort/UniqueFourKalmansonCores.lean
+
+'Problem97.UniqueFourKalmansonCoresScratch.false_of_endpoint_k2_endpoint_k1_three_selected_rows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.UniqueFourKalmansonCoresScratch.false_of_endpoint_k2_endpoint_k1_three_selected_rows_long' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.UniqueFourKalmansonCoresScratch.false_of_one_k1_three_cyclic_selected_rows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.UniqueFourKalmansonCoresScratch.false_of_four_k2_five_selected_row_equalities' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.UniqueFourKalmansonCoresScratch.false_of_one_k2_two_k1_three_selected_rows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.UniqueFourKalmansonCoresScratch.false_of_endpoint_k1_four_selected_rows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.UniqueFourKalmansonCoresScratch.false_of_one_k1_two_endpoint_k2_three_selected_rows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.UniqueFourKalmansonCoresScratch.false_of_roundTwoFour_endpoint_rows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.UniqueFourKalmansonCoresScratch.false_of_three_endpoint_kalmanson_four_selected_rows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.UniqueFourKalmansonCoresScratch.false_of_endpoint_k2_endpoint_k1_three_selected_rows_postBankEight' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

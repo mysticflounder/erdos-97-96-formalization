@@ -1,0 +1,62 @@
+project:       erdos-97-96-formalization (erdos-97-96-formalization)
+root:          /Users/adam/projects/math-projects/erdos-97-96-formalization
+lean_lib:      /Users/adam/projects/math-projects/erdos-97-96-formalization/lean
+target_symbol: 2 targets: Problem97.erdos97_rhs, Problem96.erdos96_rhs
+
+last build:    ✓ passed · cached · 3s · 29s ago
+recent builds  (when · took · result · target):
+   11m ago      2s  cached       Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4CriticalSupportOccurrenceBridge.Residual55Families
+   11m ago      2s  cached       Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificateIngress
+    8m ago      9s  built 1      Erdos9796Proof.P97.ATail.FrontierLiveClosure
+    5m ago     11s  built 1      Erdos9796Proof.P97.U1LargeCapRouteBTail
+   29s ago      3s  cached       Erdos9796Proof.P97.U1LargeCapRouteBTail
+
+lean_files:    2552
+lean_symbols:  47881
+  axioms:      0 (0 sanctioned)
+  with-sorry:  5
+  closures:    0 cached
+
+index:         in sync with source
+uncommitted:   ⚠ 420 lean file(s) not committed — mined state may not be reproducible from git
+    M  lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coordinator.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coverage.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4CompactAtomBinding/BindingChunk01.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4CompactAtomBinding/BindingChunk02.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4CompactAtomBinding/BindingChunk03.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4CompactAtomBinding/BindingChunk04.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4CompactAtomBinding/BindingChunk05.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4CompactAtomBinding/BindingChunk06.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4CompactAtomBinding/BindingChunk07.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4CompactAtomBinding/BindingChunk08.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4CompactAtomBinding/BindingChunk09.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4CompactAtomBinding/BindingChunk10.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4SourceBridge/P4DirectRowArcFinite/P4DirectOuterArcFiniteData.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4SourceBridge/P4DirectRowArcFinite/P4DirectOuterArcFiniteDataChunk000.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4SourceBridge/P4DirectRowArcFinite/P4DirectOuterArcFiniteDataChunk001.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4SourceBridge/P4DirectRowArcFinite/P4DirectOuterArcFiniteDataChunk002.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4SourceBridge/P4DirectRowArcFinite/P4DirectOuterArcFiniteDataChunk003.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4SourceBridge/P4DirectRowArcFinite/P4DirectOuterArcFiniteDataChunk004.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4P4SourceBridge/P4DirectRowArcFinite/P4DirectOuterArcFiniteDataChunk005.lean
+    … and 400 more
+
+kernel spine (mined call graph — the only structure):
+  build:        1f3006ec34f2
+  mined fresh:  39839/39863 symbol(s)  (4 stale)
+  graph mined:  5m ago
+  trusted:      7880 🔒 (certs excluded by [mining].skip)
+  ⚠ 4 symbol(s) stale — run `refs --refresh` (needs warm Lake build)
+
+live sorries (cached @ build 1e235d3f7603, 2026-07-26T16:33:58+00:00):
+  on-spine (open frontier) (5):
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:129]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:118]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:69]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:528]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:616]
+  off-spine (placeholder — wire into the spine or remove) (0)
+
+session anchors: 5 total (graph unavailable — states unknown)
+
+your anchor: ⚓ Problem97.ATailFrontierLiveClosure.false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits

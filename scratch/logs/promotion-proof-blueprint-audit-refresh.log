@@ -1,0 +1,8 @@
+claiming (target_symbol): 2 targets: Problem97.erdos97_rhs, Problem96.erdos96_rhs
+sanctioned axioms: none
+
+  ❌ target `Problem97.erdos97_rhs`: unsanctioned axiom(s) on spine: sorryAx, Lean.trustCompiler
+  ❌ target `Problem96.erdos96_rhs`: unsanctioned axiom(s) on spine: sorryAx, Lean.trustCompiler
+  ⚠  160122 symbol(s) mined against an older build (`refs --refresh`)
+
+❌ audit found 2 error(s), 1 warning(s)

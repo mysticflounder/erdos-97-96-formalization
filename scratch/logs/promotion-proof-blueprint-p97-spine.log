@@ -1,0 +1,70 @@
+active anchors (4):
+  ⚓ d4fa82b5  Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsBiApexRobustResidual  [open]  — all-large-caps terminal, profile (6,6,6), carrier card >= 15, general in n. Five-point-cap profiles (all of card 14) dispatched at 744e7b1b by cap redesignation. NOTE: proof-blueprint refs --refresh is mandatory after adding decls - without it spine mislabelled the parent [closed] while #print axioms showed sorryAx. Superseded: the card-14 (5,6,6) certificate surface in scratch/atail-force/lcap14-global-parent-surface (do not resume its decision runs); its 802 schemas + Farkas certificates remain valid as cardinality-free lemmas.
+  ⚓ 019f91c7 (YOU)  Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm  [open]  — p5 (5,5,4) exact-two contradiction now kernel-composed in scratch with approved trust closure; compact clean-checkout certificate packaging in progress; p4 exact-two and arbitrary-cardinality reduction remain
+  ⚓ c188f5d9  Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm  [open]  — p5 exact-two occurrence-map bridge: own scratch/atail-force/unique4-exact-two-source-bridge/OccurrenceBridge only; prove the 8,703 trimmed CNF clauses satisfied by the IndexedSource valuation (IndexedSource/ itself is landed and frozen at 024626d0)
+  ⚓ 019f9077  Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm  [open]  — p5 exact-two trimmed-certificate ingress under fixed-card-11 sub-bridge
+spine rooted at: Problem97.erdos97_rhs
+(this is a [publish] target_symbol — a claim being gated)
+approved axioms: core + Lean.trustCompiler
+open: 20/2265 node(s)
+trusted leaves: 20 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
+spine source: 66862 line(s) of lean across 2273 decl(s)
+
+open obligations (3):
+  💧 Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApexRobustResidual  [sorry]
+  💧 Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm  [sorry]
+  ❌ sorryAx  [unapproved axiom]
+
+(open branches only — closed subtrees collapsed; --full for everything)
+└── Problem97.erdos97_rhs
+    └── Problem97.UniversalProblem97
+        ├── Problem97.universalReductionHypotheses
+        │   ├── Problem97.descent_contradicts_minimality
+        │   │   ├── Problem97.RemovableVertexOfLarge
+        │   │   │   ├── Problem97.RemovableVertexOfLarge_from_pinnedSurplusCOMPGBank
+        │   │   │   │   ├── Problem97.removableVertexOfLarge_of_nonIsM44
+        │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_false
+        │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_liveData_false
+        │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap
+        │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_criticalPairFrontier
+        │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm  [💧]  ⚓ (YOU)
+        │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierCommonDeletionPhysicalSecondApex
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierBiApexRobustResidual
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierBiApexRobustExactFiveSecondCapResidual
+        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm  [💧]  ⚓ (YOU) (seen)
+        │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierLargeOppositeCapsBiApexRobustResidual
+        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsBiApexRobustResidual
+        │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm  [💧]  ⚓ (YOU) (seen)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApexRobustResidual  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_physicalSecondApexCriticalResidual
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm  [💧]  ⚓ (YOU) (seen)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 27 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.surplusCap_card_ge_six_of_largeOppositeCaps
+        │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm  [💧]  ⚓ (YOU) (seen)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 7 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_physicalSecondApexCriticalResidual (seen)
+        │   │   │   │   │   │   │   │   │   │   └── ✓ 8 closed dep(s)
+        │   │   │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
+        │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
+        │   │   │   │   │   │   │   └── ✓ 26 closed dep(s)
+        │   │   │   │   │   │   └── ✓ 47 closed dep(s)
+        │   │   │   │   │   └── ✓ 25 closed dep(s)
+        │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   └── ✓ 2 closed dep(s)
+        │   │   └── ✓ 3 closed dep(s)
+        │   └── ✓ 3 closed dep(s)
+        └── ✓ 2 closed dep(s)
+
+❌ NOT kernel-complete — spine of `Problem97.erdos97_rhs` has:
+  - reaches sorry via 2 symbol(s)
+  - unapproved axiom on spine: sorryAx
+
+unimported files (590 file(s), 2659 symbol(s) — never reached by any lake import chain) — --full to list

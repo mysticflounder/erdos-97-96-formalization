@@ -1,0 +1,13 @@
+scratch/atail-force/unique4-n11-source-lift/REPORT.md:71:mkdir -p /tmp/unique4-n11-source-lift-recheck
+scratch/atail-force/unique4-n11-source-lift/REPORT.md:73:LEAN_PATH=../scratch/atail-force/unique-arm-route-audit:../scratch/atail-force/unique-row-producer:/tmp/unique4-n11-source-lift-recheck \
+scratch/atail-force/unique4-n11-source-lift/REPORT.md:74:  lake env lean -M 16384 -DwarningAsError=true \
+scratch/atail-force/unique4-n11-source-lift/REPORT.md:76:  -o /tmp/unique4-n11-source-lift-recheck/UniqueFourClassCapDistribution.olean \
+scratch/atail-force/unique4-n11-source-lift/REPORT.md:79:LEAN_PATH=../scratch/atail-force/unique-arm-route-audit:../scratch/atail-force/unique-row-producer:/tmp/unique4-n11-source-lift-recheck \
+scratch/atail-force/unique4-n11-source-lift/REPORT.md:80:  lake env lean -M 16384 -DwarningAsError=true \
+scratch/atail-force/unique4-n11-source-lift/REPORT.md:81:  -R ../scratch/atail-force/unique4-n11-source-lift \
+scratch/atail-force/unique4-n11-source-lift/REPORT.md:82:  -o /tmp/unique4-n11-source-lift-recheck/CardElevenUniqueFourCoverage.olean \
+scratch/atail-force/unique4-n11-source-lift/REPORT.md:83:  ../scratch/atail-force/unique4-n11-source-lift/CardElevenUniqueFourCoverage.lean
+scratch/atail-force/unique4-n11-source-lift/REPORT.md:89:read from their owning scratch directories in `LEAN_PATH`.  All three printed
+scratch/atail-force/unique4-exact-two-lrat-ingress/validate_p5_exact_two_closure.sh:43:TASK_LEAN_PATH="$REPLAY_OLEAN:\
+scratch/atail-force/unique4-exact-two-lrat-ingress/validate_p5_exact_two_closure.sh:51:../scratch/atail-force/unique4-n11-source-lift:\
+scratch/atail-force/unique4-exact-two-lrat-ingress/validate_p5_exact_two_closure.sh:58:LEAN_PATH="$TASK_LEAN_PATH" "$ROOT/scripts/lean427" lake env lean -M16384 -DwarningAsError=true \

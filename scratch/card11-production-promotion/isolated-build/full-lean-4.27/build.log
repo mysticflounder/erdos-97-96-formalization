@@ -1,0 +1,29 @@
+target=Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificateIngress
+closure=1224
+missing=345
+shadow=/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-lean-4.27/lib/lean
+lean=Lean (version 4.27.0, arm64-apple-darwin24.6.0, commit db93fe1608548721853390a10cd40580fe7d22ae, Release)
+
+=== 1/345 Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4ClassCapDistribution.UniqueFourClassCapDistribution ===
+Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:305:6: error: `simp` failed: maximum number of steps exceeded
+Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:310:6: error: `simp` failed: maximum number of steps exceeded
+Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:317:6: error: `simp` failed: maximum number of steps exceeded
+'Problem97.ATailUniqueFourClassCapDistributionScratch.exists_interiorDoubleDeletionPair_of_three_strict_hits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourClassCapDistributionScratch.AlignedInteriorFrontier.residual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourClassCapDistributionScratch.AlignedInteriorFrontier.pair_oppApex2_dist_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourClassCapDistributionScratch.exactFour_twoStrict_or_alignedInteriorFrontier' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:7:0: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:8:0: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`

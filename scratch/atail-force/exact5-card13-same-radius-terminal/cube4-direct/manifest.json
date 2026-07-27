@@ -1,0 +1,410 @@
+{
+  "coverage": "all Boolean assignments in lexicographic False/True order",
+  "cube_bits": [
+    "m_4_9",
+    "m_4_10",
+    "m_4_11",
+    "m_4_12"
+  ],
+  "cube_width": 4,
+  "epistemic_status": "EXACT_SOURCE_ASSERTION_UNSAT_UNDER_EXHAUSTIVE_BOOLEAN_CUBES",
+  "input": "scratch/atail-force/exact5-card13-same-radius-terminal/direct.source-core.pass5.json",
+  "input_core_size": 1899,
+  "input_sha256": "c16051c37a9a8e5dd169a7662328b8992219c998a2f16cc225dc2e1b1e3506d6",
+  "leaf_count": 16,
+  "leaves": [
+    {
+      "core_size": 1,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": false
+        },
+        {
+          "atom": "m_4_10",
+          "value": false
+        },
+        {
+          "atom": "m_4_11",
+          "value": false
+        },
+        {
+          "atom": "m_4_12",
+          "value": false
+        }
+      ],
+      "leaf": 0,
+      "path": "leaf-000.json",
+      "status": "UNSAT"
+    },
+    {
+      "core_size": 1,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": false
+        },
+        {
+          "atom": "m_4_10",
+          "value": false
+        },
+        {
+          "atom": "m_4_11",
+          "value": false
+        },
+        {
+          "atom": "m_4_12",
+          "value": true
+        }
+      ],
+      "leaf": 1,
+      "path": "leaf-001.json",
+      "status": "UNSAT"
+    },
+    {
+      "core_size": 1,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": false
+        },
+        {
+          "atom": "m_4_10",
+          "value": false
+        },
+        {
+          "atom": "m_4_11",
+          "value": true
+        },
+        {
+          "atom": "m_4_12",
+          "value": false
+        }
+      ],
+      "leaf": 2,
+      "path": "leaf-002.json",
+      "status": "UNSAT"
+    },
+    {
+      "core_size": 1758,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": false
+        },
+        {
+          "atom": "m_4_10",
+          "value": false
+        },
+        {
+          "atom": "m_4_11",
+          "value": true
+        },
+        {
+          "atom": "m_4_12",
+          "value": true
+        }
+      ],
+      "leaf": 3,
+      "path": "leaf-003.json",
+      "status": "UNSAT"
+    },
+    {
+      "core_size": 1,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": false
+        },
+        {
+          "atom": "m_4_10",
+          "value": true
+        },
+        {
+          "atom": "m_4_11",
+          "value": false
+        },
+        {
+          "atom": "m_4_12",
+          "value": false
+        }
+      ],
+      "leaf": 4,
+      "path": "leaf-004.json",
+      "status": "UNSAT"
+    },
+    {
+      "core_size": 1719,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": false
+        },
+        {
+          "atom": "m_4_10",
+          "value": true
+        },
+        {
+          "atom": "m_4_11",
+          "value": false
+        },
+        {
+          "atom": "m_4_12",
+          "value": true
+        }
+      ],
+      "leaf": 5,
+      "path": "leaf-005.json",
+      "status": "UNSAT"
+    },
+    {
+      "core_size": 1748,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": false
+        },
+        {
+          "atom": "m_4_10",
+          "value": true
+        },
+        {
+          "atom": "m_4_11",
+          "value": true
+        },
+        {
+          "atom": "m_4_12",
+          "value": false
+        }
+      ],
+      "leaf": 6,
+      "path": "leaf-006.json",
+      "status": "UNSAT"
+    },
+    {
+      "core_size": 1807,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": false
+        },
+        {
+          "atom": "m_4_10",
+          "value": true
+        },
+        {
+          "atom": "m_4_11",
+          "value": true
+        },
+        {
+          "atom": "m_4_12",
+          "value": true
+        }
+      ],
+      "leaf": 7,
+      "path": "leaf-007.json",
+      "status": "UNSAT"
+    },
+    {
+      "core_size": 1,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": true
+        },
+        {
+          "atom": "m_4_10",
+          "value": false
+        },
+        {
+          "atom": "m_4_11",
+          "value": false
+        },
+        {
+          "atom": "m_4_12",
+          "value": false
+        }
+      ],
+      "leaf": 8,
+      "path": "leaf-008.json",
+      "status": "UNSAT"
+    },
+    {
+      "core_size": 1760,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": true
+        },
+        {
+          "atom": "m_4_10",
+          "value": false
+        },
+        {
+          "atom": "m_4_11",
+          "value": false
+        },
+        {
+          "atom": "m_4_12",
+          "value": true
+        }
+      ],
+      "leaf": 9,
+      "path": "leaf-009.json",
+      "status": "UNSAT"
+    },
+    {
+      "core_size": 1732,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": true
+        },
+        {
+          "atom": "m_4_10",
+          "value": false
+        },
+        {
+          "atom": "m_4_11",
+          "value": true
+        },
+        {
+          "atom": "m_4_12",
+          "value": false
+        }
+      ],
+      "leaf": 10,
+      "path": "leaf-010.json",
+      "status": "UNSAT"
+    },
+    {
+      "core_size": 1790,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": true
+        },
+        {
+          "atom": "m_4_10",
+          "value": false
+        },
+        {
+          "atom": "m_4_11",
+          "value": true
+        },
+        {
+          "atom": "m_4_12",
+          "value": true
+        }
+      ],
+      "leaf": 11,
+      "path": "leaf-011.json",
+      "status": "UNSAT"
+    },
+    {
+      "core_size": 1770,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": true
+        },
+        {
+          "atom": "m_4_10",
+          "value": true
+        },
+        {
+          "atom": "m_4_11",
+          "value": false
+        },
+        {
+          "atom": "m_4_12",
+          "value": false
+        }
+      ],
+      "leaf": 12,
+      "path": "leaf-012.json",
+      "status": "UNSAT"
+    },
+    {
+      "core_size": 1809,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": true
+        },
+        {
+          "atom": "m_4_10",
+          "value": true
+        },
+        {
+          "atom": "m_4_11",
+          "value": false
+        },
+        {
+          "atom": "m_4_12",
+          "value": true
+        }
+      ],
+      "leaf": 13,
+      "path": "leaf-013.json",
+      "status": "UNSAT"
+    },
+    {
+      "core_size": 1819,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": true
+        },
+        {
+          "atom": "m_4_10",
+          "value": true
+        },
+        {
+          "atom": "m_4_11",
+          "value": true
+        },
+        {
+          "atom": "m_4_12",
+          "value": false
+        }
+      ],
+      "leaf": 14,
+      "path": "leaf-014.json",
+      "status": "UNSAT"
+    },
+    {
+      "core_size": 1799,
+      "cube": [
+        {
+          "atom": "m_4_9",
+          "value": true
+        },
+        {
+          "atom": "m_4_10",
+          "value": true
+        },
+        {
+          "atom": "m_4_11",
+          "value": true
+        },
+        {
+          "atom": "m_4_12",
+          "value": true
+        }
+      ],
+      "leaf": 15,
+      "path": "leaf-015.json",
+      "status": "UNSAT"
+    }
+  ],
+  "max_core_size": 1819,
+  "mean_core_size": 1219.75,
+  "min_core_size": 1,
+  "minimize": false,
+  "orbit": "asymmetricSourceLeft",
+  "schema": "p97-exact5-card13-cube-source-core-manifest-v1",
+  "statuses": [
+    "UNSAT"
+  ]
+}

@@ -1,0 +1,24 @@
+'Problem97.ATailCardGe14FaithfulCarrierEscapeConsumerScratch.faithfulRow_at_commonBlocker_eq_fiberShell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCardGe14FaithfulCarrierEscapeConsumerScratch.fiberSources_mem_faithfulRow_at_commonBlocker' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCardGe14FaithfulCarrierEscapeConsumerScratch.IncidenceShadow.capPartition_and_canonicalCarrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCardGe14FaithfulCarrierEscapeConsumerScratch.IncidenceShadow.rows_are_four_point_carrier_classes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCardGe14FaithfulCarrierEscapeConsumerScratch.IncidenceShadow.blocker_rows_are_source_faithful' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCardGe14FaithfulCarrierEscapeConsumerScratch.IncidenceShadow.commonBlocker_fiber' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCardGe14FaithfulCarrierEscapeConsumerScratch.IncidenceShadow.canonical_escape' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCardGe14FaithfulCarrierEscapeConsumerScratch.IncidenceShadow.no_distinct_row_contains_fiber_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

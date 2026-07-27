@@ -1,0 +1,11 @@
+claiming (target_symbol): 2 targets: Problem97.erdos97_rhs, Problem96.erdos96_rhs
+sanctioned axioms: none
+
+  ⚠ 6 uncommitted lean file(s) — this verdict is computed from working-tree source, not git HEAD
+off-spine sorries: none — all live work is wired into the spine
+
+❌ verify-publish FAILED (4 blocker(s)):
+  - target_symbol `Problem97.erdos97_rhs`: 1 unapproved custom axiom(s) on spine: sorryAx
+  - spine of `Problem97.erdos97_rhs` reaches sorry via Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApexRobustResidual, Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm
+  - target_symbol `Problem96.erdos96_rhs`: 1 unapproved custom axiom(s) on spine: sorryAx
+  - spine of `Problem96.erdos96_rhs` reaches sorry via Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApexRobustResidual, Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm

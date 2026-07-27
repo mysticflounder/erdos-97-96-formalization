@@ -1,0 +1,52 @@
+{
+  "core": [
+    {
+      "assertion": "(or m_4_10 b1_10)",
+      "index": 37369
+    }
+  ],
+  "core_size": 1,
+  "cube": [
+    {
+      "atom": "m_4_9",
+      "value": true
+    },
+    {
+      "atom": "m_4_10",
+      "value": false
+    },
+    {
+      "atom": "m_4_11",
+      "value": false
+    },
+    {
+      "atom": "m_4_12",
+      "value": true
+    },
+    {
+      "atom": "b1_9",
+      "value": false
+    },
+    {
+      "atom": "b1_10",
+      "value": false
+    }
+  ],
+  "elapsed_seconds": 2.772619833936915,
+  "input_core_size": 1899,
+  "orbit": "asymmetricSourceLeft",
+  "schema": "p97-exact5-card13-cube-source-core-leaf-v1",
+  "seed": 53,
+  "source_counts": {
+    "base_assertions": 37363,
+    "guarded_exact_five_shell_rank_equalities": 66,
+    "guarded_selected_row_rank_equalities": 2640,
+    "kalmanson_cancellation_implications": 5720,
+    "rank_atoms": 78,
+    "rank_bit_width": 7,
+    "retained_parent_row_assertions": 0,
+    "source_role_assertions": 11,
+    "total_source_assertions": 45878
+  },
+  "status": "UNSAT"
+}

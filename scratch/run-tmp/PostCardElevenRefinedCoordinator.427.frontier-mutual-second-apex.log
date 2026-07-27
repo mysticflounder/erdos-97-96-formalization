@@ -1,0 +1,14 @@
+'Problem97.ATailUniqueArmPostCardElevenRefinedCoordinatorScratch.ExactFourPostCardElevenRefinedOutcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueArmPostCardElevenRefinedCoordinatorScratch.nonempty_exactFourPostCardElevenRefinedOutcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueArmPostCardElevenRefinedCoordinatorScratch.OriginalUniqueRadiusArmPostCardElevenRefinedClosers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueArmPostCardElevenRefinedCoordinatorScratch.false_of_originalFrontierUniqueRadiusArm_of_refinedPostCardElevenClosers' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]

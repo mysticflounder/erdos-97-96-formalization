@@ -1,0 +1,753 @@
+⚠ [8004/8087] Replayed Erdos9796Proof.P97.Cap.Partition
+warning: Erdos9796Proof/P97/Cap/Partition.lean:15:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [8006/8087] Replayed Erdos9796Proof.P97.Dumitrescu.L9
+warning: Erdos9796Proof/P97/Dumitrescu/L9.lean:53:20: unused variable `h₁`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Dumitrescu/L9.lean:53:34: unused variable `h₂`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Dumitrescu/L9.lean:53:48: unused variable `h₃`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8015/8087] Replayed Erdos9796Proof.P97.Cap.Structure
+warning: Erdos9796Proof/P97/Cap/Structure.lean:282:0: This file has more than one module docstring (`/-! ... -/`). Only the first one is treated as module documentation; convert additional ones to regular comments (`/- ... -/`).
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+⚠ [8031/8087] Replayed Erdos9796Proof.P97.U2EquilateralMECFromM44
+warning: Erdos9796Proof/P97/U2EquilateralMECFromM44.lean:9:0: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+⚠ [8044/8087] Replayed Erdos9796Proof.P97.CGN.CGN
+warning: Erdos9796Proof/P97/CGN/CGN.lean:300:4: 'simp [edgeAt] at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN.lean:301:4: 'rcases hx with rfl | rfl' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN.lean:300:4: 'simp [edgeAt] at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN.lean:302:6: 'exact hmem r' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN.lean:300:4: 'simp [edgeAt] at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN.lean:303:6: 'exact hmem s' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN.lean:336:33: Try `simp at hp_lt` instead of `simpa using hp_lt`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN.lean:344:33: Try `simp at hp_lt` instead of `simpa using hp_lt`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN.lean:324:2: 'simp [edgeAt] at hp1mem hp2mem' is a flexible tactic modifying 'hp1mem'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN.lean:325:2: 'have hp1idx : p.1 = q.1 ∨ p.1 = q.2 := by
+  rcases hp1mem with hp1mem | hp1mem
+  · exact Or.inl (L.injective hp1mem)
+  · exact Or.inr (L.injective hp1mem)' uses 'hp1mem'!
+warning: Erdos9796Proof/P97/CGN/CGN.lean:324:2: 'simp [edgeAt] at hp1mem hp2mem' is a flexible tactic modifying 'hp2mem'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN.lean:329:2: 'have hp2idx : p.2 = q.1 ∨ p.2 = q.2 := by
+  rcases hp2mem with hp2mem | hp2mem
+  · exact Or.inl (L.injective hp2mem)
+  · exact Or.inr (L.injective hp2mem)' uses 'hp2mem'!
+⚠ [8047/8087] Replayed Erdos9796Proof.P97.ConvexCyclicOrder.Construct
+warning: Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:1296:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [8048/8087] Replayed Erdos9796Proof.P97.CGN.CGN4g
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:585:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:593:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:610:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:616:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:623:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:752:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1334:12: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1345:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1376:20: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1376:52: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1471:23: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1479:23: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1518:20: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1518:52: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1613:23: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1621:23: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1650:8: unused variable `Hside`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1651:8: unused variable `Hord`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1696:8: unused variable `Hside`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1697:8: unused variable `Hord`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8050/8087] Replayed Erdos9796Proof.P97.CGN.CGN6
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:205:20: unused variable `hn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:216:5: unused variable `he`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:229:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:236:64: This simp argument is unused:
+  inner_add_right
+
+Hint: Omit it from the simp argument list.
+  simp [chordFrame, inner_add_left,̵ ̵i̵n̵n̵e̵r̵_̵a̵d̵d̵_̵r̵i̵g̵h̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:240:65: This simp argument is unused:
+  inner_smul_right
+
+Hint: Omit it from the simp argument list.
+  simp [chordFrame, inner_smul_left,̵ ̵i̵n̵n̵e̵r̵_̵s̵m̵u̵l̵_̵r̵i̵g̵h̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:236:10: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:240:10: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:252:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:254:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:256:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:272:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:285:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:289:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:343:8: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:410:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:412:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:421:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:491:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:556:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:558:33: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:561:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:596:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:376:40: unused variable `tau`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:513:40: This simp argument is unused:
+  map_sub
+
+Hint: Omit it from the simp argument list.
+  simp [T, sub_eq_add_neg, map_add, m̵ap̵_̵s̵u̵b̵,̵ ̵a̵dd_comm, add_left_comm, add_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:513:59: This simp argument is unused:
+  add_left_comm
+
+Hint: Omit it from the simp argument list.
+  simp [T, sub_eq_add_neg, map_add, map_sub, add_comm, a̵d̵d̵_̵l̵e̵f̵t̵_̵c̵o̵m̵m̵,̵ ̵add_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:513:74: This simp argument is unused:
+  add_assoc
+
+Hint: Omit it from the simp argument list.
+  simp [T, sub_eq_add_neg, map_add, map_sub, add_comm, add_left_comm,̵ ̵a̵d̵d̵_̵a̵s̵s̵o̵c̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:603:78: This simp argument is unused:
+  EuclideanSpace.ofLp_single
+
+Hint: Omit it from the simp argument list.
+  simp [T, F, chordLinear, chordFrame, vec2, EuclideanSpace.single_apply,̵ ̵E̵u̵c̵l̵i̵d̵e̵a̵n̵S̵p̵a̵c̵e̵.̵o̵f̵L̵p̵_̵s̵i̵n̵g̵l̵e̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:657:43: This simp argument is unused:
+  real_inner_self_eq_norm_sq
+
+Hint: Omit it from the simp argument list.
+  simp [e, u, real_inner_smul_right, r̵e̵a̵l̵_̵i̵n̵n̵e̵r̵_̵s̵e̵l̵f̵_̵e̵q̵_̵n̵o̵r̵m̵_̵s̵q̵,̵ ̵hu_norm.ne']
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:464:12: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:467:12: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:602:10: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:756:16: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:366:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 600000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:461:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:603:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:775:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:847:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1120:6: 'simp [xCoord, ht0, ht1]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN6.lean:1121:6: 'exact L.x_strict (by simp [finIndex])' uses '⊢'!
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1138:10: 'simp [xCoord, ht0, ht1]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN6.lean:1141:10: 'exact L.x_strict hlt_fin' uses '⊢'!
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1382:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1409:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1415:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1435:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1491:47: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1263:6: 'simp [xCoord, ht0, ht1]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN6.lean:1264:6: 'exact L.x_strict (by simp [finIndex])' uses '⊢'!
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1300:10: 'simp [xCoord, ht0, ht1]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN6.lean:1303:10: 'exact L.x_strict hlt_fin' uses '⊢'!
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1524:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1581:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1586:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1771:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:2053:5: unused variable `Model`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8053/8087] Replayed Erdos9796Proof.P97.NoDiameterUnderK4
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:29: 'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:29: Try this:
+  [apply] simp only [Nat.succ_eq_add_one, Nat.reduceAdd, Fin.zero_eta, Fin.isValue, Matrix.cons_val_zero]
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:38: 'assumption' uses '⊢'!
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:29: 'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:29: Try this:
+  [apply] simp only [Nat.succ_eq_add_one, Nat.reduceAdd, Fin.mk_one, Fin.isValue, Matrix.cons_val_one,
+    Matrix.cons_val_zero]
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:38: 'assumption' uses '⊢'!
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:29: 'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:29: Try this:
+  [apply] simp only [Nat.succ_eq_add_one, Nat.reduceAdd, Fin.reduceFinMk, Matrix.cons_val]
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:319:38: 'assumption' uses '⊢'!
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:325:4: 'simp [Fin.sum_univ_three]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:325:4: Try this:
+  [apply] simp only [Nat.succ_eq_add_one, Nat.reduceAdd]
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:326:4: 'exact hq' uses '⊢'!
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:333:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 600000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:576:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 400000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:886:8: 'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:886:8: Try this:
+  [apply] simp only [mem_singleton]
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:886:14: 'exact hq_b.symm' uses '⊢'!
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:887:8: 'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:887:8: Try this:
+  [apply] simp only [mem_insert, mem_singleton, not_or]
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:888:10: 'exact hab_ne' uses '⊢'!
+warning: Erdos9796Proof/P97/NoDiameterUnderK4.lean:887:8: 'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:887:8: Try this:
+  [apply] simp only [mem_insert, mem_singleton, not_or]
+info: Erdos9796Proof/P97/NoDiameterUnderK4.lean:889:10: 'exact hq_a.symm' uses '⊢'!
+⚠ [8054/8087] Replayed Erdos9796Proof.P97.CGN.CGN7
+warning: Erdos9796Proof/P97/CGN/CGN7.lean:209:10: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN7.lean:211:10: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN7.lean:76:5: unused variable `Hord`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN7.lean:77:5: unused variable `hconv`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN7.lean:78:5: unused variable `hmem`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN7.lean:119:32: This simp argument is unused:
+  ih
+
+Hint: Omit it from the simp argument list.
+  simp [Finset.sigma, ha, i̵h̵,̵ ̵Finset.card_disjUnion]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN7.lean:119:36: This simp argument is unused:
+  Finset.card_disjUnion
+
+Hint: Omit it from the simp argument list.
+  simp [Finset.sigma, ha, ih,̵ ̵F̵i̵n̵s̵e̵t̵.̵c̵a̵r̵d̵_̵d̵i̵s̵j̵U̵n̵i̵o̵n̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8055/8087] Replayed Erdos9796Proof.P97.ArcPartitionCount
+warning: Erdos9796Proof/P97/ArcPartitionCount.lean:67:12: please avoid 'open (scoped) Classical' statements: this can hide theorem statements which would be better stated with explicit decidability statements.
+Instead, use `open Classical in` for definitions or instances, the `classical` tactic for proofs.
+For theorem statements, either add missing decidability assumptions or use `open Classical in`.
+
+Note: This linter can be disabled with `set_option linter.style.openClassical false`
+warning: Erdos9796Proof/P97/ArcPartitionCount.lean:605:8: 'simp [Fin.sum_univ_three]
+        -- a • V1 + b • V2 + (1 - a - b) • V3 = v.
+        -- From h_decomp: v - V3 = a • (V1 - V3) + b • (V2 - V3).
+        -- So v = a • V1 + b • V2 + (1 - a - b) • V3.' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/ArcPartitionCount.lean:618:8: 'rw [h_decomp']' uses '⊢'!
+⚠ [8058/8087] Replayed Erdos9796Proof.P97.Dumitrescu.L10
+warning: Erdos9796Proof/P97/Dumitrescu/L10.lean:85:0: This file has more than one module docstring (`/-! ... -/`). Only the first one is treated as module documentation; convert additional ones to regular comments (`/- ... -/`).
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+⚠ [8059/8087] Replayed Erdos9796Proof.P97.CGN.CGN8
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:277:12: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:280:12: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:175:34: This simp argument is unused:
+  ih
+
+Hint: Omit it from the simp argument list.
+  simp [Finset.sigma, ha, i̵h̵,̵ ̵Finset.card_disjUnion]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:175:38: This simp argument is unused:
+  Finset.card_disjUnion
+
+Hint: Omit it from the simp argument list.
+  simp [Finset.sigma, ha, ih,̵ ̵F̵i̵n̵s̵e̵t̵.̵c̵a̵r̵d̵_̵d̵i̵s̵j̵U̵n̵i̵o̵n̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:485:34: This simp argument is unused:
+  nsmul_eq_mul
+
+Hint: Omit it from the simp argument list.
+  simp [Finset.sum_const, n̵s̵m̵u̵l̵_̵e̵q̵_̵m̵u̵l̵,̵ ̵Nat.mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:551:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:552:6: 'rcases hx with rfl | rfl' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:551:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:553:8: 'exact CP.v2_mem_C1' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:551:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:554:8: 'exact CP.v3_mem_C1' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:562:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:563:6: 'rcases hx with rfl | rfl' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:562:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:564:8: 'exact CP.v3_mem_C2' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:562:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:565:8: 'exact CP.v1_mem_C2' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:573:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:574:6: 'rcases hx with rfl | rfl' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:573:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:575:8: 'exact CP.v1_mem_C3' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:573:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN8.lean:576:8: 'exact CP.v2_mem_C3' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN8.lean:214:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [8061/8087] Replayed Erdos9796Proof.P97.N9Endpoint.Shell
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:214:12: Try `simp at hone` instead of `simpa using hone`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:293:12: Try `simp at hone` instead of `simpa using hone`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:372:12: Try `simp at hone` instead of `simpa using hone`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:410:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:411:6: 'rcases hx with rfl | rfl' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:410:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:412:8: 'exact S.CP.v2_mem_C1' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:410:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:413:8: 'exact S.CP.v3_mem_C1' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:439:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:440:6: 'rcases hx with rfl | rfl' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:439:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:441:8: 'exact S.CP.v3_mem_C2' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:439:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:442:8: 'exact S.CP.v1_mem_C2' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:475:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:476:6: 'rcases hx with rfl | rfl' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:475:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:477:8: 'exact S.CP.v1_mem_C3' uses 'hx'!
+warning: Erdos9796Proof/P97/N9Endpoint/Shell.lean:475:6: 'simp at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N9Endpoint/Shell.lean:478:8: 'exact S.CP.v2_mem_C3' uses 'hx'!
+⚠ [8064/8087] Replayed Erdos9796Proof.P97.U2.OneHitMonotone
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:107:71: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:148:66: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:162:64: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:164:34: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:164:40: missing space in the source
+
+This part of the code
+  '(π/3))
+'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:172:0: This file has more than one module docstring (`/-! ... -/`). Only the first one is treated as module documentation; convert additional ones to regular comments (`/- ... -/`).
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:212:71: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:273:66: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:290:67: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:292:34: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:292:40: missing space in the source
+
+This part of the code
+  '(π/3))
+'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8065/8087] Replayed Erdos9796Proof.P97.U2.OneHitRealization
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:58:0: This file has more than one module docstring (`/-! ... -/`). Only the first one is treated as module documentation; convert additional ones to regular comments (`/- ... -/`).
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:115:38: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:116:50: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:116:56: missing space in the source
+
+This part of the code
+  '(π/3)) (hγmono'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:127:38: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:128:50: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:128:56: missing space in the source
+
+This part of the code
+  '(π/3)) (hδanti'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8070/8087] Replayed Erdos9796Proof.P97.N8.N8CapCoordNorm
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:633:22: 'simp [Fin.sum_univ_three] at hg'' is a flexible tactic modifying 'hg''. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:633:22: Try this:
+  [apply] simp only [Fin.isValue] at hg'
+info: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:634:6: 'convert hg' using 2' uses 'hg''!
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:893:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:911:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:930:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:1020:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:975:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:996:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+warning: Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:1018:4: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+⚠ [8086/8087] Replayed Erdos9796Proof.P97.CapSelectedRowCounting
+warning: Erdos9796Proof/P97/CapSelectedRowCounting.lean:707:42: This simp argument is unused:
+  hfirstLast
+
+Hint: Omit it from the simp argument list.
+  simp [weight, Finset.sum_add_distrib, h̵f̵i̵r̵s̵t̵L̵a̵s̵t̵,̵ ̵Nat.add_assoc, Nat.add_comm, Nat.add_left_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CapSelectedRowCounting.lean:708:6: This simp argument is unused:
+  Nat.add_comm
+
+Hint: Omit it from the simp argument list.
+  simp [weight, Finset.sum_add_distrib, hfirstLast, Nat.add_assoc, N̵a̵t̵.̵a̵d̵d̵_̵c̵o̵m̵m̵,̵ ̵Nat.add_left_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CapSelectedRowCounting.lean:708:20: This simp argument is unused:
+  Nat.add_left_comm
+
+Hint: Omit it from the simp argument list.
+  simp [weight, Finset.sum_add_distrib, hfirstLast, Nat.add_assoc, N̵a̵t̵.̵a̵d̵d̵_̵c̵o̵m̵m̵,̵ ̵N̵a̵t̵.̵a̵d̵d̵_̵l̵e̵f̵t̵_̵c̵o̵m̵m̵]̵N̲a̲t̲.̲a̲d̲d̲_̲c̲o̲m̲m̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CapSelectedRowCounting.lean:832:8: unused variable `Hside`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CapSelectedRowCounting.lean:833:8: unused variable `Hord`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CapSelectedRowCounting.lean:884:8: unused variable `Hside`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CapSelectedRowCounting.lean:885:8: unused variable `Hord`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8087/8087] Built Erdos9796Proof.P97.ATail.FirstApexInteriorPairGeometry (3.0s)
+Build completed successfully (8087 jobs).

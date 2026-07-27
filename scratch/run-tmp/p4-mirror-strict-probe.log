@@ -1,0 +1,23 @@
+@Problem97.P4MirrorValuationScratch.mirrorTotalVal_classVariable_iff_classHit : ∀ {D : Problem97.CounterexampleData}
+  {S : Problem97.SurplusCapPacket D.A} {radius : ℝ} {H : Problem97.CriticalShellSystem D.A}
+  {F : Problem97.ATailCriticalPairFrontier.CriticalPairFrontier D S radius H}
+  {R : Problem97.ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+  {profile : S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
+  {distribution : Problem97.ATailUniqueFourClassCapDistributionScratch.ExactTwoStrictHitDistribution R}
+  (P : Problem97.ATailUniqueFourExactTwoBoundaryScratch.P4MirrorBoundaryPacket R profile distribution)
+  (point : Problem97.P4DirectOuterArcAdapterScratch.Label),
+  Problem97.P4MirrorValuationScratch.mirrorTotalVal P
+      (Problem97.P4CriticalSupportOccurrenceBridgeScratch.classVariable point) ↔
+    Problem97.P5IndexedSourceScratch.classHit P.core Problem97.P5IndexedSourceScratch.mirrorIndex point
+../scratch/run-tmp/MirrorStrictProbe.lean:5:0: warning: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+../scratch/run-tmp/MirrorStrictProbe.lean:8:0: warning: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+../scratch/run-tmp/MirrorStrictProbe.lean:10:0: warning: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+../scratch/run-tmp/MirrorStrictProbe.lean:13:0: warning: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`

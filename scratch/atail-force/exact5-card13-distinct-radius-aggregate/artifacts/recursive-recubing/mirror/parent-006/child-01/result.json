@@ -1,0 +1,60 @@
+{
+  "child_cnf_sha256": "d5b7dabac48043294e17f1cfb532ae2fc213597d14c3b9d738a2ad03624eb851",
+  "child_cube": [
+    -2035,
+    -178,
+    -15909
+  ],
+  "child_cube_index": 1,
+  "combined_assumptions": [
+    -2070,
+    86065,
+    1663,
+    22411,
+    -22425,
+    -2035,
+    -178,
+    -15909
+  ],
+  "config": "default",
+  "config_args": [
+    "--default"
+  ],
+  "conflicts": 2967,
+  "decisions": 32466,
+  "drat_check": {
+    "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-006/child-01/drat-trim.log",
+    "log_sha256": "2f3833df2a5a1c37dd52df976eac4bb9b4149ac1e3e61c2b9a2fefa5ad02c488",
+    "returncode": 0,
+    "status": "PASS",
+    "timed_out": false
+  },
+  "elapsed_seconds": 2.1864560829708353,
+  "epistemic_status": "EXTERNAL_EXACT_CHILD_CNF_VERDICT",
+  "extended_model_check_against_original_cnf": null,
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-006/child-01/cadical.log",
+  "log_sha256": "30915ff5bb531bf86b1fec5a08e4895997a50d896be23ecd104b1119082aa8c5",
+  "model_check_against_child_cnf": null,
+  "orientation": "mirror",
+  "parent_cube": [
+    -2070,
+    86065,
+    1663,
+    22411,
+    -22425
+  ],
+  "parent_cube_index": 6,
+  "proof_artifact": {
+    "format": "gzip-compressed CaDiCaL DRAT",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-006/child-01/proof.drat.gz",
+    "sha256": "14f3a3cb7a32122e8b2a57e4f6a692703ac18767a1a0e0e8b9fcc86d3c4b7cc2",
+    "size_bytes": 1585712
+  },
+  "returncode": 20,
+  "schema": "p97-exact5-card13-distinct-recube-child-v1",
+  "seed": 4097,
+  "solver_status": "UNSAT",
+  "status": "UNSAT",
+  "timed_out": false,
+  "timeout_seconds": 15
+}

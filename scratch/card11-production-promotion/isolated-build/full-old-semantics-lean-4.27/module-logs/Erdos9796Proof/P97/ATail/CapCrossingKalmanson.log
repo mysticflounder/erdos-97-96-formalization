@@ -1,0 +1,33 @@
+module=Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/0717dd6d4fde4102-fqz3y5m4/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/0717dd6d4fde4102-fqz3y5m4/module.ilean Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean
+
+'Problem97.CapCrossingKalmansonBridge.exists_mem_openSegment_diagonals_of_ccw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_openSegment_diagonals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.CapCrossingKalmansonBridge.complementary_dist_add_dist_lt_diagonal_sum_of_openSegment_diagonals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.CapCrossingKalmansonBridge.complementary_dist_add_dist_lt_diagonal_sum_of_ccw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.CapCrossingKalmansonBridge.dist_lt_of_ccw_of_dist_diagonal_eq_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.CapCrossingKalmansonBridge.dist_first_side_lt_second_diagonal_of_ccw_of_dist_diagonal_eq_last_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.CapCrossingKalmansonBridge.false_of_five_ccw_three_shell_equalities' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.CapCrossingKalmansonBridge.false_of_selected_rows_in_five_ccw_order' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.CapCrossingKalmansonBridge.false_of_two_selected_rows_shared_late_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

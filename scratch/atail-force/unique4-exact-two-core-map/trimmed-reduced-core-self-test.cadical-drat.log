@@ -1,0 +1,98 @@
+c --- [ banner ] -------------------------------------------------------------
+c 
+c CaDiCaL SAT Solver
+c Copyright (c) 2016-2025
+c A. Biere, M. Fleury, N. Froleyks, K. Fazekas, F. Pollitt, T. Faller
+c JKU Linz, University of Freiburg, TU Wien
+c 
+c Version 3.0.0 7b99c07f0bcab5824a5a3ce62c7066554017f641
+c Apple clang version 21.0.0 (clang-2100.0.123.102) -Wall -Wextra -O3 -DNDEBUG -DNCLOSEFROM
+c Thu Apr 23 22:35:47 PDT 2026 Darwin dada-mun-26.local 25.4.0 arm64
+c 
+c --- [ proof tracing ] ------------------------------------------------------
+c 
+c opening file to write '/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-75021-1784846196267775000/trimmed-reduced-core-self-test.drat'
+c writing non-binary proof trace to '/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-75021-1784846196267775000/trimmed-reduced-core-self-test.drat'
+c 
+c --- [ parsing input ] ------------------------------------------------------
+c 
+c reading DIMACS file from '/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-75021-1784846196267775000/trimmed-reduced-core-self-test.dense.cnf'
+c opening file to read '/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-75021-1784846196267775000/trimmed-reduced-core-self-test.dense.cnf'
+c found 'p cnf 3 4' header
+c parsed 4 clauses in 0.00 seconds process time
+c 
+c --- [ options ] ------------------------------------------------------------
+c 
+c   --binary=false                 (different from default 'true')
+c   --factor=false                 (different from default 'true')
+c 
+c --- [ solving ] ------------------------------------------------------------
+c 
+c time measured in process time since initialization
+c 
+c  seconds  reduction conflicts       size tier2     variables
+c         MB    restarts   redundant    glue  trail      remaining
+c          level     rate       size/glu tier1 irredundant
+c 
+c 0  0.00  0  0 0   0  0    0    0 0.0 0 0 2 6  0%    1   2 67%
+c 
+c --- [ closing proof ] ------------------------------------------------------
+c 
+c DRAT proof file '/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-75021-1784846196267775000/trimmed-reduced-core-self-test.drat' closed
+c DRAT 1 added clauses 33.33%
+c DRAT 2 deleted clauses 66.67%
+c DRAT 18 bytes (0.00 MB)
+c 
+c --- [ result ] -------------------------------------------------------------
+c 
+s UNSATISFIABLE
+c 
+c --- [ run-time profiling ] -------------------------------------------------
+c 
+c process time taken by individual solving procedures
+c (percentage relative to process time for solving)
+c 
+c         0.00  176.47% parse
+c         0.00    0.00% search
+c         0.00    0.00% simplify
+c   =================================
+c         0.00    5.67% solve
+c 
+c last line shows process time for solving
+c (percentage relative to total process time)
+c 
+c --- [ statistics ] ---------------------------------------------------------
+c 
+c fixed:                         1        33.33 %  of all variables
+c minimized:                     0         0.00 %  learned literals
+c shrunken:                      0         0.00 %  learned literals
+c minishrunken:                  0         0.00 %  learned literals
+c propagations:                  1         0.06 M  per second
+c ticks:                         1         1.00    propagation
+c 
+c seconds are measured in process time for solving
+c 
+c --- [ glue usage ] ---------------------------------------------------------
+c 
+c focused glue 2 used 0 clauses 0.000% accumulated 0.000% tier1
+c focused glue 3 used 0 clauses 0.000% accumulated 0.000%
+c focused glue 4 used 0 clauses 0.000% accumulated 0.000%
+c focused glue 5 used 0 clauses 0.000% accumulated 0.000%
+c focused glue 6 used 0 clauses 0.000% accumulated 0.000% tier2
+c 
+c stable glue 2 used 0 clauses 0.000% accumulated 0.000% tier1
+c stable glue 3 used 0 clauses 0.000% accumulated 0.000%
+c stable glue 4 used 0 clauses 0.000% accumulated 0.000%
+c stable glue 5 used 0 clauses 0.000% accumulated 0.000%
+c stable glue 6 used 0 clauses 0.000% accumulated 0.000% tier2
+c 
+c 
+c --- [ resources ] ----------------------------------------------------------
+c 
+c total process time since initialization:         0.00    seconds
+c total real time since initialization:            0.00    seconds
+c maximum resident set size of process:         2464.00    MB
+c 
+c --- [ shutting down ] ------------------------------------------------------
+c 
+c exit 20

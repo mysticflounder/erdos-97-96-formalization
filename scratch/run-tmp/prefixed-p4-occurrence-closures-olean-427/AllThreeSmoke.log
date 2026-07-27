@@ -1,0 +1,44 @@
+Problem97.P4RadiusPartitionOccurrenceBridgeScratch.bridgeClauses_sat {D : Problem97.CounterexampleData}
+  {S : Problem97.SurplusCapPacket D.A} {radius : ℝ} {H : Problem97.CriticalShellSystem D.A}
+  {F : Problem97.ATailCriticalPairFrontier.CriticalPairFrontier D S radius H}
+  {R : Problem97.ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+  {distribution : Problem97.ATailUniqueFourClassCapDistributionScratch.ExactTwoStrictHitDistribution R}
+  {profile : S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
+  (P : Problem97.ATailUniqueFourExactTwoBoundaryScratch.P4DirectBoundaryPacket R profile distribution) {v : ℕ → Prop}
+  (hv : Problem97.P4RadiusPartitionOccurrenceBridgeScratch.CoreValAgreement P v) (clause : List ℤ) :
+  clause ∈ Problem97.P4RadiusPartitionOccurrenceBridgeScratch.bridgeClauses →
+    Problem97.P4RadiusPartitionOccurrenceBridgeScratch.clauseSat v clause
+Problem97.P4RowAtLeastFourOccurrenceBridgeScratch.bridgeClauses_sat {D : Problem97.CounterexampleData}
+  {S : Problem97.SurplusCapPacket D.A} {radius : ℝ} {H : Problem97.CriticalShellSystem D.A}
+  {F : Problem97.ATailCriticalPairFrontier.CriticalPairFrontier D S radius H}
+  {R : Problem97.ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+  {distribution : Problem97.ATailUniqueFourClassCapDistributionScratch.ExactTwoStrictHitDistribution R}
+  {profile : S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
+  (P : Problem97.ATailUniqueFourExactTwoBoundaryScratch.P4DirectBoundaryPacket R profile distribution) {v : ℕ → Prop}
+  (hv : Problem97.P4RowAtLeastFourOccurrenceBridgeScratch.CoreValAgreement P v) (clause : List ℤ) :
+  clause ∈ Problem97.P4RowAtLeastFourOccurrenceBridgeScratch.bridgeClauses →
+    Problem97.P4RowAtLeastFourOccurrenceBridgeScratch.clauseSat v clause
+Problem97.P4RowRadiusOccurrenceBridgeScratch.bridgeClauses_sat_direct {D : Problem97.CounterexampleData}
+  {S : Problem97.SurplusCapPacket D.A} {radius : ℝ} {H : Problem97.CriticalShellSystem D.A}
+  {F : Problem97.ATailCriticalPairFrontier.CriticalPairFrontier D S radius H}
+  {R : Problem97.ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+  {distribution : Problem97.ATailUniqueFourClassCapDistributionScratch.ExactTwoStrictHitDistribution R}
+  {profile : S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
+  (P : Problem97.ATailUniqueFourExactTwoBoundaryScratch.P4DirectBoundaryPacket R profile distribution) {v : ℕ → Prop}
+  (hv :
+    Problem97.P4RowRadiusOccurrenceBridgeScratch.CoreValAgreement P.core Problem97.P5IndexedSourceScratch.directIndex v)
+  (clause : List ℤ) :
+  clause ∈ Problem97.P4RowRadiusOccurrenceBridgeScratch.bridgeClauses →
+    Problem97.P4RowRadiusOccurrenceBridgeScratch.clauseSat v clause
+Problem97.P4RowRadiusOccurrenceBridgeScratch.bridgeClauses_sat_mirror {D : Problem97.CounterexampleData}
+  {S : Problem97.SurplusCapPacket D.A} {radius : ℝ} {H : Problem97.CriticalShellSystem D.A}
+  {F : Problem97.ATailCriticalPairFrontier.CriticalPairFrontier D S radius H}
+  {R : Problem97.ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+  {distribution : Problem97.ATailUniqueFourClassCapDistributionScratch.ExactTwoStrictHitDistribution R}
+  {profile : S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
+  (P : Problem97.ATailUniqueFourExactTwoBoundaryScratch.P4MirrorBoundaryPacket R profile distribution) {v : ℕ → Prop}
+  (hv :
+    Problem97.P4RowRadiusOccurrenceBridgeScratch.CoreValAgreement P.core Problem97.P5IndexedSourceScratch.mirrorIndex v)
+  (clause : List ℤ) :
+  clause ∈ Problem97.P4RowRadiusOccurrenceBridgeScratch.bridgeClauses →
+    Problem97.P4RowRadiusOccurrenceBridgeScratch.clauseSat v clause

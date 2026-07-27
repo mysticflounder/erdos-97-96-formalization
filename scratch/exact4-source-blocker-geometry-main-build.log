@@ -1,0 +1,15 @@
+../scratch/ExactFourSourceBlockerGeometryMain.lean:3:0: warning: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+../scratch/ExactFourSourceBlockerGeometryMain.lean:10:0: warning: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+../scratch/ExactFourSourceBlockerGeometryMain.lean:11:0: warning: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+../scratch/ExactFourSourceBlockerGeometryMain.lean:13:0: warning: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+../scratch/ExactFourSourceBlockerGeometryMain.lean:128:8: warning: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`

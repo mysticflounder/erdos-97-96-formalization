@@ -1,0 +1,25 @@
+'Problem97.P4MirrorValuationScratch.directOuterThreeFamilyClauses_normalized_mem_mirrorBridge' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'Problem97.P4MirrorValuationScratch.mirrorTotalVal_directOuterThreeFamilyClauses_sat' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'Problem97.P4MirrorValuationScratch.mirrorTotalVal_p4SourceClauses_sat' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'Problem97.P4MirrorValuationScratch.mirrorTotalVal_p4CompactLedger_sat' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'Problem97.P4MirrorValuationScratch.false_of_p4MirrorBoundaryPacket' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]

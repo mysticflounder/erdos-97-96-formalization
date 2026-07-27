@@ -1,0 +1,26 @@
+[
+  {
+    "corpus": "p97-rvol-lean",
+    "display_text": "theorem u5_two_qtransport_mutual_delayed_anchor_metric_incompatibility\n\nMetric wrapper for the mutual two q-transport delayed-anchor incompatibility.",
+    "embed_text": "theorem u5_two_qtransport_mutual_delayed_anchor_metric_incompatibility\n\nMetric wrapper for the mutual two q-transport delayed-anchor incompatibility.",
+    "id": "01KW3QW824B5RTWXVCFG9Z6XGS",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "score": 1.9672131147540985,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:p97-rvol-lean",
+      "module:RVOL.P97.U5GlobalIncidenceQCriticalExactSelectedTwoTransportMutual",
+      "commit:25c74c1",
+      "kind:theorem",
+      "line:29",
+      "decl:u5_two_qtransport_mutual_delayed_anchor_metric_incompatibility",
+      "project:p97-rvol-lean",
+      "source:lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedTwoTransportMutual.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  }
+]

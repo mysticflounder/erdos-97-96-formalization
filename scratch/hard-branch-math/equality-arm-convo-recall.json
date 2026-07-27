@@ -1,0 +1,232 @@
+[
+  {
+    "memory": {
+      "id": "01KYHRNAFYZCA2SRMR85M9PZJ4",
+      "content": "ShellCompass hard-branch audit: the target conclusion is itself inconsistent. The three-hit arm contradicts criticalShell_inter_oppositeCapClassInterior_card_le_two_of_apexRich using its own richness witness; every cross-hit arm contradicts hpairsDisjoint plus the two exact shell∩cap source-pair equalities. Existing kernel check scratch/packet-contradiction-search/TargetConclusionImpossible.lean reports only propext/Classical.choice/Quot.sound. Hence this leaf can only be proved by deriving False from its full hypotheses. Cap>=8 contributes only six distinct interior roles; exact rational strict-convex local models in scratch/exact-leaf-math/TwoCollisionCapOrderModel.lean show no cap/Kalmanson contradiction. No imported theorem found that turns T/minimality/canonical shell map into False.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "erdos-97-96-formalization"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-27T12:26:41.411696Z",
+      "updated_at": "2026-07-27T12:26:41.411696Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.9836065573770493
+  },
+  {
+    "memory": {
+      "id": "01KWFWMQT611KHVS9PCQD9GVK4",
+      "content": "Re #1977 (audit: existing provenance bridge for the five q/t1 hrows). Independently verified against source — confirms your own #1979 re-check, no discrepancy.\n\nChecked what's actually in scope at the live tail call site (`U1LargeCapRouteBTail.lean:37-140`, up through `Hdepth5Rows`/`hfixed`):\n- `U3FixedTriplePacket` (`U3ToU5DangerousTriple.lean:32`) only supplies p-centered facts: `t1_same_radius`/`t2_same_radius`/`t3_same_radius` are all `dist p t_i = dist p q`. No q-centered or t1-centered equality anywhere in its field list.\n- `hbaseDistinct`/`hbaseSixPairwise` are pairwise-distinctness only, not metric equalities.\n- `Hdepth5Rows : CriticalSourceRows D q t1 t2 t3 u` (`U1Depth5Prefix.lean:513`) bundles one `CriticalRowPacket` per source (q, t1, t2, t3, u), but each `CriticalRowPacket` (`U1Depth5Prefix.lean:433`) is generic: its 4 \"selected\" slot members are an arbitrary `CriticalSelectedFourClass`, with only `source_eq_named` (the source equals one of its own 4 members) as a structural guarantee. Nothing forces e.g. `t1`/`t2`/`u` to occupy specific slots of `qRow`, or `p`/`q`/`t3`/`u` to occupy specific slots of `t1Row` — that's exactly the \"placement\" data (`hfix_*`/`hpt_*`) that has to be supplied separately and isn't established anywhere upstream.\n- `PacketLabelCenteredRows.ofGlobalK4` (already flagged dead in #1919/#1924) likewise only gives arbitrary K4 slots.\n\nSo: no, there is no existing named provenance bridge that derives `hrow_q_t1_f1`, `hrow_q_t2_f1`, `hrow_t1_p_f1`, `hrow_t1_q_f1`, `hrow_t1_t3_f1` from live tail data without new placement/provenance assumptions — the gap is structural (generic row-packet slots vs. specific live points), not just a missing lemma name. This is the same fundamental gap as the original 12-hrow audit (#1881), now confirmed to survive even with B/E removed from the consumer. No patch to land; agrees with your negative-ledger call.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-01T09:40:14.700422Z",
+      "updated_at": "2026-07-01T09:40:14.700422Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.9836065573770493
+  },
+  {
+    "memory": {
+      "id": "01KWFWM6SXSVE8G5H786PWFQTR",
+      "content": "math-consultant correction on #1438: U1Coordinator caveat is right. The current CriticalSourceRows.full_shell_exact route is blocker-centered: rowAt_center_ne_sourcePoint and RowSlotLabelPacket.sourceCenter_ne show that the source-row center is not the packet label. So packet_label_row_radius_incidence atoms such as dist(P.point f1,z)=rho_f1 cannot be fed to f1Row.full_shell_exact. Lean-facing options are either a new packet-label-centered row surface/exactness theorem, where the centered endpoint allEightSlotMetricCore_of_sourceCenterEq style applies, or treating these atoms as algebraic hslot/certificate inputs. I would not chase a center-semantics bridge for the existing CriticalSourceRows surface, since that would contradict sourceCenter_ne rather than discharge it.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-06-29T20:33:42.810945Z",
+      "updated_at": "2026-06-29T20:33:42.810945Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.967741935483871
+  },
+  {
+    "memory": {
+      "id": "01KWFWM6ERD99NNTH0VGD78RCC",
+      "content": "Committed c7c15eb Use choice equalities for selected U1 endpoints. The all-eight adapter emitter now replaces selected endpoint hpt point-equality assumptions with finite hchoice_fi_source_slot hypotheses plus local proofs from packet.point_fi_eq_selectedSlot. Validation: py_compile clean; source ordinal 206 emitted 24 adapters and Lean-checked; full Python emit still produced 2997 adapter theorem surfaces. Full all-eight emitted shape: 4502 selected endpoint point-equality assumptions replaced by 4502 choice-equality assumptions; alias-required and fixed-label endpoint transports remain explicit. This is endpoint-identification plumbing only, not metric proof evidence.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-06-29T13:19:55.651930Z",
+      "updated_at": "2026-06-29T13:19:55.651930Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.967741935483871
+  },
+  {
+    "memory": {
+      "id": "01KWFZ6BX1ZMA21VVCS9VFBAC8",
+      "content": "Docs aligned with #2307.\n\nI updated the active plan/status docs so the pair-exclusion / all-five equality adapter lane is parked as support inventory, not the current U1.2 work queue. The canonical current target is now consistently stated as:\n\n- produce `Problem97.U1LargeCapRouteBTailMetricResidualTarget` from `U1LargeCapRouteBTailLiveData`, or\n- produce the stronger `Problem97.U1LargeCapRouteBTailCenteredIncidenceTarget` from the live tail.\n\nI also changed historical sections that still said the equality adapters or old branch-0 equality follow-up were the “current” task. Validation: `docs/u1-2-bankability-ledger.yaml` parses, and a stale active-queue grep for the old adapter assignment is clean.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-01T23:10:58.739784Z",
+      "updated_at": "2026-07-01T23:10:58.739784Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.9523809523809523
+  },
+  {
+    "memory": {
+      "id": "01KWFWM6J0F381GBFZ48GDE1X7",
+      "content": "Committed 7faf417 Rule out current centered source rows. Lean now proves CriticalRowPacket.center_ne_source, CriticalSourceRows.rowAt_center_ne_sourcePoint, and RowSlotLabelPacket.sourceCenter_ne: for the current CriticalSourceRows / RowSlotLabelPacket surface, a source row center cannot equal the corresponding packet source label, because the deleted source lies on a positive-radius critical shell. So allEightSlotMetricCore_of_sourceCenterEq is vacuous for the current blocker-row packet; it is only usable for a future ordinary packet-label-centered K4 row surface. Metric-core closure still needs genuine hslot producers, explicit hslot hypotheses, or further exactness branching for the existing surface.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-06-29T14:24:33.532894Z",
+      "updated_at": "2026-06-29T14:24:33.532894Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.9523809523809523
+  },
+  {
+    "memory": {
+      "id": "01KWFWMQ6TDGF9WXJP4N7W8KCR",
+      "content": "Local audit for #1851: existing coverage appears consumer-only for the five explicit pair families. `_sp_u1_depth5_sparsepoly_to_lean.py` accepts prebuilt rows with lean_target.kind=record001_branch0_collision_false and recognizes packet_label_coordinate_equality_x/y facts, but its CLI only consumes `--sparsepoly-jsonl`. The only committed record001 branch0 collision sidecars I found are for constructors u_t20/u_f11/u_f12 (selectedU=t2[0]/f1[1]/f1[2]) in `record001_branch0_collision*_20260630`, not p_t20, p_f11, p_f12, t20_f11, or t20_f12. `rg` over scratch `.py` found no committed generator for arbitrary branch0 row-slot choice pair-equality sidecars; it only found the sparsepoly-to-Lean consumer. So unless sat-solver-runner has an untracked harness, the concrete gap is: generate SparsePoly UNIT sidecars for those five equality branches with `lean_target.kind=record001_branch0_collision_false` plus coordinate-equality semantic facts, then the existing emitter can try to render/check them.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-01T05:04:00.332505Z",
+      "updated_at": "2026-07-01T05:04:00.332505Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.9375
+  },
+  {
+    "memory": {
+      "id": "01KWFWMFHF2H9QHY62C489DGGQ",
+      "content": "Correction to #1799: confirmed no straightforward Lean rewrite from the direct CriticalSourceRows route to `dist t2 f5 = dist t2 f2`. The blocker is still the center-vs-source mismatch in `CriticalRowPacket.slotPoint_on_shell` and `CriticalSourceRows.rowAt_center_ne_sourcePoint`, so this remains a certificate/branch-data obligation rather than a wiring task. The existing cert screen is at `scratch/u1_2_faithful/u1_record001_postall8_residual_qp_supplied_extra_t2_f5_sparsepoly_20260630.jsonl`.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-01T01:59:58.334955Z",
+      "updated_at": "2026-07-01T01:59:58.334955Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.9375
+  },
+  {
+    "memory": {
+      "id": "01KWFWMF742PCD9XASTSKTMW73",
+      "content": "@sat-solver-runner Correction on #1572 before you draft Lean: do not type the packet-label-centered rows as CriticalSelectedFourClass D.A baseQ baseQ. That class is deletion-critical: source_eq_named plus positive radius gives center_ne_source, so source=center is the wrong surface. The centered contract should use ordinary K4 row data at a packet label, i.e. HasNEquidistantPointsAt/SelectedFourClass-style rows centered at packet.point label, with four support labels and slot-on-shell facts, but without the deleted-source-in-support condition. Please draft the contract around ordinary packet-label-centered K4 rows and then a translator into the existing q:t3 certificate hrow/AllEightSlotMetricCore inputs. Also mark which centered rows are directly produced by D.K4 and which exact slot assignments remain finite branch choices.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-06-30T11:52:32.935749Z",
+      "updated_at": "2026-06-30T11:52:32.935749Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.9230769230769231
+  },
+  {
+    "memory": {
+      "id": "01KWFWMF94WFWDA6HC3DB7RSRQ",
+      "content": "U1.2 checkpoint: found a branch-data-compatible record001/branch0 collision encoding. Replaced the old rho_f1 + hard f1-row facts with a direct branch extra-distance equality d(f1,t2)=d(f1,f2); all three equality cases are UNIT. I’m converting this to SparsePoly/Lean now, and the old rho-encoded collision artifact should be treated as superseded/not branch-consumable.",
+      "memory_type": "convo",
+      "source": "auto",
+      "project": null,
+      "directory": null,
+      "scope": "global",
+      "tags": [
+        "convo",
+        "p97-rvol"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-06-30T16:53:23.740040Z",
+      "updated_at": "2026-06-30T16:53:23.740040Z",
+      "accessed_at": null,
+      "access_count": 0,
+      "expires_at": null
+    },
+    "score": 0.9230769230769231
+  }
+]

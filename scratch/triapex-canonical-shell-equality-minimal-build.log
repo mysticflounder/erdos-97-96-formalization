@@ -1,0 +1,11 @@
+lake-build: building — don't just wait on it. Update docstrings/module docs/blueprint entries for what you just wrote, stage the next edit or commit message, or line up the next module while this runs.
+⚠ [8004/8025] Replayed Erdos9796Proof.P97.Cap.Partition
+warning: Erdos9796Proof/P97/Cap/Partition.lean:15:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [8011/8025] Replayed Erdos9796Proof.P97.Cap.Structure
+warning: Erdos9796Proof/P97/Cap/Structure.lean:282:0: This file has more than one module docstring (`/-! ... -/`). Only the first one is treated as module documentation; convert additional ones to regular comments (`/- ... -/`).
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+✔ [8025/8025] Built Erdos9796Proof.P97.ATail.MinimalUniqueFourCover (3.0s)
+Build completed successfully (8025 jobs).

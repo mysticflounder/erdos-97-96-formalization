@@ -1,0 +1,30 @@
+'Problem97.ATailExactFiveReverseOutsidePairProducerScratch.successorIndex_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseOutsidePairProducerScratch.reverseOutsidePair_card_eq_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseOutsidePairProducerScratch.reverseOutsidePair_subset_complement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseOutsidePairProducerScratch.reverseRowCenter_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseOutsidePairProducerScratch.false_of_repeated_reverseOutsidePair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseOutsidePairProducerScratch.reverseOutsidePair_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseOutsidePairProducerScratch.period_le_choose_capComplement_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseOutsidePairProducerScratch.nonempty_reverseRowCapStraddle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseOutsidePairProducerScratch.nonempty_frontierCoupledReverseOutsidePairCapacity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseOutsidePairProducerScratch.nonempty_parentReverseMembershipQCriticalPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

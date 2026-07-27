@@ -1,0 +1,210 @@
+### scratch/atail-force/unique4-n11-source-lift/CardElevenUniqueFourCertificateCoordinator.lean
+     1	/-
+     2	Copyright (c) 2026 Adam McKenna. All rights reserved.
+     3	Released under Apache 2.0 license as described in the file LICENSE.
+     4	Authors: Adam McKenna
+     5	-/
+     6	
+     7	import CardElevenUniqueFourCoverage
+     8	import MirrorLedgerAssembly
+     9	import P4FullLedgerSatisfaction
+    10	import P5ExactTwoClosure
+    11	import AlignedP5Closure
+    12	
+    13	/-!
+    14	# Card-eleven exact-four certificate coordinator
+    15	
+    16	This module composes the checked direct and reflected P4 terminals with the
+    17	already checked P5 exact-two and aligned-P5 terminals.
+    18	-/
+    19	
+    20	namespace Problem97
+    21	namespace ATailUniqueFourCardElevenCertificateScratch
+    22	
+    23	open ATailCriticalPairFrontier
+    24	open ATailUniqueArmRouteAuditScratch
+    25	open ATailUniqueFourAlignedP5BoundaryScratch
+    26	open ATailUniqueFourCardElevenLiftScratch
+    27	open ATailUniqueFourClassCapDistributionScratch
+    28	open ATailUniqueFourExactTwoBoundaryScratch
+    29	open P4DirectOuterValuationScratch
+    30	open P4MirrorValuationScratch
+    31	open P5ExactTwoCertificateClosureScratch
+    32	
+    33	variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    34	  {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    35	
+    36	/-- The orientation split turns the direct and reflected P4 certificates into
+    37	a complete `(5,4,5)` exact-two terminal. -/
+    38	theorem false_of_p4ExactTwo
+    39	    (R : OriginalUniqueFourResidual F)
+    40	    (profile : S.surplusCap.card = 5 ∧
+    41	      S.oppCap1.card = 4 ∧ S.oppCap2.card = 5)
+    42	    (distribution : ExactTwoStrictHitDistribution R) :
+    43	    False := by
+    44	  rcases nonempty_p4DirectBoundaryPacket_or_mirror
+    45	      R profile distribution with hdirect | hmirror
+    46	  · rcases hdirect with ⟨P⟩
+    47	    exact false_of_p4DirectBoundaryPacket P
+    48	  · rcases hmirror with ⟨P⟩
+    49	    exact false_of_p4MirrorBoundaryPacket P
+    50	
+    51	/-- All exact-four residuals on eleven carrier points are contradictory. -/
+    52	theorem false_of_cardElevenOriginalUniqueFourResidual
+    53	    (R : OriginalUniqueFourResidual F)
+    54	    (hcard : D.A.card = 11) :
+    55	    False := by
+    56	  rcases nonempty_cardElevenUniqueFourCoverage R hcard with ⟨coverage⟩
+    57	  cases coverage with
+    58	  | exactTwoP4 profile distribution =>
+    59	      exact false_of_p4ExactTwo R profile distribution
+    60	  | exactTwoP5 profile distribution =>
+    61	      exact false_of_p5ExactTwo R profile distribution
+    62	  | alignedP5 profile aligned =>
+    63	      exact false_of_alignedInteriorFrontier R profile aligned
+    64	
+    65	end ATailUniqueFourCardElevenCertificateScratch
+    66	end Problem97
+### scratch/atail-force/unique4-n11-source-lift/CardElevenUniqueFourCoverage.lean
+     1	/-
+     2	Copyright (c) 2026 Adam McKenna. All rights reserved.
+     3	Released under Apache 2.0 license as described in the file LICENSE.
+     4	Authors: Adam McKenna
+     5	-/
+     6	
+     7	import UniqueFourClassCapDistribution
+     8	import Erdos9796Proof.P97.ATail.CapApexRadiusRigidity
+     9	import Erdos9796Proof.P97.ATail.OrientedPhysicalApexIngress
+    10	
+    11	/-!
+    12	# Card-eleven exact-four coverage boundary
+    13	
+    14	The two verified fixed-cardinality Boolean certificates use the exact-two
+    15	first-apex class distribution.  This file proves the source-level cap-profile
+    16	split at cardinality eleven and isolates the one branch those certificates do
+    17	not cover: a five-point first opposite cap containing at least three points of
+    18	the exact first-apex class in its strict interior.
+    19	-/
+    20	
+    21	open scoped EuclideanGeometry
+    22	
+    23	namespace Problem97
+    24	namespace ATailUniqueFourCardElevenLiftScratch
+    25	
+    26	open ATailCriticalPairFrontier
+    27	open ATailOrientedPhysicalApexIngress
+    28	open ATailUniqueArmRouteAuditScratch
+    29	open ATailUniqueFourClassCapDistributionScratch
+    30	
+    31	attribute [local instance] Classical.propDecidable
+    32	
+    33	private theorem capByIndex_oppIndex1_eq_oppCap1
+    34	    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    35	    S.capByIndex S.oppIndex1 = S.oppCap1 := by
+    36	  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    37	  interval_cases i <;>
+    38	    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+    39	      SurplusCapPacket.oppCap1, hi]
+    40	
+    41	private theorem capByIndex_oppIndex2_eq_oppCap2
+    42	    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    43	    S.capByIndex S.oppIndex2 = S.oppCap2 := by
+    44	  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    45	  interval_cases i <;>
+    46	    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+    47	      SurplusCapPacket.oppCap2, hi]
+    48	
+    49	/-- At cardinality eleven, the displayed surplus packet has one of the two
+    50	oriented profiles used by the fixed finite encoders. -/
+    51	theorem cardEleven_oriented_cap_profile
+    52	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    53	    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    54	    (R : OriginalUniqueFourResidual F) (hcard : D.A.card = 11) :
+    55	    S.surplusCap.card = 5 ∧
+    56	      ((S.oppCap1.card = 4 ∧ S.oppCap2.card = 5) ∨
+    57	        (S.oppCap1.card = 5 ∧ S.oppCap2.card = 4)) := by
+    58	  have hopposite := oppositeCaps_card_ge_four D S
+    59	  have hfirst : 4 ≤ S.oppCap1.card := by
+    60	    simpa only [← capByIndex_oppIndex1_eq_oppCap1] using hopposite.1
+    61	  have hsecond : 4 ≤ S.oppCap2.card := by
+    62	    simpa only [← capByIndex_oppIndex2_eq_oppCap2] using hopposite.2
+    63	  have hsurplus := S.surplus_card_gt_four
+    64	  have hsum := S.capSum
+    65	  have hnotBothFour :
+    66	      ¬ (S.oppCap1.card = 4 ∧ S.oppCap2.card = 4) := by
+    67	    rintro ⟨hfirstFour, hsecondFour⟩
+    68	    exact R.noM44 ⟨S, hfirstFour, hsecondFour⟩
+    69	  omega
+    70	
+    71	/-- A four-point first opposite cap forces the exact-two class distribution.
+    72	The aligned three-hit arm is impossible because that cap has only two strict
+    73	interior vertices. -/
+    74	theorem exactTwo_of_firstOppCap_card_eq_four
+    75	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    76	    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    77	    (R : OriginalUniqueFourResidual F) (hfirst : S.oppCap1.card = 4) :
+    78	    Nonempty (ExactTwoStrictHitDistribution R) := by
+    79	  rcases exactFour_twoStrict_or_alignedInteriorFrontier R with htwo | haligned
+    80	  · exact htwo
+    81	  · rcases haligned with ⟨P⟩
+    82	    have hcapByIndex : (S.capByIndex S.oppIndex1).card = 4 := by
+    83	      simpa only [capByIndex_oppIndex1_eq_oppCap1] using hfirst
+    84	    have hinterior :
+    85	        (S.capInteriorByIndex S.oppIndex1).card = 2 :=
+    86	      S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four
+    87	        S.oppIndex1 hcapByIndex
+    88	    have hthree :
+    89	        3 ≤ (S.capInteriorByIndex S.oppIndex1).card :=
+    90	      P.three_strict_hits.trans
+    91	        (Finset.card_le_card Finset.inter_subset_right)
+    92	    omega
+    93	
+    94	/-- Exact source coverage at cardinality eleven.
+    95	
+    96	The two `exactTwo` constructors are precisely the source surfaces encoded by
+    97	the fixed p4 and p5 certificates.  The final constructor is the unencoded
+    98	aligned p5 surface. -/
+    99	inductive CardElevenUniqueFourCoverage
+   100	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+   101	    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+   102	    (R : OriginalUniqueFourResidual F) : Type
+   103	  | exactTwoP4
+   104	      (profile : S.surplusCap.card = 5 ∧
+   105	        S.oppCap1.card = 4 ∧ S.oppCap2.card = 5)
+   106	      (distribution : ExactTwoStrictHitDistribution R)
+   107	  | exactTwoP5
+   108	      (profile : S.surplusCap.card = 5 ∧
+   109	        S.oppCap1.card = 5 ∧ S.oppCap2.card = 4)
+   110	      (distribution : ExactTwoStrictHitDistribution R)
+   111	  | alignedP5
+   112	      (profile : S.surplusCap.card = 5 ∧
+   113	        S.oppCap1.card = 5 ∧ S.oppCap2.card = 4)
+   114	      (aligned : AlignedInteriorFrontier R)
+   115	
+   116	/-- Every exact-four residual on eleven carrier points enters one of the two
+   117	certified exact-two profiles or the still-open aligned p5 profile. -/
+   118	theorem nonempty_cardElevenUniqueFourCoverage
+   119	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+   120	    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+   121	    (R : OriginalUniqueFourResidual F) (hcard : D.A.card = 11) :
+   122	    Nonempty (CardElevenUniqueFourCoverage R) := by
+   123	  rcases cardEleven_oriented_cap_profile R hcard with
+   124	    ⟨hsurplus, hprofile⟩
+   125	  rcases hprofile with ⟨hfirst, hsecond⟩ | ⟨hfirst, hsecond⟩
+   126	  · rcases exactTwo_of_firstOppCap_card_eq_four R hfirst with ⟨Q⟩
+   127	    exact ⟨CardElevenUniqueFourCoverage.exactTwoP4
+   128	      ⟨hsurplus, hfirst, hsecond⟩ Q⟩
+   129	  · rcases exactFour_twoStrict_or_alignedInteriorFrontier R with htwo | haligned
+   130	    · rcases htwo with ⟨Q⟩
+   131	      exact ⟨CardElevenUniqueFourCoverage.exactTwoP5
+   132	        ⟨hsurplus, hfirst, hsecond⟩ Q⟩
+   133	    · rcases haligned with ⟨P⟩
+   134	      exact ⟨CardElevenUniqueFourCoverage.alignedP5
+   135	        ⟨hsurplus, hfirst, hsecond⟩ P⟩
+   136	
+   137	end ATailUniqueFourCardElevenLiftScratch
+   138	end Problem97
+   139	
+   140	#print axioms Problem97.ATailUniqueFourCardElevenLiftScratch.cardEleven_oriented_cap_profile
+   141	#print axioms Problem97.ATailUniqueFourCardElevenLiftScratch.exactTwo_of_firstOppCap_card_eq_four
+   142	#print axioms Problem97.ATailUniqueFourCardElevenLiftScratch.nonempty_cardElevenUniqueFourCoverage

@@ -1,0 +1,291 @@
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i
+    · simpa [SurplusCapPacket.surplusCap,
+        SurplusCapPacket.oppApex1, hi] using S.partition.v2_mem_C1
+    · simpa [SurplusCapPacket.surplusCap,
+        SurplusCapPacket.oppApex1, hi] using S.partition.v3_mem_C2
+    · simpa [SurplusCapPacket.surplusCap,
+        SurplusCapPacket.oppApex1, hi] using S.partition.v1_mem_C3
+  have hdist : 0 < dist F.pair.q S.oppApex1 := dist_pos.mpr hqNe
+  have hqRadius : dist F.pair.q S.oppApex1 = radius :=
+    (Finset.mem_filter.mp
+      (Finset.mem_sdiff.mp F.pair.q_mem_marginal).1).2
+  simpa only [hqRadius] using hdist
+
+/-- Equal actual blockers for the two strict-cap retained sources. -/
+structure RetainedInteriorBlockerCollision
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (_R : FrontierCommonDeletionParentResidual F) : Type where
+  source₁ : ℝ²
+  source₂ : ℝ²
+  source₁_mem_A : source₁ ∈ D.A
+  source₂_mem_A : source₂ ∈ D.A
+  sources_ne : source₁ ≠ source₂
+  source₁_mem_radius :
+    source₁ ∈ SelectedClass D.A S.oppApex1 radius
+  source₂_mem_radius :
+    source₂ ∈ SelectedClass D.A S.oppApex1 radius
+  source₁_mem_capInterior :
+    source₁ ∈ S.capInteriorByIndex S.oppIndex1
+  source₂_mem_capInterior :
+    source₂ ∈ S.capInteriorByIndex S.oppIndex1
+  blockers_eq :
+    H.centerAt source₁ source₁_mem_A =
+      H.centerAt source₂ source₂_mem_A
+
+/-- The parent-facing strict-cap blocker split. -/
+inductive RetainedInteriorPairOutcome
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F) : Type
+  | collision (data : RetainedInteriorBlockerCollision R)
+  | omission (data : RetainedInteriorDirectedOmission R)
+
+/-- The strict-cap-first selector is exhaustive and does not require a global
+injectivity hypothesis. -/
+theorem nonempty_retainedInteriorPairOutcome
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F) :
+    Nonempty (RetainedInteriorPairOutcome R) := by
+  classical
+  have hcenter :
+      S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 :=
+    oppApex1_eq_oppositeVertexByIndex_oppIndex1 S
+  have htwo :
+      2 ≤ (SelectedClass D.A S.oppApex1 radius ∩
+        S.capInteriorByIndex S.oppIndex1).card := by
+    rw [hcenter]
+    exact S.selectedClass_capInteriorByIndex_card_ge_two D.convex S.oppIndex1
+      (frontierRadius_pos R) (by simpa [hcenter] using
+        R.frontierRadius_class_card_ge_four)
+  have hone :
+      1 < (SelectedClass D.A S.oppApex1 radius ∩
+        S.capInteriorByIndex S.oppIndex1).card := by omega
+  rcases Finset.one_lt_card.mp hone with ⟨x, hx, y, hy, hxy⟩
+  rcases Finset.mem_inter.mp hx with ⟨hxRadius, hxInterior⟩
+  rcases Finset.mem_inter.mp hy with ⟨hyRadius, hyInterior⟩
+  have hxA : x ∈ D.A := (mem_selectedClass.mp hxRadius).1
+  have hyA : y ∈ D.A := (mem_selectedClass.mp hyRadius).1
+  by_cases hblockers : H.centerAt x hxA = H.centerAt y hyA
+  · exact ⟨RetainedInteriorPairOutcome.collision {
+      source₁ := x
+      source₂ := y
+      source₁_mem_A := hxA
+      source₂_mem_A := hyA
+      sources_ne := hxy
+      source₁_mem_radius := hxRadius
+      source₂_mem_radius := hyRadius
+      source₁_mem_capInterior := hxInterior
+      source₂_mem_capInterior := hyInterior
+      blockers_eq := hblockers }⟩
+  · apply Nonempty.intro
+    apply RetainedInteriorPairOutcome.omission
+    refine {
+      source₁ := x
+      source₂ := y
+      source₁_mem_A := hxA
+      source₂_mem_A := hyA
+      sources_ne := hxy
+      source₁_mem_radius := hxRadius
+      source₂_mem_radius := hyRadius
+      source₁_mem_capInterior := hxInterior
+      source₂_mem_capInterior := hyInterior
+      blockers_ne := hblockers
+      directed_omission := ?_ }
+    by_cases hyx :
+        y ∈ (H.selectedAt x hxA).toCriticalFourShell.support
+    · have hxyOutside :
+          x ∉ (H.selectedAt y hyA).toCriticalFourShell.support := by
+        intro hxy'
+        exact hblockers
+          (blocker_centers_eq_of_mutual_cross_membership R hxA hyA hxy
+            hxRadius hyRadius hyx hxy')
+      exact Or.inr ⟨hxyOutside,
+        (cross_deletion_survives_iff_not_mem_selected_support H hyA).mpr
+          hxyOutside⟩
+    · exact Or.inl ⟨hyx,
+        (cross_deletion_survives_iff_not_mem_selected_support H hxA).mpr hyx⟩
+
+private def transportSelectedFourClass
+    {A : Finset ℝ²} {center₁ center₂ : ℝ²}
+    (K : SelectedFourClass A center₁) (hcenter : center₁ = center₂) :
+    SelectedFourClass A center₂ :=
+  Eq.mp (congrArg (SelectedFourClass A) hcenter) K
+
+@[simp] private theorem transportSelectedFourClass_support
+    {A : Finset ℝ²} {center₁ center₂ : ℝ²}
+    (K : SelectedFourClass A center₁) (hcenter : center₁ = center₂) :
+    (transportSelectedFourClass K hcenter).support = K.support := by
+  cases hcenter
+  rfl
+
+/-- Equal blockers force equality of the complete exact critical supports. -/
+theorem RetainedInteriorBlockerCollision.supports_eq
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R) :
+    (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support =
+      (H.selectedAt P.source₂ P.source₂_mem_A).toCriticalFourShell.support := by
+  let K₂ : SelectedFourClass D.A (H.centerAt P.source₁ P.source₁_mem_A) :=
+    transportSelectedFourClass
+      (H.selectedAt P.source₂ P.source₂_mem_A).toSelectedFourClass
+      P.blockers_eq.symm
+  calc
+    (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support =
+        K₂.support :=
+      (H.selectedFourClass_support_eq_shell
+        P.source₁ P.source₁_mem_A K₂).symm
+    _ = (H.selectedAt P.source₂
+        P.source₂_mem_A).toCriticalFourShell.support := by
+      simp [K₂, CriticalSelectedFourClass.toSelectedFourClass,
+        CriticalFourShell.toSelectedFourClass]
+
+/-- The second strict-cap source lies in the first source's exact shell. -/
+theorem RetainedInteriorBlockerCollision.source₂_mem_source₁_shell
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R) :
+    P.source₂ ∈
+      (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support := by
+  rw [P.supports_eq]
+  exact (H.selectedAt P.source₂
+    P.source₂_mem_A).toCriticalFourShell.q_mem_support
+
+/-- The common blocker of a strict-cap collision is itself in the same strict
+cap interior. -/
+theorem RetainedInteriorBlockerCollision.blocker_mem_capInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R) :
+    H.centerAt P.source₁ P.source₁_mem_A ∈
+      S.capInteriorByIndex S.oppIndex1 := by
+  have hblockerA : H.centerAt P.source₁ P.source₁_mem_A ∈ D.A := by
+    simpa [CriticalShellSystem.blockerVertex] using
+      (H.blockerVertex ⟨P.source₁, P.source₁_mem_A⟩).2
+  have hblockerNe :
+      H.centerAt P.source₁ P.source₁_mem_A ≠ S.oppApex1 :=
+    R.actualBlocker_ne_firstApex P.source₁ P.source₁_mem_A
+  have hblockerEq :
+      dist (H.centerAt P.source₁ P.source₁_mem_A) P.source₁ =
+        dist (H.centerAt P.source₁ P.source₁_mem_A) P.source₂ :=
+    (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support_eq_radius
+      P.source₁
+      (H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.q_mem_support
+    |>.trans
+      ((H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.support_eq_radius
+          P.source₂ P.source₂_mem_source₁_shell).symm
+  have hfirstEq :
+      dist S.oppApex1 P.source₁ = dist S.oppApex1 P.source₂ :=
+    (mem_selectedClass.mp P.source₁_mem_radius).2.trans
+      (mem_selectedClass.mp P.source₂_mem_radius).2.symm
+  exact commonFirstApexPair_center_mem_firstCapInterior
+    hblockerA hblockerNe P.source₁_mem_capInterior
+    P.source₂_mem_capInterior P.sources_ne hblockerEq hfirstEq
+
+/-- The localized collision shell has exactly its two sources in the first
+opposite cap; its other two exact shell members lie outside that cap. -/
+theorem RetainedInteriorBlockerCollision.shell_inter_cap_eq_sources
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R) :
+    (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support ∩
+        S.capByIndex S.oppIndex1 =
+      {P.source₁, P.source₂} := by
+  have hblockerCap :
+      H.centerAt P.source₁ P.source₁_mem_A ∈
+        S.capByIndex S.oppIndex1 :=
+    S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+      P.blocker_mem_capInterior
+  have hpairSubset :
+      ({P.source₁, P.source₂} : Finset ℝ²) ⊆
+        (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support ∩
+          S.capByIndex S.oppIndex1 := by
+    intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl
+    · exact Finset.mem_inter.mpr
+        ⟨(H.selectedAt P.source₁
+            P.source₁_mem_A).toCriticalFourShell.q_mem_support,
+          S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+            P.source₁_mem_capInterior⟩
+    · exact Finset.mem_inter.mpr
+        ⟨P.source₂_mem_source₁_shell,
+          S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+            P.source₂_mem_capInterior⟩
+  have hcapTwo :
+      ((H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support ∩
+        S.capByIndex S.oppIndex1).card ≤ 2 := by
+    simpa using
+      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+        S D.convex S.oppIndex1
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.toSelectedFourClass
+        hblockerCap
+  exact (Finset.eq_of_subset_of_card_le hpairSubset (by
+    simpa [P.sources_ne] using hcapTwo)).symm
+
+/-- Three pairwise-distinct points of one strict cap interior force the
+corresponding closed cap to have cardinality at least five. -/
+theorem capByIndex_card_ge_five_of_three_distinct_interior
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (k : Fin 3)
+    {x y z : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex k)
+    (hy : y ∈ S.capInteriorByIndex k)
+    (hz : z ∈ S.capInteriorByIndex k)
+    (hxy : x ≠ y) (hxz : x ≠ z) (hyz : y ≠ z) :
+    5 ≤ (S.capByIndex k).card := by
+  have hthree : 2 < (S.capInteriorByIndex k).card := by
+    rw [Finset.two_lt_card]
+    exact ⟨x, hx, y, hy, z, hz, hxy, hxz, hyz⟩
+  have hcard := capInteriorByIndex_card_add_two S k
+  omega
+
+/-- A localized collision cap is automatically large: the two sources and
+their common blocker are three distinct strict-interior points. -/
+theorem RetainedInteriorBlockerCollision.firstCap_card_ge_five
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R) :
+    5 ≤ (S.capByIndex S.oppIndex1).card := by
+  let blocker := H.centerAt P.source₁ P.source₁_mem_A
+  have hblockerI : blocker ∈ S.capInteriorByIndex S.oppIndex1 := by
+    simpa only [blocker] using P.blocker_mem_capInterior
+  have hblocker_ne_source₁ : blocker ≠ P.source₁ := by
+    intro h
+    apply (H.selectedAt P.source₁
+      P.source₁_mem_A).toCriticalFourShell.center_not_mem_support
+    change blocker ∈
+      (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support
+    rw [h]
+    exact (H.selectedAt P.source₁
+      P.source₁_mem_A).toCriticalFourShell.q_mem_support
+  have hblocker_ne_source₂ : blocker ≠ P.source₂ := by
+    intro h
+    apply (H.selectedAt P.source₁
+      P.source₁_mem_A).toCriticalFourShell.center_not_mem_support
+    change blocker ∈
+      (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support
+    rw [h]
+    exact P.source₂_mem_source₁_shell
+  exact capByIndex_card_ge_five_of_three_distinct_interior
+    S S.oppIndex1 P.source₁_mem_capInterior P.source₂_mem_capInterior
+    hblockerI P.sources_ne hblocker_ne_source₁.symm
+    hblocker_ne_source₂.symm
+

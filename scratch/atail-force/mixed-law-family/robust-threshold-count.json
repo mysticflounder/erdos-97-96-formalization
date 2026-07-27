@@ -1,0 +1,28 @@
+{
+ "results": [
+  {
+   "n": 15,
+   "robust": 3,
+   "max_class": null,
+   "verdict": "SAT",
+   "base_clauses": 4176930,
+   "total_clauses": 4375173,
+   "build_seconds": 19.4,
+   "solve_seconds": 2.4,
+   "audit": null,
+   "oracle_on_model": null
+  },
+  {
+   "n": 15,
+   "robust": 5,
+   "max_class": null,
+   "verdict": "SAT",
+   "base_clauses": 4176930,
+   "total_clauses": 4507335,
+   "build_seconds": 19.9,
+   "solve_seconds": 6.3,
+   "audit": null,
+   "oracle_on_model": null
+  }
+ ]
+}

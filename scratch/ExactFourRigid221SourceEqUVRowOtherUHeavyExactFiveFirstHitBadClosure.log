@@ -1,0 +1,12 @@
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_blockerVRowOther_uHeavy_exactFive_firstHitBadResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.firstOppCap_card_ge_five_of_interiorPairBadOutsideSource' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_blockerVRowOther_uHeavy_exactFive_firstHitBad_firstOppCap_card_ge_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceEqU_blockerVRowOther_uHeavy_exactFive_reverseDistance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,6 @@
+'Problem97.ATailTwoRadiusBankAuditScratch.false_of_frontierCoupledPhysicalSecondApexExactTwoFourRadiusResidual' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]

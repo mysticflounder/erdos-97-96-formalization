@@ -1,0 +1,75 @@
+{
+  "child_cube_count": 8,
+  "child_cubes": [
+    [
+      1531,
+      16204,
+      17146
+    ],
+    [
+      1531,
+      16204,
+      -17146
+    ],
+    [
+      1531,
+      -16204,
+      -17401
+    ],
+    [
+      1531,
+      -16204,
+      17401
+    ],
+    [
+      -1531,
+      1532,
+      16254
+    ],
+    [
+      -1531,
+      1532,
+      -16254
+    ],
+    [
+      -1531,
+      -1532,
+      1533
+    ],
+    [
+      -1531,
+      -1532,
+      -1533
+    ]
+  ],
+  "child_depth": 3,
+  "child_limit": 8,
+  "elapsed_seconds": 15.095504333032295,
+  "epistemic_status": "EXTERNAL_MARCH_PARTITION_ONLY",
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-035/recube/march.log",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "orientation": "mirror",
+  "parent_cnf_sha256": "6fba0a17182b03dd746a437197b0f773030914a804f8420bd1915333455a7dc8",
+  "parent_cube": [
+    2070,
+    2106,
+    -313,
+    195,
+    16037,
+    -16031,
+    16033,
+    16034
+  ],
+  "parent_cube_index": 35,
+  "parent_cube_width": 8,
+  "parent_first_pass_conflicts": 108790,
+  "parent_first_pass_status": "UNKNOWN",
+  "partition_base_clause_count": 375871,
+  "partition_icnf_sha256": "acb3a8146c304ba8018175de6ea6721c065d364b6f1841a60f940b319aecbc87",
+  "partition_icnf_size_bytes": 22253448,
+  "returncode": 0,
+  "schema": "p97-exact5-card13-distinct-recube-parent-v1",
+  "status": "PARTITIONED",
+  "timed_out": false,
+  "timeout_seconds": 60
+}

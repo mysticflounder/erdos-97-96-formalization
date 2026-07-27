@@ -1,0 +1,242 @@
+ℹ [1/567] Replayed Erdos9796Proof.P97.Certificate.CheckpointedRup
+info: Erdos9796Proof/P97/Certificate/CheckpointedRup.lean:785:0: true
+info: Erdos9796Proof/P97/Certificate/CheckpointedRup.lean:786:0: true
+info: Erdos9796Proof/P97/Certificate/CheckpointedRup.lean:787:0: true
+info: Erdos9796Proof/P97/Certificate/CheckpointedRup.lean:788:0: true
+info: Erdos9796Proof/P97/Certificate/CheckpointedRup.lean:789:0: true
+✖ [3290/3305] Replaying Mathlib.CategoryTheory.Square
+error: operation not permitted (error code: 1)
+  file: /Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/CategoryTheory/Square.ir.hash
+✖ [6596/6887] Replaying Mathlib.Geometry.Euclidean.Angle.Unoriented.TriangleInequality
+error: operation not permitted (error code: 1)
+  file: /Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/mathlib/.lake/build/lib/lean/Mathlib/Geometry/Euclidean/Angle/Unoriented/TriangleInequality.olean.server.hash
+⚠ [8013/8100] Replayed Erdos9796Proof.P97.Cap.Partition
+warning: Erdos9796Proof/P97/Cap/Partition.lean:15:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [8061/8100] Replayed Erdos9796Proof.P97.Dumitrescu.L9
+warning: Erdos9796Proof/P97/Dumitrescu/L9.lean:53:20: unused variable `h₁`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Dumitrescu/L9.lean:53:34: unused variable `h₂`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/Dumitrescu/L9.lean:53:48: unused variable `h₃`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [9197/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4CertificateClosure.P4CertificateSemantics (1.1s)
+info: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CertificateClosure/P4CertificateSemantics.lean:127:0: 'Problem97.P4ExactTwoCertificateClosureScratch.false_of_checkpoint0_signedClauses_sat' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+ℹ [9198/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4CertificateClosure.P4CompactFormulaLedger (1.1s)
+info: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CertificateClosure/P4CompactFormulaLedger.lean:481:0: 'Problem97.P4ExactTwoCertificateClosureScratch.compactFormulaLedger_eq_checkpoint0' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+info: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CertificateClosure/P4CompactFormulaLedger.lean:482:0: 'Problem97.P4ExactTwoCertificateClosureScratch.checkpoint0_signedClauses_eq_p4CompactLedger' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+✔ [9199/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeClassifier (2.2s)
+ℹ [9202/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4CertificateClosure.P4CertificateLedgerClosure (851ms)
+info: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CertificateClosure/P4CertificateLedgerClosure.lean:34:0: 'Problem97.P4ExactTwoCertificateClosureScratch.false_of_p4CompactLedger_sat' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+⚠ [9205/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5MirrorNativeClassifier (4.0s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeClassifier.lean:7:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9206/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeLeaf9 (246s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf9.lean:5:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 0 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf9.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9207/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeLeaf10 (254s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf10.lean:5:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 0 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf10.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9208/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5MirrorNativeLeaf1 (371s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf1.lean:5:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 0 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf1.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9209/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5MirrorNativeLeaf2 (395s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf2.lean:5:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 0 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf2.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9210/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeLeaf8 (1285s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf8.lean:5:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 0 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf8.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9211/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeLeaf3 (1364s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf3.lean:5:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 0 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf3.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9212/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeLeaf1 (1408s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf1.lean:5:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 0 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf1.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9213/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5MirrorNativeLeaf8 (1406s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf8.lean:5:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 0 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf8.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9214/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeLeaf2 (1483s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf2.lean:5:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 0 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf2.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9215/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5MirrorNativeLeaf7 (1651s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf7.lean:5:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 0 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf7.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9216/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5MirrorNativeLeaf9 (1718s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf9.lean:5:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 0 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf9.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9217/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeLeaf4 (1814s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf4.lean:5:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 0 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf4.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9218/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5NativeTheorem (1.0s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeTheorem.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeTheorem.lean:2:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeTheorem.lean:3:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeTheorem.lean:4:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeTheorem.lean:5:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeTheorem.lean:6:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeTheorem.lean:7:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9222/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5MirrorNativeLeaf3 (1992s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf3.lean:5:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 0 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf3.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9223/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5MirrorNativeLeaf10 (2301s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf10.lean:5:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 0 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf10.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [9224/9230] Built Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.AlignedP5MirrorNativeTheorem (1.0s)
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeTheorem.lean:1:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeTheorem.lean:2:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeTheorem.lean:3:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeTheorem.lean:4:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeTheorem.lean:5:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeTheorem.lean:6:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeTheorem.lean:7:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+Some required targets logged failures:
+- Mathlib.CategoryTheory.Square
+- Mathlib.Geometry.Euclidean.Angle.Unoriented.TriangleInequality
+error: build failed

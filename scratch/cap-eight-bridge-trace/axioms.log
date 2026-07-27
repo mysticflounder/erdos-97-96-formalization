@@ -1,0 +1,60 @@
+'Problem97.ATailFrontierLiveClosure.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+../scratch/cap-eight-bridge-trace/AxiomTrace.lean:3:0: warning: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+'Problem97.ATailFrontierLiveClosure.exists_three_hit_of_two_collisionRows_capCross_normalForm' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_exactFourCollision_secondRadius_and_all_low_hits' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorBlockerCollision_and_all_low_hits' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApex_all_low_hits' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exists_criticalShell_oppositeCapClassInterior_card_ge_three_of_frontierAllLargeCapsTriApex' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApexUniformMetricResidual' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApexRobustResidual' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.criticalShellCenter_mem_capInteriorByIndex_of_two_hits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.nonempty_retainedInteriorDirectedOmission_of_collision_of_frontierClass_card_ge_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

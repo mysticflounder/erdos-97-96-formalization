@@ -1,0 +1,208 @@
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:13:45: error: unexpected token 'variable'; expected '_' or identifier
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:13:53: error: unexpected token ':'; expected '(', '[', '{' or '⦃'
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:14:27: error: unexpected token ')'; expected '(', '[', '{' or '⦃'
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:14:83: error: unexpected token ':'; expected '(', '[', '{' or '⦃'
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:16:41: error: unexpected token ')'; expected '(', '[', '{' or '⦃'
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:19:45: error: unexpected token 'variable'; expected '_' or identifier
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:19:53: error: unexpected token ':'; expected '(', '[', '{' or '⦃'
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:20:29: error: unexpected token ')'; expected '(', '[', '{' or '⦃'
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:20:56: error: unexpected token ')'; expected '(', '[', '{' or '⦃'
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:21:58: error: unexpected token ':'; expected '(', '[', '{' or '⦃'
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:31:11: error(lean.inferBinderTypeFailed): Failed to infer type of binder `m4`
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:31:8: error(lean.inferBinderTypeFailed): Failed to infer type of binder `m3`
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:31:5: error(lean.inferBinderTypeFailed): Failed to infer type of binder `m2`
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:26:0: error: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:34:6: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:34:31: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:34:56: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:35:7: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:35:30: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:38:26: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:39:4: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:39:20: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:39:35: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:39:51: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:40:4: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:40:20: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:40:35: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:40:51: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:41:22: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:42:14: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:42:37: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:42:60: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:42:83: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:43:14: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:43:30: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:44:14: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:44:35: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:44:54: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:44:75: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:45:14: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:45:35: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:45:54: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:45:75: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:46:35: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `MembershipRowEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:51:6: error: typeclass instance problem is stuck
+  Insert ℕ ?m.27
+
+Note: Lean will not try to resolve this typeclass instance problem because the second type argument to `Insert` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:79:11: error(lean.inferBinderTypeFailed): Failed to infer type of binder `a4`
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:79:8: error(lean.inferBinderTypeFailed): Failed to infer type of binder `a3`
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:79:5: error(lean.inferBinderTypeFailed): Failed to infer type of binder `a2`
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:82:6: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:82:31: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:83:7: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:83:32: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:86:20: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:86:34: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:86:53: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:86:67: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:87:14: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:87:28: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:87:47: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:87:61: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:88:26: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:88:52: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:89:26: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:89:52: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:90:26: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:90:52: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:91:26: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:91:52: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:92:26: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:92:52: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:93:26: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:93:52: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:94:28: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  e
+has type `NoFourEntry` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:98:6: error: typeclass instance problem is stuck
+  Insert ℕ ?m.21
+
+Note: Lean will not try to resolve this typeclass instance problem because the second type argument to `Insert` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:107:28: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  entry
+has type `MembershipRowEntry✝` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:109:21: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  entry
+has type `NoFourEntry✝` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:112:28: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  entry
+has type `MembershipRowEntry✝` which does not have the necessary form.
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/Families.lean:114:21: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  entry
+has type `NoFourEntry✝` which does not have the necessary form.

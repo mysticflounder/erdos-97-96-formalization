@@ -1,0 +1,343 @@
+#!/usr/bin/env python3
+"""Generate current-index projections from exact source producer packets.
+
+This generator is intentionally index driven.  It consumes the tracked
+complete best-core manifest, rebuilds both live source streams, and emits a
+shared projection only after the direct and mirror source expressions agree
+at that exact current index.  Legacy positional reuse is limited to h00000
+and h00001, the only legacy base fields still aligned with the current stream.
+"""
+
+from __future__ import annotations
+
+import argparse
+from collections import Counter
+import hashlib
+import json
+from pathlib import Path
+import sys
+from typing import Any
+
+
+HERE = Path(__file__).resolve().parent
+AUDIT = HERE.parent.parent / "exact5-card13-distinct-radius-source-ingress-audit"
+sys.path.insert(0, str(AUDIT))
+
+from distinct_source_terms import build_source_assertions  # noqa: E402
+from generate_reduced_union_routes import (  # noqa: E402
+    ORBIT,
+    load_union_manifest,
+    route,
+    sha256_file,
+)
+from generate_selected_rank_instances import (  # noqa: E402
+    TRACKED_MANIFEST,
+    TRACKED_MANIFEST_SHA256,
+)
+
+
+CHUNK_SIZE = 64
+
+
+def projection(index: int) -> tuple[str, str, list[str]]:
+    """Return family, exact proof expression, and suggested simp definitions."""
+
+    if index < 2:
+        return (
+            "current_base_prefix",
+            f"(directSource_baseAssertions C).h{index:04d}",
+            [],
+        )
+    if 40_210 <= index < 40_223:
+        point = index - 40_210
+        return (
+            "parent_first_equality",
+            (
+                "beq_iff_eq.mpr "
+                f"(directSource_parentFirst_eq_firstRow T hcard hdistinct "
+                f"({point} : Fin 13))"
+            ),
+            [],
+        )
+    if index == 40_223:
+        return (
+            "frontier_shell_omission",
+            "directSource_frontier_not_both_mem_shell T",
+            ["shellAtRole"],
+        )
+    if 40_224 <= index < 41_316:
+        chunk = (index - 40_224) // 64
+        return (
+            "connectivity",
+            (
+                "(canonicalConnectivityAssertions_of_minimal hmin C)."
+                f"chunk{chunk:03d}.h{index}"
+            ),
+            [
+                "sourceForwardRhs",
+                "sourceBackwardRhs",
+                "connectivityFinBit",
+                "directSourceRowMember",
+                "rowBit_directSourceRows",
+            ],
+        )
+    if 44_232 <= index < 45_288:
+        chunk = (index - 44_232) // 64
+        return (
+            "complete_class",
+            (
+                "(canonicalRankAssertions P C hcard hdistinct).completeClass."
+                f"chunk{chunk:03d}.h{index}"
+            ),
+            ["actualBlockerImageBit"],
+        )
+    if 45_288 <= index < 52_713:
+        chunk = (index - 45_288) // 64
+        return (
+            "unique_k4",
+            (
+                "(canonicalRankAssertions P C hcard hdistinct).uniqueK4."
+                f"chunk{chunk:03d}.h{index}"
+            ),
+            ["actualBlockerImageBit"],
+        )
+    raise ValueError(f"h{index} has no exact projection")
+
+
+def declaration(index: int, proof: str, family: str) -> tuple[str, str]:
+    name = f"selectedExactSource_h{index:05d}"
+    if family == "current_base_prefix":
+        binders = """    (T : CanonicalAsymmetricSemanticRowTable P star first)
+    (C : CanonicalCoverFamilies T)"""
+    elif family == "parent_first_equality":
+        binders = """    (T : CanonicalAsymmetricSemanticRowTable P star first)
+    (hcard : D.A.card = 13) (hdistinct : first.doubleRadius ≠ radius)"""
+    elif family == "frontier_shell_omission":
+        binders = "    (T : CanonicalAsymmetricSemanticRowTable P star first)"
+    elif family == "connectivity":
+        binders = """    (T : CanonicalAsymmetricSemanticRowTable P star first)
+    (hmin : D.Minimal) (C : CanonicalCoverFamilies T)"""
+    elif family in {"complete_class", "unique_k4"}:
+        binders = """    (T : CanonicalAsymmetricSemanticRowTable P star first)
+    (C : CanonicalCoverFamilies T)
+    (hcard : D.A.card = 13) (hdistinct : first.doubleRadius ≠ radius)"""
+    else:
+        raise AssertionError(family)
+
+    if family == "parent_first_equality":
+        point = index - 40_210
+        text = f"""/-- Current source assertion `h{index}` ({family}). -/
+theorem {name}
+{binders} :
+    (parentRowBit (directSourceParentFirst P) {point} ==
+      firstRowBit (directSourceFirstRow T) {point}) = true := by
+  exact {proof}
+"""
+    else:
+        # Projection definitions deliberately retain the checked packet's exact
+        # proposition.  The map records the small unfold set needed to compare
+        # helper-packaged fields with the rebuilt source expression.
+        text = f"""/-- Current source assertion `h{index}` ({family}). -/
+def {name}
+{binders} :=
+  {proof}
+"""
+    return name, text
+
+
+HEADER = """/- Generated by `generate_selected_exact_projections.py`; do not edit. -/
+import DirectSourceBaseFacts
+import ParentRowIngressAdapters
+import CanonicalConnectivityAssertions
+import CanonicalRankAssertions
+
+/-! Exact current-index source-packet projections. -/
+
+namespace Problem97
+namespace ATailExactFiveCard13DistinctRadiusSourceIngressCoordinatorScratch
+
+open ATailCriticalPairFrontier
+open ATailBiApexRobustCapBounds
+open ATailExactFiveCard13CnfIngressScratch
+open ATailExactFiveCard13CommonLabelTransportScratch
+open ATailExactFiveCard13DistinctRadiusSourceIngressScratch
+open ATailExactFiveGlobalCrossDeletionPair
+open ATailExactFiveGlobalCoverStarGeometry
+open ATailExactFiveMutualOneHitGeometry
+open ATailFirstApexShellRole
+open ATailLargeCapUniqueFive
+open ATailLargeCapUniqueFivePhysicalOmissionCycle
+open ATailLargeCapUniqueFivePhysicalOmissionTransitionGlobal
+open ATailOrientedPhysicalApexIngress
+open ATailParentExactFiveSecondCap
+open ATailPhysicalSecondApexCommonDeletion
+open CanonicalAsymmetricSemanticRowTable
+open ExactFiveCard13DistinctRadiusSourceIngressScratch
+
+attribute [local instance] Classical.propDecidable
+set_option maxHeartbeats 0
+set_option maxRecDepth 1000000
+noncomputable section
+
+variable
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    {Q : FrontierBiApexRobustExactFiveSecondCapResidual B}
+    {profile : LargeCapUniqueFiveSecondApexRadius D S}
+    {M : PhysicalActualCriticalMutualOmissionPair H profile}
+    {N : SourceTwoHitNormalForm Q profile M}
+    (P : CanonicalAsymmetricRolePrepacket N)
+    {star : PhysicalGlobalCrossDeletionStar profile}
+    {first : FirstApexShellRolePacket F R}
+
+"""
+
+FOOTER = """
+end
+end ATailExactFiveCard13DistinctRadiusSourceIngressCoordinatorScratch
+end Problem97
+"""
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--manifest", type=Path, default=TRACKED_MANIFEST)
+    parser.add_argument("--manifest-sha256", default=TRACKED_MANIFEST_SHA256)
+    parser.add_argument("--output-dir", type=Path, default=HERE / "selected-exact")
+    parser.add_argument("--chunk-size", type=int, default=CHUNK_SIZE)
+    args = parser.parse_args()
+
+    if args.chunk_size <= 0:
+        raise ValueError("chunk size must be positive")
+    if sha256_file(args.manifest) != args.manifest_sha256:
+        raise AssertionError("tracked complete-manifest SHA-256 drift")
+
+    selected: dict[str, list[int]] = {}
+    assertions: dict[str, list[Any]] = {}
+    for orientation in ("direct", "mirror"):
+        _payload, indices = load_union_manifest(
+            args.manifest, args.manifest_sha256, orientation
+        )
+        selected[orientation] = [
+            index
+            for index in indices
+            if route(index)["status"] in {"exact_packet", "exact_adapter"}
+        ]
+        current, _counts, _outer, _ranks = build_source_assertions(orientation)
+        assertions[orientation] = current
+        stream = "".join(item.sexpr() + "\n" for item in current).encode()
+        if hashlib.sha256(stream).hexdigest() != ORBIT[orientation]["source_stream_sha256"]:
+            raise AssertionError(f"{orientation} live source stream drift")
+
+    selected_sets = {
+        orientation: set(indices) for orientation, indices in selected.items()
+    }
+    union = sorted(selected_sets["direct"] | selected_sets["mirror"])
+    emitted: list[tuple[int, str, dict[str, Any]]] = []
+    counts: Counter[str] = Counter()
+    for index in union:
+        direct = assertions["direct"][index].sexpr()
+        mirror = assertions["mirror"][index].sexpr()
+        if direct != mirror:
+            raise AssertionError(f"direct/mirror expression mismatch at h{index}")
+        family, proof, simp_defs = projection(index)
+        name, text = declaration(index, proof, family)
+        counts[family] += 1
+        emitted.append((index, text, {
+            "source_index": index,
+            "family": family,
+            "declaration": name,
+            "proof_term": proof,
+            "simp_definitions": simp_defs,
+            "source_sexpr": direct,
+            "source_sexpr_sha256": hashlib.sha256(direct.encode()).hexdigest(),
+            "selected_direct": index in selected_sets["direct"],
+            "selected_mirror": index in selected_sets["mirror"],
+        }))
+
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    chunks = [
+        emitted[offset:offset + args.chunk_size]
+        for offset in range(0, len(emitted), args.chunk_size)
+    ]
+    chunk_paths: list[Path] = []
+    for chunk, entries in enumerate(chunks):
+        path = args.output_dir / f"SelectedExactAssertionsChunk{chunk:03d}.lean"
+        path.write_text(
+            HEADER + "\n".join(text for _index, text, _meta in entries) + FOOTER,
+            encoding="utf-8",
+        )
+        chunk_paths.append(path)
+        for _index, _text, meta in entries:
+            meta["module"] = path.stem
+            meta["chunk"] = chunk
+
+    representatives: dict[str, str] = {}
+    for _index, _text, meta in emitted:
+        representatives.setdefault(str(meta["family"]), str(meta["declaration"]))
+    imports = "\n".join(f"import {path.stem}" for path in chunk_paths)
+    checks = "\n".join(
+        f"#print axioms {name}" for _family, name in sorted(representatives.items())
+    )
+    coordinator = args.output_dir / "SelectedExactAssertions.lean"
+    coordinator.write_text(
+        f"""/- Generated by `generate_selected_exact_projections.py`; do not edit. -/
+{imports}
+
+/-! Aggregate import and representative axiom audit for exact projections. -/
+
+namespace Problem97
+namespace ATailExactFiveCard13DistinctRadiusSourceIngressCoordinatorScratch
+
+{checks}
+
+end ATailExactFiveCard13DistinctRadiusSourceIngressCoordinatorScratch
+end Problem97
+""",
+        encoding="utf-8",
+    )
+
+    selected_hash = hashlib.sha256()
+    for index in union:
+        selected_hash.update(f"{index}\0".encode())
+        selected_hash.update(assertions["direct"][index].sexpr().encode())
+        selected_hash.update(b"\n")
+    payload = {
+        "schema": "p97-exact5-distinct-selected-exact-projections-v1",
+        "status": "GENERATED_EXACT_PACKET_PROJECTIONS",
+        "manifest": str(args.manifest),
+        "manifest_sha256": args.manifest_sha256,
+        "direct_selected_count": len(selected["direct"]),
+        "mirror_selected_count": len(selected["mirror"]),
+        "shared_projection_union_count": len(union),
+        "shared_projection_union_sha256": selected_hash.hexdigest(),
+        "direct_mirror_expressions_identical_on_union": True,
+        "chunk_size": args.chunk_size,
+        "chunk_count": len(chunks),
+        "counts_by_family": dict(sorted(counts.items())),
+        "entries": [meta for _index, _text, meta in emitted],
+    }
+    map_path = args.output_dir / "selected-exact-assertion-map.json"
+    map_path.write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    print(json.dumps({
+        key: payload[key]
+        for key in (
+            "manifest_sha256",
+            "direct_selected_count",
+            "mirror_selected_count",
+            "shared_projection_union_count",
+            "shared_projection_union_sha256",
+            "chunk_count",
+            "counts_by_family",
+        )
+    }, sort_keys=True))
+
+
+if __name__ == "__main__":
+    main()

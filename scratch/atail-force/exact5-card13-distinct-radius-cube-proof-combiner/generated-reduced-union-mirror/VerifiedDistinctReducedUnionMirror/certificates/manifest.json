@@ -1,0 +1,48 @@
+{
+  "certificate_module": {
+    "bytes": 1244,
+    "path": "../Certificate.lean",
+    "sha256": "e5f6b4219a1d09a17c4e706b25001528b4321f062a6314d47f88812f43273a8d"
+  },
+  "epistemic_status": "BYTE_EXACT_SPLIT_OF_KERNEL_CHECKED_LRAT",
+  "max_part_bytes": 50331648,
+  "orientation": "mirror",
+  "parts": [
+    {
+      "bytes": 50331337,
+      "path": "part-000.lrat.txt",
+      "sha256": "9d37c33696bbe261b2b0fb41da6b034dc862db2f3ab1b944b5a8249d948c219f"
+    },
+    {
+      "bytes": 50329981,
+      "path": "part-001.lrat.txt",
+      "sha256": "ec86fcec6dcded49177c6379c9fd68275a469cbe8906ea8538c86ac9c87bac1a"
+    },
+    {
+      "bytes": 50331370,
+      "path": "part-002.lrat.txt",
+      "sha256": "28c01ffb8713b051d0e34d4dedc0010312b583660ccde97880fd638cdd753dc9"
+    },
+    {
+      "bytes": 50331026,
+      "path": "part-003.lrat.txt",
+      "sha256": "5e4cd484f85d8a098016abca9ef1ba536dfdce6db85c022a1f9c41cd49c205f8"
+    },
+    {
+      "bytes": 50331576,
+      "path": "part-004.lrat.txt",
+      "sha256": "2fb23428699e05dfc04714746a123a13cbb47c09a669b6c92a3191e676dcc16b"
+    },
+    {
+      "bytes": 17857658,
+      "path": "part-005.lrat.txt",
+      "sha256": "2e283f21560fbd766ab383efde9fe075aba64883c758fefc47d17a10433afedb"
+    }
+  ],
+  "schema": "p97-exact5-distinct-reduced-union-chunked-lrat-v1",
+  "whole": {
+    "bytes": 269512948,
+    "path": "root.sliced.lrat",
+    "sha256": "cd6aae339221c2e117a2423b2abe652770c9fafc8cf5de1a61a6017874fd75b2"
+  }
+}

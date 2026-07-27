@@ -1,0 +1,20 @@
+'Problem97.P4MirrorValuationScratch.mirrorTotalVal_rowRadiusClauses_sat' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'Problem97.P4MirrorValuationScratch.mirrorTotalVal_mutualTransportClauses_sat' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'Problem97.P4MirrorValuationScratch.mirrorTotalVal_kalmansonClauses_sat' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'Problem97.P4MirrorValuationScratch.mirrorTotalVal_criticalBridge_sat' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]

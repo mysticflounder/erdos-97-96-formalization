@@ -1,0 +1,15 @@
+module=Erdos9796Proof.P97.Q3SharedInterior
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/f53f097b51f8af17-2u1enu78/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/f53f097b51f8af17-2u1enu78/module.ilean Erdos9796Proof/P97/Q3SharedInterior.lean
+
+Erdos9796Proof/P97/Q3SharedInterior.lean:1004:4: warning: Try `simp at hq` instead of `simpa using hq`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+Erdos9796Proof/P97/Q3SharedInterior.lean:1034:2: warning: Try `simp at hqInter` instead of `simpa using hqInter`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+Erdos9796Proof/P97/Q3SharedInterior.lean:1096:4: warning: Try `simp at hq` instead of `simpa using hq`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+Erdos9796Proof/P97/Q3SharedInterior.lean:1126:2: warning: Try `simp at hqInter` instead of `simpa using hqInter`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`

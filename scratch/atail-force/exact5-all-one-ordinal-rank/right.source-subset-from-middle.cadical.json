@@ -1,0 +1,14 @@
+{
+  "cadical_options": "default",
+  "cnf_sha256": "b25ecacf55484acc4f03b9d4efccd274f6284ffe686aab607ddbc288f7e35e37",
+  "elapsed_seconds": 600.0148024999071,
+  "epistemic_status": "EXTERNAL_SOLVER_VERDICT",
+  "log_sha256": "99762b108792995a32ad5733c38eab5b7b381907d1f296afe9ce675f9909ae27",
+  "proof_exists": true,
+  "proof_sha256": "a5764103e28b8a0b7860c88b04f03235c43ef182b9457a31019f07ae0575ffdc",
+  "proof_size_bytes": 713506453,
+  "returncode": 0,
+  "schema": "p97-exact5-card13-all-one-ordinal-cadical-v1",
+  "seconds": 600,
+  "status": "UNKNOWN"
+}

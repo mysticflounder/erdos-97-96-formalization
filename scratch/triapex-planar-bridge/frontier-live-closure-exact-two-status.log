@@ -1,0 +1,62 @@
+project:       erdos-97-96-formalization (erdos-97-96-formalization)
+root:          /Users/adam/projects/math-projects/erdos-97-96-formalization
+lean_lib:      /Users/adam/projects/math-projects/erdos-97-96-formalization/lean
+target_symbol: 2 targets: Problem97.erdos97_rhs, Problem96.erdos96_rhs
+
+last build:    ✓ passed · built 1 · 7s · 60s ago
+recent builds  (when · took · result · target):
+   37m ago     10s  built 2      Erdos9796Proof.P97.ATail.FrontierLiveClosure
+   18m ago      9s  built 1      Erdos9796Proof.P97.ATail.FrontierLiveClosure
+   13m ago      8s  built 1      Erdos9796Proof.P97.ATail.FrontierLiveClosure
+    7m ago     25s  ✗ exit 1     full
+   60s ago      7s  built 1      Erdos9796Proof.P97.ATail.FrontierLiveClosure
+
+lean_files:    2551
+lean_symbols:  47881
+  axioms:      0 (0 sanctioned)
+  with-sorry:  6
+  closures:    0 cached
+
+index:         in sync with source
+uncommitted:   ⚠ 14 lean file(s) not committed — mined state may not be reproducible from git
+     M lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean
+     M lean/Erdos9796Proof/P97/ATail/FrontierCoupledStrictInteriorNormalForm.lean
+     M lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean
+     M lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean
+     M lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean
+     M lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean
+     M lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean
+     M lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean
+     M lean/Erdos9796Proof/P97/U5ModeADeletion.lean
+     M lean/Erdos9796Proof/P97/WitnessPacketInterface.lean
+    ?? lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificateIngress.lean
+    ?? lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean
+    ?? lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean
+    ?? lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean
+
+kernel spine (mined call graph — the only structure):
+  build:        5d2aa6adff18
+  mined fresh:  9470/39863 symbol(s)
+  graph mined:  66s ago
+  trusted:      7880 🔒 (certs excluded by [mining].skip)
+  `Problem97.erdos97_rhs` is OPEN:
+    - reaches sorry via 6 symbol(s)
+    - unapproved axiom on spine: sorryAx
+  `Problem96.erdos96_rhs` is OPEN:
+    - reaches sorry via 6 symbol(s)
+    - unapproved axiom on spine: sorryAx
+
+
+live sorries (fresh @ build 5d2aa6adff18, 2026-07-26T14:52:02+00:00):
+  on-spine (open frontier) (6):
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:126]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:115]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:56]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:66]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:525]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:613]
+  off-spine (placeholder — wire into the spine or remove) (0)
+
+session anchors: 5 total · 5 open · 0 closed
+
+your anchor: ⚓ Problem97.ATailFrontierLiveClosure.false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits  (subtree still open)

@@ -1,0 +1,74 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-robust-cap-expansion/ExactFourRobustLargeRadiusContinuation.lean:141:10: error: Application type mismatch: The argument
+  residual.packet
+has type
+  ATailCommonDeletionTwoCenter.CommonDeletionTwoCenterPacket D (lateFirstApexSystem R) residual.deleted residual.center
+    S.oppApex2
+but is expected to have type
+  ATailContinuationBankMatchScratch.CommonDeletionTwoCenterPacket ?m.11 ?m.12 ?m.13 ?m.14 ?m.15
+in the application
+  SecondRowCommonDeletionSuccessor residual.packet
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-robust-cap-expansion/ExactFourRobustLargeRadiusContinuation.lean:162:8: error: Application type mismatch: The argument
+  C
+has type
+  ATailCommonDeletionTwoCenter.CommonDeletionTwoCenterPacket D H deleted center S.oppApex2
+but is expected to have type
+  ATailContinuationBankMatchScratch.CommonDeletionTwoCenterPacket ?m.7 ?m.8 ?m.9 ?m.10 ?m.11
+in the application
+  SecondRowCommonDeletionSuccessor C
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-robust-cap-expansion/ExactFourRobustLargeRadiusContinuation.lean:184:14: error: Function expected at
+  ExactFourFivePointRadiusReduction
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  R
+
+Hint: The identifier `ExactFourFivePointRadiusReduction` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-robust-cap-expansion/ExactFourRobustLargeRadiusContinuation.lean:200:13: error(lean.unknownIdentifier): Unknown identifier `nonempty_secondRowCommonDeletionSuccessor_of_robust`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-robust-cap-expansion/ExactFourRobustLargeRadiusContinuation.lean:201:49: error: Tactic `rcases` failed: `x✝ : Sort u_2` is not an inductive datatype
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-robust-cap-expansion/ExactFourRobustLargeRadiusContinuation.lean:224:13: error(lean.unknownIdentifier): Unknown identifier `nonempty_secondRowCommonDeletionSuccessor_of_robust`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-robust-cap-expansion/ExactFourRobustLargeRadiusContinuation.lean:225:49: error: Tactic `rcases` failed: `x✝ : Sort u_2` is not an inductive datatype
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-robust-cap-expansion/ExactFourRobustLargeRadiusContinuation.lean:242:8: error: Function expected at
+  ExactFourFivePointRadiusReduction
+but this term has type
+  ?m.5
+
+Note: Expected a function because this term is being applied to the argument
+  R
+
+Hint: The identifier `ExactFourFivePointRadiusReduction` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-robust-cap-expansion/ExactFourRobustLargeRadiusContinuation.lean:251:8: error: Function expected at
+  ExactFourFivePointRadiusReduction
+but this term has type
+  ?m.29
+
+Note: Expected a function because this term is being applied to the argument
+  R
+
+Hint: The identifier `ExactFourFivePointRadiusReduction` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-robust-cap-expansion/ExactFourRobustLargeRadiusContinuation.lean:279:14: error: Function expected at
+  ExactFourPostCardElevenRobustContinuation
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  R
+
+Hint: The identifier `ExactFourPostCardElevenRobustContinuation` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFourTwoDistinctRadiiContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_twoDistinctRadiiContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-robust-cap-expansion/ExactFourRobustLargeRadiusContinuation.lean:328:14: error(lean.unknownIdentifier): Unknown constant `ExactFourFivePointRadiusReduction`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-robust-cap-expansion/ExactFourRobustLargeRadiusContinuation.lean:329:14: error(lean.unknownIdentifier): Unknown constant `nonempty_secondRowCommonDeletionSuccessor_of_robust`
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_fivePointRadiusReduction' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-robust-cap-expansion/ExactFourRobustLargeRadiusContinuation.lean:331:14: error(lean.unknownIdentifier): Unknown constant `ExactFourPostCardElevenRobustContinuation`
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_exactFourPostCardElevenRobustContinuation' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

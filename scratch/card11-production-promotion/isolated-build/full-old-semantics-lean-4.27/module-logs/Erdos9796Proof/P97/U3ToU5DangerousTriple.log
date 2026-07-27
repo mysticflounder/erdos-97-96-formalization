@@ -1,0 +1,9 @@
+module=Erdos9796Proof.P97.U3ToU5DangerousTriple
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/bb9867cfbb9e0e25-70j2ttes/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/bb9867cfbb9e0e25-70j2ttes/module.ilean Erdos9796Proof/P97/U3ToU5DangerousTriple.lean
+
+Erdos9796Proof/P97/U3ToU5DangerousTriple.lean:232:4: warning: 'simp' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+Try this:
+  [apply] simp only [dist_self]
+'exact ne_of_lt hr' uses '⊢'!

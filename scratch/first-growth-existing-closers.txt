@@ -1,0 +1,441 @@
+  1320	          (D.A.erase
+  1321	            ((lateFirstApexSystem R).centerAt
+  1322	              second.deleted.1 second.deleted.2))
+  1323	          ((lateFirstApexSystem R).centerAt
+  1324	            first.deleted.1 first.deleted.2))) :
+  1325	    False := by
+  1326	  sorry
+  1327	
+  1328	/-- The normalized four-center common-deletion residue.  The checked finite
+  1329	shell split above reduces it to blocker coincidence or a bidirectional
+  1330	deletion-survival square. -/
+  1331	theorem
+  1332	    false_of_exactFourMutualOmission_fourCenterCommonDeletion
+  1333	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  1334	    {H : CriticalShellSystem D.A}
+  1335	    {F : CriticalPairFrontier D S radius H}
+  1336	    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+  1337	    (_hcard : 12 ≤ D.A.card)
+  1338	    (surface : ExactFourPostCardElevenRobustSurface R)
+  1339	    (rho : ℝ)
+  1340	    (_hrho : 0 < rho)
+  1341	    (_hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+  1342	    (u v : CarrierVertex D.A)
+  1343	    (_huNeV : u ≠ v)
+  1344	    (_huClass :
+  1345	      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+  1346	    (_hvClass :
+  1347	      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+  1348	    (_hvOmitted :
+  1349	      v.1 ∉
+  1350	        ((lateFirstApexSystem R).selectedAt
+  1351	          u.1 u.2).toCriticalFourShell.support)
+  1352	    (_huOmitted :
+  1353	      u.1 ∉
+  1354	        ((lateFirstApexSystem R).selectedAt
+  1355	          v.1 v.2).toCriticalFourShell.support)
+  1356	    (first second :
+  1357	      ExactFourMutualOmissionJointDeletion R rho u v)
+  1358	    (_hdeletedNe : first.deleted ≠ second.deleted)
+  1359	    (_hdeletedBlockersNe :
+  1360	      (lateFirstApexSystem R).centerAt
+  1361	          first.deleted.1 first.deleted.2 ≠
+  1362	        (lateFirstApexSystem R).centerAt
+  1363	          second.deleted.1 second.deleted.2)
+  1364	    (_hfirstBlockerNeU :
+  1365	      (lateFirstApexSystem R).centerAt
+  1366	          first.deleted.1 first.deleted.2 ≠
+  1367	        (lateFirstApexSystem R).centerAt u.1 u.2)
+  1368	    (_hfirstBlockerNeV :
+  1369	      (lateFirstApexSystem R).centerAt
+  1370	          first.deleted.1 first.deleted.2 ≠
+  1371	        (lateFirstApexSystem R).centerAt v.1 v.2)
+  1372	    (_hfirstBlockerNeApex :
+  1373	      (lateFirstApexSystem R).centerAt
+  1374	          first.deleted.1 first.deleted.2 ≠ S.oppApex2)
+  1375	    (_hsecondBlockerNeU :
+  1376	      (lateFirstApexSystem R).centerAt
+  1377	          second.deleted.1 second.deleted.2 ≠
+  1378	        (lateFirstApexSystem R).centerAt u.1 u.2)
+  1379	    (_hsecondBlockerNeV :
+  1380	      (lateFirstApexSystem R).centerAt
+  1381	          second.deleted.1 second.deleted.2 ≠
+  1382	        (lateFirstApexSystem R).centerAt v.1 v.2)
+  1383	    (_hsecondBlockerNeApex :
+  1384	      (lateFirstApexSystem R).centerAt
+  1385	          second.deleted.1 second.deleted.2 ≠ S.oppApex2)
+  1386	    (crossPacket :
+  1387	      CommonDeletionTwoCenterPacket
+  1388	        D (lateFirstApexSystem R) first.deleted.1
+  1389	        ((lateFirstApexSystem R).centerAt
+  1390	          second.deleted.1 second.deleted.2)
+  1391	        S.oppApex2) :
+  1392	    False := by
+  1393	  have hsplit :=
+  1394	    exactFour_fourSurvivingCenters_survivalSquare_split
+  1395	      _hrho first second
+  1396	      _hsecondBlockerNeU _hsecondBlockerNeV _hsecondBlockerNeApex
+  1397	      crossPacket
+  1398	  rcases hsplit with hqu | hqv | hqr | ha | hu | hv | hr
+  1399	  · exact
+  1400	      false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+  1401	        R _hcard surface rho _hrho _hfive u v _huNeV
+  1402	        _huClass _hvClass _hvOmitted _huOmitted first second
+  1403	        _hdeletedNe _hdeletedBlockersNe
+  1404	        _hfirstBlockerNeU _hfirstBlockerNeV _hfirstBlockerNeApex
+  1405	        _hsecondBlockerNeU _hsecondBlockerNeV _hsecondBlockerNeApex
+  1406	        crossPacket (Or.inl hqu)
+  1407	  · exact
+  1408	      false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+  1409	        R _hcard surface rho _hrho _hfive u v _huNeV
+  1410	        _huClass _hvClass _hvOmitted _huOmitted first second
+  1411	        _hdeletedNe _hdeletedBlockersNe
+  1412	        _hfirstBlockerNeU _hfirstBlockerNeV _hfirstBlockerNeApex
+  1413	        _hsecondBlockerNeU _hsecondBlockerNeV _hsecondBlockerNeApex
+  1414	        crossPacket (Or.inr (Or.inl hqv))
+  1415	  · exact
+  1416	      false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+  1417	        R _hcard surface rho _hrho _hfive u v _huNeV
+  1418	        _huClass _hvClass _hvOmitted _huOmitted first second
+  1419	        _hdeletedNe _hdeletedBlockersNe
+  1420	        _hfirstBlockerNeU _hfirstBlockerNeV _hfirstBlockerNeApex
+  1421	        _hsecondBlockerNeU _hsecondBlockerNeV _hsecondBlockerNeApex
+  1422	        crossPacket (Or.inr (Or.inr hqr))
+  1423	  · exact
+  1424	      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+  1425	        R _hcard surface rho _hrho _hfive u v _huNeV
+  1426	        _huClass _hvClass _hvOmitted _huOmitted first second
+  1427	        _hdeletedNe _hdeletedBlockersNe
+  1428	        _hfirstBlockerNeU _hfirstBlockerNeV _hfirstBlockerNeApex
+  1429	        _hsecondBlockerNeU _hsecondBlockerNeV _hsecondBlockerNeApex
+  1430	        crossPacket (Or.inl ha)
+  1431	  · exact
+  1432	      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+  1433	        R _hcard surface rho _hrho _hfive u v _huNeV
+  1434	        _huClass _hvClass _hvOmitted _huOmitted first second
+  1435	        _hdeletedNe _hdeletedBlockersNe
+  1436	        _hfirstBlockerNeU _hfirstBlockerNeV _hfirstBlockerNeApex
+  1437	        _hsecondBlockerNeU _hsecondBlockerNeV _hsecondBlockerNeApex
+  1438	        crossPacket (Or.inr (Or.inl hu))
+  1439	  · exact
+  1440	      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+  1441	        R _hcard surface rho _hrho _hfive u v _huNeV
+  1442	        _huClass _hvClass _hvOmitted _huOmitted first second
+  1443	        _hdeletedNe _hdeletedBlockersNe
+  1444	        _hfirstBlockerNeU _hfirstBlockerNeV _hfirstBlockerNeApex
+  1445	        _hsecondBlockerNeU _hsecondBlockerNeV _hsecondBlockerNeApex
+  1446	        crossPacket (Or.inr (Or.inr (Or.inl hv)))
+  1447	  · exact
+  1448	      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+  1449	        R _hcard surface rho _hrho _hfive u v _huNeV
+  1450	        _huClass _hvClass _hvOmitted _huOmitted first second
+  1451	        _hdeletedNe _hdeletedBlockersNe
+  1452	        _hfirstBlockerNeU _hfirstBlockerNeV _hfirstBlockerNeApex
+  1453	        _hsecondBlockerNeU _hsecondBlockerNeV _hsecondBlockerNeApex
+  1454	        crossPacket (Or.inr (Or.inr (Or.inr hr)))
+  1455	
+  1456	/-- A directed cross-omission produces an exact q-deleted four-point row at
+  1457	the other deletion's blocker.  Together with the two existing packets this
+  1458	is the four-center common-deletion residue above. -/
+  1459	theorem
+  1460	    false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
+  1461	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  1462	    {H : CriticalShellSystem D.A}
+  1463	    {F : CriticalPairFrontier D S radius H}
+  1464	    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+  1465	    (hcard : 12 ≤ D.A.card)
+  1466	    (surface : ExactFourPostCardElevenRobustSurface R)
+  1467	    (rho : ℝ)
+  1468	    (hrho : 0 < rho)
+  1469	    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+  1470	    (u v : CarrierVertex D.A)
+  1471	    (huNeV : u ≠ v)
+  1472	    (huClass :
+  1473	      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+  1474	    (hvClass :
+  1475	      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+  1476	    (hvOmitted :
+  1477	      v.1 ∉
+  1478	        ((lateFirstApexSystem R).selectedAt
+  1479	          u.1 u.2).toCriticalFourShell.support)
+  1480	    (huOmitted :
+  1481	      u.1 ∉
+  1482	        ((lateFirstApexSystem R).selectedAt
+  1483	          v.1 v.2).toCriticalFourShell.support)
+  1484	    (first second :
+  1485	      ExactFourMutualOmissionJointDeletion R rho u v)
+  1486	    (hdeletedNe : first.deleted ≠ second.deleted)
+  1487	    (hdeletedBlockersNe :
+  1488	      (lateFirstApexSystem R).centerAt
+  1489	          first.deleted.1 first.deleted.2 ≠
+  1490	        (lateFirstApexSystem R).centerAt
+  1491	          second.deleted.1 second.deleted.2)
+  1492	    (hfirstBlockerNeU :
+  1493	      (lateFirstApexSystem R).centerAt
+  1494	          first.deleted.1 first.deleted.2 ≠
+  1495	        (lateFirstApexSystem R).centerAt u.1 u.2)
+  1496	    (hfirstBlockerNeV :
+  1497	      (lateFirstApexSystem R).centerAt
+  1498	          first.deleted.1 first.deleted.2 ≠
+  1499	        (lateFirstApexSystem R).centerAt v.1 v.2)
+  1500	    (hfirstBlockerNeApex :
+  1501	      (lateFirstApexSystem R).centerAt
+  1502	          first.deleted.1 first.deleted.2 ≠ S.oppApex2)
+  1503	    (hsecondBlockerNeU :
+  1504	      (lateFirstApexSystem R).centerAt
+  1505	          second.deleted.1 second.deleted.2 ≠
+  1506	        (lateFirstApexSystem R).centerAt u.1 u.2)
+  1507	    (hsecondBlockerNeV :
+  1508	      (lateFirstApexSystem R).centerAt
+  1509	          second.deleted.1 second.deleted.2 ≠
+  1510	        (lateFirstApexSystem R).centerAt v.1 v.2)
+  1511	    (hsecondBlockerNeApex :
+  1512	      (lateFirstApexSystem R).centerAt
+  1513	          second.deleted.1 second.deleted.2 ≠ S.oppApex2)
+  1514	    (hfirstNotMemSecondRow :
+  1515	      first.deleted.1 ∉
+  1516	        ((lateFirstApexSystem R).selectedAt
+  1517	          second.deleted.1 second.deleted.2).toCriticalFourShell.support) :
+  1518	    False := by
+  1519	  have hsecondBlockerA :
+  1520	      (lateFirstApexSystem R).centerAt
+  1521	          second.deleted.1 second.deleted.2 ∈ D.A := by
+  1522	    exact
+  1523	      (Finset.mem_erase.mp
+  1524	        ((lateFirstApexSystem R).selectedAt
+  1525	          second.deleted.1 second.deleted.2).toCriticalFourShell.center_mem).2
+  1526	  have hcrossSurvives :
+  1527	      HasNEquidistantPointsAt 4 (D.A.erase first.deleted.1)
+  1528	        ((lateFirstApexSystem R).centerAt
+  1529	          second.deleted.1 second.deleted.2) :=
+  1530	    (cross_deletion_survives_iff_not_mem_selected_support
+  1531	      (lateFirstApexSystem R) second.deleted.2).mpr
+  1532	        hfirstNotMemSecondRow
+  1533	  rcases
+  1534	      nonempty_commonDeletionTwoCenterPacket
+  1535	        (lateFirstApexSystem R)
+  1536	        first.uPacket.q_mem_A
+  1537	        hsecondBlockerA
+  1538	        first.uPacket.center₂_mem_A
+  1539	        hsecondBlockerNeApex
+  1540	        hcrossSurvives
+  1541	        first.uPacket.survives₂ with
+  1542	    ⟨crossPacket⟩
+  1543	  exact
+  1544	    false_of_exactFourMutualOmission_fourCenterCommonDeletion
+  1545	      R hcard surface rho hrho hfive u v huNeV
+  1546	      huClass hvClass hvOmitted huOmitted first second
+  1547	      hdeletedNe hdeletedBlockersNe
+  1548	      hfirstBlockerNeU hfirstBlockerNeV hfirstBlockerNeApex
+  1549	      hsecondBlockerNeU hsecondBlockerNeV hsecondBlockerNeApex
+  1550	      crossPacket
+  1551	
+  1552	/-- The fresh-blocker arm reduces, by the checked blocker-two-cycle
+  1553	contradiction and symmetry, to one directed cross-omission residue. -/
+  1554	theorem
+  1555	    false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters
+  1556	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  1557	    {H : CriticalShellSystem D.A}
+  1558	    {F : CriticalPairFrontier D S radius H}
+  1559	    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+  1560	    (hcard : 12 ≤ D.A.card)
+  1561	    (surface : ExactFourPostCardElevenRobustSurface R)
+  1562	    (rho : ℝ)
+  1563	    (hrho : 0 < rho)
+  1564	    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+  1565	    (u v : CarrierVertex D.A)
+  1566	    (huNeV : u ≠ v)
+  1567	    (huClass :
+  1568	      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+  1569	    (hvClass :
+  1570	      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+  1571	    (hvOmitted :
+  1572	      v.1 ∉
+  1573	        ((lateFirstApexSystem R).selectedAt
+  1574	          u.1 u.2).toCriticalFourShell.support)
+  1575	    (huOmitted :
+  1576	      u.1 ∉
+  1577	        ((lateFirstApexSystem R).selectedAt
+  1578	          v.1 v.2).toCriticalFourShell.support)
+  1579	    (first second :
+  1580	      ExactFourMutualOmissionJointDeletion R rho u v)
+  1581	    (hdeletedNe : first.deleted ≠ second.deleted)
+  1582	    (hdeletedBlockersNe :
+  1583	      (lateFirstApexSystem R).centerAt
+  1584	          first.deleted.1 first.deleted.2 ≠
+  1585	        (lateFirstApexSystem R).centerAt
+  1586	          second.deleted.1 second.deleted.2)
+  1587	    (hfirstBlockerNeU :
+  1588	      (lateFirstApexSystem R).centerAt
+  1589	          first.deleted.1 first.deleted.2 ≠
+  1590	        (lateFirstApexSystem R).centerAt u.1 u.2)
+  1591	    (hfirstBlockerNeV :
+  1592	      (lateFirstApexSystem R).centerAt
+  1593	          first.deleted.1 first.deleted.2 ≠
+  1594	        (lateFirstApexSystem R).centerAt v.1 v.2)
+  1595	    (hfirstBlockerNeApex :
+  1596	      (lateFirstApexSystem R).centerAt
+  1597	          first.deleted.1 first.deleted.2 ≠ S.oppApex2)
+  1598	    (hsecondBlockerNeU :
+  1599	      (lateFirstApexSystem R).centerAt
+  1600	          second.deleted.1 second.deleted.2 ≠
+  1601	        (lateFirstApexSystem R).centerAt u.1 u.2)
+  1602	    (hsecondBlockerNeV :
+  1603	      (lateFirstApexSystem R).centerAt
+  1604	          second.deleted.1 second.deleted.2 ≠
+  1605	        (lateFirstApexSystem R).centerAt v.1 v.2)
+  1606	    (hsecondBlockerNeApex :
+  1607	      (lateFirstApexSystem R).centerAt
+  1608	          second.deleted.1 second.deleted.2 ≠ S.oppApex2) :
+  1609	    False := by
+  1610	  rcases exactFour_twoDeletion_crossOmission first second hdeletedNe
+  1611	      hdeletedBlockersNe hfirstBlockerNeApex hsecondBlockerNeApex with
+  1612	    hfirstNotMem | hsecondNotMem
+  1613	  · exact
+  1614	      false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
+  1615	        R hcard surface rho hrho hfive u v huNeV huClass hvClass
+  1616	        hvOmitted huOmitted first second hdeletedNe hdeletedBlockersNe
+  1617	        hfirstBlockerNeU hfirstBlockerNeV hfirstBlockerNeApex
+  1618	        hsecondBlockerNeU hsecondBlockerNeV hsecondBlockerNeApex
+  1619	        hfirstNotMem
+  1620	  · exact
+  1621	      false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
+  1622	        R hcard surface rho hrho hfive u v huNeV huClass hvClass
+  1623	        hvOmitted huOmitted second first hdeletedNe.symm
+  1624	        hdeletedBlockersNe.symm
+  1625	        hsecondBlockerNeU hsecondBlockerNeV hsecondBlockerNeApex
+  1626	        hfirstBlockerNeU hfirstBlockerNeV hfirstBlockerNeApex
+  1627	        hsecondNotMem
+  1628	
+  1629	/-- The two-deletion exact-four residue is exhaustively narrowed according to
+  1630	whether the deleted sources have equal actual blockers.  In the collision arm
+  1631	their equal canonical rows have an exact two-point intersection with the
+  1632	physical class; otherwise the two deleted sources furnish two fresh blockers
+  1633	outside the original blocker pair and the physical apex. -/
+  1634	theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions
+  1635	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  1636	    {H : CriticalShellSystem D.A}
+  1637	    {F : CriticalPairFrontier D S radius H}
+  1638	    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+  1639	    (hcard : 12 ≤ D.A.card)
+  1640	    (surface : ExactFourPostCardElevenRobustSurface R)
+  1641	    (rho : ℝ)
+  1642	    (hrho : 0 < rho)
+  1643	    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+  1644	    (u v : CarrierVertex D.A)
+  1645	    (huNeV : u ≠ v)
+  1646	    (huClass :
+  1647	      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+  1648	    (hvClass :
+  1649	      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+  1650	    (hvOmitted :
+  1651	      v.1 ∉
+  1652	        ((lateFirstApexSystem R).selectedAt
+  1653	          u.1 u.2).toCriticalFourShell.support)
+  1654	    (huOmitted :
+  1655	      u.1 ∉
+  1656	        ((lateFirstApexSystem R).selectedAt
+  1657	          v.1 v.2).toCriticalFourShell.support)
+  1658	    (first second :
+  1659	      ExactFourMutualOmissionJointDeletion R rho u v)
+  1660	    (hdeletedNe : first.deleted ≠ second.deleted) :
+  1661	    False := by
+  1662	  classical
+  1663	  let Hlate := lateFirstApexSystem R
+  1664	  by_cases hblockersEq :
+  1665	      Hlate.centerAt first.deleted.1 first.deleted.2 =
+  1666	        Hlate.centerAt second.deleted.1 second.deleted.2
+  1667	  · have hsupportsEq :
+  1668	        (Hlate.selectedAt
+  1669	            first.deleted.1 first.deleted.2).toCriticalFourShell.support =
+  1670	          (Hlate.selectedAt
+  1671	            second.deleted.1 second.deleted.2).toCriticalFourShell.support :=
+  1672	      ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+  1673	        Hlate first.deleted.2 second.deleted.2 hblockersEq
+  1674	    have hfirstMemFirstRow :
+  1675	        first.deleted.1 ∈
+  1676	          (Hlate.selectedAt
+  1677	            first.deleted.1 first.deleted.2).toCriticalFourShell.support :=
+  1678	      (Hlate.selectedAt
+  1679	        first.deleted.1 first.deleted.2).toCriticalFourShell.q_mem_support
+  1680	    have hsecondMemSecondRow :
+  1681	        second.deleted.1 ∈
+  1682	          (Hlate.selectedAt
+  1683	            second.deleted.1 second.deleted.2).toCriticalFourShell.support :=
+  1684	      (Hlate.selectedAt
+  1685	        second.deleted.1 second.deleted.2).toCriticalFourShell.q_mem_support
+  1686	    have hfirstMemSecondRow :
+  1687	        first.deleted.1 ∈
+  1688	          (Hlate.selectedAt
+  1689	            second.deleted.1 second.deleted.2).toCriticalFourShell.support := by
+  1690	      rw [← hsupportsEq]
+  1691	      exact hfirstMemFirstRow
+  1692	    have hsecondMemFirstRow :
+  1693	        second.deleted.1 ∈
+  1694	          (Hlate.selectedAt
+  1695	            first.deleted.1 first.deleted.2).toCriticalFourShell.support := by
+  1696	      rw [hsupportsEq]
+  1697	      exact hsecondMemSecondRow
+  1698	    have hvalNe : first.deleted.1 ≠ second.deleted.1 := by
+  1699	      intro hval
+  1700	      exact hdeletedNe (Subtype.ext hval)
+  1701	    have hclassIntersectionLe :
+  1702	        (((Hlate.selectedAt
+  1703	              first.deleted.1 first.deleted.2).toCriticalFourShell.support ∩
+  1704	            SelectedClass D.A S.oppApex2 rho).card ≤ 2) := by
+  1705	      simpa [Hlate] using
+  1706	        actualLateRow_secondClass_card_le_two R surface first.deleted
+  1707	    have hclassIntersectionGe :
+  1708	        2 ≤
+  1709	          ((Hlate.selectedAt
+  1710	              first.deleted.1 first.deleted.2).toCriticalFourShell.support ∩
+  1711	            SelectedClass D.A S.oppApex2 rho).card := by
+  1712	      have hsubset :
+  1713	          ({first.deleted.1, second.deleted.1} : Finset ℝ²) ⊆
+  1714	            (Hlate.selectedAt
+  1715	                first.deleted.1 first.deleted.2).toCriticalFourShell.support ∩
+  1716	              SelectedClass D.A S.oppApex2 rho := by
+  1717	        intro x hx
+  1718	        simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+  1719	        rcases hx with rfl | rfl
+  1720	        · exact Finset.mem_inter.mpr
+  1721	            ⟨hfirstMemFirstRow, first.deleted_mem_class⟩
+  1722	        · exact Finset.mem_inter.mpr
+  1723	            ⟨hsecondMemFirstRow, second.deleted_mem_class⟩
+  1724	      have hcard := Finset.card_le_card hsubset
+  1725	      simpa [hvalNe] using hcard
+  1726	    have hclassIntersectionTwo :
+  1727	        ((Hlate.selectedAt
+  1728	              first.deleted.1 first.deleted.2).toCriticalFourShell.support ∩
+  1729	            SelectedClass D.A S.oppApex2 rho).card = 2 := by
+  1730	      omega
+  1731	    exact
+  1732	      false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision
+  1733	        R hcard surface rho hrho hfive u v huNeV huClass hvClass
+  1734	          hvOmitted huOmitted first second hdeletedNe hblockersEq
+  1735	          (by simpa [Hlate] using hsupportsEq)
+  1736	          (by simpa [Hlate] using hfirstMemSecondRow)
+  1737	          (by simpa [Hlate] using hsecondMemFirstRow)
+  1738	          (by simpa [Hlate] using hclassIntersectionTwo)
+  1739	  · exact
+  1740	      false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters
+  1741	        R hcard surface rho hrho hfive u v huNeV huClass hvClass
+  1742	          hvOmitted huOmitted first second hdeletedNe
+  1743	          (by simpa [Hlate] using hblockersEq)
+  1744	          first.uPacket.actual_blocker_ne_center₁
+  1745	          first.vPacket.actual_blocker_ne_center₁
+  1746	          first.uPacket.actual_blocker_ne_center₂
+  1747	          second.uPacket.actual_blocker_ne_center₁
+  1748	          second.vPacket.actual_blocker_ne_center₁
+  1749	          second.uPacket.actual_blocker_ne_center₂
+  1750	
+  1751	/-- The rigid `2+2+1` class together with a globally card-minimal blocking
+  1752	subdeletion.  This retains the global geometry discarded by the local rigid
+  1753	partition. -/
+  1754	structure ExactFourMutualOmissionRigid221GlobalDeletion
+  1755	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  1756	    {H : CriticalShellSystem D.A}
+  1757	    {F : CriticalPairFrontier D S radius H}
+  1758	    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+  1759	    (rho : ℝ) (u v : CarrierVertex D.A)
+  1760	    (jointDeletion : ExactFourMutualOmissionJointDeletion R rho u v) where

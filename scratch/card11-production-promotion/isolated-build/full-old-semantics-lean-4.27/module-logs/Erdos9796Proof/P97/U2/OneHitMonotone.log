@@ -1,0 +1,100 @@
+module=Erdos9796Proof.P97.U2.OneHitMonotone
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/6b7b9b5120d42953-s5tddo2u/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/6b7b9b5120d42953-s5tddo2u/module.ilean Erdos9796Proof/P97/U2/OneHitMonotone.lean
+
+Erdos9796Proof/P97/U2/OneHitMonotone.lean:107:71: warning: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+Erdos9796Proof/P97/U2/OneHitMonotone.lean:148:66: warning: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+Erdos9796Proof/P97/U2/OneHitMonotone.lean:162:64: warning: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+Erdos9796Proof/P97/U2/OneHitMonotone.lean:164:34: warning: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+Erdos9796Proof/P97/U2/OneHitMonotone.lean:164:40: warning: missing space in the source
+
+This part of the code
+  '(π/3))
+'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+Erdos9796Proof/P97/U2/OneHitMonotone.lean:172:0: warning: This file has more than one module docstring (`/-! ... -/`). Only the first one is treated as module documentation; convert additional ones to regular comments (`/- ... -/`).
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+Erdos9796Proof/P97/U2/OneHitMonotone.lean:212:71: warning: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+Erdos9796Proof/P97/U2/OneHitMonotone.lean:273:66: warning: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+Erdos9796Proof/P97/U2/OneHitMonotone.lean:290:67: warning: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+Erdos9796Proof/P97/U2/OneHitMonotone.lean:292:34: warning: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+Erdos9796Proof/P97/U2/OneHitMonotone.lean:292:40: warning: missing space in the source
+
+This part of the code
+  '(π/3))
+'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

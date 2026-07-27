@@ -1,0 +1,9 @@
+module=Erdos9796Proof.P97.ATail.FrontierLiveClosure
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/1ee959fe21a7af1f-w6o4ne5u/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/1ee959fe21a7af1f-w6o4ne5u/module.ilean Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean
+
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:54:8: warning: declaration uses 'sorry'
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:64:8: warning: declaration uses 'sorry'
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:113:8: warning: declaration uses 'sorry'
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:124:8: warning: declaration uses 'sorry'
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:482:8: warning: declaration uses 'sorry'
+Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:520:8: warning: declaration uses 'sorry'

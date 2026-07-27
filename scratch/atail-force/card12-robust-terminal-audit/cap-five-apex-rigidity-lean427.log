@@ -1,0 +1,51 @@
+'Problem97.ATailFullGeometryProducerScratch.capInteriorByIndex_card_eq_three_of_cap_card_eq_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.capInteriorByIndex_card_add_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_selectedClass_card_le_five_of_cap_card_eq_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_K4_radius_unique_of_cap_card_eq_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_K4_unique_radius_of_cap_card_eq_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_K4_unique_four_or_five_full_filter_of_cap_card_eq_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_K4_radius_unique_of_capInterior_card_le_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_distinct_K4_radii_force_cap_card_ge_six' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_selectedClass_card_le_four_of_cap_card_eq_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_K4_unique_four_full_filter_of_cap_card_eq_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_K4_unique_four_or_five_full_filter_of_cap_card_four_or_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.both_opposite_apices_distinct_K4_radii_force_card_ge_fourteen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.card_le_thirteen_has_opposite_cap_card_four_or_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.card_le_thirteen_has_unique_small_opposite_apex_full_filter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.card_twelve_has_opposite_cap_card_four_or_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.card_twelve_has_unique_small_opposite_apex_full_filter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,9 @@
+Lean: 4.27.0
+source root: repo root (-R .. from lean/)
+warningAsError: true
+TMPDIR: scratch/run-tmp
+maximum concurrent workers: 4
+BridgeChunk02..BridgeChunk42: pass=41 fail=0
+BridgeAll: pass=1 fail=0
+first failing diagnostics: none
+stop boundary honored: Main.lean and AxiomAudit.lean not compiled

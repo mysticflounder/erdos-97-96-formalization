@@ -1,0 +1,6 @@
+c parsing input formula with 3 variables and 4 clauses
+c WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -3 0
+c finished parsing
+c found complementary unit clauses
+s VERIFIED
+c verification time: 0.017 seconds

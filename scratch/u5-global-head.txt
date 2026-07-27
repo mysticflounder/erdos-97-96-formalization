@@ -1,0 +1,260 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+import Erdos9796Proof.P97.U5GlobalIncidenceBasic
+import Erdos9796Proof.P97.TwoCircleCrossing
+import Erdos9796Proof.P97.U1CarrierInjection
+
+/-!
+# U5 global-incidence support helpers
+
+This file contains lightweight support-payload lemmas for U5 global incidence.
+It deliberately stays separate from `U5GlobalIncidenceKernels.lean`, whose
+bounded-audit metric incompatibility proofs are slow to compile.
+-/
+
+open scoped EuclideanGeometry
+open EuclideanGeometry
+
+namespace Problem97
+
+/-- Every center used by the bounded audit is present in the q-deleted
+skeleton once the dangerous triple, selected candidate, and auxiliary vertices
+are present there. -/
+theorem U5DangerousTriple.audit_center_mem_skeleton
+    {D : CounterexampleData} {q p : ℝ²} {T : Finset ℝ²} {u a0 a1 x : ℝ²}
+    (htriple : U5DangerousTriple D q p T)
+    (hsel : U5SelectedCandidateSkeleton D q p T u)
+    (ha0 : a0 ∈ (D.skeleton q).erase p)
+    (ha1 : a1 ∈ (D.skeleton q).erase p)
+    (hx : x ∈ U5BoundedAuditCenters D q p T u a0 a1) :
+    x ∈ D.skeleton q := by
+  rw [U5BoundedAuditCenters] at hx
+  simp only [Finset.mem_insert] at hx
+  rcases hx with rfl | rfl | rfl | hxT
+  · exact (Finset.mem_erase.mp hsel.candidate_mem).2
+  · exact (Finset.mem_erase.mp ha0).2
+  · exact (Finset.mem_erase.mp ha1).2
+  · exact (Finset.mem_erase.mp (htriple.T_subset hxT)).2
+
+/-- Package the 4A q-critical alternative as an exact q-critical triple class.
+
+The selected set is the whole q-deleted radius class at radius `dist center q`;
+the q-critical hypothesis says that this class has exactly three points. -/
+theorem U5QCriticalTripleClass.exists_card_three_of_qCritical
+    {D : CounterexampleData} {q center : ℝ²}
+    (hcritical :
+      ∃ r : ℝ, 0 < r ∧ dist center q = r ∧
+        ((((D.skeleton q).erase center).filter
+          fun y => dist center y = r).card = 3)) :
+    ∃ B : Finset ℝ², Nonempty (U5QCriticalTripleClass D q center B) ∧
+      B.card = 3 := by
+  classical
+  rcases hcritical with ⟨r, hr_pos, hqr, hcard⟩
+  let B : Finset ℝ² :=
+    ((D.skeleton q).erase center).filter fun y => dist center y = r
+  refine ⟨B, ⟨?_, ?_⟩⟩
+  · refine ⟨?_, ?_, ?_, ?_⟩
+    · intro y hy
+      exact (Finset.mem_filter.mp hy).1
+    · exact hcard
+    · simpa [hqr] using hr_pos
+    · intro y hy
+      exact ((Finset.mem_filter.mp hy).2).trans hqr.symm
+  · exact hcard
+
+/-- A raw q-critical alternative determines the exact four-point ambient
+radius class through `q`.
+
+This conversion is stated at the raw alternative boundary because
+`U5QCriticalTripleClass` intentionally records only the three deleted points,
+not equality with the full deleted radius class. -/
+theorem U5QCriticalTripleClass.exists_criticalFourShell_of_qCritical
+    {D : CounterexampleData} {q center : ℝ²}
+    (hq : q ∈ D.A)
+    (hcenter : center ∈ D.skeleton q)
+    (hcritical :
+      ∃ r : ℝ, 0 < r ∧ dist center q = r ∧
+        ((((D.skeleton q).erase center).filter
+          fun y => dist center y = r).card = 3)) :
+    Nonempty (CriticalFourShell D.A q center) := by
+  classical
+  rcases hcritical with ⟨r, hrpos, hqr, hcard⟩
+  let B : Finset ℝ² :=
+    ((D.skeleton q).erase center).filter fun y => dist center y = r
+  have hcenterErase : center ∈ D.A.erase q := by
+    simpa [CounterexampleData.skeleton] using hcenter
+  have hq_not_mem_B : q ∉ B := by
+    intro hqB
+    have hqSkel : q ∈ D.skeleton q :=
+      (Finset.mem_erase.mp (Finset.mem_filter.mp hqB).1).2
+    change q ∈ D.A.erase q at hqSkel
+    exact (Finset.mem_erase.mp hqSkel).1 rfl
+  refine ⟨{
+    center_mem := hcenterErase
+    radius := r
+    radius_pos := hrpos
+    support := Finset.cons q B hq_not_mem_B
+    support_eq := ?_
+    support_card := ?_
+    q_mem_support := Finset.mem_cons_self q B
+  }⟩
+  · ext z
+    constructor
+    · intro hz
+      rcases Finset.mem_cons.mp hz with rfl | hzB
+      · exact Finset.mem_filter.mpr ⟨hq, hqr⟩
+      · have hzFilter := Finset.mem_filter.mp hzB
+        have hzCenterErase := Finset.mem_erase.mp hzFilter.1
+        have hzSkel : z ∈ D.skeleton q := hzCenterErase.2
+        have hzErase : z ∈ D.A.erase q := by
+          simpa [CounterexampleData.skeleton] using hzSkel
+        exact Finset.mem_filter.mpr
+          ⟨(Finset.mem_erase.mp hzErase).2, hzFilter.2⟩
+    · intro hz
+      have hzFilter := Finset.mem_filter.mp hz
+      by_cases hzq : z = q
+      · exact Finset.mem_cons.mpr (Or.inl hzq)
+      · have hzc : z ≠ center := by
+          intro h
+          subst z
+          rw [dist_self] at hzFilter
+          linarith
+        have hzSkel : z ∈ D.skeleton q := by
+          change z ∈ D.A.erase q
+          exact Finset.mem_erase.mpr ⟨hzq, hzFilter.1⟩
+        exact Finset.mem_cons.mpr <| Or.inr <|
+          Finset.mem_filter.mpr
+            ⟨Finset.mem_erase.mpr ⟨hzc, hzSkel⟩, hzFilter.2⟩
+  · rw [Finset.card_cons]
+    simpa [B] using hcard
+
+/-- A q-allowed four-point class containing `q` is a q-critical triple after
+erasing `q`. -/
+theorem U5QAllowedK4Class.qCriticalTriple_of_mem_q
+    {D : CounterexampleData} {q center : ℝ²} {B : Finset ℝ²}
+    (K : U5QAllowedK4Class D center B)
+    (hcard : B.card = 4)
+    (hqB : q ∈ B) :
+    Nonempty (U5QCriticalTripleClass D q center (B.erase q)) := by
+  classical
+  refine ⟨{
+    subset := ?_
+    card_three := ?_
+    q_radius_pos := ?_
+    same_q_radius := ?_
+  }⟩
+  · intro y hy
+    have hyErase := Finset.mem_erase.mp hy
+    have hy_ne_q : y ≠ q := hyErase.1
+    have hyB : y ∈ B := hyErase.2
+    have hySkelCenter : y ∈ D.skeleton center := K.subset hyB
+    change y ∈ D.A.erase center at hySkelCenter
+    have hy_ne_center : y ≠ center := (Finset.mem_erase.mp hySkelCenter).1
+    have hyA : y ∈ D.A := (Finset.mem_erase.mp hySkelCenter).2
+    exact Finset.mem_erase.mpr
+      ⟨hy_ne_center, Finset.mem_erase.mpr ⟨hy_ne_q, hyA⟩⟩
+  · rw [Finset.card_erase_of_mem hqB, hcard]
+  · have hqRadius : dist center q = K.radius := K.same_radius q hqB
+    simpa [hqRadius] using K.radius_pos
+  · intro y hy
+    have hyB : y ∈ B := (Finset.mem_erase.mp hy).2
+    exact (K.same_radius y hyB).trans (K.same_radius q hqB).symm
+
+/-- A q-allowed four-point class not containing `q` is an exact q-deleted
+class with the same carrier. -/
+def U5QAllowedK4Class.toQDeletedK4Class_of_not_mem_q
+    {D : CounterexampleData} {q center : ℝ²} {B : Finset ℝ²}
+    (K : U5QAllowedK4Class D center B)
+    (hqNotB : q ∉ B) :
+    U5QDeletedK4Class D q center B where
+  subset := by
+    intro y hyB
+    have hySkelCenter : y ∈ D.skeleton center := K.subset hyB
+    change y ∈ D.A.erase center at hySkelCenter
+    have hy_ne_center : y ≠ center := (Finset.mem_erase.mp hySkelCenter).1
+    have hyA : y ∈ D.A := (Finset.mem_erase.mp hySkelCenter).2
+    have hy_ne_q : y ≠ q := by
+      intro hyq
+      exact hqNotB (by simpa [hyq] using hyB)
+    exact Finset.mem_erase.mpr
+      ⟨hy_ne_center, Finset.mem_erase.mpr ⟨hy_ne_q, hyA⟩⟩
+  card_four := K.card_four
+  q_not_mem := hqNotB
+  radius := K.radius
+  radius_pos := K.radius_pos
+  same_radius := K.same_radius
+
+/-- A q-critical class at a non-`p` center can contain at most one dangerous
+triple point.
+
+The point `q` is implicit in a q-critical class.  If two distinct points of
+`T` also belonged to the q-critical class, then the center circle and the
+dangerous `p`-circle would share the three distinct points `q`, `t₁`, and
+`t₂`, contradicting the two-circle intersection theorem. -/
+theorem U5QCriticalTripleClass.two_triple_points_incompatibility
+    {D : CounterexampleData} {q p center t₁ t₂ : ℝ²} {T B : Finset ℝ²}
+    (htriple : U5DangerousTriple D q p T)
+    (K : U5QCriticalTripleClass D q center B)
+    (hcenter_ne_p : center ≠ p)
+    (ht₁T : t₁ ∈ T) (ht₂T : t₂ ∈ T) (ht₁₂ : t₁ ≠ t₂)
+    (ht₁B : t₁ ∈ B) (ht₂B : t₂ ∈ B) : False := by
+  let sc : Sphere ℝ² := ⟨center, dist center q⟩
+  let sp : Sphere ℝ² := ⟨p, dist p q⟩
+  have hsne : sc ≠ sp := by
+    intro h
+    exact hcenter_ne_p (congrArg (fun s : Sphere ℝ² => s.1) h)
+  have hqsc : q ∈ sc := by
+    rw [mem_sphere]
+    exact dist_comm q center
+  have ht₁sc : t₁ ∈ sc := by
+    rw [mem_sphere]
+    calc
+      dist t₁ center = dist center t₁ := dist_comm t₁ center
+      _ = dist center q := K.same_q_radius t₁ ht₁B
+  have ht₂sc : t₂ ∈ sc := by
+    rw [mem_sphere]
+    calc
+      dist t₂ center = dist center t₂ := dist_comm t₂ center
+      _ = dist center q := K.same_q_radius t₂ ht₂B
+  have hqsp : q ∈ sp := by
+    rw [mem_sphere]
+    exact dist_comm q p
+  have ht₁sp : t₁ ∈ sp := by
+    rw [mem_sphere]
+    calc
+      dist t₁ p = dist p t₁ := dist_comm t₁ p
+      _ = dist p q := htriple.T_same_radius t₁ ht₁T
+  have ht₂sp : t₂ ∈ sp := by
+    rw [mem_sphere]
+    calc
+      dist t₂ p = dist p t₂ := dist_comm t₂ p
+      _ = dist p q := htriple.T_same_radius t₂ ht₂T
+  have hq_ne_t₁ : q ≠ t₁ := by
+    have ht₁_skeleton : t₁ ∈ D.skeleton q :=
+      (Finset.mem_erase.mp (htriple.T_subset ht₁T)).2
+    have ht₁_erase_q : t₁ ∈ D.A.erase q := by
+      change t₁ ∈ D.A.erase q at ht₁_skeleton
+      exact ht₁_skeleton
+    exact (Finset.mem_erase.mp ht₁_erase_q).1.symm
+  have hq_ne_t₂ : q ≠ t₂ := by
+    have ht₂_skeleton : t₂ ∈ D.skeleton q :=
+      (Finset.mem_erase.mp (htriple.T_subset ht₂T)).2
+    have ht₂_erase_q : t₂ ∈ D.A.erase q := by
+      change t₂ ∈ D.A.erase q at ht₂_skeleton
+      exact ht₂_skeleton
+    exact (Finset.mem_erase.mp ht₂_erase_q).1.symm
+  rcases two_circle_common_point_eq_endpoint
+      hsne hq_ne_t₁ hqsc ht₁sc hqsp ht₁sp ht₂sc ht₂sp with
+    ht₂q | ht₂t₁
+  · exact hq_ne_t₂ ht₂q.symm
+  · exact ht₁₂ ht₂t₁.symm
+
+/-- q-critical/exact/q-critical chain incompatibility along the dangerous triple.
+
+If a q-critical class at `left` contains `p` and `mid`, an exact q-free class
+at `mid` contains `p` and `right`, and a q-critical class at `right` contains
+`p`, then the `left`- and `right`-centered circles share `p`, `q`, and `mid`.
+Distinct planar circles cannot share three points. -/

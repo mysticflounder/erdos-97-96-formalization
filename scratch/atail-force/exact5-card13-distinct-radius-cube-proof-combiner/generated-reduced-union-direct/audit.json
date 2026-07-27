@@ -1,0 +1,16 @@
+{
+  "certificate_bytes": 203545546,
+  "certificate_manifest_sha256": "0b8a9227e398c3f4dc63379876735add5045eebe60a3255b03416381ff32f915",
+  "certificate_parts": 5,
+  "certificate_sha256": "073c3c4e9ef6da762970df1baf2b866a14e0e23297a8db4a1950195a2c9a0ef4",
+  "chunker_sha256": "f4e0a5ffbc644d8ecfb9b17c20f1f59b8cb7c37771fb3b44baf5cac265044a0b",
+  "epistemic_status": "REPO_RELATIVE_PUBLICATION_TREE_HASHES_MATCH",
+  "generated_modules": 277,
+  "generator_sha256": "9b6b5198306f1125559f865d0b4e75e2e6f48a8a033d090e6c04bdce94f901d5",
+  "map_sha256": "73cd3c146f61287092517034a5b13c566f6ed3b5d4139916bf3da4705be140d0",
+  "module_prefix": "VerifiedDistinctReducedUnionDirect",
+  "orientation": "direct",
+  "schema": "p97-exact5-distinct-reduced-union-publication-audit-v1",
+  "source_assertions": 17537,
+  "source_chunks": 275
+}

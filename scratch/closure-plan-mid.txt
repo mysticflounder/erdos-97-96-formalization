@@ -1,0 +1,155 @@
+### 4. Current physical common-deletion ingress
+
+**Paths.** Production `ExactFourPhysicalConsumer.lean`,
+`common-deletion-multicenter-search`,
+`card12-frontier-common-deletion-alignment`, and
+`frontier-coupled-two-four-radius-consumer`.
+
+**Strongest positive result.** The surface retains a real two-center packet:
+one deletion, one late blocker, and the physical second apex, with K4 survival
+data at both centers.  The current production refinement additionally proves
+that all outside sources which block deletion of both source-valid strict
+first-cap points share one actual late blocker, and that a fixed positive
+second-apex radius contains at most one such bad strict-cap source.  Hence a
+five-point second-apex radius contains an actual strict second-cap source for
+which deleting `R.interior_q` or `R.interior_w` preserves K4 at that source's
+late blocker.
+
+**Strongest negative result.** The freshly checked
+`FrontierCommonDeletionAlignmentObstruction.lean` proves
+`firstApexDouble_blocked_of_originalUniqueFour`,
+`no_same_frontier_commonDeletionParentResidual`, and
+`no_late_frontier_commonDeletionParentResidual`.
+
+**Status.** Production ingress and the new interior-pair source extraction are
+**KERNEL-CURRENT** under Lean 4.27.  The obstruction is **NEGATIVE-KERNEL**.
+Bare three/four-center enumerations are only finite checks or specifications
+unless separately listed below.
+
+**Precise gap.** The five-point-radius arm now supplies one of the two needed
+source-valid interior deletions, but no checked terminal yet converts that
+survival packet into the required cyclic three-row occurrence.  In the other
+radius-classification arm, production now retains two disjoint exact
+four-point second-apex rows, each with at least two strict second-cap members;
+the extremal coupling of those four candidates remains open.  Reusing the
+original frontier pair is not merely unproved: deleting both exact-four class
+points leaves too few points at the first apex, while the desired successor
+requires survival.
+
+**Dominance.** This negative theorem kills every plan that wires the existing
+original or late frontier directly to the exact-five common-deletion
+successor.
+
+### 5. Protected-deletion global coupling and minimal cores
+
+**Paths.** `unique4-global-coupling`,
+`unique4-singleton-core-terminal`, `unique4-escape-localization`, and
+`unique4-robust-global-terminal`.
+
+**Strongest result.**
+`exists_strictCap_collision_or_singletonCore_or_packedCore` at
+`UniqueFourGlobalDeletionCoupling.lean:515` deletes the exact class together
+with protected Moser vertices and returns:
+
+- an equal-radius collision with a robust omitted center;
+- a singleton `MinimalDeletionCore`; or
+- a nontrivial disjoint-shell core with
+  `2 * V.card ≤ complement-cap.card`.
+
+The smallest singleton continuation installs the core as an actual center and
+can feed `nonempty_singletonCoreOutsidePairIngress`.
+`false_of_hasSameCapActualRowRepeat` is a checked conditional terminal.
+
+**Status.** **KERNEL-RECORDED SOURCE-NORMALIZATION**; not freshly rebuilt in
+this shared run.  The scratch modules are not production imports.
+
+**Precise gap.** The singleton terminal additionally needs
+`ExactTwoStrictHitDistribution R` and a `HasSameCapActualRowRepeat`: a second
+distinct installed center in the same cap whose actual row contains both
+outside points.  The packed and collision arms likewise lack a prescribed
+cross-occurrence consumer.
+
+**Dominance.** This is the strongest general protected-deletion case split and
+subsumes the weaker escape/localization normal forms.  It does not dominate
+the production surface, because it does not use the physical two-center
+ingress or the complete second-apex radius classification.
+
+### 6. Strict-pair minimal deletion and equal-radius arm
+
+**Paths.** `unique4-strict-pair-minimality`,
+`unique4-equal-radius-terminal`, and
+`unique4-aligned-interior-closure-audit`.
+
+**Strongest result.**
+`exists_strictPair_singleton_or_equalRadius_or_distinctRadius` at
+`UniqueFourStrictPairMinimality.lean:305` gives:
+
+- a singleton minimal-deletion core;
+- deletion of the whole pair at one equal radius, with a fresh first-cap
+  center, a class and cap of cardinality at least five, and robustness; or
+- deletion of the whole pair at distinct radii, with a robust two-shell core.
+
+`false_of_equalRadius_pair_of_firstOppCap_card_eq_four` closes only when the
+physical first opposite cap has cardinality exactly four.
+`false_of_secondFirstCapCenter_bisecting_outsidePair` is the smallest
+equal-radius conditional terminal.
+
+**Status.** **KERNEL-RECORDED SOURCE-NORMALIZATION**; no fresh rebuild in this
+run.  `strictPairMinimalDeletion_center_ne_secondApex` is a checked
+localization statement, not a terminal.
+
+**Precise gaps.**
+
+- Exact radius-class cardinality four is not physical cap cardinality four, so
+  the first conditional terminal cannot fire from the current surface.
+- The second terminal needs a distinct second center in the first cap
+  bisecting the extracted outside pair.  Equivalently it needs another actual
+  row in that cap containing both outside points.
+- `not_both_outsidePoints_mem_actualRow_of_center_mem_firstCap` is an
+  avoidance theorem; it does not produce that row.
+
+**Dominance.** This is the best local branch decomposition of the protected
+pair.  It exposes the same missing two-point cross-occurrence as the global
+coupling route.
+
+### 7. Multicenter occurrence and the production Kalmanson terminal
+
+**Paths.** `unique4-multicenter-occurrence`,
+`unique4-three-row-occurrence-producer`,
+`unique4-three-row-placement-source-audit`,
+`unique4-cross-incidence-occurrence`,
+`unique4-complete-radius-spine-bridge`,
+`row-triangle-connectivity-audit`, and the promoted
+`UniqueFourKalmansonCores.lean`.
+
+**Strongest producers.**
+
+- `exists_three_actualCenters_with_exact_rows` produces the first-apex exact
+  row and two distinct outside blockers with their actual critical rows.
+- `singletonCore_installs_strictCap_actualCenter` can install one
+  singleton-core center/row.
+- Faithful-carrier closure gives one-point row-connectivity and prescribed
+  row escape.
+
+**Strongest terminal.**
+`false_of_one_k1_three_cyclic_selected_rows` is a production,
+cardinality-independent Kalmanson contradiction for three
+`SelectedFourClass` rows and six prescribed cross-memberships in cyclic
+order.
+
+**Status.** Terminal: **KERNEL-CURRENT**.  Producers:
+**KERNEL-RECORDED**.  Finite connectivity models are
+**NEGATIVE EXACT-WITHIN-MODEL** evidence against deriving the required
+two-point pattern from closure/connectivity alone.
+
+**Precise gap.** Existing producers retain only each source's membership in
+its own row.  They do not prove the six cross-memberships and the compatible
+cyclic ordering required by the terminal.  The current physical ingress gives
+two particularly meaningful rows, but still no prescribed cross-incidence.
+
+**Dominance.** This is the highest-leverage route family: the terminal is
+already production, generic in carrier cardinality, and independent of the
+card-eleven certificate.  All three-row, row-triangle, and occurrence audits
+reduce to the same positive source bridge.
+
+### 8. Four-turn / corrected-curvature occurrence

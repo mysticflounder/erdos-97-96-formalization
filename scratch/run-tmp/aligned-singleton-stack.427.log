@@ -1,0 +1,56 @@
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFourTwoRadiusNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.rtwoScratchRobust_of_production' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.productionRobust_of_rtwoScratch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_exactFourTwoRadiusNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_secondRowCommonDeletionSuccessor_of_singletonEndpoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFourTwoRadiusSuccessorNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_exactFourTwoRadiusSuccessorNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFourSingletonAlternateRadiusOutcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFourTwoRadiusNoFiveNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_exactFourTwoRadiusNoFiveNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFourSecondOppositeRadiusContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_secondOppositeRadiusContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFourPostCardElevenRobustContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_exactFourPostCardElevenRobustContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueArmPostCardElevenRefinedCoordinatorScratch.ExactFourPostCardElevenRefinedOutcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueArmPostCardElevenRefinedCoordinatorScratch.nonempty_exactFourPostCardElevenRefinedOutcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueArmPostCardElevenRefinedCoordinatorScratch.OriginalUniqueRadiusArmPostCardElevenRefinedClosers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueArmPostCardElevenRefinedCoordinatorScratch.false_of_originalFrontierUniqueRadiusArm_of_refinedPostCardElevenClosers' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]

@@ -1,0 +1,22 @@
+{
+  "cnf_clause_count": 590573,
+  "cnf_sha256": "91b82fbcc9417632a71c85e41b85ada991d49715abcdc592f1883c5862726536",
+  "cnf_variable_count": 67581,
+  "conflicts": 157662,
+  "decisions": 697557,
+  "disabled_blocks": [
+    "unique_k4_critical"
+  ],
+  "elapsed_seconds": 20.02111779199913,
+  "epistemic_status": "DIAGNOSTIC_WEAKENED_CNF_ONLY",
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_unique_k4_critical/direct/cadical.log",
+  "log_sha256": "5ea97c689482ab3d46c8ee1fc51c63578eb52ef83a34f5ae23321b48852fd2e4",
+  "model_check": null,
+  "orientation": "direct",
+  "profile": "no_unique_k4_critical",
+  "returncode": 0,
+  "schema": "p97-exact5-card13-distinct-ablation-cell-v1",
+  "status": "UNKNOWN",
+  "subprocess_timeout": false,
+  "timeout_seconds": 20
+}

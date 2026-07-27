@@ -1,0 +1,66 @@
+{
+  "child_cnf_sha256": "0ed6d85a190689c011a11e463cb3271e79c90f123332f4f2c3ace2a66cfebfe2",
+  "child_cube": [
+    -1531,
+    1532,
+    16253
+  ],
+  "child_cube_index": 4,
+  "combined_assumptions": [
+    2071,
+    2106,
+    -313,
+    195,
+    16036,
+    16031,
+    16033,
+    16034,
+    -1531,
+    1532,
+    16253
+  ],
+  "config": "sat",
+  "config_args": [
+    "--sat"
+  ],
+  "conflicts": 26289,
+  "decisions": 45272,
+  "drat_check": {
+    "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-041/child-04/drat-trim.log",
+    "log_sha256": "6b919bdb129ea421cd7d860cc0a81624669c153c3c384178dd1d4e8b13e15a11",
+    "returncode": 0,
+    "status": "PASS",
+    "timed_out": false
+  },
+  "elapsed_seconds": 16.15048987499904,
+  "epistemic_status": "EXTERNAL_EXACT_CHILD_CNF_VERDICT",
+  "extended_model_check_against_original_cnf": null,
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-041/child-04/cadical.log",
+  "log_sha256": "aac99b12b4a721d6d20ea284367116845e18939f57f354af24850d3801b88795",
+  "model_check_against_child_cnf": null,
+  "orientation": "direct",
+  "parent_cube": [
+    2071,
+    2106,
+    -313,
+    195,
+    16036,
+    16031,
+    16033,
+    16034
+  ],
+  "parent_cube_index": 41,
+  "proof_artifact": {
+    "format": "gzip-compressed CaDiCaL DRAT",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-041/child-04/proof.drat.gz",
+    "sha256": "cb2d78167de7de7fe00a3a5a976b1cbbfd4b2f6928d3a22ac6c93cb9bd866552",
+    "size_bytes": 2874658
+  },
+  "returncode": 20,
+  "schema": "p97-exact5-card13-distinct-recube-child-v1",
+  "seed": 2660,
+  "solver_status": "UNSAT",
+  "status": "UNSAT",
+  "timed_out": false,
+  "timeout_seconds": 15
+}

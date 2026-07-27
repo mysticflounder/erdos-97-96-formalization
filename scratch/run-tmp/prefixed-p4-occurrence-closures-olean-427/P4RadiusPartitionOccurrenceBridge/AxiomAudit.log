@@ -1,0 +1,4 @@
+'Problem97.P4RadiusPartitionOccurrenceBridgeScratch.bridgeEntries_wf' depends on axioms: [propext]
+'Problem97.P4RadiusPartitionOccurrenceBridgeScratch.bridgeClauses_sat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

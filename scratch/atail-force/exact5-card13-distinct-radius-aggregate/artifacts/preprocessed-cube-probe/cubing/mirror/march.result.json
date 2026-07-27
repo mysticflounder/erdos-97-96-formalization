@@ -1,0 +1,21 @@
+{
+  "cnf_sha256": "21e87780e8303e8092c27f0fb38c75a0e9cb705497440f529e08cc32705dd85b",
+  "cube_limit": 64,
+  "depth": 8,
+  "elapsed_seconds": 72.19068954198156,
+  "icnf_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/preprocessed-cube-probe/cubing/mirror/depth8-limit64.icnf",
+  "inspection": {
+    "base_clause_lines": 375863,
+    "cube_count": 64,
+    "header": "p inccnf",
+    "max_cube_width": 8,
+    "sha256": "1f37ca18bca855bcecfd3fa71f727185353cdb31af579ca944dababc746d6bbb",
+    "size_bytes": 22255924
+  },
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/preprocessed-cube-probe/cubing/mirror/march.log",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "orientation": "mirror",
+  "returncode": 0,
+  "status": "CUBED",
+  "timed_out": false
+}

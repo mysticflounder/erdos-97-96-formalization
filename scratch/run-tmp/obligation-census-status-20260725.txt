@@ -1,0 +1,39 @@
+project:       erdos-97-96-formalization (erdos-97-96-formalization)
+root:          /Users/adam/projects/math-projects/erdos-97-96-formalization
+lean_lib:      /Users/adam/projects/math-projects/erdos-97-96-formalization/lean
+target_symbol: 2 targets: Problem97.erdos97_rhs, Problem96.erdos96_rhs
+
+last build:    ✓ passed · built 1 · 25s · 9h ago
+recent builds  (when · took · result · target):
+   31h ago      0s  cached       Erdos9796Proof.P97.Certificate.CheckpointedRupCompactBoundary
+   31h ago      2s  cached       Erdos9796Proof.P97.Census554.GeneralCarrierBridge
+   21h ago      0s  cached       Erdos9796Proof.P97.Certificate.CheckpointedRupCompactBoundary
+   21h ago      2s  cached       full
+    9h ago     25s  built 1      full
+
+lean_files:    2147
+lean_symbols:  17044
+  axioms:      0 (0 sanctioned)
+  with-sorry:  2
+  closures:    0 cached
+
+index:         in sync with source
+uncommitted:   ⚠ 1 lean file(s) not committed — mined state may not be reproducible from git
+     M lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean
+
+kernel spine (mined call graph — the only structure):
+  build:        6a9ae6c25a31
+  mined fresh:  0/9039 symbol(s)  (9017 stale)
+  graph mined:  9h ago
+  trusted:      7880 🔒 (certs excluded by [mining].skip)
+  (run `refs --refresh` to mine the graph)
+
+live sorries (cached @ build 3a92819be4f7, 2026-07-25T13:26:01+00:00):
+  on-spine (open frontier) (2):
+    💧 Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsBiApexRobustResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:240]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:41]
+  off-spine (placeholder — wire into the spine or remove) (0)
+
+session anchors: 4 total (graph unavailable — states unknown)
+
+your anchor: ⚓ Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm

@@ -1,0 +1,20 @@
+== DirectCapFamilies
+'Problem97.P5IndexedSourceScratch.exactTwoStrictHitsAtLeastTwoSat_direct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P5IndexedSourceScratch.selectedRowEndpointOwnCapAtMostOneSat_direct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P5IndexedSourceScratch.selectedRowOwnCapAtMostTwoSat_direct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+== MirrorCapFamilies
+'Problem97.P5IndexedSourceScratch.exactTwoStrictHitsAtLeastTwoSat_mirror' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P5IndexedSourceScratch.selectedRowEndpointOwnCapAtMostOneSat_mirror' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.P5IndexedSourceScratch.selectedRowOwnCapAtMostTwoSat_mirror' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

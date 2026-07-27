@@ -1,0 +1,60 @@
+{
+  "child_cnf_sha256": "9f330a30a859e1537f34cf1a2b19eb75cb714aa2985aba9ceecf5c9a54290478",
+  "child_cube": [
+    -17489,
+    -17013,
+    -1582
+  ],
+  "child_cube_index": 0,
+  "combined_assumptions": [
+    -2071,
+    86056,
+    -22411,
+    -16021,
+    86059,
+    -17489,
+    -17013,
+    -1582
+  ],
+  "config": "default",
+  "config_args": [
+    "--default"
+  ],
+  "conflicts": 20456,
+  "decisions": 111291,
+  "drat_check": {
+    "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-004/child-00/drat-trim.log",
+    "log_sha256": "429d6b0ae57b289b6a5c55a35b9fa52df851b369b4fe9ed0a638d1a8c8a8ca7a",
+    "returncode": 0,
+    "status": "PASS",
+    "timed_out": false
+  },
+  "elapsed_seconds": 8.088431791984476,
+  "epistemic_status": "EXTERNAL_EXACT_CHILD_CNF_VERDICT",
+  "extended_model_check_against_original_cnf": null,
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-004/child-00/cadical.log",
+  "log_sha256": "aaa8c1e149c9f9e938da0c41a7f917d2314ad4a2be976229caf44bfcd1316ba2",
+  "model_check_against_child_cnf": null,
+  "orientation": "direct",
+  "parent_cube": [
+    -2071,
+    86056,
+    -22411,
+    -16021,
+    86059
+  ],
+  "parent_cube_index": 4,
+  "proof_artifact": {
+    "format": "gzip-compressed CaDiCaL DRAT",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-004/child-00/proof.drat.gz",
+    "sha256": "eec5eff9dd7e581f9e59b527a948c865824e9e0c7b0f6a33c7c2ddf40f384291",
+    "size_bytes": 3305004
+  },
+  "returncode": 20,
+  "schema": "p97-exact5-card13-distinct-recube-child-v1",
+  "seed": 2064,
+  "solver_status": "UNSAT",
+  "status": "UNSAT",
+  "timed_out": false,
+  "timeout_seconds": 15
+}

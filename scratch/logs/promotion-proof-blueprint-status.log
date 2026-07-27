@@ -1,0 +1,50 @@
+project:       erdos-97-96-formalization (erdos-97-96-formalization)
+root:          /Users/adam/projects/math-projects/erdos-97-96-formalization
+lean_lib:      /Users/adam/projects/math-projects/erdos-97-96-formalization/lean
+target_symbol: 2 targets: Problem97.erdos97_rhs, Problem96.erdos96_rhs
+
+last build:    ✓ passed · built 1 · 6s · 4h ago
+recent builds  (when · took · result · target):
+    4h ago      6s  built 1      Erdos9796Proof.P97.ATail.ApexTripleEquidistance
+    4h ago      7s  built 1      Erdos9796Proof.P97.ATail.BiApexRobustCapBounds
+    4h ago      2s  cached       Erdos9796Proof.P97.ATail.BiApexRobustCapBounds
+    4h ago      6s  ✗ exit 1     Erdos9796Proof.P97.ATail.FrontierLiveClosure
+    4h ago      6s  built 1      Erdos9796Proof.P97.ATail.FrontierLiveClosure
+
+lean_files:    2150
+lean_symbols:  17076
+  axioms:      0 (0 sanctioned)
+  with-sorry:  2
+  closures:    0 cached
+
+index:         in sync with source
+uncommitted:   ⚠ 6 lean file(s) not committed — mined state may not be reproducible from git
+     M lean/Erdos9796Proof/P97/ATail/FrontierCoupledStrictInteriorNormalForm.lean
+     M lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean
+     M lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean
+     M lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean
+     M lean/Erdos9796Proof/P97/U5ModeADeletion.lean
+     M lean/Erdos9796Proof/P97/WitnessPacketInterface.lean
+
+kernel spine (mined call graph — the only structure):
+  build:        2e855264435b
+  mined fresh:  9051/9071 symbol(s)
+  graph mined:  2m ago
+  trusted:      7880 🔒 (certs excluded by [mining].skip)
+  `Problem97.erdos97_rhs` is OPEN:
+    - reaches sorry via 2 symbol(s)
+    - unapproved axiom on spine: sorryAx
+  `Problem96.erdos96_rhs` is OPEN:
+    - reaches sorry via 2 symbol(s)
+    - unapproved axiom on spine: sorryAx
+
+
+live sorries (fresh @ build 2e855264435b, 2026-07-26T01:49:07+00:00):
+  on-spine (open frontier) (2):
+    💧 Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApexRobustResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:326]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:43]
+  off-spine (placeholder — wire into the spine or remove) (0)
+
+session anchors: 4 total · 4 open · 0 closed
+
+your anchor: ⚓ Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm  (subtree still open)

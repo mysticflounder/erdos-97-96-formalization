@@ -1,0 +1,1183 @@
+⚠ [8004/8160] Replayed Erdos9796Proof.P97.Cap.Partition
+warning: Erdos9796Proof/P97/Cap/Partition.lean:15:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [8006/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common000
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common000.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8007/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common001
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common001.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8008/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common002
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common002.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8009/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common003
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common003.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8010/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common004
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common004.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8011/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common005
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common005.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8012/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common006
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common006.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8013/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common007
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common007.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8014/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common008
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common008.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8015/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common009
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common009.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8016/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common010
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common010.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8017/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common011
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common011.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8018/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common012
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common012.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8019/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common013
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common013.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8020/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common014
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common014.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8021/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common015
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common015.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8022/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common016
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common016.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8023/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common017
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common017.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8024/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common018
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common018.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8025/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common019
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common019.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8026/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common020
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common020.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8027/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common021
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common021.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8028/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common022
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common022.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8029/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common023
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common023.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8030/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common024
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common024.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8031/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common025
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common025.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8032/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common026
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common026.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8033/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common027
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common027.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8034/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common028
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common028.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8035/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common029
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common029.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8036/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common030
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common030.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8037/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common031
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common031.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8038/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common032
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common032.lean:14:32: unused variable `colors`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8050/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common044
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common044.lean:14:15: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8051/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Common045
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common045.lean:14:15: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8055/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core002
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core002.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8056/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core003
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core003.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8057/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core004
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core004.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8058/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core005
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core005.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8059/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core006
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core006.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8060/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core007
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core007.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8061/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core008
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core008.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8062/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core009
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core009.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8063/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core010
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core010.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8064/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core011
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core011.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8065/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core012
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core012.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8066/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core013
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core013.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8067/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core014
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core014.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8068/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core015
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core015.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8069/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core016
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core016.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8070/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core017
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core017.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8071/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core018
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core018.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8072/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core019
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core019.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8073/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core020
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core020.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8074/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core021
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core021.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8075/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core022
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core022.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8076/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core023
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core023.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8077/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core024
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core024.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8078/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core025
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core025.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8079/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core026
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core026.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8080/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core027
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core027.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8081/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core028
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core028.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8082/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core029
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core029.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8083/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core030
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core030.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8084/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core031
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core031.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8085/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core032
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core032.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8086/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core033
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core033.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8087/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core034
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core034.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8088/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core035
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core035.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8089/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core036
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core036.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8090/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core037
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core037.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8091/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core038
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core038.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8092/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core039
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core039.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8093/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core040
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core040.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8094/8160] Replayed Erdos9796Proof.P97.Census554.CapSelectedBVCircuitChunks.Core041
+warning: Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core041.lean:14:13: unused variable `rows`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8105/8160] Replayed Erdos9796Proof.P97.Cap.Structure
+warning: Erdos9796Proof/P97/Cap/Structure.lean:282:0: This file has more than one module docstring (`/-! ... -/`). Only the first one is treated as module documentation; convert additional ones to regular comments (`/- ... -/`).
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+⚠ [8124/8160] Replayed Erdos9796Proof.P97.CGN.CGN
+warning: Erdos9796Proof/P97/CGN/CGN.lean:300:4: 'simp [edgeAt] at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN.lean:301:4: 'rcases hx with rfl | rfl' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN.lean:300:4: 'simp [edgeAt] at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN.lean:302:6: 'exact hmem r' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN.lean:300:4: 'simp [edgeAt] at hx' is a flexible tactic modifying 'hx'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN.lean:303:6: 'exact hmem s' uses 'hx'!
+warning: Erdos9796Proof/P97/CGN/CGN.lean:336:33: Try `simp at hp_lt` instead of `simpa using hp_lt`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN.lean:344:33: Try `simp at hp_lt` instead of `simpa using hp_lt`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN.lean:324:2: 'simp [edgeAt] at hp1mem hp2mem' is a flexible tactic modifying 'hp1mem'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN.lean:325:2: 'have hp1idx : p.1 = q.1 ∨ p.1 = q.2 := by
+  rcases hp1mem with hp1mem | hp1mem
+  · exact Or.inl (L.injective hp1mem)
+  · exact Or.inr (L.injective hp1mem)' uses 'hp1mem'!
+warning: Erdos9796Proof/P97/CGN/CGN.lean:324:2: 'simp [edgeAt] at hp1mem hp2mem' is a flexible tactic modifying 'hp2mem'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN.lean:329:2: 'have hp2idx : p.2 = q.1 ∨ p.2 = q.2 := by
+  rcases hp2mem with hp2mem | hp2mem
+  · exact Or.inl (L.injective hp2mem)
+  · exact Or.inr (L.injective hp2mem)' uses 'hp2mem'!
+⚠ [8129/8160] Replayed Erdos9796Proof.P97.ConvexCyclicOrder.Construct
+warning: Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:1296:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [8131/8160] Replayed Erdos9796Proof.P97.CGN.CGN4g
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:585:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:593:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:610:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:616:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:623:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:752:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1334:12: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1345:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1376:20: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1376:52: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1471:23: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1479:23: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1518:20: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1518:52: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1613:23: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1621:23: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1650:8: unused variable `Hside`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1651:8: unused variable `Hord`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1696:8: unused variable `Hside`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN4g.lean:1697:8: unused variable `Hord`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8133/8160] Replayed Erdos9796Proof.P97.CGN.CGN6
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:205:20: unused variable `hn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:216:5: unused variable `he`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:229:2: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:236:64: This simp argument is unused:
+  inner_add_right
+
+Hint: Omit it from the simp argument list.
+  simp [chordFrame, inner_add_left,̵ ̵i̵n̵n̵e̵r̵_̵a̵d̵d̵_̵r̵i̵g̵h̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:240:65: This simp argument is unused:
+  inner_smul_right
+
+Hint: Omit it from the simp argument list.
+  simp [chordFrame, inner_smul_left,̵ ̵i̵n̵n̵e̵r̵_̵s̵m̵u̵l̵_̵r̵i̵g̵h̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:236:10: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:240:10: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:252:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:254:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:256:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:272:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:285:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:289:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:343:8: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:410:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:412:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:421:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:491:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:556:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:558:33: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:561:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:596:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:376:40: unused variable `tau`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:513:40: This simp argument is unused:
+  map_sub
+
+Hint: Omit it from the simp argument list.
+  simp [T, sub_eq_add_neg, map_add, m̵ap̵_̵s̵u̵b̵,̵ ̵a̵dd_comm, add_left_comm, add_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:513:59: This simp argument is unused:
+  add_left_comm
+
+Hint: Omit it from the simp argument list.
+  simp [T, sub_eq_add_neg, map_add, map_sub, add_comm, a̵d̵d̵_̵l̵e̵f̵t̵_̵c̵o̵m̵m̵,̵ ̵add_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:513:74: This simp argument is unused:
+  add_assoc
+
+Hint: Omit it from the simp argument list.
+  simp [T, sub_eq_add_neg, map_add, map_sub, add_comm, add_left_comm,̵ ̵a̵d̵d̵_̵a̵s̵s̵o̵c̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:603:78: This simp argument is unused:
+  EuclideanSpace.ofLp_single
+
+Hint: Omit it from the simp argument list.
+  simp [T, F, chordLinear, chordFrame, vec2, EuclideanSpace.single_apply,̵ ̵E̵u̵c̵l̵i̵d̵e̵a̵n̵S̵p̵a̵c̵e̵.̵o̵f̵L̵p̵_̵s̵i̵n̵g̵l̵e̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:657:43: This simp argument is unused:
+  real_inner_self_eq_norm_sq
+
+Hint: Omit it from the simp argument list.
+  simp [e, u, real_inner_smul_right, r̵e̵a̵l̵_̵i̵n̵n̵e̵r̵_̵s̵e̵l̵f̵_̵e̵q̵_̵n̵o̵r̵m̵_̵s̵q̵,̵ ̵hu_norm.ne']
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:464:12: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:467:12: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:602:10: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:756:16: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:366:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 600000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:461:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:603:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:775:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:847:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1120:6: 'simp [xCoord, ht0, ht1]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN6.lean:1121:6: 'exact L.x_strict (by simp [finIndex])' uses '⊢'!
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1138:10: 'simp [xCoord, ht0, ht1]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN6.lean:1141:10: 'exact L.x_strict hlt_fin' uses '⊢'!
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1382:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1409:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1415:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1435:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1491:47: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1263:6: 'simp [xCoord, ht0, ht1]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN6.lean:1264:6: 'exact L.x_strict (by simp [finIndex])' uses '⊢'!
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1300:10: 'simp [xCoord, ht0, ht1]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/CGN/CGN6.lean:1303:10: 'exact L.x_strict hlt_fin' uses '⊢'!
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1524:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1581:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1586:8: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:1771:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: Erdos9796Proof/P97/CGN/CGN6.lean:2053:5: unused variable `Model`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8136/8160] Replayed Erdos9796Proof.P97.U2.OneHitMonotone
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:107:71: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:148:66: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:162:64: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:164:34: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:164:40: missing space in the source
+
+This part of the code
+  '(π/3))
+'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:172:0: This file has more than one module docstring (`/-! ... -/`). Only the first one is treated as module documentation; convert additional ones to regular comments (`/- ... -/`).
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:212:71: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:273:66: missing space in the source
+
+This part of the code
+  'π/3) :'
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:290:67: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:292:34: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitMonotone.lean:292:40: missing space in the source
+
+This part of the code
+  '(π/3))
+'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8137/8160] Replayed Erdos9796Proof.P97.U2.OneHitRealization
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:58:0: This file has more than one module docstring (`/-! ... -/`). Only the first one is treated as module documentation; convert additional ones to regular comments (`/- ... -/`).
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:115:38: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:116:50: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:116:56: missing space in the source
+
+This part of the code
+  '(π/3)) (hγmono'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:127:38: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:128:50: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/U2/OneHitRealization.lean:128:56: missing space in the source
+
+This part of the code
+  '(π/3)) (hδanti'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [8140/8160] Replayed Erdos9796Proof.P97.N4d.SmallSReductions
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:699:14: missing space in the source
+
+This part of the code
+  '(bx-1)^2'
+should be written as
+  '(bx - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:699:17: missing space in the source
+
+This part of the code
+  '(bx-1)^2 + bw^2'
+should be written as
+  '1) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:699:24: missing space in the source
+
+This part of the code
+  'bw^2 = (X-1)^2+Y^2)'
+should be written as
+  'bw ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:699:31: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)'
+should be written as
+  '(X - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:699:34: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)
+ '
+should be written as
+  '1) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:700:14: missing space in the source
+
+This part of the code
+  '(bx-X)^2'
+should be written as
+  '(bx - X)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:700:17: missing space in the source
+
+This part of the code
+  '(bx-X)^2 + (bw-Y)^2'
+should be written as
+  'X) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:700:25: missing space in the source
+
+This part of the code
+  '(bw-Y)^2'
+should be written as
+  '(bw - Y)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:700:28: missing space in the source
+
+This part of the code
+  '(bw-Y)^2 = (X-1)^2+Y^2)'
+should be written as
+  'Y) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:700:35: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)'
+should be written as
+  '(X - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:700:38: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)
+ '
+should be written as
+  '1) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:702:21: missing space in the source
+
+This part of the code
+  'X)/2 - Oy*(bw'
+should be written as
+  'X) / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:702:28: missing space in the source
+
+This part of the code
+  'Oy*(bw -'
+should be written as
+  'Oy * (bw'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:703:18: missing space in the source
+
+This part of the code
+  '(X^2 - X'
+should be written as
+  '(X ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:703:28: missing space in the source
+
+This part of the code
+  'Y^2)/(2*Y))'
+should be written as
+  'Y ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:703:31: missing space in the source
+
+This part of the code
+  'Y^2)/(2*Y))'
+should be written as
+  '2) / (2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:703:34: missing space in the source
+
+This part of the code
+  'Y^2)/(2*Y))
+'
+should be written as
+  '(2 * Y))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:749:14: missing space in the source
+
+This part of the code
+  '(bx-1)^2'
+should be written as
+  '(bx - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:749:17: missing space in the source
+
+This part of the code
+  '(bx-1)^2 + bw^2'
+should be written as
+  '1) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:749:24: missing space in the source
+
+This part of the code
+  'bw^2 = (X-1)^2+Y^2)'
+should be written as
+  'bw ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:749:31: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)'
+should be written as
+  '(X - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:749:34: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)
+ '
+should be written as
+  '1) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:750:14: missing space in the source
+
+This part of the code
+  '(bx-X)^2'
+should be written as
+  '(bx - X)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:750:17: missing space in the source
+
+This part of the code
+  '(bx-X)^2 + (bw-Y)^2'
+should be written as
+  'X) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:750:25: missing space in the source
+
+This part of the code
+  '(bw-Y)^2'
+should be written as
+  '(bw - Y)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:750:28: missing space in the source
+
+This part of the code
+  '(bw-Y)^2 = (X-1)^2+Y^2)'
+should be written as
+  'Y) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:750:35: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)'
+should be written as
+  '(X - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:750:38: missing space in the source
+
+This part of the code
+  '(X-1)^2+Y^2)
+ '
+should be written as
+  '1) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:752:19: missing space in the source
+
+This part of the code
+  'Y/2 + Real.sqrt'
+should be written as
+  'Y / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:752:40: missing space in the source
+
+This part of the code
+  '(X-1)/2)'
+should be written as
+  '(X - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:752:43: missing space in the source
+
+This part of the code
+  '(X-1)/2) :'
+should be written as
+  '1) / 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:956:20: missing space in the source
+
+This part of the code
+  'X/2 - Real.sqrt'
+should be written as
+  'X / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:956:40: missing space in the source
+
+This part of the code
+  'Y/2 + 1/2)'
+should be written as
+  'Y / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:956:46: missing space in the source
+
+This part of the code
+  '1/2)
+ '
+should be written as
+  '1 / 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:957:20: missing space in the source
+
+This part of the code
+  'Y/2 + Real.sqrt'
+should be written as
+  'Y / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:957:41: missing space in the source
+
+This part of the code
+  '(X-1)/2)'
+should be written as
+  '(X - 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:957:44: missing space in the source
+
+This part of the code
+  '(X-1)/2)
+ '
+should be written as
+  '1) / 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1220:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1400:8: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1308:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 4000000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1412:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 1000000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1508:2: 'simp [familyBChordEqLowerAnglePoint, vec2, EuclideanSpace.single_apply]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1508:2: Try this:
+  [apply] simp only [Fin.isValue, gt_iff_lt]
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1509:2: 'positivity' uses '⊢'!
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1538:4: 'simp [familyBChordEqLowerAnglePoint, vec2, EuclideanSpace.single_apply]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1538:4: Try this:
+  [apply] simp only [Fin.isValue]
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1539:4: 'rw [show Real.sqrt (4 - s ^ 2) = R by exact hR.symm]' uses '⊢'!
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1538:4: 'simp [familyBChordEqLowerAnglePoint, vec2, EuclideanSpace.single_apply]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1538:4: Try this:
+  [apply] simp only [Fin.isValue]
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1540:4: 'have hcalc :
+  (1 + s * R / 4 - Real.sqrt 3 * s ^ 2 / 4 - 1) ^ 2 + (s * (s + Real.sqrt 3 * R) / 4) ^ 2 =
+    s ^ 2 * R ^ 2 / 4 + s ^ 4 / 4 :=
+  by
+  ring_nf
+  rw [familyBChordEq_sqrt3_sq]
+  ring_nf' uses '⊢'!
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1538:4: 'simp [familyBChordEqLowerAnglePoint, vec2, EuclideanSpace.single_apply]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1538:4: Try this:
+  [apply] simp only [Fin.isValue]
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1546:4: 'rw [hcalc, hR_sq]' uses '⊢'!
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1560:4: 'simp [familyBChordEqHigherAnglePoint, vec2, EuclideanSpace.single_apply]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1560:4: Try this:
+  [apply] simp only [Fin.isValue]
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1561:4: 'rw [show Real.sqrt (4 - s ^ 2) = R by exact hR.symm]' uses '⊢'!
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1560:4: 'simp [familyBChordEqHigherAnglePoint, vec2, EuclideanSpace.single_apply]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1560:4: Try this:
+  [apply] simp only [Fin.isValue]
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1562:4: 'have hcalc :
+  (1 - s * R / 4 - Real.sqrt 3 * s ^ 2 / 4 - 1) ^ 2 + (s * (Real.sqrt 3 * R - s) / 4) ^ 2 =
+    s ^ 2 * R ^ 2 / 4 + s ^ 4 / 4 :=
+  by
+  ring_nf
+  rw [familyBChordEq_sqrt3_sq]
+  ring_nf' uses '⊢'!
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1560:4: 'simp [familyBChordEqHigherAnglePoint, vec2, EuclideanSpace.single_apply]' is a flexible tactic modifying '⊢'. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1560:4: Try this:
+  [apply] simp only [Fin.isValue]
+info: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1568:4: 'rw [hcalc, hR_sq]' uses '⊢'!
+warning: Erdos9796Proof/P97/N4d/SmallSReductions.lean:1662:0: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [8142/8160] Replayed Erdos9796Proof.P97.U2EquilateralMECFromM44
+warning: Erdos9796Proof/P97/U2EquilateralMECFromM44.lean:9:0: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+⚠ [8143/8160] Replayed Erdos9796Proof.P97.U5ModeADeletion
+warning: Erdos9796Proof/P97/U5ModeADeletion.lean:11:0: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+✖ [8147/8160] Building Erdos9796Proof.P97.Census554.SevenPointFiveCircleCollision (142s)
+trace: .> LEAN_PATH=/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/Cli/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/batteries/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/Qq/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/aesop/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/importGraph/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/plausible/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/mathlib/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/formal_conjectures/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/.lake/build/lib/lean /Users/adam/.elan/toolchains/leanprover--lean4---v4.27.0/bin/lean -M16384 -s2097152 /Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.lean -o /Users/adam/projects/math-projects/erdos-97-96-formalization/lean/.lake/build/lib/lean/Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/lean/.lake/build/lib/lean/Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.ilean -c /Users/adam/projects/math-projects/erdos-97-96-formalization/lean/.lake/build/ir/Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.c --setup /Users/adam/projects/math-projects/erdos-97-96-formalization/lean/.lake/build/ir/Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.setup.json --json
+error: Lean exited with code 137

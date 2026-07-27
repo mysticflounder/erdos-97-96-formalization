@@ -1,0 +1,6 @@
+module=Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4KalmansonOccurrence.SixRoleKalmansonTriangle
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/6b2dc09591ce6535-mfuiiv5m/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/6b2dc09591ce6535-mfuiiv5m/module.ilean Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean
+
+'Problem97.UniqueFourKalmansonOccurrenceScratch.false_of_two_k2_three_row_triangle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

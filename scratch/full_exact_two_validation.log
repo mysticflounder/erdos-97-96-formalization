@@ -1,0 +1,3 @@
+'FullExactTwoFiniteIncidenceModel.exact_named_incidence_is_consistent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

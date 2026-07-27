@@ -1,0 +1,80 @@
+{
+  "base_outer_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-global-cover-parent-gate/encode.py",
+  "base_outer_sha256": "9ee047a28bb55d1ae40a4c14b5f8750590b56e36d3a1f200390b442fea82b947",
+  "cnf_clause_count": 665628,
+  "cnf_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/ablation/no_complete_classes/direct/formula.cnf",
+  "cnf_sha256": "fd3a2975fcba2dfab301b193492d766d12d87cbcc304b838b82890b8fc650856",
+  "cnf_variable_count": 72204,
+  "counts": {
+    "base_parent_global_cover_assertions": 37363,
+    "complete_class_rank_inequalities": 0,
+    "connectivity_assertions": 1092,
+    "connectivity_auxiliary_variables": 1014,
+    "distinct_parent_coupling_assertions": 14,
+    "enabled_blocks": [
+      "connectivity",
+      "kalmanson",
+      "unique_k4_critical",
+      "unique_k4_first",
+      "unique_k4_second"
+    ],
+    "guarded_selected_row_rank_equalities": 2838,
+    "kalmanson_cancellation_implications": 5720,
+    "rank_atoms": 78,
+    "rank_bit_width": 7,
+    "rank_bound_assertions": 78,
+    "retained_role_assertions": 2847,
+    "total_source_assertions": 57377,
+    "unique_k4_rank_assertions": 7425
+  },
+  "diagnostic_disabled_blocks": [
+    "complete_classes"
+  ],
+  "dimacs_structure_check": "PASS",
+  "encoder_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/export_cnf.py",
+  "encoder_sha256": "790e0972c0a0d3c026ff7d8b296a4418a5dbfa93e55d1e33f4b01779de0aaad0",
+  "epistemic_status": "SEMANTICS_PRESERVING_EXTERNAL_Z3_TACTIC_EXPORT",
+  "focused_parent_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-full-role-retained-gate/decision.py",
+  "focused_parent_sha256": "40f19f5bacc8e6da2e483a636c2ea318847877b04da1ed5cf4ad341eb2d06721",
+  "formula_built_elapsed_seconds": 3.8151233750395477,
+  "n": 13,
+  "normalized_orbit": "asymmetricSourceLeft",
+  "not_encoded": [
+    "full real-valued triangle inequalities",
+    "rank-two Euclidean coordinates",
+    "MEC equations and containment",
+    "noM44 over all alternative support triangles",
+    "minimality beyond selected-witness strong connectivity"
+  ],
+  "orientation": "direct",
+  "schema": "p97-exact5-card13-distinct-aggregate-bitblast-v1",
+  "seed": 0,
+  "source_assumptions": [
+    "carrier cardinality 13 and cap profile (5,6,5)",
+    "one common cyclic boundary order up to reflection",
+    "fixed critical row family and blocker map",
+    "two independent global deletion-cover row families",
+    "one asymmetric SourceTwoHitNormalForm spoke orbit",
+    "complete exact-five second-apex class and unique K4 radius",
+    "two disjoint complete exact-four first-apex classes",
+    "the two first-apex strict-cap pairs partition all four strict points",
+    "retained q-deleted first row equals the double-deletion class",
+    "all selected witness digraphs are strongly connected",
+    "selected/full-class equalities induce distance-rank equalities",
+    "complete-class and unique-K4 exclusions induce rank inequalities",
+    "one-term strict Kalmanson cancellation induces strict rank order"
+  ],
+  "surface_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/surface.py",
+  "surface_sha256": "59d81b536ebe9ca99ccdb1d06419bf1d99ef803401511fb31f78ac2a81302347",
+  "tactic_pipeline": [
+    "simplify",
+    "propagate-values",
+    "elim-term-ite",
+    "solve-eqs",
+    "lia2card",
+    "card2bv",
+    "bit-blast",
+    "tseitin-cnf"
+  ],
+  "total_elapsed_seconds": 6.172915083006956
+}

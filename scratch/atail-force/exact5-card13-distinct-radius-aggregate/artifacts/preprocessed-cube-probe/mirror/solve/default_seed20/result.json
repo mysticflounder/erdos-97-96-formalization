@@ -1,0 +1,37 @@
+{
+  "command": [
+    "cadical",
+    "--default",
+    "--seed=20",
+    "-t",
+    "90",
+    "-w",
+    "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/preprocessed-cube-probe/mirror/solve/default_seed20/simplified.model",
+    "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/preprocessed-cube-probe/cubing/mirror/depth8-limit64.icnf"
+  ],
+  "config": "default_seed20",
+  "config_args": [
+    "--default",
+    "--seed=20"
+  ],
+  "conflicts": 689112,
+  "decisions": 1956121,
+  "elapsed_seconds": 90.01855258294381,
+  "epistemic_status": "EXTERNAL_EQUI-SAT_ICNF_PROBE_ONLY",
+  "extended_model_check_against_original_cnf": null,
+  "extension_sha256": "8f5c9337aad7b7dea492fb85a88330c8eb58e847c54dea18f06c15cffcb06aee",
+  "icnf_sha256": "1f37ca18bca855bcecfd3fa71f727185353cdb31af579ca944dababc746d6bbb",
+  "incremental_cubes_solved": null,
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/preprocessed-cube-probe/mirror/solve/default_seed20/cadical.log",
+  "log_sha256": "0c62779032fbc75d3cde573b4b7c6894c4e7830e2614580158533e4f7a9faf38",
+  "model_check_against_simplified_cnf": null,
+  "orientation": "mirror",
+  "original_cnf_sha256": "347a6a6bcd207be3d142734c118366d91644cd056da27abac88fd7fb0bbd63cf",
+  "returncode": 0,
+  "schema": "p97-exact5-card13-distinct-preprocessed-cube-cell-v1",
+  "simplified_cnf_sha256": "21e87780e8303e8092c27f0fb38c75a0e9cb705497440f529e08cc32705dd85b",
+  "status": "UNKNOWN",
+  "timed_out": false,
+  "timeout_seconds": 90,
+  "unsat_certificate": null
+}

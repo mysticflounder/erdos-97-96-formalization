@@ -1,0 +1,54 @@
+{
+  "schema": "p97-exact5-card13-source-fresh-publication-validation-v1",
+  "status": "complete",
+  "classification": "scratch_sibling_bank",
+  "live_spine": false,
+  "warning_as_error": true,
+  "source_fresh": true,
+  "counts": {
+    "direct_base_retained_chunks": 156,
+    "direct_base_retained_assertions": 8869,
+    "mirror_base_retained_chunks": 165,
+    "mirror_base_retained_assertions": 9437,
+    "exact_projection_chunks": 14,
+    "exact_projection_assertions": 882,
+    "rank_producer_chunks": 125,
+    "rank_producer_assertions": 7945,
+    "direct_semantic_chunks": 275,
+    "direct_semantic_callbacks": 17537,
+    "mirror_semantic_chunks": 282,
+    "mirror_semantic_callbacks": 18043,
+    "same_radius_verified_bridge_chunks": 342,
+    "same_radius_source_composition_chunks": 342
+  },
+  "final_theorems": [
+    "Problem97.ATailExactFiveCard13DistinctRadiusSourceIngressCoordinatorScratch.false_of_exactFive_card13_distinctRadius",
+    "Problem97.ATailExactFiveCard13DistinctRadiusSourceIngressCoordinatorScratch.false_of_exactFive_card13"
+  ],
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Lean.ofReduceBool",
+    "Lean.trustCompiler",
+    "Quot.sound"
+  ],
+  "sorryAx": false,
+  "generator_fixes": [
+    "reconstruct explicit P arguments for rank producers",
+    "call imported exact projections instead of replaying private proof terms",
+    "normalize Fin-13 connectivity recurrences with source-row transport",
+    "distinguish stage-zero connectivity literals from recurrence assertions",
+    "emit namespaced reduced-union coordinator runners"
+  ],
+  "artifact_rebuild_issue": {
+    "observed": "tracked and generated verifier runners exported colliding global main declarations",
+    "resolution": "move runners into their existing certificate namespaces and rebuild every dependent callback layer",
+    "proof_statements_changed": false
+  },
+  "logs": {
+    "direct_semantic": "/tmp/exact5-direct-semantic-werror.log",
+    "mirror_semantic": "/tmp/exact5-mirror-semantic-werror.log",
+    "direct_semantic_manifest": "/tmp/exact5-direct-semantic-werror.json",
+    "mirror_semantic_manifest": "/tmp/exact5-mirror-semantic-werror.json"
+  }
+}

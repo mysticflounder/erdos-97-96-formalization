@@ -1,0 +1,1934 @@
+toolchain=leanprover/lean4:v4.27.0
+output_dir=/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/robust-two-radius-center-localization/olean-427
+dependency_count=97
+direct_existing=BiapexContinuationGrid
+[1/97] stage1_minimal_deletion_core <- scratch/atail-force/stage1_minimal_deletion_core.lean
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/stage1_minimal_deletion_core.lean:39:10: error: `Problem97.ATAILStageOneMinimalDeletionCore.MinimalDeletionCore` has already been declared
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/stage1_minimal_deletion_core.lean:52:8: error: `Problem97.ATAILStageOneMinimalDeletionCore.MinimalDeletionCore.shellAt_radius_eq` has already been declared
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/stage1_minimal_deletion_core.lean:79:8: error: `Problem97.ATAILStageOneMinimalDeletionCore.criticalSelectedFourClass_of_minimal_deletion_member` has already been declared
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/stage1_minimal_deletion_core.lean:160:8: error: `Problem97.ATAILStageOneMinimalDeletionCore.exists_minimalDeletionCore` has already been declared
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/stage1_minimal_deletion_core.lean:231:8: error: `Problem97.ATAILStageOneMinimalDeletionCore.MinimalDeletionCore.capByIndex_card_ge_six_of_two_sources` has already been declared
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/stage1_minimal_deletion_core.lean:300:8: error: `Problem97.ATAILStageOneMinimalDeletionCore.MinimalDeletionCore.capByIndex_card_ge_six` has already been declared
+'Problem97.ATAILStageOneMinimalDeletionCore.MinimalDeletionCore.shellAt_radius_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATAILStageOneMinimalDeletionCore.criticalSelectedFourClass_of_minimal_deletion_member' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATAILStageOneMinimalDeletionCore.exists_minimalDeletionCore' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATAILStageOneMinimalDeletionCore.MinimalDeletionCore.capByIndex_card_ge_six_of_two_sources' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATAILStageOneMinimalDeletionCore.MinimalDeletionCore.capByIndex_card_ge_six' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[independent dependency] JointProfileElimination <- scratch/atail-force/joint-profile-elimination/JointProfileElimination.lean
+'Problem97.ATailJointProfileEliminationScratch.false_of_three_carrier_bisector_centers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailJointProfileEliminationScratch.false_of_same_xa_profile_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailJointProfileEliminationScratch.false_of_same_ya_profile_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailJointProfileEliminationScratch.CrossedCollinearProfile.collinear' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailJointProfileEliminationScratch.CrossedCollinearProfile.false_of_convexIndep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[independent dependency] ThirdCenterCommonPair <- scratch/atail-force/third-center-common-pair/ThirdCenterCommonPair.lean
+'Problem97.ATailThirdCenterCommonPairScratch.firstApex_dist_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdCenterCommonPairScratch.sourceBlocker_dist_eq_of_crossMembership' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdCenterCommonPairScratch.false_of_thirdActualCenter_selectedRow_contains_frontierPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdCenterCommonPairScratch.actualBlocker_eq_knownCenter_of_both_frontierDeletions_blocked' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdCenterCommonPairScratch.both_frontierDeletions_blocked_iff_selectedRow_contains_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdCenterCommonPairScratch.not_exists_thirdActualCenter_selectedRow_contains_frontierPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdCenterCommonPairScratch.frontierDeletionSurvival_or_actualBlocker_eq_knownCenter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdCenterCommonPairScratch.cardFour_or_frontierDeletionSurvival_or_actualBlocker_eq_knownCenter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[independent dependency] CriticalSystemRebase <- scratch/atail-force/critical-system-rebase/CriticalSystemRebase.lean
+'Problem97.ATailCriticalSystemRebaseScratch.rebaseSurvivorPairCriticalSystem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCriticalSystemRebaseScratch.rebaseCriticalPairFrontierSystem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCriticalSystemRebaseScratch.nonempty_rebaseCriticalPairFrontierSystem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCriticalSystemRebaseScratch.overrideCriticalPairFrontierAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[independent dependency] RobustClassifierTarget <- scratch/atail-force/robust-classifier-target/RobustClassifierTarget.lean
+'Problem97.ATailRobustClassifierTargetScratch.source_blocker_survives_or_eq_known_commonPair_center' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRobustClassifierTargetScratch.selected_commonPair_source_blocker_classifier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRobustClassifierTargetScratch.selected_commonPair_two_source_blocker_classifier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 1/92] dangerous_blocker_collapse <- scratch/atail-force/dangerous_blocker_collapse.lean
+'Problem97.ATAILForceScratch.dangerous_member_blocks_p' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Problem97.ATAILForceScratch.exists_criticalShellSystem_collapsing_dangerousBase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 2/92] DoubleSurvivorConsumer <- scratch/atail-force/double-survivor-consumer/DoubleSurvivorConsumer.lean
+'Problem97.ATailDoubleSurvivorConsumerScratch.firstMarginal_inter_secondClass_card_le_one_on_subset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDoubleSurvivorConsumerScratch.exists_pair_double_deletion_survives_secondApex_on_subset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDoubleSurvivorConsumerScratch.exists_doubleSecondApexFrontier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDoubleSurvivorConsumerScratch.exists_doubleSecondApexFrontier_of_K4' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDoubleSurvivorConsumerScratch.firstApex_trichotomy_with_secondApex_double_survival' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDoubleSurvivorConsumerScratch.biApex_double_survival_step_or_firstApex_terminal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDoubleSurvivorConsumerScratch.exists_firstApex_terminal_subcarrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 3/92] SubcarrierTerminalInvariant <- scratch/atail-force/subcarrier-terminal-invariant/SubcarrierTerminalInvariant.lean
+'Problem97.ATailSubcarrierTerminalInvariantScratch.exists_firstApex_terminal_subcarrier_with_robust_history' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailSubcarrierTerminalInvariantScratch.exists_terminal_with_nonempty_robust_history_of_frontier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailSubcarrierTerminalInvariantScratch.exists_ambientRobustHistoryPair_of_erased' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailSubcarrierTerminalInvariantScratch.exists_terminal_and_ambientRobustHistoryPair_of_frontier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailSubcarrierTerminalInvariantScratch.exists_hiddenAmbientRadiusHistoryPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailSubcarrierTerminalInvariantScratch.AmbientRobustHistoryPair.false_of_sourceBlocker_surplus_cross' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailSubcarrierTerminalInvariantScratch.AmbientRobustHistoryPair.sourceBlocker_outside_surplus_or_cross_omitted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailSubcarrierTerminalInvariantScratch.AmbientRobustHistoryPair.sourceBlocker_outside_surplus_or_cross_deletion_survives' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 4/92] FixedFirstRadiusTerminalDescent <- scratch/atail-force/r-full-parent-entry/FixedFirstRadiusTerminalDescent.lean
+'Problem97.ATailRFullParentEntryScratch.FixedFirstRadiusTerminalOn.toFirstApexTerminalOn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.exists_fixedFirstRadiusTerminalHistory' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CriticalPairFrontier.fixedRadiusTerminal_or_spentAtEntry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.exists_fixedSingleRadiusTerminalHistory' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CriticalPairFrontier.fixedSingleRadiusTerminal_or_spentAtEntry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.FixedSingleRadiusTerminalHistory.pair_radius_eq_fixed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 5/92] RTransitionLiveSurface <- scratch/atail-force/r-transition-live-surface/RTransitionLiveSurface.lean
+'Problem97.ATailRTransitionLiveSurfaceScratch.swapAmbientRobustHistoryPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTransitionLiveSurfaceScratch.exists_orientation_with_strict_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTransitionLiveSurfaceScratch.AmbientRobustHistoryPair.sourceBlocker_mem_surplusInterior' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTransitionLiveSurfaceScratch.AmbientRobustHistoryPair.interiorSelectedRowCapture_of_sourceTransition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTransitionLiveSurfaceScratch.false_of_interiorSelectedRowCapturesPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTransitionLiveSurfaceScratch.AmbientRobustHistoryPair.sourceTransition_exact_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTransitionLiveSurfaceScratch.sourceTransition_exact_split_under_live_outer_surface' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTransitionLiveSurfaceScratch.exists_strictSource_orientation_with_transition_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 6/92] blocker_cap_location <- scratch/atail-force/blocker-cap-geometry/blocker_cap_location.lean
+'Problem97.ATailBlockerCapGeometryScratch.surplusApex_or_exists_capInterior_of_ne_oppositeApices' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailBlockerCapGeometryScratch.card_five_blocker_location' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 7/92] RobustPairBlockerNormalForm <- scratch/atail-force/r-complement-blocker-map/RobustPairBlockerNormalForm.lean
+'Problem97.ATailRComplementBlockerMapScratch.robustPair_blockers_ne_prescribed_apices' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRComplementBlockerMapScratch.robustPair_blocker_centers_eq_iff_no_cross_deletion_survives' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRComplementBlockerMapScratch.robustPair_blocker_centers_ne_iff_cross_deletion_survives' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRComplementBlockerMapScratch.robustPair_coincident_blocker_normal_form' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRComplementBlockerMapScratch.robustPair_two_surplus_blockers_force_two_cross_survivals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRComplementBlockerMapScratch.robustPair_blocker_cross_three_way' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRComplementBlockerMapScratch.exists_reachable_blocker_cycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRComplementBlockerMapScratch.robustPair_exists_reachable_blocker_cycle_from_x' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 8/92] ActualBlockerCapMetricClassifier <- scratch/atail-force/r-actual-blocker-transition/ActualBlockerCapMetricClassifier.lean
+'Problem97.ATailRActualBlockerTransitionScratch.AmbientRobustHistoryPair.actualBlocker_capMetricClassifier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRActualBlockerTransitionScratch.AmbientRobustHistoryPair.exists_strictSource_actualBlocker_capMetricClassifier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 9/92] ActualBlockerRobustSuccessor <- scratch/atail-force/r-actual-blocker-transition/ActualBlockerRobustSuccessor.lean
+'Problem97.ATailRActualBlockerTransitionScratch.exists_ambientRobustHistoryPair_with_source_of_erased' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRActualBlockerTransitionScratch.AmbientRobustHistoryPair.actualBlocker_mem_terminalCarrier_or_robustSuccessor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 10/92] ActualBlockerOrbitNormalForm <- scratch/atail-force/r-actual-blocker-transition/ActualBlockerOrbitNormalForm.lean
+'Problem97.ATailRActualBlockerTransitionScratch.AmbientRobustHistoryPair.actualBlockerOrbit_terminalHit_or_erasedCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 11/92] ActualBlockerMinimalCycle <- scratch/atail-force/r-actual-blocker-transition/ActualBlockerMinimalCycle.lean
+'Problem97.ATailRActualBlockerTransitionScratch.AmbientRobustHistoryPair.actualBlockerOrbit_terminalHit_or_sourceExactMinimalCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 12/92] FixedSingleRadiusCycleConsequence <- scratch/atail-force/r-full-parent-entry/FixedSingleRadiusCycleConsequence.lean
+'Problem97.ATailRFullParentEntryScratch.criticalFourShell_fixedClass_inter_card_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.FixedSingleRadiusTerminalHistory.actualBlockerRow_offRadius_residual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.source_mem_fixedClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.exists_fixedRadius_pair_at_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CriticalPairFrontier.fixedSingleRadiusOrbit_or_spentAtEntry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 13/92] FixedSingleRadiusOrbitEntryIntegration <- scratch/atail-force/r-full-parent-entry/FixedSingleRadiusOrbitEntryIntegration.lean
+'Problem97.ATailRFullParentEntryScratch.CriticalPairFrontier.firstApexUnique_or_fixedSingleRadiusOrbit_or_spent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 14/92] RetainedPointProvenance <- scratch/atail-force/r-full-parent-entry/RetainedPointProvenance.lean
+'Problem97.ATailRFullParentEntryScratch.retainedPoint_mem_terminalClass_or_ownClass_card_le_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.retainedPoint_terminalRole' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.FirstApexTerminalOn.exists_radius_with_retainedPoint_status' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.FirstApexTerminalOn.exists_witness_with_retainedPoint_role' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.AmbientRobustHistoryPair.exists_terminalRadius_actualBlocker_status' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.AmbientRobustHistoryPair.exists_terminalRadius_status_and_capMetricOutcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.AmbientRobustHistoryPair.exists_terminalWitness_role_and_capMetricOutcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.AmbientRobustHistoryPair.retainedActualBlockerTerminalPayload' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 15/92] LeastTerminalHitPredecessor <- scratch/atail-force/r-full-parent-entry/LeastTerminalHitPredecessor.lean
+'Problem97.ATailRFullParentEntryScratch.AmbientRobustHistoryPair.exists_leastPositiveTerminalHitPredecessor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.LeastPositiveTerminalHitPredecessor.predecessor_blocker_mem_terminal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.LeastPositiveTerminalHitPredecessor.retainedActualBlockerTerminalPayload' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.AmbientRobustHistoryPair.exists_leastPositiveTerminalHitPredecessor_with_payload' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.AmbientRobustHistoryPair.actualBlockerOrbit_terminalPayload_or_sourceExactMinimalCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 16/92] ContinuationBankMatch <- scratch/atail-force/continuation-bank-match/ContinuationBankMatch.lean
+'Problem97.ATailContinuationBankMatchScratch.false_of_two_cap_center_rows_common_outside_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationBankMatchScratch.false_of_two_strictOppCap2_rows_common_outside_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationBankMatchScratch.false_of_strictOppCap2_row_contains_firstApex_strict_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationBankMatchScratch.common_secondApex_forces_strictOppCap1_cross_omissions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationBankMatchScratch.false_of_firstApex_strict_pair_equidistant_at_secondApex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationBankMatchScratch.false_of_alternating_equilateral_of_three_hinge_tail_equalities' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationBankMatchScratch.firstApex_strict_pair_deletion_survival_at_secondApex_support_center' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationBankMatchScratch.firstApex_strict_pair_deletion_survival_at_secondApex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationBankMatchScratch.nonempty_commonDeletionTwoCenterPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationBankMatchScratch.biApex_three_center_two_deletion_coupling' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationBankMatchScratch.nonempty_crossedCriticalNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationBankMatchScratch.biApex_two_by_two_survival_normal_form' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 17/92] PrescribedDeletionEdge <- scratch/atail-force/prescribed-deletion-edge/PrescribedDeletionEdge.lean
+'Problem97.ATailPrescribedDeletionEdge.deletion_survives_of_not_mem_selected_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailPrescribedDeletionEdge.row_extension_or_deletion_survives' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailPrescribedDeletionEdge.h4_or_f_deletion_survives' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailPrescribedDeletionEdge.h5_or_d_deletion_survives' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailPrescribedDeletionEdge.false_of_prescribed_deletion_failure_and_not_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailPrescribedDeletionEdge.dist_eq_of_prescribed_deletion_failure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailPrescribedDeletionEdge.prescribed_deletion_failure_of_actual_blocker_alignment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailPrescribedDeletionEdge.dist_eq_of_actual_blocker_alignment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailPrescribedDeletionEdge.h4_or_h5_of_actual_blocker_alignment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailPrescribedDeletionEdge.false_of_aligned_h4_or_h5_outside_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailPrescribedDeletionEdge.global_rows_exist_from_counterexample_and_cap_packet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 18/92] FixedSingleRadiusTerminalCommonDeletion <- scratch/atail-force/r-full-parent-entry/FixedSingleRadiusTerminalCommonDeletion.lean
+'Problem97.ATailRFullParentEntryScratch.LeastPositiveTerminalHitPredecessor.exists_commonDeletionTwoCenterPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 19/92] StrictOppCapCrossClassifier <- scratch/atail-force/strict-oppcap-cross-classifier/StrictOppCapCrossClassifier.lean
+'Problem97.ATailStrictOppCapCrossClassifierScratch.mem_strictOppCap1_of_mem_A_of_not_mem_adjacentCaps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailStrictOppCapCrossClassifierScratch.forward_cross_blocker_mem_strictOppCap1' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailStrictOppCapCrossClassifierScratch.reverse_cross_blocker_mem_strictOppCap1' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailStrictOppCapCrossClassifierScratch.exists_relocationPair_with_strict_cross_classifiers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailStrictOppCapCrossClassifierScratch.forward_cross_selected_support_inter_oppCap1_eq_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailStrictOppCapCrossClassifierScratch.forward_cross_selected_support_sdiff_oppCap1_card_eq_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailStrictOppCapCrossClassifierScratch.forward_cross_excludes_third_strictOppCap1_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 20/92] FixedSingleRadiusCycleCapLocalization <- scratch/atail-force/r-full-parent-entry/FixedSingleRadiusCycleCapLocalization.lean
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.source_off_surplus_of_fixedRadius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.source_mem_strictOppCap1_or_oppCap2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.eq_of_sources_mem_oppCap2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.one_of_distinct_sources_mem_strictOppCap1' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 21/92] FixedSingleRadiusCycleSameCapEdge <- scratch/atail-force/r-full-parent-entry/FixedSingleRadiusCycleSameCapEdge.lean
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.exists_strictOppCap1_blockerEdge_of_four_le_period' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.exists_strictOppCap1_blockerEdge_of_period_eq_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.exists_strictOppCap1_blockerEdge_of_three_le_period' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 22/92] ActualBlockerMinimalCycleClassifier <- scratch/atail-force/r-actual-blocker-transition/ActualBlockerMinimalCycleClassifier.lean
+'Problem97.ATailRActualBlockerTransitionScratch.ActualBlockerCapMetricOutcome.hit_or_omission' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRActualBlockerTransitionScratch.SourceExactMinimalActualBlockerCycle.exists_pairFamily' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRActualBlockerTransitionScratch.SourceExactMinimalActualBlockerCycle.pairFamily_someHit_or_allOmission' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRActualBlockerTransitionScratch.SourceExactMinimalActualBlockerCycle.exists_pairFamily_someHit_or_allOmission' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 23/92] FixedSingleRadiusCycleSuccessorMate <- scratch/atail-force/r-full-parent-entry/FixedSingleRadiusCycleSuccessorMate.lean
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.exists_fixedRadius_successorMate_omission' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 24/92] FixedSingleRadiusCycleCommonDeletion <- scratch/atail-force/r-full-parent-entry/FixedSingleRadiusCycleCommonDeletion.lean
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.exists_commonDeletionTwoCenterPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 25/92] FixedSingleRadiusCommonDeletionIntegration <- scratch/atail-force/r-full-parent-entry/FixedSingleRadiusCommonDeletionIntegration.lean
+'Problem97.ATailRFullParentEntryScratch.AmbientRobustHistoryPair.exists_commonDeletionTwoCenterPacket_of_orbit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CriticalPairFrontier.firstApexUnique_or_commonDeletion_or_spent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 26/92] ActualBlockerOmissionAdapter <- scratch/atail-force/r-full-parent-entry/ActualBlockerOmissionAdapter.lean
+'Problem97.ATailRFullParentEntryScratch.criticalFourShellToU5QAllowedK4Class' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.criticalFourShellToU5QDeletedK4ClassOfNotMem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.ActualBlockerOmissionExactRowPacket.false_of_dangerousTriple_subset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.ActualBlockerOmissionOutcome.exactRowPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 27/92] CoherentRCommonDeletionProvenance <- scratch/atail-force/r-full-parent-entry/CoherentRCommonDeletionProvenance.lean
+'Problem97.ATailRFullParentEntryScratch.one_of_two_fixed_offSurplus_mem_strictOppCap1' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.source_eq_sourceRow_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.deleted_ne_sourceRow_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.source_deleted_eq_firstApex_distance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.toCommonDeletionTwoCenterPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.anchoredSourceCriticalTransition_of_sourceOutsideDeletedCriticalShell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.not_nonempty_commonDeletion_at_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.LeastPositiveTerminalHitPredecessor.nonempty_coherentRCommonDeletionPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.nonempty_coherentRCommonDeletionPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.AmbientRobustHistoryPair.nonempty_coherentRCommonDeletionPacket_of_orbit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 28/92] CriticalShellDangerousTripleAdapter <- scratch/atail-force/common-deletion-consumer/CriticalShellDangerousTripleAdapter.lean
+'Problem97.ATailCriticalShellDangerousTripleScratch.dangerousTriple_of_criticalShellSystem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+SKIP current CriticalSystemRebase
+[RTwo 30/92] CommonDeletionCriticalExpansion <- scratch/atail-force/common-deletion-consumer/CommonDeletionCriticalExpansion.lean
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.rebaseCommonDeletionSystem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.overrideCommonDeletionAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.dangerousTriple_at_commonDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.two_le_row_sdiff_deletedCriticalSupport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.freshCriticalSource_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.nonempty_freshCriticalPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.deletedBlocker_distance_ne_of_common_outside_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.three_le_rows_union_sdiff_deletedCriticalSupport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.commonDeletionCriticalResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.nonempty_threeFreshCriticalSources' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.prescribedCritical_support_eq_of_common_center' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.prescribedCritical_support_eq_qDeletedRow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.freshSourcePrescribedTransition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.commonDeletion_successor_or_alignedCriticalPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.AlignedPrescribedCriticalPair.installedSystem_centerAt_first' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.AlignedPrescribedCriticalPair.installedSystem_centerAt_second' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.AlignedPrescribedCriticalPair.installedSystem_centerAt_deleted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.seven_le_critical_and_two_deleted_rows_union_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.nonempty_commonDeletionCriticalExpansion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionCriticalExpansionScratch.nonempty_commonDeletionCriticalExpansion_after_rebase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 31/92] AnchoredSourceCriticalTransitionConsumer <- scratch/atail-force/r-full-parent-entry/AnchoredSourceCriticalTransitionConsumer.lean
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.toFreshCriticalSource' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.firstCenter_ne_deletedCriticalCenter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.prescribedCriticalAtFirstCenter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.prescribedCriticalAtFirstCenter_support_eq_sourceRow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.freshSourcePrescribedTransition_at_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.not_commonDeletionSuccessor_at_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.sourceDangerousTriple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.deletedCriticalRowSourceDeleted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.deletedCriticalRow_inter_sourceRow_card_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.false_of_threeCommonCriticalRowPoints' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 32/92] LeastTerminalHitReciprocalRowSplit <- scratch/atail-force/r-full-parent-entry/LeastTerminalHitReciprocalRowSplit.lean
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.ambient_fixedClass_card_ge_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.source_survives_firstApex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.deleted_survives_firstApex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.deletedSourceRelocationPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.LeastPositiveTerminalHitPredecessor.sourceOutside_or_reciprocalDirectedCross' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 33/92] AnchoredFreshSuccessor <- scratch/atail-force/r-full-parent-entry/AnchoredFreshSuccessor.lean
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.ambient_fixedMarginal_card_ge_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.ambient_fixedClass_card_ge_six' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.nonempty_rowExternalCommonDeletionSource' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.RowExternalCommonDeletionSource.toSharedRowCommonDeletionPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.exists_distinct_sharedRow_commonDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.exists_offSurplus_sharedRowSource_or_twoRowCover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.nonempty_freshSurvivingMarginalSource' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.FreshSurvivingMarginalSource.nonempty_commonDeletionSuccessor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.FreshSurvivingMarginalSource.toCommonDeletionOfOutsideDeletedRow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.FreshSurvivingMarginalSource.deletedFresh_firstApexDouble' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.FreshSurvivingMarginalSource.deletedFreshCriticalPairFrontier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.FreshSurvivingMarginalSource.nonempty_deletedFreshCriticalPairFrontier_or_exactSecondApexShells' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.FreshSurvivingMarginalSource.directedCross_signedArea_product_neg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.exists_fresh_commonDeletionSuccessor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.exists_fresh_commonDeletion_or_directedCross' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 34/92] ReciprocalDirectedCrossGlobalBoundary <- scratch/atail-force/r-full-parent-entry/ReciprocalDirectedCrossGlobalBoundary.lean
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.ReciprocalDirectedCrossResidual.fixedClass_inter_deletedRow_eq_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.ReciprocalDirectedCrossResidual.offFixedResidual_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.ReciprocalDirectedCrossResidual.exists_offFixed_not_mem_sourceRow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.ReciprocalDirectedCrossResidual.secondApexRow_eq_criticalSupport_of_blocked' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.ReciprocalDirectedCrossResidual.sourceRow_exact_unique_after_deleted_and_omitted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.ReciprocalDirectedCrossResidual.exists_fresh_commonDeletion_or_secondApexCritical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 35/92] DangerousRowCoupling <- scratch/atail-force/r-parent-dangerous-row-coupling/DangerousRowCoupling.lean
+'Problem97.ATailRParentDangerousRowCouplingScratch.liveData_dangerous_selectedClass_eq_base' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRParentDangerousRowCouplingScratch.liveData_dangerousCriticalRow_support_eq_base' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRParentDangerousRowCouplingScratch.collapseLiveDangerousBlockers_centerAt_eq_p_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRParentDangerousRowCouplingScratch.collapseLiveDangerousBlockers_selectedAt_support_eq_base' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRParentDangerousRowCouplingScratch.LiveDangerousRetainingSystem.coherent_source_center_eq_p_iff_mem_dangerousTriple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRParentDangerousRowCouplingScratch.LiveDangerousRetainingSystem.coherent_sourceRow_support_eq_base_of_center_eq_p' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRParentDangerousRowCouplingScratch.LiveDangerousRetainingSystem.AnchoredCoupling.exists_fresh_commonDeletionSuccessor_with_liveRow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRParentDangerousRowCouplingScratch.LiveDangerousRetainingSystem.ReciprocalCoupling.deleted_not_mem_liveDangerousBase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRParentDangerousRowCouplingScratch.LiveDangerousRetainingSystem.ReciprocalCoupling.nonempty_liveRowAlignedGlobalContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRParentDangerousRowCouplingScratch.fullParent_extracts_dangerousRetainingFrontier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 36/92] CoherentRPeriodTwoSourceOutside <- scratch/atail-force/r-full-parent-entry/CoherentRPeriodTwoSourceOutside.lean
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.sourceOutsideDeletedCriticalShell_of_period_two_cycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.nonempty_anchoredSourceCriticalTransition_of_period_two_cycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 37/92] FixedSingleRadiusCycleSecondApexExtrema <- scratch/atail-force/r-full-parent-entry/FixedSingleRadiusCycleSecondApexExtrema.lean
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.secondApexDistance_ne_of_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.nonempty_secondApexDistanceExtrema' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 38/92] FixedSingleRadiusCycleOrderedCapLift <- scratch/atail-force/r-full-parent-entry/FixedSingleRadiusCycleOrderedCapLift.lean
+'Problem97.ATailRFullParentEntryScratch.nonempty_rankedActualBlockerEdge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.nonempty_orderedSecondApexCyclePacket_of_three_le_period' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.RankedActualBlockerEdge.endpointRadiusPremise_iff_actualRowEndpointMem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.RankedActualBlockerEdge.toSameCapIncompatibleEdgeMirror' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 39/92] FixedSingleRadiusCycleSourceOutside <- scratch/atail-force/r-full-parent-entry/FixedSingleRadiusCycleSourceOutside.lean
+'Problem97.ATailRFullParentEntryScratch.ranksOnSameSide_or_rankStrictlyBetween' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.rankGap_decreases_of_rankStrictlyBetween' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.OppCap1OrderedData.oneSidedDistance_ne_of_sameSide' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.source_not_mem_deletedRow_of_orderedSameSide' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.blockerVertex_source_eq_orderedSuccessor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.source_ne_secondBlocker_of_three_le_period' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.RankedConsecutiveStrictTriple.sourceOutside_or_centerRank_strictlyBetween' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.nonempty_rankedConsecutiveStrictTriple' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.nonempty_rankedConsecutiveStrictTriple_of_three_le_period' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.exists_sourceOutside_strictTriple_or_all_strictTriples_rankGapDecrease' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.AllStrictRankedCycle.sourceOutside_or_nextEdgeRankGap_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.exists_sourceOutsideSuccessorShell_of_all_sources_strict' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.exists_sourceOutsideSuccessorShell_or_source_mem_oppCap2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 40/92] FixedSingleRadiusCycleReanchoring <- scratch/atail-force/r-full-parent-entry/FixedSingleRadiusCycleReanchoring.lean
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.reanchorAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.reanchorAt_period' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.reanchorAt_source_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.reanchorAt_source_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.exists_fixedRadius_successorMate_omission_at' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.exists_coherentRCommonDeletionPacket_at' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.exists_anchoredSourceCriticalTransition_of_sourceOutsideSuccessorShell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 41/92] OppCap2CycleBoundarySourceOutside <- scratch/atail-force/r-full-parent-entry/OppCap2CycleBoundarySourceOutside.lean
+'Problem97.ATailRFullParentEntryScratch.sourceOutsideSuccessorShell_of_secondSuccessor_mem_oppCap2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.orderedSuccessorIndex_orderedPredecessorIndex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.exists_sourceOutsideSuccessorShell_of_source_mem_oppCap2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.exists_sourceOutsideSuccessorShell_of_three_le_period' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 42/92] FixedSingleRadiusCycleAnchoredIntegration <- scratch/atail-force/r-full-parent-entry/FixedSingleRadiusCycleAnchoredIntegration.lean
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.exists_anchoredSourceCriticalTransition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 43/92] FixedSingleRadiusAnchoredOrTerminalResidual <- scratch/atail-force/r-full-parent-entry/FixedSingleRadiusAnchoredOrTerminalResidual.lean
+'Problem97.ATailRFullParentEntryScratch.AmbientRobustHistoryPair.anchoredTransition_or_terminalDirectedCross' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 44/92] CapFiveApexRigidity <- scratch/atail-force/full-geometry-producer/CapFiveApexRigidity.lean
+'Problem97.ATailFullGeometryProducerScratch.capInteriorByIndex_card_eq_three_of_cap_card_eq_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.capInteriorByIndex_card_add_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_selectedClass_card_le_five_of_cap_card_eq_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_K4_radius_unique_of_cap_card_eq_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_K4_unique_radius_of_cap_card_eq_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_K4_unique_four_or_five_full_filter_of_cap_card_eq_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_K4_radius_unique_of_capInterior_card_le_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_distinct_K4_radii_force_capInterior_card_ge_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_distinct_K4_radii_force_cap_card_ge_six' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_selectedClass_card_le_four_of_cap_card_eq_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_K4_unique_four_full_filter_of_cap_card_eq_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.oppositeVertex_K4_unique_four_or_five_full_filter_of_cap_card_four_or_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.both_opposite_apices_distinct_K4_radii_force_card_ge_fourteen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.card_le_thirteen_has_opposite_cap_card_four_or_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.card_le_thirteen_has_unique_small_opposite_apex_full_filter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.card_twelve_has_opposite_cap_card_four_or_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFullGeometryProducerScratch.card_twelve_has_unique_small_opposite_apex_full_filter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 45/92] SpentEntryAlternateRadiusDescent <- scratch/atail-force/r-full-parent-entry/SpentEntryAlternateRadiusDescent.lean
+'Problem97.ATailRFullParentEntryScratch.CriticalPairFrontier.exists_alternateRadiusTerminal_of_spentAtEntry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.FrontierRadiusSpentAtEntry.original_pair_not_mem_alternateClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.FrontierRadiusSpentAtEntry.firstOppositeCap_card_ge_six' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.FrontierRadiusSpentAtEntry.not_firstOppositeCap_card_four_or_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SpentEntryAlternateRadiusTerminal.erased_mem_originalPair_or_alternateClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SpentEntryAlternateRadiusTerminal.erased_mem_alternateClass_of_avoids_originalPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SpentEntryAlternateRadiusTerminal.erased_eq_originalPair_of_not_mem_alternateClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SpentEntryAlternateRadiusTerminal.exists_alternateRadius_mate_of_postEntry_erased' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SpentEntryAlternateRadiusTerminal.exists_alternateRadiusOrbit_of_postEntry_erased' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.hitsSpentEntryPair_or_all_sources_mem_alternateClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SpentEntryAlternateRadiusTerminal.alternateRadiusOrbit_terminalHit_or_cycleSplit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.actualBlockerRow_offAlternate_residual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 46/92] SpentEntryCommonDeletionReduction <- scratch/atail-force/r-full-parent-entry/SpentEntryCommonDeletionReduction.lean
+'Problem97.ATailRFullParentEntryScratch.AmbientRobustHistoryPair.exists_commonDeletionTwoCenterPacket_of_actualBlockerOmission' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.LeastPositiveTerminalHitPredecessor.exists_commonDeletionTwoCenterPacket_of_fixedClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.LeastPositiveTerminalHitPredecessor.hitsOriginalPairAndActualBlockerHit_or_exists_commonDeletionTwoCenterPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.LeastPositiveTerminalHitPredecessor.hitsOriginalPair_or_exists_commonDeletionTwoCenterPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.exists_alternateRadius_successorMate_omission' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.exists_commonDeletionTwoCenterPacket_of_all_sources_alternate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.hitsSpentEntryPair_or_exists_commonDeletionTwoCenterPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.AmbientRobustHistoryPair.spentEntryOrbit_originalPairHit_or_commonDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SpentEntryAlternateRadiusTerminal.exists_alternateRadiusOrbit_originalPairHit_or_commonDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 47/92] SelfCenteredCommonDeletionClassifier <- scratch/atail-force/r-full-parent-entry/SelfCenteredCommonDeletionClassifier.lean
+'Problem97.ATailRFullParentEntryScratch.nonempty_commonDeletion_selfCenter_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.ActualBlockerOmissionExactRowPacket.exists_selfCenteredCommonDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.exists_sourcePreservingSelfCenteredCommonDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 48/92] ActualBlockerTerminalHitConsumer <- scratch/atail-force/r-actual-blocker-transition/ActualBlockerTerminalHitConsumer.lean
+'Problem97.ATailRActualBlockerTransitionScratch.AmbientRobustHistoryPair.false_of_actualBlocker_hit_thirdCommonPoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 49/92] SpentEntryOriginalPairResidualReduction <- scratch/atail-force/r-full-parent-entry/SpentEntryOriginalPairResidualReduction.lean
+'Problem97.ATailRFullParentEntryScratch.FrontierRadiusSpentAtEntry.firstApexDouble' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CriticalFourShell.selfCenteredOmissionExactRowPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.exists_sourcePreservingSelfCenteredCommonDeletion_general' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SourceExactMinimalActualBlockerCycle.exists_selfCenteredCommonDeletion_general' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.LeastPositiveTerminalHitPredecessor.exists_commonDeletion_or_originalPairMutualHit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.AmbientRobustHistoryPair.spentEntryOrbit_originalPairMutualHit_or_commonDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 50/92] SpentEntryTerminalMutualHitConsumer <- scratch/atail-force/r-full-parent-entry/SpentEntryTerminalMutualHitConsumer.lean
+'Problem97.ATailRFullParentEntryScratch.FrontierRadiusSpentAtEntry.originalQ_survives_both_apices' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.FrontierRadiusSpentAtEntry.originalW_survives_both_apices' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.FrontierRadiusSpentAtEntry.both_originalPoints_commonDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.FrontierRadiusSpentAtEntry.exists_commonDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SpentEntryTerminalOriginalPairMutualHitPacket.both_originalPoints_commonDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.SpentEntryTerminalOriginalPairMutualHitPacket.exists_commonDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.AmbientRobustHistoryPair.spentEntryOrbit_exists_commonDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 51/92] FullParentFixedRadiusNormalForm <- scratch/atail-force/r-full-parent-normal-form/FullParentFixedRadiusNormalForm.lean
+'Problem97.ATailRFullParentNormalFormScratch.CriticalPairFrontier.currentFirstApexFixedRadiusNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentNormalFormScratch.fullParent_extracts_currentFirstApexFixedRadiusNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 52/92] DangerousRetainingFullParentNormalForm <- scratch/atail-force/r-full-parent-normal-form/DangerousRetainingFullParentNormalForm.lean
+'Problem97.ATailRDangerousRetainingFullParentNormalFormScratch.fullParent_extracts_dangerousRetainingCurrentNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 53/92] PacketReorientationAudit <- scratch/atail-force/blocker-distinct-radius/PacketReorientationAudit.lean
+'Problem97.ATailBlockerDistinctRadiusScratch.nonSurplusSwap_oppApex2_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailBlockerDistinctRadiusScratch.nonSurplusSwap_surplusApex_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailBlockerDistinctRadiusScratch.exists_completeNonSurplusSwap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailBlockerDistinctRadiusScratch.exists_rightOrientedNonSurplusIndex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailBlockerDistinctRadiusScratch.exists_rightOriented_leaf_secondLargeCap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 54/92] CriticalPairFrontierSwapAudit <- scratch/atail-force/blocker-distinct-radius/CriticalPairFrontierSwapAudit.lean
+'Problem97.ATailBlockerDistinctRadiusScratch.survivorPair_dist_ne_at_swapped_firstApex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailBlockerDistinctRadiusScratch.no_same_pair_survivorPacket_after_completeSwap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailBlockerDistinctRadiusScratch.no_same_pair_criticalPairFrontier_after_completeSwap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailBlockerDistinctRadiusScratch.exists_freshCriticalPairFrontier_after_completeSwap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailBlockerDistinctRadiusScratch.exists_freshCriticalPairFrontier_at_rightOrientedIndex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailBlockerDistinctRadiusScratch.criticalPairFrontier_after_swap_physical_projection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 55/92] ReciprocalSecondApexRadiusConsumer <- scratch/atail-force/r-reciprocal-bank-consumer/ReciprocalSecondApexRadiusConsumer.lean
+'Problem97.ATailRReciprocalBankConsumerScratch.criticalRadius_unique_of_blocked' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRReciprocalBankConsumerScratch.false_of_secondApexCritical_and_distinctFourCapableRadius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 56/92] ReciprocalSwapReduction <- scratch/atail-force/r-reciprocal-swap-reduction/ReciprocalSwapReduction.lean
+'_private.ReciprocalSwapReduction.0.Problem97.ATailRReciprocalSwapReductionScratch.firstApexDouble_blocked_of_unique_card_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRReciprocalSwapReductionScratch.secondApexCritical_reorients_to_firstApexUniqueFour' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRReciprocalSwapReductionScratch.reciprocalCriticalArm_reorients_to_firstApexUniqueFour' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 57/92] ReciprocalSwapIntegration <- scratch/atail-force/r-reciprocal-swap-integration/ReciprocalSwapIntegration.lean
+'Problem97.ATailRReciprocalSwapIntegrationScratch.reciprocalDirectedCross_commonDeletion_or_swappedFirstApexUniqueFour' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRReciprocalSwapIntegrationScratch.resolveCoherentFixedSingleRadiusContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRReciprocalSwapIntegrationScratch.resolveCurrentFirstApexFixedRadiusNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRReciprocalSwapIntegrationScratch.CriticalPairFrontier.resolvedCurrentFirstApexFixedRadiusNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRReciprocalSwapIntegrationScratch.fullParent_extracts_dangerousRetainingResolvedNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 58/92] AnchoredOffSurplusFrontierSuccessor <- scratch/atail-force/r-full-parent-entry/AnchoredOffSurplusFrontierSuccessor.lean
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.RowExternalCommonDeletionSource.toFreshSurvivingMarginalSource' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.RowExternalCommonDeletionSource.deletedExternal_secondApexDouble' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.RowExternalCommonDeletionSource.deletedExternalRelocationPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFullParentEntryScratch.CoherentRCommonDeletionPacket.AnchoredSourceCriticalTransition.RowExternalCommonDeletionSource.deletedExternalCriticalPairFrontier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 59/92] AnchoredTwoRowCoverConsumer <- scratch/atail-force/r-anchored-221-consumer/AnchoredTwoRowCoverConsumer.lean
+'Problem97.ATailRAnchoredTwoRowCoverConsumerScratch.secondApexRow_inter_fixedMarginal_card_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRAnchoredTwoRowCoverConsumerScratch.false_of_fixedMarginalTwoRowCoverResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRAnchoredTwoRowCoverConsumerScratch.exists_offSurplus_sharedRowSource' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRAnchoredTwoRowCoverConsumerScratch.exists_offSurplus_sharedRow_commonDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRAnchoredTwoRowCoverConsumerScratch.nonempty_criticalPairFrontier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 60/92] TwoOffLiveFailureClassification <- scratch/atail-force/r-two-off-live-failure/TwoOffLiveFailureClassification.lean
+'Problem97.ATailRTwoOffLiveFailureScratch.deletedCriticalSupport_card_eq_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveFailureScratch.deleted_mem_deletedCriticalSupport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveFailureScratch.deleted_not_mem_secondRow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveFailureScratch.secondRow_inter_deletedCriticalSupport_card_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveFailureScratch.secondRow_inter_firstRow_card_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveFailureScratch.twoOffLive_failure_trichotomy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 61/92] ParentFalseSurface <- scratch/atail-force/parent-false-surface/ParentFalseSurface.lean
+'Problem97.ATAILParentFalseSurface.false_of_twoLargeCaps_commonCriticalMap_of_producer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 62/92] ContinuationGeometryClassifier <- scratch/atail-force/continuation-geometry-classifier/ContinuationGeometryClassifier.lean
+'Problem97.ATailContinuationGeometryClassifier.nonempty_twoContinuationRows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationGeometryClassifier.TwoContinuationRows.common_support_outside_oppCap2_card_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationGeometryClassifier.TwoContinuationRows.exists_divergent_outside_witnesses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationGeometryClassifier.TwoContinuationRows.cross_survival_or_metricResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationGeometryClassifier.TwoContinuationRows.common_support_outside_oppCap2_eq_singleton_of_equilateralResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationGeometryClassifier.TwoContinuationRows.exists_twoContinuationRows_with_geometry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationGeometryClassifier.FirstApexStrictPair.not_both_mem_selectedRow_at_strictOppCap2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationGeometryClassifier.SymmetricApexContinuationPacket.exists_with_firstPair_omission_and_continuationGeometry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 63/92] ThirdRowProfileBank <- scratch/atail-force/third-row-profile-bank/ThirdRowProfileBank.lean
+'Problem97.ATailThirdRowProfileBankScratch.TwoCircleCore.false_of_same_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdRowProfileBankScratch.twoCircleCore_of_rowY_member_profile_xy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdRowProfileBankScratch.twoCircleCore_of_rowY_member_profile_xa' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdRowProfileBankScratch.twoCircleCore_of_rowY_member_profile_ya' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdRowProfileBankScratch.twoCircleCore_of_rowX_member_profile_xy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdRowProfileBankScratch.twoCircleCore_of_rowX_member_profile_xa' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdRowProfileBankScratch.twoCircleCore_of_rowX_member_profile_ya' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdRowProfileBankScratch.false_of_twoCircleCore_at_cap_centers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdRowProfileBankScratch.false_of_member_profile_xy_of_common_cap_geometry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdRowProfileBankScratch.false_of_live_outside_member_profile_xy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailThirdRowProfileBankScratch.low_hit_or_live_apex_pair_profile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+SKIP current RobustClassifierTarget
+[RTwo 65/92] EquilateralSecondGeneration <- scratch/atail-force/equilateral-second-generation/EquilateralSecondGeneration.lean
+'Problem97.ATailEquilateralSecondGenerationScratch.deletion_survives_or_two_oppositeRow_deletions_survive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailEquilateralSecondGenerationScratch.TwoOppositeRowDeletionSurvivors.chosen_blockers_avoid_center' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailEquilateralSecondGenerationScratch.paired_divergent_second_generation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailEquilateralSecondGenerationScratch.exact_two_hit_profile_of_pair_hit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailEquilateralSecondGenerationScratch.apex_pair_profiles_of_pair_hit_and_xy_sameSide' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailEquilateralSecondGenerationScratch.member_row_three_anchor_deletion_survival' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailEquilateralSecondGenerationScratch.nonempty_member_row_threeAnchorDeletedK4Row' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailEquilateralSecondGenerationScratch.nonempty_paired_threeAnchorDeletedK4Rows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 66/92] JointTransitionCore <- scratch/atail-force/joint-transition-core/JointTransitionCore.lean
+'Problem97.ATailJointTransitionCoreScratch.thirdRowTransition_of_live_profile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailJointTransitionCoreScratch.jointTransitionPacket_of_divergent_rows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailJointTransitionCoreScratch.equilateralRowsOfResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailJointTransitionCoreScratch.exists_jointTransitionPacket_of_equilateralResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailJointTransitionCoreScratch.false_of_equilateralResidual_of_jointTransitionCoreEliminator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 67/92] FrontierContinuationDispatcher <- scratch/atail-force/frontier-continuation-dispatcher/FrontierContinuationDispatcher.lean
+'Problem97.ATailFrontierContinuationDispatcherScratch.nonempty_frontierSecondApexRow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierContinuationDispatcherScratch.nonempty_qDeletedFourRow_of_survival' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierContinuationDispatcherScratch.routedContinuationBranch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierContinuationDispatcherScratch.nonempty_frontierContinuationDispatch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierContinuationDispatcherScratch.false_of_criticalPairFrontier_of_continuationEliminators' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierContinuationDispatcherScratch.commonCriticalMapClosingProducer_of_continuationContent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 68/92] ContinuationCapOrderClassifier <- scratch/atail-force/continuation-cap-order-classifier/ContinuationCapOrderClassifier.lean
+'Problem97.ATailContinuationCapOrderClassifierScratch.nonempty_rankSideData' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationCapOrderClassifierScratch.second_center_separates_outside_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationCapOrderClassifierScratch.secondCap_center_separates_firstApex_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationCapOrderClassifierScratch.firstCap_center_separates_secondApex_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationCapOrderClassifierScratch.secondPair_rankSideData' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationCapOrderClassifierScratch.firstPair_rankSideData' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationCapOrderClassifierScratch.forward_metric_exclusions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationCapOrderClassifierScratch.reciprocal_metric_exclusions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationCapOrderClassifierScratch.cyclic_metric_exclusions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationCapOrderClassifierScratch.false_of_reciprocal_one_metric_entry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailContinuationCapOrderClassifierScratch.false_of_cyclic_one_metric_entry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 69/92] CrossSurvivalEliminator <- scratch/atail-force/cross-survival-eliminator/CrossSurvivalEliminator.lean
+'Problem97.ATailCrossSurvivalEliminatorScratch.QDeletedFourRow.toSelectedFourClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCrossSurvivalEliminatorScratch.SurvivingContinuationRow.inter_criticalSupport_card_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCrossSurvivalEliminatorScratch.SurvivingContinuationRow.two_le_support_outside_oppCap2_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCrossSurvivalEliminatorScratch.SurvivingContinuationRow.outside_support_firstApex_distance_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCrossSurvivalEliminatorScratch.SurvivingContinuationRow.false_of_two_firstApexRadius_hits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCrossSurvivalEliminatorScratch.crossSurvival_oneRow_normalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 70/92] GlobalSourceSelection <- scratch/atail-force/global-source-selection/GlobalSourceSelection.lean
+'Problem97.ATailGlobalSourceSelectionScratch.mem_or_erase_survives' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalSourceSelectionScratch.sourceBlocker_rowLock_or_twoEscapes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalSourceSelectionScratch.GlobalEscapeSource.deletedSource_commonDeletion_or_prescribedCritical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalSourceSelectionScratch.GlobalEscapeSource.oldCenter_commonDeletion_or_prescribedCritical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalSourceSelectionScratch.globalEscape_commonDeletion_or_source_mem_surplusCap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalSourceSelectionScratch.globalEscape_commonDeletion_or_apexDoubleCritical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalSourceSelectionScratch.relocatedDeletedBlocker_commonDeletion_or_mem_surplusCap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalSourceSelectionScratch.relocatedDeletedBlocker_commonDeletion_or_apexAlignment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalSourceSelectionScratch.nonempty_globalEscapeSource_or_deletedBlocker_outside_oppCap2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalSourceSelectionScratch.crossSurvival_globalSourceSelection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalSourceSelectionScratch.crossSurvival_commonDeletion_or_surplusLocalization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalSourceSelectionScratch.crossSurvival_commonDeletion_or_apexCriticalAlignment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 71/92] CommonDeletionSuccessorCycle <- scratch/atail-force/common-deletion-consumer/CommonDeletionSuccessorCycle.lean
+'Problem97.ATailCommonDeletionSuccessorCycleScratch.commonDeletionSuccessor_mem_current_rows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionSuccessorCycleScratch.commonDeletionSuccessor_outside_current_shell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionSuccessorCycleScratch.commonDeletionSuccessor_blocker_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionSuccessorCycleScratch.commonDeletionSuccessor_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionSuccessorCycleScratch.alignedPrescribedPair_or_successorCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionSuccessorCycleScratch.nonEquilateral_alignedPrescribedPair_or_successorCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCommonDeletionSuccessorCycleScratch.globalEscape_alignedPrescribedPair_or_successorCycle_or_apexAlignment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 72/92] LiveCommonDeletionExpansion <- scratch/atail-force/r-live-common-deletion-expansion/LiveCommonDeletionExpansion.lean
+'Problem97.ATailRLiveCommonDeletionExpansionScratch.commonDeletion_firstRow_eq_liveBase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRLiveCommonDeletionExpansionScratch.commonDeletion_deleted_not_mem_liveBase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRLiveCommonDeletionExpansionScratch.livePrescribedCriticalAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRLiveCommonDeletionExpansionScratch.nonempty_liveFirstCenterAlignment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRLiveCommonDeletionExpansionScratch.deletion_survives_liveFirstCenter_of_not_mem_liveBase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRLiveCommonDeletionExpansionScratch.successor_or_secondCenterAlignment_of_two_off_live_sources' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRLiveCommonDeletionExpansionScratch.hasAlignedPrescribedPairAt_every_survivor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRLiveCommonDeletionExpansionScratch.not_nonempty_commonDeletionSuccessorCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRLiveCommonDeletionExpansionScratch.anchored_commonDeletion_forces_liveFirstCenterAlignment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 73/92] GlobalCriticalContinuation <- scratch/atail-force/global-critical-continuation/GlobalCriticalContinuation.lean
+[RTwo 74/92] same_cap_second_center <- scratch/atail-force/same_cap_second_center.lean
+'Problem97.ATAILForceScratch.DangerousRowSameCapSecondCenter.of_criticalShell_capMultiplicity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATAILForceScratch.DangerousRowSameCapSecondCenter.false' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATAILForceScratch.false_of_criticalShell_sameCap_capMultiplicity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 75/92] FailureProfilesParentLift <- scratch/atail-force/r-failure-profiles-parent-lift/FailureProfilesParentLift.lean
+'Problem97.ATailRFailureProfilesParentLiftScratch.TwoLiveExactCoverFailureProfile.support_inter_live_card_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFailureProfilesParentLiftScratch.OneLiveOverlapFailureProfile.support_inter_live_card_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFailureProfilesParentLiftScratch.deletedCriticalSupport_inter_live_card_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFailureProfilesParentLiftScratch.TwoLiveExactCoverFailureProfile.row_eq_liveOnly_union_supportOnly' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFailureProfilesParentLiftScratch.secondApexRow_to_capProfile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFailureProfilesParentLiftScratch.liveSource_not_mem_strictSecondCap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFailureProfilesParentLiftScratch.twoLiveExactCover_to_secondApexProfile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFailureProfilesParentLiftScratch.liveSecondApex_failure_refinement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRFailureProfilesParentLiftScratch.twoLiveExactCover_two_liveStrict_forces_p_off_adjacentCaps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 76/92] F2LiveHeavyPlacementAudit <- scratch/atail-force/r-f2-liveheavy-placement/F2LiveHeavyPlacementAudit.lean
+'Problem97.ATailRF2LiveHeavyPlacementScratch.mem_strictSecondCap_of_mem_A_of_not_mem_adjacentCaps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2LiveHeavyPlacementScratch.twoLiveExactCover_two_liveStrict_forces_p_mem_strictSecondCap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2LiveHeavyPlacementScratch.twoLiveExactCover_two_liveStrict_not_mem_adjacentCaps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2LiveHeavyPlacementScratch.twoLiveExactCover_two_liveStrict_saturates_oppCap2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2LiveHeavyPlacementScratch.false_of_twoLiveExactCover_two_liveStrict_of_oppCap2_card_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2LiveHeavyPlacementScratch.false_of_twoLiveExactCover_two_liveStrict_of_p_not_mem_oppCap2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2LiveHeavyPlacementScratch.fullParent_extracts_F2_liveHeavy_strictOppCap2_saturation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 77/92] F2ThreeRowChain <- scratch/atail-force/r-f2-three-row-chain/F2ThreeRowChain.lean
+'Problem97.ATailRF2ThreeRowChainScratch.sourceFaithfulF2ThreeRowChain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2ThreeRowChainScratch.SourceFaithfulF2ThreeRowChain.nonempty_namedWitnesses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2ThreeRowChainScratch.SourceFaithfulF2ThreeRowChain.strictPoint_qDeleted_or_qCritical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 78/92] F2SupportHeavyReduction <- scratch/atail-force/r-f2-supportheavy-reduction/F2SupportHeavyReduction.lean
+'Problem97.ATailRF2SupportHeavyReductionScratch.twoLiveExactCover_two_supportStrict_forces_deletedBlocker_off_adjacentCaps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SupportHeavyReductionScratch.twoLiveExactCover_two_supportStrict_forces_deletedBlocker_mem_strictSecondCap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SupportHeavyReductionScratch.twoLiveExactCover_two_supportStrict_saturates_deletedSupport_oppCap2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SupportHeavyReductionScratch.twoLiveExactCover_to_supportHeavyReduction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SupportHeavyReductionScratch.twoLiveExactCover_to_mixedBoundary_of_not_heavy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SupportHeavyReductionScratch.F2MixedOneLiveOneSupportBoundary.exists_distinct_witnesses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 79/92] F2StrictCellNormalForm <- scratch/atail-force/r-f2-strict-cell-normal-form/F2StrictCellNormalForm.lean
+'Problem97.ATailRF2StrictCellNormalFormScratch.resolvedF2StrictCellNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 80/92] OriginTaggedCoordinator <- scratch/atail-force/r-origin-tagged-coordinator/OriginTaggedCoordinator.lean
+'Problem97.ATailROriginTaggedCoordinatorScratch.reciprocalCommonDeletionContinuation_or_swappedFirstApexUniqueFour' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailROriginTaggedCoordinatorScratch.CriticalPairFrontier.originTaggedCurrentFirstApexFixedRadiusNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailROriginTaggedCoordinatorScratch.fullParent_extracts_dangerousRetainingOriginTaggedNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailROriginTaggedCoordinatorScratch.alignedRCommonDeletionBranch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailROriginTaggedCoordinatorScratch.rCommonDeletionBranch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailROriginTaggedCoordinatorScratch.AlignedRCommonDeletionEliminator.eliminate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailROriginTaggedCoordinatorScratch.RCommonDeletionEliminator.eliminate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailROriginTaggedCoordinatorScratch.OriginTaggedRCommonDeletionEliminator.eliminate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailROriginTaggedCoordinatorScratch.OriginTaggedCoordinatorEliminator.eliminate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 81/92] AnchoredProvenanceF2Lift <- scratch/atail-force/r-f2-anchored-provenance-lift/AnchoredProvenanceF2Lift.lean
+'Problem97.ATailRF2AnchoredProvenanceLiftScratch.alignedSharedRowPacket_B₁' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2AnchoredProvenanceLiftScratch.alignedSharedRowPacket_B₂' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2AnchoredProvenanceLiftScratch.exists_offSurplus_alignedSharedRowPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2AnchoredProvenanceLiftScratch.avoidsAllF2Cells_of_not_mem_middle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2AnchoredProvenanceLiftScratch.anchoredProvenanceF2NormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 82/92] F2ThreeRowMetricAudit <- scratch/atail-force/r-f2-three-row-metric-audit/F2ThreeRowMetricAudit.lean
+'Problem97.ATailRF2ThreeRowMetricAuditScratch.named_metric_equalities' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2ThreeRowMetricAuditScratch.deleted_off_middle_radius_of_two_deletedSupport_hits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2ThreeRowMetricAuditScratch.twoLiveExactCover_deleted_off_middle_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2ThreeRowMetricAuditScratch.false_of_twoLiveExactCover_deleted_middle_radius_hit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2ThreeRowMetricAuditScratch.liveShell_third_point_off_middle_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2ThreeRowMetricAuditScratch.deletedSupport_third_point_off_middle_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2ThreeRowMetricAuditScratch.deleted_off_middle_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2ThreeRowMetricAuditScratch.false_of_deleted_middle_radius_hit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 83/92] F2SecondApexRadiusTransport <- scratch/atail-force/r-f2-second-apex-radius-transport/F2SecondApexRadiusTransport.lean
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.sameCenter_radius_eq_or_support_disjoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.namedDistance_eq_retainedRadius_or_support_disjoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.namedDistance_eq_retainedRadius_of_common_hit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.five_le_selectedClass_of_selectedFourClass_and_extra' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.secondApex_dist_ne_of_common_firstApex_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.alignedSharedRowPacket_row₂_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.fresh_off_retained_secondApex_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.named_secondApex_distances_pairwise_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.fresh_containingRow_radius_ne_retained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.fresh_containingRow_disjoint_retained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.false_of_freshRetainedRadiusTransport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.no_secondApexRow_contains_fresh_and_currentDeleted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.no_secondApexRow_contains_fresh_and_coherentSource' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.no_secondApexRow_contains_currentDeleted_and_coherentSource' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.currentDeleted_containingRow_radius_hit_or_disjoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.coherentSource_containingRow_radius_hit_or_disjoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.currentDeleted_on_retained_radius_forces_card_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.coherentSource_on_retained_radius_forces_card_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRF2SecondApexRadiusTransportScratch.not_both_currentDeleted_and_coherentSource_on_retained_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 84/92] BlockerAlignment <- scratch/atail-force/global-k4-extension/BlockerAlignment.lean
+'Problem97.ATailGlobalK4Extension.selected_support_eq_critical_support_of_blocker_alignment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalK4Extension.dist_eq_of_blocker_alignment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalK4Extension.source_mem_selected_support_of_prescribed_deletion_criticality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalK4Extension.dist_eq_of_prescribed_deletion_criticality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalK4Extension.h5_of_prescribed_deletion_criticality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalK4Extension.h4_of_prescribed_deletion_criticality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 85/92] ApexAlignmentConsumer <- scratch/atail-force/apex-alignment-consumer/ApexAlignmentConsumer.lean
+'Problem97.ATailApexAlignmentConsumerScratch.rebaseCrossSurvivalApexPacketSystem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailApexAlignmentConsumerScratch.deletedApexCriticalCertificate_of_apexDouble' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailApexAlignmentConsumerScratch.deletedApexCriticalCertificate_of_blockerAlignment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailApexAlignmentConsumerScratch.exists_favorableSystem_of_deletedApexCriticalCertificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailApexAlignmentConsumerScratch.DeletedApexCriticalCertificate.shell_support_eq_apexRow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailApexAlignmentConsumerScratch.exists_favorableCrossPacket_of_deletedApexCriticalCertificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailApexAlignmentConsumerScratch.exists_favorableFrontier_of_deletedApexCriticalCertificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailApexAlignmentConsumerScratch.exists_favorableSystem_of_apexDouble' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailApexAlignmentConsumerScratch.h5_of_deletedApexCriticalCertificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailApexAlignmentConsumerScratch.parentApexPair_radius_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailApexAlignmentConsumerScratch.h5_from_certificate_is_parentApexPair_radius_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailApexAlignmentConsumerScratch.false_of_deletedApexCriticalCertificate_and_omission' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailApexAlignmentConsumerScratch.false_of_apexDouble_and_deletedApexOmission' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailApexAlignmentConsumerScratch.false_of_deletedBlockerAlignment_and_deletedApexOmission' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 86/92] FavorableSystemParentSurface <- scratch/atail-force/critical-system-rebase/FavorableSystemParentSurface.lean
+'Problem97.ATailFavorableSystemParentSurfaceScratch.false_of_chosenContinuationEliminators' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFavorableSystemParentSurfaceScratch.commonCriticalMapClosingProducer_of_favorableSystemContent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 87/92] NonEquilateralContinuation <- scratch/atail-force/non-equilateral-continuation/NonEquilateralContinuation.lean
+'Problem97.ATailNonEquilateralContinuationScratch.qDeletedRow_of_selectedFourClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailNonEquilateralContinuationScratch.dangerousTriple_of_criticalShellSystem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailNonEquilateralContinuationScratch.nativeQDeletedRow₁' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailNonEquilateralContinuationScratch.nativeQDeletedRow₂' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailNonEquilateralContinuationScratch.commonSupport_equidistant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailNonEquilateralContinuationScratch.nativeRow_inter_card_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailNonEquilateralContinuationScratch.nonempty_nonEquilateralBankInterface' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailNonEquilateralContinuationScratch.false_of_nonEquilateral_of_strictOppCap1CommonHit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 88/92] NonEquilateralParentProducer <- scratch/atail-force/non-equilateral-parent-producer/NonEquilateralParentProducer.lean
+'Problem97.ATailNonEquilateralParentProducerScratch.mem_surplusCap_or_strictOppCap1_of_mem_A_of_not_mem_oppCap2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailNonEquilateralParentProducerScratch.selectedRow_surplusHeavy_or_strictOppCap1Hit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailNonEquilateralParentProducerScratch.nonEquilateralSupportDichotomy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailNonEquilateralParentProducerScratch.routedBranchEliminator_of_callbacks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailNonEquilateralParentProducerScratch.false_of_criticalPairFrontier_of_choiceFirstContinuationContent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailNonEquilateralParentProducerScratch.choiceFirstContinuationContent_of_universalEliminators' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 89/92] FavorableRoutedBranchSurface <- scratch/atail-force/critical-system-rebase/FavorableRoutedBranchSurface.lean
+'Problem97.ATailFavorableRoutedBranchSurfaceScratch.commonCriticalMapClosingProducer_of_favorableRoutedBranchContent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFavorableRoutedBranchSurfaceScratch.favorableRoutedBranchContent_of_favorableSystemContent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 90/92] LateCriticalSystemSurface <- scratch/atail-force/critical-system-rebase/LateCriticalSystemSurface.lean
+'Problem97.ATailLateCriticalSystemSurfaceScratch.rebaseFrontierSecondApexRow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLateCriticalSystemSurfaceScratch.GeometricFrontierContinuation.toDispatch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLateCriticalSystemSurfaceScratch.nonempty_geometricFrontierContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLateCriticalSystemSurfaceScratch.choiceFirstContent_of_lateCriticalSystemBranchContent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLateCriticalSystemSurfaceScratch.lateCriticalSystemBranchContent_of_choiceFirstContent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLateCriticalSystemSurfaceScratch.commonCriticalMapClosingProducer_of_lateCriticalSystemParentContent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 91/92] DeletedApexOmissionProducer <- scratch/atail-force/apex-alignment-consumer/DeletedApexOmissionProducer.lean
+'Problem97.ATailDeletedApexOmissionProducerScratch.nonempty_deletedApexOmissionPacket_of_roleAlignment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDeletedApexOmissionProducerScratch.nonempty_deletedApexOmissionPacket_of_criticalRowAlignment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDeletedApexOmissionProducerScratch.exists_selectedFourClass_at_radius_of_four_le_selectedClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDeletedApexOmissionProducerScratch.nonempty_deletedApexOmissionPacket_of_distinctApexRadiusClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDeletedApexOmissionProducerScratch.exists_selectedFourClass_omitting_of_five_le_selectedClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDeletedApexOmissionProducerScratch.nonempty_deletedApexOmissionPacket_of_apexClass_card_ge_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDeletedApexOmissionProducerScratch.nonempty_deletedApexOmissionPacket_of_twiceErased_apexClass_card_ge_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDeletedApexOmissionProducerScratch.deleted_not_mem_survivorRow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDeletedApexOmissionProducerScratch.survivorCenter_ne_oppApex2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDeletedApexOmissionProducerScratch.geometricContinuation_centers_ne_oppApex2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDeletedApexOmissionProducerScratch.parentApexRadiusClass_card_eq_four_of_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDeletedApexOmissionProducerScratch.false_of_deletedApexCriticalCertificate_and_distinctApexRadiusClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDeletedApexOmissionProducerScratch.apexRow_support_eq_parent_of_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailDeletedApexOmissionProducerScratch.deletedApexOmission_iff_distinctApexRadiusClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[RTwo 92/92] RTwoOffLiveHandler <- scratch/atail-force/r-two-off-live-handler/RTwoOffLiveHandler.lean
+'Problem97.ATailRTwoOffLiveHandlerScratch.OffLiveSecondRowFreshSource.ofFresh' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveHandlerScratch.fullyDeletionRobustAt_of_five_le_selectedClass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveHandlerScratch.fullyDeletionRobustAt_of_two_disjoint_selectedFourClasses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveHandlerScratch.OffLiveCommonDeletionSuccessor.ofPacket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveHandlerScratch.OffLiveCommonDeletionSuccessor.secondApexFullyDeletionRobust' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveHandlerScratch.false_of_offLiveCommonDeletionSuccessor_and_criticalDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveHandlerScratch.FullyDeletionRobustAt.centerAt_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveHandlerScratch.OffLiveSecondCenterCriticalPair.installedLiveSystem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveHandlerScratch.OffLiveSecondCenterCriticalPair.secondCenterExactUniqueRadius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveHandlerScratch.OffLiveSecondCenterCriticalPair.reorients_to_swappedFirstApexUniqueFour' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveHandlerScratch.nonempty_twoOffLiveHandlerOutcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveHandlerScratch.nonempty_twoOffLiveReducedOutcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveHandlerScratch.nonempty_originAwareTwoOffLiveHandlerOutcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveHandlerScratch.nonempty_originAwareTwoOffLiveReducedOutcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveHandlerScratch.originAwareTwoOffLive_goal_of_successor_and_swapped' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRTwoOffLiveHandlerScratch.originAwareTwoOffLive_goal_of_criticalDeletion_and_swapped' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+<stdin>:2:0: error: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+[compatibility import] stage1_minimal_deletion_core reexports production MinimalDeletionCore
+[dependency] GlobalMinimalDeletionCore
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.not_hasNEquidistantProperty_of_nonempty_proper_subset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.exists_local_blocker_of_not_global_K4' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.exists_cardMinimal_blocking_subdeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.exists_global_cardMinimal_blocking_subdeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.exists_fresh_sharedRadiusPair_or_minimalDeletionCore' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.exists_fresh_sharedRadiusPair_or_minimalDeletionCore_of_card_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.exists_outside_four_knownPoints_sharedRadiusPair_or_core' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.fresh_center_not_bisect_saturated_frontierPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.SurvivorPairRelocationPacket.exists_fresh_nonfrontierCollision_or_core' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.singleton_minimalDeletionCore_installs_cross_survival' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.singleton_minimalDeletionCore_installs_frontier_omission' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.SurvivorPairRelocationPacket.install_q_singletonCore' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.SurvivorPairRelocationPacket.install_w_singletonCore' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.SurvivorPairRelocationPacket.exists_fresh_collision_or_nontrivialCore_or_installedSingleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.MinimalDeletionCore.four_mul_card_le_carrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.MinimalDeletionCore.card_le_three_of_card_twelve' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.MinimalDeletionCore.two_mul_card_le_capByIndex_complement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.freshCenterCapLocation_of_mem_ne_first' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.MinimalDeletionCore.locatedCorePacking' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.LocatedCorePacking.strict_of_all_cap_card_le_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.LocatedCorePacking.strict_or_moser_cap_eq_six_of_all_cap_card_le_six' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.SurvivorPairRelocationPacket.exists_fourRoleFresh_collision_or_locatedCore_or_installedSingleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.SurvivorPairRelocationPacket.exists_strictCapFresh_collision_or_nontrivialCore_or_installedSingleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.SurvivorPairRelocationPacket.exists_strictCapFresh_collision_or_twoThreeCore_or_installedSingleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailGlobalMinimalDeletionCoreScratch.SurvivorPairRelocationPacket.exists_strictCapFresh_collision_or_twoSourceCore_or_installedSingleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[final build] RobustTwoRadiusGeometry <- scratch/atail-force/robust-two-radius-geometry/RobustTwoRadiusGeometry.lean
+'Problem97.ATailRobustTwoRadiusGeometryScratch.SameRowMinimalCollisionTransition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRobustTwoRadiusGeometryScratch.five_le_selectedClass_of_minimalDeletion_equal_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRobustTwoRadiusGeometryScratch.exists_secondApexRow_minimalDeletionTransition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+[final build] RobustTwoRadiusCenterLocalization <- scratch/atail-force/robust-two-radius-center-localization/RobustTwoRadiusCenterLocalization.lean
+'Problem97.ATailRobustTwoRadiusCenterLocalizationScratch.commonPhysicalPair_center_mem_secondCapInterior' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRobustTwoRadiusCenterLocalizationScratch.nonempty_strictSecondCapInterval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRobustTwoRadiusCenterLocalizationScratch.MinimalDeletionCore.freshSecondApexCorePacking' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRobustTwoRadiusCenterLocalizationScratch.exists_commonDeletion_of_singletonCore_and_disjointPhysicalRow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailRobustTwoRadiusCenterLocalizationScratch.exists_strictPair_minimalDeletionNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+BUILD_OK target=RobustTwoRadiusCenterLocalization

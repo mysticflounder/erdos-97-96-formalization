@@ -1,0 +1,18 @@
+/Users/adam/.elan/toolchains/leanprover--lean4---v4.27.0/lib/lean/Init.olean
+unknown module prefix 'CardElevenUniqueFourCoverage'
+
+No directory 'CardElevenUniqueFourCoverage' or file 'CardElevenUniqueFourCoverage.olean' in the search path entries:
+/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/Cli/.lake/build/lib/lean
+/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/batteries/.lake/build/lib/lean
+/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/Qq/.lake/build/lib/lean
+/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/aesop/.lake/build/lib/lean
+/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/proofwidgets/.lake/build/lib/lean
+/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/importGraph/.lake/build/lib/lean
+/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean
+/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/plausible/.lake/build/lib/lean
+/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/mathlib/.lake/build/lib/lean
+/Users/adam/projects/math-projects/erdos-97-96/lean/.lake/packages/formal_conjectures/.lake/build/lib/lean
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/.lake/build/lib/lean
+/Users/adam/.elan/toolchains/leanprover--lean4---v4.27.0/lib/lean
+../scratch/atail-force/unique4-n11-source-lift/olean-427
+/Users/adam/.elan/toolchains/leanprover--lean4---v4.27.0/lib/lean

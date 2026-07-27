@@ -1,0 +1,15 @@
+module=Erdos9796Proof.P97.ATail.PhysicalOmissionCycleParentResidual
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/7174503c92eb9e55-3yykj5yl/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/7174503c92eb9e55-3yykj5yl/module.ilean Erdos9796Proof/P97/ATail/PhysicalOmissionCycleParentResidual.lean
+
+'Problem97.ATailPhysicalOmissionCycleParentResidual.nonempty_exactFivePhysicalCycleParentResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailPhysicalOmissionCycleParentResidual.nonempty_frontierCoupledExactFivePhysicalCycleParentResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailPhysicalOmissionCycleParentResidual.commonDeletion_or_frontierCoupledExactFivePhysicalCycleParentResidual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailPhysicalOmissionCycleParentResidual.false_of_largeSecondApexRadius_of_residualConsumers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

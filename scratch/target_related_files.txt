@@ -1,0 +1,10 @@
+scratch/CrossBlockerEqualityAudit.lean
+scratch/ResidualFieldAttack.lean
+scratch/atail-force/critical-fiber-producer-push/REPORT.md
+scratch/atail-force/matching-endpoint-path-terminal/REPORT.md
+scratch/atail-force/matching-source-return-terminal/MatchingSourceReturnRadiusSplit.lean
+scratch/atail-force/retained-collision-alternation-consumer/REPORT.md
+scratch/atail-force/retained-matching-common-deletion-cycle/REPORT.md
+scratch/atail-force/source-return-second-apex-bridge/REPORT.md
+scratch/full-exact-two-cross-equality/REPORT.md
+scratch/run-tmp/exact_four_second_radius_generic_finset_20260726.lean

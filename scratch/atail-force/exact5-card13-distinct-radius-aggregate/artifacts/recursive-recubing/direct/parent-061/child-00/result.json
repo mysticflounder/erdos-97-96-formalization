@@ -1,0 +1,64 @@
+{
+  "child_cnf_sha256": "fa08c178eee2777f3bd087fc2717379176727f75601380cc1b2052331ae56026",
+  "child_cube": [
+    -2378,
+    1530,
+    15993
+  ],
+  "child_cube_index": 0,
+  "combined_assumptions": [
+    2071,
+    2106,
+    -313,
+    -195,
+    -1829,
+    -314,
+    192,
+    -2378,
+    1530,
+    15993
+  ],
+  "config": "sat",
+  "config_args": [
+    "--sat"
+  ],
+  "conflicts": 55498,
+  "decisions": 100011,
+  "drat_check": {
+    "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-061/child-00/drat-trim.log",
+    "log_sha256": "207f6b988c8b15653ae774cb6fbe6c2d7ac407bc9d4f15d9db70f46ba303f8f9",
+    "returncode": 0,
+    "status": "PASS",
+    "timed_out": false
+  },
+  "elapsed_seconds": 29.91698933299631,
+  "epistemic_status": "EXTERNAL_EXACT_CHILD_CNF_VERDICT",
+  "extended_model_check_against_original_cnf": null,
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-061/child-00/cadical.log",
+  "log_sha256": "d4349341108f54c40e51e2129df206ac50027122b3a2fae0f80941633a01cefc",
+  "model_check_against_child_cnf": null,
+  "orientation": "direct",
+  "parent_cube": [
+    2071,
+    2106,
+    -313,
+    -195,
+    -1829,
+    -314,
+    192
+  ],
+  "parent_cube_index": 61,
+  "proof_artifact": {
+    "format": "gzip-compressed CaDiCaL DRAT",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-061/child-00/proof.drat.gz",
+    "sha256": "28dd7300bfeb1afd32d3108106380debd63b84aaa69e1c076714fbb300c9753a",
+    "size_bytes": 4323259
+  },
+  "returncode": 20,
+  "schema": "p97-exact5-card13-distinct-recube-child-v1",
+  "seed": 2976,
+  "solver_status": "UNSAT",
+  "status": "UNSAT",
+  "timed_out": false,
+  "timeout_seconds": 15
+}

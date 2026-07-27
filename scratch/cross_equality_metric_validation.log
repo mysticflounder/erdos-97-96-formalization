@@ -1,0 +1,7 @@
+'ScratchFullExactTwoCrossEquality.metric_and_strictCap_model' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ScratchFullExactTwoCrossEquality.strictConvex_order_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ScratchFullExactTwoCrossEquality.all_four_cross_equality_branches_have_metric_cap_models' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

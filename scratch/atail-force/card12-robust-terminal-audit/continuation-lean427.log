@@ -1,0 +1,1 @@
+../scratch/atail-force/unique4-robust-cap-expansion/ExactFourRobustLargeRadiusContinuation.lean:7:0: error: import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.UniqueRowProducer.card_five_interior_survivor_pair failed, environment already contains 'Problem97.ATailUniqueRowProducerScratch.CardFiveInteriorSurvivorPair' from card_five_interior_survivor_pair

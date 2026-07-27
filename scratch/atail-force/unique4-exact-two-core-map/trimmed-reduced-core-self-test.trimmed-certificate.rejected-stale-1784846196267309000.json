@@ -1,0 +1,251 @@
+{
+  "artifacts": {
+    "cadical_log": {
+      "byte_count": 4884,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.cadical-drat.log",
+      "sha256": "d94a68d4af6cc3432272dd1d04091c2ffc68d901f898d035de6c3492bf6014e3"
+    },
+    "core_drat_extract_log": {
+      "byte_count": 230,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.core-drat-extract.log",
+      "sha256": "0094d5aa43e84b012abbfb6817eef1e56d3a7f0438080c4cb4811037afd6fe3c"
+    },
+    "core_drat_verify_log": {
+      "byte_count": 155,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.core-drat-verify.log",
+      "sha256": "16e27ff865d1f53973e5f512308faf24d41f87ff56d0469700793434f5b11b1e"
+    },
+    "dense_cnf": {
+      "byte_count": 32,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.dense.cnf",
+      "sha256": "5ea399977a99571fabbd86f6d1783efd47faf2750559341d97ce6e3a5ce90eb8"
+    },
+    "drat": {
+      "byte_count": 18,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.drat",
+      "sha256": "b4c1de9bc67b2cac23cca949af65fdf5c4d71f1ee5843be2380866cf5dbd43de"
+    },
+    "drat_trim_log": {
+      "byte_count": 230,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.drat-trim.log",
+      "sha256": "ab567e9f91ef2f4d8b4ef542b9ef02285f2226b61eb126cdcf34c2004f275ac0"
+    },
+    "lean": {
+      "byte_count": 1373,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/TrimmedReducedCoreSelfTestTrimmedReducedCore.lean",
+      "sha256": "ed76a24909d6de754652e769a2dd1cb1163db2bde5ab80a5494c9d3ee7c91763"
+    },
+    "normalize_log": {
+      "byte_count": 103,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.normalize-lrat.log",
+      "sha256": "241726a60a6677fde4bd6119eca94fc423882af8b080da2a2cbc672f9c96878e"
+    },
+    "original_numbering_raw_lrat": {
+      "byte_count": 10,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.original-numbering.raw.lrat",
+      "sha256": "8d4ce0a0fa211216a09c9bda026802131d6d84644d4e881bebda445c931ad294"
+    },
+    "trimmed_core_cnf": {
+      "byte_count": 19,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.trimmed.core.cnf",
+      "sha256": "e756e269d0103fdee1d134538fd137d38d4f64241776b47553c7b2b81c55bb3c"
+    },
+    "trimmed_core_drat": {
+      "byte_count": 2,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.trimmed.core.drat",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "trimmed_core_numbering_raw_lrat": {
+      "byte_count": 10,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.trimmed-core-numbering.raw.lrat",
+      "sha256": "2e9bf73f333fd3624376d1eb676ce8d6240ba39924936c22bc1a522bfb01b8cc"
+    },
+    "trimmed_lrat": {
+      "byte_count": 10,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.trimmed.lrat",
+      "sha256": "2e9bf73f333fd3624376d1eb676ce8d6240ba39924936c22bc1a522bfb01b8cc"
+    }
+  },
+  "base_materializer": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/materialize_reduced_core.py",
+    "sha256": "1c4b537c1b854324f42213788a8a2bbff5444552044074b04f8a6277723d2577"
+  },
+  "cadical_run": {
+    "command": [
+      "/Users/adam/.local/bin/cadical",
+      "--factor=false",
+      "--no-binary",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-99022-1784836007246645000/trimmed-reduced-core-self-test.dense.cnf",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-99022-1784836007246645000/trimmed-reduced-core-self-test.drat"
+    ],
+    "cwd": "/Users/adam/projects/math-projects/erdos-97-96-formalization",
+    "elapsed_seconds": 0.027207916020415723,
+    "exit_code": 20,
+    "output": {
+      "byte_count": 4884,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.cadical-drat.log",
+      "sha256": "d94a68d4af6cc3432272dd1d04091c2ffc68d901f898d035de6c3492bf6014e3"
+    }
+  },
+  "claim_scope": "This certifies only the emitted fixed-n trimmed CNF. It does not prove that the live geometric source satisfies that CNF and does not close a production sorry.",
+  "clause_numbering": {
+    "base_clause_id_remapping": "none",
+    "core_to_input_clause_id": [
+      3,
+      2
+    ],
+    "direct_clause_numbering_match": false,
+    "original_numbering_raw_lrat_addresses": "dense_cnf",
+    "selected_raw_lrat_addresses": "trimmed_core_cnf",
+    "selected_raw_lrat_artifact": "trimmed_core_numbering_raw_lrat",
+    "selected_raw_lrat_base_clause_count": 2,
+    "trimmed_lrat_replay_target": "trimmed_core_cnf",
+    "validation": "Every trimmed-core clause was occurrence-matched to the dense input by signed-literal multiset. If dense and trimmed-core numbering differ, drat-trim regenerates and verifies a core-relative DRAT/LRAT before lemma-id normalization. Base clause ids are never remapped. Lean replay validated the selected numbering against trimmed_core_cnf."
+  },
+  "core_drat_extract_run": {
+    "command": [
+      "/Users/adam/.local/bin/drat-trim",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-99022-1784836007246645000/trimmed-reduced-core-self-test.dense.cnf",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-99022-1784836007246645000/trimmed-reduced-core-self-test.drat",
+      "-l",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-99022-1784836007246645000/trimmed-reduced-core-self-test.trimmed.core.drat"
+    ],
+    "cwd": "/Users/adam/projects/math-projects/erdos-97-96-formalization",
+    "elapsed_seconds": 0.019093292066827416,
+    "exit_code": 0,
+    "output": {
+      "byte_count": 230,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.core-drat-extract.log",
+      "sha256": "0094d5aa43e84b012abbfb6817eef1e56d3a7f0438080c4cb4811037afd6fe3c"
+    }
+  },
+  "core_drat_verify_run": {
+    "command": [
+      "/Users/adam/.local/bin/drat-trim",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-99022-1784836007246645000/trimmed-reduced-core-self-test.trimmed.core.cnf",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-99022-1784836007246645000/trimmed-reduced-core-self-test.trimmed.core.drat",
+      "-L",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-99022-1784836007246645000/trimmed-reduced-core-self-test.trimmed-core-numbering.raw.lrat"
+    ],
+    "cwd": "/Users/adam/projects/math-projects/erdos-97-96-formalization",
+    "elapsed_seconds": 0.018887249985709786,
+    "exit_code": 0,
+    "output": {
+      "byte_count": 155,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.core-drat-verify.log",
+      "sha256": "16e27ff865d1f53973e5f512308faf24d41f87ff56d0469700793434f5b11b1e"
+    }
+  },
+  "counts": {
+    "dense_clause_count": 4,
+    "dense_variable_count": 3,
+    "trimmed_clause_count": 2,
+    "trimmed_variable_count": 3
+  },
+  "dense_variable_renaming": {
+    "dense_variable_count": 3,
+    "old_to_new": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        5,
+        3
+      ]
+    ],
+    "policy": "sorted_used_source_variables_to_contiguous_one_based_ids"
+  },
+  "drat_trim": {
+    "path": "/Users/adam/.local/bin/drat-trim",
+    "sha256": "eb781b99f2aaf5c9102eb6efd07c2d0aa71b44a0e8002a74e3dda1030be96a92"
+  },
+  "drat_trim_run": {
+    "command": [
+      "/Users/adam/.local/bin/drat-trim",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-99022-1784836007246645000/trimmed-reduced-core-self-test.dense.cnf",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-99022-1784836007246645000/trimmed-reduced-core-self-test.drat",
+      "-c",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-99022-1784836007246645000/trimmed-reduced-core-self-test.trimmed.core.cnf",
+      "-L",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-99022-1784836007246645000/trimmed-reduced-core-self-test.original-numbering.raw.lrat"
+    ],
+    "cwd": "/Users/adam/projects/math-projects/erdos-97-96-formalization",
+    "elapsed_seconds": 0.01951075007673353,
+    "exit_code": 0,
+    "output": {
+      "byte_count": 230,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.drat-trim.log",
+      "sha256": "ab567e9f91ef2f4d8b4ef542b9ef02285f2226b61eb126cdcf34c2004f275ac0"
+    }
+  },
+  "epistemic_status": "NATIVE-CHECKER VERIFIED LRAT UNSAT FOR THE HASHED FIXED-N TRIMMED CNF; NO SOURCE-TO-CNF BRIDGE",
+  "generator": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/materialize_trimmed_reduced_core.py",
+    "sha256": "fb248d498a81e1ab39b88bba776d77fc7729278d8037fd88d89d5209f2becef0"
+  },
+  "input_provenance": {
+    "mathematical_reason": "The dense CNF contains complementary unit clauses on the renamed source variable 5.",
+    "mode": "TINY_KNOWN_UNSAT_SMOKE"
+  },
+  "lean_replay": {
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "-M16384",
+      "--root=..",
+      "-DwarningAsError=true",
+      "../scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-99022-1784836007246645000/TrimmedReducedCoreSelfTestTrimmedReducedCore.lean"
+    ],
+    "cwd": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean",
+    "elapsed_seconds": 1.8301701250020415,
+    "exit_code": 0,
+    "output": "'Problem97.ATailUniqueFourExactTwoReducedCoreScratch.TrimmedReducedCoreSelfTestCore_unsat' depends on axioms: [propext,\n Classical.choice,\n Lean.ofReduceBool,\n Lean.trustCompiler,\n Quot.sound]\n"
+  },
+  "native_checker_trust_boundary": [
+    "Lean.ofReduceBool",
+    "Lean.trustCompiler"
+  ],
+  "normalizer": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-bv-encoding-profile/normalize_lrat_for_lean.py",
+    "sha256": "fcbe4b71945952214f40c32989c40e089086ae143be6019055beb866ade9b830"
+  },
+  "normalizer_run": {
+    "command": [
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/python3",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-bv-encoding-profile/normalize_lrat_for_lean.py",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-99022-1784836007246645000/trimmed-reduced-core-self-test.trimmed-core-numbering.raw.lrat",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/.trimmed-reduced-core-self-test.trimmed-stage-99022-1784836007246645000/trimmed-reduced-core-self-test.trimmed.lrat",
+      "--base-clauses",
+      "2",
+      "--max-variable",
+      "3"
+    ],
+    "cwd": "/Users/adam/projects/math-projects/erdos-97-96-formalization",
+    "elapsed_seconds": 0.0309271669248119,
+    "exit_code": 0,
+    "output": {
+      "byte_count": 103,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-core-map/trimmed-reduced-core-self-test.normalize-lrat.log",
+      "sha256": "241726a60a6677fde4bd6119eca94fc423882af8b080da2a2cbc672f9c96878e"
+    }
+  },
+  "retained_clause_count_by_family": {
+    "tiny_smoke": 4
+  },
+  "retained_families": [
+    "tiny_smoke"
+  ],
+  "retained_family_count": 1,
+  "schema": "p97-unique4-exact-two-trimmed-reduced-core-certificate-v1",
+  "self_test": true,
+  "solver": {
+    "path": "/Users/adam/.local/bin/cadical",
+    "sha256": "66b34e225d5661f8e9b33fb8f77f2e9ae4c5639d8fe2a19067edb06c6d97d9d8"
+  }
+}

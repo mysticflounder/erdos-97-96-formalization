@@ -1,0 +1,24 @@
+{
+  "cnf_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/direct.cnf",
+  "cnf_sha256": "1669221a2e8791256c92038be8577e85ea1dc3204d0acfa106b064460a5dcff8",
+  "config": "phase_false_seed3",
+  "config_args": [
+    "--default",
+    "--phase=false",
+    "--seed=3"
+  ],
+  "conflicts": 702028,
+  "decisions": 2391925,
+  "elapsed_seconds": 90.02211687492672,
+  "epistemic_status": "EXTERNAL_EXACT_CNF_PORTFOLIO_VERDICT",
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/portfolio/direct/phase_false_seed3/cadical.log",
+  "log_sha256": "0cf4488e0adecc46a6a9ba9b422a5f1a36ad4dc6c4bbe0c3b16b69e68d5afc75",
+  "model_check": null,
+  "orientation": "direct",
+  "returncode": 0,
+  "schema": "p97-exact5-card13-distinct-portfolio-cell-v1",
+  "status": "UNKNOWN",
+  "subprocess_timeout": false,
+  "timeout_seconds": 90,
+  "unsat_certificate": null
+}

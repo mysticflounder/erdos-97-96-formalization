@@ -1,0 +1,21 @@
+'Problem97.ATailUniqueFourSourceCloserScratch.bad_source_blockers_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourSourceCloserScratch.badOutsideSources_card_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourSourceCloserScratch.seven_le_outsideFirstApexFiber_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourSourceCloserScratch.five_le_goodOutsideSources_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourSourceCloserScratch.nonempty_exactFourPhysicalCommonDeletionIngress' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourSourceCloserScratch.nonempty_exactFourPhysicalConsumerOutcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+LEAN_EXIT=0
+SOURCE_SHA256_BEFORE=c6386f6444cd37b8590aa19080b14e80daf0f0d845ad72d2b22f7cf21a8d3b83
+SOURCE_SHA256_AFTER=c6386f6444cd37b8590aa19080b14e80daf0f0d845ad72d2b22f7cf21a8d3b83

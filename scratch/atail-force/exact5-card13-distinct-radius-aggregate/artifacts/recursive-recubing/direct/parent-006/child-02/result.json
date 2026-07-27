@@ -1,0 +1,49 @@
+{
+  "child_cnf_sha256": "49268667f60f4359f4569b8aa56e807f3b1e0107aa6c396dd4976973d0bb0b7c",
+  "child_cube": [
+    -2378,
+    -2399,
+    -2739
+  ],
+  "child_cube_index": 2,
+  "combined_assumptions": [
+    -2071,
+    86056,
+    22411,
+    1661,
+    -22425,
+    -2378,
+    -2399,
+    -2739
+  ],
+  "config": "default",
+  "config_args": [
+    "--default"
+  ],
+  "conflicts": 97198,
+  "decisions": 413986,
+  "drat_check": null,
+  "elapsed_seconds": 15.038247624994256,
+  "epistemic_status": "EXTERNAL_EXACT_CHILD_CNF_VERDICT",
+  "extended_model_check_against_original_cnf": null,
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-006/child-02/cadical.log",
+  "log_sha256": "a6acba06051deb723c148342f7c88eb355e372177c59bbfad24d75ff103a275a",
+  "model_check_against_child_cnf": null,
+  "orientation": "direct",
+  "parent_cube": [
+    -2071,
+    86056,
+    22411,
+    1661,
+    -22425
+  ],
+  "parent_cube_index": 6,
+  "proof_artifact": null,
+  "returncode": 0,
+  "schema": "p97-exact5-card13-distinct-recube-child-v1",
+  "seed": 2098,
+  "solver_status": "UNKNOWN",
+  "status": "UNKNOWN",
+  "timed_out": false,
+  "timeout_seconds": 15
+}

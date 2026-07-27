@@ -1,0 +1,39 @@
+{
+  "base_model_sha256": "db4d45278e5f412212fbef2f5903959a831ef952434ee892642d7f5f779242aa",
+  "exceptional_blocker": 23,
+  "exceptional_fiber": [
+    0
+  ],
+  "good_source_count": 23,
+  "same_cap_pair": {
+    "abstract_cap": 2,
+    "blockers": [
+      2,
+      5
+    ],
+    "deleted": 1,
+    "row_intersection": [
+      7
+    ],
+    "rows": [
+      [
+        3,
+        4,
+        5,
+        7
+      ],
+      [
+        6,
+        7,
+        8,
+        10
+      ]
+    ],
+    "sources": [
+      3,
+      6
+    ]
+  },
+  "scope": "exact rational finite metric with total K4, total critical map, mutual omission, exceptional-fiber bound, and an abstract three-cap blocker assignment; not Euclidean/convex/MEC",
+  "status": "PASS"
+}

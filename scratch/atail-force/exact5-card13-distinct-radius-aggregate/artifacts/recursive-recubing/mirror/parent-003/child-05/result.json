@@ -1,0 +1,60 @@
+{
+  "child_cnf_sha256": "04ffc0278f7a5cffd1c4284fee7874f9d6a37ed40a40d9d553c065f2c6b427a6",
+  "child_cube": [
+    -16960,
+    16968,
+    -16976
+  ],
+  "child_cube_index": 5,
+  "combined_assumptions": [
+    -2070,
+    86065,
+    1663,
+    -22411,
+    16021,
+    -16960,
+    16968,
+    -16976
+  ],
+  "config": "sat",
+  "config_args": [
+    "--sat"
+  ],
+  "conflicts": 41771,
+  "decisions": 89987,
+  "drat_check": {
+    "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-003/child-05/drat-trim.log",
+    "log_sha256": "c5125d9bacb1afc426460ed9d5fe72743189b87e4984505fe331de6f71072df1",
+    "returncode": 0,
+    "status": "PASS",
+    "timed_out": false
+  },
+  "elapsed_seconds": 19.482282832963392,
+  "epistemic_status": "EXTERNAL_EXACT_CHILD_CNF_VERDICT",
+  "extended_model_check_against_original_cnf": null,
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-003/child-05/cadical.log",
+  "log_sha256": "42cd39946b181fd6a3305c8415925cf7b906b13a87c6ea4dd462aa1ff8b3dcdd",
+  "model_check_against_child_cnf": null,
+  "orientation": "mirror",
+  "parent_cube": [
+    -2070,
+    86065,
+    1663,
+    -22411,
+    16021
+  ],
+  "parent_cube_index": 3,
+  "proof_artifact": {
+    "format": "gzip-compressed CaDiCaL DRAT",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-003/child-05/proof.drat.gz",
+    "sha256": "6bac15cb399b0398c0c3df7f33ba06c8afe72e50b7f7b001bbf89556c02e5227",
+    "size_bytes": 3470383
+  },
+  "returncode": 20,
+  "schema": "p97-exact5-card13-distinct-recube-child-v1",
+  "seed": 4053,
+  "solver_status": "UNSAT",
+  "status": "UNSAT",
+  "timed_out": false,
+  "timeout_seconds": 15
+}

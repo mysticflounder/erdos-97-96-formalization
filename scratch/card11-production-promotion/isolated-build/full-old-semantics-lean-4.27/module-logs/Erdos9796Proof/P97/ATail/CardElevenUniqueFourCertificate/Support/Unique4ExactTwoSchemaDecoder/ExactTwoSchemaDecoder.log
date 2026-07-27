@@ -1,0 +1,24 @@
+module=Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4ExactTwoSchemaDecoder.ExactTwoSchemaDecoder
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/0ebda5d8271493c0-osg2s7_i/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/0ebda5d8271493c0-osg2s7_i/module.ilean Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean
+
+'Problem97.ATailUniqueFourExactTwoSchemaDecoderScratch.false_of_p4OrientedSchemaAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourExactTwoSchemaDecoderScratch.false_of_p5FourRowOrientedSchemaAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourExactTwoSchemaDecoderScratch.false_of_p5TriangleAOrientedSchemaAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourExactTwoSchemaDecoderScratch.false_of_p5TriangleBOrientedSchemaAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:7:0: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:8:0: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:9:0: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`

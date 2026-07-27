@@ -1,0 +1,91 @@
+    rcases mem_selectedClass.mp hz with ⟨hzErase, hzdist⟩
+    exact mem_selectedClass.mpr ⟨
+      Finset.mem_of_mem_erase (Finset.mem_of_mem_erase hzErase), hzdist⟩
+  have hrho : rho = radius := hunique rho hrho hfourFull
+  subst rho
+  have hq := q_mem_firstApex_class F
+  have hw := w_mem_firstApex_class F
+  have hwErase :
+      F.pair.w ∈ (SelectedClass D.A S.oppApex1 radius).erase F.pair.q :=
+    Finset.mem_erase.mpr ⟨F.pair.q_ne_w.symm, hw⟩
+  rw [selectedClass_erase_eq, selectedClass_erase_eq,
+    Finset.card_erase_of_mem hwErase,
+    Finset.card_erase_of_mem hq] at hfourErase
+  rcases hcard with hfour | hfive <;> omega
+
+/-- Exact four-point residual of the first-apex unique-radius alternative. -/
+structure FirstApexUniqueRadiusExactFourResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H) where
+  minimal : D.Minimal
+  noM44 : ¬ ∃ T : SurplusCapPacket D.A, T.IsM44
+  carrier_card_gt_nine : 9 < D.A.card
+  class_card_eq_four :
+    (SelectedClass D.A S.oppApex1 radius).card = 4
+  unique_fourClass_radius : ∀ rho : ℝ, 0 < rho →
+    4 ≤ (SelectedClass D.A S.oppApex1 rho).card → rho = radius
+  every_class_member_obstructs : ∀ x : ℝ²,
+    x ∈ SelectedClass D.A S.oppApex1 radius →
+      ¬ HasNEquidistantPointsAt 4 (D.A.erase x) S.oppApex1
+  interior_q : ℝ²
+  interior_w : ℝ²
+  interior_q_mem :
+    interior_q ∈ SelectedClass D.A S.oppApex1 radius ∩
+      S.capInteriorByIndex S.oppIndex1
+  interior_w_mem :
+    interior_w ∈ SelectedClass D.A S.oppApex1 radius ∩
+      S.capInteriorByIndex S.oppIndex1
+  interior_q_ne_w : interior_q ≠ interior_w
+  bisector_center_mem_interior : ∀ c : ℝ², c ∈ D.A →
+    c ≠ S.oppApex1 →
+    dist c interior_q = dist c interior_w →
+    c ∈ S.capInteriorByIndex S.oppIndex1
+
+/-- Exact five-point residual with distinct selected obstruction centers. -/
+structure FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H) where
+  minimal : D.Minimal
+  noM44 : ¬ ∃ T : SurplusCapPacket D.A, T.IsM44
+  carrier_card_gt_nine : 9 < D.A.card
+  class_card_eq_five :
+    (SelectedClass D.A S.oppApex1 radius).card = 5
+  unique_fourClass_radius : ∀ rho : ℝ, 0 < rho →
+    4 ≤ (SelectedClass D.A S.oppApex1 rho).card → rho = radius
+  firstApex_fullyDeletionRobust : FullyDeletionRobustAt D S.oppApex1
+  originalPair_doubleDeletion_obstructs :
+    ¬ HasNEquidistantPointsAt 4
+      ((D.A.erase F.pair.q).erase F.pair.w) S.oppApex1
+  interior : ExactFiveInteriorCriticalPairFrontier D S radius H
+  interiorPair_doubleDeletion_obstructs :
+    ¬ HasNEquidistantPointsAt 4
+      ((D.A.erase interior.frontier.pair.q).erase
+        interior.frontier.pair.w) S.oppApex1
+  obstructionCenters_ne :
+    H.centerAt interior.frontier.pair.q interior.frontier.pair.q_mem_A ≠
+      H.centerAt interior.frontier.pair.w interior.frontier.pair.w_mem_A
+  directed_crossDeletion_survival :
+    HasNEquidistantPointsAt 4
+        (D.A.erase interior.frontier.pair.w)
+        (H.centerAt interior.frontier.pair.q
+          interior.frontier.pair.q_mem_A) ∨
+      HasNEquidistantPointsAt 4
+        (D.A.erase interior.frontier.pair.q)
+        (H.centerAt interior.frontier.pair.w
+          interior.frontier.pair.w_mem_A)
+
+/-- Exact five-point residual with one common selected obstruction center. -/
+structure FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H) where
+  minimal : D.Minimal
+  noM44 : ¬ ∃ T : SurplusCapPacket D.A, T.IsM44
+  carrier_card_gt_nine : 9 < D.A.card
+  class_card_eq_five :
+    (SelectedClass D.A S.oppApex1 radius).card = 5
+  unique_fourClass_radius : ∀ rho : ℝ, 0 < rho →
+    4 ≤ (SelectedClass D.A S.oppApex1 rho).card → rho = radius
+  firstApex_fullyDeletionRobust : FullyDeletionRobustAt D S.oppApex1

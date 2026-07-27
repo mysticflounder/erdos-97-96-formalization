@@ -1,0 +1,27 @@
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_apex_largeRadius_eq_rho' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_restored_largeRadius_eq_rho' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_restore_rhoClass_card_ge_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_remaining_rhoClass_eq_sdiff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_restored_rhoClass_eq_sdiff_erase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_globalDeletion_card_eq_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_remaining_rhoClass_card_eq_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_restored_rhoClass_card_eq_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_restored_rhoClass_eq_insert_remaining' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

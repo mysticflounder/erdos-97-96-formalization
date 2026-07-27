@@ -1,0 +1,6 @@
+../scratch/atail-force/unique4-p4-mirror-valuation/P4MirrorOuterOccurrenceBridge/TypeProbe.lean:9:7: error(lean.unknownIdentifier): Unknown identifier `DirectRowArcFiniteDatum`
+Problem97.P4DirectOuterArcAdapterScratch.DirectRowArcFiniteDatum : Type
+Problem97.P4DirectOuterArcAdapterScratch.DirectRowArcFiniteDatum : Type
+Problem97.P4DirectOuterArcAdapterScratch.DirectRowArcFiniteDatum.mk
+  (row : P4DirectOuterArcAdapterScratch.RowSupportAtom) (arc : P4DirectOuterArcAdapterScratch.OuterArcAtom) :
+  P4DirectOuterArcAdapterScratch.DirectRowArcFiniteDatum

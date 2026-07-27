@@ -1,0 +1,241 @@
+    {H : CriticalShellSystem D.A} {i : Fin 3}
+    {x : ℝ²} (hx : x ∈ D.A)
+    (hrich : ApexRichClassStructure D.A (S.oppositeVertexByIndex i))
+    (hunique : IsUniqueFourCenter D.A (H.centerAt x hx))
+    {r : ℝ}
+    (htwo :
+      2 ≤ ((H.selectedAt x hx).toCriticalFourShell.support ∩
+        (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+          S.capInteriorByIndex i)).card) :
+    H.centerAt x hx ∈ S.capInteriorByIndex i := by
+  classical
+  have hone :
+      1 < ((H.selectedAt x hx).toCriticalFourShell.support ∩
+        (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+          S.capInteriorByIndex i)).card := by
+    omega
+  rw [Finset.one_lt_card] at hone
+  obtain ⟨q, hq, w, hw, hqw⟩ := hone
+  have hq' := Finset.mem_inter.mp hq
+  have hw' := Finset.mem_inter.mp hw
+  have hqClassInterior := Finset.mem_inter.mp hq'.2
+  have hwClassInterior := Finset.mem_inter.mp hw'.2
+  have hcenterA : H.centerAt x hx ∈ D.A :=
+    (Finset.mem_erase.mp
+      (H.selectedAt x hx).toCriticalFourShell.center_mem).2
+  have hcenterNe :
+      H.centerAt x hx ≠ S.oppositeVertexByIndex i := by
+    intro hcenter
+    apply not_isUniqueFourCenter_of_fullyDeletionRobust
+      (fullyDeletionRobustAt_of_apexRichClassStructure hrich)
+    simpa [hcenter] using hunique
+  have hcenterEq :
+      dist (H.centerAt x hx) q = dist (H.centerAt x hx) w :=
+    ((H.selectedAt x hx).toCriticalFourShell.support_eq_radius q hq'.1).trans
+      ((H.selectedAt x hx).toCriticalFourShell.support_eq_radius w hw'.1).symm
+  have hapexEq :
+      dist (S.oppositeVertexByIndex i) q =
+        dist (S.oppositeVertexByIndex i) w :=
+    (mem_selectedClass.mp hqClassInterior.1).2.trans
+      (mem_selectedClass.mp hwClassInterior.1).2.symm
+  exact commonPhysicalPair_center_mem_capInteriorByIndex i
+    hcenterA hcenterNe hqClassInterior.2 hwClassInterior.2 hqw
+    hcenterEq hapexEq
+
+private theorem retainedInteriorBlockerCollision_firstShell_retainedSlice_eq_sources
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R) :
+    (H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.support ∩
+        (SelectedClass D.A
+            (S.oppositeVertexByIndex S.oppIndex1) radius ∩
+          S.capInteriorByIndex S.oppIndex1) =
+      {P.source₁, P.source₂} := by
+  classical
+  apply Finset.Subset.antisymm
+  · intro z hz
+    rw [← P.shell_inter_cap_eq_sources]
+    exact Finset.mem_inter.mpr
+      ⟨(Finset.mem_inter.mp hz).1,
+        S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+          (Finset.mem_inter.mp (Finset.mem_inter.mp hz).2).2⟩
+  · intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl
+    · exact Finset.mem_inter.mpr
+        ⟨(H.selectedAt P.source₁
+            P.source₁_mem_A).toCriticalFourShell.q_mem_support,
+          Finset.mem_inter.mpr
+            ⟨by simpa using P.source₁_mem_radius,
+              P.source₁_mem_capInterior⟩⟩
+    · exact Finset.mem_inter.mpr
+        ⟨P.source₂_mem_source₁_shell,
+          Finset.mem_inter.mpr
+            ⟨by simpa using P.source₂_mem_radius,
+              P.source₂_mem_capInterior⟩⟩
+
+/-- An equal-blocker collision cannot remain isolated when at least three
+frontier-radius members lie in the strict first opposite cap.  The collision
+shell meets that cap in exactly its two sources, so a third member has a
+distinct actual blocker and supplies a directed omission with the first
+source. -/
+theorem nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    (P : RetainedInteriorBlockerCollision R)
+    (hthree :
+      3 ≤ (SelectedClass D.A S.oppApex1 radius ∩
+        S.capInteriorByIndex S.oppIndex1).card) :
+    Nonempty (RetainedInteriorDirectedOmission R) := by
+  classical
+  let I : Finset ℝ² :=
+    SelectedClass D.A S.oppApex1 radius ∩
+      S.capInteriorByIndex S.oppIndex1
+  have hxExists :
+      ∃ x ∈ I, x ∉ ({P.source₁, P.source₂} : Finset ℝ²) := by
+    by_contra hno
+    push_neg at hno
+    have hsub : I ⊆ ({P.source₁, P.source₂} : Finset ℝ²) := by
+      intro x hx
+      exact hno x hx
+    have hcard := Finset.card_le_card hsub
+    have hpairCard :
+        ({P.source₁, P.source₂} : Finset ℝ²).card = 2 := by
+      simp [P.sources_ne]
+    dsimp [I] at hcard
+    omega
+  rcases hxExists with ⟨x, hxI, hxNotPair⟩
+  have hxParts := Finset.mem_inter.mp hxI
+  have hxRadius : x ∈ SelectedClass D.A S.oppApex1 radius := hxParts.1
+  have hxInterior : x ∈ S.capInteriorByIndex S.oppIndex1 := hxParts.2
+  have hxA : x ∈ D.A := (mem_selectedClass.mp hxRadius).1
+  have hxOutside :
+      x ∉ (H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.support := by
+    intro hxShell
+    apply hxNotPair
+    rw [← P.shell_inter_cap_eq_sources]
+    exact Finset.mem_inter.mpr
+      ⟨hxShell,
+        S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hxInterior⟩
+  have hsource₁NeX : P.source₁ ≠ x := by
+    intro h
+    apply hxNotPair
+    simp [← h]
+  have hblockersNe :
+      H.centerAt P.source₁ P.source₁_mem_A ≠ H.centerAt x hxA := by
+    intro hblockers
+    apply hxOutside
+    have hsupportEq :
+        (H.selectedAt P.source₁
+            P.source₁_mem_A).toCriticalFourShell.support =
+          (H.selectedAt x hxA).toCriticalFourShell.support := by
+      rw [← uniqueFourClass_centerAt_eq_selectedAt_support H
+          P.source₁ P.source₁_mem_A,
+        ← uniqueFourClass_centerAt_eq_selectedAt_support H x hxA,
+        hblockers]
+    rw [hsupportEq]
+    exact (H.selectedAt x hxA).toCriticalFourShell.q_mem_support
+  exact ⟨{
+    source₁ := P.source₁
+    source₂ := x
+    source₁_mem_A := P.source₁_mem_A
+    source₂_mem_A := hxA
+    sources_ne := hsource₁NeX
+    source₁_mem_radius := P.source₁_mem_radius
+    source₂_mem_radius := hxRadius
+    source₁_mem_capInterior := P.source₁_mem_capInterior
+    source₂_mem_capInterior := hxInterior
+    blockers_ne := hblockersNe
+    directed_omission := Or.inl ⟨hxOutside,
+      (cross_deletion_survives_iff_not_mem_selected_support H
+        P.source₁_mem_A).mpr hxOutside⟩ }⟩
+
+/-- A frontier-radius class of cardinality at least five has at least three
+strict first-cap members, so the preceding collision reduction applies. -/
+theorem nonempty_retainedInteriorDirectedOmission_of_collision_of_frontierClass_card_ge_five
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    (P : RetainedInteriorBlockerCollision R)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex1 radius).card) :
+    Nonempty (RetainedInteriorDirectedOmission R) := by
+  have hbound :
+      (SelectedClass D.A S.oppApex1 radius).card - 2 ≤
+        (SelectedClass D.A S.oppApex1 radius ∩
+          S.capInteriorByIndex S.oppIndex1).card := by
+    simpa using
+      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+        D.convex S.oppIndex1
+          (ATailUniqueArmRouteAuditScratch.frontier_radius_pos F)
+  apply
+    nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three
+      R P
+  omega
+
+/-- Distinct-blocker branch of the low-hit tri-apex contradiction.
+
+For the same concrete strict-interior first-apex pair, this branch records
+distinct actual blockers together with the source-faithful directed omission
+and deletion-survival packet.  The remaining work must combine that packet with
+the original frontier pair and the other two rich apex patterns.
+
+Narrowing measure: `P` is concrete directed-omission branch data produced by
+the exhaustive selector below, strictly strengthening the unsplit low-hit
+residual.  This is a load-bearing leaf with no immediate constructor fan-out. -/
+theorem false_of_retainedInteriorDirectedOmission_and_all_low_hits
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F)
+    (P : RetainedInteriorDirectedOmission R)
+    (B : FrontierBiApexRobustResidual R)
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (N : FrontierAllLargeCapsBiApexRobustResidual L)
+    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+    (hcriticalShellUniqueFourCover :
+      ∀ x : ℝ², ∀ hx : x ∈ D.A,
+        H.centerAt x hx ≠ x ∧
+          IsUniqueFourCenter D.A (H.centerAt x hx) ∧
+          uniqueFourClass D.A (H.centerAt x hx) =
+            (H.selectedAt x hx).toCriticalFourShell.support)
+    (hfirst : OppositeCapRichClassInteriorPattern D.A S S.oppIndex1)
+    (hsecond : OppositeCapRichClassInteriorPattern D.A S S.oppIndex2)
+    (hsurplus : OppositeCapRichClassInteriorPattern D.A S S.surplusIdx)
+    (hlow :
+      ∀ i : Fin 3, ∀ x : ℝ², ∀ hx : x ∈ D.A, ∀ r : ℝ,
+        ApexRichClassStructure D.A (S.oppositeVertexByIndex i) →
+          ((H.selectedAt x hx).toCriticalFourShell.support ∩
+            (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+              S.capInteriorByIndex i)).card ≤ 2) :
+    False := by
+  sorry
+
+/-- A strict first-cap point on a radius distinct from the retained frontier
+radius cannot lie in the localized collision shell.  Indeed, that shell has
+only the two collision sources in the whole first cap, and both sources lie on
+the retained frontier radius. -/
+theorem secondRadiusInterior_disjoint_collisionShell
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    (hρne : ρ ≠ radius) :
+    (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support ∩
+        (SelectedClass D.A S.oppApex1 ρ ∩
+          S.capInteriorByIndex S.oppIndex1) =
+      ∅ := by
+  classical
+  ext z
+  constructor
+  · intro hz
+    exfalso
+    rcases Finset.mem_inter.mp hz with ⟨hzShell, hzρInterior⟩
+    rcases Finset.mem_inter.mp hzρInterior with ⟨hzρ, hzInterior⟩

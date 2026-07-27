@@ -1,0 +1,315 @@
+   561	### Original unique-radius residual dispatch (2026-07-22)
+   562	
+   563	The open unique-radius theorem now has a source-clean, kernel-checked
+   564	three-leaf normal form in
+   565	`scratch/atail-force/unique-arm-route-audit/OriginalUniqueResidualDispatch.lean`:
+   566	
+   567	```text
+   568	OriginalFrontierUniqueRadiusArm F
+   569	  -> OriginalUniqueFourResidual F
+   570	   | OriginalUniqueFiveDistinctBlockersResidual F
+   571	   | OriginalUniqueFiveCoincidentBlockerResidual F.
+   572	```
+   573	
+   574	The exact-four leaf retains the full global parent fields, uniqueness of the
+   575	positive K4 radius, deletion failure for every member of the complete
+   576	four-class, a strict-cap interior pair, and localization of every non-apex
+   577	carrier bisector center to that strict cap.  The exact-five leaves first
+   578	reselect a source-valid strict-interior pair whose joint deletion still fails
+   579	at the first apex while singleton deletion is fully robust.  The
+   580	distinct-blocker leaf then carries the checked directed cross-deletion
+   581	survival; the coincident-blocker leaf carries mutual cross membership, strict
+   582	cap localization of the common blocker, exclusion from the surplus cap, and
+   583	the complete no-third-carrier-bisector conclusion.
+   584	
+   585	Both the deletion normal form and the three-leaf dispatcher pass
+   586	warning-as-error elaboration.  The dispatcher has axiom set exactly
+   587	`[propext, Classical.choice, Quot.sound]`, with no `sorryAx`.  It is a
+   588	reduction, not a terminal: the first remaining statements are the three
+   589	direct contradictions
+   590	
+   591	```text
+   592	false_of_originalUniqueFourResidual
+   593	false_of_originalUniqueFiveDistinctBlockersResidual
+   594	false_of_originalUniqueFiveCoincidentBlockerResidual.
+   595	```
+   596	
+   597	Do not send these leaves back through cap redesignation: a fresh common-parent
+   598	arm contradicts the redesigned cap size, but its unique arm is the same open
+   599	theorem and would be circular.  Do not target arbitrary-selector endpoint
+   600	inequalities either; exact four admits a valid critical-system override that
+   601	chooses the first apex for every member of its complete class.  Current work
+   602	therefore seeks direct `False` on the three full residuals, starting with the
+   603	narrow coincident-blocker leaf and auditing exact four independently.  The
+   604	production theorem should become a thin dispatcher only when the leaf
+   605	closers exist; moving three new `sorry`s into production would not advance
+   606	closure.
+   607	
+   608	The first two direct-leaf audits now sharpen where that closure has to occur.
+   609	For exact four,
+   610	`scratch/atail-force/unique4-direct-false/` contains two deliberately
+   611	separate regression gates.  An exact 12-point strict-convex Euclidean/MEC
+   612	model realizes the local cap, unique-class, and two-apex deletion data but is
+   613	not a `CounterexampleData`: it omits all-center K4, minimality, and the common
+   614	critical system.  A kernel-checked finite incidence model realizes the global
+   615	row/connectivity/blocker bookkeeping but is not Euclidean.  Neither model
+   616	realizes their conjunction or refutes `OriginalUniqueFourResidual`.  The
+   617	current residual already retains every required source field through `F`,
+   618	`D.K4`, `minimal`, and `noM44`; the missing theorem is therefore a genuine
+   619	Euclidean coupling of those global continuation rows, not another interface
+   620	adapter or a local cap theorem.
+   621	
+   622	For the coincident exact-five leaf,
+   623	`scratch/atail-force/unique5-coincident-direct-false/` proves a stronger
+   624	source-faithful continuation.  The equal blockers have the same complete
+   625	critical support, that support meets the first cap exactly in the chosen
+   626	pair, and a fresh member of the complete five-point first-apex class yields a
+   627	mutual-omission return cycle.  Each of the two resulting actual critical
+   628	shells meets the complete first-apex class in at most two points, so a fifth
+   629	source is omitted by both.  The checked structure
+   630	`CoincidentBlockerJointDeletion` consequently gives one deletion that
+   631	survives at the first apex and at two distinct actual blockers.  Its exact
+   632	remaining direct consumer is
+   633	
+   634	```text
+   635	CoincidentBlockerJointDeletionClosingStatement R.
+   636	```
+   637	
+   638	This is real progress on the coincident leaf but not closure: no current bank
+   639	turns that three-center joint deletion into `False`.  The next proof must use
+   640	additional MEC/cap geometry, `noM44`, or another full-parent coupling.  In
+   641	particular, a same-cap common-outside-pair target is the wrong producer on the
+   642	on-cap arm: the checked cap-order separation makes the two outside-pair banks
+   643	disjoint there.  Both new Lean audits pass with warnings as errors and depend
+   644	only on `propext`, `Classical.choice`, and `Quot.sound`; the exact-four local
+   645	model also passes its independent exact-arithmetic replay.
+   646	
+   647	The common exact-five base also has a checked reorientation into the existing
+   648	physical omission-cycle machinery in
+   649	`scratch/atail-force/unique5-physical-cycle-reorientation/`.  Swapping the two
+   650	non-surplus roles makes the original `S.oppApex1` the physical second apex,
+   651	constructs `LargeCapUniqueFiveSecondApexRadius` from the complete exact-five
+   652	radius class, and produces a `PhysicalActualCriticalOmissionCycle` for the
+   653	same `H`.  This is plumbing, not a new contradiction.  On the global
+   654	all-reverse arm, the exact first terminal antecedent is
+   655	
+   656	```text
+   657	some transitionReverseOutsidePair contains two distinct points
+   658	co-radial from the original S.oppApex2.
+   659	```
+   660	
+   661	The checked adapter feeds that occurrence directly to
+   662	`false_of_transitionReverseOutsidePair_coRadial_firstApex`.  The retained
+   663	second-apex double-deletion witnesses do not identify either member of a
+   664	transition reverse pair with their witness class, so they do not prove the
+   665	occurrence.  The global mutual-omission arm has no direct consumer under the
+   666	current contract; the closest exact-cap route additionally needs an exact-five
+   667	closed physical cap, a two-hit row, and a co-radial outside pair.  Therefore
+   668	the reorientation must not be counted as closure or extended with another
+   669	cycle adapter.  Current work targets the terminal co-radial occurrence on the
+   670	all-reverse arm and a direct full-residual contradiction on the mutual arm.
+   671	
+   672	Two exact audits further restrict how those targets can be proved.
+   673	First,
+   674	`scratch/atail-force/unique5-reverse-pair-occurrence/` gives a 15-role exact
+   675	finite abstraction with the complete exact-five radius partition, a total
+   676	support-locked critical map, all-center K4 rows, exhaustive abstract
+   677	minimality over every nonempty proper subset, and the global all-reverse
+   678	relation, while every reverse pair splits the original-second-apex radius
+   679	colors.  This is not Euclidean/MEC and does not model the quantified global
+   680	`noM44` field, so it is not a counterexample to the Lean residual.  It does
+   681	block deriving the occurrence from those geometry-free fields alone.
+   682	
+   683	A corrective exact replay now adds every declared complete-row equality to
+   684	the cap-compatible cyclic order.  All `144` orders are immediately strict-
+   685	Kalmanson UNSAT, with six one-inequality equal-sum core schemas.  Thus this
+   686	particular 15-role fixture is **not** a geometry-aware survivor and must not
+   687	be cited as evidence that cyclic-order coupling has been exhausted.  The
+   688	opposite overclaim is also excluded: the three physical reverse rows alone
+   689	still have `990` independently replayed exact-QF_LRA survivors.  The current
+   690	finite target is therefore the coupled total-critical-row plus cyclic-order
+   691	surface.  It must either force a reusable same-pair/Kalmanson core for every
+   692	source-valid global assignment or produce a Kalmanson-compatible global-row
+   693	survivor.  Do not resume geometry-free radius-color CEGAR, and do not present
+   694	elimination of the saved fixture as live coverage.  Nonlinear Euclidean/MEC
+   695	geometry and a complete alternative `IsM44` packet remain fallbacks only
+   696	after this corrected coupled surface is decided.
+   697	
+   698	Second,
+   699	`scratch/atail-force/unique5-coincident-othercap-terminal/` audits the two
+   700	non-first-cap locations of the fresh actual blocker in the coincident leaf.
+   701	In either the strict surplus or strict second-opposite cap, cap-order
+   702	uniqueness forces the fresh critical shell to omit both original sources; its
+   703	intersection with the named exact-five triple is exactly the fresh source.
+   704	Thus those arms negate the natural ordered-Kalmanson cross hit rather than
+   705	produce it.  The first-cap arm already excludes reuse of the common shell's
+   706	outside pair.  Across all three blocker locations, another local occurrence
+   707	or deletion adapter is therefore nonterminal.  The remaining source must be a
+   708	different-row positive hit or a global K4/minimality-to-MEC/`IsM44` theorem.
+   709	
+   710	The latest source-faithful branch audits sharpen all three leaves further.
+   711	For exact four,
+   712	`scratch/atail-force/unique4-global-coupling/UniqueFourGlobalDeletionCoupling.lean`
+   713	deletes the complete four-class together with the three physical Moser
+   714	vertices and applies cardinal minimality on the full carrier.  The resulting
+   715	fresh strict-cap center has exactly one of three checked outputs: a genuine
+   716	co-radial collision among deleted sources, a singleton
+   717	`MinimalDeletionCore`, or a nontrivial family of pairwise-disjoint exact
+   718	critical shells satisfying a quantitative cap-complement packing bound.
+   719	This is a global Euclidean/minimality coupling, but none of the three outputs
+   720	is yet an existing terminal; it must not be recorded as closure or replaced
+   721	by a finite named-subcarrier assumption.
+   722	
+   723	For distinct-blocker exact five,
+   724	`scratch/atail-force/unique5-distinct-hybrid-terminal/UniqueFiveDistinctPhysicalSecondApexSplit.lean`
+   725	immediately consumes the directed cross-deletion survival at the physical
+   726	second apex.  The critical outcome is exactly a protected swapped exact-four
+   727	frontier.  The other outcome retains the complete original residual, proves
+   728	full deletion robustness at both physical apices, gives both opposite caps
+   729	cardinality at least five, and derives `12 ≤ D.A.card`.  Redesignation or
+   730	fresh-frontier extraction supplies no strict descent: the swapped branch is
+   731	the same exact-four obligation, while the bi-apex-robust branch still needs a
+   732	direct full-carrier terminal.
+   733	
+   734	For coincident-blocker exact five, the exact rational audit in
+   735	`scratch/atail-force/unique5-coincident-hybrid-terminal/` tests the remaining
+   736	fresh-center order surface against all triangle and strict Kalmanson
+   737	inequalities.  All sixteen orders placing the fresh center outside the first
+   738	cap block are inconsistent, but ten of fourteen first-cap positive-hit orders
+   739	remain exactly satisfiable.  Thus ordinary planarity and local cap order are
+   740	spent: `CoincidentBlockerJointDeletionClosingStatement` must consume global
+   741	all-center K4, the total critical system, minimality, MEC geometry, or
+   742	`noM44`.
+   743	
+   744	Finally, fixed-card global-row searches are coverage evidence only when their
+   745	named roles are the whole carrier.  The live residual has no upper cardinality
+   746	bound, and minimality forces selected-row escape from every proper named
+   747	subcarrier.  A closed 13- or 15-role row table therefore cannot be promoted to
+   748	live coverage without a theorem reducing the actual carrier to those roles.
+   749	Any resumed finite search must encode the arbitrary-cardinality whole-carrier
+   750	surface, including full deletion-criticality, or produce a uniform schema
+   751	whose Lean theorem applies to every carrier extension.
+   752	
+   753	**Whole-carrier surface correction (2026-07-22).**  The existing
+   754	`WholeCarrierBiApexKalmansonSurface` and its direct-CNF outer are not an
+   755	encoding of any of the three unique-radius leaves above.  Their extractor is
+   756	typed over `FrontierBiApexRobustResidual` on the separate common-deletion arm
+   757	and uses full robustness at both physical apices to omit both apices from the
+   758	fixed blocker-map image.  Exact four has the opposite first-apex polarity:
+   759	after the checked favorable rebase, the first apex is precisely the blocker
+   760	of all four members of the unique class.  The exact-five leaves likewise do
+   761	not supply full second-apex robustness.  Generic bi-apex SAT/UNSAT results
+   762	must therefore be charged only to the large-opposite-cap branch, never to
+   763	`false_of_originalFrontierUniqueRadiusArm`.
+   764	
+   765	The active unique-arm finite correctness gate is a leaf-specific exact-four
+   766	surface.  It must retain a complete per-center radius partition (or an
+   767	equivalent multi-row representation), the exact four-member first-apex class
+   768	and favorable blocker fiber, the separately named frontier and strict-cap
+   769	interior pairs without assuming those pairs are disjoint, and a separate
+   770	second-apex deletion-surviving row which need not equal an actual critical
+   771	row at that center.  It must also retain the actual cap indices and must not
+   772	globally forbid either physical apex as a blocker.  Fixed-card output is only
+   773	discovery evidence unless it yields an extension-stable checked consumer or
+   774	is accompanied by a uniform source theorem.
+   775	
+   776	The corrected exact-four cardinality and occurrence boundary is now checked
+   777	in `scratch/atail-force/unique4-uniform-route-audit/`.  The source residual
+   778	proves
+   779	
+   780	```text
+   781	11 <= D.A.card,
+   782	```
+   783	
+   784	using the cap sum and `noM44`; it supplies no finite upper bound.  Minimality
+   785	also rules out the hoped hereditary reduction: a nonempty selected-row-closed
+   786	subcarrier is the whole carrier.  Therefore a fixed card-eleven decision can
+   787	close only the base case.  The cardinality-independent target is the
+   788	explicitly **CONJECTURED** disjunction
+   789	
+   790	```text
+   791	D.A.card = 11
+   792	  OR an order-preserving/reflected occurrence of a checked local consumer.
+   793	```
+   794	
+   795	The consumer side has materially improved.  Ten exact Kalmanson cores from
+   796	the source-faithful card-eleven search now have warning-as-error checked,
+   797	cardinality-generic Lean theorems in
+   798	`scratch/atail-force/unique4-kalmanson-core-port/`.  Consecutive fixed-pair
+   799	`K2` and fixed-outer-endpoint `K1` paths compress to direct endpoint
+   800	inequalities, so the smallest consumer uses four ordered roles, three row
+   801	centers, and six selected-row memberships.  These are genuine
+   802	extension-stable terminals, not coverage: no theorem yet forces one of their
+   803	ten incidence schemas from `OriginalUniqueFourResidual`.
+   804	
+   805	The full source-level minimal-deletion transition does not fill that gap.
+   806	`scratch/atail-force/unique4-transition-bank-match/` verifies that its
+   807	collision arm controls at most the first apex and one fresh row center, while
+   808	the singleton and packed-core shells are all concentric at the fresh center.
+   809	Every checked Kalmanson or U5 consumer needs at least three distinct row
+   810	centers, and the checked planar consumer needs four.  The sole two-center
+   811	outside-pair case is already exactly the subcase removed by
+   812	`collision_sources_exact_cap_residual`.  The first missing source fact is
+   813	therefore a genuine multicenter row occurrence, or a separately named
+   814	MEC/`noM44` residual with an immediate terminal.  Do not add another
+   815	arbitrary-K4-row adapter.
+   816	
+   817	The center-count part of that statement is no longer open.
+   818	`scratch/atail-force/unique4-multicenter-occurrence/` proves uniformly that
+   819	the favorable critical system has three pairwise-distinct actual blocker
+   820	centers: the first apex and two centers attached to sources outside its exact
+   821	four-source fiber.  All three rows are complete critical shells.  This still
+   822	does not match a checked terminal.  The two outside rows carry only their
+   823	mandatory own-source incidences, whereas the smallest four-role Kalmanson
+   824	consumer requires six coordinated cross-row memberships.  The remaining
+   825	producer is therefore **cross-incidence occurrence**, not another center
+   826	existence or fiber-cardinality theorem.
+   827	
+   828	The prescribed strict-pair specialization is checked separately in
+   829	`scratch/atail-force/unique4-strict-pair-minimality/`.  Minimality for
+   830	`{R.interior_q, R.interior_w}` gives exactly three outcomes: a singleton
+   831	exact critical shell through one named source; an equal-radius whole-pair
+   832	arm with a fully robust center in the same strict cap and an ambient class of
+   833	cardinality at least five; or a distinct-radius whole-pair core with two
+   834	disjoint concentric exact shells.  If the *physical* first opposite cap had
+   835	cardinality four, the equal-radius arm would be contradictory.  That
+   836	hypothesis is not present: `R.class_card_eq_four` is the cardinality of the
+   837	first-apex radius class, not of the physical cap.  The two notions must not
+   838	be conflated, and the singleton/two-shell outputs still lack a terminal
+   839	cross-incidence.
+   840	
+   841	The complementary MEC route is also sharply delimited.  The source-faithful
+   842	replay in `scratch/atail-force/unique4-mec-terminal/` retains that the global
+   843	minimality center lies outside the complete exact class and all three Moser
+   844	vertices.  It proves the center is either strictly inside the MEC disk or is
+   845	a genuinely fourth MEC-boundary point, and removes the first-opposite-cap
+   846	location when that physical cap has cardinality four.  An exact twelve-point
+   847	convex regression nevertheless has four MEC-boundary points, displayed cap
+   848	profile `(6,5,4)`, and no nonobtuse boundary triple with two exact four-caps.
+   849	It is not `CounterexampleData`, but it proves that bare boundary ingress does
+   850	not construct an alternative `IsM44` packet.  A live retriangulation theorem
+   851	must visibly consume the collision/minimal-deletion shells and produce a
+   852	complete nonobtuse `CapTriple.HasExactPair`; otherwise it is false at the
+   853	available geometric interface.
+   854	
+   855	The stronger local retriangulation proposal has now been adversarially tested
+   856	in `scratch/atail-force/unique4-retriangulation-terminal/` and is false at
+   857	the collision/core interface.  Three exact rational strictly convex models
+   858	realize respectively the fresh-center five-class collision, singleton exact
+   859	shell, and two disjoint exact-shell packed core, while the fresh center lies
+   860	strictly inside the MEC and no boundary support triple has two exact caps.
+   861	They are explicitly not models of `OriginalUniqueFourResidual`: global
+   862	all-center K4, carrier minimality, the total critical system, and the exact
+   863	`protectedDeletionSet` provenance are absent.  They nevertheless force the
+   864	MEC route into two separate live theorems.  First, prove from those global
+   865	source fields that a fresh transition center cannot be strictly inside the
+   866	MEC.  Only then may a second theorem use the boundary center plus the full
+   867	transition roles to construct `CapTriple.HasExactPair`.  Do not formalize a
+   868	local collision/core-to-retriangulation adapter; the exact regressions refute
+   869	it.
+   870	
+   871	The bounded card-eleven CEGAR loop remains a discovery gate only.  It uses
+   872	complete radius partitions, exact critical shells and `no_qfree`, the
+   873	favorable first-apex fiber, actual cap roles, separate retained/interior
+   874	pairs, and a separate second-apex deletion row.  The literal loop ran for
+   875	twenty rounds.  Every Boolean projection was SAT and every fixed-row full-LRA

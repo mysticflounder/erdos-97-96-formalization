@@ -1,0 +1,70 @@
+{
+  "claim_scope": "This loop audits two fixed n=11 finite projections. It does not by itself prove the Lean unique-four residual or a Euclidean realization.",
+  "epistemic_status": "RUNNING_FAIL_CLOSED",
+  "exact_two_strict_hit_overlay": false,
+  "final_kalmanson_bank_counts": {
+    "kernel": 10,
+    "pending": 43,
+    "total": 53
+  },
+  "final_kalmanson_bank_sha256": "1f18ef9059b1591b39b7a492621ec8e71ceb5e1cdd85cfe84b591bd9a28468d6",
+  "final_u5_bank_sha256": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46",
+  "finished_unix": 1785129835.868193,
+  "initial_kalmanson_bank_counts": {
+    "kernel": 10,
+    "pending": 41
+  },
+  "max_new_rounds": 1,
+  "pair_minimality_overlay": false,
+  "profiles": [
+    4,
+    5
+  ],
+  "rounds": [
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "dfe8ff12f738ed567510234d89fd32aec94529145a40970358f0a8a094f88f93",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46"
+      },
+      "kalmanson_installations": {
+        "4": "INSTALLED",
+        "5": "INSTALLED"
+      },
+      "lra_statuses": {
+        "4": "UNSAT_FULL_LRA_FIXED_ROWS",
+        "5": "UNSAT_FULL_LRA_FIXED_ROWS"
+      },
+      "profiles": [
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "8f16b3c633a27f9b3fdd18426a4c06cf0b7d2206159328b647723f276964f2aa",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726-round1/round_001/opp1_4.result.json",
+          "result_sha256": "8e3673eca6d8e88f69de6237f0127489b4190b0cb245c03c005ee6cd73cbc500",
+          "solver_log_retained": false,
+          "solver_log_sha256": "33cce335ae722be0d60dd74fc53f5e0c31bdcc4b3a475600d6969b5f9277450a"
+        },
+        {
+          "cnf_retained": false,
+          "cnf_sha256": "4a0a676dc1cc9af6cd97d980d53da0e25aad5b01a925abd3dcf380d91860a5e5",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726-round1/round_001/opp1_5.result.json",
+          "result_sha256": "a8abf938a1c44a05703be7fd8f5ce2550b3643fabe1365f285b8fc1b17bd3ebb",
+          "solver_log_retained": false,
+          "solver_log_sha256": "6326deba82a92eff9ef0f354a331ea3f98a9e4859e3203a046600112f5c9c524"
+        }
+      ],
+      "round": 1,
+      "solver_statuses": {
+        "4": "SAT",
+        "5": "SAT"
+      },
+      "status": "REFINED_BY_EXACT_FARKAS_KALMANSON_SCHEMA"
+    }
+  ],
+  "schema": "p97-exact-four-two-profile-cegar-run-v1",
+  "started_unix": 1785129617.698111,
+  "strict_cap_minimality_overlay": false,
+  "terminal_status": "ROUND_CAP_REACHED_UNRESOLVED"
+}

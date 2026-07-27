@@ -1,0 +1,62 @@
+project:       erdos-97-96-formalization (erdos-97-96-formalization)
+root:          /Users/adam/projects/math-projects/erdos-97-96-formalization
+lean_lib:      /Users/adam/projects/math-projects/erdos-97-96-formalization/lean
+target_symbol: 2 targets: Problem97.erdos97_rhs, Problem96.erdos96_rhs
+
+last build:    ✓ passed · built 10 · 49s · 1m ago
+recent builds  (when · took · result · target):
+   28m ago     11s  built 1      Erdos9796Proof.P97.RemovableVertexAxiom.Continuation
+   26m ago     36s  built 8      full
+   13m ago   2m38s  ✗ exit 1     Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Generated.Unique4ExactTwoLratIngress.P4Seed0CompactWindowedReplay.CompactWindowedRupReplay.Compose Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Generated.Unique4ExactTwoLratIngress.P5LargestWindowedReplay.WindowedRupReplay.Compose
+    4m ago      0s  cached       Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Generated.Unique4ExactTwoLratIngress.P4Seed0CompactWindowedReplay.CompactWindowedRupReplay.Compose Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Generated.Unique4ExactTwoLratIngress.P5LargestWindowedReplay.WindowedRupReplay.Compose
+    1m ago     49s  built 10     full
+
+lean_files:    4216
+lean_symbols:  52027
+  axioms:      0 (0 sanctioned)
+  with-sorry:  5
+  closures:    0 cached
+
+index:         in sync with source
+uncommitted:   ⚠ 2085 lean file(s) not committed — mined state may not be reproducible from git
+    M  lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coordinator.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coverage.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0000.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0001.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0002.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0003.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0004.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0005.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0006.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0007.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0008.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0009.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0010.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0011.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0012.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0013.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0014.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0015.lean
+    A  lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/CompactWindowedRupReplay/Checkpoint/C0016.lean
+    … and 2065 more
+
+kernel spine (mined call graph — the only structure):
+  build:        1ed9b1543bbc
+  mined fresh:  43985/44009 symbol(s)  (4 stale)
+  graph mined:  4m ago
+  trusted:      7880 🔒 (certs excluded by [mining].skip)
+  ⚠ 4 symbol(s) stale — run `refs --refresh` (needs warm Lake build)
+
+live sorries (cached @ build 1e235d3f7603, 2026-07-26T16:33:58+00:00):
+  on-spine (open frontier) (5):
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:129]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:118]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:69]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:528]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:616]
+  off-spine (placeholder — wire into the spine or remove) (0)
+
+session anchors: 5 total (graph unavailable — states unknown)
+
+your anchor: ⚓ Problem97.ATailFrontierLiveClosure.false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits

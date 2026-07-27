@@ -1,0 +1,8 @@
+'Problem97.ATailUniqueArmPostCardElevenCoordinatorScratch.OriginalUniqueRadiusArmPostCardElevenClosers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueArmPostCardElevenCoordinatorScratch.false_of_originalFrontierUniqueRadiusArm_of_postCardElevenClosers' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]

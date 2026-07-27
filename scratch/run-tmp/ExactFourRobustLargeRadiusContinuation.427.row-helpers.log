@@ -1,0 +1,53 @@
+scratch/atail-force/unique4-robust-cap-expansion/ExactFourRobustLargeRadiusContinuation.lean:63:2: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  b ≥ 0
+  0 ≤ a ≤ 3
+  a - b ≥ 0
+where
+ a := ↑(SelectedClass A center K.radius).card
+ b := ↑K.support.card
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFourTwoDistinctRadiiContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_twoDistinctRadiiContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFourTwoDistinctRadiiFirstCapProfile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_twoDistinctRadiiFirstCapProfile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFiveSecondApexCommonDeletionSuccessor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_exactFiveSecondApexCommonDeletionSuccessor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFiveBareCycleSecondApexNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_exactFiveBareCycleSecondApexNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFiveCycleSecondApexNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_exactFiveCycleSecondApexNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFourFivePointRadiusReduction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_secondRowCommonDeletionSuccessor_of_robust' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_fivePointRadiusReduction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFourPostCardElevenRobustContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_exactFourPostCardElevenRobustContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

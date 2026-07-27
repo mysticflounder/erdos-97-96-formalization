@@ -1,0 +1,675 @@
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifier.lean:30:structure Row where
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifier.lean:35:structure Domain where
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifier.lean:327:theorem placementCheck_p6_d4 : placementCheck 6 4 = true := by
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierCoverage.lean:28:theorem insertDomain_perm (domain : Domain) :
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierCoverage.lean:41:theorem sortDomains_perm (domains : List Domain) :
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierCoverage.lean:53:theorem allKilled_eq_false_of_semanticTrace
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierCoverage.lean:196:theorem variableCenters_nodup : variableCenters.Nodup := by
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierCoverage.lean:199:theorem variableCenter_lt_eleven {center : Nat}
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierCoverage.lean:204:theorem variableCenter_ne_one {center : Nat}
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierCoverage.lean:212:theorem placementCheck_eq_false_of_no_semanticPrefixCore
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierCoverage.lean:299:theorem exists_semanticPrefixCore_of_placementCheck
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:33:structure CanonicalHull (pointOf : Label -> ℝ²) where
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:42:theorem hullIndex_injective : Function.Injective hullIndex := by
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:46:theorem CanonicalHull.point_eq_direct_or_mirror
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:59:structure DirectBoundaryBlocks {A : Finset ℝ²} (S : SurplusCapPacket A)
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:75:structure MirrorBoundaryBlocks {A : Finset ℝ²} (S : SurplusCapPacket A)
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:92:structure BoundaryBlocks {A : Finset ℝ²} (S : SurplusCapPacket A) where
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:121:theorem BoundaryBlocks.n_eq_eleven
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:143:structure CanonicalLabeling {A : Finset ℝ²} (S : SurplusCapPacket A)
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:156:theorem point_zero_eq_opposite {A : Finset ℝ²} {S : SurplusCapPacket A}
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:162:theorem point_one_eq_opposite {A : Finset ℝ²} {S : SurplusCapPacket A}
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:168:theorem point_two_eq_opposite {A : Finset ℝ²} {S : SurplusCapPacket A}
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:184:private theorem forcedBlockEndpoints :
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:193:private theorem mem_image_iff_of_injective
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:206:private theorem hullIndex_surjective : Function.Surjective hullIndex :=
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:209:private theorem reflectedHullIndex_surjective :
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:215:private theorem direct_opp2_membership :
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:220:private theorem direct_surplus_membership :
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:225:private theorem direct_opp1_membership :
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:230:private theorem mirror_opp1_membership :
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:236:private theorem mirror_surplus_membership :
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:242:private theorem mirror_opp2_membership :
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:250:theorem BoundaryBlocks.nonempty_canonicalLabeling
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:498:private theorem capInteriorByIndex_card_eq_four_of_cap_card_eq_six
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:531:theorem exists_boundaryBlocks_of_isM44_surplus_card_eq_six
+lean/Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:685:theorem exists_canonicalLabeling_of_isM44_surplus_card_eq_six
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:131:theorem CyclicFiveUpToOrientation.a_ne_b {a x b c y : Label}
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:138:theorem CyclicFiveUpToOrientation.x_ne_y {a x b c y : Label}
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:147:theorem CyclicSixUpToOrientation.a_ne_b {a b c x y d : Label}
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:249:structure DuplicateCenterColorCore (color : EdgeColor) where
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:265:structure ExactOffCircleColorCore (P : PatternCode)
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:277:structure EqualK4ColorCore (color : EdgeColor) where
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:290:structure EquilateralBisectorColorCore (color : EdgeColor) where
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:307:structure ThreeTriadColorCore (color : EdgeColor) where
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:322:structure SurplusSourceColorCore (color : EdgeColor) where
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:344:structure SixRowAnchorColorCore (color : EdgeColor) where
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:363:structure SevenPointOrbitColorCore (color : EdgeColor) where
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:387:structure SevenPointCircleNetworkColorCore (color : EdgeColor) where
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:409:structure PerpBisectorColorCore (color : EdgeColor) where
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:424:structure ConvexFivePointColorCore (color : EdgeColor) where
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:437:structure ConvexRhombusColorCore (color : EdgeColor) where
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:491:theorem closureCoreAlternative_of_colorCoreAlternative
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:34:theorem sum_take_succ (l : List Nat) {p : Nat} (h : p < l.length) :
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:43:theorem sum_take_mono (l : List Nat) {m n : Nat} (h : m ≤ n) :
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:51:theorem sum_take_le (l : List Nat) (n : Nat) : (l.take n).sum ≤ l.sum := by
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:59:theorem candCounts_length : candCounts.length = 11 := by
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:63:theorem candMasks_length {p : Nat} (h : p < 11) :
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:74:theorem xVar_eq (p i : Nat) : xVar p i = xOffset p + i := rfl
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:77:theorem one_le_xVar (p i : Nat) : 1 ≤ xVar p i := by
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:81:theorem xOffset_block {p q : Nat} (hp : p < 11) (hpq : p < q) :
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:92:theorem xVar_le_nX {p i : Nat} (hp : p < 11) (hi : i < candCount p) :
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:103:theorem xVar_inj {p q i j : Nat} (hp : p < 11) (hq : q < 11)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:122:theorem baseAssign_chosen (idx : Nat → Nat) {p : Nat} (hp : p < 11) :
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:129:theorem baseAssign_iff (idx : Nat → Nat)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:145:theorem foldl_sinzExt_low {α : Type*} (L : List α) (fx : α → List Nat)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:158:theorem evalClauseD_congr {σ σ' : Nat → Bool} {c : List Int}
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:171:theorem sinzClauses_lit_bound (xs : List Nat) (k base : Nat) (hk : 0 < k)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:222:theorem nX_le_aux1Base (p : Nat) : nX ≤ aux1Base p := by
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:226:theorem aux1Base_le (p : Nat) : aux1Base p ≤ nX + nX := by
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:232:theorem aux1Base_succ {p : Nat} (h : p < 11) :
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:240:theorem aux1Base_mono {p q : Nat} (h : p ≤ q) : aux1Base p ≤ aux1Base q := by
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:246:theorem onehotExt_low (idx : Nat → Nat) (σ : Nat → Bool) {v : Nat}
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:254:theorem length_le_one_of_all_eq {α : Type*} {l : List α} {a : α}
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:269:theorem xVar_injective (p : Nat) : Function.Injective (xVar p) := by
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:275:theorem onehot_count (idx : Nat → Nat)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:296:theorem onehotAcc_low (σ : Nat → Bool) (p : Nat) {v : Nat} (hv : v ≤ nX) :
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:304:theorem onehotExt_block (idx : Nat → Nat) (σ : Nat → Bool) {p v : Nat}
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:342:theorem c4ClsStep_append (L : List (Nat × Nat)) (b : Nat)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:374:theorem c4ExtStep_fold_low (L : List (Nat × Nat)) (b : Nat) (s : Nat → Bool)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:387:theorem c4Ext_low (σ : Nat → Bool) {v : Nat} (hv : v ≤ nX + nX) :
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:392:theorem incidentVars_le_nX {a b v : Nat} (h : v ∈ incidentVars a b) :
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:406:theorem finalAssign_x (idx : Nat → Nat) {p i : Nat}
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:416:theorem allPairs_bounds {a b : Nat} (h : (a, b) ∈ allPairs) :
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:427:theorem onehot_sat (idx : Nat → Nat)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:481:theorem c2_sat (idx : Nat → Nat)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:515:theorem length_filterMap_if {α β : Type*} (l : List α) (Q : α → Bool)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:527:theorem range_filter_beq_and (n t : Nat) (Q : Nat → Bool) (ht : t < n) :
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:552:theorem center_filter_count (idx : Nat → Nat)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:597:theorem incid_filter_count_gen (idx : Nat → Nat)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:619:theorem incidentVars_filter_count (idx : Nat → Nat)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:631:theorem c4_fold_sat_gen (idx : Nat → Nat) (L : List (Nat × Nat)) :
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:687:theorem c4_sat (idx : Nat → Nat)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:716:theorem baseDimacs_sat (idx : Nat → Nat)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:737:theorem incidentVars_pos {a b v : Nat} (h : v ∈ incidentVars a b) :
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:752:theorem sinzClauses_lit_pos (xs : List Nat) (k base : Nat) (hk : 0 < k)
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:781:theorem c4ClsStep_fold_mem (L : List (Nat × Nat)) (b0 : Nat) :
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:803:theorem onehot_nonzero : ∀ c ∈ onehotClauses, ∀ l ∈ c, l ≠ 0 := by
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:826:theorem c2_nonzero : ∀ c ∈ c2Clauses, ∀ l ∈ c, l ≠ 0 := by
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:846:theorem c4_nonzero : ∀ c ∈ c4Clauses, ∀ l ∈ c, l ≠ 0 := by
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:853:theorem baseDimacs_nonzero : ∀ c ∈ baseDimacs, ∀ l ∈ c, l ≠ 0 := by
+lean/Erdos9796Proof/P97/Census554/BaseSat.lean:862:theorem baseCnf_sat (idx : Nat → Nat)
+lean/Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean:33:private theorem edgeIndex_lt_121 (edge : Edge Label) : edgeIndex edge < 121 := by
+lean/Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean:40:private theorem edgeIndex_injective : Function.Injective edgeIndex := by
+lean/Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean:57:private theorem classIndex_exists (P : RowPattern Label) (edge : Edge Label) :
+lean/Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean:67:private theorem canonicalIndex_spec (P : RowPattern Label) (edge : Edge Label) :
+lean/Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean:72:private theorem canonicalIndex_le_of_isClassIndex
+lean/Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean:79:private theorem isClassIndex_transport
+lean/Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean:86:private theorem canonicalIndex_eq_of_edgeClosure
+lean/Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean:96:private theorem canonicalIndex_le_edgeIndex (P : RowPattern Label)
+lean/Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean:101:private theorem canonicalIndex_lt_128 (P : RowPattern Label)
+lean/Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean:111:private theorem canonicalIndex_eq_of_colorEq
+lean/Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean:121:theorem edgeClosure_of_colorEq {P : RowPattern Label} {left right : Edge Label}
+lean/Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean:134:theorem colorEq_of_edgeClosure {P : RowPattern Label} {left right : Edge Label}
+lean/Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean:144:theorem color_eq_edgeIndex_or_eq_earlier (P : RowPattern Label)
+lean/Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean:161:theorem respectsRows (P : PatternCode) :
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:50:theorem mem_selectedClass_of_mem_row
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:67:theorem row_patternCode_eq_labelsOf
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:78:theorem realizes_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:94:private theorem cyclicSeparated_of_direct_btw :
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:103:private theorem cyclicSeparated_of_reflected_btw :
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:118:theorem row_patternCode_card
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:129:theorem center_not_mem_row_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:143:theorem nonMoser_inter_moser_card_le_two
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:244:theorem row_patternCode_inter_card_le_two
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:265:theorem pairCenterCount_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:307:theorem crossSeparationOK_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:365:private theorem capByIndex_surplusIdx_eq_surplusCap
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:373:theorem labelsOf_surplusCap_eq_capS
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:412:theorem labelsOf_oppCap1_eq_capO1
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:447:theorem labelsOf_oppCap2_eq_capO2
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:503:private theorem leftAdjacentIndex_oppIndex1_eq_oppIndex2
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:511:private theorem rightAdjacentIndex_oppIndex1_eq_surplusIdx
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:518:private theorem leftAdjacentIndex_oppIndex2_eq_surplusIdx
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:525:private theorem rightAdjacentIndex_oppIndex2_eq_oppIndex1
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:535:theorem row_inter_labelsOf_card_eq
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:557:private theorem inter_erase_card_le_one
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:569:theorem moserOneHitOK_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:699:theorem localRowsOK_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:714:theorem rowIntersectionsOK_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:723:theorem pairCenterCountOK_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:731:private theorem exists_mem_target_of_row_card_four_of_two_oneHit
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:758:private theorem exists_row_zero_mem_intS {P : PatternCode}
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:773:private theorem exists_row_one_mem_intO1 {P : PatternCode}
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:788:private theorem exists_row_two_mem_intO2 {P : PatternCode}
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:803:private theorem row_zero_one_intO2_eq_empty
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:841:private theorem row_zero_two_intO1_eq_empty
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:879:private theorem row_one_two_intS_eq_empty
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:917:private theorem sharedPair_sameSide_false
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:954:theorem q3OK_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:1051:theorem capSelectedCountsOK_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedCarrierBridge.lean:1100:theorem incidenceOK_patternCode
+lean/Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean:39:theorem metric_orientation_incompatibility
+lean/Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean:136:structure Core {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean:151:theorem false_of_core
+lean/Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean:169:theorem false_of_core_of_neg
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:35:theorem edgeCode_lt_121 (left right : Nat)
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:42:theorem edgeClosure_edgeOfCode_edgeCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:91:theorem initialParents_sound (P : RowPattern Label) :
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:103:theorem rootAux_sound
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:127:theorem root_sound
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:135:theorem edgeClosure_of_root_eq
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:147:theorem getElem!_set! {array : Array Nat} {index value point : Nat}
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:156:theorem unionEdges_sound
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:184:theorem supportPoint_lt_eleven
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:193:theorem supportPoint_mem_row
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:206:theorem edgeClosure_edgeCodes_of_supportPoints
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:228:theorem foldl_unionEdges_row_sound
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:269:theorem addRowEqualities_rowOfPattern_sound
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:293:theorem foldl_addRowEqualities_semantic_sound
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:311:theorem equalityClosure_semanticRows_sound
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:323:theorem normalizedRoots_getElem!
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:330:theorem edgeClosure_of_edgesEqual_normalizedRoots
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:354:theorem edgeClosure_of_semanticRows_edgesEqual
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:368:theorem exists_two_of_two_le_countP
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:394:theorem exists_three_of_three_le_countP
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:426:theorem labels_nodup : labels.Nodup := by
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:429:theorem lt_eleven_of_mem_labels {value : Nat} (hvalue : value ∈ labels) :
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:454:theorem tripleCodes_valid :
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:459:theorem validTripleCode_of_mem {code : Nat}
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:471:theorem tripleFirstLabel_val_of_mem {code : Nat}
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:477:theorem tripleSecondLabel_val_of_mem {code : Nat}
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:483:theorem tripleThirdLabel_val_of_mem {code : Nat}
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:489:theorem tripleLabels_pairwise_ne {code : Nat}
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:514:theorem duplicateCenterCore_sound
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:568:theorem perpendicularBisectorCore_sound
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:616:theorem exactPinnedOffCircleCore_sound
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:657:theorem cyclicFiveUpToOrientation_val_iff
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:665:theorem fivePointCoreAtEndpoints_sound
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:717:theorem convexFivePointCore_sound
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:738:theorem row_eq_rowOfPattern_one_of_find?_eq_some
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:752:theorem exists_blockerSource_one
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:765:theorem closureCoreAlternative_of_hasPrefixCore
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:825:theorem closureCoreAlternative_of_placementCheck
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:838:theorem placementCheck_of_interior
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean:852:theorem closureCoreAlternative_of_incidenceOK_pinnedShellOK
+lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean:159:theorem metric_orientation_incompatibility
+lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean:274:structure Core {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean:292:theorem false_of_core
+lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean:320:theorem false_of_core_of_neg
+lean/Erdos9796Proof/P97/Census554/CircleIntersectionInequalityCore.lean:38:theorem common_gate_margin_lt_neg_four_twentyfive
+lean/Erdos9796Proof/P97/Census554/CircleIntersectionInequalityCore.lean:57:theorem lower_chord_margins_incompatible
+lean/Erdos9796Proof/P97/Census554/CircleIntersectionInequalityCore.lean:74:theorem lower_circle_intersection_inequalities_incompatible
+lean/Erdos9796Proof/P97/Census554/CircleIntersectionInequalityCore.lean:88:theorem angle_lower_chord_margins_incompatible
+lean/Erdos9796Proof/P97/Census554/CircleIntersectionInequalityCore.lean:119:theorem angle_lower_circle_intersection_inequalities_incompatible
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodClassifier.lean:70:theorem allCertified_eq_false_of_semanticTrace
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodClassifier.lean:216:theorem placementCertificateCheck_eq_false_of_no_semanticNogood
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodClassifier.lean:303:theorem exists_semanticNogood_of_placementCertificateCheck
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodClassifier.lean:327:theorem closureCoreAlternative_of_placementCertificateCheck
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:36:structure RowChoice where
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:77:theorem edgeClosure_of_checkPrimitiveStep
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:100:theorem edgeClosure_of_checkStepChain
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:121:theorem edgeClosure_of_checkPath
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:134:theorem colorEq_of_checkPath
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:144:structure DuplicateCenterData where
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:166:structure ExactOffCircleData where
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:181:structure PerpBisectorData where
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:201:structure ConvexFivePointData where
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:229:structure ConvexRhombusData where
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:280:structure NogoodData where
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:323:theorem CoreData.compactColorCoreAlternative_of_check
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:418:theorem colorCoreAlternative_of_compactColorCoreAlternative
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:434:theorem NogoodData.closureCoreAlternative_of_check
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:451:theorem exactCenter_one_of_pinnedShellOK
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:464:theorem exactChoicesSound_of_pinnedShellOK
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:477:theorem maskOfFinset_injective : Function.Injective maskOfFinset := by
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:486:theorem RowChoice.row_eq_of_matchesRowOfPattern
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:498:theorem NogoodData.rowsMatch_of_matchesSemanticRows
+lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:513:theorem closureCoreAlternative_of_checkedBankMatch
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativePlacements.lean:26:theorem allPlacementChecks :
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean:48:private theorem cyclicFour_required_triples {n : ℕ}
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean:55:private theorem cyclicFour_u_ne_y {n : ℕ}
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean:60:private theorem signedArea2_swap12 (a b c : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean:65:private theorem signedArea2_swap23 (a b c : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean:70:private theorem signedArea2_rotate (a b c : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean:75:private theorem signedArea2_neg_of_lt {n : ℕ} {boundary : Fin n → ℝ²}
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean:84:private theorem signedArea2_neg_of_cyclic {n : ℕ}
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean:98:private theorem boundary_signedArea2_neg
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean:109:structure ThreeRowSupportData {carrier : Finset ℝ²}
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean:159:theorem false_of_three_rows_and_cyclic_subsequence
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierFacts.lean:33:theorem has_maskOfFinset (points : Finset Label) (point : Label) :
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierFacts.lean:41:theorem maskOfFinset_lt_2048 (points : Finset Label) :
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierFacts.lean:49:theorem countPoints_supportPoints_maskOfFinset
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierFacts.lean:59:theorem allEmptyCommon_capBlocks_iff (left right : Finset Label) :
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierFacts.lean:111:theorem localCandidateOK_maskOfFinset_iff
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierFacts.lean:121:theorem maskOfFinset_pinnedRow (pinSource : Label)
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:52:structure Realizes {α : Type*} (P : RowPattern α) (pointOf : α → ℝ²) : Prop where
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:62:theorem reflectXAxis_injective : Function.Injective reflectXAxis := by
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:71:private theorem dist_sq_coords_reflection (u v : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:77:theorem dist_reflectXAxis (p q : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:88:theorem signedArea2_reflectXAxis (a b c : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:95:theorem Realizes.reflectXAxis
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:117:theorem EdgeClosure.sound {α : Type*} {P : RowPattern α} {pointOf : α → ℝ²}
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:138:structure ExactOffCircleCore {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:148:theorem false_of_exactAt_of_exactOffCircleCore
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:160:structure DuplicateCenterCore {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:176:theorem not_realizes_of_duplicateCenterCore {α : Type*} {P : RowPattern α}
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:215:structure PerpBisectorCore {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:231:theorem false_of_convexIndep_of_perpBisectorCore
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:283:structure EqualK4Core {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:296:theorem not_realizes_of_equalK4Core {α : Type*} {P : RowPattern α}
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:338:theorem isDead_of_duplicateCenterCore {P : Pattern}
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:345:theorem isDead_of_equalK4Core {P : Pattern}
+lean/Erdos9796Proof/P97/Census554/CardHeadProfiles.lean:20:theorem labeled_cap_profile_card12_iff (a b c : Nat) :
+lean/Erdos9796Proof/P97/Census554/CardHeadProfiles.lean:28:theorem labeled_cap_profile_card13_iff (a b c : Nat) :
+lean/Erdos9796Proof/P97/Census554/CardHeadProfiles.lean:39:theorem labeled_cap_profile_card14_iff (a b c : Nat) :
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:36:theorem pointOf_labelOfPoint {A : Finset ℝ²} {S : SurplusCapPacket A}
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:41:private theorem blockerPoint_mem_carrier {A : Finset ℝ²} {S : SurplusCapPacket A}
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:53:theorem pointOf_blockerLabel {A : Finset ℝ²} {S : SurplusCapPacket A}
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:59:private theorem classAt_support_eq_of_eq {A : Finset ℝ²}
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:66:private theorem centerAt_congr {A : Finset ℝ²} (H : CriticalShellSystem A)
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:73:theorem blockerLabel_ne_source {A : Finset ℝ²} {S : SurplusCapPacket A}
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:84:theorem source_mem_blockerLabel_row {A : Finset ℝ²} {S : SurplusCapPacket A}
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:96:private theorem labelOfPoint_mem_intS {A : Finset ℝ²} {S : SurplusCapPacket A}
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:103:private theorem rightPinned_row_eq {A : Finset ℝ²} {S : SurplusCapPacket A}
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:209:theorem exists_right_pinnedShellOK_of_alignedCarrier
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:326:theorem exists_right_closureCoreAlternative_of_alignedCarrier
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:349:theorem false_of_duplicateCenterCore_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:357:theorem false_of_perpBisectorCore_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:367:theorem exactAt_blockerLabel_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:406:theorem false_of_exactOffCircleCore_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:418:theorem false_of_convexFivePointCore_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:429:theorem false_of_closureCoreAlternative_patternCode
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:469:theorem false_of_right_pinnedResidual_alignedCarrier
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:119:private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:126:private theorem envOf_coordVar (y : Fin 11 → ℝ²)
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:148:private theorem eval_coordPoly {P : Pattern} {y : Fin 11 → ℝ²}
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:172:private theorem eval_d2Poly {P : Pattern} {y : Fin 11 → ℝ²}
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:183:private theorem eval_tagPoly {P : Pattern} {y : Fin 11 → ℝ²}
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:215:private theorem eval_certPoly_foldl (ρ : Nat → ℝ)
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:228:theorem isDead_of_checkCert (P : Pattern) (rabPairs : List (Fin 11 × Fin 11))
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:277:theorem isDead_P02213 : IsDead P02213 :=
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:42:theorem rowOfPattern_mem_candidateRows_of_localCandidateSpec
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:57:theorem localCandidateSpec_of_incidenceOK_pinnedShellOK
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:88:theorem rowOfPattern_mem_candidateRows
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:100:theorem rowIntersectionBound_of_incidenceOK
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:113:theorem q3PairOK_rowOfPattern
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:139:theorem cyclicSeparated_val_iff (left right first second : Label) :
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:144:theorem commonPoints_nodup (left right : RowMask) :
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:149:theorem lt_eleven_of_mem_commonPoints
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:155:theorem mem_commonPoints_rowMaskOf
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:163:theorem crossSeparationOK_rowOfPattern
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:212:theorem rowsCompatible_rowOfPattern
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:231:theorem pairCodes_valid :
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:236:theorem validPairCode_of_mem {code : Nat}
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:248:theorem pairFirstLabel_val_of_mem {code : Nat}
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:254:theorem pairSecondLabel_val_of_mem {code : Nat}
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:260:theorem pairLabels_ne_of_mem {code : Nat}
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:270:theorem containsPair_rowOfPattern_iff
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:286:theorem countP_encodedRows_eq_pairCentersCard
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:311:theorem pairBoundOK_encodedRows
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:385:theorem compatibleWith_encodedRows
+lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierSound.lean:409:theorem rowOfPattern_eq_fixedPinnedRow
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderCore.lean:33:structure Core {α : Type*} (R : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderCore.lean:44:theorem false_of_core_of_same_side
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderCore.lean:75:theorem false_of_core
+lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderCore.lean:86:theorem false_of_core_of_neg
+lean/Erdos9796Proof/P97/Census554/FiveRowCircleIntersectionOrderCore.lean:31:structure Core {alpha : Type*} (R : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/FiveRowCircleIntersectionOrderCore.lean:54:theorem false_of_core
+lean/Erdos9796Proof/P97/Census554/FiveRowCircleIntersectionOrderCore.lean:107:theorem false_of_core_of_neg
+lean/Erdos9796Proof/P97/Census554/SeparationCore.lean:39:theorem uses it for the endpoint exclusions. -/
+lean/Erdos9796Proof/P97/Census554/SeparationCore.lean:40:structure SharedPairSeparationCore {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/SeparationCore.lean:68:theorem SharedPairSeparationCore.satisfiedBy_of_realizes_ccw
+lean/Erdos9796Proof/P97/Census554/SeparationCore.lean:237:theorem card_card11MacroOrders : card11MacroOrders.card = 72 := by
+lean/Erdos9796Proof/P97/Census554/SeparationCore.lean:243:structure Card11MacroCcwLabeling (pointOf : Fin 11 → ℝ²) where
+lean/Erdos9796Proof/P97/Census554/SeparationCore.lean:259:theorem false_of_rejectsEveryCard11MacroOrder
+lean/Erdos9796Proof/P97/Census554/SeparationCore.lean:271:theorem not_exists_realizes_with_card11MacroCcwLabeling
+lean/Erdos9796Proof/P97/Census554/ExactShellBridge.lean:28:theorem false_of_criticalFourShell_exactOffCircleCore
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:36:theorem apexAt_mem {A : Finset ℝ²} (M : MoserTriangle A) (i : Fin 3) :
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:43:theorem apexAt_mem_verts {A : Finset ℝ²} (M : MoserTriangle A)
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:48:theorem apexAt_injective {A : Finset ℝ²} (M : MoserTriangle A) :
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:62:theorem apexAt_mem_capAt_of_ne {A : Finset ℝ²} {M : MoserTriangle A}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:84:theorem frameIndex_injective {surplus second : Fin 3}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:108:structure Card11Labeling {A : Finset ℝ²} (M : MoserTriangle A)
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:121:theorem range_eq_carrier {A : Finset ℝ²} {M : MoserTriangle A}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:136:theorem nonempty_of_card_eq_eleven
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:260:theorem mem_labelsOf {A : Finset ℝ²} {M : MoserTriangle A}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:269:theorem image_labelsOf_eq {A : Finset ℝ²} {M : MoserTriangle A}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:284:theorem labelsOf_card_eq {A : Finset ℝ²} {M : MoserTriangle A}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:294:theorem capInteriorAt_subset {A : Finset ℝ²} {M : MoserTriangle A}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:309:theorem capInteriorAt_subset_capAt {A : Finset ℝ²}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:321:theorem not_mem_verts_of_mem_capInteriorAt {A : Finset ℝ²}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:351:theorem not_mem_capAt_of_mem_capInteriorAt_of_ne {A : Finset ℝ²}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:383:theorem capInteriorAt_disjoint_of_ne {A : Finset ℝ²}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:451:theorem image_interiorLabels_eq {A : Finset ℝ²} {M : MoserTriangle A}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:459:theorem interiorLabels_card_eq {A : Finset ℝ²} {M : MoserTriangle A}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:469:theorem interiorLabels_card_eq_332_of_card_eq_eleven
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:502:structure Card11CapLabeling {A : Finset ℝ²} {M : MoserTriangle A}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:522:theorem nonempty_of_interior_card_eq
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:788:theorem nonempty_of_card_eq_eleven
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:813:theorem labelsOf_surplusCap_eq_capS
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:858:theorem labelsOf_secondCap_eq_capO1
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:903:theorem labelsOf_restCap_eq_capO2
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:946:structure Card11SelectedCube {A : Finset ℝ²} {M : MoserTriangle A}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:975:theorem mem_cube_iff
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:984:theorem image_cube_eq_support
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:994:theorem cube_card
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:1004:theorem center_not_mem_cube
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:1014:theorem cube_inter_card_le_two
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:1035:theorem equidist_of_mem_cube
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:1047:theorem pair_hit_centers_card_le_two
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:1081:theorem capByIndex_eq_capAt {A : Finset ℝ²}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:1086:theorem apexAt_eq_oppositeVertexByIndex {A : Finset ℝ²}
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:1093:theorem support_inter_capByIndex_card_le_one
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:1149:theorem cube_inter_labelsOf_card_eq
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:1167:private theorem inter_erase_card_le_one
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:1178:theorem onehitOk_of_capProfile
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:1248:theorem cubeOk
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:1273:theorem exists_card11SelectedCube_cubeOk
+lean/Erdos9796Proof/P97/Census554/GeometryBridge.lean:1301:theorem card_ge_eleven_of_twoLargeCaps
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:25:private theorem dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:32:theorem normalized_equilateralHinge_coordinates
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:47:theorem normSim_equilateralHinge_coordinates
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:73:private theorem normalized_fivePointHingeCycle_incompatible
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:113:theorem five_point_hinge_cycle_collision
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:148:private theorem normalized_sixPointHingeTail_incompatible
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:193:theorem six_point_hinge_tail_collision
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:230:private theorem normalized_sixPointHingeDoubleSpoke_incompatible
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:275:theorem six_point_hinge_double_spoke_collision
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:312:private theorem normalized_sevenPointHingeClosedTail_incompatible
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:363:theorem seven_point_hinge_closed_tail_collision
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:401:structure FivePointHingeCycleCore {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:417:theorem false_of_fivePointHingeCycleCore
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:434:structure SixPointHingeTailCore {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:453:theorem false_of_sixPointHingeTailCore
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:472:structure SixPointHingeDoubleSpokeCore {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:491:theorem false_of_sixPointHingeDoubleSpokeCore
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:511:structure SevenPointHingeClosedTailCore {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:533:theorem false_of_sevenPointHingeClosedTailCore
+lean/Erdos9796Proof/P97/Census554/FiveRowCircleIntersectionGeometry.lean:31:private theorem equilateral_oangle_toReal_eq_pi_div_three
+lean/Erdos9796Proof/P97/Census554/FiveRowCircleIntersectionGeometry.lean:78:theorem false_of_five_row_metric_data
+lean/Erdos9796Proof/P97/Census554/FiveRowCircleIntersectionGeometry.lean:303:theorem false_of_five_row_metric_data_neg
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:29:theorem dist_sq_coords (u v : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:37:theorem coordinate_collision
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:94:theorem equilateral_bisector_collision
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:172:structure EquilateralBisectorCollisionCore {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:190:theorem not_realizes_of_equilateralBisectorCollisionCore
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:229:theorem isDead_of_equilateralBisectorCollisionCore {P : Pattern}
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderCore.lean:37:structure Core {alpha : Type*} (R : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderCore.lean:52:theorem metric_order_incompatibility
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderCore.lean:125:theorem false_of_core
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderCore.lean:146:theorem false_of_core_of_neg
+lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean:28:theorem false_of_core_of_ccw
+lean/Erdos9796Proof/P97/Census554/FourRowPerpBisector.lean:43:structure FourRowPerpBisectorCore {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/FourRowPerpBisector.lean:104:theorem false_of_convexIndep_of_fourRowPerpBisectorCore
+lean/Erdos9796Proof/P97/Census554/FourRowPerpBisector.lean:149:theorem false_of_convexRealization
+lean/Erdos9796Proof/P97/Census554/CoverRelations.lean:32:structure CoverRow where
+lean/Erdos9796Proof/P97/Census554/CoverRelations.lean:44:structure PatternEmbedsUnder (P : Pattern) (f : Fin 11 → Fin 11)
+lean/Erdos9796Proof/P97/Census554/CoverRelations.lean:52:structure RealizesCube (x : Fin 11 → ℝ²) (kappa : Cube) : Prop where
+lean/Erdos9796Proof/P97/Census554/CoverRelations.lean:59:theorem RealizesCube.equidist_of_patternEmbedsUnder
+lean/Erdos9796Proof/P97/Census554/CoverRelations.lean:72:theorem not_realizesCube_of_isDead_of_patternEmbedsUnder
+lean/Erdos9796Proof/P97/Census554/CoverRelations.lean:83:theorem CoverRow.not_realizesCube_of_embeds
+lean/Erdos9796Proof/P97/Census554/CoverRelations.lean:94:theorem realizesCube
+lean/Erdos9796Proof/P97/Census554/CoverRelations.lean:127:private theorem twoRowPattern_embeds :
+lean/Erdos9796Proof/P97/Census554/SeparationCertificate.lean:66:theorem PrimitiveEqualityStep.edgeClosure_of_valid
+lean/Erdos9796Proof/P97/Census554/SeparationCertificate.lean:94:theorem edgeClosure_of_validStepChain
+lean/Erdos9796Proof/P97/Census554/SeparationCertificate.lean:113:structure ClosurePathData where
+lean/Erdos9796Proof/P97/Census554/SeparationCertificate.lean:137:theorem ClosurePathData.certifies_of_checkCertifies
+lean/Erdos9796Proof/P97/Census554/SeparationCertificate.lean:147:theorem ClosurePathData.edgeClosure_of_certifies
+lean/Erdos9796Proof/P97/Census554/SeparationCertificate.lean:157:structure SharedPairData where
+lean/Erdos9796Proof/P97/Census554/SeparationCertificate.lean:213:theorem SharedPairData.valid_of_checkValid
+lean/Erdos9796Proof/P97/Census554/SeparationCertificate.lean:236:theorem SharedPairData.not_satisfiedBy_of_checkViolation
+lean/Erdos9796Proof/P97/Census554/SeparationCertificate.lean:257:theorem SharedPairData.validFor_of_checkValidFor
+lean/Erdos9796Proof/P97/Census554/SeparationCertificate.lean:286:theorem SharedPairData.exists_core_not_satisfiedBy
+lean/Erdos9796Proof/P97/Census554/SeparationCertificate.lean:332:structure Card11SeparationCertificate where
+lean/Erdos9796Proof/P97/Census554/SeparationCertificate.lean:356:theorem Card11SeparationCertificate.rejectsEveryDirectOrMirrorOrder_of_check
+lean/Erdos9796Proof/P97/Census554/SeparationCertificate.lean:390:theorem false_of_card11SeparationCertificate
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part03.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part03
+lean/Erdos9796Proof/P97/Census554/MotifTransfer.lean:69:structure IsGaugedRealization (P : Pattern) (y : Fin 11 → ℝ²) : Prop where
+lean/Erdos9796Proof/P97/Census554/MotifTransfer.lean:91:theorem motif_transfer (P : Pattern) (hP : IsDead P)
+lean/Erdos9796Proof/P97/Census554/MotifTransfer.lean:133:theorem center_mem_support {P : Pattern} {c a : Fin 11} (ha : a ∈ P c) :
+lean/Erdos9796Proof/P97/Census554/MotifTransfer.lean:139:theorem mem_support_of_mem {P : Pattern} {c a : Fin 11} (ha : a ∈ P c) :
+lean/Erdos9796Proof/P97/Census554/MotifTransfer.lean:148:theorem exists_injective_extension {n : ℕ} {S : Finset (Fin n)}
+lean/Erdos9796Proof/P97/Census554/MotifTransfer.lean:174:theorem motif_transfer_of_supportInjOn (P : Pattern) (hP : IsDead P)
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:55:private theorem labelS_injective : Function.Injective labelS := by
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:62:private theorem labelO1_injective : Function.Injective labelO1 := by
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:69:private theorem labelO2_injective : Function.Injective labelO2 := by
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:76:private theorem directO2Position_injective :
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:84:private theorem directSPosition_injective :
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:92:private theorem directO1Position_injective :
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:100:private theorem image_fin_two {alpha : Type*} [DecidableEq alpha]
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:114:private theorem image_fin_three {alpha : Type*} [DecidableEq alpha]
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:131:private theorem exists_matching_perm {k : Nat} {alpha : Type*}
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:155:private theorem exists_sorted_triple_points_after
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:191:private theorem ambient_index_ne_of_label_ne
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:204:private theorem triangleByIndex_support_eq_other_apices
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:217:private theorem capInteriorAt_onArc_other_apices
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:253:private theorem strict_between_of_onArc
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:268:private theorem strict_outside_of_onArc_reference_between
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:297:private theorem card11IndexEquiv_zero
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:301:private theorem card11IndexEquiv_one
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:305:private theorem card11IndexEquiv_two
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:309:private theorem card11IndexEquiv_labelS
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:317:private theorem card11IndexEquiv_labelO1
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:325:private theorem card11IndexEquiv_labelO2
+lean/Erdos9796Proof/P97/Census554/SeparationGeometry.lean:603:theorem nonempty_directOrMirrorMacroCcwLabeling
+lean/Erdos9796Proof/P97/Census554/SeparationBridge.lean:30:theorem false_of_card11SeparationCertificate_of_capLabeling
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:33:private theorem scalar_incompatibility
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:133:private theorem dist_sq_coords (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:138:private theorem normSim_dist_sq_eq_one
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:154:private theorem normSim_signedArea_pos
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:165:theorem metric_orientation_incompatibility
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:271:private theorem inner_reflectXAxis_sub (p a o : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:281:theorem metric_orientation_incompatibility_of_neg
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:325:structure Core {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:341:structure Geometry {α : Type*} {P : RowPattern α}
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:361:structure NegativeGeometry {α : Type*} {P : RowPattern α}
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:381:theorem false_of_core
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:401:theorem false_of_core_of_neg
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:24:private theorem circleNetwork_dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:37:private theorem circleNetwork_dot_comm (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:42:private theorem circleNetwork_dot_add_right (x y z : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:47:private theorem circleNetwork_dot_sub_left (x y z : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:52:private theorem circleNetwork_dot_sub_right (x y z : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:57:private theorem circleNetwork_dot_smul_left (r : ℝ) (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:62:private theorem circleNetwork_dot_smul_right (r : ℝ) (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:67:private theorem circleNetwork_normSq_add (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:73:private theorem circleNetwork_normSq_sub (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:79:private theorem circleNetwork_normSq_sub_comm (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:84:private theorem circleNetwork_normSq_sub_sub_smul (w u b : ℝ²) (r : ℝ) :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:93:private theorem circleNetwork_normSq_nonneg (x : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:98:private theorem circleNetwork_eq_zero_of_normSq_eq_zero {x : ℝ²}
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:112:private theorem circleNetwork_planar_gram_det_zero (x y z : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:122:private theorem circleNetwork_scalar_incompatible
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:188:private theorem normalized_circleNetwork_incompatible
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:441:theorem seven_point_circle_network_collision
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:486:structure SevenPointCircleNetworkCollisionCore {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:508:theorem not_realizes_of_sevenPointCircleNetworkCollisionCore
+lean/Erdos9796Proof/P97/Census554/PolyCheck.lean:69:theorem eval_append (ρ : Nat → ℝ) (m₁ m₂ : Mon) :
+lean/Erdos9796Proof/P97/Census554/PolyCheck.lean:85:theorem eval_insertVarPos (ρ : Nat → ℝ) (v e : Nat) (m : Mon) :
+lean/Erdos9796Proof/P97/Census554/PolyCheck.lean:113:theorem eval_insertVar (ρ : Nat → ℝ) (v e : Nat) (m : Mon) :
+lean/Erdos9796Proof/P97/Census554/PolyCheck.lean:124:theorem eval_canon (ρ : Nat → ℝ) (m : Mon) : Mon.eval ρ (canon m) = Mon.eval ρ m := by
+lean/Erdos9796Proof/P97/Census554/PolyCheck.lean:147:theorem eval_append (ρ : Nat → ℝ) (p q : SPoly) :
+lean/Erdos9796Proof/P97/Census554/PolyCheck.lean:165:theorem eval_add (ρ : Nat → ℝ) (p q : SPoly) :
+lean/Erdos9796Proof/P97/Census554/PolyCheck.lean:170:theorem eval_neg (ρ : Nat → ℝ) (p : SPoly) :
+lean/Erdos9796Proof/P97/Census554/PolyCheck.lean:182:theorem eval_map_mulTerm (ρ : Nat → ℝ) (m : Mon) (c : ℚ) (q : SPoly) :
+lean/Erdos9796Proof/P97/Census554/PolyCheck.lean:194:theorem eval_mul (ρ : Nat → ℝ) (p q : SPoly) :
+lean/Erdos9796Proof/P97/Census554/PolyCheck.lean:206:theorem eval_const (ρ : Nat → ℝ) (c : ℚ) :
+lean/Erdos9796Proof/P97/Census554/PolyCheck.lean:238:theorem eval_mergeAdj (ρ : Nat → ℝ) (p : SPoly) :
+lean/Erdos9796Proof/P97/Census554/PolyCheck.lean:262:theorem eval_of_perm (ρ : Nat → ℝ) {p q : SPoly} (h : p.Perm q) :
+lean/Erdos9796Proof/P97/Census554/PolyCheck.lean:267:theorem eval_canonTerms (ρ : Nat → ℝ) (p : SPoly) :
+lean/Erdos9796Proof/P97/Census554/PolyCheck.lean:283:theorem eval_normalize (ρ : Nat → ℝ) (p : SPoly) :
+lean/Erdos9796Proof/P97/Census554/PolyCheck.lean:290:theorem eval_eq_zero_of_normalize_eq_nil (ρ : Nat → ℝ) (p : SPoly)
+lean/Erdos9796Proof/P97/Census554/NestedEqualChordCore.lean:110:theorem metric_orientation_incompatibility
+lean/Erdos9796Proof/P97/Census554/NestedEqualChordCore.lean:179:structure Core {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/NestedEqualChordCore.lean:194:theorem false_of_core
+lean/Erdos9796Proof/P97/Census554/NestedEqualChordCore.lean:214:theorem false_of_core_of_neg
+lean/Erdos9796Proof/P97/Census554/SeparationMirror.lean:79:structure Card11MirrorMacroCcwLabeling (pointOf : Fin 11 → ℝ²) where
+lean/Erdos9796Proof/P97/Census554/SeparationMirror.lean:106:theorem false_of_rejectsEveryCard11MirrorMacroOrder
+lean/Erdos9796Proof/P97/Census554/SeparationMirror.lean:121:theorem false_of_rejectsEveryCard11DirectOrMirrorOrder
+lean/Erdos9796Proof/P97/Census554/SeparationMirror.lean:136:theorem not_exists_realizes_with_card11DirectOrMirrorCcwLabeling
+lean/Erdos9796Proof/P97/Census554/PinnedCarrierBridge.lean:28:theorem selectedFourClass_support_eq_criticalShell_of_source_mem
+lean/Erdos9796Proof/P97/Census554/PinnedCarrierBridge.lean:48:private theorem exists_faithfulCarrierPattern_with_three_classes
+lean/Erdos9796Proof/P97/Census554/PinnedCarrierBridge.lean:92:theorem exists_rightPinnedAlignedCarrier
+lean/Erdos9796Proof/P97/Census554/PinnedCarrierBridge.lean:162:theorem exists_leftPinnedAlignedCarrier
+lean/Erdos9796Proof/P97/Census554/PinnedCarrierBridge.lean:288:theorem exists_rightPinnedSurplusAlignedCarrier
+lean/Erdos9796Proof/P97/Census554/PinnedCarrierBridge.lean:346:theorem exists_leftPinnedSurplusAlignedCarrier
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part15.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part15
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:24:private theorem sevenPoint_dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:32:private theorem normalized_sevenPoint_incompatible
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:90:theorem seven_point_orbit_collision
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:139:structure SevenPointOrbitCollisionCore {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:163:theorem not_realizes_of_sevenPointOrbitCollisionCore
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:59:structure BoundaryIndexing (A : Finset ℝ²) where
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:71:theorem exists_boundaryIndexing {A : Finset ℝ²}
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:114:theorem mem_rowPattern_iff {A : Finset ℝ²}
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:122:theorem realizes {A : Finset ℝ²} (F : FaithfulCarrierPattern A) :
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:137:theorem image_rowPattern_eq_support
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:155:theorem rowPattern_card
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:175:theorem blocker_row_support_eq_shell
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:185:theorem source_mem_blocker_row
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:195:theorem exactAt_blocker
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:281:theorem false_of_metricCoreAlternative
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:399:theorem metricCoreAlternative_of_shellMetricCoreAlternative
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:474:theorem false_of_shellMetricCoreAlternative
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:483:theorem BoundaryIndexing.sharedPair_satisfied
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part02.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part02
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part04.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part04
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part05.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part05
+lean/Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.lean:24:private theorem sevenPointFiveCircle_dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.lean:32:private theorem normalized_sevenPointFiveCircle_incompatible
+lean/Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.lean:98:theorem seven_point_five_circle_collision
+lean/Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.lean:143:structure SevenPointFiveCircleCollisionCore {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.lean:165:theorem not_realizes_of_sevenPointFiveCircleCollisionCore
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificate.lean:50:theorem normalizedSevenPointSixCircleBUnitCertificate
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part01.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part01
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part07.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part07
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:25:private theorem sevenPointSixCircle_dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:33:private theorem normalized_sevenPointSixCircle_incompatible
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:77:theorem seven_point_six_circle_collision
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:122:structure SevenPointSixCircleCollisionCore {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:144:theorem not_realizes_of_sevenPointSixCircleCollisionCore
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part09.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part09
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:25:private theorem largeFiveCircle_dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:33:private theorem normalized_sevenPointFiveCircle_incompatible
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:77:theorem seven_point_five_circle_collision
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:124:private theorem normalized_eightPointFiveCircle_incompatible
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:171:theorem eight_point_five_circle_collision
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:219:structure SevenPointFiveCircleCollisionCore {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:241:structure EightPointFiveCircleCollisionCore {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:265:theorem not_realizes_of_sevenPointFiveCircleCollisionCore
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:287:theorem not_realizes_of_eightPointFiveCircleCollisionCore
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:25:private theorem sevenPointTwinFourCircle_dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:36:private theorem normalized_sevenPointTwinFourCircle_incompatible
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:2902:theorem seven_point_twin_four_circle_collision
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:2947:structure SevenPointTwinFourCircleCollisionCore {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:2969:theorem not_realizes_of_sevenPointTwinFourCircleCollisionCore
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part14.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part14
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part16.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part16
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:25:private theorem sevenPointSixCircleB_dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:32:private theorem normalized_sevenPointSixCircleB_incompatible
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:111:theorem seven_point_six_circle_collision_b
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:156:structure SevenPointSixCircleCollisionCoreB {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:178:theorem not_realizes_of_sevenPointSixCircleCollisionCoreB
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage02.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand02
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part08.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part08
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part13.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part13
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage04.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand04
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part06.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part06
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage06.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand06
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part10.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part10
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part12.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part12
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:26:private theorem surplusSource_dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:33:private theorem surplusSource_scalar_incompatible
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:119:private theorem normalized_surplusSource_incompatible
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:234:theorem surplus_source_collision
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:280:structure SurplusSourceCollisionCore {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:302:theorem not_realizes_of_surplusSourceCollisionCore
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage01Part11.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand01Part11
+lean/Erdos9796Proof/P97/Census554/SinzSat.lean:54:theorem prefCount_succ (σ : Nat → Bool) (xs : List Nat) {i : Nat}
+lean/Erdos9796Proof/P97/Census554/SinzSat.lean:67:theorem prefCount_succ_true (σ : Nat → Bool) (xs : List Nat) {i : Nat}
+lean/Erdos9796Proof/P97/Census554/SinzSat.lean:74:theorem prefCount_mono (σ : Nat → Bool) (xs : List Nat) {i j : Nat}
+lean/Erdos9796Proof/P97/Census554/SinzSat.lean:83:theorem prefCount_le_filterLength (σ : Nat → Bool) (xs : List Nat)
+lean/Erdos9796Proof/P97/Census554/SinzSat.lean:91:theorem sinzExt_le (σ : Nat → Bool) (xs : List Nat) (k base : Nat)
+lean/Erdos9796Proof/P97/Census554/SinzSat.lean:101:theorem sinzExt_aux (σ : Nat → Bool) (xs : List Nat) {k base i j : Nat}
+lean/Erdos9796Proof/P97/Census554/SinzSat.lean:124:theorem evalLitD_pos (σ : Nat → Bool) {v : Nat} (hv : 0 < v) :
+lean/Erdos9796Proof/P97/Census554/SinzSat.lean:129:theorem evalLitD_negNat (σ : Nat → Bool) (v : Nat) :
+lean/Erdos9796Proof/P97/Census554/SinzSat.lean:140:theorem sinz_sat (σ : Nat → Bool) (xs : List Nat) (k base : Nat)
+lean/Erdos9796Proof/P97/Census554/SinzSat.lean:245:theorem evalLitD_toLit (σ : Nat → Bool) {l : Int} (hl : l ≠ 0) :
+lean/Erdos9796Proof/P97/Census554/SinzSat.lean:255:theorem evalClauseD_toLit (σ : Nat → Bool) (c : List Int)
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage11.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand11
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:25:private theorem sixPointCircleChain_dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:33:private theorem normalized_sixPointCircleChain_incompatible
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:71:theorem six_point_circle_chain_collision
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:111:structure SixPointCircleChainCollisionCore {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:130:theorem not_realizes_of_sixPointCircleChainCollisionCore
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage03.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand03
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage05.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand05
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage10.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand10
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:14:theorem below is a standalone Euclidean statement forcing the same two anchor
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:25:private theorem sixPointFiveCircle_dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:33:private theorem normalized_sixPointFiveCircleA_incompatible
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:71:theorem six_point_five_circle_collision_a
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:113:private theorem normalized_sixPointFiveCircleB_incompatible
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:151:theorem six_point_five_circle_collision_b
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:193:private theorem normalized_sixPointFiveCircleC_incompatible
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:231:theorem six_point_five_circle_collision_c
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:271:structure SixPointFiveCircleCollisionCoreA {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:290:structure SixPointFiveCircleCollisionCoreB {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:309:structure SixPointFiveCircleCollisionCoreC {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:327:private theorem collision_of_coreA
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:344:private theorem collision_of_coreB
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:361:private theorem collision_of_coreC
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:379:theorem not_realizes_of_sixPointFiveCircleCollisionCoreA
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:387:theorem not_realizes_of_sixPointFiveCircleCollisionCoreB
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:395:theorem not_realizes_of_sixPointFiveCircleCollisionCoreC
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage07.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand07
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean:47:private theorem cyclicSix_required_triples {n : ℕ}
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean:55:private theorem cyclicSix_o_ne_a {n : ℕ}
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean:60:private theorem signedArea2_swap12 (a b c : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean:65:private theorem signedArea2_rotate (a b c : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean:70:private theorem signedArea2_neg_of_lt {n : ℕ} {boundary : Fin n → ℝ²}
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean:79:private theorem signedArea2_neg_of_cyclic {n : ℕ}
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean:93:private theorem boundary_signedArea2_neg
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean:104:structure ThreeRowSupportData {carrier : Finset ℝ²}
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean:170:theorem false_of_three_rows_and_cyclic_subsequence
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage09.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand09
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionBCertificateStage08.lean:25:theorem normalizedSevenPointSixCircleBUnitSummand08
+lean/Erdos9796Proof/P97/Census554/Space.lean:83:theorem mem_candidateClasses {p : Fin 11} {K : Finset (Fin 11)} :
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:24:private theorem sixPointTwoPair_dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:34:private theorem normalized_sixPointTwoPair_incompatible
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:92:theorem six_point_two_pair_collision
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:140:structure SixPointTwoPairCollisionCore {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:161:theorem not_realizes_of_sixPointTwoPairCollisionCore
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:24:private theorem sixRow_dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:32:private theorem normalized_sixRow_incompatible
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:71:theorem six_row_anchor_collision
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:111:structure SixRowAnchorCollisionCore {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:130:theorem not_realizes_of_sixRowAnchorCollisionCore
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:30:private theorem threeTriad_dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:37:private theorem threeTriad_scalar_incompatible
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:74:private theorem normalized_threeTriad_incompatible
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:144:theorem three_triad_collision
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:213:structure ThreeTriadCollisionCore {α : Type*} (P : RowPattern α) where
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:228:theorem not_realizes_of_threeTriadCollisionCore
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:261:theorem isDead_of_threeTriadCollisionCore {P : Pattern}
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:59:private theorem normalized_twoCircle_order_incompatible
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:323:theorem six_point_twoCircle_order_incompatible
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:443:structure Core {alpha : Type*} (R : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:459:theorem false_of_core
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:487:theorem false_of_core_of_neg
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:60:private theorem normalized_order_incompatible
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:221:theorem metric_orientation_incompatibility
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:343:structure Core {alpha : Type*} (R : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:361:theorem false_of_core
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:385:theorem false_of_core_of_neg
+lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean:56:private theorem normalized_order_incompatible
+lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean:120:theorem metric_orientation_incompatibility
+lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean:242:structure Core {alpha : Type*} (R : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean:259:theorem false_of_core
+lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean:284:theorem false_of_core_of_neg
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean:89:private theorem normalized_arc_overtake_incompatible
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean:241:theorem metric_orientation_incompatibility
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean:359:structure Core {alpha : Type*} (R : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean:375:theorem false_of_core
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean:400:theorem false_of_core_of_neg

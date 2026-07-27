@@ -1,0 +1,54 @@
+{
+  "child_cnf_sha256": "2bed2b0427f672f9ae75b153e348925fc4de010b16c4385981f70c4b3ba65762",
+  "child_cube": [
+    -16960,
+    -16968
+  ],
+  "child_cube_index": 5,
+  "combined_assumptions": [
+    -2071,
+    -86056,
+    16007,
+    -16960,
+    -16968
+  ],
+  "config": "sat",
+  "config_args": [
+    "--sat"
+  ],
+  "conflicts": 96571,
+  "decisions": 181221,
+  "drat_check": {
+    "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-000/child-05/drat-trim.log",
+    "log_sha256": "f30f12d3ab7e47c2f9db986020f5f44396c322d10ac13a0b8f7b5d520aaf1759",
+    "returncode": 0,
+    "status": "PASS",
+    "timed_out": false
+  },
+  "elapsed_seconds": 27.86258304200601,
+  "epistemic_status": "EXTERNAL_EXACT_CHILD_CNF_VERDICT",
+  "extended_model_check_against_original_cnf": null,
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-000/child-05/cadical.log",
+  "log_sha256": "eb9baf775ea083c61867f1f68eca358b46307f26c5c55bfa258251269088b590",
+  "model_check_against_child_cnf": null,
+  "orientation": "direct",
+  "parent_cube": [
+    -2071,
+    -86056,
+    16007
+  ],
+  "parent_cube_index": 0,
+  "proof_artifact": {
+    "format": "gzip-compressed CaDiCaL DRAT",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/direct/parent-000/child-05/proof.drat.gz",
+    "sha256": "f031002acf0fb4875b7f4598bac30f46b77cca7502543fed0a27d04e01a5eb55",
+    "size_bytes": 6238028
+  },
+  "returncode": 20,
+  "schema": "p97-exact5-card13-distinct-recube-child-v1",
+  "seed": 2005,
+  "solver_status": "UNSAT",
+  "status": "UNSAT",
+  "timed_out": false,
+  "timeout_seconds": 15
+}

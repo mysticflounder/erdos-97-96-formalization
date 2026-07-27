@@ -1,0 +1,180 @@
+lean/Erdos9796Proof/P97/Cap/ArcInteriorPoints.lean:9:`r`, and any two points `x, y` in the closed disk of radius `r` around `O`
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:106:    frontierCommonDeletionResidual_secondRow_inter_actualSupport_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:116:theorem ParentSurplusEscape.secondRow_inter_surplusCap_eq_singleton
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:49:theorem actualCriticalSupport_physicalInterior_inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:110:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean:141:      actualCriticalSupport_physicalInterior_inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean:13:prescribed source preserves K4.  It records exact q-deleted four-point rows at
+lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean:95:        U5QDeletedK4Class.inter_card_le_two R₁ R₂ hcenters }⟩
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:36:      U1OppositeCapLowerBounds.interior1_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:40:      U1OppositeCapLowerBounds.interior2_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:44:      U1OppositeCapLowerBounds.interior3_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:164:/-- Sharp two-radius interior bound.  Each class contributes all but two of its
+lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean:206:/-- Sharp two-radius cap bound.  Two distinct positive radii at a Moser apex,
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:304:in at most two points.  Unlike `SelectedFourClass.inter_card_le_two`, the
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:306:theorem criticalFourShell_inter_selectedClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/MinimalUniqueFourCover.lean:387:    SelectedFourClass.inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:60:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:15:four-point rows at the two opposite Moser apices.  Its second-apex row cannot
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:136:theorem frontierCommonDeletionResidual_secondRow_inter_actualSupport_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:148:  have hinter := SelectedFourClass.inter_card_le_two K₂ Kq
+lean/Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:172:      frontierCommonDeletionResidual_secondRow_inter_actualSupport_card_le_two R
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:49:      U1OppositeCapLowerBounds.interior1_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:53:      U1OppositeCapLowerBounds.interior2_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:57:      U1OppositeCapLowerBounds.interior3_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:313:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:323:theorem capByIndex_card_ge_five_of_three_distinct_interior
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:155:theorem source₁_mem_cap_or_source₂_mem_cap_of_centers_mem_cap
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:406:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCrossIncidence.lean:141:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:116:theorem criticalShell_inter_selectedClass_card_le_two_of_apexRich
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:122:  exact criticalFourShell_inter_selectedClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:129:theorem criticalShell_inter_oppositeCapClassInterior_card_le_two_of_apexRich
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:138:    (criticalShell_inter_selectedClass_card_le_two_of_apexRich
+lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:167:while the two-K4-radii arm contributes two points at each radius. -/
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:373:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:393:    criticalFourShell_inter_selectedClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:648:private theorem firstSecondClass_inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:666:    criticalFourShell_inter_selectedClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:712:the source's actual late four-point row. -/
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1083:two disjoint exact four-point rows, and each radius class has at least two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1179:      firstSecondClass_inter_card_le_two (rho := rho) R
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1253:        firstSecondClass_inter_card_le_two (rho := rho) R
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1256:        firstSecondClass_inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1413:theorem robust_capGrowth_of_card_ge_twelve
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:213:      U1OppositeCapLowerBounds.interior1_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:217:      U1OppositeCapLowerBounds.interior2_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:221:      U1OppositeCapLowerBounds.interior3_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:67:outcome.  The first two sources remain on the retained first-apex radius and
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:20:The second-cap-large reverse-hit arm does not need a separate Kalmanson
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:60:      U1OppositeCapLowerBounds.interior1_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:64:      U1OppositeCapLowerBounds.interior2_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:68:      U1OppositeCapLowerBounds.interior3_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:71:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:282:private theorem firstApex_cardFour_interior_card_ge_two
+lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:304:  have htwo := firstApex_cardFour_interior_card_ge_two D S hr hcard
+lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:254:    SelectedFourClass.inter_card_le_two K C hcenterNe
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:27:/-- Failure after deleting two members of one selected radius class forces
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:826:theorem selected_support_inter_card_le_two_of_not_mem_other_selected_support
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:833:  exact SelectedFourClass.inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean:28:fiber chooses a genuinely fourth row source and splits into a cross hit or a
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean:8:import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+lean/Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean:28:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:7:import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:10:# Ordinal Kalmanson strict-cycle consumer
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:24:namespace ATailOrdinalKalmansonCycle
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:26:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:28:/-- One source-valid selected-row Kalmanson comparison between two named
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:90:/-- A nonempty transitive path of selected-row Kalmanson steps strictly
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:109:/-- A directed cycle of selected-row ordinal Kalmanson comparisons is
+lean/Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:144:end ATailOrdinalKalmansonCycle
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:370:theorem successor_actualCriticalSupport_inter_card_le_two
+lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean:380:  apply selected_support_inter_card_le_two_of_not_mem_other_selected_support H
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:20:This module records the next source-valid Kalmanson consumer: choose a fresh
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:40:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:113:/-- The narrow source-valid different-pair packet which reaches a Kalmanson
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:155:strict Kalmanson comparisons: `AC < AJ` from the `O`-row and `AJ < AC` from
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:18:It produces two actual retained-radius sources in the strict first opposite
+lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:39:/-- A selected four-row survives erasing any point outside its support. -/
+lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:73:/-- Two support-disjoint selected four-rows at one center also make that
+lean/Erdos9796Proof/P97/ATail/PhysicalOmissionCycleParentResidual.lean:155:/-- The two mathematical consumers sufficient to close a large-radius parent
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1456:/-- A directed cross-omission produces an exact q-deleted four-point row at
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1629:/-- The two-deletion exact-four residue is exhaustively narrowed according to
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3242:exact-four terminal.  It retains both disjoint exact rows and the checked
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3355:exact-four remainder.  The former undifferentiated obligation is narrowed to
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3596:first-apex unique-four route, not an anonymous critical-row contradiction. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4152:      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4160:/-- Two exact two-point cap intersections of four-point rows, supported on
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4474:theorem selectedFourClass_outside_overlap_card_le_one
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4581:exact-four/exact-two collision rows and must still identify their strict-cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4666:ordered-cap theorem `selectedFourClass_outside_overlap_card_le_one` only gives
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4799:The hypotheses retain both exact-four/exact-two radius classes, both concrete
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4995:/-- The symmetric two-radius collision normal form.
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5008:cardinality four, and exact strict-cap cardinality two at that radius.  The
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5058:/-- Exact-four, two-radius collision branch of the low-hit tri-apex
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5077:equal blockers for the two second-radius points.  The remaining work is to
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5459:/-- Checked strict-interior cardinality split for the exact-four, two-radius
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5463:two-radius collision leaf.  There are now two immediate constructors: at least
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5755:    exact criticalShell_inter_oppositeCapClassInterior_card_le_two_of_apexRich
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5787:    criticalShell_inter_oppositeCapClassInterior_card_le_two_of_apexRich
+lean/Erdos9796Proof/P97/ATail/MutualShellPairSharedMember.lean:23:exact-class memberships, no Kalmanson/order content — so these ports are
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean:62:/-- Choose a selected four-row which retains a prescribed point of a
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean:191:theorem criticalShell_inter_frontierRadiusClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean:242:  have hInterTwo := SelectedFourClass.inter_card_le_two criticalRow firstRow
+lean/Erdos9796Proof/P97/ATail/FirstApexCriticalFiberRow.lean:246:#print axioms criticalShell_inter_frontierRadiusClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:7:import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:36:Each is one strict Kalmanson kernel plus the two radius equalities; the
+lean/Erdos9796Proof/P97/ATail/TwoCenterBisectorParity.lean:48:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:21:two-cycle.  This file keeps the complete retained first-apex radius class and
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:502:      criticalShell_inter_frontierRadiusClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean:506:      criticalShell_inter_frontierRadiusClass_card_le_two
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:22:first-apex row hit.  This file chooses a genuinely fourth source from that row:
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:100:/-- The endpoint collision always supplies a fourth, source-valid row source.
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean:149:different-pair Kalmanson consumer.  Its complement is not inert: it produces
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:18:apex with two distinct support-disjoint exact four-point radius classes.
+lean/Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:317:radius, so one of the two radius classes survives every deletion. -/
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:11:# Convex-quadrilateral Kalmanson bridge
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:22:namespace CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:109:boundary triples, imply the strict Kalmanson inequality. -/
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:172:/-- The companion strict Kalmanson inequality for the other pair of opposite
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:238:/-- Generic strict Kalmanson inequality for four increasing vertices of a
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:271:/-- Companion strict Kalmanson inequality for four increasing vertices of a
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:338:`O < A < Y < E < C`.  The `Y`-row equality and the complementary Kalmanson
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:340:the other Kalmanson inequality on `O,A,E,C` force `AE < OA`. -/
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:420:For `ia < ib < ic < id`, the strict Kalmanson inequality
+lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean:467:end CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:68:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:378:        CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:498:      U1OppositeCapLowerBounds.interior1_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:502:      U1OppositeCapLowerBounds.interior2_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingLargeCapConsumer.lean:506:      U1OppositeCapLowerBounds.interior3_card_add_two S.partition
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:84:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:298:theorem firstApex_cardFour_interior_card_ge_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:320:  have htwo := firstApex_cardFour_interior_card_ge_two D S hr hcard
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:454:#print axioms firstApex_cardFour_interior_card_ge_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorCoreFamilySatisfaction.lean:22:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4SourceFieldAudit.CorrectedOwnCapKalmansonCores
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:8:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4KalmansonOccurrence.SixRoleKalmansonTriangle
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:9:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4AlignedP5Occurrence.UniqueFourKalmansonReflection
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:13:# Card-eleven exact-two Kalmanson schema decoder
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:15:This module decodes the four row-instance schemas recorded in the card-eleven
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:30:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:32:open CorrectedOwnCapKalmansonCoresScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:33:open UniqueFourKalmansonOccurrenceScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:34:open UniqueFourKalmansonReflectionScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:95:/-- The manifest-backed p4 four-endpoint-`K2` three-row template. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:101:/-- The manifest-backed p5 two-`K1`/two-`K2` four-row template. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:212:  exact false_of_four_endpoint_k2_three_row_instances hA
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:224:/-- `Fin 11` adapter for the normalized p5 four-row manifest consumer. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:247:  exact false_of_two_k1_two_k2_four_row_instances hA
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:376:/-- A normalized executable p5 four-row occurrence over a faithful carrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:579:/-- `Fin 11` terminal for the ordinary linear reflection of the p5 four-row
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:768:/-- A reflected executable p5 four-row occurrence over a faithful carrier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:882:/-- Either manifest orientation of the executable p5 four-row template is
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:67:private theorem false_of_two_cap_centers_equidistant_outside_pair
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorCegar6Satisfaction.lean:3:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4ExactTwoSourceBridge.IndexedSource.MirrorKalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorCegar6Satisfaction.lean:9:eight-role P4 Kalmanson schemas.  Their reflected source semantics is
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorCegar6Satisfaction.lean:10:supplied by `seededFullLinearKalmansonCutSat_mirror`; `mirrorValAgreement`
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorCegar6Satisfaction.lean:46:  apply seededFullLinearKalmansonCutSat_mirror P.core
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/GeneratedData.lean:20:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4GenericFamilies.lean:101:two radius equalities at one center imply the third, for any index transport.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4GenericFamilies.lean:130:non-center labels meet the selected four-row, for any injective index
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:7:import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:10:# Kalmanson consumers for the corrected own-cap survivors
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:25:namespace CorrectedOwnCapKalmansonCoresScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:27:open CapCrossingKalmansonBridge
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:35:theorem false_of_four_endpoint_k2_three_row_instances
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:110:with four selected-row instances carrying the displayed ten incidences.
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:113:survivor.  Its six roles and four row instances are independent of the ambient
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:115:theorem false_of_two_k1_two_k2_four_row_instances
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:194:#print axioms false_of_four_endpoint_k2_three_row_instances
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:195:#print axioms false_of_two_k1_two_k2_four_row_instances
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SourceFieldAudit/CorrectedOwnCapKalmansonCores.lean:197:end CorrectedOwnCapKalmansonCoresScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:289:    simpa [T, I] using firstApex_cardFour_interior_card_ge_two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/MirrorResidual55Satisfaction.lean:65:    (shape : NonKalmansonShape) (hwf : directResidualShapeWF shape = true) :
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Families.lean:28:open RetainedKalmansonDecoderScratch
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcAdapter.lean:21:membership in the actual selected four-row of an `ExactTwoBoundaryCore`; a row
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcAdapter.lean:143:The four positive source memberships exhaust the actual selected row because
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:10:# Source satisfaction for the non-Kalmanson P4 compact residual
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:13:verified-Kalmanson, and critical-support packages.  Fifty-five are direct
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual78Core.lean:31:open RetainedKalmansonDecoderScratch

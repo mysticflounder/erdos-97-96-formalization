@@ -1,0 +1,66 @@
+### scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5Closure.lean
+23-open ATailUniqueFourClassCapDistributionScratch
+24-
+25-/-- The aligned exact-two complement at profile `(5,5,4)` is impossible in
+26-either cyclic macro orientation. -/
+27:theorem false_of_alignedInteriorFrontier
+28-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+29-    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+30-    (R : OriginalUniqueFourResidual F)
+31-    (profile : S.surplusCap.card = 5 ∧
+### scratch/atail-force/unique4-exact-two-lrat-ingress/P5ExactTwoClosure.lean
+128-
+129-/-- The `(5,5,4)` exact-two residual is contradictory: its source-faithful
+130-packet satisfies the exact trimmed formula that the checkpointed replay proves
+131-unsatisfiable. -/
+132:theorem false_of_p5ExactTwo
+133-    (R : OriginalUniqueFourResidual F)
+134-    (profile : S.surplusCap.card = 5 ∧
+135-      S.oppCap1.card = 5 ∧ S.oppCap2.card = 4)
+136-    (distribution : ExactTwoStrictHitDistribution R) : False := by
+--
+146-  Problem97.P5ExactTwoCertificateClosureScratch.checkpoint0_clauses_eq_bridgeClauses
+147-#print axioms
+148-  Problem97.P5ExactTwoCertificateClosureScratch.false_of_bridgeClauses_sat
+149-#print axioms
+150:  Problem97.P5ExactTwoCertificateClosureScratch.false_of_p5ExactTwo
+### scratch/atail-force/unique4-p4-direct-valuation/P4FullLedgerSatisfaction.lean
+297-  P4ExactTwoCertificateClosureScratch.false_of_p4CompactLedger_sat
+298-    (directTotalVal Q) (directTotalVal_p4CompactLedger_sat Q)
+299-
+300-/-- Packet-facing terminal for the direct `(5,4,5)` exact-two branch. -/
+301:theorem false_of_p4DirectBoundaryPacket
+302-    (P : P4DirectBoundaryPacket R profile distribution) : False :=
+303-  false_of_directSource ⟨P⟩
+304-
+305-end Problem97.P4DirectOuterValuationScratch
+### scratch/atail-force/unique4-p4-mirror-valuation/MirrorLedgerAssembly.lean
+125-    P4ExactTwoCertificateClosureScratch.litSat,
+126-    P5OccurrenceBridgeScratch.clauseSat,
+127-    P5OccurrenceBridgeScratch.litSat] using hledger
+128-
+129:theorem false_of_p4MirrorBoundaryPacket
+130-    (P : P4MirrorBoundaryPacket R profile distribution) : False :=
+131-  P4ExactTwoCertificateClosureScratch.false_of_p4CompactLedger_sat
+132-    (mirrorTotalVal P)
+133-    (mirrorTotalVal_p4CompactLedger_sat P)
+### scratch/card11-import-closure-direct-roots.log
+408-open ATailUniqueFourClassCapDistributionScratch
+409-
+410-/-- The aligned exact-two complement at profile `(5,5,4)` is impossible in
+411-either cyclic macro orientation. -/
+412:theorem false_of_alignedInteriorFrontier
+413-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+414-    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+415-    (R : OriginalUniqueFourResidual F)
+416-    (profile : S.surplusCap.card = 5 ∧
+### scratch/run-tmp/p4-full-ledger-source-excerpt.txt
+297-  P4ExactTwoCertificateClosureScratch.false_of_p4CompactLedger_sat
+298-    (directTotalVal Q) (directTotalVal_p4CompactLedger_sat Q)
+299-
+300-/-- Packet-facing terminal for the direct `(5,4,5)` exact-two branch. -/
+301:theorem false_of_p4DirectBoundaryPacket
+302-    (P : P4DirectBoundaryPacket R profile distribution) : False :=
+303-  false_of_directSource ⟨P⟩
+304-
+305-end Problem97.P4DirectOuterValuationScratch

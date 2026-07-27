@@ -1,0 +1,48 @@
+../scratch/ResidualFieldAttack.lean:89:5: warning: unused variable `hρne`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/ResidualFieldAttack.lean:90:5: warning: unused variable `hfrontierFour`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/ResidualFieldAttack.lean:92:5: warning: unused variable `hρfour`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/ResidualFieldAttack.lean:94:5: warning: unused variable `hfrontierInteriorEq`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/ResidualFieldAttack.lean:98:5: warning: unused variable `hρInteriorEq`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/ResidualFieldAttack.lean:105:5: warning: unused variable `T`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/ResidualFieldAttack.lean:106:5: warning: unused variable `hcriticalShellUniqueFourCover`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/ResidualFieldAttack.lean:112:5: warning: unused variable `hpairsDisjoint`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/ResidualFieldAttack.lean:120:5: warning: unused variable `hLPρ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/ResidualFieldAttack.lean:121:5: warning: unused variable `MPρ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/ResidualFieldAttack.lean:123:5: warning: unused variable `hLP`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/ResidualFieldAttack.lean:124:5: warning: unused variable `MP`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+../scratch/ResidualFieldAttack.lean:125:5: warning: unused variable `hcapEightOrCross`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'Problem97.ATailFrontierLiveClosure.false_of_two_sourceExactCollisionRows_two_shared_outside' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows_of_two_shared_outside' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.abstract_capEight_collisionRow_fragment_has_no_cross_hit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,206 @@
+    (hy :
+      y ∈ SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+        S.capInteriorByIndex i)
+    (hxy : x ≠ y)
+    (hblockers : H.centerAt x hxA = H.centerAt y hyA)
+    (hrich : ApexRichClassStructure D.A (S.oppositeVertexByIndex i))
+    (hunique : IsUniqueFourCenter D.A (H.centerAt x hxA)) :
+    H.centerAt x hxA ∈ S.capInteriorByIndex i ∧
+      (H.selectedAt x hxA).toCriticalFourShell.support ∩
+          S.capByIndex i =
+        {x, y} := by
+  classical
+  have hsupports :
+      (H.selectedAt x hxA).toCriticalFourShell.support =
+        (H.selectedAt y hyA).toCriticalFourShell.support := by
+    rw [← uniqueFourClass_centerAt_eq_selectedAt_support H x hxA,
+      ← uniqueFourClass_centerAt_eq_selectedAt_support H y hyA,
+      hblockers]
+  have hyShell :
+      y ∈ (H.selectedAt x hxA).toCriticalFourShell.support := by
+    rw [hsupports]
+    exact (H.selectedAt y hyA).toCriticalFourShell.q_mem_support
+  have hpairSubsetSlice :
+      ({x, y} : Finset ℝ²) ⊆
+        (H.selectedAt x hxA).toCriticalFourShell.support ∩
+          (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+            S.capInteriorByIndex i) := by
+    intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with hzx | hzy
+    · subst z
+      exact Finset.mem_inter.mpr
+        ⟨(H.selectedAt x hxA).toCriticalFourShell.q_mem_support, hx⟩
+    · subst z
+      exact Finset.mem_inter.mpr ⟨hyShell, hy⟩
+  have htwo :
+      2 ≤
+        ((H.selectedAt x hxA).toCriticalFourShell.support ∩
+          (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+            S.capInteriorByIndex i)).card := by
+    simpa [hxy] using Finset.card_le_card hpairSubsetSlice
+  have hcenterInterior :
+      H.centerAt x hxA ∈ S.capInteriorByIndex i :=
+    criticalShellCenter_mem_capInteriorByIndex_of_two_hits
+      hxA hrich hunique htwo
+  have hpairSubsetCap :
+      ({x, y} : Finset ℝ²) ⊆
+        (H.selectedAt x hxA).toCriticalFourShell.support ∩
+          S.capByIndex i := by
+    intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with hzx | hzy
+    · subst z
+      exact Finset.mem_inter.mpr
+        ⟨(H.selectedAt x hxA).toCriticalFourShell.q_mem_support,
+          S.capInteriorByIndex_subset_capByIndex i
+            (Finset.mem_inter.mp hx).2⟩
+    · subst z
+      exact Finset.mem_inter.mpr
+        ⟨hyShell,
+          S.capInteriorByIndex_subset_capByIndex i
+            (Finset.mem_inter.mp hy).2⟩
+  have hcapTwo :
+      ((H.selectedAt x hxA).toCriticalFourShell.support ∩
+        S.capByIndex i).card ≤ 2 := by
+    simpa using
+      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+        S D.convex i
+        (H.selectedAt x hxA).toCriticalFourShell.toSelectedFourClass
+        (S.capInteriorByIndex_subset_capByIndex i hcenterInterior)
+  exact ⟨hcenterInterior,
+    (Finset.eq_of_subset_of_card_le hpairSubsetCap (by
+      simpa [hxy] using hcapTwo)).symm⟩
+
+/-- Two exact two-point cap intersections of four-point rows, supported on
+disjoint pairs, force the complete cross-omission rectangle.  Each row also
+has exactly two support points outside the cap. -/
+theorem exact_disjoint_cap_pairs_force_cross_omission_and_two_outside
+    {α : Type*} [DecidableEq α]
+    {K₀ K₁ C : Finset α} {a b u v : α}
+    (hK₀card : K₀.card = 4)
+    (hK₁card : K₁.card = 4)
+    (hK₀cap : K₀ ∩ C = {a, b})
+    (hK₁cap : K₁ ∩ C = {u, v})
+    (hab : a ≠ b) (huv : u ≠ v)
+    (hpairs : Disjoint ({a, b} : Finset α) {u, v}) :
+    u ∉ K₀ ∧ v ∉ K₀ ∧ a ∉ K₁ ∧ b ∉ K₁ ∧
+      (K₀ \ C).card = 2 ∧ (K₁ \ C).card = 2 := by
+  have haC : a ∈ C := by
+    have haInter : a ∈ K₀ ∩ C := by
+      rw [hK₀cap]
+      simp
+    exact (Finset.mem_inter.mp haInter).2
+  have hbC : b ∈ C := by
+    have hbInter : b ∈ K₀ ∩ C := by
+      rw [hK₀cap]
+      simp
+    exact (Finset.mem_inter.mp hbInter).2
+  have huC : u ∈ C := by
+    have huInter : u ∈ K₁ ∩ C := by
+      rw [hK₁cap]
+      simp
+    exact (Finset.mem_inter.mp huInter).2
+  have hvC : v ∈ C := by
+    have hvInter : v ∈ K₁ ∩ C := by
+      rw [hK₁cap]
+      simp
+    exact (Finset.mem_inter.mp hvInter).2
+  have huNotK₀ : u ∉ K₀ := by
+    intro huK₀
+    have huPair₀ : u ∈ ({a, b} : Finset α) := by
+      rw [← hK₀cap]
+      exact Finset.mem_inter.mpr ⟨huK₀, huC⟩
+    exact Finset.disjoint_left.mp hpairs huPair₀ (by simp)
+  have hvNotK₀ : v ∉ K₀ := by
+    intro hvK₀
+    have hvPair₀ : v ∈ ({a, b} : Finset α) := by
+      rw [← hK₀cap]
+      exact Finset.mem_inter.mpr ⟨hvK₀, hvC⟩
+    exact Finset.disjoint_left.mp hpairs hvPair₀ (by simp)
+  have haNotK₁ : a ∉ K₁ := by
+    intro haK₁
+    have haPair₁ : a ∈ ({u, v} : Finset α) := by
+      rw [← hK₁cap]
+      exact Finset.mem_inter.mpr ⟨haK₁, haC⟩
+    exact Finset.disjoint_left.mp hpairs (by simp) haPair₁
+  have hbNotK₁ : b ∉ K₁ := by
+    intro hbK₁
+    have hbPair₁ : b ∈ ({u, v} : Finset α) := by
+      rw [← hK₁cap]
+      exact Finset.mem_inter.mpr ⟨hbK₁, hbC⟩
+    exact Finset.disjoint_left.mp hpairs (by simp) hbPair₁
+  have hsplit₀ := Finset.card_sdiff_add_card_inter K₀ C
+  have houtside₀ : (K₀ \ C).card = 2 := by
+    rw [hK₀card, hK₀cap] at hsplit₀
+    simp [hab] at hsplit₀
+    omega
+  have hsplit₁ := Finset.card_sdiff_add_card_inter K₁ C
+  have houtside₁ : (K₁ \ C).card = 2 := by
+    rw [hK₁card, hK₁cap] at hsplit₁
+    simp [huv] at hsplit₁
+    omega
+  exact
+    ⟨huNotK₀, hvNotK₀, haNotK₁, hbNotK₁, houtside₀, houtside₁⟩
+
+/-- Six pairwise accounted-for interior points are forced unless one blocker
+coincides with a source from the other pair. -/
+theorem six_interior_or_cross_blocker_coincidence
+    {α : Type*} [DecidableEq α]
+    (I : Finset α) (p₁ p₂ u v b₀ b₁ : α)
+    (hp : p₁ ≠ p₂) (huv : u ≠ v)
+    (hdisj : Disjoint ({p₁, p₂} : Finset α) {u, v})
+    (hb₀b₁ : b₀ ≠ b₁)
+    (hb₀p₁ : b₀ ≠ p₁) (hb₀p₂ : b₀ ≠ p₂)
+    (hb₁u : b₁ ≠ u) (hb₁v : b₁ ≠ v)
+    (hp₁I : p₁ ∈ I) (hp₂I : p₂ ∈ I)
+    (huI : u ∈ I) (hvI : v ∈ I)
+    (hb₀I : b₀ ∈ I) (hb₁I : b₁ ∈ I) :
+    6 ≤ I.card ∨ b₀ = u ∨ b₀ = v ∨ b₁ = p₁ ∨ b₁ = p₂ := by
+  by_cases hb₀u : b₀ = u
+  · exact Or.inr (Or.inl hb₀u)
+  by_cases hb₀v : b₀ = v
+  · exact Or.inr (Or.inr (Or.inl hb₀v))
+  by_cases hb₁p₁ : b₁ = p₁
+  · exact Or.inr (Or.inr (Or.inr (Or.inl hb₁p₁)))
+  by_cases hb₁p₂ : b₁ = p₂
+  · exact Or.inr (Or.inr (Or.inr (Or.inr hb₁p₂)))
+  left
+  let pairUnion : Finset α := {p₁, p₂} ∪ {u, v}
+  have hpairUnionCard : pairUnion.card = 4 := by
+    dsimp [pairUnion]
+    rw [Finset.card_union_of_disjoint hdisj]
+    simp [hp, huv]
+  have hb₀NotPairUnion : b₀ ∉ pairUnion := by
+    simp [pairUnion, hb₀p₁, hb₀p₂, hb₀u, hb₀v]
+  have hb₁NotInsert : b₁ ∉ insert b₀ pairUnion := by
+    simp [pairUnion, hb₀b₁.symm, hb₁p₁, hb₁p₂, hb₁u, hb₁v]
+  have hpacketCard :
+      (insert b₁ (insert b₀ pairUnion)).card = 6 := by
+    simp [hb₁NotInsert, hb₀NotPairUnion, hpairUnionCard]
+  have hpacketSubset : insert b₁ (insert b₀ pairUnion) ⊆ I := by
+    intro x hx
+    rcases Finset.mem_insert.mp hx with rfl | hx
+    · exact hb₁I
+    rcases Finset.mem_insert.mp hx with rfl | hx
+    · exact hb₀I
+    rcases Finset.mem_union.mp hx with hx | hx
+    · rcases Finset.mem_insert.mp hx with rfl | hx
+      · exact hp₁I
+      have : x = p₂ := Finset.mem_singleton.mp hx
+      simpa [this] using hp₂I
+    · rcases Finset.mem_insert.mp hx with rfl | hx
+      · exact huI
+      have : x = v := Finset.mem_singleton.mp hx
+      simpa [this] using hvI
+  calc
+    6 = (insert b₁ (insert b₀ pairUnion)).card := hpacketCard.symm
+    _ ≤ I.card := Finset.card_le_card hpacketSubset
+
+/-- If the interior consists of the four disjoint source points, each blocker
+must be one of the sources from the other pair. -/
+theorem four_interior_forces_both_cross_blocker_coincidences
+    {α : Type*} [DecidableEq α]
+    (I : Finset α) (p₁ p₂ u v b₀ b₁ : α)
+    (hp : p₁ ≠ p₂) (huv : u ≠ v)
+    (hdisj : Disjoint ({p₁, p₂} : Finset α) {u, v})

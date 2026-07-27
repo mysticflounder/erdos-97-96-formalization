@@ -1,0 +1,3 @@
+note: 1087 module(s) / 7889 symbol(s) trusted (🔒 excluded from mine by [mining].skip; still covered by `#print axioms` on the target and the off-spine sorry scan)
+note: skipping 366 indexed module(s) with no olean (unbuilt WIP, not in the verified build) — --verbose to list
+✅ already fresh — 1098 module(s) unchanged at build e8c3b66b7674. No Lean invocation needed.

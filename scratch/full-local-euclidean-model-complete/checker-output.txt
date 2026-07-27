@@ -1,0 +1,36 @@
+PASS: complete exact rational four-class Euclidean model
+hull order: O e f a u c d b v j k l i g h
+strict cap x > 3: a u c d b v
+outside x < 3: O e f j k l i g h
+O-radius 1 class: a b i j; squared radius 100
+O-radius 2 class: u v k l; squared radius 185761/1849
+c-shell class: a b e f; squared radius 6500/121
+d-shell class: u v g h; squared radius 27882168817/339692733
+pinned multiplicities: O=4 e=1 f=1 a=1 u=1 c=4 d=4 b=1 v=1 j=1 k=1 l=1 i=1 g=1 h=1
+fully deletion-robust carrier centers: O
+ApexRichClassStructure carrier centers: O
+raw not-robust cover count: 15 <= 4*14
+ad hoc triple O,c,d: no carrier center is equidistant from all three
+legal critical-shell source->center pairs: e->c f->c a->c u->d b->c v->d g->d h->d
+sources with no legal critical-shell row: O c d i j k l
+MEC support: a l (diameter branch)
+MEC center: (Fraction(464725281, 210418694), Fraction(706910, 2446729)); squared radius: 1724034771729/18096007684
+checked 195 exact positive supporting-edge determinants
+checked 455 exact positive ordered-triple determinants
+minimum exact determinant: 13458371304069/2075414877378445
+coordinates:
+  O: (Fraction(0, 1), Fraction(0, 1))
+  e: (Fraction(3006162, 3469763), Fraction(-10592456, 3469763))
+  f: (Fraction(18330540, 7462367), Fraction(-62738630, 7462367))
+  a: (Fraction(510, 149), Fraction(-1400, 149))
+  u: (Fraction(45255, 5891), Fraction(-37928, 5891))
+  c: (Fraction(13370, 1639), Fraction(-6230, 1639))
+  d: (Fraction(8128660, 877759), Fraction(6538270, 2633277))
+  b: (Fraction(1400, 149), Fraction(510, 149))
+  v: (Fraction(21981, 6407), Fraction(60340, 6407))
+  j: (Fraction(11200, 6449), Fraction(63510, 6449))
+  k: (Fraction(217224, 171355), Fraction(1703743, 171355))
+  l: (Fraction(702099, 706103), Fraction(163780, 16421))
+  i: (Fraction(16650, 17153), Fraction(170720, 17153))
+  g: (Fraction(893894, 2633277), Fraction(10695265, 2633277))
+  h: (Fraction(309328269, 1538711527), Fraction(90811700, 35783989))

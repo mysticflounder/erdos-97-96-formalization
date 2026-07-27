@@ -1,0 +1,62 @@
+{
+  "child_cnf_sha256": "de16a7ca15c4371641561d3467e26dc6c8556f8c2f54fb383688f18787f9fbbb",
+  "child_cube": [
+    -2378,
+    -1530,
+    -1534
+  ],
+  "child_cube_index": 3,
+  "combined_assumptions": [
+    2070,
+    -2106,
+    86126,
+    1578,
+    -22605,
+    22652,
+    -2378,
+    -1530,
+    -1534
+  ],
+  "config": "sat",
+  "config_args": [
+    "--sat"
+  ],
+  "conflicts": 61574,
+  "decisions": 117938,
+  "drat_check": {
+    "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-013/child-03/drat-trim.log",
+    "log_sha256": "13c9513eb31961d38ccfca6fa29a45b314a48ef791239e60ce7f876388da5625",
+    "returncode": 0,
+    "status": "PASS",
+    "timed_out": false
+  },
+  "elapsed_seconds": 18.84179608291015,
+  "epistemic_status": "EXTERNAL_EXACT_CHILD_CNF_VERDICT",
+  "extended_model_check_against_original_cnf": null,
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-013/child-03/cadical.log",
+  "log_sha256": "8c7e743f4d3df981921a055a11cccc290bd4d9b012dca2c5b90a472a0e910376",
+  "model_check_against_child_cnf": null,
+  "orientation": "mirror",
+  "parent_cube": [
+    2070,
+    -2106,
+    86126,
+    1578,
+    -22605,
+    22652
+  ],
+  "parent_cube_index": 13,
+  "proof_artifact": {
+    "format": "gzip-compressed CaDiCaL DRAT",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/recursive-recubing/mirror/parent-013/child-03/proof.drat.gz",
+    "sha256": "45682115b45845d1fd50164ab561c30a6cd0c8b08dcc75e465750fd84a250513",
+    "size_bytes": 4335148
+  },
+  "returncode": 20,
+  "schema": "p97-exact5-card13-distinct-recube-child-v1",
+  "seed": 4211,
+  "solver_status": "UNSAT",
+  "status": "UNSAT",
+  "timed_out": false,
+  "timeout_seconds": 15
+}

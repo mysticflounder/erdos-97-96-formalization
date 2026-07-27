@@ -1,0 +1,51 @@
+'Problem97.BiapexContinuationGridScratch.firstApex_support_strictInterior_card_ge_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.secondApex_support_strictInterior_card_ge_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.exists_twoOppositeApexContinuationRows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.first_strictPair_not_both_mem_secondContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.second_strictPair_not_both_mem_firstContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.firstPair_deletion_membership_classifier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.one_firstPair_blocker_ne_secondContinuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.firstPair_blocker_relocation_at_both_secondCenters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.firstPair_sameRadius_doubleErase_classifier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.selectedRow_hitOutcome' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.prescribed_deletion_blocked_iff_exists_css_alignment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.reciprocalAlternating_four_hitOutcomes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.cyclicAlternating_four_hitOutcomes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.reciprocalAlternating_paired_radius_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.cyclicAlternating_directed_edge_radii' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.reciprocalCSSAligned_cross_deletion_survivals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.BiapexContinuationGridScratch.cyclicCSSAligned_cross_deletion_survivals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

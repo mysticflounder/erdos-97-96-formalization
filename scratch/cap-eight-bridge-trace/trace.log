@@ -1,0 +1,215 @@
+'Problem97.ATailFrontierLiveClosure.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+../scratch/cap-eight-bridge-trace/AxiomTrace.lean:3:0: warning: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+'Problem97.ATailFrontierLiveClosure.exists_three_hit_of_two_collisionRows_capCross_normalForm' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_exactFourCollision_secondRadius_and_all_low_hits' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorBlockerCollision_and_all_low_hits' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApex_all_low_hits' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exists_criticalShell_oppositeCapClassInterior_card_ge_three_of_frontierAllLargeCapsTriApex' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApexUniformMetricResidual' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApexRobustResidual' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.criticalShellCenter_mem_capInteriorByIndex_of_two_hits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.nonempty_retainedInteriorDirectedOmission_of_collision_of_frontierClass_card_ge_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailApexRichClassStructure.oppositeCapRichClassInteriorPattern_of_apexRichClassStructure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailApexRichClassStructure.fullyDeletionRobustAt_of_apexRichClassStructure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+@Problem97.ATailFrontierLiveClosure.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows : ∀
+  {D : Problem97.CounterexampleData} {S : Problem97.SurplusCapPacket D.A} {radius ρ : ℝ}
+  {H : Problem97.CriticalShellSystem D.A} {F : Problem97.ATailCriticalPairFrontier.CriticalPairFrontier D S radius H}
+  {R : Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual F}
+  (P : Problem97.ATailRetainedStrictInteriorPairSelector.RetainedInteriorBlockerCollision R)
+  {Fρ : Problem97.ATailCriticalPairFrontier.CriticalPairFrontier D S ρ H}
+  {Rρ : Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual Fρ}
+  (Pρ : Problem97.ATailRetainedStrictInteriorPairSelector.RetainedInteriorBlockerCollision Rρ),
+  ρ ≠ radius →
+    (Problem97.SelectedClass D.A S.oppApex1 radius).card = 4 →
+      (Problem97.SelectedClass D.A S.oppApex1 ρ).card = 4 →
+        Problem97.SelectedClass D.A S.oppApex1 radius ∩ S.capInteriorByIndex S.oppIndex1 = {P.source₁, P.source₂} →
+          Problem97.SelectedClass D.A S.oppApex1 ρ ∩ S.capInteriorByIndex S.oppIndex1 = {Pρ.source₁, Pρ.source₂} →
+            ∀ {B : Problem97.ATailPhysicalSecondApexCommonDeletion.FrontierBiApexRobustResidual R}
+              {L : Problem97.ATailLargeOppositeCapsBiApexSurface.FrontierLargeOppositeCapsBiApexRobustResidual B}
+              {N : Problem97.ATailFrontierLiveClosure.FrontierAllLargeCapsBiApexRobustResidual L},
+              Problem97.ATailFrontierLiveClosure.FrontierAllLargeCapsTriApexRobustResidual N →
+                (∀ (x : EuclideanSpace ℝ (Fin 2)) (hx : x ∈ D.A),
+                    H.centerAt x hx ≠ x ∧
+                      Problem97.ATailMinimalUniqueFourCover.IsUniqueFourCenter D.A (H.centerAt x hx) ∧
+                        Problem97.ATailMinimalUniqueFourCover.uniqueFourClass D.A (H.centerAt x hx) =
+                          (H.selectedAt x hx).support) →
+                  Disjoint {P.source₁, P.source₂} {Pρ.source₁, Pρ.source₂} →
+                    H.centerAt Pρ.source₁ ⋯ ≠ H.centerAt P.source₁ ⋯ →
+                      ∀ (LPρ : Problem97.ATailRetainedStrictInteriorPairSelector.LocalizedCollisionCommonDeletion P),
+                        LPρ.fresh = Pρ.source₁ →
+                          ∀
+                            (MPρ :
+                              Problem97.ATailLocalizedCollisionMutualOmissionCycle.LocalizedCollisionMutualOmissionCycle
+                                P LPρ)
+                            (LP :
+                              Problem97.ATailRetainedStrictInteriorPairSelector.LocalizedCollisionCommonDeletion Pρ),
+                            LP.fresh = P.source₁ →
+                              ∀
+                                (MP :
+                                  Problem97.ATailLocalizedCollisionMutualOmissionCycle.LocalizedCollisionMutualOmissionCycle
+                                    Pρ LP),
+                                8 ≤ (S.capByIndex S.oppIndex1).card ∨
+                                    H.centerAt P.source₁ ⋯ = Pρ.source₁ ∨
+                                      H.centerAt P.source₁ ⋯ = Pρ.source₂ ∨
+                                        H.centerAt Pρ.source₁ ⋯ = P.source₁ ∨ H.centerAt Pρ.source₁ ⋯ = P.source₂ →
+                                  (∃ i x,
+                                      ∃ (hx : x ∈ D.A),
+                                        ∃ r,
+                                          Problem97.ATailApexRichClassStructure.ApexRichClassStructure D.A
+                                              (S.oppositeVertexByIndex i) ∧
+                                            3 ≤
+                                              ((H.selectedAt x hx).support ∩
+                                                  (Problem97.SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+                                                    S.capInteriorByIndex i)).card) ∨
+                                    Pρ.source₁ ∈ (H.selectedAt P.source₁ ⋯).support ∨
+                                      Pρ.source₂ ∈ (H.selectedAt P.source₁ ⋯).support ∨
+                                        P.source₁ ∈ (H.selectedAt Pρ.source₁ ⋯).support ∨
+                                          P.source₂ ∈ (H.selectedAt Pρ.source₁ ⋯).support
+@Problem97.ATailFrontierLiveClosure.exists_three_hit_of_two_collisionRows_capCross_normalForm : ∀
+  {D : Problem97.CounterexampleData} {S : Problem97.SurplusCapPacket D.A} {radius ρ : ℝ}
+  {H : Problem97.CriticalShellSystem D.A} {F : Problem97.ATailCriticalPairFrontier.CriticalPairFrontier D S radius H}
+  {R : Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual F}
+  (P : Problem97.ATailRetainedStrictInteriorPairSelector.RetainedInteriorBlockerCollision R)
+  {Fρ : Problem97.ATailCriticalPairFrontier.CriticalPairFrontier D S ρ H}
+  {Rρ : Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual Fρ}
+  (Pρ : Problem97.ATailRetainedStrictInteriorPairSelector.RetainedInteriorBlockerCollision Rρ),
+  ρ ≠ radius →
+    (Problem97.SelectedClass D.A S.oppApex1 radius).card = 4 →
+      (Problem97.SelectedClass D.A S.oppApex1 ρ).card = 4 →
+        (Problem97.SelectedClass D.A S.oppApex1 radius ∩ S.capInteriorByIndex S.oppIndex1).card = 2 →
+          (Problem97.SelectedClass D.A S.oppApex1 ρ ∩ S.capInteriorByIndex S.oppIndex1).card = 2 →
+            ∀ {B : Problem97.ATailPhysicalSecondApexCommonDeletion.FrontierBiApexRobustResidual R}
+              {L : Problem97.ATailLargeOppositeCapsBiApexSurface.FrontierLargeOppositeCapsBiApexRobustResidual B}
+              {N : Problem97.ATailFrontierLiveClosure.FrontierAllLargeCapsBiApexRobustResidual L},
+              Problem97.ATailFrontierLiveClosure.FrontierAllLargeCapsTriApexRobustResidual N →
+                (∀ (x : EuclideanSpace ℝ (Fin 2)) (hx : x ∈ D.A),
+                    H.centerAt x hx ≠ x ∧
+                      Problem97.ATailMinimalUniqueFourCover.IsUniqueFourCenter D.A (H.centerAt x hx) ∧
+                        Problem97.ATailMinimalUniqueFourCover.uniqueFourClass D.A (H.centerAt x hx) =
+                          (H.selectedAt x hx).support) →
+                  Disjoint {P.source₁, P.source₂} {Pρ.source₁, Pρ.source₂} →
+                    H.centerAt Pρ.source₁ ⋯ ≠ H.centerAt P.source₁ ⋯ →
+                      Pρ.source₁ ∉ (H.selectedAt P.source₁ ⋯).support ∧
+                          Pρ.source₂ ∉ (H.selectedAt P.source₁ ⋯).support ∧
+                            P.source₁ ∉ (H.selectedAt Pρ.source₁ ⋯).support ∧
+                              P.source₂ ∉ (H.selectedAt Pρ.source₁ ⋯).support ∧
+                                ((H.selectedAt P.source₁ ⋯).support \ S.capByIndex S.oppIndex1).card = 2 ∧
+                                  ((H.selectedAt Pρ.source₁ ⋯).support \ S.capByIndex S.oppIndex1).card = 2 →
+                        ∀ (LPρ : Problem97.ATailRetainedStrictInteriorPairSelector.LocalizedCollisionCommonDeletion P),
+                          LPρ.fresh = Pρ.source₁ →
+                            ∀
+                              (MPρ :
+                                Problem97.ATailLocalizedCollisionMutualOmissionCycle.LocalizedCollisionMutualOmissionCycle
+                                  P LPρ)
+                              (LP :
+                                Problem97.ATailRetainedStrictInteriorPairSelector.LocalizedCollisionCommonDeletion Pρ),
+                              LP.fresh = P.source₁ →
+                                ∀
+                                  (MP :
+                                    Problem97.ATailLocalizedCollisionMutualOmissionCycle.LocalizedCollisionMutualOmissionCycle
+                                      Pρ LP),
+                                  8 ≤ (S.capByIndex S.oppIndex1).card ∨
+                                      H.centerAt P.source₁ ⋯ = Pρ.source₁ ∨
+                                        H.centerAt P.source₁ ⋯ = Pρ.source₂ ∨
+                                          H.centerAt Pρ.source₁ ⋯ = P.source₁ ∨ H.centerAt Pρ.source₁ ⋯ = P.source₂ →
+                                    ∃ i x,
+                                      ∃ (hx : x ∈ D.A),
+                                        ∃ r,
+                                          Problem97.ATailApexRichClassStructure.ApexRichClassStructure D.A
+                                              (S.oppositeVertexByIndex i) ∧
+                                            3 ≤
+                                              ((H.selectedAt x hx).support ∩
+                                                  (Problem97.SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+                                                    S.capInteriorByIndex i)).card
+@Problem97.ATailFrontierLiveClosure.criticalShellCenter_mem_capInteriorByIndex_of_two_hits : ∀
+  {D : Problem97.CounterexampleData} {S : Problem97.SurplusCapPacket D.A} {H : Problem97.CriticalShellSystem D.A}
+  {i : Fin 3} {x : EuclideanSpace ℝ (Fin 2)} (hx : x ∈ D.A),
+  Problem97.ATailApexRichClassStructure.ApexRichClassStructure D.A (S.oppositeVertexByIndex i) →
+    Problem97.ATailMinimalUniqueFourCover.IsUniqueFourCenter D.A (H.centerAt x hx) →
+      ∀ {r : ℝ},
+        2 ≤
+            ((H.selectedAt x hx).support ∩
+                (Problem97.SelectedClass D.A (S.oppositeVertexByIndex i) r ∩ S.capInteriorByIndex i)).card →
+          H.centerAt x hx ∈ S.capInteriorByIndex i
+@Problem97.ATailFrontierLiveClosure.nonempty_retainedInteriorDirectedOmission_of_collision_of_capInterior_card_ge_three : ∀
+  {D : Problem97.CounterexampleData} {S : Problem97.SurplusCapPacket D.A} {radius : ℝ}
+  {H : Problem97.CriticalShellSystem D.A} {F : Problem97.ATailCriticalPairFrontier.CriticalPairFrontier D S radius H}
+  (R : Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual F)
+  (P : Problem97.ATailRetainedStrictInteriorPairSelector.RetainedInteriorBlockerCollision R),
+  3 ≤ (Problem97.SelectedClass D.A S.oppApex1 radius ∩ S.capInteriorByIndex S.oppIndex1).card →
+    Nonempty (Problem97.ATailRetainedMatchingGeometricReduction.RetainedInteriorDirectedOmission R)
+@Problem97.ATailFrontierLiveClosure.nonempty_retainedInteriorDirectedOmission_of_collision_of_frontierClass_card_ge_five : ∀
+  {D : Problem97.CounterexampleData} {S : Problem97.SurplusCapPacket D.A} {radius : ℝ}
+  {H : Problem97.CriticalShellSystem D.A} {F : Problem97.ATailCriticalPairFrontier.CriticalPairFrontier D S radius H}
+  (R : Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual F)
+  (P : Problem97.ATailRetainedStrictInteriorPairSelector.RetainedInteriorBlockerCollision R),
+  5 ≤ (Problem97.SelectedClass D.A S.oppApex1 radius).card →
+    Nonempty (Problem97.ATailRetainedMatchingGeometricReduction.RetainedInteriorDirectedOmission R)
+@Problem97.ATailApexRichClassStructure.oppositeCapRichClassInteriorPattern_of_apexRichClassStructure : ∀
+  {A : Finset (EuclideanSpace ℝ (Fin 2))} (S : Problem97.SurplusCapPacket A),
+  Problem97.ConvexIndep A →
+    ∀ (i : Fin 3),
+      Problem97.ATailApexRichClassStructure.ApexRichClassStructure A (S.oppositeVertexByIndex i) →
+        Problem97.ATailApexRichClassStructure.OppositeCapRichClassInteriorPattern A S i
+@Problem97.ATailApexRichClassStructure.fullyDeletionRobustAt_of_apexRichClassStructure : ∀
+  {D : Problem97.CounterexampleData} {p : EuclideanSpace ℝ (Fin 2)},
+  Problem97.ATailApexRichClassStructure.ApexRichClassStructure D.A p →
+    Problem97.ATailDeletionRobustness.FullyDeletionRobustAt D p
+@Problem97.ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two : ∀ {A : Finset (EuclideanSpace ℝ (Fin 2))}
+  (S : Problem97.SurplusCapPacket A) (i : Fin 3), (S.capInteriorByIndex i).card + 2 = (S.capByIndex i).card

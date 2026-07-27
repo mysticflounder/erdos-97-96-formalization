@@ -1,0 +1,9 @@
+module=Erdos9796Proof.P97.ConvexCyclicOrder.ShellCurvatureTransport
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/8d13614c9cd70e1a-zn69uw8l/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/8d13614c9cd70e1a-zn69uw8l/module.ilean Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureTransport.lean
+
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.

@@ -1,0 +1,7 @@
+current build: fd86d6cf4855
+project symbols: 47731  (7880 trusted 🔒, excluded from mine)
+  mined (fresh):  9215
+  stale:          0 (mined against an older build)
+  never mined:    30636
+
+Run `proof-blueprint refs --refresh` to reconcile.

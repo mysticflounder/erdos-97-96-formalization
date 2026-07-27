@@ -1,0 +1,9 @@
+'Problem97.ATailCard12ReverseEdgeU5AdjacentScratch.dangerousTriple_of_mem_criticalFourShell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCard12ReverseEdgeU5AdjacentScratch.nonempty_reverseEdgeU5AdjacentTerminal_of_thirdCriticalReturn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCard12ReverseEdgeU5AdjacentScratch.false_of_capacity_of_thirdCriticalReturn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

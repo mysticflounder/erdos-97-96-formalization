@@ -1,0 +1,3 @@
+module=Erdos9796Proof.P97.U1Depth5HSlotRecord001F1T2ProductPBReverseManifest
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/f272df9c094e55ac-jz8b2wgc/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/f272df9c094e55ac-jz8b2wgc/module.ilean Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2ProductPBReverseManifest.lean
+

@@ -1,0 +1,141 @@
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-143-  rcases hcard with hfour | hfive <;> omega
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-144-
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-145-/-- Exact four-point residual of the first-apex unique-radius alternative. -/
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:146:structure FirstApexUniqueRadiusExactFourResidual
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-147-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-148-    {H : CriticalShellSystem D.A}
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-149-    (F : CriticalPairFrontier D S radius H) where
+--
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-259-    (hNoM44 : ¬ ∃ T : SurplusCapPacket D.A, T.IsM44)
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-260-    (hcard : 9 < D.A.card)
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-261-    (hunique : OriginalFrontierUniqueRadiusArm F) :
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:262:    Nonempty (FirstApexUniqueRadiusExactFourResidual F) ∨
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-263-      Nonempty
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-264-        (FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F) ∨
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-265-      Nonempty
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-46-
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-47-/-- Open fixed-cardinality-eleven exact-four residual. This is the
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-48-load-bearing production ingress for the checked card-eleven certificate. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:49:theorem false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-50-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-51-    {H : CriticalShellSystem D.A}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-52-    {F : CriticalPairFrontier D S radius H}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:53:    (_R : FirstApexUniqueRadiusExactFourResidual F)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:54:    (_hcard : D.A.card = 11) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-55-    False := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-56-  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-57-
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-58-/-- Open genuinely large-cardinality remainder of the exact-four residual. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:59:theorem false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-60-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-61-    {H : CriticalShellSystem D.A}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-62-    {F : CriticalPairFrontier D S radius H}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:63:    (_R : FirstApexUniqueRadiusExactFourResidual F)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-64-    (_hcard : 12 ≤ D.A.card) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-65-    False := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-66-  sorry
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-69-The no-`(m,4,4)` field excludes carrier cardinality ten; the remaining cases
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-70-are the fixed card-eleven certificate ingress and the card-at-least-twelve
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-71-remainder. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:72:theorem false_of_firstApexUniqueRadiusExactFourResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-73-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-74-    {H : CriticalShellSystem D.A}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-75-    {F : CriticalPairFrontier D S radius H}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:76:    (R : FirstApexUniqueRadiusExactFourResidual F) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-77-    False := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-78-  have hopposite := oppositeCaps_card_ge_four D S
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-79-  have hsum := S.capSum
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-94-    have hcap1 : S.oppCap1.card = 4 := by omega
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-95-    have hcap2 : S.oppCap2.card = 4 := by omega
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-96-    exact R.noM44 ⟨S, hcap1, hcap2⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:97:  by_cases hcard11 : D.A.card = 11
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-98-  · exact
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:99:      false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-100-        R hcard11
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-101-  · exact
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:102:      false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-103-        R (by omega)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-104-
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-105-/-- Open exact-five residual with distinct selected obstruction centers.
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-137-    False := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-138-  rcases firstApexUniqueRadius_residualCases
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-139-      F hmin hNoM44 hcard hunique with hfourResidual | hfiveResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:140:  · exact false_of_firstApexUniqueRadiusExactFourResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-141-      hfourResidual.some
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-142-  · rcases hfiveResidual with hdistinct | hcommon
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-143-    · exact
+--
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-143-  rcases hcard with hfour | hfive <;> omega
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-144-
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-145-/-- Exact four-point residual of the first-apex unique-radius alternative. -/
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:146:structure FirstApexUniqueRadiusExactFourResidual
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-147-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-148-    {H : CriticalShellSystem D.A}
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-149-    (F : CriticalPairFrontier D S radius H) where
+--
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-259-    (hNoM44 : ¬ ∃ T : SurplusCapPacket D.A, T.IsM44)
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-260-    (hcard : 9 < D.A.card)
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-261-    (hunique : OriginalFrontierUniqueRadiusArm F) :
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:262:    Nonempty (FirstApexUniqueRadiusExactFourResidual F) ∨
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-263-      Nonempty
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-264-        (FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F) ∨
+lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean-265-      Nonempty
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-46-
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-47-/-- Open fixed-cardinality-eleven exact-four residual. This is the
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-48-load-bearing production ingress for the checked card-eleven certificate. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:49:theorem false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-50-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-51-    {H : CriticalShellSystem D.A}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-52-    {F : CriticalPairFrontier D S radius H}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:53:    (_R : FirstApexUniqueRadiusExactFourResidual F)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:54:    (_hcard : D.A.card = 11) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-55-    False := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-56-  sorry
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-57-
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-58-/-- Open genuinely large-cardinality remainder of the exact-four residual. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:59:theorem false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-60-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-61-    {H : CriticalShellSystem D.A}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-62-    {F : CriticalPairFrontier D S radius H}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:63:    (_R : FirstApexUniqueRadiusExactFourResidual F)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-64-    (_hcard : 12 ≤ D.A.card) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-65-    False := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-66-  sorry
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-69-The no-`(m,4,4)` field excludes carrier cardinality ten; the remaining cases
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-70-are the fixed card-eleven certificate ingress and the card-at-least-twelve
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-71-remainder. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:72:theorem false_of_firstApexUniqueRadiusExactFourResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-73-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-74-    {H : CriticalShellSystem D.A}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-75-    {F : CriticalPairFrontier D S radius H}
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:76:    (R : FirstApexUniqueRadiusExactFourResidual F) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-77-    False := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-78-  have hopposite := oppositeCaps_card_ge_four D S
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-79-  have hsum := S.capSum
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-94-    have hcap1 : S.oppCap1.card = 4 := by omega
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-95-    have hcap2 : S.oppCap2.card = 4 := by omega
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-96-    exact R.noM44 ⟨S, hcap1, hcap2⟩
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:97:  by_cases hcard11 : D.A.card = 11
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-98-  · exact
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:99:      false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-100-        R hcard11
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-101-  · exact
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:102:      false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-103-        R (by omega)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-104-
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-105-/-- Open exact-five residual with distinct selected obstruction centers.
+--
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-137-    False := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-138-  rcases firstApexUniqueRadius_residualCases
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-139-      F hmin hNoM44 hcard hunique with hfourResidual | hfiveResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:140:  · exact false_of_firstApexUniqueRadiusExactFourResidual
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-141-      hfourResidual.some
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-142-  · rcases hfiveResidual with hdistinct | hcommon
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean-143-    · exact

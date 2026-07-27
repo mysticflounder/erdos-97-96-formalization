@@ -1,0 +1,6 @@
+'Problem97.ATailCardGe14FaithfulCarrierEscapeScratch.nonempty_canonical565Skeleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCardGe14FaithfulCarrierEscapeScratch.exists_faithfulRow_escape_from_canonical565_of_card_ge_fourteen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

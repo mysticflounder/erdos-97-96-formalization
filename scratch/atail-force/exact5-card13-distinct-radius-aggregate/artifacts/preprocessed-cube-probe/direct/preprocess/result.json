@@ -1,0 +1,48 @@
+{
+  "command": [
+    "cadical",
+    "--default",
+    "-P3",
+    "-c",
+    "0",
+    "-t",
+    "60",
+    "-o",
+    "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/preprocessed-cube-probe/direct/preprocess/simplified.cnf",
+    "-e",
+    "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/preprocessed-cube-probe/direct/preprocess/extension.stack",
+    "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/direct.cnf"
+  ],
+  "elapsed_seconds": 3.6004023329587653,
+  "epistemic_status": "EXTERNAL_EQUI-SAT_PREPROCESSING_ONLY",
+  "extension_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/preprocessed-cube-probe/direct/preprocess/extension.stack",
+  "extension_sha256": "eb3e902f1f72ca2eacbce50686cfccb5716a814a1b4eb34c6340dbd2d2683c54",
+  "extension_size_bytes": 4810069,
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/preprocessed-cube-probe/direct/preprocess/cadical.log",
+  "log_sha256": "77241ed58681e46cf66e15f203bd4f6cca236f715ab90b356f69efa7b9789512",
+  "orientation": "direct",
+  "original_cnf_inspection": {
+    "declared_clauses": 677677,
+    "declared_variables": 73190,
+    "header": "p cnf 73190 677677",
+    "maximum_variable_used": 73190,
+    "sha256": "1669221a2e8791256c92038be8577e85ea1dc3204d0acfa106b064460a5dcff8",
+    "size_bytes": 31015576
+  },
+  "original_cnf_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/direct.cnf",
+  "preprocess_rounds": 3,
+  "returncode": 0,
+  "schema": "p97-exact5-card13-distinct-preprocess-cell-v1",
+  "simplified_cnf_inspection": {
+    "declared_clauses": 375841,
+    "declared_variables": 91271,
+    "header": "p cnf 91271 375841",
+    "maximum_variable_used": 91271,
+    "sha256": "7ae2f7de798b22a6dd06e78afae1dc819b405986738f79d565451e1c57cdb8be",
+    "size_bytes": 22252848
+  },
+  "simplified_cnf_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/preprocessed-cube-probe/direct/preprocess/simplified.cnf",
+  "status": "PREPROCESSED",
+  "timed_out": false,
+  "timeout_seconds": 60
+}

@@ -1,0 +1,16 @@
+'FullTriApexExactTwoIncidenceModel.cap_partition_profile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FullTriApexExactTwoIncidenceModel.blocker_cover_profile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FullTriApexExactTwoIncidenceModel.canonical_four_row_profile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'FullTriApexExactTwoIncidenceModel.exact_two_collision_profile' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'FullTriApexExactTwoIncidenceModel.tri_apex_rich_profile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FullTriApexExactTwoIncidenceModel.planar_circle_intersection_shadow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'FullTriApexExactTwoIncidenceModel.all_low_hit_profile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FullTriApexExactTwoIncidenceModel.collision_leaf_conclusion_fails' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

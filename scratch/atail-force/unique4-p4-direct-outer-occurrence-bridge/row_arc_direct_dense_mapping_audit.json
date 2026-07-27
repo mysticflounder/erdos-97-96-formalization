@@ -1,0 +1,12 @@
+{
+  "combined_direct_occurrence_count": 10614,
+  "conflicting_dense_variables": {},
+  "dense_variable_to_semantic_atom_functional": true,
+  "distinct_direct_dense_variables": 1962,
+  "family_occurrence_counts": {
+    "direct_memberships_imply_row_pattern": 1265,
+    "direct_no_four_turn_disjoint_outer_arcs": 6170,
+    "direct_row_pattern_implies_outer_arc": 3179
+  },
+  "method": "source core order authenticates each dense literal; emitted row/arc pairs use terminal order"
+}

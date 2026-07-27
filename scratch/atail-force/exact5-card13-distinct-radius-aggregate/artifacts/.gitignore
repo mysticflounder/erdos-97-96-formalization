@@ -1,0 +1,9 @@
+# Keep replay logs and large solver products local.  The compact JSON
+# manifests remain visible to version control.
+*.cnf
+*.drat
+*.drat.gz
+*.log
+*.model
+*.icnf
+*.stack

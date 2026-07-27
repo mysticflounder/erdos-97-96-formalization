@@ -192,3 +192,15 @@ scratch/atail-force/exact7-role-coverage-gate/l2u_fcq_ledger_shard*.jsonl
 scratch/atail-force/exact7-role-coverage-gate/l2u_fcq_kills.json
 scratch/atail-force/exact7-role-coverage-gate/smoke_l2u_fc_results.json
 scratch/atail-force/exact7-role-coverage-gate/probe_l2u_stageb_results.json
+
+# Project-wide scratch generated artifacts (regenerate, do not commit by default).
+/scratch/**/*.log
+/scratch/**/*.out
+/scratch/**/*.lrat
+/scratch/**/*.cnf
+/scratch/**/*.drat
+/scratch/**/*.tsv
+/scratch/**/*.stderr
+/scratch/**/*.stdout
+/scratch/**/*.time
+/scratch/**/*.lock

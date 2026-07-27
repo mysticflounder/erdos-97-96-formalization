@@ -1,0 +1,7 @@
+current build: ea4bd3821d1b
+project symbols: 16998  (7880 trusted 🔒, excluded from mine)
+  mined (fresh):  0
+  stale:          9096 (mined against an older build)
+  never mined:    22
+
+No graph for this build. Run `proof-blueprint refs --refresh`.

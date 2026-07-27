@@ -1,0 +1,9 @@
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_blockerVRowOther_uHeavy_exactFive_goodSource_restart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_blockerVRowOther_uHeavy_exactFive_goodSource_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceEqU_blockerVRowOther_uHeavy_exactFive_goodSource_oldDeleted_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

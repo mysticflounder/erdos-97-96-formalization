@@ -1,0 +1,979 @@
+    A (Slightly) Stronger Lower Bound on the Number of Distinct
+            Distances from a Vertex of a Convex Polygon
+                                            Scott Duke Kominers∗
+
+                                                 July 25, 2026
+
+
+
+                                                    Abstract
+           Let fconv (n) be the largest integer such that every set of n points in convex position in the
+        plane contains a point from which at least fconv (n) distinct distances are measured. Refining
+        the good-edge–and–witness method of Nivasch, Pach, Pinchasi, and Zerbib, we prove that
+                                                               
+                                                      13     3
+                                       fconv (n) ≥ 36    + 5270   n − O(1),
+
+        (slightly) improving their bound 13           1
+                                                         
+                                               36 + 22701 n − O(1). The new ingredients are an exact
+        three-neighborhood matching argument for the support sets of successive smallest enclosing
+        circles, anchored at the original support set; an adaptive accounting that credits the exact
+        quadratic imbalance of the original cap sizes in every case; and an aggregate escape test that
+        exploits the drift of all three original support points simultaneously.
+
+
+1       Introduction
+A classical conjecture of Erdős [6, 7] asserts that every set of n points in convex position in the plane
+contains a point that determines at least ⌊n/2⌋ distinct distances to the remaining points (Problem
+#982 [3]). Since every vertex of the regular n-gon determines exactly ⌊n/2⌋ distinct distances,
+the conjecture states that fconv (n) = ⌊n/2⌋, where fconv (n) denotes the largest integer such that
+every such set contains a point determining at least fconv (n) distinct distances. Moser [12] proved
+fconv (n) ≥ ⌈n/3⌉, while Szemerédi’s double-counting argument gives the essentially identical
+bound fconv (n) ≥ ⌈(n − 1)/3⌉ (see [7]). Dumitrescu [5] obtained fconv (n) ≥ 13n/36 − O(1)        in 2006.
+                                                                                    13     1
+                                                                                               
+Nivasch, Pach, Pinchasi, and Zerbib [13] sharpened the bound to fconv (n) ≥ 36 + 22701 n − O(1),
+which has remained the tightest standing benchmark for the problem since 2013. (See also [4].)
+    The conjecture concerns the number of distinct distances measured from a single point. For
+counting the distinct distances determined by all pairs of points, the convex case is settled: Altman
+[2] proved that n points in convex position always determine at least ⌊n/2⌋ distinct distances in
+total, while for arbitrary planar point sets the all-pairs problem was resolved up to logarithmic
+factors by Guth and Katz [10]. For the single-point count, on the other hand, the conjectured
+    ∗
+    Harvard Business School; Department of Economics and Center of Mathematical Sciences and
+Applications, Harvard University; and a16z crypto. I used LLMs to assist with computations, coding,
+analysis, and synthesis in the preparation of this article, especially GPT-5.6 Sol and Claude Fable 5 (both accessed
+in part via Poe with the support of Quora, where I am an advisor). The problem, final methods, and final written
+form are my own; and of course any errors remain my responsibility. This work was conducted while I was visiting
+the Technological Innovation, Entrepreneurship, and Strategic Management (TIES) Group at the MIT Sloan School
+of Management; I greatly appreciate their hospitality.
+
+
+                                                         1
+exact half-bound does not extend verbatim from convex to general position: Szemerédi conjectured
+(see [7]) that convexity can be replaced by the assumption that no three of the points lie on a line,
+and this strengthening fails. An eight-point configuration found by Harborth — the vertices of
+two concentric squares at 45◦ whose side lengths have ratio 2 cos 15◦ , with no three of the eight
+points collinear — has the property that every point determines exactly three distinct distances,
+one fewer than ⌊8/2⌋.1 The all-pairs form of Szemerédi’s conjecture remains open.
+    In this note we prove the following improvement of the bound of [13].
+                                 13         3 
+Theorem 1. fconv (n) ≥                 +         n − O(1).
+                                  36       5270
+       For comparison, Dumitrescu’s coefficient is 13                                   13
+                                                   36 , while the additive terms beyond 36 are
+
+                             1                                       3
+                                 ≈ 4.4051 · 10−5               ⇝        ≈ 5.6926 · 10−4 .
+                           22701
+                           |        {z         }                   5270
+                                                                   |       {z         }
+                       Nivasch–Pach–Pinchasi–Zerbib [13]                  this paper
+
+Thus the new additive term—while only a slight improvement in the grand scheme of things—is
+roughly 12.92 times the previous one.
+    The proof further refines the iteration method of [13], which we first review. An edge of the
+point set is said to be good if its perpendicular bisector meets the set in at most one point; a
+good edge is the base of at most one isosceles triangle, and a double-counting argument going
+back to Szemerédi converts a lower bound of βn2 − O(n) on the number of good edges into
+fconv (n) ≥ 1+β
+              3 n − O(1) (Section 2). Good edges are produced by caps: runs of consecutive vertices
+confined to one side of a circular chord subtending at most a semicircle, along which distances
+measured from either end increase monotonically. The support points of the smallest enclosing
+circle divide the point set into at most three caps, and in a cap of t points at most t2 /4 pairs
+admit an equidistant point of the set (a witness) inside the cap, so the three caps contain at least
+n2
+ 12 − O(n) good edges; through the transfer this is Dumitrescu’s bound. To gain εn, Nivasch, Pach,
+Pinchasi, and Zerbib [13] delete the support points and recompute the smallest enclosing circle,
+for a number of steps proportional to n. If every support point encountered stays within circular
+distance a small constant times n of the original support set, then step i yields about n − 6i new
+good edges incident to the points deleted at that step, and the steps together beat the baseline. If
+instead some current support point escapes beyond that distance from all three original support
+points, then a window of consecutive current vertices around it lies inside a single original cap,
+hence is itself a cap, and Lemma 12 of [13] — in a cap of 2t consecutive vertices, at most 78 t2 + O(t)
+of the t2 pairs joining the two halves are witnessed inside the cap — yields 18 t2 − O(t) additional
+good edges; these straddle two current caps and are therefore disjoint from the baseline, which
+in this case is recounted inside the current caps and corrected for the reinstated deleted points.
+                                      1
+Balancing the two cases gives ε = 22701  .
+    Our gain comes from five modifications of the scheme, described here informally; the formulas
+appear in Sections 3 and 4. First, the auxiliary window to which Lemma 12 of [13] is applied is
+anchored at a point of the original support set rather than at a current support point, so that
+   1
+     This configuration first appeared in print in work of Erdős and Fishburn [8], and was studied in detail by
+Fishburn [9]. The same configuration was rediscovered independently in 2026 by a DeepMind theorem-proving
+agent, which autonomously produced a machine-verified (Lean) counterexample to the single-point statement; the
+match with Harborth’s configuration in the earlier literature was identified shortly afterwards. (See the discussion
+surrounding Problem #1082 on Bloom’s forum [3], which also records a larger construction of Xichuan — two
+concentric regular 21-gons, giving 42 points with no three collinear in which every point determines only 20 < ⌊42/2⌋
+distinct distances — together with a reported infinite family of the same type.)
+
+
+                                                           2
+the baseline count of good edges, taken inside the original caps of the full point set, needs no
+correction for deleted points, and the two cap decompositions exchange roles (the current caps
+certify that the window is a cap, the original caps certify disjointness of the two edge families).
+Second, we use the exact imbalance of the original caps to reduce the target that the window must
+still supply. Third, so long as the support set has not drifted far, each step matches one current
+support point to each original site, which limits how many previously deleted points can re-enter a
+window. Fourth, we watch all three original sites at once, aggregating their separate escape gains
+rather than only the most-abandoned one. Fifth, when no aggregate escape occurs, a convexity
+(Jensen) inequality controls the total residual invalidation across the three sites, which is what
+                                                                                          3
+lets the exact imbalance be credited in every case. Together these yield the extra term 5270 . The
+statements we import from [13] — its Lemmas 2, 6, and 12 and Corollary 7 — are reproduced
+in Section 2, so the argument can be read without consulting [13]. One further ingredient, an
+extension of [13, Lemma 10] in which the equidistant point is allowed to lie outside the current
+set, is stated and proved there as Lemma 9, since the deletion argument applies it to previously
+deleted points.
+     Two remarks delimit the method. There are sets in convex position spanning 34 + o(1) n2
+                                                                                               
+
+isosceles triangles [13] (which Aggarwal [1] conjectured to be extremal); consequently no bound
+          5
+beyond 12   n can follow from the reduction in Lemma 3 below. Moreover, related additive variants
+of Lemma 12 of [13] were studied by Lev and Pinchasi [11], who showed that the constant in that
+lemma cannot be lowered below 35 . Any improvement from 78 towards 35 would further improve
+Theorem 1.
+
+
+2    Preliminaries
+Let P be a set  of n points in convex position. Following [5, 13], for any X ⊆ P , we say that an
+edge uv ∈ X2 is good in X if the perpendicular bisector of uv contains at most one point of X,
+              
+
+and bad in X otherwise; a point x ∈ X \ {u, v} with |xu| = |xv| is an X-witness for uv. Thus uv
+is good in X exactly when it has at most one X-witness. We abbreviate “good in P ” to good
+and “P -witness” to witness, and write G(P ) for the number of good edges of P ; every subset X
+inherits the cyclic order of P . Let Z(P ) denote the number of isosceles triangles determined by
+P , each equilateral triangle counted three times. Since no three points of P are collinear, the
+perpendicular bisector of an edge contains at most two points of P , whence we have
+                                                    !
+                                               n
+                                     Z(P ) ≤ 2   − G(P ).                                      (1)
+                                               2
+
+Throughout the paper, all O(·) terms carry absolute implied constants, uniform over the point sets,
+steps, and parameters under consideration; the same uniformity holds for the O(t) term imported
+in Lemma 10 below.
+    The following lemma of [13] refines a double-counting argument of Szemerédi (see [7]); it
+converts upper bounds on the number of isosceles triangles into lower bounds on the number of
+distinct distances measured from a point.
+
+Lemma 2 ([13, Lemma 2]). If Z(P ) ≤ αn2 + O(n) for a constant α ≤ 1, then P contains a point
+from which at least 2−α
+                     3 n − O(1) distinct distances are measured.
+
+Lemma 3 (Good-edge reduction). If G(P ) ≥ βn2 − O(n) for a constant β ≥ 0, then P contains
+a point from which at least 1+β
+                             3 n − O(1) distinct distances are measured.
+
+
+                                                3
+Proof. By (1), the hypothesis of the lemma implies that Z(P ) ≤ (1 − β)n2 + O(n), and Lemma 2
+with α = 1 − β gives the claim.
+
+2.1    Caps and Witnesses
+Definition 4 ([13, Definition 3]). A set Q = {x1 , . . . , xt } of points in convex position, listed in
+cyclic order, is a cap with endpoints x1 and xt if there is a circle through x1 and xt such that Q
+lies in the closed region bounded by the chord x1 xt and an arc of that circle of length at most a
+semicircle.
+    As observed in [13], Q is a cap if and only if ∠x1 xi xt ≥ π/2 for all 1 < i < t, and, by convexity,
+if and only if ∠xi xj xk ≥ π/2 whenever i < j < k. This characterization yields two facts that
+we use repeatedly. First, every subset of a cap with at least two points is a cap; in particular,
+every point of a cap is an endpoint of the sub-cap on either side of it. Second, distances from an
+endpoint increase strictly,
+                                   |x1 x2 | < |x1 x3 | < · · · < |x1 xt |,
+since ∠x1 xi xi+1 is the largest angle of the triangle x1 xi xi+1 . Combining the two facts, the distances
+from any point of a cap to the other points increase strictly as one moves away from it, on either
+side.
+     Caps enter the question at hand through an observation of Moser [12]: on a smallest enclosing
+circle of a finite set S in convex position one can choose two or three support points of S dividing
+the circle into arcs of length at most a semicircle, and these support points divide S into at most
+three caps that meet only at the support points. Indeed, the points of S between two circularly
+consecutive support points are separated by the chord joining them from the rest of S, and they
+lie inside the enclosing circle, hence in the region bounded by that chord and an arc of at most a
+semicircle.
+Lemma 5 (A bad edge has a witness on each chain). Let u, v be vertices of a convex polygon. If
+uv is bad, then one witness for uv lies on each of the two boundary chains from u to v, the two
+paths into which u and v divide the boundary of the polygon. (See Figure 1.)
+Proof. The perpendicular bisector of uv passes through the midpoint of uv, and its two rays from
+this midpoint lie in the two open half-planes bounded by the line uv. Since the polygon is convex,
+each ray meets the boundary at most once, and the two boundary chains from u to v lie in the
+two corresponding closed half-planes. If the bisector contains two vertices of the polygon, these
+vertices therefore lie on different chains.
+
+     In what follows, S denotes a subset of P carrying the cyclic order inherited from P (in our
+applications, S is P itself or a set obtained from P by deletions), and Q ⊆ S. Suppose now that a
+cap Q, with endpoints a and b, consists of consecutive vertices of S. The interval spanned by Q is
+the set of points of P — not merely of S — consisting of a, b, and the boundary chain of P from
+a to b that contains Q \ {a, b}; it is linearly ordered from a to b, so “between” is unambiguous
+inside it. We say that a witness lies in Q if it belongs to Q. By Lemma 5, an edge with both
+endpoints in Q that is bad in S has an S-witness strictly between its endpoints, and that witness
+lies in Q; conversely, an edge of Q with no witness in Q has at most one S-witness altogether and
+is therefore good in S. Finally, for points lying in the interval spanned by Q, our notion of witness
+coincides with the one used in [13] (a point on the perpendicular bisector not separated from Q by
+the line ab). With this identification of witnesses, the cited results (Lemmas 6, 8, and 10) apply in
+the equivalent forms stated below.
+
+                                                    4
+                                                    `
+                                                    x
+
+
+
+
+                                   u                               v
+
+
+                                                      x0
+
+
+Figure 1: A bad edge uv: its perpendicular bisector ℓ carries one witness on each boundary chain,
+here x and x′ , with |xu| = |xv| and |x′ u| = |x′ v|. Conversely, an edge whose perpendicular bisector
+contains at most one point of P is good.
+
+Lemma 6 (witness ordering; [13, Lemma 6]). Let Q ⊆ S be a cap with endpoints a and b, let
+c ∈ Q, and let x, y ∈ S be witnesses for ac and for ab, respectively, neither separated from Q by
+the line ab. Then the line through a and y separates x from b; in particular, x ̸= y.
+Corollary 7. Let Q be a cap consisting of consecutive vertices of S, and let x be a point of P
+lying in the interval spanned by Q. Then the edges uv of Q such that |xu| = |xv| and x lies strictly
+between u and v form a matching.
+Proof. Suppose x witnesses two such edges sharing a vertex u. Since x lies strictly between u
+and each of the other endpoints, those endpoints lie on the same side of u in the interval; so the
+edges are uv and uv ′ with v strictly between u and v ′ , and x lies strictly between u and v, hence
+strictly between u and v ′ . The points of Q from u to v ′ form a sub-cap with endpoints u and v ′
+containing v; the point x, like the interior of this sub-cap, lies on the boundary chain of P from u
+to v ′ inside the interval, so it is not separated from the sub-cap by the line uv ′ . Applying Lemma 6
+with S = P , taking a = u, b = v ′ , c = v, and with x = y the common witness, gives x ̸= x, a
+contradiction.
+                                                                                  2
+Lemma 8 ([13, Corollary 7]). A cap consisting of t points contains at most t4 edges that have a
+witness in the cap.
+Lemma 9 (endpoint edges; ambient form). Let Q ⊆ P be a cap of t points with endpoints a and b.
+Every point x ∈ P not separated from Q by the line ab witnesses at most one of the 2t − 3 edges
+joining a or b to another point of Q. In particular, at least t − 1 of these edges have no witness
+in Q.
+Proof. The case t = 2 is immediate, so assume t ≥ 3. Let Γ be the boundary chain of P from a to
+b on the same side of ab as Q \ {a, b}; by convexity every point of P \ {a, b} not separated from Q
+by ab lies on Γ. Call an edge joining a to another point of Q an a-edge, and an edge joining b to
+another point an b-edge; write proper for an a- or b-edge other than ab itself.
+
+                                                  5
+                                                        c
+                                           x
+                                       ¡                       > ¼=2
+
+
+
+                                 a                                          b
+                                                   jxaj = jxcj < jxbj
+
+
+
+Figure 2: The claim (2) in the proof of Lemma 9: a witness x (open circle) for the a-edge ac (solid)
+lies strictly between a and c on the chain Γ and satisfies |xa| = |xc| (equal ticks). The diagonal ca
+lies inside the shaded angle ∠xcb, which therefore exceeds the cap angle ∠acb ≥ π/2 (thin arc),
+forcing |xb| > |xc|. Thus a witness of a proper a-edge is strictly nearer to a than to b; the mirror
+statement for b-edges makes the two roles incompatible, and the same isosceles-angle argument
+shows that no point witnesses two proper a-edges.
+
+
+   Let c ∈ Q \ {a, b} and suppose x ∈ Γ witnesses the a-edge ac. We claim that x occurs strictly
+between a and c on Γ and that
+                                       |xa| = |xc| < |xb|.                                   (2)
+(See Figure 2.) By strict increase of distances from b along the cap, b cannot witness ac; hence
+a, c, x, b are four distinct points. Were c to occur before x on Γ, then in the convex quadrilateral
+a, c, x, b the diagonal cb would lie strictly inside the angle ∠acx, giving ∠acx > ∠acb ≥ π/2, where
+the last inequality is the cap condition; but in the isosceles triangle acx with |xa| = |xc| the base
+angles at a and c are equal and acute, a contradiction. Hence the order on Γ is a, x, c, b. In the
+convex quadrilateral a, x, c, b the diagonal ca lies strictly inside ∠xcb, so ∠xcb > ∠acb ≥ π/2;
+therefore |xb| > |xc| = |xa|, proving (2). The mirrored argument, beginning with the analogous
+observation that a cannot witness a proper b-edge, shows that if x witnesses a proper b-edge bc,
+then |xb| = |xc| < |xa|.
+    The two strict inequalities are incompatible, so no point witnesses both a proper a-edge and a
+proper b-edge; and a witness for ab has |xa| = |xb|, so it witnesses no proper edge either. Finally,
+no point witnesses two proper a-edges: if x witnessed ac and ac′ with c before c′ on Γ, then (2)
+places the points in the order a, x, c, c′ , and in the convex quadrilateral a, x, c, c′ the diagonal ca
+lies strictly inside ∠xcc′ , whence ∠xcc′ > ∠acc′ ≥ π/2; but |xc| = |xa| = |xc′ | makes ∠xcc′ a base
+angle of an isosceles triangle, a contradiction. The argument for two proper b-edges is symmetric.
+Thus every point of Γ witnesses at most one endpoint edge, and by the strict increase of distances
+from an endpoint of a cap, we see that the points a and b witness none.
+     For the last statement, only the t − 2 points of Q \ {a, b} can witness an endpoint edge from
+within Q, each at most one, so at most t − 2 of the 2t − 3 endpoint edges have a witness in Q,
+leaving at least t − 1 with none.
+
+Lemma 10 ([13, Lemma 12]). Let Q = {q1 , . . . , q2t } be a cap, the points appearing in this cyclic
+order, and put L = {q1 , . . . , qt } and R = {qt+1 , . . . , q2t }. Then at most 78 t2 + O(t) of the t2 edges
+of L × R have a witness in Q.
+
+Lemma 11 (Good edges in a cap). Let Q be a cap consisting of t consecutive vertices of S. Then
+          2
+at least t4 − O(t) edges with both endpoints in Q have no witness in Q; in particular, these edges
+are good in S.
+
+
+                                                       6
+Proof. By Lemma 8, at most t2 /4 of the 2t edges of Q have a witness in Q; by the discussion
+                                               
+                                  2
+preceding Lemma 6, the remaining t4 − O(t) edges are good in S.
+
+Lemma 12 (Cross-edge extraction). In the setting of Lemma 10, suppose in addition that Q
+consists of consecutive vertices of S. Then at least 18 t2 − O(t) of the t2 edges of L × R have no
+witness in Q; in particular, these edges are good in S.
+
+Proof. Immediate from Lemma 10 and the discussion preceding Lemma 6.
+
+    In Sections 3 and 4 we shall delete vertices from P in steps, producing a decreasing chain
+P = P1 ⊇ P2 ⊇ · · · of current point sets; the points of P \ Pi are then called deleted. An edge that
+is good in a current set need not be good in P : a deleted vertex, once restored to consideration,
+can serve as a second witness and invalidate the edge, that is, make it bad in P . The last lemma
+of this section bounds this loss for the cross-edges of Lemma 12, with S playing the role of the
+current set.
+
+Lemma 13 (Restoring deleted vertices). In the setting of Lemma 12, let D be the set of points
+of P \ S lying in the interval spanned by Q. Then at most |D| t of the edges of L × R having no
+witness in Q are bad in P .
+
+Proof. Suppose an edge uv ∈ L × R with no witness in Q is bad in P . By Lemma 5, one of its
+two witnesses in P lies on the boundary chain from u to v contained in the interval spanned by Q;
+the points of S on that chain belong to Q and do not witness uv, so this witness is a point x ∈ D,
+lying strictly between u and v. For fixed x ∈ D, the edges of L × R witnessed by x in this way
+form a matching by Corollary 7, so there are at most t of them. Summing over x ∈ D proves the
+lemma.
+
+
+3    Support Sets, Cap Imbalance, and Local Matching
+For p, q ∈ P , let distcirc (p, q) denote the points’ circular distance, i.e., the smaller number of
+polygon edges on the two boundary paths joining p and q. For a nonempty subset X ⊆ P we write
+distcirc (p, X) = minx∈X distcirc (p, x) for the circular distance from p to the nearest point of X.
+    Starting with P1 = P , we perform the deletion procedure of [13]. Let Ci be the smallest
+enclosing circle of Pi , with center oi . At step i, choose a support set
+
+                        Bi ⊆ Pi ∩ ∂Ci ,      |Bi | ∈ {2, 3},     oi ∈ conv(Bi ),
+
+and put Pi+1 = Pi \ Bi ; equivalently, Ci is the smallest enclosing circle of Bi . Such a set exists: the
+center of a smallest enclosing circle lies in the convex hull of its contact points Pi ∩ ∂Ci (otherwise
+the circle could be translated towards that hull and then shrunk), and by Carathéodory’s theorem
+in the plane, oi lies in the convex hull of at most three of them. If a contact pair whose hull
+contains oi exists, we choose it; such a pair is necessarily antipodal, since two points of ∂Ci whose
+segment contains the center are diametrically opposite. Otherwise we choose such a triple; the
+containment oi ∈ conv(Bi ) then implies that the three points cut ∂Ci into arcs each at most a
+semicircle. Thus at most three vertices are deleted per step, and the procedure is used only for
+i ≤ ⌊dn⌋ with the small constant d fixed in Section 4, so |Pi | ≥ n − 3(i − 1) remains proportional
+to n. Let A = B1 be the original support set.
+
+
+
+
+                                                   7
+                                                    w1
+
+                               g1 n
+                                                                                     g3 n
+
+
+
+
+                                 w2
+                                                                              w3
+
+                                                g2 n
+
+
+Figure 3: The original three-point support set A = {w1 , w2 , w3 } of the smallest enclosing circle
+of P splits P into three caps of sizes g1 n + 1, g2 n + 1, g3 n + 1,overlapping only at the points of
+                                                            1
+A. The caps alone yield the exact-imbalance baseline 12        + EA n2 − O(n) of Lemma 14, with no
+correction for later deletions.
+
+   If A comprises just two distinct vertices, they divide P into two caps, and Lemma 11 with
+Cauchy–Schwarz gives G(P ) ≥ 18 n2 − O(n), more than we need. More precisely, if the two circular
+gap proportions are g and 1 − g, then
+                                       "                    2 #
+                                       1 1    1
+                                                
+                               G(P ) ≥  +  g−                        n2 − O(n),
+                                       8 2    2
+                                                                            2 
+                                                         3   1
+so Lemma 3 gives a vertex determining at least           8 + 6       g − 12          n − O(1) distinct distances. We
+may therefore assume that A = {w1 , w2 , w3 } consists of three distinct vertices. Let h1 , h2 , h3 be
+the numbers of polygon edges in the three circular gaps between consecutive points of A, so that
+h1 + h2 + h3 = n; put gj = hj /n, so g1 + g2 + g3 = 1, and ρ = minj gj . Then each original cap has
+gj n + 1 vertices, and any two points of A have circular distance at least ρn; if 2α < ρ, the three
+closed αn-neighborhoods of the points of A are pairwise disjoint. (See Figure 3.)
+Lemma 14 (Cap-imbalance gain). Put
+                                              
+                                3                                                       2
+                             1          1                         3                1
+                                X                                                          
+                         EA =     gj2 −  ,               E(ρ) =                    −ρ .
+                             4 j=1      3                         8                3
+
+Then we have
+                                   1
+                                          
+                     G(P ) ≥          + EA n2 − O(n)                 and             EA ≥ E(ρ).
+                                   12
+Proof. By Lemma 11, the three caps contain at least 14 (g12 + g22 + g32 )n2 − O(n) good edges, and no
+edge is counted twice, since two distinct caps share at most one vertex. The definition of EA gives
+
+                                                    8
+the first claim exactly. For fixed ρ = min{gj } the sum of squares is minimized when the other two
+                                         2                 2
+lengths are equal, so j gj2 ≥ ρ2 + (1−ρ)   = 31 + 32 13 − ρ , which gives EA ≥ E(ρ).
+                       P
+                                       2
+
+Lemma 15 (Three-neighborhood matching). Let B ⊆ P be nonempty with at most three points,
+and let α ≥ 0 satisfy 2α < ρ. Suppose that
+
+                                min distcirc (w, b) ≤ αn       (w ∈ A).
+                                b∈B
+
+Then B has exactly three points and there is a unique bijection w 7→ b(w) from A to B such that
+
+                                       distcirc (w, b(w)) ≤ αn.
+
+Moreover, b(w) is the unique point of B nearest to w, w is the unique point of A nearest to b(w),
+and therefore
+                   distcirc (w, b(w)) = min distcirc (w, b) = min distcirc (v, b(w)).
+                                        b∈B                    v∈A
+
+Proof. The three closed αn-neighborhoods of the points of A are pairwise disjoint, because distinct
+points of A have circular distance at least ρn > 2αn. Each neighborhood contains a point of B.
+These three points are distinct, and since |B| ≤ 3 they exhaust B, giving the asserted bijection.
+   If v ̸= w, then the triangle inequality gives
+                                                                                            
+      distcirc w, b(v) ≥ distcirc (w, v) − distcirc v, b(v) ≥ (ρ − α)n > αn ≥ distcirc w, b(w) .
+
+Thus b(w) is the unique point of B nearest to w. For v ̸= w, the reverse nearest-point assertion
+follows from the separate estimate
+                                                                                            
+     distcirc v, b(w) ≥ distcirc (v, w) − distcirc w, b(w) ≥ (ρ − α)n > αn ≥ distcirc w, b(w) .
+
+Hence w is the unique point of A nearest to b(w), and the displayed identities follow.
+
+
+4    The Main Estimate
+We now assemble the proof. The constants are chosen so that a single parameter η can be certified
+in two complementary regimes. The baseline count inside the three original caps gives
+                                           1
+                                                 
+                                              + EA n2 − O(n)
+                                           12
+good edges. We therefore need to find only
+
+                                              δ := η − EA
+
+additional n2 -order good edges; if δ ≤ 0, the baseline already suffices. Otherwise we run the
+support-deletion process for dn steps. At each step we measure, for the three original support sites
+w ∈ A, how far the current support set has drifted from w. If the aggregate drift exceeds δ, then a
+window around the abandoned original sites is converted, via Lemmas 12 and 13, into δn2 − O(n)
+good cross-edges, disjoint from the original cap baseline. If no aggregate escape occurs, then the
+support points remain matched to the original sites throughout; the deletion steps themselves
+supply many good endpoint edges, and the residual cap count supplies the remaining edges, with
+
+
+                                                   9
+the total possible invalidation controlled by Jensen’s inequality. The two numerical constraints are
+the uniform separation needed for the matching windows and the final Case 2–integral inequality.
+    We fix
+                                              9             3
+                                       η=        ,    d=       .                                 (3)
+                                            5270           371
+For a parameter 0 ≤ δ ≤ η define the threshold
+                                                     p
+                                     aδ (s) = 5s +      16s2 + 8δ,           0 ≤ s ≤ d,                   (4)
+
+an increasing function of s, designed so that
+                                                       2
+                                          aδ (s) − s                         
+                                                            − s aδ (s) − s       = δ                      (5)
+                                               8
+                                                           √
+for every s, as we may check by substituting aδ (s)−s = 4s+ 16s2 + 8δ. We note that aδ (s) ≤ aη (s)
+whenever δ ≤ η. Recall from Lemma 14 the exact quadratic cap-imbalance EA and its lower
+                               2
+envelope E(ρ) = 38       1
+                         3 −ρ        .
+
+Lemma 16 (Uniform separation). Let ρ ∈ (0, 13 ] and suppose that 0 < δ ≤ η − E(ρ). Then
+ρ > 2aδ (d).
+
+Proof. It suffices to prove the claim for δ0 = η −E(ρ), since aδ (d) ≤ aδ0 (d). Write x = 13 −ρ ∈ [0, 13 ),
+so E(ρ) = 38 x2 and 8δ0√= 8η − 3x2 ; the hypothesis δ0 > 0 means 3x2 < 8η. The claim ρ > 2aδ0 (d)
+reads 13 − x > 10d + 2 16d2 + 8δ0 , i.e.,
+                                           q
+                            b − x > 2 16d2 + 8η − 3x2 ,                      b := 31 − 10d.
+
+Since b = 13 − 371
+               30
+                                          p
+                   > 0 and x <                8η/3 < b, the left side is positive, so it suffices to compare
+squares:
+                                          (b − x)2 > 4 16d2 + 8η − 3x2 ,
+                                                                                  
+
+that is, 13x2 − 2bx + b2 − 4C > 0 with C := 16d2 + 8η. The left side is a quadratic in x with
+positive leading coefficient, minimized at x = b/13, where it equals 12  2                3
+                                                                     13 b − 4C. With d = 371 and
+      9
+η = 5270 we compute
+                                  12 2              64444
+                                     b − 4C =                > 0,
+                                  13            14144677365
+so the quadratic is positive for every x, proving the lemma.
+
+      For a step i of the deletion procedure write s = i/n, and for each original support point w ∈ A
+let
+                                                          1
+                                           ri (w) =         min distcirc (w, b)                           (6)
+                                                          n b∈Bi
+be the normalized circular distance from w to the nearest current support point. Define the
+per-site gain
+                                 (                   2                 )
+                                          (r − s)+
+                 ψs (r) = max 0,                            − s (r − s)+ ,            (x)+ = max{0, x}.   (7)
+                                              8
+
+Two properties are used repeatedly. First, ψs vanishes on [0, 9s] and is a nonnegative increasing
+convex function of r on [0, ∞): for r > s the bracketed expression is 18 (r − s)(r − 9s), negative on
+
+                                                              10
+s < r < 9s and so clamped to 0 there, while for r > 9s its derivative 14 (r − 5s) is positive and its
+second derivative is 14 ; at r = 9s the derivative jumps upward from 0 on the left to s on the right.
+                                                        √
+Second, for any 0 < δ ≤ η, since aδ (s) − s = 4s + 16s2 + 8δ > 8s, we have aδ (s) > 9s and, by
+(5),                                                  
+                                             ψs aδ (s) = δ.                                       (8)
+    The escaping case uses the following extraction: We convert a stretch of positions around an
+original site that is free of current support points into good edges of P crossing the two original
+caps meeting at that site.
+Lemma 17 (Single-window extraction). Let 0 < δ ≤ η and suppose that ρ > 2aδ (d). Let i ≥ 2 be
+an integer with s = i/n ≤ d, and assume that for every j < i each point of A lies within circular
+distance aδ (j/n) n of Bj . Let w ∈ A and let ϱ satisfy
+                              9s ≤ ϱ ≤ aδ (s),        min distcirc (w, b) > ϱn.
+                                                      b∈Bi
+
+Then at least ψs (ϱ) n2 − O(n) edges of P are good in P ; each of them joins the two original caps
+meeting at w, and both of its endpoints lie at circular distance at most ϱn from w.
+Proof. For each j < i, the hypothesis together with 2aδ (j/n) ≤ 2aδ (d) < ρ allows Lemma 15
+with B = Bj and α = aδ (j/n); it produces the bijection w′ 7→ bj (w′ ) of A onto Bj with
+distcirc (w′ , bj (w′ )) ≤ aδ (j/n) n. If v ∈ A \ {w}, then
+                                                             
+    distcirc w, bj (v)   ≥ distcirc (w, v) − distcirc v, bj (v)   ≥ (ρ − aδ (d)) n > aδ (d) n ≥ ϱn,
+using ρ > 2aδ (d) in the strict inequality. Hence, among the points deleted before step i, only the
+i − 1 points bj (w), j < i, can lie within circular distance ϱn of w.
+    Set r = ⌊ϱn⌋ and consider the r nearest vertices of the original set P on each side of w. By
+hypothesis none of them lies in Bi , and by the previous paragraph at most i − 1 of them on each
+side were deleted before step i (the same i − 1 points bound both sides at once, so subtracting
+i − 1 on each side is conservative). Hence on each side at least
+                                   tw := r − (i − 1) = (ϱ − s)n + O(1)
+vertices of Pi remain; let L and R consist of the tw nearest remaining ones on the two sides, and
+put Qw = L ∪ R. Every vertex of Qw is among the r nearest vertices of P on its side of w, hence
+at circular distance at most r ≤ ϱn from w.
+    The vertices of Qw are consecutive in Pi : on each side, L (respectively R) consists of all vertices
+of Pi in an initial stretch of positions from w, because the positions skipped in its selection are
+exactly deleted ones; and no vertex of Pi lies between the innermost members of L and R, since
+every vertex of P there is either w itself — deleted at step 1, as i ≥ 2 — or was skipped as deleted.
+The interval spanned by Qw is contained in the set of positions at circular distance at most r
+from w and therefore contains no point of Bi . Hence it lies between two consecutive points of the
+current support set Bi , inside one of the caps determined by Bi ; and Qw , being a set of consecutive
+vertices of Pi inside that cap, is itself a cap.
+    Lemma 12 with S = Pi now gives at least 18 t2w − O(n) cross-edges of L × R, good in Pi and
+without witness in Qw . The deleted vertices lying in the interval spanned by Qw are among the
+bj (w), j < i, so the set D of Lemma 13 has |D| ≤ i − 1, and at most (i − 1)tw of the selected
+cross-edges are bad in P . Since i − 1 ≤ sn and tw = (ϱ − s)n + O(1), at least
+         1 2                       h (ϱ − s)2           i
+           tw − (i − 1)tw − O(n) ≥            − s(ϱ − s) n2 − O(n) = ψs (ϱ) n2 − O(n)                 (9)
+         8                              8
+
+                                                      11
+of them are good in P , where the last equality holds because ϱ ≥ 9s places the bracket in the
+range where it agrees with ψs .
+    Finally, L lies on one side of w and R on the other, and every vertex of Qw is at circular
+distance at most ϱn < ρn from w, hence inside the original cap adjacent to w on its own side; so
+every selected cross-edge joins the two original caps meeting at w and, in particular, is internal to
+no original cap.
+
+Theorem 18. Every n-point set P in convex position satisfies
+                                             1         9  2
+                                 G(P ) ≥          +        n − O(n).                              (10)
+                                             12       5270
+Proof. After enlarging the absolute constant implicit in the O(n) term of (10) to cover bounded
+n, we may assume throughout that n is sufficiently large; in particular m ≥ 1 and all window sizes
+appearing below are positive. Perform m = ⌊dn⌋ steps of the deletion procedure. Let EA be the
+exact quadratic cap-imbalance from Lemma 14, and set the reduced target
+
+                                             δ = η − EA .                                         (11)
+                                                                                           
+                                                                1                       1
+If δ ≤ 0, then EA ≥ η and Lemma 14 already gives G(P ) ≥ 12       + EA n2 − O(n) ≥ 12     + η n2 −
+O(n), which is (10). So we assume henceforth that δ > 0. As δ depends only on the original cap
+sizes, it is fixed before the deletions begin. Moreover, EA ≥ E(ρ) gives δ ≤ η − E(ρ), so Lemma 16
+applies:
+                                  ρ > 2aδ (d) ≥ 2aδ (s)    (0 ≤ s ≤ d),                        (12)
+where the second inequality holds because aδ is increasing.
+    For a step i write s = i/n, and recall ri (w) and ψs from (6)–(7). We say that step i is an
+aggregate escape if                    X            
+                                           ψs ri (w) > δ.                                  (13)
+                                         w∈A
+
+Since B1 = A, we have r1 (w) = 0 for every w ∈ A, so an aggregate escape, if one occurs, has
+step index at least 2. By (8) and monotonicity of ψs , if step j is not an aggregate escape, then
+rj (w) ≤ aδ (j/n) for every w ∈ A: if some rj (w0 ) > aδ (j/n), the single term ψj/n (rj (w0 )) would
+already exceed δ. Put αj = aδ (j/n). Since 2αj ≤ 2aδ (d) < ρ by Lemma 16, Lemma 15 applies at
+every non-escaping step. Thus Bj has three distinct points and a canonical bijection
+
+                                    A −→ Bj ,         w 7−→ bj (w),
+
+with one point in the αj n-neighborhood of each w ∈ A. In addition,
+                                                                            
+                        distcirc w, bj (w) = rj (w)n = min distcirc v, bj (w) .                   (14)
+                                                         v∈A
+
+In particular, exactly one point deleted at step j is matched to each original site.
+    Informally, if no aggregate escape has occurred, then the smallest enclosing circle keeps resting
+near where it originally did, and the deletions stay concentrated near the three original sites —
+this is what Case 2 below harvests. At the first aggregate escape the drift of the support points,
+              P
+measured by w ψs (ri (w)), first exceeds δ as per (13); Case 1 then converts this drift into good
+cross-edges around the abandoned sites.
+Case 1: an aggregate escape occurs. We let i ≤ m be the first aggregate escape and put
+s = i/n. Since i is the first such step, every step j < i is non-escaping, so each point of A lies
+
+                                                  12
+                                                ≥ an on each side
+
+                                                       w∈A
+
+                                                  L             R
+
+
+
+
+                                   w2                                   w3
+
+
+                                                  Bi
+
+
+                                                            w
+
+                                            L                       R
+                                  deleted
+
+
+
+Figure 4: A single-window extraction at an abandoned site w ∈ A. The nearest current support
+point (triangle) is farther than ϱn, so the shaded window of 2tw current vertices around w lies
+inside one cap of Pi and Lemma 12 applies to L × R. The window straddles two original caps
+at w, so the cross-edges are disjoint from the baseline of Lemma 14; among the deleted points,
+only those matched to w (crosses) — at most sn of them, one per earlier step — can invalidate
+them. Inset: the shaded window magnified; deleted vertices interleave with the current vertices of
+Qw = L ∪ R, and the drawn cross-edges join L to R.
+
+within circular distance aδ (j/n) n of Bj ; together with (12) this supplies the standing hypotheses
+of Lemma 17, which we now apply according to the largest of the three radii ri (w). (See Figure 4.)
+    We distinguish two cases according to the largest radius.
+    If some site has ri (w0 ) > aδ (s), then minb∈Bi distcirc (w0 , b) = ri (w0 ) n > aδ (s) n, so Lemma 17
+applies at w0 with ϱ = aδ (s) (admissible, since aδ (s) > 9s), and by (8) it yields at least
+                                 ψs aδ (s) n2 − O(n) = δ n2 − O(n)
+                                            
+
+
+edges good in P , each joining two different original caps.
+    If instead every site has ri (w) ≤ aδ (s), then call a site w ∈ A active if ri (w) > 9s; inactive
+sites have ψs (ri (w)) = 0 and contribute nothing to (13). For an active w write
+                                                                               Rw − 1
+                      Rw = ri (w) n = min distcirc (w, b) ∈ Z,          ϱw =          .
+                                        b∈Bi                                     n
+Then we obtain minb∈Bi distcirc (w, b) = Rw > ϱw n; moreover Rw > 9sn = 9i forces Rw ≥ 9i + 1,
+whence ϱw ≥ 9s, and ϱw < ri (w) ≤ aδ (s). So Lemma 17 applies at w with ϱ = ϱw and yields at
+
+                                                       13
+least ψs (ϱw ) n2 − O(n) edges good in P , each joining the two original caps meeting at w, with
+both endpoints at circular distance at most ϱw n < Rw from w.
+    The families produced at distinct active sites w and v are disjoint: Indeed, their members lie
+among positions at circular distance less than Rw from w and less than Rv from v, respectively,
+and
+                           Rw + Rv ≤ 2aδ (s) n < ρn ≤ distcirc (w, v)
+by (12), so these two ranges of positions are completely separate. The function ψs is Lipschitz on
+[0, aδ (d)] with constant at most 14 aδ (d): away from the kink at 9s its nonzero slope is 14 (r − 5s) ≤
+1
+4 aδ (d), and both one-sided slopes at the kink obey the same bound. Hence ψs (ϱw ) ≥ ψs (ri (w)) −
+1
+4 aδ (d)/n = ψs (ri (w)) − O(1/n). Summing over the active sites — equivalently over all of A —
+and using (13), the total number of good edges obtained is at least
+                               X
+                                      ψs ri (w) n2 − O(n) ≥ δ n2 − O(n).
+                                                
+
+                               w∈A
+
+   In either case, at least δ n2 − O(n)
+                                   1
+                                        good edges in P arise, each joining two different original
+                                            2
+caps and hence disjoint from the 12 + EA n − O(n) intra-cap good edges of Lemma 14. Since
+EA + δ = η, we have
+                               1                                1         
+                     G(P ) ≥           + EA + δ n2 − O(n) =             + η n2 − O(n),                 (15)
+                                 12                                12
+which is (10).
+Case 2: no aggregate escape occurs. If no aggregate escape occurs, then w∈A ψs (ri (w)) ≤ δ
+                                                                                     P
+
+for every step i ≤ m, which means we have the bijection w 7→ bi (w) from A to Bi at each step. In
+particular, every step deletes exactly three points, and distcirc (w, bi (w)) ≤ aδ (i/n)n.
+    The three support points Bi determine three caps covering Pi , overlapping only at the support
+points themselves; let their sizes be ti,1 , ti,2 , ti,3 . Each support point is counted in the two adjacent
+caps, so
+                                      ti,1 + ti,2 + ti,3 = |Pi | + 3.
+   Applying Lemma 9 to each cap therefore supplies at least
+                                     3
+                                     X              
+                                           ti,k − 1 = |Pi | = n − 3(i − 1)
+                                     k=1
+
+endpoint edges having no witness in their associated cap. By Lemma 5, every such edge is good
+in Pi — it has at most one witness in Pi , since a second would have to lie on the cap side and
+hence in the cap. Such an edge can be bad in P only if the missing cap-side witness is a deleted
+vertex lying in the interval spanned by that cap. Each deleted vertex belongs to the interval of
+only one of these caps (it is not a support point), and by the first part of Lemma 9, it witnesses
+at most one edge of the selected family; since at most 3(i − 1) vertices have been deleted, step i
+contributes at least n − 6(i − 1) ≥ n − 6i edges incident to Bi that are good in P . The families
+obtained at different steps are disjoint, since every edge of the i-th family has both endpoints in
+Pi and one endpoint in Bi ; the deletion steps therefore contribute
+                               m
+                               X
+                                     (n − 6i) − O(n) = (d − 3d2 )n2 − O(n)                             (16)
+                               i=1
+
+
+
+                                                        14
+good edges. Let R := Pm+1 be the residual set, and let Rj be its intersection with the j-th original
+cap. In Case 2 every step deletes exactly three points, so |R| = n − 3m; and every point of A was
+deleted at the first step, so R meets no original support point and the Rj are disjoint consecutive
+blocks of R with
+                                 |R1 | + |R2 | + |R3 | = |R| = n − 3m.
+Each Rj , being a set of consecutive vertices contained in an original cap, is itself a cap. Lemma 11
+applied to each block, followed by Cauchy–Schwarz, yields at least
+
+                              1 3
+                                X                   (n − 3m)2
+                                    |Rj |2 − O(n) ≥           − O(n)                            (17)
+                              4 j=1                     12
+
+further edges, internal to the original caps and with no witness in their block, hence good in R. If
+such an edge is bad in P , then by Lemma 5 it has a witness strictly between its endpoints, in the
+interval spanned by its original cap; that witness cannot be residual — a residual point of this
+interval belongs to the block and would be a witness in the block — so it is a deleted point.
+    Consider now a fixed deleted point p and the residual edges of this family that p invalidates
+in this way. Each such edge lies in the block Rj of the original cap containing p, and its two
+endpoints lie on opposite sides of p in the interval spanned by that cap. By Corollary 7, these
+edges form a matching. Orient each of them toward the endpoint of the original cap nearer to p —
+an endpoint that is a point of A. In that direction the matched edges use pairwise distinct residual
+vertices, all lying strictly between p and that endpoint; there are at most distcirc (p, A) + O(1)
+vertices there. Hence p invalidates at most distcirc (p, A) + O(1) of the residual edges. (If p ∈ A,
+then p is an endpoint of each adjacent original cap and cannot lie strictly between the endpoints
+of a residual edge, so it invalidates none, consistently with distcirc (p, A) = 0.)
+    At step i the three deleted points are bi (w), one for each w ∈ A. By (14), we have
+                                                                      
+                          distcirc bi (w), A = distcirc bi (w), w = ri (w)n;
+                                                       P
+these points invalidate altogether at most n w∈A ri (w) + O(1) residual edges. Now ψs is convex,
+so by Jensen’s inequality and the hypothesis that no aggregate escape occurs,
+                               P                  
+                               1                           1P                          δ
+                                                                           
+                         ψs   3        w∈A ri (w)      ≤   3 w∈A ψs ri (w)     ≤       3;
+
+since ψs (aδ/3 (s)) = δ/3 and ψs is strictly increasing beyond 9s, this gives the instance-sensitive
+bound                       X
+                               ri (w) ≤ 3aδ/3 (i/n) = 3a(η−EA )/3 (i/n).
+                          w∈A
+
+Summed over i, the residual edges invalidated number at most 3n m
+                                                                           P
+                 √                                                i=1 aδ/3 (i/n) + O(n), and, since
+aε (s) = 5 + 16s/ 16s2 + 8ε ∈ [5, 9] for every ε > 0, this Riemann sum is n 0d aδ/3 (s) ds + O(1)
+ ′
+                                                                              R
+
+with an absolute implied constant, uniformly in δ (replacing m/n by d changes it by only O(1), as
+0 ≤ d − m/n < 1/n). Combining (16) and (17) gives
+
+                                     (1 − 3d)2 2                    1  d 9
+                                                                                  
+                                   2    2
+                        (d − 3d )n +          n =                     + − d2 n2 .               (18)
+                                        12                          12 2 4
+Subtracting the residual-invalidation loss from this assembly gives the exact-imbalance estimate
+                              "                                                #
+                                   1  d 9         d        Z
+                   G(P ) ≥           + − d2 − 3     a(η−EA )/3 (s) ds n2 − O(n),                (19)
+                                  12 2 4        0
+
+
+                                                           15
+in which the larger the exact imbalance EA , the smaller the reduced target δ = η − EA and hence
+the smaller the certified residual loss. Now set θ := η/3. Since δ = η − EA ≤ η, monotonicity gives
+aδ/3 ≤ aθ , so replacing the integrand by aθ can only weaken (19):
+                                          "                                       #
+                                              1  d 9         d    Z
+                             G(P ) ≥            + − d2 − 3     aθ (s) ds n2 − O(n).                                   (20)
+                                              12 2 4       0
+
+Direct integration gives
+                            Z d
+                                          5     dp                      4d
+                                                                                             
+                               aθ (s) ds = d2 +   16d2 + 8θ + θ arcsinh √    ,                                        (21)
+                             0            2     2                         8θ
+and the numerical verification below shows that, for the constants (3), we have
+
+                                               d 9 2     d  Z
+                                                − d −3     aθ (s) ds > η.                                             (22)
+                                               2 4     0
+
+Substitution into (20) proves (10) in Case 2, once (22) is verified.2
+                                                3            3             24
+Numerical verification of (22). Here θ = η/3 = 5270 and d = 371 , so 8θ = 5270 and
+                                           144      24      748353 2
+                                     16d2 + 8θ =+       <               ,
+                                           3712 5270            107
+         √                                      √        √
+whence 16d2 + 8θ < 748353107 . Because  ξ = 4d/   8θ has   8θ in the denominator, this does not by
+                                                                        2
+itself bound ξ; we instead verify ξ < 104 directly, that is ξ 2 < 4793
+                                      4793
+                                                                    104
+                                                                           , by clearing denominators:
+                                4793 2        24   144        17727627
+                                           ·       −      =                  > 0,
+                                   104         5270 371 2   9067100875000000
+                                                                                      k
+so ξ < 4793 < 12 . The Maclaurin series arcsinh ξ = k≥0 4k(−1)      (2k)!
+                                                                          ξ 2k+1 is alternating with
+                                                                          P
+        104                                                  (k!)2 (2k+1)
+terms decreasing in absolute value on [0, 1), so truncating after a positive term gives an upper
+bound. Truncating after the k = 4 term, arcsinh ξ ≤ T (ξ) with
+
+                                                       x3 3x5 5x7 35x9
+                                         T (x) = x −     +    −    +     .
+                                                       6   40   112 1152
+On [0, 12 ] the truncation T is increasing:
+
+                                   x2 3x4 5x6 35x8       x2 5x6   891
+                   T ′ (x) = 1 −     +   −    +     ≥ 1−   −    ≥      > 0.
+                                   2   8   16   128      2   16   1024
+Since 0 < ξ < 4793
+               104
+                   < 12 , we conclude that
+                                                           
+                                                               4793
+                                                                             462627
+                                          arcsinh ξ ≤ T         104
+                                                                          <          .
+                                                                                106
+Using these bounds in (21),
+    3     9·9        h 5·9            3     748353     3 462627 i     9        13885233
+       −        2
+                  − 3         2
+                                +         ·     7
+                                                   +      ·   6
+                                                                  −      =                 > 0,
+2 · 371 4 · 371       2 · 371     2 · 371     10     5270   10      5270   290147228000000
+which is (22), completing the proof.
+  2
+      The arithmetic in the following verification is also reproduced by the ancillary certificate described in Appendix A.
+
+
+                                                            16
+5    The Distinct Distance Bound
+                                            1     9                              1     9
+                                                     n2 − O(n). Lemma 3 with β = 12
+                                                          
+Proof of Theorem 1. By Theorem 18, G(P ) ≥ 12 + 5270                                + 5270
+gives
+                          1    1     9                13     3 
+              fconv (n) ≥    1+   +       n − O(1) =        +       n − O(1).
+                          3     12 5270                  36 5270
+Remark 19. The proof uses the conservative residual estimate (n − 3m)2 /12, the quantity obtained
+when at most three vertices are deleted at each of the m steps. With the imbalance credited in every
+case, the aggregate-escape case yields exactly the target η by design. Both Lemma 16 and (22)
+impose numerical constraints; Case 2 is tighter at the constants (3), where its actual margin is
+about 6.2 · 10−8 . The aggregate test gains over watching a single support point because the residual
+invalidation is governed stepwise by a(η−EA )/3 , and universally by aη/3 , rather than by aη ; the
+factor 3 is the number of support points, and a sharper upper bound in Lemma 10, replacing the
+constant 78 by c < 87 , would raise η further.
+
+
+A     Numerical Verification Certificate
+The numerical inequalities used in Section 4 are all rational inequalities or one-dimensional
+elementary analytic estimates. For reproducibility, the ancillary file verify_certificates.py
+recomputes every displayed numerical certificate used in the proof, using only the Python standard
+library. In particular, it verifies the uniform separation certificate in Lemma 16, the square-root
+and arcsinh majorants used in the final Case 2 estimate, the exact Case 2 rational margin, the
+assembly identity (18) for the deletion and residual terms, and the final conversion from good
+edges to distinct distances.
+    The certificate uses exact rational arithmetic via Python’s fractions.Fraction wherever the
+claim is rational. The only transcendental comparison is the arcsinh majorant, which is certified
+in the proof by an alternating Maclaurin truncation and is also checked numerically at high
+precision in the script. The script additionally stress-tests the scheme-level inequalities, including
+the cap-imbalance envelope EA ≥ E(ρ), the design identity (5) for the threshold aδ in (4), and the
+Jensen δ/3 bound.
+
+
+References
+ [1] A. Aggarwal. On isosceles triangles and related problems in a convex polygon. Manuscript,
+     2010. arXiv:1009.2218.
+
+ [2] E. Altman. On a problem of P. Erdős. Amer. Math. Monthly, 70:148–157, 1963.
+
+ [3] T. F. Bloom. Erdős Problems. https://www.erdosproblems.com/. Accessed 24 July 2026.
+
+ [4] P. Brass, W. O. J. Moser, and J. Pach. Research Problems in Discrete Geometry. Springer,
+     New York, 2005.
+
+ [5] A. Dumitrescu. On distinct distances from a vertex of a convex polygon. Discrete Comput.
+     Geom., 36:503–509, 2006.
+
+ [6] P. Erdős. On sets of distances of n points. Amer. Math. Monthly, 53:248–250, 1946.
+
+
+
+                                                 17
+ [7] P. Erdős. On some problems of elementary and combinatorial geometry. Ann. Mat. Pura
+     Appl. (4), 103:99–108, 1975.
+
+ [8] P. Erdős and P. C. Fishburn. Distinct distances in finite planar sets. Discrete Math.,
+     175:97–132, 1997.
+
+ [9] P. C. Fishburn. A remarkable eight-point planar configuration. Discrete Math., 252:103–122,
+     2002.
+
+[10] L. Guth and N. H. Katz. On the Erdős distinct distances problem in the plane. Ann. of
+     Math. (2), 181:155–190, 2015.
+
+[11] V. F. Lev and R. Pinchasi. Solving a ± b = 2c in elements of finite sets. Acta Arith.,
+     163:127–140, 2014.
+
+[12] L. Moser. On the different distances determined by n points. Amer. Math. Monthly, 59:85–91,
+     1952.
+
+[13] G. Nivasch, J. Pach, R. Pinchasi, and S. Zerbib. The number of distinct distances from a
+     vertex of a convex polygon. J. Comput. Geom., 4:1–12, 2013.
+
+
+
+
+                                              18
+

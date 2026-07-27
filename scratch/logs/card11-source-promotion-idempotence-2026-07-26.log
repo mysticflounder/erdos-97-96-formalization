@@ -1,0 +1,3 @@
+promotion write: changed=0 unchanged=3718
+promotion check: ok files=3718
+promotion graph: promoted=2061 split={'generated': 1700, 'root': 2, 'support': 359} imports=4080 internal_rewrites=4045 assets=1656 asset_bytes=1037782466 preexisting_external=35

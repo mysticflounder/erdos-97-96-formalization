@@ -1,0 +1,39 @@
+module=Erdos9796Proof.P97.ATail.LargeCapUniqueFivePhysicalOmissionCycle
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/bc0d1ac0f0d31574-8a4pk_px/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/bc0d1ac0f0d31574-8a4pk_px/module.ilean Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean
+
+'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.physicalVertices_card_ge_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.nonempty_physicalActualCriticalOmissionTransition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.PhysicalActualCriticalOmissionCycle.source_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.PhysicalActualCriticalOmissionCycle.actualBlocker_ne_physicalApex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.PhysicalActualCriticalOmissionCycle.successor_not_mem_actualCriticalSupport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.PhysicalActualCriticalOmissionCycle.successor_deletion_survives_actualBlocker' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.PhysicalActualCriticalOmissionCycle.successor_actualBlockers_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.PhysicalActualCriticalOmissionCycle.period_le_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.PhysicalActualCriticalMutualOmissionEdge.reverse_deletion_survives_actualBlocker' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.nonempty_mutualOmissionEdge_or_all_reverseMembership' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.nonempty_physicalActualCriticalOmissionCycle_from_start' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailLargeCapUniqueFivePhysicalOmissionCycle.nonempty_physicalActualCriticalOmissionCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

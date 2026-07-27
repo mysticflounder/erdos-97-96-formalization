@@ -1,0 +1,336 @@
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 =
+        (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2)
+    (_hsupportsEq :
+      ((lateFirstApexSystem R).selectedAt
+          first.deleted.1 first.deleted.2).toCriticalFourShell.support =
+        ((lateFirstApexSystem R).selectedAt
+          second.deleted.1 second.deleted.2).toCriticalFourShell.support)
+    (_hfirstMemSecondRow :
+      first.deleted.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          second.deleted.1 second.deleted.2).toCriticalFourShell.support)
+    (_hsecondMemFirstRow :
+      second.deleted.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          first.deleted.1 first.deleted.2).toCriticalFourShell.support)
+    (_hclassIntersectionTwo :
+      ((((lateFirstApexSystem R).selectedAt
+            first.deleted.1 first.deleted.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 rho).card = 2)) :
+    False := by
+  sorry
+
+/-- Two distinct deleted sources cannot lie in one another's actual rows when
+their actual blockers are distinct from each other and from the physical apex. -/
+theorem false_of_exactFour_twoDeletion_blockerTwoCycle
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius rho : ℝ}
+    (_hsecondBlockerNeV :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt v.1 v.2)
+    (_hsecondBlockerNeApex :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠ S.oppApex2)
+    (_crossPacket :
+      CommonDeletionTwoCenterPacket
+        D (lateFirstApexSystem R) first.deleted.1
+        ((lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2)
+        S.oppApex2)
+    (_hcollision :
+      first.deleted.1 =
+          (lateFirstApexSystem R).centerAt u.1 u.2 ∨
+        first.deleted.1 =
+          (lateFirstApexSystem R).centerAt v.1 v.2 ∨
+        first.deleted.1 =
+          (lateFirstApexSystem R).centerAt
+            second.deleted.1 second.deleted.2) :
+    False := by
+  sorry
+
+/-- Second terminal arm of the four-center common-deletion residue: one of the
+four surviving centers and the common deleted source form a bidirectional
+deletion-survival square. -/
+theorem
+            ((lateFirstApexSystem R).centerAt u.1 u.2))
+          ((lateFirstApexSystem R).centerAt
+            first.deleted.1 first.deleted.2)) ∨
+      (HasNEquidistantPointsAt 4
+          (D.A.erase first.deleted.1)
+          ((lateFirstApexSystem R).centerAt v.1 v.2) ∧
+        HasNEquidistantPointsAt 4
+          (D.A.erase
+            ((lateFirstApexSystem R).centerAt v.1 v.2))
+          ((lateFirstApexSystem R).centerAt
+            first.deleted.1 first.deleted.2)) ∨
+      (HasNEquidistantPointsAt 4
+          (D.A.erase first.deleted.1)
+          ((lateFirstApexSystem R).centerAt
+            second.deleted.1 second.deleted.2) ∧
+        HasNEquidistantPointsAt 4
+          (D.A.erase
+            ((lateFirstApexSystem R).centerAt
+              second.deleted.1 second.deleted.2))
+          ((lateFirstApexSystem R).centerAt
+            first.deleted.1 first.deleted.2))) :
+    False := by
+  sorry
+
+/-- The normalized four-center common-deletion residue.  The checked finite
+shell split above reduces it to blocker coincidence or a bidirectional
+deletion-survival square. -/
+theorem
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (_huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (_context :
+      ExactFourMutualOmissionSourceContext
+        R rho source other u v)
+    (jointDeletion :
+      ExactFourMutualOmissionJointDeletion R rho u v)
+    (_hclassFive :
+      (SelectedClass D.A S.oppApex2 rho).card = 5)
+    (globalDeletion :
+      ExactFourMutualOmissionRigid221GlobalDeletion
+        R rho u v jointDeletion)
+    (_hcenter :
+      globalDeletion.center ≠ S.oppApex2)
+    (_core :
+      ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+        D.A globalDeletion.deleted globalDeletion.center) :
+    False := by
+  sorry
+
+/-- Strictly narrower physical-apex terminal: the contextual source's actual
+blocker has been localized into the rigid physical five-class.  The
+outside-class arm is discharged into the explicit singleton minimal-core
+leaf by `false_of_exactFourMutualOmissionRigid221_physicalApex`. -/
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (_huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (_context :
+      ExactFourMutualOmissionSourceContext
+        R rho source other u v)
+    (jointDeletion :
+      ExactFourMutualOmissionJointDeletion R rho u v)
+    (_hclassFive :
+      (SelectedClass D.A S.oppApex2 rho).card = 5)
+    (globalDeletion :
+      ExactFourMutualOmissionRigid221GlobalDeletion
+        R rho u v jointDeletion)
+    (_hcenter : globalDeletion.center = S.oppApex2)
+    (_hsourceBlockerClass :
+      (lateFirstApexSystem R).centerAt source.1 source.2 ∈
+        SelectedClass D.A S.oppApex2 rho) :
+    False := by
+  sorry
+
+/-- Physical-apex leaf of the contextual rigid `2+2+1` terminal. -/
+theorem false_of_exactFourMutualOmissionRigid221_physicalApex
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (_huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (_context :
+      ExactFourMutualOmissionSourceContext
+        R rho source other u v)
+    (jointDeletion :
+      ExactFourMutualOmissionJointDeletion R rho u v)
+    (_hclassFive :
+      (SelectedClass D.A S.oppApex2 rho).card = 5)
+    (globalDeletion :
+      ExactFourMutualOmissionRigid221GlobalDeletion
+        R rho u v jointDeletion)
+    (_hcenter :
+      globalDeletion.center ≠ S.oppApex2)
+    (_hcollision :
+      ∃ s ∈ globalDeletion.deleted, ∃ t ∈ globalDeletion.deleted,
+        s ≠ t ∧
+          dist globalDeletion.center s =
+            dist globalDeletion.center t) :
+    False := by
+  sorry
+
+/-- The exact-five rigid residue after retaining a globally minimal blocking
+subdeletion of the physical class.  The source-row context is preserved and
+the global geometry is split exhaustively into three strictly narrower
+terminal leaves. -/
+    (_hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho otherRadius : ℝ)
+    (firstRow secondRow : SelectedFourClass D.A S.oppApex2)
+    (_hrho : 0 < rho)
+    (_hother : 0 < otherRadius)
+    (_hradii : otherRadius ≠ rho)
+    (_hnoFive : ∀ candidateRadius : ℝ, 0 < candidateRadius →
+      (SelectedClass D.A S.oppApex2 candidateRadius).card < 5)
+    (_hcardRho : (SelectedClass D.A S.oppApex2 rho).card = 4)
+    (_hcardOther :
+      (SelectedClass D.A S.oppApex2 otherRadius).card = 4)
+    (_hfirstRadius : firstRow.radius = rho)
+    (_hsecondRadius : secondRow.radius = otherRadius)
+    (_hdisjoint : Disjoint firstRow.support secondRow.support)
+    (_hinterior :
+      2 ≤ (SelectedClass D.A S.oppApex2 rho ∩
+        S.capInteriorByIndex S.oppIndex2).card)
+    (_hinteriorOther :
+      2 ≤ (SelectedClass D.A S.oppApex2 otherRadius ∩
+        S.capInteriorByIndex S.oppIndex2).card) :
+    False := by
+  sorry
+
+/-- The narrowed post-card-eleven robust exact-four terminal.  Its checked
+radius normal form now dispatches directly to two load-bearing branch
+obligations: the surviving interior-deletion branch and the no-five
+two-distinct-radii branch. -/
+    (_hcard : 12 ≤ D.A.card)
+    (_ingress : ExactFourPhysicalCommonDeletionIngress _R)
+    (_secondApex_robust : FullyDeletionRobustAt D S.oppApex2) :
+    False := by
+  rcases nonempty_postCardElevenRobustSurface_of_robust
+      _hcard _ingress _secondApex_robust with ⟨surface⟩
+  exact false_of_exactFourPostCardElevenRobustSurface _R _hcard surface
+
+/-- The swapped protected-exact-four terminal remaining after the checked
+exact-four source reduction.  Both the original residual and the physical
+common-deletion ingress are retained, so this is not a data-erasing recursive
+return to the first-apex exact-four statement. -/
+theorem false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (_R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (_hcard : 12 ≤ D.A.card)
+    (_ingress : ExactFourPhysicalCommonDeletionIngress _R)
+    (_swapped : SwappedFirstApexUniqueFourFrontier D S
+      (ATailUniqueFourLateChoiceTerminalScratch.lateFirstApexSystem _R)) :
+    False := by
+  sorry
+
+/-- Field-for-field adapter from the live exact-four residual to the source
+residual consumed by the physical-second-apex producer. -/
+private def toOriginalUniqueFourResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    (R : FirstApexUniqueRadiusExactFourResidual F) :
+    False := by
+  have hge11 : 11 ≤ D.A.card :=
+    carrier_card_ge_eleven_of_original_unique_four_residual
+      (toOriginalUniqueFourResidual R)
+  by_cases hcard11 : D.A.card = 11
+  · exact
+      false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven
+        R hcard11
+  · exact
+      false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve
+        R (by omega)
+
+/-- Open exact-five residual with distinct selected obstruction centers.
+This is a load-bearing production obligation for
+`false_of_originalFrontierUniqueRadiusArm`. -/
+theorem false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (_R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F) :
+    False := by
+  sorry
+
+/-- Open exact-five residual with a common selected obstruction center.
+This is a load-bearing production obligation for
+`false_of_originalFrontierUniqueRadiusArm`. -/
+theorem false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+        R (by omega)
+
+/-- Open exact-five residual with distinct selected obstruction centers.
+This is a load-bearing production obligation for
+`false_of_originalFrontierUniqueRadiusArm`. -/
+theorem false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (_R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F) :
+    False := by
+  sorry
+
+/-- Open exact-five residual with a common selected obstruction center.
+This is a load-bearing production obligation for
+`false_of_originalFrontierUniqueRadiusArm`. -/
+theorem false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (_R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F) :
+    False := by
+  sorry
+
+/-- The protected exact-four-or-five first-apex radius alternative, with the
+live minimality and no-M44 context retained. -/
+theorem false_of_originalFrontierUniqueRadiusArm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    (R : FrontierCommonDeletionParentResidual F)
+    (P : RetainedInteriorDirectedOmission R)
+    (B : FrontierBiApexRobustResidual R)
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (N : FrontierAllLargeCapsBiApexRobustResidual L)
+    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+    (hcriticalShellUniqueFourCover :
+      ∀ x : ℝ², ∀ hx : x ∈ D.A,
+        H.centerAt x hx ≠ x ∧
+          IsUniqueFourCenter D.A (H.centerAt x hx) ∧
+          uniqueFourClass D.A (H.centerAt x hx) =
+            (H.selectedAt x hx).toCriticalFourShell.support)
+    (hfirst : OppositeCapRichClassInteriorPattern D.A S S.oppIndex1)
+    (hsecond : OppositeCapRichClassInteriorPattern D.A S S.oppIndex2)
+    (hsurplus : OppositeCapRichClassInteriorPattern D.A S S.surplusIdx)
+    (hlow :
+      ∀ i : Fin 3, ∀ x : ℝ², ∀ hx : x ∈ D.A, ∀ r : ℝ,
+        ApexRichClassStructure D.A (S.oppositeVertexByIndex i) →
+          ((H.selectedAt x hx).toCriticalFourShell.support ∩
+            (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+              S.capInteriorByIndex i)).card ≤ 2) :
+    False := by
+  sorry
+
+/-- A strict first-cap point on a radius distinct from the retained frontier
+radius cannot lie in the localized collision shell.  Indeed, that shell has
+only the two collision sources in the whole first cap, and both sources lie on
+the retained frontier radius. -/
+        H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₁ ∨
+          H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₂ ∨
+            H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₁ ∨
+              H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₂) :
+    (∃ i : Fin 3, ∃ x : ℝ², ∃ hx : x ∈ D.A, ∃ r : ℝ,
+      ApexRichClassStructure D.A (S.oppositeVertexByIndex i) ∧
+        3 ≤
+          ((H.selectedAt x hx).toCriticalFourShell.support ∩
+            (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+              S.capInteriorByIndex i)).card) ∨
+      (Pρ.source₁ ∈
+          (H.selectedAt P.source₁
+            P.source₁_mem_A).toCriticalFourShell.support ∨
+        Pρ.source₂ ∈
+            (H.selectedAt P.source₁
+              P.source₁_mem_A).toCriticalFourShell.support ∨
+          P.source₁ ∈
+              (H.selectedAt Pρ.source₁
+                Pρ.source₁_mem_A).toCriticalFourShell.support ∨
+            P.source₂ ∈
+              (H.selectedAt Pρ.source₁
+                Pρ.source₁_mem_A).toCriticalFourShell.support) := by
+  sorry
+
+/-- The retained two-cycle and tri-apex normal form forces a three-hit
+canonical shell at one of the three rich Moser apices.
+
+This is the load-bearing global planar/MEC producer after the checked

@@ -1,0 +1,260 @@
+diff --git a/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean b/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean
+index 368bf298..e50a3494 100644
+--- a/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean
++++ b/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean
+@@ -39,6 +39,7 @@ open scoped EuclideanGeometry
+ open ATailApexRichClassStructure
+ open ATailCriticalPairFrontier
+ open ATailBiApexRobustCapBounds
++open ATailCommonDeletionTwoCenter
+ open ATailDeletionRobustness
+ open ATailExactFourPhysicalConsumer
+ open ATailExactFourRobustCapExpansion
+@@ -70,6 +71,2381 @@ theorem false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven
+     Problem97.ATailCardElevenUniqueFourCertificate.false_of_firstApexUniqueRadiusExactFourResidual
+       R hcard
+ 
++/-- The concrete narrowing supplied by a mutually omitted pair in a
++five-point physical second-apex radius class.  A third class point is absent
++from both actual late rows, so deleting it preserves K4 at the physical apex
++and at both distinct actual blockers. -/
++structure ExactFourMutualOmissionJointDeletion
++    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
++    {H : CriticalShellSystem D.A}
++    {F : CriticalPairFrontier D S radius H}
++    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
++    (rho : ℝ) (u v : CarrierVertex D.A) : Type where
++  deleted : CarrierVertex D.A
++  deleted_mem_class :
++    deleted.1 ∈ SelectedClass D.A S.oppApex2 rho
++  deleted_ne_u : deleted ≠ u
++  deleted_ne_v : deleted ≠ v
++  deleted_not_mem_uRow :
++    deleted.1 ∉
++      ((lateFirstApexSystem R).selectedAt
++        u.1 u.2).toCriticalFourShell.support
++  deleted_not_mem_vRow :
++    deleted.1 ∉
++      ((lateFirstApexSystem R).selectedAt
++        v.1 v.2).toCriticalFourShell.support
++  blockers_ne :
++    (lateFirstApexSystem R).centerAt u.1 u.2 ≠
++      (lateFirstApexSystem R).centerAt v.1 v.2
++  uPacket :
++    CommonDeletionTwoCenterPacket D (lateFirstApexSystem R) deleted.1
++      ((lateFirstApexSystem R).centerAt u.1 u.2) S.oppApex2
++  vPacket :
++    CommonDeletionTwoCenterPacket D (lateFirstApexSystem R) deleted.1
++      ((lateFirstApexSystem R).centerAt v.1 v.2) S.oppApex2
++
++/-- Source-row data retained from the strict-cap omitted-peer producer.
++The rigid `2+2+1` terminal needs this context: the bare partition and global
++minimal deletion do not remember which row supplied the mutually omitted
++pair. -/
++structure ExactFourMutualOmissionSourceContext
++    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
++    {H : CriticalShellSystem D.A}
++    {F : CriticalPairFrontier D S radius H}
++    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
++    (rho : ℝ) (source other u v : CarrierVertex D.A) : Prop where
++  source_mem_class :
++    source.1 ∈ SelectedClass D.A S.oppApex2 rho
++  source_mem_interior :
++    source.1 ∈ S.capInteriorByIndex S.oppIndex2
++  source_mem_outside :
++    source ∈ outsideFirstApexFiber R
++  source_cross_card_le_two :
++    ((((lateFirstApexSystem R).selectedAt
++          source.1 source.2).toCriticalFourShell.support ∩
++        (SelectedClass D.A S.oppApex2 rho ∩
++          S.capInteriorByIndex S.oppIndex2)).card ≤ 2)
++  other_ne_source : other ≠ source
++  other_mem_class :
++    other.1 ∈ SelectedClass D.A S.oppApex2 rho
++  other_mem_interior :
++    other.1 ∈ S.capInteriorByIndex S.oppIndex2
++  other_not_mem_source_row :
++    other.1 ∉
++      ((lateFirstApexSystem R).selectedAt
++        source.1 source.2).toCriticalFourShell.support
++  source_other_blockers_ne :
++    (lateFirstApexSystem R).centerAt source.1 source.2 ≠
++      (lateFirstApexSystem R).centerAt other.1 other.2
++  source_survives_q_or_w :
++    HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
++        ((lateFirstApexSystem R).centerAt source.1 source.2) ∨
++      HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
++        ((lateFirstApexSystem R).centerAt source.1 source.2)
++  source_mem_u_row :
++    source.1 ∈
++      ((lateFirstApexSystem R).selectedAt
++        u.1 u.2).toCriticalFourShell.support
++  v_not_mem_source_row :
++    v.1 ∉
++      ((lateFirstApexSystem R).selectedAt
++        source.1 source.2).toCriticalFourShell.support
++  u_eq_source_or_not_mem_source_row :
++    u = source ∨
++      u.1 ∉
++        ((lateFirstApexSystem R).selectedAt
++          source.1 source.2).toCriticalFourShell.support
++
++/-- Two actual late rows can cover at most four points of one physical
++second-apex radius class.  A class of size at least five therefore supplies a
++joint deletion outside both rows. -/
++theorem nonempty_exactFourMutualOmissionJointDeletion
++    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
++    {H : CriticalShellSystem D.A}
++    {F : CriticalPairFrontier D S radius H}
++    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
++    (surface : ExactFourPostCardElevenRobustSurface R)
++    (rho : ℝ)
++    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
++    (u v : CarrierVertex D.A)
++    (hblockersNe :
++      (lateFirstApexSystem R).centerAt u.1 u.2 ≠
++        (lateFirstApexSystem R).centerAt v.1 v.2) :
++    Nonempty (ExactFourMutualOmissionJointDeletion R rho u v) := by
++  classical
++  let C := SelectedClass D.A S.oppApex2 rho
++  let Iu :=
++    ((lateFirstApexSystem R).selectedAt
++      u.1 u.2).toCriticalFourShell.support ∩ C
++  let Iv :=
++    ((lateFirstApexSystem R).selectedAt
++      v.1 v.2).toCriticalFourShell.support ∩ C
++  have hIuTwo : Iu.card ≤ 2 := by
++    simpa [Iu, C] using
++      actualLateRow_secondClass_card_le_two R surface u
++  have hIvTwo : Iv.card ≤ 2 := by
++    simpa [Iv, C] using
++      actualLateRow_secondClass_card_le_two R surface v
++  have hUnionFour : (Iu ∪ Iv).card ≤ 4 := by
++    calc
++      (Iu ∪ Iv).card ≤ Iu.card + Iv.card := Finset.card_union_le Iu Iv
++      _ ≤ 4 := by omega
++  have hCfive : 5 ≤ C.card := by
++    simpa [C] using hfive
++  have hlt : (Iu ∪ Iv).card < C.card := by omega
++  obtain ⟨z, hzC, hzNotUnion⟩ :=
++    Finset.exists_mem_notMem_of_card_lt_card hlt
++  have hzNotIu : z ∉ Iu := by
++    intro hz
++    exact hzNotUnion (Finset.mem_union_left Iv hz)
++  have hzNotIv : z ∉ Iv := by
++    intro hz
++    exact hzNotUnion (Finset.mem_union_right Iu hz)
++  have hzNotURow :
++      z ∉
++        ((lateFirstApexSystem R).selectedAt
++          u.1 u.2).toCriticalFourShell.support := by
++    intro hz
++    exact hzNotIu (Finset.mem_inter.mpr ⟨hz, hzC⟩)
++  have hzNotVRow :
++      z ∉
++        ((lateFirstApexSystem R).selectedAt
++          v.1 v.2).toCriticalFourShell.support := by
++    intro hz
++    exact hzNotIv (Finset.mem_inter.mpr ⟨hz, hzC⟩)
++  have hzA : z ∈ D.A := (mem_selectedClass.mp hzC).1
++  let deleted : CarrierVertex D.A := ⟨z, hzA⟩
++  have hdeletedNeU : deleted ≠ u := by
++    intro h
++    apply hzNotURow
++    have hzEq : z = u.1 := by
++      simpa [deleted] using congrArg Subtype.val h
++    have hown :=
++      ((lateFirstApexSystem R).selectedAt
++        u.1 u.2).toCriticalFourShell.q_mem_support
++    simpa [hzEq] using hown
++  have hdeletedNeV : deleted ≠ v := by
++    intro h
++    apply hzNotVRow
++    have hzEq : z = v.1 := by
++      simpa [deleted] using congrArg Subtype.val h
++    have hown :=
++      ((lateFirstApexSystem R).selectedAt
++        v.1 v.2).toCriticalFourShell.q_mem_support
++    simpa [hzEq] using hown
++  have huBlockerA :
++      (lateFirstApexSystem R).centerAt u.1 u.2 ∈ D.A := by
++    simpa [CriticalShellSystem.blockerVertex] using
++      ((lateFirstApexSystem R).blockerVertex u).2
++  have hvBlockerA :
++      (lateFirstApexSystem R).centerAt v.1 v.2 ∈ D.A := by
++    simpa [CriticalShellSystem.blockerVertex] using
++      ((lateFirstApexSystem R).blockerVertex v).2
++  have hsecondApexA : S.oppApex2 ∈ D.A :=
++    surface.ingress.packet.center₂_mem_A
++  have huBlockerNeApex :
++      (lateFirstApexSystem R).centerAt u.1 u.2 ≠ S.oppApex2 :=
++    surface.secondApex_robust.centerAt_ne
++      (lateFirstApexSystem R) u.1 u.2
++  have hvBlockerNeApex :
++      (lateFirstApexSystem R).centerAt v.1 v.2 ≠ S.oppApex2 :=
++    surface.secondApex_robust.centerAt_ne
++      (lateFirstApexSystem R) v.1 v.2
++  have huSurvives :
++      HasNEquidistantPointsAt 4 (D.A.erase z)
++        ((lateFirstApexSystem R).centerAt u.1 u.2) :=
++    (cross_deletion_survives_iff_not_mem_selected_support
++      (lateFirstApexSystem R) u.2).mpr hzNotURow
++  have hvSurvives :
++      HasNEquidistantPointsAt 4 (D.A.erase z)
++        ((lateFirstApexSystem R).centerAt v.1 v.2) :=
++    (cross_deletion_survives_iff_not_mem_selected_support
++      (lateFirstApexSystem R) v.2).mpr hzNotVRow
++  have hsecondApexSurvives :
++      HasNEquidistantPointsAt 4 (D.A.erase z) S.oppApex2 :=
++    surface.secondApex_robust.survives z hzA
++  rcases nonempty_commonDeletionTwoCenterPacket
++      (lateFirstApexSystem R) hzA huBlockerA hsecondApexA
++      huBlockerNeApex huSurvives hsecondApexSurvives with
++    ⟨uPacket⟩
++  rcases nonempty_commonDeletionTwoCenterPacket
++      (lateFirstApexSystem R) hzA hvBlockerA hsecondApexA
++      hvBlockerNeApex hvSurvives hsecondApexSurvives with
++    ⟨vPacket⟩
++  exact ⟨{
++    deleted := deleted
++    deleted_mem_class := by simpa [deleted, C] using hzC
++    deleted_ne_u := hdeletedNeU
++    deleted_ne_v := hdeletedNeV
++    deleted_not_mem_uRow := by simpa [deleted] using hzNotURow
++    deleted_not_mem_vRow := by simpa [deleted] using hzNotVRow
++    blockers_ne := hblockersNe
++    uPacket := by simpa [deleted] using uPacket
++    vPacket := by simpa [deleted] using vPacket }⟩
++
++/-- Build the joint-deletion packet at a prescribed class source which is
++absent from both actual rows.  The equality in the conclusion keeps the
++chosen deletion available to subsequent finite-set decompositions. -/
++private theorem exactFourMutualOmissionJointDeletion_of_prescribed
++    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
++    {H : CriticalShellSystem D.A}
++    {F : CriticalPairFrontier D S radius H}
++    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
++    (surface : ExactFourPostCardElevenRobustSurface R)
++    (rho : ℝ)
++    (u v w : CarrierVertex D.A)
++    (hwClass : w.1 ∈ SelectedClass D.A S.oppApex2 rho)
++    (hwNotU :
++      w.1 ∉
++        ((lateFirstApexSystem R).selectedAt
++          u.1 u.2).toCriticalFourShell.support)
++    (hwNotV :
++      w.1 ∉
++        ((lateFirstApexSystem R).selectedAt
++          v.1 v.2).toCriticalFourShell.support)
++    (hblockersNe :
++      (lateFirstApexSystem R).centerAt u.1 u.2 ≠
++        (lateFirstApexSystem R).centerAt v.1 v.2) :
++    ∃ K : ExactFourMutualOmissionJointDeletion R rho u v,
++      K.deleted = w := by
++  have hwNeU : w ≠ u := by
++    intro hwu
++    apply hwNotU
++    simpa [hwu] using
++      ((lateFirstApexSystem R).selectedAt
++        u.1 u.2).toCriticalFourShell.q_mem_support
++  have hwNeV : w ≠ v := by

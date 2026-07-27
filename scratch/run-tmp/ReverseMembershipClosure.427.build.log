@@ -1,0 +1,30 @@
+'Problem97.ATailExactFiveReverseMembershipClosureScratch.qCriticalTriple_of_mem_criticalShell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseMembershipClosureScratch.reverse_source_deletion_fails_at_successorBlocker' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseMembershipClosureScratch.period_ne_two_of_all_reverseMembership' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseMembershipClosureScratch.three_le_period_of_all_reverseMembership' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseMembershipClosureScratch.successor_actualBlocker_mem_physicalCapInterior' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseMembershipClosureScratch.successor_actualCriticalSupport_inter_physicalCap_eq_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseMembershipClosureScratch.successor_actualCriticalSupport_outside_physicalCap_card_eq_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseMembershipClosureScratch.consecutive_qCriticalSupports_inter_card_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseMembershipClosureScratch.nonempty_reverseMembershipQCriticalPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailExactFiveReverseMembershipClosureScratch.false_of_two_reverseRows_common_outsidePair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

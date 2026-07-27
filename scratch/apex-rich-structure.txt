@@ -1,0 +1,260 @@
+     1	/-
+     2	Copyright (c) 2026 Adam McKenna. All rights reserved.
+     3	Released under Apache 2.0 license as described in the file LICENSE.
+     4	Authors: Adam McKenna
+     5	-/
+     6	
+     7	import Erdos9796Proof.P97.ATail.ApexTripleEquidistance
+     8	import Erdos9796Proof.P97.ATail.BiApexRobustCapBounds
+     9	import Erdos9796Proof.P97.ATail.MinimalUniqueFourCover
+    10	
+    11	/-!
+    12	# Rich class structure at a Moser apex, and the second cap rotation
+    13	
+    14	`firstApex_largeClass_or_secondRadius` reports the first-apex dichotomy relative
+    15	to the frontier radius.  Downstream consumers want it without that radius, so
+    16	this file packages it as `ApexRichClassStructure`: the centre carries a class of
+    17	at least six points, or two distinct radii each carrying at least four.
+    18	
+    19	It also supplies the rotation that puts the *surplus* apex into the first
+    20	opposite role.  `redesignateFirstOppCapAsSurplusAtAllLarge` (in
+    21	`FrontierLiveClosure`) rotates one step and lands the surplus apex in the second
+    22	opposite role; rotating the other way lands it in the first, which is the role
+    23	the dichotomy above is stated for.  Together the two rotations reach all three
+    24	Moser apices.
+    25	
+    26	Both rotations keep the MEC triangle and the cap partition fixed and change only
+    27	`surplusIdx`, so every packet-generic consumer applies unchanged.
+    28	-/
+    29	
+    30	open scoped EuclideanGeometry
+    31	
+    32	namespace Problem97
+    33	namespace ATailApexRichClassStructure
+    34	
+    35	open ATailApexTripleEquidistance
+    36	open ATailBiApexRobustCapBounds
+    37	open ATailCriticalPairFrontier
+    38	open ATailDeletionRobustness
+    39	open ATailMinimalUniqueFourCover
+    40	open ATailOrientedPhysicalApexIngress
+    41	
+    42	attribute [local instance] Classical.propDecidable
+    43	
+    44	/-- **Rich class structure at a centre.**  Either some positive radius carries at
+    45	least six carrier points, or two distinct positive radii each carry at least
+    46	four.  This is the radius-free form of the first-apex dichotomy.
+    47	
+    48	It is strictly stronger than failing to be an `IsUniqueFourCenter`, which only
+    49	gives a five-point class in the first branch. -/
+    50	def ApexRichClassStructure (A : Finset ℝ²) (p : ℝ²) : Prop :=
+    51	  (∃ r : ℝ, 0 < r ∧ 6 ≤ (SelectedClass A p r).card) ∨
+    52	    (∃ r₁ r₂ : ℝ, 0 < r₁ ∧ 0 < r₂ ∧ r₁ ≠ r₂ ∧
+    53	      4 ≤ (SelectedClass A p r₁).card ∧ 4 ≤ (SelectedClass A p r₂).card)
+    54	
+    55	/-- The frontier radius is positive: the marginal point `q` sits on it and is
+    56	distinct from the first opposite apex, which lies in the surplus cap while `q`
+    57	does not.  Re-proved locally because every consumer of this fact keeps it
+    58	private to its own file. -/
+    59	private theorem frontierRadius_pos
+    60	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    61	    {H : CriticalShellSystem D.A}
+    62	    (F : CriticalPairFrontier D S radius H) :
+    63	    0 < radius := by
+    64	  have hqNotSurplus : F.pair.q ∉ S.surplusCap :=
+    65	    (Finset.mem_sdiff.mp F.pair.q_mem_marginal).2
+    66	  have hfirstNeQ : S.oppApex1 ≠ F.pair.q := by
+    67	    intro h
+    68	    apply hqNotSurplus
+    69	    rw [← h]
+    70	    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    71	    interval_cases i
+    72	    · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi] using
+    73	        S.partition.v2_mem_C1
+    74	    · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi] using
+    75	        S.partition.v3_mem_C2
+    76	    · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi] using
+    77	        S.partition.v1_mem_C3
+    78	  have hpos : 0 < dist S.oppApex1 F.pair.q := dist_pos.mpr hfirstNeQ
+    79	  have hqRadius : dist F.pair.q S.oppApex1 = radius :=
+    80	    (Finset.mem_filter.mp (Finset.mem_sdiff.mp F.pair.q_mem_marginal).1).2
+    81	  simpa only [dist_comm, hqRadius] using hpos
+    82	
+    83	/-- A common-deletion parent residual gives rich class structure at the first
+    84	opposite apex of its own packet.  The second branch pairs the retained frontier
+    85	radius, which already carries four points, with the distinct radius the
+    86	double-deletion witness supplies. -/
+    87	theorem apexRichClassStructure_oppApex1
+    88	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    89	    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    90	    (R : FrontierCommonDeletionParentResidual F) :
+    91	    ApexRichClassStructure D.A S.oppApex1 := by
+    92	  have hpos : 0 < radius := frontierRadius_pos F
+    93	  rcases firstApex_largeClass_or_secondRadius R with hsix | ⟨ρ, hρpos, hne, hfour⟩
+    94	  · exact Or.inl ⟨radius, hpos, hsix⟩
+    95	  · exact Or.inr ⟨radius, ρ, hpos, hρpos, fun h => hne h.symm,
+    96	      R.frontierRadius_class_card_ge_four, hfour⟩
+    97	
+    98	/-- **Rich class structure implies deletion robustness.**  In the first branch
+    99	the six-point class is a K4 radius carrying more than four points; in the second
+   100	there are two K4 radii.  Either way the centre is not a unique-four centre, and
+   101	by `isUniqueFourCenter_of_not_fullyDeletionRobust` that is exactly robustness.
+   102	
+   103	So `ApexRichClassStructure` is strictly stronger than `FullyDeletionRobustAt`,
+   104	and a residual carrying the former need not also carry the latter. -/
+   105	theorem fullyDeletionRobustAt_of_apexRichClassStructure
+   106	    {D : CounterexampleData} {p : ℝ²}
+   107	    (hrich : ApexRichClassStructure D.A p) :
+   108	    FullyDeletionRobustAt D p := by
+   109	  rcases hrich with ⟨r, hr, hsix⟩ | ⟨r₁, r₂, hr₁, hr₂, hne, hc₁, hc₂⟩
+   110	  · exact fullyDeletionRobustAt_of_large_class hr (by omega)
+   111	  · exact fullyDeletionRobustAt_of_two_K4_radii hr₁ hr₂ hne hc₁ hc₂
+   112	
+   113	/-- Every canonical critical shell meets every radius class at a rich apex in
+   114	at most two points.  Richness supplies deletion robustness, hence separates
+   115	the shell's blocker center from the apex; the rest is the two-circle bound. -/
+   116	theorem criticalShell_inter_selectedClass_card_le_two_of_apexRich
+   117	    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+   118	    (x : ℝ²) (hx : x ∈ D.A) {p : ℝ²}
+   119	    (hrich : ApexRichClassStructure D.A p) (radius : ℝ) :
+   120	    ((H.selectedAt x hx).toCriticalFourShell.support ∩
+   121	      SelectedClass D.A p radius).card ≤ 2 := by
+   122	  exact criticalFourShell_inter_selectedClass_card_le_two
+   123	    (H.selectedAt x hx).toCriticalFourShell
+   124	    ((fullyDeletionRobustAt_of_apexRichClassStructure hrich).centerAt_ne
+   125	      H x hx)
+   126	
+   127	/-- Restricting an apex radius class to its strict opposite cap preserves the
+   128	same two-point upper bound against every canonical critical shell. -/
+   129	theorem criticalShell_inter_oppositeCapClassInterior_card_le_two_of_apexRich
+   130	    {D : CounterexampleData} (S : SurplusCapPacket D.A) (i : Fin 3)
+   131	    (H : CriticalShellSystem D.A) (x : ℝ²) (hx : x ∈ D.A)
+   132	    (hrich : ApexRichClassStructure D.A (S.oppositeVertexByIndex i))
+   133	    (radius : ℝ) :
+   134	    ((H.selectedAt x hx).toCriticalFourShell.support ∩
+   135	      (SelectedClass D.A (S.oppositeVertexByIndex i) radius ∩
+   136	        S.capInteriorByIndex i)).card ≤ 2 := by
+   137	  apply le_trans (Finset.card_le_card ?_)
+   138	    (criticalShell_inter_selectedClass_card_le_two_of_apexRich
+   139	      H x hx hrich radius)
+   140	  intro z hz
+   141	  exact Finset.mem_inter.mpr
+   142	    ⟨(Finset.mem_inter.mp hz).1, (Finset.mem_inter.mp (Finset.mem_inter.mp hz).2).1⟩
+   143	
+   144	/-- The concrete strict-opposite-cap metric content of rich class structure at
+   145	an indexed Moser apex.  The first arm supplies four points on one
+   146	apex-centred circle.  The second supplies two points on each of two distinct
+   147	apex-centred circles.
+   148	
+   149	Keeping the two arms visible is essential at the all-large-caps terminal:
+   150	collapsing them to the common cardinality consequence
+   151	`4 ≤ (S.capInteriorByIndex i).card` loses the radius data on which the uniform
+   152	geometric obstruction must operate. -/
+   153	def OppositeCapRichClassInteriorPattern
+   154	    (A : Finset ℝ²) (S : SurplusCapPacket A) (i : Fin 3) : Prop :=
+   155	  (∃ r : ℝ, 0 < r ∧
+   156	      4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r ∩
+   157	        S.capInteriorByIndex i).card) ∨
+   158	    (∃ r₁ r₂ : ℝ, 0 < r₁ ∧ 0 < r₂ ∧ r₁ ≠ r₂ ∧
+   159	      2 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r₁ ∩
+   160	        S.capInteriorByIndex i).card ∧
+   161	      2 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r₂ ∩
+   162	        S.capInteriorByIndex i).card)
+   163	
+   164	/-- Rich class structure at an indexed Moser apex produces its exact binary
+   165	strict-cap metric pattern.  This is a witness-producing refinement, not a new
+   166	cardinality estimate: the six-point arm contributes four strict-cap points,
+   167	while the two-K4-radii arm contributes two points at each radius. -/
+   168	theorem oppositeCapRichClassInteriorPattern_of_apexRichClassStructure
+   169	    {A : Finset ℝ²} (S : SurplusCapPacket A)
+   170	    (hconv : ConvexIndep A) (i : Fin 3)
+   171	    (hrich : ApexRichClassStructure A (S.oppositeVertexByIndex i)) :
+   172	    OppositeCapRichClassInteriorPattern A S i := by
+   173	  rcases hrich with ⟨r, hr, hsix⟩ |
+   174	      ⟨r₁, r₂, hr₁, hr₂, hne, hfour₁, hfour₂⟩
+   175	  · left
+   176	    refine ⟨r, hr, ?_⟩
+   177	    have hinter :=
+   178	      S.selectedClass_capInteriorByIndex_card_ge_card_sub_two hconv i hr
+   179	    omega
+   180	  · right
+   181	    exact ⟨r₁, r₂, hr₁, hr₂, hne,
+   182	      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₁ hfour₁,
+   183	      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₂ hfour₂⟩
+   184	
+   185	/-- The indexed opposite vertex at the first non-surplus index is the first
+   186	named opposite apex. -/
+   187	@[simp] theorem oppositeVertexByIndex_oppIndex1
+   188	    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+   189	    S.oppositeVertexByIndex S.oppIndex1 = S.oppApex1 := by
+   190	  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+   191	  interval_cases i <;>
+   192	    simp [SurplusCapPacket.oppositeVertexByIndex, SurplusCapPacket.oppIndex1,
+   193	      SurplusCapPacket.oppApex1, hi]
+   194	
+   195	/-- The indexed opposite vertex at the second non-surplus index is the second
+   196	named opposite apex. -/
+   197	@[simp] theorem oppositeVertexByIndex_oppIndex2
+   198	    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+   199	    S.oppositeVertexByIndex S.oppIndex2 = S.oppApex2 := by
+   200	  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+   201	  interval_cases i <;>
+   202	    simp [SurplusCapPacket.oppositeVertexByIndex, SurplusCapPacket.oppIndex2,
+   203	      SurplusCapPacket.oppApex2, hi]
+   204	
+   205	/-- The indexed opposite vertex at the designated surplus index is the named
+   206	surplus apex. -/
+   207	@[simp] theorem oppositeVertexByIndex_surplusIdx
+   208	    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+   209	    S.oppositeVertexByIndex S.surplusIdx = S.surplusApex := by
+   210	  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+   211	  interval_cases i <;>
+   212	    simp [SurplusCapPacket.oppositeVertexByIndex,
+   213	      SurplusCapPacket.surplusApex, hi]
+   214	
+   215	/-- Keep the MEC triangle and cap partition fixed, but designate the old
+   216	*second* opposite cap as the new surplus cap.  Stated against a bare cardinality
+   217	hypothesis so that it is available from any residual that bounds `oppCap2`. -/
+   218	noncomputable def redesignateSecondOppCapAsSurplusOf
+   219	    {A : Finset ℝ²} (S : SurplusCapPacket A) (h : 4 < S.oppCap2.card) :
+   220	    SurplusCapPacket A where
+   221	  hA := S.hA
+   222	  hncol := S.hncol
+   223	  triangleNonObtuse := S.triangleNonObtuse
+   224	  hCirc := S.hCirc
+   225	  partition := S.partition
+   226	  surplusIdx := S.oppIndex2
+   227	  surplus := by
+   228	    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+   229	    interval_cases i <;>
+   230	      simpa [SurplusCapPacket.oppIndex2, SurplusCapPacket.oppCap2, hi] using h
+   231	
+   232	/-- The other rotation lands the original surplus apex in the **first** opposite
+   233	role, which is the role `apexRichClassStructure_oppApex1` reports on. -/
+   234	@[simp] theorem redesignateSecondOppCapAsSurplusOf_oppApex1
+   235	    {A : Finset ℝ²} (S : SurplusCapPacket A) (h : 4 < S.oppCap2.card) :
+   236	    (redesignateSecondOppCapAsSurplusOf S h).oppApex1 = S.surplusApex := by
+   237	  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+   238	  interval_cases i <;>
+   239	    simp [redesignateSecondOppCapAsSurplusOf, SurplusCapPacket.oppIndex2,
+   240	      SurplusCapPacket.oppApex1, SurplusCapPacket.surplusApex, hi]
+   241	
+   242	/-- Its second opposite role carries the original first opposite apex. -/
+   243	@[simp] theorem redesignateSecondOppCapAsSurplusOf_oppApex2
+   244	    {A : Finset ℝ²} (S : SurplusCapPacket A) (h : 4 < S.oppCap2.card) :
+   245	    (redesignateSecondOppCapAsSurplusOf S h).oppApex2 = S.oppApex1 := by
+   246	  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+   247	  interval_cases i <;>
+   248	    simp [redesignateSecondOppCapAsSurplusOf, SurplusCapPacket.oppIndex2,
+   249	      SurplusCapPacket.oppApex2, SurplusCapPacket.oppApex1, hi]
+   250	
+   251	/- ### The unique-four cover at a tri-apex robust configuration -/
+   252	
+   253	/-- No centre carries all three Moser apices on a single radius class.  This is
+   254	the class-level form of the apex-triple exclusion: a centre equidistant from the
+   255	three apices is their circumcentre, which lies inside the non-obtuse triangle
+   256	and so cannot itself be a carrier point. -/
+   257	theorem no_center_class_contains_all_apices
+   258	    {D : CounterexampleData} (S : SurplusCapPacket D.A)
+   259	    {p : ℝ²} (hp : p ∈ D.A) {r : ℝ} (hr : 0 < r)
+   260	    (h1 : S.triangle.v1 ∈ SelectedClass D.A p r)

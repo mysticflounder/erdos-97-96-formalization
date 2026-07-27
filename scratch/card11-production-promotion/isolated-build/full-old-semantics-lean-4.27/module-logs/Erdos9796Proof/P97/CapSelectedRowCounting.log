@@ -1,0 +1,36 @@
+module=Erdos9796Proof.P97.CapSelectedRowCounting
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/72f79f3aa4096ad4-ua_xf41z/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/72f79f3aa4096ad4-ua_xf41z/module.ilean Erdos9796Proof/P97/CapSelectedRowCounting.lean
+
+Erdos9796Proof/P97/CapSelectedRowCounting.lean:707:42: warning: This simp argument is unused:
+  hfirstLast
+
+Hint: Omit it from the simp argument list.
+  simp [weight, Finset.sum_add_distrib, h̵f̵i̵r̵s̵t̵L̵a̵s̵t̵,̵ ̵Nat.add_assoc, Nat.add_comm, Nat.add_left_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Erdos9796Proof/P97/CapSelectedRowCounting.lean:708:6: warning: This simp argument is unused:
+  Nat.add_comm
+
+Hint: Omit it from the simp argument list.
+  simp [weight, Finset.sum_add_distrib, hfirstLast, Nat.add_assoc, N̵a̵t̵.̵a̵d̵d̵_̵c̵o̵m̵m̵,̵ ̵Nat.add_left_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Erdos9796Proof/P97/CapSelectedRowCounting.lean:708:20: warning: This simp argument is unused:
+  Nat.add_left_comm
+
+Hint: Omit it from the simp argument list.
+  simp [weight, Finset.sum_add_distrib, hfirstLast, Nat.add_assoc, N̵a̵t̵.̵a̵d̵d̵_̵c̵o̵m̵m̵,̵ ̵N̵a̵t̵.̵a̵d̵d̵_̵l̵e̵f̵t̵_̵c̵o̵m̵m̵]̵N̲a̲t̲.̲a̲d̲d̲_̲c̲o̲m̲m̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Erdos9796Proof/P97/CapSelectedRowCounting.lean:832:8: warning: unused variable `Hside`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Erdos9796Proof/P97/CapSelectedRowCounting.lean:833:8: warning: unused variable `Hord`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Erdos9796Proof/P97/CapSelectedRowCounting.lean:884:8: warning: unused variable `Hside`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Erdos9796Proof/P97/CapSelectedRowCounting.lean:885:8: warning: unused variable `Hord`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`

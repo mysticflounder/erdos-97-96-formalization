@@ -1,0 +1,9 @@
+'Problem97.TwoCollisionCapPartitionBridgeScratch.crossPairDeletionSurvivals_iff_crossPairOmissions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.TwoCollisionCapPartitionBridgeScratch.not_exists_richApex_threeHit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.TwoCollisionCapPartitionBridgeScratch.threeHit_or_collisionCrossHit_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

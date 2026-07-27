@@ -1,0 +1,36 @@
+module=Erdos9796Proof.P97.N8.N8CapCoordNorm
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/cbfe35386eb44f40-yhoj5cck/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/cbfe35386eb44f40-yhoj5cck/module.ilean Erdos9796Proof/P97/N8/N8CapCoordNorm.lean
+
+Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:633:22: warning: 'simp [Fin.sum_univ_three] at hg'' is a flexible tactic modifying 'hg''. Try 'simp?' and use the suggested 'simp only [...]'. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+Try this:
+  [apply] simp only [Fin.isValue] at hg'
+'convert hg' using 2' uses 'hg''!
+Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:893:4: warning: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:911:4: warning: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:930:4: warning: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:1020:0: warning: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:975:4: warning: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:996:4: warning: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`
+Erdos9796Proof/P97/N8/N8CapCoordNorm.lean:1018:4: warning: The `show` tactic should only be used to indicate intermediate goal states for readability.
+However, this tactic invocation changed the goal. Please use `change` instead for these purposes.
+
+Note: This linter can be disabled with `set_option linter.style.show false`

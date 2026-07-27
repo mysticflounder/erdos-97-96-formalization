@@ -1,0 +1,212 @@
+scratch/atail-force/unique4-class-cap-distribution/UniqueFourClassCapDistribution.lean
+import OriginalUniqueResidualDispatch
+import card_five_interior_critical_frontier
+scratch/atail-force/unique4-p4-direct-valuation/BindingIntegrityAxiomAudit.lean
+import DirectOuterBindingIntegrity
+scratch/atail-force/unique4-p4-direct-valuation/DirectCriticalComponentSatisfaction.lean
+import DirectIndexedAgreement
+import P4StrictUnitResidual
+import CegarFamilies
+scratch/atail-force/unique4-p4-direct-valuation/DirectCriticalComponentSatisfactionAxiomAudit.lean
+import DirectCriticalComponentSatisfaction
+scratch/atail-force/unique4-p4-direct-valuation/DirectIndexedAgreement.lean
+import RightCapDirectValuation
+scratch/atail-force/unique4-p4-direct-valuation/DirectIndexedAgreementAxiomAudit.lean
+import DirectIndexedAgreement
+scratch/atail-force/unique4-p4-direct-valuation/DirectOuterBindingIntegrity.lean
+import Main
+import MembershipRowOccurrences
+import RowArcOccurrences
+import FourArcOccurrences
+scratch/atail-force/unique4-p4-direct-valuation/DirectOuterSourceSatisfaction.lean
+import DirectSourceAdapter
+scratch/atail-force/unique4-p4-direct-valuation/DirectOuterSourceSatisfactionAxiomAudit.lean
+import DirectOuterSourceSatisfaction
+scratch/atail-force/unique4-p4-direct-valuation/DirectOuterThreeFamilySatisfaction.lean
+import RowArcFiniteOccurrenceBridge
+scratch/atail-force/unique4-p4-direct-valuation/DirectOuterThreeFamilySatisfactionAxiomAudit.lean
+import DirectOuterThreeFamilySatisfaction
+scratch/atail-force/unique4-p4-direct-valuation/DirectResidual55Satisfaction.lean
+import DirectIndexedAgreement
+import Residual55Families
+import P4RightCapSourceBridge
+scratch/atail-force/unique4-p4-direct-valuation/DirectResidual55SatisfactionAxiomAudit.lean
+import DirectResidual55Satisfaction
+scratch/atail-force/unique4-p4-direct-valuation/DirectSourceAdapter.lean
+import DirectOuterBindingIntegrity
+import Core
+scratch/atail-force/unique4-p4-direct-valuation/P4FullLedgerSatisfaction.lean
+import DirectOuterThreeFamilySatisfaction
+import DirectCriticalComponentSatisfaction
+import DirectResidual55Satisfaction
+import P4RadiusPartitionOccurrenceBridge.Main
+import P4RowAtLeastFourOccurrenceBridge.Main
+import P4RowRadiusOccurrenceBridge.Orientation
+import P4OccurrenceClosure.MutualTransport.Orientation
+import P4OccurrenceClosure.CyclicAlternation.Main
+import P4OccurrenceClosure.Kalmanson.Main
+import P4CertificateLedgerClosure
+scratch/atail-force/unique4-p4-direct-valuation/P4FullLedgerSatisfactionAxiomAudit.lean
+import P4FullLedgerSatisfaction
+scratch/atail-force/unique4-p4-direct-valuation/RightCapDirectValuation.lean
+import DirectOuterSourceSatisfaction
+import RightCapOccurrences
+scratch/atail-force/unique4-p4-direct-valuation/RightCapDirectValuationAxiomAudit.lean
+import RightCapDirectValuation
+scratch/atail-force/unique4-p4-direct-valuation/RowArcFiniteOccurrenceBridge.lean
+import DirectOuterSourceSatisfaction
+import P4DirectOuterArcFiniteData
+scratch/atail-force/unique4-p4-direct-valuation/RowArcFiniteOccurrenceBridgeAxiomAudit.lean
+import RowArcFiniteOccurrenceBridge
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorCegar6Satisfaction.lean
+import MirrorIndexedAgreement
+import CegarFamilies
+import MirrorKalmanson
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorCegar6SatisfactionAxiomAudit.lean
+import MirrorCegar6Satisfaction
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorCoreFamilySatisfaction.lean
+import MirrorIndexedFamilySatisfaction
+import P4RadiusPartitionOccurrenceBridge.Main
+import P4RowAtLeastFourOccurrenceBridge.Main
+import P4OccurrenceClosure.CyclicAlternation.Main
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorCoreFamilySatisfactionAxiomAudit.lean
+import MirrorCoreFamilySatisfaction
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorIndexedAgreement.lean
+import DirectIndexedAgreement
+import P4MirrorOuterArcTransport
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorIndexedAgreementAxiomAudit.lean
+import MirrorIndexedAgreement
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorIndexedFamilySatisfaction.lean
+import MirrorIndexedAgreement
+import P4RowRadiusOccurrenceBridge.Orientation
+import P4OccurrenceClosure.MutualTransport.Orientation
+import P4OccurrenceClosure.Kalmanson.Main
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorIndexedFamilySatisfactionAxiomAudit.lean
+import MirrorIndexedFamilySatisfaction
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorLedgerAssembly.lean
+import MirrorCoreFamilySatisfaction
+import MirrorCegar6Satisfaction
+import MirrorOuterFamilySatisfaction
+import MirrorResidual55Satisfaction
+import MirrorRightCap21Satisfaction
+import MirrorStrictUnitSatisfaction
+import P4FullLedgerSatisfaction
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorLedgerAssemblyAxiomAudit.lean
+import MirrorLedgerAssembly
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorOuterFamilySatisfaction.lean
+import MirrorIndexedAgreement
+import DirectOuterBindingIntegrity
+import P4MirrorOuterOccurrenceBridge.Main
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorOuterFamilySatisfactionAxiomAudit.lean
+import MirrorOuterFamilySatisfaction
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorResidual55Satisfaction.lean
+import MirrorIndexedAgreement
+import DirectResidual55Satisfaction
+import P4MirrorCapSourceBridge
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorResidual55SatisfactionAxiomAudit.lean
+import MirrorResidual55Satisfaction
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorRightCap21Satisfaction.lean
+import MirrorIndexedAgreement
+import P4MirrorCapSourceBridge
+import RightCapOccurrences
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorRightCap21SatisfactionAxiomAudit.lean
+import MirrorRightCap21Satisfaction
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorStrictUnitSatisfaction.lean
+import MirrorIndexedAgreement
+import P4StrictUnitResidual
+scratch/atail-force/unique4-p4-mirror-valuation/MirrorStrictUnitSatisfactionAxiomAudit.lean
+import MirrorStrictUnitSatisfaction
+scratch/atail-force/unique4-exact-two-lrat-ingress/P5ExactTwoClosure.lean
+import WindowedRupReplay.Compose
+import BridgeMain
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5BoundaryPacket.lean
+import CardElevenUniqueFourCoverage
+import Erdos9796Proof.P97.Census554.GeneralCarrierBridge
+import Erdos9796Proof.P97.Census554.SeparationGeometry
+import Erdos9796Proof.P97.ConvexCyclicOrder.ShellCurvatureRows
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5Closure.lean
+import AlignedP5DirectClosure
+import AlignedP5MirrorClosure
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5DirectClosure.lean
+import AlignedP5KalmansonDecode
+import AlignedP5SourceTrace
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5FinElevenKalmanson.lean
+import UniqueFourKalmansonReflection
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5KalmansonDecode.lean
+import AlignedP5FinElevenKalmanson
+import AlignedP5MetricSound
+import AlignedP5NativeClassifier
+import Erdos9796Proof.P97.Census554.CapSelectedNativeClassifierSound
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5MetricSound.lean
+import AlignedP5NativeClassifier
+import Erdos9796Proof.P97.Census554.CapSelectedNativeClosureSound
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5MirrorClosure.lean
+import AlignedP5KalmansonDecode
+import AlignedP5MirrorSourceTrace
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5MirrorNativeClassifier.lean
+import AlignedP5NativeClassifier
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5MirrorNativeCoverage.lean
+import AlignedP5MirrorNativeTheorem
+import Erdos9796Proof.P97.Census554.CapSelectedNativeClassifierSound
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5MirrorNativeLeaf1.lean
+import AlignedP5MirrorNativeClassifier
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5MirrorNativeLeaf10.lean
+import AlignedP5MirrorNativeClassifier
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5MirrorNativeLeaf2.lean
+import AlignedP5MirrorNativeClassifier
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5MirrorNativeLeaf3.lean
+import AlignedP5MirrorNativeClassifier
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5MirrorNativeLeaf7.lean
+import AlignedP5MirrorNativeClassifier
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5MirrorNativeLeaf8.lean
+import AlignedP5MirrorNativeClassifier
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5MirrorNativeLeaf9.lean
+import AlignedP5MirrorNativeClassifier
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5MirrorNativeTheorem.lean
+import AlignedP5MirrorNativeLeaf1
+import AlignedP5MirrorNativeLeaf2
+import AlignedP5MirrorNativeLeaf3
+import AlignedP5MirrorNativeLeaf7
+import AlignedP5MirrorNativeLeaf8
+import AlignedP5MirrorNativeLeaf9
+import AlignedP5MirrorNativeLeaf10
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5MirrorSourceTrace.lean
+import AlignedP5BoundaryPacket
+import AlignedP5MetricSound
+import AlignedP5MirrorNativeCoverage
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5NativeClassifier.lean
+import Erdos9796Proof.P97.Census554.CapSelectedNativeClassifier
+import Mathlib.Tactic
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5NativeCoverage.lean
+import AlignedP5NativeTheorem
+import Erdos9796Proof.P97.Census554.CapSelectedNativeClassifierSound
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5NativeLeaf1.lean
+import AlignedP5NativeClassifier
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5NativeLeaf10.lean
+import AlignedP5NativeClassifier
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5NativeLeaf2.lean
+import AlignedP5NativeClassifier
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5NativeLeaf3.lean
+import AlignedP5NativeClassifier
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5NativeLeaf4.lean
+import AlignedP5NativeClassifier
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5NativeLeaf8.lean
+import AlignedP5NativeClassifier
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5NativeLeaf9.lean
+import AlignedP5NativeClassifier
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5NativeTheorem.lean
+import AlignedP5NativeLeaf1
+import AlignedP5NativeLeaf2
+import AlignedP5NativeLeaf3
+import AlignedP5NativeLeaf4
+import AlignedP5NativeLeaf8
+import AlignedP5NativeLeaf9
+import AlignedP5NativeLeaf10
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5SourceTrace.lean
+import AlignedP5BoundaryPacket
+import AlignedP5MetricSound
+import AlignedP5NativeCoverage
+scratch/atail-force/unique4-aligned-p5-occurrence/UniqueFourKalmansonReflection.lean
+import UniqueFourKalmansonCores
+scratch/atail-force/unique4-uniform-route-audit/UniqueFourCardinalityBoundary.lean
+import OriginalUniqueResidualDispatch

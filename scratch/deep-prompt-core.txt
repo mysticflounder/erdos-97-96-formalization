@@ -1,0 +1,302 @@
+## §2 Problem statement
+
+Resolve the following exact Lean implication completely:
+
+```lean
+theorem false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H)
+    (R : FrontierCommonDeletionParentResidual F)
+    (P : RetainedInteriorBlockerCollision R)
+    (C : LocalizedCollisionCommonDeletion P)
+    (M : LocalizedCollisionMutualOmissionCycle P C)
+    (hexactTwo :
+      (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support ∩
+          (SelectedClass D.A
+              (S.oppositeVertexByIndex S.oppIndex1) radius ∩
+            S.capInteriorByIndex S.oppIndex1) =
+        {P.source₁, P.source₂})
+    (B : FrontierBiApexRobustResidual R)
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (N : FrontierAllLargeCapsBiApexRobustResidual L)
+    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+    (hcriticalShellUniqueFourCover :
+      ∀ x : ℝ², ∀ hx : x ∈ D.A,
+        H.centerAt x hx ≠ x ∧
+          IsUniqueFourCenter D.A (H.centerAt x hx) ∧
+          uniqueFourClass D.A (H.centerAt x hx) =
+            (H.selectedAt x hx).toCriticalFourShell.support)
+    (hfirst : OppositeCapRichClassInteriorPattern D.A S S.oppIndex1)
+    (hsecond : OppositeCapRichClassInteriorPattern D.A S S.oppIndex2)
+    (hsurplus : OppositeCapRichClassInteriorPattern D.A S S.surplusIdx)
+    (hlow :
+      ∀ i : Fin 3, ∀ x : ℝ², ∀ hx : x ∈ D.A, ∀ r : ℝ,
+        ApexRichClassStructure D.A (S.oppositeVertexByIndex i) →
+          ((H.selectedAt x hx).toCriticalFourShell.support ∩
+            (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+              S.capInteriorByIndex i)).card ≤ 2) :
+    False
+```
+
+Here is the complete hypothesis surface that may be used.
+
+1. `F : CriticalPairFrontier D S radius H` carries distinct physical sources
+   \(q,w\in D.A\), their first-apex frontier-radius placement, deletion
+   survival at the second apex, first- and second-apex structural splits, and
+   an explicit double-deletion \(K_4\) at the second apex.
+2. `R` carries `D.Minimal`, absence of an `IsM44` surplus packet on \(D.A\),
+   \(9<|D.A|\), at least four points on the retained first-apex radius, a
+   first-apex double-deletion \(K_4\), and a source-faithful common-deletion
+   packet at the two opposite apices.
+3. `B` makes both opposite apices fully deletion-robust.
+4. `L` gives at least six points in each non-surplus closed cap.
+5. `N` gives at least six points in the surplus closed cap as well.
+6. `T` gives `ApexRichClassStructure` at all three Moser apices, the cover
+   inequality
+   \[
+   |D.A|\le 4\,|\operatorname{notRobustCenters}(D)|,
+   \]
+   and says that no carrier center and positive radius contains all three
+   Moser vertices in one selected class.
+7. `hcriticalShellUniqueFourCover` says every canonical blocker differs from
+   its source, is a unique-four center, and has unique four-class equal to its
+   canonical shell. This is also derivable from \(H\), but it is supplied
+   explicitly.
+8. `hfirst`, `hsecond`, and `hsurplus` give the exact binary strict-cap rich
+   pattern at all three indexed caps. These are also checked consequences of
+   \(T\) and convexity.
+9. `hlow` bounds every canonical-shell/rich-apex-radius/strict-cap
+   intersection by two. The same upper bound is also available from the
+   imported theorem
+   `criticalShell_inter_oppositeCapClassInterior_card_le_two_of_apexRich`.
+10. `P` supplies distinct \(a=P.\texttt{source₁}\) and
+    \(b=P.\texttt{source₂}\), both in the retained first-apex radius class and
+    the first strict cap, with equal canonical blocker \(c\).
+    Checked consequences available before the target include:
+    - the two complete canonical supports are equal;
+    - each source lies in the other source's canonical shell;
+    - \(c\) lies in the same strict cap;
+    - the first canonical shell meets the whole corresponding closed cap in
+      exactly \(\{a,b\}\).
+11. `C` supplies a fresh point \(f\) in the same strict cap, distinct from
+    \(a,b\), omitted from \(a\)'s canonical shell, together with a
+    common-deletion packet for deleting \(f\) at the first apex and \(c\).
+12. `M` chooses \(s\in\{a,b\}\), with canonical blocker \(c\), such that
+    \(s\ne f\), \(f\notin K_s\), \(s\notin K_f\), and \(c\ne c_f\). It also
+    supplies common-deletion packets in both directions:
+    - delete \(f\), survive at the first apex and \(c\);
+    - delete \(s\), survive at the first apex and \(c_f\).
+13. `hexactTwo` states that \(K_a\) meets the retained first-apex radius class
+    inside the first strict cap in exactly \(\{a,b\}\). This has cardinality
+    exactly two and therefore **saturates**, rather than contradicts, `hlow`.
+
+The target is the inconsistency of this entire fixed collection of data. A
+proof that uses only a weakened local subcollection is acceptable only if it
+really proves the full implication. A model of a weakened local subcollection
+does not refute the theorem.
+
+## §3 Assume-solvable framing
+
+> Assume for purposes of this task that a complete resolution exists, but do
+> not assume in advance that the answer is affirmative or negative. A complete
+> solution must prove exactly one of the following two statements.
+
+## §4 Dual-branch success criteria
+
+### Affirmative resolution
+
+Prove, without any additional hypothesis, that every fixed tuple
+\[
+\begin{aligned}
+(&D,S,\texttt{radius},H,F,R,P,C,M,\texttt{hexactTwo},B,L,N,T,\\
+ &\texttt{hcriticalShellUniqueFourCover},
+   \texttt{hfirst},\texttt{hsecond},\texttt{hsurplus},\texttt{hlow})
+\end{aligned}
+\]
+satisfying all hypotheses in §2 yields `False`.
+
+The final result must close the existing Lean theorem with no `sorry`, no
+axiom, and no theorem of comparable unproved strength. A complete affirmative
+solution may use any valid route, but the three most direct accepted terminal
+shapes are:
+
+1. **Distinct canonical row through both collision sources.** Derive
+   \[
+   \exists z\in D.A,\quad
+   c_z\ne c_a,\qquad a\in K_z,\qquad b\in K_z.
+   \]
+   This closes immediately via the already checked, import-reachable theorem
+   `Problem97.ATailRetainedCollisionCapLocalization.
+   false_of_distinct_actualRow_contains_collisionSources`.
+
+2. **Non-circular three-hit shell.** Derive
+   \[
+   \exists i,x\in D.A,r,\quad
+   \operatorname{ApexRichClassStructure}(D.A,S.\operatorname{opp}(i))
+   \]
+   and
+   \[
+   3\le
+   |K_x\cap(
+      \operatorname{Class}(D.A,S.\operatorname{opp}(i),r)
+      \cap S.\operatorname{intcap}(i))|.
+   \]
+   This contradicts `hlow` or the imported two-hit upper bound.
+
+3. **Direct global geometric contradiction.** Derive `False` directly from
+   the full MEC/cap/frontier/deletion/canonical-selector structure without
+   factoring through either interface above.
+
+If the proof introduces intermediate lemmas, give their exact fully quantified
+statements, prove them, and show their source-level import reachability at the
+target line. An adapter that only repackages `P` as a
+`RetainedRadiusCollision` is routine bookkeeping and is not the missing
+mathematics.
+
+### Negative resolution
+
+Construct one fixed, exact Euclidean realization of **all** hypotheses of §2:
+explicit finite coordinates for \(D.A\), all required centers and positive
+radii, the relevant Moser triangle and cap partition, the complete canonical
+shell system \(H\), and witnesses for every field of
+\(F,R,P,C,M,B,L,N,T\), `hcriticalShellUniqueFourCover`, the three rich
+patterns, `hexactTwo`, and universal `hlow`.
+
+Then rigorously verify every field and conclude that the implication in §2 is
+false in the standard Euclidean model. Merely giving an abstract incidence
+table is insufficient unless you also prove it has an exact Euclidean
+realization and that the realization satisfies the canonical-selection,
+minimality, `D.K4`, no-`IsM44`, MEC, cap, and universal low-hit semantics.
+
+The quantifier order is essential. The negative branch must construct **one
+fixed tuple** satisfying all assumptions simultaneously. It is insufficient
+to choose different configurations for different fields, rows, radii,
+candidate lemmas, or finite tests.
+
+If you find a model only of a weakened local subsystem, use it to kill that
+intermediate route and continue. Such a model is not a negative resolution.
+If a full countermodel reveals that one of the two displayed affirmative
+interfaces becomes true after adding a natural global condition, identify the
+weakest exact condition and explain where it fails in the countermodel; this
+diagnosis supplements, but does not replace, the full countermodel.
+
+Neither branch may assume a distinct row through both sources, a three-hit
+shell, a dangerous-triple packet, a global return incidence, or a special
+cyclic order unless that datum is derived from the current hypotheses.
+
+## §4b Sanctioned reformulations
+
+You may use the following reformulations, but every translation must be proved
+source-faithful before its output is used.
+
+1. **Canonical-shell incidence hypergraph.** Vertices are points of \(D.A\);
+   each source \(q\) has one directed blocker \(c_q\) and one exact four-point
+   hyperedge \(K_q\). Preserve:
+   - \(q\in K_q\);
+   - exact full-circle semantics of \(K_q\);
+   - blocker/source separation;
+   - deletion failure at \(c_q\);
+   - unique-four-center semantics;
+   - all cap and radius labels.
+
+   A bare four-uniform hypergraph is lossy because it forgets Euclidean circle
+   realization, the selected-center map, and the MEC/cap order.
+
+2. **Cyclic-order or oriented-matroid encoding.** Strict convexity permits a
+   cyclic boundary order and Kalmanson-type metric consequences. Preserve both
+   orientations and all wraparound cases. Do not assume a single anchored
+   order unless it is derived.
+
+3. **Distance-algebra encoding.** You may introduce exact squared-distance
+   variables, circle equations, determinant/orientation inequalities,
+   perpendicular-bisector equations, and MEC/cap inequalities. Prove that the
+   encoding is equivalent to the required Euclidean realization; a satisfiable
+   distance table without a rank-two Euclidean realization is not enough.
+
+4. **SAT/SMT/CAD/real-algebraic search.** Use computation to discover proofs,
+   exact models, incompatible order cells, or counterexamples to intermediate
+   lemmas. A solver `unknown`, floating-point witness, finite bounded search,
+   or unchecked UNSAT result is evidence only. A completing result needs an
+   exact witness or a checked certificate plus a proved reduction from the
+   Lean hypotheses.
+
+5. **Existing theorem-bank packets.** You may use a U5 or general-\(n\)
+   contradiction only after constructing every antecedent from the live
+   structures and establishing import reachability. Similar names and
+   normalized statement shapes are not bridges.
+
+## §5 Insufficient-progress list
+
+Partial progress does not count unless it implies exactly one of the complete
+outcomes in §4. In particular, the following do **not** count as resolving the
+target:
+
+- rewriting `hexactTwo` to cardinality two and observing `hlow`;
+- re-proving that the common blocker lies in the first strict cap;
+- merely exposing or moving the private adapter from
+  `RetainedInteriorBlockerCollision` to `RetainedRadiusCollision`;
+- treating a q-deleted row from `C.packet`, `M.freshPacket`, or
+  `M.collisionSourcePacket` as a canonical row `H.selectedAt z`;
+- choosing \(z=a\) or \(z=b\) for the distinct-row terminal: their blockers
+  equal the common blocker, so the required center inequality fails;
+- choosing \(z=f\): its blocker is distinct, but `M` explicitly says its
+  canonical shell omits the chosen collision source;
+- using a deletion-surviving row that erases one of the desired sources as a
+  row through both sources;
+- proving that three points lie in a cap, a rich class, a union of radii, or a
+  union of canonical shells without proving three points lie in the **same**
+  canonical-shell/radius/strict-cap intersection;
+- applying
+  `exists_criticalShell_oppositeCapClassInterior_card_ge_three_of_frontierAllLargeCapsTriApex`.
+  That later theorem builds `hlow` and invokes the all-low coordinator, which
+  returns to the current leaf. It is both unavailable by declaration order and
+  logically circular;
+- moving that later theorem earlier without removing the dependency cycle;
+- presenting a first-apex-only argument that leaves the global hypotheses
+  unused **and still contains an unproved gap**. A genuinely complete
+  contradiction from a subset of the assumptions is valid; unused hypotheses
+  are not themselves a defect;
+- assuming three separate two-hit cap localizations force a repeated blocker:
+  they may have three distinct blockers;
+- invoking pairwise circle-overlap \(\le2\), bare convexity, mutual omission,
+  or unique-four counting as though any one of them closed the branch;
+- importing a theorem requiring `U5DangerousTriple`, positive cross-incidence,
+  total blocker-map omissions, or a prescribed cyclic order without producing
+  those hypotheses;
+- presenting an abstract SAT/incidence model without exact Euclidean,
+  canonical-selector, and full-parent realization;
+- presenting a model of only the local `P,C,M` subsystem as a countermodel to
+  the target;
+- reporting solver `SAT`, `UNSAT`, or `unknown` without the exact witness,
+  faithful reduction, and certificate appropriate to the claim;
+- proving finitely many carrier sizes, coordinate grids, or cyclic orders
+  without a complete reduction of the unbounded theorem to those cases;
+- assuming the desired row, three-hit witness, global return, or another lemma
+  of essentially equivalent strength;
+- replacing the leaf by a conditional theorem, outcome enumerator, `Closers`
+  structure, proposition-valued definition, source-clean wrapper, or more
+  load-bearing `sorry`s;
+- changing the theorem statement or adding a hypothesis unless the existing
+  parent is also proved to supply that hypothesis;
+- deriving a contradiction from inconsistent auxiliary assumptions that were
+  not consequences of §2;
+- calling a computationally observed pattern “routine” or “clearly general”;
+- claiming whole-project closure because a scratch file elaborates or a local
+  theorem compiles;
+- reducing the problem to another unproved Euclidean-geometry or
+  finite-incidence statement of comparable strength.
+
+## §6 Allowed background
+
+You may freely use standard exact facts about Euclidean distance, convex
+polygons, circles, perpendicular bisectors, minimum enclosing circles,
+finite-set cardinality, and the Lean/mathlib results already imported at the
+target.
+
+Standard proved theorems from Euclidean geometry, finite combinatorics, graph
+theory, real algebraic geometry, and Lean/mathlib may be used, but they must be
+stated accurately and applied with all necessary hypotheses and uniformity.
+
+The following checked declaration facts, kernel-mined status facts, and dated

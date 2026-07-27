@@ -1,0 +1,156 @@
+    simpa [hcap] using hbOff
+  have hcEq : dist c a = dist c b :=
+    (Kc.support_eq_radius a haKc).trans
+      (Kc.support_eq_radius b hbKc).symm
+  have hdEq : dist d a = dist d b :=
+    (Kd.support_eq_radius a haKd).trans
+      (Kd.support_eq_radius b hbKd).symm
+  rcases lt_or_gt_of_ne hic_ne_id with hlt | hgt
+  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+      D.convex Hord Packet.mem_A hlt
+      (Kc.support_subset_A haKc) (Kc.support_subset_A hbKc)
+      haOutside hbOutside hab
+      (by simpa [hic] using hcEq)
+      (by simpa [hid] using hdEq)
+  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
+      D.convex Hord Packet.mem_A hgt
+      (Kc.support_subset_A haKc) (Kc.support_subset_A hbKc)
+      haOutside hbOutside hab
+      (by simpa [hid] using hdEq)
+      (by simpa [hic] using hcEq)
+
+private def qDeletedK4ClassToSelectedFourClass
+    {D : CounterexampleData} {q center : ℝ²} {B : Finset ℝ²}
+    (K : U5QDeletedK4Class D q center B)
+    (hcard : B.card = 4) :
+    SelectedFourClass D.A center where
+  support := B
+  support_subset_A := by
+    intro y hy
+    have hyErase : y ∈ (D.skeleton q).erase center := K.subset hy
+    have hySkeleton : y ∈ D.skeleton q := (Finset.mem_erase.mp hyErase).2
+    exact (Finset.mem_erase.mp hySkeleton).2
+  support_card := hcard
+  radius := K.radius
+  radius_pos := K.radius_pos
+  support_eq_radius := K.same_radius
+  center_not_mem := by
+    intro hcenter
+    exact (Finset.mem_erase.mp (K.subset hcenter)).1 rfl
+
+private theorem qDeletedK4Class_support_eq_selectedShell
+    {D : CounterexampleData} {H : CriticalShellSystem D.A}
+    {source deleted : ℝ²} {B : Finset ℝ²}
+    (hsource : source ∈ D.A)
+    (K :
+      U5QDeletedK4Class D deleted (H.centerAt source hsource) B)
+    (hcard : B.card = 4) :
+    B = (H.selectedAt source hsource).toCriticalFourShell.support := by
+  exact H.selectedFourClass_support_eq_shell source hsource
+    (qDeletedK4ClassToSelectedFourClass K hcard)
+
+/-- Source-exact collision rows force either the desired three-hit shell or
+one concrete cross-row incidence.
+
+This is the remaining positive planar/MEC terminal.  Compared with the
+collision-row coordinator below, both first-apex radius classes have already
+been normalized all the way to their named two-point strict-cap parts.  The
+conclusion exposes the least cross-incidence alternative: any one of its four
+arms is immediately eliminated by the checked cross-omission rectangle.
+
+Coordinator-interface frontier: before this leaf, the coordinator has two
+exact-four/exact-two collision rows and must still identify their strict-cap
+parts.  After normalization there is one load-bearing child, with no
+constructor fan-out, whose only non-three-hit outcome is a named cross hit. -/
+theorem exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (hρne : ρ ≠ radius)
+    (hfrontierFour :
+      (SelectedClass D.A S.oppApex1 radius).card = 4)
+    (hρfour :
+      (SelectedClass D.A S.oppApex1 ρ).card = 4)
+    (hfrontierInteriorEq :
+      SelectedClass D.A S.oppApex1 radius ∩
+          S.capInteriorByIndex S.oppIndex1 =
+        {P.source₁, P.source₂})
+    (hρInteriorEq :
+      SelectedClass D.A S.oppApex1 ρ ∩
+          S.capInteriorByIndex S.oppIndex1 =
+        {Pρ.source₁, Pρ.source₂})
+    {B : FrontierBiApexRobustResidual R}
+    {L : FrontierLargeOppositeCapsBiApexRobustResidual B}
+    {N : FrontierAllLargeCapsBiApexRobustResidual L}
+    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+    (hcriticalShellUniqueFourCover :
+      ∀ x : ℝ², ∀ hx : x ∈ D.A,
+        H.centerAt x hx ≠ x ∧
+          IsUniqueFourCenter D.A (H.centerAt x hx) ∧
+          uniqueFourClass D.A (H.centerAt x hx) =
+            (H.selectedAt x hx).toCriticalFourShell.support)
+    (hpairsDisjoint :
+      Disjoint
+        ({P.source₁, P.source₂} : Finset ℝ²)
+        {Pρ.source₁, Pρ.source₂})
+    (hblockersNe :
+      H.centerAt Pρ.source₁ Pρ.source₁_mem_A ≠
+        H.centerAt P.source₁ P.source₁_mem_A)
+    (LPρ : LocalizedCollisionCommonDeletion P)
+    (hLPρ : LPρ.fresh = Pρ.source₁)
+    (MPρ : LocalizedCollisionMutualOmissionCycle P LPρ)
+    (LP : LocalizedCollisionCommonDeletion Pρ)
+    (hLP : LP.fresh = P.source₁)
+    (MP : LocalizedCollisionMutualOmissionCycle Pρ LP)
+    (hcapEightOrCross :
+      8 ≤ (S.capByIndex S.oppIndex1).card ∨
+        H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₁ ∨
+          H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₂ ∨
+            H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₁ ∨
+              H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₂) :
+    (∃ i : Fin 3, ∃ x : ℝ², ∃ hx : x ∈ D.A, ∃ r : ℝ,
+      ApexRichClassStructure D.A (S.oppositeVertexByIndex i) ∧
+        3 ≤
+          ((H.selectedAt x hx).toCriticalFourShell.support ∩
+            (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+              S.capInteriorByIndex i)).card) ∨
+      (Pρ.source₁ ∈
+          (H.selectedAt P.source₁
+            P.source₁_mem_A).toCriticalFourShell.support ∨
+        Pρ.source₂ ∈
+            (H.selectedAt P.source₁
+              P.source₁_mem_A).toCriticalFourShell.support ∨
+          P.source₁ ∈
+              (H.selectedAt Pρ.source₁
+                Pρ.source₁_mem_A).toCriticalFourShell.support ∨
+            P.source₂ ∈
+              (H.selectedAt Pρ.source₁
+                Pρ.source₁_mem_A).toCriticalFourShell.support) := by
+  sorry
+
+/-- The retained two-cycle and tri-apex normal form forces a three-hit
+canonical shell at one of the three rich Moser apices.
+
+This is the load-bearing global planar/MEC producer after the checked
+exact-two normalization.  Its hypotheses expose two distinct exact-four
+first-apex radii with exactly two strict-cap points each, four disjoint
+strict-cap sources, distinct actual blocker centres, the complete
+cross-omission rectangle, two oppositely oriented localized common-deletion
+cycles, and the last finite incidence split.
+
+A purely local common-outside-pair argument is unavailable: the checked
+ordered-cap theorem `selectedFourClass_outside_overlap_card_le_one` only gives
+an upper bound on that overlap, while none of the hypotheses supplies a
+positive shared outside point.  Closure must therefore use the retained
+global cap, minimality, and tri-apex data rather than assuming the missing
+overlap. -/
+theorem exists_three_hit_of_two_collisionRows_capCross_normalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}

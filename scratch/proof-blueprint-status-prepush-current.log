@@ -1,0 +1,43 @@
+project:       erdos-97-96-formalization (erdos-97-96-formalization)
+root:          /Users/adam/projects/math-projects/erdos-97-96-formalization
+lean_lib:      /Users/adam/projects/math-projects/erdos-97-96-formalization/lean
+target_symbol: 2 targets: Problem97.erdos97_rhs, Problem96.erdos96_rhs
+
+last build:    ✓ passed · built 1 · 9s · 27m ago
+recent builds  (when · took · result · target):
+    1h ago   1m14s  built 12     full
+    1h ago      8s  built 1      Erdos9796Proof.P97.ATail.ExactFourRobustCapExpansion
+    1h ago     12s  built 1      Erdos9796Proof.P97.ATail.FrontierLiveClosure
+    1h ago     19s  built 3      full
+   27m ago      9s  built 1      full
+
+lean_files:    4206
+lean_symbols:  51964
+  axioms:      0 (0 sanctioned)
+  with-sorry:  6
+  closures:    0 cached
+
+index:         in sync with source
+uncommitted:   ⚠ 2 lean file(s) not committed — mined state may not be reproducible from git
+     M lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean
+     M lean/Erdos9796Proof/P97/PinnedMultiplicity.lean
+
+kernel spine (mined call graph — the only structure):
+  build:        ec1da737b01f
+  mined fresh:  0/43946 symbol(s)  (43933 stale)
+  graph mined:  36m ago
+  trusted:      7880 🔒 (certs excluded by [mining].skip)
+  (run `refs --refresh` to mine the graph)
+
+live sorries (cached @ build 1e235d3f7603, 2026-07-26T16:33:58+00:00):
+  on-spine (open frontier) (5):
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:129]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:118]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:69]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:528]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:616]
+  off-spine (placeholder — wire into the spine or remove) (0)
+
+session anchors: 6 total (graph unavailable — states unknown)
+
+your anchor: ⚓ Problem97.ATailFrontierLiveClosure.false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits

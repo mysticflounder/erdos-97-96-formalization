@@ -1,0 +1,321 @@
+  rcases nonempty_secondRowSuccessor_of_robust R partnerPacket with
+    ⟨partnerSuccessor⟩
+  exact ⟨{
+    physicalRow := secondRow
+    rows_disjoint := hrows
+    source
+    partner
+    source_mem_deleted := hsource
+    partner_mem_deleted := hpartner
+    source_ne_partner := hne
+    deleted_eq_sources := hdeleted
+    sourcePacket
+    sourcePacket_physicalSupport := rfl
+    sourcePacket_physicalRadius := rfl
+    sourceSuccessor
+    partnerPacket
+    partnerPacket_physicalSupport := rfl
+    partnerPacket_physicalRadius := rfl
+    partnerSuccessor }⟩
+
+/-- The exact two-radius normal form after consuming the critical alternative
+of the singleton common-deletion branch. -/
+inductive ExactFourTwoRadiusSuccessorNormalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (H : CriticalShellSystem D.A)
+    (firstRow : SelectedFourClass D.A S.oppApex2) : Type
+  | collisionInterval
+      (endpoint : StrictPairCollisionIntervalEndpoint D S firstRow)
+      (continuation : ExactFourCollisionIntervalContinuation H endpoint)
+  | singletonSuccessor
+      (endpoint : StrictPairSingletonCommonDeletionEndpoint D S H)
+      (successor : SecondRowCommonDeletionSuccessor endpoint.packet)
+  | unequalCore
+      (endpoint : StrictPairUnequalCoreEndpoint D S firstRow)
+      (continuation : ExactFourUnequalCoreContinuation H endpoint)
+
+/-- Refine the raw normal form by forcing a successor in its singleton
+common-deletion constructor. -/
+theorem nonempty_exactFourTwoRadiusSuccessorNormalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {firstRow : SelectedFourClass D.A S.oppApex2}
+    (R : ATailDeletionRobustness.FullyDeletionRobustAt D S.oppApex2)
+    (secondRow : SelectedFourClass D.A S.oppApex2)
+    (hrows : Disjoint firstRow.support secondRow.support)
+    (normalForm : ExactFourTwoRadiusNormalForm H firstRow) :
+    Nonempty (ExactFourTwoRadiusSuccessorNormalForm H firstRow) := by
+  cases normalForm with
+  | collisionInterval endpoint =>
+      rcases nonempty_collisionIntervalContinuation
+          R secondRow hrows endpoint with
+        ⟨continuation⟩
+      exact ⟨.collisionInterval endpoint continuation⟩
+  | singletonCommonDeletion endpoint =>
+      rcases
+          nonempty_secondRowCommonDeletionSuccessor_of_singletonEndpoint
+            R endpoint with
+        ⟨successor⟩
+      exact ⟨.singletonSuccessor endpoint successor⟩
+  | unequalCore endpoint =>
+      rcases nonempty_unequalCoreContinuation
+          R secondRow hrows endpoint with
+        ⟨continuation⟩
+      exact ⟨.unequalCore endpoint continuation⟩
+
+/-- A q-deleted selected row is contained in its complete ambient radius
+class. -/
+private theorem qDeleted_support_subset_ambientSelectedClass
+    {D : CounterexampleData} {q center : ℝ²} {B : Finset ℝ²}
+    (K : U5QDeletedK4Class D q center B) :
+    B ⊆ SelectedClass D.A center K.radius := by
+  intro z hz
+  have hzSkeleton : z ∈ D.skeleton q :=
+    (Finset.mem_erase.mp (K.subset hz)).2
+  have hzA : z ∈ D.A := (Finset.mem_erase.mp hzSkeleton).2
+  exact mem_selectedClass.mpr ⟨hzA, K.same_radius z hz⟩
+
+/-- Once the singleton packet is aligned with the two original physical
+rows, its alternate-radius successor either returns exactly to the original
+second row or supplies a third physical radius disjoint from that row. -/
+inductive ExactFourSingletonAlternateRadiusOutcome
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    (endpoint : StrictPairSingletonCommonDeletionEndpoint D S H)
+    (successor : SecondRowCommonDeletionSuccessor endpoint.packet) : Type
+  | returnsToSecondRow
+      (radius_eq :
+        successor.packet.row₂.radius = endpoint.secondRow.radius)
+      (support_eq :
+        successor.packet.B₂ = endpoint.secondRow.support)
+  | thirdRadius
+      (radius_ne :
+        successor.packet.row₂.radius ≠ endpoint.secondRow.radius)
+      (supports_disjoint :
+        Disjoint endpoint.secondRow.support successor.packet.B₂)
+
+/-- Once a collision- or unequal-core packet is aligned to the original
+physical second row, its successor either returns exactly to the original
+first row or supplies a third radius disjoint from that first row. -/
+inductive ExactFourAlternatingSuccessorOutcome
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    (firstRow : SelectedFourClass D.A S.oppApex2)
+    {deleted center : ℝ²}
+    {C : CommonDeletionTwoCenterPacket
+      D H deleted center S.oppApex2}
+    (successor : SecondRowCommonDeletionSuccessor C) : Type
+  | returnsToFirstRow
+      (radius_eq :
+        successor.packet.row₂.radius = firstRow.radius)
+      (support_eq :
+        successor.packet.B₂ = firstRow.support)
+  | thirdRadius
+      (radius_ne :
+        successor.packet.row₂.radius ≠ firstRow.radius)
+      (supports_disjoint :
+        Disjoint firstRow.support successor.packet.B₂)
+
+/-- Source and radius data retained by a successor whose old physical row is
+caller-controlled.  Together with `outcome`, this is an explicit alternating
+two-row transition or a third-radius escape. -/
+structure ExactFourAlternatingSuccessorClassification
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    (firstRow physicalRow : SelectedFourClass D.A S.oppApex2)
+    {deleted center : ℝ²}
+    (C : CommonDeletionTwoCenterPacket
+      D H deleted center S.oppApex2)
+    (successor : SecondRowCommonDeletionSuccessor C) : Type where
+  source_mem_physicalRow :
+    successor.source ∈ physicalRow.support
+  source_not_mem_firstRow :
+    successor.source ∉ firstRow.support
+  successor_radius_ne_physicalRow :
+    successor.packet.row₂.radius ≠ physicalRow.radius
+  successor_support_disjoint_physicalRow :
+    Disjoint physicalRow.support successor.packet.B₂
+  outcome :
+    ExactFourAlternatingSuccessorOutcome firstRow successor
+
+/-- Classify a successor from a prescribed physical row when every positive
+radius class at the second apex has cardinality below five. -/
+theorem nonempty_alternatingSuccessorClassification
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    (hnoFive :
+      ∀ candidateRadius : ℝ, 0 < candidateRadius →
+        (SelectedClass D.A S.oppApex2 candidateRadius).card < 5)
+    (firstRow physicalRow : SelectedFourClass D.A S.oppApex2)
+    (hrows : Disjoint firstRow.support physicalRow.support)
+    {deleted center : ℝ²}
+    (C : CommonDeletionTwoCenterPacket
+      D H deleted center S.oppApex2)
+    (hphysicalSupport : C.B₂ = physicalRow.support)
+    (hphysicalRadius : C.row₂.radius = physicalRow.radius)
+    (successor : SecondRowCommonDeletionSuccessor C) :
+    Nonempty
+      (ExactFourAlternatingSuccessorClassification
+        firstRow physicalRow C successor) := by
+  cases successor.secondCenterShape with
+  | sameRadiusOverflow _radiusEq hfive =>
+      have hlt :=
+        hnoFive successor.packet.row₂.radius
+          successor.packet.row₂.radius_pos
+      omega
+  | alternateRadius hradius hdisjoint =>
+      have hsourcePhysical :
+          successor.source ∈ physicalRow.support := by
+        rw [← hphysicalSupport]
+        exact successor.source_mem_secondRow
+      have hsourceFirst :
+          successor.source ∉ firstRow.support := by
+        intro hsourceFirst
+        exact Finset.disjoint_left.mp hrows
+          hsourceFirst hsourcePhysical
+      have hradiusPhysical :
+          successor.packet.row₂.radius ≠ physicalRow.radius := by
+        intro heq
+        exact hradius (heq.trans hphysicalRadius.symm)
+      have hdisjointPhysical :
+          Disjoint physicalRow.support successor.packet.B₂ := by
+        rw [← hphysicalSupport]
+        exact hdisjoint
+      have houtcome :
+          ExactFourAlternatingSuccessorOutcome firstRow successor := by
+        by_cases hreturn :
+            successor.packet.row₂.radius = firstRow.radius
+        · have hsuccessorSub :
+              successor.packet.B₂ ⊆
+                SelectedClass D.A S.oppApex2 firstRow.radius := by
+            simpa [hreturn] using
+              qDeleted_support_subset_ambientSelectedClass
+                successor.packet.row₂
+          have hfirstSub :
+              firstRow.support ⊆
+                SelectedClass D.A S.oppApex2 firstRow.radius := by
+            intro z hz
+            exact mem_selectedClass.mpr
+              ⟨firstRow.support_subset_A hz,
+                firstRow.support_eq_radius z hz⟩
+          have hclassCardLe :
+              (SelectedClass D.A S.oppApex2
+                firstRow.radius).card ≤ 4 := by
+            have hlt :=
+              hnoFive firstRow.radius firstRow.radius_pos
+            omega
+          have hsuccessorEq :
+              successor.packet.B₂ =
+                SelectedClass D.A S.oppApex2 firstRow.radius := by
+            apply Finset.eq_of_subset_of_card_le hsuccessorSub
+            simpa [successor.packet.B₂_card] using hclassCardLe
+          have hfirstEq :
+              firstRow.support =
+                SelectedClass D.A S.oppApex2 firstRow.radius := by
+            apply Finset.eq_of_subset_of_card_le hfirstSub
+            simpa [firstRow.support_card] using hclassCardLe
+          exact .returnsToFirstRow hreturn
+            (hsuccessorEq.trans hfirstEq.symm)
+        · let newSecond :=
+            ATailRFailureProfilesParentLiftScratch.CommonDeletionTwoCenterPacket.secondRowSelectedFourClass
+              successor.packet
+          have hradii :
+              firstRow.radius ≠ newSecond.radius := by
+            intro heq
+            exact hreturn
+              (by simpa [newSecond] using heq.symm)
+          have hfirstDisjoint :
+              Disjoint firstRow.support newSecond.support :=
+            (sameCenter_radius_eq_or_support_disjoint
+              firstRow newSecond).resolve_left hradii
+          exact .thirdRadius hreturn
+            (by simpa [newSecond] using hfirstDisjoint)
+      exact ⟨{
+        source_mem_physicalRow := hsourcePhysical
+        source_not_mem_firstRow := hsourceFirst
+        successor_radius_ne_physicalRow := hradiusPhysical
+        successor_support_disjoint_physicalRow := hdisjointPhysical
+        outcome := houtcome }⟩
+
+/-- The two-radius normal form after using the global absence of five-point
+positive-radius classes to eliminate the singleton successor's equal-radius
+overflow arm. -/
+inductive ExactFourTwoRadiusNoFiveNormalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (H : CriticalShellSystem D.A)
+    (firstRow : SelectedFourClass D.A S.oppApex2) : Type
+  | collisionInterval
+      (endpoint : StrictPairCollisionIntervalEndpoint D S firstRow)
+      (continuation : ExactFourCollisionIntervalContinuation H endpoint)
+      (sourceClassification :
+        ExactFourAlternatingSuccessorClassification
+          firstRow continuation.physicalRow continuation.sourcePacket
+            continuation.sourceSuccessor)
+      (partnerClassification :
+        ExactFourAlternatingSuccessorClassification
+          firstRow continuation.physicalRow continuation.partnerPacket
+            continuation.partnerSuccessor)
+  | singletonAlternateRadius
+      (endpoint : StrictPairSingletonCommonDeletionEndpoint D S H)
+      (successor : SecondRowCommonDeletionSuccessor endpoint.packet)
+      (radius_ne :
+        successor.packet.row₂.radius ≠ endpoint.packet.row₂.radius)
+      (supports_disjoint :
+        Disjoint endpoint.packet.B₂ successor.packet.B₂)
+      (successor_source_mem_firstRow :
+        successor.source ∈ endpoint.firstRow.support)
+      (successor_support_disjoint_from_firstRow :
+        Disjoint endpoint.firstRow.support successor.packet.B₂)
+      (outcome :
+        ExactFourSingletonAlternateRadiusOutcome endpoint successor)
+  | unequalCore
+      (endpoint : StrictPairUnequalCoreEndpoint D S firstRow)
+      (continuation : ExactFourUnequalCoreContinuation H endpoint)
+      (sourceClassification :
+        ExactFourAlternatingSuccessorClassification
+          firstRow continuation.physicalRow continuation.sourcePacket
+            continuation.sourceSuccessor)
+      (partnerClassification :
+        ExactFourAlternatingSuccessorClassification
+          firstRow continuation.physicalRow continuation.partnerPacket
+            continuation.partnerSuccessor)
+
+/-- In the no-five branch, a singleton common-deletion successor necessarily
+uses an alternate second-apex radius with disjoint selected supports. -/
+theorem nonempty_exactFourTwoRadiusNoFiveNormalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {firstRow : SelectedFourClass D.A S.oppApex2}
+    (hnoFive :
+      ∀ candidateRadius : ℝ, 0 < candidateRadius →
+        (SelectedClass D.A S.oppApex2 candidateRadius).card < 5)
+    (normalForm : ExactFourTwoRadiusSuccessorNormalForm H firstRow) :
+    Nonempty (ExactFourTwoRadiusNoFiveNormalForm H firstRow) := by
+  cases normalForm with
+  | collisionInterval endpoint continuation =>
+      rcases nonempty_alternatingSuccessorClassification
+          hnoFive firstRow continuation.physicalRow
+          continuation.rows_disjoint continuation.sourcePacket
+          continuation.sourcePacket_physicalSupport
+          continuation.sourcePacket_physicalRadius
+          continuation.sourceSuccessor with
+        ⟨sourceClassification⟩
+      rcases nonempty_alternatingSuccessorClassification
+          hnoFive firstRow continuation.physicalRow
+          continuation.rows_disjoint continuation.partnerPacket
+          continuation.partnerPacket_physicalSupport
+          continuation.partnerPacket_physicalRadius
+          continuation.partnerSuccessor with
+        ⟨partnerClassification⟩
+      exact ⟨.collisionInterval endpoint continuation
+        sourceClassification partnerClassification⟩
+  | singletonSuccessor endpoint successor =>
+      cases successor.secondCenterShape with
+      | sameRadiusOverflow _radiusEq hfive =>
+          have hlt :=
+            hnoFive successor.packet.row₂.radius
+              successor.packet.row₂.radius_pos
+          omega
+      | alternateRadius hradius hdisjoint =>
+          have hsourceFirst :
+              successor.source ∈ endpoint.firstRow.support := by

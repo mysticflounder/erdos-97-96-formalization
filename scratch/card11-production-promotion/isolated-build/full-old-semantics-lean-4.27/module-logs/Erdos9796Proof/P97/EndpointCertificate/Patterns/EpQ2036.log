@@ -1,0 +1,3 @@
+module=Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2036
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/565aeb1a45d765db-y2hialbz/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/565aeb1a45d765db-y2hialbz/module.ilean Erdos9796Proof/P97/EndpointCertificate/Patterns/EpQ2036.lean
+

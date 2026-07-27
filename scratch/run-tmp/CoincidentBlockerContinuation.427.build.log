@@ -1,0 +1,36 @@
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.OriginalUniqueFiveCoincidentBlockerResidual.supports_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.OriginalUniqueFiveCoincidentBlockerResidual.commonShell_inter_firstCap_eq_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.nonempty_coincidentBlockerFreshCommonDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.freshBlocker_mem_firstCap_or_otherCapInterior' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.freshShell_omits_commonOutsidePair_of_freshBlocker_mem_firstCap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.CoincidentBlockerMutualOmissionCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.nonempty_coincidentBlockerMutualOmissionCycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.criticalShell_inter_firstClass_card_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.CoincidentBlockerJointDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.nonempty_coincidentBlockerJointDeletion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.CoincidentBlockerJointDeletionClosingStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFiveCoincidentDirectFalseScratch.false_of_jointDeletionClosingStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

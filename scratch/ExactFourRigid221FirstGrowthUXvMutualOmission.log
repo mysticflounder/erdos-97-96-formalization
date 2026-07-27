@@ -1,0 +1,47 @@
+'Problem97.ATailFrontierLiveClosure.scratch_false_of_exactFourRigid221_firstGrowth_uXvMutualOmission' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavyOtherXv_firstGrowth_uXvMutualOmission_xuXvRow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavyOtherXv_firstGrowth_uXvMutualOmission_vXvRow_direct' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavyOtherXv_firstGrowth_uXvMutualOmission_deletedXvRow_direct' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavyOtherXv_firstGrowth_uXvMutualOmission_twoDeletions' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

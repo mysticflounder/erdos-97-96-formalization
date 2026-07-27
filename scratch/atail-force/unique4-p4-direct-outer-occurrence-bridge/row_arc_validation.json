@@ -1,0 +1,32 @@
+{
+  "checks": {
+    "core_order_authenticated_separately": true,
+    "no_output_interval_claim": true,
+    "source_ledger_exact_key_join": true,
+    "terminal_order_drives_semantic_zip": true
+  },
+  "combined_direct_dense_mapping_audit": {
+    "combined_direct_occurrence_count": 10614,
+    "conflicting_dense_variables": {},
+    "dense_variable_to_semantic_atom_functional": true,
+    "distinct_direct_dense_variables": 1962,
+    "family_occurrence_counts": {
+      "direct_memberships_imply_row_pattern": 1265,
+      "direct_no_four_turn_disjoint_outer_arcs": 6170,
+      "direct_row_pattern_implies_outer_arc": 3179
+    },
+    "method": "source core order authenticates each dense literal; emitted row/arc pairs use terminal order"
+  },
+  "family": "direct_row_pattern_implies_outer_arc",
+  "hashes": {
+    "ledger": "b1c159058e659cbd06c4540e72e2ca94eef0ef27602733db0bc44122dcdb4aac",
+    "manifest": "61efb4c99512ef3cff6968f1513ebb8e3c9009ad3fcc7bb013da70a5d3f37305",
+    "source_map": "af829a7c99e0f969f410d398d7c32c2ba5dd945f3a7ebb2ef3f8d7679633d64b"
+  },
+  "join_key": [
+    "allocated_family",
+    "core_clause_index",
+    "allocated_input_clause_index"
+  ],
+  "row_count": 3179
+}

@@ -1,0 +1,62 @@
+{
+  "claim_scope": "This loop audits two fixed n=11 finite projections. It does not by itself prove the Lean unique-four residual or a Euclidean realization.",
+  "epistemic_status": "RUNNING_FAIL_CLOSED",
+  "exact_two_strict_hit_overlay": false,
+  "final_kalmanson_bank_counts": {
+    "kernel": 10,
+    "pending": 41,
+    "total": 51
+  },
+  "final_kalmanson_bank_sha256": "dfe8ff12f738ed567510234d89fd32aec94529145a40970358f0a8a094f88f93",
+  "final_u5_bank_sha256": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46",
+  "finished_unix": 1785129682.508838,
+  "initial_kalmanson_bank_counts": {
+    "kernel": 10,
+    "pending": 41
+  },
+  "max_new_rounds": 1,
+  "pair_minimality_overlay": false,
+  "profiles": [
+    4,
+    5
+  ],
+  "rounds": [
+    {
+      "bank_digests_at_encoding": {
+        "kalmanson": "dfe8ff12f738ed567510234d89fd32aec94529145a40970358f0a8a094f88f93",
+        "planar": "7664227049cd92b729220d38254f64482b04fcb64aeed830046587ee44c80d72",
+        "u5": "30f97d651d1b361802db2016b917134d819390a705ce89b22f6b026e19c1ab46"
+      },
+      "profiles": [
+        {
+          "cnf_retained": true,
+          "cnf_sha256": "8f16b3c633a27f9b3fdd18426a4c06cf0b7d2206159328b647723f276964f2aa",
+          "profile": 4,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-debug-20260726/round_001/opp1_4.result.json",
+          "result_sha256": "8ae67da6dcd9360334d7398f02ce440af968e6eb4e0768c215d16d97fbb77896",
+          "solver_log_retained": false,
+          "solver_log_sha256": "e6729839d8a1a6c82e6e14fce699cb586557e161deef656c6a2c2974f1143f2b"
+        },
+        {
+          "cnf_retained": true,
+          "cnf_sha256": "4a0a676dc1cc9af6cd97d980d53da0e25aad5b01a925abd3dcf380d91860a5e5",
+          "profile": 5,
+          "result": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-debug-20260726/round_001/opp1_5.result.json",
+          "result_sha256": "ee28fc4a8125732a274764345d9d4c90bf86cc9e970b5e5588df9484555d0975",
+          "solver_log_retained": false,
+          "solver_log_sha256": "ba4be6960e2d993979da3f66ceef60d51bae17bf8cc491522b1a051c451f7bdb"
+        }
+      ],
+      "round": 1,
+      "solver_statuses": {
+        "4": "UNKNOWN",
+        "5": "UNKNOWN"
+      },
+      "status": "FAIL_CLOSED_SOLVER_UNKNOWN"
+    }
+  ],
+  "schema": "p97-exact-four-two-profile-cegar-run-v1",
+  "started_unix": 1785129662.806157,
+  "strict_cap_minimality_overlay": false,
+  "terminal_status": "FAIL_CLOSED_SOLVER_UNKNOWN"
+}

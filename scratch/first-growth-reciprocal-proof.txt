@@ -1,0 +1,331 @@
+  3100	is the live contradiction itself: the full source/deletion context and row
+  3101	traces remain available, and `W` adds the exact three-point interior and
+  3102	opposite-adjacent placement forced by the parent. -/
+  3103	theorem
+  3104	    blocker_centers_eq_of_physicalSecondRadius_mutual_cross_membership
+  3105	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  3106	    {H : CriticalShellSystem D.A}
+  3107	    {F : CriticalPairFrontier D S radius H}
+  3108	    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+  3109	    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+  3110	    {x y : ℝ²}
+  3111	    (hxA : x ∈ D.A) (hyA : y ∈ D.A) (hxy : x ≠ y)
+  3112	    (hxRadius : x ∈ SelectedClass D.A S.oppApex2 P.rho)
+  3113	    (hyRadius : y ∈ SelectedClass D.A S.oppApex2 P.rho)
+  3114	    (hyx :
+  3115	      y ∈ ((lateFirstApexSystem R).selectedAt
+  3116	        x hxA).toCriticalFourShell.support)
+  3117	    (hxy' :
+  3118	      x ∈ ((lateFirstApexSystem R).selectedAt
+  3119	        y hyA).toCriticalFourShell.support) :
+  3120	    (lateFirstApexSystem R).centerAt x hxA =
+  3121	      (lateFirstApexSystem R).centerAt y hyA := by
+  3122	  classical
+  3123	  let Hlate := lateFirstApexSystem R
+  3124	  let cx := Hlate.centerAt x hxA
+  3125	  let cy := Hlate.centerAt y hyA
+  3126	  let o := S.oppApex2
+  3127	  have hoA : o ∈ D.A := by
+  3128	    simpa [o] using P.surface.ingress.packet.center₂_mem_A
+  3129	  have hcxA : cx ∈ D.A := by
+  3130	    simpa [cx, Hlate, CriticalShellSystem.blockerVertex] using
+  3131	      (Hlate.blockerVertex ⟨x, hxA⟩).2
+  3132	  have hcyA : cy ∈ D.A := by
+  3133	    simpa [cy, Hlate, CriticalShellSystem.blockerVertex] using
+  3134	      (Hlate.blockerVertex ⟨y, hyA⟩).2
+  3135	  have hcxNeO : cx ≠ o := by
+  3136	    simpa [cx, o, Hlate] using
+  3137	      P.surface.secondApex_robust.centerAt_ne Hlate x hxA
+  3138	  have hcyNeO : cy ≠ o := by
+  3139	    simpa [cy, o, Hlate] using
+  3140	      P.surface.secondApex_robust.centerAt_ne Hlate y hyA
+  3141	  by_contra hcxcy
+  3142	  have hoEq : dist o x = dist o y :=
+  3143	    (mem_selectedClass.mp hxRadius).2.trans
+  3144	      (mem_selectedClass.mp hyRadius).2.symm
+  3145	  have hcxEq : dist cx x = dist cx y := by
+  3146	    exact
+  3147	      (Hlate.selectedAt x hxA).toCriticalFourShell.support_eq_radius
+  3148	        x (Hlate.selectedAt x hxA).toCriticalFourShell.q_mem_support
+  3149	      |>.trans
+  3150	        ((Hlate.selectedAt x hxA).toCriticalFourShell.support_eq_radius
+  3151	          y hyx).symm
+  3152	  have hcyEq : dist cy x = dist cy y := by
+  3153	    exact
+  3154	      (Hlate.selectedAt y hyA).toCriticalFourShell.support_eq_radius
+  3155	        x hxy'
+  3156	      |>.trans
+  3157	        ((Hlate.selectedAt y hyA).toCriticalFourShell.support_eq_radius
+  3158	          y (Hlate.selectedAt y hyA).toCriticalFourShell.q_mem_support).symm
+  3159	  have hbound := Dumitrescu.perpBisector_apex_bound D.convex hxA hyA hxy
+  3160	  have hoFilter :
+  3161	      o ∈ D.A.filter (fun z => dist z x = dist z y) :=
+  3162	    Finset.mem_filter.mpr ⟨hoA, hoEq⟩
+  3163	  have hcxFilter :
+  3164	      cx ∈ D.A.filter (fun z => dist z x = dist z y) :=
+  3165	    Finset.mem_filter.mpr ⟨hcxA, hcxEq⟩
+  3166	  have hcyFilter :
+  3167	      cy ∈ D.A.filter (fun z => dist z x = dist z y) :=
+  3168	    Finset.mem_filter.mpr ⟨hcyA, hcyEq⟩
+  3169	  have hthree :
+  3170	      2 < (D.A.filter (fun z => dist z x = dist z y)).card := by
+  3171	    rw [Finset.two_lt_card]
+  3172	    exact ⟨o, hoFilter, cx, hcxFilter, cy, hcyFilter,
+  3173	      hcxNeO.symm, hcyNeO.symm, hcxcy⟩
+  3174	  omega
+  3175	
+  3176	/-- In the reciprocal incidence arm, the rows at `u` and `xu` coincide.
+  3177	The exact class traces then leave both `v` and the original rigid deletion
+  3178	outside the rows at `xu` and `xv`, producing two distinct prescribed
+  3179	joint-deletion packets for the mutually omitted pair `(xu, xv)`. -/
+  3180	theorem
+  3181	    false_of_exactFourRigid221_sourceHeavyOtherXv_firstGrowth_reciprocalArm
+  3182	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  3183	    {H : CriticalShellSystem D.A}
+  3184	    {F : CriticalPairFrontier D S radius H}
+  3185	    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+  3186	    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+  3187	    (packet :
+  3188	      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+  3189	    (_W :
+  3190	      ExactFourRigid221SourceHeavyOtherXvFirstGrowthPacket P packet)
+  3191	    (hxuA : packet.xu ∈ D.A)
+  3192	    (hxvA : packet.xv ∈ D.A)
+  3193	    (huXvRow :
+  3194	      P.u.1 ∈
+  3195	        ((lateFirstApexSystem R).selectedAt
+  3196	          packet.xv hxvA).toCriticalFourShell.support)
+  3197	    (huXuRow :
+  3198	      P.u.1 ∈
+  3199	        ((lateFirstApexSystem R).selectedAt
+  3200	          packet.xu hxuA).toCriticalFourShell.support) :
+  3201	    False := by
+  3202	  classical
+  3203	  let Hlate := lateFirstApexSystem R
+  3204	  let C := SelectedClass D.A S.oppApex2 P.rho
+  3205	  have hxuInter :
+  3206	      packet.xu ∈
+  3207	        (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.support ∩ C := by
+  3208	    simpa [Hlate, C] using
+  3209	      (show packet.xu ∈
+  3210	          ((lateFirstApexSystem R).selectedAt
+  3211	              P.u.1 P.u.2).toCriticalFourShell.support ∩
+  3212	            SelectedClass D.A S.oppApex2 P.rho by
+  3213	        rw [packet.source_row_trace]
+  3214	        simp)
+  3215	  have hxvInter :
+  3216	      packet.xv ∈
+  3217	        (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support ∩ C := by
+  3218	    simpa [Hlate, C] using
+  3219	      (show packet.xv ∈
+  3220	          ((lateFirstApexSystem R).selectedAt
+  3221	              P.v.1 P.v.2).toCriticalFourShell.support ∩
+  3222	            SelectedClass D.A S.oppApex2 P.rho by
+  3223	        rw [packet.opposite_row_trace]
+  3224	        simp)
+  3225	  have hxuClass : packet.xu ∈ C := (Finset.mem_inter.mp hxuInter).2
+  3226	  have hxvClass : packet.xv ∈ C := (Finset.mem_inter.mp hxvInter).2
+  3227	  let xu : CarrierVertex D.A := ⟨packet.xu, hxuA⟩
+  3228	  let xv : CarrierVertex D.A := ⟨packet.xv, hxvA⟩
+  3229	  have hxuURow :
+  3230	      packet.xu ∈
+  3231	        (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.support :=
+  3232	    (Finset.mem_inter.mp hxuInter).1
+  3233	  have hxvVRow :
+  3234	      packet.xv ∈
+  3235	        (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support :=
+  3236	    (Finset.mem_inter.mp hxvInter).1
+  3237	  have hcenterU :
+  3238	      Hlate.centerAt P.u.1 P.u.2 = packet.xv := by
+  3239	    simpa [Hlate, P.huSource] using packet.blocker_eq_xv
+  3240	  have hxvNotURow :
+  3241	      packet.xv ∉
+  3242	        (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.support := by
+  3243	    intro h
+  3244	    rw [← hcenterU] at h
+  3245	    exact
+  3246	      (Hlate.selectedAt
+  3247	        P.u.1 P.u.2).toCriticalFourShell.center_not_mem_support h
+  3248	  have huNeXu : P.u.1 ≠ packet.xu := packet.xu_ne_u.symm
+  3249	  have huNeXv : P.u.1 ≠ packet.xv := by
+  3250	    intro h
+  3251	    apply hxvNotURow
+  3252	    rw [← h]
+  3253	    exact
+  3254	      (Hlate.selectedAt
+  3255	        P.u.1 P.u.2).toCriticalFourShell.q_mem_support
+  3256	  have hxuNeXv : packet.xu ≠ packet.xv := by
+  3257	    intro h
+  3258	    apply hxvNotURow
+  3259	    rw [← h]
+  3260	    exact hxuURow
+  3261	  have hcenterUXu :
+  3262	      Hlate.centerAt P.u.1 P.u.2 =
+  3263	        Hlate.centerAt packet.xu hxuA := by
+  3264	    exact
+  3265	      blocker_centers_eq_of_physicalSecondRadius_mutual_cross_membership
+  3266	        P P.u.2 hxuA huNeXu
+  3267	          (by simpa [C] using P.huClass)
+  3268	          (by simpa [C] using hxuClass)
+  3269	          hxuURow
+  3270	          (by simpa [Hlate] using huXuRow)
+  3271	  have hsupportsUXu :
+  3272	      (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.support =
+  3273	        (Hlate.selectedAt
+  3274	          packet.xu hxuA).toCriticalFourShell.support :=
+  3275	    ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+  3276	      Hlate P.u.2 hxuA hcenterUXu
+  3277	  have hxvNotXuRow :
+  3278	      packet.xv ∉
+  3279	        (Hlate.selectedAt
+  3280	          packet.xu hxuA).toCriticalFourShell.support := by
+  3281	    intro h
+  3282	    apply hxvNotURow
+  3283	    rw [hsupportsUXu]
+  3284	    exact h
+  3285	  have hcardXv :
+  3286	      (((Hlate.selectedAt
+  3287	            packet.xv hxvA).toCriticalFourShell.support ∩ C).card ≤ 2) := by
+  3288	    simpa [Hlate, C, xv] using
+  3289	      actualLateRow_secondClass_card_le_two R P.surface xv
+  3290	  have hxvOwnInter :
+  3291	      packet.xv ∈
+  3292	        (Hlate.selectedAt
+  3293	            packet.xv hxvA).toCriticalFourShell.support ∩ C :=
+  3294	    Finset.mem_inter.mpr
+  3295	      ⟨(Hlate.selectedAt
+  3296	          packet.xv hxvA).toCriticalFourShell.q_mem_support,
+  3297	        hxvClass⟩
+  3298	  have huXvInter :
+  3299	      P.u.1 ∈
+  3300	        (Hlate.selectedAt
+  3301	            packet.xv hxvA).toCriticalFourShell.support ∩ C :=
+  3302	    Finset.mem_inter.mpr
+  3303	      ⟨by simpa [Hlate] using huXvRow,
+  3304	        by simpa [C] using P.huClass⟩
+  3305	  have hxuNotXvInter :
+  3306	      packet.xu ∉
+  3307	        (Hlate.selectedAt
+  3308	            packet.xv hxvA).toCriticalFourShell.support ∩ C :=
+  3309	    third_not_mem_of_card_le_two
+  3310	      hcardXv hxvOwnInter huXvInter huNeXv.symm
+  3311	        hxuNeXv.symm huNeXu
+  3312	  have hxuNotXvRow :
+  3313	      packet.xu ∉
+  3314	        (Hlate.selectedAt
+  3315	          packet.xv hxvA).toCriticalFourShell.support := by
+  3316	    intro h
+  3317	    exact hxuNotXvInter (Finset.mem_inter.mpr ⟨h, hxuClass⟩)
+  3318	  have hblockersNe :
+  3319	      Hlate.centerAt packet.xu hxuA ≠
+  3320	        Hlate.centerAt packet.xv hxvA := by
+  3321	    intro hcenters
+  3322	    have hsupports :=
+  3323	      ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+  3324	        Hlate hxuA hxvA hcenters
+  3325	    apply hxvNotXuRow
+  3326	    rw [hsupports]
+  3327	    exact
+  3328	      (Hlate.selectedAt
+  3329	        packet.xv hxvA).toCriticalFourShell.q_mem_support
+  3330	  have hpairSubset :
+  3331	      ({packet.xv, P.u.1} : Finset ℝ²) ⊆
+  3332	        (Hlate.selectedAt
+  3333	            packet.xv hxvA).toCriticalFourShell.support ∩ C := by
+  3334	    intro z hz
+  3335	    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+  3336	    rcases hz with rfl | rfl
+  3337	    · exact hxvOwnInter
+  3338	    · exact huXvInter
+  3339	  have hxvTrace :
+  3340	      (Hlate.selectedAt
+  3341	          packet.xv hxvA).toCriticalFourShell.support ∩ C =
+  3342	        {packet.xv, P.u.1} := by
+  3343	    symm
+  3344	    apply Finset.eq_of_subset_of_card_le hpairSubset
+  3345	    calc
+  3346	      ((Hlate.selectedAt
+  3347	          packet.xv hxvA).toCriticalFourShell.support ∩ C).card ≤ 2 :=
+  3348	        hcardXv
+  3349	      _ = ({packet.xv, P.u.1} : Finset ℝ²).card := by
+  3350	        simp [huNeXv.symm]
+  3351	  have hvNotXuRow :
+  3352	      P.v.1 ∉
+  3353	        (Hlate.selectedAt
+  3354	          packet.xu hxuA).toCriticalFourShell.support := by
+  3355	    intro h
+  3356	    apply P.hvOmitted
+  3357	    rw [hsupportsUXu]
+  3358	    exact h
+  3359	  have hdeletedNotXuRow :
+  3360	      P.jointDeletion.deleted.1 ∉
+  3361	        (Hlate.selectedAt
+  3362	          packet.xu hxuA).toCriticalFourShell.support := by
+  3363	    intro h
+  3364	    apply P.jointDeletion.deleted_not_mem_uRow
+  3365	    rw [hsupportsUXu]
+  3366	    exact h
+  3367	  have hvNotXvRow :
+  3368	      P.v.1 ∉
+  3369	        (Hlate.selectedAt
+  3370	          packet.xv hxvA).toCriticalFourShell.support := by
+  3371	    intro h
+  3372	    have hvPair : P.v.1 ∈ ({packet.xv, P.u.1} : Finset ℝ²) := by
+  3373	      rw [← hxvTrace]
+  3374	      exact Finset.mem_inter.mpr
+  3375	        ⟨h, by simpa [C] using P.hvClass⟩
+  3376	    simp only [Finset.mem_insert, Finset.mem_singleton] at hvPair
+  3377	    rcases hvPair with hvXv | hvU
+  3378	    · exact packet.xv_ne_v hvXv.symm
+  3379	    · exact P.huNeV (Subtype.ext hvU.symm)
+  3380	  have hdeletedNotXvRow :
+  3381	      P.jointDeletion.deleted.1 ∉
+  3382	        (Hlate.selectedAt
+  3383	          packet.xv hxvA).toCriticalFourShell.support := by
+  3384	    intro h
+  3385	    have hdeletedPair :
+  3386	        P.jointDeletion.deleted.1 ∈
+  3387	          ({packet.xv, P.u.1} : Finset ℝ²) := by
+  3388	      rw [← hxvTrace]
+  3389	      exact Finset.mem_inter.mpr
+  3390	        ⟨h, by simpa [C] using P.jointDeletion.deleted_mem_class⟩
+  3391	    simp only [Finset.mem_insert, Finset.mem_singleton] at hdeletedPair
+  3392	    rcases hdeletedPair with hdeletedXv | hdeletedU
+  3393	    · apply P.jointDeletion.deleted_not_mem_vRow
+  3394	      rw [hdeletedXv]
+  3395	      exact hxvVRow
+  3396	    · exact P.jointDeletion.deleted_ne_u (Subtype.ext hdeletedU)
+  3397	  rcases
+  3398	      exactFourMutualOmissionJointDeletion_of_prescribed
+  3399	        R P.surface P.rho xu xv P.v
+  3400	          (by simpa [C] using P.hvClass)
+  3401	          (by simpa [Hlate, xu] using hvNotXuRow)
+  3402	          (by simpa [Hlate, xv] using hvNotXvRow)
+  3403	          (by simpa [Hlate, xu, xv] using hblockersNe) with
+  3404	    ⟨first, hfirst⟩
+  3405	  rcases
+  3406	      exactFourMutualOmissionJointDeletion_of_prescribed
+  3407	        R P.surface P.rho xu xv P.jointDeletion.deleted
+  3408	          (by simpa [C] using P.jointDeletion.deleted_mem_class)
+  3409	          (by simpa [Hlate, xu] using hdeletedNotXuRow)
+  3410	          (by simpa [Hlate, xv] using hdeletedNotXvRow)
+  3411	          (by simpa [Hlate, xu, xv] using hblockersNe) with
+  3412	    ⟨second, hsecond⟩
+  3413	  have hdeletedNe : first.deleted ≠ second.deleted := by
+  3414	    intro h
+  3415	    exact
+  3416	      P.jointDeletion.deleted_ne_v
+  3417	        (hsecond.symm.trans (h.symm.trans hfirst))
+  3418	  exact
+  3419	    false_of_twoDistinctExactFourMutualOmissionJointDeletions
+  3420	      R P.hcard P.surface P.rho P.hrho P.hfive xu xv
+  3421	        (by
+  3422	          intro h
+  3423	          exact hxuNeXv (congrArg Subtype.val h))
+  3424	        (by simpa [C, xu] using hxuClass)
+  3425	        (by simpa [C, xv] using hxvClass)
+  3426	        (by simpa [Hlate, xu, xv] using hxvNotXuRow)
+  3427	        (by simpa [Hlate, xu, xv] using hxuNotXvRow)
+  3428	        first second hdeletedNe
+  3429	
+  3430	/-- First-growth residual in which `u` and `xv` mutually omit one another.

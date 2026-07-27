@@ -1,0 +1,67 @@
+{
+  "core": [
+    {
+      "assertion": "(=> (= frontier_q 9) (not b1_9))",
+      "index": 37290
+    },
+    {
+      "assertion": "(=> (= frontier_w 9) (not b1_9))",
+      "index": 37291
+    },
+    {
+      "assertion": "(=> (= frontier_q 10) (not b1_10))",
+      "index": 37292
+    },
+    {
+      "assertion": "(=> (= frontier_w 10) (not b1_10))",
+      "index": 37293
+    },
+    {
+      "assertion": "(or (and (= frontier_q 9) m_4_9)\n    (and (= frontier_q 10) m_4_10)\n    (and (= frontier_q 11) m_4_11)\n    (and (= frontier_q 12) m_4_12)\n    (and (= frontier_w 9) m_4_9)\n    (and (= frontier_w 10) m_4_10)\n    (and (= frontier_w 11) m_4_11)\n    (and (= frontier_w 12) m_4_12))",
+      "index": 37366
+    }
+  ],
+  "core_size": 5,
+  "cube": [
+    {
+      "atom": "m_4_9",
+      "value": true
+    },
+    {
+      "atom": "m_4_10",
+      "value": true
+    },
+    {
+      "atom": "m_4_11",
+      "value": false
+    },
+    {
+      "atom": "m_4_12",
+      "value": false
+    },
+    {
+      "atom": "b1_9",
+      "value": true
+    },
+    {
+      "atom": "b1_10",
+      "value": true
+    }
+  ],
+  "input_core_size": 1899,
+  "orbit": "asymmetricSourceLeft",
+  "schema": "p97-exact5-card13-cube-source-core-leaf-v1",
+  "seed": 68,
+  "source_counts": {
+    "base_assertions": 37363,
+    "guarded_exact_five_shell_rank_equalities": 66,
+    "guarded_selected_row_rank_equalities": 2640,
+    "kalmanson_cancellation_implications": 5720,
+    "rank_atoms": 78,
+    "rank_bit_width": 7,
+    "retained_parent_row_assertions": 0,
+    "source_role_assertions": 11,
+    "total_source_assertions": 45878
+  },
+  "status": "UNSAT"
+}

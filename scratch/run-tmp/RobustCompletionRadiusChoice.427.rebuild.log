@@ -1,0 +1,15 @@
+'Problem97.ATailUniqueFourRobustCompletionRadiusChoiceScratch.fullyDeletionRobustAt_radiusClassification' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustCompletionRadiusChoiceScratch.fullyDeletionRobustAt_iff_radiusClassification' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustCompletionRadiusChoiceScratch.exists_two_supportDistinct_selectedFourClasses_of_five_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustCompletionRadiusChoiceScratch.nonempty_robustCompletionRowChoice_of_fullyDeletionRobustAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustCompletionRadiusChoiceScratch.exists_strictCap_robustCompletionChoice_or_singletonCore' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

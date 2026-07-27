@@ -1,0 +1,11 @@
+self-contained check
+promotion check: ok files=3718
+promotion graph: promoted=2061 split={'generated': 1700, 'root': 2, 'support': 359} imports=4080 internal_rewrites=4045 assets=1656 asset_bytes=1037782466 preexisting_external=35
+source provenance check
+promotion check: ok files=3718
+promotion graph: promoted=2061 split={'generated': 1700, 'root': 2, 'support': 359} imports=4080 internal_rewrites=4045 assets=1656 asset_bytes=1037782466 preexisting_external=35
+path_packages=0
+vendor_tracked=0
+promoted_lean=2061
+promoted_assets=1656
+promoted_symlinks=0

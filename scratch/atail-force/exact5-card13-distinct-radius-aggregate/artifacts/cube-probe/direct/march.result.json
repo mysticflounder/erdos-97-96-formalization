@@ -1,0 +1,13 @@
+{
+  "cnf_sha256": "1669221a2e8791256c92038be8577e85ea1dc3204d0acfa106b064460a5dcff8",
+  "cube_limit": 64,
+  "depth": 8,
+  "elapsed_seconds": 120.00867545802612,
+  "icnf_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/cube-probe/direct/depth8-limit64.icnf",
+  "log_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/cube-probe/direct/march.log",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "orientation": "direct",
+  "returncode": null,
+  "status": "UNKNOWN",
+  "timed_out": true
+}

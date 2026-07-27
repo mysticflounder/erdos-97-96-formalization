@@ -1,0 +1,124 @@
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:12:On a directed cross-membership arm, the first apex and the selected blocker
+lean/Erdos9796Proof/P97/ATail/ThirdCenterCommonPair.lean:61:/-- A directed cross hit makes the blocker selected at `P.q` equidistant
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:21:then meets the cap in exactly the two collision sources.
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:370:the two collision sources in that cap. -/
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean:241:/-- A blocker collision at the two-step walk endpoints, with the exact
+lean/Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:25:alternation of `C,K` across the first apex `O` and common blocker `A`. In that
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:20:  generalizes the directed-cross blocker localization from the chosen
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:25:* `cross_survival_of_distinct_blockers` (T5): on a survivor relocation
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:328:otherwise both cross memberships hold and the blockers coincide. -/
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:329:theorem cross_survival_of_distinct_blockers
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean:456:#print axioms cross_survival_of_distinct_blockers
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean:11:# Card-five directed-cross blocker localization
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:399:once the no-collision split and the two `f1`-tail source equalities are both
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:417:two-field target or a separate collision-side route. -/
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:1193:/-- Under the collision-exclusion package, the older two-field `f1`-tail target
+lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:1390:/-- The source-core producer package carries the two-field `f1`-tail collision
+lean/Erdos9796Proof/P97/TwoCircleCrossing.lean:130:crossing ledger is impossible: its source and target blocker circles are two
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:7:import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.UniqueRowProducer.card_five_cross_blocker_localization
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_critical_frontier.lean:18:This bridge makes the checked cross-blocker localization theorems applicable
+lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean:288:    D.packet.oppCap1.card + D.packet.oppCap2.card = 8 := by
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:272:    · have hsurvival := cross_survival_of_distinct_blockers
+lean/Erdos9796Proof/P97/WitnessPacketInterface.lean:34:  cross-cap blocker ping-pong produces the strict off-chord common point.  This
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:1400:two B/E packet-label hrows from the no-collision side of the current `f1:t2`
+lean/Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:2242:even stronger simplification: `Record001Branch0NoCollision` plus those two
+lean/Erdos9796Proof/P97/EndpointCertificate/BridgeAssembly.lean:357:    exact not_realizes_of_sevenPointCircleNetworkCollisionCore core ⟨_, hreal⟩
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:14:import Erdos9796Proof.P97.Census554.SixPointTwoPairCollision
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:22:import Erdos9796Proof.P97.Census554.SevenPointCircleNetworkCollision
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:243:  Nonempty (SixPointTwoPairCollisionCore (rowPattern F)) ∨
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:245:  Nonempty (SevenPointCircleNetworkCollisionCore (rowPattern F)) ∨
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:315:    exact not_realizes_of_sixPointTwoPairCollisionCore core ⟨_, hreal⟩
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:319:    exact not_realizes_of_sevenPointCircleNetworkCollisionCore core ⟨_, hreal⟩
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:363:  Nonempty (SixPointTwoPairCollisionCore (rowPattern F)) ∨
+lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:365:  Nonempty (SevenPointCircleNetworkCollisionCore (rowPattern F)) ∨
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:386:/-- Color form of the seven-point circle-network collision core. -/
+lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:482:  Nonempty (SevenPointCircleNetworkCollisionCore (rowPattern P)) ∨
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:10:# Six-point two-pair collision core
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:92:theorem six_point_two_pair_collision
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:139:/-- Equality-closure form of the six-point two-pair collision. -/
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:140:structure SixPointTwoPairCollisionCore {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:160:/-- A six-point two-pair collision core has no injective planar realization. -/
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:161:theorem not_realizes_of_sixPointTwoPairCollisionCore
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:163:    (core : SixPointTwoPairCollisionCore P) :
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:169:  rcases six_point_two_pair_collision
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:70:/-- Collision A: a four-point `A`-circle linked to two three-point circles. -/
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:150:/-- Collision B: two short bisectors join the two three-point circle constraints. -/
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:230:/-- Collision C: the four-point `A`-circle is closed by two terminal bisectors. -/
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:10:# Seven-point circle-network collision core
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:441:theorem seven_point_circle_network_collision
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:485:/-- Equality-closure data for the seven-point circle-network collision. -/
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:486:structure SevenPointCircleNetworkCollisionCore {alpha : Type*} (P : RowPattern alpha) where
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:508:theorem not_realizes_of_sevenPointCircleNetworkCollisionCore
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:510:    (core : SevenPointCircleNetworkCollisionCore P) :
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:516:  have hcollision := seven_point_circle_network_collision
+lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean:458:    exact not_realizes_of_sevenPointCircleNetworkCollisionCore core
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:126:The two sources are a chosen collision source and the fresh strict-cap point.
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:162:    CommonDeletionTwoCenterPacket D H collisionSource S.oppApex1
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:229:omission two-cycle.  The only nontrivial choice is which collision source is
+lean/Erdos9796Proof/P97/ATail/SurvivalCoverParentBoundary.lean:70:    | crossMembership hwSupport _hblockerNotSurplus =>
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:278:theorem exactFour_twoStrict_or_alignedInteriorFrontier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:345:#print axioms exactFour_twoStrict_or_alignedInteriorFrontier
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coverage.lean:79:  rcases exactFour_twoStrict_or_alignedInteriorFrontier R with htwo | haligned
+lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Coverage.lean:129:  · rcases exactFour_twoStrict_or_alignedInteriorFrontier R with htwo | haligned
+lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:1085:theorem interiorPairGood_or_twoDistinctExactFourInteriorRows
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:802:/-- One reverse cross omission forces distinct chosen blocker centers.
+lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:903:/-- Cross-deletion survival at a source's actual blocker already separates
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:577:theorem exists_two_exactFourMutualOmissionJointDeletions
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:679:/-- The collision arm of the two-deletion residue.  The two distinct deleted
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:684:    false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:738:theorem false_of_exactFour_twoDeletion_blockerTwoCycle
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:840:theorem exactFour_twoDeletion_crossOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:872:    exact false_of_exactFour_twoDeletion_blockerTwoCycle
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1460:    false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1555:    false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1610:  rcases exactFour_twoDeletion_crossOmission first second hdeletedNe
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1614:      false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1621:      false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1634:theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1732:      false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1740:      false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2959:        false_of_twoDistinctExactFourMutualOmissionJointDeletions
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2972:      exists_two_exactFourMutualOmissionJointDeletions
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2975:      false_of_twoDistinctExactFourMutualOmissionJointDeletions
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2983:cross deletions therefore preserve K4, and the actual blockers are distinct. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3244:theorem false_of_exactFourPostCardElevenTwoRadiusBranch
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3285:  rcases interiorPairGood_or_twoDistinctExactFourInteriorRows R surface with
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3296:      false_of_exactFourPostCardElevenTwoRadiusBranch
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3936:only the two collision sources in the whole first cap, and both sources lie on
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4233:theorem six_interior_or_cross_blocker_coincidence
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4287:theorem four_interior_forces_both_cross_blocker_coincidences
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4581:exact-four/exact-two collision rows and must still identify their strict-cap
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4584:theorem exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4629:    (hcapEightOrCross :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4671:theorem exists_three_hit_of_two_collisionRows_capCross_normalForm
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4733:    (hcapEightOrCross :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4781:      exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4784:            LPρ hLPρ MPρ LP hLP MP hcapEightOrCross with
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4807:theorem exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4965:  have hcapEightOrCross :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4972:        six_interior_or_cross_blocker_coincidence
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4990:    exists_three_hit_of_two_collisionRows_capCross_normalForm
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4993:          hcrossOmissions LPρ hLPρ MPρ LP hLP MP hcapEightOrCross
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:4995:/-- The symmetric two-radius collision normal form.
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5011:theorem false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5052:    exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5058:/-- Exact-four, two-radius collision branch of the low-hit tri-apex
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5066:strict-cap slice is exactly the two collision sources, so this branch saturates
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5070:has cardinality exactly two, hence consists of the two collision sources.  The
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5081:Narrowing measure: compared with the former exact-two collision leaf, this leaf
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5089:theorem false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5307:        six_interior_or_cross_blocker_coincidence
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5348:      four_interior_forces_both_cross_blocker_coincidences
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5418:          false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5463:two-radius collision leaf.  There are now two immediate constructors: at least
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5465:collision sources give a lower bound of two, so the remaining branch has
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5542:      false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5547:/-- Checked exact-two collision coordinator for the low-hit tri-apex
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5558:theorem false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5659:    false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits
+lean/Erdos9796Proof/P97/ATail/CriticalFiberRetainedRadiusSelector.lean:18:The natural geometric output of the collision arm is also recorded.  The two
+lean/Erdos9796Proof/P97/ATail/CriticalFiberRetainedRadiusSelector.lean:214:/-- The two collision sources are equidistant from the first apex. -/
+lean/Erdos9796Proof/P97/ATail/CriticalFiberRetainedRadiusSelector.lean:226:/-- The two collision sources are equidistant from their actual common
+lean/Erdos9796Proof/P97/ATail/CriticalFiberRetainedRadiusSelector.lean:253:/-- A retained-radius collision produces cyclic alternation: its two sources
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:277:/-- The localized collision shell has exactly its two sources in the first
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:337:/-- A localized collision cap is automatically large: the two sources and

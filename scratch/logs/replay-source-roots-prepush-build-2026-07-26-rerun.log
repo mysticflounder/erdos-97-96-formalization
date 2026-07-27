@@ -1,0 +1,39 @@
+lake-build: building — don't just wait on it. Update docstrings/module docs/blueprint entries for what you just wrote, stage the next edit or commit message, or line up the next module while this runs.
+ℹ [1/831] Replayed Erdos9796Proof.P97.Certificate.CheckpointedRup
+info: Erdos9796Proof/P97/Certificate/CheckpointedRup.lean:785:0: true
+info: Erdos9796Proof/P97/Certificate/CheckpointedRup.lean:786:0: true
+info: Erdos9796Proof/P97/Certificate/CheckpointedRup.lean:787:0: true
+info: Erdos9796Proof/P97/Certificate/CheckpointedRup.lean:788:0: true
+info: Erdos9796Proof/P97/Certificate/CheckpointedRup.lean:789:0: true
+Build completed successfully (1669 jobs).
+lake-build: resyncing proof-blueprint (index + call graph) …
+[1/2] indexing source (index --refresh) ...
+indexed 4216 files: 1664 new, 3 changed, 2549 unchanged, 0 removed
+symbols total: 4168 writes
+
+[2/2] mining call graph (refs --refresh) ...
+note: 1087 module(s) / 7889 symbol(s) trusted (🔒 excluded from mine by [mining].skip; still covered by `#print axioms` on the target and the off-spine sorry scan)
+note: skipping 16 indexed module(s) with no olean (unbuilt WIP, not in the verified build) — --verbose to list
+mining call graph: 1664 changed module(s) (4146 symbols) in 7 batch(es), 1449 unchanged (39964 symbols skipped), 1087 trusted 🔒 skipped — invoking Lean kernel per batch...
+batch 1/7: 256 module(s), 256 symbol(s), 161 MB oleans …
+   ✓ batch 1/7 committed (0 edges, 0 into axioms)
+batch 2/7: 256 module(s), 583 symbol(s), 173 MB oleans …
+   ✓ batch 2/7 committed (2325 edges, 0 into axioms)
+batch 3/7: 256 module(s), 997 symbol(s), 477 MB oleans …
+   ✓ batch 3/7 committed (4402 edges, 0 into axioms)
+batch 4/7: 256 module(s), 564 symbol(s), 281 MB oleans …
+   ✓ batch 4/7 committed (1538 edges, 0 into axioms)
+batch 5/7: 256 module(s), 256 symbol(s), 153 MB oleans …
+   ✓ batch 5/7 committed (0 edges, 0 into axioms)
+batch 6/7: 256 module(s), 1106 symbol(s), 462 MB oleans …
+   ✓ batch 6/7 committed (5367 edges, 0 into axioms)
+batch 7/7: 128 module(s), 384 symbol(s), 241 MB oleans …
+   ✓ batch 7/7 committed (1278 edges, 0 into axioms)
+✅ mined 14910 edge(s) (0 into axioms), marked 4146 symbol(s) across 7 batch(es) at build 1ed9b1543bbc.
+   (39964 symbol(s) in unchanged modules — stamps updated, no re-mine)
+[packet-audit] mining type facts: 1664 module(s) (4146 symbols) in 7 batch(es)...
+[packet-audit] ✓ type facts: 4146 symbol(s), 0 type-former(s), 10772 type ref(s).
+Use `proof-blueprint spine` to view the kernel-rooted structural state.
+
+✅ sync complete — index and kernel call graph match the current build.
+lake-build: wrote /Users/adam/projects/math-projects/erdos-97-96-formalization/docs/live-blueprint.md

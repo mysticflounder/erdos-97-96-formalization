@@ -1,0 +1,6 @@
+module=Erdos9796Proof.P97.U2EquilateralMECFromM44
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/0ab1784b1c45af74-r066cpkn/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/0ab1784b1c45af74-r066cpkn/module.ilean Erdos9796Proof/P97/U2EquilateralMECFromM44.lean
+
+Erdos9796Proof/P97/U2EquilateralMECFromM44.lean:9:0: warning: This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`

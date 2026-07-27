@@ -1,0 +1,10 @@
+'Problem97.ATailUniqueFourCardElevenCertificateScratch.false_of_p4ExactTwo' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+'Problem97.ATailUniqueFourCardElevenCertificateScratch.false_of_cardElevenOriginalUniqueFourResidual' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]

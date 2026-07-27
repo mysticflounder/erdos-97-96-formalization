@@ -1,0 +1,62 @@
+module=Erdos9796Proof.P97.U2.OneHitRealization
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/b2e4784d9ef42bed-n7e7q7s_/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/b2e4784d9ef42bed-n7e7q7s_/module.ilean Erdos9796Proof/P97/U2/OneHitRealization.lean
+
+Erdos9796Proof/P97/U2/OneHitRealization.lean:58:0: warning: This file has more than one module docstring (`/-! ... -/`). Only the first one is treated as module documentation; convert additional ones to regular comments (`/- ... -/`).
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+Erdos9796Proof/P97/U2/OneHitRealization.lean:115:38: warning: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+Erdos9796Proof/P97/U2/OneHitRealization.lean:116:50: warning: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+Erdos9796Proof/P97/U2/OneHitRealization.lean:116:56: warning: missing space in the source
+
+This part of the code
+  '(π/3)) (hγmono'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+Erdos9796Proof/P97/U2/OneHitRealization.lean:127:38: warning: missing space in the source
+
+This part of the code
+  'π/3)
+ '
+should be written as
+  'π / 3)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+Erdos9796Proof/P97/U2/OneHitRealization.lean:128:50: warning: missing space in the source
+
+This part of the code
+  '(0:ℝ) (π/3))'
+should be written as
+  '(0 : ℝ)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+Erdos9796Proof/P97/U2/OneHitRealization.lean:128:56: warning: missing space in the source
+
+This part of the code
+  '(π/3)) (hδanti'
+should be written as
+  '(π / 3))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`

@@ -1,0 +1,486 @@
+    rcases hlocation with hdeleted | hIu | hIv
+    · exact Or.inl hdeleted
+    · have hblockerKu : blocker ∈ Ku :=
+        (Finset.mem_inter.mp hIu).1
+      have hblockerKs : blocker ∈ Ks := by
+        simpa [Ks, Ku] using hblockerKu
+      exact (hblockerNotSourceRow hblockerKs).elim
+    · exact Or.inr (by simpa [blocker, Iv, Kv, C] using hIv)
+  · right
+    refine ⟨huSource, ?_⟩
+    rcases hlocation with hdeleted | hIu | hIv
+    · exact Or.inl hdeleted
+    · have hnormal :=
+        exactFourRigid221_context_u_ne_source_normalForm
+          huClass context jointDeletion.blockers_ne G huSource
+      change
+        u.1 ≠ source.1 ∧
+          u.1 ∉ Ks ∧
+          Iu = {source.1, u.1} ∧
+          Ks ∩ Iu = {source.1} ∧
+          source.1 ∈
+            Iu ∩ S.capInteriorByIndex S.oppIndex2 ∧
+          blocker ≠
+            (lateFirstApexSystem R).centerAt u.1 u.2 ∧
+          blocker ≠
+            (lateFirstApexSystem R).centerAt v.1 v.2 ∧
+          (lateFirstApexSystem R).centerAt u.1 u.2 ≠
+            (lateFirstApexSystem R).centerAt v.1 v.2
+          at hnormal
+      rw [hnormal.2.2.1] at hIu
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hIu
+      rcases hIu with hsource | hu
+      · have hsourceKs : source.1 ∈ Ks := by
+          simpa [Ks] using
+            ((lateFirstApexSystem R).selectedAt
+              source.1 source.2).toCriticalFourShell.q_mem_support
+        exact
+          (hblockerNotSourceRow
+            (hsource.symm ▸ hsourceKs)).elim
+      · exact Or.inr (Or.inl hu)
+    · exact Or.inr (Or.inr
+        (by simpa [blocker, Iv, Kv, C] using hIv))
+
+/-- Full contextual packet for the physical-apex branch in which `u` is the
+retained source and the actual source blocker lies in the rigid physical
+five-class.  Packaging the common hypotheses keeps the three exact blocker
+leaves below readable without discarding any parent data. -/
+structure ExactFourRigid221PhysicalApexSourceEqUContext
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F) :
+    Type where
+  hcard : 12 ≤ D.A.card
+  surface : ExactFourPostCardElevenRobustSurface R
+  rho : ℝ
+  source : CarrierVertex D.A
+  other : CarrierVertex D.A
+  hrho : 0 < rho
+  hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card
+  u : CarrierVertex D.A
+  v : CarrierVertex D.A
+  huNeV : u ≠ v
+  huClass : u.1 ∈ SelectedClass D.A S.oppApex2 rho
+  hvClass : v.1 ∈ SelectedClass D.A S.oppApex2 rho
+  hvOmitted :
+    v.1 ∉
+      ((lateFirstApexSystem R).selectedAt
+        u.1 u.2).toCriticalFourShell.support
+  huOmitted :
+    u.1 ∉
+      ((lateFirstApexSystem R).selectedAt
+        v.1 v.2).toCriticalFourShell.support
+  context :
+    ExactFourMutualOmissionSourceContext
+      R rho source other u v
+  jointDeletion :
+    ExactFourMutualOmissionJointDeletion R rho u v
+  hclassFive :
+    (SelectedClass D.A S.oppApex2 rho).card = 5
+  globalDeletion :
+    ExactFourMutualOmissionRigid221GlobalDeletion
+      R rho u v jointDeletion
+  hcenter : globalDeletion.center = S.oppApex2
+  hsourceBlockerClass :
+    (lateFirstApexSystem R).centerAt source.1 source.2 ∈
+      SelectedClass D.A S.oppApex2 rho
+  huSource : u = source
+
+/-- Exact source-equals-`u` leaf where the actual source blocker is the
+distinguished point omitted from both rigid rows. -/
+theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (_hblocker :
+      (lateFirstApexSystem R).centerAt P.source.1 P.source.2 =
+        P.jointDeletion.deleted.1) :
+    False := by
+  sorry
+
+/-- Exact source-equals-`u` leaf where the actual source blocker is `v`
+itself. -/
+theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (_hblocker :
+      (lateFirstApexSystem R).centerAt P.source.1 P.source.2 = P.v.1) :
+    False := by
+  sorry
+
+/-- Number of points of the rigid source row that lie in the strict interior
+of the physical second cap.  The rigid `2+2+1` packet bounds this count by
+two; equality is the source-row-heavy cap shape. -/
+noncomputable def
+    ExactFourRigid221PhysicalApexSourceEqUContext.sourceRowInteriorCount
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R) : ℕ :=
+  ((((lateFirstApexSystem R).selectedAt
+        P.u.1 P.u.2).toCriticalFourShell.support ∩
+      SelectedClass D.A S.oppApex2 P.rho) ∩
+    S.capInteriorByIndex S.oppIndex2).card
+
+/-- Number of points of the rigid opposite row that lie in the strict
+interior of the physical second cap.  Equality with two is the
+opposite-row-heavy cap shape. -/
+noncomputable def
+    ExactFourRigid221PhysicalApexSourceEqUContext.oppositeRowInteriorCount
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R) : ℕ :=
+  ((((lateFirstApexSystem R).selectedAt
+        P.v.1 P.v.2).toCriticalFourShell.support ∩
+      SelectedClass D.A S.oppApex2 P.rho) ∩
+    S.capInteriorByIndex S.oppIndex2).card
+
+/-- Explicit names for the two rigid row companions in the source-row-heavy
+cross-row branch.  The packet also records the exact five-class cover, the
+actual source-blocker identity, and the complete source-row interior trace. -/
+structure ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R) : Type where
+  xu : ℝ²
+  xv : ℝ²
+  xu_ne_u : xu ≠ P.u.1
+  xv_ne_v : xv ≠ P.v.1
+  source_row_trace :
+    ((lateFirstApexSystem R).selectedAt
+        P.u.1 P.u.2).toCriticalFourShell.support ∩
+      SelectedClass D.A S.oppApex2 P.rho = {P.u.1, xu}
+  opposite_row_trace :
+    ((lateFirstApexSystem R).selectedAt
+        P.v.1 P.v.2).toCriticalFourShell.support ∩
+      SelectedClass D.A S.oppApex2 P.rho = {P.v.1, xv}
+  physical_class :
+    SelectedClass D.A S.oppApex2 P.rho =
+      insert P.jointDeletion.deleted.1
+        ({P.u.1, xu} ∪ {P.v.1, xv})
+  blocker_eq_xv :
+    (lateFirstApexSystem R).centerAt P.source.1 P.source.2 = xv
+  source_pair_interior :
+    ({P.u.1, xu} : Finset ℝ²) ∩
+        S.capInteriorByIndex S.oppIndex2 =
+      {P.u.1, xu}
+
+/-- The rigid `2+2+1` data and the heavy-row cardinality equality construct
+the explicit source-heavy packet without any additional geometric
+assumption. -/
+private noncomputable def
+    exactFourRigid221_sourceEqU_blockerVRowOther_sourceHeavyPacket
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (hblockerVRow :
+      (lateFirstApexSystem R).centerAt P.source.1 P.source.2 ∈
+        ((lateFirstApexSystem R).selectedAt
+            P.v.1 P.v.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho)
+    (hblockerNeV :
+      (lateFirstApexSystem R).centerAt P.source.1 P.source.2 ≠ P.v.1)
+    (hsourceRowHeavy : P.sourceRowInteriorCount = 2) :
+    ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P := by
+  classical
+  let C := SelectedClass D.A S.oppApex2 P.rho
+  let Iu :=
+    ((lateFirstApexSystem R).selectedAt
+      P.u.1 P.u.2).toCriticalFourShell.support ∩ C
+  let Iv :=
+    ((lateFirstApexSystem R).selectedAt
+      P.v.1 P.v.2).toCriticalFourShell.support ∩ C
+  rcases (show
+      Iu.card = 2 ∧ Iv.card = 2 ∧ Disjoint Iu Iv ∧
+        C = insert P.jointDeletion.deleted.1 (Iu ∪ Iv) by
+      simpa [C, Iu, Iv] using P.globalDeletion.rigid) with
+    ⟨hIuCard, hIvCard, _hdisjoint, hCeq⟩
+  have huIu : P.u.1 ∈ Iu := by
+    exact Finset.mem_inter.mpr
+      ⟨((lateFirstApexSystem R).selectedAt
+          P.u.1 P.u.2).toCriticalFourShell.q_mem_support,
+        P.huClass⟩
+  have hvIv : P.v.1 ∈ Iv := by
+    exact Finset.mem_inter.mpr
+      ⟨((lateFirstApexSystem R).selectedAt
+          P.v.1 P.v.2).toCriticalFourShell.q_mem_support,
+        P.hvClass⟩
+  have companion_of_card_two
+      (J : Finset ℝ²) (q : ℝ²)
+      (hJCard : J.card = 2) (hqJ : q ∈ J) :
+      ∃ x : ℝ², x ≠ q ∧ J = {q, x} := by
+    obtain ⟨a, b, hab, hJ⟩ := Finset.card_eq_two.mp hJCard
+    have hqa : q = a ∨ q = b := by
+      rw [hJ] at hqJ
+      simpa only [Finset.mem_insert, Finset.mem_singleton] using hqJ
+    rcases hqa with rfl | rfl
+    · exact ⟨b, Ne.symm hab, hJ⟩
+    · refine ⟨a, hab, ?_⟩
+      rw [hJ]
+      ext z
+      simp only [Finset.mem_insert, Finset.mem_singleton]
+      tauto
+  let xuWitness :=
+    companion_of_card_two Iu P.u.1 hIuCard huIu
+  let xu := Classical.choose xuWitness
+  have hxuSpec := Classical.choose_spec xuWitness
+  have hxuNe : xu ≠ P.u.1 := hxuSpec.1
+  have hIuEq : Iu = {P.u.1, xu} := hxuSpec.2
+  let xvWitness :=
+    companion_of_card_two Iv P.v.1 hIvCard hvIv
+  let xv := Classical.choose xvWitness
+  have hxvSpec := Classical.choose_spec xvWitness
+  have hxvNe : xv ≠ P.v.1 := hxvSpec.1
+  have hIvEq : Iv = {P.v.1, xv} := hxvSpec.2
+  have hblockerIv :
+      (lateFirstApexSystem R).centerAt P.source.1 P.source.2 ∈ Iv := by
+    simpa [Iv, C] using hblockerVRow
+  have hblockerEqXv :
+      (lateFirstApexSystem R).centerAt P.source.1 P.source.2 = xv := by
+    rw [hIvEq] at hblockerIv
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hblockerIv
+    rcases hblockerIv with hblockerEqV | hblockerEqXv
+    · exact (hblockerNeV hblockerEqV).elim
+    · exact hblockerEqXv
+  have hsourceIntersectionCard :
+      (Iu ∩ S.capInteriorByIndex S.oppIndex2).card = 2 := by
+    simpa [
+      ExactFourRigid221PhysicalApexSourceEqUContext.sourceRowInteriorCount,
+      Iu, C] using hsourceRowHeavy
+  have hpairInterior :
+      ({P.u.1, xu} : Finset ℝ²) ∩
+          S.capInteriorByIndex S.oppIndex2 =
+        {P.u.1, xu} := by
+    rw [hIuEq] at hsourceIntersectionCard
+    apply Finset.eq_of_subset_of_card_le Finset.inter_subset_left
+    rw [hsourceIntersectionCard]
+    exact Finset.card_insert_le P.u.1 {xu}
+  exact
+    { xu := xu
+      xv := xv
+      xu_ne_u := hxuNe
+      xv_ne_v := hxvNe
+      source_row_trace := by simpa [Iu, C] using hIuEq
+      opposite_row_trace := by simpa [Iv, C] using hIvEq
+      physical_class := by simpa [C, hIuEq, hIvEq] using hCeq
+      blocker_eq_xv := hblockerEqXv
+      source_pair_interior := hpairInterior }
+
+/-- Source-heavy placement where the retained contextual peer is the rigid
+singleton deletion. -/
+theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy_otherDeleted
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (_hblockerVRow :
+      (lateFirstApexSystem R).centerAt P.source.1 P.source.2 ∈
+        ((lateFirstApexSystem R).selectedAt
+            P.v.1 P.v.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho)
+    (_hblockerNeV :
+      (lateFirstApexSystem R).centerAt P.source.1 P.source.2 ≠ P.v.1)
+    (_packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (_hother : P.other = P.jointDeletion.deleted) :
+    False := by
+  sorry
+
+/-- Source-heavy placement where the retained contextual peer is `v`. -/
+theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy_otherV
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (_hblockerVRow :
+      (lateFirstApexSystem R).centerAt P.source.1 P.source.2 ∈
+        ((lateFirstApexSystem R).selectedAt
+            P.v.1 P.v.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho)
+    (_hblockerNeV :
+      (lateFirstApexSystem R).centerAt P.source.1 P.source.2 ≠ P.v.1)
+    (_packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (_hother : P.other = P.v) :
+    False := by
+  sorry
+
+private theorem capByIndex_oppIndex2_eq_oppCap2_sourceHeavy
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.capByIndex S.oppIndex2 = S.oppCap2 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppCap2, hi]
+
+/-- Exhaustive physical-second-cap profile below the source-heavy
+`other = xv` placement.  The exact-five constructors retain the full
+carrier-cardinality budget belonging to their robust-growth arm. -/
+inductive ExactFourRigid221SourceHeavyOtherXvCapProfile
+    {D : CounterexampleData} (S : SurplusCapPacket D.A) : Prop
+  | secondOppositeLarge
+      (secondOppCap_card_ge_six : 6 ≤ S.oppCap2.card)
+      (secondInterior_card_ge_four :
+        4 ≤ (S.capInteriorByIndex S.oppIndex2).card)
+      (robust_growth : ExactFourRobustCapGrowth S)
+  | secondOppositeExactFiveSurplusGrowth
+      (secondOppCap_card_eq_five : S.oppCap2.card = 5)
+      (secondInterior_card_eq_three :
+        (S.capInteriorByIndex S.oppIndex2).card = 3)
+      (surplusCap_card_ge_six : 6 ≤ S.surplusCap.card)
+      (surplus_first_card_add_two_eq_carrier :
+        S.surplusCap.card + S.oppCap1.card + 2 = D.A.card)
+      (surplus_first_card_ge_ten :
+        10 ≤ S.surplusCap.card + S.oppCap1.card)
+  | secondOppositeExactFiveFirstGrowth
+      (secondOppCap_card_eq_five : S.oppCap2.card = 5)
+      (secondInterior_card_eq_three :
+        (S.capInteriorByIndex S.oppIndex2).card = 3)
+      (profile : ExactFourFirstOppositeCapGrowth S)
+      (firstOppCap_card_add_seven_eq_carrier :
+        S.oppCap1.card + 7 = D.A.card)
+
+/-- The robust-cap-growth trichotomy, specialized to the physical second cap,
+is an arithmetic consequence of the complete production context. -/
+theorem exactFourRigid221_sourceHeavyOtherXv_capProfile
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R) :
+    ExactFourRigid221SourceHeavyOtherXvCapProfile S := by
+  have hinteriorCard :=
+    ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+      S S.oppIndex2
+  rw [capByIndex_oppIndex2_eq_oppCap2_sourceHeavy S] at hinteriorCard
+  by_cases hsecond : 6 ≤ S.oppCap2.card
+  · exact .secondOppositeLarge hsecond (by omega) P.surface.capGrowth
+  have hsecondEq : S.oppCap2.card = 5 := by
+    have hfive := P.surface.secondOppCap_card_ge_five
+    omega
+  have hinteriorEq :
+      (S.capInteriorByIndex S.oppIndex2).card = 3 := by
+    omega
+  rcases P.surface.capGrowth with hsurplus | hfirst | hsecondGrowth
+  · have hbudget :
+        S.surplusCap.card + S.oppCap1.card + 2 = D.A.card := by
+      have hsum := S.capSum
+      omega
+    exact .secondOppositeExactFiveSurplusGrowth
+      hsecondEq hinteriorEq hsurplus hbudget (by
+        have hcard := P.hcard
+        omega)
+  · have hcarrier :
+        S.oppCap1.card + 7 = D.A.card := by
+      have hsum := hfirst.oppositeCaps_card_add_two_eq_carrier
+      omega
+    exact .secondOppositeExactFiveFirstGrowth
+      hsecondEq hinteriorEq hfirst hcarrier
+  · exact (hsecond hsecondGrowth.secondOppCap_card_ge_six).elim
+
+/-- The complete point placement forced by the exact-five, first-growth arm.
+The three named interior points exhaust the physical second-cap interior,
+while `v` and the rigid deleted point occupy opposite adjacent caps.  This
+packet is derived from the live source-heavy hypotheses and retains the
+first-growth cardinality budget. -/
+structure ExactFourRigid221SourceHeavyOtherXvFirstGrowthPacket
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P) :
+    Prop where
+  secondOppCap_card_eq_five : S.oppCap2.card = 5
+  secondInterior_eq_named :
+    S.capInteriorByIndex S.oppIndex2 =
+      {P.u.1, packet.xu, packet.xv}
+  v_not_mem_secondInterior :
+    P.v.1 ∉ S.capInteriorByIndex S.oppIndex2
+  deleted_not_mem_secondInterior :
+    P.jointDeletion.deleted.1 ∉
+      S.capInteriorByIndex S.oppIndex2
+  other_point_eq_xv : P.other.1 = packet.xv
+  source_blocker_eq_other_point :
+    (lateFirstApexSystem R).centerAt P.source.1 P.source.2 =
+      P.other.1
+  outside_adjacent_orientation :
+    (P.v.1 ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∧
+        P.jointDeletion.deleted.1 ∈
+          S.rightAdjacentCapByIndex S.oppIndex2) ∨
+      (P.jointDeletion.deleted.1 ∈
+          S.leftAdjacentCapByIndex S.oppIndex2 ∧
+        P.v.1 ∈ S.rightAdjacentCapByIndex S.oppIndex2)
+  first_growth : ExactFourFirstOppositeCapGrowth S
+  firstOppCap_card_add_seven_eq_carrier :
+    S.oppCap1.card + 7 = D.A.card
+
+/-- Construct the exact first-growth placement packet directly from the
+source-heavy row traces and cap arithmetic. -/
+theorem exactFourRigid221_sourceHeavyOtherXv_exactFiveFirstGrowth_packet
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (hother : P.other.1 = packet.xv)
+    (hsecond : S.oppCap2.card = 5)
+    (hinterior :
+      (S.capInteriorByIndex S.oppIndex2).card = 3)
+    (hfirst : ExactFourFirstOppositeCapGrowth S)
+    (hbudget : S.oppCap1.card + 7 = D.A.card) :
+    ExactFourRigid221SourceHeavyOtherXvFirstGrowthPacket P packet := by
+  classical
+  let Ku :=
+    ((lateFirstApexSystem R).selectedAt
+      P.u.1 P.u.2).toCriticalFourShell
+  let Kv :=
+    ((lateFirstApexSystem R).selectedAt
+      P.v.1 P.v.2).toCriticalFourShell
+  have huUSupport : P.u.1 ∈ Ku.support := by
+    have hmem :
+        P.u.1 ∈ Ku.support ∩
+          SelectedClass D.A S.oppApex2 P.rho := by
+      rw [show Ku.support ∩
+          SelectedClass D.A S.oppApex2 P.rho =
+            {P.u.1, packet.xu} by
+        simpa [Ku] using packet.source_row_trace]
+      simp
+    exact (Finset.mem_inter.mp hmem).1
+  have hxuUSupport : packet.xu ∈ Ku.support := by
+    have hmem :
+        packet.xu ∈ Ku.support ∩
+          SelectedClass D.A S.oppApex2 P.rho := by
+      simpa [Ku, packet.source_row_trace]
+    exact (Finset.mem_inter.mp hmem).1
+  have hxvVSupport : packet.xv ∈ Kv.support := by
+    have hmem :
+        packet.xv ∈ Kv.support ∩
+          SelectedClass D.A S.oppApex2 P.rho := by
+      simpa [Kv, packet.opposite_row_trace]
+    exact (Finset.mem_inter.mp hmem).1
+  have hxvNotUSupport : packet.xv ∉ Ku.support := by
+    intro hxv
+    have hcenter :
+        (lateFirstApexSystem R).centerAt P.u.1 P.u.2 =
+          packet.xv := by
+      simpa [P.huSource] using packet.blocker_eq_xv
+    have hmemEq :

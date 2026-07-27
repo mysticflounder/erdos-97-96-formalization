@@ -1,0 +1,8 @@
+scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5Closure.lean:false_of_alignedInteriorFrontier
+scratch/atail-force/unique4-equal-radius-terminal/UniqueFourEqualRadiusTerminal.lean:false_of_secondFirstCapCenter_bisecting_outsidePair
+scratch/atail-force/unique4-exact-two-lrat-ingress/P5ExactTwoClosure.lean:false_of_p5ExactTwo
+scratch/atail-force/unique4-exact-two-source-bridge/MirrorSchema58/MirrorSchema58.lean:false_of_normalizedSchema58Occurrence
+scratch/atail-force/unique4-n11-source-lift/CardElevenUniqueFourCertificateCoordinator.lean:false_of_p4ExactTwo
+scratch/atail-force/unique4-n11-source-lift/CardElevenUniqueFourCertificateCoordinator.lean:false_of_cardElevenOriginalUniqueFourResidual
+scratch/atail-force/unique4-singleton-core-terminal/UniqueFourSingletonCoreTerminal.lean:false_of_hasSameCapActualRowRepeat
+scratch/atail-force/unique4-strict-pair-minimality/UniqueFourStrictPairMinimality.lean:false_of_equalRadius_pair_of_firstOppCap_card_eq_four

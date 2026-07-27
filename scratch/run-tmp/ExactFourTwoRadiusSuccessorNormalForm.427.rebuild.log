@@ -1,0 +1,12 @@
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFourTwoRadiusSuccessorNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_exactFourTwoRadiusSuccessorNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFourTwoRadiusNoFiveNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_exactFourTwoRadiusNoFiveNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

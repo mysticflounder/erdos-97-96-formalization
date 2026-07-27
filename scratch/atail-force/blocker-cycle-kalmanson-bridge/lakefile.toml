@@ -1,0 +1,10 @@
+name = "BlockerCycleKalmansonBridge"
+version = "0.1.0"
+moreLeanArgs = ["-M16384", "-s2097152"]
+
+[[require]]
+name = "Erdos9796"
+path = "../../../lean"
+
+[[lean_lib]]
+name = "CycleSupportBridge"

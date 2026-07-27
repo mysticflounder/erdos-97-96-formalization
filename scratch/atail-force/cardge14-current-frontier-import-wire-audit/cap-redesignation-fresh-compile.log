@@ -1,0 +1,27 @@
+../scratch/atail-force/cardge14-global-occurrence/ExactFiveCapRedesignation.lean:108:47: error: Application type mismatch: The argument
+  hfreshFour
+has type
+  4 ≤ (SelectedClass D.A T.oppApex1 freshRadius).card
+but is expected to have type
+  OriginalFrontierUniqueRadiusArm freshFrontier
+in the application
+  false_of_originalFrontierUniqueRadiusArm freshFrontier R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
+'Problem97.ATailCardGe14GlobalOccurrence.false_of_exactFiveSecondCap_via_firstOppCapRedesignation' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailCriticalPairFrontier.exists_criticalPairFrontier_of_K4' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailOrientedPhysicalApexIngress.CriticalPairFrontier.false_of_parentResidualConsumers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailBiApexRobustCapBounds.first_oppCap_card_ge_six' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]

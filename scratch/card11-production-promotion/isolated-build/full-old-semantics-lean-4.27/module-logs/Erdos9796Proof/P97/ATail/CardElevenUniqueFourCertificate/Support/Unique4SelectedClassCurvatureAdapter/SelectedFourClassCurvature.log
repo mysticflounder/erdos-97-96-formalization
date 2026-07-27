@@ -1,0 +1,12 @@
+module=Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4SelectedClassCurvatureAdapter.SelectedFourClassCurvature
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/c097f16e62577919-0frxnh_v/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/c097f16e62577919-0frxnh_v/module.ilean Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4SelectedClassCurvatureAdapter/SelectedFourClassCurvature.lean
+
+'Problem97.ShellCurvatureRows.ShellBoundaryIndexing.image_selectedCenteredChart_point_supportOrder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ShellCurvatureRows.ShellBoundaryIndexing.selectedFourClass_has_globalSelectedQuarterTurnArcs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ShellCurvatureRows.ShellBoundaryIndexing.exists_globalSelectedQuarterTurnArcs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

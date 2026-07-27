@@ -1,0 +1,15 @@
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFiveCycleEdgeNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFiveBareReverseOutsidePairCapacity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.ExactFiveBareCycleEdgeNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_exactFiveBareCycleEdgeNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailUniqueFourRobustLargeRadiusContinuationScratch.nonempty_exactFiveCycleEdgeNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

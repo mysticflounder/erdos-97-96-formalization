@@ -1,0 +1,271 @@
+  2860	  · exact
+  2861	      false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven
+  2862	        R hcard11
+  2863	  · exact
+  2864	      false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve
+  2865	        R (by omega)
+  2866	
+  2867	/-- Open exact-five residual with distinct selected obstruction centers.
+  2868	This is a load-bearing production obligation for
+  2869	`false_of_originalFrontierUniqueRadiusArm`. -/
+  2870	theorem false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+  2871	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  2872	    {H : CriticalShellSystem D.A}
+  2873	    {F : CriticalPairFrontier D S radius H}
+  2874	    (_R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F) :
+  2875	    False := by
+  2876	  sorry
+  2877	
+  2878	/-- Open exact-five residual with a common selected obstruction center.
+  2879	This is a load-bearing production obligation for
+  2880	`false_of_originalFrontierUniqueRadiusArm`. -/
+  2881	theorem false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+  2882	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  2883	    {H : CriticalShellSystem D.A}
+  2884	    {F : CriticalPairFrontier D S radius H}
+  2885	    (_R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F) :
+  2886	    False := by
+  2887	  sorry
+  2888	
+  2889	/-- The protected exact-four-or-five first-apex radius alternative, with the
+  2890	live minimality and no-M44 context retained. -/
+  2891	theorem false_of_originalFrontierUniqueRadiusArm
+  2892	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  2893	    {H : CriticalShellSystem D.A}
+  2894	    (F : CriticalPairFrontier D S radius H)
+  2895	    (hmin : D.Minimal)
+  2896	    (hNoM44 : ¬ ∃ T : SurplusCapPacket D.A, T.IsM44)
+  2897	    (hcard : 9 < D.A.card)
+  2898	    (hunique : OriginalFrontierUniqueRadiusArm F) :
+  2899	    False := by
+  2900	  rcases firstApexUniqueRadius_residualCases
+  2901	      F hmin hNoM44 hcard hunique with hfourResidual | hfiveResidual
+  2902	  · exact false_of_firstApexUniqueRadiusExactFourResidual
+  2903	      hfourResidual.some
+  2904	  · rcases hfiveResidual with hdistinct | hcommon
+  2905	    · exact
+  2906	        false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+  2907	          hdistinct.some
+  2908	    · exact
+  2909	        false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+  2910	          hcommon.some
+  2911	
+  2912	/-- Keep the MEC triangle and cap partition fixed, but designate the old first
+  2913	opposite cap as the new surplus cap. -/
+  2914	private noncomputable def redesignateFirstOppCapAsSurplus
+  2915	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  2916	    {H : CriticalShellSystem D.A}
+  2917	    {F : CriticalPairFrontier D S radius H}
+  2918	    {R : FrontierCommonDeletionParentResidual F}
+  2919	    {B : FrontierBiApexRobustResidual R}
+  2920	    (Q : FrontierBiApexRobustExactFiveSecondCapResidual B) :
+  2921	    SurplusCapPacket D.A where
+  2922	  hA := S.hA
+  2923	  hncol := S.hncol
+  2924	  triangleNonObtuse := S.triangleNonObtuse
+  2925	  hCirc := S.hCirc
+  2926	  partition := S.partition
+  2927	  surplusIdx := S.oppIndex1
+  2928	  surplus := by
+  2929	    have hgt : 4 < S.oppCap1.card :=
+  2930	      lt_of_lt_of_le (by omega) Q.firstOppCap_card_ge_six
+  2931	    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  2932	    interval_cases i <;>
+  2933	      simpa [SurplusCapPacket.oppIndex1, SurplusCapPacket.oppCap1, hi]
+  2934	        using hgt
+  2935	
+  2936	@[simp] private theorem redesignateFirstOppCapAsSurplus_oppCap1
+  2937	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  2938	    {H : CriticalShellSystem D.A}
+  2939	    {F : CriticalPairFrontier D S radius H}
+  2940	    {R : FrontierCommonDeletionParentResidual F}
+  2941	    {B : FrontierBiApexRobustResidual R}
+  2942	    (Q : FrontierBiApexRobustExactFiveSecondCapResidual B) :
+  2943	    (redesignateFirstOppCapAsSurplus Q).oppCap1 = S.oppCap2 := by
+  2944	  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  2945	  interval_cases i <;>
+  2946	    simp [redesignateFirstOppCapAsSurplus, SurplusCapPacket.oppIndex1,
+  2947	      SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hi]
+  2948	
+  2949	/-- The exact-five residual closes after redesignating the first opposite cap
+  2950	as surplus. A fresh common-deletion parent would force the old exact-five cap
+  2951	to have at least six points; the other fresh-frontier arm is the protected
+  2952	unique-radius terminal. -/
+  2953	theorem false_of_frontierBiApexRobustExactFiveSecondCapResidual
+  2954	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  2955	    {H : CriticalShellSystem D.A}
+  2956	    (F : CriticalPairFrontier D S radius H)
+  2957	    (R : FrontierCommonDeletionParentResidual F)
+  2958	    (B : FrontierBiApexRobustResidual R)
+  2959	    (Q : FrontierBiApexRobustExactFiveSecondCapResidual B) :
+  2960	    False := by
+  2961	  let T : SurplusCapPacket D.A := redesignateFirstOppCapAsSurplus Q
+  2962	  have hTfirst : T.oppCap1.card = 5 := by
+  2963	    rw [show T.oppCap1 = S.oppCap2 by
+  2964	      simp [T]]
+  2965	    exact Q.secondOppCap_card_eq_five
+  2966	  obtain ⟨freshRadius, _hfreshRadius, hfreshFour, ⟨freshFrontier⟩⟩ :=
+  2967	    exists_criticalPairFrontier_of_K4 D T H
+  2968	  apply CriticalPairFrontier.false_of_parentResidualConsumers
+  2969	    freshFrontier R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
+  2970	  · exact false_of_originalFrontierUniqueRadiusArm freshFrontier
+  2971	      R.minimal R.noM44 R.carrier_card_gt_nine
+  2972	  · intro freshParent
+  2973	    have hsix : 6 ≤ T.oppCap1.card := first_oppCap_card_ge_six freshParent
+  2974	    omega
+  2975	
+  2976	/-- Keep the MEC triangle and cap partition fixed, but designate the old second
+  2977	opposite cap as the new surplus cap.  Its cardinality bound comes from the
+  2978	large-opposite-caps residual, so this redesignation is available exactly on that
+  2979	branch.  Cap indices rotate, so the old surplus cap becomes the new first
+  2980	opposite cap — the mirror of `redesignateFirstOppCapAsSurplus`. -/
+  2981	private noncomputable def redesignateSecondOppCapAsSurplus
+  2982	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  2983	    {H : CriticalShellSystem D.A}
+  2984	    {F : CriticalPairFrontier D S radius H}
+  2985	    {R : FrontierCommonDeletionParentResidual F}
+  2986	    {B : FrontierBiApexRobustResidual R}
+  2987	    (L : FrontierLargeOppositeCapsBiApexRobustResidual B) :
+  2988	    SurplusCapPacket D.A where
+  2989	  hA := S.hA
+  2990	  hncol := S.hncol
+  2991	  triangleNonObtuse := S.triangleNonObtuse
+  2992	  hCirc := S.hCirc
+  2993	  partition := S.partition
+  2994	  surplusIdx := S.oppIndex2
+  2995	  surplus := by
+  2996	    have hgt : 4 < S.oppCap2.card :=
+  2997	      lt_of_lt_of_le (by omega) L.secondOppCap_card_ge_six
+  2998	    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  2999	    interval_cases i <;>
+  3000	      simpa [SurplusCapPacket.oppIndex2, SurplusCapPacket.oppCap2, hi]
+  3001	        using hgt
+  3002	
+  3003	@[simp] private theorem redesignateSecondOppCapAsSurplus_oppCap1
+  3004	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  3005	    {H : CriticalShellSystem D.A}
+  3006	    {F : CriticalPairFrontier D S radius H}
+  3007	    {R : FrontierCommonDeletionParentResidual F}
+  3008	    {B : FrontierBiApexRobustResidual R}
+  3009	    (L : FrontierLargeOppositeCapsBiApexRobustResidual B) :
+  3010	    (redesignateSecondOppCapAsSurplus L).oppCap1 = S.surplusCap := by
+  3011	  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  3012	  interval_cases i <;>
+  3013	    simp [redesignateSecondOppCapAsSurplus, SurplusCapPacket.oppIndex2,
+  3014	      SurplusCapPacket.oppCap1, SurplusCapPacket.surplusCap, hi]
+  3015	
+  3016	/-- On the large-opposite-caps branch the surplus cap carries at least six
+  3017	points as well, so all three caps are large.  Redesignating the second opposite
+  3018	cap as surplus turns the old surplus cap into the fresh first opposite cap; a
+  3019	fresh common-deletion parent would then force six points there, and the other
+  3020	fresh-frontier arm is the protected unique-radius terminal.
+  3021	
+  3022	Because the cap cardinalities sum to `D.A.card + 3`, this deletes every profile
+  3023	with a five-point cap from the branch — in particular the whole of cardinality
+  3024	fourteen, whose only profile is `(5, 6, 6)`.  The least surviving profile is
+  3025	`(6, 6, 6)` at cardinality fifteen. -/
+  3026	theorem surplusCap_card_ge_six_of_largeOppositeCaps
+  3027	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  3028	    {H : CriticalShellSystem D.A}
+  3029	    {F : CriticalPairFrontier D S radius H}
+  3030	    {R : FrontierCommonDeletionParentResidual F}
+  3031	    {B : FrontierBiApexRobustResidual R}
+  3032	    (L : FrontierLargeOppositeCapsBiApexRobustResidual B) :
+  3033	    6 ≤ S.surplusCap.card := by
+  3034	  by_contra hlt
+  3035	  push_neg at hlt
+  3036	  let T : SurplusCapPacket D.A := redesignateSecondOppCapAsSurplus L
+  3037	  have hTfirst : T.oppCap1 = S.surplusCap := by simp [T]
+  3038	  obtain ⟨freshRadius, _hfreshRadius, hfreshFour, ⟨freshFrontier⟩⟩ :=
+  3039	    exists_criticalPairFrontier_of_K4 D T H
+  3040	  apply CriticalPairFrontier.false_of_parentResidualConsumers
+  3041	    freshFrontier R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
+  3042	  · exact false_of_originalFrontierUniqueRadiusArm freshFrontier
+  3043	      R.minimal R.noM44 R.carrier_card_gt_nine
+  3044	  · intro freshParent
+  3045	    have hsix : 6 ≤ T.oppCap1.card := first_oppCap_card_ge_six freshParent
+  3046	    rw [hTfirst] at hsix
+  3047	    omega
+  3048	
+  3049	/-- The all-large-caps residual: every cap of the partition carries at least six
+  3050	points, so the carrier has at least fifteen points and the least profile is
+  3051	`(6, 6, 6)`.  This is the honest residual of the cap-six continuation after the
+  3052	five-point-cap profiles are dispatched. -/
+  3053	structure FrontierAllLargeCapsBiApexRobustResidual
+  3054	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  3055	    {H : CriticalShellSystem D.A}
+  3056	    {F : CriticalPairFrontier D S radius H}
+  3057	    {R : FrontierCommonDeletionParentResidual F}
+  3058	    {B : FrontierBiApexRobustResidual R}
+  3059	    (L : FrontierLargeOppositeCapsBiApexRobustResidual B) : Prop where
+  3060	  /-- The surplus cap is large as well, not merely the two opposite caps. -/
+  3061	  surplusCap_card_ge_six : 6 ≤ S.surplusCap.card
+  3062	
+  3063	/-- The non-robust physical-second-apex outcome.  The residual is kept with
+  3064	the critical shell: the intended consumer is the packet-generic swapped
+  3065	first-apex unique-four route, not an anonymous critical-row contradiction. -/
+  3066	theorem false_of_physicalSecondApexCriticalResidual
+  3067	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  3068	    {H : CriticalShellSystem D.A}
+  3069	    (F : CriticalPairFrontier D S radius H)
+  3070	    (R : FrontierCommonDeletionParentResidual F)
+  3071	    (P : PhysicalSecondApexCriticalResidual D S) :
+  3072	    False := by
+  3073	  rcases physicalSecondCritical_reorients_to_swappedUniqueFour
+  3074	      (H := H) P.shell P.deletion_blocked with ⟨U⟩
+  3075	  apply false_of_originalFrontierUniqueRadiusArm (H := H)
+  3076	    U.frontier R.minimal R.noM44 R.carrier_card_gt_nine
+  3077	  exact ⟨Or.inl U.firstClass_card_eq_four, U.firstClass_unique_radius⟩
+  3078	
+  3079	/-- Keep the MEC triangle and cap partition fixed, but designate the old first
+  3080	opposite cap as the new surplus cap.  Available at the all-large-caps terminal
+  3081	because every cap there has at least six points.  Unlike
+  3082	`redesignateFirstOppCapAsSurplus` this variant is driven by the large-cap
+  3083	residual rather than by the exact-five one. -/
+  3084	private noncomputable def redesignateFirstOppCapAsSurplusAtAllLarge
+  3085	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  3086	    {H : CriticalShellSystem D.A}
+  3087	    {F : CriticalPairFrontier D S radius H}
+  3088	    {R : FrontierCommonDeletionParentResidual F}
+  3089	    {B : FrontierBiApexRobustResidual R}
+  3090	    (L : FrontierLargeOppositeCapsBiApexRobustResidual B) :
+  3091	    SurplusCapPacket D.A where
+  3092	  hA := S.hA
+  3093	  hncol := S.hncol
+  3094	  triangleNonObtuse := S.triangleNonObtuse
+  3095	  hCirc := S.hCirc
+  3096	  partition := S.partition
+  3097	  surplusIdx := S.oppIndex1
+  3098	  surplus := by
+  3099	    have hgt : 4 < S.oppCap1.card :=
+  3100	      lt_of_lt_of_le (by omega) L.firstOppCap_card_ge_six
+  3101	    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  3102	    interval_cases i <;>
+  3103	      simpa [SurplusCapPacket.oppIndex1, SurplusCapPacket.oppCap1, hi]
+  3104	        using hgt
+  3105	
+  3106	/-- The rotated packet carries the original surplus apex in its *second*
+  3107	opposite role.  This is what makes the rotation informative: a fresh
+  3108	common-deletion parent on the rotated packet reports robustness at the one
+  3109	Moser apex the bi-apex residual says nothing about. -/
+  3110	@[simp] private theorem redesignateFirstOppCapAsSurplusAtAllLarge_oppApex2
+  3111	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  3112	    {H : CriticalShellSystem D.A}
+  3113	    {F : CriticalPairFrontier D S radius H}
+  3114	    {R : FrontierCommonDeletionParentResidual F}
+  3115	    {B : FrontierBiApexRobustResidual R}
+  3116	    (L : FrontierLargeOppositeCapsBiApexRobustResidual B) :
+  3117	    (redesignateFirstOppCapAsSurplusAtAllLarge L).oppApex2 = S.surplusApex := by
+  3118	  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  3119	  interval_cases i <;>
+  3120	    simp [redesignateFirstOppCapAsSurplusAtAllLarge,
+  3121	      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppApex2,
+  3122	      SurplusCapPacket.surplusApex, hi]
+  3123	
+  3124	/-- The same rotation carries the original *second* opposite apex into the
+  3125	first opposite role, so the fresh parent's first-apex dichotomy reports on
+  3126	`S.oppApex2`.  The bi-apex surface never supplies that dichotomy there. -/
+  3127	@[simp] private theorem redesignateFirstOppCapAsSurplusAtAllLarge_oppApex1
+  3128	    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  3129	    {H : CriticalShellSystem D.A}
+  3130	    {F : CriticalPairFrontier D S radius H}

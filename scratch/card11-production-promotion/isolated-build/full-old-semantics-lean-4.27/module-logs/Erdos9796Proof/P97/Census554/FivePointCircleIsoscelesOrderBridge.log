@@ -1,0 +1,6 @@
+module=Erdos9796Proof.P97.Census554.FivePointCircleIsoscelesOrderBridge
+command=lean -R . -M16384 -s2097152 -Dpp.unicode.fun=true -DrelaxedAutoImplicit=false -Dweak.linter.mathlibStandardSet=true -o /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/2d985027131a6f07-o94cud3l/module.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-production-promotion/isolated-build/full-old-semantics-lean-4.27/work/2d985027131a6f07-o94cud3l/module.ilean Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean
+
+'Problem97.Census554.FivePointCircleIsoscelesOrderBridge.false_of_core_of_ccw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

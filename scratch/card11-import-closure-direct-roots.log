@@ -1,0 +1,504 @@
+### scratch/atail-force/unique4-class-cap-distribution/UniqueFourClassCapDistribution.lean
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import OriginalUniqueResidualDispatch
+import card_five_interior_critical_frontier
+
+/-!
+# Exact-four first-apex class distribution across the physical caps
+
+The exact first-apex class has at least two points in the strict first
+opposite cap and at most one point in each adjacent cap.  This file records
+the resulting source-faithful dichotomy:
+
+* exactly two strict hits, hence exactly one hit in each adjacent cap; or
+* at least three strict hits, in which case the retained frontier pair can be
+  reselected inside the strict cap while preserving double-deletion K4 at the
+  second apex.
+
+The second arm carries a complete rebased `OriginalUniqueFourResidual`; it is
+not merely an existence statement about two geometric points.
+-/
+
+open scoped EuclideanGeometry
+
+namespace Problem97
+namespace ATailUniqueFourClassCapDistributionScratch
+
+open ATailCriticalPairFrontier
+open ATailUniqueArmRouteAuditScratch
+open ATailUniqueRowProducerScratch
+
+attribute [local instance] Classical.propDecidable
+
+private theorem oppApex2_mem_A
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppApex2 ∈ A := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i
+  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
+
+private theorem oppApex1_eq_oppositeVertexByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.oppApex1,
+      SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.oppIndex1, hi]
+
+private theorem interior_not_mem_surplusCap
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.oppIndex1) :
+    x ∉ S.surplusCap := by
+  have hnot := S.capInteriorByIndex_not_mem_capByIndex_of_ne hx
+    S.surplusIdx_ne_oppIndex1.symm
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simpa [SurplusCapPacket.capByIndex,
+      SurplusCapPacket.surplusCap, hi] using hnot
+
+/-- The rigid exact-two distribution: the other two class points occupy the
+two adjacent caps, one in each. -/
+structure ExactTwoStrictHitDistribution
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    (R : OriginalUniqueFourResidual F) : Prop where
+  strict_hit_eq_two :
+    (SelectedClass D.A S.oppApex1 radius ∩
+      S.capInteriorByIndex S.oppIndex1).card = 2
+  left_adjacent_hit_eq_one :
+    (SelectedClass D.A S.oppApex1 radius ∩
+      S.leftAdjacentCapByIndex S.oppIndex1).card = 1
+  right_adjacent_hit_eq_one :
+    (SelectedClass D.A S.oppApex1 radius ∩
+      S.rightAdjacentCapByIndex S.oppIndex1).card = 1
+
+/-- The generic form of the exact-five pair selector: three strict-cap points
+on the first-apex circle contain two whose simultaneous deletion preserves a
+K4 witness at the second apex.  No cardinality-five assumption is used. -/
+theorem exists_interiorDoubleDeletionPair_of_three_strict_hits
+    (D : CounterexampleData) (S : SurplusCapPacket D.A) {radius : ℝ}
+    (hthree :
+      3 ≤ (SelectedClass D.A S.oppApex1 radius ∩
+        S.capInteriorByIndex S.oppIndex1).card) :
+    Nonempty (CardFiveInteriorDoubleDeletionPair D S radius) := by
+  classical
+  let I : Finset ℝ² :=
+    SelectedClass D.A S.oppApex1 radius ∩
+      S.capInteriorByIndex S.oppIndex1
+  let T : Finset ℝ² :=
+### scratch/atail-force/unique4-p4-direct-valuation/P4FullLedgerSatisfaction.lean
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import DirectOuterThreeFamilySatisfaction
+import DirectCriticalComponentSatisfaction
+import DirectResidual55Satisfaction
+import P4RadiusPartitionOccurrenceBridge.Main
+import P4RowAtLeastFourOccurrenceBridge.Main
+import P4RowRadiusOccurrenceBridge.Orientation
+import P4OccurrenceClosure.MutualTransport.Orientation
+import P4OccurrenceClosure.CyclicAlternation.Main
+import P4OccurrenceClosure.Kalmanson.Main
+import P4CertificateLedgerClosure
+
+/-!
+# P4 full compact-ledger source satisfaction
+
+This file joins the source-faithful satisfaction theorems for all twelve
+authenticated P4 compact-ledger slices.  A native equality check authenticates
+that the resulting 19,048 clauses cover the exact checkpoint-0 ledger.
+-/
+
+namespace Problem97.P4DirectOuterValuationScratch
+
+open ATailCriticalPairFrontier
+open ATailUniqueArmRouteAuditScratch
+open ATailUniqueFourClassCapDistributionScratch
+open ATailUniqueFourExactTwoBoundaryScratch
+open P4Cegar6OccurrenceBridgeScratch
+open P4CriticalSupportOccurrenceBridgeScratch
+open P4DirectOuterArcAdapterScratch
+open P4RightCapSourceBridgeScratch
+open P4StrictUnitSourceBridgeScratch
+open P5IndexedSourceScratch
+
+variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+  {R : OriginalUniqueFourResidual F}
+  {profile : S.surplusCap.card = 5 ∧
+    S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
+  {distribution : ExactTwoStrictHitDistribution R}
+
+private def radiusPartitionAgreement
+    (Q : DirectSource R profile distribution) :
+    P4RadiusPartitionOccurrenceBridgeScratch.CoreValAgreement
+      Q.packet (directTotalVal Q) where
+  row := by
+    intro center point hne
+    change directTotalVal Q (rowVariable center point) ↔
+      rowMem Q.packet.core directIndex center point
+    exact (directValAgreement Q).row center point hne
+  radius := by
+    intro center left right hlr hlc hrc
+    change directTotalVal Q (radiusVariable center left right) ↔
+      radiusEq Q.packet.core directIndex center left right
+    exact (directValAgreement Q).radius center left right hlr hlc hrc
+
+private def rowAtLeastFourAgreement
+    (Q : DirectSource R profile distribution) :
+    P4RowAtLeastFourOccurrenceBridgeScratch.CoreValAgreement
+      Q.packet (directTotalVal Q) where
+  row := by
+    intro center point hne
+    change directTotalVal Q (rowVariable center point) ↔
+      rowMem Q.packet.core directIndex center point
+    exact (directValAgreement Q).row center point hne
+
+private def rowRadiusAgreement
+    (Q : DirectSource R profile distribution) :
+    P4RowRadiusOccurrenceBridgeScratch.CoreValAgreement
+      Q.packet.core directIndex (directTotalVal Q) where
+  row := by
+    intro center point hne
+    change directTotalVal Q (rowVariable center point) ↔
+      rowMem Q.packet.core directIndex center point
+    exact (directValAgreement Q).row center point hne
+  radius := by
+    intro center left right hlr hlc hrc
+    change directTotalVal Q (radiusVariable center left right) ↔
+      radiusEq Q.packet.core directIndex center left right
+    exact (directValAgreement Q).radius center left right hlr hlc hrc
+
+private def mutualTransportAgreement
+    (Q : DirectSource R profile distribution) :
+    P4MutualTransportOccurrenceBridgeScratch.CoreValAgreement
+      Q.packet.core directIndex (directTotalVal Q) where
+  row := by
+    intro center point hne
+    change directTotalVal Q (rowVariable center point) ↔
+      rowMem Q.packet.core directIndex center point
+    exact (directValAgreement Q).row center point hne
+  radius := by
+### scratch/atail-force/unique4-p4-mirror-valuation/MirrorLedgerAssembly.lean
+import MirrorCoreFamilySatisfaction
+import MirrorCegar6Satisfaction
+import MirrorOuterFamilySatisfaction
+import MirrorResidual55Satisfaction
+import MirrorRightCap21Satisfaction
+import MirrorStrictUnitSatisfaction
+import P4FullLedgerSatisfaction
+
+/-!
+# Assembly of the reflected P4 compact ledger
+
+The source-wired mirror families, including residual-55, right-cap-21, and
+CEGAR-6, account for all 19,048 checkpoint-0 clauses.
+-/
+
+namespace Problem97.P4MirrorValuationScratch
+
+open ATailCriticalPairFrontier
+open ATailUniqueArmRouteAuditScratch
+open ATailUniqueFourClassCapDistributionScratch
+open ATailUniqueFourExactTwoBoundaryScratch
+open P4Cegar6OccurrenceBridgeScratch
+open P4CriticalSupportOccurrenceBridgeScratch
+open P4DirectOuterValuationScratch
+open P4MirrorOuterOccurrenceBridgeScratch
+open P4RightCapSourceBridgeScratch
+open P4StrictUnitSourceBridgeScratch
+open P5IndexedSourceScratch
+
+variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+  {R : OriginalUniqueFourResidual F}
+  {profile : S.surplusCap.card = 5 ∧
+    S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
+  {distribution : ExactTwoStrictHitDistribution R}
+
+private theorem p5ClauseSat_normalizeClause_iff
+    (v : Nat → Prop) (clause : List Int) :
+    P5OccurrenceBridgeScratch.clauseSat v
+        (P4DirectOuterValuationScratch.normalizeClause clause) ↔
+      P5OccurrenceBridgeScratch.clauseSat v clause := by
+  simp only [P5OccurrenceBridgeScratch.clauseSat,
+    P4DirectOuterValuationScratch.normalizeClause, List.mem_mergeSort]
+
+set_option maxRecDepth 100000 in
+theorem directOuterThreeFamilyClauses_normalized_mem_mirrorBridge :
+    ∀ clause ∈ directOuterThreeFamilyCompactClauses,
+      P4DirectOuterValuationScratch.normalizeClause clause ∈
+        P4MirrorOuterOccurrenceBridgeScratch.bridgeClauses.map
+          P4DirectOuterValuationScratch.normalizeClause := by
+  native_decide
+
+theorem mirrorTotalVal_directOuterThreeFamilyClauses_sat
+    (P : P4MirrorBoundaryPacket R profile distribution) :
+    ∀ clause ∈ directOuterThreeFamilyCompactClauses,
+      P5OccurrenceBridgeScratch.clauseSat (mirrorTotalVal P) clause := by
+  intro clause hclause
+  have hnormalized :=
+    directOuterThreeFamilyClauses_normalized_mem_mirrorBridge clause hclause
+  rcases List.mem_map.mp hnormalized with
+    ⟨mirrorClause, hmirrorClause, hnormalize⟩
+  have hmirror :=
+    mirrorOuterBridgeClauses_sat P mirrorClause hmirrorClause
+  have hmirrorNormalized :=
+    (p5ClauseSat_normalizeClause_iff
+      (mirrorTotalVal P) mirrorClause).mpr hmirror
+  rw [hnormalize] at hmirrorNormalized
+  exact (p5ClauseSat_normalizeClause_iff
+    (mirrorTotalVal P) clause).mp hmirrorNormalized
+
+theorem mirrorTotalVal_p4SourceClauses_sat
+    (P : P4MirrorBoundaryPacket R profile distribution) :
+    ∀ clause ∈ p4SourceClauses,
+      P5OccurrenceBridgeScratch.clauseSat (mirrorTotalVal P) clause := by
+  intro clause hclause
+  unfold p4SourceClauses at hclause
+  rcases List.mem_append.mp hclause with hfamily | hclause
+  · exact mirrorTotalVal_radiusPartitionClauses_sat P clause hfamily
+  rcases List.mem_append.mp hclause with hfamily | hclause
+  · exact mirrorTotalVal_rowRadiusClauses_sat P clause hfamily
+  rcases List.mem_append.mp hclause with hfamily | hclause
+  · exact mirrorTotalVal_rowAtLeastFourClauses_sat P clause hfamily
+  rcases List.mem_append.mp hclause with hfamily | hclause
+  · exact mirrorTotalVal_mutualTransportClauses_sat P clause hfamily
+  rcases List.mem_append.mp hclause with hfamily | hclause
+  · exact mirrorTotalVal_cyclicAlternationClauses_sat P clause hfamily
+  rcases List.mem_append.mp hclause with hfamily | hclause
+  · rcases List.mem_map.mp hfamily with ⟨entry, hentry, rfl⟩
+    exact mirrorTotalVal_criticalBridge_sat P entry hentry
+  rcases List.mem_append.mp hclause with hfamily | hclause
+  · rcases List.mem_map.mp hfamily with ⟨entry, hentry, rfl⟩
+    exact mirrorTotalVal_residual55Entries_sat P entry hentry
+  rcases List.mem_append.mp hclause with hfamily | hclause
+  · exact mirrorTotalVal_strictUnitClauses_sat P clause hfamily
+  rcases List.mem_append.mp hclause with hfamily | hclause
+### scratch/atail-force/unique4-exact-two-lrat-ingress/P5ExactTwoClosure.lean
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import WindowedRupReplay.Compose
+import BridgeMain
+
+/-!
+# Focused p5 exact-two certificate closure
+
+This scratch composition joins the source-faithful occurrence bridge to the
+checkpointed RUP replay.  Its only certificate-specific seam is the checked
+ground equality `checkpoint0_clauses_eq_bridgeClauses`.
+-/
+
+open Std.Sat
+open Std.Tactic.BVDecide
+open Std.Tactic.BVDecide.LRAT
+open Std.Tactic.BVDecide.LRAT.Internal
+
+namespace Problem97
+namespace P5ExactTwoCertificateClosureScratch
+
+open ATailCriticalPairFrontier
+open ATailUniqueArmRouteAuditScratch
+open ATailUniqueFourClassCapDistributionScratch
+open ATailUniqueFourExactTwoBoundaryScratch
+open P5OccurrenceBridgeScratch
+open P5IndexedSourceScratch
+open Problem97.CheckpointedRup.TextBoundary
+
+/-- Convert the LRAT checker's literal representation back to its signed,
+one-based DIMACS integer. -/
+def signedIntOfLiteral {n : Nat} (l : Literal (PosFin n)) : Int :=
+  if l.2 then (l.1.val : Int) else -(l.1.val : Int)
+
+/-- Signed DIMACS view of one parsed checker clause. -/
+def signedClauseOfDefault {n : Nat} (clause : DefaultClause n) : List Int :=
+  clause.clause.map signedIntOfLiteral
+
+/-- Signed DIMACS view of the active clauses of one checker formula. -/
+def signedClausesOfFormula {n : Nat} (formula : DefaultFormula n) :
+    List (List Int) :=
+  formula.toList.map signedClauseOfDefault
+
+/-- Checkpoint zero is exactly the occurrence bridge's stored trimmed clause
+list, including clause and literal order. -/
+theorem checkpoint0_clauses_eq_bridgeClauses :
+    signedClausesOfFormula
+        (formulaOfText (n := WindowedRupReplay.n)
+          WindowedRupReplay.Checkpoint.C0000.text) =
+      bridgeClauses := by
+  set_option maxRecDepth 16384 in
+    native_decide
+
+/-- A proposition-valued DIMACS valuation, classically decided at the
+checker's positive finite variable type. -/
+noncomputable def checkerAssignment {n : Nat} (v : Nat → Prop) :
+    PosFin n → Bool :=
+  fun p => @decide (v p.val) (Classical.propDecidable _)
+
+theorem checkerAssignment_iff {n : Nat} (v : Nat → Prop) (p : PosFin n) :
+    checkerAssignment v p = true ↔ v p.val := by
+  simp [checkerAssignment]
+
+/-- Satisfaction of the signed view of a checker clause transfers back to
+the checker's native clause semantics. -/
+theorem entails_defaultClause_of_clauseSat {n : Nat} (v : Nat → Prop)
+    (clause : DefaultClause n)
+    (h : clauseSat v (signedClauseOfDefault clause)) :
+    Entails.eval (α := PosFin n) (checkerAssignment v) clause := by
+  obtain ⟨l, hl, hsat⟩ := h
+  obtain ⟨literal, hliteral, rfl⟩ :=
+    List.mem_map.mp (show l ∈ clause.clause.map signedIntOfLiteral from hl)
+  change Clause.eval (checkerAssignment v) clause = true
+  apply List.any_eq_true.mpr
+  refine ⟨literal, hliteral, ?_⟩
+  rcases literal with ⟨p, polarity⟩
+  cases polarity with
+  | false =>
+      simp only [signedIntOfLiteral, Bool.false_eq_true, ↓reduceIte] at hsat
+      have hpPos : (0 : Int) < (p.val : Int) := by
+        exact_mod_cast p.property.1
+      have hp : ¬(0 : Int) ≤ -(p.val : Int) := by omega
+      unfold litSat at hsat
+      rw [if_neg hp] at hsat
+      simp only [decide_eq_true_eq]
+      change checkerAssignment v p = false
+      have hnot : ¬v p.val := by simpa using hsat
+      simp [checkerAssignment, hnot]
+  | true =>
+      simp only [signedIntOfLiteral, ↓reduceIte] at hsat
+      unfold litSat at hsat
+### scratch/atail-force/unique4-aligned-p5-occurrence/AlignedP5Closure.lean
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import AlignedP5DirectClosure
+import AlignedP5MirrorClosure
+
+/-!
+# Aligned-p5 source closure
+
+The source boundary normalization yields either the direct or mirror card-eleven
+layout.  Both layouts are closed by their native occurrence theorem and the
+common geometric Kalmanson decoder.
+-/
+
+namespace Problem97
+namespace ATailUniqueFourAlignedP5BoundaryScratch
+
+open ATailCriticalPairFrontier
+open ATailUniqueArmRouteAuditScratch
+open ATailUniqueFourClassCapDistributionScratch
+
+/-- The aligned exact-two complement at profile `(5,5,4)` is impossible in
+either cyclic macro orientation. -/
+theorem false_of_alignedInteriorFrontier
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    (R : OriginalUniqueFourResidual F)
+    (profile : S.surplusCap.card = 5 ∧
+      S.oppCap1.card = 5 ∧ S.oppCap2.card = 4)
+    (P : AlignedInteriorFrontier R) :
+    False := by
+  rcases nonempty_alignedP5BoundaryPacket_or_mirror R profile P with
+    hdirect | hmirror
+  · rcases hdirect with ⟨Q⟩
+    exact AlignedP5BoundaryPacket.false_of_boundaryPacket Q
+  · rcases hmirror with ⟨Q⟩
+    exact AlignedP5MirrorBoundaryPacket.false_of_mirrorBoundaryPacket Q
+
+end ATailUniqueFourAlignedP5BoundaryScratch
+end Problem97
+### scratch/atail-force/unique4-uniform-route-audit/UniqueFourCardinalityBoundary.lean
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import OriginalUniqueResidualDispatch
+
+/-!
+# Exact-four cardinality boundary
+
+The current exact-four source residual forces a lower, not an upper,
+cardinality bound.  This small adapter records the exact consequence of the
+cap-sum identity and the no-`(m,4,4)` hypothesis.
+-/
+
+open scoped EuclideanGeometry
+
+namespace Problem97
+namespace ATailUniqueFourUniformRouteAuditScratch
+
+open ATAILStageOnePrescribedApexDichotomy
+open ATailCriticalPairFrontier
+open ATailOrientedPhysicalApexIngress
+open ATailUniqueArmRouteAuditScratch
+
+attribute [local instance] Classical.propDecidable
+
+/-- The exact-four residual cannot occur on a carrier of cardinality ten.
+
+Both opposite caps have at least four vertices and the surplus cap has at
+least five.  At cardinality ten the closed-cap sum forces both opposite caps
+to have cardinality exactly four, contradicting the residual's no-`IsM44`
+field. -/
+theorem carrier_card_ge_eleven
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : OriginalUniqueFourResidual F) :
+    11 ≤ D.A.card := by
+  have hopposite := oppositeCaps_card_ge_four D S
+  have hsum := S.capSum
+  have hsurplus := S.surplus_card_gt_four
+  have hopp1 : 4 ≤ S.oppCap1.card := by
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i <;>
+      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+        SurplusCapPacket.oppCap1, hi] using hopposite.1
+  have hopp2 : 4 ≤ S.oppCap2.card := by
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i <;>
+      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+        SurplusCapPacket.oppCap2, hi] using hopposite.2
+  by_contra hnot
+  have hcard : D.A.card = 10 := by omega
+  have hcap1 : S.oppCap1.card = 4 := by omega
+  have hcap2 : S.oppCap2.card = 4 := by omega
+  exact R.noM44 ⟨S, hcap1, hcap2⟩
+
+/-- A future source theorem proving the missing upper bound would reduce the
+exact-four residual to the fixed cardinality-eleven surface. -/
+theorem carrier_card_eq_eleven_of_card_le_eleven
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : OriginalUniqueFourResidual F) (hupper : D.A.card ≤ 11) :
+    D.A.card = 11 := by
+  have hlower := carrier_card_ge_eleven R
+  omega
+
+end ATailUniqueFourUniformRouteAuditScratch
+end Problem97
+
+#print axioms Problem97.ATailUniqueFourUniformRouteAuditScratch.carrier_card_ge_eleven
+#print axioms Problem97.ATailUniqueFourUniformRouteAuditScratch.carrier_card_eq_eleven_of_card_le_eleven

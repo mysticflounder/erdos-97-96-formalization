@@ -1,0 +1,3 @@
+'Problem97.ATailRobustTwoRadiusCenterLocalizationScratch.exists_strictPair_minimalDeletionNormalForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

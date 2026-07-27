@@ -1,4 +1,5 @@
 import Erdos9796Proof.P97.CGN.CGN6
+import Erdos9796Proof.P97.ATail.RetainedStrictInteriorPairSelector
 
 /-!
 # A collision blocker lies between its two strict-cap sources
@@ -158,3 +159,228 @@ end Problem97.CGN
 
 #print axioms Problem97.CGN.exists_between_eq_secondBisector_of_first_not_mem_cap
 #print axioms Problem97.CGN.exists_two_oriented_source_blocker_source_triples
+
+namespace Problem97
+namespace ATailCollisionGlobalMathScratch
+
+open ATailCriticalPairFrontier
+open ATailCriticalFiberRetainedRadiusSelector
+open ATailOrientedPhysicalApexIngress
+open ATailRetainedStrictInteriorPairSelector
+
+attribute [local instance] Classical.propDecidable
+
+private theorem oppApex1_mem_A
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppApex1 ∈ A := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i
+  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
+
+private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.oppApex1,
+      SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.oppIndex1, hi]
+
+private theorem oppApex1_not_mem_firstOppCap
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppApex1 ∉ S.capByIndex S.oppIndex1 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i
+  · simpa [SurplusCapPacket.oppApex1,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.capByIndex, hi] using
+      S.partition.v2_notin_C2
+  · simpa [SurplusCapPacket.oppApex1,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.capByIndex, hi] using
+      S.partition.v3_notin_C3
+  · simpa [SurplusCapPacket.oppApex1,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.capByIndex, hi] using
+      S.partition.v1_notin_C1
+
+/-- The two retained collision rows used by the live exact-four frontier
+really do determine two source-blocker-source triples in one ordered cap.
+
+This is the collision-specific ingress for the generic ordered-cap lemma
+above.  It retains the ordered-cap packet and the image equality so that the
+next global argument can compare the two triples with the ambient cap data. -/
+theorem exists_ordered_two_collision_triples
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ) :
+    ∃ m, ∃ L : CGN.OrderedCap m,
+      ∃ Packet : CGN.MecCapPacket D.A L,
+      ∃ Hside : CGN.MinorCapSideHypotheses Packet,
+      ∃ Hord : CGN.StrictCapOrder D.A L,
+        Finset.univ.image L.points = S.capByIndex S.oppIndex1 ∧
+          ∃ r₀ j₀ s₀ r₁ j₁ s₁ : Fin m,
+            r₀ < j₀ ∧ j₀ < s₀ ∧
+            L.points j₀ =
+              H.centerAt P.source₁ P.source₁_mem_A ∧
+            ((L.points r₀ = P.source₁ ∧
+                L.points s₀ = P.source₂) ∨
+              (L.points r₀ = P.source₂ ∧
+                L.points s₀ = P.source₁)) ∧
+            CGN.WitnessesCapEdgeAt L j₀ r₀ s₀ ∧
+            r₁ < j₁ ∧ j₁ < s₁ ∧
+            L.points j₁ =
+              H.centerAt Pρ.source₁ Pρ.source₁_mem_A ∧
+            ((L.points r₁ = Pρ.source₁ ∧
+                L.points s₁ = Pρ.source₂) ∨
+              (L.points r₁ = Pρ.source₂ ∧
+                L.points s₁ = Pρ.source₁)) ∧
+            CGN.WitnessesCapEdgeAt L j₁ r₁ s₁ := by
+  classical
+  rcases S.capByIndex_cgn4g_capData D.convex S.oppIndex1 with
+    ⟨m, L, Packet, Hside, Hord, hcap⟩
+  let b₀ := H.centerAt P.source₁ P.source₁_mem_A
+  let b₁ := H.centerAt Pρ.source₁ Pρ.source₁_mem_A
+  have haA : S.oppApex1 ∈ D.A := oppApex1_mem_A S
+  have hb₀A : b₀ ∈ D.A := by
+    simpa [b₀, CriticalShellSystem.blockerVertex] using
+      (H.blockerVertex ⟨P.source₁, P.source₁_mem_A⟩).2
+  have hb₁A : b₁ ∈ D.A := by
+    simpa [b₁, CriticalShellSystem.blockerVertex] using
+      (H.blockerVertex ⟨Pρ.source₁, Pρ.source₁_mem_A⟩).2
+  have hab₀ : S.oppApex1 ≠ b₀ := by
+    simpa [b₀] using
+      (R.actualBlocker_ne_firstApex
+        P.source₁ P.source₁_mem_A).symm
+  have hab₁ : S.oppApex1 ≠ b₁ := by
+    simpa [b₁] using
+      (Rρ.actualBlocker_ne_firstApex
+        Pρ.source₁ Pρ.source₁_mem_A).symm
+  have hcenter :
+      S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 :=
+    oppApex1_eq_oppositeVertexByIndex_oppIndex1 S
+  have hap : S.oppApex1 ≠ P.source₁ := by
+    rw [hcenter]
+    exact
+      (S.capInteriorByIndex_ne_oppositeVertexByIndex_of_mem
+        P.source₁_mem_capInterior).symm
+  have haq : S.oppApex1 ≠ P.source₂ := by
+    rw [hcenter]
+    exact
+      (S.capInteriorByIndex_ne_oppositeVertexByIndex_of_mem
+        P.source₂_mem_capInterior).symm
+  have hau : S.oppApex1 ≠ Pρ.source₁ := by
+    rw [hcenter]
+    exact
+      (S.capInteriorByIndex_ne_oppositeVertexByIndex_of_mem
+        Pρ.source₁_mem_capInterior).symm
+  have hav : S.oppApex1 ≠ Pρ.source₂ := by
+    rw [hcenter]
+    exact
+      (S.capInteriorByIndex_ne_oppositeVertexByIndex_of_mem
+        Pρ.source₂_mem_capInterior).symm
+  have hb₀p : b₀ ≠ P.source₁ := by
+    intro h
+    apply (H.selectedAt P.source₁
+      P.source₁_mem_A).toCriticalFourShell.center_not_mem_support
+    change b₀ ∈
+      (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support
+    rw [h]
+    exact (H.selectedAt P.source₁
+      P.source₁_mem_A).toCriticalFourShell.q_mem_support
+  have hb₀q : b₀ ≠ P.source₂ := by
+    intro h
+    apply (H.selectedAt P.source₁
+      P.source₁_mem_A).toCriticalFourShell.center_not_mem_support
+    change b₀ ∈
+      (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support
+    rw [h]
+    exact P.source₂_mem_source₁_shell
+  have hb₁u : b₁ ≠ Pρ.source₁ := by
+    intro h
+    apply (H.selectedAt Pρ.source₁
+      Pρ.source₁_mem_A).toCriticalFourShell.center_not_mem_support
+    change b₁ ∈
+      (H.selectedAt Pρ.source₁ Pρ.source₁_mem_A).toCriticalFourShell.support
+    rw [h]
+    exact (H.selectedAt Pρ.source₁
+      Pρ.source₁_mem_A).toCriticalFourShell.q_mem_support
+  have hb₁v : b₁ ≠ Pρ.source₂ := by
+    intro h
+    apply (H.selectedAt Pρ.source₁
+      Pρ.source₁_mem_A).toCriticalFourShell.center_not_mem_support
+    change b₁ ∈
+      (H.selectedAt Pρ.source₁ Pρ.source₁_mem_A).toCriticalFourShell.support
+    rw [h]
+    exact Pρ.source₂_mem_source₁_shell
+  have hp : P.source₁ ∈ Finset.univ.image L.points := by
+    rw [hcap]
+    exact S.capInteriorByIndex_subset_capByIndex
+      S.oppIndex1 P.source₁_mem_capInterior
+  have hq : P.source₂ ∈ Finset.univ.image L.points := by
+    rw [hcap]
+    exact S.capInteriorByIndex_subset_capByIndex
+      S.oppIndex1 P.source₂_mem_capInterior
+  have hu : Pρ.source₁ ∈ Finset.univ.image L.points := by
+    rw [hcap]
+    exact S.capInteriorByIndex_subset_capByIndex
+      S.oppIndex1 Pρ.source₁_mem_capInterior
+  have hv : Pρ.source₂ ∈ Finset.univ.image L.points := by
+    rw [hcap]
+    exact S.capInteriorByIndex_subset_capByIndex
+      S.oppIndex1 Pρ.source₂_mem_capInterior
+  have haOff : S.oppApex1 ∉ Finset.univ.image L.points := by
+    simpa [hcap] using oppApex1_not_mem_firstOppCap S
+  have haeq₀ :
+      dist S.oppApex1 P.source₁ =
+        dist S.oppApex1 P.source₂ :=
+    (mem_selectedClass.mp P.source₁_mem_radius).2.trans
+      (mem_selectedClass.mp P.source₂_mem_radius).2.symm
+  have hb₀eq : dist b₀ P.source₁ = dist b₀ P.source₂ := by
+    exact
+      (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support_eq_radius
+        P.source₁
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.q_mem_support
+      |>.trans
+        ((H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support_eq_radius
+            P.source₂ P.source₂_mem_source₁_shell).symm
+  have haeq₁ :
+      dist S.oppApex1 Pρ.source₁ =
+        dist S.oppApex1 Pρ.source₂ :=
+    (mem_selectedClass.mp Pρ.source₁_mem_radius).2.trans
+      (mem_selectedClass.mp Pρ.source₂_mem_radius).2.symm
+  have hb₁eq : dist b₁ Pρ.source₁ = dist b₁ Pρ.source₂ := by
+    exact
+      (H.selectedAt Pρ.source₁
+          Pρ.source₁_mem_A).toCriticalFourShell.support_eq_radius
+        Pρ.source₁
+        (H.selectedAt Pρ.source₁
+          Pρ.source₁_mem_A).toCriticalFourShell.q_mem_support
+      |>.trans
+        ((H.selectedAt Pρ.source₁
+          Pρ.source₁_mem_A).toCriticalFourShell.support_eq_radius
+            Pρ.source₂ Pρ.source₂_mem_source₁_shell).symm
+  rcases CGN.exists_two_oriented_source_blocker_source_triples
+      Hord D.convex Packet.mem_A haA hb₀A hb₁A hab₀ hab₁
+      P.sources_ne Pρ.sources_ne hap haq hau hav
+      hb₀p hb₀q hb₁u hb₁v hp hq hu hv haOff
+      haeq₀ hb₀eq haeq₁ hb₁eq with
+    ⟨r₀, j₀, s₀, r₁, j₁, s₁,
+      hrj₀, hjs₀, hj₀, hor₀, hw₀,
+      hrj₁, hjs₁, hj₁, hor₁, hw₁⟩
+  exact ⟨m, L, Packet, Hside, Hord, hcap,
+    r₀, j₀, s₀, r₁, j₁, s₁,
+    hrj₀, hjs₀, hj₀, hor₀, hw₀,
+    hrj₁, hjs₁, hj₁, hor₁, hw₁⟩
+
+end ATailCollisionGlobalMathScratch
+end Problem97
+
+#print axioms Problem97.ATailCollisionGlobalMathScratch.exists_ordered_two_collision_triples
