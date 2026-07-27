@@ -204,3 +204,7 @@ scratch/atail-force/exact7-role-coverage-gate/probe_l2u_stageb_results.json
 /scratch/**/*.stdout
 /scratch/**/*.time
 /scratch/**/*.lock
+/scratch/atail-force/unique4-exact-two-core-map/p4.input-core-map.json
+/scratch/atail-force/unique4-exact-two-core-map/p5.input-core-map.json
+
+docs/live-blueprint.md.tmp
