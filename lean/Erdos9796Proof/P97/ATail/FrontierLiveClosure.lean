@@ -52,6 +52,7 @@ open ATailPhysicalSecondApexSwap
 open ATailRetainedMatchingGeometricReduction
 open ATailRetainedStrictInteriorPairSelector
 open ATailTwoCenterCapLocalization
+open ATailUniqueFourLateChoiceTerminalScratch
 open FirstApexUniqueRadiusResidual
 
 attribute [local instance] Classical.propDecidable
@@ -69,25 +70,286 @@ theorem false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven
     Problem97.ATailCardElevenUniqueFourCertificate.false_of_firstApexUniqueRadiusExactFourResidual
       R hcard
 
-/-- The narrowed post-card-eleven robust exact-four terminal.  Its surface
-retains the physical common-deletion ingress, full second-apex deletion
-robustness, both checked opposite-cap lower bounds, the complete
-deletion-robust radius classification, and the exhaustive cap-growth arm. -/
-theorem false_of_exactFourPostCardElevenRobustSurface
+/-- The mutually omitted-pair residue of the five-point-radius branch.  It
+retains the preceding strict-cap omitted peer and, in addition, two physical
+second-apex class sources absent from one another's actual late rows.  Both
+cross deletions therefore preserve K4, and the actual blockers are distinct. -/
+theorem false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
     (_hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (source : CarrierVertex D.A)
+    (_hrho : 0 < rho)
+    (_hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (_hsourceClass :
+      source.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (_hsourceInterior :
+      source.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (_hsourceOutside : source ∈ outsideFirstApexFiber R)
+    (_hlateCross :
+      ((((lateFirstApexSystem R).selectedAt
+            source.1 source.2).toCriticalFourShell.support ∩
+          (SelectedClass D.A S.oppApex2 rho ∩
+            S.capInteriorByIndex S.oppIndex2)).card ≤ 2))
+    (other : CarrierVertex D.A)
+    (_hotherNe : other ≠ source)
+    (_hotherClass :
+      other.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (_hotherInterior :
+      other.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (_hotherOmitted :
+      other.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          source.1 source.2).toCriticalFourShell.support)
+    (_hblockersNe :
+      (lateFirstApexSystem R).centerAt source.1 source.2 ≠
+        (lateFirstApexSystem R).centerAt other.1 other.2)
+    (_hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+          ((lateFirstApexSystem R).centerAt source.1 source.2) ∨
+        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+          ((lateFirstApexSystem R).centerAt source.1 source.2))
+    (u v : CarrierVertex D.A)
+    (_huNeV : u ≠ v)
+    (_huClass :
+      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (_hvClass :
+      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (_hvOmitted :
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (_huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (_hblockersUVNe :
+      (lateFirstApexSystem R).centerAt u.1 u.2 ≠
+        (lateFirstApexSystem R).centerAt v.1 v.2)
+    (_huSurvivesDeleteV :
+      HasNEquidistantPointsAt 4 (D.A.erase v.1)
+        ((lateFirstApexSystem R).centerAt u.1 u.2))
+    (_hvSurvivesDeleteU :
+      HasNEquidistantPointsAt 4 (D.A.erase u.1)
+        ((lateFirstApexSystem R).centerAt v.1 v.2)) :
+    False := by
+  sorry
+
+/-- The asymmetric strict-cap omitted peer forces a stronger whole-class
+normal form: among the five physical second-apex class sources, two are
+mutually omitted.  This checked wrapper is the one-child narrowing from the
+former omitted-peer obligation to the mutual-omission obligation above. -/
+theorem false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (source : CarrierVertex D.A)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (hsourceClass :
+      source.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hsourceInterior :
+      source.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (hsourceOutside : source ∈ outsideFirstApexFiber R)
+    (hlateCross :
+      ((((lateFirstApexSystem R).selectedAt
+            source.1 source.2).toCriticalFourShell.support ∩
+          (SelectedClass D.A S.oppApex2 rho ∩
+            S.capInteriorByIndex S.oppIndex2)).card ≤ 2))
+    (other : CarrierVertex D.A)
+    (hotherNe : other ≠ source)
+    (hotherClass :
+      other.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hotherInterior :
+      other.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (hotherOmitted :
+      other.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          source.1 source.2).toCriticalFourShell.support)
+    (hblockersNe :
+      (lateFirstApexSystem R).centerAt source.1 source.2 ≠
+        (lateFirstApexSystem R).centerAt other.1 other.2)
+    (hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+          ((lateFirstApexSystem R).centerAt source.1 source.2) ∨
+        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+          ((lateFirstApexSystem R).centerAt source.1 source.2)) :
+    False := by
+  rcases
+      exists_mutuallyOmittedSecondClassPair
+        R surface source hfive hsourceClass with
+    ⟨u, v, huNeV, huClass, hvClass, hvOmitted, huOmitted⟩
+  have hblockersUVNe :
+      (lateFirstApexSystem R).centerAt u.1 u.2 ≠
+        (lateFirstApexSystem R).centerAt v.1 v.2 := by
+    intro hcenters
+    have hsupports :=
+      ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+        (lateFirstApexSystem R) u.2 v.2 hcenters
+    apply hvOmitted
+    rw [hsupports]
+    exact
+      ((lateFirstApexSystem R).selectedAt
+        v.1 v.2).toCriticalFourShell.q_mem_support
+  have huSurvivesDeleteV :
+      HasNEquidistantPointsAt 4 (D.A.erase v.1)
+        ((lateFirstApexSystem R).centerAt u.1 u.2) :=
+    (cross_deletion_survives_iff_not_mem_selected_support
+      (lateFirstApexSystem R) u.2).mpr hvOmitted
+  have hvSurvivesDeleteU :
+      HasNEquidistantPointsAt 4 (D.A.erase u.1)
+        ((lateFirstApexSystem R).centerAt v.1 v.2) :=
+    (cross_deletion_survives_iff_not_mem_selected_support
+      (lateFirstApexSystem R) v.2).mpr huOmitted
+  exact
+    false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch
+      R hcard surface rho source hrho hfive hsourceClass hsourceInterior
+        hsourceOutside hlateCross other hotherNe hotherClass hotherInterior
+        hotherOmitted hblockersNe hsurvives u v huNeV huClass hvClass
+        hvOmitted huOmitted hblockersUVNe huSurvivesDeleteV hvSurvivesDeleteU
+
+/-- The bounded-cross-incidence residue supplies a named strict-cap peer
+outside the active late row.  Equality of the two actual blockers would make
+their canonical supports equal, so the peer's own-row membership proves the
+blockers are distinct. -/
+theorem false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (source : CarrierVertex D.A)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (hsourceClass :
+      source.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hsourceInterior :
+      source.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (hsourceOutside : source ∈ outsideFirstApexFiber R)
+    (hlateCross :
+      ((((lateFirstApexSystem R).selectedAt
+            source.1 source.2).toCriticalFourShell.support ∩
+          (SelectedClass D.A S.oppApex2 rho ∩
+            S.capInteriorByIndex S.oppIndex2)).card ≤ 2))
+    (hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+          ((lateFirstApexSystem R).centerAt source.1 source.2) ∨
+        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+          ((lateFirstApexSystem R).centerAt source.1 source.2)) :
+    False := by
+  rcases
+      exists_omittedSecondClassInteriorPeer
+        R source hrho hfive hlateCross with
+    ⟨other, hotherNe, hotherClass, hotherInterior,
+      hotherOmitted, hblockersNe⟩
+  exact
+    false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch
+      R hcard surface rho source hrho hfive hsourceClass hsourceInterior
+        hsourceOutside hlateCross other hotherNe hotherClass hotherInterior
+        hotherOmitted hblockersNe hsurvives
+
+/-- The five-point-radius branch reduces to its bounded-cross-incidence
+residue: three physical strict-cap hits in the actual late row are already
+ruled out by two-center cap localization and the ordered-cap row bound. -/
+theorem false_of_exactFourPostCardElevenInteriorDeletionBranch
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (source : CarrierVertex D.A)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (hsourceClass :
+      source.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hsourceInterior :
+      source.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (hsourceOutside : source ∈ outsideFirstApexFiber R)
+    (hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+          ((lateFirstApexSystem R).centerAt source.1 source.2) ∨
+        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+          ((lateFirstApexSystem R).centerAt source.1 source.2)) :
+    False := by
+  exact
+    false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch
+      R hcard surface rho source hrho hfive hsourceClass hsourceInterior
+        hsourceOutside
+        (actualLateRow_secondClassInterior_card_le_two
+          R surface source hsourceClass hsourceInterior)
+        hsurvives
+
+/-- The no-five two-distinct-radii branch of the post-card-eleven robust
+exact-four terminal.  It retains both disjoint exact rows and the checked
+strict-second-cap lower bound for each row. -/
+theorem false_of_exactFourPostCardElevenTwoRadiusBranch
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (_hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho otherRadius : ℝ)
+    (firstRow secondRow : SelectedFourClass D.A S.oppApex2)
+    (_hrho : 0 < rho)
+    (_hother : 0 < otherRadius)
+    (_hradii : otherRadius ≠ rho)
+    (_hnoFive : ∀ candidateRadius : ℝ, 0 < candidateRadius →
+      (SelectedClass D.A S.oppApex2 candidateRadius).card < 5)
+    (_hcardRho : (SelectedClass D.A S.oppApex2 rho).card = 4)
+    (_hcardOther :
+      (SelectedClass D.A S.oppApex2 otherRadius).card = 4)
+    (_hfirstRadius : firstRow.radius = rho)
+    (_hsecondRadius : secondRow.radius = otherRadius)
+    (_hdisjoint : Disjoint firstRow.support secondRow.support)
+    (_hinterior :
+      2 ≤ (SelectedClass D.A S.oppApex2 rho ∩
+        S.capInteriorByIndex S.oppIndex2).card)
+    (_hinteriorOther :
+      2 ≤ (SelectedClass D.A S.oppApex2 otherRadius ∩
+        S.capInteriorByIndex S.oppIndex2).card) :
+    False := by
+  sorry
+
+/-- The narrowed post-card-eleven robust exact-four terminal.  Its checked
+radius normal form now dispatches directly to two load-bearing branch
+obligations: the surviving interior-deletion branch and the no-five
+two-distinct-radii branch. -/
+theorem false_of_exactFourPostCardElevenRobustSurface
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
     (surface : ExactFourPostCardElevenRobustSurface R) :
     False := by
-  have _radiusOutcome :=
-    interiorPairGood_or_twoDistinctExactFourInteriorRows R surface
-  obtain ⟨_rho, _source, _ingress, _lateRow, _secondRow,
-      _hrho, _hsource, _hsecondRadius, _hcenters,
-      _hsourceLate, _hsourceSecond⟩ :=
-    nonempty_radiusAnchoredPhysicalRowCrossHit R surface
-  sorry
+  rcases interiorPairGood_or_twoDistinctExactFourInteriorRows R surface with
+    ⟨rho, source, hrho, hfive, hsourceClass, hsourceInterior,
+      hsourceOutside, hsurvives⟩ |
+      ⟨rho, otherRadius, firstRow, secondRow, hrho, hother, hradii,
+        hnoFive, hcardRho, hcardOther, hfirstRadius, hsecondRadius,
+        hdisjoint, hinterior, hinteriorOther⟩
+  · exact
+      false_of_exactFourPostCardElevenInteriorDeletionBranch
+        R hcard surface rho source hrho hfive hsourceClass hsourceInterior
+          hsourceOutside hsurvives
+  · exact
+      false_of_exactFourPostCardElevenTwoRadiusBranch
+        R hcard surface rho otherRadius firstRow secondRow hrho hother
+          hradii hnoFive hcardRho hcardOther hfirstRadius hsecondRadius
+          hdisjoint hinterior hinteriorOther
 
 /-- The robust physical-second-apex outcome reduces to the checked
 post-card-eleven surface.  The remaining contradiction is exposed directly
@@ -1345,14 +1607,99 @@ theorem selectedFourClass_outside_overlap_card_le_one
       (by simpa [hid] using hdEq)
       (by simpa [hic] using hcEq)
 
+/-- Source-exact collision rows force either the desired three-hit shell or
+one concrete cross-row incidence.
+
+This is the remaining positive planar/MEC terminal.  Compared with the
+collision-row coordinator below, both first-apex radius classes have already
+been normalized all the way to their named two-point strict-cap parts.  The
+conclusion exposes the least cross-incidence alternative: any one of its four
+arms is immediately eliminated by the checked cross-omission rectangle.
+
+Coordinator-interface frontier: before this leaf, the coordinator has two
+exact-four/exact-two collision rows and must still identify their strict-cap
+parts.  After normalization there is one load-bearing child, with no
+constructor fan-out, whose only non-three-hit outcome is a named cross hit. -/
+theorem exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (hρne : ρ ≠ radius)
+    (hfrontierFour :
+      (SelectedClass D.A S.oppApex1 radius).card = 4)
+    (hρfour :
+      (SelectedClass D.A S.oppApex1 ρ).card = 4)
+    (hfrontierInteriorEq :
+      SelectedClass D.A S.oppApex1 radius ∩
+          S.capInteriorByIndex S.oppIndex1 =
+        {P.source₁, P.source₂})
+    (hρInteriorEq :
+      SelectedClass D.A S.oppApex1 ρ ∩
+          S.capInteriorByIndex S.oppIndex1 =
+        {Pρ.source₁, Pρ.source₂})
+    {B : FrontierBiApexRobustResidual R}
+    {L : FrontierLargeOppositeCapsBiApexRobustResidual B}
+    {N : FrontierAllLargeCapsBiApexRobustResidual L}
+    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+    (hcriticalShellUniqueFourCover :
+      ∀ x : ℝ², ∀ hx : x ∈ D.A,
+        H.centerAt x hx ≠ x ∧
+          IsUniqueFourCenter D.A (H.centerAt x hx) ∧
+          uniqueFourClass D.A (H.centerAt x hx) =
+            (H.selectedAt x hx).toCriticalFourShell.support)
+    (hpairsDisjoint :
+      Disjoint
+        ({P.source₁, P.source₂} : Finset ℝ²)
+        {Pρ.source₁, Pρ.source₂})
+    (hblockersNe :
+      H.centerAt Pρ.source₁ Pρ.source₁_mem_A ≠
+        H.centerAt P.source₁ P.source₁_mem_A)
+    (LPρ : LocalizedCollisionCommonDeletion P)
+    (hLPρ : LPρ.fresh = Pρ.source₁)
+    (MPρ : LocalizedCollisionMutualOmissionCycle P LPρ)
+    (LP : LocalizedCollisionCommonDeletion Pρ)
+    (hLP : LP.fresh = P.source₁)
+    (MP : LocalizedCollisionMutualOmissionCycle Pρ LP)
+    (hcapEightOrCross :
+      8 ≤ (S.capByIndex S.oppIndex1).card ∨
+        H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₁ ∨
+          H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₂ ∨
+            H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₁ ∨
+              H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₂) :
+    (∃ i : Fin 3, ∃ x : ℝ², ∃ hx : x ∈ D.A, ∃ r : ℝ,
+      ApexRichClassStructure D.A (S.oppositeVertexByIndex i) ∧
+        3 ≤
+          ((H.selectedAt x hx).toCriticalFourShell.support ∩
+            (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+              S.capInteriorByIndex i)).card) ∨
+      (Pρ.source₁ ∈
+          (H.selectedAt P.source₁
+            P.source₁_mem_A).toCriticalFourShell.support ∨
+        Pρ.source₂ ∈
+            (H.selectedAt P.source₁
+              P.source₁_mem_A).toCriticalFourShell.support ∨
+          P.source₁ ∈
+              (H.selectedAt Pρ.source₁
+                Pρ.source₁_mem_A).toCriticalFourShell.support ∨
+            P.source₂ ∈
+              (H.selectedAt Pρ.source₁
+                Pρ.source₁_mem_A).toCriticalFourShell.support) := by
+  sorry
+
 /-- The retained two-cycle and tri-apex normal form forces a three-hit
 canonical shell at one of the three rich Moser apices.
 
 This is the load-bearing global planar/MEC producer after the checked
-exact-two normalization.  Its hypotheses expose four disjoint strict-cap
-sources, distinct actual blocker centres, the complete cross-omission
-rectangle, two oppositely oriented localized common-deletion cycles, and the
-last finite incidence split.
+exact-two normalization.  Its hypotheses expose two distinct exact-four
+first-apex radii with exactly two strict-cap points each, four disjoint
+strict-cap sources, distinct actual blocker centres, the complete
+cross-omission rectangle, two oppositely oriented localized common-deletion
+cycles, and the last finite incidence split.
 
 A purely local common-outside-pair argument is unavailable: the checked
 ordered-cap theorem `selectedFourClass_outside_overlap_card_le_one` only gives
@@ -1369,6 +1716,17 @@ theorem exists_three_hit_of_two_collisionRows_capCross_normalForm
     {Fρ : CriticalPairFrontier D S ρ H}
     {Rρ : FrontierCommonDeletionParentResidual Fρ}
     (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (hρne : ρ ≠ radius)
+    (hfrontierFour :
+      (SelectedClass D.A S.oppApex1 radius).card = 4)
+    (hρfour :
+      (SelectedClass D.A S.oppApex1 ρ).card = 4)
+    (hfrontierInteriorTwo :
+      (SelectedClass D.A S.oppApex1 radius ∩
+        S.capInteriorByIndex S.oppIndex1).card = 2)
+    (hρInteriorTwo :
+      (SelectedClass D.A S.oppApex1 ρ ∩
+        S.capInteriorByIndex S.oppIndex1).card = 2)
     {B : FrontierBiApexRobustResidual R}
     {L : FrontierLargeOppositeCapsBiApexRobustResidual B}
     {N : FrontierAllLargeCapsBiApexRobustResidual L}
@@ -1423,7 +1781,53 @@ theorem exists_three_hit_of_two_collisionRows_capCross_normalForm
           ((H.selectedAt x hx).toCriticalFourShell.support ∩
             (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
               S.capInteriorByIndex i)).card := by
-  sorry
+  classical
+  have hfrontierPairSubset :
+      ({P.source₁, P.source₂} : Finset ℝ²) ⊆
+        SelectedClass D.A S.oppApex1 radius ∩
+          S.capInteriorByIndex S.oppIndex1 := by
+    intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl
+    · exact Finset.mem_inter.mpr
+        ⟨P.source₁_mem_radius, P.source₁_mem_capInterior⟩
+    · exact Finset.mem_inter.mpr
+        ⟨P.source₂_mem_radius, P.source₂_mem_capInterior⟩
+  have hfrontierInteriorEq :
+      SelectedClass D.A S.oppApex1 radius ∩
+          S.capInteriorByIndex S.oppIndex1 =
+        {P.source₁, P.source₂} :=
+    (Finset.eq_of_subset_of_card_le hfrontierPairSubset (by
+      simpa [P.sources_ne] using hfrontierInteriorTwo.le)).symm
+  have hρPairSubset :
+      ({Pρ.source₁, Pρ.source₂} : Finset ℝ²) ⊆
+        SelectedClass D.A S.oppApex1 ρ ∩
+          S.capInteriorByIndex S.oppIndex1 := by
+    intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl
+    · exact Finset.mem_inter.mpr
+        ⟨Pρ.source₁_mem_radius, Pρ.source₁_mem_capInterior⟩
+    · exact Finset.mem_inter.mpr
+        ⟨Pρ.source₂_mem_radius, Pρ.source₂_mem_capInterior⟩
+  have hρInteriorEq :
+      SelectedClass D.A S.oppApex1 ρ ∩
+          S.capInteriorByIndex S.oppIndex1 =
+        {Pρ.source₁, Pρ.source₂} :=
+    (Finset.eq_of_subset_of_card_le hρPairSubset (by
+      simpa [Pρ.sources_ne] using hρInteriorTwo.le)).symm
+  rcases
+      exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows
+        P Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+          T hcriticalShellUniqueFourCover hpairsDisjoint hblockersNe
+            LPρ hLPρ MPρ LP hLP MP hcapEightOrCross with
+    hthree | hcross
+  · exact hthree
+  · rcases hcross with hcross | hcross | hcross | hcross
+    · exact False.elim (hcrossOmissions.1 hcross)
+    · exact False.elim (hcrossOmissions.2.1 hcross)
+    · exact False.elim (hcrossOmissions.2.2.1 hcross)
+    · exact False.elim (hcrossOmissions.2.2.2.1 hcross)
 
 /-- Two source-exact equal-blocker rows on distinct first-apex radii force a
 three-hit canonical shell at one of the three rich Moser apices.
@@ -1623,8 +2027,9 @@ theorem exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollis
     · exact Or.inr hcross
   exact
     exists_three_hit_of_two_collisionRows_capCross_normalForm
-      P Pρ T hcriticalShellUniqueFourCover hpairsDisjoint hblockersNe
-        hcrossOmissions LPρ hLPρ MPρ LP hLP MP hcapEightOrCross
+      P Pρ hρne hfrontierFour hρfour hfrontierInteriorTwo hρInteriorTwo
+        T hcriticalShellUniqueFourCover hpairsDisjoint hblockersNe
+          hcrossOmissions LPρ hLPρ MPρ LP hLP MP hcapEightOrCross
 
 /-- The symmetric two-radius collision normal form.
 

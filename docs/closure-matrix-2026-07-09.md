@@ -211,13 +211,100 @@ a five-point radius class, a strict second-cap source for which deleting
 `R.interior_q` or `R.interior_w` preserves K4 at its actual late blocker.
 The exhaustive
 `interiorPairGood_or_twoDistinctExactFourInteriorRows` normal form retains
-that source in the five-point arm; its only other arm has two disjoint exact
-four-point rows, no positive class of cardinality five, and at least two
-strict second-cap members in each row.  `FrontierLiveClosure.lean` consumes
-the normal form on the published anchor path.  This checkpoint closes no
-`sorry`: both direct K-A-UNIQUE-PHYSICAL-SPLIT terminals remain open, and the
-next gate is a checked terminal consumer for both constructors of the normal
-form.
+that source, its positive radius, and the five-point class lower bound in the
+five-point arm; its only other arm has two disjoint exact four-point rows, no
+positive class of cardinality five, and at least two strict second-cap
+members in each row.  `FrontierLiveClosure.lean` now consumes the normal form
+with a checked two-way coordinator.  Its robust-surface `sorry` has therefore
+been decomposed into exactly two stronger, directly wired load-bearing leaves:
+`false_of_exactFourPostCardElevenInteriorDeletionBranch` and
+`false_of_exactFourPostCardElevenTwoRadiusBranch`.  Immediate fan-out is two,
+there are no orphan obligations, and the active next gate is the
+interior-deletion leaf.  This decomposition closes no mathematical branch;
+closing that first leaf will reduce the coordinator frontier from two to one.
+
+### K-A-UNIQUE-PHYSICAL-SPLIT bounded-cross-incidence checkpoint (2026-07-26)
+
+`actualLateRow_secondClassInterior_card_le_two` now eliminates the
+three-physical-hit subcase of the five-point interior-deletion branch.  It
+uses the active source and one further strict-second-cap radius-class hit to
+localize the actual late blocker to the second cap, then applies the
+ordered-cap two-point row bound.  The former
+`false_of_exactFourPostCardElevenInteriorDeletionBranch` obligation is now a
+checked one-child coordinator whose sole load-bearing child is
+`false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch`.  That child
+adds the proved bound
+`lateRow.support ∩ (physicalRadiusClass ∩ strictSecondCap) ≤ 2` while
+retaining the named positive radius, five-point class lower bound, source,
+outside-fiber membership, and surviving deletion.
+
+The robust-surface coordinator-interface frontier is still exactly two
+leaves: the bounded-cross-incidence leaf and
+`false_of_exactFourPostCardElevenTwoRadiusBranch`.  Immediate fan-out at the
+interior-deletion subcoordinator is one; direct `sorry` count is unchanged;
+there are no orphan obligations.  This checkpoint closes the three-hit
+subcase, not the entire five-point branch.  The active gate is the
+bounded-cross-incidence leaf, whose remaining occurrence must use another
+row or blocker fiber.
+
+### K-A-UNIQUE-PHYSICAL-SPLIT omitted-peer checkpoint (2026-07-26)
+
+`exists_omittedSecondClassInteriorPeer` now consumes the five-point class
+lower bound and the checked two-hit late-row bound.  The physical class has
+at least three strict-second-cap members, so it produces a distinct peer in
+that class and cap which is omitted from the active source's late row.
+Canonical-support equality for equal actual blockers then proves that the
+source and peer actual blockers are distinct.
+
+The former
+`false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch` obligation
+is now a checked one-child coordinator.  Its sole load-bearing child is
+`false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch`, which
+retains all prior source/deletion data and additionally names the peer, its
+physical-class and strict-cap memberships, its omission from the source row,
+and the blocker-separation fact.
+
+The robust-surface coordinator-interface frontier remains exactly two leaves:
+the omitted-peer leaf and
+`false_of_exactFourPostCardElevenTwoRadiusBranch`.  Immediate fan-out at both
+interior-deletion subcoordinators is one; direct `sorry` count is unchanged;
+there are no orphan obligations.  This checkpoint closes the unnamed-peer
+extraction step, not the entire five-point branch.  The active gate is the
+omitted-peer leaf, whose next occurrence must exploit the peer's own row,
+distinct blockers, or a compatible terminal.
+
+### K-A-UNIQUE-PHYSICAL-SPLIT mutual-omission checkpoint (2026-07-26)
+
+`actualLateRow_secondClass_card_le_two` now bounds the intersection of every
+actual late row with the whole physical second-apex radius class by two.
+Deletion robustness keeps the physical apex distinct from the row blocker,
+so this is a direct application of the checked two-circle intersection bound.
+
+`exists_mutuallyOmittedSecondClassPair` combines that bound with the
+five-point class lower bound.  The active source row omits at least three
+class points; choosing two of them and applying the same two-hit bound to
+their rows yields two distinct class sources mutually omitted from one
+another's actual late supports.  Both reciprocal cross deletions therefore
+preserve K4, and canonical-support equality rules out equal actual blockers.
+
+The former
+`false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch`
+obligation is now a checked one-child coordinator.  Its sole load-bearing
+child is
+`false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch`,
+which retains every preceding source, strict-cap peer, and surviving-deletion
+field and additionally carries the mutually omitted pair, both omissions,
+blocker separation, and both cross-deletion survivals.
+
+The robust-surface coordinator-interface frontier remains exactly two leaves:
+the mutual-omission leaf and
+`false_of_exactFourPostCardElevenTwoRadiusBranch`.  Immediate fan-out at each
+nested interior-deletion subcoordinator is one; direct `sorry` count is
+unchanged; there are no orphan obligations.  This checkpoint closes the
+whole-class mutual-pair extraction, not the entire five-point branch.  The
+active gate is the mutual-omission leaf, whose remaining occurrence must feed
+the reciprocal survivals into a compatible ordered-row, common-deletion, or
+geometric terminal.
 
 ## Control and publication gates
 

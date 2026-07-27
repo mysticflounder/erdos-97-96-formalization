@@ -50,29 +50,32 @@ most relevant current-source logs are:
 
 ## Exact current production contract
 
-The active theorem is at
-`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:76`:
+The published coordinator is at
+`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:137`:
 
 ```lean
 theorem false_of_exactFourPostCardElevenRobustSurface
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
-    (_hcard : 12 ≤ D.A.card)
+    (hcard : 12 ≤ D.A.card)
     (surface : ExactFourPostCardElevenRobustSurface R) :
     False := by
-  have _radiusOutcome :=
-    interiorPairGood_or_twoDistinctExactFourInteriorRows R surface
-  -- The retained physical two-row cross-hit is also extracted here.
-  sorry
+  rcases interiorPairGood_or_twoDistinctExactFourInteriorRows R surface with
+    hFivePoint | hTwoRadius
+  · exact false_of_exactFourPostCardElevenInteriorDeletionBranch
+      R hcard surface -- unpacked hFivePoint fields
+  · exact false_of_exactFourPostCardElevenTwoRadiusBranch
+      R hcard surface -- unpacked hTwoRadius fields
 ```
 
-The separate `12 ≤ D.A.card` hypothesis is not stored inside the surface.
-The exact checked inputs are:
+The coordinator itself is checked.  Its two branch theorems are the exact
+load-bearing obligations.  The separate `12 ≤ D.A.card` hypothesis is not
+stored inside the surface.  The exact checked inputs are:
 
 | Input | Current source and strongest retained data |
 |---|---|
 | `OriginalUniqueFourResidual F` | `P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:43`.  It retains `D.Minimal`, no `IsM44`, `9 < D.A.card`, a first-apex selected radius class of cardinality exactly four, uniqueness of the positive K4 radius at that apex, deletion blocking for every point of that class, two distinct class points `interior_q,w` in the strict first opposite cap, and localization of every other carrier bisector center of that pair to the same strict cap.  The production copy differs from the older scratch file principally by production imports; production is authoritative. |
 | `ExactFourPhysicalCommonDeletionIngress R` | `P97/ATail/ExactFourPhysicalConsumer.lean:417`.  It retains one deleted point equal to one of the original frontier points, one good outside source, a late blocker distinct from the physical second apex, and a `CommonDeletionTwoCenterPacket` at those two centers. |
-| `ExactFourPostCardElevenRobustSurface R` | `P97/ATail/ExactFourRobustCapExpansion.lean:200`.  It retains the ingress, full deletion robustness at the physical second apex, first opposite cap cardinality at least four, second opposite cap cardinality at least five, the complete second-apex deletion-robust radius classification, and the exhaustive cap-growth trichotomy. |
+| `ExactFourPostCardElevenRobustSurface R` | `P97/ATail/ExactFourRobustCapExpansion.lean:280`.  It retains the ingress, full deletion robustness at the physical second apex, first opposite cap cardinality at least four, second opposite cap cardinality at least five, the complete second-apex deletion-robust radius classification, and the exhaustive cap-growth trichotomy. |
 | Surface producer | `nonempty_postCardElevenRobustSurface_of_robust` at `ExactFourRobustCapExpansion.lean:250`.  The maintained closure matrix records a Lean 4.27 build with axioms exactly `propext`, `Classical.choice`, and `Quot.sound`.  This is a source-clean refinement, not a terminal. |
 
 Import direction into the anchor is:
@@ -575,18 +578,36 @@ five-constructor fan-out is presently worse than the one-leaf frontier.
 
 ## Recommended next proof slice
 
-The first source-realization step is now production and checked:
+The first source-realization step is production and checked:
 `interiorPairGood_or_twoDistinctExactFourInteriorRows` exhaustively refines the
-surface's radius classification.  Its five-point arm contains a strict
-second-cap source outside the first-apex fiber and proves that deleting
-`R.interior_q` or `R.interior_w` preserves K4 at the source's actual late
-blocker.  Its other arm retains two disjoint exact four-point rows, the global
-absence of a five-point positive class, and at least two strict second-cap
-members in each row.  This is source normalization, not a contradiction, and
-the anchored `sorry` remains.
+surface's radius classification.  Its five-point arm now retains the positive
+radius, the class-cardinality lower bound `5 ≤ card`, a strict second-cap
+source outside the first-apex fiber, and a surviving deletion of
+`R.interior_q` or `R.interior_w` at that source's actual late blocker.  Its
+other arm retains two disjoint exact four-point rows, the global absence of a
+five-point positive class, and at least two strict second-cap members in each
+row.
 
-The next promoted theorem should consume this exact disjunction rather than
-reconstructing another source package.  Its mathematical content should be:
+`FrontierLiveClosure.lean` consumes this disjunction in a checked coordinator.
+The first branch has now been narrowed one checked step further.
+`actualLateRow_secondClassInterior_card_le_two` proves that the source's
+actual late row contains at most two points in the strict second-cap part of
+its physical radius class.  Indeed, one further hit beside the source
+localizes the late blocker to the second cap, after which three total hits
+would contradict the ordered-cap two-point row bound.  The checked wrapper
+`false_of_exactFourPostCardElevenInteriorDeletionBranch` therefore dispatches
+to the sole remaining leaf
+`false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch`.
+
+That leaf preserves the named radius, five-point lower bound, source, and
+surviving deletion while adding the proved late-row intersection bound.  Its
+next terminal incidence must therefore come from another row or blocker
+fiber, rather than from three hits in the source's own late row.  Packaging
+the surviving deletion at the late blocker together with second-apex
+deletion robustness is still useful normalization, but a
+`CommonDeletionTwoCenterPacket` alone does not close the branch.
+
+The mathematical content still required across the two branches is:
 
 > From `OriginalUniqueFourResidual F`, `12 ≤ D.A.card`, and
 > `ExactFourPostCardElevenRobustSurface R`, use either the surviving
@@ -597,7 +618,7 @@ reconstructing another source package.  Its mathematical content should be:
 > `false_of_one_k1_three_cyclic_selected_rows`; alternatively, feed every
 > exceptional cyclic-order case to another already checked terminal.
 
-The radius classification now enters through the checked normal form.  The
+The radius classification enters through the checked normal form.  Each
 remaining proof must show where the cap-growth witness enters, must not erase
 the named surviving deletion in the five-point arm, and must avoid the
 provably impossible original-frontier common-deletion alignment.  A theorem
@@ -633,27 +654,121 @@ exceptional arms must each feed checked terminals.
 - No `sorry` was closed and no source-normalization producer has been
   reclassified as a terminal.
 
-**Proposed frontier after the next successful slice.**
+**After the branch decomposition checkpoint.**
 
-- Replace the direct robust `sorry` only when a checked coordinator consumes
-  both constructors of the new radius normal form and immediately applies the
-  production Kalmanson terminal (and checked terminals for every exceptional
-  arm).
-- Immediate fan-out should stay one, or increase only to the number of
-  terminal-consumed cyclic-order exceptions.
+- The direct robust-surface `sorry` has been replaced by a checked case
+  coordinator consuming both constructors of the radius normal form.
+- Chosen granularity is two branch-specific terminal obligations.
+- Immediate constructor fan-out is two.
+- The load-bearing leaves are
+  `false_of_exactFourPostCardElevenInteriorDeletionBranch` and
+  `false_of_exactFourPostCardElevenTwoRadiusBranch`.
+- The first leaf is strictly narrower by a named positive radius, a
+  five-point class lower bound, a strict-cap source outside the first-apex
+  fiber, and one named surviving interior deletion.
+- The second leaf is strictly narrower by two distinct positive radii, exact
+  cardinality four at both radii, no positive five-point class, disjoint
+  selected supports, and two strict-cap members in each class.
+- Both leaves are called immediately by the checked parent and therefore
+  remain transitively consumed by the publish target; no orphan obligation
+  was introduced.
+- The active work cursor is the interior-deletion branch.  Closing it reduces
+  this coordinator frontier from two leaves to one.
 - Do not adopt the existing five-way continuation until all five arms have
   terminal consumers and the current import collision is removed.
+
+**After the bounded-cross-incidence checkpoint.**
+
+- `actualLateRow_secondClassInterior_card_le_two` is a source-clean checked
+  producer: it eliminates every configuration with three physical
+  strict-second-cap hits in the active source's actual late row.
+- The former interior-deletion leaf is now a checked one-child coordinator.
+  Its sole load-bearing child is
+  `false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch`.
+- The child is strictly narrower by the proved intersection bound
+  `lateRow.support ∩ (physicalRadiusClass ∩ strictSecondCap) ≤ 2`; the parent
+  proves that bound before calling it.
+- Chosen granularity and immediate fan-out at the robust-surface coordinator
+  remain two: the bounded-cross-incidence leaf and the two-distinct-radii
+  leaf.  The interior-deletion subcoordinator has immediate fan-out one.
+- The direct `sorry` count in this slice remains two.  No new orphan or
+  compatibility-only obligation was introduced, and no normalization packet
+  is being counted as a terminal.
+- The active work cursor moves to the bounded-cross-incidence leaf.  The
+  three-hit route is closed; the remaining bridge must force a second-row
+  cross-incidence, a useful blocker-fiber coincidence, or a compatible
+  ordered-row terminal.
+
+**After the omitted-peer checkpoint.**
+
+- `exists_omittedSecondClassInteriorPeer` is a source-clean checked producer.
+  The five-point physical radius class has at least three strict-second-cap
+  members, whereas the active late row contains at most two of them, so it
+  supplies a distinct strict-cap peer omitted from that row.
+- Equality of the source and peer actual blockers would identify their
+  canonical late supports.  Since the peer belongs to its own support, the
+  omission proves that the two actual blockers are distinct.
+- The former bounded-cross-incidence leaf is now a checked one-child
+  coordinator.  Its sole load-bearing child is
+  `false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch`.
+- The child retains the positive radius, five-point class lower bound,
+  source, outside-first-fiber membership, surviving interior deletion, and
+  two-hit bound, and additionally names the omitted peer with its class,
+  strict-cap, omission, and blocker-separation facts.
+- Chosen granularity and immediate fan-out at the robust-surface coordinator
+  remain two: the omitted-peer leaf and the two-distinct-radii leaf.  Both
+  interior-deletion subcoordinators have immediate fan-out one.
+- The direct `sorry` count in this slice remains two.  No orphan obligation
+  was introduced, and neither the peer extractor nor its coordinator is
+  counted as a terminal.
+- The active work cursor moves to the omitted-peer leaf.  The next
+  decomposition must use the peer's own late row, the distinct-blocker fact,
+  or a compatible common-deletion/ordered-row terminal; merely repackaging
+  those fields is not closure.
+
+**After the mutual-omission checkpoint.**
+
+- `actualLateRow_secondClass_card_le_two` strengthens the row bound from the
+  strict-cap interior to the whole physical second-apex radius class.  Full
+  deletion robustness keeps the physical apex distinct from every actual
+  late blocker, so the generic two-circle intersection theorem gives the
+  bound directly.
+- `exists_mutuallyOmittedSecondClassPair` is a source-clean checked producer.
+  The active row omits at least three of the five class points.  Two omitted
+  peers suffice for a three-case argument using the whole-class two-hit bound
+  on their rows, yielding two distinct class sources mutually absent from one
+  another's actual late supports.
+- Mutual omission gives both source-faithful cross-deletion survivals by
+  `cross_deletion_survives_iff_not_mem_selected_support`.  Equality of the two
+  actual blockers would identify their canonical supports and contradict
+  either omission.
+- The former omitted-peer obligation is now a checked one-child coordinator.
+  Its sole load-bearing child is
+  `false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch`.
+  The child retains every preceding source, peer, and surviving-deletion
+  field and additionally names the mutual pair, both omissions, distinct
+  blockers, and both cross-deletion survivals.
+- Chosen granularity and immediate fan-out at the robust-surface coordinator
+  remain two: the mutual-omission leaf and the two-distinct-radii leaf.  Each
+  nested interior-deletion coordinator has immediate fan-out one.
+- The direct `sorry` count in this slice remains two.  No orphan or
+  compatibility-only obligation was introduced.  This checkpoint closes the
+  whole-class mutual-pair extraction, not the five-point branch itself.
+- The active work cursor moves to the mutual-omission leaf.  The remaining
+  bridge must turn the two reciprocal cross-deletion survivals into a
+  compatible ordered-row, common-deletion, or geometric terminal; merely
+  packaging them into an existing packet is not closure.
 
 ## Reconciliation with maintained status
 
 The human-maintained umbrella row is
 `K-A-UNIQUE-PHYSICAL-SPLIT` in
-`docs/closure-matrix-2026-07-09.md`.  That file already has concurrent dirty
-edits, so this audit deliberately does not modify it.  Its current statement
-is consistent with this inventory: the surface producer is source-clean, the
-direct robust terminal is open, no exact scratch consumer was found, and the
-five-way continuation is an intermediate normalization rather than promoted
-terminal fan-out.
+`docs/closure-matrix-2026-07-09.md`.  Its radius-normal-form checkpoint and
+the bounded-cross-incidence, omitted-peer, and mutual-omission checkpoints
+below are maintained together: the surface producer and all one-child
+interior-deletion coordinators are source-clean, both direct robust branches
+remain open, and the five-way continuation is an intermediate normalization
+rather than promoted terminal fan-out.
 
 `docs/live-blueprint.md` is generated and was not edited.
 
