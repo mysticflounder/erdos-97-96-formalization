@@ -31,6 +31,19 @@ name = "Erdos9796"
 [[lean_lib]]
 name = "Erdos9796Proof"
 
+# Comparator auditability gate (leanprover/comparator). `Challenge` imports
+# mathlib ONLY and states the headline results as `sorry` stubs; `Solution`
+# imports the project and discharges them under identical `Headline.*` names.
+# Built by `comparator/check-conformance.sh`; see `comparator/README.md`.
+#   lake build Challenge Solution
+[[lean_lib]]
+name = "Challenge"
+srcDir = "../comparator"
+
+[[lean_lib]]
+name = "Solution"
+srcDir = "../comparator"
+
 # M1 ERASE eval gate as a compiled executable: the search primitives run as
 # native code instead of through the `#eval` interpreter. Diagnostic only —
 # proves nothing, no proof artifact imports it.

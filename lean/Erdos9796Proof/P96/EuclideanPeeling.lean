@@ -173,10 +173,19 @@ The universal P97 conclusion says: for nonempty convex-independent `A`,
 that for every `r > 0`, fewer than `4` points of `A` lie at distance `r`
 from `p`. Specializing `r = 1` gives the unit-degree bound we need. -/
 
-lemma peel_vertex_exists {A : Finset ℝ²} (hne : A.Nonempty)
+/-- Peel-vertex extraction, stated against Problem 97 **as a hypothesis**
+rather than against the (still open) `Problem97.UniversalProblem97`.
+
+`Problem97.UniversalProblem97Statement` is the RHS of upstream
+`Erdos97.erdos_97` verbatim, so this is the honest form of the step: given
+Erdős 97, every nonempty convex-independent `A` has a vertex of unit-degree
+at most `3`.  Kernel-clean on core axioms. -/
+lemma peel_vertex_exists_of_erdos97
+    (hP97 : Problem97.UniversalProblem97Statement)
+    {A : Finset ℝ²} (hne : A.Nonempty)
     (hConv : Problem97.ConvexIndep A) :
     ∃ p ∈ A, (A.filter (fun q => dist p q = 1)).card ≤ 3 := by
-  have h := Problem97.UniversalProblem97 A hne hConv
+  have h := hP97 A hne hConv
   unfold Erdos97.HasNEquidistantProperty Erdos97.HasNEquidistantPointsOn at h
   push_neg at h
   obtain ⟨p, hpA, hp⟩ := h
@@ -187,13 +196,23 @@ lemma peel_vertex_exists {A : Finset ℝ²} (hne : A.Nonempty)
     hp 1 (by norm_num)
   omega
 
+/-- Peel-vertex extraction against the project's own P97 assembly.  This is
+`peel_vertex_exists_of_erdos97` applied to `Problem97.UniversalProblem97`,
+so it inherits that theorem's open A-tail obligations. -/
+lemma peel_vertex_exists {A : Finset ℝ²} (hne : A.Nonempty)
+    (hConv : Problem97.ConvexIndep A) :
+    ∃ p ∈ A, (A.filter (fun q => dist p q = 1)).card ≤ 3 :=
+  peel_vertex_exists_of_erdos97 Problem97.UniversalProblem97 hne hConv
+
 /- ### Bound on the doubled count by strong induction -/
 
-/-- **Doubled unit-edge count is at most `6n`.** Strong induction on
-`A.card`: at each step, peel a low-unit-degree vertex `p` (from
-`peel_vertex_exists`) and apply the IH to `A.erase p` (whose convex
-independence comes from `ConvexIndep.erase`). -/
-theorem doubledUnitCount_bound (A : Finset ℝ²)
+/-- **Doubled unit-edge count is at most `6n`, given Erdős 97.** Strong
+induction on `A.card`: at each step, peel a low-unit-degree vertex `p` (from
+`peel_vertex_exists_of_erdos97`) and apply the IH to `A.erase p` (whose
+convex independence comes from `ConvexIndep.erase`).  Kernel-clean on core
+axioms. -/
+theorem doubledUnitCount_bound_of_erdos97
+    (hP97 : Problem97.UniversalProblem97Statement) (A : Finset ℝ²)
     (hConv : Problem97.ConvexIndep A) :
     doubledUnitCount A ≤ 6 * A.card := by
   classical
@@ -207,7 +226,7 @@ theorem doubledUnitCount_bound (A : Finset ℝ²)
     intro A hcard hCv
     by_cases hne : A.Nonempty
     · -- Inductive step: peel and apply IH on A.erase p.
-      obtain ⟨p, hpA, hdeg⟩ := peel_vertex_exists hne hCv
+      obtain ⟨p, hpA, hdeg⟩ := peel_vertex_exists_of_erdos97 hP97 hne hCv
       have hCv' : Problem97.ConvexIndep (A.erase p) := hCv.erase p
       have hcard_erase_lt : (A.erase p).card < n := by
         rw [← hcard]
@@ -229,20 +248,47 @@ theorem doubledUnitCount_bound (A : Finset ℝ²)
       have hA_empty : A = ∅ := Finset.not_nonempty_iff_eq_empty.mp hne
       simp [hA_empty, doubledUnitCount]
 
+/-- Doubled unit-edge bound against the project's own P97 assembly; inherits
+its open A-tail obligations. -/
+theorem doubledUnitCount_bound (A : Finset ℝ²)
+    (hConv : Problem97.ConvexIndep A) :
+    doubledUnitCount A ≤ 6 * A.card :=
+  doubledUnitCount_bound_of_erdos97 Problem97.UniversalProblem97 A hConv
+
 end EuclideanPeeling
 
 /- ### Headline P96 bound -/
 
-/-- **Erdős Problem 96 unit-distance bound from Problem 97 (Euclidean
-form).** For any convex-independent `A : Finset ℝ²`, the number of
-Euclidean unit-distance pairs is at most `3 * A.card`. -/
-theorem unit_distance_pairs_bound {A : Finset ℝ²}
-    (hConv : Problem97.ConvexIndep A) :
+/-- **Erdős 97 ⟹ Erdős 96, per-set form with explicit constant 3.**
+
+Given Erdős 97 as a hypothesis — `hP97` is the RHS of upstream
+`Erdos97.erdos_97` verbatim — every convex-independent `A : Finset ℝ²`
+determines at most `3 * |A|` unit distances.
+
+This is the load-bearing reduction of the P96 branch, and it is
+**unconditionally proved**: its axiom closure is
+`{propext, Classical.choice, Quot.sound}`.  The openness of
+`Problem96.erdos96_rhs` enters only when `hP97` is discharged by
+`Problem97.UniversalProblem97`, which is still open. -/
+theorem unit_distance_pairs_bound_of_erdos97
+    (hP97 : Problem97.UniversalProblem97Statement)
+    {A : Finset ℝ²} (hConv : Problem97.ConvexIndep A) :
     EuclideanGeometry.unitDistancePairsCount A ≤ 3 * A.card := by
   rw [EuclideanPeeling.unitDistancePairsCount_eq_doubledUnitCount_div_two]
   calc EuclideanPeeling.doubledUnitCount A / 2
       ≤ (6 * A.card) / 2 := Nat.div_le_div_right
-        (EuclideanPeeling.doubledUnitCount_bound A hConv)
+        (EuclideanPeeling.doubledUnitCount_bound_of_erdos97 hP97 A hConv)
     _ = 3 * A.card := by omega
+
+/-- **Erdős Problem 96 unit-distance bound from Problem 97 (Euclidean
+form).** For any convex-independent `A : Finset ℝ²`, the number of
+Euclidean unit-distance pairs is at most `3 * A.card`.
+
+`unit_distance_pairs_bound_of_erdos97` applied to
+`Problem97.UniversalProblem97`; inherits that theorem's open obligations. -/
+theorem unit_distance_pairs_bound {A : Finset ℝ²}
+    (hConv : Problem97.ConvexIndep A) :
+    EuclideanGeometry.unitDistancePairsCount A ≤ 3 * A.card :=
+  unit_distance_pairs_bound_of_erdos97 Problem97.UniversalProblem97 hConv
 
 end Problem96
