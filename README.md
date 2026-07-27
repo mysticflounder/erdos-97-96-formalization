@@ -42,7 +42,7 @@ This is the RHS of upstream
 The bridge [`Problem97.upstream_iff`](lean/Erdos9796Proof/P97/UpstreamBridge.lean#L22)
 is `Iff.rfl`.
 
-### Problem 96 - [`Problem96.erdos96_rhs`](lean/Erdos9796Proof/P96/UpstreamBridge.lean#L55)
+### Problem 96 - [`Problem96.erdos96_rhs`](lean/Erdos9796Proof/P96/UpstreamBridge.lean#L96)
 
 > The maximum number of unit distances determined by `n` points in convex
 > position is `O(n)` - here with explicit constant `3`.
@@ -56,7 +56,7 @@ theorem erdos96_rhs :
 This is the RHS of upstream
 [`Erdos96.erdos_96`](https://github.com/google-deepmind/formal-conjectures/blob/89a67be506fbae633d02941ccbd9f3737bbd5457/FormalConjectures/ErdosProblems/96.lean#L69),
 obtained from the per-set bound `unitDistancePairsCount A ≤ 3 * A.card` for
-convex `A` ([`unit_distance_pairs_bound`](lean/Erdos9796Proof/P96/EuclideanPeeling.lean#L239)).
+convex `A` ([`unit_distance_pairs_bound`](lean/Erdos9796Proof/P96/EuclideanPeeling.lean#L289)).
 
 ## Proof status
 
@@ -120,6 +120,91 @@ cd lean
 lake env lean ../scratch/checks/ax_check.lean
 ```
 
+## Headline theorems
+
+Both publish targets are open, but a substantial body of results below them is
+not. Everything in this section is **unconditionally proved** — axiom closure
+exactly `{propext, Classical.choice, Quot.sound}`, no `sorryAx`, no custom
+axioms, and no `native_decide` — except the two rows in *Erdős 97 ⟹ Erdős 96*,
+which are conditional on a hypothesis that appears explicitly in their
+statements.
+
+Every theorem listed here is independently gated in [`comparator/`](comparator/),
+which restates it using **mathlib vocabulary alone** — no definition from this
+repository — and checks that the project's proof discharges that restatement.
+A reviewer can read [`comparator/Challenge.lean`](comparator/Challenge.lean),
+which imports only `Mathlib`, and see exactly what is being claimed without
+trusting anything here. Run `./comparator/check-conformance.sh` to verify.
+
+### Erdős 97 — unconditional partial results
+
+| Theorem | Statement |
+|---|---|
+| [`Problem97.counterexample_card_ge_nine`](lean/Erdos9796Proof/P97/Counting.lean#L95) | every counterexample has at least 9 points |
+| [`Problem97.FiniteN9Closure`](lean/Erdos9796Proof/P97/N9Endpoint/Closure.lean#L56) | there is no 9-point counterexample |
+| [`Problem97.counterexample_card_ge_ten`](lean/Erdos9796Proof/P97/UniversalLocal.lean#L63) | **every counterexample has at least 10 points** |
+| [`Problem97.not_hasNEquidistantProperty_four_of_card_le_nine`](lean/Erdos9796Proof/P97/UniversalLocal.lean#L75) | **Erdős 97 holds for every point set of at most 9 points** |
+| [`Problem97.UniversalProblem97_of_reduction`](lean/Erdos9796Proof/P97/UniversalProblem97.lean#L60) | a counting obstruction plus a descent step above 9 yield Erdős 97 in full |
+
+The `n ≥ 10` bound is, as far as we are aware, the best published bound on the
+size of a hypothetical counterexample. {{UNVALIDATED}} — the literature check
+found only an unrefereed argument for `n ≥ 7` on the erdosproblems.com
+discussion page; treat the record claim as unconfirmed, not the theorem, which
+is machine-checked.
+
+### The pinned-multiplicity reformulation
+
+For `p ∈ A` write μ(p, A) for the largest number of points of `A` on a single
+circle of positive radius centred at `p`. Then
+
+> Erdős 97 ⟺ every finite `A ⊆ ℝ²` in strictly convex position has a point `p`
+> with μ(p, A) ≤ 3.
+
+| Theorem | Statement |
+|---|---|
+| [`Problem97.universalProblem97Statement_iff_pinnedMultiplicity`](lean/Erdos9796Proof/P97/PinnedMultiplicity.lean#L147) | the equivalence above |
+| [`Problem97.exists_pinnedMultiplicity_le_three_of_card_le_nine`](lean/Erdos9796Proof/P97/UniversalLocal.lean#L93) | its unconditional `\|A\| ≤ 9` instance |
+
+This is a **reformulation, not a proof**: the equivalence is kernel-clean, both
+sides remain open. It is Erdős's own framing of the problem (*On sets of
+distances of n points*, Amer. Math. Monthly 53 (1946), 248–250, §2) and the
+shape it takes in the distinct-distances literature. The module docstring in
+[`PinnedMultiplicity.lean`](lean/Erdos9796Proof/P97/PinnedMultiplicity.lean)
+records why distinct-distance lower bounds do not transfer: they constrain the
+*average* multiplicity at `p`, whereas Erdős 97 bounds the *maximum*, and
+Altman's unconditional `⌊n/2⌋` for convex position is already stronger than the
+`(n−1)/3` consequence without yielding Erdős 97.
+
+### Erdős 97 ⟹ Erdős 96, with explicit constant 3
+
+| Theorem | Statement |
+|---|---|
+| [`Problem96.unit_distance_pairs_bound_of_erdos97`](lean/Erdos9796Proof/P96/EuclideanPeeling.lean#L273) | Erdős 97 ⟹ at most `3n` unit-distance pairs in convex position |
+| [`Problem96.erdos96_rhs_of_erdos97`](lean/Erdos9796Proof/P96/UpstreamBridge.lean#L82) | Erdős 97 ⟹ Erdős 96 |
+
+Both take `Problem97.UniversalProblem97Statement` as an explicit hypothesis, so
+the dependence is visible in the statement rather than hidden in the proof. The
+implication is **not new** — Pach and Agarwal state it with the constant in
+*Combinatorial Geometry* (1995), p. 206, without proof — but its formal proof
+is complete here, and it is what makes the whole P96 branch's openness enter
+through exactly one gateway.
+
+### The counting engine
+
+| Theorem | Statement |
+|---|---|
+| [`Problem97.CGN8_circumscribed_iCount_upper_bound`](lean/Erdos9796Proof/P97/CGN/CGN8.lean#L31) | isosceles count `iCount A ≤ (11n² − 18n)/12` for circumscribed convex-independent `A` |
+| [`Problem97.six_mul_card_le_iCount_of_K4`](lean/Erdos9796Proof/P97/IsoscelesCount.lean#L153) | the 4-equidistant property forces `6n ≤ iCount A` |
+| [`Problem97.MEC.exists_unique_minimum_enclosing_circle`](lean/Erdos9796Proof/P97/MEC/Basic.lean#L255) | existence and uniqueness of the minimum enclosing circle |
+| [`Problem97.MEC.sylvester_dichotomy`](lean/Erdos9796Proof/P97/MEC/Boundary.lean#L557) | Sylvester (1857): the MEC is a diameter, or at least 3 points lie on it |
+
+mathlib has no minimum enclosing circle; this development builds one. See
+[`comparator/README.md`](comparator/README.md) for the full gated list (24
+theorems, including the Welzl invariant, the Moser non-obtuse triple, the
+Dumitrescu/Fox–Pach double count, and the planar metric kernels), for how each
+project definition is inlined into mathlib terms, and for the audit boundary —
+what is deliberately *not* gated, and why.
+
 ## Building from a clean checkout
 
 Requires [`elan`](https://leanprover-community.github.io/install/) (the Lean
@@ -181,6 +266,8 @@ lean/
     P97/                      -- Problem 97 proof library
       UpstreamBridge.lean       -- erdos97_rhs (the published theorem)
       UniversalProblem97.lean   -- the strong-induction wrapper
+      UniversalLocal.lean       -- instantiated statement + the |A| ≤ 9 closure
+      PinnedMultiplicity.lean   -- the μ(p,A) ≤ 3 reformulation
       Counting.lean             -- counting engine (forces |A| ≥ 9)
       Descent.lean              -- descent engine (kills |A| > 9)
       RemovableVertexAxiom.lean -- removable-vertex assembly; A-tail leaves downstream
@@ -206,8 +293,15 @@ lean/
       UpstreamBridge.lean     -- erdos96_rhs
       EuclideanPeeling.lean   -- the ≤ 3·n unit-distance bound
   lakefile.toml               -- build config + dependency requires
+                              --   (also wires the comparator/ libs below)
   lake-manifest.json          -- pinned dependency revisions
   lean-toolchain              -- leanprover/lean4:v4.27.0
+comparator/                   -- mathlib-only auditability gate (see its README)
+  Challenge.lean              -- headline claims as sorry stubs, `import Mathlib`
+  Solution.lean               -- same statements, discharged from the project
+  config.json                 -- leanprover/comparator config + permitted axioms
+  axiom-audit.lean            -- #print axioms for every gated theorem
+  check-conformance.sh        -- offline pre-flight (build + axiom audit)
 certificates/                 -- JSON certificate banks (endpoint/, surplus/)
 scripts/
   lake-build.sh               -- locked build wrapper
@@ -250,7 +344,7 @@ Read these in order; each line is the load-bearing declaration of its step.
 1. [`erdos97_rhs`](lean/Erdos9796Proof/P97/UpstreamBridge.lean#L30) - the
    published theorem, definitionally the upstream RHS (the rest of the file is
    the `Iff.rfl` bridge).
-2. [`UniversalProblem97`](lean/Erdos9796Proof/P97/UniversalLocal.lean#L36) -
+2. [`UniversalProblem97`](lean/Erdos9796Proof/P97/UniversalLocal.lean#L44) -
    instantiates the induction wrapper with the two engines (below) discharged.
 3. [`UniversalProblem97_of_reduction`](lean/Erdos9796Proof/P97/UniversalProblem97.lean#L60)
    - the strong-induction wrapper itself. It takes the two engines bundled in
@@ -385,9 +479,15 @@ All current production proof `sorry`s are in
 
 Self-contained in the [`P96/`](lean/Erdos9796Proof/P96) directory and much
 smaller: a vertex-peeling argument gives the per-set bound
-[`unit_distance_pairs_bound`](lean/Erdos9796Proof/P96/EuclideanPeeling.lean#L239)
-(`≤ 3·|A|`), which [`UpstreamBridge.lean`](lean/Erdos9796Proof/P96/UpstreamBridge.lean#L55)
-lifts to the asymptotic `O(n)` statement.
+[`unit_distance_pairs_bound`](lean/Erdos9796Proof/P96/EuclideanPeeling.lean#L289)
+(`≤ 3·|A|`), which [`UpstreamBridge.lean`](lean/Erdos9796Proof/P96/UpstreamBridge.lean#L69)
+lifts to the asymptotic `O(n)` statement. Each of those steps also has an
+explicitly conditional variant taking `Problem97.UniversalProblem97Statement` as
+a hypothesis
+([`unit_distance_pairs_bound_of_erdos97`](lean/Erdos9796Proof/P96/EuclideanPeeling.lean#L273),
+[`erdos96_rhs_of_erdos97`](lean/Erdos9796Proof/P96/UpstreamBridge.lean#L82));
+those are unconditionally proved and are what isolate the P96 branch's openness
+to a single gateway.
 
 ### Supporting clusters
 
