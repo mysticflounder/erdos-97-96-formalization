@@ -1,9 +1,9 @@
 {
   "epistemic_status": "MIXED_KERNEL_CHECKED_AND_EXACT_FARKAS_PENDING_PORT",
-  "exact_farkas_verified_pending_port_schema_count": 36,
+  "exact_farkas_verified_pending_port_schema_count": 43,
   "kernel_checked_schema_count": 10,
   "schema": "p97-exact-four-kalmanson-order-schema-bank-v1",
-  "schema_count": 46,
+  "schema_count": 53,
   "schemas": [
     {
       "core_vertex_count": 6,
@@ -507,6 +507,49 @@
       "verification_status": "KERNEL_CHECKED"
     },
     {
+      "core_vertex_count": 5,
+      "discovery_round": 3,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_5.farkas.verify.json",
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_5.full-lra.json",
+      "source_profile_opp1_card": 5,
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
+    },
+    {
       "core_vertex_count": 6,
       "discovery_round": 19,
       "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_019/opp1_5.farkas.verify.json",
@@ -593,6 +636,92 @@
       "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
     },
     {
+      "core_vertex_count": 7,
+      "discovery_round": 1,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_5.farkas.verify.json",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          6,
+          0
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_5.full-lra.json",
+      "source_profile_opp1_card": 5,
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
+    },
+    {
+      "core_vertex_count": 8,
+      "discovery_round": 4,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_5.farkas.verify.json",
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_5.full-lra.json",
+      "source_profile_opp1_card": 5,
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
+    },
+    {
       "core_vertex_count": 8,
       "discovery_round": 9,
       "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_009/opp1_4.farkas.verify.json",
@@ -635,6 +764,108 @@
         ]
       ],
       "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_009/opp1_4.full-lra.json",
+      "source_profile_opp1_card": 4,
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
+    },
+    {
+      "core_vertex_count": 8,
+      "discovery_round": 4,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_4.farkas.verify.json",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_4.full-lra.json",
+      "source_profile_opp1_card": 4,
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
+    },
+    {
+      "core_vertex_count": 8,
+      "discovery_round": 3,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_4.farkas.verify.json",
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_4.full-lra.json",
       "source_profile_opp1_card": 4,
       "transport": "order_preserving_and_reflected_injections",
       "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
@@ -890,6 +1121,179 @@
       "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
     },
     {
+      "core_vertex_count": 9,
+      "discovery_round": 2,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_002/opp1_5.farkas.verify.json",
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          1
+        ],
+        [
+          8,
+          6
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_002/opp1_5.full-lra.json",
+      "source_profile_opp1_card": 5,
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
+    },
+    {
+      "core_vertex_count": 9,
+      "discovery_round": 1,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_4.farkas.verify.json",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_4.full-lra.json",
+      "source_profile_opp1_card": 4,
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
+    },
+    {
+      "core_vertex_count": 9,
+      "discovery_round": 5,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_5.farkas.verify.json",
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          7
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_5.full-lra.json",
+      "source_profile_opp1_card": 5,
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
+    },
+    {
       "core_vertex_count": 10,
       "discovery_round": 1,
       "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_001/opp1_5.farkas.verify.json",
@@ -925,6 +1329,53 @@
       ],
       "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_001/opp1_5.full-lra.json",
       "source_profile_opp1_card": 5,
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
+    },
+    {
+      "core_vertex_count": 10,
+      "discovery_round": 3,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_003/opp1_4.farkas.verify.json",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          7
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          5
+        ],
+        [
+          7,
+          6
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_003/opp1_4.full-lra.json",
+      "source_profile_opp1_card": 4,
       "transport": "order_preserving_and_reflected_injections",
       "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
     },
@@ -976,6 +1427,159 @@
       ],
       "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_015/opp1_5.full-lra.json",
       "source_profile_opp1_card": 5,
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
+    },
+    {
+      "core_vertex_count": 10,
+      "discovery_round": 5,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_4.farkas.verify.json",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_4.full-lra.json",
+      "source_profile_opp1_card": 4,
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
+    },
+    {
+      "core_vertex_count": 10,
+      "discovery_round": 1,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_001/opp1_4.farkas.verify.json",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          9
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          9,
+          4
+        ],
+        [
+          9,
+          7
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_001/opp1_4.full-lra.json",
+      "source_profile_opp1_card": 4,
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
+    },
+    {
+      "core_vertex_count": 11,
+      "discovery_round": 2,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_002/opp1_4.farkas.verify.json",
+      "order_schema": [
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          9,
+          7
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_002/opp1_4.full-lra.json",
+      "source_profile_opp1_card": 4,
       "transport": "order_preserving_and_reflected_injections",
       "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
     },
@@ -1141,6 +1745,49 @@
     },
     {
       "core_vertex_count": 11,
+      "discovery_round": 3,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_003/opp1_5.farkas.verify.json",
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          10,
+          8
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_003/opp1_5.full-lra.json",
+      "source_profile_opp1_card": 5,
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
+    },
+    {
+      "core_vertex_count": 11,
       "discovery_round": 14,
       "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_014/opp1_5.farkas.verify.json",
       "order_schema": [
@@ -1270,6 +1917,49 @@
     },
     {
       "core_vertex_count": 11,
+      "discovery_round": 6,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_5.farkas.verify.json",
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          6
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_5.full-lra.json",
+      "source_profile_opp1_card": 5,
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
+    },
+    {
+      "core_vertex_count": 11,
       "discovery_round": 20,
       "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_020/opp1_5.farkas.verify.json",
       "order_schema": [
@@ -1317,8 +2007,8 @@
     },
     {
       "core_vertex_count": 11,
-      "discovery_round": 5,
-      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_005/opp1_5.farkas.verify.json",
+      "discovery_round": 1,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_001/opp1_5.farkas.verify.json",
       "order_schema": [
         [
           0,
@@ -1326,10 +2016,18 @@
         ],
         [
           0,
-          8
+          9
         ],
         [
           0,
+          10
+        ],
+        [
+          7,
+          8
+        ],
+        [
+          7,
           10
         ],
         [
@@ -1338,15 +2036,7 @@
         ],
         [
           8,
-          6
-        ],
-        [
-          8,
-          7
-        ],
-        [
-          9,
-          6
+          9
         ],
         [
           9,
@@ -1357,8 +2047,55 @@
           10
         ]
       ],
-      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar/round_005/opp1_5.full-lra.json",
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726/round_001/opp1_5.full-lra.json",
       "source_profile_opp1_card": 5,
+      "transport": "order_preserving_and_reflected_injections",
+      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
+    },
+    {
+      "core_vertex_count": 11,
+      "discovery_round": 6,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_4.farkas.verify.json",
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          8
+        ]
+      ],
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_4.full-lra.json",
+      "source_profile_opp1_card": 4,
       "transport": "order_preserving_and_reflected_injections",
       "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
     },
@@ -1713,468 +2450,64 @@
       "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
     },
     {
-      "core_vertex_count": 9,
-      "discovery_round": 1,
-      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_4.farkas.verify.json",
-      "order_schema": [
-        [
-          0,
-          1
-        ],
-        [
-          0,
-          4
-        ],
-        [
-          0,
-          5
-        ],
-        [
-          1,
-          0
-        ],
-        [
-          1,
-          6
-        ],
-        [
-          1,
-          8
-        ],
-        [
-          2,
-          1
-        ],
-        [
-          2,
-          5
-        ],
-        [
-          2,
-          6
-        ],
-        [
-          3,
-          2
-        ],
-        [
-          3,
-          4
-        ],
-        [
-          3,
-          8
-        ]
-      ],
-      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_4.full-lra.json",
-      "source_profile_opp1_card": 4,
-      "transport": "order_preserving_and_reflected_injections",
-      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
-    },
-    {
-      "core_vertex_count": 7,
-      "discovery_round": 1,
-      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_5.farkas.verify.json",
-      "order_schema": [
-        [
-          0,
-          1
-        ],
-        [
-          0,
-          3
-        ],
-        [
-          0,
-          5
-        ],
-        [
-          1,
-          0
-        ],
-        [
-          1,
-          2
-        ],
-        [
-          1,
-          5
-        ],
-        [
-          6,
-          0
-        ],
-        [
-          6,
-          2
-        ],
-        [
-          6,
-          3
-        ]
-      ],
-      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_001/opp1_5.full-lra.json",
-      "source_profile_opp1_card": 5,
-      "transport": "order_preserving_and_reflected_injections",
-      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
-    },
-    {
-      "core_vertex_count": 8,
-      "discovery_round": 3,
-      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_4.farkas.verify.json",
-      "order_schema": [
-        [
-          1,
-          0
-        ],
-        [
-          1,
-          4
-        ],
-        [
-          1,
-          7
-        ],
-        [
-          2,
-          1
-        ],
-        [
-          2,
-          3
-        ],
-        [
-          2,
-          4
-        ],
-        [
-          3,
-          2
-        ],
-        [
-          3,
-          7
-        ],
-        [
-          4,
-          2
-        ],
-        [
-          4,
-          3
-        ]
-      ],
-      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_4.full-lra.json",
-      "source_profile_opp1_card": 4,
-      "transport": "order_preserving_and_reflected_injections",
-      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
-    },
-    {
-      "core_vertex_count": 5,
-      "discovery_round": 3,
-      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_5.farkas.verify.json",
-      "order_schema": [
-        [
-          0,
-          2
-        ],
-        [
-          0,
-          4
-        ],
-        [
-          1,
-          0
-        ],
-        [
-          1,
-          2
-        ],
-        [
-          1,
-          3
-        ],
-        [
-          2,
-          1
-        ],
-        [
-          2,
-          3
-        ],
-        [
-          2,
-          4
-        ]
-      ],
-      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_003/opp1_5.full-lra.json",
-      "source_profile_opp1_card": 5,
-      "transport": "order_preserving_and_reflected_injections",
-      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
-    },
-    {
-      "core_vertex_count": 8,
-      "discovery_round": 4,
-      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_4.farkas.verify.json",
-      "order_schema": [
-        [
-          0,
-          1
-        ],
-        [
-          0,
-          3
-        ],
-        [
-          0,
-          7
-        ],
-        [
-          4,
-          3
-        ],
-        [
-          4,
-          5
-        ],
-        [
-          5,
-          1
-        ],
-        [
-          5,
-          4
-        ],
-        [
-          5,
-          7
-        ],
-        [
-          6,
-          4
-        ],
-        [
-          6,
-          5
-        ]
-      ],
-      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_4.full-lra.json",
-      "source_profile_opp1_card": 4,
-      "transport": "order_preserving_and_reflected_injections",
-      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
-    },
-    {
-      "core_vertex_count": 8,
-      "discovery_round": 4,
-      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_5.farkas.verify.json",
-      "order_schema": [
-        [
-          0,
-          2
-        ],
-        [
-          0,
-          7
-        ],
-        [
-          1,
-          2
-        ],
-        [
-          1,
-          6
-        ],
-        [
-          2,
-          4
-        ],
-        [
-          2,
-          6
-        ],
-        [
-          2,
-          7
-        ]
-      ],
-      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_004/opp1_5.full-lra.json",
-      "source_profile_opp1_card": 5,
-      "transport": "order_preserving_and_reflected_injections",
-      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
-    },
-    {
-      "core_vertex_count": 10,
-      "discovery_round": 5,
-      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_4.farkas.verify.json",
-      "order_schema": [
-        [
-          0,
-          1
-        ],
-        [
-          0,
-          4
-        ],
-        [
-          0,
-          5
-        ],
-        [
-          1,
-          2
-        ],
-        [
-          1,
-          3
-        ],
-        [
-          2,
-          0
-        ],
-        [
-          2,
-          3
-        ],
-        [
-          2,
-          5
-        ],
-        [
-          3,
-          1
-        ],
-        [
-          3,
-          2
-        ],
-        [
-          3,
-          4
-        ]
-      ],
-      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_4.full-lra.json",
-      "source_profile_opp1_card": 4,
-      "transport": "order_preserving_and_reflected_injections",
-      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
-    },
-    {
-      "core_vertex_count": 9,
-      "discovery_round": 5,
-      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_5.farkas.verify.json",
-      "order_schema": [
-        [
-          0,
-          3
-        ],
-        [
-          0,
-          4
-        ],
-        [
-          0,
-          8
-        ],
-        [
-          1,
-          2
-        ],
-        [
-          1,
-          5
-        ],
-        [
-          1,
-          8
-        ],
-        [
-          2,
-          0
-        ],
-        [
-          2,
-          5
-        ],
-        [
-          2,
-          7
-        ],
-        [
-          3,
-          2
-        ],
-        [
-          3,
-          4
-        ],
-        [
-          3,
-          7
-        ]
-      ],
-      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_005/opp1_5.full-lra.json",
-      "source_profile_opp1_card": 5,
-      "transport": "order_preserving_and_reflected_injections",
-      "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
-    },
-    {
       "core_vertex_count": 11,
-      "discovery_round": 6,
-      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_4.farkas.verify.json",
+      "discovery_round": 1,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726-round1/round_001/opp1_4.farkas.verify.json",
       "order_schema": [
         [
-          1,
-          0
-        ],
-        [
-          1,
-          4
-        ],
-        [
-          1,
-          10
-        ],
-        [
-          2,
-          3
-        ],
-        [
-          2,
-          8
-        ],
-        [
-          2,
-          10
-        ],
-        [
-          3,
+          0,
           1
         ],
         [
-          3,
-          4
+          0,
+          8
         ],
         [
-          3,
+          0,
+          9
+        ],
+        [
+          8,
+          1
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          10,
+          5
+        ],
+        [
+          10,
           8
         ]
       ],
-      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_4.full-lra.json",
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726-round1/round_001/opp1_4.full-lra.json",
       "source_profile_opp1_card": 4,
       "transport": "order_preserving_and_reflected_injections",
       "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"
     },
     {
       "core_vertex_count": 11,
-      "discovery_round": 6,
-      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_5.farkas.verify.json",
+      "discovery_round": 1,
+      "farkas_verification": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726-round1/round_001/opp1_5.farkas.verify.json",
       "order_schema": [
         [
           0,
-          3
+          1
         ],
         [
           0,
-          10
+          5
+        ],
+        [
+          1,
+          0
         ],
         [
           1,
@@ -2182,26 +2515,30 @@
         ],
         [
           1,
-          6
-        ],
-        [
-          1,
-          10
+          3
         ],
         [
           2,
-          0
+          1
         ],
         [
           2,
           3
         ],
         [
-          2,
-          6
+          10,
+          0
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          10,
+          5
         ]
       ],
-      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-exact-two/round_006/opp1_5.full-lra.json",
+      "source_core": "scratch/atail-force/unique-arm-whole-carrier-source-audit/cegar-live-20260726-round1/round_001/opp1_5.full-lra.json",
       "source_profile_opp1_card": 5,
       "transport": "order_preserving_and_reflected_injections",
       "verification_status": "EXACT_FARKAS_VERIFIED_PENDING_PORT"

@@ -683,8 +683,7 @@ theorem exists_two_exactFourMutualOmissionJointDeletions
 class sources have the same actual blocker, hence their canonical selected
 supports agree and meet the physical second-apex class in exactly those two
 sources. -/
-theorem
-    false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision
+theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -1156,8 +1155,7 @@ theorem qDeletedRow_at_actualBlocker_eq_canonicalSupport
 
 /-- First terminal arm of the four-center common-deletion residue: the common
 deleted source is itself one of the three nonphysical carrier centers. -/
-theorem
-    false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}

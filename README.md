@@ -483,6 +483,10 @@ packet extraction (`largeK4SurplusCapPacket`), the pinned-surplus finite-bank
 handoff (`pinnedSurplusCOMPGBankBridge`), and the non-`IsM44` descent adapter
 (`removableVertexOfLarge_of_nonIsM44`).
 
+A separate unresolved branch is currently tracked directly as
+`exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows` in
+`P97/ATail/FrontierLiveClosure.lean`.
+
 **Active work happens in this repo.**
 [`docs/closure-plan-full-spec-2026-07-09.md`](docs/closure-plan-full-spec-2026-07-09.md)
 is the single current closure plan (cross-cutting strategy, gates, dispatch
