@@ -308,8 +308,12 @@ theorem badOutsideSources_card_le_two
       Finset.card_le_card hpointsSubset
     _ = 2 := hdiffEq
 
-/-- The exact-four residual forces a carrier of cardinality at least eleven. -/
-private theorem carrier_card_ge_eleven
+/-- The exact-four residual forces a carrier of cardinality at least eleven.
+
+This is scoped to the source residual carrying the explicit no-`(m,4,4)`
+hypothesis; it is not a universal cardinality theorem for arbitrary
+counterexamples. -/
+theorem carrier_card_ge_eleven_of_original_unique_four_residual
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -361,7 +365,7 @@ theorem seven_le_outsideFirstApexFiber_card
     rfl
   rw [hinter, huniv, hfiber] at hsplit
   rw [houtside]
-  have hcard := carrier_card_ge_eleven R
+  have hcard := carrier_card_ge_eleven_of_original_unique_four_residual R
   omega
 
 /-- At least five outside sources preserve one of the two retained

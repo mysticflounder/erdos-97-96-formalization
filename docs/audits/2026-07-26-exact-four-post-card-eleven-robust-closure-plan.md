@@ -759,6 +759,164 @@ exceptional arms must each feed checked terminals.
   compatible ordered-row, common-deletion, or geometric terminal; merely
   packaging them into an existing packet is not closure.
 
+**After the contextual rigid-deletion checkpoint.**
+
+- `ExactFourMutualOmissionSourceContext` now carries the strict-cap source and
+  omitted peer into every rigid `2+2+1` continuation.  It retains the source
+  row incidence and omissions, distinct source/peer blockers, the source's
+  surviving original interior deletion, and the whole-class two-hit bound.
+- In the `u ≠ source` arm,
+  `exactFourRigid221_context_u_ne_source_normalForm` proves
+  `Iu = {source,u}`, `sourceRow ∩ Iu = {source}`, and pairwise distinction of
+  the source, `u`, and `v` actual blockers.
+  `exactFourRigid221_context_u_ne_source_otherPlacement` confines `other` to
+  `u`, the disjoint `v` block, or the distinguished singleton deletion.
+- The former opaque
+  `false_of_exactFourMutualOmissionRigid221_globalDeletion` obligation is now
+  a checked exhaustive coordinator.  Its immediate children are exactly the
+  physical-apex leaf, the nonphysical equal-radius-collision leaf, and the
+  nonphysical pairwise-distinct-radius minimal-core leaf.
+- The narrowing measure is explicit geometry plus center role.  Every child
+  keeps the complete parent and source context, all three are consumed by the
+  same production coordinator, and the split is acyclic.  No first-apex
+  exact-five result is used.
+- At this coordinator the interface frontier changes from one opaque leaf to
+  three immediate leaves, so its direct `sorry` count changes from one to
+  three while the former parent `sorry` closes.  The robust-surface
+  coordinator still has two immediate branches; its transitive open frontier
+  is now these three leaves plus the independent two-radius leaf.
+- The current source, including the contextual normal forms, passed a fresh
+  Lean 4.27 target build and proof-blueprint resync at build `756df77dbd52`.
+  This checkpoint is a strict decomposition, not closure of the five-point
+  branch.
+
+**After the source-`u` cross-row cap-shape checkpoint.**
+
+- The former
+  `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther`
+  leaf is now a checked coordinator.  It preserves the full physical-apex,
+  source, mutual-omission, joint-deletion, and rigid-global-deletion packet.
+- The chosen granularity is the number of points from each rigid two-point
+  class row in the strict physical second-cap interior.  Sequential equality
+  tests against two produce three exhaustive shapes: source-row-heavy,
+  opposite-row-heavy after excluding source-row-heavy, and both rows sparse.
+- The coordinator-interface frontier before this checkpoint was one opaque
+  cross-row leaf.  Afterwards it is three immediate on-spine leaves, with
+  fan-out three and raw direct-`sorry` delta `+2`.  The old parent `sorry` is
+  proved; the mathematical branch is not closed.
+- Every new leaf has strictly stronger parent-produced count constraints,
+  keeps the original blocker-in-row and blocker-not-`v` hypotheses, and is
+  consumed by the same production parent.  The decomposition is acyclic and
+  introduces no scratch dependency, orphan, compatibility wrapper, or
+  first-apex exact-five route.
+- A focused Lean 4.27 target build and generated proof-blueprint resync passed
+  at build `8aeaf16b2d2d`.  The generated anchor spine reaches exactly the
+  three new leaves.
+
+**After the source-heavy retained-peer placement checkpoint.**
+
+- The former `..._sourceRowHeavy` leaf is now a checked coordinator.
+  Production constructs named row companions `xu` and `xv`, exact traces for
+  the two rigid rows, the exact physical class cover, the equality between the
+  source blocker and `xv`, and the strict-interior equality for the source
+  pair.
+- The retained peer's physical-class membership and source-row omission reduce
+  its placement exhaustively to the singleton deletion, `v`, or `xv`; the
+  `u` and `xu` alternatives are refuted by the source-row omission.  The three
+  immediate on-spine leaves are `..._sourceRowHeavy_otherDeleted`,
+  `..._sourceRowHeavy_otherV`, and `..._sourceRowHeavy_otherXv`.
+- The local coordinator-interface frontier changes from one opaque leaf to
+  three placement leaves, with fan-out three and raw direct-`sorry` delta
+  `+2`.  Consequently the enclosing cross-row frontier now has five
+  transitive leaves: these three plus `..._oppositeRowHeavy` and
+  `..._sparseRows`.
+- Each placement equality is parent-produced, all original physical-apex and
+  mutual-omission context is retained, and all children feed the same publish
+  target.  The split is exhaustive, acyclic, and has no scratch or retired
+  first-apex exact-five dependency.  It is a narrowing checkpoint, not closure.
+- A focused Lean 4.27 target build and proof-blueprint resync passed at build
+  `57ab73e8bc7e`.  The active anchor is the `other = xv` leaf, which makes the
+  retained interior peer equal to the actual source blocker and is the direct
+  ingress to the cap-profile and metric continuation.
+
+**After the first-growth row-incidence checkpoint.**
+
+- The production `sorry` in
+  `false_of_exactFourRigid221_sourceHeavyOtherXv_firstGrowth_uXvMutualOmission`
+  is proved.  The coordinator sequentially tests whether the selected `xv`
+  row contains `xu`, then `v`, then the distinguished deleted point; the
+  fourth branch is their relevant joint absence.
+- The `xu`-present branch is the checked blocker-localization and
+  strict-convexity contradiction.  In the `v`-present and deleted-present
+  branches, the two-point row bound identifies the row traces as `{xv,v}` and
+  `{xv,deleted}` respectively.  Each branch reindexes the rigid `2+2+1`
+  decomposition and reconstructs the complete global-deletion and source
+  context required by the existing blocker-`v` terminal.
+- When neither `v` nor the distinguished deleted point is in the row, those
+  points supply the existing two-distinct-joint-deletions terminal.  Hence the
+  local direct-`sorry` delta is `-1`: no new leaf or scratch dependency was
+  introduced.  The immediate case fan-out is four, while the transitive open
+  frontier reuses the already-live blocker-`v` and two-deletion terminals.
+- This closes the named source obligation and makes its first-growth packet
+  dispatcher source-clean.  It does not close either reused terminal, so it
+  is not yet closure of the enclosing robust exact-four branch.
+- The focused Lean 4.27 target build passed and the edited module was freshly
+  kernel-mined at build `7ebe91bbe100`; proof-blueprint reports the anchored
+  theorem `[closed]` at its source/call-graph surface.  Live
+  `#print axioms` nevertheless reports `sorryAx` through the reused
+  blocker-`v` and two-deletion terminals.  Therefore this checkpoint removes
+  the named source `sorry` and consolidates dependencies but does not meet the
+  final trust-profile closure gate.  The project-wide `refs --check`
+  separately reports four stale and thirteen never-mined symbols, so this
+  checkpoint also makes no global graph-freshness claim.
+
+**After the blocker-`v` cap-shape checkpoint.**
+
+- The former direct `sorry` in
+  `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV`
+  is now a checked coordinator over two explicit row-interior counts.  It
+  first tests whether the source row contributes two points to the strict
+  physical-cap interior and, if not, whether the opposite row does.
+- The exhaustive children are
+  `..._blockerV_sourceRowHeavy`,
+  `..._blockerV_oppositeRowHeavy`, and
+  `..._blockerV_neitherRowHeavy`.  Every child preserves the complete
+  blocker-`v` context and adds only count equalities or inequalities produced
+  by the coordinator.  No child calls the parent.
+- The coordinator-interface frontier changes from one opaque leaf to three
+  immediate on-spine leaves.  Its fan-out is three and its raw direct-`sorry`
+  delta is `+2`.  This is strict cap-shape decomposition, not a mathematical
+  proof of the blocker-`v` contradiction.
+- No scratch module, historical Lean tree, compatibility closer, or retired
+  first-apex exact-five route is imported.  The active exact-four route is
+  unchanged.
+- The source-row-heavy coordinator additionally proves
+  `P.v.1 ∈ S.capInteriorByIndex S.oppIndex2` from the rigid two-point row and
+  two-center localization, then passes that fact into the live child.  The
+  helper is production-wired and its live axiom audit contains only
+  `propext`, `Classical.choice`, and `Quot.sound`.
+- The focused Lean 4.27 target build and generated proof-blueprint resync
+  passed at build `10e9a911642a`.  The refreshed parent spine reaches the
+  three new `sorry` symbols, and live `#print axioms` reports `sorryAx`
+  through them.  The active anchor is now the source-row-heavy child.
+  Project-wide `refs --check` still reports four stale and thirteen
+  never-mined symbols outside this focused module, so no global freshness
+  claim is made.
+- A direct-context audit isolates the remaining center mismatch.  Source
+  omission supplies a four-point shell after deleting the source at
+  `centerAt P.v`, and global deletion supplies one at `S.oppApex2`; the
+  available no-four-point contradiction at the blocker requires center
+  exactly `P.v`.  The joint-deletion packet proves these first two centers
+  are not `P.v`, so the existing packets do not close any child merely by
+  simplification.
+- The smallest kernel-tested sufficient bridge is
+  `dist P.v.1 P.other.1 = dist P.v.1 P.source.1`: it places the retained
+  off-source-row peer on the source radius about `P.v` and contradicts the
+  named-label exclusion for the source row.  The newly proved strict-cap
+  membership of `v` does not itself imply this equality.  The next direct
+  step must combine it with the rigid physical-class geometry to force this
+  co-radial relation or another equivalent `P.v`-centered four-point terminal.
+
 ## Reconciliation with maintained status
 
 The human-maintained umbrella row is

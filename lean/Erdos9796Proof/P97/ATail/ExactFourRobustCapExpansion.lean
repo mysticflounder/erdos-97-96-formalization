@@ -937,7 +937,17 @@ theorem exists_mutuallyOmittedSecondClassPair
           u.1 u.2).toCriticalFourShell.support ∧
       u.1 ∉
         ((lateFirstApexSystem R).selectedAt
-          v.1 v.2).toCriticalFourShell.support := by
+          v.1 v.2).toCriticalFourShell.support ∧
+      source.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support ∧
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          source.1 source.2).toCriticalFourShell.support ∧
+      (u = source ∨
+        u.1 ∉
+          ((lateFirstApexSystem R).selectedAt
+            source.1 source.2).toCriticalFourShell.support) := by
   classical
   let C := SelectedClass D.A S.oppApex2 rho
   let rowAt : CarrierVertex D.A → Finset ℝ² := fun x =>
@@ -999,7 +1009,10 @@ theorem exists_mutuallyOmittedSecondClassPair
       by simpa [C] using hsourceClass,
       by simpa [sa, C] using haData.1,
       by simpa [sa, rowAt] using haData.2,
-      by simpa [rowAt] using hsourceNotSa⟩
+      by simpa [rowAt] using hsourceNotSa,
+      by simpa [rowAt] using hsourceOwn,
+      by simpa [sa, rowAt] using haData.2,
+      Or.inl rfl⟩
   · have hsourceInSa : source.1 ∈ rowAt sa :=
       not_not.mp hsourceNotSa
     have hsaBound : (rowAt sa ∩ C).card ≤ 2 := by
@@ -1028,7 +1041,10 @@ theorem exists_mutuallyOmittedSecondClassPair
         by simpa [sa, C] using haData.1,
         by simpa [sb, C] using hbData.1,
         by simpa [rowAt] using hsbNotSa,
-        by simpa [rowAt] using hsaNotSb⟩
+        by simpa [rowAt] using hsaNotSb,
+        by simpa [rowAt] using hsourceInSa,
+        by simpa [sb, rowAt] using hbData.2,
+        Or.inr (by simpa [sa, rowAt] using haData.2)⟩
     · have hsaInSb : sa.1 ∈ rowAt sb :=
         not_not.mp hsaNotSb
       have hsbBound : (rowAt sb ∩ C).card ≤ 2 := by
@@ -1056,7 +1072,10 @@ theorem exists_mutuallyOmittedSecondClassPair
         by simpa [C] using hsourceClass,
         by simpa [sb, C] using hbData.1,
         by simpa [sb, rowAt] using hbData.2,
-        by simpa [rowAt] using hsourceNotSb⟩
+        by simpa [rowAt] using hsourceNotSb,
+        by simpa [rowAt] using hsourceOwn,
+        by simpa [sb, rowAt] using hbData.2,
+        Or.inl rfl⟩
 
 /-- Source-faithful normal form for the complete second-apex radius
 classification.  The five-point arm now carries an actual strict-cap source
