@@ -5,9 +5,22 @@ import Erdos9796Proof.P97.UniversalProblem97
 
 The upstream predicate `Erdos97.HasNEquidistantProperty 4 A` is phrased with an
 existential radius at each point.  This file gives the equivalent *pinned
-multiplicity* phrasing, which is the form the problem takes in the
-distinct-distances literature (Dumitrescu, DCG 36 (2006);
-Nivasch–Pach–Pinchasi–Zerbib, JoCG 4 (2013)).
+multiplicity* phrasing.
+
+That phrasing is Erdős's own, and it is what he was actually after.  In "On sets
+of distances of n points", Amer. Math. Monthly 53 (1946), 248–250, §2:
+
+> In every convex polygon there is at least one vertex with the property that no
+> three vertices of the polygon are equally distant from it.  If this is the
+> case, then clearly we would obtain [n/2] different distances by considering
+> all the distances from such a vertex.
+
+The `k = 3` form there was later disproved by Danzer; the `k = 4` conjecture is
+stated in Erdős, "Some combinatorial and metric problems in geometry", Intuitive
+Geometry (Siófok 1985), Colloq. Math. Soc. J. Bolyai 48 (1987), 167–177, p. 175,
+which is the problem this repository targets.  The pinned-multiplicity form is
+also the shape the problem takes in the distinct-distances literature
+(Dumitrescu, DCG 36 (2006); Nivasch–Pach–Pinchasi–Zerbib, JoCG 4 (2013)).
 
 For `p ∈ A` put
 
@@ -29,6 +42,11 @@ Why this phrasing is the useful one:
 * μ(p, A) ≤ m forces at least `(|A| - 1) / m` *distinct* distances from `p`, so
   Erdős 97 implies that some vertex of a convex `n`-gon determines at least
   `(n - 1) / 3` distinct distances — the pinned distinct-distances question.
+  Note the implication runs only that way: distinct-distance lower bounds
+  constrain the *average* multiplicity at `p`, whereas Erdős 97 is an upper
+  bound on the *maximum*, so they do not give it back.  Altman's unconditional
+  `⌊n/2⌋` distinct distances for convex position is already stronger than the
+  `(n-1)/3` consequence, and does not yield Erdős 97.
 * Erdős 96 is the same family read the other way: it bounds how often one fixed
   distance can repeat across the whole set, where this bounds the per-point
   maximum multiplicity.  `Problem96.erdos96_rhs_of_erdos97` is the bridge.
