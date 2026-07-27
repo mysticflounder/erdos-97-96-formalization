@@ -23,7 +23,10 @@ saved profile under `D.A.card = 12`. Bare “card-12 producer” is retired from
 current-status rows. Historical file names and immutable artifact identifiers
 are not silently renamed.
 
-Current source inventory (live-rechecked 2026-07-26):
+Last fully reconciled source inventory (live-rechecked 2026-07-26, retained as
+a dated snapshot): the exact-four branch has since undergone further
+on-spine decompositions, so its current leaf count must be read from the
+regenerated `docs/live-blueprint.md`, not from the fixed counts below.
 
 - 6 direct source declarations with `sorry`, all in
   `ATail/FrontierLiveClosure.lean`;
@@ -166,11 +169,11 @@ inapplicable because it required the cap-six `L` branch.
 | K-A-P3-RANK2 | ARCHIVED DIAGNOSTIC FOR RETIRED ROUTE; BOUNDED QF_NRA UNKNOWN | `period-three-rank2-coordinate-probe/`; `period-three-rank2-encoding-audit/` | None. | Z3 and cvc5 timed out on the fixed projection and its prefixes. `unknown` remains unresolved evidence, not infeasibility or closure. |
 | K-A-P3-NUM | ARCHIVED DIAGNOSTIC FOR RETIRED ROUTE; 480 BOUNDED STARTS, NO VERIFIED HIT | `period-three-rank2-numerical-seed/`; `period-three-exact-seed-lift/`; `period-three-seed-compatible-cell/`; `period-three-rank2-interior-point/` | None. | The campaigns produced no substitution-verified hit. This is bounded numerical no-hit evidence, not infeasibility, and closed no `sorry`. |
 | K-A-P3-PROSE | ARCHIVED NONTERMINAL DOMAIN REFINEMENT FOR RETIRED ROUTE | `prose-backup-period3-match/REPORT.md` | None. | The prose candidates lacked required positive source fields and closed no source obligation. |
-| K-A-LIVE | CURRENT SOURCE HAS SIX DIRECT A-TAIL LEAF SORRIES; CARD-11 EXACT-FOUR CLOSED; PARENT COORDINATORS SOURCE-CLEAN | `Problem97.u1_largeCap_routeB_tail_liveData_false`; `ATail/FrontierLiveClosure.lean` | `u1_largeCap_routeB_tail_false` | The live caller extracts one concrete `CriticalShellSystem` and dispatches through `CriticalPairFrontier`. The source-clean unique-radius parent closes exact four at card 11; its card-at-least-12 exact-four arm is narrowed by checked physical ingress into robust post-card-eleven and swapped protected-exact-four leaves, followed by exact-five leaves with distinct or common obstruction centers. The source-clean all-large tri-apex parent reaches two low-hit leaves: equal blockers with localized collision/exact-two data, or distinct blockers with directed-omission data. The six immediate leaves are the coordinator-interface frontier and all are wired to both publish targets. |
+| K-A-LIVE | CARD-11 EXACT-FOUR CLOSED; PARENT COORDINATORS SOURCE-CLEAN; CURRENT LEAF COUNT PENDING 2026-07-27 RE-MINE | `Problem97.u1_largeCap_routeB_tail_liveData_false`; `ATail/FrontierLiveClosure.lean` | `u1_largeCap_routeB_tail_false` | The live caller extracts one concrete `CriticalShellSystem` and dispatches through `CriticalPairFrontier`. The source-clean unique-radius parent closes exact four at card 11; its card-at-least-12 exact-four arm is narrowed by checked physical ingress into robust post-card-eleven and swapped protected-exact-four leaves, followed by exact-five leaves with distinct or common obstruction centers. The source-clean all-large tri-apex parent reaches two low-hit branches: equal blockers with localized collision/exact-two data, or distinct blockers with directed-omission data. The 2026-07-26 six-leaf count predates later exact-four on-spine decompositions; `docs/live-blueprint.md` after the current re-mine is authoritative for the current coordinator frontier. |
 | K-B-PIN | DONE (2026-07-12, spine-verified post build refresh) | `Problem97.isM44PinnedSurplusGeneralMResidualsExcluded` in `PinnedSurplusGeneralM.lean` | `isM44PinnedSurplusResidualsExcluded` | The open `5 < m` branch is forced to `m = 6`, `A.card = 11`, with exact `(6,4,4)` cap-selected hit counts; all six incidence fields and native placement soundness are proved. `CapSelectedPinnedShellBridge` consumes every right aligned residual packet through all twelve certified core cases. The new `U2NonSurplusSqueeze.NonSurplusSwap.pinnedLeft_to_right` field proves the left-to-right reflection for all three surplus-index cases, preserving minimality, `(m,4,4)`, and surplus-cap cardinality; the terminal relabels the swapped packet and reuses the right producer and closure contradiction. `PinnedSurplusGeneralM.lean` has no source `sorry`, and direct Lean elaboration passed. Build refreshed 2026-07-12 after the U1 owner landed P1b (86149679) + the ERASE-P2 redraft (3d27977c): full library green, 9308 jobs; `PinnedSurplusGeneralM.lean` built clean with zero sorry warnings. `proof-blueprint axioms` on the declaration: core + `Lean.ofReduceBool` + approved `Lean.trustCompiler`, no `sorryAx`; the declaration left the `proof-blueprint spine` open-obligations list (anchor [closed]). |
 | K-B-END-LABEL | DONE (2026-07-11) | `Problem97.isM44EndpointResidualsExcluded` (`Base.lean`; both former `hshadow` holes proved) | `removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit` | Route (b) implemented (136ebb9b) and the m=5 branch fully proved: `EndpointCertificate/GeometryProducer.lean` (sorry-free) supplies `endpointLeft/Right_residual_false_of_card_five`, each covering both ambient CCW apex orientations (direct + reflected kernels `SurplusCOMPGBankGeometry.lean:1498/:1621`; apex orientation SYMMETRIC not forced per the 2026-07-11 prover verdict; the mirror residual flips the kernel pairing). Gate passed: full library green. Its former general-m dependency later closed under K-B-END-GENERAL; the endpoint cluster is absent from the current open inventory. Commits: 858b7e39, 8a7e6d1b, b2183714, 35bc63aa, f67e7818, e7ee31a2, plus the right-residual closure. |
 | K-B-END-GENERAL | DONE (2026-07-12, commit 3114fb1f) | `Problem97.isM44EndpointGeneralMResidualsExcluded` (`Base.lean:9511`, hole `:9513`; stated strictly `5 < S.surplusCap.card`) | `isM44EndpointResidualsExcluded` (`m ≠ 5` branch) | General-m endpoint leaf, routed to the forced `m = 6` / `A.card = 11` machinery (K-B-PIN). Cannot consume K-B-PIN unchanged: endpoint escape forces the Moser apex OUT of the escaped row, failing `PinnedShellOK`. Scoped extension required (see `docs/audits/2026-07-11-endpoint-generalm-representability.md`): `EndpointLeft/RightShellOK` seed predicates, classifier extension to the seed union, one (4,2,2) bridge seed-production case, endpoint source consumers. Finite gate PASSED 2026-07-11 — EXACT WITHIN MODEL, not PROVEN: 64-placement sweep (both families, twelve formalized metric cores, enumerate-residuals, complete=true) returned zero residuals (`census/endpoint_confinement/endpoint_direct_metric_core_residuals_n11.json`); no new metric cores needed. STAGING LANDED (5c44d1fc, 6fbde4a8): `EndpointCertificate/GeneralMCardEleven.lean` (sorry-free, no Base import) — card-11 forcing transport, full left+right escape row-shape families (selected classes card-4 interior-pinned, escapee strict-interior + surplus-cap disjointness), and the `EndpointLeft/RightShellOK` seed predicates over the `Fin 11` vocabulary matching the probe encoding. Next: endpoint placement checks against the committed native classifier (gate: `#eval` all 64 before proving — the Lean `hasPrefixCore` core set is not identical to the probe's core granularity), then the soundness transport mirroring `CapSelectedNativeClosureSound` (committed c5fcf286). BRIDGE LANE 2026-07-11 late: transport map `docs/audits/2026-07-11-endpoint-classifier-transport-map.md` (58f93ae2 - left family reuses the committed search code verbatim; right family needs a center-2 detector fork with fresh native runs); bridge design `docs/endpoint-generalm-bridge-design-2026-07-11.md` (a57c7e71, lemmas L1-L13; L9/L10/L10b done upstream at 9e6b5722 `incidenceOK_patternCode`); `EndpointCertificate/BridgeStaging.lean` landed 41d704f3 (L1a-L5: minimality glue, `labelOf`, Moser-cap class forcing + k4Radius uniqueness, endpoint no-qfree, T1 decomposition, row-0 two-intS-slots chooser - obstruction E1 discharged). ASSEMBLY INPUTS ALL LANDED 2026-07-11: `BridgeCarrier.lean` 9bac7853 (L6 public prescription constructor, L7 `endpointBlocker` + transports, L8 row-1 equation, right L3/L4 mirrors); `OrderedCoreSigns.lean` 2c32e3a1 (L12 branches 11-12, core axioms only); `EndpointClassifierSound.lean` + `EndpointClosureSound.lean` fffff751 (transport items 4-7; finals `closureCoreAlternative_of_incidenceOK_endpointLeft/RightShellOK`, axioms core + ofReduceBool/trustCompiler). Pinned lane 8ebadfa2 supplies `false_of_duplicateCenterCore_patternCode` + `false_of_perpBisectorCore_patternCode` for the branch dispatch. CLOSED 3114fb1f: `EndpointCertificate/BridgeAssembly.lean` (L11 `exactAt_endpointBlocker`, right L7/L8 mirrors, system-exposing blocker assemblies, L12b `false_of_closureCoreAlternative_of_canonical`, L13 `false_of_endpointEscapeLeft/Right_cardEleven`) + minimal Base.lean wiring at `:9513`. Leaf axioms: propext/Classical.choice/Quot.sound + Lean.ofReduceBool/Lean.trustCompiler (allowed set, no sorryAx); full library green (9307 jobs); spine open inventory 5 → 4 declarations. |
-| K-B-ERASE | DONE (commit `652fdfcb`, pushed 2026-07-13) | `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` consumes all 20 row and 2 P4 `*_cardEleven_residual_excluded` theorems | `isM44NonSurplusContainmentExactPinResidualsExcluded` chain | Card-ten/card-eleven P2/P4, all 128 P2 native leaves, `P2Closure`, all 22 residual consumers, and `Continuation` build. The dispatcher, terminals, ERASE parent, and exact-pin parent have only core plus approved native-decision axioms and no `sorryAx`; exact-pin is 0/1376 open and its target-specific publication gate passes. This remains separate from the global gate, which is blocked by the six direct A-tail leaves; the card-11 replay trees are committed production Lean sources rather than a separate build prerequisite. |
+| K-B-ERASE | DONE (commit `652fdfcb`, pushed 2026-07-13) | `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` consumes all 20 row and 2 P4 `*_cardEleven_residual_excluded` theorems | `isM44NonSurplusContainmentExactPinResidualsExcluded` chain | Card-ten/card-eleven P2/P4, all 128 P2 native leaves, `P2Closure`, all 22 residual consumers, and `Continuation` build. The dispatcher, terminals, ERASE parent, and exact-pin parent have only core plus approved native-decision axioms and no `sorryAx`; exact-pin is 0/1376 open and its target-specific publication gate passes. This remains separate from the global gate, which is blocked by the live A-tail frontier; the card-11 replay trees are committed production Lean sources rather than a separate build prerequisite. |
 
 ### K-A-LIVE collision exact-two checkpoint (2026-07-26)
 
@@ -192,13 +195,94 @@ common endpoints and a third common noncollinear point, none of which the
 normal form provides. The speculative child was therefore removed rather
 than promoted as a load-bearing obligation.
 
-Frontier accounting is unchanged: before and after this audit, K-A-LIVE has
-six direct A-tail leaf `sorry`s, and the collision arm has immediate
-constructor fan-out one. Its honest load-bearing child is
-`exists_three_hit_of_two_collisionRows_capCross_normalForm`, whose next proof
-must use genuinely global cap/MEC/minimality or tri-apex data to manufacture a
-three-hit canonical shell. The U5 sibling-bank theorem is neither
-import-reachable nor hypothesis-compatible with this packet.
+At this checkpoint the collision arm still has immediate constructor fan-out
+one.  Its admitted direct bridge is
+`exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows`;
+`exists_three_hit_of_two_collisionRows_capCross_normalForm` is its checked
+downstream consumer, not the open producer.  A later source-clean scratch
+audit,
+`scratch/packet-contradiction-search/TargetConclusionImpossible.lean`, proves
+that neither displayed outcome of the admitted bridge is locally realizable:
+the three-hit arm violates the rich-apex two-circle bound, and every cross-hit
+arm violates the exact disjoint cap-pair omissions.  The bridge must therefore
+derive `False` from its retained global hypotheses and close by elimination;
+it must not be described as a positive local three-hit producer.
+
+The concrete global route is now the following sharp decomposition.
+
+1. Convert the three richness fields of
+   `FrontierAllLargeCapsTriApexRobustResidual` into deletion robustness.  The
+   retained blocker endomap omits all three pairwise-distinct Moser apices.
+2. Apply the Lean-4.27-checked finite theorem
+   `third_fiber_or_larger_known_fiber_of_three_omissions` from
+   `scratch/exact-four-three-omitted-counting/ThreeOmittedMultiplicity.lean`
+   to the two named, distinct collision fibers.  It gives exactly three
+   exhaustive arms: a third collision fiber with a new blocker value, a
+   third source in `P`'s blocker fiber, or a third source in `Pρ`'s blocker
+   fiber.  Fixed-point-freeness and additional cardinal bounds are not
+   needed, and finite examples show that none of the three arms can be
+   dropped.
+3. Normalize that finite split with
+   `collisionCrossHit_or_geometricMultiplicity` from
+   `scratch/global-exact-four-prover/BlockerMultiplicityGeometry.lean`.
+   This gives either one of the four requested named cross hits, a fresh
+   third blocker fiber whose two sources occur in one another's canonical
+   rows, or an enlarged known-fiber packet in which the two fresh points are
+   exactly that row's shell-minus-first-cap remainder.  In the latter packet
+   both remainder points avoid the opposite collision pair.  Thus the
+   remaining multiplicity obligation is a positive global
+   occurrence/alignment, not another cardinality estimate.
+4. Split on the already-produced
+   `cap-card-at-least-eight | cross-blocker-equality` alternative.  On the
+   cap-eight arm, the production precursor
+   `ATail/TwoCollisionGlobalProducer.lean` proves
+   `exists_capSource_thirdCanonicalRow_omits_each_collisionPair`, deriving a
+   third source
+   in the strict first indexed cap, outside both collision pairs.  Its actual
+   blocker differs from both collision blockers and both physical apices; its
+   canonical row has cardinality four, contains that source, and omits at
+   least one endpoint of each collision pair.  The scratch-packaged
+   `triApex_patterns_and_exists_capSource_thirdCanonicalRow_connector`
+   retains all three rich-cap patterns with this row.  This is the immediate
+   cap-eight extraction interface.
+5. On each cross-blocker-equality arm, use global minimality and `noM44` to
+   rule out the equality or force the cap-eight/terminal surface.  The local
+   packet cannot do this: blocker equality reorients to a cross omission, not
+   a target cross hit, and
+   `scratch/hard-branch-math/equality-arm-model.lean` realizes the relevant
+   local metric/incidence fields exactly.  These arms therefore require a
+   genuinely global argument rather than another local row rewrite.
+6. Close by proving one positive global alignment.  For a fresh third
+   blocker fiber, place its mutually incident pair into a second selected row
+   or a rich strict-cap radius slice.  For an enlarged known fiber, place its
+   exact two-point off-cap remainder into a second row, align one remainder
+   point with two points of a rich slice, or derive an MEC/full-filter
+   contradiction.  On the cap-eight arm the concrete third canonical row is
+   available for this alignment, but its two cross-pair omissions alone do
+   not connect it to any normalized multiplicity packet.
+
+Steps 1--2 and the mapped cap split are wired through the current production
+proof prefix.  The cap-eight producer is now acyclic production code: it
+takes second-apex robustness explicitly instead of importing the later live
+residual.  Step 3 remains checked scratch and is the next production
+normalization to extract.  The remaining mathematical obligations after
+that extraction are the positive alignment in step 6 and the global
+exclusion/transfer for the four equality arms.
+
+The nine-role theorem
+`exists_fresh_namedRole_sharedRadiusPair_or_minimalDeletionCore` remains
+source-clean, but is not part of the current closure route.  Its fresh center
+and deletion set are unlinked to the collision shells, the exact off-cap
+remainders, and the rich strict-cap slices; its `MinimalDeletionCore` arm has
+no terminal consumer here.
+
+The tempting cap-redesignation shortcut is unavailable.  The only matching
+upper bound,
+`SurplusCapPacket.surplus_card_le_six_of_convexIndep_K4`, requires
+`S.IsM44`, while this live residual carries
+`¬ ∃ T : SurplusCapPacket D.A, T.IsM44`; it also bounds the designated surplus
+cap rather than the indexed opposite cap.  The U5 sibling-bank theorem remains
+neither import-reachable nor hypothesis-compatible with this packet.
 
 ### K-A-UNIQUE-PHYSICAL-SPLIT radius-normal-form checkpoint (2026-07-26)
 
@@ -771,7 +855,9 @@ exploring them.
 
 ## Exhaustive textual-hole reconciliation
 
-Updated 2026-07-26. The source census reports six direct Front-A leaves. The
+Historical census, updated 2026-07-26. It reported six direct Front-A leaves
+before the later exact-four on-spine decompositions; do not use this table as
+the current leaf census. The
 former card-at-least-12 exact-four leaf is now a source-clean coordinator over
 two strictly enriched physical-consumer leaves, and the robust constructor is
 a source-clean wrapper over its stronger post-card-eleven surface leaf; the

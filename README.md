@@ -62,7 +62,7 @@ convex `A` ([`unit_distance_pairs_bound`](lean/Erdos9796Proof/P96/EuclideanPeeli
 
 **Both published claims still reach `sorryAx` through six direct Front-A
 leaf theorems.** The hard core of the descent step —
-[`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom.lean#L546)
+[`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean#L811)
 (*every nonempty convex `HasNEquidistantProperty 4` set with `9 < |A|` that is
 minimal under the strong-induction hypothesis contains a removable vertex*) —
 is assembled from a three-way split (surplus-cap packet extraction, the
@@ -173,7 +173,7 @@ circle of positive radius centred at `p`. Then
 
 | Theorem | Statement |
 |---|---|
-| [`Problem97.universalProblem97Statement_iff_pinnedMultiplicity`](lean/Erdos9796Proof/P97/PinnedMultiplicity.lean#L147) | the equivalence above |
+| [`Problem97.universalProblem97Statement_iff_pinnedMultiplicity`](lean/Erdos9796Proof/P97/PinnedMultiplicity.lean#L233) | the equivalence above |
 | [`Problem97.exists_pinnedMultiplicity_le_three_of_card_le_nine`](lean/Erdos9796Proof/P97/UniversalLocal.lean#L93) | its unconditional `\|A\| ≤ 9` instance |
 
 This is a **reformulation, not a proof**: the equivalence is kernel-clean, both
@@ -399,7 +399,7 @@ Read these in order; each line is the load-bearing declaration of its step.
 6. **Descent engine** (`|A| > 9`):
    [`descent_contradicts_minimality`](lean/Erdos9796Proof/P97/Descent.lean#L27),
    which consumes
-   [`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom.lean#L546)
+   [`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean#L811)
    (assembled; carries the five residual obligations) plus the glue
    [`smaller_counterexample_of_removable`](lean/Erdos9796Proof/P97/SmallerCounterexample.lean#L30).
 
@@ -457,7 +457,7 @@ a final single-apex exhaustion:
   `v₂`/`v₃` variants produced by `N4d/CyclicTransport.lean` and the many other
   [`N4d/`](lean/Erdos9796Proof/P97/N4d) files supplying form-specific geometry.
 - **`N8` single-apex exhaustion** - the final contradiction, routed by
-  [`N8k_single_apex_false`](lean/Erdos9796Proof/P97/N8/N8kDistribution.lean#L949)
+  [`N8k_single_apex_false`](lean/Erdos9796Proof/P97/N8/N8kDistribution.lean#L1110)
   through the two-circle / endpoint-pair / reflection primitives in the
   [`N8/`](lean/Erdos9796Proof/P97/N8) subdirectory.
 

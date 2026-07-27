@@ -1,0 +1,111 @@
+docs/atail-force-producer-plan-2026-07-13.md:1014:The integrated Boolean-plus-distance decision has now been attempted directly
+docs/atail-force-producer-plan-2026-07-13.md:1019:relaxation has positive slack, so the Boolean branch structure is essential.
+docs/atail-force-producer-plan-2026-07-13.md:2341:standard core axioms; the dependency olean was emitted under `/tmp`, not into
+docs/atail-force-producer-plan-2026-07-13.md:4214:6.41-GiB logical `.olean` graph. The result is a kernel-checked scratch
+docs/atail-force-producer-plan-2026-07-13.md:4929:95,044-line, 6,885,254,248-logical-byte `.olean` graph is too costly to import
+docs/atail-force-producer-plan-2026-07-13.md:5672:Boolean sub-oracle; its `SAT`, `UNSAT`, or DRAT result is not by itself a
+docs/atail-force-producer-plan-2026-07-13.md:5947:transport.  `BooleanPacking.lean` also kernel-checks the exact generated
+docs/atail-force-producer-plan-2026-07-13.md:5951:1. instantiate the checked Boolean packers from the source configuration;
+docs/closure-matrix-2026-07-09.md:146:| K-A-UNIQUE-POST11 | SOURCE GRAPH PROMOTED; OFF-SPINE INGRESS BUILDS LOCALLY; NO CLOSURE CREDIT | `P97/ATail/CardElevenUniqueFourCertificate/`; `P97/ATail/CardElevenUniqueFourCertificateIngress.lean`; `docs/audits/2026-07-25-unique-arm-post11-promotion-preflight.md`; intended leaf `false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven` | Reconcile the separately distributed replay payload with its source-to-CNF provenance and decide whether the `Lean.trustCompiler` dependency introduced by generated `native_decide` proofs is acceptable or must be eliminated. Only after that audit may the source-clean ingress replace the card-eleven production `sorry`; rerun both publish-target spines after wiring. | The acyclic extraction now contains 397 promoted Lean modules plus a checked promotion manifest. With the locally installed digest-matching Lean-4.27 replay payload, the explicit ingress target builds. Its axiom closure is `[propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound]`, with no `sorryAx`; this is not a pure-kernel closure claim. The ingress remains off-spine, Git omits the 1.9 GiB replay payload, and the production card-eleven leaf is still one of six live `sorry`s. |
+docs/closure-matrix-2026-07-09.md:201:| A11-STRUCTURAL-SEED | DONE-CODE; EXERCISED; OPEN-PROOF | CTRL-BANK-PREFLIGHT; the thirteen `GeneralCarrierBridge` metric-core alternatives | Keep structural exclusions separate from the Nullstellensatz bank. Preserve the 36-instance `FourRowPerpBisectorCore` seed and run a theorem-provenance CEGAR oracle for every branch detectable from a raw equality cube. Validate finite row/flip paths, boundary-order scope, source/build/axiom evidence, and complete profile orbits; snapshot all inputs before replay. | The completed oracle-13 catalog records all thirteen formalized alternatives; twelve are raw-cube eligible and exact-off-circle is explicitly disabled without `ExactAt`. Ten unordered families and two ordered families (each checked in direct and reverse orientation) emit replayable records. The six-point two-pair core is PROVEN, its exact recovered motif replays nine closure paths and a complete 12-image orbit, and the eleven-source aggregate has `GeneralCarrierBridge.olean` SHA-256 `b4a37e979bc93b843d5f3c5d8822c6563e924b0252b73910f085ed2b610958fb`; focused builds pass and axioms are exactly `propext`, `Classical.choice`, and `Quot.sound`. Contract `5040043d196154501086163699026d48a2d9be64083fbec8c059b38656471b5d` is bound into the terminal successor artifacts. Final Lean publication still needs checked structural-record and order/orientation replay. |
+docs/closure-matrix-2026-07-09.md:513:| ATAIL-ROBUST-COUPLING | OPEN PARENT-SCOPED PRODUCER; ONE EXTENSION-STABLE PLANAR U5 CUT KERNEL-CHECKED; CORRECTED CARD-11 OUTER UNKNOWN; CURRENT BANK NONUNIFORM | production bi-apex/Kalmanson modules; production `CriticalFiberClosingCore`; `whole-carrier-planar-rank-cegar/`; scratch whole-carrier extractor/live adapter and n12/n13 regression | Prove the full-parent existential producer. Treat finite outer carriers as regression tests and add a schema only when it transports an existing checked consumer and advances a generic occurrence theorem; do not restart unbounded literal CEGAR. Decide the corrected compressed-217-plus-planar card-eleven outer before invoking a nonlinear oracle on another table. | The auxiliary-base-collision theorem yields a kernel-checked six-role/four-row planar cut and exactly rejects the former full-Kalmanson survivor. With that cut, the corrected 217-type card-eleven outer is `UNKNOWN` after 300 seconds. A separate 231-to-235 chain has four independently replayed Boolean SAT tables, each then exact-QF_LRA UNSAT with verified deletion-minimal Farkas cores. This work is scoped to `FrontierBiApexRobustResidual`; it does not model the unique-radius arm and closes no source `sorry`. Literal schemas remain path-length- and carrier-dependent, so bounded exclusions are not uniform live coverage. |
+docs/closure-matrix-2026-07-09.md:773:deletion-criticality solver.  It faithfully runs a supplied Boolean CNF, but
+docs/archive/2026-07-10-closure-plan-consolidation/closure-plan-2026-07-06.md:63:Everything below the wiring exists and builds (oleans verified 2026-07-06):
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:272:                                                     Boolean-no-three
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:460:      Boolean checks through
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:492:    - for the pinned generated DFS path, the per-center local Boolean package
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:513:      this interface now asks for the generated Boolean
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:521:      the actual centers not covered by those exact masks, plus Boolean
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:525:      non-exact seeded candidate-mask membership, plus Boolean no-three,
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:1455:- `2026-07-05`: generated `SurplusCOMPGBank` now includes the Boolean pinned
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:1530:    membership plus the remaining Boolean no-three, prefix-count, and
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:1574:    induced shadow's no-three, candidate, or separation Booleans.
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:1577:    `∀ a b, pointPairClassCount ... a b <= 2` to the exact generated Boolean
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:1646:    Booleans: `wSqueezeOK`, `oneHitOK`, `circumcenterOK`, `noThreeOK`,
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:1651:    bridge no longer has an opaque generated Boolean layer; the remaining
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:1923:    matching Boolean DFS and proves `oneSidedSeedSearchEntries_eq_nil` plus the
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:2022:    exact-mask, one-hit, w-squeeze, circumcenter, and trigger Booleans for
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:2038:    and the Boolean no-three, prefix-count, and separation facts for the induced
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:2056:    have Boolean-no-three variants:
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:2064:    Booleans remain separate open inputs.  Verification:
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:2802:        the generated `noThreeOK ... = true` Boolean directly instead of the
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:2817:      - the remaining Boolean no-three, pair-count/prefix-count, and
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:2957:      - residual no-three interface WEAKENED to the generated Boolean
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:2960:      - to remove Boolean no-three as a separate assumption, first prove a
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:2965:        the Boolean no-three/prefix/separation facts, then prove
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:3047:        generated shadow always satisfies the ten-mask Boolean;
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:3055:        reduce the generated class-shape Boolean to two pointwise finite-mask
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:3068:        `pinnedClassOK`, and the remaining component Booleans into the full
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:3071:      - The generated component Booleans now have compiled mask/prefix
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-plan.md:3097:    The final Boolean conjunction assembly is closed, and every generated
+docs/97-rvol-full-prose-proof-2026-07-13.md:547:  Boolean incidence matrix — for each label, the label set of its selected
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-live-frontier.md:614:and separation booleans are already supplied; they do not produce the reduced
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-live-frontier.md:1703:are false in the Boolean encoding, for example `separated .v .v .u .w = false`.
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-live-frontier.md:1969:restartable `.olean` artifacts within their declared cutoffs. The current
+docs/archive/2026-07-16-doc-sweep/four-point-subpacket-live-frontier.md:1981:artifact              56 KiB .olean
+docs/general-n-certificate-bank-mining-2026-07-09.md:447:Thus the old C5D3B oleans are stale with respect to the current dependency.
+docs/general-n-certificate-bank-mining-2026-07-09.md:587:stored `FiniteN9Closure.olean` also predates the source by more than a day, so
+docs/general-n-certificate-bank-mining-2026-07-09.md:751:Booleans, path soundness produces `EdgeClosure`, and one certificate checks
+docs/audits/2026-07-06-slot3-certificate-closure-plan-audit.md:31:| workstream C step 1 complete: `Patterns.All` builds incl. sharded `EpQ1008` | olean present | VERIFIED-BUILT (proves a past build, not currency vs sources) |
+docs/audits/2026-07-06-slot3-certificate-closure-plan-audit.md:32:| endpoint soundness stack builds (`Bank`, `AggregateSoundness`, `BankSoundness`, `ShadowSearchShards.All`, `RowZeros.Direct.All`) | oleans present | VERIFIED-BUILT |
+docs/audits/2026-07-06-slot3-certificate-closure-plan-audit.md:33:| "next endpoint step is product-sum row-zero transport" | build dir | STALE — `RowZeros/Product/All.olean` already exists; the tree is ahead of the plan's log |
+docs/audits/2026-07-06-slot3-certificate-closure-plan-audit.md:34:| pinned relaxed-split aggregate builds (`RelaxedSplit.All`, 135 singleton certs) | olean + file count | VERIFIED-BUILT / VERIFIED (135 JSONs) |
+docs/archive/2026-07-16-doc-sweep/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md:667:row-local selected-class equalities for the non-fixed centers.  A small Boolean
+docs/archive/2026-07-16-doc-sweep/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md:1016:  Boolean shape checks, leaving only the generic finite-bank checks and row
+docs/archive/2026-07-16-doc-sweep/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md:1024:  `exists_certifiedEndpointRow_of_endpointShadowInBank`.  Boolean endpoint
+docs/archive/2026-07-16-doc-sweep/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md:1026:  checker Boolean is proved true.  This is still only the finite lookup and
+docs/archive/2026-07-16-doc-sweep/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md:1113:  Boolean encoder, `indep_ep.py` is the independent pure-Python DFS,
+docs/archive/2026-07-16-doc-sweep/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md:1407:  erased-pin seed mask audits as Boolean `List.all` facts and
+docs/archive/2026-07-16-doc-sweep/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md:1600:  .lake/build/lib/lean/Erdos9796Proof/P97/SurplusCertificate/RowZeros/Bank.olean
+docs/archive/2026-07-16-doc-sweep/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md:2274:  /usr/bin/lockf -k .lake/lake-build.lock lake env lean -M 16384 Erdos9796Proof/P97/SurplusM44Packet.lean -o .lake/build/lib/lean/Erdos9796Proof/P97/SurplusM44Packet.olean -i .lake/build/lib/lean/Erdos9796Proof/P97/SurplusM44Packet.ilean
+docs/archive/2026-07-16-doc-sweep/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md:2275:  /usr/bin/lockf -k .lake/lake-build.lock lake env lean -M 16384 Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean -o .lake/build/lib/lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.olean -i .lake/build/lib/lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.ilean
+docs/archive/2026-07-16-doc-sweep/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md:2276:  /usr/bin/lockf -k .lake/lake-build.lock lake env lean -M 16384 Erdos9796Proof/P97/RemovableVertexAxiom.lean -o .lake/build/lib/lean/Erdos9796Proof/P97/RemovableVertexAxiom.olean -i .lake/build/lib/lean/Erdos9796Proof/P97/RemovableVertexAxiom.ilean
+docs/archive/2026-07-16-doc-sweep/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md:2494:  not just an olean or `lake-build` result.
+docs/archive/2026-07-16-doc-sweep/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md:2534:finite hull order changes chirality and the Boolean separation convention.
+docs/audits/2026-07-25-unique-arm-post11-promotion-preflight.md:203:no `.olean`; none is on this promoted graph.
+docs/closure-plan-full-spec-2026-07-09.md:461:Kalmanson cancellation transport with the same axiom closure. Exact Boolean
+docs/closure-plan-full-spec-2026-07-09.md:491:and right generated source-to-packed Boolean compositions now pass, and
+docs/closure-plan-full-spec-2026-07-09.md:508:three exact-card-13 all-one orbits. The Boolean adapter compositions and exact
+docs/closure-plan-full-spec-2026-07-09.md:633:installed digest-matching Lean-4.27 replay payload, the explicit ingress target
+docs/closure-plan-full-spec-2026-07-09.md:641:the 1.9 GiB compiled replay payload; the separate installer authenticates its
+docs/closure-plan-full-spec-2026-07-09.md:963:twenty rounds.  Every Boolean projection was SAT and every fixed-row full-LRA
+docs/closure-plan-full-spec-2026-07-09.md:1165:whole-carrier Boolean/PB audit finds independently verified models at card 10
+docs/closure-plan-full-spec-2026-07-09.md:1430:is exact; the aggregate Lean Boolean replay is compiler-reduced with
+docs/closure-plan-full-spec-2026-07-09.md:1735:231-to-235 discovery chain produces four Boolean SAT tables which all miss
+docs/closure-plan-full-spec-2026-07-09.md:3058:Z3 and cvc5 Boolean-plus-QF_LRA encodings return no verdict at their bounded
+docs/closure-plan-full-spec-2026-07-09.md:3795:`GeneralCarrierBridge.olean` (SHA-256
+docs/closure-plan-full-spec-2026-07-09.md:3806:fingerprint `bd78491c38fd`; the resulting `GeneralCarrierBridge.olean` has
+docs/closure-plan-full-spec-2026-07-09.md:4086:**ALIVE adjudication contract.** Keep three claims distinct: an ALIVE Boolean
+docs/closure-plan-full-spec-2026-07-09.md:4235:   orders and proves that a successful Boolean check yields the two rejection
+docs/closure-plan-full-spec-2026-07-09.md:5635:`Fin n` CCW convex enumeration; the generated Boolean-mask wrapper remains
+docs/closure-plan-full-spec-2026-07-09.md:6917:6.41-GiB logical `.olean` graph and is therefore not a production import as
+docs/closure-plan-full-spec-2026-07-09.md:7349:and 6,885,254,248 logical `.olean` bytes (about 6.41 GiB), with a recorded peak
+docs/closure-plan-full-spec-2026-07-09.md:8688:and has no `sorryAx`. All 7,256/7,256 source-to-packed Boolean adapters are
+docs/closure-plan-full-spec-2026-07-09.md:8767:round retained a SAT Boolean projection.  Five rounds were then cut by
+docs/closure-plan-full-spec-2026-07-09.md:8873:remain exact Boolean SAT and contain no checked four-arc terminal.  The compact
+docs/closure-plan-full-spec-2026-07-09.md:8894:embeddings and reruns the corrected Boolean outer until it finds a verified
+docs/closure-plan-full-spec-2026-07-09.md:8895:full-linear survivor, Boolean exhaustion pending proof replay, or a recorded
+docs/closure-plan-full-spec-2026-07-09.md:8902:That fixed-card discovery gate has now reached Boolean exhaustion in both
+docs/closure-plan-full-spec-2026-07-09.md:8917:is an external certificate for the fixed Boolean projection, not a Lean proof
+docs/audits/2026-07-13-erased-certificate-build-performance.md:59:certificate, however, produced no `.olean` within 7,215.64 seconds
+docs/audits/2026-07-13-erased-certificate-build-performance.md:68:elaboration but produced no `.olean` within the clean 30-minute per-module
+docs/audits/2026-07-13-erased-certificate-build-performance.md:74:produced no `.olean` within the same 30-minute ceiling. It was interrupted
+docs/audits/2026-07-13-erased-certificate-build-performance.md:82:21m39s. It produced a 56 KiB `.olean` and passed proof-blueprint resync. This
+docs/audits/2026-07-13-erased-certificate-build-performance.md:134:  `native_decide` and has a reusable `.olean`; and
+docs/audits/2026-07-06-refactorization-audit.md:65:- Largest reachable-path oleans (one-time costs): `U5FiniteExtraction` 26MB,
+docs/audits/2026-07-23-atail-new-session-handoff.md:30:used more than 23 GiB without producing an `olean` and was interrupted after
+docs/audits/2026-07-23-atail-new-session-handoff.md:185:The mirror ingress still needs the source Boolean reindexing
+docs/audits/2026-07-24-all-large-caps-terminal-route-inventory.md:239:An equality-only CEGAR over the smoke-validated Boolean layer, deciding
+docs/audits/2026-07-24-all-large-caps-terminal-route-inventory.md:269:prove: the Boolean layer asserts necessary conditions on the branch, and it is
+docs/audits/2026-07-24-all-large-caps-terminal-route-inventory.md:275:## Faithfulness audit of the Boolean layer
+docs/audits/2026-07-24-all-large-caps-terminal-route-inventory.md:457:leaves the abstraction satisfiable. This abstraction is *weaker* than the Boolean
+docs/audits/2026-07-24-all-large-caps-terminal-route-inventory.md:598:Boolean layer as z3 `Bool`s plus the 105 distances as `Real`s under the
+docs/audits/2026-07-06-frontier-missed-angle-analysis.md:141:   full proven pipeline: local Boolean rules → `isValidPinnedFragment` →
+docs/audits/2026-07-11-lean-codebase-analysis.md:77:(plan §B.3, Boolean counterexample); the prescribed fix is a consumer
+docs/audits/2026-07-06-four-point-subpacket-plan-audit.md:38:| `SurplusCertificate.RelaxedSplit.All` builds | olean present | VERIFIED-BUILT (olean exists; proves a past build, not currency vs sources) |
+docs/audits/2026-07-06-four-point-subpacket-plan-audit.md:39:| endpoint `Patterns.All`, `ShadowSearchShards.All`, `BankSoundness` build | oleans present | VERIFIED-BUILT (same caveat) |
+docs/audits/2026-07-06-four-point-subpacket-plan-audit.md:92:(olean verified). (b) Plan-vs-tree: `RowZeros/Product/All.olean` exists in the
+docs/audits/2026-07-17-critical-fiber-strategy-alignment.md:476:positive LP-relaxation optimum shows that Boolean integrality is essential.
+docs/audits/2026-07-17-critical-fiber-strategy-alignment.md:581:Boolean replay uses compiler-trusted reduction and is not a kernel-only
+docs/audits/2026-07-11-closure-plan-freshness-audit.md:356:- the frozen 5,836-row transition snapshot, theorem-source hashes, `.olean`
+docs/audits/2026-07-21-exact-five-response-audit.md:182:exact-LRA UNSAT, but every Boolean surface remained bounded `UNKNOWN`.  They

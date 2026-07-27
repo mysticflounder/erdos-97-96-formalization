@@ -1,0 +1,41 @@
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay.py:20:class EmitWindowedRupReplayTest(unittest.TestCase):
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay.py:62:                output / "WindowedRupReplay/Common.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay.py:65:                output / "WindowedRupReplay/Window.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay.py:84:                output / "WindowedRupReplay/Window.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay.py:102:                "WindowedRupReplay/Common.lean",
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay.py:103:                "WindowedRupReplay/Window.lean",
+scratch/atail-force/unique4-exact-two-lrat-ingress/real-p5-kernel-replay-2026-07-23.md:83:Its `WindowedRupReplay.accepted` theorem uses `native_decide` and compiled in
+scratch/atail-force/unique4-exact-two-lrat-ingress/real-p5-kernel-replay-2026-07-23.md:85:`WindowedRupReplay.accepted` and its logical implication
+scratch/atail-force/unique4-exact-two-lrat-ingress/real-p5-kernel-replay-2026-07-23.md:86:`WindowedRupReplay.sound` have the exact axiom closure:
+scratch/atail-force/unique4-exact-two-lrat-ingress/real-p5-kernel-replay-2026-07-23.md:106:- `WindowedRupReplay.startUnsatisfiable`, which closes shard 1 into the
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:22:class EmitWindowedRupReplayPackageTest(unittest.TestCase):
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:65:                (output / "WindowedRupReplay/Checkpoint").glob("*.lean")
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:72:                (output / "WindowedRupReplay/Checkpoint/C0003.lean").exists()
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:78:                        output / "WindowedRupReplay/Shard1"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:87:                        output / "WindowedRupReplay/Shard2"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:93:                output / "WindowedRupReplay/Shard1/W0001.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:96:                output / "WindowedRupReplay/Shard1/W0002.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:118:                output / "WindowedRupReplay/Shard2/W0001.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:121:                "import WindowedRupReplay.Checkpoint.C0002", terminal
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:128:                output / "WindowedRupReplay/Shard1.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:131:                output / "WindowedRupReplay/Shard2.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:134:                output / "WindowedRupReplay/Compose.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:149:                    "import WindowedRupReplay.Shard1",
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:150:                    "import WindowedRupReplay.Shard2",
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:195:                other_output / "WindowedRupReplay/Shard2.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:280:            common_path = output / "WindowedRupReplay/Common.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_windowed_rup_replay_package.py:293:                if record["path"] == "WindowedRupReplay/Common.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/emit_windowed_rup_replay.py:20:MODULE_NAMESPACE = "WindowedRupReplay"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_compile_compact_windowed_rup_replay.py:22:class CompileCompactWindowedRupReplayTest(unittest.TestCase):
+scratch/atail-force/unique4-exact-two-lrat-ingress/emit_windowed_rup_replay_package.py:25:MODULE_NAMESPACE = "WindowedRupReplay"
+scratch/atail-force/unique4-exact-two-lrat-ingress/p5-exact-two-closure-2026-07-23.md:24:3. `WindowedRupReplay.startUnsatisfiable` proves that checkpoint 0 is
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_compact_windowed_rup_replay_package.py:21:class EmitCompactWindowedRupReplayPackageTest(unittest.TestCase):
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_compact_windowed_rup_replay_package.py:175:                / "CompactWindowedRupReplay/Checkpoint/C0001.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_compact_windowed_rup_replay_package.py:187:                / "CompactWindowedRupReplay/Shard1/W0001.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_compact_windowed_rup_replay_package.py:191:                / "CompactWindowedRupReplay/Shard1/W0002.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_compact_windowed_rup_replay_package.py:206:                / "CompactWindowedRupReplay/Shard2/W0001.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_compact_windowed_rup_replay_package.py:279:                output / "CompactWindowedRupReplay/Common.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/test_emit_compact_windowed_rup_replay_package.py:294:                == "CompactWindowedRupReplay/Common.lean"
+scratch/atail-force/unique4-exact-two-lrat-ingress/windowed-ingress-report-2026-07-23.md:62:`WindowedRupReplay.startUnsatisfiable` is `propext`, `Classical.choice`,
+scratch/atail-force/unique4-exact-two-lrat-ingress/README.md:187:`WindowedRupReplay.startUnsatisfiable` theorem, plus both shard `sound`
+scratch/atail-force/unique4-exact-two-lrat-ingress/emit_compact_windowed_rup_replay_package.py:26:MODULE_NAMESPACE = "CompactWindowedRupReplay"

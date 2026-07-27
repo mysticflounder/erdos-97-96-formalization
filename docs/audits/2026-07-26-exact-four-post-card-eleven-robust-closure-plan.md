@@ -917,6 +917,104 @@ exceptional arms must each feed checked terminals.
   step must combine it with the rigid physical-class geometry to force this
   co-radial relation or another equivalent `P.v`-centered four-point terminal.
 
+## Two-collision global route checkpoint (2026-07-27)
+
+The current admitted direct bridge in the exact-four collision branch is
+`exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows`.
+Its checked downstream wrapper
+`exists_three_hit_of_two_collisionRows_capCross_normalForm` is not itself the
+missing producer.  The exact disjoint collision packets already rule out both
+sides of the bridge's conclusion:
+
+- a rich-apex three-hit shell contradicts the checked two-circle intersection
+  bound; and
+- each of the four named cross hits contradicts the checked exact cap-pair
+  omissions.
+
+This is proved source-clean in
+`scratch/packet-contradiction-search/TargetConclusionImpossible.lean`.
+Accordingly, the admitted theorem is logically a direct contradiction from
+its global hypotheses, followed by `False.elim`; attempting to manufacture
+its conclusion from the local packet alone is the wrong proof shape.
+
+The concrete route has the following components.
+
+1. Tri-apex richness gives deletion robustness at all three Moser apices, so
+   the finite blocker endomap omits three pairwise-distinct values.  Applying
+   `third_fiber_or_larger_known_fiber_of_three_omissions` from
+   `scratch/exact-four-three-omitted-counting/ThreeOmittedMultiplicity.lean`
+   to the two named collision pairs gives the exhaustive sharp split:
+   a third blocker-value collision, a third source in `P`'s blocker fiber, or
+   a third source in `Pρ`'s blocker fiber.  The theorem checks under Lean 4.27
+   and needs no cardinal assumption beyond finiteness.  Its report includes
+   fixed-point-free examples proving that all three arms are necessary.
+2. `collisionCrossHit_or_geometricMultiplicity` in
+   `scratch/global-exact-four-prover/BlockerMultiplicityGeometry.lean`
+   converts the three finite-map arms into strict geometric packets.  It
+   gives either a requested named cross hit, a fresh third blocker fiber
+   whose two sources lie in one another's canonical rows, or a larger-known-
+   fiber packet whose two fresh points are exactly that four-shell's
+   shell-minus-first-cap remainder and avoid the opposite collision pair.
+   This theorem checks under Lean 4.27 with only `propext`,
+   `Classical.choice`, and `Quot.sound`.
+3. The existing global split is
+   `cap-card-at-least-eight | cross-blocker-equality`.  On the cap-eight arm,
+   the new acyclic production module
+   `ATail/TwoCollisionGlobalProducer.lean` proves
+   `exists_capSource_thirdCanonicalRow_omits_each_collisionPair`, producing a
+   third source
+   in the strict first indexed cap, outside the two collision pairs.  Its
+   blocker is distinct from the two collision blockers and the two physical
+   apices; its canonical shell has exactly four points, contains the source,
+   and omits an endpoint of each collision pair.  The stronger packaged
+   theorem
+   `triApex_patterns_and_exists_capSource_thirdCanonicalRow_connector`
+   retains this row together with all three rich-cap patterns.
+4. The four blocker-equality arms cannot be discharged by local polarity
+   rewriting: each equality yields a cross omission rather than one of the
+   impossible target cross hits.  Moreover,
+   `scratch/hard-branch-math/equality-arm-model.lean` gives an exact local
+   metric model of the equality surface.  These arms must use global
+   minimality and `noM44` to exclude the equality or transfer it to the
+   cap-eight/terminal surface.
+The cap-eight connector has now been extracted before the admitted bridge.
+It replaces the scratch theorem's live-residual argument by the exact field
+it uses, `FullyDeletionRobustAt D S.oppApex2`; its module therefore has no
+dependency on `FrontierLiveClosure`.  The current proof prefix maps the
+cap-eight side of `hcapEightOrCross` through this production theorem.  The
+next extraction is the geometric multiplicity normalization in item 2.
+
+The remaining mathematical bridge is positive geometric localization, not
+counting:
+
+- for a fresh third blocker fiber, place its mutually incident source pair in
+  a second selected row or a rich strict-cap radius slice;
+- for an enlarged known fiber, place the exact two-point off-cap remainder in
+  a second row, align a remainder point with two points of a rich slice, or
+  derive an MEC/full-filter contradiction;
+- on the cap-eight arm, use the concrete third canonical row as the candidate
+  alignment surface, while noting that its two cross-pair omissions alone do
+  not link it to a normalized multiplicity packet;
+- on each blocker-equality arm, prove the global exclusion/transfer described
+  above.
+
+The three-omission split and cap-eight connector are already wired through
+the current production proof prefix.  The connector makes positive third-row
+data available on spine, but does not by itself close the `sorry`.
+
+The nine-role minimal-deletion theorem is no longer an asserted closure step.
+Its fresh center and deletion set are not linked to either collision shell,
+either exact off-cap remainder, or a rich strict-cap slice, and its
+`MinimalDeletionCore` arm has no terminal consumer on this surface.
+
+The cap-at-least-eight alternative cannot be closed by redesignating that cap
+and invoking
+`SurplusCapPacket.surplus_card_le_six_of_convexIndep_K4`.  That theorem
+requires `IsM44`, whereas the live residual explicitly rules out every
+`IsM44` packet, and its conclusion concerns the designated surplus cap rather
+than the indexed opposite cap.  This route is classified unavailable, not
+pending.
+
 ## Reconciliation with maintained status
 
 The human-maintained umbrella row is

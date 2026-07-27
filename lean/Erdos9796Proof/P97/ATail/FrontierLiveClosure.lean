@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.ApexRichClassStructure
+import Erdos9796Proof.P97.ATail.BiApexBlockerMultiplicity
 import Erdos9796Proof.P97.ATail.BiApexRobustCapBounds
 import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificateIngress
 import Erdos9796Proof.P97.ATail.ExactFourPhysicalConsumer
@@ -13,6 +14,7 @@ import Erdos9796Proof.P97.ATail.FirstApexUniqueRadiusResidual
 import Erdos9796Proof.P97.ATail.LocalizedCollisionMutualOmissionCycle
 import Erdos9796Proof.P97.ATail.PhysicalSecondApexSwap
 import Erdos9796Proof.P97.ATail.RetainedStrictInteriorPairSelector
+import Erdos9796Proof.P97.ATail.TwoCollisionGlobalProducer
 import Erdos9796Proof.P97.ATail.TwoCenterCapLocalization
 import Erdos9796Proof.P97.CircumcenterSide
 import Erdos9796Proof.P97.ConvexIndepHelpers
@@ -40,6 +42,7 @@ namespace ATailFrontierLiveClosure
 open scoped EuclideanGeometry
 
 open ATailApexRichClassStructure
+open ATailBiApexBlockerMultiplicity
 open ATailCriticalPairFrontier
 open ATailBiApexRobustCapBounds
 open ATailCommonDeletionTwoCenter
@@ -55,6 +58,7 @@ open ATailPhysicalSecondApexCommonDeletion
 open ATailPhysicalSecondApexSwap
 open ATailRetainedMatchingGeometricReduction
 open ATailRetainedStrictInteriorPairSelector
+open ATailTwoCollisionGlobalProducer
 open ATailTwoCenterCapLocalization
 open ATailUniqueFourLateChoiceTerminalScratch
 open FirstApexUniqueRadiusResidual
@@ -7438,6 +7442,76 @@ theorem exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows
             P.source₂ ∈
               (H.selectedAt Pρ.source₁
                 Pρ.source₁_mem_A).toCriticalFourShell.support) := by
+  classical
+  have hglobalCapSplit :=
+    hcapEightOrCross.imp
+      (fun hcap =>
+        exists_capSource_thirdCanonicalRow_omits_each_collisionPair
+          P Pρ B.secondApex_robust hpairsDisjoint hcap)
+      id
+  let apex₁ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨S.oppApex1, by
+      simpa using S.oppositeVertexByIndex_mem S.oppIndex1⟩
+  let apex₂ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨S.oppApex2, by
+      simpa using S.oppositeVertexByIndex_mem S.oppIndex2⟩
+  let apex₃ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨S.surplusApex, by
+      simpa using S.oppositeVertexByIndex_mem S.surplusIdx⟩
+  let a₁ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨P.source₁, P.source₁_mem_A⟩
+  let a₂ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨P.source₂, P.source₂_mem_A⟩
+  let b₁ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨Pρ.source₁, Pρ.source₁_mem_A⟩
+  let b₂ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨Pρ.source₂, Pρ.source₂_mem_A⟩
+  have homitted₁ : ∀ x, H.blockerVertex x ≠ apex₁ := by
+    intro x
+    exact FullyDeletionRobustAt.blockerVertex_ne
+      (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex1_rich)
+      H x apex₁.2
+  have homitted₂ : ∀ x, H.blockerVertex x ≠ apex₂ := by
+    intro x
+    exact FullyDeletionRobustAt.blockerVertex_ne
+      (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex2_rich)
+      H x apex₂.2
+  have homitted₃ : ∀ x, H.blockerVertex x ≠ apex₃ := by
+    intro x
+    exact FullyDeletionRobustAt.blockerVertex_ne
+      (fullyDeletionRobustAt_of_apexRichClassStructure T.surplusApex_rich)
+      H x apex₃.2
+  have hapex₁₂ : apex₁ ≠ apex₂ := by
+    intro h
+    exact
+      (S.oppositeVertexByIndex_ne_of_ne S.oppIndex1_ne_oppIndex2)
+        (by simpa [apex₁, apex₂] using congrArg Subtype.val h)
+  have hapex₁₃ : apex₁ ≠ apex₃ := by
+    intro h
+    exact
+      (S.oppositeVertexByIndex_ne_of_ne
+        S.surplusIdx_ne_oppIndex1).symm
+        (by simpa [apex₁, apex₃] using congrArg Subtype.val h)
+  have hapex₂₃ : apex₂ ≠ apex₃ := by
+    intro h
+    exact
+      (S.oppositeVertexByIndex_ne_of_ne
+        S.surplusIdx_ne_oppIndex2).symm
+        (by simpa [apex₂, apex₃] using congrArg Subtype.val h)
+  have hfa : H.blockerVertex a₁ = H.blockerVertex a₂ := by
+    apply Subtype.ext
+    exact P.blockers_eq
+  have hfb : H.blockerVertex b₁ = H.blockerVertex b₂ := by
+    apply Subtype.ext
+    exact Pρ.blockers_eq
+  have hvalues : H.blockerVertex a₁ ≠ H.blockerVertex b₁ := by
+    intro h
+    apply hblockersNe
+    exact congrArg Subtype.val h.symm
+  have hblockerMultiplicity :=
+    third_fiber_or_larger_known_fiber_of_three_omissions
+      H.blockerVertex homitted₁ homitted₂ homitted₃
+      hapex₁₂ hapex₁₃ hapex₂₃ hfa hfb hvalues
   sorry
 
 /-- The retained two-cycle and tri-apex normal form forces a three-hit
