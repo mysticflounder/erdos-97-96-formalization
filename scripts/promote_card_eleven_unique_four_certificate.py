@@ -133,12 +133,6 @@ EXPLICIT_INTERNAL_IMPORTS = {
     ),
 }
 
-IMPORT_LINE = re.compile(
-    r"(?P<prefix>[ \t]*import[ \t]+)"
-    r"(?P<module>[^ \t\r\n]+)"
-    r"(?P<suffix>[ \t]*)"
-)
-INCLUDE_ASSET = re.compile(r'\binclude_(?:str|bytes)\s+"(?P<path>[^"]+)"')
 LEAN_COMPONENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_']*$")
 
 
@@ -161,6 +155,13 @@ class ImportResolution:
     kind: str
 
 
+@dataclass(frozen=True)
+class ImportOccurrence:
+    module_start: int
+    module_end: int
+    module: str
+
+
 def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -179,6 +180,233 @@ def path_text(path: Path) -> str:
 
 def absolute(path: Path) -> Path:
     return REPO_ROOT / path
+
+
+def reject_symlink_components(path: Path, label: str) -> None:
+    """Reject repository-relative paths that escape lexically or through symlinks."""
+    if path.is_absolute() or ".." in path.parts:
+        raise PromotionError(f"{label} is not a repository-relative path: {path}")
+    current = REPO_ROOT
+    for component in path.parts:
+        current /= component
+        if current.is_symlink():
+            raise PromotionError(f"{label} traverses symlink: {current}")
+
+
+def require_regular_file(
+    path: Path,
+    label: str,
+    *,
+    within: Path | None = None,
+) -> Path:
+    reject_symlink_components(path, label)
+    full_path = absolute(path)
+    if not full_path.is_file():
+        raise PromotionError(f"missing regular file for {label}: {path}")
+    if within is not None:
+        reject_symlink_components(within, f"{label} containment root")
+        try:
+            full_path.resolve(strict=True).relative_to(
+                absolute(within).resolve(strict=True)
+            )
+        except ValueError as exc:
+            raise PromotionError(f"{label} is outside {within}: {path}") from exc
+    return full_path
+
+
+def require_directory(path: Path, label: str) -> Path:
+    reject_symlink_components(path, label)
+    full_path = absolute(path)
+    if not full_path.is_dir():
+        raise PromotionError(f"missing directory for {label}: {path}")
+    return full_path
+
+
+def iter_include_asset_paths(text: str) -> list[str]:
+    """Extract include_str/include_bytes paths outside Lean comments and strings."""
+    references: list[str] = []
+    index = 0
+    block_depth = 0
+    length = len(text)
+    tokens = ("include_str", "include_bytes")
+    while index < length:
+        if block_depth:
+            if text.startswith("/-", index):
+                block_depth += 1
+                index += 2
+            elif text.startswith("-/", index):
+                block_depth -= 1
+                index += 2
+            else:
+                index += 1
+            continue
+        if text.startswith("--", index):
+            newline = text.find("\n", index + 2)
+            index = length if newline < 0 else newline + 1
+            continue
+        if text.startswith("/-", index):
+            block_depth = 1
+            index += 2
+            continue
+        if text[index] == '"':
+            index += 1
+            while index < length:
+                if text[index] == "\\":
+                    index += 2
+                elif text[index] == '"':
+                    index += 1
+                    break
+                else:
+                    index += 1
+            continue
+
+        token = next(
+            (
+                candidate
+                for candidate in tokens
+                if text.startswith(candidate, index)
+                and (
+                    index == 0
+                    or not (text[index - 1].isalnum() or text[index - 1] in "_'")
+                )
+                and (
+                    index + len(candidate) == length
+                    or not (
+                        text[index + len(candidate)].isalnum()
+                        or text[index + len(candidate)] in "_'"
+                    )
+                )
+            ),
+            None,
+        )
+        if token is None:
+            index += 1
+            continue
+        cursor = index + len(token)
+        while cursor < length and text[cursor].isspace():
+            cursor += 1
+        if cursor >= length or text[cursor] != '"':
+            index += len(token)
+            continue
+        cursor += 1
+        start = cursor
+        while cursor < length and text[cursor] != '"':
+            if text[cursor] == "\\":
+                raise PromotionError("escaped include asset paths are unsupported")
+            cursor += 1
+        if cursor >= length:
+            raise PromotionError("unterminated include asset path")
+        references.append(text[start:cursor])
+        index = cursor + 1
+    if block_depth:
+        raise PromotionError("unterminated Lean block comment")
+    return references
+
+
+def iter_import_occurrences(text: str) -> list[ImportOccurrence]:
+    """Find every Lean import command outside comments and string literals."""
+    occurrences: list[ImportOccurrence] = []
+    index = 0
+    block_depth = 0
+    length = len(text)
+    while index < length:
+        if block_depth:
+            if text.startswith("/-", index):
+                block_depth += 1
+                index += 2
+            elif text.startswith("-/", index):
+                block_depth -= 1
+                index += 2
+            else:
+                index += 1
+            continue
+        if text.startswith("--", index):
+            newline = text.find("\n", index + 2)
+            index = length if newline < 0 else newline + 1
+            continue
+        if text.startswith("/-", index):
+            block_depth = 1
+            index += 2
+            continue
+        if text[index] == '"':
+            index += 1
+            while index < length:
+                if text[index] == "\\":
+                    index += 2
+                elif text[index] == '"':
+                    index += 1
+                    break
+                else:
+                    index += 1
+            continue
+        if not (
+            text.startswith("import", index)
+            and (
+                index == 0
+                or not (
+                    text[index - 1].isalnum()
+                    or text[index - 1] in "_'«"
+                )
+            )
+            and (
+                index + len("import") == length
+                or not (
+                    text[index + len("import")].isalnum()
+                    or text[index + len("import")] in "_'»"
+                )
+            )
+        ):
+            index += 1
+            continue
+
+        cursor = index + len("import")
+        saw_layout = False
+        while cursor < length:
+            if text[cursor].isspace():
+                saw_layout = True
+                cursor += 1
+                continue
+            if text.startswith("--", cursor):
+                saw_layout = True
+                newline = text.find("\n", cursor + 2)
+                cursor = length if newline < 0 else newline + 1
+                continue
+            if text.startswith("/-", cursor):
+                saw_layout = True
+                comment_depth = 1
+                cursor += 2
+                while cursor < length and comment_depth:
+                    if text.startswith("/-", cursor):
+                        comment_depth += 1
+                        cursor += 2
+                    elif text.startswith("-/", cursor):
+                        comment_depth -= 1
+                        cursor += 2
+                    else:
+                        cursor += 1
+                if comment_depth:
+                    raise PromotionError("unterminated Lean block comment after import")
+                continue
+            break
+        if not saw_layout or cursor >= length:
+            raise PromotionError("Lean import command has no module")
+
+        module_start = cursor
+        while (
+            cursor < length
+            and not text[cursor].isspace()
+            and not text.startswith("--", cursor)
+            and not text.startswith("/-", cursor)
+        ):
+            cursor += 1
+        if cursor == module_start:
+            raise PromotionError("Lean import command has no module")
+        module = text[module_start:cursor]
+        occurrences.append(ImportOccurrence(module_start, cursor, module))
+        index = cursor
+    if block_depth:
+        raise PromotionError("unterminated Lean block comment")
+    return occurrences
 
 
 def upper_camel(text: str) -> str:
@@ -200,7 +428,9 @@ def normalize_generated_directory(component: str) -> str:
 
 
 def parse_source_log() -> tuple[list[Path], list[LoggedUnresolved], str]:
-    log_path = absolute(SOURCE_LOG)
+    log_path = require_regular_file(
+        SOURCE_LOG, "source closure log", within=Path("scratch")
+    )
     raw = log_path.read_bytes()
     lines = raw.decode("utf-8").splitlines()
     if not lines:
@@ -248,30 +478,30 @@ def parse_source_log() -> tuple[list[Path], list[LoggedUnresolved], str]:
 
 
 def assert_sources_exist(sources: list[Path]) -> None:
-    missing = [source for source in sources if not absolute(source).is_file()]
-    if missing:
-        rendered = "\n".join(f"  {path_text(path)}" for path in missing[:20])
-        raise PromotionError(f"missing source files:\n{rendered}")
     non_lean = [source for source in sources if source.suffix != ".lean"]
     if non_lean:
         raise PromotionError(
             "non-Lean paths in source graph: "
             + ", ".join(path_text(path) for path in non_lean)
         )
+    for source in sources:
+        require_regular_file(source, "promotion source", within=SOURCE_BASE)
 
 
 def enumerate_replay_sources() -> tuple[list[Path], list[dict[str, object]]]:
     sources: list[Path] = []
     trees: list[dict[str, object]] = []
     for root, expected_count in REPLAY_SOURCE_ROOTS:
-        full_root = absolute(root)
-        if not full_root.is_dir():
-            raise PromotionError(f"missing replay source root: {root}")
-        tree_sources = sorted(
-            path.relative_to(REPO_ROOT)
-            for path in full_root.rglob("*.lean")
-            if path.is_file()
-        )
+        full_root = require_directory(root, "replay source root")
+        tree_sources: list[Path] = []
+        for path in full_root.rglob("*"):
+            relative = path.relative_to(REPO_ROOT)
+            if path.is_symlink():
+                raise PromotionError(f"replay source tree contains symlink: {relative}")
+            if path.is_file() and path.suffix == ".lean":
+                require_regular_file(relative, "replay source", within=root)
+                tree_sources.append(relative)
+        tree_sources.sort()
         if len(tree_sources) != expected_count:
             raise PromotionError(
                 f"replay source census drift at {root}: "
@@ -334,6 +564,22 @@ def production_module(destination: Path) -> str:
     return ".".join((MODULE_PREFIX, *components))
 
 
+def validate_preexisting_external_module(module: str, label: str) -> None:
+    if module == "Mathlib" or module.startswith("Mathlib."):
+        return
+    if not module.startswith("Erdos9796Proof."):
+        raise PromotionError(f"{label} has unsupported external import: {module}")
+    components = module.split(".")
+    if any(LEAN_COMPONENT.fullmatch(component) is None for component in components):
+        raise PromotionError(f"{label} has invalid project module import: {module}")
+    module_path = Path("lean", *components).with_suffix(".lean")
+    require_regular_file(
+        module_path,
+        f"{label} project module {module}",
+        within=Path("lean/Erdos9796Proof"),
+    )
+
+
 def enumerate_replay_assets() -> tuple[
     list[tuple[Path, Path, str, int]],
     list[dict[str, object]],
@@ -343,14 +589,16 @@ def enumerate_replay_assets() -> tuple[
     for (module_root, _lean_count), (asset_root, expected_count) in zip(
         REPLAY_SOURCE_ROOTS, REPLAY_ASSET_ROOTS, strict=True
     ):
-        full_asset_root = absolute(asset_root)
-        if not full_asset_root.is_dir():
-            raise PromotionError(f"missing replay asset root: {asset_root}")
-        source_assets = sorted(
-            path.relative_to(REPO_ROOT)
-            for path in full_asset_root.rglob("*")
-            if path.is_file()
-        )
+        full_asset_root = require_directory(asset_root, "replay asset root")
+        source_assets: list[Path] = []
+        for path in full_asset_root.rglob("*"):
+            relative = path.relative_to(REPO_ROOT)
+            if path.is_symlink():
+                raise PromotionError(f"replay asset tree contains symlink: {relative}")
+            if path.is_file():
+                require_regular_file(relative, "replay asset", within=asset_root)
+                source_assets.append(relative)
+        source_assets.sort()
         if len(source_assets) != expected_count:
             raise PromotionError(
                 f"replay asset census drift at {asset_root}: "
@@ -383,6 +631,19 @@ def enumerate_replay_assets() -> tuple[
     return assets, trees
 
 
+def expected_replay_layout() -> list[tuple[Path, Path, int, int]]:
+    """Return production package/data roots with expected source and asset counts."""
+    layout: list[tuple[Path, Path, int, int]] = []
+    for (source_root, source_count), (_asset_root, asset_count) in zip(
+        REPLAY_SOURCE_ROOTS, REPLAY_ASSET_ROOTS, strict=True
+    ):
+        package_root = DEST_ROOT / destination_relative(
+            source_root / "Common.lean"
+        ).parent.parent
+        layout.append((package_root, package_root / "data", source_count, asset_count))
+    return layout
+
+
 def lane_relative_module_parts(source: Path) -> tuple[str, ...]:
     relative = source.relative_to(SOURCE_BASE)
     within_lane = Path(*relative.parts[1:]).with_suffix("")
@@ -408,6 +669,7 @@ class ImportResolver:
         if module == "Mathlib" or module.startswith("Mathlib."):
             return ImportResolution(source, module, module, "preexisting-external")
         if module.startswith("Erdos9796Proof."):
+            validate_preexisting_external_module(module, path_text(source))
             return ImportResolution(source, module, module, "preexisting-external")
 
         explicit = EXPLICIT_INTERNAL_IMPORTS.get((source, module))
@@ -456,25 +718,14 @@ def rewrite_source(
     text = absolute(source).read_text(encoding="utf-8")
     output: list[str] = []
     resolutions: list[ImportResolution] = []
-    for line in text.splitlines(keepends=True):
-        if line.endswith("\r\n"):
-            body, ending = line[:-2], "\r\n"
-        elif line.endswith("\n"):
-            body, ending = line[:-1], "\n"
-        else:
-            body, ending = line, ""
-        match = IMPORT_LINE.fullmatch(body)
-        if match is None:
-            output.append(line)
-            continue
-        resolution = resolver.resolve(source, match.group("module"))
+    previous_end = 0
+    for occurrence in iter_import_occurrences(text):
+        resolution = resolver.resolve(source, occurrence.module)
         resolutions.append(resolution)
-        output.append(
-            match.group("prefix")
-            + resolution.rewritten
-            + match.group("suffix")
-            + ending
-        )
+        output.append(text[previous_end:occurrence.module_start])
+        output.append(resolution.rewritten)
+        previous_end = occurrence.module_end
+    output.append(text[previous_end:])
     return "".join(output).encode("utf-8"), resolutions
 
 
@@ -489,8 +740,7 @@ def validate_replay_asset_references(
     referenced: set[Path] = set()
     for source in replay_sources:
         text = absolute(source).read_text(encoding="utf-8")
-        for match in INCLUDE_ASSET.finditer(text):
-            reference = match.group("path")
+        for reference in iter_include_asset_paths(text):
             source_asset = (
                 (absolute(source).parent / reference)
                 .resolve()
@@ -754,9 +1004,11 @@ def write_outputs(
     assets: list[tuple[Path, Path, str, int]],
     manifest_bytes: bytes,
 ) -> None:
+    reject_symlink_components(DEST_ROOT, "promotion destination root")
     changed = 0
     unchanged = 0
     for path, data in sorted(outputs.items()):
+        reject_symlink_components(path, "promotion destination")
         full_path = absolute(path)
         if full_path.is_file() and full_path.read_bytes() == data:
             unchanged += 1
@@ -765,6 +1017,8 @@ def write_outputs(
         full_path.write_bytes(data)
         changed += 1
     for source, destination, digest, size in assets:
+        require_regular_file(source, "replay asset source", within=SOURCE_BASE)
+        reject_symlink_components(destination, "replay asset destination")
         full_destination = absolute(destination)
         if (
             full_destination.is_file()
@@ -782,6 +1036,7 @@ def write_outputs(
             raise PromotionError(f"replay asset copy verification failed: {destination}")
         changed += 1
     manifest_full_path = absolute(MANIFEST_PATH)
+    reject_symlink_components(MANIFEST_PATH, "promotion manifest destination")
     if manifest_full_path.is_file() and manifest_full_path.read_bytes() == manifest_bytes:
         unchanged += 1
     else:
@@ -791,6 +1046,39 @@ def write_outputs(
     print(f"promotion write: changed={changed} unchanged={unchanged}")
 
 
+def installed_inventory() -> tuple[set[Path], set[Path]]:
+    destination_root = require_directory(DEST_ROOT, "promotion destination root")
+    files: set[Path] = set()
+    directories: set[Path] = set()
+    for path in destination_root.rglob("*"):
+        relative = path.relative_to(REPO_ROOT)
+        if path.is_symlink():
+            raise PromotionError(f"promotion destination contains symlink: {relative}")
+        if path.is_file():
+            files.add(relative)
+        elif path.is_dir():
+            directories.add(relative)
+        else:
+            raise PromotionError(
+                f"promotion destination contains unsupported filesystem entry: {relative}"
+            )
+    return files, directories
+
+
+def inventory_directories(paths: set[Path]) -> set[Path]:
+    directories: set[Path] = set()
+    for path in paths:
+        try:
+            path.relative_to(DEST_ROOT)
+        except ValueError as exc:
+            raise PromotionError(f"inventory path is outside {DEST_ROOT}: {path}") from exc
+        parent = path.parent
+        while parent != DEST_ROOT:
+            directories.add(parent)
+            parent = parent.parent
+    return directories
+
+
 def check_outputs(
     outputs: dict[Path, bytes],
     assets: list[tuple[Path, Path, str, int]],
@@ -798,7 +1086,27 @@ def check_outputs(
 ) -> None:
     expected = dict(outputs)
     expected[MANIFEST_PATH] = manifest_bytes
+    expected_paths = (
+        set(expected)
+        | {destination for _source, destination, _digest, _size in assets}
+    )
+    actual_paths, actual_directories = installed_inventory()
+    expected_directories = inventory_directories(expected_paths)
     failures: list[str] = []
+    failures.extend(
+        f"missing {path_text(path)}" for path in sorted(expected_paths - actual_paths)
+    )
+    failures.extend(
+        f"unexpected {path_text(path)}" for path in sorted(actual_paths - expected_paths)
+    )
+    failures.extend(
+        f"missing directory {path_text(path)}"
+        for path in sorted(expected_directories - actual_directories)
+    )
+    failures.extend(
+        f"unexpected directory {path_text(path)}"
+        for path in sorted(actual_directories - expected_directories)
+    )
     for path, data in sorted(expected.items()):
         full_path = absolute(path)
         if not full_path.is_file():
@@ -820,7 +1128,7 @@ def check_outputs(
         if len(failures) > 20:
             print(f"  ... and {len(failures) - 20} more", file=sys.stderr)
         raise SystemExit(1)
-    print(f"promotion check: ok files={len(expected) + len(assets)}")
+    print(f"promotion check: ok files={len(expected_paths)}")
 
 
 def manifest_destination(value: object, label: str) -> Path:
@@ -846,11 +1154,28 @@ def manifest_sha256(value: object, label: str) -> str:
     return value
 
 
+def manifest_nonnegative_int(value: object, label: str) -> int:
+    if type(value) is not int or value < 0:
+        raise PromotionError(f"{label} must be a nonnegative integer")
+    return value
+
+
+def manifest_counter(value: object, label: str) -> Counter[str]:
+    if not isinstance(value, dict):
+        raise PromotionError(f"{label} must be an object")
+    result: Counter[str] = Counter()
+    for key, count in value.items():
+        if not isinstance(key, str):
+            raise PromotionError(f"{label} keys must be strings")
+        result[key] = manifest_nonnegative_int(count, f"{label}.{key}")
+    return result
+
+
 def check_installed_promotion() -> dict[str, object]:
     """Verify the checked-in promotion without consulting its scratch provenance."""
-    manifest_full_path = absolute(MANIFEST_PATH)
-    if not manifest_full_path.is_file():
-        raise PromotionError(f"missing promotion manifest: {MANIFEST_PATH}")
+    manifest_full_path = require_regular_file(
+        MANIFEST_PATH, "promotion manifest", within=DEST_ROOT
+    )
     try:
         manifest = json.loads(manifest_full_path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
@@ -859,6 +1184,8 @@ def check_installed_promotion() -> dict[str, object]:
         raise PromotionError("promotion manifest root must be an object")
     if manifest.get("schema") != "card-eleven-unique-four-source-promotion-v2":
         raise PromotionError("unsupported promotion manifest schema")
+    if manifest.get("module_prefix") != MODULE_PREFIX:
+        raise PromotionError("promotion manifest module prefix mismatch")
     if manifest.get("unresolved_promoted_imports") != []:
         raise PromotionError("promotion manifest records unresolved internal imports")
 
@@ -872,7 +1199,7 @@ def check_installed_promotion() -> dict[str, object]:
     if not isinstance(raw_asset_records, list) or len(raw_asset_records) != 1656:
         raise PromotionError("promotion manifest must record exactly 1656 replay assets")
 
-    lean_records: dict[Path, tuple[str, str, int]] = {}
+    lean_records: dict[Path, tuple[str, str, int, int]] = {}
     module_to_destination: dict[str, Path] = {}
     for index, raw_record in enumerate(raw_file_records):
         label = f"files[{index}]"
@@ -895,15 +1222,31 @@ def check_installed_promotion() -> dict[str, object]:
                 f"{label}.module mismatch: expected {expected_module}, found {module}"
             )
         import_count = raw_record.get("import_count")
-        if type(import_count) is not int or import_count < 0:
-            raise PromotionError(f"{label}.import_count must be a nonnegative integer")
+        import_count = manifest_nonnegative_int(
+            import_count, f"{label}.import_count"
+        )
+        internal_import_count = manifest_nonnegative_int(
+            raw_record.get("rewritten_internal_import_count"),
+            f"{label}.rewritten_internal_import_count",
+        )
+        if internal_import_count > import_count:
+            raise PromotionError(
+                f"{label}.rewritten_internal_import_count exceeds import_count"
+            )
         if destination in lean_records:
             raise PromotionError(f"duplicate promoted destination: {destination}")
         if module in module_to_destination:
             raise PromotionError(f"duplicate promoted module: {module}")
-        lean_records[destination] = (digest, module, import_count)
+        lean_records[destination] = (
+            digest,
+            module,
+            import_count,
+            internal_import_count,
+        )
         module_to_destination[module] = destination
 
+    replay_layout = expected_replay_layout()
+    expected_data_roots = {data_root for _package, data_root, _sources, _assets in replay_layout}
     asset_records: dict[Path, tuple[str, int]] = {}
     for index, raw_record in enumerate(raw_asset_records):
         label = f"replay_asset_promotion.files[{index}]"
@@ -912,33 +1255,141 @@ def check_installed_promotion() -> dict[str, object]:
         destination = manifest_destination(
             raw_record.get("destination"), f"{label}.destination"
         )
+        if destination.suffix == ".lean":
+            raise PromotionError(f"{label}.destination may not be a Lean source")
+        containing_data_roots = [
+            root for root in expected_data_roots if destination.is_relative_to(root)
+        ]
+        if len(containing_data_roots) != 1 or destination == containing_data_roots[0]:
+            raise PromotionError(
+                f"{label}.destination is outside a replay package data tree"
+            )
         digest = manifest_sha256(raw_record.get("sha256"), f"{label}.sha256")
-        byte_count = raw_record.get("byte_count")
-        if type(byte_count) is not int or byte_count < 0:
-            raise PromotionError(f"{label}.byte_count must be a nonnegative integer")
+        byte_count = manifest_nonnegative_int(
+            raw_record.get("byte_count"), f"{label}.byte_count"
+        )
         if destination in lean_records or destination in asset_records:
             raise PromotionError(f"duplicate promoted destination: {destination}")
         asset_records[destination] = (digest, byte_count)
 
     expected_paths = set(lean_records) | set(asset_records) | {MANIFEST_PATH}
-    destination_root = absolute(DEST_ROOT)
-    actual_paths = {
-        path.relative_to(REPO_ROOT)
-        for path in destination_root.rglob("*")
-        if path.is_file() or path.is_symlink()
-    }
+    actual_paths, actual_directories = installed_inventory()
+    expected_directories = inventory_directories(expected_paths)
     missing_paths = sorted(expected_paths - actual_paths)
     extra_paths = sorted(actual_paths - expected_paths)
     failures = [f"missing {path_text(path)}" for path in missing_paths]
     failures.extend(f"unexpected {path_text(path)}" for path in extra_paths)
+    failures.extend(
+        f"missing directory {path_text(path)}"
+        for path in sorted(expected_directories - actual_directories)
+    )
+    failures.extend(
+        f"unexpected directory {path_text(path)}"
+        for path in sorted(actual_directories - expected_directories)
+    )
+
+    source_partition = manifest.get("source_partition")
+    if source_partition != {
+        "candidate_file_count": len(lean_records),
+        "promoted_file_count": len(lean_records),
+    }:
+        failures.append("source partition summary mismatch")
+
+    raw_replay_source = manifest.get("replay_source_promotion")
+    if not isinstance(raw_replay_source, dict):
+        raise PromotionError("manifest has no replay_source_promotion object")
+    expected_source_trees = [
+        {"root": path_text(root), "file_count": count}
+        for root, count in REPLAY_SOURCE_ROOTS
+    ]
+    if raw_replay_source.get("trees") != expected_source_trees:
+        failures.append("replay source tree metadata mismatch")
+    if raw_replay_source.get("file_count") != sum(
+        count for _root, count in REPLAY_SOURCE_ROOTS
+    ):
+        failures.append("replay source file-count summary mismatch")
+    for package_root, _data_root, expected_sources, _expected_assets in replay_layout:
+        actual_sources = sum(
+            destination.is_relative_to(package_root)
+            for destination in lean_records
+        )
+        if actual_sources != expected_sources:
+            failures.append(
+                f"replay source package count mismatch {path_text(package_root)}"
+            )
+
+    raw_asset_trees = raw_asset_section.get("trees")
+    if not isinstance(raw_asset_trees, list) or len(raw_asset_trees) != len(
+        replay_layout
+    ):
+        raise PromotionError("manifest replay asset trees have wrong cardinality")
+    for index, (
+        (_source_root, _source_count),
+        (asset_source_root, expected_asset_count),
+        (_package_root, data_root, _expected_sources, _layout_asset_count),
+    ) in enumerate(
+        zip(REPLAY_SOURCE_ROOTS, REPLAY_ASSET_ROOTS, replay_layout, strict=True)
+    ):
+        raw_tree = raw_asset_trees[index]
+        if not isinstance(raw_tree, dict):
+            raise PromotionError(f"replay_asset_promotion.trees[{index}] is not an object")
+        tree_assets = {
+            destination: record
+            for destination, record in asset_records.items()
+            if destination.is_relative_to(data_root)
+        }
+        tree_bytes = sum(size for _digest, size in tree_assets.values())
+        expected_tree = {
+            "root": path_text(asset_source_root),
+            "file_count": expected_asset_count,
+            "byte_count": tree_bytes,
+            "destination": path_text(data_root),
+        }
+        if raw_tree != expected_tree or len(tree_assets) != expected_asset_count:
+            failures.append(f"replay asset tree metadata mismatch at index {index}")
+
+    recorded_asset_count = raw_asset_section.get("file_count")
+    if recorded_asset_count != len(asset_records):
+        failures.append("replay asset file-count summary mismatch")
+
+    resolution_counts = manifest_counter(
+        manifest.get("import_resolution_counts"), "import_resolution_counts"
+    )
+    allowed_resolution_kinds = {
+        "explicit-internal",
+        "preexisting-external",
+        "same-directory-internal",
+        "unique-suffix-internal",
+    }
+    if not set(resolution_counts) <= allowed_resolution_kinds:
+        raise PromotionError("manifest records an unsupported import resolution kind")
+    external_counts = manifest_counter(
+        manifest.get("preexisting_external_imports"),
+        "preexisting_external_imports",
+    )
+    destination_split = manifest_counter(
+        manifest.get("destination_split"), "destination_split"
+    )
+    actual_destination_split = Counter(
+        "root"
+        if len(destination.relative_to(DEST_ROOT).parts) == 1
+        else destination.relative_to(DEST_ROOT).parts[0].lower()
+        for destination in lean_records
+    )
+    if destination_split != actual_destination_split:
+        failures.append("destination split summary mismatch")
 
     referenced_assets: set[Path] = set()
     actual_import_count = 0
-    for destination, (digest, _module, expected_import_count) in lean_records.items():
+    actual_internal_import_count = 0
+    actual_external_counts: Counter[str] = Counter()
+    for destination, (
+        digest,
+        _module,
+        expected_import_count,
+        expected_internal_import_count,
+    ) in lean_records.items():
         full_path = absolute(destination)
-        if full_path.is_symlink():
-            failures.append(f"symlink not allowed {path_text(destination)}")
-            continue
         if not full_path.is_file():
             continue
         data = full_path.read_bytes()
@@ -947,24 +1398,44 @@ def check_installed_promotion() -> dict[str, object]:
             continue
         text = data.decode("utf-8")
         imports = [
-            match.group("module")
-            for line in text.splitlines()
-            if (match := IMPORT_LINE.fullmatch(line)) is not None
+            occurrence.module for occurrence in iter_import_occurrences(text)
         ]
         actual_import_count += len(imports)
         if len(imports) != expected_import_count:
             failures.append(f"import-count mismatch {path_text(destination)}")
+        file_internal_import_count = 0
         for imported_module in imports:
-            if (
-                imported_module.startswith(f"{MODULE_PREFIX}.")
-                and imported_module not in module_to_destination
+            if imported_module == MODULE_PREFIX or imported_module.startswith(
+                f"{MODULE_PREFIX}."
             ):
-                failures.append(
-                    f"unresolved promoted import {imported_module} "
-                    f"in {path_text(destination)}"
+                file_internal_import_count += 1
+                if imported_module not in module_to_destination:
+                    failures.append(
+                        f"unresolved promoted import {imported_module} "
+                        f"in {path_text(destination)}"
+                    )
+                continue
+            try:
+                validate_preexisting_external_module(
+                    imported_module, path_text(destination)
                 )
-        for match in INCLUDE_ASSET.finditer(text):
-            included = (full_path.parent / match.group("path")).resolve()
+            except PromotionError as exc:
+                failures.append(str(exc))
+                continue
+            actual_external_counts[imported_module] += 1
+        actual_internal_import_count += file_internal_import_count
+        if file_internal_import_count != expected_internal_import_count:
+            failures.append(
+                f"internal-import-count mismatch {path_text(destination)}"
+            )
+
+        containing_layout = [
+            (package_root, data_root)
+            for package_root, data_root, _sources, _assets in replay_layout
+            if destination.is_relative_to(package_root)
+        ]
+        for reference in iter_include_asset_paths(text):
+            included = (full_path.parent / reference).resolve()
             try:
                 included_relative = included.relative_to(REPO_ROOT)
             except ValueError:
@@ -978,14 +1449,21 @@ def check_installed_promotion() -> dict[str, object]:
                     f"unpromoted asset reference {path_text(included_relative)} "
                     f"in {path_text(destination)}"
                 )
+                continue
+            if (
+                len(containing_layout) != 1
+                or not included_relative.is_relative_to(containing_layout[0][1])
+            ):
+                failures.append(
+                    f"asset reference crosses replay package boundary "
+                    f"in {path_text(destination)}"
+                )
 
     for destination, (digest, expected_size) in asset_records.items():
         full_path = absolute(destination)
-        if full_path.is_symlink():
-            failures.append(f"symlink not allowed {path_text(destination)}")
-        elif not full_path.is_file():
+        if not full_path.is_file():
             continue
-        elif full_path.stat().st_size != expected_size:
+        if full_path.stat().st_size != expected_size:
             failures.append(f"size mismatch {path_text(destination)}")
         elif sha256_file(full_path) != digest:
             failures.append(f"digest mismatch {path_text(destination)}")
@@ -997,6 +1475,22 @@ def check_installed_promotion() -> dict[str, object]:
     if recorded_asset_bytes != actual_asset_bytes:
         failures.append("replay asset byte-count summary mismatch")
 
+    expected_internal_import_count = sum(
+        count
+        for kind, count in resolution_counts.items()
+        if kind.endswith("-internal")
+    )
+    if expected_internal_import_count != actual_internal_import_count:
+        failures.append("internal import resolution summary mismatch")
+    if resolution_counts.get("preexisting-external", 0) != sum(
+        actual_external_counts.values()
+    ):
+        failures.append("external import resolution summary mismatch")
+    if sum(resolution_counts.values()) != actual_import_count:
+        failures.append("total import resolution summary mismatch")
+    if external_counts != actual_external_counts:
+        failures.append("preexisting external import census mismatch")
+
     if failures:
         print("promotion check failed:", file=sys.stderr)
         for failure in failures[:20]:
@@ -1005,29 +1499,12 @@ def check_installed_promotion() -> dict[str, object]:
             print(f"  ... and {len(failures) - 20} more", file=sys.stderr)
         raise SystemExit(1)
 
-    resolution_counts = manifest.get("import_resolution_counts")
-    external_counts = manifest.get("preexisting_external_imports")
-    destination_split = manifest.get("destination_split")
-    if not isinstance(resolution_counts, dict):
-        raise PromotionError("manifest import_resolution_counts must be an object")
-    if not isinstance(external_counts, dict):
-        raise PromotionError("manifest preexisting_external_imports must be an object")
-    if not isinstance(destination_split, dict):
-        raise PromotionError("manifest destination_split must be an object")
     summary = {
         "promoted": len(lean_records),
-        "split": destination_split,
+        "split": dict(sorted(actual_destination_split.items())),
         "imports": actual_import_count,
-        "internal_rewrites": sum(
-            count
-            for kind, count in resolution_counts.items()
-            if isinstance(kind, str)
-            and kind.endswith("-internal")
-            and type(count) is int
-        ),
-        "preexisting_external": sum(
-            count for count in external_counts.values() if type(count) is int
-        ),
+        "internal_rewrites": actual_internal_import_count,
+        "preexisting_external": sum(actual_external_counts.values()),
         "assets": len(asset_records),
         "asset_bytes": actual_asset_bytes,
     }
@@ -1068,6 +1545,7 @@ def main() -> None:
             check_outputs(outputs, assets, manifest_bytes)
         else:
             write_outputs(outputs, assets, manifest_bytes)
+            check_outputs(outputs, assets, manifest_bytes)
     print(
         "promotion graph: "
         f"promoted={summary['promoted']} "

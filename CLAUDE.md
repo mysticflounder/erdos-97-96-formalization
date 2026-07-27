@@ -33,6 +33,9 @@ The sibling census has already identified:
   `2, 12, 40, 47, 88, 136, 169, 206`; and
 - `Problem97.U1LargeCapRouteBTailMetricResidualTarget.u1TwoLargeCapObstruction`.
 
+## Communication with parallel agents
+You can send messages to parallel agents via the erdos-97-96-formalization nthdegree convo. (`nthdegree convo`)
+
 ## Proof obligations and promotion
 
 Represent every active in-project proof obligation loudly in Lean. An active
