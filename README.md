@@ -60,7 +60,7 @@ convex `A` ([`unit_distance_pairs_bound`](lean/Erdos9796Proof/P96/EuclideanPeeli
 
 ## Proof status
 
-**Both published claims still reach `sorryAx` through five direct Front-A
+**Both published claims still reach `sorryAx` through six direct Front-A
 leaf theorems.** The hard core of the descent step —
 [`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom.lean#L546)
 (*every nonempty convex `HasNEquidistantProperty 4` set with `9 < |A|` that is
@@ -72,14 +72,15 @@ current direct source obligations are all in
 
 | Arm | Source surface | Symbols | Textual holes |
 |---|---|---:|---:|
-| Unique radius, exact four, card at least 12 | `false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve` | 1 | 1 |
+| Unique radius, exact four, card at least 12, robust surface | `false_of_exactFourPostCardElevenRobustSurface` | 1 | 1 |
+| Unique radius, exact four, card at least 12, swapped protected exact four | `false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome` | 1 | 1 |
 | Unique radius, exact five, distinct obstruction centers | `false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual` | 1 | 1 |
 | Unique radius, exact five, common obstruction center | `false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual` | 1 | 1 |
 | Tri-apex low-hit, equal blockers | `false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits` | 1 | 1 |
 | Tri-apex low-hit, distinct blockers | `false_of_retainedInteriorDirectedOmission_and_all_low_hits` | 1 | 1 |
-| **Total** | | **5** | **5** |
+| **Total** | | **6** | **6** |
 
-The source census reports exactly those five symbols. The checked parent
+The source census reports exactly those six symbols. The checked parent
 coordinators `false_of_originalFrontierUniqueRadiusArm` and
 `false_of_frontierAllLargeCapsTriApexRobustResidual` are source-clean and
 dispatch exhaustively to these leaves, with the exact-four card-11 branch
@@ -134,7 +135,17 @@ which restates it using **mathlib vocabulary alone** — no definition from this
 repository — and checks that the project's proof discharges that restatement.
 A reviewer can read [`comparator/Challenge.lean`](comparator/Challenge.lean),
 which imports only `Mathlib`, and see exactly what is being claimed without
-trusting anything here. Run `./comparator/check-conformance.sh` to verify.
+trusting anything here.
+
+The real [leanprover/comparator](https://github.com/leanprover/comparator) run
+**passes** (verified 2026-07-26): all 24 statements compared identical at the
+export level, axioms confined to the three core axioms, and the export replayed
+through **both** the `nanoda` kernel and the Lean default kernel — 41239
+declarations, no errors, `Your solution is okay!`.
+[`comparator/README.md`](comparator/README.md) documents the exact invocation,
+including a non-obvious `lean4export` version pin needed at Lean v4.27.0.
+`./comparator/check-conformance.sh` is the cheap offline pre-flight (build +
+axiom audit, no external toolchain).
 
 ### Erdős 97 — unconditional partial results
 
@@ -233,7 +244,7 @@ lock so concurrent invocations serialize:
 ./scripts/lake-build.sh
 ```
 
-A successful build prints `declaration uses 'sorry'` warnings for the five
+A successful build prints `declaration uses 'sorry'` warnings for the six
 leaf theorems in `P97/ATail/FrontierLiveClosure.lean` and nothing else of
 substance.
 (Lean's mathlib-style linters emit a handful of cosmetic
@@ -259,6 +270,7 @@ approved trust boundary.
 ## Repository layout
 
 ```
+lean-toolchain                -- root commands use leanprover/lean4:v4.27.0
 lean/
   Erdos9796.lean              -- root: re-exports upstream statements + the proofs
   Erdos9796Proof.lean         -- root: the two upstream-vocabulary bridge theorems
@@ -273,7 +285,7 @@ lean/
       RemovableVertexAxiom.lean -- removable-vertex assembly; A-tail leaves downstream
       U1LargeCapRouteBTail.lean -- imported U-lane route-B tail; source-clean coordinator
       ATail/
-        FrontierLiveClosure.lean -- five load-bearing production leaf obligations
+        FrontierLiveClosure.lean -- six load-bearing production leaf obligations
         CardElevenUniqueFourCertificateIngress.lean -- closed card-11 exact-four branch
       Foundation.lean           -- shared vocabulary + signed-area primitives
       Dumitrescu/               -- isosceles-counting lemma chain (L1 … Lc3)
@@ -295,7 +307,7 @@ lean/
   lakefile.toml               -- build config + dependency requires
                               --   (also wires the comparator/ libs below)
   lake-manifest.json          -- pinned dependency revisions
-  lean-toolchain              -- leanprover/lean4:v4.27.0
+  lean-toolchain              -- same Lean v4.27.0 pin for commands under lean/
 comparator/                   -- mathlib-only auditability gate (see its README)
   Challenge.lean              -- headline claims as sorry stubs, `import Mathlib`
   Solution.lean               -- same statements, discharged from the project

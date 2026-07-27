@@ -48,70 +48,113 @@ re-exports both modules through `lean4export`, checks statement identity and
 axiom compliance, then re-runs both the `nanoda` kernel and the Lean default
 kernel.
 
+**Status: passing** (verified 2026-07-26, Lean v4.27.0, macOS). Final output:
+
+```
+Checked 41239 declarations with no errors
+Running nanoda kernel on solution
+Nanoda kernel accepts the solution
+Running Lean default kernel on solution.
+Lean default kernel accepts the solution
+Your solution is okay!
+```
+
+Exit code 0, against this directory's `config.json` unmodified — that is, with
+`enable_nanoda: true`, so both independent kernels replayed the export.
+
 ### Running the real comparator at Lean v4.27.0
 
 This repository is pinned to `leanprover/lean4:v4.27.0` (see `lean-toolchain`),
 and the comparator must be built at the matching tag so its export path is
-compiled against the same Lean. Three things differ from the comparator's
-current documented flow, all because they were introduced *after* v4.27.0:
+compiled against the same Lean. Four things differ from the comparator's current
+documented flow. Three are simply features added after v4.27.0:
 
 * **`lake build lean4export` does not work at comparator tag `v4.27.0`.** The
   `[[require]] name = "lean4export"` entry was added at `v4.28.0`. Build
   [`leanprover/lean4export`](https://github.com/leanprover/lean4export) from its
-  own repository at its own `v4.27.0` tag instead.
+  own repository instead — see the version pin below, which is not obvious.
 * **The `COMPARATOR_LANDRUN` / `COMPARATOR_LEAN4EXPORT` / `COMPARATOR_NANODA`
   environment overrides do not exist at `v4.27.0`** (added at `v4.30.0`). At
   this tag the binary names are hardcoded `PATH` lookups, so setting those
-  variables silently does nothing. Put the binaries on `PATH` under their
-  literal names `landrun` and `lean4export`.
+  variables silently does nothing — the documented upstream invocation appears
+  to run but ignores them. Put the binaries on `PATH` under their literal names
+  `landrun`, `lean4export`, and `nanoda_bin`.
 * **`scripts/fake-landrun.sh` does not exist at `v4.27.0`** (the `scripts/`
   directory arrived at `v4.30.0`). That shim is upstream's no-sandbox stand-in
   for non-Linux development hosts; Linux uses the real `landrun` sandbox.
 
+The fourth is a genuine trap.
+
+#### The `lean4export` version pin
+
+**Do not use `lean4export` tag `v4.27.0`.** It does not work with comparator
+`v4.27.0`, and the reason is not ordinary version skew.
+
+Comparator `v4.27.0` reads a **bare dotted-numeric version line** and requires
+it to be exactly `2.0.0` (`Comparator/Parser.lean:501-513`: split on `.`,
+`String.toNat?` each part, require 3 parts, require `(2,0,0)`); the body it then
+parses is the old line format (`#AX`/`#DEF`/`#THM`/`#IND`/…). It is not
+JSON-aware. Today's `lean4export` `v4.27.0` tag emits an NDJSON header, so the
+run dies with:
+
+```
+uncaught exception: Version invalid: '{"meta":{"exporter":{"name":"lean4export",...
+```
+
+That tag is misleading: in `lean4export`, tags `v4.15.0` through `v4.29.1` were
+all **re-created on 2026-04-30** as backports of the NDJSON rewrite onto old
+version numbers (`git for-each-ref refs/tags` shows every one of them with
+commit date `2026-04-30`, subjects `chore: backport v4.27.0` and similar). The
+`v4.27.0` tag you fetch today is therefore a 2026-04-30 artifact emitting format
+`3.1.0`, not the exporter that existed when comparator `v4.27.0` was cut.
+
+Use the last pre-JSON commit instead: **`bd93e5e`** (2026-01-07), which has
+`def semver := "2.0.0"`. Its `lean-toolchain` reads `v4.27.0-rc1` — there is no
+pre-JSON commit carrying a v4.27.0-final toolchain, because the toolchain bump
+landed after the JSON merge — but overriding that file to `v4.27.0` compiles it
+cleanly, and the rc1→final delta does not touch anything it uses. This matters:
+the exporter reading this project's `.olean`s must be built with the same Lean
+that produced them.
+
 `enable_nanoda` is a required field at this tag — `Config` declares it with no
-default, so omitting it is a hard error rather than a skip.
+default, so omitting it is a hard error rather than a skip. The nanoda leg needs
+a binary literally named `nanoda_bin` on `PATH`; build
+[`ammkrn/nanoda_lib`](https://github.com/ammkrn/nanoda_lib) branch `debug` with
+`cargo build --release`. Set `enable_nanoda: false` to skip it — statement
+identity and axiom compliance are both checked *before* the nanoda leg, so
+skipping it loses only the second-kernel replay.
 
 ```bash
-TC="$(cut -d: -f2 lean-toolchain)"                      # v4.27.0
-git clone --branch "$TC" https://github.com/leanprover/comparator   /tmp/cmp
-git clone --branch "$TC" https://github.com/leanprover/lean4export  /tmp/l4e
+git clone --branch v4.27.0 https://github.com/leanprover/comparator /tmp/cmp
 ( cd /tmp/cmp && lake build )
-( cd /tmp/l4e && lake build )
+
+git clone https://github.com/leanprover/lean4export /tmp/l4e
+( cd /tmp/l4e && git checkout bd93e5e \
+    && echo leanprover/lean4:v4.27.0 > lean-toolchain && lake build )
+
+git clone --branch debug https://github.com/ammkrn/nanoda_lib /tmp/nanoda
+( cd /tmp/nanoda && cargo build --release )
 
 mkdir -p /tmp/shimbin
-ln -sf /tmp/l4e/.lake/build/bin/lean4export /tmp/shimbin/lean4export
-# plus a `landrun` shim on non-Linux hosts
+ln -sf /tmp/l4e/.lake/build/bin/lean4export      /tmp/shimbin/lean4export
+ln -sf /tmp/nanoda/target/release/nanoda_bin     /tmp/shimbin/nanoda_bin
+# on non-Linux, also drop a `landrun` shim in /tmp/shimbin (v4.30.0's
+# scripts/fake-landrun.sh, renamed); on Linux use the real landrun sandbox
 
 cd lean
 PATH=/tmp/shimbin:$PATH lake env /tmp/cmp/.lake/build/bin/comparator \
   ../comparator/config.json
 ```
 
-**Status of the real run: incomplete.** The v4.27.0 comparator builds, runs, and
-successfully exports all 24 `Headline` constants from `Solution`, then aborts on
-a format-version handshake with `lean4export` v4.27.0, which reports
-`{"exporter":{"version":"3.1.0"},"format":{"version":"3.1.0"}}`:
+### Statement identity, also verified directly
 
-```
-uncaught exception: Version invalid: '{"meta":{"exporter":{"name":"lean4export",...
-```
-
-{{NEEDS_RESEARCH}} which `lean4export` revision emits the format the v4.27.0
-comparator accepts, and whether that revision can be built against Lean v4.27.0
-at all. Until that is resolved, the guarantees below rest on
-`check-conformance.sh` plus the `pp.explicit` statement diff described next —
-**not** on a completed upstream comparator run. Do not describe the gate as
-having passed the comparator.
-
-### Statement identity, verified without the comparator
-
-Statement identity between `Challenge` and `Solution` is what the comparator
-would check. Pending that, it is checked directly: every gated theorem is
-elaborated from each module separately under `set_option pp.explicit true` and
-the two outputs are diffed. All 24 agree with **0 differences** (verified
-2026-07-26). This is weaker than the comparator's export-level comparison — it
-compares pretty-printed terms rather than exported expressions — and is stated
-here as exactly that.
+Statement identity between `Challenge` and `Solution` is checked by the
+comparator run above at the export level. It was independently cross-checked
+before that run succeeded: every gated theorem elaborated from each module
+separately under `set_option pp.explicit true`, and the two outputs diffed. All
+24 agree with **0 differences**. That check is weaker than the comparator's — it
+compares pretty-printed terms rather than exported expressions — and is kept
+only because it needs no external toolchain.
 
 ## What is in the gate
 
