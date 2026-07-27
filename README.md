@@ -195,6 +195,15 @@ globally — *proved* by Altman (Amer. Math. Monthly 70 (1963), 148–157); **#9
 some vertex has ≥ `⌊n/2⌋` distinct distances (pinned count) — open; **#97**, some
 vertex has no four others equidistant from it (pinned multiplicity) — open.
 
+Brass–Moser–Pach, *Research Problems in Discrete Geometry* (2005), §5.6, p. 218
+is the standard reference. It poses the problem in the pinned form ("*any circle
+around it passes through at most k other points*") and states the target as
+Conjecture 3 ("*no four other vertices at the same distance*") in the same
+paragraph, with no remark on the equivalence — which is the best evidence that
+it is treated as immediate rather than as a step worth recording. **Note their
+indexing:** BMP's `k` counts *other* points, so BMP's "`k = 2` refuted by Danzer,
+open at `k = 3`" is this repository's "`k = 3` refuted, `k = 4` open".
+
 The module docstring in
 [`PinnedMultiplicity.lean`](lean/Erdos9796Proof/P97/PinnedMultiplicity.lean)
 records why distinct-distance results do not transfer: they constrain the
@@ -212,9 +221,13 @@ pairs, not a bound at any vertex, so it yields no pinned lower bound at all.
 Both take `Problem97.UniversalProblem97Statement` as an explicit hypothesis, so
 the dependence is visible in the statement rather than hidden in the proof. The
 implication is **not new** — Pach and Agarwal state it with the constant in
-*Combinatorial Geometry* (1995), p. 206, without proof — but its formal proof
-is complete here, and it is what makes the whole P96 branch's openness enter
-through exactly one gateway.
+*Combinatorial Geometry* (1995), p. 206, without proof, and Erdős asserts it
+himself in *Eureka* 51 (1992), 44–48, p. 45: "I conjectured that in every convex
+n-gon there is a vertex which does not have four vertices equidistant from it.
+If true this is very much stronger than (4)", where (4) is `max sᵢ < cn`, the
+Erdős 96 bound. (He offers £100 there — the first prize attached to this
+conjecture.) What is complete here is the formal proof, and it is what makes the
+whole P96 branch's openness enter through exactly one gateway.
 
 ### The counting engine
 

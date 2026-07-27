@@ -49,6 +49,46 @@ repository's Problem 97 target:
 * **erdosproblems #97** — some vertex has no four others equidistant from it
   (pinned *multiplicity*).  Open; the target here.
 
+The standard problem-collection reference is Brass, Moser and Pach, "Research
+Problems in Discrete Geometry" (Springer, 2005), §5.6 "Repeated Distances in
+Point Sets in Convex Position", p. 218.  It poses the problem in the pinned form
+— "Does there exist a number `k` with the property that any set `S` of `n` points
+in convex position in the plane has an element such that any circle around it
+passes through at most `k` other points?" — and then states the target as
+"Conjecture 3 (Erdős [Er87])  Every convex `n`-gon in the plane has a vertex from
+which there are no four other vertices at the same distance."  The two forms sit
+in the same paragraph with no remark on their equivalence, which is the best
+evidence that it is regarded as immediate.  Its Conjecture 4 is #982 above.
+
+**Indexing warning.**  BMP counts *other* points on a circle, so its `k` is one
+less than the `n` of `Erdos97.HasNEquidistantProperty n`.  BMP's "Erdős
+originally made this conjecture for `k = 2` ... the conjecture is still open for
+`k = 3`" is this repository's `k = 3` refuted / `k = 4` open.  Same statements,
+different convention; μ(p, A) ≤ 3 here is BMP's `k = 3`.
+
+BMP also describes Danzer's refutation as *infinitely many* counterexamples,
+built from `l ≥ 3` concentric Reuleaux-type `(2m+1)`-gons inscribed in one
+another, and credits its publication to the 1987 survey.  Erdős reports it as
+unpublished everywhere else.  (The 9-point configuration in
+`Erdos97.erdos_97.variants.three_equidistant` has the parameters of the `l = 3`,
+`m = 1` member of that family; no source consulted states the identification, so
+treat it as unconfirmed.)
+
+A retraction worth knowing, since erdosproblems.com #97 records it as a
+presumption rather than a fact.  Erdős twice reported that Danzer had settled
+*every* `k` — Amer. Math. Monthly 77 (1970), p. 739, "Danzer showed that for
+each `k`, there is a convex `n`-gon with `n > n₀(k)` so that every vertex has at
+least `k` vertices which are equidistant from it", repeated in Ann. Mat. Pura
+Appl. 103 (1975), p. 100.  It is withdrawn in Erdős and Purdy, "Some extremal
+problems in geometry IV", Congressus Numerantium XVII (1976), 307–322, p. 307:
+"However, Danzer now says he only has the result for `k = 3`, hence the problem
+is still open for `k ≥ 4`."
+
+The problem is **not** in Croft, Falconer and Guy, "Unsolved Problems in
+Geometry" (Springer, 1991); neither is Erdős 96.  Chapter F uses the pinned
+circle count only as a proof device inside the `√n` argument of §F1, never as a
+posed problem.
+
 Terminology warning.  In the distance literature "pinned" conventionally modifies
 a *set*: the pinned distance set `D_p(A) = {dist p q : q ∈ A}` (e.g. the pinned
 Falconer problem).  That object discards multiplicity, and counting it is Erdős
@@ -85,6 +125,14 @@ Why this phrasing is the useful one:
   Altman's `⌊n/2⌋` theorem does **not** short-circuit this: it is a *global*
   count over all pairs (#93), not a bound at any single vertex, so it implies no
   pinned lower bound at all.  Nothing unconditional is known at a vertex.
+  Erdős makes the same point about the gap this file's `k = 4` opens up, in
+  Középiskolai Matematikai Lapok 61 (1980), 49–54, p. 53: the `k = 3` version
+  would have implied the `⌊n/2⌋` pinned bound, but "Danzer ellenpéldája itt már
+  nem működik, de még ha e sejtés igaz is lenne, az már nem következne, hogy van
+  olyan `Pᵢ`, melytől legalább [n/2] különböző távolság van" — Danzer's
+  counterexample no longer works here, but even if this conjecture were true it
+  would no longer follow that some `Pᵢ` has at least `⌊n/2⌋` distinct distances.
+  `(n-1)/3` is what survives the weakening.
 * Erdős 96 is the same family read the other way: it bounds how often one fixed
   distance can repeat across the whole set, where this bounds the per-point
   maximum multiplicity.  `Problem96.erdos96_rhs_of_erdos97` is the bridge.
