@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exact checker for the full two-shell local Euclidean witness."""
+"""Exact checker for the partial two-shell local Euclidean witness."""
 
 from itertools import combinations
 
@@ -72,7 +72,8 @@ def main() -> None:
     assert all((T[name] - separator).is_positive is True for name in CAP)
     assert all((separator - T[name]).is_positive is True for name in OUTSIDE)
 
-    # The two apex-radius collisions.
+    # The two apex-radius cap pairs.  These are deliberately only two-point
+    # classes in this partial witness, not the theorem's exact-four rows.
     exact_equal([dist2(P["O"], P[name]) for name in ("a", "b")])
     exact_equal([dist2(P["O"], P[name]) for name in ("u", "v")])
     assert dist2(P["O"], P["a"]) == Q(341, 16)
@@ -102,7 +103,7 @@ def main() -> None:
     for x, y, z in combinations(ORDER, 3):
         assert orient(P[x], P[y], P[z]).is_positive is True
 
-    print("PASS: exact algebraic full local Euclidean model")
+    print("PASS: exact algebraic partial two-shell Euclidean model")
     print(f"hull order: {' '.join(ORDER)}")
     print(f"strict cap x > -2/5: {' '.join(CAP)}")
     print(f"outside x < -2/5: {' '.join(OUTSIDE)}")

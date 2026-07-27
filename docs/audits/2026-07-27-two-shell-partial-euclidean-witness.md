@@ -1,4 +1,4 @@
-# Two-collision-row local Euclidean no-go
+# Two-shell partial Euclidean witness
 
 ## Scope
 
@@ -11,19 +11,22 @@ Problem97.ATailFrontierLiveClosure.
 
 in `Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean`.
 
-The leaf cannot be closed by a contradiction involving only:
+The current exact witness shows consistency of the following strict subset of
+the leaf's local data:
 
 - one first-apex cap;
-- two distinct exact-two first-apex radius rows;
+- two distinct two-point first-apex cap pairs;
 - the two corresponding distinct blocker centres;
 - both complete four-point blocker shells;
 - the four cross omissions; and
 - strict convexity and cyclic order.
 
-## Exact witness
+It does **not** realize the two full exact-four first-apex radius classes.
+
+## Exact partial witness
 
 The exact eleven-point parabola model in
-`scratch/full-local-euclidean-model/REPORT.md` realizes all of those local
+`scratch/two-shell-partial-euclidean-model/REPORT.md` realizes the listed
 features.  In the notation used there, the cap is
 
 ```text
@@ -42,16 +45,17 @@ the two first-apex equalities, the cap separation, and all supporting-edge
 determinants are checked exactly by:
 
 ```bash
-uv run python scratch/full-local-euclidean-model/check_model.py
+uv run python scratch/two-shell-partial-euclidean-model/check_model.py
 ```
 
 ## Consequence for the live proof
 
-The remaining proof must use a genuinely global field that the witness does
-not model: the counterexample distance restriction, deletion minimality,
-MEC/three-cap structure, or the tri-apex robustness/cover data.  In
-particular, trying to force a shared off-cap shell point from ordered-cap
-geometry alone is unsound: the witness has two disjoint off-cap shell pairs.
+The witness rules out a contradiction using only the two complete blocker
+shells: their off-cap pairs can be disjoint in a strictly convex
+configuration.  It does **not** yet rule out a local argument using the
+additional four off-cap points forced by the two exact-four first-apex
+classes.  That is the next local question to resolve before concluding that a
+global field is necessary.
 
-This is a route exclusion, not a proof of the live leaf and not a
+This is a partial route exclusion, not a proof of the live leaf and not a
 counterexample to its full Lean statement.

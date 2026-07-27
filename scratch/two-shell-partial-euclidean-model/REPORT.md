@@ -1,8 +1,9 @@
-# Full local two-shell Euclidean witness
+# Partial local two-shell Euclidean witness
 
-There is no local Euclidean obstruction, even after retaining both off-cap
-points from each critical shell.  The following exact algebraic configuration
-has all eleven named points in strict convex position.
+The following exact algebraic configuration retains both off-cap points from
+each critical shell and has all eleven named points in strict convex position.
+It is a useful partial witness, but it does **not** realize the two full
+four-point first-apex classes required by the live theorem.
 
 Put
 
@@ -67,6 +68,12 @@ Hence `e,f` are two distinct off-cap points on the circle centered at `c`
 through `a,b`, and `g,h` are two distinct off-cap points on the circle
 centered at `d` through `u,v`.
 
+The displayed carrier contains only `a,b` on the first `O`-circle and only
+`u,v` on the second `O`-circle.  In particular, it does not satisfy either
+exact-four first-apex hypothesis.  A full local witness would need four
+additional off-cap points: two on each of those `O`-circles, distinct from the
+blocker-shell points.
+
 Strict convex independence is also exact.  For \(r<s<t\),
 
 \[
@@ -89,9 +96,10 @@ identity, all 165 increasing-triple orientations, and all 99 nonincident
 supporting-edge determinants:
 
 ```bash
-uv run python scratch/full-local-euclidean-model/check_model.py
+uv run python scratch/two-shell-partial-euclidean-model/check_model.py
 ```
 
-This is only a local Euclidean/cyclic-order witness.  It does not assert the
-global production packet fields (MEC, global distance-class restrictions,
-deletion minimality, or any other nonlocal hypothesis).
+This witness therefore excludes only arguments using the two complete blocker
+shells themselves.  It does not exclude a local contradiction that also uses
+the two full exact-four first-apex rows, and it does not assert the global
+production packet fields.
