@@ -4,11 +4,11 @@ A Lean 4 formalization of the resolutions of two Erdős problems on convex
 point sets in the plane, checked against the canonical problem statements
 in [`formal-conjectures`](https://github.com/google-deepmind/formal-conjectures).
 
-The remaining direct production proof surface is **5 `sorry`-carrying symbols /
-5 textual holes**, all in the A-tail frontier below the route-B tail of the
+The remaining direct production proof surface is **6 `sorry`-carrying symbols /
+6 textual holes**, all in the A-tail frontier below the route-B tail of the
 removable-vertex core. The former two parent obligations are now source-clean
 checked coordinators: the unique-radius arm dispatches to the closed card-11
-exact-four certificate plus three open exact-four/exact-five leaves, and the
+exact-four certificate plus four open exact-four/exact-five leaves, and the
 all-large-caps tri-apex arm dispatches to two concrete low-hit leaves. The
 endpoint, pinned-surplus, and erased-pin
 Front-B branches are closed; the ERASE card-{10,11} classifier closure is
@@ -177,14 +177,30 @@ circle of positive radius centred at `p`. Then
 | [`Problem97.exists_pinnedMultiplicity_le_three_of_card_le_nine`](lean/Erdos9796Proof/P97/UniversalLocal.lean#L93) | its unconditional `\|A\| ≤ 9` instance |
 
 This is a **reformulation, not a proof**: the equivalence is kernel-clean, both
-sides remain open. It is Erdős's own framing of the problem (*On sets of
-distances of n points*, Amer. Math. Monthly 53 (1946), 248–250, §2) and the
-shape it takes in the distinct-distances literature. The module docstring in
+sides remain open.
+
+The framing is Erdős's own, not a modern restatement. *On sets of distances of n
+points*, Amer. Math. Monthly 53 (1946), 248–250, §2, p. 248 states the `k = 3`
+version — "In every convex polygon there is at least one vertex with the
+property that no three vertices of the polygon are equally distant from it" —
+and then immediately the multiplicity form itself: "A still stronger conjecture
+is that on every convex curve there exists a point `P` such that every circle
+with center `P` intersects the curve in at most 2 points." The `k = 4` version
+targeted here is Erdős, *Some combinatorial and metric problems in geometry*,
+Colloq. Math. Soc. J. Bolyai 48 (1987), **p. 176**, alongside Danzer's nonagon.
+
+Three neighbouring conjectures are easily conflated, and only the third is this
+target: **#93**, a convex `n`-gon determines ≥ `⌊n/2⌋` distinct distances
+globally — *proved* by Altman (Amer. Math. Monthly 70 (1963), 148–157); **#982**,
+some vertex has ≥ `⌊n/2⌋` distinct distances (pinned count) — open; **#97**, some
+vertex has no four others equidistant from it (pinned multiplicity) — open.
+
+The module docstring in
 [`PinnedMultiplicity.lean`](lean/Erdos9796Proof/P97/PinnedMultiplicity.lean)
-records why distinct-distance lower bounds do not transfer: they constrain the
-*average* multiplicity at `p`, whereas Erdős 97 bounds the *maximum*, and
-Altman's unconditional `⌊n/2⌋` for convex position is already stronger than the
-`(n−1)/3` consequence without yielding Erdős 97.
+records why distinct-distance results do not transfer: they constrain the
+*average* multiplicity at `p`, whereas Erdős 97 bounds the *maximum*. In
+particular Altman's `⌊n/2⌋` does **not** apply — it is a global count over all
+pairs, not a bound at any vertex, so it yields no pinned lower bound at all.
 
 ### Erdős 97 ⟹ Erdős 96, with explicit constant 3
 

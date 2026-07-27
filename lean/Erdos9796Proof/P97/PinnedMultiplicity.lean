@@ -8,19 +8,55 @@ existential radius at each point.  This file gives the equivalent *pinned
 multiplicity* phrasing.
 
 That phrasing is Erdős's own, and it is what he was actually after.  In "On sets
-of distances of n points", Amer. Math. Monthly 53 (1946), 248–250, §2:
+of distances of n points", Amer. Math. Monthly 53 (1946), 248–250, §2 "Some
+conjectures concerning f(n)", p. 248 (quoted verbatim from the page image at
+`users.renyi.hu/~p_erdos/1946-03.pdf`):
 
-> In every convex polygon there is at least one vertex with the property that no
-> three vertices of the polygon are equally distant from it.  If this is the
-> case, then clearly we would obtain [n/2] different distances by considering
-> all the distances from such a vertex.
+> The following conjecture is stronger: In every convex polygon there is at
+> least one vertex with the property that no three vertices of the polygon are
+> equally distant from it.  If this is the case, then clearly we would obtain
+> [n/2] different distances by considering all the distances from such a vertex.
+>
+> A still stronger conjecture is that on every convex curve there exists a point
+> P such that every circle with center P intersects the curve in at most 2
+> points.
 
-The `k = 3` form there was later disproved by Danzer; the `k = 4` conjecture is
-stated in Erdős, "Some combinatorial and metric problems in geometry", Intuitive
-Geometry (Siófok 1985), Colloq. Math. Soc. J. Bolyai 48 (1987), 167–177, p. 175,
-which is the problem this repository targets.  The pinned-multiplicity form is
-also the shape the problem takes in the distinct-distances literature
-(Dumitrescu, DCG 36 (2006); Nivasch–Pach–Pinchasi–Zerbib, JoCG 4 (2013)).
+The second paragraph is the pinned-multiplicity form written out: "every circle
+with center P intersects ... in at most 2 points" is exactly μ(P, ·) ≤ 2.  So
+this framing is not a modern restatement — it is in the source paper, in both of
+the shapes used below.
+
+The `k = 3` form was later disproved by Danzer; the `k = 4` conjecture this
+repository targets is in Erdős, "Some combinatorial and metric problems in
+geometry", Intuitive Geometry (Siófok 1985), Colloq. Math. Soc. J. Bolyai 48
+(1987), 167–177, **p. 176**: "Perhaps in every convex polygon there is a vertex
+which does not have four other vertices equidistant from it."  Danzer's nonagon
+is drawn on that same page.  (An earlier version of this docstring cited p. 175;
+that page carries a *different* conjecture — see the problem separation below.)
+
+Three nearby Erdős conjectures are easily conflated; only the third is this
+repository's Problem 97 target:
+
+* **erdosproblems #93** — a convex `n`-gon determines at least `⌊n/2⌋` distinct
+  distances *globally*.  Proved by Altman, "On a problem of P. Erdős", Amer.
+  Math. Monthly 70 (1963), 148–157.  Not a pinned statement: Altman's own
+  restatement of it (Canad. Math. Bull. 15 (1972), 329–340, p. 338, Theorem 3)
+  is a plain count of distinct distances between pairs of vertices.
+* **erdosproblems #982** — some *vertex* has at least `⌊n/2⌋` distinct distances
+  to the others (pinned *count*).  Open.  This is what Erdős 1987 p. 175 states,
+  and what he repeatedly flags as unsettled (1970 AMM 77 p. 739; 1975 Ann. Mat.
+  Pura Appl. 103 p. 100; 1987 p. 175).
+* **erdosproblems #97** — some vertex has no four others equidistant from it
+  (pinned *multiplicity*).  Open; the target here.
+
+Terminology warning.  In the distance literature "pinned" conventionally modifies
+a *set*: the pinned distance set `D_p(A) = {dist p q : q ∈ A}` (e.g. the pinned
+Falconer problem).  That object discards multiplicity, and counting it is Erdős
+96 territory — the adjacent problem in this repository.  `pinnedMultiplicity` is
+a statistic of the *multiset* of distances from `p`, which the standard pinned
+apparatus throws away.  The name is not attested in the literature; it is used
+here for want of a standard one, and a reader who knows "pinned distances"
+should not read it as `D_p(A)`.
 
 For `p ∈ A` put
 
@@ -41,12 +77,14 @@ Why this phrasing is the useful one:
 
 * μ(p, A) ≤ m forces at least `(|A| - 1) / m` *distinct* distances from `p`, so
   Erdős 97 implies that some vertex of a convex `n`-gon determines at least
-  `(n - 1) / 3` distinct distances — the pinned distinct-distances question.
+  `(n - 1) / 3` distinct distances — a weak form of the pinned-count conjecture
+  #982 above, which asks for `⌊n/2⌋` and is itself open.
   Note the implication runs only that way: distinct-distance lower bounds
   constrain the *average* multiplicity at `p`, whereas Erdős 97 is an upper
-  bound on the *maximum*, so they do not give it back.  Altman's unconditional
-  `⌊n/2⌋` distinct distances for convex position is already stronger than the
-  `(n-1)/3` consequence, and does not yield Erdős 97.
+  bound on the *maximum*, so they do not give it back.
+  Altman's `⌊n/2⌋` theorem does **not** short-circuit this: it is a *global*
+  count over all pairs (#93), not a bound at any single vertex, so it implies no
+  pinned lower bound at all.  Nothing unconditional is known at a vertex.
 * Erdős 96 is the same family read the other way: it bounds how often one fixed
   distance can repeat across the whole set, where this bounds the per-point
   maximum multiplicity.  `Problem96.erdos96_rhs_of_erdos97` is the bridge.
