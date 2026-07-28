@@ -1,0 +1,75 @@
+{
+  "ALL_GATES_PASS": true,
+  "G-BASE": {
+    "expected": "SAT",
+    "gate": "G-BASE",
+    "pass": true,
+    "verdict": "SAT",
+    "wall_seconds": 0.016
+  },
+  "G-EXCL-del-triple": {
+    "expected": "UNSAT",
+    "gate": "G-EXCL-analog (base+C1+del-triple, DEL3 gate)",
+    "pass": true,
+    "proof_verified": true,
+    "verdict": "UNSAT",
+    "wall_seconds": 0.044
+  },
+  "G-EXCL-srcU": {
+    "expected": "UNSAT",
+    "gate": "G-EXCL-analog (base+C1+srcU)",
+    "pass": true,
+    "proof_verified": true,
+    "verdict": "UNSAT",
+    "wall_seconds": 0.045
+  },
+  "G-PROBES": {
+    "gate": "G-PROBES",
+    "pass": true,
+    "probes": [
+      {
+        "expected": "UNSAT",
+        "pass": true,
+        "probe": "P-SRC",
+        "proof_verified": true,
+        "verdict": "UNSAT",
+        "wall_seconds": 0.045
+      },
+      {
+        "expected": "UNSAT",
+        "pass": true,
+        "probe": "P-COL",
+        "proof_verified": true,
+        "verdict": "UNSAT",
+        "wall_seconds": 0.046
+      },
+      {
+        "expected": "UNSAT",
+        "pass": true,
+        "probe": "P-E5C",
+        "proof_verified": true,
+        "verdict": "UNSAT",
+        "wall_seconds": 0.046
+      },
+      {
+        "expected": "UNSAT",
+        "pass": true,
+        "probe": "P-E8-src",
+        "proof_verified": true,
+        "verdict": "UNSAT",
+        "wall_seconds": 0.046
+      }
+    ]
+  },
+  "G-SAT": {
+    "derived_n_value": 14,
+    "expected": "SAT",
+    "gate": "G-SAT",
+    "model_file": "out/smoke/g_sat.model.json",
+    "n_assumptions": 113,
+    "pass": true,
+    "variant": "hand-built-total-assignment (spec section 7 default for C)",
+    "verdict": "SAT",
+    "wall_seconds": 0.016
+  }
+}

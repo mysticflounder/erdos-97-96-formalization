@@ -103,6 +103,12 @@ row_u — (C7.5)'s B₁ is coradial about c′(u), NOT about c′(source)),
 E8a (for row_u/row_v), E8b, E8c, S5 arms with s5b refuted [(C4.5)(ii) vs
 (C5.3) |Γ₂|=5], N1, N3–N7 (N-tags per C4/C0), EQ1–EQ4.
 
+NOT carried — (BM6) [ruling on implementer flag, 2026-07-28]: A's
+β(u)∈𝒯 clause encodes (P2), a 𝔓-packet fact of A's source doc; the C
+doc has no analogue (its blocker facts are `source_other_blockers_ne` →
+BM7-via-§2 and (C7.4) → BM8). Carrying it would be unsound, not merely
+aggressive. Deliberate omission, confirmed.
+
 Amended:
 - N2 → n ≥ 10 [(C3.3) 9<|A|; C has no n≥12].
 - (N8) n≥14: DROPPED — its A-derivation needs the F-chain exact-4 classes,
