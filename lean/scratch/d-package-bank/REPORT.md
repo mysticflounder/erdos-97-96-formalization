@@ -157,5 +157,9 @@ joint deletion preserves K4 at both apexes.
    deletion preserving K4 at both apexes, but A∖{z₁,z₂} is not shown to
    retain K4 at EVERY center; extending the two apex survivals to global
    survival is the remaining D1 gap.
+   UPDATE 2026-07-28: this route is refuted, not open — global survival
+   after any pair deletion forces a mutual-blocker pair
+   (`χ(z₁)=z₂ ∧ χ(z₂)=z₁`); see `D1SURVIVAL-REPORT.md` /
+   `D1GlobalSurvival.lean` (30 kernel-clean theorems incl. the census).
 
 No leaf `sorry` was touched.
