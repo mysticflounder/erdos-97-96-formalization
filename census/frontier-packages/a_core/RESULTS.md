@@ -1,5 +1,15 @@
 # A-core Layer-1 incidence encoder — results
 
+**v1.2 update (CEGAR iteration 2, spec section 9): see new §6 below** for
+the full write-up. Summary: all thirteen new clause families ((E8a)-(E8d),
+(E5a)/(E5b), (DEL3), (N8), (FB), (CD4), (CD5), (R1'), and the A1-extension
+gamma cap atoms) are implemented; all 8 verdict runs remain SAT; all four
+new §9.1 probes (P-DEL3, P-E8, P-FB, P-CD5) are UNSAT with verified DRAT;
+G-BASE/G-EXCL/G-SAT still pass (G-SAT's hand-built witness updated for
+n=14 and the new atoms). No spec gap was found in this iteration — every
+§9/§9.1 clause maps directly onto the existing atom set with no missing or
+unimplementable constraint.
+
 **v1.1 update**: the coordinator amended the spec after reviewing this
 report — the dangling `(RB2)` tag is now an explicit "row_u(a1)
 unconstrained" note (matches what was already implemented, no code change),
@@ -15,7 +25,8 @@ pairs that themselves carry a real eq atom). All numbers below are from the
 **post-(EQ4) build**; §5 records the before/after delta and the regression
 check.
 
-Implements `census/frontier-packages/A-CORE-ENCODING-SPEC.md` (v1.1). Code:
+Implements `census/frontier-packages/A-CORE-ENCODING-SPEC.md` (v1.2, section
+9 / CEGAR iteration 2 — see §6). Code:
 `census/frontier-packages/a_core/{encoding.py,run.py,smoke.py}`. All commands
 run from the repo root via `uv run python census/frontier-packages/a_core/...`
 (the `a_core` directory has no hyphen, but its parent `frontier-packages`
@@ -328,7 +339,205 @@ built around a shared `a0` hub), matching the pre-v1.1 report's own
 "0 genuine 2-of-3 violations across all 8 organically-found witnesses"
 finding.
 
-## 6. Implementation notes (not ambiguities — decisions with no live spec
+## 6. CEGAR iteration 2 (v1.2, spec section 9)
+
+Implements every clause family in spec §9 (promoted from the §7 backlog:
+(E8) bisector localization, (E5) radius uniqueness at a₁, (G4)/(G5)
+deletion-cardinality content, F-chain/S1 counting content, B-set radii) and
+the §9.1 gates/probes. Code: `encoding.py` (new methods `_build_e8a`,
+`_build_e8b`, `_build_e8c`, `_build_cd4`, `_build_cd5`, `_build_r1_prime`,
+`_build_fb`, `build_del3_clauses`, and the gamma-cap/`(E8d)`/`(E5a)`/`(E5b)`
+block inside `build_a1_extension`); `run.py` (threads `(DEL3)` through with
+the same 𝔓-only placement mechanics as `(DEL2)`); `smoke.py` (updated
+G-SAT witness, new `G-PROBES` gate, new `check_del3_presence`).
+
+Placement, exactly as spec §9.1's closing note states: `(DEL3)` is 𝔓-only
+(`base+P` and every `base+P+A<k>` leaf; **not** `base`, **not** `base+A1`);
+the gamma cap atoms, `(E8d)`, and `(E5a)`/`(E5b)` are `base+A1`-only
+(they need the gamma atoms, which only exist in the A1 extension);
+everything else — `(E8a)`, `(E8b)`, `(E8c)`, `(N8)`, `(FB)`, `(CD4)`,
+`(CD5)`, `(R1')` — is base-scope (present in all 8 runs).
+
+### 6.1 Per-family clause/variable counts
+
+Measured by instrumenting the build sequence (`_build()` calls each family's
+method in isolation and the clause/variable counts are read off before and
+after each call).
+
+| Family | Scope | New vars | New clauses |
+|---|---|---:|---:|
+| (N8) `n>=14` | base | 0 | 14 |
+| (E8a) rows×bisector | base | 0 | 24 |
+| (E8b) CD B2 sets | base | 0 | 2 |
+| (E8c) CD B1 sets | base | 0 | 24 |
+| (CD4) center exclusion | base | 0 | 22 |
+| (CD5) B-set radius selectors | base | 4 (`rbs1,rbs2,rbt1,rbt2`) | 98 |
+| (R1') row_u at-most-4 (2nd set) | base | 20 (Sinz aux, 5 items/bound 4) | 37 |
+| (FB) frontier-pair selector | base | 12 (4 `fbar_p` + 8 Sinz aux) | 31 |
+| **base subtotal (v1.1 → v1.2)** | | **36** | **252** |
+| (DEL3) 𝔓-only at-most-2 | 𝔓-only (stashed) | 10 (Sinz aux, 5 items/bound 2) | 21 |
+| gamma cap atoms (A1 ext) | base+A1-only | 4 (`moser_g,inSig_g,inO1i_g,inO2i_g`) | 34 |
+| (E8d) A1 MC classes | base+A1-only | 0 | 5 |
+| (E5a)/(E5b) A1 radius uniqueness | base+A1-only | 0 | 85 |
+| **A1-extension subtotal (v1.1 → v1.2)** | | **4** | **124** |
+
+`(FB)`'s exactly-2 constraint is encoded in the same style as `(DEL2)`
+(at-least-one + a per-element "not a singleton" implication, rather than a
+raw `C(4,3)` subset-cover clause set) plus a genuine Sinz at-most-2 call —
+both are sound, logically equivalent encodings of "exactly 2 of 4"; this is
+an encoding-style choice, not a content deviation from spec, matching the
+file's existing convention (`(DEL2)` already uses this pattern).
+
+### 6.2 Encoder size, before/after
+
+| | v1.1 | v1.2 | Δ |
+|---|---:|---:|---:|
+| `base` vars | 835 | 871 | +36 |
+| `base` clauses | 18858 | 19110 | +252 |
+| `base+A1` vars | 1012 | 1062 | +50 (=36 base + 4 gamma-cap +10 orphaned (DEL3) IDs, see note below) |
+| `base+A1` clauses | 19204 | 19580 | +376 (=252 base + 124 A1-ext) |
+
+**`(DEL3)` variable-ID accounting note.** `(DEL3)` must be built strictly
+*after* `base`'s own run is recorded (so `base`'s reported var count
+excludes its Sinz counter variables) and *before* `base+P`/the leaf runs
+(which need its clauses) — see `build_del3_clauses`'s docstring. Because
+`base+A1` is architecturally required to run last (`build_a1_extension`
+mutates `encoder.cnf` past the frozen `base_clauses` snapshot and must be
+the only thing that ever does so), `(DEL3)`'s 10 Sinz auxiliary variables
+end up allocated *before* the A1-extension's own variables, so `base+A1`'s
+*declared* variable count (1062) is 10 higher than the variables its own
+clause set actually references (1052) — those 10 IDs are declared-but-unused
+in `base+A1`'s DIMACS header, which CaDiCaL accepts without issue. This is
+a bookkeeping artifact of the shared global variable counter, not a
+soundness or clause-family-placement issue: `check_del3_presence` (below)
+directly confirms `(DEL3)`'s *clauses* are absent from both `base_clauses`
+and the A1-extension's clause set by exact set-membership check.
+
+### 6.3 Verdict runs (spec §5, rerun with v1.2)
+
+Command: `uv run python census/frontier-packages/a_core/run.py`.
+
+| Run | Verdict | Vars | Clauses | Wall |
+|---|---|---:|---:|---:|
+| base | SAT | 871 | 19110 | 0.016s |
+| base+P | SAT | 881 | 19136 | 0.016s |
+| base+P+A2 | SAT | 881 | 19137 | 0.016s |
+| base+P+A3 | SAT | 881 | 19139 | 0.016s |
+| base+P+A6 | SAT | 881 | 19143 | 0.016s |
+| base+P+A7 | SAT | 881 | 19140 | 0.016s |
+| base+P+A8 | SAT | 881 | 19139 | 0.016s |
+| base+A1 | SAT | 1062 | 19580 | 0.016s |
+
+**No verdict flipped** — all 8 runs remain SAT (same as v1.1). Per the
+scope label in §0 above, SAT is an incidence-layer non-contradiction
+statement only, never a geometric closure result.
+
+### 6.4 Smoke gates + probes (spec §9.1)
+
+Command: `uv run python census/frontier-packages/a_core/smoke.py`.
+`ALL_GATES_PASS = True`.
+
+| Gate | Verdict | Expected | Pass |
+|---|---|---|---|
+| G-BASE | SAT | SAT | yes |
+| G-EXCL (10/10 pairs) | UNSAT | UNSAT | yes |
+| G-SAT (downgrade variant, updated witness) | SAT | SAT | yes |
+| G-PROBES (4/4) | UNSAT | UNSAT | yes |
+
+| Probe | Verdict | DRAT verified |
+|---|---|---|
+| P-DEL3 (`base+P` + `del(zd)∧del(u)∧del(xu)`) | UNSAT | yes |
+| P-E8 (`base` + `row_u(qh)∧row_u(wh)∧b(u,a0)`) | UNSAT | yes |
+| P-FB (`base` + `eq(f1,zd)∧¬fbar_qh∧¬fbar_wh`) | UNSAT | yes |
+| P-CD5 (`base` + `rbs2∧bs2(qh)∧¬eq(qh,zd)∧¬eq(qh,xu)∧¬eq(qh,v)∧¬eq(qh,xv)`) | UNSAT | yes |
+
+`(DEL2)`/`(DEL3)` presence checks (`check_del2_presence`,
+`check_del3_presence`, direct clause-set membership, not inference):
+`(DEL2)` present in `base+P` and every leaf, absent from `base+A1`;
+`(DEL3)` (21 clauses) present in `base+P`/every leaf's extra set, absent
+from `base_clauses` and from the A1-extension's clause set — all `True`.
+Pre-change SAT-refutability of the probes (the optional §9.1 note) was not
+separately checked (none of the four probe assumption sets existed as
+named atoms before v1.2, so "was it SAT at v1.1" is vacuous for three of
+the four; P-E8's antecedent atoms did exist at v1.1 but nothing in v1.1
+forbade `row_u(qh)∧row_u(wh)∧b(u,a0)` together, so it would have been SAT
+then — not independently re-verified, since v1.1's CNF is no longer live
+in the encoder).
+
+### 6.5 G-SAT witness update
+
+Full rationale is in `smoke.py::hand_built_assumptions`'s docstring;
+summary:
+
+- **n: 13 → 14.** `nO2` bumped from 5 to 6 (`nSig=3, nO1=2, nO2=6`); `n`
+  is still left for the solver to *derive* via (N1) rather than asserted
+  directly (the same "extra wiring check" as v1.1). Solved value:
+  `n=14`, confirming (N1) + (N8) both wired correctly.
+- **`(FB)` pair: {qh, wh}.** `inSig(qh)=inSig(wh)=F` and
+  `inT(qh)=inT(wh)=F` are already *forced* in this witness (via CAP1 +
+  the `inO1i(qh)=inO1i(wh)=T` units, and via T1 exactness with all eq
+  atoms false), so both of `(FB)`'s universal implications hold by
+  construction. `{f1,f2}` was NOT usable: the witness's own
+  `inSig(f1)=inSig(f2)=T` assumption (kept from v1.1, needed for (N5))
+  directly contradicts `fbar_p → ¬inSig(p)` for `p∈{f1,f2}`.
+- **`(CD5)` selectors: all four False** (`rbs1=rbs2=rbt1=rbt2=F`), the
+  generic/no-radius-coincidence choice, checked by hand against every
+  other atom already fixed in the witness (no contradiction — see the
+  docstring for the exact forced-consequence trace).
+- **`(E8c)` explicit pin: `bs1(qh)=bs1(wh)=bt1(qh)=bt1(wh)=F`.** Not
+  strictly required (the solver would find this on its own — these atoms
+  were previously "immaterial"), but pinned explicitly because setting
+  both True together is now actually *infeasible* under this witness
+  (`bs1(qh)∧bs1(wh)` with `b(u,xv)=T` would force
+  `inO1i(xv)∨eq(xv,a1)`, both already forced False) — pinning keeps the
+  witness a fully auditable total assignment rather than relying on the
+  solver to avoid a corner it was never going to reach.
+- `n_assumptions` grew from 76 (v1.1) to 88 (+12: 4 `fbar`, 4 `rb*`, 4
+  `bs1/bt1(qh,wh)` pins).
+
+### 6.6 Decoded-model shape changes on SAT runs
+
+The single largest visible effect of v1.2 on the organically-found
+witnesses: **`(DEL3)` now pins `|Δ|=2` exactly in every 𝔓 run.** In v1.1,
+`base+P` and every `base+P+A<k>` leaf had CaDiCaL land on `Δ={zd,u,xu,v,xv}`
+(all five) — nothing forced a smaller set. With `(DEL3)`'s at-most-2
+combined with `(DEL2)`'s at-least-two, every 𝔓-scope run's decoded model
+now shows exactly two deletion atoms true: `base+P` and all five leaves
+(`base+P+A2/A3/A6/A7/A8`) all land on the identical `Δ={u,zd}`. `base` (no
+𝔓 context) still shows all five, and `base+A1` (no `(DEL2)`/`(DEL3)`) still
+shows the legal single-element `Δ={zd}` — both unchanged in shape from
+v1.1.
+
+Every SAT run's `fbar` pair came back `{qh,wh}` (CaDiCaL's default variable
+order favors the earliest-declared literal; `{f1,f2}` remains reachable
+under different assumptions/branching but was never what the solver found
+here). `rbs1,rbs2,rbt1,rbt2` are unconstrained free variables in every run
+(nothing forces any of them true or false); `base`, `base+P`, `base+P+A2`,
+and `base+A1` all landed on all-four-True, while `base+P+A3` landed on
+`{rbs1,rbt2}` True (`rbs2,rbt1` False) and `base+P+A6/A7/A8` landed on
+`{rbs1,rbs2,rbt2}` True (`rbt1` False) — exactly the same "artifact of
+CaDiCaL's search order, not a semantic fact" caveat already documented for
+`row_u`/`row_v` in §2 above; no leaf delta actually forces any rb* value.
+
+`base+A1`'s witness: `γ` coincides with `qh` (`eq(gamma,qh)=T`, same as
+v1.1's decoded fact), and the new gamma cap atom `inO1i(gamma)=T` is
+decoded consistently via congruence with `inO1i(qh)=T` — `inSig(gamma)`
+and `inO2i(gamma)` both come back False, matching CAP1's exactly-one.
+`Δ={zd}` unchanged.
+
+### 6.7 Spec gaps
+
+None found in this iteration. Every clause in spec §9/§9.1 mapped directly
+onto the existing 13-label/CD-domain atom set with no missing constraint
+and no unimplementable clause; all four §9.1 probes independently confirm
+`(E8a)`, `(DEL3)`, `(FB)`, and `(CD5)` each do real deductive work (UNSAT
+under a targeted assumption set that only that family's clauses forbid).
+The only implementation-level judgment calls made (DEL3's post-init build
+timing, FB's DEL2-style at-least-2 encoding, the G-SAT witness's explicit
+`(E8c)` pin) are documented above and in code comments; none required
+deviating from or extending the spec's clause content.
+
+## 7. Implementation notes (not ambiguities — decisions with no live spec
 choice)
 
 - **Integer layer encoding**: implemented as a direct/"unary" one-hot value

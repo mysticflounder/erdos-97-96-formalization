@@ -138,8 +138,19 @@ class ACoreEncoder:
         self.s6b = 0
         self.s6c = 0
         self.int_val: dict[str, dict[int, int]] = {}
+        # v1.2 (CEGAR iteration 2, spec section 9) additions.
+        self.fbar: dict[str, int] = {}
+        self.rbs1 = 0
+        self.rbs2 = 0
+        self.rbt1 = 0
+        self.rbt2 = 0
 
         self.del2_clauses: list[tuple[int, ...]] = []
+        # (DEL3) is built on demand (NOT during __init__/_build()) because,
+        # unlike (DEL2), its Sinz at-most-2 encoding allocates new counter
+        # variables -- see build_del3_clauses() docstring for why it must be
+        # a separate post-init call instead of living inside _build_del().
+        self.del3_clauses: list[tuple[int, ...]] = []
         self.a1_names: dict[str, Any] = {}
 
         self._build()
@@ -191,6 +202,16 @@ class ACoreEncoder:
         self._build_s5()
         self._build_integers()
         self._build_eq_consistency()
+        # v1.2 (CEGAR iteration 2, spec section 9) base-scope additions.
+        # (DEL3) is NOT here -- it is 𝔓-only and built on demand via
+        # build_del3_clauses(), see that method's docstring.
+        self._build_e8a()
+        self._build_e8b()
+        self._build_e8c()
+        self._build_cd4()
+        self._build_cd5()
+        self._build_r1_prime()
+        self._build_fb()
 
     # -- eq atoms ---------------------------------------------------------
 
@@ -510,6 +531,11 @@ class ACoreEncoder:
                         self.add(-sig[i], -o1[j], -o2[k], n[total])
         # (N2) n >= 12 (B1)
         self._int_ge("n", 12)
+        # (N8) F-chain count [F + (B9) + (B3), v1.2]: three pairwise-disjoint
+        # positive-radius classes about a2 of sizes 5+4+4 -> n >= 14.
+        # Strictly stronger than (N2); kept alongside it (both are genuine
+        # spec-tagged families, not a replacement).
+        self._int_ge("n", 14)
         # (N3) nO1 >= 2 [(S3)]
         self._int_ge("nO1", 2)
         # (N4) nO2 >= 3 [(S4)]
@@ -614,6 +640,142 @@ class ACoreEncoder:
         self.add(-e_bc, -e_ac, e_ab)
         self.add(-e_ac, -e_ab, e_bc)
 
+    # ===========================================================================
+    # v1.2 (CEGAR iteration 2, spec section 9): base-scope refinement families.
+    # ===========================================================================
+
+    # -- (E8a) rows x bisector [E8 + row coradiality] --------------------------
+    def _build_e8a(self) -> None:
+        # For x in {u,v}, y != a1: row_x(qh) & row_x(wh) & b(x,y) ->
+        # inO1i(y) v eq(y,a1) (escape only where eq(y,a1) exists: y in
+        # {zd,xu,xv,v}); no clause for y=a1 or y=OUT.
+        for x in ("u", "v"):
+            row = self.row_u if x == "u" else self.row_v
+            rq, rw = row["qh"], row["wh"]
+            for y in LABELS:
+                if y == "a1":
+                    continue
+                clause = [-rq, -rw, -self.b[(x, y)], self.inO1i[y]]
+                eqy_a1 = self._eq_var(y, "a1")
+                if eqy_a1 is not None:
+                    clause.append(eqy_a1)
+                self.add(*clause)
+
+    # -- (E8b) CD B2 sets [E8 + (J5)/(J6) + CAP2] -------------------------------
+    def _build_e8b(self) -> None:
+        # a2 != a1, a2 !in O1i (Moser vertex): qh,wh cannot both lie in a B2.
+        self.add(-self.bs2["qh"], -self.bs2["wh"])
+        self.add(-self.bt2["qh"], -self.bt2["wh"])
+
+    # -- (E8c) CD B1 sets [E8 + (J5)/(J6)] --------------------------------------
+    def _build_e8c(self) -> None:
+        # Same schema as (E8a), triggered by bs1(qh)&bs1(wh) with b(u,y),
+        # and bt1(qh)&bt1(wh) with b(v,y).
+        bs1qh, bs1wh = self.bs1["qh"], self.bs1["wh"]
+        bt1qh, bt1wh = self.bt1["qh"], self.bt1["wh"]
+        for y in LABELS:
+            if y == "a1":
+                continue
+            eqy_a1 = self._eq_var(y, "a1")
+            clause_u = [-bs1qh, -bs1wh, -self.b[("u", y)], self.inO1i[y]]
+            clause_v = [-bt1qh, -bt1wh, -self.b[("v", y)], self.inO1i[y]]
+            if eqy_a1 is not None:
+                clause_u.append(eqy_a1)
+                clause_v.append(eqy_a1)
+            self.add(*clause_u)
+            self.add(*clause_v)
+
+    # -- (CD4) center exclusion [CD definition: B_i subset A\{z,c_i}] ----------
+    def _build_cd4(self) -> None:
+        for y in self.CD_DOMAIN:
+            self.add(-self.b[("u", y)], -self.bs1[y])
+            self.add(-self.b[("v", y)], -self.bt1[y])
+        # a2-centered sets: only f1,f2 carry an eq(.,a2) atom in the CD
+        # domain.
+        for p in ("f1", "f2"):
+            eq_a2 = self._eq_var(p, "a2")
+            self.add(-self.bs2[p], -eq_a2)
+            self.add(-self.bt2[p], -eq_a2)
+
+    # -- (CD5) B-set radius selectors [CD definition + row/T exactness] --------
+    def _build_cd5(self) -> None:
+        self.rbs1 = self._new("rbs1")
+        self.rbs2 = self._new("rbs2")
+        self.rbt1 = self._new("rbt1")
+        self.rbt2 = self._new("rbt2")
+        for p in self.CD_DOMAIN:
+            # rbs1 -> (bs1(p) <-> row_u(p)); ~rbs1 -> ~(bs1(p) & row_u(p)).
+            self.add(-self.rbs1, -self.bs1[p], self.row_u[p])
+            self.add(-self.rbs1, self.bs1[p], -self.row_u[p])
+            self.add(self.rbs1, -self.bs1[p], -self.row_u[p])
+            # rbt1 -> (bt1(p) <-> row_v(p)); ~rbt1 -> ~(bt1(p) & row_v(p)).
+            self.add(-self.rbt1, -self.bt1[p], self.row_v[p])
+            self.add(-self.rbt1, self.bt1[p], -self.row_v[p])
+            self.add(self.rbt1, -self.bt1[p], -self.row_v[p])
+            # rbs2 -> (bs2(p) -> inT(p)); ~rbs2 -> (bs2(p) -> ~inT(p)).
+            self.add(-self.rbs2, -self.bs2[p], self.inT[p])
+            self.add(self.rbs2, -self.bs2[p], -self.inT[p])
+            # rbt2 likewise for bt2.
+            self.add(-self.rbt2, -self.bt2[p], self.inT[p])
+            self.add(self.rbt2, -self.bt2[p], -self.inT[p])
+        # rbs2 -> bs2(u) & bs2(xu) & bs2(v) & bs2(xv); rbt2 likewise for bt2.
+        for p in ("u", "xu", "v", "xv"):
+            self.add(-self.rbs2, self.bs2[p])
+            self.add(-self.rbt2, self.bt2[p])
+
+    # -- (R1') row_u at-most-4 over a second distinct set [row exactness] ------
+    def _build_r1_prime(self) -> None:
+        self.cnf.at_most_sinz(
+            [
+                self.row_u["u"], self.row_u["qh"], self.row_u["wh"],
+                self.row_u["f1"], self.row_u["f2"],
+            ],
+            4,
+        )
+
+    # -- (FB) frontier-pair selector [F + (E4)] ---------------------------------
+    def _build_fb(self) -> None:
+        for p in FRONTIER_GROUP:
+            self.fbar[p] = self._new(f"fbar({p})")
+        fvars = [self.fbar[p] for p in FRONTIER_GROUP]
+        # exactly-2: at-least-2 (DEL2-style: at-least-one + "not a
+        # singleton" per element) + Sinz at-most-2.
+        self.add(*fvars)
+        for p in FRONTIER_GROUP:
+            others = [self.fbar[q] for q in FRONTIER_GROUP if q != p]
+            self.add(-self.fbar[p], *others)
+        self.cnf.at_most_sinz(fvars, 2)
+        for p in FRONTIER_GROUP:
+            fp = self.fbar[p]
+            self.add(-fp, -self.inSig[p])  # q-bar !in Sigma
+            self.add(-fp, -self.inT[p])  # q-bar's a2-class has size 4 != 5
+        for p in ("f1", "f2"):
+            eq_a2 = self._eq_var(p, "a2")
+            self.add(-self.fbar[p], -eq_a2)  # d(a2,q-bar) > 0
+
+    # -- (DEL3) 𝔓-only deletion cap [(G3)+(G4)+(G5)+(B9)+(P1)] ------------------
+
+    def build_del3_clauses(self) -> list[tuple[int, ...]]:
+        """At-most-2 (Sinz) over the five del atoms.  Unlike (DEL2) (a pure
+        clause list over already-existing variables, safe to precompute
+        during __init__), this literal Sinz encoding allocates new counter
+        variables -- so it CANNOT be built inside _build() without leaking
+        into self.base_clauses / inflating every run's declared variable
+        count, including the base and base+A1 runs that must NOT carry
+        (DEL3). Call this exactly once, after 'base' has already been run
+        (so 'base's reported n_variables excludes these aux vars) and
+        before 'base+P'/leaf runs are built (which need the returned
+        clauses in their extra_clauses list); never call it before
+        build_a1_extension() consumes 'base+A1' or that run's clause set
+        would (still correctly) omit (DEL3) but the call-ordering
+        contract would be violated. Idempotency is the caller's
+        responsibility -- call once per encoder instance."""
+        before = len(self.cnf.clauses)
+        self.cnf.at_most_sinz([self.del_[p] for p in self.DEL_DOMAIN], 2)
+        clauses = list(self.cnf.clauses[before:])
+        self.del3_clauses = clauses
+        return clauses
+
     # -- section 4: leaf deltas -----------------------------------------------
 
     def _ge_clauses(self, name: str, threshold: int) -> list[tuple[int, ...]]:
@@ -695,6 +857,42 @@ class ACoreEncoder:
             if e_t1t2 is not None:
                 self._add_eq4_triangle(gamma_eq[t1], e_t1t2, gamma_eq[t2])
 
+        # (A1 ext v1.2) gamma cap atoms: inSig_g, inO1i_g, inO2i_g, moser_g.
+        # No inT_g atom (gamma !in T is (G2), definitional); gamma is NOT
+        # linked into the integer layer (sound omission per spec).
+        moser_g = self._new("moser(gamma)")
+        insig_g = self._new("inSig(gamma)")
+        ino1i_g = self._new("inO1i(gamma)")
+        ino2i_g = self._new("inO2i(gamma)")
+        eq_g_a0 = gamma_eq["a0"]
+        eq_g_a1 = gamma_eq["a1"]
+        # moser_g <-> eq(gamma,a0) v eq(gamma,a1)
+        self.add(-moser_g, eq_g_a0, eq_g_a1)
+        self.add(-eq_g_a0, moser_g)
+        self.add(-eq_g_a1, moser_g)
+        # ~moser_g -> exactly-one(inSig_g,inO1i_g,inO2i_g)  [CAP1 pattern]
+        self.add(moser_g, insig_g, ino1i_g, ino2i_g)
+        self.add(moser_g, -insig_g, -ino1i_g)
+        self.add(moser_g, -insig_g, -ino2i_g)
+        self.add(moser_g, -ino1i_g, -ino2i_g)
+        # moser_g -> none of them  [CAP2 pattern]
+        self.add(-moser_g, -insig_g)
+        self.add(-moser_g, -ino1i_g)
+        self.add(-moser_g, -ino2i_g)
+        # congruence: eq(gamma,t) -> (Phi_g <-> Phi(t)) for t in
+        # {qh,wh,f1,f2}, Phi in {inSig,inO1i,inO2i}.
+        for t in ("qh", "wh", "f1", "f2"):
+            egt = gamma_eq[t]
+            for phi_g, phi in (
+                (insig_g, self.inSig), (ino1i_g, self.inO1i), (ino2i_g, self.inO2i),
+            ):
+                pt = phi[t]
+                self.add(-egt, -phi_g, pt)
+                self.add(-egt, phi_g, -pt)
+        self.a1_names["gamma_cap"] = {
+            "moser": moser_g, "inSig": insig_g, "inO1i": ino1i_g, "inO2i": ino2i_g,
+        }
+
         w_families: dict[str, dict[str, int]] = {}
         for s in SHELL_GROUP:
             table = {p: self._new(f"w_{s}({p})") for p in LABELS}
@@ -718,6 +916,25 @@ class ACoreEncoder:
         # gamma not in W_s [t_s>0]: skipped -- gamma is not one of the 13
         # labels w_s ranges over, so gamma not-in W_s holds by label
         # absence with no clause needed (per spec: "skip via label absence").
+
+        # (E8d) A1 MC classes [E8 + (A1.b)]: del(s) & w_s(qh) & w_s(wh) ->
+        # inO1i_g v eq(gamma,a1).
+        for s in SHELL_GROUP:
+            ws = w_families[s]
+            self.add(-self.del_[s], -ws["qh"], -ws["wh"], ino1i_g, eq_g_a1)
+
+        # (E5a/E5b) A1 radius uniqueness [E5 + (E4) + (A1.b)]: under
+        # eq(gamma,a1), each W_s = Cl(gamma,d(gamma,s)) is forced to equal
+        # Cl(a1,r) = {qh,wh,f1,f2} exactly.
+        for s in SHELL_GROUP:
+            ws = w_families[s]
+            # (E5a) eq(gamma,a1) & del(s) & w_s(p) -> cl1(p), every label p.
+            for p in LABELS:
+                self.add(-eq_g_a1, -self.del_[s], -ws[p], self.cl1[p])
+            # (E5b) eq(gamma,a1) & del(s) -> w_s(qh) & w_s(wh) & w_s(f1) &
+            # w_s(f2).
+            for p in FRONTIER_GROUP:
+                self.add(-eq_g_a1, -self.del_[s], ws[p])
 
         return list(self.cnf.clauses[before:])
 

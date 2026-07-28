@@ -1,10 +1,12 @@
-"""CLI driving the A-core Layer-1 incidence runs (spec section 5).
+"""CLI driving the A-core Layer-1 incidence runs (spec section 5, updated for
+the v1.2 / CEGAR-iteration-2 families in section 9).
 
 Runs, in order:
-  1. base            -- section 1-2 clauses minus (DEL2)
-  2. base+P           -- base + (DEL2)                      [THE package verdict]
+  1. base            -- section 1-2 + section 9 base families, minus (DEL2)/(DEL3)
+  2. base+P           -- base + (DEL2) + (DEL3)              [THE package verdict]
   3. base+P+A2 .. A8   -- base+P + each leaf delta
-  4. base+A1          -- base (no DEL2) + the A1 extension (gamma, w_s atoms)
+  4. base+A1          -- base (no DEL2/DEL3) + the A1 extension (gamma, w_s
+                          atoms, gamma cap atoms, (E8d), (E5a/E5b))
 
 Writes out/<run>.cnf (DIMACS), out/<run>.model.json (decoded atoms, SAT runs
 only), out/manifest.json (summary of every run).
@@ -92,9 +94,16 @@ def main() -> int:
     base_record = run_one(encoder, "base", list(encoder.base_clauses), [], args.timeout_seconds)
     manifest.append(base_record)
 
-    # 2. base+P  (= base + DEL2 -- see encoding.py / RESULTS.md for why P2,P3
-    # contribute no further NEW clauses beyond DEL2)
-    base_p_extra = list(encoder.del2_clauses)
+    # (DEL3, v1.2) built here: strictly after 'base' has already been run
+    # (so base's reported n_variables excludes DEL3's Sinz aux vars) and
+    # before base+P/leaf runs are built (they need it in extra_clauses).
+    # 𝔓-only, same placement mechanics as (DEL2); NOT in base, NOT in
+    # base+A1 -- see encoding.py::build_del3_clauses docstring.
+    del3_extra = encoder.build_del3_clauses()
+
+    # 2. base+P  (= base + DEL2 + DEL3 -- see encoding.py / RESULTS.md for
+    # why P2,P3 contribute no further NEW clauses beyond DEL2/DEL3)
+    base_p_extra = list(encoder.del2_clauses) + list(del3_extra)
     base_p_record = run_one(
         encoder, "base+P", list(encoder.base_clauses), base_p_extra, args.timeout_seconds
     )
@@ -102,7 +111,9 @@ def main() -> int:
 
     # 3. base+P+A<k>
     for leaf in LEAVES:
-        extra = list(encoder.del2_clauses) + encoder.leaf_delta_clauses(leaf)
+        extra = (
+            list(encoder.del2_clauses) + list(del3_extra) + encoder.leaf_delta_clauses(leaf)
+        )
         record = run_one(
             encoder, f"base+P+{leaf}", list(encoder.base_clauses), extra, args.timeout_seconds
         )

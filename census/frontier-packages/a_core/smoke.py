@@ -1,12 +1,17 @@
-"""Smoke gates for the A-core encoder (spec section 6), run IN ORDER:
-G-BASE, G-EXCL (all 10 delta pairs), G-SAT (witness).
+"""Smoke gates for the A-core encoder (spec section 6, extended by section
+9.1 for CEGAR iteration 2 / v1.2), run IN ORDER: G-BASE, G-EXCL (all 10
+delta pairs), G-SAT (witness), G-PROBES (the four v1.2 probes).
 
-Also runs the three validation checks the dispatch called out explicitly:
+Also runs the validation checks the dispatch called out explicitly:
   - (S5B)/(S5A) unit-propagates s5a (a direct 2-clause resolution check, not
     a full solver call).
   - (DEL2) at-least-two clauses are present in base+P-shaped runs and
     absent from base+A1's clause set.
+  - (DEL3, v1.2) at-most-two clauses are present in base+P-shaped runs and
+    absent from base's own clauses and from base+A1's clause set.
   - G-EXCL's UNSAT clash is attributed to a specific clause family per pair.
+  - G-PROBES: P-DEL3, P-E8, P-FB, P-CD5, each expected UNSAT with a
+    verified DRAT proof (spec section 9.1).
 
 Run from the repo root:
   uv run python census/frontier-packages/a_core/smoke.py
@@ -69,9 +74,13 @@ def check_s5_unit_propagation(encoder: "enc.ACoreEncoder") -> dict[str, Any]:
     }
 
 
-def check_del2_presence(encoder: "enc.ACoreEncoder") -> dict[str, Any]:
+def check_del2_presence(encoder: "enc.ACoreEncoder", a1_extra: set[tuple[int, ...]]) -> dict[str, Any]:
     """(DEL2) must be present in every base+P-shaped clause set and absent
-    from base+A1's clause set, by direct membership check (not inference)."""
+    from base+A1's clause set, by direct membership check (not inference).
+
+    `a1_extra` is built exactly once in main() (build_a1_extension() raises
+    on a second call, since it registers uniquely-named atoms) and shared
+    with check_del3_presence below."""
 
     del2 = set(encoder.del2_clauses)
     base_p_extra = set(encoder.del2_clauses)
@@ -79,7 +88,6 @@ def check_del2_presence(encoder: "enc.ACoreEncoder") -> dict[str, Any]:
     for leaf in LEAVES:
         extra = set(encoder.del2_clauses) | set(encoder.leaf_delta_clauses(leaf))
         leaf_checks[leaf] = del2 <= extra
-    a1_extra = set(encoder.build_a1_extension())
     return {
         "del2_clause_count": len(del2),
         "present_in_base_plus_P": del2 <= base_p_extra,
@@ -157,13 +165,45 @@ def hand_built_assumptions(encoder: "enc.ACoreEncoder") -> list[tuple[int, ...]]
 
     This function fixes every semantically load-bearing atom explicitly (all
     35 eq atoms false = "generic position", cap-interior placement for the
-    six non-unit non-Moser labels, the integer layer nSig=3/nO1=2/nO2=5 (with
-    n=13 left to be DERIVED by (N1) rather than asserted, as an extra check
-    that (N1) is wired correctly), the s6c arm, every row_u/row_v free slot,
-    all eight b(x,.) targets, and a 2-element deletion set) and leaves atoms
-    that are already forced by base's own units (sv, s5a/s5b, CD1's zd
-    units) or genuinely immaterial (individual bs1/bs2/bt1/bt2 non-zd
-    entries) for the solver to complete."""
+    six non-unit non-Moser labels, the integer layer nSig=3/nO1=2/nO2=6 (with
+    n=14 left to be DERIVED by (N1) rather than asserted, as an extra check
+    that (N1) is wired correctly -- bumped from v1.1's nO2=5/n=13 per (N8)),
+    the s6c arm, every row_u/row_v free slot, all eight b(x,.) targets, and a
+    2-element deletion set) and leaves atoms that are already forced by
+    base's own units (sv, s5a/s5b, CD1's zd units) or genuinely immaterial
+    (individual bs1/bs2/bt1/bt2 non-zd,qh,wh entries) for the solver to
+    complete.
+
+    v1.2 (CEGAR iteration 2) additions, explicitly assigned and documented:
+    - fbar pair = {qh, wh}: inSig(qh)=inSig(wh)=F and inT(qh)=inT(wh)=F are
+      already FORCED in this witness (inO1i(qh)=inO1i(wh)=T units force
+      inSig/inO2i false via CAP1; T1 exactness forces inT false since qh/wh
+      have no true eq-target into the shell group) -- so (FB)'s two
+      universal implications are satisfied by construction for this pair.
+      {f1,f2} would NOT work: this witness's own inSig(f1)=inSig(f2)=T
+      assumption (kept from v1.1, needed for (N5)) directly contradicts
+      fbar_p -> ~inSig(p) for p in {f1,f2}.
+    - rbs1=rbs2=rbt1=rbt2=F ("no radius coincidence" / generic choice,
+      matching the rest of the witness's generic-position spirit). Checked
+      by hand: rbs1=F only forces bs1(u)=bs1(xu)=F (the only CD_DOMAIN
+      labels with row_u=T in this witness); rbt1=F only forces
+      bt1(v)=bt1(xv)=F (the only CD_DOMAIN labels with row_v=T); rbs2=F
+      only forces bs2(zd,u,xu,v,xv)=F (the T-labels, already inT=T);
+      rbt2=F likewise for bt2. No contradiction with anything else fixed
+      below.
+    - bs1(qh)=bs1(wh)=F and bt1(qh)=bt1(wh)=F: explicitly pinned (rather
+      than left to the solver) because (E8c) is NOT vacuous for this pair
+      if the solver guessed True for both: bs1(qh)&bs1(wh) with the
+      witness's only true b(u,.) target b(u,xv)=T would demand
+      inO1i(xv) v eq(xv,a1); both are already forced False here (all eq
+      atoms are false, and inO2i(xv)=T forces inO1i(xv)=F via CAP1) --
+      i.e. bs1(qh)=bs1(wh)=T would make (E8c) UNSATisfiable under this
+      witness's other fixed facts.  Symmetric argument for
+      bt1(qh)=bt1(wh) against b(v,zd)=T -> needing inO1i(zd) v eq(zd,a1),
+      both already forced False (inO2i(zd)=T forces inO1i(zd)=F).
+      Pinning these four to False keeps the witness a fully auditable
+      total assignment rather than relying on the solver to avoid an
+      infeasible corner it was never going to reach anyway."""
 
     lit = lambda name, value: _lit(encoder, name, value)
     assumptions: list[tuple[int, ...]] = []
@@ -179,10 +219,11 @@ def hand_built_assumptions(encoder: "enc.ACoreEncoder") -> list[tuple[int, ...]]
     for p in ("f1", "f2"):
         assumptions.append(lit(f"inSig({p})", True))
 
-    # Integer layer: nSig=3, nO1=2, nO2=5 (n=13 is left to be derived by N1).
+    # Integer layer: nSig=3, nO1=2, nO2=6 (n=14 is left to be derived by N1;
+    # bumped from v1.1's nO2=5/n=13 so (N8) n>=14 is satisfied).
     assumptions.append(lit("nSig=3", True))
     assumptions.append(lit("nO1=2", True))
-    assumptions.append(lit("nO2=5", True))
+    assumptions.append(lit("nO2=6", True))
 
     # S6 arm: s6c (nSig=3, nO1=2, nO2>=4 -- all satisfied by the above).
     assumptions.append(lit("s6a", False))
@@ -212,7 +253,114 @@ def hand_built_assumptions(encoder: "enc.ACoreEncoder") -> list[tuple[int, ...]]
     for p in ("xu", "v", "xv"):
         assumptions.append(lit(f"del({p})", False))
 
+    # v1.2 (FB): fbar pair = {qh,wh} (see docstring above for why {f1,f2}
+    # would clash with this witness's inSig(f1)=inSig(f2)=T assumption).
+    assumptions.append(lit("fbar(qh)", True))
+    assumptions.append(lit("fbar(wh)", True))
+    assumptions.append(lit("fbar(f1)", False))
+    assumptions.append(lit("fbar(f2)", False))
+
+    # v1.2 (CD5): generic/no-coincidence choice for all four selectors.
+    assumptions.append(lit("rbs1", False))
+    assumptions.append(lit("rbs2", False))
+    assumptions.append(lit("rbt1", False))
+    assumptions.append(lit("rbt2", False))
+
+    # v1.2 (E8c) explicit pin: avoid the infeasible bs1(qh)&bs1(wh) /
+    # bt1(qh)&bt1(wh) corner (see docstring above).
+    assumptions.append(lit("bs1(qh)", False))
+    assumptions.append(lit("bs1(wh)", False))
+    assumptions.append(lit("bt1(qh)", False))
+    assumptions.append(lit("bt1(wh)", False))
+
     return assumptions
+
+
+def check_del3_presence(
+    encoder: "enc.ACoreEncoder",
+    del3_extra: list[tuple[int, ...]],
+    a1_extra: set[tuple[int, ...]],
+) -> dict[str, Any]:
+    """(DEL3, v1.2) must be present in every base+P-shaped clause set and
+    absent from base's own frozen prefix and from base+A1's clause set --
+    same membership-check discipline as check_del2_presence. `a1_extra` is
+    the same pre-built set check_del2_presence uses (see its docstring)."""
+
+    del3 = set(del3_extra)
+    return {
+        "del3_clause_count": len(del3),
+        "absent_from_base_clauses": not (del3 & set(encoder.base_clauses)),
+        "absent_from_base_plus_A1": not (del3 & a1_extra),
+    }
+
+
+def gate_probes(
+    encoder: "enc.ACoreEncoder",
+    del3_extra: list[tuple[int, ...]],
+    timeout_seconds: int,
+) -> dict[str, Any]:
+    """(spec section 9.1) The four CEGAR-iteration-2 probes: each must be
+    UNSAT with a verified DRAT proof.  Follows gate_excl's pattern (a
+    RunInstance over base_clauses, with the probe's own assumption clauses
+    passed as extra_clauses, proof_path set so solve_cadical DRAT-verifies
+    UNSAT internally and raises EncodingError if verification fails)."""
+
+    lit = lambda name, value: _lit(encoder, name, value)
+    probes: list[dict[str, Any]] = []
+
+    def _run_probe(probe_name: str, extra: list[tuple[int, ...]]) -> dict[str, Any]:
+        instance = enc.RunInstance(encoder, encoder.base_clauses)
+        cnf_path = OUT_DIR / f"g_probe_{probe_name}.cnf"
+        proof_path = OUT_DIR / f"g_probe_{probe_name}.drat"
+        start = time.monotonic()
+        result = enc.solve_cadical(
+            instance, cnf_path, extra_clauses=extra,
+            timeout_seconds=timeout_seconds, proof_path=proof_path,
+        )
+        wall = time.monotonic() - start
+        ok = result.verdict == "UNSAT"
+        return {
+            "probe": probe_name,
+            "verdict": result.verdict,
+            "expected": "UNSAT",
+            "pass": ok,
+            "proof_verified": result.proof_verified,
+            "wall_seconds": round(wall, 3),
+        }
+
+    # P-DEL3: base+P + del(zd) & del(u) & del(xu) -> UNSAT.
+    p_del3_extra = (
+        list(encoder.del2_clauses) + list(del3_extra)
+        + [lit("del(zd)", True), lit("del(u)", True), lit("del(xu)", True)]
+    )
+    probes.append(_run_probe("P-DEL3", p_del3_extra))
+
+    # P-E8: base + row_u(qh) & row_u(wh) & b(u,a0) -> UNSAT.
+    p_e8_extra = [
+        lit("row_u(qh)", True), lit("row_u(wh)", True), lit("b(u,a0)", True),
+    ]
+    probes.append(_run_probe("P-E8", p_e8_extra))
+
+    # P-FB: base + eq(f1,zd) & ~fbar_qh & ~fbar_wh -> UNSAT.
+    p_fb_extra = [
+        lit("eq(f1,zd)", True), lit("fbar(qh)", False), lit("fbar(wh)", False),
+    ]
+    probes.append(_run_probe("P-FB", p_fb_extra))
+
+    # P-CD5: base + rbs2 & bs2(qh) & ~eq(qh,zd) & ~eq(qh,xu) & ~eq(qh,v) &
+    # ~eq(qh,xv) -> UNSAT.
+    p_cd5_extra = [
+        lit("rbs2", True), lit("bs2(qh)", True),
+        lit("eq(qh,zd)", False), lit("eq(qh,xu)", False),
+        lit("eq(qh,v)", False), lit("eq(qh,xv)", False),
+    ]
+    probes.append(_run_probe("P-CD5", p_cd5_extra))
+
+    return {
+        "gate": "G-PROBES",
+        "probes": probes,
+        "pass": all(p["pass"] for p in probes) and len(probes) == 4,
+    }
 
 
 def gate_sat(encoder: "enc.ACoreEncoder", timeout_seconds: int) -> dict[str, Any]:
@@ -247,9 +395,17 @@ def main() -> int:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     encoder = enc.ACoreEncoder()
 
+    # v1.2: build (DEL3) and the A1 extension exactly once each here, and
+    # thread their outputs into every check/gate/probe that needs them --
+    # both builder methods mutate encoder.cnf past its frozen base_clauses
+    # prefix and (for build_a1_extension) raise on a second call.
+    del3_extra = encoder.build_del3_clauses()
+    a1_extra = set(encoder.build_a1_extension())
+
     report: dict[str, Any] = {}
     report["s5_unit_propagation"] = check_s5_unit_propagation(encoder)
-    report["del2_presence"] = check_del2_presence(encoder)
+    report["del2_presence"] = check_del2_presence(encoder, a1_extra)
+    report["del3_presence"] = check_del3_presence(encoder, del3_extra, a1_extra)
 
     base_result = gate_base(encoder, timeout_seconds=60)
     report["G-BASE"] = base_result
@@ -271,8 +427,13 @@ def main() -> int:
     report["G-SAT"] = sat_result
     print(json.dumps(sat_result, indent=2))
 
+    probes_result = gate_probes(encoder, del3_extra, timeout_seconds=60)
+    report["G-PROBES"] = probes_result
+    print(json.dumps(probes_result, indent=2))
+
     report["ALL_GATES_PASS"] = (
         base_result["pass"] and excl_result["pass"] and sat_result["pass"]
+        and probes_result["pass"]
     )
     (OUT_DIR / "smoke_report.json").write_text(
         json.dumps(report, sort_keys=True, indent=2), encoding="utf-8"
