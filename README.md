@@ -551,3 +551,30 @@ These provide reusable geometric machinery imported throughout the above:
 - **Geometry kernels** - `TwoCircleCrossing.lean`, `NoDiameterUnderK4.lean`,
   `CircumcenterSide.lean`, `MidpointInequality.lean`,
   `CircumscribedMECPacket.lean`.
+
+## Known k = 3 witnesses (counterexample-search lane)
+
+Problem 97 is the k = 4 instance of "every point has k others equidistant
+from it, in convex position." For k = 3 the property **is** realizable; the
+search lane (`docs/p97-counterexample-search-design-2026-07-28.md`) carries
+the two known witnesses as positive controls. In both figures, each dashed
+circle is centered at a vertex and passes through that vertex's 3
+equidistant witnesses.
+
+![9-point k=3 witness](docs/assets/danzer-9gon-k3.png)
+
+Nine points with exact ℚ(√3) coordinates, threefold symmetry, and a witness
+distance that **varies per vertex** (Danzer-style). Coordinates verified
+twice by independent exact arithmetic
+(`scratch/p97-search-lane/verify_k3_control.py`); note n = 9 is exactly the
+unconditional floor for a k = 4 counterexample.
+
+![Fishburn–Reeds 20-gon](docs/assets/fr-20gon-k3.png)
+
+The Fishburn–Reeds 1992 20-gon: a **single common distance** 1, every
+vertex's 3 witnesses lying across a convex cut {A, B}, and n = 20 proven
+minimal for the cut-restricted version. Table-1 coordinates transcribed and
+numerically verified in `scratch/p97-search-lane/fishburn-reeds-notes.md`;
+exact certification of the configuration is the realization arm's
+validation target (`scratch/p97-search-lane/fr-certify/`). Plots:
+`scratch/p97-search-lane/plot_k3_witnesses.py`.
