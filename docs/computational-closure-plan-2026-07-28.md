@@ -204,7 +204,12 @@ Budget (Adam, 2026-07-28): all of flux plus 24 cores on this box.
 
 - **Session 1**: base incidence encoder + A-core instantiation + A smoke
   gate; A-core package verdict run. Deliverable: verdict or a concrete
-  encoding blocker.
+  encoding blocker. DONE 2026-07-28: all gates pass; verdict = SAT on all
+  8 runs (base, base+P, five leaf deltas, A1) at the seed layer —
+  `census/frontier-packages/a_core/RESULTS.md`. Next per §4: CEGAR
+  iteration 2 (add omitted families — E8 bisector localization, E5 radius
+  uniqueness, survival arms) before Layer-2 type enumeration; (EQ4)
+  transitivity landed as spec v1.1.
 - **Session 2**: C, E, F-Γ instantiations + smoke gates + verdicts (encoder
   amortized); begin leaf-delta runs for whichever package returned UNSAT.
 - **Session 3**: D-R, D-E, B; full 19-leaf triage matrix. Decision gate

@@ -66,6 +66,15 @@ Consistency schemas over eq atoms:
   ¬eq(p,l) ∨ ¬eq(q,l).
 - (EQ3) congruence: eq(p,q) → (Φ(p) ↔ Φ(q)) for every unary atom family Φ
   below, and for beta: eq(p,q) → (b(p,y) ↔ b(q,y)) and (b(x,p) ↔ b(x,q)).
+- (EQ4) transitivity (v1.1 — added after the implementation report showed
+  the gap is reachable for the four triangles involving oth, e.g.
+  eq(v,oth) ∧ eq(oth,f1) ∧ ¬eq(v,f1) was SAT under base): for every label
+  triple p,q,r whose three pairs all carry eq atoms,
+  eq(p,q) ∧ eq(q,r) → eq(p,r), instantiated in all three rotations.
+  Uniform over all such triangles (the a0-triangles are emergently closed
+  by (EQ3) unit chains but the uniform schema is harmless). Required
+  before any Layer-2 incidence-type enumeration: without it, spurious
+  eq-patterns inflate the type census.
 
 ## 2. Atom families and unit values
 
@@ -95,7 +104,9 @@ O₂°) and `moser(p)`:
 
 **Rows** `row_u(p), row_v(p)` (p ∈ Row(u), p ∈ Row(v)):
 - Units row_u: T on u,xu [I_u={u,xu}: Remark+(G1)]; F on v (B6), zd (J3),
-  oth (C8)+(P3), a1? no — see (RB2).
+  oth (C8)+(P3). row_u(a1) is left UNCONSTRAINED — no hypothesis excludes
+  a₁ ∈ Row(u). (v1.1: this replaces a dangling (RB2) reference; the
+  implementation's literal reading was correct.)
 - Units row_v: T on v,xv; F on u (B6), zd (J3).
 - (R1) at-most-4 [critical shell rows are exact-4]: over the pairwise
   distinct set {zd,u,xu,v,xv} count row_u ≤ 4; likewise row_v. (Cheap;
