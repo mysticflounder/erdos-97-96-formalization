@@ -75,39 +75,57 @@ that resist realization stay open in the bank. Only exact certification
 (realized ⇒ refutation candidate for direct verification) or a proven
 infeasibility certificate changes a node's status.
 
-## 5. Frame-soundness audit — {{NEEDS_PROOF}}, in progress
+## 5. Frame-soundness audit — RESOLVED 2026-07-28 (best case)
 
-Blocking question (Q1 of the inventory dispatch): where is the
-three-cap/Moser structure proven for convex K₄ configurations, and does
-the derivation need minimality or an n-bound? Outcomes:
+`Problem97.MEC.nonempty_surplusCapPacket_of_K4`
+(`lean/Erdos9796Proof/P97/CapBridgeFromK4.lean:98`) proves the
+three-cap/surplus structure from exactly `A.Nonempty`, `ConvexIndep A`,
+`HasNEquidistantProperty 4 A`, `9 < A.card` — NO minimality hypothesis
+anywhere in the chain (`no_diameter_under_k4` →
+`exists_capTriple_of_circumscribed` → pigeonhole surplus cap).
+Orchestrator-verified in source 2026-07-28: signature read directly;
+no `sorry`/`axiom` in the chain files. Admission gate before any
+published cell claim: kernel `proof-blueprint axioms` on the
+declaration (source scan is not a kernel check).
 
-- Proven from convexity + K₄ alone ⇒ cap-profile cells are a complete
-  frame for the k = 4 search at each n.
-- Needs minimality ⇒ the frame is complete only for MINIMAL
-  counterexamples — still sufficient for "P97 false ⇒ the census finds
-  a witness at the minimal n", but per-cell non-existence claims must
-  carry the minimality caveat.
-- Needs k = 4 arithmetic ⇒ the k = 3 control and any k ≥ 5 runs need a
-  frame-free (or weaker-frame) mode; keep a frameless fallback cell
-  type regardless.
+Consequences: cap-profile cells are a COMPLETE frame for k = 4 at every
+n > 9 — no minimality caveat on per-cell non-existence claims. The
+K₄ hypothesis is load-bearing (via `no_diameter_under_k4`), so the k = 3
+control arm and any k ≠ 4 run use a frameless cell type; that was
+planned regardless.
 
-Over-pruning in the refutation branch wastes search but is not unsound;
-in the non-existence branch it silently narrows the claim. Every frame
-fact and pruning rule therefore carries its hypothesis list in the bank,
-and each cell's published claim is computed from the intersection of the
-hypotheses actually used.
+Standing rule: every frame fact and pruning rule carries its hypothesis
+list in the bank, and each cell's published claim is computed from the
+intersection of the hypotheses actually used. Over-pruning in the
+refutation branch wastes search but is not unsound; in the
+non-existence branch it silently narrows the claim.
 
-## 6. Pruning-rule bank — {{NEEDS_UPDATE}} pending inventory
+## 6. Pruning-rule bank — inventory landed 2026-07-28
 
-One row per banked theorem admitted as a pruning rule: declaration
-name, exact hypotheses (convexity / K₄ / minimality / n-range / packet
-context), k-classification (k-general vs k = 4-specific vs UNVERIFIED),
-census predicate pruned. Sourced from the mining censuses
-(`certificates/p97_rvol_general_n_mining.md` and siblings); inventory
-agent output lands at
-`scratch/p97-search-lane/banked-pruning-inventory.md`; every row gets an
-orchestrator audit before admission — an inventory row is a candidate,
-not a rule.
+Candidate inventory: `scratch/p97-search-lane/banked-pruning-inventory.md`
+(19 rows: 13 k-general, 3 k = 4-specific, 2 CANNOT-TELL, 1 UNVERIFIED).
+Every row gets an orchestrator audit before admission — an inventory row
+is a candidate, not a rule. Headline candidates:
+
+- n-floors: `counterexample_card_ge_nine` (n ≥ 9, unconditional,
+  k = 4-specific); `card_ge_five_of_K4` (n ≥ 5, k-general). The
+  descent direction (nothing above 9) is the OPEN
+  `UniversalReductionHypotheses.descent` field — never a rule.
+- Shell intersections: multiple k-independent "distinct circles meet in
+  ≤ 2 points" instances (`inter_card_le_two`, `cap_overlap_le_two`,
+  `N8a_two_intersection_bound`) — prunes |Σ(x) ∩ Σ(y)| ≥ 3 nodes for
+  distinct centers.
+- Blocker fibers: NO banked numeric cap (corrects an earlier working
+  note claiming fiber ≤ 4 was banked). Derivable in one step —
+  x ∈ Σ(c(x)) and |Σ(c)| = 4 exactly (`CriticalShellSystem`) give
+  fiber(c) ⊆ Σ(c), so ≤ 4 — but admission requires proving that
+  mini-lemma, not citing it. The two abstract endomap fiber-forcing
+  theorems (2-/3-omission collision forcing) are k-general candidates.
+- Excluded with reasons (see inventory tail): U5 metric families (need
+  exact distances), Nullstellensatz certificates (algebraic),
+  census-554 equality-core obstructions (metric-consequence border),
+  uncommitted `BlockerMultiplicityGeometry.lean` (in-progress, not
+  banked), legacy-archive-only Radon family (not in this repo).
 
 ## 7. Positive control (mandatory, before any production cell)
 
