@@ -13,24 +13,26 @@ nothing below depends on them.
 `Problem97.erdos97_rhs` and `Problem96.erdos96_rhs`; kernel `#print axioms`
 is the arbiter — the refs miner has a known dropped-edge bug). All in
 `ATail/FrontierLiveClosure.lean` (FLC), namespace
-`Problem97.ATailFrontierLiveClosure`. Line numbers drift under the in-flight
-refactor — declaration names are the stable keys.
+`Problem97.ATailFrontierLiveClosure`. Recomposed 2026-07-28 by the landed
+simplification refactor (`a0f73bc1`): still 19 leaves, but A dropped 8→6
+(two `blockerV` arms closed; `blockerVRowOther_*` renamed `blockerVRow_*`)
+and B grew 1→3 (B2/B3 are live named leaves again).
 
 | Pkg | Leaves | Declarations |
 |---|---|---|
-| A-core | 8 | `false_of_exactFourMutualOmissionRigid221_minimalCore`, `..._physicalApex_sourceEqU_blockerDeleted`, `..._blockerV_{sourceRowHeavy,oppositeRowHeavy,neitherRowHeavy}`, `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge`, `..._blockerVRowOther_{oppositeRowHeavy,sparseRows}` |
+| A-core | 6 | `false_of_exactFourMutualOmissionRigid221_minimalCore`, `..._physicalApex_sourceEqU_blockerDeleted`, `..._blockerV_sourceRowHeavy`, `..._blockerVRow_{oppositeRowHeavy,sparseRows}`, `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge` |
 | C-core | 2 | `..._physicalApex_sourceNeU`, `..._nonphysicalCollision` |
 | D-R | 2 | `false_of_exactFourPostCardElevenTwoRadiusBranch`, `false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome` |
 | D-E | 2 | `false_of_firstApexUniqueRadiusExactFive{Distinct,Common}ObstructionCenter(s)Residual` |
 | E | 1 | `false_of_retainedInteriorDirectedOmission_and_all_low_hits` |
 | F-Γ | 3 | `TwoSourceExactCollisionRowsTerminal.false_of_{crossBlockerCoincidence,capSource_freshThirdBlockerFiber,capSource_firstFiber_collisionFiveCenterDeletion}` |
-| B1 | 1 | `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision` |
+| B | 3 | `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision`, `false_of_exactFourMutualOmission_fourCenterCommonDeletion_{blockerCoincidence,survivalSquare}` |
 
 Notes: F4 (`freshOutsideSecondBlockerFiber`) is closed by the landed fiber
-swap; old B2/B3 no longer exist as named theorems in the current tree.
-Hypothesis lists must be re-read from the tree at encode time (the refactor
-may consolidate further); the solve-prompt family docs are the unfolded
-plain-math references.
+swap. Hypothesis lists must be re-read from the tree at encode time; the
+solve-prompt family docs are the unfolded plain-math references. The B
+package regains its banked B2/B3 normal forms as direct leaf targets
+(`lean/scratch/b-family-bank/`).
 
 ## 2. Ground rules (binding)
 
@@ -150,13 +152,13 @@ semantics, D/E share the residual frame.
 | 4 | F-Γ (3) | Γ restated in `lean/scratch/f3c-redundancy-bank/F3cRedundancy.lean` (machine-readable); `f3c_joint_sharp` as given constraint; pairs-disjointness; shell ∩ cap = sources; F1/F2/F3 leaf deltas | Encoding must PROVE (be UNSAT with) the negation of the two kernel-checked sharpened terminals (`FirstFiberOverlapDescent.lean` `:772`, `:901`) — they are incidence-layer facts |
 | 5 | D-R (2) | Two disjoint selected 4-classes K₁ ∩ K₂ = ∅; no-five-row at a₂; D2's five role-swap equalities S ↔ S′ | Role-swap involution sanity (S′′ = S); disjointness on the witness |
 | 6 | D-E (2) | Exact-five class; D3 distinct-centers vs D4 common-center arm; D4's exactly-2-on-bisector cardinality | D4's bisector-2 clause must be consistent with the banked `b1_bisectorSet_eq_pair` mechanism (Dumitrescu L1 bound ≤ 2) |
-| 7 | B1 (1) | Banked normal form as given clauses: K ∩ C = {z₁,z₂}, bisector set exactly {b,a₂}, β(u)/β(v) non-bisecting (`lean/scratch/b-family-bank/`) | Encoder must refute a third-bisector configuration (mirror of `b1_false_of_third_bisector_carrier`) |
+| 7 | B (3) | Banked normal forms as given clauses: B1's K ∩ C = {z₁,z₂}, bisector set exactly {b,a₂}, β(u)/β(v) non-bisecting; B2 canonical-row forcing + mutual-omission survival; B3 removable-iff-survival (`lean/scratch/b-family-bank/`) | Encoder must refute a third-bisector configuration (mirror of `b1_false_of_third_bisector_carrier`) |
 
 All seven encoders are {{UNVALIDATED}} until their smoke gate passes.
-Rationale for the order: A-core is the largest single lever (8 leaves close
+Rationale for the order: A-core is the largest single lever (6 leaves close
 or die together on the package verdict before any leaf delta is touched);
 C amortizes A's encoder; E is the most counting-flavoured (best UNSAT
-odds per effort); F-Γ has the most pre-built structure; D and B1 are
+odds per effort); F-Γ has the most pre-built structure; D and B are
 small and partly pre-constrained by banked facts.
 
 ## 6. Lean ingress (landing verdicts on the spine)
@@ -205,7 +207,7 @@ Budget (Adam, 2026-07-28): all of flux plus 24 cores on this box.
   encoding blocker.
 - **Session 2**: C, E, F-Γ instantiations + smoke gates + verdicts (encoder
   amortized); begin leaf-delta runs for whichever package returned UNSAT.
-- **Session 3**: D-R, D-E, B1; full 19-leaf triage matrix. Decision gate
+- **Session 3**: D-R, D-E, B; full 19-leaf triage matrix. Decision gate
   with Adam: replay-ingress queue vs realization sweeps per package.
 - **Sessions 4+**: per verdict — certificate replay landings (§6) for UNSAT
   cores, fleet realization sweeps + CEGAR iterations for SAT packages.

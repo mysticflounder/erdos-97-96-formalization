@@ -250,7 +250,7 @@ theorem f3c_sArms_sharp
         (H.centerAt Pρ.source₁ Pρ.source₁_mem_A)
         S.oppApex2 S.surplusApex := by
   obtain ⟨-, -, -, -, -, -, -, -, -, homitFirstPair, -⟩ := hsource
-  rcases homitFirstPair with homit₁ | homit₂
+  rcases homitFirstPair.omits with homit₁ | homit₂
   · exact Or.inl
       (fiveCenterDeletionSurvival_of_capSourceOmission_sSide R Pρ
         T.oppApex2_rich T.surplusApex_rich source
@@ -284,7 +284,7 @@ theorem f3c_tArms_sharp
         (H.centerAt P.source₁ P.source₁_mem_A)
         S.oppApex2 S.surplusApex := by
   obtain ⟨-, -, -, -, -, -, -, -, -, -, homitSecondPair⟩ := hsource
-  rcases homitSecondPair with homit₁ | homit₂
+  rcases homitSecondPair.omits with homit₁ | homit₂
   · exact Or.inl
       (fiveCenterDeletionSurvival_of_capSourceOmission_tSide P
         R.firstApexFullyDeletionRobust
