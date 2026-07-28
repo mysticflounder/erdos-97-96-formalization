@@ -30,3 +30,30 @@ audit → `math-skeptic`, computation → solver skills). Any branch-B
 certificate must be adversarially audited before the corresponding parent
 route is re-planned. Line numbers refer to the 2026-07-27 tree and drift
 with edits; the declaration names are the stable keys.
+
+## Round 1 responses (2026-07-27)
+
+Verbatim harness responses, each annotated with a provenance/audit-status
+header (citations verified against the tree; unverified and CONJECTURE
+items listed explicitly in the header):
+
+| Family | Document | Outcome |
+|---|---|---|
+| F | `2026-07-27-f-round1-response.md` | No proof, no certificate. Four boxed global-bridge targets (the round-2 subjects below); two CONJECTURE items: F3c-redundancy derivation, sharpened F3/F4 terminals. |
+| B | `2026-07-27-b-round1-response.md` | No proof, no certificate. Three gap normal forms: (B1-gap) third carrier bisector point, (B2-gap) global consequence of a source–center coincidence, (B3-gap) survival at every center outside the four named; B3-rem removability equivalence is the B-family analog of F3c-redundancy (CONJECTURE until kernel-checked). |
+
+## Round 2 — Family F bridge prompts (2026-07-27)
+
+One prompt per boxed bridge from the F round-1 response. Each carries the
+full Γ of the F document forward (disclosed condensations only), unfolds
+the exact Lean consumer interfaces its bridge must feed, quarantines the
+round-1 CONJECTURE items outside §6 background, and keeps the dual-branch
+contract — for Bridges 3 and 4, branch B is explicitly a full realizability
+certificate for Γ (it would kill all four F leaves, not just the bridge).
+
+| Bridge | Document | Target |
+|---|---|---|
+| 1 | `2026-07-27-f-bridge-cross-shell-incidence.md` | A named positive cross-shell incidence feeding one of the three consumer packages T1/T2/T3. |
+| 2 | `2026-07-27-f-bridge-second-cap-center.md` | A second first-cap center bisecting the named off-cap pair `{e,o}` (contradicts `outsidePair_unique_capCenter`); the F3-side sink `false_of_firstFiber_twoOutsideHits_of_capCenter` is already kernel-checked, the F4-side sink must be written. |
+| 3 | `2026-07-27-f-bridge-k4-subcarrier.md` | A proper convex-independent K₄ subcarrier contradicting `CounterexampleData.Minimal`; includes the exact break threshold for the unique-four cover bound (vacuous at card ≥ 15). |
+| 4 | `2026-07-27-f-bridge-m44-repackaging.md` | An alternative MEC surplus packet satisfying `IsM44` (contradicts `noM44`); reduction (B4) to a three-vertex non-obtuse boundary triple with two exact-four caps. |
