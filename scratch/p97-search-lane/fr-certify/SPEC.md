@@ -95,13 +95,22 @@ retry at P = 256, then STOP and report margins.
 All decided by strict interval sign checks; each must hold for the
 ENTIRE box (then in particular at the root):
 
-- (C1) Strict convexity of the 20-gon in the fixed cyclic order
+- (C1) Local convexity of the 20-gon in the fixed cyclic order
   B₁..B₁₀, A₁₀..A₁ (A-side intervals = mirror; y₁ = 0, eliminated y's
   reconstructed from the exact gaps): all 20 consecutive-triple cross
   products strictly one sign (producer hints the orientation; checker
   verifies all 20 uniformly).
+- (C1b) Hull-order certificate (added 2026-07-28, orchestrator
+  validation audit): for each directed edge of the 20-cycle, every
+  other vertex lies strictly on the orientation side (20 × 18 = 360
+  strict interval checks — the halfplane characterization of a convex
+  polygon). C1 alone certifies only LOCAL convexity: a star traversal
+  (pentagram order) also has all-same-sign turns, so C1 does not by
+  itself prove convex position or pin the hull order; C1b does both
+  and subsumes C1's conclusion. Control: star-ordered pentagon passes
+  the C1 logic and fails the C1b logic (probe verified).
 - (C2) Pairwise distinctness of all 20 vertices (190 interval checks;
-  implied by C1 but cheap — belt and suspenders).
+  implied by C1b but cheap — belt and suspenders).
 - (C3) xᵢ > 0 for all i (the cut is genuine: A and B sides on opposite
   sides of the y-axis, hull disjointness NOT claimed — only what FR
   Theorem 1 needs for our K3 reading: 20 distinct strictly-convex
@@ -110,9 +119,10 @@ ENTIRE box (then in particular at the root):
   edge list (pure combinatorics, recheck in the checker).
 
 The K3-witness property needs NO interval check: the certified root
-satisfies the 15 equations EXACTLY, so each vertex has its 3 partners
-at distance exactly 1 by construction (record this argument in the
-certificate).
+satisfies the 15 equations EXACTLY, so each vertex has AT LEAST its 3
+edge-list partners at distance exactly 1 by construction (record this
+argument in the certificate; accidental extra unit distances are not
+excluded and are harmless for the ≥3 witness property).
 
 ### 3.4 Independence rule
 
