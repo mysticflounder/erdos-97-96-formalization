@@ -157,11 +157,16 @@ has exactly one equidistant group of size exactly 3 (per-point distance
 multiset [3,1,1,1,1,1]). Validity rests on these verifications, not on
 the (rejected-PR) provenance. Fishburn–Reeds 1992 (20-point, single
 unit distance; n = 20 minimality proven for the CUT version only) is
-now transcribed and numerically verified —
-`scratch/p97-search-lane/fishburn-reeds-notes.md`; its incidence
-projection is a second k = 3 seed (PHASE2-SPEC §6), and exact
-certification of its coordinates is the realization-arm validation
-target. Secondary control: the 15-point tri-apex equality shadow
+now transcribed, numerically verified
+(`scratch/p97-search-lane/fishburn-reeds-notes.md`), and EXACTLY
+CERTIFIED (2026-07-28, orchestrator-validated): a Krawczyk
+existence/uniqueness certificate at P = 128 dyadic bits proves an exact
+root of the 15-equation unit-distance system in a box of radius 2⁻¹⁰⁰,
+with strict convex position + hull order (C1b halfplane certificate,
+360 checks), distinctness, and cut positivity verified over the whole
+box — `scratch/p97-search-lane/fr-certify/` (RESULTS.md has the audit
+trail). Its incidence projection is a second k = 3 seed (PHASE2-SPEC
+§6), landed and gate-checked (G-SEED-FR20). Secondary control: the 15-point tri-apex equality shadow
 (`scratch/triapex-incidence-obstruction/check_model.py`) must survive
 every k = 4 rule it structurally instantiates (it is not convex-realized;
 it controls the incidence-level rules only).
@@ -178,3 +183,13 @@ and per-rule negative controls (each pruning rule kills a hand-built
 violating node and spares a hand-built conforming one). Change control
 as in the A-core spec: spec edit first, then code; implementers report
 gaps, never improvise rules.
+
+Status 2026-07-28: Phase 1 (node/canonical/rules/cells core) and
+Phase 2 (annotations, annotated canonicalization, R-FIBER4/R-CAPGE4
+promotions, cell iterator + jsonl bank, seeds S-K3-9/S-FR-20, 13 gates
+in `controls2.py`) are landed and orchestrator-validated
+(`census/p97_search/RESULTS.md`). Rule bank: R-CIRC2, R-FIBER4,
+R-CAPGE4, all ADMITTED. Open before Phase 3: P2/P3/P4 forbidden-pattern
+proofs (P1 is PROVEN+AUDITED), the blocker-annotation existence lemma
+({{NEEDS_PROOF}}), and the kernel `proof-blueprint axioms` gate on the
+two cited Lean frame theorems (blocks published cell claims only).
