@@ -582,6 +582,62 @@ equality.  The anchored source-row-heavy leaf must combine that membership
 with the rigid physical-class geometry to force this co-radial relation or
 an equivalent `P.v`-centered four-point terminal.
 
+### K-A-UNIQUE-PHYSICAL-SPLIT source-heavy placement-fold checkpoint (2026-07-27)
+
+The three source-heavy placement children of the 2026-07-26 placement
+checkpoint are folded, and the exact-five profile arms are closed.  Two new
+kernel-checked lemmas carry the fold:
+
+1. `exactFourRigid221_sourceHeavy_xv_mem_secondCapInterior` — the source
+   blocker `xv` lies in the strict physical second-cap interior,
+   profile-free, by `commonPhysicalPair_center_mem_secondCapInterior`
+   applied to the co-radial strict-interior pair `{u, xu}`; and
+2. `exactFourRigid221_sourceHeavy_exactFive_other_eq_xv` — under either
+   exact-five profile arm the three-point strict interior is exhausted by
+   `{u, xu, xv}`, so the retained peer, an interior class point omitted
+   from the source row, equals `xv`.
+
+The former first-growth packet consumed no growth-profile data: a
+field-usage audit showed its consumers use only `secondInterior_eq_named`
+and `other_point_eq_xv`.  It is renamed
+`ExactFourRigid221SourceHeavyOtherXvExactFivePlacementPacket`, its two
+unconsumed profile fields are removed, its producer takes only the
+`other = xv`, cap-five, and interior-three inputs, and the incidence
+dispatcher with its four sub-arms is renamed from `_firstGrowth_` to
+`_exactFivePlacement_`.  The former exact-five surplus-growth leaf `sorry`
+is closed through this shared dispatcher with no new geometry.
+
+The source-row-heavy coordinator now dispatches on the robust-cap-growth
+trichotomy first.  Both exact-five arms close outright through the forced
+`other = xv` placement.  Retired: the `otherDeleted` and `otherV` placement
+leaves, the `otherXv` dispatcher, and the `other = xv`-constrained
+`secondOppositeLarge` leaf.  The single surviving leaf is
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge`: second cap at
+least six, strict interior at least four containing the named triple
+`{u, xu, xv}` (passed as the checked `xv`-interior fact), retained peer
+unconstrained.
+
+Coordinator-interface frontier for the source-heavy subtree: before, four
+direct `sorry` leaves (`otherDeleted`, `otherV`, `secondOppositeLarge` with
+`other = xv`, `exactFiveSurplusGrowth`); after, one
+(`sourceHeavy_secondOppositeLarge`).  Raw direct-`sorry` delta `−3`.
+Immediate constructor fan-out at the coordinator is three cap-profile arms,
+two of them closed.  Narrowing record: the surviving leaf strictly
+strengthens the retired large leaf by the recorded `xv`-interior membership
+and drops only the `other = xv` equality, which is not derivable in the
+at-least-six arm; the retired placement leaves are covered by the
+kernel-checked trichotomy plus the forcing lemma.  This is a fold and two
+arm closures, not closure of the source-heavy branch: the residual large-cap
+leaf still requires the missing global input identified in the 2026-07-26
+audit.
+
+Correction note for the preceding blocker-`v` checkpoint: the proposed
+co-radial bridge `dist P.v.1 P.other.1 = dist P.v.1 P.source.1` is not
+derivable in the exact-five arms of that branch — there the same
+three-point interior count forces `other = v`, where the bridge equality is
+false outright (`dist v v = 0 < dist v source`).  Sufficiency of the bridge
+stands; derivability is refuted for exactly the arms it targeted.
+
 ## Control and publication gates
 
 | ID | Status | Dependencies | Exact deliverable | Consumer and acceptance |
