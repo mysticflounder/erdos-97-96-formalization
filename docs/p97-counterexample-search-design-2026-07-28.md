@@ -132,8 +132,18 @@ is a candidate, not a rule. Headline candidates:
 The k = 3 arm: run the full enumerate → prune (k-general rules only) →
 realize pipeline at k = 3 on small n; a known k = 3 construction must
 survive pruning and the realization arm must actually realize it.
-{{NEEDS_RESEARCH}}: locate the concrete k = 3 construction (archives
-first). Secondary control: the 15-point tri-apex equality shadow
+
+Control object RESOLVED 2026-07-28: a 9-point set with exact ℚ(√3)
+coordinates (`scratch/p97-search-lane/k3-control-research.md` §6 —
+sourced from `formal-conjectures` ErdosProblems/97.lean with one
+coefficient corrected; the upstream literal coordinates FAIL). Verified
+twice by independent from-scratch exact symbolic arithmetic (researcher
+agent + orchestrator, `scratch/p97-search-lane/verify_k3_control.py`):
+all 9 points pairwise distinct, strict convex position, and every point
+has exactly one equidistant group of size exactly 3 (per-point distance
+multiset [3,1,1,1,1,1]). Validity rests on these verifications, not on
+the (rejected-PR) provenance. Fishburn–Reeds 1992 (20-point, single
+unit distance, n = 20 minimal) remains citation-only — no coordinates. Secondary control: the 15-point tri-apex equality shadow
 (`scratch/triapex-incidence-obstruction/check_model.py`) must survive
 every k = 4 rule it structurally instantiates (it is not convex-realized;
 it controls the incidence-level rules only).
