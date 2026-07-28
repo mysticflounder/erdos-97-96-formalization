@@ -1,0 +1,247 @@
+# A-core Layer-1 incidence encoding — specification (2026-07-28)
+
+Session-1 artifact of `docs/computational-closure-plan-2026-07-28.md` (§4, §5
+row 1, §8). Source of truth for the hypotheses:
+`docs/solve-prompts/2026-07-27-rigid221-physical-apex-chain.md` §1–§2 (cited
+below by tag: (B1)–(B10), (C1)–(C13), (J1)–(J6), (G1)–(G6), (S1)–(S6),
+(E1)–(E8), (P1)–(P3), leaf deltas (A2.a)…(A8.d), plus the §2.0 Remark).
+Live leaves after refactor `a0f73bc1`: A1, A2, A3, A6, A7, A8 (A4/A5 closed;
+A7/A8 renamed `blockerVRow_*`).
+
+**Soundness discipline (binding).** Every clause family below carries the
+hypothesis tag that implies it. A clause may only assert what the package
+hypotheses prove about the named witnesses. The universe is NOT asserted
+complete: no clause says "every point of A is a label". Exactness clauses are
+used only where the hypotheses state exact classes ((B9)+(G1) for 𝒯, (E4) for
+Cl(a₁,r), cap partition for non-Moser points). Cardinality at-most clauses run
+only over pairwise-provably-distinct label sets. Cardinality lower bounds go
+only into the integer layer. Omitted hypotheses (§7 below) only weaken UNSAT
+prospects, never soundness: UNSAT ⇒ the package is contradictory at the
+incidence layer; SAT means nothing negative.
+
+## 1. Point universe (13 labels)
+
+| Label | Denotes | Why it exists |
+|---|---|---|
+| a0 | surplus-cap apex v_σ | packet S |
+| a1 | first opposite apex | packet S |
+| a2 | second (physical) apex | packet S |
+| zd | z_d | (B8) |
+| u  | u (= source under (P3)) | (B5) |
+| xu | second member of I_u | (G1), Remark |
+| v  | v | (B5) |
+| xv | second member of I_v | (G1), Remark |
+| oth | other | (C5)–(C8) |
+| qh | q̂ | (E7) |
+| wh | ŵ | (E7) |
+| f1, f2 | remaining two members of Cl(a₁,r) | (E4): Cl(a₁,r) = {qh,wh,f1,f2} |
+
+**Baked pairwise distinctness** (no eq atom; justification):
+- a0,a1,a2 pairwise (Moser triangle).
+- zd,u,xu,v,xv pairwise ((G1): |I_u|=|I_v|=2 disjoint, z_d in neither;
+  u∈I_u, v∈I_v per Remark; xu/xv are the respective second members).
+- qh,wh,f1,f2 pairwise ((E4) exact-4 class + (E7) q̂≠ŵ).
+- u,oth ∉ {a0,a1,a2} (u,oth ∈ O₂° by (C2),(C7)+(P3); interiors exclude
+  Moser vertices). v ≠ a2 ((B3): a₂∉𝒯 ∋ v); v vs a0,a1 is ambiguous —
+  eq atoms.
+- qh,wh ∉ {u,v?,oth}: qh,wh ∈ O₁° (E7) and O₁°∩O₂°=∅ (cap partition on
+  non-Moser points) gives qh,wh ∉ {u,oth}. v ambiguous (v∈O₂° only in A3) —
+  eq atom. qh,wh ∉ {a0,a1,a2}: interiors exclude Moser vertices.
+- f1,f2 ≠ u ((C3)+(P3): source ∉ Cl(a₁,r)); f1,f2 ≠ a1 (r>0);
+  f1,f2 ≠ a2: NOT baked — eq atom.
+- oth ≠ u (C5); oth ≠ xu ((C8)+(P3): oth ∉ Row(u) ⊇ I_u ∋ xu).
+- a2 ∉ {zd,u,xu,v,xv} ((B3): ρ>0 so a₂∉𝒯).
+- a1 ∉ {qh,wh,f1,f2} (r>0 so a₁∉Cl(a₁,r)); a1 ≠ u ((C2): u∈O₂° non-Moser).
+
+**Eq atoms** `eq(p,q)` for every unordered pair NOT baked distinct above.
+Explicit list: {qh,wh}×{zd,xu,xv,v}; {f1,f2}×{zd,xu,xv,v,oth,a0,a2};
+oth×{zd,v,xv}; {a0,a1}×{zd,xu,xv}; a0×{qh,wh}; v×{a0,a1}.
+(If implementation finds another unproven pair, ADD an eq atom rather than
+baking distinctness — flag it in the report.)
+
+Consistency schemas over eq atoms:
+- (EQ1) at-most-one: for label p and any set L of pairwise-baked-distinct
+  labels, at most one of {eq(p,l) : l∈L} is true.
+- (EQ2) exclusion: if p,q baked distinct and l has eq atoms to both,
+  ¬eq(p,l) ∨ ¬eq(q,l).
+- (EQ3) congruence: eq(p,q) → (Φ(p) ↔ Φ(q)) for every unary atom family Φ
+  below, and for beta: eq(p,q) → (b(p,y) ↔ b(q,y)) and (b(x,p) ↔ b(x,q)).
+
+## 2. Atom families and unit values
+
+All families range over the 13 labels unless restricted.
+
+**Cap interiors** `inSig(p), inO1i(p), inO2i(p)` (strict interiors Σ°, O₁°,
+O₂°) and `moser(p)`:
+- moser(a0)=moser(a1)=moser(a2)=T; for p with eq atoms to a Moser label,
+  moser(p) ↔ ⋁ eq(p, aᵢ); else moser(p)=F.
+- (CAP1) partition [packet S: every non-Moser point in exactly one cap]:
+  ¬moser(p) → exactly-one(inSig(p), inO1i(p), inO2i(p)).
+- (CAP2) moser(p) → ¬inSig(p) ∧ ¬inO1i(p) ∧ ¬inO2i(p) [interiors exclude
+  Moser vertices].
+- Units: inO2i(u)=T (C2)+(P3); inO2i(oth)=T (C7); inO1i(qh)=inO1i(wh)=T (E7).
+
+**Frontier class** `cl1(p)` (p ∈ Cl(a₁,r)):
+- Units: cl1(qh)=cl1(wh)=cl1(f1)=cl1(f2)=T (E4)+(E7); cl1(a1)=F (r>0);
+  cl1(u)=F (C3)+(P3).
+- (CL1) exactness [E4]: for every other label p:
+  cl1(p) → eq(p,qh) ∨ eq(p,wh) ∨ eq(p,f1) ∨ eq(p,f2) (only over p's
+  existing eq atoms; if p has no eq atom to any of the four, cl1(p)=F).
+
+**Physical class** `inT(p)` (p ∈ 𝒯 = Cl(a₂,ρ)):
+- Units: inT(zd)=inT(u)=inT(xu)=inT(v)=inT(xv)=T (G1)+Remark; inT(a2)=F (B3).
+- (T1) exactness [(B9)+(G1)]: for every other label p: inT(p) →
+  ⋁ eq(p,t) over t ∈ {zd,u,xu,v,xv} with an existing eq atom (else inT(p)=F).
+
+**Rows** `row_u(p), row_v(p)` (p ∈ Row(u), p ∈ Row(v)):
+- Units row_u: T on u,xu [I_u={u,xu}: Remark+(G1)]; F on v (B6), zd (J3),
+  oth (C8)+(P3), a1? no — see (RB2).
+- Units row_v: T on v,xv; F on u (B6), zd (J3).
+- (R1) at-most-4 [critical shell rows are exact-4]: over the pairwise
+  distinct set {zd,u,xu,v,xv} count row_u ≤ 4; likewise row_v. (Cheap;
+  subsumed by units here but kept as schema for CEGAR extensions.)
+- (R2) I_u/I_v exactness inside 𝒯 [(G1)]: for T-labels t:
+  row_u(t)∧inT(t) already fixed by units; nothing further.
+- (R3) cl1-row collapse [H⋆ pattern: x∈Cl(a₁,r) → Row(x)=Cl(a₁,r)]:
+  cl1(v) → (row_v(p) ↔ cl1(p)) for all p. Same schema for any tracked row
+  owner (u: moot since cl1(u)=F).
+
+**Blocker map** `b(x,y)`, x ∈ {u,v,zd,xu,xv,oth,qh,wh}, y ∈ labels ∪ {OUT}:
+- (BM1) exactly-one over y [β functional].
+- (BM2) ¬b(x,x) [shell system: c(x)≠x]; under eq: eq(p,q) → ¬b(p,q).
+- (BM3) ¬b(x,a2) for all x [Remark: (S2)+blocking give β(x)≠a₂ for every x];
+  also ¬b(x,y) for y with eq(y,a2) (congruence handles).
+- (BM4) H⋆ pattern [established fact: β(x)=a₁ ↔ x∈Cl(a₁,r)]:
+  b(x,a1) ↔ cl1(x). In particular b(qh,a1)=b(wh,a1)=T, and for x with
+  cl1(x)=F: ¬b(x,a1).
+- (BM5) center not in own row [row radius > 0]: b(u,y) → ¬row_u(y);
+  b(v,y) → ¬row_v(y).
+- (BM6) (P2): b(u,y) for some y with inT(y): clause ⋁_{t∈{zd,v,xv}} b(u,t)
+  [(P2)+(BM2: not u)+(row_u(xu) with (BM5)) — justify: β(u)∈𝒯,
+  β(u)≠u, β(u)∉Row(u)∋xu].
+- (BM7) (C9): β(source)≠β(other): for each y: ¬b(u,y) ∨ ¬b(oth,y)
+  (with eq congruence).
+- (BM8) (J4): ¬b(u,y) ∨ ¬b(v,y) for each y.
+- (BM9) CD-packet consequences [(J5),(J6)]: b(zd,y) → y ≠ β(u)-target and
+  ¬b(zd,a2): encode β(z_d)≠β(u) as ¬b(zd,y) ∨ ¬b(u,y) per y, and
+  β(z_d)≠β(v) likewise; ¬b(zd,a2) already in (BM3).
+
+**Survival atoms** `sv(p)` (K4(A∖{p}; a₂)) — opaque:
+- (SV1) all units T for every label p [(S2) full deletion robustness at a₂].
+
+**Deletion set** `del(p)` over p ∈ {zd,u,xu,v,xv} (Δ ⊆ 𝒯 by (G3)):
+- (DEL1) at-least-one [(G3): Δ≠∅].
+- (DEL2) at-least-two [(G4) with (S2)/(SV1): a singleton Δ={s} would make
+  ¬K4(A∖{s};γ) with γ=a₂ under (P1) contradict (S2). Under the A1 run
+  (γ≠a₂) DROP this clause — tag it 𝔓-only.]
+- |Δ|≤5 auto (5 labels).
+
+**CD witness sets** `bs1(p), bs2(p)` (B₁,B₂ of the (J5) packet CD(z_d;β(u),a₂))
+over p ∈ {zd,u,xu,v,xv,qh,wh,f1,f2} — projections only:
+- (CD1) ¬bs1(zd), ¬bs2(zd) [z∉Bᵢ].
+- (CD2) at-most-4 for bs1 and bs2 over the distinct set {zd,u,xu,v,xv}
+  [(J5): |Bᵢ|=4] and separately over {qh,wh,f1,f2}.
+- (CD3) overlap ≤ 2 [(J5)]: over {zd,u,xu,v,xv}: at-most-2 of
+  (bs1(p) ∧ bs2(p)) via product atoms.
+- (Same trio for the (J6) packet: `bt1, bt2` — identical schemas.)
+
+**S5 radius-classification arms** `s5a, s5b`:
+- (S5A) s5a ∨ s5b [(S5)].
+- (S5B) ¬s5b [(S5)(b) requires NO t with |Cl(a₂,t)|≥5, but (B9) gives
+  |Cl(a₂,ρ)|=5, ρ>0 (B3)]. — This is a deliberate seed-level deduction;
+  keep both clauses so the solver derives s5a (sanity: unit-propagates).
+
+**Integer layer** (unary/order encoding, bound MAXN=24):
+vars nSig, nO1, nO2 (strict-interior cardinalities |Σ°|,|O₁°|,|O₂°|), n.
+- (N1) n = nSig + nO1 + nO2 + 3 [cap partition: non-Moser points split among
+  the three interiors; 3 Moser vertices].
+- (N2) n ≥ 12 (B1).
+- (N3) nO1 ≥ 2 [(S3): |O₁|≥4, closed cap contains exactly 2 Moser vertices].
+- (N4) nO2 ≥ 3 [(S4): |O₂|≥5].
+- (N5) surplus: nSig ≥ 3 [packet S: |Σ|>4].
+- (N6) S6 arms [S6]: s6a ∨ s6b ∨ s6c with
+  s6a → nSig ≥ 4; s6b → (nSig = 3 ∧ nO1 ≥ 3); s6c → (nSig = 3 ∧ nO1 = 2 ∧
+  nO2 ≥ 4). (The arithmetic identities inside (S6)(b),(c) are equivalent to
+  (N1) given the stated cap sizes — implied, not extra.)
+- (N7) membership→count lower links: nO2 ≥ |{t ∈ {zd,u,xu,v,xv} : inO2i(t)}|
+  (the five are pairwise distinct; encode with the order-encoding: for each
+  k, if ≥k of the five inO2i atoms true then nO2 ≥ k). Likewise
+  nO1 ≥ 2 from qh,wh (constant, subsumed by (N3)); do NOT link ambiguous
+  labels (oth, f1, f2) into counts.
+
+## 3. Derived-count observations (for the report, not extra clauses)
+
+N_u = |I_u∩O₂°| = 1 + [inO2i(xu)] (u∈O₂° unit). N_v = [inO2i(v)] + [inO2i(xv)].
+So: N_u=2 ↔ inO2i(xu); N_u≠2 ↔ ¬inO2i(xu); N_v=2 ↔ inO2i(v)∧inO2i(xv).
+(C4) |Row(source)∩(𝒯∩O₂°)| ≤ 2 is subsumed (I_u has only 2 members).
+
+## 4. Context block 𝔓 and leaf deltas (unit/short clauses)
+
+𝔓 [(P1)–(P3)]: γ=a₂ (activates (DEL2)); (P2) = (BM6); (P3) is definitional
+(u IS source; already reflected in all C-tags above).
+
+| Leaf | Delta clauses |
+|---|---|
+| A2 | b(u,zd) [(A2.a)] |
+| A3 | b(u,v); inO2i(xu) [N_u=2, (A3.b)]; inO2i(v) [(A3.c)] |
+| A6 | b(u,xv) [(A6.c): β(source)=x_v]; inO2i(xu) [(A6.c): {u,xu}⊆O₂°]; inO2i(xv) [(A6.d)]; nO2 ≥ 4 [(A6.e): |O₂|≥6]; s6-arms re-asserted [(A6.g), already global] |
+| A7 | b(u,xv) [(A7.a,b): β(source)∈I_v∖{v} = {xv}]; ¬inO2i(xu) [(A7.c)]; inO2i(v); inO2i(xv) [(A7.d)] |
+| A8 | b(u,xv) [(A8.a,b)]; ¬inO2i(xu) [(A8.c)]; ¬inO2i(v) ∨ ¬inO2i(xv) [(A8.d)] |
+| A1 | separate run: drop (DEL2); no 𝔓 units; γ is a fresh label with eq atoms to a0, a1, qh, wh, f1, f2 (γ∈A∖𝒯 (G2) bakes distinctness from the five 𝒯 labels and from oth (C6); γ≠a₂ (A1.a); coincidence with Cl(a₁,r) members or other Moser vertices is not excluded); MC [(A1.b)]: per s∈Δ (del(s)) a full ambient class W_s at γ — encode as row-like atoms w_zd, w_u, w_xu, w_v, w_xv over the 13 labels with: del(s) → w_s(s) [s∈W_s]; pairwise disjoint: del(s)∧del(t) → ¬(w_s(p)∧w_t(p)); at-most-4 per w_s over the distinct T set and over {qh,wh,f1,f2} [|W_s|=4]; γ∉W_s [t_s>0] — skip via label absence. |
+
+Note A6's (A6.c) literal set equalities I_u={u,xu}, I_v={v,xv} are already
+the universe's definition — no new clause.
+
+## 5. Runs and expected artifacts
+
+Directory: `census/frontier-packages/a_core/`. Implementation reuses
+`census/card_head/sat_encoding.py` (`CNF`, `at_most_sinz`, `solve_cadical`).
+
+1. `base`: 𝔅 clauses only (§1–§2 families minus (DEL2)).
+2. `base+P`: add 𝔓 (this is the shared A2–A8 context) — THE package verdict.
+3. `base+P+A<k>` for k ∈ {2,3,6,7,8}; `base+A1` for A1.
+
+Record per run: SAT/UNSAT, #vars, #clauses, wall time, and for SAT runs the
+decoded model (atom assignments by family); for UNSAT runs keep the DIMACS in
+`out/` and a DRAT proof if the `solve_cadical` API supports proof capture (if
+it does not, note that in the report — do NOT modify `census/card_head/`;
+proofs become mandatory only at Lean-replay time, sessions 4+). All runs also
+dumped as a single `manifest.json`.
+
+## 6. Smoke gates (must pass before the verdict is believed)
+
+- **G-SAT (witness)**: build the incidence assignment of the 15-point witness
+  `scratch/full-local-euclidean-model-complete/` (read `check_model.py` and
+  its REPORT for the realized classes) restricted to the layers it realizes:
+  map its four 4-point classes onto row/cl1 atoms and its cap data onto
+  interiors where the witness provides them; leave unrealized layers free.
+  Assert as assumptions on top of `base`; expect SAT. Failure ⇒ encoding
+  over-constraint bug; report the failing core.
+  If the witness's structure cannot be faithfully mapped onto this package's
+  named labels (it was built for a different package), downgrade G-SAT to:
+  hand-build a total assignment satisfying every §2 family by construction
+  (document it in the report) and check SAT with it as assumptions. State
+  clearly which variant ran.
+- **G-EXCL (delta exclusivity)**: for every pair among {A2,A3,A6,A7,A8},
+  `base+P+delta_i+delta_j` must be UNSAT (they disagree on b(u,·) or on the
+  inO2i(xu)/inO2i(v)/inO2i(xv) pattern). All 10 pairs.
+- **G-BASE**: `base` alone is expected SAT. If it is UNSAT, STOP: do not
+  report a package verdict; audit the clause ledger family-by-family against
+  this spec (most likely an implementation bug), and only escalate to me
+  with the DRAT core if the audit finds no bug.
+
+## 7. Omitted hypotheses (CEGAR backlog — sound to omit)
+
+(S1) ingress packet; the F chain (frontier pair q̄,w̄ and its splits); (E1)
+minimality; (E2) no-(m,4,4); (E5) radius uniqueness at a₁; (E6) beyond the
+(BM4) pattern; (E8) bisector localization; (C10)/(G4)/(G5) multi-deletion K4
+content beyond (DEL2); (G6) beyond the S5/coradial note; B-set radii; S5(b)'s
+inner 4-set structure. Each is a candidate refinement clause family for
+CEGAR iteration 2+.
+
+## 8. Change control
+
+This spec is the auditable soundness ledger (plan §2.1). Implementation must
+not add clause families beyond it; if a needed constraint is missing, the
+implementer reports the gap rather than improvising. Deviations = spec edit
+first (by the orchestrating session), then code.
