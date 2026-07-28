@@ -78,15 +78,8 @@ Phase-1 CANDIDATE rules (implement + unit-test, do NOT admit):
   exists in the node yet).
 - (R-CAPGE4) profile floor: in a (k=4, n, profile) cell, every closed
   cap size >= 4. Predicate operates on the cell descriptor, not the
-  node. CANDIDATE in Phase 1. Orchestrator audit 2026-07-28:
-  `capTriple_caps_card_ge_four`
-  (`lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean:446`) proves
-  `4 <= Ci.card` for the three CLOSED caps under ConvexIndep +
-  noncollinear + K4 + CircumscribedMECPacket — all supplied by the
-  design-§5 frame chain. Flips to ADMITTED at Phase-2 cell runs, after
-  the one remaining sub-audit: the cap-partition fact (closed caps sum
-  to n+3, i.e. interiors partition the non-Moser points) traced to the
-  CapTriple/SurplusCapPacket structure fields.
+  node. CANDIDATE pending orchestrator audit of
+  `capTriple_caps_card_ge_four` (closed vs strict caps unresolved).
 
 ## 4. Cell descriptors
 
