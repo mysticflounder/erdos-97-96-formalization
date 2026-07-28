@@ -93,12 +93,12 @@
       "sv(xv)",
       "sv(zd)"
     ],
-    "n_clauses": 18792,
+    "n_clauses": 18858,
     "n_variables": 835,
     "proof_verified": false,
     "run": "base",
     "verdict": "SAT",
-    "wall_seconds": 0.016
+    "wall_seconds": 0.017
   },
   {
     "cnf_file": "out/base+P.cnf",
@@ -194,7 +194,7 @@
       "sv(xv)",
       "sv(zd)"
     ],
-    "n_clauses": 18797,
+    "n_clauses": 18863,
     "n_variables": 835,
     "proof_verified": false,
     "run": "base+P",
@@ -320,7 +320,7 @@
       "sv(xv)",
       "sv(zd)"
     ],
-    "n_clauses": 18798,
+    "n_clauses": 18864,
     "n_variables": 835,
     "proof_verified": false,
     "run": "base+P+A2",
@@ -447,7 +447,7 @@
       "sv(xv)",
       "sv(zd)"
     ],
-    "n_clauses": 18800,
+    "n_clauses": 18866,
     "n_variables": 835,
     "proof_verified": false,
     "run": "base+P+A3",
@@ -568,7 +568,7 @@
       "sv(xv)",
       "sv(zd)"
     ],
-    "n_clauses": 18804,
+    "n_clauses": 18870,
     "n_variables": 835,
     "proof_verified": false,
     "run": "base+P+A6",
@@ -694,7 +694,7 @@
       "sv(xv)",
       "sv(zd)"
     ],
-    "n_clauses": 18801,
+    "n_clauses": 18867,
     "n_variables": 835,
     "proof_verified": false,
     "run": "base+P+A7",
@@ -820,7 +820,7 @@
       "sv(xv)",
       "sv(zd)"
     ],
-    "n_clauses": 18800,
+    "n_clauses": 18866,
     "n_variables": 835,
     "proof_verified": false,
     "run": "base+P+A8",
@@ -860,7 +860,6 @@
       "cl1(qh)",
       "cl1(wh)",
       "del(zd)",
-      "eq(gamma,a0)",
       "eq(gamma,qh)",
       "inO1i(qh)",
       "inO1i(wh)",
@@ -964,11 +963,11 @@
       "w_zd(wh)",
       "w_zd(zd)"
     ],
-    "n_clauses": 19126,
+    "n_clauses": 19204,
     "n_variables": 1012,
     "proof_verified": false,
     "run": "base+A1",
     "verdict": "SAT",
-    "wall_seconds": 0.017
+    "wall_seconds": 0.016
   }
 ]

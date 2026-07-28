@@ -594,6 +594,25 @@ class ACoreEncoder:
                 bp, bq = self.b[(x, p)], self.b[(x, q)]
                 self.add(-ev, -bp, bq)
                 self.add(-ev, bp, -bq)
+        # (EQ4) transitivity (v1.1, added after this implementation report
+        # showed the gap was reachable for the four `oth` triangles): for
+        # every label triple p,q,r whose three pairs all carry eq atoms,
+        # eq(p,q) & eq(q,r) -> eq(p,r), in all three rotations. Uniform over
+        # every such triangle (the 18 a0-triangles are emergently closed by
+        # (EQ3) already, per the report; the schema is harmless there).
+        for p, q, r in combinations(LABELS, 3):
+            e_pq = self._eq_var(p, q)
+            e_qr = self._eq_var(q, r)
+            e_pr = self._eq_var(p, r)
+            if e_pq is not None and e_qr is not None and e_pr is not None:
+                self._add_eq4_triangle(e_pq, e_qr, e_pr)
+
+    def _add_eq4_triangle(self, e_ab: int, e_bc: int, e_ac: int) -> None:
+        """(EQ4): given the three edge variables of one eq-triangle, assert
+        each pair of edges implies the third (all three rotations)."""
+        self.add(-e_ab, -e_bc, e_ac)
+        self.add(-e_bc, -e_ac, e_ab)
+        self.add(-e_ac, -e_ab, e_bc)
 
     # -- section 4: leaf deltas -----------------------------------------------
 
@@ -662,6 +681,19 @@ class ACoreEncoder:
             targets = [gamma_eq[t] for t in group if t in gamma_eq]
             if len(targets) >= 2:
                 self.cnf.at_most_sinz(targets, 1)
+
+        # (EQ4) transitivity (v1.1) for gamma's triangles, per coordinator
+        # instruction: for every pair t1,t2 of gamma's own eq-targets that
+        # themselves carry a real eq(t1,t2) atom among the 13 labels, add
+        # all three rotations of eq(gamma,t1) & eq(t1,t2) -> eq(gamma,t2).
+        # Only the four {gamma,a0,X} triangles for X in {qh,wh,f1,f2}
+        # qualify (a0 is the only gamma-target pair whose own eq(a0,X)
+        # atom exists among gamma_targets={a0,a1,qh,wh,f1,f2}: a1-{qh,wh,
+        # f1,f2} and qh/wh/f1/f2 pairwise are all baked distinct).
+        for t1, t2 in combinations(gamma_targets, 2):
+            e_t1t2 = self._eq_var(t1, t2)
+            if e_t1t2 is not None:
+                self._add_eq4_triangle(gamma_eq[t1], e_t1t2, gamma_eq[t2])
 
         w_families: dict[str, dict[str, int]] = {}
         for s in SHELL_GROUP:

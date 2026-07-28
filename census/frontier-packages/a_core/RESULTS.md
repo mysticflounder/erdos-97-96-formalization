@@ -1,6 +1,21 @@
 # A-core Layer-1 incidence encoder — results
 
-Implements `census/frontier-packages/A-CORE-ENCODING-SPEC.md`. Code:
+**v1.1 update**: the coordinator amended the spec after reviewing this
+report — the dangling `(RB2)` tag is now an explicit "row_u(a1)
+unconstrained" note (matches what was already implemented, no code change),
+and a new **(EQ4) transitivity** schema was added, adopting this report's
+finding (§4.4 below): for every label triple whose three pairs all carry eq
+atoms, `eq(p,q) ∧ eq(q,r) → eq(p,r)` in all three rotations, uniform over
+every such triangle including the `a0` ones (harmless, already emergently
+closed) and including gamma's triangles in `base+A1`. Implemented in
+`encoding.py` (`_add_eq4_triangle`, called from `_build_eq_consistency` for
+the 13-label triangles and from `build_a1_extension` for gamma's four
+`{gamma,a0,X}` triangles, X∈{qh,wh,f1,f2} — those are the only gamma-target
+pairs that themselves carry a real eq atom). All numbers below are from the
+**post-(EQ4) build**; §5 records the before/after delta and the regression
+check.
+
+Implements `census/frontier-packages/A-CORE-ENCODING-SPEC.md` (v1.1). Code:
 `census/frontier-packages/a_core/{encoding.py,run.py,smoke.py}`. All commands
 run from the repo root via `uv run python census/frontier-packages/a_core/...`
 (the `a_core` directory has no hyphen, but its parent `frontier-packages`
@@ -17,10 +32,13 @@ geometric closure result.
 
 ## 0. Encoder size
 
-`base` (section 1-2 minus (DEL2)): **835 variables, 18792 clauses.**
-`base+A1` adds 177 more variables (gamma's 6 eq atoms + 5×13 `w_s` atoms +
-Sinz aux) for 1012 variables, 19126 clauses. All solves complete in
-0.008-0.05s — nowhere near the 60s timeout budget.
+`base` (section 1-2 minus (DEL2)): **835 variables, 18858 clauses** (was
+18792 before (EQ4); +66 = 22 triangles × 3 rotations, no new variables —
+(EQ4) is pure clauses over existing eq atoms). `base+A1` adds 177 more
+variables (gamma's 6 eq atoms + 5×13 `w_s` atoms + Sinz aux) for 1012
+variables, 19204 clauses (was 19126; +12 = gamma's 4 triangles × 3
+rotations, on top of the +66 already in the base prefix it inherits). All
+solves complete in 0.008-0.05s — nowhere near the 60s timeout budget.
 
 ## 1. Smoke gates (spec §6) — run BEFORE the verdict runs, per the
 sequencing rule
@@ -112,14 +130,17 @@ Command: `uv run python census/frontier-packages/a_core/run.py`. Output:
 
 | Run | Verdict | Vars | Clauses | Wall |
 |---|---|---|---|---|
-| base | SAT | 835 | 18792 | 0.017s |
-| base+P | **SAT** | 835 | 18797 | 0.016s |
-| base+P+A2 | SAT | 835 | 18798 | 0.016s |
-| base+P+A3 | SAT | 835 | 18800 | 0.016s |
-| base+P+A6 | SAT | 835 | 18804 | 0.016s |
-| base+P+A7 | SAT | 835 | 18801 | 0.016s |
-| base+P+A8 | SAT | 835 | 18800 | 0.016s |
-| base+A1 | SAT | 1012 | 19126 | 0.017s |
+| base | SAT | 835 | 18858 | 0.016s |
+| base+P | **SAT** | 835 | 18863 | 0.016s |
+| base+P+A2 | SAT | 835 | 18864 | 0.016s |
+| base+P+A3 | SAT | 835 | 18866 | 0.016s |
+| base+P+A6 | SAT | 835 | 18870 | 0.016s |
+| base+P+A7 | SAT | 835 | 18867 | 0.016s |
+| base+P+A8 | SAT | 835 | 18866 | 0.016s |
+| base+A1 | SAT | 1012 | 19204 | 0.016s |
+
+No verdict flipped (all 8 still SAT). Every run's clause count grew by
+exactly the (EQ4) delta described in §0 above and nothing else.
 
 **Package verdict (`base+P`): SAT.** Per the scope label above, this means
 the package's Layer-1 incidence content (as approved by the spec) has no
@@ -152,10 +173,18 @@ Format: `inO2i(xu/v/xv)`, β(u) target, true eq atoms, S6 arm, integer layer
   target); eq: {a0=f1, a0=xu, a2=f2, f1=xu, oth=v, qh=zd}; S6=s6c;
   (3,2,4,12); Δ={u,v,xu,xv,zd}. (Satisfies (A8.d) `¬inO2i(v) ∨ ¬inO2i(xv)`
   via `¬inO2i(xv)`.)
-- **base+A1**: β(u)=v; γ's eq atoms: {γ=a0, γ=qh} (one Moser coincidence,
-  one frontier coincidence — see §4 fix note); S6=s6c; (3,2,4,12);
-  Δ={zd} ((DEL2) is absent in this run, so a 1-element Δ is legal, unlike
-  every other run).
+- **base+A1**: β(u)=v; γ's eq atoms: **{γ=qh}** — the only decoded fact
+  that changed shape after (EQ4), see §5; S6=s6c; (3,2,4,12); Δ={zd}
+  ((DEL2) is absent in this run, so a 1-element Δ is legal, unlike every
+  other run).
+
+**All other 7 runs' decoded models (`base`, `base+P`, `base+P+A{2,3,6,7,8}`)
+are byte-identical to the pre-(EQ4) build** — same `inO2i`, β(u) target, S6
+arm, integer layer, Δ, and (crucially) the same *sets* of true eq atoms.
+This is expected: every eq-triangle those five leaf witnesses happened to
+touch (all built around a shared `a0` hub, e.g. `{a0,v,f1}` all three true)
+was already transitively consistent before (EQ4) existed, confirmed by the
+direct probe sweep in §5. Only `base+A1`'s witness moved.
 
 **Caveat on `row_u`/`row_v` values outside the shell group**: in every run
 above, `row_u`/`row_v` for `{a0,a1,a2,qh,wh,f1,f2}` (and `oth`/`xu`/`xv`
@@ -217,8 +246,8 @@ constrain.
    eq-targets intersected with that group — the strongest valid
    instantiation, which subsumes any smaller choice of L.
 
-4. **Missing eq-transitivity family (genuine spec gap, not an
-   implementation bug) — verified reachable for 4 of 22 at-risk triangles.**
+4. **Missing eq-transitivity family — RESOLVED in spec v1.1, see §5.**
+   (Original finding from the pre-v1.1 build, kept for the record:)
    Spec §1 lists exactly three "Consistency schemas over eq atoms": (EQ1)
    at-most-one, (EQ2) exclusion, (EQ3) congruence. No fourth schema asserts
    `eq(p,q) ∧ eq(q,r) → eq(p,r)`. Since `eq` is meant to represent point
@@ -257,7 +286,49 @@ constrain.
    since it is inferred from consistency between two spec passages rather
    than stated as a single explicit rule.
 
-## 5. Implementation notes (not ambiguities — decisions with no live spec
+## 5. (EQ4) implementation and regression check (spec v1.1)
+
+Implemented in `encoding.py`: a new `_add_eq4_triangle(e_ab, e_bc, e_ac)`
+helper emits all three rotations of the transitivity implication for one
+triangle's three edge variables. Called from `_build_eq_consistency` over
+every 13-label triple `(p,q,r)` where all three pairwise eq atoms exist (22
+triangles → 66 clauses), and from `build_a1_extension` over gamma's four
+qualifying triangles `{gamma,a0,X}` for X∈{qh,wh,f1,f2} (12 more clauses;
+gamma's other 11 target-pairs — `{a1}×{qh,wh,f1,f2}` and `{qh,wh,f1,f2}`
+pairwise — are all baked pairwise distinct among the 13 labels, so they
+never carry a real eq atom and don't form a qualifying triangle).
+
+**Regression check** (the specific probe the coordinator asked to verify):
+`eq(v,oth) ∧ eq(oth,f1) ∧ ¬eq(v,f1)` under `base` —
+
+| | Before (EQ4) | After (EQ4) |
+|---|---|---|
+| Verdict | SAT (confirmed in the original report) | **UNSAT, DRAT-verified** |
+
+Also swept **all 22×3 = 66** triangle/rotation combinations directly (not
+just the one `oth` probe): every one is now UNSAT under `base`, including
+the 18 `a0`-triangles that were already emergently closed before (EQ4) — so
+the uniform schema is confirmed harmless there, exactly as the spec's v1.1
+note predicts.
+
+**Verdict/model-shape changes**: no run's SAT/UNSAT verdict flipped (§2).
+Exactly one decoded model changed shape: `base+A1`'s witness moved from
+γ coincident with two targets (`{a0,qh}`, spanning two different baked
+groups — legal both before and after (EQ4), since `eq(a0,qh)` itself was
+never asserted or forbidden) to γ coincident with one target (`{qh}`) only.
+This is CaDiCaL landing on a different point in an unchanged-satisfiable
+region, not a soundness effect: forcing γ=a0 and γ=qh together under (EQ4)
+would have additionally required `eq(a0,qh)=T` (a real, un-baked-distinct
+pair, per (A1.b)'s gamma_targets — no clause anywhere forbids this), so the
+old two-target witness was very likely still reachable; the solver simply
+found a smaller one first. All 7 other runs' decoded models (`base`,
+`base+P`, `base+P+A{2,3,6,7,8}`) are byte-identical before/after — every eq
+triangle those witnesses touch was already transitively consistent (all
+built around a shared `a0` hub), matching the pre-v1.1 report's own
+"0 genuine 2-of-3 violations across all 8 organically-found witnesses"
+finding.
+
+## 6. Implementation notes (not ambiguities — decisions with no live spec
 choice)
 
 - **Integer layer encoding**: implemented as a direct/"unary" one-hot value

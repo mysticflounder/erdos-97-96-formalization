@@ -17,7 +17,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.045
+        "wall_seconds": 0.044
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,zd) vs b(u,xv)",
@@ -26,7 +26,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.047
+        "wall_seconds": 0.044
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,zd) vs b(u,xv)",
@@ -44,7 +44,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.045
+        "wall_seconds": 0.044
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,v) vs b(u,xv)",
@@ -53,7 +53,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.045
+        "wall_seconds": 0.044
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,v) vs b(u,xv)",
@@ -62,7 +62,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.045
+        "wall_seconds": 0.044
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,v) vs b(u,xv)",
@@ -80,7 +80,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.046
+        "wall_seconds": 0.044
       },
       {
         "clash_family": "inO2i(xu) unit clash: A6 asserts T, A8 asserts F",
@@ -89,7 +89,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.046
+        "wall_seconds": 0.045
       },
       {
         "clash_family": "inO2i(v)/inO2i(xv) pattern clash: A7 forces both T (A7.d), A8's (A8.d) clause forbids both T",
@@ -98,7 +98,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.046
+        "wall_seconds": 0.044
       }
     ],
     "pass": true

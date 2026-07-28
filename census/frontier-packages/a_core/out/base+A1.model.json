@@ -199,7 +199,7 @@
   "eq(f2,xu)": false,
   "eq(f2,xv)": false,
   "eq(f2,zd)": false,
-  "eq(gamma,a0)": true,
+  "eq(gamma,a0)": false,
   "eq(gamma,a1)": false,
   "eq(gamma,f1)": false,
   "eq(gamma,f2)": false,
