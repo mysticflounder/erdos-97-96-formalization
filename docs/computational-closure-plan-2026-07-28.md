@@ -36,10 +36,14 @@ plain-math references.
 
 1. **Encoding smoke test before any production run** — every encoder must
    reproduce a known result first (per-package gates listed in §5).
-2. **Forbidden modalities** (dead-ends (D-msolve)): free-frame QF_NRA with
-   K4-everywhere (times out even on the (4,4,4) known-result gate);
-   decimal-literal frames (spurious ~1e-16 SAT); reading complex Gröbner
-   non-emptiness as real-satisfiability. Exact-rational / symbolic only.
+2. **Forbidden modalities** (dead-ends (D-msolve), revised per
+   `scratch/qfnra-gate-revisit/REPORT.md`): leaving combinatorial class
+   selection to the SMT solver (boolean selectors / subset disjunctions
+   inside an NRA query — times out even at one center); decimal-literal
+   frames (spurious ~1e-16 SAT); reading complex Gröbner non-emptiness as
+   real-satisfiability. Exact-rational / symbolic only. Per-branch QF_NRA
+   over an explicitly enumerated incidence type IS permitted as a Layer-2
+   UNSAT engine (44/70 general-frame gate branches resolve in 120s).
 3. **Trust boundary**: msolve/Singular/cvc5/floating probes are untrusted
    proposal generators only; every kill is re-verified in exact `Fraction`
    arithmetic; every Lean landing is kernel-checked (`decide` preferred,

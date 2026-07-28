@@ -56,11 +56,18 @@ concyclic ("every cap point equidistant from its opposite apex") IS U1.3
   positive-dimensional; `[0, …]` = zero-dimensional. Parse the whole tuple — a
   positive-dimensional / non-vanishing Gröbner output is NOT a contradiction, and
   complex Gröbner bases cannot see real-emptiness.
-- SMT scope: continuous QF_NRA over a FREE frame with full-K4-everywhere is not
-  solver-decidable (z3/cvc5 time out — even the (4,4,4) known-result gate). Fixed
-  exact-rational frames are tractable but UNSOUND for the general verdict;
-  partial-K4 is SAT even at (4,4,4). Use exact-rational / symbolic only —
-  decimal-literal frames give spurious ~1e-16 SAT.
+- SMT scope (REVISED 2026-07-28, `scratch/qfnra-gate-revisit/REPORT.md`): the
+  operative intractability is the **boolean class-selection layer inside the
+  NRA query**, not the free frame or K4-everywhere. Boolean-selector K4 at
+  even ONE center times out (120s) on a gauge-fixed 25-var degree-2 frame;
+  the same constraint as an explicit enumerated class resolves 44/70
+  general-frame branches inside 120s. Monolithic selector encodings stay dead
+  at any budget tried (≤3600s); explicit-class per-branch QF_NRA is a usable
+  UNSAT engine (with straggler branches needing escalation or exact algebra).
+  Partial-K4 is SAT even at (4,4,4) — such SATs are artifacts, not
+  counterexamples. Decimal-literal frames give spurious ~1e-16 SAT (generic
+  hazard, not verified against this gate specifically); use exact-rational /
+  symbolic literals.
 
 ### (REF) — file:line references are indicative only
 Both repos were restructured into subdirectories, so filenames and line numbers
