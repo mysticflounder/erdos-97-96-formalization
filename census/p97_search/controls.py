@@ -2,8 +2,17 @@
 
 Implements ``census/p97_search/PHASE1-SPEC.md`` sections 2, 4, and 5 in
 full: G-CANON-1, G-CANON-2, G-SHADOW-NODE, G-SEEDED, G-RULES, plus the
-standalone unit tests called out alongside them (profiles_for(11, 4),
-R-FIBER4's NotImplementedError scaffold, R-CAPGE4's kill/spare pair).
+standalone unit tests called out alongside them (profiles_for(11, 4)).
+
+Phase-2 authorized edit (``census/p97_search/PHASE2-SPEC.md`` section
+4.3): with R-FIBER4/R-CAPGE4 promoted CANDIDATE -> ADMITTED, ``G-RULES``
+is updated so their kill/spare pairs become live positive controls (run
+through the real engine entry points instead of asserting hard-refusal),
+and the CANDIDATE engine-refusal path is retested via a synthetic
+``R-TEST-CANDIDATE`` rule that exists ONLY in this file (never in
+``rules.ALL_RULES`` / the rule-bank hash).  No other Phase-1 behavior
+changes.  This file must still exit 0 standalone (gate G-P1-REGRESS in
+``controls2.py``).
 
 Run from the repo root:
     uv run python census/p97_search/controls.py
@@ -26,21 +35,23 @@ _HERE = Path(__file__).resolve().parent
 _REPO_ROOT = _HERE.parents[1]
 sys.path.insert(0, str(_HERE))
 
+from annotations import AnnotatedNode, BlockerAnnotation  # noqa: E402
 from canonical import canonical  # noqa: E402
 from cells import Cell, CellError, profiles_for  # noqa: E402
 from node import Node, NodeInvariantError, relabel  # noqa: E402
 from rules import (  # noqa: E402
-    ADMITTED_RULES,
+    ADMITTED_ANNOTATED_RULES,
+    ADMITTED_CELL_RULES,
+    ALL_RULES,
     CANDIDATE,
     CANDIDATE_RULES,
     R_CAPGE4,
     R_CIRC2,
     R_FIBER4,
+    Rule,
     apply_rule,
+    prune_annotated_node,
     prune_node,
-    r_capge4_predicate,
-    r_circ2_predicate,
-    r_fiber4_predicate,
 )
 
 
@@ -298,10 +309,12 @@ def gate_seeded() -> str:
 
 # ---------------------------------------------------------------------------
 # G-RULES: per-rule kill/spare pairs.  R-CIRC2 (ADMITTED) is exercised
-# through prune_node.  Each CANDIDATE rule is "wired" (routed through the
-# same enforcement point, apply_rule / prune_node) and asserted to be
-# hard-refused, plus its own predicate is unit-tested directly (outside the
-# engine) to confirm it behaves as specified.
+# through prune_node.  Phase-2 (PHASE2-SPEC.md section 4.3): R-FIBER4 and
+# R-CAPGE4 are now ADMITTED too, so their kill/spare pairs become LIVE
+# positive controls run through the real engine entry points
+# (prune_annotated_node / apply_rule) instead of asserting hard-refusal.
+# The CANDIDATE-refusal path itself is retested via a synthetic
+# R-TEST-CANDIDATE rule that lives only in this file.
 # ---------------------------------------------------------------------------
 
 
@@ -333,78 +346,87 @@ def gate_rules() -> str:
         raise GateFailure(f"G-RULES: R-CIRC2 incorrectly killed the conforming pair: {spared}")
     lines.append("R-CIRC2: violating node killed, conforming node spared")
 
-    # --- R-FIBER4 (CANDIDATE, node-domain): wire the same pair through the
-    # engine's enforcement points and confirm hard-refusal (AssertionError,
-    # not a quiet skip), then confirm the raw predicate is the documented
-    # NotImplementedError stub.
-    for obj, label in ((violating, "violating"), (conforming, "conforming")):
-        try:
-            apply_rule(R_FIBER4, obj)
-        except AssertionError:
-            pass
-        else:
-            raise GateFailure(
-                f"G-RULES: apply_rule(R_FIBER4, {label}) did not hard-refuse a CANDIDATE rule"
-            )
-        try:
-            prune_node(obj, rules=(R_FIBER4,))
-        except AssertionError:
-            pass
-        else:
-            raise GateFailure(
-                f"G-RULES: prune_node(..., rules=(R_FIBER4,)) did not hard-refuse on {label}"
-            )
-    try:
-        r_fiber4_predicate(violating)
-    except NotImplementedError:
-        pass
-    else:
-        raise GateFailure("G-RULES: r_fiber4_predicate did not raise NotImplementedError")
+    # --- R-FIBER4 (ADMITTED, Phase 2, domain=annotated-node): live
+    # positive control.  A B1-valid blocker annotation on the conforming
+    # (5-cycle) node -- c(x) = a neighbor of x, so x in S[c(x)] trivially
+    # -- is spared by the real engine call (not pruned, no defensive
+    # raise).  The defensive predicate is provably False for every
+    # constructible AnnotatedNode (spec section 4.1 mini-lemma), so there
+    # is no genuine "killed" case to exercise here without monkeypatching
+    # (that raise-path is gate G-FIBER in controls2.py).
+    blocker_c = tuple((x + 1) % conforming.n for x in range(conforming.n))
+    blocker = BlockerAnnotation(node=conforming, c=blocker_c)
+    anode = AnnotatedNode(node=conforming, blocker=blocker)
+    fiber_result = prune_annotated_node(anode)
+    if fiber_result.pruned:
+        raise GateFailure(
+            f"G-RULES: R-FIBER4 incorrectly pruned a B1-valid annotated node: {fiber_result}"
+        )
+    if R_FIBER4 not in ADMITTED_ANNOTATED_RULES:
+        raise GateFailure("G-RULES: R-FIBER4 must be in ADMITTED_ANNOTATED_RULES")
     lines.append(
-        "R-FIBER4: apply_rule/prune_node hard-refuse (AssertionError) on both pair members; "
-        "raw predicate raises NotImplementedError (Phase-2 blocker-data stub)"
+        "R-FIBER4: live via prune_annotated_node on a B1-valid blocker-annotated node -- spared "
+        "(defensive predicate has no constructible killed case, see PHASE2-SPEC.md section 4.1)"
     )
 
-    # --- R-CAPGE4 (CANDIDATE, cell-domain): wire the same node pair through
-    # the engine (hard-refused before the domain even matters), plus a
-    # standalone cell-descriptor kill/spare pair exercising the predicate
-    # directly.
-    for obj, label in ((violating, "violating"), (conforming, "conforming")):
-        try:
-            apply_rule(R_CAPGE4, obj)
-        except AssertionError:
-            pass
-        else:
-            raise GateFailure(
-                f"G-RULES: apply_rule(R_CAPGE4, {label}) did not hard-refuse a CANDIDATE rule"
-            )
-        try:
-            prune_node(obj, rules=(R_CAPGE4,))
-        except AssertionError:
-            pass
-        else:
-            raise GateFailure(
-                f"G-RULES: prune_node(..., rules=(R_CAPGE4,)) did not hard-refuse on {label}"
-            )
-    # Standalone cell-domain kill/spare pair: killed cell has a cap < 4;
-    # spared cell is the census-554 cell (5, 5, 4), all caps >= 4.
-    killed_cell = Cell(k=4, n=8, profile=(3, 4, 4))  # sums to n+3=11, cap 3 < 4
+    # --- R-CAPGE4 (ADMITTED, Phase 2, domain=cell): live kill/spare pair
+    # through apply_rule directly on Cell descriptors (Phase-2 tightening:
+    # profiled cells require k=4, n>9).  Killed cell has a cap < 4; spared
+    # cell is the census-554 cell (5, 5, 4), all caps >= 4.
+    killed_cell = Cell(k=4, n=10, profile=(3, 5, 5))  # sums to n+3=13, cap 3 < 4
     spared_cell = Cell(k=4, n=11, profile=(4, 5, 5))  # census-554 cell, all caps >= 4
-    if not r_capge4_predicate(killed_cell):
-        raise GateFailure(f"G-RULES: r_capge4_predicate failed to flag {killed_cell}")
-    if r_capge4_predicate(spared_cell):
-        raise GateFailure(f"G-RULES: r_capge4_predicate incorrectly flagged {spared_cell}")
-    if R_CAPGE4 in ADMITTED_RULES:
-        raise GateFailure("G-RULES: R-CAPGE4 must not be in ADMITTED_RULES")
+    if not apply_rule(R_CAPGE4, killed_cell):
+        raise GateFailure(f"G-RULES: R-CAPGE4 (live) failed to flag {killed_cell}")
+    if apply_rule(R_CAPGE4, spared_cell):
+        raise GateFailure(f"G-RULES: R-CAPGE4 (live) incorrectly flagged {spared_cell}")
+    if R_CAPGE4 not in ADMITTED_CELL_RULES:
+        raise GateFailure("G-RULES: R-CAPGE4 must be in ADMITTED_CELL_RULES")
     lines.append(
-        "R-CAPGE4: apply_rule/prune_node hard-refuse on the node pair; standalone cell pair "
-        f"killed={killed_cell.profile} spared={spared_cell.profile}; not in ADMITTED_RULES"
+        f"R-CAPGE4: live via apply_rule; killed={killed_cell.profile} (n={killed_cell.n}) "
+        f"spared={spared_cell.profile} (n={spared_cell.n})"
     )
 
-    if R_FIBER4 not in CANDIDATE_RULES or R_CAPGE4 not in CANDIDATE_RULES:
-        raise GateFailure("G-RULES: R-FIBER4/R-CAPGE4 must both be registered as CANDIDATE")
-    if any(rule.status != CANDIDATE for rule in CANDIDATE_RULES):
-        raise GateFailure("G-RULES: CANDIDATE_RULES contains a non-CANDIDATE rule")
+    if CANDIDATE_RULES:
+        raise GateFailure(
+            f"G-RULES: CANDIDATE_RULES must be empty after Phase-2 promotion, got {CANDIDATE_RULES}"
+        )
+    if len(ALL_RULES) != 3 or {r.id for r in ALL_RULES} != {"R-CIRC2", "R-FIBER4", "R-CAPGE4"}:
+        raise GateFailure(f"G-RULES: ALL_RULES must be exactly the 3 promoted rules, got {ALL_RULES}")
+
+    # --- R-TEST-CANDIDATE (synthetic, controls-only): retests the
+    # CANDIDATE engine-refusal path now that no production rule is
+    # CANDIDATE any more.  Never added to rules.ALL_RULES / the bank hash.
+    r_test_candidate = Rule(
+        id="R-TEST-CANDIDATE",
+        status=CANDIDATE,
+        hypotheses=(),
+        predicate=lambda obj: False,  # trivial: never fires even if consulted
+        citation="synthetic controls-only rule, PHASE2-SPEC.md section 4.3; never in ALL_RULES",
+        domain="node",
+    )
+    if r_test_candidate.id in {r.id for r in ALL_RULES}:
+        raise GateFailure("G-RULES: R-TEST-CANDIDATE leaked into rules.ALL_RULES")
+    for obj, label in ((violating, "violating"), (conforming, "conforming")):
+        try:
+            apply_rule(r_test_candidate, obj)
+        except AssertionError:
+            pass
+        else:
+            raise GateFailure(
+                f"G-RULES: apply_rule(R-TEST-CANDIDATE, {label}) did not hard-refuse a CANDIDATE rule"
+            )
+        try:
+            prune_node(obj, rules=(r_test_candidate,))
+        except AssertionError:
+            pass
+        else:
+            raise GateFailure(
+                f"G-RULES: prune_node(..., rules=(R-TEST-CANDIDATE,)) did not hard-refuse on {label}"
+            )
+    lines.append(
+        "R-TEST-CANDIDATE (synthetic, controls-only): apply_rule/prune_node hard-refuse "
+        "(AssertionError) on both pair members; not in rules.ALL_RULES"
+    )
 
     return "; ".join(lines)
 

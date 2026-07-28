@@ -92,3 +92,140 @@ cannot otherwise exercise a cell-domain predicate meaningfully.
 - `census/p97_search/controls.py` -- all gates (G-CANON-1, G-CANON-2,
   G-SHADOW-NODE, G-SEEDED, G-RULES) plus the `profiles_for` unit test;
   single entry point, exits nonzero on any gate failure.
+
+# P97 counterexample search -- Phase 2 results
+
+Implements `census/p97_search/PHASE2-SPEC.md` (v1.0) in full over the
+landed Phase-1 core: node annotations (`annotations.py`), annotated
+canonicalization (`canonical.py` additions), rule promotions R-FIBER4 /
+R-CAPGE4 CANDIDATE -> ADMITTED (`rules.py`), the production cell
+iterator + persistent jsonl bank (`iterate.py`), explicit seed
+constructions (`seeds.py`), and every gate from spec section 7
+(`controls2.py`), plus the section-4.3-authorized `controls.py` G-RULES
+update. No SAT-model enumeration (Phase 3) and no realization arm are in
+scope here, per spec.
+
+Run from the repo root:
+
+```
+uv run python census/p97_search/controls.py    # Phase-1 regression
+uv run python census/p97_search/controls2.py   # Phase-2 gates
+```
+
+Both exit nonzero if any gate fails.
+
+## 1. Gate outcomes (spec section 7)
+
+| Gate | Verdict | Evidence | Pass |
+|---|---|---|---|
+| G-P1-REGRESS | `controls.py` run as a subprocess | exits 0 (`ALL_GATES_PASS = True`) | yes |
+| G-ANN-B1 | hand example: 5-cycle node, `c(x)=(x+1)%5` | valid c accepted, `fibers = {0:{4},1:{0},2:{1},3:{2},4:{3}}` matches hand computation; `c(0)=2` (S[2]={1,3}, 0∉S[2]) rejected `AnnotationError` | yes |
+| G-CANON-ANN | 100 random (annotated node, σ) pairs, 50 blocker / 50 caps, `random.Random(20260728)` | all 100 agree; explicit symmetric n=4 (`S[p]`=all others) case has `\|canonical_perms\|=24 > 1`, both annotation kinds invariant on it | yes |
+| G-CAP-ANN | 50 random cap annotations + hand example (n=7, M={0,2,4}, f={1:0,3:1,5:1,6:2}) | all 50 sum to n+3; hand example `closed_profile()=(3,3,4)` matches by-hand computation | yes |
+| G-FIBER | profile form kill/spare pair; node form on valid node; monkeypatched-True iterator raise | kill `m={0:3,...}` (3>\|S[0]\|=2) prunes, spare `m={0:1,...}` spared; node form False on a valid annotated node; `iterate_cell` raises `FiberDefensivePredicateFired` when `R_FIBER4.predicate` is monkeypatched to always return True | yes |
+| G-CAPGE4 | `apply_rule(R_CAPGE4, ...)` on 3 cells + 2 malformed-profiled-cell constructions | `(4,12,(3,6,6))` pruned, `(4,12,(4,5,6))` spared, FRAMELESS spared; `Cell(k=3,n=11,profile=(4,5,5))` and `Cell(k=4,n=9,profile=(4,4,4))` both raise `CellError` | yes |
+| G-ITER-DEDUP | 7 π-relabeled duplicates (incl. identity) of one n=5,k=2 node, fed through `iterate_cell` | bank has exactly 1 entry (`counts`: produced=7, admitted=7, duplicate=6, open=1) | yes |
+| G-ITER-SHADOW | Phase-1 15-point tri-apex shadow, bare mode, FRAMELESS `(4,15)` cell | banks OPEN, `fired=[]` | yes |
+| G-ITER-KILL | R-CIRC2-violating n=5,k=2 node through `iterate_cell` | banks PRUNED, `fired=["R-CIRC2"]`, `hypotheses=[]` (R-CIRC2 has none, FRAMELESS cell) | yes |
+| G-SEEDED-2 | `mutation_probe` generator (1 planted + 50 mutants) through the full `iterate_cell` path, `Cell(k=2,n=9,profile=None)` | exactly 1 OPEN entry; its digest matches `sha256(repr(canonical(planted_node)))` independently recomputed | yes |
+| G-SEED-K3 | S-K3-9 through `explicit_seeds` into `Cell(k=3,n=9,profile=None,exact=True)` | D1/D2/exact-3 pass, banks OPEN, not pruned by any ADMITTED rule | yes |
+| G-SEED-FR20 | S-FR-20 through `explicit_seeds` into `Cell(k=3,n=20,profile=None,exact=True)` | D1/D2/exact-3 pass, degrees all 3 (checked both inside `seeds.py`'s construction and again directly in the gate), banks OPEN | yes |
+| G-BANK-REVAL | bank with 1 PRUNED entry, header `rule_bank_hash` mutated on disk to simulate a stale bank | plain `CanonicalBank(path, cell)` raises `BankStaleError`; `CanonicalBank.open_for_revalidation` succeeds with 1 entry demoted to STALE; re-running `iterate_cell` over it clears STALE back to a fresh PRUNED entry | yes |
+
+`ALL_GATES_PASS = True` for both `controls.py` and `controls2.py`.
+Current `rule_bank_hash()` (3 rules, all ADMITTED, sha256 over sorted
+`(id, status, hypotheses, domain, citation)` tuples):
+`e1626f72c1831d8f93eaeecef558ea55a199849ea9bd76a5ea83ec0d7cc1ead9`.
+Wall time: `controls.py` ~32s (G-CANON-2 dominates, unchanged from
+Phase 1); `controls2.py` ~32s (dominated by its own G-P1-REGRESS
+subprocess re-run of `controls.py`; every other Phase-2 gate is under
+0.1s). Cross-check: running `tiny_exhaustive` over `Cell(k=2,n=5,
+profile=None)` through `iterate_cell` bank-collapses the same 161051
+nodes into 1516 canonical entries as Phase-1's independent G-CANON-2
+brute-force partition -- confirms `canonical()` + the
+`sha256(repr(canonical(...)))` dedup key agree with the Phase-1
+isomorphism-class count exactly.
+
+## 2. Kernel gate sentence (spec section 4.2, R-CAPGE4)
+
+Kernel gate (unchanged, blocks PUBLISHED cell claims only, not this
+admission): `proof-blueprint axioms` on `nonempty_surplusCapPacket_of_K4`
+and `capTriple_caps_card_ge_four` must show core axioms only before any
+per-cell non-existence claim is published. Source-level scan done;
+kernel check pending.
+
+## 3. STOP-reported ambiguities
+
+None. No spec item required stopping. A handful of implementation
+choices left open by the spec's prose (all non-soundness-relevant --
+none affect which rule prunes what, a rule's citation, or an admission's
+hypothesis set) are recorded below for transparency:
+
+- **Dedup key.** The spec names the bank entry field `digest` without
+  pinning its exact construction. `iterate_cell` computes it as
+  `sha256(repr(canonical_form))` (the *canonical* form's digest, not the
+  raw node's `Node.digest()`) -- this is required for correctness, not
+  just a choice: G-ITER-DEDUP needs π-relabeled duplicates (which have
+  different raw node digests but identical canonical forms) to collapse
+  to one entry.
+- **R-CAPGE4 inside `iterate_cell` for profiled cells.** The spec states
+  R-CAPGE4's predicate "operates on the cell descriptor, not the node"
+  (unchanged from Phase 1) but does not pin exactly how a cell-domain
+  rule is consulted inside the object-level `iterate_cell` loop (whose
+  "ADMITTED rules for the object's domain" language is naturally
+  node/annotated-node scoped). Implemented as: for every admitted object
+  in a profiled cell, `apply_rule(R_CAPGE4, cell)` is also consulted
+  once per object and its `fired`/`hypotheses` folded in alongside the
+  node-domain rules -- so an invalid profile (e.g. a declared cap < 4)
+  uniformly PRUNES every object banked under that cell. No Phase-2 gate
+  exercises this path directly (G-CAPGE4 tests `apply_rule(R_CAPGE4,
+  cell)` standalone, matching the gate's own literal wording); flagged
+  here for visibility ahead of any production profiled-cell run.
+- **`mode: null` in the manifest.** If a generator admits zero objects,
+  `iterate_cell`'s manifest `mode` field is `None` (no object was ever
+  classified). Not exercised by name in any gate; harmless (empty runs
+  have no per-object claims to attach a mode to).
+- **`prune_cell`-style engine symmetry.** `prune_node` and
+  `prune_annotated_node` are the only two "prune_X" engine entry points
+  (matching spec section 4.3's explicit list); R-CAPGE4 is consulted via
+  plain `apply_rule(R_CAPGE4, cell)` rather than a third `prune_cell`
+  wrapper, since the spec names only `prune_annotated_node` as a new
+  engine function.
+
+## 4. Files
+
+- `census/p97_search/annotations.py` (new) -- `AnnotationError`,
+  `BlockerAnnotation`, `CapAnnotation`, `AnnotatedNode`.
+- `census/p97_search/canonical.py` (edited, section 3 addition only;
+  `canonical()` byte-for-byte unchanged) -- adds `canonical_perms`,
+  `canonical_annotated`.
+- `census/p97_search/rules.py` (edited, section 4) -- R-FIBER4 and
+  R-CAPGE4 promoted CANDIDATE -> ADMITTED with new citations; new domain
+  `"annotated-node"`; `FiberDefensivePredicateFired`;
+  `r_fiber4_profile_violates` (motif-level form);
+  `prune_annotated_node`; split registries `ADMITTED_RULES` (R-CIRC2),
+  `ADMITTED_ANNOTATED_RULES` (R-FIBER4), `ADMITTED_CELL_RULES`
+  (R-CAPGE4), `CANDIDATE_RULES` (now empty), `ALL_RULES` (all 3, for the
+  bank hash).
+- `census/p97_search/cells.py` (edited, section 1) -- `Cell` gains
+  `exact: bool = False` and the `frame_hypotheses` property; profiled
+  cells now require `k == 4` and `n > 9`.
+- `census/p97_search/iterate.py` (new) -- `rule_bank_hash`,
+  `BankStaleError`, `CanonicalBank` (jsonl, atomic writes, STALE
+  demotion + `open_for_revalidation`), `Generator`, `explicit_seeds`,
+  `tiny_exhaustive`, `mutation_probe`, `GENERATORS`, `iterate_cell`.
+- `census/p97_search/seeds.py` (new) -- `SeedNode`, `S_K3_9` (imports
+  `PTS` from `scratch/p97-search-lane/verify_k3_control.py`, groups
+  exact ℚ(√3) squared distances), `S_FR_20` (hardcodes the 15-pair edge
+  list from `scratch/p97-search-lane/fishburn-reeds-notes.md` with a
+  citation comment), `SEEDS`.
+- `census/p97_search/controls.py` (edited, section 4.3 authorized:
+  `G-RULES` only) -- R-FIBER4/R-CAPGE4 kill/spare pairs now run live
+  through `prune_annotated_node`/`apply_rule`; CANDIDATE-refusal path
+  retested via a synthetic controls-only `R-TEST-CANDIDATE` rule.
+- `census/p97_search/controls2.py` (new) -- all 13 Phase-2 gates; single
+  entry point, exits nonzero on any gate failure.
+- `census/p97_search/RESULTS.md` (edited) -- this Phase-2 section.
+
+`census/p97_search/node.py` and `census/p97_search/PHASE2-SPEC.md` are
+unmodified.

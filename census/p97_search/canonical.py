@@ -40,11 +40,12 @@ against a brute-force permutation oracle (G-CANON-1, G-CANON-2).
 
 from __future__ import annotations
 
+from itertools import permutations as _permutations
 from typing import Any, Sequence
 
 from node import Node
 
-__all__ = ["canonical"]
+__all__ = ["canonical", "canonical_perms", "canonical_annotated"]
 
 
 def _rerank(sigs: Sequence[Any]) -> tuple[int, ...]:
@@ -140,3 +141,133 @@ def canonical(node: Node) -> tuple[Any, ...]:
     initial = _rerank(tuple(len(shell) for shell in shells))
     cert = _search(n, shells, initial)
     return (node.k, n, cert)
+
+
+# ---------------------------------------------------------------------------
+# Phase-2 additions (PHASE2-SPEC.md section 3).  ``canonical()`` above is
+# untouched -- byte-for-byte compatible, per spec.  ``canonical_perms``
+# reuses the exact same ``_refine`` / ``_individualize`` / ``_leaf_certificate``
+# helpers via a parallel recursion (``_search_all``) that collects every
+# leaf coloring reaching the running-minimum certificate, instead of only
+# the certificate itself (``_search`` above keeps only the certificate).
+# ---------------------------------------------------------------------------
+
+
+def _search_all(
+    n: int, shells: tuple[frozenset[int], ...], colors: tuple[int, ...]
+) -> tuple[tuple[tuple[int, ...], ...], list[tuple[int, ...]]]:
+    """Same recursion as ``_search``, but returns ``(best_cert,
+    best_labelings)`` where ``best_labelings`` is every discrete leaf
+    coloring reaching ``best_cert`` (reset whenever a strictly smaller
+    certificate is found), per spec section 3."""
+
+    colors = _refine(n, shells, colors)
+    if _is_discrete(colors):
+        return _leaf_certificate(n, shells, colors), [colors]
+    counts: dict[int, int] = {}
+    for c in colors:
+        counts[c] = counts.get(c, 0) + 1
+    target_color = min(c for c, count in counts.items() if count > 1)
+    candidates = [p for p in range(n) if colors[p] == target_color]
+    best_cert: tuple[tuple[int, ...], ...] | None = None
+    best_labelings: list[tuple[int, ...]] = []
+    for p in candidates:
+        child_colors = _individualize(n, colors, target_color, p)
+        cert, labelings = _search_all(n, shells, child_colors)
+        if best_cert is None or cert < best_cert:
+            best_cert = cert
+            best_labelings = list(labelings)
+        elif cert == best_cert:
+            best_labelings.extend(labelings)
+    assert best_cert is not None
+    return best_cert, best_labelings
+
+
+def canonical_perms(node: Node) -> tuple[tuple[int, ...], ...]:
+    """ALL discrete leaf colorings of the ``_search`` tree whose
+    certificate equals the minimal certificate (spec section 3).  Each
+    returned labeling maps ``label -> canonical position`` (the same
+    convention as ``node.relabel``'s ``perm`` argument), so
+    ``canonical_perms(node)[i]`` is directly usable with
+    ``node.relabel``.  Deduplicated and sorted for determinism.
+
+    Performance caveat (spec section 3): can be large for highly
+    symmetric nodes; acceptable at Phase-2 (control/seed) scale.  No
+    automorphism pruning is added here.
+    """
+
+    n = node.n
+    if n == 0:
+        return ((),)
+    shells = node.shells
+    initial = _rerank(tuple(len(shell) for shell in shells))
+    _best_cert, labelings = _search_all(n, shells, initial)
+    return tuple(sorted(set(labelings)))
+
+
+_S3: tuple[tuple[int, int, int], ...] = tuple(_permutations(range(3)))  # type: ignore[assignment]
+
+
+def canonical_annotated(anode: Any) -> tuple[Any, ...]:
+    """Relabeling-invariant canonical form of an ``AnnotatedNode`` (spec
+    section 3):
+
+      - Node part: ``canonical(anode.node)`` as today.
+      - Blocker part (if present): ``min`` over sigma in
+        ``canonical_perms`` of the tuple
+        ``(sigma(c(sigma^-1(0))), ..., sigma(c(sigma^-1(n-1))))``.
+      - Cap part (if present): ``min`` over sigma in ``canonical_perms``
+        AND tau in S3 (cap-index permutations) of the tuple over
+        canonical positions i of ``("M", tau(j))`` if
+        ``sigma^-1(i)`` is the Moser vertex ``m_j``, else
+        ``("f", tau(f(sigma^-1(i))))``.
+
+    ``anode`` is duck-typed (``node``, ``blocker``, ``caps`` attributes)
+    to avoid a hard import-time dependency from ``canonical.py`` on
+    ``annotations.py``.
+    """
+
+    node = anode.node
+    node_part = canonical(node)
+    n = node.n
+    perms = canonical_perms(node)
+
+    if anode.blocker is not None:
+        c = anode.blocker.c
+        best_blocker: tuple[int, ...] | None = None
+        for sigma in perms:
+            order = [0] * n
+            for p in range(n):
+                order[sigma[p]] = p
+            transported = tuple(sigma[c[order[i]]] for i in range(n))
+            if best_blocker is None or transported < best_blocker:
+                best_blocker = transported
+        blocker_part: tuple[str, Any] = ("blocker", best_blocker)
+    else:
+        blocker_part = ("blocker", None)
+
+    if anode.caps is not None:
+        moser = anode.caps.sorted_moser()
+        m_index = {m: j for j, m in enumerate(moser)}
+        f = anode.caps.f
+        best_caps: tuple[tuple[str, int], ...] | None = None
+        for sigma in perms:
+            order = [0] * n
+            for p in range(n):
+                order[sigma[p]] = p
+            for tau in _S3:
+                entry = []
+                for i in range(n):
+                    p = order[i]
+                    if p in m_index:
+                        entry.append(("M", tau[m_index[p]]))
+                    else:
+                        entry.append(("f", tau[f[p]]))
+                entry_t = tuple(entry)
+                if best_caps is None or entry_t < best_caps:
+                    best_caps = entry_t
+        caps_part: tuple[str, Any] = ("caps", best_caps)
+    else:
+        caps_part = ("caps", None)
+
+    return (node_part, blocker_part, caps_part)
