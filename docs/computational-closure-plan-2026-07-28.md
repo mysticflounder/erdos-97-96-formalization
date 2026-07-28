@@ -25,7 +25,7 @@ and B grew 1→3 (B2/B3 are live named leaves again).
 | D-R | 2 | `false_of_exactFourPostCardElevenTwoRadiusBranch`, `false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome` |
 | D-E | 2 | `false_of_firstApexUniqueRadiusExactFive{Distinct,Common}ObstructionCenter(s)Residual` |
 | E | 1 | `false_of_retainedInteriorDirectedOmission_and_all_low_hits` |
-| F-Γ | 3 | `TwoSourceExactCollisionRowsTerminal.false_of_{crossBlockerCoincidence,capSource_freshThirdBlockerFiber,capSource_firstFiber_collisionFiveCenterDeletion}` |
+| F-Γ | 3 | `TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`, `...false_of_capSource_freshThirdBlockerFiber`, `...false_of_capSource_firstFiber_collisionFiveCenterDeletion_of_secondBlocker_dist_ne` |
 | B | 3 | `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision`, `false_of_exactFourMutualOmission_fourCenterCommonDeletion_{blockerCoincidence,survivalSquare}` |
 
 Notes: F4 (`freshOutsideSecondBlockerFiber`) is closed by the landed fiber
@@ -76,7 +76,17 @@ These results shape where compute is spent; do not re-run them.
 - **F3's real core is Γ + (F3a) + (F3b)** — (F3c) is redundant
   (`lean/scratch/f3c-redundancy-bank/`), and the sharpened form
   `f3c_joint_sharp` (two simultaneous five-center survivals) is free
-  ammunition for the F encoding.
+  ammunition for the F encoding.  The production five-center coordinator now
+  closes the branch where the second collision blocker bisects the explicit
+  first-fiber outside pair, using ordered-cap uniqueness.  Its sole live child
+  assumes the strict non-bisector inequality.  The cardinal-minimal
+  17-point incidence shadow in
+  `scratch/f3-unbounded-counting-audit/REPORT.md` satisfies all remaining
+  abstract F3 constraints and extends unboundedly, so neither fixed-slot
+  completeness nor pure incidence/counting can prove that child.  F-Γ must
+  produce the missing positive Euclidean/global bridge: force the second
+  blocker to bisect the pair (or force both pair points into its selected
+  row), contradicting the live inequality.
 - **Equality-arm routes are dead** (`scratch/collision-equality-arms/`):
   the four collision equality alternatives all produce
   center-not-in-own-support, the opposite of the needed cross-row
@@ -213,13 +223,26 @@ Budget (Adam, 2026-07-28): all of flux plus 24 cores on this box.
   Iteration 2 spec'd as v1.2 §9 (`dc2e7d65`) and dispatched 2026-07-28:
   families (E8a–d), (E5a/b), (DEL3) |Δ|=2 under 𝔓, (N8) n≥14 from the
   F chain, (FB) frontier-pair selector, (CD4)/(CD5) B-set structure,
-  (R1'), gamma cap atoms; four new UNSAT probes. Verdict pending.
+  (R1'), gamma cap atoms; four new UNSAT probes. DONE (`9e8ed3d5`):
+  verdict still SAT ×8; base+P now pins |Δ|=2 exactly.
   F-Γ note: FrontierLedger's `census/f_gamma` (convo #2455–#2456) found
   fixed-slot completeness UNAVAILABLE for F-Γ (unbounded n=17+k family
   survives) — session-2 F work must route through their lane, not a new
   fixed-slot encoder.
 - **Session 2**: C, E, F-Γ instantiations + smoke gates + verdicts (encoder
   amortized); begin leaf-delta runs for whichever package returned UNSAT.
+  C and E DONE 2026-07-28 (specs `d7fedf4e`, `75e9c6a0`; encoders
+  `6e2b82e5`, `ff02082b`): C-core SAT ×3 (base 920/19727, base+C1,
+  base+C2) with all gates + 8 orchestrator probes passing, BM6 ruled
+  not-carried (no (P2) analogue in the C doc — unsound to assert); E SAT
+  ×3 (551/18080) as its spec expected — the 15-point shadow satisfies
+  the counting core, G-SHADOW witness gate passes with a faithful
+  point-by-point mapping, five UNSAT probes DRAT-verified. F-Γ remains
+  FrontierLedger's lane. New third lane green-lit at design level: the
+  P97-level bounded counterexample search (shell-hypergraph census,
+  k-parameterized, banked theorems as pruning rules, census-554 per-cell
+  engine as chassis; refutation branch is self-certifying, k=3 arm =
+  end-to-end positive control). Design doc next.
 - **Session 3**: D-R, D-E, B; full 19-leaf triage matrix. Decision gate
   with Adam: replay-ingress queue vs realization sweeps per package.
 - **Sessions 4+**: per verdict — certificate replay landings (§6) for UNSAT
