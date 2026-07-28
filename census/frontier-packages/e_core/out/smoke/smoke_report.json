@@ -1,0 +1,104 @@
+{
+  "ALL_GATES_PASS": true,
+  "G-BASE": {
+    "expected": "SAT",
+    "gate": "G-BASE",
+    "pass": true,
+    "verdict": "SAT",
+    "wall_seconds": 0.015
+  },
+  "G-PROBES": {
+    "gate": "G-PROBES",
+    "pass": true,
+    "probes": [
+      {
+        "expected": "UNSAT",
+        "pass": true,
+        "probe": "P-EBM3",
+        "proof_verified": true,
+        "verdict": "UNSAT",
+        "wall_seconds": 0.043
+      },
+      {
+        "expected": "UNSAT",
+        "pass": true,
+        "probe": "P-ER2",
+        "proof_verified": true,
+        "verdict": "UNSAT",
+        "wall_seconds": 0.043
+      },
+      {
+        "expected": "UNSAT",
+        "pass": true,
+        "probe": "P-DOM",
+        "proof_verified": true,
+        "verdict": "UNSAT",
+        "wall_seconds": 0.044
+      },
+      {
+        "expected": "UNSAT",
+        "pass": true,
+        "probe": "P-EI34",
+        "proof_verified": true,
+        "verdict": "UNSAT",
+        "wall_seconds": 0.044
+      },
+      {
+        "expected": "UNSAT",
+        "pass": true,
+        "probe": "P-COVER",
+        "proof_verified": true,
+        "verdict": "UNSAT",
+        "wall_seconds": 0.066
+      }
+    ]
+  },
+  "G-SHADOW": {
+    "derived_n_value": 15,
+    "expected": "SAT",
+    "free_families": [
+      "g1(a0)",
+      "g1(a2)",
+      "dom1",
+      "dom2"
+    ],
+    "gate": "G-SHADOW",
+    "model_file": "out/smoke/g_shadow.model.json",
+    "n_assumptions": 51,
+    "pass": true,
+    "source": "scratch/triapex-incidence-obstruction/check_model.py (15-point equality shadow)",
+    "verdict": "SAT",
+    "wall_seconds": 0.015
+  },
+  "eq4_no_triangle": {
+    "check": "EQ4-no-triangle",
+    "eq_pairs": [
+      [
+        "a0",
+        "qb"
+      ],
+      [
+        "a0",
+        "wb"
+      ],
+      [
+        "qb",
+        "x1"
+      ],
+      [
+        "qb",
+        "x2"
+      ],
+      [
+        "wb",
+        "x1"
+      ],
+      [
+        "wb",
+        "x2"
+      ]
+    ],
+    "no_op_confirmed": true,
+    "triangles_found": 0
+  }
+}
