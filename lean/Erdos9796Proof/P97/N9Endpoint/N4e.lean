@@ -1453,9 +1453,8 @@ abbrev I3V3A2DeltaNormalization
     ∀ x ∈ S.I3, (T x) 1 < 0
 
 private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+  Problem97.dist_sq_coord x y
 
 /-- **(A) Affine identity** for the `q'=E` column.  When `qs` and `q` lie on a
 common circle centred at `v₃` (`hD : |v₃ qs| = |v₃ q|`), each squared-distance

@@ -575,6 +575,32 @@ structure CriticalPairFrontier
       ((D.A.erase pair.q).erase pair.w) S.oppApex2
   secondApexSplit : SecondApexSplit pair
 
+/-- The radius of a critical-pair frontier is positive. -/
+theorem CriticalPairFrontier.radius_pos
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H) :
+    0 < radius := by
+  have hqNotSurplus : F.pair.q ∉ S.surplusCap :=
+    (Finset.mem_sdiff.mp F.pair.q_mem_marginal).2
+  have hfirstNeQ : S.oppApex1 ≠ F.pair.q := by
+    intro h
+    apply hqNotSurplus
+    rw [← h]
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i
+    · simpa [SurplusCapPacket.surplusCap,
+        SurplusCapPacket.oppApex1, hi] using S.partition.v2_mem_C1
+    · simpa [SurplusCapPacket.surplusCap,
+        SurplusCapPacket.oppApex1, hi] using S.partition.v3_mem_C2
+    · simpa [SurplusCapPacket.surplusCap,
+        SurplusCapPacket.oppApex1, hi] using S.partition.v1_mem_C3
+  have hpos : 0 < dist S.oppApex1 F.pair.q := dist_pos.mpr hfirstNeQ
+  have hqRadius : dist F.pair.q S.oppApex1 = radius :=
+    (Finset.mem_filter.mp
+      (Finset.mem_sdiff.mp F.pair.q_mem_marginal).1).2
+  simpa only [dist_comm, hqRadius] using hpos
+
 private theorem oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by

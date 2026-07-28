@@ -204,9 +204,8 @@ theorem u5_common_bisector_triple_incompatibility
     simpa [h32] using (collinear_pair (k := ℝ) t1 t2)
 
 private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+  Problem97.dist_sq_coord x y
 
 private theorem dist_eq_of_sq_eq {a b c : ℝ²}
     (h : dist a c ^ 2 = dist b c ^ 2) :

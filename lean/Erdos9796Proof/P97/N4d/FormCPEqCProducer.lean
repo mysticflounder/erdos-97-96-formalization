@@ -302,9 +302,8 @@ private theorem v1_lt_v1v2_of_mem_I3
       hi, hLastFirst.1, hLastFirst.2, hlast_rev_first] using hlt
 
 private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+  Problem97.dist_sq_coord x y
 
 private theorem signedArea2_baseChord_vec2 (p : ℝ²) :
     signedArea2 p (Problem97.CGN.vec2 (-1) 0) (Problem97.CGN.vec2 1 0) = 2 * p 1 := by

@@ -39,31 +39,6 @@ open FirstApexInteriorPairGeometry
 
 attribute [local instance] Classical.propDecidable
 
-private theorem frontierRadius_pos
-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
-    {H : CriticalShellSystem D.A}
-    (F : CriticalPairFrontier D S radius H) :
-    0 < radius := by
-  have hqNotSurplus : F.pair.q ∉ S.surplusCap :=
-    (Finset.mem_sdiff.mp F.pair.q_mem_marginal).2
-  have hfirstNeQ : S.oppApex1 ≠ F.pair.q := by
-    intro h
-    apply hqNotSurplus
-    rw [← h]
-    rcases hi : S.surplusIdx with ⟨i, hi3⟩
-    interval_cases i
-    · simpa [SurplusCapPacket.surplusCap,
-        SurplusCapPacket.oppApex1, hi] using S.partition.v2_mem_C1
-    · simpa [SurplusCapPacket.surplusCap,
-        SurplusCapPacket.oppApex1, hi] using S.partition.v3_mem_C2
-    · simpa [SurplusCapPacket.surplusCap,
-        SurplusCapPacket.oppApex1, hi] using S.partition.v1_mem_C3
-  have hpos : 0 < dist S.oppApex1 F.pair.q := dist_pos.mpr hfirstNeQ
-  have hqRadius : dist F.pair.q S.oppApex1 = radius :=
-    (Finset.mem_filter.mp
-      (Finset.mem_sdiff.mp F.pair.q_mem_marginal).1).2
-  simpa only [dist_comm, hqRadius] using hpos
-
 private theorem q_mem_firstApex_class
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -109,7 +84,7 @@ private theorem firstApex_fullyDeletionRobust_of_exactFive
     (hcard : (SelectedClass D.A S.oppApex1 radius).card = 5) :
     FullyDeletionRobustAt D S.oppApex1 := by
   exact fullyDeletionRobustAt_of_five_le_selectedClass
-    (frontierRadius_pos F) (by omega)
+    F.radius_pos (by omega)
 
 private theorem retainedPair_doubleDeletion_obstructsFirstApex
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
@@ -264,7 +239,7 @@ theorem firstApexUniqueRadius_residualCases
         (FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F) ∨
       Nonempty
         (FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F) := by
-  have hr : 0 < radius := frontierRadius_pos F
+  have hr : 0 < radius := F.radius_pos
   rcases hunique with ⟨hcard45, huniqueRadius⟩
   rcases hcard45 with hfour | hfive
   · rcases exists_exactFour_firstApex_interiorPair D S hr hfour with

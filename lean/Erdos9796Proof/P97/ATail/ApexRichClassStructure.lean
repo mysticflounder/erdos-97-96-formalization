@@ -52,34 +52,6 @@ def ApexRichClassStructure (A : Finset ℝ²) (p : ℝ²) : Prop :=
     (∃ r₁ r₂ : ℝ, 0 < r₁ ∧ 0 < r₂ ∧ r₁ ≠ r₂ ∧
       4 ≤ (SelectedClass A p r₁).card ∧ 4 ≤ (SelectedClass A p r₂).card)
 
-/-- The frontier radius is positive: the marginal point `q` sits on it and is
-distinct from the first opposite apex, which lies in the surplus cap while `q`
-does not.  Re-proved locally because every consumer of this fact keeps it
-private to its own file. -/
-private theorem frontierRadius_pos
-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
-    {H : CriticalShellSystem D.A}
-    (F : CriticalPairFrontier D S radius H) :
-    0 < radius := by
-  have hqNotSurplus : F.pair.q ∉ S.surplusCap :=
-    (Finset.mem_sdiff.mp F.pair.q_mem_marginal).2
-  have hfirstNeQ : S.oppApex1 ≠ F.pair.q := by
-    intro h
-    apply hqNotSurplus
-    rw [← h]
-    rcases hi : S.surplusIdx with ⟨i, hi3⟩
-    interval_cases i
-    · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi] using
-        S.partition.v2_mem_C1
-    · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi] using
-        S.partition.v3_mem_C2
-    · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi] using
-        S.partition.v1_mem_C3
-  have hpos : 0 < dist S.oppApex1 F.pair.q := dist_pos.mpr hfirstNeQ
-  have hqRadius : dist F.pair.q S.oppApex1 = radius :=
-    (Finset.mem_filter.mp (Finset.mem_sdiff.mp F.pair.q_mem_marginal).1).2
-  simpa only [dist_comm, hqRadius] using hpos
-
 /-- A common-deletion parent residual gives rich class structure at the first
 opposite apex of its own packet.  The second branch pairs the retained frontier
 radius, which already carries four points, with the distinct radius the
@@ -89,7 +61,7 @@ theorem apexRichClassStructure_oppApex1
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
     (R : FrontierCommonDeletionParentResidual F) :
     ApexRichClassStructure D.A S.oppApex1 := by
-  have hpos : 0 < radius := frontierRadius_pos F
+  have hpos : 0 < radius := F.radius_pos
   rcases firstApex_largeClass_or_secondRadius R with hsix | ⟨ρ, hρpos, hne, hfour⟩
   · exact Or.inl ⟨radius, hpos, hsix⟩
   · exact Or.inr ⟨radius, ρ, hpos, hρpos, fun h => hne h.symm,

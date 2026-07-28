@@ -1,6 +1,6 @@
 # Source-wide Lean simplification and strengthening audit
 
-Date: 2026-07-27.
+Date: 2026-07-27. Implementation status refreshed: 2026-07-28.
 
 Scope: all indexed Lean declarations in this worktree, with focused source
 inspection of the published P96/P97 dependency graph, the live A-tail frontier,
@@ -18,12 +18,13 @@ The audit found:
 
 1. one high-level architectural bypass whose replacement proof typechecked on
    Lean 4.27;
-2. one typechecked packet symmetry that should eliminate a duplicated live
+2. one typechecked packet symmetry that has now eliminated a duplicated live
    terminal after coordinator rewiring;
-3. one source-derived consolidation that should replace four blocker-row
+3. one source-derived consolidation that has now replaced four blocker-row
    terminals by two stronger generic terminals; and
-4. one genuine U3-to-U5 theorem strengthening that would make bounded-audit
-   machinery available on the live non-`IsM44` branch.
+4. one genuine U3-to-U5 theorem strengthening that now exposes bounded-audit
+   machinery under the bare cardinality hypothesis, although no live
+   non-`IsM44` caller yet consumes that interface.
 
 It did **not** find an existing declaration, scratch theorem, or generated
 certificate that already closes one of the live terminal statements verbatim.
@@ -33,12 +34,17 @@ contradictions.
 
 ## Implementation update
 
-The shared tree moved after the audit snapshot.  At implementation start, a
-fresh `proof-blueprint` scan found 21 direct project declarations depending on
-`sorryAx`: 20 on the publish spine and one off-spine declaration,
-`false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence`.
-The older 22-terminal count below is retained as the audit's original
-snapshot, not as current status.
+The implementation began from the 22 direct project declarations depending
+on `sorryAx` recorded in the audit snapshot.  An intermediate
+`proof-blueprint` scan incorrectly reported 21 declarations, split as 20
+on-spine and one off-spine.  That discrepancy was an indexing artifact, not a
+proof-state change: four coordinator declarations had their theorem names on
+the line after the `theorem` keyword, so the source index omitted that chain.
+A formatting-only repair put those names on the declaration line.  A fresh
+kernel mine then confirmed that the omitted terminal and the apparently
+off-spine blocker-coincidence terminal were both live.  The true
+implementation baseline was therefore 22 on-spine declarations and zero
+off-spine declarations.
 
 Implemented and verified on Lean 4.27:
 
@@ -55,7 +61,7 @@ Implemented and verified on Lean 4.27:
 - Both cardinality-strengthened modules pass focused builds.  The new
   declarations use only `propext`, `Classical.choice`, and `Quot.sound`.
 
-Implemented and awaiting the combined live-closure build:
+Implemented and verified by the combined live-closure build:
 
 - `FreshOutsideSecondBlockerFiber.toSwappedFirst` identifies the second-side
   packet with the swapped first-side packet.
@@ -65,12 +71,147 @@ Implemented and awaiting the combined live-closure build:
   row-indexed residual data for the swapped collision and calls the existing
   first-fiber theorem instead of remaining an independent `sorry`.
 
-Still pending:
+The focused `FrontierLiveClosure` build passed and refreshed the kernel call
+graph.  At that checkpoint the true frontier was 21 direct `sorryAx`
+declarations, all on-spine.  Thus the symmetry change removed exactly one
+on-spine obligation without adding an axiom or a replacement obligation.
 
-- the four-to-two blocker-row terminal consolidation, after the active
-  source-heavy lane hands off that source region;
-- the survival/omission view cleanup; and
-- the exact blocker-equivalence normal form cleanup.
+The four equality-specific non-source-heavy blocker-row terminals have now
+been replaced by:
+
+- `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy`;
+  and
+- `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows`.
+
+Both blocker-identity coordinators consume these membership-based terminals.
+The blocker-`v` coordinator derives row membership from its blocker equality,
+the shell's `q_mem_support`, and `P.hvClass`; the blocker-other coordinator
+already carries the same membership.
+
+The current-source Lean 4.27 build passes.  A subsequent
+`proof-blueprint sync` at build `0c0d278830b8` reports 19 direct `sorryAx`
+declarations, all 19 on-spine and none off-spine.  The consolidation therefore
+removed exactly two further on-spine obligations.
+
+Implemented and verified as source-clean library/interface simplifications:
+
+- `frontierDeletion_survival_iff_actualBlocker_ne_qBlocker` now exposes the
+  exact blocker normal form, and
+  `mem_outside_qBlockerFiber_iff_frontierDeletion_survival` packages it in the
+  consumer-facing off-fiber form.
+- `deletionSurvival_cover_of_mem_outside_qBlockerFiber` now consumes that
+  equivalence directly.  The obsolete three-way adapter was removed after an
+  exact production-consumer search found no users.
+- Focused Lean 4.27 builds of `AnchoredDoubleDeletionProducer` and
+  `SurvivalCover` pass.  Their relevant consumer is source-clean and has only
+  `propext`, `Classical.choice`, and `Quot.sound` in its axiom profile.  This
+  cleanup deliberately has no live-frontier effect.
+- `Problem97.dist_sq_coord` in `P97/Foundation.lean` is now the canonical
+  coordinate expansion of squared distance on `ℝ²`.
+  `SurplusCOMPGBank.dist_sq_coord`,
+  `Census554.EqualityCore.Internal.dist_sq_coords`, and the audited local
+  coordinate helpers delegate to it.  The row/open-side duplicate groups were
+  already one-line aliases in current source.
+- `CrossPairDeletionView` now retains the producer-native deletion-survival
+  fact and derives the equivalent selected-support omission once.  The
+  cap-source surface and first-fiber witness carry that packet directly.
+  Focused no-refresh builds of `TwoCollisionGlobalProducer` and
+  `FrontierLiveClosure` pass on the current source.
+- `ATailMinimalUniqueFourCover.fullyDeletionRobustAt_of_large_class` now
+  delegates to the canonical five-point deletion-robustness theorem.  Its
+  focused no-refresh build passes and its axiom profile is source-clean.
+- The local `firstFiber_shell_eq_explicitFour` wrapper now delegates to
+  `ATailFirstFiberOverlapDescent.firstFiber_shell_eq_explicitFour`; the
+  current-source `FrontierLiveClosure` build verifies the alias.  It has no
+  current source consumer and is retained only as an unused semantic wrapper.
+
+Current disposition:
+
+- the architectural bypass, blocker-fiber symmetry, exact blocker normal
+  form, survival/omission packet, cardinality APIs, and canonical aliases are
+  implemented and build-verified;
+- the four-to-two blocker-row consolidation is also implemented and
+  build-verified;
+- the U5 cardinality API feeds the U3 cardinality API, and both retain live
+  compatibility-path consumers, but no live caller uses either through the
+  new bare-cardinality/non-`IsM44` interface.  Producing rowwise confinement,
+  or eliminating both arms of the current escape/critical-shell disjunction,
+  is new mathematical work rather than missing wiring;
+- all four live leaf-signature minimizations identified below are implemented
+  in source: the blocker-collision, two-radius, low-hit, and source-heavy
+  `rigid221` leaves now omit packet-determined or branch-determined facts from
+  their terminal interfaces; and
+- the four-subpacket, five-point-helper, and frontier-radius duplicate proof
+  families have been consolidated.  Coordinate-square centralization is
+  source-complete and build-verified under the canonical
+  `Problem97.dist_sq_coord`.
+
+An independent post-implementation source/consumer pass found no additional
+high-level bypass, symmetry quotient, or theorem-bank bridge that closes or
+decomposes one of the 19 live obligations.  It did find one further
+coordinator-signature strengthening: the exact-four collision / exact-two
+chain carried a common-deletion witness, a localized-cycle witness, and an
+exact-slice equality that its caller could reconstruct.  That forwarding has
+now been removed throughout the three-coordinator chain, together with the
+parent's producer-only reconstruction.  The remaining improvement classes
+are verification of the latest signature, coordinate-square, and final radius
+cleanups, plus the new mathematical bridge needed to exploit the
+bare-cardinality U3/U5 interfaces.
+
+Verification checkpoint preceding the final coordinate/radius cleanup on
+2026-07-28:
+
+- `LAKE_BUILD_NO_REFRESH=1 lake-build
+  Erdos9796Proof.P97.ATail.FrontierLiveClosure` completed successfully on Lean
+  4.27 (10,855 jobs);
+- `proof-blueprint sync --memory-mb 16384` completed at build
+  `0c0d278830b8`;
+- both published roots reach exactly the same 19 on-spine `sorry`
+  declarations and no off-spine `sorry`;
+- the root axiom profile is `propext`, `Classical.choice`, `Quot.sound`,
+  `Lean.ofReduceBool`, approved `Lean.trustCompiler`, and `sorryAx`; only
+  `sorryAx` remains unapproved; and
+- the mined graph has zero stale symbols.  Sixty-three symbols in 25 unbuilt
+  WIP modules have no current `.olean` and remain outside the verified build;
+  this does not affect the freshly mined published-root spine.
+
+The coordinate and final radius source rewrites below postdate this checkpoint
+and therefore required the final verification below.
+
+Final verification after all source-wide refactors on 2026-07-28:
+
+- a focused Lean 4.27 build of the canonical coordinate theorem,
+  representative early and late coordinate consumers, both radius aliases,
+  and `FrontierLiveClosure` completed successfully (10,860 jobs);
+- after the completion-audit interface cleanup, a fresh no-refresh
+  `FrontierLiveClosure` build completed successfully (10,855 jobs), followed
+  by a successful production-root `Erdos9796Proof` build (11,591 jobs);
+- `proof-blueprint sync --memory-mb 16384` completed at build
+  `53a38363d880`, with zero stale current indexed minable symbols;
+- both published roots reach exactly 19 on-spine `sorry` declarations and
+  zero off-spine declarations;
+- `docs/live-blueprint.md` was regenerated through the authoritative
+  `proof-blueprint spine` command from that same kernel graph and no longer
+  contains a stale off-spine entry;
+- the root axiom profile remains `propext`, `Classical.choice`, `Quot.sound`,
+  `Lean.ofReduceBool`, approved `Lean.trustCompiler`, and `sorryAx`; only
+  `sorryAx` is unapproved;
+- the source census contains one direct
+  `EuclideanSpace.dist_sq_eq` expansion, namely the canonical theorem in
+  `P97/Foundation.lean`; and
+- `proof-blueprint refs --check` remains nonzero solely because 63 symbols
+  occur in 21 of the 25 indexed modules without an `.olean`: 51 are in
+  `scratch/`, and 12 are in unbuilt
+  `Census554/CapSelectedBVPlacements` modules.  The sync explicitly excludes
+  those modules from the verified build; the published-root spine is fresh;
+  and
+- the separate `proof-blueprint audit --refresh` warning that 160,312 symbols
+  were mined against an older build is a reporting bug in that command, not
+  graph staleness.  It counts 159,393 historical names that are no longer
+  indexed plus 919 current trusted/skipped names.  At build `53a38363d880`,
+  44,049 of 44,112 current indexed minable symbols are fresh, no current
+  minable symbol is stale, and neither published root reaches a stale or
+  never-mined node.
 
 ## Evidence labels
 
@@ -175,7 +316,7 @@ The focused continuation build passes on Lean 4.27.
 
 ## 2. Identify the second fresh blocker fiber with the swapped first fiber
 
-Status: packet adapter **TYPECHECKED**; full coordinator rewrite untested.
+Status: **IMPLEMENTED / BUILD VERIFIED / ONE LIVE OBLIGATION REMOVED**.
 
 The structures
 
@@ -204,23 +345,25 @@ typechecked. The mapping:
 - swaps the two `otherOutsidePoint` exclusion fields; and
 - preserves the unordered outside-point pair equality.
 
-The live first-fiber descent already has the substantial implementation in
+The live first-fiber descent already had the substantial implementation in
 `FrontierLiveClosure.lean` and
-`ATail/FirstFiberOverlapDescent.lean`. The second-fiber terminal should be
-rephrased as an adapter into that same descent rather than maintained as a
-separate mathematical obligation.
+`ATail/FirstFiberOverlapDescent.lean`. The second-fiber terminal is now an
+adapter into that same descent rather than a separate mathematical
+obligation.
 
-Expected effect after complete rewiring and a fresh kernel scan: 22 live
-terminals become 21. This count is a prediction, not a checked post-change
-state.
+The combined build and corrected fresh kernel scan reduced the
+implementation-time frontier from 22 on-spine declarations to 21.  There was
+no off-spine declaration; the earlier classification was caused by the
+multiline-declaration indexing artifact described in the implementation
+update.
 
-The preferred implementation is a side-indexed or explicitly swap-parametric
-descent theorem, so future lemmas do not rebuild a parallel second-side
-library.
+The implementation uses explicit swap-parametric adapters and reconstructs
+the row-indexed robust residual for the swapped collision.  No parallel
+second-side descent library was introduced.
 
 ## 3. Consolidate four blocker-row terminals into two generic terminals
 
-Status: **SOURCE-DERIVED**.
+Status: **IMPLEMENTED / BUILD VERIFIED / TWO LIVE OBLIGATIONS REMOVED**.
 
 Four live terminals differ only by whether the actual blocker is literally
 `P.v.1` or the other member of the same rigid `v` row:
@@ -243,7 +386,7 @@ The non-`v` branches already carry this hypothesis. In the blocker-`v`
 branches it is derivable by rewriting the blocker equality and using the
 critical shell's source/q membership together with `P.hvClass`.
 
-The four terminals can therefore be replaced by:
+The four terminals were replaced by:
 
 1. one generic `v`-row-blocker, opposite-row-heavy contradiction; and
 2. one generic `v`-row-blocker, neither-row-heavy contradiction.
@@ -252,15 +395,21 @@ The source-row-heavy terminal remains separate: its non-`v` branch has
 additional exact-five/growth decomposition and is not part of this proposed
 merge.
 
-Combined with the fiber-symmetry consolidation, the structural frontier is
-expected to fall from 22 to 19 declarations without hiding any mathematical
-obligation. Each replacement terminal has weaker equality-specific
-hypotheses and is therefore a genuinely stronger interface, but its
-contradiction still has to be proved.
+Both identity coordinators now call the two generic terminals.  The
+blocker-`v` coordinator proves the membership by rewriting its equality and
+combining `q_mem_support` with `P.hvClass`; the blocker-other coordinator
+passes through its existing membership fact.  No external production
+consumer referenced the four removed declarations.
+
+The focused Lean 4.27 build passed.  A fresh source index and kernel call-graph
+mine measured 19 on-spine declarations and no off-spine declarations, down
+from 21 on-spine declarations before this change.  Each replacement terminal
+has weaker equality-specific hypotheses and is therefore a genuinely stronger
+interface, but its contradiction still has to be proved.
 
 ## 4. Generalize the fixed U3 audit frame from `IsM44` to cardinality
 
-Status: **IMPLEMENTED / BUILD VERIFIED**.
+Status: **IMPLEMENTED / BUILD VERIFIED / NO BARE-CARDINALITY LIVE CALLER YET**.
 
 Former primary theorem:
 
@@ -307,7 +456,21 @@ It does not yet close a terminal. A further bridge must do at least one of:
   existing common-deletion, cross-blocker, collision, or five-center
   terminal.
 
-This is the most promising genuine theorem strengthening found by the audit.
+A registry-first search of the current tree, the sibling `p97-rvol` banks,
+and the two legacy theorem inventories found no declaration that supplies any
+of those three bridges.  The closest proved eliminator is
+`exists_qDeleted_escape_or_criticalFourShell`: it produces a concrete audit
+center with either a q-deleted exact-four class escaping `U5BoundedSupport`
+or a `CriticalFourShell`.  No current A-tail terminal consumes that
+disjunction.
+
+Consequently, constructing the cardinality-first frame was the available
+refactor/strengthening.  Wiring a future proved
+`RowwiseConfinedQDeletedClasses` into
+`false_of_rowwiseConfinedQDeletedClasses` would be mechanical, but producing
+that confinement—or classifying both arms of the escape/critical-shell
+disjunction into an existing incidence terminal—is new mathematical work,
+not an unimplemented source refactor hidden by this audit.
 
 ## Other interface simplifications
 
@@ -322,10 +485,17 @@ Those facts are converted into selected-support omissions in
 in the first-fiber descent using
 `cross_deletion_survives_iff_not_mem_selected_support`.
 
-The packet should retain both equivalent views, or use a small structure with
-the equivalence proved once. The present
-survival-to-omission-to-survival path obscures the invariant and creates
-duplicated adapter proof.
+Implementation status: **IMPLEMENTED AND BUILD-VERIFIED.**
+
+`CrossPairDeletionView` now stores the producer-native survival statement and
+derives the selected-support omission through one proved equivalence.  Both
+`CapSourceThirdCanonicalRowSurface` and `FirstFiberCapSourceWitness` carry
+these view packets, and the first-fiber descent uses the derived omission
+without converting it back into a separately stored survival fact.
+
+Focused no-refresh builds of `TwoCollisionGlobalProducer` and
+`FrontierLiveClosure` pass on the current Lean 4.27 source.  The refactor
+adds or removes no `sorry`; it normalizes the packet interface only.
 
 ### Expose the exact blocker equivalence as a normal form
 
@@ -336,6 +506,16 @@ duplicated adapter proof.
 Later consumers weaken this to a three-way cover, prove blocker inequality,
 and eliminate the equality branch. A direct off-fiber two-way survival normal
 form should be exposed and consumed instead.
+
+Implementation status: **IMPLEMENTED AND BUILD-VERIFIED.**
+
+The new primitive equivalence is
+`frontierDeletion_survival_iff_actualBlocker_ne_qBlocker`; the
+consumer-shaped off-fiber form is
+`mem_outside_qBlockerFiber_iff_frontierDeletion_survival`.
+`deletionSurvival_cover_of_mem_outside_qBlockerFiber` now applies the latter
+directly, and the unused three-way adapter has been removed.  This is a
+source-clean library simplification with no `sorry` or frontier delta.
 
 ### Strip coordinator-derived hypotheses from live leaves
 
@@ -354,6 +534,59 @@ The stable mathematical interfaces should retain the obstruction packet and
 only those facts not recoverable from it. This strengthens the declarations
 and reduces consumer brittleness, but does not alter the number of open
 contradictions.
+
+Status: **IMPLEMENTED AND BUILD-VERIFIED (4/4)**.
+
+The blocker-collision leaf no longer receives the support equality,
+cross-membership facts, or two-point intersection equality.  The two-radius
+leaf now reconstructs positivity, class-cardinality, and strict-cap facts from
+its rows and no-five packet.  The low-hit directed-omission leaf now takes only
+the packet chain `F`, `R`, `P`, `B`, `L`, `N`, and `T`; its intermediate
+two-radius and exact-four collision coordinators likewise no longer receive
+the three rich-cap patterns that they did not use.  Removing those patterns
+propagated through the exact-two collision coordinator, the retained-collision
+coordinator, the low-hit split, and the two compatibility consumers above it.
+The final compiler pass reports no unused-variable warning for that chain.
+
+The source-heavy/second-opposite-large leaf now takes only the source-heavy
+context `P`, its derived packet, and the second-opposite-large witness
+`hsecond`.  Its sole caller no longer forwards the blocker-row,
+blocker-inequality, `xv`-interior, interior-cardinality, or robust-growth
+consequences.  These are interface strengthenings, not closure results, and
+do not alter the number of open contradictions.
+
+The same compiler pass exposed one private section-scope artifact:
+`capSource_firstFiber_descent` automatically inherited six unused section
+hypotheses.  An explicit `omit` now keeps those hypotheses out of its generated
+signature, and its caller passes only the data used by the proof.
+
+### Remove reconstructible witnesses from the exact-two coordinator chain
+
+Status: **IMPLEMENTED AND BUILD-VERIFIED**.
+
+The checked body of
+`false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits`
+does not use:
+
+- the common-deletion witness `C`;
+- the localized mutual-omission-cycle witness `M`; or
+- the exact retained-slice equality `hexactTwo`.
+
+`C` occurred only in the type of `M`; neither `M` nor `hexactTwo` occurred in
+the proof body.  The simplification is now propagated through:
+
+- `false_of_exactFourCollision_secondRadius_and_all_low_hits`; and
+- `false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits`.
+
+After that propagation,
+`false_of_retainedInteriorBlockerCollision_and_all_low_hits` need not unpack
+`P.nonempty_commonDeletion`, call
+`nonempty_localizedCollisionMutualOmissionCycle`, or pass
+`retainedInteriorBlockerCollision_firstShell_retainedSlice_eq_sources`.
+The current source removes all three operations.  Those facts remain
+reconstructible from `P` if a later proof genuinely needs them.  This is an
+interface strengthening only: it neither proves nor splits a live terminal,
+so the frontier count is unchanged.
 
 ## Exact duplicate declarations and local proof duplication
 
@@ -376,17 +609,41 @@ than copied proofs. The deletion-robustness pair has duplicated proof content.
 The coordinate-square identity also has additional private copies and should
 be centralized in one canonical geometry helper.
 
+Implementation status:
+
+- the canonical theorem is now `Problem97.dist_sq_coord` in
+  `P97/Foundation.lean`;
+- the source-wide rewrite makes the audited uses in 36 consumer modules
+  delegate to that theorem, directly, through unqualified namespace
+  resolution, or through a local semantic wrapper;
+- a current source census finds no copied coordinate-expansion proof body:
+  the only remaining direct expansion is the canonical theorem itself;
+- the final 10,860-job focused build covers the canonical theorem and
+  representative early and late consumers, so the centralization is
+  build-verified;
+- the chord-projection, reflected-row, and open-side public pairs were already
+  one-line semantic aliases in current source; and
+- the deletion-robustness duplicate now delegates to the canonical
+  five-point theorem and passes a focused Lean 4.27 build.
+
 Further duplication:
 
-- `FirstFiberOverlapDescent.firstFiber_shell_eq_explicitFour` is repeated
-  inline in `FrontierLiveClosure.lean`;
-- the finite-endpoint-shell and surplus-cap-packet four-subpacket existence
-  theorems have essentially duplicated implementations;
-- two named five-point contradiction theorems have identical statements and
-  proofs; and
-- several modules carry private copies of `frontierRadius_pos`.
+- `FrontierLiveClosure.firstFiber_shell_eq_explicitFour` now retains its
+  semantic wrapper name but delegates directly to
+  `FirstFiberOverlapDescent.firstFiber_shell_eq_explicitFour`; it has no
+  current source consumer and is an unused semantic wrapper;
+- the three surplus-cap-packet four-subpacket existence theorems now delegate
+  to the canonical finite-endpoint-shell implementations;
+- the interior-bisector localization module now imports and reuses the three
+  matching five-point helpers from the cross-blocker localization module; and
+- `CriticalPairFrontier.radius_pos` is now the public canonical radius
+  positivity theorem.  The surviving compatibility names
+  `ATailUniqueArmRouteAuditScratch.frontier_radius_pos` and
+  `FrontierOffRadiusEscape.frontierRadius_pos` now delegate to it, and the
+  remaining inline reconstruction in `FrontierLiveClosure` uses
+  `F.radius_pos` directly.
 
-These are maintenance reductions, not proof closure.
+All of these are maintenance reductions, not proof closure.
 
 ## Scratch, attic, and theorem-bank results
 
@@ -473,6 +730,16 @@ do not meet the consumers' geometric assumptions.
 
 ## Recommended implementation order
 
+Implementation outcome: steps 1–4 and the load-bearing packet/alias subset of
+step 6 are complete.  All four leaf-signature minimizations and the named
+four-subpacket, five-point-helper, and frontier-radius duplicate reductions
+are implemented and build-verified.  The exact-two coordinator-signature
+cleanup is implemented throughout its call chain, and the now-redundant
+rich-cap patterns and private section variables have also been removed.
+The coordinate-square and frontier-radius centralizations are build-verified.
+Step 5 is the next mathematical research target, not unfinished refactor
+wiring.
+
 1. Replace the route-B tail in
    `removableVertexOfLarge_of_nonIsM44` by the direct
    `false_of_twoLargeCaps_commonCriticalMap` call; remove the stale import and
@@ -496,4 +763,117 @@ After every frontier edit:
 - verify the intended spine edge and the root axiom set;
 - record coordinator-interface fan-out before and after; and
 - update the closure matrix from the refreshed kernel state, not from the
-  predicted `22 → 21 → 19` count in this audit.
+  historical predicted count.  The post-refactor measured state is 19
+  on-spine declarations and zero off-spine declarations.
+
+## Independent completion-audit addendum
+
+Date: 2026-07-28.
+
+An independent final source review confirmed the implemented items above and
+found no higher-level theorem-bank bypass for any of the remaining live
+contradictions.  It did, however, find one further argument-forwarding cascade
+and two smaller source-hygiene items that were not included in the first
+completion claim.
+
+### Localize the canonical shell-cover and low-hit arguments
+
+Status: **IMPLEMENTED AND BUILD-VERIFIED.**
+
+Before this addendum was implemented, the exact-two collision coordinator
+chain forwarded `hcriticalShellUniqueFourCover` and `hlow` through declarations
+around
+`false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits`.
+Neither was genuinely caller-selected data:
+
+- `hcriticalShellUniqueFourCover` is reconstructed canonically from `H` using
+  `centerAt_ne_source`, `isUniqueFourCenter_centerAt`, and
+  `uniqueFourClass_centerAt_eq_selectedAt_support`; and
+- `hlow` is reconstructed canonically from `S`, `H`, and the apex-rich witness
+  by
+  `criticalShell_inter_oppositeCapClassInterior_card_le_two_of_apexRich`.
+
+The implemented refactor removes both arguments from the exact-two coordinator
+chain.  It goes further than the initially proposed wrapper-only cleanup:
+`hcriticalShellUniqueFourCover` was removed from the signatures of the three
+live collision leaves themselves, because it is canonical data rather than a
+leaf hypothesis.  It is now reconstructed only in the two checked proofs that
+actually inspect it:
+
+- `exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions`;
+  and
+- `false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits`.
+
+Likewise, `hlow` is now constructed only at its sole checked consumer,
+`false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits`.
+The smaller signatures were propagated through:
+
+- `false_of_exactFourCollision_secondRadius_and_all_low_hits`;
+- `false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits`;
+- `false_of_retainedInteriorBlockerCollision_and_all_low_hits`;
+- `false_of_frontierAllLargeCapsTriApex_all_low_hits`;
+- `exists_criticalShell_oppositeCapClassInterior_card_ge_three_of_frontierAllLargeCapsTriApex`;
+- `false_of_frontierAllLargeCapsTriApexUniformMetricResidual`; and
+- `false_of_frontierAllLargeCapsTriApexRobustResidual`.
+
+This is a strict interface strengthening, not a proof closure or a frontier
+split.  Whole-file Lean-LSP elaboration and an isolated Lean 4.27 compile
+reported no errors.  The locked 10,855-job focused build and the downstream
+11,591-job production build then passed, and the refreshed kernel spine kept
+the measured frontier at 19 on-spine declarations and zero off-spine
+declarations.
+
+### Remove one dead private accessor
+
+Status: **IMPLEMENTED; REPOSITORY-WIDE SOURCE CENSUS VERIFIED.**
+
+`retainedInteriorBlockerCollision_firstShell_retainedSlice_eq_sources` had no
+production source consumer after the earlier exact-two witness-forwarding
+cleanup.  A repository-wide production reference check found only its private
+declaration, so the accessor was deleted.  Historical scratch references do
+not create a production dependency.
+
+### Repair stale frontier comments
+
+Status: **IMPLEMENTED.**
+
+Two comments in `ATail/FrontierLiveClosure.lean` describe superseded frontier
+shapes:
+
+- “four load-bearing terminals” should distinguish four semantic collision
+  arms from the current three live collision declarations; and
+- the checked collision coordinator should no longer be described as having
+  one downstream `sorry`, because its current load-bearing frontier consists
+  of the three exact-two collision leaves.
+
+The source comments now distinguish four semantic collision arms from the
+three live collision declarations and describe the checked coordinator as
+exposing that three-declaration frontier.  These changes do not alter the
+mathematical closure route.
+
+## Final requirement-by-requirement completion audit
+
+| Refactor requirement | Final disposition |
+| --- | --- |
+| Production Route-B bypass | Implemented; focused build verified |
+| Second-fiber swap symmetry | Implemented; one live obligation removed |
+| Four blocker-row leaves consolidated to two | Implemented; two live obligations removed |
+| Cardinality-first U5 and U3 APIs | Implemented and build-verified; no bare-cardinality live caller |
+| Survival/omission packet and blocker normal forms | Implemented and build-verified |
+| Four live leaf signatures minimized | Implemented and build-verified |
+| Exact-two reconstructible-witness forwarding removed | Implemented and build-verified |
+| Redundant rich-cap pattern forwarding removed | Implemented and build-verified |
+| Private descent section signature minimized | Implemented and build-verified |
+| Deletion robustness, first-fiber, four-subpacket, and five-point aliases consolidated | Implemented and build-verified |
+| Coordinate-square proof centralized | Implemented; source census and focused build verified |
+| Frontier radius positivity centralized | Implemented and focused-build verified |
+| Scratch, attic, and theorem-bank search for an existing closer | Completed; negative result |
+| Published-root spine and trust profile | Fresh at `53a38363d880`: 44,049/44,112 current minable symbols fresh, 0 stale, 63 never-mined off-spine; 19 on-spine, 0 off-spine; only `sorryAx` unapproved |
+| Canonical shell-cover and low-hit arguments localized | Implemented; focused and production builds verified |
+| Dead retained-slice accessor removed | Implemented; repository-wide production source census verified |
+| Exact-two frontier comments reconciled | Implemented |
+
+No source change or verification gate identified by this audit remains
+pending.  The bounded-U5 bridge in step 5 is deliberately excluded from the
+refactor list because it is a new mathematical proof obligation, not missing
+wiring or source normalization.

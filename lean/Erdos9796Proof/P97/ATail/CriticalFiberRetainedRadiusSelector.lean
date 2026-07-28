@@ -55,32 +55,6 @@ private theorem oppApex1_mem_A
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
-private theorem frontierRadius_pos
-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
-    {H : CriticalShellSystem D.A}
-    {F : CriticalPairFrontier D S radius H}
-    (_R : FrontierCommonDeletionParentResidual F) :
-    0 < radius := by
-  have hqOff : F.pair.q ∉ S.surplusCap :=
-    (Finset.mem_sdiff.mp F.pair.q_mem_marginal).2
-  have hqNe : F.pair.q ≠ S.oppApex1 := by
-    intro h
-    apply hqOff
-    rw [h]
-    rcases hi : S.surplusIdx with ⟨i, hi3⟩
-    interval_cases i
-    · simpa [SurplusCapPacket.surplusCap,
-        SurplusCapPacket.oppApex1, hi] using S.partition.v2_mem_C1
-    · simpa [SurplusCapPacket.surplusCap,
-        SurplusCapPacket.oppApex1, hi] using S.partition.v3_mem_C2
-    · simpa [SurplusCapPacket.surplusCap,
-        SurplusCapPacket.oppApex1, hi] using S.partition.v1_mem_C3
-  have hdist : 0 < dist F.pair.q S.oppApex1 := dist_pos.mpr hqNe
-  have hqRadius : dist F.pair.q S.oppApex1 = radius :=
-    (Finset.mem_filter.mp
-      (Finset.mem_sdiff.mp F.pair.q_mem_marginal).1).2
-  simpa only [hqRadius] using hdist
-
 /-- Sources of the actual blocker map which lie on the retained first-apex
 radius class. -/
 abbrev RetainedRadiusSource
@@ -280,7 +254,7 @@ theorem alternates_between_firstApex_and_commonBlocker
       congrArg Subtype.val h
     have hdist := (mem_selectedClass.mp Q.source₂_mem_radius).2
     rw [hpoint, dist_self] at hdist
-    exact (ne_of_gt (frontierRadius_pos R)) hdist.symm
+    exact (ne_of_gt F.radius_pos) hdist.symm
   have hsource₂_ne_A : Q.fiber.source₂ ≠ A := by
     intro h
     have hpoint : Q.fiber.source₂.1 = A.1 :=

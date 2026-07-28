@@ -6,6 +6,7 @@ Authors: Adam McKenna
 import Erdos9796Proof.P97.Census554.MotifTransfer
 import Erdos9796Proof.P97.Dumitrescu.L1
 import Erdos9796Proof.P97.N4d.SmallSReductions
+import Erdos9796Proof.P97.SurplusCOMPGBankSep
 import Erdos9796Proof.P97.U5GlobalIncidenceKernels
 
 /-!
@@ -69,9 +70,8 @@ theorem reflectXAxis_injective : Function.Injective reflectXAxis := by
     simpa [reflectXAxis] using congrArg Neg.neg h1
 
 private theorem dist_sq_coords_reflection (u v : ℝ²) :
-    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 := by
-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
+  SurplusCOMPGBank.dist_sq_coord u v
 
 /-- Axis reflection preserves Euclidean distance. -/
 theorem dist_reflectXAxis (p q : ℝ²) :

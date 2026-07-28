@@ -88,11 +88,6 @@ private theorem sameDist_disk_onArcOpposite_coord_centered
     exact (mul_le_mul_iff_of_pos_right haHP_pos).mp hle
   simpa [sp, sa] using hprod
 
-private theorem dist_sq_coord (u v : ℝ²) :
-    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 := by
-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
-
 /-- Same-distance points in the MEC disk lie on the closed arc opposite the
 apex.  The chord endpoints and apex are on the boundary circle centered at `O`,
 `e₁`, `e₂`, and `p` are at the same distance `d` from the apex, and `p` is in

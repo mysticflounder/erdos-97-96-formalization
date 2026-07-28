@@ -31,7 +31,8 @@ open ATailCriticalPairFrontier
 
 attribute [local instance] Classical.propDecidable
 
-private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1'
+/-- The first opposite apex is the opposite vertex at the packet's first opposite index. -/
+theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1'
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
@@ -41,7 +42,7 @@ private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1'
       SurplusCapPacket.oppIndex1, hi]
 
 /-- The vertex opposite one indexed cap belongs to every other indexed cap. -/
-private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
+theorem oppositeVertexByIndex_mem_capByIndex_of_ne
     {A : Finset ℝ²} (S : SurplusCapPacket A) {i j : Fin 3}
     (hij : i ≠ j) :
     S.oppositeVertexByIndex i ∈ S.capByIndex j := by
@@ -64,7 +65,7 @@ private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
 
 /-- Two distinct centers in one indexed ordered cap cannot both bisect the
 same distinct carrier pair outside that cap. -/
-private theorem false_of_two_cap_centers_equidistant_outside_pair
+theorem false_of_two_cap_centers_equidistant_outside_pair
     {D : CounterexampleData} (S : SurplusCapPacket D.A) (k : Fin 3)
     {c apex a b : ℝ²}
     (hcCap : c ∈ S.capByIndex k)

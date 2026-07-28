@@ -39,9 +39,8 @@ namespace Problem97
 
 /-- Squared distance in `ℝ²` coordinates. -/
 private theorem bisectorKill_dist_sq_coords (x y : ℝ²) :
-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+  Problem97.dist_sq_coord x y
 
 /-- Scalar core of the boundary-anchored bisector kill.
 

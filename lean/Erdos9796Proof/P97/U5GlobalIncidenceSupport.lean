@@ -1387,9 +1387,9 @@ needed by the bounded audit.
 
 This fills only the support-payload bookkeeping fields for `a0,a1`: the
 selected q-free K4 classes remain the genuine row/global content. -/
-theorem U5DangerousTriple.exists_two_off_circle_aux
+theorem U5DangerousTriple.exists_two_off_circle_aux_of_card_gt_nine
     {D : CounterexampleData} {q p u : ℝ²} {T : Finset ℝ²}
-    (hM44 : D.IsM44)
+    (hcard : 9 < D.A.card)
     (htriple : U5DangerousTriple D q p T)
     (hsel : U5SelectedCandidateSkeleton D q p T u)
     (hexact :
@@ -1406,8 +1406,6 @@ theorem U5DangerousTriple.exists_two_off_circle_aux
   let base : Finset ℝ² := insert u T
   let R : Finset ℝ² := S \ base
   have hAcard : 10 ≤ D.A.card := by
-    have hsurplus := CounterexampleData.IsM44.surplus_card_ge_five hM44
-    have hcard := card_eq_of_isM44 hM44
     omega
   have hp_mem_erase_q : p ∈ D.A.erase q := by
     exact Finset.mem_erase.mpr ⟨htriple.p_ne_q, htriple.p_mem⟩
@@ -1476,6 +1474,28 @@ theorem U5DangerousTriple.exists_two_off_circle_aux
       · exact ha1_not_base (by simp [base, ha1T])
   exact ⟨a0, a1, ha0S, ha1S, by simpa [base] using ha0_not_base,
     ha1_not_insert, ha0_off, ha1_off⟩
+
+/-- Compatibility form of `exists_two_off_circle_aux_of_card_gt_nine` for an
+`(m,4,4)` configuration. -/
+theorem U5DangerousTriple.exists_two_off_circle_aux
+    {D : CounterexampleData} {q p u : ℝ²} {T : Finset ℝ²}
+    (hM44 : D.IsM44)
+    (htriple : U5DangerousTriple D q p T)
+    (hsel : U5SelectedCandidateSkeleton D q p T u)
+    (hexact :
+      (((D.skeleton q).erase p).filter fun y => dist p y = dist p q).card = 3) :
+    ∃ a0 a1 : ℝ²,
+      a0 ∈ (D.skeleton q).erase p ∧
+      a1 ∈ (D.skeleton q).erase p ∧
+      a0 ∉ insert u T ∧
+      a1 ∉ insert u (insert a0 T) ∧
+      dist p a0 ≠ dist p q ∧
+      dist p a1 ≠ dist p q := by
+  have hcard : 9 < D.A.card := by
+    have hsurplus := CounterexampleData.IsM44.surplus_card_ge_five hM44
+    have hcard_eq := card_eq_of_isM44 hM44
+    omega
+  exact htriple.exists_two_off_circle_aux_of_card_gt_nine hcard hsel hexact
 
 /-- Exact dangerous-triple support data plus rowwise confined classes already
 packages the native confined payload.

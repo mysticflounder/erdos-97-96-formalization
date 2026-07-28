@@ -283,6 +283,59 @@ abbrev CrossBlockerCoincidence
       H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₁ ∨
         H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₂
 
+/-- One of the two cross-deletions preserves the source's canonical K4. -/
+abbrev CrossPairDeletionSurvival
+    {D : CounterexampleData} {H : CriticalShellSystem D.A}
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (x y : ℝ²) : Prop :=
+  HasNEquidistantPointsAt 4 (D.A.erase x)
+      (H.centerAt source.1 source.2) ∨
+    HasNEquidistantPointsAt 4 (D.A.erase y)
+      (H.centerAt source.1 source.2)
+
+/-- The selected-support form of cross-pair deletion survival. -/
+abbrev CrossPairSelectedSupportOmission
+    {D : CounterexampleData} {H : CriticalShellSystem D.A}
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (x y : ℝ²) : Prop :=
+  x ∉ (H.selectedAt source.1 source.2).toCriticalFourShell.support ∨
+    y ∉ (H.selectedAt source.1 source.2).toCriticalFourShell.support
+
+/-- Cross-pair deletion survival and selected-support omission are the same
+canonical-row invariant. -/
+theorem crossPairDeletionSurvival_iff_selectedSupportOmission
+    {D : CounterexampleData} {H : CriticalShellSystem D.A}
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (x y : ℝ²) :
+    CrossPairDeletionSurvival (H := H) source x y ↔
+      CrossPairSelectedSupportOmission (H := H) source x y := by
+  exact
+    or_congr
+      (cross_deletion_survives_iff_not_mem_selected_support H source.2)
+      (cross_deletion_survives_iff_not_mem_selected_support H source.2)
+
+/-- Canonical packet retaining the producer's deletion-survival evidence.
+Selected-support omission is derived through the pair-level equivalence. -/
+structure CrossPairDeletionView
+    {D : CounterexampleData} {H : CriticalShellSystem D.A}
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (x y : ℝ²) : Prop where
+  survives : CrossPairDeletionSurvival (H := H) source x y
+
+namespace CrossPairDeletionView
+
+/-- Selected-support omission derived from the retained survival view. -/
+theorem omits
+    {D : CounterexampleData} {H : CriticalShellSystem D.A}
+    {source : CriticalShellSystem.CarrierVertex D.A}
+    {x y : ℝ²}
+    (view : CrossPairDeletionView (H := H) source x y) :
+    CrossPairSelectedSupportOmission (H := H) source x y :=
+  (crossPairDeletionSurvival_iff_selectedSupportOmission
+    (H := H) source x y).mp view.survives
+
+end CrossPairDeletionView
+
 /-- The exact third canonical-row surface produced by the cap-eight branch.
 
 Keep the cap-eight lower bound in the packet: downstream positive-alignment
@@ -312,14 +365,33 @@ abbrev CapSourceThirdCanonicalRowSurface
       source.1 ∈
         (H.selectedAt source.1 source.2).toCriticalFourShell.support ∧
       (H.selectedAt source.1 source.2).toCriticalFourShell.support.card = 4 ∧
-      (P.source₁ ∉
-          (H.selectedAt source.1 source.2).toCriticalFourShell.support ∨
-        P.source₂ ∉
-          (H.selectedAt source.1 source.2).toCriticalFourShell.support) ∧
-      (Pρ.source₁ ∉
-          (H.selectedAt source.1 source.2).toCriticalFourShell.support ∨
-        Pρ.source₂ ∉
-          (H.selectedAt source.1 source.2).toCriticalFourShell.support)
+      CrossPairDeletionView (H := H) source P.source₁ P.source₂ ∧
+      CrossPairDeletionView (H := H) source Pρ.source₁ Pρ.source₂
+
+/-- The cap-source row surface is unchanged when the two collision rows are
+exchanged. -/
+theorem capSourceThirdCanonicalRowSurface_swap
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius ρ : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (h : CapSourceThirdCanonicalRowSurface P Pρ) :
+    CapSourceThirdCanonicalRowSurface Pρ P := by
+  rcases h with
+    ⟨hcap, source, hsourceInterior, hsourceOutside,
+      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+      hcenterNeFirstApex, hcenterNeSecondApex,
+      hsourceMem, hsourceCard, hfirstView, hsecondView⟩
+  refine
+    ⟨hcap, source, hsourceInterior, ?_,
+      hcenterNeSecondBlocker, hcenterNeFirstBlocker,
+      hcenterNeFirstApex, hcenterNeSecondApex,
+      hsourceMem, hsourceCard, hsecondView, hfirstView⟩
+  simpa [Finset.union_comm] using hsourceOutside
 
 /-- The mapped global alternative used by the two-collision coordinator. -/
 abbrev TwoCollisionGlobalSplit
@@ -356,35 +428,11 @@ theorem exists_capSource_thirdCanonicalRow_omits_each_collisionPair
       hcenterNeFirst, hcenterNeSecond, hsurvives, hsurvivesρ⟩ :=
     exists_capSource_thirdBlocker_crossPairDeletionSurvivals
       P Pρ secondApexRobust hpairsDisjoint hcap
-  have homits :
-      P.source₁ ∉
-          (H.selectedAt source.1 source.2).toCriticalFourShell.support ∨
-        P.source₂ ∉
-          (H.selectedAt source.1 source.2).toCriticalFourShell.support := by
-    rcases hsurvives with hsurvives | hsurvives
-    · exact Or.inl
-        ((cross_deletion_survives_iff_not_mem_selected_support
-          H source.2).mp hsurvives)
-    · exact Or.inr
-        ((cross_deletion_survives_iff_not_mem_selected_support
-          H source.2).mp hsurvives)
-  have homitsρ :
-      Pρ.source₁ ∉
-          (H.selectedAt source.1 source.2).toCriticalFourShell.support ∨
-        Pρ.source₂ ∉
-          (H.selectedAt source.1 source.2).toCriticalFourShell.support := by
-    rcases hsurvivesρ with hsurvivesρ | hsurvivesρ
-    · exact Or.inl
-        ((cross_deletion_survives_iff_not_mem_selected_support
-          H source.2).mp hsurvivesρ)
-    · exact Or.inr
-        ((cross_deletion_survives_iff_not_mem_selected_support
-          H source.2).mp hsurvivesρ)
   exact ⟨hcap, source, hsourceCap, hsourceOutside, hcenterNe, hcenterNeρ,
     hcenterNeFirst, hcenterNeSecond,
     (H.selectedAt source.1 source.2).toCriticalFourShell.q_mem_support,
     (H.selectedAt source.1 source.2).toCriticalFourShell.support_card,
-    homits, homitsρ⟩
+    ⟨hsurvives⟩, ⟨hsurvivesρ⟩⟩
 
 end ATailTwoCollisionGlobalProducer
 end Problem97

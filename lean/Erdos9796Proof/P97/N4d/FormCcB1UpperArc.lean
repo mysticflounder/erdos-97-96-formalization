@@ -811,9 +811,8 @@ private theorem c3_vertex_same_open_side_as_v2
   exact mul_pos hcore (mul_pos hu_sq_pos hu_sq_pos)
 
 private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+  Problem97.dist_sq_coord x y
 
 private noncomputable def similarityTransportComp
     {T1 T2 : ℝ² → ℝ²}

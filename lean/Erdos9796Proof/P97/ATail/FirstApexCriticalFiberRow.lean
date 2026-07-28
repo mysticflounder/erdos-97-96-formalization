@@ -40,25 +40,6 @@ private theorem oppApex1_mem_surplusCap
   · simpa [SurplusCapPacket.surplusCap,
       SurplusCapPacket.oppApex1, hi] using S.partition.v1_mem_C3
 
-private theorem frontierRadius_pos
-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
-    {H : CriticalShellSystem D.A}
-    {F : CriticalPairFrontier D S radius H}
-    (_R : FrontierCommonDeletionParentResidual F) :
-    0 < radius := by
-  have hqOff : F.pair.q ∉ S.surplusCap :=
-    (Finset.mem_sdiff.mp F.pair.q_mem_marginal).2
-  have hqNe : F.pair.q ≠ S.oppApex1 := by
-    intro h
-    apply hqOff
-    rw [h]
-    exact oppApex1_mem_surplusCap S
-  have hdist : 0 < dist F.pair.q S.oppApex1 := dist_pos.mpr hqNe
-  have hqRadius : dist F.pair.q S.oppApex1 = radius :=
-    (Finset.mem_filter.mp
-      (Finset.mem_sdiff.mp F.pair.q_mem_marginal).1).2
-  simpa only [hqRadius] using hdist
-
 /-- Choose a selected four-row which retains a prescribed point of a
 four-or-larger exact radius class. -/
 theorem nonempty_selectedFourClass_preserving_point
@@ -151,7 +132,7 @@ private theorem nonempty_rowHit
     (hitMem : hitSource ∈ SelectedClass D.A S.oppApex1 radius) :
     Nonempty (RowHit P) := by
   rcases nonempty_selectedFourClass_preserving_point
-      (frontierRadius_pos R) hitMem
+      F.radius_pos hitMem
       R.frontierRadius_class_card_ge_four with
     ⟨row, hhitRow⟩
   rcases exists_other_support_point row hhitRow with
@@ -219,13 +200,13 @@ theorem criticalShell_inter_frontierRadiusClass_card_le_two
     support_subset_A := fun _ hz ↦ (mem_selectedClass.mp (hTClass hz)).1
     support_card := hTcard
     radius := radius
-    radius_pos := frontierRadius_pos R
+    radius_pos := F.radius_pos
     support_eq_radius := fun _ hz ↦ (mem_selectedClass.mp (hTClass hz)).2
     center_not_mem := by
       intro hcenter
       have hzero := (mem_selectedClass.mp (hTClass hcenter)).2
       have : radius = 0 := by simpa using hzero.symm
-      exact (ne_of_gt (frontierRadius_pos R)) this }
+      exact (ne_of_gt F.radius_pos) this }
   let criticalRow : SelectedFourClass D.A
       (H.centerAt source hsource) :=
     (H.selectedAt source hsource).toSelectedFourClass

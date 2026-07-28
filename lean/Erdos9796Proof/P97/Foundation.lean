@@ -22,6 +22,12 @@ namespace Problem97
 
 export Erdos97 (HasNEquidistantPointsAt HasNEquidistantPointsOn HasNEquidistantProperty)
 
+/-- Coordinate expansion of squared distance on `ℝ²`. -/
+theorem dist_sq_coord (x y : ℝ²) :
+    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+  rw [EuclideanSpace.dist_sq_eq]
+  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+
 /-- Convex independence of a `Finset` of plane points: the extreme-point
 characterization on the coerced underlying set, matching upstream
 `EuclideanGeometry.ConvexIndep` and the predicate used by `Erdos97.erdos_97`. -/

@@ -42,10 +42,8 @@ private lemma angular_prop_dist (x v2 v3 o : ℝ²)
     (hdist_xo : dist x o = dist x v3)
     (hsa : signedArea2 o x v2 = -signedArea2 x v2 v3) :
     dist x v2 ^ 2 * signedArea2 o v2 v3 = dist v2 v3 ^ 2 * signedArea2 x v2 v3 := by
-  have dist_sq : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 := fun p q => by
-    simp only [EuclideanSpace.dist_eq, Fin.sum_univ_two]
-    rw [Real.sq_sqrt (by positivity)]
-    simp [Real.dist_eq]
+  have dist_sq : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 :=
+    Problem97.dist_sq_coord
   have h1 : (x 0 - v2 0) ^ 2 + (x 1 - v2 1) ^ 2 =
             (x 0 - v3 0) ^ 2 + (x 1 - v3 1) ^ 2 := by
     have := dist_sq x v2 ▸ dist_sq x v3 ▸ (congr_arg (· ^ 2) hdist_xv2v3); linarith
@@ -215,9 +213,8 @@ private lemma sameSide_prod_pos_apexVertex
     (hab : va ≠ vb)
     (hxc_lt : dist x vc < d) :
     0 < signedArea2 x vb va * signedArea2 vb va vc := by
-  have ds : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 := fun p q => by
-    simp only [EuclideanSpace.dist_eq, Fin.sum_univ_two]
-    rw [Real.sq_sqrt (by positivity)]; simp [Real.dist_eq]
+  have ds : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 :=
+    Problem97.dist_sq_coord
   have hmid : ∀ i : Fin 2, (midpoint ℝ vb va) i = ((vb i + va i) / 2 : ℝ) := by
     intro i; rw [midpoint_eq_smul_add]; simp [PiLp.smul_apply, PiLp.add_apply, invOf_eq_inv]; ring
   have hIexp : ⟪midpoint ℝ vb va - x, midpoint ℝ vb va - vc⟫_ℝ
@@ -276,9 +273,8 @@ imbalance), via the polarization identity
 private lemma inner_chord_eq_dist_diff (x c e w : ℝ²) :
     2 * ⟪c - x, e - w⟫_ℝ
       = (dist c w ^ 2 - dist c e ^ 2) + (dist x e ^ 2 - dist x w ^ 2) := by
-  have ds : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 := fun p q => by
-    simp only [EuclideanSpace.dist_eq, Fin.sum_univ_two]
-    rw [Real.sq_sqrt (by positivity)]; simp [Real.dist_eq]
+  have ds : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 :=
+    Problem97.dist_sq_coord
   have hInner : ⟪c - x, e - w⟫_ℝ
       = (c 0 - x 0) * (e 0 - w 0) + (c 1 - x 1) * (e 1 - w 1) := by
     rw [@PiLp.inner_apply]; simp [Fin.sum_univ_two, RCLike.inner_apply, mul_comm]

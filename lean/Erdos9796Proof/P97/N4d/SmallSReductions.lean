@@ -328,10 +328,8 @@ theorem eq_of_dist_eq_three_of_pairwise_ne
     (hBP_BQ : dist B P = dist B Q) (hBP_BR : dist B P = dist B R) :
     A = B := by
   -- squared-distance in coordinates
-  have sq : ∀ X Y : ℝ², dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
-    intro X Y
-    rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-    simp [Fin.sum_univ_two, PiLp.sub_apply, Real.norm_eq_abs, sq_abs]
+  have sq : ∀ X Y : ℝ², dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 :=
+    Problem97.dist_sq_coord
   have eA1 : (A 0 - P 0) ^ 2 + (A 1 - P 1) ^ 2 = (A 0 - Q 0) ^ 2 + (A 1 - Q 1) ^ 2 := by
     rw [← sq, ← sq, hAP_AQ]
   have eA2 : (A 0 - P 0) ^ 2 + (A 1 - P 1) ^ 2 = (A 0 - R 0) ^ 2 + (A 1 - R 1) ^ 2 := by
@@ -541,9 +539,8 @@ private theorem familyA_lt_ssq_scalar (s ax ay x y : ℝ)
 /-- The squared-distance coordinate dictionary in the plane (shared by the L6
 vector wrappers): `dist X Y ^ 2 = (X 0 − Y 0)² + (X 1 − Y 1)²`. -/
 private theorem dist_sq_coords (X Y : ℝ²) :
-    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-  simp [Fin.sum_univ_two, PiLp.sub_apply, Real.norm_eq_abs, sq_abs]
+    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 :=
+  Problem97.dist_sq_coord X Y
 
 /-- Shared extraction of the pinned scalar data from the b₂ Family-A vector
 hypotheses: produces `a₂x = 1 − s²/2`, the two circle equations, and the

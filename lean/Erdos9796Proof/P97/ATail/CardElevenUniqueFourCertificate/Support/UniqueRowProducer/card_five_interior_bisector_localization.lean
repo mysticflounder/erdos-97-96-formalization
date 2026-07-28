@@ -4,8 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.UniqueRowProducer.card_five_interior_survivor_pair
-import Erdos9796Proof.P97.CapSelectedRowCounting
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.UniqueRowProducer.card_five_cross_blocker_localization
 import Erdos9796Proof.P97.U1CarrierInjection
 import Erdos9796Proof.P97.Dumitrescu.L1
 
@@ -47,82 +46,6 @@ open ATAILStageOnePrescribedApexDichotomy
 open ATailCriticalPairFrontier
 
 attribute [local instance] Classical.propDecidable
-
-private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1'
-    {A : Finset ℝ²} (S : SurplusCapPacket A) :
-    S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
-  rcases hi : S.surplusIdx with ⟨i, hi3⟩
-  interval_cases i <;>
-    simp [SurplusCapPacket.oppApex1,
-      SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex1, hi]
-
-/-- The vertex opposite one indexed cap belongs to every other indexed cap. -/
-private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
-    {A : Finset ℝ²} (S : SurplusCapPacket A) {i j : Fin 3}
-    (hij : i ≠ j) :
-    S.oppositeVertexByIndex i ∈ S.capByIndex j := by
-  fin_cases i <;> fin_cases j
-  · exact False.elim (hij rfl)
-  · simpa [SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.capByIndex] using S.partition.v1_mem_C2
-  · simpa [SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.capByIndex] using S.partition.v1_mem_C3
-  · simpa [SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.capByIndex] using S.partition.v2_mem_C1
-  · exact False.elim (hij rfl)
-  · simpa [SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.capByIndex] using S.partition.v2_mem_C3
-  · simpa [SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.capByIndex] using S.partition.v3_mem_C1
-  · simpa [SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.capByIndex] using S.partition.v3_mem_C2
-  · exact False.elim (hij rfl)
-
-/-- Two distinct centers in one indexed ordered cap cannot both bisect the
-same distinct carrier pair outside that cap. -/
-private theorem false_of_two_cap_centers_equidistant_outside_pair
-    {D : CounterexampleData} (S : SurplusCapPacket D.A) (k : Fin 3)
-    {c apex a b : ℝ²}
-    (hcCap : c ∈ S.capByIndex k)
-    (hapexCap : apex ∈ S.capByIndex k)
-    (hc_ne_apex : c ≠ apex)
-    (haA : a ∈ D.A) (hbA : b ∈ D.A) (hab : a ≠ b)
-    (haOff : a ∉ S.capByIndex k) (hbOff : b ∉ S.capByIndex k)
-    (hcEq : dist c a = dist c b)
-    (hapexEq : dist apex a = dist apex b) :
-    False := by
-  classical
-  rcases S.capByIndex_cgn4g_capData D.convex k with
-    ⟨m, L, Packet, _Hside, Hord, hcap⟩
-  have hcImage : c ∈ Finset.univ.image L.points := by
-    rw [hcap]
-    exact hcCap
-  have hapexImage : apex ∈ Finset.univ.image L.points := by
-    rw [hcap]
-    exact hapexCap
-  rcases Finset.mem_image.mp hcImage with ⟨ic, _hic, hic⟩
-  rcases Finset.mem_image.mp hapexImage with ⟨ia, _hia, hia⟩
-  have hic_ne_ia : ic ≠ ia := by
-    intro h
-    apply hc_ne_apex
-    calc
-      c = L.points ic := hic.symm
-      _ = L.points ia := by simp [h]
-      _ = apex := hia
-  have haOutside : a ∉ Finset.univ.image L.points := by
-    simpa [hcap] using haOff
-  have hbOutside : b ∉ Finset.univ.image L.points := by
-    simpa [hcap] using hbOff
-  rcases lt_or_gt_of_ne hic_ne_ia with hlt | hgt
-  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
-      D.convex Hord Packet.mem_A hlt haA hbA haOutside hbOutside hab
-      (by simpa [hic] using hcEq)
-      (by simpa [hia] using hapexEq)
-  · exact CapSelectedRowCounting.outsidePair_unique_capCenter
-      D.convex Hord Packet.mem_A hgt haA hbA haOutside hbOutside hab
-      (by simpa [hia] using hapexEq)
-      (by simpa [hic] using hcEq)
 
 private theorem interior_oppIndex1_not_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}

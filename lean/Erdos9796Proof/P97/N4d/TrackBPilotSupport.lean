@@ -34,9 +34,8 @@ namespace Problem97
 
 /-- Squared-distance coordinates in `ℝ²`. -/
 private theorem trackB_dist_sq_coords (X Y : ℝ²) :
-    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-  simp [Fin.sum_univ_two, PiLp.sub_apply, Real.norm_eq_abs, sq_abs]
+    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 :=
+  Problem97.dist_sq_coord X Y
 
 /-- Shared scalar extraction for the Track-B pilot:
 `a₂x = 1 - s²/2`, `a₂` lies on the unit circle, and `v₃` lies on

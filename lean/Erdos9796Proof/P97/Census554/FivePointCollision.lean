@@ -27,9 +27,8 @@ namespace Internal
 
 /-- Squared distance in the plane, expanded in the two coordinates. -/
 theorem dist_sq_coords (u v : ℝ²) :
-    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 := by
-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
+  SurplusCOMPGBank.dist_sq_coord u v
 
 set_option maxHeartbeats 2000000 in
 -- The proof eliminates one planar Gram determinant and two sums of squares.

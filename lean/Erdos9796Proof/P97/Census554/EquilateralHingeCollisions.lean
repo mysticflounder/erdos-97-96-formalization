@@ -21,12 +21,6 @@ namespace Problem97
 namespace Census554
 namespace EqualityCore
 
-/-- Squared Euclidean distance in `ℝ²` as a coordinate sum. -/
-private theorem dist_sq_coord (x y : ℝ²) :
-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
-  rw [EuclideanSpace.dist_sq_eq]
-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
-
 /-- An orientation-free equilateral hinge over the normalized anchors has
 horizontal coordinate `1/2` and squared vertical coordinate `3/4`. -/
 theorem normalized_equilateralHinge_coordinates

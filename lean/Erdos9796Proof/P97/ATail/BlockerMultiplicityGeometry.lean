@@ -202,6 +202,37 @@ structure FreshOutsideSecondBlockerFiber
         S.capByIndex S.oppIndex1 =
       {source.1, otherOutsidePoint}
 
+/-- A second-side enlarged blocker fiber is the first-side packet after
+swapping the two collision rows. -/
+def FreshOutsideSecondBlockerFiber.toSwappedFirst
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius radiusρ : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorBlockerCollision R}
+    {Fρ : CriticalPairFrontier D S radiusρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    {Pρ : RetainedInteriorBlockerCollision Rρ}
+    (Q : FreshOutsideSecondBlockerFiber P Pρ) :
+    FreshOutsideFirstBlockerFiber Pρ P where
+  source := Q.source
+  source_ne_first₁ := Q.source_ne_second₁
+  source_ne_first₂ := Q.source_ne_second₂
+  source_ne_second₁ := Q.source_ne_first₁
+  source_ne_second₂ := Q.source_ne_first₂
+  blockers_eq := Q.blockers_eq
+  source_mem_shell := Q.source_mem_shell
+  source_not_mem_firstCap := Q.source_not_mem_firstCap
+  otherOutsidePoint := Q.otherOutsidePoint
+  otherOutsidePoint_mem_A := Q.otherOutsidePoint_mem_A
+  otherOutsidePoint_ne_source := Q.otherOutsidePoint_ne_source
+  otherOutsidePoint_ne_second₁ := Q.otherOutsidePoint_ne_first₁
+  otherOutsidePoint_ne_second₂ := Q.otherOutsidePoint_ne_first₂
+  otherOutsidePoint_mem_shell := Q.otherOutsidePoint_mem_shell
+  otherOutsidePoint_not_mem_firstCap :=
+    Q.otherOutsidePoint_not_mem_firstCap
+  outside_eq_pair := Q.outside_eq_pair
+
 private theorem source_mem_other_shell_of_blockers_eq
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     (source target : CriticalShellSystem.CarrierVertex A)

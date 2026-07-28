@@ -72,11 +72,6 @@ theorem normalScale_gauge_witness_unit {p q : ℝ²} {r : ℝ}
   rw [normalScale_dist_image hr, hq]
   exact inv_mul_cancel₀ (ne_of_gt hr)
 
-private theorem dist_sq_coord (x y : ℝ²) :
-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
-
 /-- Squared coordinate distance in the normalized plane. -/
 def coordSqDist (x y : ℝ²) : ℝ :=
   (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2

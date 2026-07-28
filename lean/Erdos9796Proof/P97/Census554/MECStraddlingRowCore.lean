@@ -131,9 +131,8 @@ private theorem scalar_incompatibility
   linarith
 
 private theorem dist_sq_coords (x y : ℝ²) :
-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
-  rw [EuclideanSpace.dist_sq_eq]
-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+  Problem97.dist_sq_coord x y
 
 private theorem normSim_dist_sq_eq_one
     {o a p q : ℝ²} (hoa : o ≠ a) (h : dist o a = dist p q) :

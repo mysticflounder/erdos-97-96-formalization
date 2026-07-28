@@ -259,33 +259,6 @@ structure FrontierCommonDeletionParentResidual
     4 ≤ (SelectedClass D.A S.oppApex1 radius).card
   common : FrontierCommonDeletionResidual F
 
-private theorem frontierRadius_pos_of_commonDeletionParent
-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
-    {H : CriticalShellSystem D.A}
-    {F : CriticalPairFrontier D S radius H}
-    (_R : FrontierCommonDeletionParentResidual F) :
-    0 < radius := by
-  have hqNotSurplus : F.pair.q ∉ S.surplusCap :=
-    (Finset.mem_sdiff.mp F.pair.q_mem_marginal).2
-  have hfirstNeQ : S.oppApex1 ≠ F.pair.q := by
-    intro h
-    apply hqNotSurplus
-    rw [← h]
-    rcases hi : S.surplusIdx with ⟨i, hi3⟩
-    interval_cases i
-    · simpa [SurplusCapPacket.surplusCap,
-        SurplusCapPacket.oppApex1, hi] using S.partition.v2_mem_C1
-    · simpa [SurplusCapPacket.surplusCap,
-        SurplusCapPacket.oppApex1, hi] using S.partition.v3_mem_C2
-    · simpa [SurplusCapPacket.surplusCap,
-        SurplusCapPacket.oppApex1, hi] using S.partition.v1_mem_C3
-  have hpos : 0 < dist S.oppApex1 F.pair.q :=
-    dist_pos.mpr hfirstNeQ
-  have hqRadius : dist F.pair.q S.oppApex1 = radius :=
-    (Finset.mem_filter.mp
-      (Finset.mem_sdiff.mp F.pair.q_mem_marginal).1).2
-  simpa only [dist_comm, hqRadius] using hpos
-
 private theorem pair_q_mem_frontierClass_of_commonDeletionParent
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -324,7 +297,7 @@ theorem FrontierCommonDeletionParentResidual.firstApexFullyDeletionRobust
   by_cases hfive :
       5 ≤ (SelectedClass D.A S.oppApex1 radius).card
   · exact fullyDeletionRobustAt_of_five_le_selectedClass
-      (frontierRadius_pos_of_commonDeletionParent R) hfive
+      F.radius_pos hfive
   · have hfrontierCard :
         (SelectedClass D.A S.oppApex1 radius).card = 4 := by
       have hfour := R.frontierRadius_class_card_ge_four
@@ -379,7 +352,7 @@ theorem FrontierCommonDeletionParentResidual.firstApexFullyDeletionRobust
         exact hfourOther
       simpa [SelectedClass] using htarget
     · refine ⟨radius,
-        frontierRadius_pos_of_commonDeletionParent R, ?_⟩
+        F.radius_pos, ?_⟩
       have hsame := selectedClass_erase_card_eq_of_not_mem hzFrontier
       have htarget :
           4 ≤ (SelectedClass (D.A.erase z)

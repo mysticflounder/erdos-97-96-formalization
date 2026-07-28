@@ -1797,13 +1797,6 @@ private theorem v1_same_side_of_v3x_chord
       exact sa_pos_acb hneg_s (lt_trans h0_lt_jv1 h1x) hx3
     exact mul_pos hv1_side hv2_side
 
-/-- Squared distance in coordinates: `dist a b ^ 2 = (a₀−b₀)² + (a₁−b₁)²`.
-Local helper used by the equilateral-clash algebra below. -/
-private theorem dist_sq_coord (a b : ℝ²) :
-    (dist a b) ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 := by
-  rw [EuclideanSpace.dist_eq, Real.sq_sqrt (by positivity)]
-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
-
 set_option maxHeartbeats 1600000 in
 /-- **Sub-shape B perp-bisector clash engine.**  The non-equilateral analogue of
 `equilateral_clash`: `v₁v₂v₃` is isoceles at `v₂` (legs `dist v₁ v₂ = dist v₂ v₃

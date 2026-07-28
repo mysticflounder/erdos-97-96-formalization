@@ -183,15 +183,8 @@ deletion leaves at least four. -/
 theorem fullyDeletionRobustAt_of_large_class
     {D : CounterexampleData} {c : ℝ²} {r : ℝ} (hr : 0 < r)
     (hcard : 5 ≤ (SelectedClass D.A c r).card) :
-    FullyDeletionRobustAt D c := by
-  classical
-  refine ⟨fun z _ => ⟨r, hr, ?_⟩⟩
-  have hEq : SelectedClass (D.A.erase z) c r =
-      (SelectedClass D.A c r).erase z := selectedClass_erase_eq D.A z c r
-  have hpred := Finset.pred_card_le_card_erase (s := SelectedClass D.A c r) (a := z)
-  have hfour : 4 ≤ (SelectedClass (D.A.erase z) c r).card := by
-    rw [hEq]; omega
-  simpa [SelectedClass] using hfour
+    FullyDeletionRobustAt D c :=
+  fullyDeletionRobustAt_of_five_le_selectedClass hr hcard
 
 /-- A center carrying two distinct K4 radii is deletion robust: classes at a
 common center with distinct radii are disjoint, so one deletion cannot break

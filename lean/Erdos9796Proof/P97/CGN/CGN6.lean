@@ -335,8 +335,8 @@ private theorem vec2_areaForm (a b c d : ℝ) :
 /-- Distance-squared formula for `vec2`. -/
 private theorem vec2_dist_sq (x1 y1 x2 y2 : ℝ) :
     dist (vec2 x1 y1) (vec2 x2 y2) ^ 2 = (x1 - x2) ^ 2 + (y1 - y2) ^ 2 := by
-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-  simp [vec2, EuclideanSpace.single_apply, sub_eq_add_neg, pow_two]
+  simpa [vec2, EuclideanSpace.single_apply] using
+    Problem97.dist_sq_coord (vec2 x1 y1) (vec2 x2 y2)
 
 private theorem point_eq_vec2 {m : ℕ} (X Y : Fin m → ℝ) (t : Fin m) :
     point X Y t = vec2 (X t) (Y t) := by

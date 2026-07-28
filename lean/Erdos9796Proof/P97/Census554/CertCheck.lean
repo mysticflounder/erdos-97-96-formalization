@@ -117,9 +117,8 @@ def checkCert (P : Pattern) (rabPairs : List (Fin 11 × Fin 11))
 /-- Squared distance in `ℝ²` as a sum of coordinate squares (private copy of
 the recipe used across the project). -/
 private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+  Problem97.dist_sq_coord x y
 
 /-- `envOf` reads the coordinate of label `p ≥ 2`, axis `ax`, at the flat
 index `coordVar p ax`. -/

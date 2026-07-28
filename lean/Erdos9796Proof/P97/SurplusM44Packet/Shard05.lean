@@ -488,11 +488,9 @@ theorem exists_fourSubpacket_of_selected_card_ge_four
     ∃ T : Finset ℝ²,
       T ⊆ SelectedClass A x radius ∧
       T.card = 4 := by
-  classical
-  rcases Finset.exists_subset_card_eq
-      (s := SelectedClass A x radius) hcard with
-    ⟨T, hTsub, hTcard⟩
-  exact ⟨T, hTsub, hTcard⟩
+  exact
+    Problem97.FiniteEndpointShell.exists_fourSubpacket_of_selected_card_ge_four
+      hcard
 
 /-- The selected class attached to an `M44SelectedApex` contains a four-point
 subpacket. -/
@@ -516,12 +514,9 @@ theorem exists_fourSubpacket_preserving_of_selected_card_ge_four
       P ⊆ T ∧
       T ⊆ SelectedClass A x radius ∧
       T.card = 4 := by
-  classical
-  rcases Finset.exists_subsuperset_card_eq
-      (s := P) (t := SelectedClass A x radius) (n := 4)
-      hPsub hPcard hcard with
-    ⟨T, hP_T, hTsub, hTcard⟩
-  exact ⟨T, hP_T, hTsub, hTcard⟩
+  exact
+    Problem97.FiniteEndpointShell.exists_fourSubpacket_preserving_of_selected_card_ge_four
+      hPsub hPcard hcard
 
 /-- A selected same-radius class with at least four members contains a
 four-point subpacket preserving any chosen member. -/
@@ -533,16 +528,9 @@ theorem exists_fourSubpacket_preserving_point_of_selected_card_ge_four
       p ∈ T ∧
       T ⊆ SelectedClass A x radius ∧
       T.card = 4 := by
-  classical
-  have hPsub : ({p} : Finset ℝ²) ⊆ SelectedClass A x radius := by
-    intro q hq
-    have hqp : q = p := by simpa using hq
-    simpa [hqp] using hp
-  have hPcard : ({p} : Finset ℝ²).card ≤ 4 := by simp
-  rcases exists_fourSubpacket_preserving_of_selected_card_ge_four
-      hPsub hPcard hcard with
-    ⟨T, hpT, hTsub, hTcard⟩
-  exact ⟨T, hpT (by simp), hTsub, hTcard⟩
+  exact
+    Problem97.FiniteEndpointShell.exists_fourSubpacket_preserving_point_of_selected_card_ge_four
+      hp hcard
 
 /-- The selected class attached to an `M44SelectedApex` contains a four-point
 subpacket preserving any chosen selected point. -/

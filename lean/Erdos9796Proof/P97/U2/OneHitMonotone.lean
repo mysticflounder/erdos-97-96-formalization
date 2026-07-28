@@ -89,9 +89,8 @@ theorem capU1U2_dist_sq (α γ : ℝ) :
     dist (capU1 α) (capU2 γ) ^ 2
       = 3 - 2 * Real.cos α - 2 * Real.cos (α - 2*π/3 - γ) + 2 * Real.cos (2*π/3 + γ) := by
   have norm_sub_sq : ∀ (a b : ℝ²),
-      dist a b ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 := fun a b => by
-    rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-    simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+      dist a b ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 :=
+    Problem97.dist_sq_coord
   rw [norm_sub_sq]
   simp only [capU1, capU2, pt, Matrix.cons_val_zero, Matrix.cons_val_one]
   have hcos_sub : Real.cos (α - 2*π/3 - γ)
@@ -192,9 +191,8 @@ theorem capU1U3_dist_sq (α δ : ℝ) :
           - 2 * Real.cos (α - 4*π/3 - δ) + Real.cos (4*π/3 + δ)
           + Real.sqrt 3 * Real.sin (4*π/3 + δ) := by
   have norm_sub_sq : ∀ (a b : ℝ²),
-      dist a b ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 := fun a b => by
-    rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-    simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+      dist a b ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 :=
+    Problem97.dist_sq_coord
   rw [norm_sub_sq]
   simp only [capU1, capU3, pt, Matrix.cons_val_zero, Matrix.cons_val_one]
   have hcos_sub : Real.cos (α - 4*π/3 - δ)

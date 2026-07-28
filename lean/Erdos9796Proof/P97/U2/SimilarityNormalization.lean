@@ -77,9 +77,8 @@ noncomputable def normSim (p₁ p₂ x : ℝ²) : ℝ² :=
 
 /-- Coordinatewise squared-distance helper for `ℝ² = EuclideanSpace ℝ (Fin 2)`. -/
 private theorem normSq_sub (u v : ℝ²) :
-    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 := by
-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
+  Problem97.dist_sq_coord u v
 
 /-- The base-length square `ℓ² = (p₂₀−p₁₀)² + (p₂₁−p₁₁)²` is positive when `p₁ ≠ p₂`. -/
 private theorem normSim_ℓ2_pos {p₁ p₂ : ℝ²} (hp : p₁ ≠ p₂) :

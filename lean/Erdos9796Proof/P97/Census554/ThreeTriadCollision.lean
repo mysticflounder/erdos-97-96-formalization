@@ -28,9 +28,8 @@ namespace EqualityCore
 
 /-- Squared Euclidean distance in `ℝ²` as a coordinate sum. -/
 private theorem threeTriad_dist_sq_coord (x y : ℝ²) :
-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
-  rw [EuclideanSpace.dist_sq_eq]
-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+  Problem97.dist_sq_coord x y
 
 /-- The scalar system obtained after sending `A,D` to `(0,0),(1,0)` is
 inconsistent when the normalized image of `B` is not the origin. -/

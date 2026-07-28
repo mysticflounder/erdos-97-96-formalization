@@ -177,23 +177,6 @@ private theorem criticalBlocker_mem_A
   (Finset.mem_erase.mp
     (H.selectedAt source hsource).toCriticalFourShell.center_mem).2
 
-private theorem frontierRadius_pos
-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
-    {H : CriticalShellSystem D.A}
-    (F : CriticalPairFrontier D S radius H) :
-    0 < radius := by
-  have hqNotSurplus : F.pair.q ∉ S.surplusCap :=
-    (Finset.mem_sdiff.mp F.pair.q_mem_marginal).2
-  have hfirstNeQ : S.oppApex1 ≠ F.pair.q := by
-    intro h
-    apply hqNotSurplus
-    simpa [h] using surplusOppApex1_mem_surplusCap S
-  have hpos : 0 < dist S.oppApex1 F.pair.q := dist_pos.mpr hfirstNeQ
-  have hqRadius : dist F.pair.q S.oppApex1 = radius :=
-    (Finset.mem_filter.mp
-      (Finset.mem_sdiff.mp F.pair.q_mem_marginal).1).2
-  simpa only [dist_comm, hqRadius] using hpos
-
 private theorem marginalCompanion_mem_A
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -237,7 +220,7 @@ private theorem firstApex_survives_deleting_frontierRadiusPoint
       ⟨hwA, by simpa only [dist_comm] using hwRadius⟩
   by_cases hfive :
       5 ≤ (SelectedClass D.A S.oppApex1 radius).card
-  · refine ⟨radius, frontierRadius_pos F, ?_⟩
+  · refine ⟨radius, F.radius_pos, ?_⟩
     have hfour :
         4 ≤ (SelectedClass (D.A.erase z)
           S.oppApex1 radius).card :=

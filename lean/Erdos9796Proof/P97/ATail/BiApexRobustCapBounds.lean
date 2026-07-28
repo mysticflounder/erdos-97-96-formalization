@@ -92,30 +92,6 @@ private theorem frontier_pair_w_mem_firstClass
   rcases Finset.mem_filter.mp hwFilter with ⟨hwA, hwRadius⟩
   exact mem_selectedClass.mpr ⟨hwA, by simpa only [dist_comm] using hwRadius⟩
 
-private theorem frontierRadius_pos
-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
-    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
-    (_R : FrontierCommonDeletionParentResidual F) :
-    0 < radius := by
-  have hqNotSurplus : F.pair.q ∉ S.surplusCap :=
-    (Finset.mem_sdiff.mp F.pair.q_mem_marginal).2
-  have hfirstNeQ : S.oppApex1 ≠ F.pair.q := by
-    intro h
-    apply hqNotSurplus
-    rw [← h]
-    rcases hi : S.surplusIdx with ⟨i, hi3⟩
-    interval_cases i
-    · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi] using
-        S.partition.v2_mem_C1
-    · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi] using
-        S.partition.v3_mem_C2
-    · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi] using
-        S.partition.v1_mem_C3
-  have hpos : 0 < dist S.oppApex1 F.pair.q := dist_pos.mpr hfirstNeQ
-  have hqRadius : dist F.pair.q S.oppApex1 = radius :=
-    (Finset.mem_filter.mp (Finset.mem_sdiff.mp F.pair.q_mem_marginal).1).2
-  simpa only [dist_comm, hqRadius] using hpos
-
 /-- The radius dichotomy at the first physical opposite apex, in exportable
 form.  `first_oppCap_card_ge_six` derives this and then discards it, keeping
 only the cap bound; consumers that need the apex's radius structure — rather
@@ -194,18 +170,18 @@ theorem first_oppCap_card_ge_six
     · have hbyIndex : (S.capByIndex S.oppIndex1).card = 4 := by
         simpa [capByIndex_oppIndex1_eq_oppCap1] using hcap4
       have hle := oppositeVertex_selectedClass_card_le_four_of_cap_card_eq_four
-        S D.convex S.oppIndex1 hbyIndex (frontierRadius_pos R)
+        S D.convex S.oppIndex1 hbyIndex F.radius_pos
       rw [← hcenter] at hle
       omega
     · have hbyIndex : (S.capByIndex S.oppIndex1).card = 5 := by
         simpa [capByIndex_oppIndex1_eq_oppCap1] using hcap5
       have hle := oppositeVertex_selectedClass_card_le_five_of_cap_card_eq_five
-        S D.convex S.oppIndex1 hbyIndex (frontierRadius_pos R)
+        S D.convex S.oppIndex1 hbyIndex F.radius_pos
       rw [← hcenter] at hle
       omega
   · have hcenter := oppApex1_eq_oppositeVertex_oppIndex1 S
     have hcap := oppositeVertex_distinct_K4_radii_force_cap_card_ge_six
-      S D.convex S.oppIndex1 hotherPos (frontierRadius_pos R)
+      S D.convex S.oppIndex1 hotherPos F.radius_pos
       (by simpa only [← hcenter] using hfourOther)
       (by simpa only [← hcenter] using R.frontierRadius_class_card_ge_four) hsame
     simpa only [capByIndex_oppIndex1_eq_oppCap1] using hcap

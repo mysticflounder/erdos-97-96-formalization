@@ -2,7 +2,7 @@ import Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusBank
 import Erdos9796Proof.P97.RemovableVertexAxiom.ErasedPinRowResiduals
 import Erdos9796Proof.P97.ErasedCertificate.P4UClosure
 import Erdos9796Proof.P97.ErasedCertificate.P4SClosure
-import Erdos9796Proof.P97.U1LargeCapRouteBTail
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure
 
 /-!
 # Removable-vertex continuation branch
@@ -731,16 +731,11 @@ theorem removableVertexOfLarge_of_isM44PinnedSurplus :
 /-- Configurations with no `IsM44` surplus-cap packet close by descent.  This
 is a spine obligation consumed by `RemovableVertexOfLarge_from_threeWaySplit`.
 
-The proof is the copied p97-rvol U-lane route-B tail, reassembled at the
-configuration level.  A `CounterexampleData` is built on the carrier `A`;
-minimality (from the strong-induction IH) excludes removable vertices and
-supplies a critical shell system; the no-`IsM44` hypothesis discharges the
-exact-pair branch of the cap-triple split; the surplus (non-exact) branch is
-closed by `u1_largeCap_routeB_tail_false`.  The remaining open content is the
-two named residuals inside that tail —
-`u1_largeCap_routeB_tail_liveData_false` and
-`U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair`
-(the two-large-cap DoubleApex kill). -/
+The proof builds a `CounterexampleData` on the carrier `A`; minimality from the
+strong-induction hypothesis supplies a critical shell system, and the
+no-`IsM44` hypothesis lets the A-tail frontier contradiction close the branch
+directly.  Thus the production continuation does not pass through the legacy
+U1 route-B coordinator. -/
 theorem removableVertexOfLarge_of_nonIsM44 :
     NonIsM44DescentStatement := by
   classical
@@ -757,29 +752,11 @@ theorem removableVertexOfLarge_of_nonIsM44 :
     exact hMin B (not_le.mp hlt) hBne hBconv hBK4
   -- No `IsM44` surplus-cap packet on `D.A = A`.
   have hNoM44D : ¬ ∃ S : SurplusCapPacket D.A, S.IsM44 := by rw [hDA]; exact hNoM44
-  -- Minimality excludes removable vertices and supplies a critical shell system.
-  have hnoRem : ∀ x : ℝ², ¬ IsRemovableVertex D.A x :=
-    CounterexampleData.not_isRemovableVertex_of_minimal hmin
-  have hcritical : Nonempty (CriticalShellSystem D.A) :=
-    D.exists_criticalShellSystem_of_minimal hmin
-  -- The route-B tail derives `False`, closing the goal ex falso.
+  -- Minimality supplies a critical shell system for the A-tail contradiction.
+  obtain ⟨H⟩ := D.exists_criticalShellSystem_of_minimal hmin
   exfalso
-  have hncol : ¬ Collinear ℝ (D.A : Set ℝ²) :=
-    D.convex.not_collinear_of_card_ge_three (by omega)
-  have hcirc :
-      3 ≤ (D.A.filter fun p =>
-        dist p (MEC.mec D.A D.nonempty).center =
-          (MEC.mec D.A D.nonempty).radius).card :=
-    MEC.no_diameter_under_k4 D.nonempty hncol D.convex D.K4
-  rcases MEC.exists_capTriple_of_circumscribed D.nonempty hncol D.convex hcirc with
-    ⟨MT, hCirc, ⟨CP⟩⟩
-  rcases CP.exactPair_or_nonExactSurplusBranch_of_card_gt_nine hDcard with
-    hexact | hnonExact
-  · exact hNoM44D
-      (isM44Packet_of_capTriple_two_exact_of_card_gt_nine MT hCirc CP hDcard hexact)
-  · rcases hnonExact with ⟨i, hsurplus, hnotOppExact⟩
-    exact u1_largeCap_routeB_tail_false D hmin hDcard hnoRem hcritical hNoM44D
-      MT hCirc CP rfl hsurplus hnotOppExact
+  exact ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap
+    D.packet hmin hNoM44D hDcard H
 
 /-- Closed adapter from the three-way split to the existing removable-vertex
 spine node. -/

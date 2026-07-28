@@ -259,9 +259,10 @@ theorem both_frontierDeletions_blocked_iff_actualBlocker_eq_qBlocker
       rw [hsupportEq]
       exact hwSupport
 
-/-- Equivalent cover form: away from exact card four, every actual blocker
-either preserves one frontier deletion or is the known `P.q`-blocker. -/
-theorem frontierDeletion_survival_or_actualBlocker_eq_qBlocker
+/-- Primitive exact normal form: away from exact card four, one of the two
+frontier deletions survives at a source's actual blocker exactly when that
+blocker differs from the already-known blocker selected for `P.q`. -/
+theorem frontierDeletion_survival_iff_actualBlocker_ne_qBlocker
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     {H : CriticalShellSystem D.A}
     (P : SurvivorPairRelocationPacket D S r H)
@@ -269,22 +270,53 @@ theorem frontierDeletion_survival_or_actualBlocker_eq_qBlocker
     (hwSupport :
       P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support)
     {source : ℝ²} (hsource : source ∈ D.A) :
-    HasNEquidistantPointsAt 4 (D.A.erase P.q)
-        (H.centerAt source hsource) ∨
-      HasNEquidistantPointsAt 4 (D.A.erase P.w)
-        (H.centerAt source hsource) ∨
-      H.centerAt source hsource = H.centerAt P.q P.q_mem_A := by
-  by_cases hqSurvives :
-      HasNEquidistantPointsAt 4 (D.A.erase P.q)
-        (H.centerAt source hsource)
-  · exact Or.inl hqSurvives
-  · by_cases hwSurvives :
+    (HasNEquidistantPointsAt 4 (D.A.erase P.q)
+          (H.centerAt source hsource) ∨
         HasNEquidistantPointsAt 4 (D.A.erase P.w)
-          (H.centerAt source hsource)
-    · exact Or.inr (Or.inl hwSurvives)
-    · exact Or.inr (Or.inr
-        ((both_frontierDeletions_blocked_iff_actualBlocker_eq_qBlocker
-          P hnotFour hwSupport hsource).1 ⟨hqSurvives, hwSurvives⟩))
+          (H.centerAt source hsource)) ↔
+      H.centerAt source hsource ≠ H.centerAt P.q P.q_mem_A := by
+  constructor
+  · intro hsurvival hcenter
+    have hblocked :=
+      (both_frontierDeletions_blocked_iff_actualBlocker_eq_qBlocker
+        P hnotFour hwSupport hsource).2 hcenter
+    exact hsurvival.elim hblocked.1 hblocked.2
+  · intro hcenterNe
+    by_contra hsurvival
+    exact hcenterNe
+      ((both_frontierDeletions_blocked_iff_actualBlocker_eq_qBlocker
+        P hnotFour hwSupport hsource).1 (not_or.mp hsurvival))
+
+/-- Consumer-shaped exact normal form: a carrier source lies outside the known
+`P.q`-blocker fiber exactly when one frontier deletion survives at its actual
+blocker. -/
+theorem mem_outside_qBlockerFiber_iff_frontierDeletion_survival
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : SurvivorPairRelocationPacket D S r H)
+    (hnotFour : (SelectedClass D.A S.oppApex1 r).card ≠ 4)
+    (hwSupport :
+      P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support)
+    (source : CriticalShellSystem.CarrierVertex D.A) :
+    source ∈ Finset.univ \ qBlockerFiber P ↔
+      HasNEquidistantPointsAt 4 (D.A.erase P.q)
+          (H.centerAt source.1 source.2) ∨
+        HasNEquidistantPointsAt 4 (D.A.erase P.w)
+          (H.centerAt source.1 source.2) := by
+  rw [frontierDeletion_survival_iff_actualBlocker_ne_qBlocker
+    P hnotFour hwSupport source.2]
+  constructor
+  · intro hsourceOutside hcenter
+    have hsourceNotFiber := (Finset.mem_sdiff.mp hsourceOutside).2
+    apply hsourceNotFiber
+    apply Finset.mem_filter.mpr
+    exact ⟨Finset.mem_univ source, Subtype.ext hcenter⟩
+  · intro hcenterNe
+    apply Finset.mem_sdiff.mpr
+    refine ⟨Finset.mem_univ source, ?_⟩
+    intro hsourceFiber
+    apply hcenterNe
+    exact congrArg Subtype.val (Finset.mem_filter.mp hsourceFiber).2
 
 /-- Off the card-four escape, no source has a genuinely third actual blocker
 at which both frontier deletions fail. -/

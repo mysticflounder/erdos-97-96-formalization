@@ -422,23 +422,23 @@ theorem selected_off_circle_of_dangerousTriple
   htriple.selected_off_circle_of_exact hsel
     (P.exact_radius_class_card_eq_three_of_dangerousTriple htriple)
 
-/-- An `(m,4,4)` localized fixed triple supplies the complete bounded audit
-frame before rowwise q-deleted K4 confinement is imposed. -/
-theorem exists_fixedTripleAuditFrame
+/-- A localized fixed triple in a configuration with more than nine points
+supplies the complete bounded audit frame before rowwise q-deleted K4
+confinement is imposed. -/
+theorem exists_fixedTripleAuditFrame_of_card_gt_nine
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     (P : U3LocalizedNoQFreePacket D q p)
     (F : U3FixedTriplePacket D q p t1 t2 t3)
-    (hM44 : D.IsM44) :
+    (hcard : 9 < D.A.card) :
     Nonempty (U3FixedTripleAuditFrame D q p t1 t2 t3) := by
   let htriple :
       U5DangerousTriple D q p ({t1, t2, t3} : Finset ℝ²) :=
     u5DangerousTriple_of_u3FixedTriplePacket F
-  rcases htriple.exists_selectedCandidateSkeleton_of_isM44 hM44 with
+  rcases htriple.exists_selectedCandidateSkeleton_of_card_gt_nine hcard with
     ⟨u, hselected⟩
   have hexact := P.exact_radius_class_card_eq_three F
   have huoff := P.selected_off_circle_of_dangerousTriple htriple hselected
-  rcases U5DangerousTriple.exists_two_off_circle_aux hM44 htriple hselected
-      hexact with
+  rcases htriple.exists_two_off_circle_aux_of_card_gt_nine hcard hselected hexact with
     ⟨a0, a1, ha0mem, ha1mem, ha0not, ha1not, ha0off, ha1off⟩
   exact
     ⟨{ u := u
@@ -453,6 +453,20 @@ theorem exists_fixedTripleAuditFrame
        a1_notin_base := ha1not
        a0_off_circle := ha0off
        a1_off_circle := ha1off }⟩
+
+/-- Compatibility form of `exists_fixedTripleAuditFrame_of_card_gt_nine` for
+an `(m,4,4)` configuration. -/
+theorem exists_fixedTripleAuditFrame
+    {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
+    (P : U3LocalizedNoQFreePacket D q p)
+    (F : U3FixedTriplePacket D q p t1 t2 t3)
+    (hM44 : D.IsM44) :
+    Nonempty (U3FixedTripleAuditFrame D q p t1 t2 t3) := by
+  have hcard : 9 < D.A.card := by
+    have hsurplus := CounterexampleData.IsM44.surplus_card_ge_five hM44
+    have hcard_eq := card_eq_of_isM44 hM44
+    omega
+  exact P.exists_fixedTripleAuditFrame_of_card_gt_nine F hcard
 
 /-- At a localized no-q-free center, a selected skeleton candidate cannot also
 be a same-circle export. -/

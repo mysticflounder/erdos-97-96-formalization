@@ -29,9 +29,8 @@ namespace Problem97
 
 /-- Squared Euclidean distance in `ℝ²` as a coordinate sum. -/
 private theorem q3_dist_sq_coord (x c : ℝ²) :
-    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 := by
-  rw [EuclideanSpace.dist_sq_eq]
-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 :=
+  Problem97.dist_sq_coord x c
 
 private theorem normSim_base_sq_pos {p₁ p₂ : ℝ²} (hp : p₁ ≠ p₂) :
     0 < (p₂ 0 - p₁ 0) ^ 2 + (p₂ 1 - p₁ 1) ^ 2 := by

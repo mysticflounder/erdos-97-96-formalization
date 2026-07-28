@@ -182,21 +182,9 @@ theorem deletionSurvival_cover_of_mem_outside_qBlockerFiber
         (H.centerAt source.1 source.2) ∨
       HasNEquidistantPointsAt 4 (D.A.erase P.w)
         (H.centerAt source.1 source.2) := by
-  have hsourceNotFiber : source ∉ qBlockerFiber P :=
-    (Finset.mem_sdiff.mp hsourceOutside).2
-  have hcenterNe :
-      H.centerAt source.1 source.2 ≠ H.centerAt P.q P.q_mem_A := by
-    intro hcenter
-    apply hsourceNotFiber
-    apply Finset.mem_filter.mpr
-    refine ⟨Finset.mem_univ source, ?_⟩
-    apply Subtype.ext
-    exact hcenter
-  rcases frontierDeletion_survival_or_actualBlocker_eq_qBlocker
-      P hnotFour hwSupport source.2 with hq | hw | hcenter
-  · exact Or.inl hq
-  · exact Or.inr hw
-  · exact False.elim (hcenterNe hcenter)
+  exact
+    (mem_outside_qBlockerFiber_iff_frontierDeletion_survival
+      P hnotFour hwSupport source).1 hsourceOutside
 
 private theorem actualBlocker_mem_A
     {A : Finset ℝ²} (H : CriticalShellSystem A)

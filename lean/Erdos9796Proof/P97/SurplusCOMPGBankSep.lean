@@ -24,9 +24,8 @@ namespace SurplusCOMPGBank
 
 /-- Coordinate expansion of squared distance on `ℝ²`. -/
 theorem dist_sq_coord (x c : ℝ²) :
-    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 := by
-  rw [EuclideanSpace.dist_sq_eq]
-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 :=
+  Problem97.dist_sq_coord x c
 
 /-- Chord separation of shared equidistant points.  If `x` and `y` are both
 equidistant from `c` and from `d`, then their signed areas against the chord

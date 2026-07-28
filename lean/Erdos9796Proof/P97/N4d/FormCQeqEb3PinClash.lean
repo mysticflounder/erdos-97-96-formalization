@@ -19,9 +19,8 @@ namespace Problem97
 /- ### Chart coordinate helpers -/
 
 private theorem dist_sq_coords (x y : ℝ²) :
-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+  Problem97.dist_sq_coord x y
 
 private theorem vec2_c0 (a b : ℝ) : (Problem97.CGN.vec2 a b) 0 = a := by
   simp [Problem97.CGN.vec2, EuclideanSpace.single_apply]

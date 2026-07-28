@@ -416,20 +416,8 @@ theorem FrontierOffRadiusEscape.frontierRadius_pos
     {R : FrontierCommonDeletionParentResidual F}
     {escape : FrontierSecondRowOffConfinementEscape R.common}
     (_E : FrontierOffRadiusEscape R escape) :
-    0 < radius := by
-  have hqNotSurplus : F.pair.q ∉ S.surplusCap :=
-    (Finset.mem_sdiff.mp F.pair.q_mem_marginal).2
-  have hqNe : S.oppApex1 ≠ F.pair.q := by
-    intro h
-    apply hqNotSurplus
-    simpa [h] using (oppApex1_mem_surplusCap S)
-  have hpos : 0 < dist S.oppApex1 F.pair.q := dist_pos.mpr hqNe
-  have hqRadius : dist F.pair.q S.oppApex1 = radius :=
-    (Finset.mem_filter.mp
-      (Finset.mem_sdiff.mp F.pair.q_mem_marginal).1).2
-  calc
-    0 < dist S.oppApex1 F.pair.q := hpos
-    _ = radius := by simpa only [dist_comm] using hqRadius
+    0 < radius :=
+  F.radius_pos
 
 /-- The off-radius source, its full parent, and the resulting common deletion
 are retained together. -/
