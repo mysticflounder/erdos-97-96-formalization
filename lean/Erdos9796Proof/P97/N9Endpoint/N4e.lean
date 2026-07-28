@@ -1329,7 +1329,7 @@ private def SelectorV2SplitPacket
 /-- The `q = v₁` row inside the forced `v₂` selector.  The selector contains
 the whole opposite interior pair `I₂`, meets `C₃` in the endpoint `v₁`, and
 meets `C₁` in one named point from `{a₁,b₁,v₃}`. -/
-private def SelectorV2Qv1Packet
+def SelectorV2Qv1Packet
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     (Z : ZeroDefectCapLayout S) (r : ℝ) : Prop :=
   let T := S.witnessClassAt_v2 r
@@ -1342,7 +1342,7 @@ private def SelectorV2Qv1Packet
 
 /-- The selector packet from `selectorShape_v3_split`, factored out so later
 `N4d-b3/b5` branches can refer to it without repeating the full proposition. -/
-private def SelectorV3SplitPacket
+def SelectorV3SplitPacket
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     (Z : ZeroDefectCapLayout S) (r : ℝ) : Prop :=
   let T := S.witnessClassAt_v3 r
@@ -1362,7 +1362,7 @@ private def SelectorV3SplitPacket
       T ∩ S.CP.C2 = ({Z.b2} : Finset ℝ²)))
 
 /-- The `q = v₁` row inside the forced `v₃` selector. -/
-private def SelectorV3Qv1Packet
+def SelectorV3Qv1Packet
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     (Z : ZeroDefectCapLayout S) (r : ℝ) : Prop :=
   let T := S.witnessClassAt_v3 r
@@ -1374,7 +1374,7 @@ private def SelectorV3Qv1Packet
 /-- The `q = a₂` row inside the forced `v₃` selector.  The selector contains
 the whole opposite interior pair `I₃`, meets `C₁` in one named point, and
 meets `C₂` in the selected witness `a₂`. -/
-private def SelectorV3Qa2Packet
+def SelectorV3Qa2Packet
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     (Z : ZeroDefectCapLayout S) (r : ℝ) : Prop :=
   let T := S.witnessClassAt_v3 r
@@ -2255,7 +2255,7 @@ private def ZeroDefectCapLayout.swapI1
 
 /-- Swap the two `I₂` names of a zero-defect layout.  This is a local
 relabeling helper for the `x = b₂` branch; it does not change `I₁` or `I₃`. -/
-private def ZeroDefectCapLayout.swapI2
+def ZeroDefectCapLayout.swapI2
     {A : Finset ℝ²} {S : FiniteEndpointShell A}
     (Z : ZeroDefectCapLayout S) : ZeroDefectCapLayout S where
   a1 := Z.a1
@@ -2400,7 +2400,7 @@ private def FormBv1A2WithSelectorV2
 
 /-- The `x = a₂` row of Form `b` at `v₁` before any `v₂`-selector split:
 the `v₁` witness class meets `C₂` in `{a₂}` and meets `C₃` in `{v₂}`. -/
-private def FormBv1A2Packet
+def FormBv1A2Packet
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     (Z : ZeroDefectCapLayout S) (r : ℝ) : Prop :=
   (Z.a2 : ℝ²) ∈ S.I2 ∧
@@ -2409,14 +2409,14 @@ private def FormBv1A2Packet
 
 /-- The `x = a₂`, `q = v₁` row packet for `N4d-b3`: combine the Form-`b`
 `v₁` selector with the forced `v₂` selector row that uses `v₁`. -/
-private def FormBv1A2SelectorV2Qv1Packet
+def FormBv1A2SelectorV2Qv1Packet
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     (Z : ZeroDefectCapLayout S) (r s : ℝ) : Prop :=
   FormBv1A2Packet S Z r ∧ 0 < s ∧ SelectorV2Qv1Packet S Z s
 
 /-- The `x = b₂` row of Form `b` at `v₁` before any `v₂`-selector split:
 the `v₁` witness class meets `C₂` in `{b₂}` and meets `C₃` in `{v₂}`. -/
-private def FormBv1B2Packet
+def FormBv1B2Packet
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     (Z : ZeroDefectCapLayout S) (r : ℝ) : Prop :=
   (Z.b2 : ℝ²) ∈ S.I2 ∧
@@ -2425,7 +2425,7 @@ private def FormBv1B2Packet
 
 /-- The `x = b₂`, `q = v₁` row packet for the `N4d-bB1` branch: combine the
 Form-`b` `v₁` selector with the forced `v₂` selector row that uses `v₁`. -/
-private def FormBv1B2SelectorV2Qv1Packet
+def FormBv1B2SelectorV2Qv1Packet
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     (Z : ZeroDefectCapLayout S) (r s : ℝ) : Prop :=
   FormBv1B2Packet S Z r ∧ 0 < s ∧ SelectorV2Qv1Packet S Z s

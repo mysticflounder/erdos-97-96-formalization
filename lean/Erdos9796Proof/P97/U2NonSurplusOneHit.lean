@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.U2SqueezePort
-import Erdos9796Proof.P97.U2SameDistanceArcContainment
+import Erdos9796Proof.P97.U2.SameDistanceArcContainment
 import Erdos9796Proof.P97.N9Endpoint.N4a
 import Erdos9796Proof.P97.CircumscribedMECPacket
 import Erdos9796Proof.P97.SurplusM44Packet

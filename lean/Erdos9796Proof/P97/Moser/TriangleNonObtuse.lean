@@ -82,55 +82,8 @@ private lemma lt_of_sq_lt_sq {x r : ℝ} (_hx : 0 ≤ x) (_hr : 0 ≤ r)
 
 /- ### MEC boundary set -/
 
-/-- The MEC boundary realiser set `{ p ∈ A | dist p O = r }`. -/
-noncomputable def boundary (A : Finset ℝ²) (hA : A.Nonempty) : Finset ℝ² :=
-  A.filter (fun p => dist p (mec A hA).center = (mec A hA).radius)
-
-lemma mem_boundary_iff {A : Finset ℝ²} (hA : A.Nonempty) {p : ℝ²} :
-    p ∈ boundary A hA ↔
-      p ∈ A ∧ dist p (mec A hA).center = (mec A hA).radius := by
-  classical
-  simp [boundary]
-
-lemma boundary_subset (A : Finset ℝ²) (hA : A.Nonempty) :
-    boundary A hA ⊆ A := fun _ hp => ((mem_boundary_iff hA).1 hp).1
-
-/-- Some point of `A` attains the maximum distance from the MEC centre, hence
-the boundary set is nonempty. -/
-lemma boundary_nonempty
-    (A : Finset ℝ²) (hA : A.Nonempty) : (boundary A hA).Nonempty := by
-  classical
-  set M := mec A hA
-  obtain ⟨p, hp_mem, hp_eq⟩ :=
-    Finset.exists_mem_eq_sup' hA (fun p => dist p M.center)
-  have hsup_encl : ∀ q ∈ A, dist q M.center ≤
-      A.sup' hA (fun q => dist q M.center) :=
-    fun q hq => Finset.le_sup' (f := fun q => dist q M.center) hq
-  have hsup_min : M.radius ≤ A.sup' hA (fun q => dist q M.center) :=
-    M.minimal M.center _ hsup_encl
-  have hsup_le : A.sup' hA (fun q => dist q M.center) ≤ M.radius :=
-    (Finset.sup'_le_iff hA _).mpr (fun q hq => M.enclosing q hq)
-  have hr_eq : M.radius = A.sup' hA (fun p => dist p M.center) :=
-    le_antisymm hsup_min hsup_le
-  exact ⟨p, (mem_boundary_iff hA).2 ⟨hp_mem, by rw [← hp_eq, ← hr_eq]⟩⟩
-
-/-- The MEC radius is positive when `A` is noncollinear. -/
-lemma mec_radius_pos
-    {A : Finset ℝ²} (hA : A.Nonempty)
-    (hncol : ¬ Collinear ℝ (A : Set ℝ²)) : 0 < (mec A hA).radius := by
-  classical
-  set M := mec A hA
-  rcases lt_or_eq_of_le M.radius_nn with hpos | hzero
-  · exact hpos
-  exfalso; apply hncol
-  have hzero' : M.radius = 0 := hzero.symm
-  have hall : ∀ p ∈ A, p = M.center := by
-    intro p hp
-    have h_le : dist p M.center ≤ 0 := by have := M.enclosing p hp; linarith
-    have h_zero : dist p M.center = 0 := le_antisymm h_le dist_nonneg
-    exact dist_eq_zero.mp h_zero
-  refine Collinear.subset ?_ (collinear_singleton ℝ M.center)
-  intro p hp; simp only [Set.mem_singleton_iff]; exact hall p hp
+-- Reuse MEC boundary lemmas from `MEC.Boundary` for a single canonical source
+-- of `boundary`, `boundary_nonempty`, `mem_boundary_iff`, and `mec_radius_pos`.
 
 /- ### Sub-lemma X: Welzl invariant -/
 

@@ -31,60 +31,8 @@ open Finset
 namespace Problem97
 namespace FiniteEndpointShell
 
-/-- Local restatement of the `v₂`-selector `q = v₁` packet from
-`N9EndpointN4e.lean`. -/
-def SelectorV2Qv1Packet
-    {A : Finset ℝ²} (S : FiniteEndpointShell A)
-    (Z : ZeroDefectCapLayout S) (s : ℝ) : Prop :=
-  let T := S.witnessClassAt_v2 s
-  T.card = 4 ∧
-    S.I2 ⊆ T ∧
-      ∃ p : ℝ²,
-        p ∈ ({Z.a1, Z.b1, S.triangle.v3} : Finset ℝ²) ∧
-          T ∩ S.CP.C1 = ({p} : Finset ℝ²) ∧
-            T ∩ S.CP.C3 = ({S.triangle.v1} : Finset ℝ²)
-
-/-- Local restatement of the `v₃`-selector split packet from
-`N9EndpointN4e.lean`. -/
-def SelectorV3SplitPacket
-    {A : Finset ℝ²} (S : FiniteEndpointShell A)
-    (Z : ZeroDefectCapLayout S) (t : ℝ) : Prop :=
-  let T := S.witnessClassAt_v3 t
-  T.card = 4 ∧
-    S.I3 ⊆ T ∧
-      ((∃ p : ℝ²,
-          p ∈ ({Z.a1, Z.b1, S.triangle.v2} : Finset ℝ²) ∧
-            T ∩ S.CP.C1 = ({p} : Finset ℝ²) ∧
-              T ∩ S.CP.C2 = ({S.triangle.v1} : Finset ℝ²)) ∨
-        (∃ p : ℝ²,
-          p ∈ ({Z.a1, Z.b1, S.triangle.v2} : Finset ℝ²) ∧
-            T ∩ S.CP.C1 = ({p} : Finset ℝ²) ∧
-              T ∩ S.CP.C2 = ({Z.a2} : Finset ℝ²)) ∨
-        ∃ p : ℝ²,
-          p ∈ ({Z.a1, Z.b1, S.triangle.v2} : Finset ℝ²) ∧
-            T ∩ S.CP.C1 = ({p} : Finset ℝ²) ∧
-              T ∩ S.CP.C2 = ({Z.b2} : Finset ℝ²))
-
-/-- Local restatement of the `q' = A` (`v₁`) `v₃`-selector packet. -/
-def SelectorV3Qv1Packet
-    {A : Finset ℝ²} (S : FiniteEndpointShell A)
-    (Z : ZeroDefectCapLayout S) (t : ℝ) : Prop :=
-  let T := S.witnessClassAt_v3 t
-  ∃ p : ℝ²,
-    p ∈ ({Z.a1, Z.b1, S.triangle.v2} : Finset ℝ²) ∧
-      T ∩ S.CP.C1 = ({p} : Finset ℝ²) ∧
-        T ∩ S.CP.C2 = ({S.triangle.v1} : Finset ℝ²)
-
-/-- Local restatement of the `q' = C` (`a₂`) `v₃`-selector packet. -/
-def SelectorV3Qa2Packet
-    {A : Finset ℝ²} (S : FiniteEndpointShell A)
-    (Z : ZeroDefectCapLayout S) (t : ℝ) : Prop :=
-  let T := S.witnessClassAt_v3 t
-  S.I3 ⊆ T ∧
-    ∃ p : ℝ²,
-      p ∈ ({Z.a1, Z.b1, S.triangle.v2} : Finset ℝ²) ∧
-        T ∩ S.CP.C1 = ({p} : Finset ℝ²) ∧
-          T ∩ S.CP.C2 = ({Z.a2} : Finset ℝ²)
+-- `SelectorV2Qv1Packet`, `SelectorV3SplitPacket`, `SelectorV3Qv1Packet`,
+-- and `SelectorV3Qa2Packet` are defined in `N9Endpoint.N4e` and used directly here.
 
 /-- Local restatement of the `q' = E` (`b₂`) `v₃`-selector packet. -/
 def SelectorV3Qb2Packet
@@ -97,33 +45,6 @@ def SelectorV3Qb2Packet
         T ∩ S.CP.C1 = ({p} : Finset ℝ²) ∧
           T ∩ S.CP.C2 = ({Z.b2} : Finset ℝ²)
 
-/-- Local restatement of the `x = a₂` Form-`b` packet. -/
-def FormBv1A2Packet
-    {A : Finset ℝ²} (S : FiniteEndpointShell A)
-    (Z : ZeroDefectCapLayout S) (r : ℝ) : Prop :=
-  (Z.a2 : ℝ²) ∈ S.I2 ∧
-    S.witnessClassAt_v1 r ∩ S.CP.C2 = ({Z.a2} : Finset ℝ²) ∧
-      S.witnessClassAt_v1 r ∩ S.CP.C3 = ({S.triangle.v2} : Finset ℝ²)
-
-/-- Local restatement of the `x = a₂`, `A ∈ S(B)` branch packet. -/
-def FormBv1A2SelectorV2Qv1Packet
-    {A : Finset ℝ²} (S : FiniteEndpointShell A)
-    (Z : ZeroDefectCapLayout S) (r s : ℝ) : Prop :=
-  FormBv1A2Packet S Z r ∧ 0 < s ∧ SelectorV2Qv1Packet S Z s
-
-/-- Local restatement of the `x = b₂` Form-`b` packet. -/
-def FormBv1B2Packet
-    {A : Finset ℝ²} (S : FiniteEndpointShell A)
-    (Z : ZeroDefectCapLayout S) (r : ℝ) : Prop :=
-  (Z.b2 : ℝ²) ∈ S.I2 ∧
-    S.witnessClassAt_v1 r ∩ S.CP.C2 = ({Z.b2} : Finset ℝ²) ∧
-      S.witnessClassAt_v1 r ∩ S.CP.C3 = ({S.triangle.v2} : Finset ℝ²)
-
-/-- Local restatement of the full `x = b₂`, `A ∈ S(B)` branch packet. -/
-def FormBv1B2SelectorV2Qv1Packet
-    {A : Finset ℝ²} (S : FiniteEndpointShell A)
-    (Z : ZeroDefectCapLayout S) (r s : ℝ) : Prop :=
-  FormBv1B2Packet S Z r ∧ 0 < s ∧ SelectorV2Qv1Packet S Z s
 
 /-- Spec-default `x = b₂` pin at `v₁`. -/
 def Xb2Pin
@@ -137,23 +58,6 @@ def AInSBPin
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     (Z : ZeroDefectCapLayout S) (s : ℝ) : Prop :=
   0 < s ∧ SelectorV2Qv1Packet S Z s
-
-/-- Swap the two `I₂` names locally, mirroring the reusable `N9EndpointN4e`
-relabeling helper. -/
-private def ZeroDefectCapLayout.swapI2
-    {A : Finset ℝ²} {S : FiniteEndpointShell A}
-    (Z : ZeroDefectCapLayout S) : ZeroDefectCapLayout S where
-  a1 := Z.a1
-  b1 := Z.b1
-  a2 := Z.b2
-  b2 := Z.a2
-  a3 := Z.a3
-  b3 := Z.b3
-  hI1 := Z.hI1
-  hI2 := by
-    ext x
-    constructor <;> intro hx <;> simpa [Z.hI2, or_comm] using hx
-  hI3 := Z.hI3
 
 /-- Any same-radius `v₁`-class of size at least four has positive radius. -/
 private theorem witnessClassAt_v1_radius_pos_of_card_ge_four

@@ -95,6 +95,83 @@ theorem exists_cardMinimal_blocking_subdeletion
   have hle : V.card ≤ (V.erase s).card := hVmin (V.erase s) hEraseCand
   exact (not_lt_of_ge hle) (Finset.card_erase_lt_of_mem hsV)
 
+/-- Restoring one member of a deletion-minimal blocker, in the presence of a
+distinct co-radial deleted member, forces an ambient selected class of size at
+least five. -/
+theorem five_le_selectedClass_of_restoration_and_sharedRadius
+    {A U : Finset ℝ²} {center s t : ℝ²}
+    (hUsub : U ⊆ A)
+    (hsU : s ∈ U)
+    (htU : t ∈ U)
+    (hst : s ≠ t)
+    (hrestore :
+      HasNEquidistantPointsAt 4 (A \ (U.erase s)) center)
+    (hblocked :
+      ¬ HasNEquidistantPointsAt 4 (A \ U) center)
+    (hsame : dist center s = dist center t) :
+    5 ≤ (SelectedClass A center (dist center s)).card := by
+  classical
+  have hEraseEq :
+      (A \ (U.erase s)).erase s = A \ U := by
+    ext x
+    by_cases hxs : x = s
+    · subst x
+      simp [hsU]
+    · simp [hxs]
+  have hblockedErase :
+      ¬ HasNEquidistantPointsAt 4
+        ((A \ (U.erase s)).erase s) center := by
+    rw [hEraseEq]
+    exact hblocked
+  rcases
+      exists_selectedClass_card_ge_of_hasNEquidistantPointsAt hrestore with
+    ⟨radius, hradius, hfour⟩
+  have hsClass :
+      s ∈ SelectedClass (A \ (U.erase s)) center radius := by
+    by_contra hsNot
+    apply hblockedErase
+    have hsameCard := selectedClass_erase_card_eq_of_not_mem
+      (A := A \ (U.erase s)) (x := s) (s := center) (d := radius)
+      hsNot
+    refine ⟨radius, hradius, ?_⟩
+    have hcardErased :
+        4 ≤
+          (SelectedClass ((A \ (U.erase s)).erase s)
+            center radius).card := by
+      rw [hsameCard]
+      exact hfour
+    simpa [SelectedClass] using hcardErased
+  have hsDist : dist center s = radius :=
+    (mem_selectedClass.mp hsClass).2
+  have hsub :
+      SelectedClass (A \ (U.erase s)) center radius ⊆
+        SelectedClass A center radius := by
+    intro x hx
+    rcases mem_selectedClass.mp hx with ⟨hxRestored, hxRadius⟩
+    exact mem_selectedClass.mpr
+      ⟨(Finset.mem_sdiff.mp hxRestored).1, hxRadius⟩
+  have htAmbient : t ∈ SelectedClass A center radius := by
+    apply mem_selectedClass.mpr
+    exact ⟨hUsub htU, hsame.symm.trans hsDist⟩
+  have htNotRestored :
+      t ∉ SelectedClass (A \ (U.erase s)) center radius := by
+    intro htRestored
+    have htCarrier :=
+      (mem_selectedClass.mp htRestored).1
+    exact (Finset.mem_sdiff.mp htCarrier).2
+      (Finset.mem_erase.mpr ⟨hst.symm, htU⟩)
+  have hinsert :
+      insert t (SelectedClass (A \ (U.erase s)) center radius) ⊆
+        SelectedClass A center radius := by
+    intro x hx
+    rcases Finset.mem_insert.mp hx with rfl | hx
+    · exact htAmbient
+    · exact hsub hx
+  have hcardInsert := Finset.card_le_card hinsert
+  rw [Finset.card_insert_of_notMem htNotRestored] at hcardInsert
+  simpa [hsDist] using (show
+    5 ≤ (SelectedClass A center radius).card by omega)
+
 /-- Delete a prescribed nonempty set `U` from a minimal carrier. If at least
 one carrier point remains, some remaining center admits a minimal blocking
 subdeletion of `U`. -/

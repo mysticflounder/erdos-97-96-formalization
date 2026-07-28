@@ -1,0 +1,36 @@
+claiming (target_symbol): 2 targets: Problem97.erdos97_rhs, Problem96.erdos96_rhs
+sanctioned axioms (1) — accepted on the spine:
+  🪶 Lean.trustCompiler
+
+  ❌ target `Problem97.erdos97_rhs`: unsanctioned axiom(s) on spine: sorryAx
+  ❌ target `Problem96.erdos96_rhs`: unsanctioned axiom(s) on spine: sorryAx
+  ⚠  160285 symbol(s) mined against an older build (`refs --refresh`)
+
+name collisions: 8 fully-qualified name(s) declared in ≥2 files
+⚠  off-spine / identical-copy collisions (8):
+  ⚠ Problem97.Census554.EqualityCore.SevenPointFiveCircleCollisionCore  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean
+       Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.lean
+  ⚠ Problem97.Census554.EqualityCore.not_realizes_of_sevenPointFiveCircleCollisionCore  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean
+       Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.lean
+  ⚠ Problem97.Census554.EqualityCore.seven_point_five_circle_collision  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean
+       Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.lean
+  ⚠ Problem97.FiniteEndpointShell.FormBv1A2Packet  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/N4d/FormBXb2UpperArc.lean
+       Erdos9796Proof/P97/N9Endpoint/N4e.lean
+  ⚠ Problem97.FiniteEndpointShell.FormBv1A2SelectorV2Qv1Packet  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/N4d/FormBXb2UpperArc.lean
+       Erdos9796Proof/P97/N9Endpoint/N4e.lean
+  ⚠ Problem97.FiniteEndpointShell.FormBv1B2Packet  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/N4d/FormBXb2UpperArc.lean
+       Erdos9796Proof/P97/N9Endpoint/N4e.lean
+  ⚠ Problem97.FiniteEndpointShell.FormBv1B2SelectorV2Qv1Packet  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/N4d/FormBXb2UpperArc.lean
+       Erdos9796Proof/P97/N9Endpoint/N4e.lean
+  ⚠ Problem97.onArcOpposite_of_sameDist_apex_of_mem_mecDisk  (identical copies in 2 files)
+       Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean
+       Erdos9796Proof/P97/U2SameDistanceArcContainment.lean
+
+❌ audit found 2 error(s), 1 warning(s), 8 name collision(s)

@@ -1,0 +1,430 @@
+packet-audit — 999 type-former interface(s) at build 33c73f666d1f, spine of 2 target(s)
+
+① ORPHANED INTERFACE — spine-reachable refuter, no producer: 92
+   (asserted-impossible on the way to a target but never produced; declare the producer end)
+  ✗ Problem97.SurplusCapPacket.IsM44  [Erdos9796Proof/P97/Cap/PartitionFromMEC.lean:443]
+      39 on-spine refuter(s) of 85  · Prop
+  ✗ Problem97.FaithfulCarrierPattern  [Erdos9796Proof/P97/U1CarrierInjection.lean:1391]
+      29 on-spine refuter(s) of 52
+  ✗ Problem97.ATailFrontierLiveClosure.ExactFourRigid221PhysicalApexSourceEqUContext  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2414]
+      19 on-spine refuter(s)
+  ✗ Problem97.ATailExactFourPhysicalConsumer.CarrierVertex  [Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:46]
+      17 on-spine refuter(s) of 19
+  ✗ Problem97.ATailExactFourRobustCapExpansion.ExactFourPostCardElevenRobustSurface  [Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:280]
+      17 on-spine refuter(s) of 18
+  ✗ Problem97.ATailUniqueFourExactTwoSchemaDecoderScratch.OrderedSix  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSchemaDecoder/ExactTwoSchemaDecoder.lean:79]
+      15 on-spine refuter(s)
+  ✗ Problem97.ATailFrontierLiveClosure.FrontierAllLargeCapsBiApexRobustResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6378]
+      14 on-spine refuter(s)  · Prop
+  ✗ Problem97.ATailFrontierLiveClosure.FrontierAllLargeCapsTriApexRobustResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6475]
+      13 on-spine refuter(s)  · Prop
+  ✗ Problem97.ATailFrontierLiveClosure.ExactFourMutualOmissionJointDeletion  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:87]
+      11 on-spine refuter(s) of 13
+  ✗ Problem97.FiniteEndpointShell.IsFormC_v1  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:432]
+      11 on-spine refuter(s) of 12  · Prop
+  ✗ Problem97.ATailFrontierLiveClosure.ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2691]
+      10 on-spine refuter(s)
+  ✗ Problem97.ATailFrontierLiveClosure.ExactFourMutualOmissionSourceContext  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:120]
+      9 on-spine refuter(s)  · Prop
+  ✗ Problem97.ATailRetainedStrictInteriorPairSelector.RetainedInteriorBlockerCollision  [Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:95]
+      9 on-spine refuter(s)
+  ✗ Problem97.FiniteEndpointShell.IsFormB_v1  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:424]
+      8 on-spine refuter(s) of 11  · Prop
+  ✗ Problem97.U5AuditLabel.IndexPattern  [Erdos9796Proof/P97/U5FiniteAudit.lean:293]
+      8 on-spine refuter(s)
+  ✗ Problem97.U5AuditLabel.PointLabeling  [Erdos9796Proof/P97/U5FiniteExtraction.lean:83]
+      8 on-spine refuter(s)
+  ✗ Problem97.ATailFrontierLiveClosure.ExactFourMutualOmissionRigid221GlobalDeletion  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1761]
+      7 on-spine refuter(s)
+  ✗ Problem97.ATailLocalizedCollisionMutualOmissionCycle.LocalizedCollisionMutualOmissionCycle  [Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:131]
+      7 on-spine refuter(s)
+  ✗ Problem97.ATailRetainedStrictInteriorPairSelector.LocalizedCollisionCommonDeletion  [Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:449]
+      7 on-spine refuter(s)
+  ✗ Problem97.ATailUniqueFourClassCapDistributionScratch.ExactTwoStrictHitDistribution  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:68]
+      7 on-spine refuter(s) of 10  · Prop
+  ✗ Problem97.ATailAlignedP5KalmansonDecodeScratch.OrderedSix  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5KalmansonDecode.lean:90]
+      6 on-spine refuter(s)
+  ✗ Problem97.Census554.CapSelectedGeometry.CanonicalLabeling  [Erdos9796Proof/P97/Census554/CapSelectedGeometry.lean:143]
+      6 on-spine refuter(s) of 7
+  ✗ Problem97.CounterexampleData.Minimal  [Erdos9796Proof/P97/U1TwoShortCapReduction.lean:158]
+      6 on-spine refuter(s) of 9  · Prop
+  ✗ Problem97.FiniteEndpointShell.FormCv1A3SelectorV3LowerPacket  [Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean:22]
+      6 on-spine refuter(s)  · Prop
+  ✗ Problem97.SurplusCapPacket.EndpointEscapeLeftAt  [Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:1316]
+      5 on-spine refuter(s)  · Prop
+  ✗ Problem97.SurplusCapPacket.EndpointEscapeRightAt  [Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean:1301]
+      5 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.SelectorV3Qv1Packet  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:1365]
+      4 on-spine refuter(s) of 6  · Prop
+  ✗ Problem97.FirstApexUniqueRadiusResidual.FirstApexUniqueRadiusExactFourResidual  [Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:146]
+      4 on-spine refuter(s)
+  ✗ Problem97.ATailUniqueFourClassCapDistributionScratch.AlignedInteriorFrontier  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ClassCapDistribution/UniqueFourClassCapDistribution.lean:160]
+      3 on-spine refuter(s)
+  ✗ Problem97.FiniteEndpointShell.FormBv1A2SelectorV2LowerPacket  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:4694]
+      3 on-spine refuter(s)  · Prop
+  ✗ Problem97.ATailAlignedP5KalmansonDecodeScratch.OrderedFive  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5KalmansonDecode.lean:75]
+      2 on-spine refuter(s)
+  ✗ Problem97.ATailExactFourPhysicalConsumer.ExactFourPhysicalCommonDeletionIngress  [Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:421]
+      2 on-spine refuter(s)
+  ✗ Problem97.ATailOrientedPhysicalApexIngress.OriginalFrontierUniqueRadiusArm  [Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:226]
+      2 on-spine refuter(s) of 5  · Prop
+  ✗ Problem97.ATailUniqueFourExactTwoBoundaryScratch.ExactTwoBoundaryCore  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:281]
+      2 on-spine refuter(s) of 4
+  ✗ Problem97.CapTriple.OppositePairExactAt  [Erdos9796Proof/P97/U1TwoShortCapReduction.lean:431]
+      2 on-spine refuter(s)  · Prop
+  ✗ Problem97.Census554.EqualityCore.ExactOffCircleCore  [Erdos9796Proof/P97/Census554/EqualityCore.lean:138]
+      2 on-spine refuter(s) of 3
+  ✗ Problem97.FiniteEndpointShell.N8SelectedApex  [Erdos9796Proof/P97/N8/N8bEndpointPair.lean:112]
+      2 on-spine refuter(s)
+  ✗ Problem97.FiniteEndpointShell.PEqBLowerApexConfig  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:5246]
+      2 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.PEqCLowerApexConfig  [Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean:664]
+      2 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.QEqCReflectionConfig  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:5774]
+      2 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.QEqCReflectionConfigV13  [Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean:959]
+      2 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.SelectorV2Qa3Packet  [Erdos9796Proof/P97/N4d/ExcludesFormCv1.lean:34]
+      2 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.SelectorV2Qb3Packet  [Erdos9796Proof/P97/N4d/ExcludesFormCv1.lean:45]
+      2 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.SelectorV2Qv1Packet  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:1332]
+      2 on-spine refuter(s) of 4  · Prop
+  ✗ Problem97.FiniteEndpointShell.SelectorV3Qa2Packet  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:1377]
+      2 on-spine refuter(s) of 6  · Prop
+  ✗ Problem97.ATAILStageOneMinimalDeletionCore.MinimalDeletionCore  [Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:34]
+      1 on-spine refuter(s)
+  ✗ Problem97.ATailBiApexRobustCapBounds.FrontierBiApexRobustExactFiveSecondCapResidual  [Erdos9796Proof/P97/ATail/BiApexRobustCapBounds.lean:276]
+      1 on-spine refuter(s)  · Prop
+  ✗ Problem97.ATailBlockerMultiplicityGeometry.FreshOutsideFirstBlockerFiber  [Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:115]
+      1 on-spine refuter(s)
+  ✗ Problem97.ATailBlockerMultiplicityGeometry.FreshOutsideSecondBlockerFiber  [Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:161]
+      1 on-spine refuter(s)
+  ✗ Problem97.ATailBlockerMultiplicityGeometry.FreshThirdBlockerFiber  [Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:70]
+      1 on-spine refuter(s)
+  ✗ Problem97.ATailExactFourRobustCapExpansion.ExactFourFirstOppositeCapGrowth  [Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:250]
+      1 on-spine refuter(s)  · Prop
+  ✗ Problem97.ATailOrientedPhysicalApexIngress.PhysicalSecondApexCriticalResidual  [Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:156]
+      1 on-spine refuter(s) of 2
+  ✗ Problem97.ATailPhysicalSecondApexSwap.SwappedFirstApexUniqueFourFrontier  [Erdos9796Proof/P97/ATail/PhysicalSecondApexSwap.lean:117]
+      1 on-spine refuter(s)
+  ✗ Problem97.ATailRetainedMatchingGeometricReduction.RetainedInteriorDirectedOmission  [Erdos9796Proof/P97/ATail/RetainedMatchingGeometricReduction.lean:150]
+      1 on-spine refuter(s)
+  ✗ Problem97.ATailTwoCollisionGlobalProducer.CrossBlockerCoincidence  [Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean:272]
+      1 on-spine refuter(s)  · Prop
+  ✗ Problem97.ATailUniqueFourAlignedP5BoundaryScratch.AlignedP5BoundaryPacket  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:773]
+      1 on-spine refuter(s)
+  ✗ Problem97.ATailUniqueFourAlignedP5BoundaryScratch.AlignedP5MirrorBoundaryPacket  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5BoundaryPacket.lean:789]
+      1 on-spine refuter(s)
+  ✗ Problem97.ATailUniqueFourExactTwoBoundaryScratch.P4DirectBoundaryPacket  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:401]
+      1 on-spine refuter(s)
+  ✗ Problem97.ATailUniqueFourExactTwoBoundaryScratch.P4MirrorBoundaryPacket  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoOccurrence/CardElevenExactTwoBoundaryPackets.lean:413]
+      1 on-spine refuter(s)
+  ✗ Problem97.Census554.CapSelectedFiniteCode.CyclicFiveUpToOrientation  [Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:115]
+      1 on-spine refuter(s)  · Prop
+  ✗ Problem97.Census554.ConvexFivePointCore.Core  [Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean:136]
+      1 on-spine refuter(s) of 3
+  ✗ Problem97.Census554.EqualityCore.DuplicateCenterCore  [Erdos9796Proof/P97/Census554/EqualityCore.lean:160]
+      1 on-spine refuter(s)
+  ✗ Problem97.ErasedCertificate.ErasedP4ShellGeometry  [Erdos9796Proof/P97/ErasedCertificate/CardElevenBlocker.lean:409]
+      1 on-spine refuter(s)
+  ✗ Problem97.ErasedCertificate.P4UContainmentErasedShellGeometry  [Erdos9796Proof/P97/ErasedCertificate/CardElevenBlocker.lean:433]
+      1 on-spine refuter(s)
+  ✗ Problem97.FiniteEndpointShell.AInSBPin  [Erdos9796Proof/P97/N4d/FormBXb2UpperArc.lean:136]
+      1 on-spine refuter(s) of 4  · Prop
+  ✗ Problem97.FiniteEndpointShell.AInSCPin  [Erdos9796Proof/P97/N4d/ExcludesFormCv1.lean:104]
+      1 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.FormBv1A2SelectorV2LowerPacketPublic  [Erdos9796Proof/P97/Bridge/A1SpineWiring.lean:76]
+      1 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.FormBv1B2SelectorV2LowerPacket  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:4420]
+      1 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.FormCv1B3SelectorV3LowerPacket  [Erdos9796Proof/P97/N4d/ExcludesFormCv1.lean:75]
+      1 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.IsFormA_v1  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:415]
+      1 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.N8MoserEndpointPair  [Erdos9796Proof/P97/N8/N8bEndpointPair.lean:137]
+      1 on-spine refuter(s)
+  ✗ Problem97.FiniteEndpointShell.N8SameCapClassPacket  [Erdos9796Proof/P97/N8/N8hiSameCap.lean:33]
+      1 on-spine refuter(s) of 2
+  ✗ Problem97.FiniteEndpointShell.N8iCapCenterPacket  [Erdos9796Proof/P97/N8/N8hiSameCap.lean:76]
+      1 on-spine refuter(s)
+  ✗ Problem97.FiniteEndpointShell.SelectorV2PeqCPacket  [Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean:37]
+      1 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.SelectorV3PeqBPacket  [Erdos9796Proof/P97/N4d/FormBPEqBProducer.lean:23]
+      1 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.SelectorV3Qb2PacketPublic  [Erdos9796Proof/P97/Bridge/A1SpineWiring.lean:91]
+      1 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.Xa3Pin  [Erdos9796Proof/P97/N4d/ExcludesFormCv1.lean:97]
+      1 on-spine refuter(s)  · Prop
+  ✗ Problem97.FiniteEndpointShell.Xb2Pin  [Erdos9796Proof/P97/N4d/FormBXb2UpperArc.lean:129]
+      1 on-spine refuter(s) of 4  · Prop
+  ✗ Problem97.FirstApexUniqueRadiusResidual.FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual  [Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:209]
+      1 on-spine refuter(s)
+  ✗ Problem97.FirstApexUniqueRadiusResidual.FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual  [Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:175]
+      1 on-spine refuter(s)
+  ✗ Problem97.P4DirectOuterArcAdapterScratch.DirectSource  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4SourceBridge/P4DirectOuterArcAdapter.lean:62]
+      1 on-spine refuter(s)
+  ✗ Problem97.RetainedKalmansonDecoderScratch.OrderedEight  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/RetainedKalmansonDecoder.lean:91]
+      1 on-spine refuter(s) of 2
+  ✗ Problem97.RetainedKalmansonDecoderScratch.OrderedFive  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/RetainedKalmansonDecoder.lean:43]
+      1 on-spine refuter(s) of 4
+  ✗ Problem97.RetainedKalmansonDecoderScratch.RetainedOccurrence  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/RetainedKalmansonDecoder.lean:910]
+      1 on-spine refuter(s) of 3
+  ✗ Problem97.U1Depth5.CriticalSlot  [Erdos9796Proof/P97/U1Depth5Prefix.lean:592]
+      1 on-spine refuter(s) of 59
+  ✗ Problem97.U1Depth5.CriticalSource  [Erdos9796Proof/P97/U1Depth5Prefix.lean:571]
+      1 on-spine refuter(s) of 2
+  ✗ Problem97.U1LargeCapRouteBTailLiveData  [Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:273]
+      1 on-spine refuter(s) of 4  · Prop
+  ✗ Problem97.U3FixedTripleAuditFrame  [Erdos9796Proof/P97/U3ToU5Terminal.lean:208]
+      1 on-spine refuter(s)
+  ✗ Problem97.U3FixedTripleAuditFrame.RowwiseConfinedQDeletedClasses  [Erdos9796Proof/P97/U3ToU5Terminal.lean:296]
+      1 on-spine refuter(s)  · Prop
+  ✗ Problem97.U3FixedTriplePacket  [Erdos9796Proof/P97/U3ToU5DangerousTriple.lean:32]
+      1 on-spine refuter(s) of 55  · Prop
+  ✗ Problem97.U5AuditLabel.PrefilterReason  [Erdos9796Proof/P97/U5FiniteAudit.lean:255]
+      1 on-spine refuter(s)
+  ✗ Problem97.U5AuditedBoundedBadPattern  [Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:809]
+      1 on-spine refuter(s)
+
+② IFF WRAPPER — Iff over two sorry-reachable interfaces (advisory): 0
+
+③ OFF-SPINE INVENTORY — produced/refuted but unreachable from any target (advisory): 236
+  · Problem97.ATailCriticalFiberClosingCore.CriticalFiberClosingCore  [Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean:317]  (producers=0 refuters=1)
+  · Problem97.ATailCriticalFiberClosingCore.OrderedCrossRowCore  [Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean:117]  (producers=0 refuters=1)
+  · Problem97.ATailCriticalFiberClosingCore.SameCapCollisionPairCore  [Erdos9796Proof/P97/ATail/CriticalFiberClosingCore.lean:219]  (producers=0 refuters=1)
+  · Problem97.ATailDeletionRobustness.HasCriticalDeletionAt  [Erdos9796Proof/P97/ATail/DeletionRobustness.lean:34]  (producers=1 refuters=0)
+  · Problem97.ATailFirstApexCriticalFiber.FrontierCommonDeletionCriticalFiber  [Erdos9796Proof/P97/ATail/FirstApexCriticalFiber.lean:61]  (producers=2 refuters=2)
+  · Problem97.ATailFrontierCommonDeletionEscape.FrontierCommonDeletionConsumerNormalForm  [Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean:517]  (producers=0 refuters=1)
+  · Problem97.ATailFrontierCommonDeletionSurplusEscape.FrontierCommonDeletionRefinedNormalForm  [Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean:549]  (producers=0 refuters=1)
+  · Problem97.ATailFrontierCoupledStrictInteriorNormalForm.FrontierCoupledStrictInteriorNormalForm  [Erdos9796Proof/P97/ATail/FrontierCoupledStrictInteriorNormalForm.lean:36]  (producers=0 refuters=1)
+  · Problem97.ATailLargeCapUniqueFive.LargeCapUniqueFiveSecondApexRadius  [Erdos9796Proof/P97/ATail/LargeCapUniqueFive.lean:30]  (producers=0 refuters=2)
+  · Problem97.ATailLargeCapUniqueFiveCrossIncidence.LargeCapUniqueFiveTwoHitCriticalRow  [Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCrossIncidence.lean:37]  (producers=0 refuters=1)
+  · Problem97.ATailOrdinalKalmansonCycle.SelectedRowOrdinalComparison  [Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean:30]  (producers=0 refuters=2)
+  · Problem97.ATailOrientedPhysicalApexIngress.U1LeafLargeRadiusParentOutcome  [Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:470]  (producers=1 refuters=0)
+  · Problem97.ATailOrientedPhysicalApexIngress.U1LeafPhysicalApexIngressOutcome  [Erdos9796Proof/P97/ATail/OrientedPhysicalApexIngress.lean:198]  (producers=1 refuters=0)
+  · Problem97.ATailPhysicalOmissionCycleParentResidual.RobustLargeRadiusResidualConsumers  [Erdos9796Proof/P97/ATail/PhysicalOmissionCycleParentResidual.lean:157]  (producers=0 refuters=1)
+  · Problem97.ATailRetainedCollisionCapLocalization.FirstApexCapSeparation  [Erdos9796Proof/P97/ATail/RetainedCollisionCapLocalization.lean:117]  (producers=0 refuters=1)
+  · Problem97.ATailRetainedCollisionDifferentPairConsumer.AlternateOrderedDifferentPairCrossHit  [Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:223]  (producers=0 refuters=1)
+  · Problem97.ATailRetainedCollisionDifferentPairConsumer.OrderedDifferentPairCrossHit  [Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean:120]  (producers=0 refuters=1)
+  · Problem97.ATailRobustLargeRadius.RobustLargeRadiusParentSurface  [Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:76]  (producers=0 refuters=1)
+  · Problem97.ATailSub2.memH  [Erdos9796Proof/P97/ATail/Sub2Certificate.lean:89]  (producers=0 refuters=2)
+  · Problem97.ATailUniqueRowProducerScratch.CardFiveInteriorSurvivorPair  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean:102]  (producers=1 refuters=0)
+  · Problem97.Census554.CapSelectedClosureColor.IsClassIndex  [Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean:52]  (producers=2 refuters=0)
+  · Problem97.Census554.CapSelectedFiniteCode.ColorCoreAlternative  [Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:455]  (producers=1 refuters=0)
+  · Problem97.Census554.CapSelectedFiniteCode.ColorEq  [Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:245]  (producers=2 refuters=0)
+  · Problem97.Census554.CapSelectedFiniteCode.EdgeColor  [Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:236]  (producers=1 refuters=0)
+  · Problem97.Census554.CapSelectedFiniteCode.ExactCenter  [Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:231]  (producers=1 refuters=0)
+  · Problem97.Census554.CapSelectedFiniteCode.RespectsRows  [Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:239]  (producers=1 refuters=0)
+  · Problem97.Census554.CapSelectedNogoodCertificate.CompactColorCoreAlternative  [Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:313]  (producers=1 refuters=0)
+  · Problem97.Census554.CapSelectedNogoodCertificate.ExactChoicesSound  [Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:47]  (producers=1 refuters=0)
+  · Problem97.Census554.CapSelectedNogoodCertificate.RowsMatch  [Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:43]  (producers=1 refuters=0)
+  · Problem97.Census554.Card11SelectedCube  [Erdos9796Proof/P97/Census554/GeometryBridge.lean:946]  (producers=1 refuters=0)
+  · Problem97.Census554.Cube  [Erdos9796Proof/P97/Census554/Space.lean:90]  (producers=2 refuters=0)
+  · Problem97.Census554.CubeOk  [Erdos9796Proof/P97/Census554/Space.lean:96]  (producers=1 refuters=0)
+  · Problem97.Census554.EqualityCore.FivePointHingeCycleCore  [Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:401]  (producers=0 refuters=1)
+  · Problem97.Census554.EqualityCore.SevenPointHingeClosedTailCore  [Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:511]  (producers=0 refuters=1)
+  · Problem97.Census554.EqualityCore.SixPointHingeDoubleSpokeCore  [Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:472]  (producers=0 refuters=1)
+  · Problem97.Census554.EqualityCore.SixPointHingeTailCore  [Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:434]  (producers=0 refuters=1)
+  · Problem97.Census554.FivePointCircleIsoscelesOrderCore.Core  [Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderCore.lean:37]  (producers=0 refuters=3)
+  · Problem97.Census554.FiveRowCircleIntersectionOrderCore.Core  [Erdos9796Proof/P97/Census554/FiveRowCircleIntersectionOrderCore.lean:31]  (producers=0 refuters=2)
+  · Problem97.Census554.FourPointTwoCircleBisectorOrderBridge.CyclicSubsequence  [Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean:42]  (producers=0 refuters=1)
+  · Problem97.Census554.FourPointTwoCircleBisectorOrderBridge.ThreeRowSupportData  [Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean:109]  (producers=0 refuters=1)
+  · Problem97.Census554.FourPointTwoCircleBisectorOrderCore.Core  [Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderCore.lean:33]  (producers=1 refuters=3)
+  · Problem97.Census554.FourRowPerpBisectorCore  [Erdos9796Proof/P97/Census554/FourRowPerpBisector.lean:43]  (producers=1 refuters=1)
+  · Problem97.Census554.GeneralCarrierBridge.BoundaryIndexing  [Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:59]  (producers=1 refuters=2)
+  · Problem97.Census554.GeneralCarrierBridge.LeftPinnedSurplusAlignedCarrierData  [Erdos9796Proof/P97/Census554/PinnedCarrierBridge.lean:259]  (producers=1 refuters=0)
+  · Problem97.Census554.GeneralCarrierBridge.MetricCoreAlternative  [Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:230]  (producers=1 refuters=1)
+  · Problem97.Census554.GeneralCarrierBridge.ShellMetricCoreAlternative  [Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean:350]  (producers=0 refuters=1)
+  · Problem97.Census554.IsDead  [Erdos9796Proof/P97/Census554/MotifTransfer.lean:78]  (producers=41 refuters=2)
+  · Problem97.Census554.MECStraddlingRowCore.Core  [Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:325]  (producers=0 refuters=2)
+  · Problem97.Census554.MECStraddlingRowCore.Geometry  [Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:341]  (producers=0 refuters=1)
+  · Problem97.Census554.MECStraddlingRowCore.NegativeGeometry  [Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:361]  (producers=0 refuters=1)
+  · Problem97.Census554.Mon  [Erdos9796Proof/P97/Census554/PolyCheck.lean:49]  (producers=3 refuters=0)
+  · Problem97.Census554.NestedEqualChordCore.Core  [Erdos9796Proof/P97/Census554/NestedEqualChordCore.lean:179]  (producers=0 refuters=2)
+  · Problem97.Census554.OnehitOk  [Erdos9796Proof/P97/Census554/Space.lean:60]  (producers=1 refuters=0)
+  · Problem97.Census554.Pattern  [Erdos9796Proof/P97/Census554/MotifTransfer.lean:58]  (producers=23 refuters=2)
+  · Problem97.Census554.PatternEmbedsUnder  [Erdos9796Proof/P97/Census554/CoverRelations.lean:44]  (producers=1 refuters=0)
+  · Problem97.Census554.RealizesCube  [Erdos9796Proof/P97/Census554/CoverRelations.lean:52]  (producers=1 refuters=0)
+  · Problem97.Census554.SPoly  [Erdos9796Proof/P97/Census554/PolyCheck.lean:52]  (producers=285 refuters=0)
+  · Problem97.Census554.SeparationCore.RejectsEveryCard11DirectOrMirrorOrder  [Erdos9796Proof/P97/Census554/SeparationMirror.lean:101]  (producers=1 refuters=1)
+  · Problem97.Census554.SeparationCore.RejectsEveryCard11MacroOrder  [Erdos9796Proof/P97/Census554/SeparationCore.lean:252]  (producers=0 refuters=1)
+  · Problem97.Census554.SeparationCore.RejectsEveryCard11MirrorMacroOrder  [Erdos9796Proof/P97/Census554/SeparationMirror.lean:95]  (producers=0 refuters=1)
+  · Problem97.Census554.SeparationCore.SeparationCertificate.Card11SeparationCertificate  [Erdos9796Proof/P97/Census554/SeparationCertificate.lean:332]  (producers=0 refuters=2)
+  · Problem97.Census554.SeparationCore.SeparationCertificate.ClosurePathData.Certifies  [Erdos9796Proof/P97/Census554/SeparationCertificate.lean:126]  (producers=1 refuters=0)
+  · Problem97.Census554.SeparationCore.SeparationCertificate.SharedPairData.Valid  [Erdos9796Proof/P97/Census554/SeparationCertificate.lean:167]  (producers=1 refuters=0)
+  · Problem97.Census554.SeparationCore.SeparationCertificate.SharedPairData.ValidFor  [Erdos9796Proof/P97/Census554/SeparationCertificate.lean:192]  (producers=1 refuters=0)
+  · Problem97.Census554.SixPointCircleChainOrderCore.Core  [Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:343]  (producers=0 refuters=2)
+  · Problem97.Census554.SixPointNestedCenterOrderCore.Core  [Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean:242]  (producers=0 refuters=2)
+  · Problem97.Census554.SixPointTwoCircleArcOvertakeCarrierBridge.CyclicSubsequence  [Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean:40]  (producers=0 refuters=1)
+  · Problem97.Census554.SixPointTwoCircleArcOvertakeCarrierBridge.ThreeRowSupportData  [Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean:104]  (producers=0 refuters=1)
+  · Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.Core  [Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean:359]  (producers=1 refuters=2)
+  · Problem97.Census554.SixPointTwoCircleOrderCore.Core  [Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:443]  (producers=0 refuters=2)
+  · Problem97.Dumitrescu.IsCrossCapEdge  [Erdos9796Proof/P97/Dumitrescu/L7.lean:118]  (producers=2 refuters=0)
+  · Problem97.ErasedCertificate.ErasedNativeClassifier.ErasedRowShellOK  [Erdos9796Proof/P97/ErasedCertificate/ErasedNativeClassifier.lean:151]  (producers=1 refuters=0)
+  · Problem97.ErasedCertificate.ErasedNativeClassifier.LeftErasedRowShellOK  [Erdos9796Proof/P97/ErasedCertificate/ErasedNativeClassifier.lean:167]  (producers=1 refuters=0)
+  · Problem97.ErasedCertificate.ErasedNativeClassifier.RightErasedRowShellOK  [Erdos9796Proof/P97/ErasedCertificate/ErasedNativeClassifier.lean:161]  (producers=1 refuters=0)
+  · Problem97.ErasedCertificate.LeftCardFiveLabels  [Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean:1429]  (producers=0 refuters=2)
+  · Problem97.ErasedCertificate.LeftErasedShellGeometry  [Erdos9796Proof/P97/ErasedCertificate/CardElevenBlocker.lean:271]  (producers=0 refuters=1)
+  · Problem97.ErasedCertificate.RightCardFiveLabels  [Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean:527]  (producers=0 refuters=3)
+  · Problem97.ErasedCertificate.RightErasedShellGeometry  [Erdos9796Proof/P97/ErasedCertificate/CardElevenBlocker.lean:263]  (producers=0 refuters=1)
+  · Problem97.ErasedCertificate.SameRadiusCrossSeparationProducer  [Erdos9796Proof/P97/ErasedCertificate/CardTenProducer.lean:191]  (producers=0 refuters=5)
+  · Problem97.ErasedPinCountRows.Route  [Erdos9796Proof/P97/ErasedPinCountRows.lean:23]  (producers=1 refuters=0)
+  · Problem97.ErasedPinFiniteCandidateOrderedScaffoldFacts  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:5828]  (producers=2 refuters=0)
+  · Problem97.ErasedPinFiniteCandidateScaffoldFacts  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:5777]  (producers=1 refuters=0)
+  · Problem97.ErasedPinFiniteCandidateSplitOrderedScaffoldFacts  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:5937]  (producers=1 refuters=0)
+  · Problem97.ErasedPinLeftFiniteCandidateOrderedScaffoldFacts  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:5911]  (producers=1 refuters=0)
+  · Problem97.ErasedPinRightFiniteCandidateOrderedScaffoldFacts  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:5886]  (producers=1 refuters=0)
+  · Problem97.FiniteEndpointShell.A1B2FrameCoreChart  [Erdos9796Proof/P97/A1B2FrameNormalization.lean:409]  (producers=1 refuters=0)
+  · Problem97.FiniteEndpointShell.CB1NormBase  [Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1216]  (producers=1 refuters=0)
+  · Problem97.FiniteEndpointShell.CB1V1AnchorFrame  [Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:2151]  (producers=1 refuters=4)
+  · Problem97.FiniteEndpointShell.CB1V3AnchorFrame  [Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:1331]  (producers=1 refuters=7)
+  · Problem97.FiniteEndpointShell.EndpointOwnMidAdjacentResidual  [Erdos9796Proof/P97/N8/N8bEndpointPair.lean:153]  (producers=0 refuters=1)
+  · Problem97.FiniteEndpointShell.FormBv1A2SelectorV2Qv1Packet  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:2412]  (producers=0 refuters=1)
+  · Problem97.FiniteEndpointShell.FormBv1B2Packet  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:2419]  (producers=1 refuters=0)
+  · Problem97.FiniteEndpointShell.FormBv1B2SelectorV2Qv1Packet  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:2428]  (producers=1 refuters=2)
+  · Problem97.FiniteEndpointShell.FormCv1A3SelectorV3Qv1Packet  [Erdos9796Proof/P97/N4d/ExcludesFormCv1.lean:66]  (producers=1 refuters=0)
+  · Problem97.FiniteEndpointShell.I3NoPointOnV3RadiusAtA2  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:1413]  (producers=2 refuters=0)
+  · Problem97.FiniteEndpointShell.I3OnV3RadiusAtA2CardLeOne  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:1404]  (producers=3 refuters=1)
+  · Problem97.FiniteEndpointShell.I3V3A2DeltaNormalizationOfExactPacket  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:2439]  (producers=1 refuters=0)
+  · Problem97.FiniteEndpointShell.I3V3A2NormalizedHeightGap  [Erdos9796Proof/P97/N9Endpoint/N4e.lean:1428]  (producers=2 refuters=0)
+  · Problem97.FiniteEndpointShell.N8hEndpointMoserPacket  [Erdos9796Proof/P97/N8/N8hiSameCap.lean:46]  (producers=0 refuters=1)
+  · Problem97.FiniteEndpointShell.NormBase  [Erdos9796Proof/P97/N4d/FaithfulFrame.lean:448]  (producers=1 refuters=0)
+  · Problem97.FiniteEndpointShell.V1AnchorFrame  [Erdos9796Proof/P97/N4d/FaithfulFrame.lean:1360]  (producers=1 refuters=2)
+  · Problem97.FiniteEndpointShell.V2AnchorFrame  [Erdos9796Proof/P97/N4d/FaithfulFrame.lean:563]  (producers=1 refuters=6)
+  · Problem97.FirstApexExactFiveInteriorFrontier.SurvivingPair  [Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean:96]  (producers=1 refuters=0)
+  · Problem97.IsM44NonSurplusContainmentErasedPinTripleNamedCandidateFactsStatement  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:5700]  (producers=1 refuters=0)
+  · Problem97.IsM44NonSurplusContainmentErasedPinTripleSeedCandidateInputsStatement  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:5633]  (producers=2 refuters=0)
+  · Problem97.LeftOneSidedErasedPayloadFiniteCandidateFacts  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:1136]  (producers=1 refuters=10)
+  · Problem97.LeftOneSidedErasedPayloadFiniteCandidateSepFacts  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:1258]  (producers=2 refuters=0)
+  · Problem97.LeftOneSidedErasedPayloadFiniteRelaxedShapeFacts  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:1412]  (producers=0 refuters=1)
+  · Problem97.LeftOneSidedErasedPayloadNamedCandidateFacts  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:988]  (producers=1 refuters=0)
+  · Problem97.LeftOneSidedErasedPayloadSeedCandidateInputs  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:834]  (producers=2 refuters=1)
+  · Problem97.LeftOneSidedErasedPayloadSeedMaskInputs  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:574]  (producers=0 refuters=1)
+  · Problem97.MultiCenter.BoundedByAlphabet  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:648]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.BoundedJointClass  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:358]  (producers=2 refuters=0)
+  · Problem97.MultiCenter.Certificate.Completion.CompletesL2FullFrom  [Erdos9796Proof/P97/MultiCenter/Certificate/Completion.lean:119]  (producers=3 refuters=0)
+  · Problem97.MultiCenter.Certificate.Completion.CoversL2FullLocalModuloFrom  [Erdos9796Proof/P97/MultiCenter/Certificate/Completion.lean:111]  (producers=4 refuters=0)
+  · Problem97.MultiCenter.Certificate.Completion.HasCertifiedRepresentative  [Erdos9796Proof/P97/MultiCenter/Certificate/Completion.lean:63]  (producers=5 refuters=0)
+  · Problem97.MultiCenter.Certificate.Completion.UsesTypedClassBank  [Erdos9796Proof/P97/MultiCenter/Certificate/Completion.lean:49]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.Certificate.Completion.classInTypedBank  [Erdos9796Proof/P97/MultiCenter/Certificate/Completion.lean:44]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.Certificate.Completion.profileOccursAtN  [Erdos9796Proof/P97/MultiCenter/Certificate/Completion.lean:40]  (producers=2 refuters=0)
+  · Problem97.MultiCenter.Certificate.LocalEnumerator.AcceptedLocalChecks  [Erdos9796Proof/P97/MultiCenter/Certificate/LocalEnumerator.lean:636]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.Certificate.LocalEnumerator.LocalBudget  [Erdos9796Proof/P97/MultiCenter/Certificate/LocalEnumerator.lean:185]  (producers=2 refuters=0)
+  · Problem97.MultiCenter.Certificate.LocalEnumerator.LocalBudget.Covers  [Erdos9796Proof/P97/MultiCenter/Certificate/LocalEnumerator.lean:272]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.Certificate.LocalEnumerator.MoserAssignment  [Erdos9796Proof/P97/MultiCenter/Certificate/LocalEnumerator.lean:383]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.Certificate.LocalEnumerator.UseBudget  [Erdos9796Proof/P97/MultiCenter/Certificate/LocalEnumerator.lean:434]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.Certificate.ProfileClassIncidence.CoversL2FullLocalByIncidenceWitnesses  [Erdos9796Proof/P97/MultiCenter/Certificate/ProfileClassBridge.lean:34]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.Certificate.ProfileClassIncidence.FiniteCodeWitnesses  [Erdos9796Proof/P97/MultiCenter/Certificate/ProfileClassBridge.lean:50]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.Certificate.RawClassRow  [Erdos9796Proof/P97/MultiCenter/Certificate/TypedClass.lean:25]  (producers=2 refuters=0)
+  · Problem97.MultiCenter.Certificate.TrustedSweep.TrustedReport  [Erdos9796Proof/P97/MultiCenter/Certificate/TrustedSweep.lean:30]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.CodeInventory  [Erdos9796Proof/P97/MultiCenter/Realization.lean:64]  (producers=3 refuters=0)
+  · Problem97.MultiCenter.CodeRealizationPredicate  [Erdos9796Proof/P97/MultiCenter/Realization.lean:24]  (producers=2 refuters=0)
+  · Problem97.MultiCenter.EqualInventoriesFrom  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:668]  (producers=2 refuters=0)
+  · Problem97.MultiCenter.FourBoundedJointClass  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:471]  (producers=2 refuters=0)
+  · Problem97.MultiCenter.GlobalSubsetsLocal  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:652]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.JointClass  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:139]  (producers=8 refuters=0)
+  · Problem97.MultiCenter.JointClass.EquivalentUnder  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:238]  (producers=3 refuters=0)
+  · Problem97.MultiCenter.JointClass.LocallyAdmissible  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:226]  (producers=4 refuters=0)
+  · Problem97.MultiCenter.JointProfile  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:81]  (producers=6 refuters=0)
+  · Problem97.MultiCenter.JointProfile.Automorphism  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:109]  (producers=2 refuters=0)
+  · Problem97.MultiCenter.LocalClassCode  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:435]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.LocalCompletesGlobalFrom  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:656]  (producers=2 refuters=0)
+  · Problem97.MultiCenter.LocalJointClassCode  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:565]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.LocalJointClassCode.CodedBy  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:609]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.MonotoneInventory  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:635]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.PredicateGlobalSubsetsLocal  [Erdos9796Proof/P97/MultiCenter/Realization.lean:44]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.PredicateLocalCompletesGlobal  [Erdos9796Proof/P97/MultiCenter/Realization.lean:54]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.PredicateLocalCompletesGlobalFrom  [Erdos9796Proof/P97/MultiCenter/Realization.lean:49]  (producers=2 refuters=0)
+  · Problem97.MultiCenter.PredicateStepPersistent  [Erdos9796Proof/P97/MultiCenter/Realization.lean:40]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.ProfileRealizationSurface  [Erdos9796Proof/P97/MultiCenter/Realization.lean:280]  (producers=4 refuters=0)
+  · Problem97.MultiCenter.ProfileRealizationSurface.ProfileStepExtends  [Erdos9796Proof/P97/MultiCenter/Realization.lean:329]  (producers=1 refuters=0)
+  · Problem97.MultiCenter.StabilizesAt  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:621]  (producers=15 refuters=0)
+  · Problem97.MultiCenter.StepPersistent  [Erdos9796Proof/P97/MultiCenter/GeneralN.lean:639]  (producers=3 refuters=0)
+  · Problem97.N4dTrackBRows.SharedTripleRowPacket  [Erdos9796Proof/P97/N4d/TrackBRows.lean:30]  (producers=0 refuters=31)
+  · Problem97.OpApolloniusArc  [Erdos9796Proof/P97/OangleBridge.lean:208]  (producers=1 refuters=0)
+  · Problem97.OpposedOrderCrossingLedger  [Erdos9796Proof/P97/TwoCircleCrossing.lean:94]  (producers=1 refuters=1)
+  · Problem97.P5MirrorSchema58Scratch.NormalizedSchema58Occurrence  [Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/MirrorSchema58/MirrorSchema58.lean:378]  (producers=0 refuters=1)
+  · Problem97.RightOneSidedErasedPayloadFiniteCandidateFacts  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:1062]  (producers=1 refuters=10)
+  · Problem97.RightOneSidedErasedPayloadFiniteCandidateSepFacts  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:1212]  (producers=2 refuters=0)
+  · Problem97.RightOneSidedErasedPayloadFiniteRelaxedShapeFacts  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:1371]  (producers=0 refuters=1)
+  · Problem97.RightOneSidedErasedPayloadNamedCandidateFacts  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:915]  (producers=1 refuters=0)
+  · Problem97.RightOneSidedErasedPayloadSeedCandidateInputs  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:755]  (producers=2 refuters=1)
+  · Problem97.RightOneSidedErasedPayloadSeedMaskInputs  [Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:442]  (producers=0 refuters=1)
+  · Problem97.SameRadiusPointClasses  [Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean:23]  (producers=1 refuters=0)
+  · Problem97.ShellCurvatureRows.ShellBoundaryIndexing.HasCenteredQuarterTurnSeparation  [Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureRows.lean:345]  (producers=1 refuters=0)
+  · Problem97.ShellCurvatureRows.ShellBoundaryIndexing.HasGlobalShiftedQuarterTurnSeparation  [Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureTransport.lean:191]  (producers=1 refuters=0)
+  · Problem97.SurplusCOMPGBank.OneSidedSeedCandidateRemainder  [Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean:3745]  (producers=2 refuters=2)
+  · Problem97.SurplusCapPacket.AdjacentChainOneHitData  [Erdos9796Proof/P97/SurplusM44Packet/Shard08.lean:616]  (producers=0 refuters=8)
+  · Problem97.SurplusCapPacket.EndpointRadiusAt  [Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean:414]  (producers=2 refuters=0)
+  · Problem97.SurplusCapPacket.M44SelectedApex  [Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean:410]  (producers=1 refuters=0)
+  · Problem97.SurplusCapPacket.MoserCapClassifiesAt  [Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean:933]  (producers=1 refuters=0)
+  · Problem97.SurplusCapPacket.MoserCapExcludesAt  [Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean:942]  (producers=1 refuters=0)
+  · Problem97.SurplusCapPacket.NonSurplusMoserCapClassifies  [Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean:1012]  (producers=1 refuters=0)
+  · Problem97.SurplusCapPacket.NonSurplusMoserCapExcludes  [Erdos9796Proof/P97/SurplusM44Packet/Shard05.lean:31]  (producers=1 refuters=0)
+  · Problem97.SurplusCapPacket.NonSurplusMoserCapForms  [Erdos9796Proof/P97/SurplusM44Packet/Shard03.lean:1019]  (producers=1 refuters=0)
+  · Problem97.U1Depth5.AnchorPairsDistinct  [Erdos9796Proof/P97/U1Depth5AnchorProduct.lean:66]  (producers=2 refuters=1)
+  · Problem97.U1Depth5.Label  [Erdos9796Proof/P97/U1Depth5AnchorProduct.lean:29]  (producers=12 refuters=2)
+  · Problem97.U1Depth5.LabelPrefix  [Erdos9796Proof/P97/U1Depth5Prefix.lean:30]  (producers=1 refuters=1)
+  · Problem97.U1Depth5.ManifestLabelPacket  [Erdos9796Proof/P97/U1Depth5Prefix.lean:183]  (producers=3 refuters=7)
+  · Problem97.U1Depth5.OrderedSelectedFourClass  [Erdos9796Proof/P97/U1Depth5Prefix.lean:601]  (producers=3 refuters=0)
+  · Problem97.U1Depth5.PacketLabelCenteredRows  [Erdos9796Proof/P97/U1Depth5Prefix.lean:787]  (producers=2 refuters=4)
+  · Problem97.U1Depth5.ProductCollapseCertificate  [Erdos9796Proof/P97/U1Depth5Prefix.lean:3362]  (producers=0 refuters=1)
+  · Problem97.U1Depth5.ProductCollapseWithNonzeroFactorCertificate  [Erdos9796Proof/P97/U1Depth5Prefix.lean:3436]  (producers=0 refuters=1)
+  · Problem97.U1Depth5.ProjectionRenaming  [Erdos9796Proof/P97/U1Depth5Prefix.lean:3561]  (producers=1 refuters=0)
+  · Problem97.U1Depth5.Record001QTFacingTransportRows  [Erdos9796Proof/P97/U1Depth5Prefix.lean:801]  (producers=7 refuters=13)
+  · Problem97.U1Depth5.Record001QTShellSupport  [Erdos9796Proof/P97/U1Depth5Prefix.lean:817]  (producers=2 refuters=0)
+  · Problem97.U1Depth5.Record001QTTwoCenteredRows  [Erdos9796Proof/P97/U1Depth5Prefix.lean:835]  (producers=1 refuters=2)
+  · Problem97.U1Depth5.RowSlotLabelPacket  [Erdos9796Proof/P97/U1Depth5Prefix.lean:1841]  (producers=5 refuters=14)
+  · Problem97.U1Depth5.RowSlotLabelPacket.AllEightSlotMetricCore  [Erdos9796Proof/P97/U1Depth5Prefix.lean:2769]  (producers=1 refuters=4)
+  · Problem97.U1Depth5.RowSlotLabelPacket.Record001Branch0Collision  [Erdos9796Proof/P97/U1Depth5Prefix.lean:2054]  (producers=3 refuters=3)
+  · Problem97.U1Depth5.RowSlotLabelPacket.Record001Branch0NoCollision  [Erdos9796Proof/P97/U1Depth5Prefix.lean:2197]  (producers=2 refuters=10)
+  · Problem97.U1Depth5.RowSlotProductCollapseCertificate  [Erdos9796Proof/P97/U1Depth5Prefix.lean:3242]  (producers=0 refuters=1)
+  · Problem97.U1Depth5.RowSlotProductCollapseWithNonzeroFactorCertificate  [Erdos9796Proof/P97/U1Depth5Prefix.lean:3262]  (producers=1 refuters=1)
+  · Problem97.U1Depth5.RowSlotSourceUnitLiftCertificate  [Erdos9796Proof/P97/U1Depth5Prefix.lean:3297]  (producers=1 refuters=1)
+  · Problem97.U1Depth5.SourceUnitLiftCertificate  [Erdos9796Proof/P97/U1Depth5Prefix.lean:3517]  (producers=2 refuters=1)
+  · Problem97.U1Depth5SourceUnitGenerated.Record001Branch0CollisionProductProducerData  [Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:2247]  (producers=1 refuters=1)
+  · Problem97.U1Depth5SourceUnitGenerated.Record001Branch0Payload  [Erdos9796Proof/P97/U1Depth5QT3PilotRecord001.lean:34]  (producers=1 refuters=12)
+  · Problem97.U1Depth5SourceUnitGenerated.Record001Branch0ProducerData  [Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:2048]  (producers=0 refuters=1)
+  · Problem97.U1Depth5SourceUnitGenerated.Record001Branch0SourceCoreProducerData  [Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:2359]  (producers=0 refuters=1)
+  · Problem97.U1Depth5SourceUnitGenerated.Record001QTShellSupportOrBranch0Collision  [Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean:3533]  (producers=1 refuters=0)
+  · Problem97.U1EquilateralTransfer  [Erdos9796Proof/P97/U1TwoShortCapReduction.lean:652]  (producers=1 refuters=0)
+  · Problem97.U1ExactnessFromMinimality  [Erdos9796Proof/P97/U1TwoShortCapReduction.lean:342]  (producers=1 refuters=0)
+  · Problem97.U1FallbackStatement  [Erdos9796Proof/P97/U1TwoShortCapReduction.lean:231]  (producers=3 refuters=0)
+  · Problem97.U1LargeCapRouteBTailBranch0CollisionExclusionTarget  [Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:905]  (producers=1 refuters=9)
+  · Problem97.U1LargeCapRouteBTailBranch0ProducerData  [Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:1459]  (producers=1 refuters=1)
+  · Problem97.U1LargeCapRouteBTailCenteredIncidenceTarget  [Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:3037]  (producers=0 refuters=2)
+  · Problem97.U1LargeCapRouteBTailF1Slot0ExcludedTarget  [Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:367]  (producers=0 refuters=2)
+  · Problem97.U1LargeCapRouteBTailF1T2DirectExtraConsumerData  [Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:1298]  (producers=1 refuters=1)
+  · Problem97.U1LargeCapRouteBTailF1T2NoCollisionTarget  [Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:1243]  (producers=0 refuters=1)
+  · Problem97.U1LargeCapRouteBTailF1TailCollisionTarget  [Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:354]  (producers=1 refuters=2)
+  · Problem97.U1LargeCapRouteBTailMetricBridgeTarget  [Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:308]  (producers=2 refuters=2)
+  · Problem97.U1LargeCapRouteBTailMetricResidualTarget  [Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:1533]  (producers=0 refuters=3)
+  · Problem97.U1LargeCapRouteBTailMetricResidualTarget.OppositeCapLowerBoundsAt  [Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:2123]  (producers=1 refuters=0)
+  · Problem97.U1LargeCapRouteBTailSourceCoreProducerData  [Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:1381]  (producers=0 refuters=1)
+  · Problem97.U1LargeCapRouteBTailT20OffDangerousTarget  [Erdos9796Proof/P97/U1LargeCapRouteBTail.lean:454]  (producers=0 refuters=1)
+  · Problem97.U1OpposedOrderConfig  [Erdos9796Proof/P97/WitnessPacketInterface.lean:381]  (producers=0 refuters=1)
+  · Problem97.U1ShortCapApollonius  [Erdos9796Proof/P97/U1TwoShortCapReduction.lean:771]  (producers=1 refuters=0)
+  · Problem97.U1Statement  [Erdos9796Proof/P97/U1TwoShortCapReduction.lean:207]  (producers=2 refuters=0)
+  · Problem97.U2BaseChordWitnessPacket  [Erdos9796Proof/P97/WitnessPacketInterface.lean:323]  (producers=0 refuters=1)
+  · Problem97.U2NonSurplusSqueeze.NoStrictAdjacentEscapeAtOppApex2  [Erdos9796Proof/P97/U2NonSurplusOneHit.lean:1412]  (producers=1 refuters=0)
+  · Problem97.U3LocalizedNoQFreePacket.localSameCircleOrAuditedSupport  [Erdos9796Proof/P97/U3ToU5Terminal.lean:369]  (producers=0 refuters=1)
+  · Problem97.U5AuditedBoundedSupportReduction  [Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:853]  (producers=2 refuters=0)
+  · Problem97.U5AuditedSupportOrSameCircle  [Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:865]  (producers=2 refuters=0)
+  · Problem97.U5BoundedEightPointSupportReduction  [Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:843]  (producers=1 refuters=0)
+  · Problem97.U5CandidateDescriptor  [Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:609]  (producers=7 refuters=0)
+  · Problem97.U5ForcedRepeatedCircle  [Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:832]  (producers=2 refuters=0)
+  · Problem97.U5GramCert.Mono  [Erdos9796Proof/P97/U5GramCertPoly.lean:42]  (producers=3 refuters=60)
+  · Problem97.U5GramCert.SparsePoly  [Erdos9796Proof/P97/U5GramCertPoly.lean:46]  (producers=19 refuters=99)
+  · Problem97.U5ModeA  [Erdos9796Proof/P97/U5ModeADeletion.lean:135]  (producers=0 refuters=8)
+  · Problem97.U5ModeADeletion  [Erdos9796Proof/P97/U5ModeADeletion.lean:234]  (producers=2 refuters=0)
+  · Problem97.U5NoAuditedBoundedBadPattern  [Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:826]  (producers=1 refuters=0)
+  · Problem97.U5QAllowedAuditSupport  [Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:590]  (producers=4 refuters=0)
+  · Problem97.U5QAllowedAuditedSupportOrSameCircle  [Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:781]  (producers=1 refuters=0)
+  · Problem97.U5QAllowedCandidateDescriptor  [Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:709]  (producers=3 refuters=0)
+  · Problem97.U5QAllowedConfinedK4AuditPayload  [Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:527]  (producers=1 refuters=0)
+  · Problem97.U5QAllowedK4Class  [Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:257]  (producers=2 refuters=0)
+  · Problem97.U5QCriticalTripleClass  [Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:336]  (producers=0 refuters=12)
+  · Problem97.U5ResidualLocalPayloadCandidate  [Erdos9796Proof/P97/U3ToU5Terminal.lean:29]  (producers=3 refuters=1)
+
+92 orphaned interface(s) — the producer end is unaccounted for. Exit 1.

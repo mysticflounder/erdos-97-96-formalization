@@ -267,6 +267,73 @@ theorem exists_capSource_thirdBlocker_crossPairDeletionSurvivals
     secondApexRobust.centerAt_ne H q hqA,
     hsurvives, hsurvivesρ⟩
 
+/-- The four cross-blocker equalities left by the global cap-or-equality
+split. -/
+abbrev CrossBlockerCoincidence
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius ρ : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ) : Prop :=
+  H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₁ ∨
+    H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₂ ∨
+      H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₁ ∨
+        H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₂
+
+/-- The exact third canonical-row surface produced by the cap-eight branch.
+
+Keep the cap-eight lower bound in the packet: downstream positive-alignment
+arguments need the original cap cardinal margin, not only the selected source
+extracted from it. -/
+abbrev CapSourceThirdCanonicalRowSurface
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius ρ : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ) : Prop :=
+  8 ≤ (S.capByIndex S.oppIndex1).card ∧
+  ∃ source : CriticalShellSystem.CarrierVertex D.A,
+    source.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
+      source.1 ∉
+        (({P.source₁, P.source₂} : Finset ℝ²) ∪
+          {Pρ.source₁, Pρ.source₂}) ∧
+      H.centerAt source.1 source.2 ≠
+        H.centerAt P.source₁ P.source₁_mem_A ∧
+      H.centerAt source.1 source.2 ≠
+        H.centerAt Pρ.source₁ Pρ.source₁_mem_A ∧
+      H.centerAt source.1 source.2 ≠ S.oppApex1 ∧
+      H.centerAt source.1 source.2 ≠ S.oppApex2 ∧
+      source.1 ∈
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support ∧
+      (H.selectedAt source.1 source.2).toCriticalFourShell.support.card = 4 ∧
+      (P.source₁ ∉
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support ∨
+        P.source₂ ∉
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support) ∧
+      (Pρ.source₁ ∉
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support ∨
+        Pρ.source₂ ∉
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support)
+
+/-- The mapped global alternative used by the two-collision coordinator. -/
+abbrev TwoCollisionGlobalSplit
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius ρ : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ) : Prop :=
+  CapSourceThirdCanonicalRowSurface P Pρ ∨
+    CrossBlockerCoincidence P Pρ
+
 /-- The cap-eight source's canonical row is a third exact-four row and omits
 at least one endpoint from each of the two collision pairs. -/
 theorem exists_capSource_thirdCanonicalRow_omits_each_collisionPair
@@ -284,28 +351,7 @@ theorem exists_capSource_thirdCanonicalRow_omits_each_collisionPair
         ({P.source₁, P.source₂} : Finset ℝ²)
         {Pρ.source₁, Pρ.source₂})
     (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card) :
-    ∃ source : CriticalShellSystem.CarrierVertex D.A,
-      source.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
-        source.1 ∉
-          (({P.source₁, P.source₂} : Finset ℝ²) ∪
-            {Pρ.source₁, Pρ.source₂}) ∧
-        H.centerAt source.1 source.2 ≠
-          H.centerAt P.source₁ P.source₁_mem_A ∧
-        H.centerAt source.1 source.2 ≠
-          H.centerAt Pρ.source₁ Pρ.source₁_mem_A ∧
-        H.centerAt source.1 source.2 ≠ S.oppApex1 ∧
-        H.centerAt source.1 source.2 ≠ S.oppApex2 ∧
-        source.1 ∈
-          (H.selectedAt source.1 source.2).toCriticalFourShell.support ∧
-        (H.selectedAt source.1 source.2).toCriticalFourShell.support.card = 4 ∧
-        (P.source₁ ∉
-            (H.selectedAt source.1 source.2).toCriticalFourShell.support ∨
-          P.source₂ ∉
-            (H.selectedAt source.1 source.2).toCriticalFourShell.support) ∧
-        (Pρ.source₁ ∉
-            (H.selectedAt source.1 source.2).toCriticalFourShell.support ∨
-          Pρ.source₂ ∉
-            (H.selectedAt source.1 source.2).toCriticalFourShell.support) := by
+    CapSourceThirdCanonicalRowSurface P Pρ := by
   obtain ⟨source, hsourceCap, hsourceOutside, hcenterNe, hcenterNeρ,
       hcenterNeFirst, hcenterNeSecond, hsurvives, hsurvivesρ⟩ :=
     exists_capSource_thirdBlocker_crossPairDeletionSurvivals
@@ -334,7 +380,7 @@ theorem exists_capSource_thirdCanonicalRow_omits_each_collisionPair
     · exact Or.inr
         ((cross_deletion_survives_iff_not_mem_selected_support
           H source.2).mp hsurvivesρ)
-  exact ⟨source, hsourceCap, hsourceOutside, hcenterNe, hcenterNeρ,
+  exact ⟨hcap, source, hsourceCap, hsourceOutside, hcenterNe, hcenterNeρ,
     hcenterNeFirst, hcenterNeSecond,
     (H.selectedAt source.1 source.2).toCriticalFourShell.q_mem_support,
     (H.selectedAt source.1 source.2).toCriticalFourShell.support_card,

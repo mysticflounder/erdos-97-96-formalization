@@ -302,23 +302,6 @@ private theorem v2_lt_v2v1_of_mem_I3_local
     simpa [Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap_points,
       hi, hLastFirst.1, hLastFirst.2] using hlt
 
-/-- Local `I₂` relabeling used to reuse the `x = a₂` lower-branch forcing
-lemma in the `x = b₂` branch. -/
-private def FiniteEndpointShell.ZeroDefectCapLayout.swapI2
-    {A : Finset ℝ²} {S : FiniteEndpointShell A}
-    (Z : ZeroDefectCapLayout S) : ZeroDefectCapLayout S where
-  a1 := Z.a1
-  b1 := Z.b1
-  a2 := Z.b2
-  b2 := Z.a2
-  a3 := Z.a3
-  b3 := Z.b3
-  hI1 := Z.hI1
-  hI2 := by
-    ext x
-    constructor <;> intro hx <;> simpa [Z.hI2, or_comm] using hx
-  hI3 := Z.hI3
-
 /-- `N4d-bB-4`: in the `x = b₂`, `p = D` lower-side branch, the `q' = E`
 column of the `v₃` selector is impossible.  This is the `E = b₂` analogue of
 `qEqC_reflection_below_contradiction`: the Form-`b` pin gives the unit-apex
