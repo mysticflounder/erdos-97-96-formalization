@@ -76,31 +76,50 @@ g(β,α) = g(α,β); for α ≤ 6, g(α, β+1) = g(α, β) + 1 for β ≥ 15.
 α* (smallest β ≥ α with g(α, β+1) = g(α, β)+1 for all β ≥ α*):
 1, 2, 3, 6, 10, 15 for α = 1..6 (paper suggests α* = C(α,2)).
 
-## P1 — our proof (2026-07-28, orchestrator; AWAITING ADVERSARIAL AUDIT)
+## P1 — our proof (2026-07-28, orchestrator; audited, patches applied — see ledger)
 
 **Claim.** In a strictly convex polygon with cut {A, B} there are no
 distinct a, a′ ∈ A and distinct b, b′ ∈ B with
 |ab| = |ab′| = |a′b| = |a′b′| = 1.
 
-**Proof.** Suppose such points exist. Then b and b′ both lie on
-C(a,1) ∩ C(a′,1), the intersection of the unit circles centered at a
-and a′ (a ≠ a′, so the circles are distinct and non-concentric). If
-|aa′| = 2 this intersection is a single point, forcing b = b′,
-contradiction; |aa′| > 2 makes it empty. So |aa′| < 2, and the
-intersection consists of exactly two points, both on the perpendicular
-bisector of aa′ at distance √(1 − |aa′|²/4) > 0 from the line
-ℓ = line(a, a′), one strictly on each open side of ℓ. Since b ≠ b′,
-{b, b′} is exactly this pair; hence b and b′ lie strictly on opposite
-sides of ℓ.
+**Proof.** Suppose such points exist. First, distinct vertices are
+distinct as points: two coincident vertices together with any third
+vertex would form a collinear triple, excluded by strict convexity
+(n = α + β ≥ 4 here). In particular a ≠ a′ as points, so the unit
+circles C(a,1), C(a′,1) are distinct and non-concentric; and
+b, b′ ∉ {a, a′} (cross-cut pairs at distance 1 are distinct points,
+and A ∩ B = ∅).
 
-For a strictly convex polygon, the chord aa′ splits the boundary into
-two arcs, each contained in one closed half-plane of ℓ and meeting ℓ
-only at a, a′ (strict convexity: no third vertex on ℓ). Hence every
-vertex strictly on one side of ℓ belongs to the open cyclic arc from a
-to a′ one way around, and every vertex strictly on the other side
-belongs to the opposite open arc. Since b, b′ are strictly on opposite
-sides, a and a′ separate b and b′ in the cyclic vertex order (cyclic
-order a, b, a′, b′).
+Both b and b′ lie on C(a,1) ∩ C(a′,1). If |aa′| = 2 this intersection
+is a single point, forcing b = b′, contradiction; |aa′| > 2 makes it
+empty. So |aa′| < 2, and the intersection consists of exactly two
+points, both on the perpendicular bisector of aa′ at distance
+√(1 − |aa′|²/4) > 0 from the line ℓ = line(a, a′), one strictly on
+each open side of ℓ. Since b ≠ b′, {b, b′} is exactly this pair; hence
+b and b′ lie strictly on opposite open sides of ℓ.
+
+The polygon boundary is a simple closed convex curve visiting the
+vertices in their cyclic order (boundary order = cyclic vertex order
+for a convex polygon). The chord aa′ splits the boundary into two
+arcs; no vertex other than a, a′ lies on ℓ (no three collinear). Each
+arc lies in one closed half-plane of ℓ: since no three vertices are
+collinear, every vertex is an extreme point of the polygon P, so
+ℓ ∩ P = [a, a′]. If a, a′ are non-adjacent, the open chord (a, a′)
+lies in the interior of P (strict convexity), so ∂P ∩ ℓ = {a, a′};
+each open boundary arc is then connected and disjoint from ℓ, hence
+lies in one open half-plane, and adding the endpoints a, a′ ∈ ℓ gives
+closed-half-plane containment. If a, a′ are adjacent, one arc is the
+edge [a, a′] ⊆ ℓ, contained in either closed half-plane; the other
+open arc meets ℓ only within ∂P ∩ ℓ = [a, a′], which it avoids (the
+boundary is a simple closed curve), so it lies in one open half-plane.
+
+Now b, b′ ∉ {a, a′}, so each lies in one of the two open boundary
+arcs — equivalently, one of the two open cyclic vertex arcs between a
+and a′. No single arc can contain both: each arc lies in one closed
+half-plane of ℓ, while b and b′ lie strictly on opposite open sides.
+Hence b and b′ lie in DIFFERENT open cyclic arcs between a and a′ (in
+particular both open arcs are nonempty), i.e. a and a′ separate b and
+b′ in the cyclic vertex order.
 
 But A is a contiguous arc containing a and a′ and disjoint from
 {b, b′}. Any contiguous arc containing both a and a′ contains one of
@@ -108,16 +127,19 @@ the two open cyclic arcs between them entirely, hence contains b or
 b′ — contradicting A ∩ B = ∅. ∎
 
 Remarks: uses only (i) two distinct circles meet in ≤ 2 points (the
-R-CIRC2 core), (ii) strict convexity, (iii) the cut's contiguous-arc
-structure. No unit-distance-specific facts: the same proof forbids the
-P1 pattern for ANY single common distance across the cut, so the rule
-is k-general in the same-distance-cut setting.
+R-CIRC2 core), (ii) strict convexity, (iii) A's contiguous-arc
+structure — B's contiguity is never used (audit finding F5), so the
+rule applies whenever just ONE side of the cut is a contiguous arc. No
+unit-distance-specific facts: the same proof forbids the P1 pattern
+for ANY single common distance across the cut (all four distances
+EQUAL is what is used), so the rule is k-general in the
+same-distance-cut setting.
 
 ## Status ledger
 
 | Pattern | Transcription | Proof |
 |---|---|---|
-| P1 | HIGH confidence | written above; CONJECTURE until adversarially audited |
+| P1 | HIGH confidence | PROVEN + AUDITED: math-skeptic audit 2026-07-28 returned NEEDS WORK with four exact patches (F2 adjacent-vertex case, F3 half-plane containment proof, F4 different-arcs derivation + two implicit clauses); patches applied verbatim same day; the audit report states the patched text survives all its attacks |
 | P2 | HIGH confidence | OPEN obligation |
 | P3 | HIGH (lettered family); instance-subsumption is my inference | OPEN obligation |
 | P4 | MODERATE-HIGH (dashed-ellipsis reading) | OPEN obligation |
