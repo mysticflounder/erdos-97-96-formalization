@@ -119,8 +119,21 @@ is a candidate, not a rule. Headline candidates:
   note claiming fiber ≤ 4 was banked). Derivable in one step —
   x ∈ Σ(c(x)) and |Σ(c)| = 4 exactly (`CriticalShellSystem`) give
   fiber(c) ⊆ Σ(c), so ≤ 4 — but admission requires proving that
-  mini-lemma, not citing it. The two abstract endomap fiber-forcing
-  theorems (2-/3-omission collision forcing) are k-general candidates.
+  mini-lemma, not citing it. ADMITTED 2026-07-28 with the mini-lemma
+  proved in `census/p97_search/PHASE2-SPEC.md` §4.1; the annotation
+  EXISTENCE lemma stays {{NEEDS_PROOF}}, so blocker-annotated cells
+  publish annotation-conditional claims only. The two abstract endomap
+  fiber-forcing theorems (2-/3-omission collision forcing) remain
+  k-general candidates.
+- R-CAPGE4 audit COMPLETE 2026-07-28 (was: closed-vs-strict caps
+  unresolved): closed caps throughout, floor from
+  `capTriple_caps_card_ge_four` (`U1OppositeCapLowerBounds.lean:446`),
+  cap-partition sum n + 3 traced to `SurplusCapPacket.capSum`
+  (`Cap/PartitionFromMEC.lean:397`) ←
+  `Problem97.cap_sum_identity` (`Cap/Partition.lean:86`), pure counting
+  from the CapPartition structure fields. ADMITTED per PHASE2-SPEC §4.2;
+  kernel `proof-blueprint axioms` gate still blocks published cell
+  claims.
 - Excluded with reasons (see inventory tail): U5 metric families (need
   exact distances), Nullstellensatz certificates (algebraic),
   census-554 equality-core obstructions (metric-consequence border),
@@ -143,7 +156,12 @@ all 9 points pairwise distinct, strict convex position, and every point
 has exactly one equidistant group of size exactly 3 (per-point distance
 multiset [3,1,1,1,1,1]). Validity rests on these verifications, not on
 the (rejected-PR) provenance. Fishburn–Reeds 1992 (20-point, single
-unit distance, n = 20 minimal) remains citation-only — no coordinates. Secondary control: the 15-point tri-apex equality shadow
+unit distance; n = 20 minimality proven for the CUT version only) is
+now transcribed and numerically verified —
+`scratch/p97-search-lane/fishburn-reeds-notes.md`; its incidence
+projection is a second k = 3 seed (PHASE2-SPEC §6), and exact
+certification of its coordinates is the realization-arm validation
+target. Secondary control: the 15-point tri-apex equality shadow
 (`scratch/triapex-incidence-obstruction/check_model.py`) must survive
 every k = 4 rule it structurally instantiates (it is not convex-realized;
 it controls the incidence-level rules only).
