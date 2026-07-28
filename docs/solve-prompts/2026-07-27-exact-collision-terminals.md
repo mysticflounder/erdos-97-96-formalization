@@ -1,6 +1,14 @@
 # Solve prompt — Family F: exact collision terminals (four leaves, all goals `False`)
 
 Date: 2026-07-27.
+STATUS: CONSUMED (2026-07-28) — round 1 ran and its response is
+`2026-07-27-f-round1-response.md`; do not redispatch this document. The live
+F-family prompts are the four round-2 bridge documents
+(`2026-07-27-f-bridge-*.md`). Kept because the bridges cite it as "the F
+doc" / source of Γ. Banking update: the round-1 CONJECTURE item
+(F3c-redundancy) is now PROVEN and kernel-checked in
+`lean/scratch/f3c-redundancy-bank/` — (F3c) follows from Γ + (F3b) alone,
+so no dispatch should target deriving (F3c).
 Scope: the four `sorry`-bearing leaf theorems of the
 `TwoSourceExactCollisionRowsTerminal` section of
 `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean`

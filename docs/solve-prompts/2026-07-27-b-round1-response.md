@@ -1,7 +1,9 @@
 # Family B — deep-thinker round 1 response (2026-07-27)
 
 Provenance: first response of the deep-thinker harness run on
-`2026-07-27-mutual-omission-four-center-deletion.md` (leaves B1–B3).
+`2026-07-27-mutual-omission-four-center-deletion.md` (leaves B1–B3; prompt
+removed 2026-07-28 after the banking pass settled its redispatch targets —
+retrieve from git history if needed).
 Reproduced verbatim below the rule. Audit status (rigid221-collapse
 session, same day): every repository citation verified real —
 `OriginalUniqueResidualDispatch.lean` (quoted phrase at :152),
@@ -20,17 +22,24 @@ verbatim), B3 (:1239, four-arm survival square verbatim); the `b ≠ a₂`
 claim is packet field `actual_blocker_ne_center₂`
 (`CommonDeletionTwoCenter.lean:39`); the mutual-omission disjunction is
 `exactFour_jointDeleted_mutualOmission_with_one_original` (:1047), which is
-bidirectionally stronger than quoted. NOT verified (CONJECTURE until
-kernel-checked): the B2 canonical-row forcing `B_{u,z₁} = Row(u)` under
-`z₁ = β(u)`; the B3-rem removability equivalence (both directions); the B1
-bisector-saturation step (needs the ≤2-carrier-points-on-a-line bound from
-Γ). The three sandbox `.lean` reductions cited at the end are harness-side
+bidirectionally stronger than quoted. The three sandbox `.lean` reductions cited at the end are harness-side
 files not present in this repository and are unverifiable.
 
-The three boxed gap statements — (B1-gap) a third carrier bisector point,
-(B2-gap) a global consequence of a source–center coincidence, (B3-gap)
-deletion survival at every center outside the four named — are the round-2
-candidates for this family.
+Banking update (2026-07-28, `lean/scratch/b-family-bank/`, kernel-checked,
+core axioms): the three items originally listed here as CONJECTURE are now
+all PROVEN — the B2 canonical-row forcing (unconditional, via
+`qDeletedRow_at_actualBlocker_eq_canonicalSupport`), the B3-rem removability
+equivalence (both directions), and the B1 bisector-saturation step
+(bisector set exactly `{b, a₂}`).
+
+Round-2 status of the three boxed gaps: **none is a viable production
+target.** (B3-gap) is REFUTED under B3's own hypotheses (`b3_gap_refuted`
+— one `no_qfree` instance at `β(z₁)`); (B1-gap)'s negation is proven
+leaf-independently (`b1_false_of_third_bisector_carrier`); each is
+task-equivalent to its leaf. (B2-gap) remains the only open B-family gap
+direction, and the sole fresh opening is B2 arm 3 (`z₁ = β(z₂)`), which
+needs radius-uniqueness at `β(z₂)` analogous to `R.unique_K4_radius`. See
+`lean/scratch/b-family-bank/REPORT.md`.
 
 ---
 
