@@ -1,4 +1,4 @@
-# A-core Layer-1 incidence encoding — specification (2026-07-28)
+# A-core Layer-1 incidence encoding — specification (2026-07-28, v1.2)
 
 Session-1 artifact of `docs/computational-closure-plan-2026-07-28.md` (§4, §5
 row 1, §8). Source of truth for the hypotheses:
@@ -243,12 +243,16 @@ dumped as a single `manifest.json`.
 
 ## 7. Omitted hypotheses (CEGAR backlog — sound to omit)
 
-(S1) ingress packet; the F chain (frontier pair q̄,w̄ and its splits); (E1)
-minimality; (E2) no-(m,4,4); (E5) radius uniqueness at a₁; (E6) beyond the
-(BM4) pattern; (E8) bisector localization; (C10)/(G4)/(G5) multi-deletion K4
-content beyond (DEL2); (G6) beyond the S5/coradial note; B-set radii; S5(b)'s
-inner 4-set structure. Each is a candidate refinement clause family for
-CEGAR iteration 2+.
+Still omitted after iteration 2 (§9): (S1) ingress packet beyond (N8)/(FB)
+(the CD(z*;·,·) packet's own witness sets are unlabeled); F-chain labels
+q̄,w̄ as first-class points beyond the (FB) selector; (E1) minimality; (E2)
+no-(m,4,4); (E6) beyond the (BM4) pattern (at this layer E6 only re-derives
+E5-shaped content — no independent atoms exist for K4(A∖{x};a₁)); (C10)
+(needs K4-at-β(u) atoms; the witness 4-set need not be Row(u), so no sound
+projection onto current atoms); S5(b)'s inner 4-set structure (moot — s5b
+refuted). Discharged with NO content at this layer: (G6) — under 𝔓 (γ=a₂)
+its first arm is automatic (any two Δ-members are coradial about a₂ at ρ);
+under A1, (A1.b) grants the MC arm outright.
 
 ## 8. Change control
 
@@ -256,3 +260,115 @@ This spec is the auditable soundness ledger (plan §2.1). Implementation must
 not add clause families beyond it; if a needed constraint is missing, the
 implementer reports the gap rather than improvising. Deviations = spec edit
 first (by the orchestrating session), then code.
+
+## 9. CEGAR iteration 2 (v1.2, 2026-07-28) — refinement families
+
+Promoted from the §7 backlog: (E8) bisector localization, (E5) radius
+uniqueness at a₁, (G4)/(G5) deletion-cardinality content, F-chain/S1
+counting content, B-set radii. Every family below carries its implying
+hypothesis tag; the soundness discipline of the header applies unchanged.
+K₄ semantics used throughout (source doc §1): K₄(X;p) ⟺ ∃t>0 with
+≥4 points of X at distance t from p.
+
+**(E8a) rows × bisector [E8 + row coradiality].** Row(x) is coradial about
+β(x) at positive radius. If q̂,ŵ ∈ Row(x) then β(x) is equidistant from
+q̂,ŵ; by (E8) either β(x)=a₁ or β(x)∈O₁°. For x ∈ {u,v} and every label
+y ≠ a1: row_x(qh) ∧ row_x(wh) ∧ b(x,y) → inO1i(y) ∨ eq(y,a1), the eq(y,a1)
+escape only where that atom exists (y ∈ {zd,xu,xv,v}); no clause for y=a1
+or y=OUT (sound omissions — E8 says nothing when the center IS a₁, and OUT
+centers are unlabeled). Note y=a0 instances propagate to False via
+inO1i(a0)=F (CAP2): a Moser center ≠ a₁ cannot lie in O₁°.
+
+**(E8b) CD B₂ sets [E8 + (J5)/(J6) + CAP2].** B₂ is coradial about a₂;
+a₂ ≠ a₁ (Moser) and a₂ ∉ O₁° (interiors exclude Moser vertices), so q̂,ŵ
+cannot both lie in a B₂: ¬bs2(qh) ∨ ¬bs2(wh); ¬bt2(qh) ∨ ¬bt2(wh).
+
+**(E8c) CD B₁ sets [E8 + (J5)/(J6)].** B₁ of (J5) is coradial about β(u),
+of (J6) about β(v). Same schema as (E8a) with bs1/bt1 as the trigger:
+bs1(qh) ∧ bs1(wh) ∧ b(u,y) → inO1i(y) ∨ eq(y,a1) (same y-range discipline);
+bt1(qh) ∧ bt1(wh) ∧ b(v,y) → likewise.
+
+**(E8d) A1 MC classes [E8 + (A1.b); needs the v1.2 gamma cap atoms].**
+W_s is coradial about γ: del(s) ∧ w_s(qh) ∧ w_s(wh) → inO1i_g ∨ eq(gamma,a1).
+
+**(E5a/E5b) A1 radius uniqueness [E5 + (E4) + (A1.b)].** Under eq(gamma,a1)
+each W_s = Cl(γ,d(γ,s)) is a full ambient 4-class about a₁, so (E5) forces
+d(γ,s)=r and W_s = Cl(a₁,r) = {q̂,ŵ,f1,f2} exactly. Per s ∈ {zd,u,xu,v,xv}:
+- (E5a) eq(gamma,a1) ∧ del(s) ∧ w_s(p) → cl1(p), every label p;
+- (E5b) eq(gamma,a1) ∧ del(s) → w_s(qh) ∧ w_s(wh) ∧ w_s(f1) ∧ w_s(f2).
+(Derived for free by propagation: del(s)→w_s(s) + (E5a) gives cl1(s), so
+eq(gamma,a1) → ¬del(u) (cl1(u)=F); two deleted sources make their W-sets
+share qh, violating MC disjointness — so |Δ|=1 under eq(gamma,a1).)
+
+**(DEL3) 𝔓-only deletion cap [(G3)+(G4)+(G5)+(B9)+(P1)].** For s∈Δ the
+(G5) witness class W (≥4 points of A∖(Δ∖{s}) coradial about γ=a₂) must
+contain s — otherwise W ⊆ A∖Δ contradicts (G4). Hence its radius is
+d(a₂,s)=ρ and W ⊆ 𝒯∖(Δ∖{s}), so 5−(|Δ|−1) ≥ 4, i.e. |Δ| ≤ 2: at-most-2
+over the five del atoms. With (DEL2): |Δ|=2 exactly in every 𝔓 run.
+Tag 𝔓-only (the argument needs γ=a₂; DROP in the A1 run like (DEL2)).
+
+**(N8) F-chain count [F + (B9) + (B3)].** The F chain fixes two exact
+ambient 4-classes at a₂ (through q̄,w̄) with disjoint supports; their sizes
+(4,4) differ from |𝒯|=5, so their radii differ from ρ and from each other —
+three pairwise-disjoint classes about a₂ of sizes 5+4+4, all at positive
+radii (a 4-point class cannot have radius 0), so a₂ is in none: n ≥ 14.
+
+**(FB) frontier-pair selector [F + (E4)].** q̄,w̄ ∈ {x∈A : d(x,a₁)=r}∖Σ =
+Cl(a₁,r)∖Σ, q̄≠w̄, and Cl(a₁,r) = {qh,wh,f1,f2} (E4 universe): atoms
+fbar_p, p ∈ {qh,wh,f1,f2}, exactly-2 true (at-least-2 + Sinz at-most-2).
+Per selected p: fbar_p → ¬inSig(p) [q̄ ∉ Σ ⊇ Σ°]; fbar_p → ¬inT(p) [q̄'s
+a₂-class has exactly 4 points ≠ 5 = |𝒯|, so d(a₂,q̄) ≠ ρ]; for p ∈ {f1,f2}
+only (the atoms exist): fbar_p → ¬eq(p,a2) [d(a₂,q̄) > 0]. No fbar↔a0
+clause: whether v_σ ∈ Σ (closed) is not established — do not encode it.
+
+**(CD4) center exclusion [CD definition: B_i ⊆ A∖{z,c_i}].**
+b(u,y) → ¬bs1(y) and b(v,y) → ¬bt1(y) for y in the CD domain
+{zd,u,xu,v,xv,qh,wh,f1,f2}; for the a₂-centered sets: ¬bs2(p) ∨ ¬eq(p,a2)
+and ¬bt2(p) ∨ ¬eq(p,a2) for p ∈ {f1,f2} (the only domain labels with an
+eq atom to a2).
+
+**(CD5) B-set radius selectors [CD definition + row/𝒯 exactness].** Fresh
+atoms rbs1, rbs2, rbt1, rbt2 ("the B-set's radius equals the comparison
+class's radius"). Two coradial sets about the same center either share
+their radius or are disjoint; when the radii agree, a 4-point coradial set
+inside a 4-point full class IS that class, and inside 𝒯∖{z_d} (B₂ case:
+|B₂|=4, z_d ∉ B₂, |𝒯∖{z_d}|=4) is exactly {u,xu,v,xv}. Over the CD domain:
+- rbs1 → (bs1(p) ↔ row_u(p)); ¬rbs1 → ¬(bs1(p) ∧ row_u(p)).
+- rbt1 → (bt1(p) ↔ row_v(p)); ¬rbt1 → ¬(bt1(p) ∧ row_v(p)).
+- rbs2 → (bs2(p) → inT(p)) and rbs2 → bs2(u) ∧ bs2(xu) ∧ bs2(v) ∧ bs2(xv);
+  ¬rbs2 → (bs2(p) → ¬inT(p)). Likewise rbt2 for bt2.
+(T1 exactness then converts rbs2 ∧ bs2(qh) into an eq-disjunction
+automatically; no bespoke clause.)
+
+**(R1') row_u at-most-4 over a second distinct set [row exactness].**
+{u,qh,wh,f1,f2} is pairwise baked distinct (u vs all four: (C3)+(P3) and
+O₁°/O₂° separation; the four class members pairwise: (E4)+(E7)) — add
+at-most-4 of row_u over it. No analogous valid 5-set exists for row_v
+(v/oth vs the class members carry eq atoms) — none added.
+
+**(A1 ext v1.2) gamma cap atoms.** New atoms inSig_g, inO1i_g, inO2i_g,
+moser_g with: moser_g ↔ eq(gamma,a0) ∨ eq(gamma,a1) [γ's only possible
+Moser coincidences]; ¬moser_g → exactly-one of the three cap atoms (CAP1);
+moser_g → none of them (CAP2); congruence eq(gamma,t) → (Φ_g ↔ Φ(t)) for
+t ∈ {qh,wh,f1,f2} and each cap family Φ. No inT_g atom: γ ∉ 𝒯 is (G2),
+definitional. γ is NOT linked into the integer layer (it may coincide with
+a labeled point; counting it would double-count — sound omission).
+
+### 9.1 Iteration-2 gates and probes
+
+- G-BASE, G-EXCL, G-SAT rerun as in §6. The hand-built G-SAT assignment
+  must be updated for (N8) (its derived n was 13; bump an unlabeled-point
+  interior count so n=14) and extended to assign the new atoms (fbar pair
+  choice, rb* selectors, gamma caps) consistently; document the choices.
+- P-DEL3: base+P + del(zd) ∧ del(u) ∧ del(xu) → UNSAT (DRAT).
+- P-E8: base + row_u(qh) ∧ row_u(wh) ∧ b(u,a0) → UNSAT (DRAT).
+- P-FB: base + eq(f1,zd) ∧ ¬fbar_qh ∧ ¬fbar_wh → UNSAT (DRAT)
+  [forces {q̄,w̄}={f1,f2}; eq(f1,zd) → inT(f1) by (EQ3), fbar_f1 → ¬inT(f1)].
+- P-CD5: base + rbs2 ∧ bs2(qh) ∧ ¬eq(qh,zd) ∧ ¬eq(qh,xu) ∧ ¬eq(qh,v) ∧
+  ¬eq(qh,xv) → UNSAT (DRAT) [bs2(qh) → inT(qh) → T1 eq-disjunction, all
+  denied].
+- Each probe should also be checked SAT-refutable pre-change where cheap
+  (i.e. note in RESULTS whether it was SAT at v1.1) — not mandatory.
+- Verdict reruns: all 8 runs of §5 with the new families (DEL3 in the 𝔓
+  runs only; E5/E8d/gamma-caps in base+A1 only; everything else in base).
+  Record SAT/UNSAT + counts as before; decoded-model diffs for SAT runs.
