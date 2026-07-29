@@ -189,7 +189,9 @@ Phase 2 (annotations, annotated canonicalization, R-FIBER4/R-CAPGE4
 promotions, cell iterator + jsonl bank, seeds S-K3-9/S-FR-20, 13 gates
 in `controls2.py`) are landed and orchestrator-validated
 (`census/p97_search/RESULTS.md`). Rule bank: R-CIRC2, R-FIBER4,
-R-CAPGE4, all ADMITTED. Open before Phase 3: P2/P3/P4 forbidden-pattern
-proofs (P1 is PROVEN+AUDITED), the blocker-annotation existence lemma
-({{NEEDS_PROOF}}), and the kernel `proof-blueprint axioms` gate on the
-two cited Lean frame theorems (blocks published cell claims only).
+R-CAPGE4, all ADMITTED. Kernel gate SATISFIED 2026-07-28: the three
+cited Lean frame theorems (`nonempty_surplusCapPacket_of_K4`,
+`capTriple_caps_card_ge_four`, `SurplusCapPacket.capSum`) each
+kernel-check to core axioms only. Open before Phase 3: P2/P3/P4
+forbidden-pattern proofs (P1 is PROVEN+AUDITED) and the
+blocker-annotation existence lemma ({{NEEDS_PROOF}}).

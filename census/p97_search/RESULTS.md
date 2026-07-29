@@ -148,11 +148,18 @@ isomorphism-class count exactly.
 
 ## 2. Kernel gate sentence (spec section 4.2, R-CAPGE4)
 
-Kernel gate (unchanged, blocks PUBLISHED cell claims only, not this
-admission): `proof-blueprint axioms` on `nonempty_surplusCapPacket_of_K4`
-and `capTriple_caps_card_ge_four` must show core axioms only before any
-per-cell non-existence claim is published. Source-level scan done;
-kernel check pending.
+Kernel gate: **SATISFIED 2026-07-28** (orchestrator). `proof-blueprint
+axioms` (live `#print axioms` via the Lean kernel, this repo's
+blueprint) on `Problem97.MEC.nonempty_surplusCapPacket_of_K4`,
+`Problem97.U1OppositeCapLowerBounds.capTriple_caps_card_ge_four`, and
+`Problem97.SurplusCapPacket.capSum` each report exactly `propext`,
+`Classical.choice`, `Quot.sound` -- no `sorryAx`, no custom axioms, no
+`ofReduceBool`. All three symbols confirmed indexed at the cited
+source paths in THIS repo (not a sibling corpus). Published per-cell
+non-existence claims are no longer blocked on this gate. Note: this
+citation edit changed `rule_bank_hash()`; any bank created before it
+correctly demotes to STALE and requires revalidation (the intended
+workflow -- no production banks existed at the time).
 
 ## 3. STOP-reported ambiguities
 

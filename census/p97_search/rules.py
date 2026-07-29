@@ -245,11 +245,12 @@ R_FIBER4 = Rule(
 #     convention throughout -- consistent with the annotations.py
 #     CapAnnotation and the Cell profile definition.
 #
-# Kernel gate (blocks PUBLISHED cell claims only, not this admission):
-# `proof-blueprint axioms` on nonempty_surplusCapPacket_of_K4 and
-# capTriple_caps_card_ge_four must show core axioms only before any
-# per-cell non-existence claim is published. Source-level scan done;
-# kernel check pending (recorded in RESULTS.md).
+# Kernel gate: SATISFIED 2026-07-28 (orchestrator). `proof-blueprint
+# axioms` on nonempty_surplusCapPacket_of_K4,
+# capTriple_caps_card_ge_four, AND Problem97.SurplusCapPacket.capSum
+# each report exactly {propext, Classical.choice, Quot.sound} -- no
+# sorryAx, no custom axioms, no ofReduceBool. Published per-cell
+# non-existence claims are no longer blocked on this gate.
 #
 # Note (no rule needed): for n > 9 the profile sum n + 3 > 12 forces one
 # closed cap >= 5 automatically, so the surplus fact adds no pruning
@@ -292,8 +293,9 @@ R_CAPGE4 = Rule(
         "throughout. PHASE2-SPEC.md section 4.2. Kernel gate "
         "(proof-blueprint axioms on nonempty_surplusCapPacket_of_K4 and "
         "capTriple_caps_card_ge_four) blocks published per-cell "
-        "non-existence claims, not this admission; source-scanned "
-        "sorry/axiom-free, kernel check pending."
+        "non-existence claims, not this admission; kernel-checked "
+        "2026-07-28: proof-blueprint axioms on all three shows core "
+        "axioms only (propext, Classical.choice, Quot.sound)."
     ),
     domain="cell",
 )
