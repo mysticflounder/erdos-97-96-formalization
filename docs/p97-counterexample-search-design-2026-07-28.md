@@ -198,6 +198,14 @@ same day; orientation convention pinned C2 — load-bearing, see
 `scratch/p97-search-lane/fr-pattern-lemma1.md`) and admitted as
 cut-matrix-domain rules R-P1/R-P2 (PHASE2-SPEC §4.4: same-distance
 C2-read cut matrices only; consumer owns the semantics; NO
-shell-semantics generalization). Open before Phase 3: P3/P4
-forbidden-pattern proofs and the blocker-annotation existence lemma
-({{NEEDS_PROOF}}).
+shell-semantics generalization). The blocker-annotation existence
+{{NEEDS_PROOF}} item is RESOLVED-BY-COMPOSITION: Theorem C
+(`scratch/p97-search-lane/blocker-annotation-existence.md`,
+AUDITED-WITH-PATCHES 2026-07-28) replaces the per-configuration
+existence claim — full [9,N] census coverage of B1-annotatable nodes
+implies unconditional non-existence for n ≤ N, via minimality, not a
+per-cell existence hypothesis. Per-cell claims remain
+annotation-conditional; only range closure composes. Open before
+Phase 3: P3/P4 forbidden-pattern proofs (P3 draft in, R2 row-case
+open — see `fr-pattern-p3-proof-draft.md`; P4 in flight) and Phase 3
+per-cell coverage itself.
