@@ -3,7 +3,8 @@
 Implements ``census/p97_search/PHASE2-SPEC.md`` section 7 in full:
 G-P1-REGRESS, G-ANN-B1, G-CANON-ANN, G-CAP-ANN, G-FIBER, G-CAPGE4,
 G-ITER-DEDUP, G-ITER-SHADOW, G-ITER-KILL, G-SEEDED-2, G-SEED-K3,
-G-SEED-FR20, G-BANK-REVAL.
+G-SEED-FR20, G-BANK-REVAL; plus G-CUTPAT (section 4.4 amendment,
+R-P1/R-P2 cut-matrix rules).
 
 Run from the repo root:
     uv run python census/p97_search/controls2.py
@@ -44,8 +45,13 @@ from node import Node, relabel  # noqa: E402
 from rules import (  # noqa: E402
     FiberDefensivePredicateFired,
     R_CAPGE4,
+    R_CIRC2,
     R_FIBER4,
+    R_P1,
+    R_P2,
     apply_rule,
+    find_p2_occurrence,
+    prune_cut_matrix,
     r_fiber4_predicate,
     r_fiber4_profile_violates,
 )
@@ -661,6 +667,98 @@ def gate_bank_reval() -> str:
 # Orchestration
 # ---------------------------------------------------------------------------
 
+def gate_cutpat() -> str:
+    """Spec section 4.4: R-P1/R-P2 kill/spare pairs, FR-20 positive and
+    orientation controls, engine domain refusal, input validation."""
+
+    from itertools import combinations as _comb
+
+    # R-P1 kill: K_{2,2} at non-contiguous rows/cols in a 3x4 matrix.
+    p1_kill = [[0, 1, 0, 1], [0, 0, 0, 0], [0, 1, 0, 1]]
+    res = prune_cut_matrix(p1_kill)
+    assert res.pruned and res.fired == ("R-P1",), f"P1 kill: {res}"
+
+    # R-P1 spare: 3 of the 4 cells.
+    p1_spare = [[0, 1, 0, 1], [0, 0, 0, 0], [0, 1, 0, 0]]
+    res = prune_cut_matrix(p1_spare)
+    assert not res.pruned, f"P1 spare fired: {res}"
+
+    # R-P2 kill, variant A at rows (0,2,5), cols (1,3,4) of a 6x6.
+    va = [[0] * 6 for _ in range(6)]
+    for r, c in ((0, 1), (0, 3), (2, 4), (5, 1), (5, 4)):
+        va[r][c] = 1
+    res = prune_cut_matrix(va)
+    assert res.pruned and res.fired == ("R-P2",), f"P2-A kill: {res}"
+    occ = find_p2_occurrence(va)
+    assert occ == ("A", (0, 2, 5), (1, 3, 4)), f"P2-A witness: {occ}"
+
+    # R-P2 kill, variant B at rows (1,3,4), cols (0,2,5).
+    vb = [[0] * 6 for _ in range(6)]
+    for r, c in ((1, 0), (1, 5), (3, 0), (4, 2), (4, 5)):
+        vb[r][c] = 1
+    res = prune_cut_matrix(vb)
+    assert res.pruned and res.fired == ("R-P2",), f"P2-B kill: {res}"
+    occ = find_p2_occurrence(vb)
+    assert occ == ("B", (1, 3, 4), (0, 2, 5)), f"P2-B witness: {occ}"
+
+    # R-P2 spare: 4 of the 5 variant-A cells.
+    va_spare = [row[:] for row in va]
+    va_spare[5][4] = 0
+    res = prune_cut_matrix(va_spare)
+    assert not res.pruned, f"P2 spare fired: {res}"
+
+    # Positive control: the S-FR-20 symmetric cut matrix (native C2)
+    # must fire NEITHER rule -- the configuration is exactly certified
+    # realizable (fr-certify/), so any firing would be an over-prune.
+    fr = [[0] * 10 for _ in range(10)]
+    for i, j in _seeds_mod._FR20_PAIRS:
+        fr[i - 1][j - 1] = 1
+        fr[j - 1][i - 1] = 1  # unordered pair {i,j}: A_iB_j AND A_jB_i
+    assert sum(map(sum, fr)) == 30 and all(sum(row) == 3 for row in fr), (
+        "FR matrix must be symmetric with 30 ones, degree 3 per row"
+    )
+    res = prune_cut_matrix(fr)
+    assert not res.pruned, f"FR-20 native C2 over-pruned: {res}"
+
+    # Orientation control: the column-reversed matrix is the C1
+    # misreading; it must fire R-P2, with exactly 16 variant-B
+    # occurrences (offsets restated independently of rules.py).
+    fr_c1 = [row[::-1] for row in fr]
+    res = prune_cut_matrix(fr_c1)
+    assert res.pruned and "R-P2" in res.fired, f"FR-20 C1 reading: {res}"
+    b_hits = sum(
+        1
+        for rows in _comb(range(10), 3)
+        for cols in _comb(range(10), 3)
+        if fr_c1[rows[0]][cols[0]]
+        and fr_c1[rows[0]][cols[2]]
+        and fr_c1[rows[1]][cols[0]]
+        and fr_c1[rows[2]][cols[1]]
+        and fr_c1[rows[2]][cols[2]]
+    )
+    assert b_hits == 16, f"expected 16 C1 variant-B occurrences, got {b_hits}"
+
+    # Engine hard-refusal: node-domain rule in the cut-matrix path.
+    try:
+        prune_cut_matrix(p1_spare, rules=(R_CIRC2,))
+    except AssertionError:
+        pass
+    else:
+        raise AssertionError("prune_cut_matrix accepted a node-domain rule")
+
+    # Input validation: ragged and non-0/1 matrices raise ValueError.
+    for bad in ([[0, 1], [0]], [[0, 2], [0, 1]]):
+        try:
+            prune_cut_matrix(bad)
+        except ValueError:
+            pass
+        else:
+            raise AssertionError(f"malformed matrix accepted: {bad}")
+
+    assert R_P1.domain == R_P2.domain == "cut-matrix"
+    return "P1/P2 kill+spare, FR-20 survives C2 / fires R-P2 in C1 (16 B-hits), refusal+validation OK"
+
+
 GATES: tuple[tuple[str, GateFn], ...] = (
     ("G-P1-REGRESS", gate_p1_regress),
     ("G-ANN-B1", gate_ann_b1),
@@ -675,6 +773,7 @@ GATES: tuple[tuple[str, GateFn], ...] = (
     ("G-SEED-K3", gate_seed_k3),
     ("G-SEED-FR20", gate_seed_fr20),
     ("G-BANK-REVAL", gate_bank_reval),
+    ("G-CUTPAT", gate_cutpat),
 )
 
 

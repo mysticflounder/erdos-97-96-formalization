@@ -4,7 +4,10 @@ Companion to `fr-pattern-lemma1.md` (setting, transcription, P1 proof).
 Task: prove the P2 forbidden-pattern case (both mirror variants, subset
 semantics, general common distance δ > 0). Author: math-prover agent.
 Status: main theorem PROVEN (pen-and-paper, self-contained below);
-AWAITING ADVERSARIAL AUDIT. One transcription-level finding: the claim
+ADVERSARIALLY AUDITED 2026-07-28 (math-skeptic): verdict NEEDS WORK —
+one blocking gap (F1, Lemma R restriction-order bracket) plus
+clarification/citation items F2–F5; all patches applied same day
+(audit trail in §9). One transcription-level finding: the claim
 is TRUE under exactly one of the two possible row/column orientation
 conventions and FALSE (explicit exact counterexample) under the other,
 so the orientation convention is load-bearing and is pinned below.
@@ -101,11 +104,14 @@ x, y, z (in A-order, since A is a contiguous arc containing them)
 followed by the contiguous triple from B; under C2 the traversal that
 lists rows increasingly lists columns decreasingly, so the restricted
 cycle reads (x, y, z, w, v, u). [That the restricted cyclic order is
-the sub-hull's boundary order follows from the chord lemma L2 below
-applied to the big polygon: for consecutive-in-the-subset vertices
-p, q, all other subset points lie on one arc of P between them, hence
-strictly on one side of line(p, q), which is the supporting-edge
-characterization for the subset.] All five distances equal δ by the
+the sub-hull's boundary order: let p, q be consecutive-in-the-subset
+vertices. If p, q are adjacent in P, L1 gives all other vertices of
+P — in particular the other four subset points — strictly on one side
+of line(p, q). If p, q are non-adjacent, consecutive-in-the-subset
+means one open arc of P between them contains no subset point; the
+other four subset points lie in the other open arc and by L2(iii) lie
+strictly on one side of line(p, q). Either way the supporting-edge
+characterization holds for the subset.] All five distances equal δ by the
 occurrence. This is exactly a configuration forbidden by (H).
 
 (⇒) A configuration as in (H) is itself a strictly convex hexagon;
@@ -114,7 +120,14 @@ rows r₁, r₂, r₃ = x, y, z, columns c₁, c₂, c₃ = u, v, w, reading the
 cycle per C2; the five unit cells form variant A with r_i = i,
 c_j = j. ∎
 
-Variant B reduces to the same statement (H) — see §5.
+Variant B: Lemma R's proof is cell-set-agnostic — it uses only the
+row/column positions, never which cells are constrained — so the same
+argument maps any 3-row/3-column occurrence to the corresponding pair
+set on the C2 hexagon (x, y, z, w, v, u). For variant B
+({(r₁,c₁), (r₁,c₃), (r₂,c₁), (r₃,c₂), (r₃,c₃)}, columns met as
+c₁, c₂, c₃ = u, v, w) the resulting pair set is {xu, xw, yu, zv, zw} —
+exactly the Corollary's statement in §5, refuted there by relabeling
+to Theorem 1.
 
 **Scaling.** (H) for one δ > 0 is equivalent to (H) for δ = 1 (apply
 the similarity p ↦ p/δ; distances scale by 1/δ, convex position and
@@ -160,7 +173,7 @@ polygon with neighbors s (previous) and t (next). Let W be the closed
 convex cone at apex m spanned by the directions d_s = s − m and
 d_t = t − m (these are linearly independent by no-3-collinear). Then
 K ⊆ W, and every vertex p ∉ {m, s, t} lies in the open cone
-int W = {a·d_s + b·d_t : a, b > 0}.
+int W = m + {a·d_s + b·d_t : a, b > 0}.
 
 *Proof.* By L1, the edge lines line(s, m) and line(m, t) each have all
 other vertices strictly on one side; let H₁, H₂ be the corresponding
@@ -173,7 +186,7 @@ d_s, d_t, i.e., W. Its boundary is ray(m→s) ∪ ray(m→t). A vertex
 p ∉ {m, s, t} on ray(m→s) would make m, s, p collinear (excluded);
 similarly for ray(m→t); and p ≠ m. So p ∈ int W, and interior points
 of a cone spanned by two independent generators are exactly the
-positive combinations. ∎
+positive combinations of the generators, translated to the apex m. ∎
 
 **Lemma L4 (angle inside a wedge).** Let d₁, d₂ be linearly
 independent vectors with Ω := ∠(d₁, d₂) ∈ (0, π), and let
@@ -294,26 +307,27 @@ distinct points x, y, z, w, v, u in strictly convex position with hull
 cyclic order (x, y, z, w, v, u) and |xu| = |xw| = |yu| = |zv| = |zw|
 = δ (the variant-B cell set).
 
-*Proof (explicit mirror argument).* Suppose H were such a
-configuration. Let H′ be its image under any reflection of the plane.
-Distances are preserved; strictly convex position is preserved; the
-directed hull cyclic order reverses, so H′ has undirected cyclic order
-(u, v, w, z, y, x). Relabel: x′ := z, y′ := y, z′ := x, w′ := u,
-v′ := v, u′ := w. Then the cyclic order of H′ reads, after rotation,
-(x′, y′, z′, w′, v′, u′) — the template of Theorem 1 — and the five
-unit pairs of H translate as
+*Proof (relabeling).* Suppose H were such a configuration. Theorem 1's
+hypothesis is an UNDIRECTED cyclic order, and an undirected cyclic
+order is invariant under reversal — so no plane reflection is needed;
+relabeling alone suffices. Relabel: x′ := z, y′ := y, z′ := x,
+w′ := u, v′ := v, u′ := w. The hull cyclic order (x, y, z, w, v, u) of
+H reads (z′, y′, x′, u′, v′, w′) in the primed labels; reversed and
+rotated, this is the undirected cyclic order (x′, y′, z′, w′, v′, u′)
+— the template of Theorem 1 — and the five unit pairs of H translate
+as
 
   xu = z′w′, xw = z′u′, yu = y′w′, zv = x′v′, zw = x′u′,
 
-i.e., exactly {x′u′, x′v′, y′w′, z′u′, z′w′}, the variant-A set. So H′
-contradicts Theorem 1. ∎
+i.e., exactly {x′u′, x′v′, y′w′, z′u′, z′w′}, the variant-A set. So H,
+read in the primed labels, contradicts Theorem 1. ∎
 
-In cut-matrix terms this is the composite symmetry "reflect the
-polygon (reversing the traversal) and re-index both rows and columns",
-which is a symmetry of the C2 convention; single-axis re-indexing is
-not (see §6). Together, Theorem 1 + Corollary discharge both P2
-variants under convention C2, for arbitrary polygons and cuts via
-Lemma R.
+In cut-matrix terms the relabeling is the simultaneous reversal of
+both the row and the column indexing (the double-reversal symmetry of
+the C2 convention, geometrically a plane reflection of the polygon);
+single-axis re-indexing is not a symmetry (see §6). Together,
+Theorem 1 + Corollary discharge both P2 variants under convention C2,
+for arbitrary polygons and cuts via Lemma R.
 
 ## 6. The orientation convention is load-bearing: C1 counterexample
 
@@ -339,7 +353,13 @@ algebraic numbers in ℚ(√2, √(2±√2)); signs decided symbolically with a
 unambiguous). No three points are collinear (all 20 triple
 cross-products nonzero, checked exactly). The configuration is
 mirror-symmetric across X = 1/2 under the relabeling z↔u, x↔w, y↔v,
-which preserves the constraint set.
+which preserves the constraint set. Additionally certified with exact
+rational-endpoint interval arithmetic only (no floating point; square
+roots by exact bisection with exact square comparisons): all 24
+supporting cross-products have exact rational lower bound
+≥ 0.158513 > 0, and all 20 triple cross-products exclude zero —
+`p2_exact_witness_certificate.py` (math-skeptic audit, adopted into
+the repo 2026-07-28).
 
 **Consequences.**
 
@@ -363,8 +383,10 @@ which preserves the constraint set.
 
 ## 7. Numerical sanity checks performed (all EMPIRICALLY VERIFIED)
 
-Scripts in the session scratchpad (`p2_probe.py`, `p2_probe2.py`,
-`p2_diag.py`, `p2_verify_lemmas.py`, `p2_c1_witness.py`); gauge used
+Scripts persisted at `scratch/p97-search-lane/p2-probes/`
+(`p2_probe.py`, `p2_probe2.py`, `p2_diag.py`, `p2_verify_lemmas.py`,
+`p2_c1_witness.py`; copied from the session scratchpad 2026-07-28,
+audit item F5); gauge used
 throughout: z = (0,0), u = (1,0), w = z + e(a), x = u + e(b),
 v = x + e(c), y = w + e(d), which satisfies the five distance
 constraints identically, reducing realizability to a 4-angle search
@@ -420,32 +442,44 @@ by FR's claim, both variants are genuinely forbidden.
 - Everything is invariant under similarity transformations; the
   normalized frame is a gauge choice.
 
-## 9. Honest gap list
+## 9. Honest gap list (post-audit 2026-07-28)
 
-- None known in the main chain (Lemma R, L1–L5, Theorem 1, Corollary,
-  Proposition 2). Every step above is written out; nothing is deferred
-  to "clearly" or to the literature except the standard equivalence of
-  the two definitions of "strictly convex polygon with given boundary
-  cyclic order" (§2), which is textbook convex geometry and is exactly
-  the characterization the numerical predicates check.
-- The exact witness's 24 sign checks: sympy decided signs
-  symbolically where possible with a 60-digit numeric fallback; the
-  0.158 margin versus 60-digit precision leaves no realistic doubt,
-  but a fully exact-field sign certificate (e.g., resultant/minimal
-  polynomial bounds) was not produced. Anyone auditing can recompute
-  in interval arithmetic in seconds.
+- Adversarial audit (math-skeptic, 2026-07-28): verdict NEEDS WORK —
+  one blocking gap IN THE MAIN CHAIN, since patched: Lemma R's
+  restriction-order bracket cited L2 for consecutive-in-the-subset
+  pairs, but L2's hypothesis requires non-adjacency in P, and (e.g.
+  for n = 6, the hexagon itself) such pairs can be adjacent. Patch
+  (audit F1, applied in §3): L1 for adjacent pairs, L2(iii) for
+  non-adjacent. Clarifications also applied: F2 (variant-B reduction
+  made explicit — Lemma R is cell-set-agnostic), F3 (reflection step
+  dropped from the Corollary; relabeling alone suffices for an
+  undirected cyclic order), F4/F5 (below). The audit independently
+  reverified every computation in L2–L5, Theorem 1 Steps 1–5, the
+  Corollary table, and Proposition 2. No further gaps known in the
+  main chain.
+- Exact witness sign checks: originally sympy-symbolic with a 60-digit
+  numeric fallback; now superseded by a fully exact rational-interval
+  certificate (`p2_exact_witness_certificate.py`, produced by the
+  audit, adopted into the repo 2026-07-28): min supporting
+  cross-product ≥ 0.158513 > 0 exactly, all 20 collinearity checks
+  exclude zero exactly, no floating point anywhere.
+- Standard-characterization citation (§2): the equivalence of the
+  extreme-point definition and the edge-support characterization of
+  "strictly convex polygon with given boundary cyclic order" is used
+  in both directions (L1, Lemma R), is textbook convex geometry, and
+  is exactly the characterization the numerical predicates check.
+  Accepted as a standard citation (audit F6), consistent with the P1
+  precedent.
 - Transcription caveat (inherited, not new): the proof addresses the
   cell sets as transcribed in `fr-pattern-lemma1.md` (HIGH
   confidence). If the Fig. 4 reading changes, §5–§6 must be revisited.
-- This draft has NOT yet been adversarially audited; per lane policy
-  P2 may not be ADMITTED as a census rule until it is.
 
 ## 10. What next (ranked)
 
-1. **Adversarial audit** of this draft (math-skeptic), jointly with
-   the P1 proof in `fr-pattern-lemma1.md`; on pass, update the status
-   ledger there (P2 → proven under stated convention; convention
-   section should be promoted into the setting paragraph).
+1. **DONE 2026-07-28** — adversarial audit (math-skeptic) returned
+   NEEDS WORK with exact patches; all patches applied (§9); ledger in
+   `fr-pattern-lemma1.md` updated (P2 → PROVEN + AUDITED; the
+   convention was already promoted into the setting paragraph).
 2. **Propagate the C2 convention** into the P3/P4 transcriptions
    before attempting their proofs — their variant bookkeeping is
    orientation-sensitive in exactly the way P2's was; P3/P4 attempted

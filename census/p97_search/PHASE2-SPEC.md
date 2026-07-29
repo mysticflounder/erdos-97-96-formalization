@@ -209,6 +209,63 @@ content over R-CAPGE4 at profiled cells.
   controls. This controls.py modification is authorized; no other
   Phase-1 behavior may change.
 
+### 4.4 Cut-pattern rules R-P1 / R-P2 (amendment 2026-07-28, v1.1)
+
+New domain value `"cut-matrix"`. Object: a rectangular 0-1 matrix
+(sequence of equal-length rows, entries 0/1) with FIXED semantics —
+rows = side A of a cut of a strictly convex polygon listed in convex
+arc order; columns = side B likewise; a 1-cell marks a row/column pair
+KNOWN to lie at one common distance δ (subset semantics: 0-cells are
+unconstrained; all 1-cells must carry the SAME δ); orientation read in
+convention C2 (opposed): the traversal listing rows in increasing
+order meets columns in decreasing index order
+(`scratch/p97-search-lane/fr-pattern-lemma1.md`, pinned 2026-07-28).
+The predicates are pure pattern scanners; the soundness burden of the
+semantics (convex position, arc contiguity, C2 orientation, same-δ
+1-cells) sits with the CONSUMER — Phase-3 encodings must discharge
+those hypotheses per the standing hypothesis-intersection rule
+(design doc §5). The engine cannot detect a mis-oriented or
+mixed-radius matrix; the hypothesis tags are the audit trail.
+
+- R-P1 (ADMITTED): True (prune) iff the matrix contains a 2×2
+  all-ones submatrix (K₂,₂). Basis: `fr-pattern-lemma1.md` P1 proof,
+  PROVEN + AUDITED 2026-07-28. Hypotheses `("convex",
+  "one-side-contiguous-arc", "same-distance-cells")` — the audited
+  proof uses only the row side's arc contiguity (either side suffices
+  by the pattern's transposition symmetry) and is orientation-neutral,
+  so no C2 tag.
+- R-P2 (ADMITTED): True (prune) iff some rows r1<r2<r3, columns
+  c1<c2<c3 have variant A {(r1,c1),(r1,c2),(r2,c3),(r3,c1),(r3,c3)} or
+  variant B {(r1,c1),(r1,c3),(r2,c1),(r3,c2),(r3,c3)} all 1. Basis:
+  `fr-pattern-p2-proof-draft.md` Theorem 1 + Corollary via Lemma R,
+  PROVEN + AUDITED 2026-07-28 (math-skeptic; blocking gap F1 patched
+  same day). Hypotheses `("convex", "contiguous-cut",
+  "same-distance-cells", "C2-orientation")` — C2 is load-bearing:
+  under the C1 reading variant A is REALIZABLE (draft §6), so a
+  consumer feeding a C1-read matrix would over-prune realizable
+  configurations.
+- Engine: `prune_cut_matrix(matrix, rules)` mirroring `prune_node`
+  (ADMITTED-only + domain asserts); malformed matrices (ragged,
+  non-0/1) raise ValueError. `ADMITTED_CUT_MATRIX_RULES = (R_P1,
+  R_P2)`; both appended to `ALL_RULES` (rule-bank hash changes; no
+  production banks exist as of this amendment). Authorized Phase-1
+  `controls.py` edit: G-RULES' registry-shape check updates from the
+  3-rule to the 5-rule bank; no other Phase-1 behavior may change.
+- NOT admitted: any shell-semantics generalization. S[p]-incidences at
+  different centers carry different radii; a pattern-shaped occurrence
+  among mixed-radius cells is NOT killed by the audited theorems.
+  Phase 3 may construct these matrices only from same-δ certified
+  cell sets.
+- Gate (G-CUTPAT, appended to §7): R-P1 kills a hand-built K₂,₂ and
+  spares 3-of-4 cells; R-P2 kills hand-built variant-A and variant-B
+  occurrences embedded at non-contiguous rows/columns and spares
+  4-of-5 cells; positive control — the S-FR-20 symmetric cut matrix
+  (from `seeds.py` `_FR20_PAIRS`, native C2) fires NEITHER rule
+  (certified-realizable must survive); orientation control — the
+  column-reversed FR matrix fires R-P2 (the C1 misreading contains 16
+  variant-B occurrences); `prune_cut_matrix` hard-refuses a
+  node-domain rule.
+
 ## 5. Cell iterator + bank (`iterate.py`, new)
 
 - `rule_bank_hash() -> str`: sha256 over the sorted

@@ -390,8 +390,14 @@ def gate_rules() -> str:
         raise GateFailure(
             f"G-RULES: CANDIDATE_RULES must be empty after Phase-2 promotion, got {CANDIDATE_RULES}"
         )
-    if len(ALL_RULES) != 3 or {r.id for r in ALL_RULES} != {"R-CIRC2", "R-FIBER4", "R-CAPGE4"}:
-        raise GateFailure(f"G-RULES: ALL_RULES must be exactly the 3 promoted rules, got {ALL_RULES}")
+    # Registry shape: 3 promoted Phase-2 rules + the 2 cut-matrix rules
+    # (R-P1/R-P2, PHASE2-SPEC.md section 4.4 amendment 2026-07-28; the
+    # amendment authorizes exactly this check's update).
+    expected_ids = {"R-CIRC2", "R-FIBER4", "R-CAPGE4", "R-P1", "R-P2"}
+    if len(ALL_RULES) != 5 or {r.id for r in ALL_RULES} != expected_ids:
+        raise GateFailure(
+            f"G-RULES: ALL_RULES must be exactly {sorted(expected_ids)}, got {ALL_RULES}"
+        )
 
     # --- R-TEST-CANDIDATE (synthetic, controls-only): retests the
     # CANDIDATE engine-refusal path now that no production rule is

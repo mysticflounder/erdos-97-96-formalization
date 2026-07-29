@@ -9,6 +9,19 @@
    submatrices -- since the configuration is certified realizable,
    any hit would contradict Theorem 1 / the P1 theorem.
    Also scan the column-reversed matrix (C1 reading) for comparison.
+
+   MATRIX SYMMETRIZATION FIX (2026-07-28, second pass): the 15 pairs
+   are UNORDERED -- pair {i,j} gives BOTH unit distances A_i B_j and
+   A_j B_i (the paper's mirror-symmetric ansatz makes the two distances
+   literally the same expression; fishburn-reeds-notes.md: "(i_A, j_B)
+   AND (j_A, i_B) (matrix symmetric)"; seeds.py S-FR-20 adds both, and
+   every index has degree exactly 3 only in the symmetric matrix).  The
+   first committed version of this scan set only M[i-1][j-1], scanning
+   a 15-one half-matrix; correct matrix has 30 ones.  Corrected
+   results: native C2 still ZERO P1/P2/P4 occurrences (consistency
+   intact); the C1 (column-reversed) reading has SIXTEEN P2 variant-B
+   occurrences (previously reported as one -- artifact of the
+   half-matrix).  Qualitative conclusion unchanged and strengthened.
 """
 import sys
 from itertools import combinations
@@ -60,6 +73,10 @@ EDGES = [(1, 10), (2, 10), (3, 10), (1, 9), (4, 9), (5, 9), (2, 5),
 M = [[0] * 10 for _ in range(10)]
 for i, j in EDGES:
     M[i - 1][j - 1] = 1  # row = a_i, col = b_j (FR indexing = C2 opposed)
+    M[j - 1][i - 1] = 1  # unordered pair {i,j} also gives A_j B_i (symmetric)
+
+assert sum(map(sum, M)) == 30 and all(sum(r) == 3 for r in M), \
+    "FR matrix must be symmetric with 30 ones, degree 3 per row"
 
 
 def count_p1(mat):
@@ -110,6 +127,7 @@ EDGES = [(1, 10), (2, 10), (3, 10), (1, 9), (4, 9), (5, 9), (2, 5),
 M = [[0] * 10 for _ in range(10)]
 for i, j in EDGES:
     M[i - 1][j - 1] = 1
+    M[j - 1][i - 1] = 1  # symmetric (see symmetrization note above)
 
 
 def p4_cells(k):

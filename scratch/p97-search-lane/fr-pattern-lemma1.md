@@ -31,12 +31,21 @@ columns in DECREASING index order (full cycle = a₁..a_α, b_β..b₁ — the
 planar "both sides bottom-to-top" layout of FR's own Table-1
 indexing). Discovered by the P2 proof effort: the convention is
 load-bearing — under the aligned reading (C1) P2's variant A is
-REALIZABLE (exact hexagon witness, sympy-verified, see
-`fr-pattern-p2-proof-draft.md` §6), and decisively, FR's own certified
-20-gon cut matrix contains a P2 occurrence in the C1 (column-reversed)
-reading but zero P1/P2/P4 occurrences in its native C2 reading
-(`p2_convention_checks.py`) — so FR's Lemma 1 is only true in C2. All
-pattern statements and proofs below are read in C2. Valid symmetries
+REALIZABLE (exact hexagon witness, sympy + exact-interval verified,
+see `fr-pattern-p2-proof-draft.md` §6). Evidence that FR's data is C2:
+(a) the certified 20-gon's hull order is pinned by the C1b halfplane
+certificate (`fr-certify/`, PASS) as B₁..B₁₀, A₁₀..A₁ — reversing the
+traversal, A₁..A₁₀, B₁₀..B₁, i.e. rows ascending meet columns
+descending = C2; (b) FR's own 20-gon cut matrix — SYMMETRIC, 30 ones:
+each unordered pair {i, j} gives both A_iB_j and A_jB_i (the
+mirror-symmetric ansatz makes the two distances the same expression) —
+has ZERO P1/P2/P4 occurrences in its native C2 reading but SIXTEEN P2
+variant-B occurrences in the C1 (column-reversed) reading
+(`p2_convention_checks.py`; correction 2026-07-28: the first committed
+scan used a 15-one half-matrix and reported one C1 occurrence;
+symmetrization fixed same day, conclusion unchanged and strengthened)
+— so FR's Lemma 1 is only true in C2. All pattern statements and
+proofs below are read in C2. Valid symmetries
 of the C2 cut matrix: transposition (A↔B) and simultaneous reversal of
 both axes (plane reflection); single-axis reversal is NOT a symmetry.
 P1 is orientation-neutral (K₂,₂ invariant under either axis reversal),
@@ -157,11 +166,16 @@ same-distance-cut setting.
 | Pattern | Transcription | Proof |
 |---|---|---|
 | P1 | HIGH confidence | PROVEN + AUDITED: math-skeptic audit 2026-07-28 returned NEEDS WORK with four exact patches (F2 adjacent-vertex case, F3 half-plane containment proof, F4 different-arcs derivation + two implicit clauses); patches applied verbatim same day; the audit report states the patched text survives all its attacks |
-| P2 | HIGH confidence; convention pinned C2 | PROOF DRAFT (math-prover 2026-07-28, `fr-pattern-p2-proof-draft.md`): both variants forbidden under C2, general δ; orchestrator verified key steps line-by-line + exact C1 witness + FR-matrix consistency scan; math-skeptic audit IN FLIGHT — NOT ADMITTED until it passes |
+| P2 | HIGH confidence; convention pinned C2 | PROVEN + AUDITED (`fr-pattern-p2-proof-draft.md`): both variants forbidden under C2, general δ; math-skeptic audit 2026-07-28 returned NEEDS WORK with one blocking gap (F1: Lemma R's restriction-order bracket cited L2 where adjacency can fail; patch L1-for-adjacent / L2(iii)-for-non-adjacent) + clarifications F2–F5; all patches applied verbatim same day; the audit independently reverified every computation (L2–L5, Theorem 1 Steps 1–5, Corollary, Proposition 2) and supplied an exact rational-interval witness certificate (`p2_exact_witness_certificate.py`); orchestrator separately verified key steps line-by-line + exact C1 witness + FR-matrix consistency scan |
 | P3 | HIGH (lettered family); instance-subsumption is my inference | OPEN obligation |
 | P4 | MODERATE-HIGH (dashed-ellipsis reading) | OPEN obligation |
 
 No P-pattern may be ADMITTED as a census rule until its transcription
-is settled AND its proof is written and adversarially audited. Table 2
-g-values are FR's computed claims over pattern-feasibility; any use
-beyond citation requires recomputation from admitted patterns.
+is settled AND its proof is written and adversarially audited. P1 and
+P2 satisfy the gate and are ADMITTED 2026-07-28 as cut-matrix-domain
+rules R-P1/R-P2 (`census/p97_search/rules.py`, PHASE2-SPEC §4.4):
+same-distance C2-read cut matrices only, consumer owns the matrix
+semantics, no shell-semantics (per-point radius) generalization.
+P3/P4 remain open. Table 2 g-values are FR's computed claims over
+pattern-feasibility; any use beyond citation requires recomputation
+from admitted patterns.

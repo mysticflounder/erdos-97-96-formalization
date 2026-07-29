@@ -186,12 +186,18 @@ gaps, never improvise rules.
 
 Status 2026-07-28: Phase 1 (node/canonical/rules/cells core) and
 Phase 2 (annotations, annotated canonicalization, R-FIBER4/R-CAPGE4
-promotions, cell iterator + jsonl bank, seeds S-K3-9/S-FR-20, 13 gates
+promotions, cell iterator + jsonl bank, seeds S-K3-9/S-FR-20, 14 gates
 in `controls2.py`) are landed and orchestrator-validated
 (`census/p97_search/RESULTS.md`). Rule bank: R-CIRC2, R-FIBER4,
-R-CAPGE4, all ADMITTED. Kernel gate SATISFIED 2026-07-28: the three
-cited Lean frame theorems (`nonempty_surplusCapPacket_of_K4`,
+R-CAPGE4, R-P1, R-P2, all ADMITTED. Kernel gate SATISFIED 2026-07-28:
+the three cited Lean frame theorems (`nonempty_surplusCapPacket_of_K4`,
 `capTriple_caps_card_ge_four`, `SurplusCapPacket.capSum`) each
-kernel-check to core axioms only. Open before Phase 3: P2/P3/P4
-forbidden-pattern proofs (P1 is PROVEN+AUDITED) and the
-blocker-annotation existence lemma ({{NEEDS_PROOF}}).
+kernel-check to core axioms only. P1 and P2 forbidden-pattern proofs
+are PROVEN+AUDITED (P2: math-skeptic 2026-07-28, blocking gap patched
+same day; orientation convention pinned C2 — load-bearing, see
+`scratch/p97-search-lane/fr-pattern-lemma1.md`) and admitted as
+cut-matrix-domain rules R-P1/R-P2 (PHASE2-SPEC §4.4: same-distance
+C2-read cut matrices only; consumer owns the semantics; NO
+shell-semantics generalization). Open before Phase 3: P3/P4
+forbidden-pattern proofs and the blocker-annotation existence lemma
+({{NEEDS_PROOF}}).

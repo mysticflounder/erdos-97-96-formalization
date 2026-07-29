@@ -236,3 +236,50 @@ hypothesis set) are recorded below for transparency:
 
 `census/p97_search/node.py` and `census/p97_search/PHASE2-SPEC.md` are
 unmodified.
+
+---
+
+# Amendment: cut-matrix rules R-P1 / R-P2 (2026-07-28, orchestrator)
+
+PHASE2-SPEC.md section 4.4 (v1.1). Admission basis: the P1 proof
+(`scratch/p97-search-lane/fr-pattern-lemma1.md`, PROVEN + AUDITED) and
+the P2 proof (`scratch/p97-search-lane/fr-pattern-p2-proof-draft.md`,
+Theorem 1 + Corollary via Lemma R, PROVEN + AUDITED 2026-07-28 —
+math-skeptic returned NEEDS WORK with blocking gap F1, patched same
+day; audit reverified every computation).
+
+## Changes
+
+- `rules.py`: new domain `"cut-matrix"`; `find_p1_occurrence` /
+  `find_p2_occurrence` (witness-returning scanners),
+  `r_p1_predicate` / `r_p2_predicate`, `R_P1` / `R_P2` (ADMITTED),
+  `ADMITTED_CUT_MATRIX_RULES`, `prune_cut_matrix` (hard-refusal
+  mirror of `prune_node`), `ALL_RULES` now 5 rules — the rule-bank
+  hash CHANGED (no production banks existed).
+- Semantics contract (soundness burden on the CONSUMER, spec 4.4):
+  rows/columns = cut sides in convex arc order, C2 (opposed)
+  orientation, all 1-cells at ONE common distance. NO shell-semantics
+  (per-point radius) generalization is admitted; Phase 3 may build
+  these matrices only from same-δ certified cell sets. R-P2's
+  hypotheses carry `"C2-orientation"` — load-bearing, since variant A
+  is realizable under the C1 reading.
+- `controls.py` G-RULES: registry-shape check updated 3 → 5 rules
+  (authorized by spec 4.4). `controls2.py`: gate G-CUTPAT added.
+
+## Gate outcomes
+
+Both suites green post-amendment: `controls.py` ALL_GATES_PASS = True,
+`controls2.py` all 14 gates PASS. G-CUTPAT: R-P1/R-P2 kill/spare pairs
+pass; the S-FR-20 symmetric cut matrix (30 ones, degree 3 per row,
+built from `seeds.py` `_FR20_PAIRS`) fires NEITHER rule in its native
+C2 reading (certified-realizable positive control) and fires R-P2 in
+the column-reversed C1 misreading with exactly 16 variant-B
+occurrences (independently recounted in the gate); domain hard-refusal
+and ragged/non-0/1 ValueError paths tested.
+
+Note: an earlier committed convention scan
+(`scratch/p97-search-lane/p2_convention_checks.py`) used a 15-one
+half-matrix (unordered pair {i,j} contributes BOTH A_iB_j and A_jB_i;
+the first scan set only one) and reported one C1 P2-B occurrence;
+corrected same day to the symmetric 30-one matrix — native-C2 results
+unchanged (all zero), C1 count corrected to 16.

@@ -19,19 +19,21 @@ Phase-2 promotions (PHASE2-SPEC.md section 4): R-FIBER4 and R-CAPGE4
 move CANDIDATE -> ADMITTED.  Registries are now split by domain:
 ``ADMITTED_RULES`` (node-domain: R-CIRC2), ``ADMITTED_ANNOTATED_RULES``
 (annotated-node-domain: R-FIBER4), ``ADMITTED_CELL_RULES``
-(cell-domain: R-CAPGE4), plus ``ALL_RULES`` -- a single registry of
-every rule (all now ADMITTED) used for the rule-bank hash
-(``iterate.py``'s ``rule_bank_hash``).  ``CANDIDATE_RULES`` is now empty
--- the only remaining CANDIDATE-refusal test uses a synthetic rule
-(``R-TEST-CANDIDATE``) that lives entirely in ``controls.py`` (spec
-section 4.3), never in this module's registries.
+(cell-domain: R-CAPGE4), ``ADMITTED_CUT_MATRIX_RULES``
+(cut-matrix-domain: R-P1, R-P2 -- spec section 4.4 amendment), plus
+``ALL_RULES`` -- a single registry of every rule (all now ADMITTED)
+used for the rule-bank hash (``iterate.py``'s ``rule_bank_hash``).
+``CANDIDATE_RULES`` is now empty -- the only remaining
+CANDIDATE-refusal test uses a synthetic rule (``R-TEST-CANDIDATE``)
+that lives entirely in ``controls.py`` (spec section 4.3), never in
+this module's registries.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 from itertools import combinations
-from typing import Any, Callable
+from typing import Any, Callable, Sequence
 
 from cells import Cell
 from node import Node
@@ -46,23 +48,31 @@ __all__ = [
     "r_fiber4_predicate",
     "r_fiber4_profile_violates",
     "r_capge4_predicate",
+    "r_p1_predicate",
+    "r_p2_predicate",
+    "find_p1_occurrence",
+    "find_p2_occurrence",
     "R_CIRC2",
     "R_FIBER4",
     "R_CAPGE4",
+    "R_P1",
+    "R_P2",
     "ADMITTED_RULES",
     "ADMITTED_ANNOTATED_RULES",
     "ADMITTED_CELL_RULES",
+    "ADMITTED_CUT_MATRIX_RULES",
     "CANDIDATE_RULES",
     "ALL_RULES",
     "apply_rule",
     "prune_node",
     "prune_annotated_node",
+    "prune_cut_matrix",
 ]
 
 ADMITTED = "ADMITTED"
 CANDIDATE = "CANDIDATE"
 _STATUSES = (ADMITTED, CANDIDATE)
-_DOMAINS = ("node", "annotated-node", "cell")
+_DOMAINS = ("node", "annotated-node", "cell", "cut-matrix")
 
 
 @dataclass(frozen=True)
@@ -301,11 +311,146 @@ R_CAPGE4 = Rule(
 )
 
 
+# ---------------------------------------------------------------------------
+# R-P1 / R-P2 (ADMITTED, spec section 4.4 amendment 2026-07-28).  Domain
+# "cut-matrix": a rectangular 0-1 matrix whose rows are one side A of a
+# cut of a strictly convex polygon in convex arc order, columns the
+# other side B likewise, 1-cells marking pairs KNOWN to lie at ONE
+# common distance delta (subset semantics), read in orientation
+# convention C2 (opposed): the traversal listing rows in increasing
+# order meets columns in decreasing index order
+# (scratch/p97-search-lane/fr-pattern-lemma1.md, pinned 2026-07-28).
+#
+# The predicates are pure pattern scanners.  The SOUNDNESS burden of
+# the matrix semantics (convex position, arc contiguity, C2
+# orientation, same-delta 1-cells) sits with the consumer; the engine
+# cannot detect a mis-oriented or mixed-radius matrix.  In particular
+# NO shell-semantics generalization is admitted: S[p]-incidences at
+# different centers carry different radii, and a pattern-shaped
+# occurrence among mixed-radius cells is NOT killed by the audited
+# theorems.  Phase 3 may construct these matrices only from
+# same-delta certified cell sets.
+#
+# C2 is load-bearing for R-P2: under the aligned (C1) reading variant A
+# is REALIZABLE (exact hexagon witness, fr-pattern-p2-proof-draft.md
+# section 6), so consuming a C1-read matrix would over-prune.  R-P1 is
+# orientation-neutral and needs only ONE side's arc contiguity
+# (fr-pattern-lemma1.md P1 remarks).
+# ---------------------------------------------------------------------------
+
+_CutMatrix = Sequence[Sequence[int]]
+
+
+def _validate_cut_matrix(matrix: _CutMatrix) -> tuple[tuple[int, ...], ...]:
+    rows = tuple(tuple(row) for row in matrix)
+    if rows:
+        width = len(rows[0])
+        for r, row in enumerate(rows):
+            if len(row) != width:
+                raise ValueError(
+                    f"cut matrix is ragged: row 0 has {width} entries, row {r} has {len(row)}"
+                )
+            for c, entry in enumerate(row):
+                if entry not in (0, 1):
+                    raise ValueError(
+                        f"cut matrix entry [{r}][{c}] = {entry!r} is not 0/1"
+                    )
+    return rows
+
+
+def find_p1_occurrence(matrix: _CutMatrix) -> tuple[int, int, int, int] | None:
+    """First (r1, r2, c1, c2) with all four cells 1 (a K_{2,2}), else None."""
+
+    mat = _validate_cut_matrix(matrix)
+    n_rows = len(mat)
+    n_cols = len(mat[0]) if mat else 0
+    for r1, r2 in combinations(range(n_rows), 2):
+        for c1, c2 in combinations(range(n_cols), 2):
+            if mat[r1][c1] and mat[r1][c2] and mat[r2][c1] and mat[r2][c2]:
+                return (r1, r2, c1, c2)
+    return None
+
+
+# P2 variants as (row-index, col-index) offsets into (r1,r2,r3)x(c1,c2,c3),
+# exactly the fr-pattern-lemma1.md cell sets:
+#   variant A: {(r1,c1),(r1,c2),(r2,c3),(r3,c1),(r3,c3)}
+#   variant B: {(r1,c1),(r1,c3),(r2,c1),(r3,c2),(r3,c3)}
+_P2_VARIANT_A = ((0, 0), (0, 1), (1, 2), (2, 0), (2, 2))
+_P2_VARIANT_B = ((0, 0), (0, 2), (1, 0), (2, 1), (2, 2))
+
+
+def find_p2_occurrence(
+    matrix: _CutMatrix,
+) -> tuple[str, tuple[int, int, int], tuple[int, int, int]] | None:
+    """First (variant, rows, cols) P2 occurrence ("A" or "B"), else None."""
+
+    mat = _validate_cut_matrix(matrix)
+    n_rows = len(mat)
+    n_cols = len(mat[0]) if mat else 0
+    for rows in combinations(range(n_rows), 3):
+        for cols in combinations(range(n_cols), 3):
+            for name, cells in (("A", _P2_VARIANT_A), ("B", _P2_VARIANT_B)):
+                if all(mat[rows[ri]][cols[ci]] for ri, ci in cells):
+                    return (name, rows, cols)
+    return None
+
+
+def r_p1_predicate(matrix: _CutMatrix) -> bool:
+    """True (prune) iff the C2 cut matrix contains a 2x2 all-ones submatrix."""
+
+    return find_p1_occurrence(matrix) is not None
+
+
+def r_p2_predicate(matrix: _CutMatrix) -> bool:
+    """True (prune) iff the C2 cut matrix contains a P2 variant-A or -B
+    occurrence as a submatrix."""
+
+    return find_p2_occurrence(matrix) is not None
+
+
+R_P1 = Rule(
+    id="R-P1",
+    status=ADMITTED,
+    hypotheses=("convex", "one-side-contiguous-arc", "same-distance-cells"),
+    predicate=r_p1_predicate,
+    citation=(
+        "scratch/p97-search-lane/fr-pattern-lemma1.md P1 proof, PROVEN + "
+        "AUDITED 2026-07-28 (math-skeptic audit, patches applied): no "
+        "strictly convex polygon has distinct rows a, a' and columns b, b' "
+        "with all four cross-cut distances equal (K_{2,2} forbidden). Uses "
+        "only the row side's arc contiguity (transposition symmetry covers "
+        "the other side); orientation-neutral; k-general (any single common "
+        "distance). PHASE2-SPEC.md section 4.4."
+    ),
+    domain="cut-matrix",
+)
+
+R_P2 = Rule(
+    id="R-P2",
+    status=ADMITTED,
+    hypotheses=("convex", "contiguous-cut", "same-distance-cells", "C2-orientation"),
+    predicate=r_p2_predicate,
+    citation=(
+        "scratch/p97-search-lane/fr-pattern-p2-proof-draft.md Theorem 1 + "
+        "Corollary via Lemma R, PROVEN + AUDITED 2026-07-28 (math-skeptic; "
+        "blocking gap F1 patched same day): under convention C2 neither P2 "
+        "variant is realizable in a strictly convex polygon with a "
+        "contiguous cut and one common distance across the five cells. "
+        "C2 is LOAD-BEARING: under the C1 reading variant A is realizable "
+        "(exact hexagon witness, draft section 6 + "
+        "p2_exact_witness_certificate.py), so a C1-read matrix would "
+        "over-prune. PHASE2-SPEC.md section 4.4."
+    ),
+    domain="cut-matrix",
+)
+
+
 ADMITTED_RULES: tuple[Rule, ...] = (R_CIRC2,)
 ADMITTED_ANNOTATED_RULES: tuple[Rule, ...] = (R_FIBER4,)
 ADMITTED_CELL_RULES: tuple[Rule, ...] = (R_CAPGE4,)
+ADMITTED_CUT_MATRIX_RULES: tuple[Rule, ...] = (R_P1, R_P2)
 CANDIDATE_RULES: tuple[Rule, ...] = ()
-ALL_RULES: tuple[Rule, ...] = (R_CIRC2, R_FIBER4, R_CAPGE4)
+ALL_RULES: tuple[Rule, ...] = (R_CIRC2, R_FIBER4, R_CAPGE4, R_P1, R_P2)
 
 
 def apply_rule(rule: Rule, obj: Any) -> bool:
@@ -342,6 +487,33 @@ def prune_node(
             f"(domain={rule.domain!r})"
         )
         if apply_rule(rule, node):
+            fired.append(rule.id)
+            fired_hypotheses.update(rule.hypotheses)
+    return PruneResult(
+        pruned=bool(fired), fired=tuple(fired), hypotheses=frozenset(fired_hypotheses)
+    )
+
+
+def prune_cut_matrix(
+    matrix: _CutMatrix, rules: tuple[Rule, ...] = ADMITTED_CUT_MATRIX_RULES
+) -> PruneResult:
+    """Run a C2-read same-distance cut matrix through ``rules`` (default:
+    the fixed ADMITTED cut-matrix bank).  Mirrors ``prune_node`` with the
+    same hard-refusal asserts: every rule consulted must be ADMITTED and
+    cut-matrix-domain (spec section 4.4).  The caller owns the matrix
+    semantics -- convex position, arc contiguity, C2 orientation, and
+    one common distance across all 1-cells (see the R-P1/R-P2 block
+    comment above).
+    """
+
+    fired: list[str] = []
+    fired_hypotheses: set[str] = set()
+    for rule in rules:
+        assert rule.domain == "cut-matrix", (
+            f"prune_cut_matrix hard-refuses non-cut-matrix-domain rule "
+            f"{rule.id!r} (domain={rule.domain!r})"
+        )
+        if apply_rule(rule, matrix):
             fired.append(rule.id)
             fired_hypotheses.update(rule.hypotheses)
     return PruneResult(
