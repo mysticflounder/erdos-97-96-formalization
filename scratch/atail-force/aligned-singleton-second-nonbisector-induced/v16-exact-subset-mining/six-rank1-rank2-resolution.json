@@ -1,0 +1,498 @@
+{
+  "cases": [
+    {
+      "aliases": [
+        [
+          "e3"
+        ],
+        [
+          "a0",
+          "z"
+        ],
+        [
+          "r1",
+          "z4",
+          "y"
+        ],
+        [
+          "b2",
+          "bz"
+        ],
+        [
+          "r2",
+          "b1",
+          "s3",
+          "z2"
+        ],
+        [
+          "a2",
+          "r3"
+        ]
+      ],
+      "cvc5_pinned_replay": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-exact-subset-mining/six-rank-1-rational-pinned.smt2"
+        ],
+        "elapsed_seconds": 0.011115999892354012,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "cvc5",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      },
+      "exact_fraction_replay": {
+        "equality_differences": {
+          "13": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "19": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "20": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "22": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "23": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "24": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "36": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        "failures": [],
+        "minimum_orientation": {
+          "denominator": 57265,
+          "numerator": 744
+        },
+        "minimum_squared_distance": {
+          "denominator": 65,
+          "numerator": 4
+        },
+        "status": "PASS"
+      },
+      "gauge_normalized_coordinates": [
+        {
+          "global_class": 3,
+          "local_vertex": 0,
+          "x": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 5,
+          "local_vertex": 1,
+          "x": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 9,
+          "local_vertex": 2,
+          "x": {
+            "denominator": 37253,
+            "numerator": 57900
+          },
+          "y": {
+            "denominator": 37253,
+            "numerator": 600
+          }
+        },
+        {
+          "global_class": 10,
+          "local_vertex": 3,
+          "x": {
+            "denominator": 74506,
+            "numerator": 94253
+          },
+          "y": {
+            "denominator": 149012,
+            "numerator": 63141
+          }
+        },
+        {
+          "global_class": 11,
+          "local_vertex": 4,
+          "x": {
+            "denominator": 37253,
+            "numerator": 28758
+          },
+          "y": {
+            "denominator": 37253,
+            "numerator": 18828
+          }
+        },
+        {
+          "global_class": 13,
+          "local_vertex": 5,
+          "x": {
+            "denominator": 186265,
+            "numerator": 121924
+          },
+          "y": {
+            "denominator": 186265,
+            "numerator": 80788
+          }
+        }
+      ],
+      "parameters": {
+        "t": {
+          "denominator": 2,
+          "numerator": 3
+        },
+        "u": {
+          "denominator": 16,
+          "numerator": -25
+        },
+        "v": {
+          "denominator": 1,
+          "numerator": 2
+        }
+      },
+      "pinned_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-exact-subset-mining/six-rank-1-rational-pinned.smt2",
+      "pinned_smt2_sha256": "5652bad91afa68b6b6f4e99420b54049d06fcbf0ce1e2a2970b61f6efa1e0b73",
+      "rank": 1,
+      "source_equation_indices": [
+        13,
+        19,
+        20,
+        22,
+        23,
+        24,
+        36
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        3,
+        5,
+        9,
+        10,
+        11,
+        13
+      ],
+      "z3_pinned_replay": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:30000",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-exact-subset-mining/six-rank-1-rational-pinned.smt2"
+        ],
+        "elapsed_seconds": 0.056243374943733215,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      }
+    },
+    {
+      "aliases": [
+        [
+          "e3"
+        ],
+        [
+          "a0",
+          "z"
+        ],
+        [
+          "r1",
+          "z4",
+          "y"
+        ],
+        [
+          "b2",
+          "bz"
+        ],
+        [
+          "r2",
+          "b1",
+          "s3",
+          "z2"
+        ],
+        [
+          "bs",
+          "r4"
+        ]
+      ],
+      "cvc5_pinned_replay": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-exact-subset-mining/six-rank-2-rational-pinned.smt2"
+        ],
+        "elapsed_seconds": 0.010924958856776357,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "cvc5",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      },
+      "exact_fraction_replay": {
+        "equality_differences": {
+          "13": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "19": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "21": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "22": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "23": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "25": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "36": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        "failures": [],
+        "minimum_orientation": {
+          "denominator": 57265,
+          "numerator": 744
+        },
+        "minimum_squared_distance": {
+          "denominator": 65,
+          "numerator": 4
+        },
+        "status": "PASS"
+      },
+      "gauge_normalized_coordinates": [
+        {
+          "global_class": 3,
+          "local_vertex": 0,
+          "x": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 5,
+          "local_vertex": 1,
+          "x": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 9,
+          "local_vertex": 2,
+          "x": {
+            "denominator": 37253,
+            "numerator": 57900
+          },
+          "y": {
+            "denominator": 37253,
+            "numerator": 600
+          }
+        },
+        {
+          "global_class": 10,
+          "local_vertex": 3,
+          "x": {
+            "denominator": 74506,
+            "numerator": 94253
+          },
+          "y": {
+            "denominator": 149012,
+            "numerator": 63141
+          }
+        },
+        {
+          "global_class": 11,
+          "local_vertex": 4,
+          "x": {
+            "denominator": 37253,
+            "numerator": 28758
+          },
+          "y": {
+            "denominator": 37253,
+            "numerator": 18828
+          }
+        },
+        {
+          "global_class": 16,
+          "local_vertex": 5,
+          "x": {
+            "denominator": 186265,
+            "numerator": 121924
+          },
+          "y": {
+            "denominator": 186265,
+            "numerator": 80788
+          }
+        }
+      ],
+      "parameters": {
+        "t": {
+          "denominator": 2,
+          "numerator": 3
+        },
+        "u": {
+          "denominator": 16,
+          "numerator": -25
+        },
+        "v": {
+          "denominator": 1,
+          "numerator": 2
+        }
+      },
+      "pinned_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-exact-subset-mining/six-rank-2-rational-pinned.smt2",
+      "pinned_smt2_sha256": "5652bad91afa68b6b6f4e99420b54049d06fcbf0ce1e2a2970b61f6efa1e0b73",
+      "rank": 2,
+      "source_equation_indices": [
+        13,
+        19,
+        21,
+        22,
+        23,
+        25,
+        36
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        3,
+        5,
+        9,
+        10,
+        11,
+        16
+      ],
+      "z3_pinned_replay": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:30000",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-exact-subset-mining/six-rank-2-rational-pinned.smt2"
+        ],
+        "elapsed_seconds": 0.007928375154733658,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      }
+    }
+  ],
+  "normalized_schema": {
+    "equalities": [
+      "AE=CE",
+      "BC=BE=BF",
+      "BD=CD=DE"
+    ],
+    "ordered_roles": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "parameterization": [
+      "B=(0,0), C=(1,0)",
+      "E=circle(t), D=(1/2,t/2), F=circle(v)",
+      "A=E+R_u(C-E)"
+    ]
+  },
+  "schema": "p97-v16-six-rank1-rank2-exact-rational-resolution-v1",
+  "source_validation": {
+    "actual_hashes": {
+      "cegar_result_sha256": "4305fde6500059ef45b268fe09bd99edd3e3ea63386e162b6524ce27e0ef61a3",
+      "cegar_script_current_sha256": "29db457d62c7ba10a096a07aa3600a34baf859bcf3019c4d20e04fc1455c57dc",
+      "checkpoint_sha256": "0fbe6cad9144ad555825ed09e7c37fc78c07c184250d4fbb8aff53c1f68a7a19",
+      "exact_positive_rows_smt2_sha256": "08fd9aaa292be6574be7788897e106e903b865682fe72b07eebe271a20fadd2e",
+      "exact_probe_result_sha256": "90632f4c9b107a64458be1f6fb9f9ef3feb0ec81e4acde276a274c08eee60df0"
+    },
+    "alias_class_count": 19,
+    "current_cegar_drift_policy": "current implementation drift is recorded but cannot change the immutable exact-probe target",
+    "current_cegar_matches_recorded": true,
+    "expected_hashes": {
+      "cegar_result_sha256": "4305fde6500059ef45b268fe09bd99edd3e3ea63386e162b6524ce27e0ef61a3",
+      "checkpoint_sha256": "0fbe6cad9144ad555825ed09e7c37fc78c07c184250d4fbb8aff53c1f68a7a19",
+      "exact_positive_rows_smt2_sha256": "08fd9aaa292be6574be7788897e106e903b865682fe72b07eebe271a20fadd2e",
+      "exact_probe_result_sha256": "90632f4c9b107a64458be1f6fb9f9ef3feb0ec81e4acde276a274c08eee60df0"
+    },
+    "full_formula_reason_unknown": "hard subprocess wall timeout",
+    "full_formula_status": "UNKNOWN",
+    "method": "fixed hash gates for exact probe/result/checkpoint/SMT plus schema, ordered-class, normalized-equation, assertion-count, and terminal row-replay checks",
+    "positive_equation_count": 38,
+    "probe_schema": "p97-aliased-euclidean-survivor-probe-v2-terminal-rows",
+    "recorded_cegar_script_sha256": "29db457d62c7ba10a096a07aa3600a34baf859bcf3019c4d20e04fc1455c57dc",
+    "status": "PASS"
+  },
+  "terminal_status": "ALL_TWO_SAT_EXACT_RATIONAL_WITNESSES",
+  "trust_scope": "Exact Fraction replay and coordinate-pinned Z3/cvc5 SAT evidence for the induced positive-equality abstraction; not the full CEGAR formula and not Lean/kernel closure."
+}

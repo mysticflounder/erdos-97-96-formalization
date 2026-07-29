@@ -1,0 +1,120 @@
+{
+  "cvc5": {
+    "command": [
+      "/Users/adam/bin/cvc5",
+      "--lang",
+      "smt2",
+      "--nl-cov",
+      "--tlimit",
+      "180000"
+    ],
+    "elapsed_seconds": 180.02433849987574,
+    "fail_closed": true,
+    "reason_unknown": "cvc5 timeout without a status line",
+    "returncode": -6,
+    "solver": "cvc5",
+    "status": "UNKNOWN",
+    "stderr_tail": [
+      "<stdin>:3.2: No set-logic command was given before this point.",
+      "<stdin>:3.2: cvc5 will make all theories available.",
+      "<stdin>:3.2: Consider setting a stricter logic for (likely) better performance.",
+      "<stdin>:3.2: To suppress this warning in the future use (set-logic ALL).",
+      "cvc5 interrupted by timeout."
+    ],
+    "stdout_tail": [],
+    "timeout_ms": 180000
+  },
+  "epistemic_status": "UNKNOWN_FAIL_CLOSED",
+  "retained_orientation_constraints": [
+    "cyclic_5_7_9",
+    "cyclic_5_7_11",
+    "cyclic_5_7_12",
+    "cyclic_5_9_11",
+    "cyclic_9_10_11"
+  ],
+  "schema": "v16-core6-reduced-obstruction-v1",
+  "scope": "This formula retains only consequences of the full six-vertex strict-convex system, so its UNSAT implies full-system UNSAT.",
+  "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-full-euclidean-feasibility/core6-reduced-obstruction.smt2",
+  "source_equations": [
+    {
+      "left_edge": [
+        5,
+        7
+      ],
+      "right_edge": [
+        5,
+        12
+      ],
+      "source_index": 16
+    },
+    {
+      "left_edge": [
+        5,
+        9
+      ],
+      "right_edge": [
+        5,
+        11
+      ],
+      "source_index": 19
+    },
+    {
+      "left_edge": [
+        5,
+        10
+      ],
+      "right_edge": [
+        9,
+        10
+      ],
+      "source_index": 22
+    },
+    {
+      "left_edge": [
+        5,
+        10
+      ],
+      "right_edge": [
+        10,
+        11
+      ],
+      "source_index": 23
+    },
+    {
+      "left_edge": [
+        7,
+        11
+      ],
+      "right_edge": [
+        11,
+        12
+      ],
+      "source_index": 34
+    },
+    {
+      "left_edge": [
+        9,
+        10
+      ],
+      "right_edge": [
+        10,
+        11
+      ],
+      "source_index": 36
+    }
+  ],
+  "subset": [
+    5,
+    7,
+    9,
+    10,
+    11,
+    12
+  ],
+  "z3": {
+    "elapsed_seconds": 180.01114445808344,
+    "reason_unknown": "canceled",
+    "status": "UNKNOWN",
+    "unsat_core": null
+  }
+}

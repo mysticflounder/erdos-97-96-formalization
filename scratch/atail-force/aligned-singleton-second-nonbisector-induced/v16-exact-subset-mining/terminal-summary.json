@@ -1,0 +1,31 @@
+{
+  "schema": "p97-v16-exact-induced-subset-mining-terminal-summary-v1",
+  "terminal_status": "NO_VALIDATED_UNSAT_CORE_IN_EXHAUSTIVE_FOUR_FIVE_OR_RANKED_SIX_PREFIX",
+  "source": {
+    "cegar_schema_version": 16,
+    "cegar_status": "ALIVE",
+    "quotient_class_count": 19,
+    "positive_quotient_equality_count": 38
+  },
+  "exhaustive": {
+    "four": {"total": 3876, "SAT": 3876, "UNSAT": 0, "UNKNOWN": 0},
+    "five": {"total": 11628, "SAT": 11628, "UNSAT": 0, "UNKNOWN": 0}
+  },
+  "six_ranked_bounded": {
+    "ranked_total": 27132,
+    "nonempty_induced_total": 13126,
+    "checked_prefix_ranks": [1, 24],
+    "checked_total": 24,
+    "SAT": 10,
+    "UNSAT": 0,
+    "UNKNOWN_FAIL_CLOSED": 14
+  },
+  "validated_unsat_core": null,
+  "unsat_literal_minimality": "NOT_APPLICABLE_NO_UNSAT",
+  "theorem_search": {
+    "agentic_search_count": 1,
+    "exact_hit": false,
+    "reason_no_obstruction_theorem_proposed": "The exact schema has a validated rational SAT witness."
+  },
+  "trust_scope": "Exact induced positive-equality abstraction only; bounded at size six; external exact arithmetic and solvers; not full CEGAR and not Lean/kernel closure."
+}

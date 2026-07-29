@@ -453,6 +453,98 @@ theorem false_of_two_selected_rows_shared_late_pair
       hboundary_injective hboundary_image hboundary_ccw hiab hibc hicd
   linarith
 
+/-- The two endpoint vertices of an increasing boundary quadruple cannot both
+bisect its middle pair.
+
+This is the equality-only form of the smallest obstruction emitted by the
+induced-metric CEGAR search: the companion strict Kalmanson inequality has
+equal left and right sides after the two displayed substitutions. -/
+theorem false_of_four_ccw_endpoint_centers_bisect_middle_pair
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {ia ib ic id : Fin carrier.card}
+    (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id)
+    (haeq :
+      dist (boundary ia) (boundary ib) =
+        dist (boundary ia) (boundary ic))
+    (hdeq :
+      dist (boundary id) (boundary ib) =
+        dist (boundary id) (boundary ic)) :
+    False := by
+  have hstrict :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+      hboundary_injective hboundary_image hboundary_ccw hiab hibc hicd
+  have hdeq' :
+      dist (boundary ic) (boundary id) =
+        dist (boundary ib) (boundary id) := by
+    simpa only [dist_comm (boundary id) (boundary ib),
+      dist_comm (boundary id) (boundary ic)] using hdeq.symm
+  linarith
+
+/-- The two middle vertices of an increasing boundary quadruple cannot both be
+equidistant from its endpoint pair.
+
+This is the equality-only form of the exact four-point obstruction emitted by
+the Euclidean subset-core miner.  After commuting the two row equalities, the
+companion strict Kalmanson inequality has identical left and right sides. -/
+theorem false_of_four_ccw_middle_centers_bisect_endpoint_pair
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {ia ib ic id : Fin carrier.card}
+    (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id)
+    (hbeq :
+      dist (boundary ib) (boundary ia) =
+        dist (boundary ib) (boundary id))
+    (hceq :
+      dist (boundary ic) (boundary ia) =
+        dist (boundary ic) (boundary id)) :
+    False := by
+  have hstrict :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
+      hboundary_injective hboundary_image hboundary_ccw hiab hibc hicd
+  have hbeq' :
+      dist (boundary ia) (boundary ib) =
+        dist (boundary ib) (boundary id) := by
+    simpa only [dist_comm (boundary ib) (boundary ia)] using hbeq
+  have hceq' :
+      dist (boundary ia) (boundary ic) =
+        dist (boundary ic) (boundary id) := by
+    simpa only [dist_comm (boundary ic) (boundary ia)] using hceq
+  linarith
+
+/-- Selected-row adapter for
+`false_of_four_ccw_middle_centers_bisect_endpoint_pair`. -/
+theorem false_of_two_selected_middle_rows_shared_endpoint_pair
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_image : Finset.univ.image boundary = carrier)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {ia ib ic id : Fin carrier.card}
+    (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id)
+    (BRow : SelectedFourClass carrier (boundary ib))
+    (CRow : SelectedFourClass carrier (boundary ic))
+    (hia_mem_BRow : boundary ia ∈ BRow.support)
+    (hid_mem_BRow : boundary id ∈ BRow.support)
+    (hia_mem_CRow : boundary ia ∈ CRow.support)
+    (hid_mem_CRow : boundary id ∈ CRow.support) :
+    False := by
+  apply false_of_four_ccw_middle_centers_bisect_endpoint_pair
+    hcarrier hboundary_injective hboundary_image hboundary_ccw
+    hiab hibc hicd
+  · exact
+      (BRow.support_eq_radius _ hia_mem_BRow).trans
+        (BRow.support_eq_radius _ hid_mem_BRow).symm
+  · exact
+      (CRow.support_eq_radius _ hia_mem_CRow).trans
+        (CRow.support_eq_radius _ hid_mem_CRow).symm
+
 #print axioms exists_mem_openSegment_diagonals_of_ccw
 #print axioms dist_add_dist_lt_diagonal_sum_of_openSegment_diagonals
 #print axioms complementary_dist_add_dist_lt_diagonal_sum_of_openSegment_diagonals
@@ -463,6 +555,9 @@ theorem false_of_two_selected_rows_shared_late_pair
 #print axioms false_of_five_ccw_three_shell_equalities
 #print axioms false_of_selected_rows_in_five_ccw_order
 #print axioms false_of_two_selected_rows_shared_late_pair
+#print axioms false_of_four_ccw_endpoint_centers_bisect_middle_pair
+#print axioms false_of_four_ccw_middle_centers_bisect_endpoint_pair
+#print axioms false_of_two_selected_middle_rows_shared_endpoint_pair
 
 end CapCrossingKalmansonBridge
 end Problem97

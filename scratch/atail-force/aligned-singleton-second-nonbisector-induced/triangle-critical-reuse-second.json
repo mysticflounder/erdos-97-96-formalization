@@ -1,0 +1,132 @@
+{
+  "alias_classes": [
+    [
+      "a0",
+      "e2"
+    ],
+    [
+      "a1"
+    ],
+    [
+      "a2"
+    ],
+    [
+      "p1"
+    ],
+    [
+      "p2"
+    ],
+    [
+      "r1",
+      "z3"
+    ],
+    [
+      "r2",
+      "z2"
+    ],
+    [
+      "q"
+    ],
+    [
+      "other"
+    ],
+    [
+      "z"
+    ],
+    [
+      "t",
+      "z4"
+    ],
+    [
+      "source"
+    ],
+    [
+      "b1"
+    ],
+    [
+      "b2",
+      "bz",
+      "r3"
+    ],
+    [
+      "bs"
+    ],
+    [
+      "s2"
+    ],
+    [
+      "s3"
+    ],
+    [
+      "s4"
+    ],
+    [
+      "p3"
+    ],
+    [
+      "p4"
+    ],
+    [
+      "r4"
+    ],
+    [
+      "escape"
+    ],
+    [
+      "e3"
+    ],
+    [
+      "e4"
+    ]
+  ],
+  "constraint_counts": {
+    "aligned_named_trace": 10,
+    "apices_distinct": 1,
+    "canonical_blockers_distinct": 1,
+    "critical_escape_exact4": 1,
+    "critical_shell_1": 34,
+    "critical_shell_2": 34,
+    "critical_shell_source": 34,
+    "escape_outside_seed": 12,
+    "first_apex_radius": 34,
+    "first_apex_rho": 34,
+    "first_outside_pair": 1,
+    "inside_outside_distinct": 20,
+    "outside_cap_separation": 1,
+    "quotient_distance": 870,
+    "quotient_distance_congruence": 12180,
+    "rank_bounds": 60,
+    "retained_disjoint_pairs": 1,
+    "retained_radii_distinct": 1,
+    "scale": 1,
+    "second_blocker_nonbisector": 1,
+    "second_outside_pair": 1,
+    "singleton_named_trace": 2,
+    "source_blocker_not_apices": 2,
+    "source_cross_pair_omissions": 2,
+    "strict_triangle": 12180,
+    "z_blocker_branch": 1,
+    "z_blocker_not_first": 1,
+    "z_critical_shell": 34,
+    "z_new_from_first_pair": 2,
+    "z_reused_support": 8
+  },
+  "elapsed_seconds": 23.180519666988403,
+  "epistemic_status": "INDUCED_NECESSARY_CONDITION_ONLY",
+  "escape_arm": "critical",
+  "geometry": "triangle",
+  "kalmanson_order_cuts": 0,
+  "kalmanson_refinements": 0,
+  "named_occurrences": 30,
+  "opaque_or_oracular": [
+    "CounterexampleData.K4 outside the explicitly named exact shells",
+    "FullyDeletionRobustAt and tri-apex richness",
+    "minimality and the row-escape producer",
+    "noM44",
+    "MinimalUniqueFourCover and all carrier-wide cover/cardinality facts"
+  ],
+  "schema": "p97-aligned-singleton-induced-witness-v1",
+  "scope_warning": "W is the quotient of named occurrences, not the full carrier D.A; Exact4 excludes only named W points.",
+  "status": "SAT",
+  "z_branch": "reuse-second"
+}

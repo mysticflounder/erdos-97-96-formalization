@@ -9,14 +9,16 @@ nothing below depends on them.
 
 ## 1. Baseline
 
-19 open spine obligations (live blueprint 2026-07-28, identical for
+20 open spine obligations (live blueprint 2026-07-28, identical for
 `Problem97.erdos97_rhs` and `Problem96.erdos96_rhs`; kernel `#print axioms`
 is the arbiter — the refs miner has a known dropped-edge bug). All in
 `ATail/FrontierLiveClosure.lean` (FLC), namespace
 `Problem97.ATailFrontierLiveClosure`. Recomposed 2026-07-28 by the landed
-simplification refactor (`a0f73bc1`): still 19 leaves, but A dropped 8→6
+simplification refactor (`a0f73bc1`): initially 19 leaves, with A dropping 8→6
 (two `blockerV` arms closed; `blockerVRowOther_*` renamed `blockerVRow_*`)
-and B grew 1→3 (B2/B3 are live named leaves again).
+and B growing 1→3 (B2/B3 are live named leaves again). A later source-clean
+F3 narrowing replaced one residual by two directly consumed theorems, taking
+the current live total to 20.
 
 | Pkg | Leaves | Declarations |
 |---|---|---|
@@ -25,7 +27,7 @@ and B grew 1→3 (B2/B3 are live named leaves again).
 | D-R | 2 | `false_of_exactFourPostCardElevenTwoRadiusBranch`, `false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome` |
 | D-E | 2 | `false_of_firstApexUniqueRadiusExactFive{Distinct,Common}ObstructionCenter(s)Residual` |
 | E | 1 | `false_of_retainedInteriorDirectedOmission_and_all_low_hits` |
-| F-Γ | 3 | `TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`, `...false_of_capSource_freshThirdBlockerFiber`, `...false_of_capSource_firstFiber_collisionFiveCenterDeletion_of_secondBlocker_dist_ne` |
+| F-Γ | 4 | `TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`, `...false_of_capSource_freshThirdBlockerFiber`, `...false_of_twoCapSources_mutualCrossMembership_distinctBlockers`, `...false_of_twoCapSources_oneSidedDeletionSurvival` |
 | B | 3 | `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision`, `false_of_exactFourMutualOmission_fourCenterCommonDeletion_{blockerCoincidence,survivalSquare}` |
 
 Notes: F4 (`freshOutsideSecondBlockerFiber`) is closed by the landed fiber
@@ -87,6 +89,11 @@ These results shape where compute is spent; do not re-run them.
   produce the missing positive Euclidean/global bridge: force the second
   blocker to bisect the pair (or force both pair points into its selected
   row), contradicting the live inequality.
+  The v17 mirror-interleaving six-point cut now refutes the exact frozen v16
+  local survivor, but the resumed 100,000-cut outer ledger timed out
+  fail-closed.  It neither proves this live child nor supplies the required
+  live-to-finite producer; see the K-A-LIVE v17 checkpoint in
+  `docs/closure-matrix-2026-07-09.md`.
 - **Equality-arm routes are dead** (`scratch/collision-equality-arms/`):
   the four collision equality alternatives all produce
   center-not-in-own-support, the opposite of the needed cross-row
@@ -94,7 +101,7 @@ These results shape where compute is spent; do not re-run them.
 - **The consolidated metric question (Q)** (dead-ends): the global
   per-vertex-K4 forced-repeated-circle incidence is irreducibly metric /
   ∃ℝ-flavoured. The plan does not attempt to decide (Q) wholesale; it
-  attacks the 19 leaves' finite case structure, where each leaf's
+  attacks the 20 live leaves' finite case structure, where each leaf's
   hypothesis stack is strictly richer than (Q).
 
 ## 4. The engine: two-layer CEGAR per package
@@ -159,12 +166,14 @@ semantics, D/E share the residual frame.
 | 1 | A-core (6) | Partition T = {z_d} ∪ I_u ∪ I_v, |I_u| = |I_v| = 2 disjoint; β-pattern with β(x) = a₁ iff x ∈ Cl(a₁,r); CD overlap ≤ 2; cap-growth trichotomy; leaf deltas A2–A8 (β(source) placement × N_u/N_v row-heaviness) | Encoder must find SAT on the 15-point witness's incidence type restricted to the layers it realizes; leaf-delta consistency: A3–A5 and A7–A8 deltas mutually exclusive by construction |
 | 2 | C-core (2) | Same skeleton as A (Γ₂ = {z*} ∪ I_u ∪ I_v); C1 placement trichotomy; C2 explicit collision arm | Same witness gate; C1 trichotomy exhaustiveness checked against A's version |
 | 3 | E (1) | Cover bound |A| ≤ 4|N|; cap-sum identity; derived n ≥ 15; unique-four shell cover as functional map x ↦ Row(x) into 4-blocks; directed-omission arm choice; E9 low-hit ≤ 2 clauses | Reproduce the kernel-checked low-hit consumers' arithmetic on a hand-built 15-point pattern |
-| 4 | F-Γ (3) | Γ restated in `lean/scratch/f3c-redundancy-bank/F3cRedundancy.lean` (machine-readable); `f3c_joint_sharp` as given constraint; pairs-disjointness; shell ∩ cap = sources; F1/F2/F3 leaf deltas | Encoding must PROVE (be UNSAT with) the negation of the two kernel-checked sharpened terminals (`FirstFiberOverlapDescent.lean` `:772`, `:901`) — they are incidence-layer facts |
-| 5 | D-R (2) | Two disjoint selected 4-classes K₁ ∩ K₂ = ∅; no-five-row at a₂; D2's five role-swap equalities S ↔ S′ | Role-swap involution sanity (S′′ = S); disjointness on the witness |
+| 4 | F-Γ (4) | Γ restated in `lean/scratch/f3c-redundancy-bank/F3cRedundancy.lean`; pairs-disjointness; shell ∩ cap = sources; current four leaf deltas | Fixed-slot completeness is unavailable: a 17-point shadow and an unbounded four-point-block extension survive. Route through a new geometric bridge, not a closed named universe |
+| 5 | D-R (2) | Two disjoint selected 4-classes K₁ ∩ K₂ = ∅; no-five-row at a₂; D2's five role-swap equalities S ↔ S′ | Verify the five syntactic role/cap aliases under the double renaming; do not assert `S′′ = S` or packet equality |
 | 6 | D-E (2) | Exact-five class; D3 distinct-centers vs D4 common-center arm; D4's exactly-2-on-bisector cardinality | D4's bisector-2 clause must be consistent with the banked `b1_bisectorSet_eq_pair` mechanism (Dumitrescu L1 bound ≤ 2) |
-| 7 | B (3) | Banked normal forms as given clauses: B1's K ∩ C = {z₁,z₂}, bisector set exactly {b,a₂}, β(u)/β(v) non-bisecting; B2 canonical-row forcing + mutual-omission survival; B3 removable-iff-survival (`lean/scratch/b-family-bank/`) | Encoder must refute a third-bisector configuration (mirror of `b1_false_of_third_bisector_carrier`) |
+| 7 | B (3) | B2 canonical-row forcing + mutual-omission survival; B3 removable-iff-survival (`lean/scratch/b-family-bank/`). The live B1 leaf does not currently expose the bank's support equality, two cross-memberships, and exact two-point intersection prerequisites | Refute a third-bisector configuration; classify B1 as ingress-missing rather than importing unavailable bank consequences |
 
-All seven encoders are {{UNVALIDATED}} until their smoke gate passes.
+Validation status 2026-07-28: A, C, E, D-R, D-E, and B encoders pass their
+smoke gates. F-Γ has no sound fixed-slot encoder; its separate unbounded
+counting audit is the applicable gate result.
 Rationale for the order: A-core is the largest single lever (6 leaves close
 or die together on the package verdict before any leaf delta is touched);
 C amortizes A's encoder; E is the most counting-flavoured (best UNSAT
@@ -243,12 +252,35 @@ Budget (Adam, 2026-07-28): all of flux plus 24 cores on this box.
   k-parameterized, banked theorems as pruning rules, census-554 per-cell
   engine as chassis; refutation branch is self-certifying, k=3 arm =
   end-to-end positive control). Design doc next.
-- **Session 3**: D-R, D-E, B; full 19-leaf triage matrix. Decision gate
-  with Adam: replay-ingress queue vs realization sweeps per package.
-- **Sessions 4+**: per verdict — certificate replay landings (§6) for UNSAT
-  cores, fleet realization sweeps + CEGAR iterations for SAT packages.
-  Kernel spine re-census after every landing batch; convo post per
-  checkpoint.
+- **Session 3**: D-R, D-E, B; full live-frontier triage matrix. DONE
+  2026-07-28: D-R SAT ×3, D-E SAT ×4, B2/B3 plus pinned arms SAT; all
+  negative smoke probes DRAT-verified. B1 is
+  `OMITTED_PREREQUISITE_INGRESS_MISSING`, not an official SAT verdict.
+  Independent cross-audits passed; D-E's one composite provenance label was
+  corrected without changing its CNF. The live frontier is now 20 after the
+  F3 split; see
+  `census/frontier-packages/SESSION3-TRIAGE-2026-07-28.md`.
+- **Sessions 4+**: no package produced a live-leaf UNSAT core for replay.
+  Continue with the Phase-3 exact-shell census and independently certified
+  realization/infeasibility work on survivors; add CEGAR clauses only after
+  proving the corresponding metric/global consequence. Kernel spine
+  re-census after every landing batch; convo post per checkpoint. Phase-3
+  gates are now green, including exact tiny enumeration, terminal DRAT,
+  resume/tamper, and interruption controls. The first bounded runs are
+  `PARTIAL`: `(3,9)` has 100 raw / 29 canonical OPEN survivors and combined
+  `(4,10,(4,4,5))` has 100 raw / 100 canonical OPEN survivors. This rules out
+  treating more Layer-1 enumeration by itself as the next closing step; the
+  next compute consumer is the realization arm, with numeric failures kept
+  `UNRESOLVED` unless independently certified.
+  The original 100-model `(4,10,(4,4,5))` artifact later became stale after
+  the rule-bank hash changed. It was regenerated under the current bank as
+  `k4-n10-profile-445-combined-bounded100-current-20260728`; strict artifact
+  verification passes and all 100 canonical digests agree with the original
+  prefix. The fail-closed realization adapter expands this current prefix into
+  all 24 cap-compatible hull orders per survivor: 2,400 deterministic local
+  leaves across 24 shards, initially all `UNRESOLVED`. `flux.local` is no
+  longer in the compute plan after a crash; the campaign is local-only with at
+  most 24 single-threaded solver workers.
 
 ## 9. Honest limits
 

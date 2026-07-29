@@ -1,0 +1,2251 @@
+{
+  "checks": [
+    {
+      "active_equality_vertex_count": 6,
+      "active_equality_vertices": [
+        0,
+        1,
+        5,
+        6,
+        7,
+        18
+      ],
+      "cross_center_overlap_pairs": 2,
+      "cross_center_support_overlap": 2,
+      "cvc5_fallback": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "60000"
+        ],
+        "elapsed_seconds": 60.01635687495582,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 60000
+      },
+      "distance_component_sizes": [
+        4,
+        3
+      ],
+      "distance_edge_reuse_excess": 7,
+      "distance_variable_count": 7,
+      "equation_pair_support_overlap": 9,
+      "full_four_leaf_center_count": 0,
+      "independent_equality_rank": 5,
+      "induced_equality_count": 7,
+      "induced_source_equation_indices": [
+        0,
+        1,
+        5,
+        9,
+        28,
+        30,
+        32
+      ],
+      "max_center_leaf_component": 3,
+      "multi_center_component_count": 2,
+      "priority_tuple": [
+        5,
+        2,
+        2,
+        2,
+        3,
+        7,
+        9,
+        7,
+        -2,
+        6
+      ],
+      "rank": 1,
+      "redundant_equality_count": 2,
+      "subset": [
+        0,
+        1,
+        5,
+        6,
+        7,
+        18
+      ],
+      "terminal_status": "CVC5_UNKNOWN",
+      "z3": {
+        "elapsed_seconds": 60.35504995798692,
+        "fail_closed": true,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API QF_NRA",
+        "status": "UNKNOWN",
+        "timeout_ms": 60000
+      }
+    }
+  ],
+  "configuration": {
+    "candidate_limit": 1,
+    "per_query_ms": 60000,
+    "ranking_only": false,
+    "replay_ms": 60000,
+    "run_tag": "rank1-long",
+    "start_rank": 1,
+    "wall_seconds": 360.0
+  },
+  "elapsed_seconds": 120.91864395909943,
+  "encoded_omitted_ledger": {
+    "encoded": [
+      "pinned v13 positive quotient equalities induced on each six-class subset",
+      "sound exact similarity gauge p0=(0,0), p1=(1,0)",
+      "strict cyclic convex support in inherited quotient order",
+      "pairwise distinctness"
+    ],
+    "omitted": [
+      "pinned false-row disequalities",
+      "all global CEGAR facts not represented by induced positive equalities"
+    ],
+    "sat_scope": "SAT witnesses only the exact induced positive-equality abstraction"
+  },
+  "epistemic_status": "trusted exact-solver discovery evidence only; not Lean/kernel closure",
+  "inputs": {
+    "cegar_result": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar-v13-local-critical-reuse-second.json",
+    "cegar_result_sha256": "9cd24ead3bb06cd8bec88ace811eeb102dc5e8be46be1d9e1a4a1820d20a1832",
+    "checkpoint": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar-v13-local-critical-reuse-second.checkpoint.json",
+    "checkpoint_sha256": "ad37fe94d08af00786e67759bbdd21359f3647d227d93e9417b9b8b4842de0b9",
+    "miner": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/exact_euclidean_subset_core_miner.py",
+    "miner_sha256": "8c1d337c5e61691866e7aa6714acdb3f10ef59c003a0af9e980d95c1851b2b70",
+    "positive_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/euclidean-survivor-probe-v13-local-critical-reuse-second.positive_rows.smt2",
+    "positive_smt2_sha256": "72c2ff63f22811bcac1bd4acd40deb3b351b88d7b9d14fdb74277c872dbd621b",
+    "probe": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/euclidean-survivor-probe-v13-local-critical-reuse-second.json",
+    "probe_sha256": "0ae9731498e8f42748e994df5a08bf376a59cc709a07b328dbe65b3d267e6ca5"
+  },
+  "ranking": {
+    "artifact": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/v13-six-structural-ranking.json",
+    "artifact_sha256": "65747abe67279857d4f1792f494c6f18ab83d69f38959d5c70b472abc5e072ab",
+    "nonempty_induced_subset_count": 12494,
+    "subset_count": 27132,
+    "top_20": [
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          1,
+          5,
+          6,
+          7,
+          18
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              1,
+              5,
+              7
+            ],
+            "support": [
+              0,
+              1,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 1,
+            "clique_fill": 1.0,
+            "equality_count": 1,
+            "independent_rank": 1,
+            "leaf_count": 2,
+            "leaves": [
+              0,
+              18
+            ],
+            "support": [
+              0,
+              1,
+              18
+            ]
+          },
+          {
+            "center": 6,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              5,
+              7,
+              18
+            ],
+            "support": [
+              5,
+              6,
+              7,
+              18
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 2,
+        "cross_center_support_overlap": 2,
+        "distance_component_sizes": [
+          4,
+          3
+        ],
+        "distance_edge_reuse_excess": 7,
+        "distance_variable_count": 7,
+        "equation_pair_support_overlap": 9,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 5,
+        "induced_equality_count": 7,
+        "induced_source_equation_indices": [
+          0,
+          1,
+          5,
+          9,
+          28,
+          30,
+          32
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          5,
+          2,
+          2,
+          2,
+          3,
+          7,
+          9,
+          7,
+          -2,
+          6
+        ],
+        "rank": 1,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          1,
+          5,
+          6,
+          7,
+          18
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          1,
+          5,
+          7,
+          13,
+          16
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              1,
+              5,
+              7
+            ],
+            "support": [
+              0,
+              1,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 1,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              0,
+              13,
+              16
+            ],
+            "support": [
+              0,
+              1,
+              13,
+              16
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          5
+        ],
+        "distance_edge_reuse_excess": 7,
+        "distance_variable_count": 5,
+        "equation_pair_support_overlap": 10,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          0,
+          1,
+          3,
+          4,
+          9,
+          18
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          7,
+          10,
+          6,
+          -2,
+          6
+        ],
+        "rank": 2,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          1,
+          5,
+          7,
+          13,
+          16
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          1,
+          5,
+          7,
+          16,
+          18
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              1,
+              5,
+              7
+            ],
+            "support": [
+              0,
+              1,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 1,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              0,
+              16,
+              18
+            ],
+            "support": [
+              0,
+              1,
+              16,
+              18
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          5
+        ],
+        "distance_edge_reuse_excess": 7,
+        "distance_variable_count": 5,
+        "equation_pair_support_overlap": 10,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          0,
+          1,
+          4,
+          5,
+          9,
+          19
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          7,
+          10,
+          6,
+          -2,
+          6
+        ],
+        "rank": 3,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          1,
+          5,
+          7,
+          16,
+          18
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          1,
+          5,
+          13,
+          14,
+          16
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              1,
+              5,
+              14
+            ],
+            "support": [
+              0,
+              1,
+              5,
+              14
+            ]
+          },
+          {
+            "center": 1,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              0,
+              13,
+              16
+            ],
+            "support": [
+              0,
+              1,
+              13,
+              16
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          5
+        ],
+        "distance_edge_reuse_excess": 7,
+        "distance_variable_count": 5,
+        "equation_pair_support_overlap": 10,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          0,
+          2,
+          3,
+          4,
+          10,
+          18
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          7,
+          10,
+          6,
+          -2,
+          6
+        ],
+        "rank": 4,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          1,
+          5,
+          13,
+          14,
+          16
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          1,
+          5,
+          14,
+          16,
+          18
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              1,
+              5,
+              14
+            ],
+            "support": [
+              0,
+              1,
+              5,
+              14
+            ]
+          },
+          {
+            "center": 1,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              0,
+              16,
+              18
+            ],
+            "support": [
+              0,
+              1,
+              16,
+              18
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          5
+        ],
+        "distance_edge_reuse_excess": 7,
+        "distance_variable_count": 5,
+        "equation_pair_support_overlap": 10,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          0,
+          2,
+          4,
+          5,
+          10,
+          19
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          7,
+          10,
+          6,
+          -2,
+          6
+        ],
+        "rank": 5,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          1,
+          5,
+          14,
+          16,
+          18
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          1,
+          7,
+          13,
+          14,
+          16
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              1,
+              7,
+              14
+            ],
+            "support": [
+              0,
+              1,
+              7,
+              14
+            ]
+          },
+          {
+            "center": 1,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              0,
+              13,
+              16
+            ],
+            "support": [
+              0,
+              1,
+              13,
+              16
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          5
+        ],
+        "distance_edge_reuse_excess": 7,
+        "distance_variable_count": 5,
+        "equation_pair_support_overlap": 10,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          1,
+          2,
+          3,
+          4,
+          11,
+          18
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          7,
+          10,
+          6,
+          -2,
+          6
+        ],
+        "rank": 6,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          1,
+          7,
+          13,
+          14,
+          16
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          1,
+          7,
+          14,
+          16,
+          18
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              1,
+              7,
+              14
+            ],
+            "support": [
+              0,
+              1,
+              7,
+              14
+            ]
+          },
+          {
+            "center": 1,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              0,
+              16,
+              18
+            ],
+            "support": [
+              0,
+              1,
+              16,
+              18
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          5
+        ],
+        "distance_edge_reuse_excess": 7,
+        "distance_variable_count": 5,
+        "equation_pair_support_overlap": 10,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          1,
+          2,
+          4,
+          5,
+          11,
+          19
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          7,
+          10,
+          6,
+          -2,
+          6
+        ],
+        "rank": 7,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          1,
+          7,
+          14,
+          16,
+          18
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          1,
+          2,
+          10,
+          16,
+          18
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              2,
+              10,
+              18
+            ],
+            "support": [
+              0,
+              2,
+              10,
+              18
+            ]
+          },
+          {
+            "center": 1,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              0,
+              16,
+              18
+            ],
+            "support": [
+              0,
+              1,
+              16,
+              18
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          3,
+          3
+        ],
+        "distance_edge_reuse_excess": 6,
+        "distance_variable_count": 6,
+        "equation_pair_support_overlap": 8,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          4,
+          5,
+          6,
+          8,
+          13,
+          19
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          6,
+          8,
+          6,
+          -2,
+          6
+        ],
+        "rank": 8,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          1,
+          2,
+          10,
+          16,
+          18
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          1,
+          2,
+          11,
+          16,
+          18
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              2,
+              11,
+              18
+            ],
+            "support": [
+              0,
+              2,
+              11,
+              18
+            ]
+          },
+          {
+            "center": 1,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              0,
+              16,
+              18
+            ],
+            "support": [
+              0,
+              1,
+              16,
+              18
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          3,
+          3
+        ],
+        "distance_edge_reuse_excess": 6,
+        "distance_variable_count": 6,
+        "equation_pair_support_overlap": 8,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          4,
+          5,
+          7,
+          8,
+          14,
+          19
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          6,
+          8,
+          6,
+          -2,
+          6
+        ],
+        "rank": 9,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          1,
+          2,
+          11,
+          16,
+          18
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          1,
+          10,
+          11,
+          16,
+          18
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              10,
+              11,
+              18
+            ],
+            "support": [
+              0,
+              10,
+              11,
+              18
+            ]
+          },
+          {
+            "center": 1,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              0,
+              16,
+              18
+            ],
+            "support": [
+              0,
+              1,
+              16,
+              18
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          3,
+          3
+        ],
+        "distance_edge_reuse_excess": 6,
+        "distance_variable_count": 6,
+        "equation_pair_support_overlap": 8,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          4,
+          5,
+          12,
+          13,
+          14,
+          19
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          6,
+          8,
+          6,
+          -2,
+          6
+        ],
+        "rank": 10,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          1,
+          10,
+          11,
+          16,
+          18
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          1,
+          5,
+          6,
+          7,
+          17
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              1,
+              5,
+              7
+            ],
+            "support": [
+              0,
+              1,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 6,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              5,
+              7,
+              17
+            ],
+            "support": [
+              5,
+              6,
+              7,
+              17
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          3,
+          3
+        ],
+        "distance_edge_reuse_excess": 6,
+        "distance_variable_count": 6,
+        "equation_pair_support_overlap": 7,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          0,
+          1,
+          9,
+          28,
+          29,
+          31
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          6,
+          7,
+          6,
+          -2,
+          6
+        ],
+        "rank": 11,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          1,
+          5,
+          6,
+          7,
+          17
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          2,
+          3,
+          10,
+          11,
+          12
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              2,
+              10,
+              11
+            ],
+            "support": [
+              0,
+              2,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              2,
+              10,
+              12
+            ],
+            "support": [
+              2,
+              3,
+              10,
+              12
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          3,
+          3
+        ],
+        "distance_edge_reuse_excess": 6,
+        "distance_variable_count": 6,
+        "equation_pair_support_overlap": 7,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          6,
+          7,
+          12,
+          20,
+          21,
+          23
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          6,
+          7,
+          6,
+          -2,
+          6
+        ],
+        "rank": 12,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          2,
+          3,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          2,
+          3,
+          10,
+          11,
+          15
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              2,
+              10,
+              11
+            ],
+            "support": [
+              0,
+              2,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              2,
+              10,
+              15
+            ],
+            "support": [
+              2,
+              3,
+              10,
+              15
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          3,
+          3
+        ],
+        "distance_edge_reuse_excess": 6,
+        "distance_variable_count": 6,
+        "equation_pair_support_overlap": 7,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          6,
+          7,
+          12,
+          20,
+          22,
+          24
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          6,
+          7,
+          6,
+          -2,
+          6
+        ],
+        "rank": 13,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          2,
+          3,
+          10,
+          11,
+          15
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          2,
+          3,
+          10,
+          12,
+          18
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              2,
+              10,
+              18
+            ],
+            "support": [
+              0,
+              2,
+              10,
+              18
+            ]
+          },
+          {
+            "center": 3,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              2,
+              10,
+              12
+            ],
+            "support": [
+              2,
+              3,
+              10,
+              12
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          3,
+          3
+        ],
+        "distance_edge_reuse_excess": 6,
+        "distance_variable_count": 6,
+        "equation_pair_support_overlap": 7,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          6,
+          8,
+          13,
+          20,
+          21,
+          23
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          6,
+          7,
+          6,
+          -2,
+          6
+        ],
+        "rank": 14,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          2,
+          3,
+          10,
+          12,
+          18
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          2,
+          3,
+          10,
+          15,
+          18
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              2,
+              10,
+              18
+            ],
+            "support": [
+              0,
+              2,
+              10,
+              18
+            ]
+          },
+          {
+            "center": 3,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              2,
+              10,
+              15
+            ],
+            "support": [
+              2,
+              3,
+              10,
+              15
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          3,
+          3
+        ],
+        "distance_edge_reuse_excess": 6,
+        "distance_variable_count": 6,
+        "equation_pair_support_overlap": 7,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          6,
+          8,
+          13,
+          20,
+          22,
+          24
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          6,
+          7,
+          6,
+          -2,
+          6
+        ],
+        "rank": 15,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          2,
+          3,
+          10,
+          15,
+          18
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          5,
+          6,
+          7,
+          14,
+          17
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              5,
+              7,
+              14
+            ],
+            "support": [
+              0,
+              5,
+              7,
+              14
+            ]
+          },
+          {
+            "center": 6,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              5,
+              7,
+              17
+            ],
+            "support": [
+              5,
+              6,
+              7,
+              17
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          3,
+          3
+        ],
+        "distance_edge_reuse_excess": 6,
+        "distance_variable_count": 6,
+        "equation_pair_support_overlap": 7,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          9,
+          10,
+          11,
+          28,
+          29,
+          31
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          6,
+          7,
+          6,
+          -2,
+          6
+        ],
+        "rank": 16,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          5,
+          6,
+          7,
+          14,
+          17
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          5,
+          6,
+          7,
+          14,
+          18
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              5,
+              7,
+              14
+            ],
+            "support": [
+              0,
+              5,
+              7,
+              14
+            ]
+          },
+          {
+            "center": 6,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              5,
+              7,
+              18
+            ],
+            "support": [
+              5,
+              6,
+              7,
+              18
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          3,
+          3
+        ],
+        "distance_edge_reuse_excess": 6,
+        "distance_variable_count": 6,
+        "equation_pair_support_overlap": 7,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 6,
+        "induced_source_equation_indices": [
+          9,
+          10,
+          11,
+          28,
+          30,
+          32
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          6,
+          7,
+          6,
+          -2,
+          6
+        ],
+        "rank": 17,
+        "redundant_equality_count": 2,
+        "subset": [
+          0,
+          5,
+          6,
+          7,
+          14,
+          18
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          1,
+          5,
+          7,
+          13,
+          18
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              1,
+              5,
+              7
+            ],
+            "support": [
+              0,
+              1,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 1,
+            "clique_fill": 0.6666666666666666,
+            "equality_count": 2,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              0,
+              13,
+              18
+            ],
+            "support": [
+              0,
+              1,
+              13,
+              18
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          5
+        ],
+        "distance_edge_reuse_excess": 5,
+        "distance_variable_count": 5,
+        "equation_pair_support_overlap": 8,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 5,
+        "induced_source_equation_indices": [
+          0,
+          1,
+          3,
+          5,
+          9
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          5,
+          8,
+          5,
+          -1,
+          6
+        ],
+        "rank": 18,
+        "redundant_equality_count": 1,
+        "subset": [
+          0,
+          1,
+          5,
+          7,
+          13,
+          18
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          1,
+          5,
+          13,
+          14,
+          18
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              1,
+              5,
+              14
+            ],
+            "support": [
+              0,
+              1,
+              5,
+              14
+            ]
+          },
+          {
+            "center": 1,
+            "clique_fill": 0.6666666666666666,
+            "equality_count": 2,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              0,
+              13,
+              18
+            ],
+            "support": [
+              0,
+              1,
+              13,
+              18
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          5
+        ],
+        "distance_edge_reuse_excess": 5,
+        "distance_variable_count": 5,
+        "equation_pair_support_overlap": 8,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 5,
+        "induced_source_equation_indices": [
+          0,
+          2,
+          3,
+          5,
+          10
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          5,
+          8,
+          5,
+          -1,
+          6
+        ],
+        "rank": 19,
+        "redundant_equality_count": 1,
+        "subset": [
+          0,
+          1,
+          5,
+          13,
+          14,
+          18
+        ]
+      },
+      {
+        "active_equality_vertex_count": 6,
+        "active_equality_vertices": [
+          0,
+          1,
+          7,
+          13,
+          14,
+          18
+        ],
+        "center_components": [
+          {
+            "center": 0,
+            "clique_fill": 1.0,
+            "equality_count": 3,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              1,
+              7,
+              14
+            ],
+            "support": [
+              0,
+              1,
+              7,
+              14
+            ]
+          },
+          {
+            "center": 1,
+            "clique_fill": 0.6666666666666666,
+            "equality_count": 2,
+            "independent_rank": 2,
+            "leaf_count": 3,
+            "leaves": [
+              0,
+              13,
+              18
+            ],
+            "support": [
+              0,
+              1,
+              13,
+              18
+            ]
+          }
+        ],
+        "cross_center_overlap_pairs": 1,
+        "cross_center_support_overlap": 1,
+        "distance_component_sizes": [
+          5
+        ],
+        "distance_edge_reuse_excess": 5,
+        "distance_variable_count": 5,
+        "equation_pair_support_overlap": 8,
+        "full_four_leaf_center_count": 0,
+        "independent_equality_rank": 4,
+        "induced_equality_count": 5,
+        "induced_source_equation_indices": [
+          1,
+          2,
+          3,
+          5,
+          11
+        ],
+        "max_center_leaf_component": 3,
+        "multi_center_component_count": 2,
+        "priority_tuple": [
+          4,
+          2,
+          1,
+          1,
+          3,
+          5,
+          8,
+          5,
+          -1,
+          6
+        ],
+        "rank": 20,
+        "redundant_equality_count": 1,
+        "subset": [
+          0,
+          1,
+          7,
+          13,
+          14,
+          18
+        ]
+      }
+    ]
+  },
+  "schema": "p97-v13-six-structural-priority-search-v1",
+  "self_test": {
+    "cvc5_known_unsat_gauge_distance_conflict": {
+      "command": [
+        "/Users/adam/bin/cvc5",
+        "--lang",
+        "smt2",
+        "--nl-cov",
+        "--tlimit",
+        "10000"
+      ],
+      "elapsed_seconds": 0.008625874994322658,
+      "fail_closed": true,
+      "reason_unknown": null,
+      "returncode": 0,
+      "solver": "cvc5",
+      "status": "UNSAT",
+      "stderr_tail": [],
+      "stdout_tail": [
+        "unsat"
+      ],
+      "timeout_ms": 10000
+    },
+    "exact_integer_convex_witnesses": {
+      "4": {
+        "classification": "exact shared SAT witness for every size-k subset with zero induced equalities, since global labels do not occur elsewhere",
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        "minimum_integer_orientation": 2,
+        "minimum_squared_pair_distance": 1
+      },
+      "5": {
+        "classification": "exact shared SAT witness for every size-k subset with zero induced equalities, since global labels do not occur elsewhere",
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            12
+          ]
+        ],
+        "minimum_integer_orientation": 2,
+        "minimum_squared_pair_distance": 1
+      },
+      "6": {
+        "classification": "exact shared SAT witness for every size-k subset with zero induced equalities, since global labels do not occur elsewhere",
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            12
+          ],
+          [
+            5,
+            20
+          ]
+        ],
+        "minimum_integer_orientation": 2,
+        "minimum_squared_pair_distance": 1
+      },
+      "7": {
+        "classification": "exact shared SAT witness for every size-k subset with zero induced equalities, since global labels do not occur elsewhere",
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            12
+          ],
+          [
+            5,
+            20
+          ],
+          [
+            6,
+            30
+          ]
+        ],
+        "minimum_integer_orientation": 2,
+        "minimum_squared_pair_distance": 1
+      },
+      "8": {
+        "classification": "exact shared SAT witness for every size-k subset with zero induced equalities, since global labels do not occur elsewhere",
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            12
+          ],
+          [
+            5,
+            20
+          ],
+          [
+            6,
+            30
+          ],
+          [
+            7,
+            42
+          ]
+        ],
+        "minimum_integer_orientation": 2,
+        "minimum_squared_pair_distance": 1
+      }
+    },
+    "status": "PASS",
+    "subprocess_fail_closed_classifier": "PASS",
+    "z3_known_sat_strict_quadrilateral": {
+      "assumption_tracked_kinds": [
+        "strict_cyclic_orientation",
+        "pairwise_distinct",
+        "positive_row_equality"
+      ],
+      "elapsed_seconds": 0.0009147089440375566,
+      "fixed_background_record_names": [
+        "gauge_x_0",
+        "gauge_y_0",
+        "gauge_x_1",
+        "gauge_y_1"
+      ],
+      "model_substitution_failures": [],
+      "model_substitution_status": "PASS",
+      "solver": "Z3 Python API",
+      "status": "SAT",
+      "timeout_ms": 10000
+    },
+    "z3_known_unsat_gauge_distance_conflict": {
+      "assumption_tracked_kinds": [
+        "strict_cyclic_orientation",
+        "pairwise_distinct",
+        "positive_row_equality"
+      ],
+      "elapsed_seconds": 0.0003402500879019499,
+      "fixed_background_record_names": [
+        "gauge_x_0",
+        "gauge_y_0",
+        "gauge_x_1",
+        "gauge_y_1"
+      ],
+      "solver": "Z3 Python API",
+      "status": "UNSAT",
+      "timeout_ms": 10000,
+      "unsat_core_record_names": [
+        "eq_source_10000"
+      ],
+      "unsat_core_size": 1
+    }
+  },
+  "source_validation": {
+    "actual_hashes": {
+      "cegar_result_sha256": "9cd24ead3bb06cd8bec88ace811eeb102dc5e8be46be1d9e1a4a1820d20a1832",
+      "cegar_script_current_sha256": "5b8a0377568ea1cad18467dc7ece9db7cfcd76bafec50936a578368899f2fafe",
+      "checkpoint_sha256": "ad37fe94d08af00786e67759bbdd21359f3647d227d93e9417b9b8b4842de0b9",
+      "exact_positive_rows_smt2_sha256": "72c2ff63f22811bcac1bd4acd40deb3b351b88d7b9d14fdb74277c872dbd621b",
+      "exact_probe_result_sha256": "0ae9731498e8f42748e994df5a08bf376a59cc709a07b328dbe65b3d267e6ca5"
+    },
+    "alias_class_count": 19,
+    "current_cegar_drift_policy": "current implementation drift is recorded but cannot change the immutable exact-probe target",
+    "current_cegar_matches_recorded": true,
+    "expected_hashes": {
+      "cegar_result_sha256": "9cd24ead3bb06cd8bec88ace811eeb102dc5e8be46be1d9e1a4a1820d20a1832",
+      "checkpoint_sha256": "ad37fe94d08af00786e67759bbdd21359f3647d227d93e9417b9b8b4842de0b9",
+      "exact_positive_rows_smt2_sha256": "72c2ff63f22811bcac1bd4acd40deb3b351b88d7b9d14fdb74277c872dbd621b",
+      "exact_probe_result_sha256": "0ae9731498e8f42748e994df5a08bf376a59cc709a07b328dbe65b3d267e6ca5"
+    },
+    "full_formula_reason_unknown": "hard subprocess wall timeout",
+    "full_formula_status": "UNKNOWN",
+    "method": "fixed hash gates for exact probe/result/checkpoint/SMT plus schema, ordered-class, normalized-equation, assertion-count, and terminal row-replay checks",
+    "positive_equation_count": 35,
+    "probe_schema": "p97-aliased-euclidean-survivor-probe-v2-terminal-rows",
+    "recorded_cegar_script_sha256": "5b8a0377568ea1cad18467dc7ece9db7cfcd76bafec50936a578368899f2fafe",
+    "status": "PASS"
+  },
+  "terminal_status": "UNKNOWN_NO_VALIDATED_CORE",
+  "trust_warning": "Exact Z3/cvc5 agreement is trusted external solver evidence. It is not a certificate replayed by Lean's kernel.",
+  "unconfirmed_unsat": [],
+  "validated_core": null
+}

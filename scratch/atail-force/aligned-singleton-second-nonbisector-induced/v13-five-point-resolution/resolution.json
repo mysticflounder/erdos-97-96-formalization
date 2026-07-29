@@ -1,0 +1,1197 @@
+{
+  "cases": [
+    {
+      "alias_classes": [
+        [
+          "a0",
+          "escape"
+        ],
+        [
+          "a1",
+          "s3",
+          "p3",
+          "be"
+        ],
+        [
+          "r2",
+          "z4"
+        ],
+        [
+          "e2"
+        ],
+        [
+          "other",
+          "r4",
+          "e3"
+        ]
+      ],
+      "case_id": "q0-1-2-16-18",
+      "formula_sha256": "fd2ccd143f8264fadb12253b23529bec4ce7ea3110f764714145c4f1df07daa2",
+      "induced_source_equation_indices": [
+        4,
+        5,
+        8,
+        19
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        2,
+        16,
+        18
+      ],
+      "witness_formula_sha256": "338cf7d98772d1f5fd1c2b031faefd74aa16267cecd104adc103270730395b1c",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-16-18.rational-witness.smt2"
+    },
+    {
+      "alias_classes": [
+        [
+          "a0",
+          "escape"
+        ],
+        [
+          "a1",
+          "s3",
+          "p3",
+          "be"
+        ],
+        [
+          "r1",
+          "z3",
+          "y"
+        ],
+        [
+          "e2"
+        ],
+        [
+          "other",
+          "r4",
+          "e3"
+        ]
+      ],
+      "case_id": "q0-1-10-16-18",
+      "formula_sha256": "fd2ccd143f8264fadb12253b23529bec4ce7ea3110f764714145c4f1df07daa2",
+      "induced_source_equation_indices": [
+        4,
+        5,
+        13,
+        19
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        10,
+        16,
+        18
+      ],
+      "witness_formula_sha256": "338cf7d98772d1f5fd1c2b031faefd74aa16267cecd104adc103270730395b1c",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-16-18.rational-witness.smt2"
+    },
+    {
+      "alias_classes": [
+        [
+          "a0",
+          "escape"
+        ],
+        [
+          "a1",
+          "s3",
+          "p3",
+          "be"
+        ],
+        [
+          "a2",
+          "r3"
+        ],
+        [
+          "e2"
+        ],
+        [
+          "other",
+          "r4",
+          "e3"
+        ]
+      ],
+      "case_id": "q0-1-11-16-18",
+      "formula_sha256": "fd2ccd143f8264fadb12253b23529bec4ce7ea3110f764714145c4f1df07daa2",
+      "induced_source_equation_indices": [
+        4,
+        5,
+        14,
+        19
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        11,
+        16,
+        18
+      ],
+      "witness_formula_sha256": "338cf7d98772d1f5fd1c2b031faefd74aa16267cecd104adc103270730395b1c",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-16-18.rational-witness.smt2"
+    },
+    {
+      "alias_classes": [
+        [
+          "a0",
+          "escape"
+        ],
+        [
+          "a1",
+          "s3",
+          "p3",
+          "be"
+        ],
+        [
+          "r2",
+          "z4"
+        ],
+        [
+          "p2"
+        ],
+        [
+          "other",
+          "r4",
+          "e3"
+        ]
+      ],
+      "case_id": "q0-1-2-5-18",
+      "formula_sha256": "a74b4a8d74ad995befc8e8eacf49b6d07d31062662e73506a455d67b2852ff74",
+      "induced_source_equation_indices": [
+        0,
+        5,
+        8
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        2,
+        5,
+        18
+      ],
+      "witness_formula_sha256": "b6211f2708670481b856dae08e18f8d3f5e55426f9c95621bf350ab9a3bec61f",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-5-18.rational-witness.smt2"
+    },
+    {
+      "alias_classes": [
+        [
+          "a0",
+          "escape"
+        ],
+        [
+          "a1",
+          "s3",
+          "p3",
+          "be"
+        ],
+        [
+          "r2",
+          "z4"
+        ],
+        [
+          "p1",
+          "x"
+        ],
+        [
+          "other",
+          "r4",
+          "e3"
+        ]
+      ],
+      "case_id": "q0-1-2-7-18",
+      "formula_sha256": "a74b4a8d74ad995befc8e8eacf49b6d07d31062662e73506a455d67b2852ff74",
+      "induced_source_equation_indices": [
+        1,
+        5,
+        8
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        2,
+        7,
+        18
+      ],
+      "witness_formula_sha256": "b6211f2708670481b856dae08e18f8d3f5e55426f9c95621bf350ab9a3bec61f",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-5-18.rational-witness.smt2"
+    },
+    {
+      "alias_classes": [
+        [
+          "a0",
+          "escape"
+        ],
+        [
+          "a1",
+          "s3",
+          "p3",
+          "be"
+        ],
+        [
+          "r2",
+          "z4"
+        ],
+        [
+          "e4"
+        ],
+        [
+          "other",
+          "r4",
+          "e3"
+        ]
+      ],
+      "case_id": "q0-1-2-13-18",
+      "formula_sha256": "c5737d432513e7110bf15dd53819ffffa45d07c779fcef5cf67447bc3393e5b7",
+      "induced_source_equation_indices": [
+        3,
+        5,
+        8
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        2,
+        13,
+        18
+      ],
+      "witness_formula_sha256": "bc23f492ce466973656cdd66595025fd583a2643ae39e56e90c72c24d270277e",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-13-18.rational-witness.smt2"
+    },
+    {
+      "alias_classes": [
+        [
+          "a0",
+          "escape"
+        ],
+        [
+          "a1",
+          "s3",
+          "p3",
+          "be"
+        ],
+        [
+          "r2",
+          "z4"
+        ],
+        [
+          "p4"
+        ],
+        [
+          "other",
+          "r4",
+          "e3"
+        ]
+      ],
+      "case_id": "q0-1-2-14-18",
+      "formula_sha256": "a74b4a8d74ad995befc8e8eacf49b6d07d31062662e73506a455d67b2852ff74",
+      "induced_source_equation_indices": [
+        2,
+        5,
+        8
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        2,
+        14,
+        18
+      ],
+      "witness_formula_sha256": "b6211f2708670481b856dae08e18f8d3f5e55426f9c95621bf350ab9a3bec61f",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-5-18.rational-witness.smt2"
+    },
+    {
+      "alias_classes": [
+        [
+          "a0",
+          "escape"
+        ],
+        [
+          "a1",
+          "s3",
+          "p3",
+          "be"
+        ],
+        [
+          "p2"
+        ],
+        [
+          "r1",
+          "z3",
+          "y"
+        ],
+        [
+          "other",
+          "r4",
+          "e3"
+        ]
+      ],
+      "case_id": "q0-1-5-10-18",
+      "formula_sha256": "2c5cb772688fd1a971f8494ee1be001d6c66d360ac670fae0532687955bd0317",
+      "induced_source_equation_indices": [
+        0,
+        5,
+        13
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        5,
+        10,
+        18
+      ],
+      "witness_formula_sha256": "5ec3f5351fd89e28d0b4c2534178d9d149f6614c1e80b1859e6c379c21a7079f",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-5-10-18.rational-witness.smt2"
+    },
+    {
+      "alias_classes": [
+        [
+          "a0",
+          "escape"
+        ],
+        [
+          "a1",
+          "s3",
+          "p3",
+          "be"
+        ],
+        [
+          "p2"
+        ],
+        [
+          "a2",
+          "r3"
+        ],
+        [
+          "other",
+          "r4",
+          "e3"
+        ]
+      ],
+      "case_id": "q0-1-5-11-18",
+      "formula_sha256": "2c5cb772688fd1a971f8494ee1be001d6c66d360ac670fae0532687955bd0317",
+      "induced_source_equation_indices": [
+        0,
+        5,
+        14
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        5,
+        11,
+        18
+      ],
+      "witness_formula_sha256": "5ec3f5351fd89e28d0b4c2534178d9d149f6614c1e80b1859e6c379c21a7079f",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-5-10-18.rational-witness.smt2"
+    },
+    {
+      "alias_classes": [
+        [
+          "a0",
+          "escape"
+        ],
+        [
+          "a1",
+          "s3",
+          "p3",
+          "be"
+        ],
+        [
+          "p1",
+          "x"
+        ],
+        [
+          "r1",
+          "z3",
+          "y"
+        ],
+        [
+          "other",
+          "r4",
+          "e3"
+        ]
+      ],
+      "case_id": "q0-1-7-10-18",
+      "formula_sha256": "2c5cb772688fd1a971f8494ee1be001d6c66d360ac670fae0532687955bd0317",
+      "induced_source_equation_indices": [
+        1,
+        5,
+        13
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        7,
+        10,
+        18
+      ],
+      "witness_formula_sha256": "5ec3f5351fd89e28d0b4c2534178d9d149f6614c1e80b1859e6c379c21a7079f",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-5-10-18.rational-witness.smt2"
+    },
+    {
+      "alias_classes": [
+        [
+          "a0",
+          "escape"
+        ],
+        [
+          "a1",
+          "s3",
+          "p3",
+          "be"
+        ],
+        [
+          "p1",
+          "x"
+        ],
+        [
+          "a2",
+          "r3"
+        ],
+        [
+          "other",
+          "r4",
+          "e3"
+        ]
+      ],
+      "case_id": "q0-1-7-11-18",
+      "formula_sha256": "2c5cb772688fd1a971f8494ee1be001d6c66d360ac670fae0532687955bd0317",
+      "induced_source_equation_indices": [
+        1,
+        5,
+        14
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        7,
+        11,
+        18
+      ],
+      "witness_formula_sha256": "5ec3f5351fd89e28d0b4c2534178d9d149f6614c1e80b1859e6c379c21a7079f",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-5-10-18.rational-witness.smt2"
+    },
+    {
+      "alias_classes": [
+        [
+          "a0",
+          "escape"
+        ],
+        [
+          "a1",
+          "s3",
+          "p3",
+          "be"
+        ],
+        [
+          "r1",
+          "z3",
+          "y"
+        ],
+        [
+          "e4"
+        ],
+        [
+          "other",
+          "r4",
+          "e3"
+        ]
+      ],
+      "case_id": "q0-1-10-13-18",
+      "formula_sha256": "c5737d432513e7110bf15dd53819ffffa45d07c779fcef5cf67447bc3393e5b7",
+      "induced_source_equation_indices": [
+        3,
+        5,
+        13
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        10,
+        13,
+        18
+      ],
+      "witness_formula_sha256": "bc23f492ce466973656cdd66595025fd583a2643ae39e56e90c72c24d270277e",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-13-18.rational-witness.smt2"
+    },
+    {
+      "alias_classes": [
+        [
+          "a0",
+          "escape"
+        ],
+        [
+          "a1",
+          "s3",
+          "p3",
+          "be"
+        ],
+        [
+          "r1",
+          "z3",
+          "y"
+        ],
+        [
+          "p4"
+        ],
+        [
+          "other",
+          "r4",
+          "e3"
+        ]
+      ],
+      "case_id": "q0-1-10-14-18",
+      "formula_sha256": "a74b4a8d74ad995befc8e8eacf49b6d07d31062662e73506a455d67b2852ff74",
+      "induced_source_equation_indices": [
+        2,
+        5,
+        13
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        10,
+        14,
+        18
+      ],
+      "witness_formula_sha256": "b6211f2708670481b856dae08e18f8d3f5e55426f9c95621bf350ab9a3bec61f",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-5-18.rational-witness.smt2"
+    },
+    {
+      "alias_classes": [
+        [
+          "a0",
+          "escape"
+        ],
+        [
+          "a1",
+          "s3",
+          "p3",
+          "be"
+        ],
+        [
+          "a2",
+          "r3"
+        ],
+        [
+          "e4"
+        ],
+        [
+          "other",
+          "r4",
+          "e3"
+        ]
+      ],
+      "case_id": "q0-1-11-13-18",
+      "formula_sha256": "c5737d432513e7110bf15dd53819ffffa45d07c779fcef5cf67447bc3393e5b7",
+      "induced_source_equation_indices": [
+        3,
+        5,
+        14
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        11,
+        13,
+        18
+      ],
+      "witness_formula_sha256": "bc23f492ce466973656cdd66595025fd583a2643ae39e56e90c72c24d270277e",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-13-18.rational-witness.smt2"
+    },
+    {
+      "alias_classes": [
+        [
+          "a0",
+          "escape"
+        ],
+        [
+          "a1",
+          "s3",
+          "p3",
+          "be"
+        ],
+        [
+          "a2",
+          "r3"
+        ],
+        [
+          "p4"
+        ],
+        [
+          "other",
+          "r4",
+          "e3"
+        ]
+      ],
+      "case_id": "q0-1-11-14-18",
+      "formula_sha256": "a74b4a8d74ad995befc8e8eacf49b6d07d31062662e73506a455d67b2852ff74",
+      "induced_source_equation_indices": [
+        2,
+        5,
+        14
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        11,
+        14,
+        18
+      ],
+      "witness_formula_sha256": "b6211f2708670481b856dae08e18f8d3f5e55426f9c95621bf350ab9a3bec61f",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-5-18.rational-witness.smt2"
+    }
+  ],
+  "formula_results": {
+    "2c5cb772688fd1a971f8494ee1be001d6c66d360ac670fae0532687955bd0317": {
+      "coordinates": [
+        [
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          }
+        ],
+        [
+          {
+            "denominator": 1,
+            "numerator": 1
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          }
+        ],
+        [
+          {
+            "denominator": 293,
+            "numerator": 285
+          },
+          {
+            "denominator": 293,
+            "numerator": 68
+          }
+        ],
+        [
+          {
+            "denominator": 77285,
+            "numerator": 52734
+          },
+          {
+            "denominator": 77285,
+            "numerator": 55012
+          }
+        ],
+        [
+          {
+            "denominator": 1189,
+            "numerator": 578
+          },
+          {
+            "denominator": 1189,
+            "numerator": 1020
+          }
+        ]
+      ],
+      "cvc5_replay": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "10000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-5-10-18.rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.009130707941949368,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "cvc5",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 10000
+      },
+      "kind": "B",
+      "minimum_exact_orientation": {
+        "denominator": 22644505,
+        "numerator": 1171096
+      },
+      "minimum_exact_squared_distance": {
+        "denominator": 293,
+        "numerator": 16
+      },
+      "optimization": {
+        "float_objective": -0.0529403909146189,
+        "float_parameters": [
+          0.11581284470751468,
+          1.7603983982858027,
+          -0.12622633681425452
+        ],
+        "message": "Optimization terminated successfully.",
+        "success": true
+      },
+      "rational_parameters": [
+        {
+          "denominator": 17,
+          "numerator": 2
+        },
+        {
+          "denominator": 17,
+          "numerator": 30
+        },
+        {
+          "denominator": 8,
+          "numerator": -1
+        }
+      ],
+      "replay_status": "PASS",
+      "representative_case_id": "q0-1-5-10-18",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-5-10-18.rational-witness.smt2",
+      "witness_smt2_sha256": "5ec3f5351fd89e28d0b4c2534178d9d149f6614c1e80b1859e6c379c21a7079f",
+      "z3_replay": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:10000",
+          "-T:10",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-5-10-18.rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.009157250169664621,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 10000
+      }
+    },
+    "a74b4a8d74ad995befc8e8eacf49b6d07d31062662e73506a455d67b2852ff74": {
+      "coordinates": [
+        [
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          }
+        ],
+        [
+          {
+            "denominator": 1,
+            "numerator": 1
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          }
+        ],
+        [
+          {
+            "denominator": 26129,
+            "numerator": 25380
+          },
+          {
+            "denominator": 26129,
+            "numerator": 6150
+          }
+        ],
+        [
+          {
+            "denominator": 305,
+            "numerator": 207
+          },
+          {
+            "denominator": 305,
+            "numerator": 224
+          }
+        ],
+        [
+          {
+            "denominator": 901,
+            "numerator": 450
+          },
+          {
+            "denominator": 901,
+            "numerator": 780
+          }
+        ]
+      ],
+      "cvc5_replay": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "10000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-5-18.rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.00944195780903101,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "cvc5",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 10000
+      },
+      "kind": "A",
+      "minimum_exact_orientation": {
+        "denominator": 1593869,
+        "numerator": 81342
+      },
+      "minimum_exact_squared_distance": {
+        "denominator": 54961,
+        "numerator": 2713
+      },
+      "optimization": {
+        "float_objective": -0.052781864780004586,
+        "float_parameters": [
+          0.4331127709825928,
+          1.7345324285451795,
+          -0.4298814377951983
+        ],
+        "message": "Optimization terminated successfully.",
+        "success": true
+      },
+      "rational_parameters": [
+        {
+          "denominator": 16,
+          "numerator": 7
+        },
+        {
+          "denominator": 15,
+          "numerator": 26
+        },
+        {
+          "denominator": 7,
+          "numerator": -3
+        }
+      ],
+      "replay_status": "PASS",
+      "representative_case_id": "q0-1-2-5-18",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-5-18.rational-witness.smt2",
+      "witness_smt2_sha256": "b6211f2708670481b856dae08e18f8d3f5e55426f9c95621bf350ab9a3bec61f",
+      "z3_replay": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:10000",
+          "-T:10",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-5-18.rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.008885957999154925,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 10000
+      }
+    },
+    "c5737d432513e7110bf15dd53819ffffa45d07c779fcef5cf67447bc3393e5b7": {
+      "coordinates": [
+        [
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          }
+        ],
+        [
+          {
+            "denominator": 1,
+            "numerator": 1
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          }
+        ],
+        [
+          {
+            "denominator": 215333,
+            "numerator": 325318
+          },
+          {
+            "denominator": 215333,
+            "numerator": 51832
+          }
+        ],
+        [
+          {
+            "denominator": 221,
+            "numerator": 361
+          },
+          {
+            "denominator": 221,
+            "numerator": 171
+          }
+        ],
+        [
+          {
+            "denominator": 617,
+            "numerator": 722
+          },
+          {
+            "denominator": 617,
+            "numerator": 608
+          }
+        ]
+      ],
+      "cvc5_replay": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "10000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-13-18.rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.00946612493135035,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "cvc5",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 10000
+      },
+      "kind": "C",
+      "minimum_exact_orientation": {
+        "denominator": 215333,
+        "numerator": 51832
+      },
+      "minimum_exact_squared_distance": {
+        "denominator": 136357,
+        "numerator": 35378
+      },
+      "optimization": {
+        "float_objective": -0.24590596062109893,
+        "float_parameters": [
+          0.481898807009868,
+          0.8416390493890304,
+          -0.2757978070372431
+        ],
+        "message": "Optimization terminated successfully.",
+        "success": true
+      },
+      "rational_parameters": [
+        {
+          "denominator": 19,
+          "numerator": 9
+        },
+        {
+          "denominator": 19,
+          "numerator": 16
+        },
+        {
+          "denominator": 18,
+          "numerator": -5
+        }
+      ],
+      "replay_status": "PASS",
+      "representative_case_id": "q0-1-2-13-18",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-13-18.rational-witness.smt2",
+      "witness_smt2_sha256": "bc23f492ce466973656cdd66595025fd583a2643ae39e56e90c72c24d270277e",
+      "z3_replay": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:10000",
+          "-T:10",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-13-18.rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.01021541585214436,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 10000
+      }
+    },
+    "fd2ccd143f8264fadb12253b23529bec4ce7ea3110f764714145c4f1df07daa2": {
+      "coordinates": [
+        [
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          }
+        ],
+        [
+          {
+            "denominator": 1,
+            "numerator": 1
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          }
+        ],
+        [
+          {
+            "denominator": 215333,
+            "numerator": 325318
+          },
+          {
+            "denominator": 215333,
+            "numerator": 51832
+          }
+        ],
+        [
+          {
+            "denominator": 221,
+            "numerator": 361
+          },
+          {
+            "denominator": 221,
+            "numerator": 171
+          }
+        ],
+        [
+          {
+            "denominator": 617,
+            "numerator": 722
+          },
+          {
+            "denominator": 617,
+            "numerator": 608
+          }
+        ]
+      ],
+      "cvc5_replay": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "10000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-16-18.rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.009610167006030679,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "cvc5",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 10000
+      },
+      "kind": "C",
+      "minimum_exact_orientation": {
+        "denominator": 215333,
+        "numerator": 51832
+      },
+      "minimum_exact_squared_distance": {
+        "denominator": 136357,
+        "numerator": 35378
+      },
+      "optimization": {
+        "float_objective": -0.24590596062109893,
+        "float_parameters": [
+          0.481898807009868,
+          0.8416390493890304,
+          -0.2757978070372431
+        ],
+        "message": "Optimization terminated successfully.",
+        "success": true
+      },
+      "rational_parameters": [
+        {
+          "denominator": 19,
+          "numerator": 9
+        },
+        {
+          "denominator": 19,
+          "numerator": 16
+        },
+        {
+          "denominator": 18,
+          "numerator": -5
+        }
+      ],
+      "replay_status": "PASS",
+      "representative_case_id": "q0-1-2-16-18",
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-16-18.rational-witness.smt2",
+      "witness_smt2_sha256": "338cf7d98772d1f5fd1c2b031faefd74aa16267cecd104adc103270730395b1c",
+      "z3_replay": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:10000",
+          "-T:10",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-16-18.rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.009459167020395398,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 10000
+      }
+    }
+  },
+  "method": "rational parameterizations of the exact circle equalities, exact Fraction arithmetic for all strict margins, and fresh Z3/cvc5 replay after asserting every rational coordinate",
+  "schema": "p97-v13-five-point-resolution-v1",
+  "terminal_status": "ALL_15_SAT_EXACT_RATIONAL_WITNESSES"
+}

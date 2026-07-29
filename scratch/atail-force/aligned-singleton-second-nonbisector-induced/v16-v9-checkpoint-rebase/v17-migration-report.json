@@ -1,0 +1,32 @@
+{
+  "current_cegar_sha256": "fea2e57eccd77d3df3ccaae3ffa77a148649af901cd058bdb645d712bfaa3258",
+  "cut_count": 100000,
+  "projection_fields_checked": [
+    "z_branch",
+    "escape_arm",
+    "global_tier",
+    "cover_points",
+    "global_k4_centers",
+    "rich_apices",
+    "robust_deletions",
+    "outer_only",
+    "named_occurrences",
+    "original_named_occurrences",
+    "original_names",
+    "names"
+  ],
+  "resume_validation": "required-fail-closed",
+  "schema_counts": {
+    "circle_isosceles_five_point": 22,
+    "five_point_euclidean": 39,
+    "four_point_kalmanson": 99911,
+    "reversed_second_five_point_euclidean": 18,
+    "sparse_six_point_euclidean": 10
+  },
+  "source_checkpoint": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-v9-checkpoint-rebase/cegar-v16-custom-critical-reuse-second.working.checkpoint.json",
+  "source_checkpoint_sha256": "22663559059e256e74589595afd66809e81fb9ae918351d988c243135f05f7d7",
+  "status": "MIGRATED_V16_TO_V17",
+  "target_checkpoint": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-v9-checkpoint-rebase/cegar-v17-custom-critical-reuse-second.migrated.checkpoint.json",
+  "target_checkpoint_sha256": "091df43dd5c14ff164882826551a833ee08faaaa259d9c1e4f38a3161fd31643",
+  "trust_scope": "external-discovery-only-not-Lean-closure"
+}

@@ -1,0 +1,42 @@
+ring r=0,(t,u,v),dp;
+poly Dt=1+t2;
+poly Du=1+u2;
+poly Dv=1+v2;
+poly Xt=1-t2;
+poly Yt=2t;
+poly Xu=1-u2;
+poly Yu=2u;
+poly Xv=1-v2;
+poly Yv=2v;
+poly DX=Xt*Du-Xu*Dt;
+poly DY=Yt*Du-Yu*Dt;
+poly RX=Xv*DX-Yv*DY;
+poly RY=Yv*DX+Xv*DY;
+poly X2=Xu*Dt*Dv+RX;
+poly Y2=Yu*Dt*Dv+RY;
+poly D2=Dt*Du*Dv;
+
+// Source distance identities for
+// p0=(0,0), p1=(1,0), p3=(Xt,Yt)/Dt, p4=(Xu,Yu)/Du,
+// p2=p4+rotate_C(v)(p3-p4).
+poly E03=Xt^2+Yt^2-Dt^2;
+poly E04=Xu^2+Yu^2-Du^2;
+poly E24E34=RX^2+RY^2-(DX^2+DY^2)*Dv^2;
+
+// Cleared orientation numerators used by the normalized contradiction.
+poly N013=Yt;
+poly N014=Yu;
+poly N340=(Xu*Dt-Xt*Du)*(-Yt)-(Yu*Dt-Yt*Du)*(-Xt);
+poly N234=(Xt*D2-X2*Dt)*(Yu*D2-Y2*Du)
+  -(Yt*D2-Y2*Dt)*(Xu*D2-X2*Du);
+poly N123=(X2-D2)*Yt-Y2*(Xt-Dt);
+
+E03;
+E04;
+E24E34;
+N013-2t;
+N014-2u;
+N340-(-2*(t-u)*Dt*(t*u+1));
+N234-(-8*v*(t-u)^2*Dt^2*Du^2*Dv);
+N123-(8*t*v*(t-u)*Dt*(u*v-1));
+quit;

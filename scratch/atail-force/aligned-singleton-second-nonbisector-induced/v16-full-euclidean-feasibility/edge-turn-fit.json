@@ -1,0 +1,2299 @@
+{
+  "attempts": [
+    {
+      "attempt": 0,
+      "metrics": {
+        "closure_norm": 8.427618571896534e-06,
+        "equation_max_abs": 0.3015897454886755,
+        "equation_rms": 0.10596497365495369,
+        "maximum_coordinate": 1.0606412805077423,
+        "maximum_turn": 3.1365109013430006,
+        "minimum_pair_distance": 0.0003354626279024585,
+        "minimum_turn": 3.569083083808537e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.016473883208634e-14
+      },
+      "nfev": 56,
+      "success": true
+    },
+    {
+      "attempt": 1,
+      "metrics": {
+        "closure_norm": 5.3847783257653745e-06,
+        "equation_max_abs": 0.3003482034047408,
+        "equation_rms": 0.10610599358752845,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1366391102706874,
+        "minimum_pair_distance": 0.00033546262790245716,
+        "minimum_turn": 3.592872662558422e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.0432455208836956e-14
+      },
+      "nfev": 96,
+      "success": true
+    },
+    {
+      "attempt": 2,
+      "metrics": {
+        "closure_norm": 8.416559799092622e-06,
+        "equation_max_abs": 0.30158974445329745,
+        "equation_rms": 0.1059649734760325,
+        "maximum_coordinate": 1.0606412697274137,
+        "maximum_turn": 3.1365109129233866,
+        "minimum_pair_distance": 0.0003354626279024625,
+        "minimum_turn": 3.535647515468861e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.978847103741925e-14
+      },
+      "nfev": 62,
+      "success": true
+    },
+    {
+      "attempt": 3,
+      "metrics": {
+        "closure_norm": 8.883975857383412e-06,
+        "equation_max_abs": 0.30158975495095997,
+        "equation_rms": 0.10596497881490763,
+        "maximum_coordinate": 1.0606411545712133,
+        "maximum_turn": 3.136506075653532,
+        "minimum_pair_distance": 0.000335462627902461,
+        "minimum_turn": 3.5861294287448114e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.035657028747822e-14
+      },
+      "nfev": 54,
+      "success": true
+    },
+    {
+      "attempt": 4,
+      "metrics": {
+        "closure_norm": 8.478921006199834e-06,
+        "equation_max_abs": 0.3015897481210669,
+        "equation_rms": 0.10596497455536708,
+        "maximum_coordinate": 1.060641251604578,
+        "maximum_turn": 3.136510245321475,
+        "minimum_pair_distance": 0.000335462627902466,
+        "minimum_turn": 3.541835921109748e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9858112390105254e-14
+      },
+      "nfev": 47,
+      "success": true
+    },
+    {
+      "attempt": 5,
+      "metrics": {
+        "closure_norm": 8.521360478236313e-06,
+        "equation_max_abs": 0.3015897525807494,
+        "equation_rms": 0.10596497650550055,
+        "maximum_coordinate": 1.060641266543182,
+        "maximum_turn": 3.136508614068415,
+        "minimum_pair_distance": 0.00033546262790246805,
+        "minimum_turn": 3.6805287917678015e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.1418894994596636e-14
+      },
+      "nfev": 58,
+      "success": true
+    },
+    {
+      "attempt": 6,
+      "metrics": {
+        "closure_norm": 4.1506374057827454e-06,
+        "equation_max_abs": 0.29686610131225727,
+        "equation_rms": 0.10935596434060214,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.136906510551806,
+        "minimum_pair_distance": 0.0003354626279024573,
+        "minimum_turn": 3.7426625870674704e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.2118118879892146e-14
+      },
+      "nfev": 59,
+      "success": true
+    },
+    {
+      "attempt": 7,
+      "metrics": {
+        "closure_norm": 5.458612108755572e-06,
+        "equation_max_abs": 0.3003482017372433,
+        "equation_rms": 0.10610599546172574,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.136637710299929,
+        "minimum_pair_distance": 0.0003354626279024615,
+        "minimum_turn": 3.837213678291195e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.318215124710145e-14
+      },
+      "nfev": 54,
+      "success": true
+    },
+    {
+      "attempt": 8,
+      "metrics": {
+        "closure_norm": 5.413980066534577e-06,
+        "equation_max_abs": 0.3003482072127342,
+        "equation_rms": 0.10610599724678933,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.136636756565167,
+        "minimum_pair_distance": 0.0003354626279024698,
+        "minimum_turn": 3.657186648846997e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.115621390089543e-14
+      },
+      "nfev": 53,
+      "success": true
+    },
+    {
+      "attempt": 9,
+      "metrics": {
+        "closure_norm": 8.411758513665153e-06,
+        "equation_max_abs": 0.3015897449065019,
+        "equation_rms": 0.10596497400514854,
+        "maximum_coordinate": 1.0606412549745534,
+        "maximum_turn": 3.1365105703250613,
+        "minimum_pair_distance": 0.0003354626279024615,
+        "minimum_turn": 5.840815872226955e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 7.126906867078496e-14
+      },
+      "nfev": 56,
+      "success": true
+    },
+    {
+      "attempt": 10,
+      "metrics": {
+        "closure_norm": 5.431711606106675e-06,
+        "equation_max_abs": 0.30034820184062816,
+        "equation_rms": 0.10610599667592481,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1366362702636454,
+        "minimum_pair_distance": 0.0003354626279024589,
+        "minimum_turn": 3.8627032622256685e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.346899858938548e-14
+      },
+      "nfev": 62,
+      "success": true
+    },
+    {
+      "attempt": 11,
+      "metrics": {
+        "closure_norm": 5.6763034394661795e-06,
+        "equation_max_abs": 0.30034821181685173,
+        "equation_rms": 0.1061059977245856,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1366354064237187,
+        "minimum_pair_distance": 0.0003354626279024574,
+        "minimum_turn": 4.334805201634037e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.878180615988836e-14
+      },
+      "nfev": 73,
+      "success": true
+    },
+    {
+      "attempt": 12,
+      "metrics": {
+        "closure_norm": 8.427971985268416e-06,
+        "equation_max_abs": 0.30158974030123264,
+        "equation_rms": 0.10596497281098297,
+        "maximum_coordinate": 1.0606412252172768,
+        "maximum_turn": 3.136511332749331,
+        "minimum_pair_distance": 0.00033546262790246984,
+        "minimum_turn": 3.5369742020012907e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.980340104260001e-14
+      },
+      "nfev": 46,
+      "success": true
+    },
+    {
+      "attempt": 13,
+      "metrics": {
+        "closure_norm": 8.511376873428583e-06,
+        "equation_max_abs": 0.30158974756400575,
+        "equation_rms": 0.10596497520757246,
+        "maximum_coordinate": 1.0606412414542554,
+        "maximum_turn": 3.136509496147907,
+        "minimum_pair_distance": 0.0003354626279024666,
+        "minimum_turn": 3.546790699184402e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.991387122986929e-14
+      },
+      "nfev": 65,
+      "success": true
+    },
+    {
+      "attempt": 14,
+      "metrics": {
+        "closure_norm": 8.41931216281073e-06,
+        "equation_max_abs": 0.3015897435745918,
+        "equation_rms": 0.10596497365577266,
+        "maximum_coordinate": 1.060641262416905,
+        "maximum_turn": 3.1365107958593894,
+        "minimum_pair_distance": 0.0003354626279024573,
+        "minimum_turn": 3.543721248968623e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9879328854876166e-14
+      },
+      "nfev": 76,
+      "success": true
+    },
+    {
+      "attempt": 15,
+      "metrics": {
+        "closure_norm": 8.469197188800185e-06,
+        "equation_max_abs": 0.30158974772692787,
+        "equation_rms": 0.10596497460367554,
+        "maximum_coordinate": 1.0606412675601957,
+        "maximum_turn": 3.136510123002823,
+        "minimum_pair_distance": 0.00033546262790245987,
+        "minimum_turn": 3.620592086647338e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.074439627358749e-14
+      },
+      "nfev": 59,
+      "success": true
+    },
+    {
+      "attempt": 16,
+      "metrics": {
+        "closure_norm": 8.454592175359334e-06,
+        "equation_max_abs": 0.30158974674303884,
+        "equation_rms": 0.10596497462027038,
+        "maximum_coordinate": 1.060641252565789,
+        "maximum_turn": 3.136510107580218,
+        "minimum_pair_distance": 0.00033546262790245753,
+        "minimum_turn": 3.5409888104312117e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9848579505363265e-14
+      },
+      "nfev": 43,
+      "success": true
+    },
+    {
+      "attempt": 17,
+      "metrics": {
+        "closure_norm": 5.518642050454472e-06,
+        "equation_max_abs": 0.30034820782005206,
+        "equation_rms": 0.10610600099924491,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.136632201565028,
+        "minimum_pair_distance": 0.000335462627902457,
+        "minimum_turn": 4.167267549245114e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.6896418110416e-14
+      },
+      "nfev": 59,
+      "success": true
+    },
+    {
+      "attempt": 18,
+      "metrics": {
+        "closure_norm": 5.5115011457173165e-06,
+        "equation_max_abs": 0.3003482039710087,
+        "equation_rms": 0.10610600618885177,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1366265067654084,
+        "minimum_pair_distance": 0.0003354626279024577,
+        "minimum_turn": 6.969250041125747e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 7.842857709275048e-14
+      },
+      "nfev": 82,
+      "success": true
+    },
+    {
+      "attempt": 19,
+      "metrics": {
+        "closure_norm": 5.529502810185174e-06,
+        "equation_max_abs": 0.3003482109738871,
+        "equation_rms": 0.10610600157380885,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.13663140523998,
+        "minimum_pair_distance": 0.0003354626279024622,
+        "minimum_turn": 4.742171744224993e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 5.3366112591023776e-14
+      },
+      "nfev": 99,
+      "success": true
+    },
+    {
+      "attempt": 20,
+      "metrics": {
+        "closure_norm": 4.360289459106327e-06,
+        "equation_max_abs": 0.2968661020191694,
+        "equation_rms": 0.10935596396068246,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.136906287130062,
+        "minimum_pair_distance": 0.0003354626279024599,
+        "minimum_turn": 3.647800057272801e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.105058161121887e-14
+      },
+      "nfev": 54,
+      "success": true
+    },
+    {
+      "attempt": 21,
+      "metrics": {
+        "closure_norm": 8.474838681756088e-06,
+        "equation_max_abs": 0.30158974862145194,
+        "equation_rms": 0.10596497506808866,
+        "maximum_coordinate": 1.0606412256297497,
+        "maximum_turn": 3.1365097181085226,
+        "minimum_pair_distance": 0.000335462627902459,
+        "minimum_turn": 4.049623669614268e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.557251050399421e-14
+      },
+      "nfev": 58,
+      "success": true
+    },
+    {
+      "attempt": 22,
+      "metrics": {
+        "closure_norm": 8.514459085434026e-06,
+        "equation_max_abs": 0.3015897471924262,
+        "equation_rms": 0.10596497454760019,
+        "maximum_coordinate": 1.060641298007296,
+        "maximum_turn": 3.1365100311457033,
+        "minimum_pair_distance": 0.0003354626279024593,
+        "minimum_turn": 3.544337295950082e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.98862618255465e-14
+      },
+      "nfev": 52,
+      "success": true
+    },
+    {
+      "attempt": 23,
+      "metrics": {
+        "closure_norm": 8.502205514165176e-06,
+        "equation_max_abs": 0.3015897462751551,
+        "equation_rms": 0.10596497437459268,
+        "maximum_coordinate": 1.0606412694156615,
+        "maximum_turn": 3.136510104211193,
+        "minimum_pair_distance": 0.00033546262790245726,
+        "minimum_turn": 3.5532447743101967e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.998650211229224e-14
+      },
+      "nfev": 46,
+      "success": true
+    },
+    {
+      "attempt": 24,
+      "metrics": {
+        "closure_norm": 8.349400090090594e-06,
+        "equation_max_abs": 0.301589742617309,
+        "equation_rms": 0.10596497260710179,
+        "maximum_coordinate": 1.0606412860040302,
+        "maximum_turn": 3.136511671155143,
+        "minimum_pair_distance": 0.0003354626279024606,
+        "minimum_turn": 3.529843249464821e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.972315269424111e-14
+      },
+      "nfev": 58,
+      "success": true
+    },
+    {
+      "attempt": 25,
+      "metrics": {
+        "closure_norm": 8.378647902506568e-06,
+        "equation_max_abs": 0.30158974387550763,
+        "equation_rms": 0.10596497384995254,
+        "maximum_coordinate": 1.0606412324561365,
+        "maximum_turn": 3.136510817165807,
+        "minimum_pair_distance": 0.00033546262790245916,
+        "minimum_turn": 3.5353789019149477e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.978544820575273e-14
+      },
+      "nfev": 49,
+      "success": true
+    },
+    {
+      "attempt": 26,
+      "metrics": {
+        "closure_norm": 8.460523572829298e-06,
+        "equation_max_abs": 0.301589748683413,
+        "equation_rms": 0.10596497470361221,
+        "maximum_coordinate": 1.060641238294905,
+        "maximum_turn": 3.1365101245286318,
+        "minimum_pair_distance": 0.0003354626279024572,
+        "minimum_turn": 3.5390311903578603e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.982654936106666e-14
+      },
+      "nfev": 51,
+      "success": true
+    },
+    {
+      "attempt": 27,
+      "metrics": {
+        "closure_norm": 8.466109320658627e-06,
+        "equation_max_abs": 0.3015897434801919,
+        "equation_rms": 0.10596497374423285,
+        "maximum_coordinate": 1.0606412568622852,
+        "maximum_turn": 3.1365106493817154,
+        "minimum_pair_distance": 0.0003354626279024606,
+        "minimum_turn": 3.540064630264113e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.983817909468794e-14
+      },
+      "nfev": 51,
+      "success": true
+    },
+    {
+      "attempt": 28,
+      "metrics": {
+        "closure_norm": 8.430811287740593e-06,
+        "equation_max_abs": 0.3015897441520621,
+        "equation_rms": 0.10596497343468349,
+        "maximum_coordinate": 1.060641251943514,
+        "maximum_turn": 3.13651098015395,
+        "minimum_pair_distance": 0.00033546262790246014,
+        "minimum_turn": 3.581583200450845e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.0305409172278684e-14
+      },
+      "nfev": 44,
+      "success": true
+    },
+    {
+      "attempt": 29,
+      "metrics": {
+        "closure_norm": 5.407660704864833e-06,
+        "equation_max_abs": 0.3003482055778158,
+        "equation_rms": 0.10610599643484868,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.136636535373923,
+        "minimum_pair_distance": 0.0003354626279024577,
+        "minimum_turn": 5.115961263589768e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 5.757255950467398e-14
+      },
+      "nfev": 63,
+      "success": true
+    },
+    {
+      "attempt": 30,
+      "metrics": {
+        "closure_norm": 8.412377998841133e-06,
+        "equation_max_abs": 0.30158974545112854,
+        "equation_rms": 0.10596497294702824,
+        "maximum_coordinate": 1.0606413151728475,
+        "maximum_turn": 3.1365115297120085,
+        "minimum_pair_distance": 0.00033546262790245905,
+        "minimum_turn": 3.5357500786356154e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.978962529144986e-14
+      },
+      "nfev": 49,
+      "success": true
+    },
+    {
+      "attempt": 31,
+      "metrics": {
+        "closure_norm": 5.485937609021001e-06,
+        "equation_max_abs": 0.3003482054803369,
+        "equation_rms": 0.10610599781149235,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1366352218294717,
+        "minimum_pair_distance": 0.0003354626279024618,
+        "minimum_turn": 3.6525733148603527e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.1104297848194604e-14
+      },
+      "nfev": 75,
+      "success": true
+    },
+    {
+      "attempt": 32,
+      "metrics": {
+        "closure_norm": 8.390659509564679e-06,
+        "equation_max_abs": 0.30158974383220716,
+        "equation_rms": 0.10596497334334282,
+        "maximum_coordinate": 1.0606412379795112,
+        "maximum_turn": 3.136511143875562,
+        "minimum_pair_distance": 0.00033546262790246214,
+        "minimum_turn": 3.534510053707702e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.977567045580049e-14
+      },
+      "nfev": 60,
+      "success": true
+    },
+    {
+      "attempt": 33,
+      "metrics": {
+        "closure_norm": 8.486966811602708e-06,
+        "equation_max_abs": 0.30158974524589804,
+        "equation_rms": 0.10596497360775733,
+        "maximum_coordinate": 1.0606412825796534,
+        "maximum_turn": 3.136510887547154,
+        "minimum_pair_distance": 0.00033546262790246225,
+        "minimum_turn": 3.5423751001585174e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9864180030644884e-14
+      },
+      "nfev": 49,
+      "success": true
+    },
+    {
+      "attempt": 34,
+      "metrics": {
+        "closure_norm": 8.43258127226345e-06,
+        "equation_max_abs": 0.3015897448378412,
+        "equation_rms": 0.1059649737300675,
+        "maximum_coordinate": 1.060641287566933,
+        "maximum_turn": 3.1365107904826184,
+        "minimum_pair_distance": 0.000335462627902462,
+        "minimum_turn": 3.561174024370354e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.007573402131408e-14
+      },
+      "nfev": 58,
+      "success": true
+    },
+    {
+      "attempt": 35,
+      "metrics": {
+        "closure_norm": 8.489046977059136e-06,
+        "equation_max_abs": 0.3015897419595676,
+        "equation_rms": 0.10596497395042734,
+        "maximum_coordinate": 1.060641306334465,
+        "maximum_turn": 3.136510470365778,
+        "minimum_pair_distance": 0.0003354626279024574,
+        "minimum_turn": 3.542276986636738e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9863076117947474e-14
+      },
+      "nfev": 54,
+      "success": true
+    },
+    {
+      "attempt": 36,
+      "metrics": {
+        "closure_norm": 5.445313635585808e-06,
+        "equation_max_abs": 0.30034820708359816,
+        "equation_rms": 0.10610600036380743,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.136632213314157,
+        "minimum_pair_distance": 0.00033546262790246377,
+        "minimum_turn": 3.884069022221034e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.370943857811048e-14
+      },
+      "nfev": 86,
+      "success": true
+    },
+    {
+      "attempt": 37,
+      "metrics": {
+        "closure_norm": 8.47618376539661e-06,
+        "equation_max_abs": 0.3015897478009232,
+        "equation_rms": 0.10596497528209554,
+        "maximum_coordinate": 1.0606412278052524,
+        "maximum_turn": 3.1365095786687465,
+        "minimum_pair_distance": 0.00033546262790245835,
+        "minimum_turn": 3.623469709940365e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.0776779833016703e-14
+      },
+      "nfev": 52,
+      "success": true
+    },
+    {
+      "attempt": 38,
+      "metrics": {
+        "closure_norm": 8.472392358945882e-06,
+        "equation_max_abs": 0.3015897447961733,
+        "equation_rms": 0.10596497377701432,
+        "maximum_coordinate": 1.0606412560135157,
+        "maximum_turn": 3.1365106082810836,
+        "minimum_pair_distance": 0.0003354626279024578,
+        "minimum_turn": 3.541436279128713e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.985361494268186e-14
+      },
+      "nfev": 50,
+      "success": true
+    },
+    {
+      "attempt": 39,
+      "metrics": {
+        "closure_norm": 5.552108986432984e-06,
+        "equation_max_abs": 0.300348206614799,
+        "equation_rms": 0.1061060033743531,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1366291767229897,
+        "minimum_pair_distance": 0.0003354626279024579,
+        "minimum_turn": 5.048587752344244e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 5.68143704601078e-14
+      },
+      "nfev": 83,
+      "success": true
+    },
+    {
+      "attempt": 40,
+      "metrics": {
+        "closure_norm": 8.54813029325438e-06,
+        "equation_max_abs": 0.30158974694557156,
+        "equation_rms": 0.10596497495607426,
+        "maximum_coordinate": 1.0606412359791637,
+        "maximum_turn": 3.1365096712743408,
+        "minimum_pair_distance": 0.0003354626279024616,
+        "minimum_turn": 3.547180030218965e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.991825228222715e-14
+      },
+      "nfev": 50,
+      "success": true
+    },
+    {
+      "attempt": 41,
+      "metrics": {
+        "closure_norm": 5.422529870666444e-06,
+        "equation_max_abs": 0.30034819828804843,
+        "equation_rms": 0.1061059995990754,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.136632475096661,
+        "minimum_pair_distance": 0.00033546262790246876,
+        "minimum_turn": 3.5548261283472334e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.000429798386347e-14
+      },
+      "nfev": 66,
+      "success": true
+    },
+    {
+      "attempt": 42,
+      "metrics": {
+        "closure_norm": 8.584242111882847e-06,
+        "equation_max_abs": 0.3015897494040727,
+        "equation_rms": 0.10596497556687016,
+        "maximum_coordinate": 1.0606412349366585,
+        "maximum_turn": 3.1365090399747433,
+        "minimum_pair_distance": 0.000335462627902458,
+        "minimum_turn": 3.559083829821474e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.005221194469976e-14
+      },
+      "nfev": 54,
+      "success": true
+    },
+    {
+      "attempt": 43,
+      "metrics": {
+        "closure_norm": 8.462628231363137e-06,
+        "equation_max_abs": 0.3015897447087489,
+        "equation_rms": 0.10596497405882503,
+        "maximum_coordinate": 1.0606412442131945,
+        "maximum_turn": 3.1365104171868023,
+        "minimum_pair_distance": 0.0003354626279024594,
+        "minimum_turn": 3.541975028373372e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9859677936741195e-14
+      },
+      "nfev": 48,
+      "success": true
+    },
+    {
+      "attempt": 44,
+      "metrics": {
+        "closure_norm": 8.572775945816212e-06,
+        "equation_max_abs": 0.30158974967307794,
+        "equation_rms": 0.10596497552850882,
+        "maximum_coordinate": 1.0606412644298355,
+        "maximum_turn": 3.1365091760898576,
+        "minimum_pair_distance": 0.0003354626279024571,
+        "minimum_turn": 3.5952442588338103e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.0459144135983276e-14
+      },
+      "nfev": 55,
+      "success": true
+    },
+    {
+      "attempt": 45,
+      "metrics": {
+        "closure_norm": 8.475173091364644e-06,
+        "equation_max_abs": 0.30158974729544125,
+        "equation_rms": 0.1059649743258135,
+        "maximum_coordinate": 1.0606412797206137,
+        "maximum_turn": 3.1365102450938513,
+        "minimum_pair_distance": 0.0003354626279024689,
+        "minimum_turn": 3.540617909152792e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.984440546115755e-14
+      },
+      "nfev": 48,
+      "success": true
+    },
+    {
+      "attempt": 46,
+      "metrics": {
+        "closure_norm": 8.493687565722756e-06,
+        "equation_max_abs": 0.3015897492577338,
+        "equation_rms": 0.10596497499201113,
+        "maximum_coordinate": 1.060641264159334,
+        "maximum_turn": 3.1365098716188466,
+        "minimum_pair_distance": 0.00033546262790246025,
+        "minimum_turn": 3.542025998827045e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.98602514243686e-14
+      },
+      "nfev": 74,
+      "success": true
+    },
+    {
+      "attempt": 47,
+      "metrics": {
+        "closure_norm": 6.086064486094345e-06,
+        "equation_max_abs": 0.29737313708632324,
+        "equation_rms": 0.10929867748032406,
+        "maximum_coordinate": 1.04054941457858,
+        "maximum_turn": 3.136813056915984,
+        "minimum_pair_distance": 0.0003354626279024701,
+        "minimum_turn": 3.531432002054242e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9741031689450585e-14
+      },
+      "nfev": 53,
+      "success": true
+    },
+    {
+      "attempt": 48,
+      "metrics": {
+        "closure_norm": 8.527573675565278e-06,
+        "equation_max_abs": 0.30158974837344826,
+        "equation_rms": 0.10596497549358783,
+        "maximum_coordinate": 1.0606412219471524,
+        "maximum_turn": 3.1365093566573923,
+        "minimum_pair_distance": 0.0003354626279024687,
+        "minimum_turn": 3.545434388426778e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.989860791975703e-14
+      },
+      "nfev": 55,
+      "success": true
+    },
+    {
+      "attempt": 49,
+      "metrics": {
+        "closure_norm": 5.912132230049299e-06,
+        "equation_max_abs": 0.30034821755870367,
+        "equation_rms": 0.10610599692455348,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.136635987928017,
+        "minimum_pair_distance": 0.000335462627902464,
+        "minimum_turn": 3.588535673794798e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.038364885226182e-14
+      },
+      "nfev": 70,
+      "success": true
+    },
+    {
+      "attempt": 50,
+      "metrics": {
+        "closure_norm": 4.177677187353253e-06,
+        "equation_max_abs": 0.296866098296931,
+        "equation_rms": 0.10935596272168406,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1369076834807585,
+        "minimum_pair_distance": 0.0003354626279024586,
+        "minimum_turn": 3.5448332197537417e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.989184275534015e-14
+      },
+      "nfev": 65,
+      "success": true
+    },
+    {
+      "attempt": 51,
+      "metrics": {
+        "closure_norm": 8.50674041201157e-06,
+        "equation_max_abs": 0.30158974611580314,
+        "equation_rms": 0.10596497426182629,
+        "maximum_coordinate": 1.0606412458480659,
+        "maximum_turn": 3.136510066959034,
+        "minimum_pair_distance": 0.0003354626279024596,
+        "minimum_turn": 3.543553003800865e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.987743568609123e-14
+      },
+      "nfev": 57,
+      "success": true
+    },
+    {
+      "attempt": 52,
+      "metrics": {
+        "closure_norm": 8.41778245638556e-06,
+        "equation_max_abs": 0.3015897453984731,
+        "equation_rms": 0.10596497402396284,
+        "maximum_coordinate": 1.060641248046915,
+        "maximum_turn": 3.136510581166637,
+        "minimum_pair_distance": 0.00033546262790246106,
+        "minimum_turn": 3.535106660983144e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.97823844797243e-14
+      },
+      "nfev": 48,
+      "success": true
+    },
+    {
+      "attempt": 53,
+      "metrics": {
+        "closure_norm": 8.442962259857689e-06,
+        "equation_max_abs": 0.3015897457795007,
+        "equation_rms": 0.10596497447074787,
+        "maximum_coordinate": 1.0606412403311447,
+        "maximum_turn": 3.1365101403819526,
+        "minimum_pair_distance": 0.0003354626279024616,
+        "minimum_turn": 3.5648480170430215e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.0117079460020096e-14
+      },
+      "nfev": 37,
+      "success": true
+    },
+    {
+      "attempt": 54,
+      "metrics": {
+        "closure_norm": 8.441375398682144e-06,
+        "equation_max_abs": 0.3015897479971449,
+        "equation_rms": 0.10596497437827258,
+        "maximum_coordinate": 1.0606413016743734,
+        "maximum_turn": 3.1365104139156457,
+        "minimum_pair_distance": 0.00033546262790246035,
+        "minimum_turn": 3.5389931918866296e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.982612179244201e-14
+      },
+      "nfev": 55,
+      "success": true
+    },
+    {
+      "attempt": 55,
+      "metrics": {
+        "closure_norm": 6.097220036413647e-06,
+        "equation_max_abs": 0.2973731381357705,
+        "equation_rms": 0.10929867806487134,
+        "maximum_coordinate": 1.04054932776525,
+        "maximum_turn": 3.136812544554626,
+        "minimum_pair_distance": 0.00033546262790245884,
+        "minimum_turn": 3.9183470696051197e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.409518730773365e-14
+      },
+      "nfev": 52,
+      "success": true
+    },
+    {
+      "attempt": 56,
+      "metrics": {
+        "closure_norm": 5.400944288695927e-06,
+        "equation_max_abs": 0.3003482009507318,
+        "equation_rms": 0.1061059954601681,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1366377060606925,
+        "minimum_pair_distance": 0.00033546262790247174,
+        "minimum_turn": 3.6361765642035534e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.0919776575099776e-14
+      },
+      "nfev": 77,
+      "success": true
+    },
+    {
+      "attempt": 57,
+      "metrics": {
+        "closure_norm": 8.469664470423292e-06,
+        "equation_max_abs": 0.30158974882178397,
+        "equation_rms": 0.10596497455232702,
+        "maximum_coordinate": 1.0606412658086477,
+        "maximum_turn": 3.1365101828710173,
+        "minimum_pair_distance": 0.0003354626279024602,
+        "minimum_turn": 3.539839771167391e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9835648716830696e-14
+      },
+      "nfev": 53,
+      "success": true
+    },
+    {
+      "attempt": 58,
+      "metrics": {
+        "closure_norm": 8.444932625194705e-06,
+        "equation_max_abs": 0.3015897471762553,
+        "equation_rms": 0.10596497355644638,
+        "maximum_coordinate": 1.060641303326151,
+        "maximum_turn": 3.1365109911011744,
+        "minimum_pair_distance": 0.00033546262790246995,
+        "minimum_turn": 3.5383743351157625e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9819157388598203e-14
+      },
+      "nfev": 46,
+      "success": true
+    },
+    {
+      "attempt": 59,
+      "metrics": {
+        "closure_norm": 5.415339234390549e-06,
+        "equation_max_abs": 0.30034820538701745,
+        "equation_rms": 0.10610599301622398,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1366396787088076,
+        "minimum_pair_distance": 0.00033546262790245705,
+        "minimum_turn": 5.414159131214606e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 6.092833422275653e-14
+      },
+      "nfev": 123,
+      "success": true
+    },
+    {
+      "attempt": 60,
+      "metrics": {
+        "closure_norm": 8.350940448644673e-06,
+        "equation_max_abs": 0.30158974143435713,
+        "equation_rms": 0.1059649729625891,
+        "maximum_coordinate": 1.0606412550628568,
+        "maximum_turn": 3.1365115379426767,
+        "minimum_pair_distance": 0.00033546262790245705,
+        "minimum_turn": 3.627336457294535e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.0820294266467855e-14
+      },
+      "nfev": 67,
+      "success": true
+    },
+    {
+      "attempt": 61,
+      "metrics": {
+        "closure_norm": 8.485552024033826e-06,
+        "equation_max_abs": 0.30158974597933585,
+        "equation_rms": 0.10596497403420942,
+        "maximum_coordinate": 1.0606412597031758,
+        "maximum_turn": 3.136510496206237,
+        "minimum_pair_distance": 0.00033546262790246854,
+        "minimum_turn": 3.541720704989585e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9856815854133345e-14
+      },
+      "nfev": 57,
+      "success": true
+    },
+    {
+      "attempt": 62,
+      "metrics": {
+        "closure_norm": 8.49744460534247e-06,
+        "equation_max_abs": 0.30158974669641814,
+        "equation_rms": 0.10596497458932137,
+        "maximum_coordinate": 1.0606412996713797,
+        "maximum_turn": 3.136509931894463,
+        "minimum_pair_distance": 0.0003354626279024599,
+        "minimum_turn": 3.5423728945187264e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9864155162028455e-14
+      },
+      "nfev": 56,
+      "success": true
+    },
+    {
+      "attempt": 63,
+      "metrics": {
+        "closure_norm": 8.480580995774382e-06,
+        "equation_max_abs": 0.3015897519559442,
+        "equation_rms": 0.10596497565462255,
+        "maximum_coordinate": 1.060641308282555,
+        "maximum_turn": 3.1365096617578443,
+        "minimum_pair_distance": 0.00033546262790245753,
+        "minimum_turn": 4.1451283940647825e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.664727481974576e-14
+      },
+      "nfev": 47,
+      "success": true
+    },
+    {
+      "attempt": 64,
+      "metrics": {
+        "closure_norm": 8.42989945236491e-06,
+        "equation_max_abs": 0.30158974537095673,
+        "equation_rms": 0.1059649741024832,
+        "maximum_coordinate": 1.0606412238051408,
+        "maximum_turn": 3.136510650396938,
+        "minimum_pair_distance": 0.00033546262790245873,
+        "minimum_turn": 3.5397023091931564e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9834101655510096e-14
+      },
+      "nfev": 70,
+      "success": true
+    },
+    {
+      "attempt": 65,
+      "metrics": {
+        "closure_norm": 4.133278202250314e-06,
+        "equation_max_abs": 0.2968661014686867,
+        "equation_rms": 0.10935596346225664,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.136907181957802,
+        "minimum_pair_distance": 0.0003354626279024616,
+        "minimum_turn": 3.5329121005021683e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9757687848154284e-14
+      },
+      "nfev": 63,
+      "success": true
+    },
+    {
+      "attempt": 66,
+      "metrics": {
+        "closure_norm": 8.509274506214727e-06,
+        "equation_max_abs": 0.3015897503367684,
+        "equation_rms": 0.10596497579780972,
+        "maximum_coordinate": 1.0606412363411435,
+        "maximum_turn": 3.136509239924462,
+        "minimum_pair_distance": 0.00033546262790245726,
+        "minimum_turn": 3.87702112185513e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.3630124977913266e-14
+      },
+      "nfev": 61,
+      "success": true
+    },
+    {
+      "attempt": 67,
+      "metrics": {
+        "closure_norm": 6.260570410663476e-06,
+        "equation_max_abs": 0.3003482259823497,
+        "equation_rms": 0.1061060061298679,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.136626714265991,
+        "minimum_pair_distance": 0.00033546262790245813,
+        "minimum_turn": 3.8022477662688306e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.278866166101035e-14
+      },
+      "nfev": 71,
+      "success": true
+    },
+    {
+      "attempt": 68,
+      "metrics": {
+        "closure_norm": 8.48947251212878e-06,
+        "equation_max_abs": 0.3015897485801016,
+        "equation_rms": 0.10596497485836459,
+        "maximum_coordinate": 1.0606412530655749,
+        "maximum_turn": 3.1365097861455546,
+        "minimum_pair_distance": 0.00033546262790246203,
+        "minimum_turn": 5.895599077614376e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 6.634622712671312e-14
+      },
+      "nfev": 50,
+      "success": true
+    },
+    {
+      "attempt": 69,
+      "metrics": {
+        "closure_norm": 8.470578424578714e-06,
+        "equation_max_abs": 0.3015897468474458,
+        "equation_rms": 0.10596497409159994,
+        "maximum_coordinate": 1.060641267936568,
+        "maximum_turn": 3.136510462221251,
+        "minimum_pair_distance": 0.0003354626279024614,
+        "minimum_turn": 3.5402730570347025e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9840524564332554e-14
+      },
+      "nfev": 50,
+      "success": true
+    },
+    {
+      "attempt": 70,
+      "metrics": {
+        "closure_norm": 8.42328804089611e-06,
+        "equation_max_abs": 0.3015897497043747,
+        "equation_rms": 0.10596497409639649,
+        "maximum_coordinate": 1.0606413384283608,
+        "maximum_turn": 3.136510740454496,
+        "minimum_pair_distance": 0.0003354626279024661,
+        "minimum_turn": 3.5473470092046864e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9920131643713304e-14
+      },
+      "nfev": 49,
+      "success": true
+    },
+    {
+      "attempt": 71,
+      "metrics": {
+        "closure_norm": 8.351472559544232e-06,
+        "equation_max_abs": 0.30158974296934876,
+        "equation_rms": 0.10596497293575095,
+        "maximum_coordinate": 1.0606412717882148,
+        "maximum_turn": 3.1365114797159825,
+        "minimum_pair_distance": 0.0003354626279024718,
+        "minimum_turn": 3.530362428927765e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9728995277754425e-14
+      },
+      "nfev": 62,
+      "success": true
+    },
+    {
+      "attempt": 72,
+      "metrics": {
+        "closure_norm": 8.479285226696028e-06,
+        "equation_max_abs": 0.30158974752040735,
+        "equation_rms": 0.10596497378073716,
+        "maximum_coordinate": 1.060641336817587,
+        "maximum_turn": 3.1365107789899698,
+        "minimum_pair_distance": 0.0003354626279024591,
+        "minimum_turn": 3.541472768564888e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9854025639923944e-14
+      },
+      "nfev": 41,
+      "success": true
+    },
+    {
+      "attempt": 73,
+      "metrics": {
+        "closure_norm": 8.349292917437622e-06,
+        "equation_max_abs": 0.30158974321720194,
+        "equation_rms": 0.10596497249798294,
+        "maximum_coordinate": 1.060641281671562,
+        "maximum_turn": 3.136511835002224,
+        "minimum_pair_distance": 0.00033546262790246415,
+        "minimum_turn": 3.632613640647616e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.087968114092297e-14
+      },
+      "nfev": 60,
+      "success": true
+    },
+    {
+      "attempt": 74,
+      "metrics": {
+        "closure_norm": 8.346613403617074e-06,
+        "equation_max_abs": 0.3015897414043608,
+        "equation_rms": 0.10596497239252187,
+        "maximum_coordinate": 1.060641300049556,
+        "maximum_turn": 3.1365118944483554,
+        "minimum_pair_distance": 0.00033546262790245726,
+        "minimum_turn": 3.5298132316062615e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.97228150291372e-14
+      },
+      "nfev": 52,
+      "success": true
+    },
+    {
+      "attempt": 75,
+      "metrics": {
+        "closure_norm": 8.504627371147305e-06,
+        "equation_max_abs": 0.3015897450036493,
+        "equation_rms": 0.10596497465510475,
+        "maximum_coordinate": 1.0606412306001403,
+        "maximum_turn": 3.1365098467425745,
+        "minimum_pair_distance": 0.0003354626279024591,
+        "minimum_turn": 3.5792490359618066e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.027914140807035e-14
+      },
+      "nfev": 56,
+      "success": true
+    },
+    {
+      "attempt": 76,
+      "metrics": {
+        "closure_norm": 8.489948608249465e-06,
+        "equation_max_abs": 0.30158974728742405,
+        "equation_rms": 0.1059649744514821,
+        "maximum_coordinate": 1.060641255567373,
+        "maximum_turn": 3.1365101490964715,
+        "minimum_pair_distance": 0.0003354626279024575,
+        "minimum_turn": 3.542190992208009e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.986210822264239e-14
+      },
+      "nfev": 58,
+      "success": true
+    },
+    {
+      "attempt": 77,
+      "metrics": {
+        "closure_norm": 8.463073627499917e-06,
+        "equation_max_abs": 0.3015897484709303,
+        "equation_rms": 0.10596497551540009,
+        "maximum_coordinate": 1.0606412437699113,
+        "maximum_turn": 3.1365094427555844,
+        "minimum_pair_distance": 0.0003354626279024567,
+        "minimum_turn": 3.8127048466015385e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.290634053551553e-14
+      },
+      "nfev": 47,
+      "success": true
+    },
+    {
+      "attempt": 78,
+      "metrics": {
+        "closure_norm": 5.779532286422111e-06,
+        "equation_max_abs": 0.3003482122349151,
+        "equation_rms": 0.10610600216549648,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.136630324812882,
+        "minimum_pair_distance": 0.00033546262790246886,
+        "minimum_turn": 5.313432215107516e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 5.979480236144114e-14
+      },
+      "nfev": 74,
+      "success": true
+    },
+    {
+      "attempt": 79,
+      "metrics": {
+        "closure_norm": 8.45758813136451e-06,
+        "equation_max_abs": 0.3015897497900555,
+        "equation_rms": 0.10596497451406585,
+        "maximum_coordinate": 1.0606412844757094,
+        "maximum_turn": 3.1365103300066357,
+        "minimum_pair_distance": 0.0003354626279024612,
+        "minimum_turn": 3.538824602258949e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9824224550102747e-14
+      },
+      "nfev": 56,
+      "success": true
+    },
+    {
+      "attempt": 80,
+      "metrics": {
+        "closure_norm": 8.471916421375457e-06,
+        "equation_max_abs": 0.30158974652857906,
+        "equation_rms": 0.10596497412425636,
+        "maximum_coordinate": 1.060641278798686,
+        "maximum_turn": 3.1365103149875115,
+        "minimum_pair_distance": 0.0003354626279024608,
+        "minimum_turn": 3.5442202389556296e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9884944340088207e-14
+      },
+      "nfev": 57,
+      "success": true
+    },
+    {
+      "attempt": 81,
+      "metrics": {
+        "closure_norm": 8.347299848945864e-06,
+        "equation_max_abs": 0.30158974287862655,
+        "equation_rms": 0.10596497275742087,
+        "maximum_coordinate": 1.0606412839256136,
+        "maximum_turn": 3.1365115850151635,
+        "minimum_pair_distance": 0.0003354626279024728,
+        "minimum_turn": 3.529679028118508e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.972130462939193e-14
+      },
+      "nfev": 60,
+      "success": true
+    },
+    {
+      "attempt": 82,
+      "metrics": {
+        "closure_norm": 8.492194320470462e-06,
+        "equation_max_abs": 0.301589750592342,
+        "equation_rms": 0.10596497558845608,
+        "maximum_coordinate": 1.0606412704878307,
+        "maximum_turn": 3.1365093522376912,
+        "minimum_pair_distance": 0.00033546262790247174,
+        "minimum_turn": 3.697067194745631e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.1605010471637836e-14
+      },
+      "nfev": 45,
+      "success": true
+    },
+    {
+      "attempt": 83,
+      "metrics": {
+        "closure_norm": 6.188078181688737e-06,
+        "equation_max_abs": 0.2973731361279563,
+        "equation_rms": 0.10929867695150497,
+        "maximum_coordinate": 1.0405493553593124,
+        "maximum_turn": 3.136813401344357,
+        "minimum_pair_distance": 0.00033546262790245667,
+        "minimum_turn": 3.543006608346656e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.987128666080209e-14
+      },
+      "nfev": 51,
+      "success": true
+    },
+    {
+      "attempt": 84,
+      "metrics": {
+        "closure_norm": 8.446407743158019e-06,
+        "equation_max_abs": 0.3015897462301625,
+        "equation_rms": 0.10596497508946011,
+        "maximum_coordinate": 1.060641196700684,
+        "maximum_turn": 3.1365098100789504,
+        "minimum_pair_distance": 0.0003354626279024608,
+        "minimum_turn": 3.685735713765003e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.14774911759964e-14
+      },
+      "nfev": 44,
+      "success": true
+    },
+    {
+      "attempt": 85,
+      "metrics": {
+        "closure_norm": 8.447064679283216e-06,
+        "equation_max_abs": 0.30158974670565286,
+        "equation_rms": 0.10596497393956265,
+        "maximum_coordinate": 1.0606412803172014,
+        "maximum_turn": 3.136510619855115,
+        "minimum_pair_distance": 0.0003354626279024608,
+        "minimum_turn": 3.540584145368076e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9844025606275185e-14
+      },
+      "nfev": 55,
+      "success": true
+    },
+    {
+      "attempt": 86,
+      "metrics": {
+        "closure_norm": 8.361297732764546e-06,
+        "equation_max_abs": 0.301589747426914,
+        "equation_rms": 0.10596497263803703,
+        "maximum_coordinate": 1.0606413146589215,
+        "maximum_turn": 3.1365119088912534,
+        "minimum_pair_distance": 0.00033546262790246073,
+        "minimum_turn": 3.531407870407275e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9740760160073287e-14
+      },
+      "nfev": 52,
+      "success": true
+    },
+    {
+      "attempt": 87,
+      "metrics": {
+        "closure_norm": 8.439463594629534e-06,
+        "equation_max_abs": 0.30158974602714467,
+        "equation_rms": 0.10596497435091429,
+        "maximum_coordinate": 1.0606412384035815,
+        "maximum_turn": 3.1365103990602816,
+        "minimum_pair_distance": 0.0003354626279024745,
+        "minimum_turn": 3.5463521976584894e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.990893646198221e-14
+      },
+      "nfev": 45,
+      "success": true
+    },
+    {
+      "attempt": 88,
+      "metrics": {
+        "closure_norm": 8.450541672815179e-06,
+        "equation_max_abs": 0.30158974550735074,
+        "equation_rms": 0.10596497471454625,
+        "maximum_coordinate": 1.0606412185885357,
+        "maximum_turn": 3.1365099098163296,
+        "minimum_pair_distance": 0.00033546262790247033,
+        "minimum_turn": 3.5886130257963596e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.038451941978997e-14
+      },
+      "nfev": 41,
+      "success": true
+    },
+    {
+      "attempt": 89,
+      "metrics": {
+        "closure_norm": 5.434129142205095e-06,
+        "equation_max_abs": 0.30034820326157463,
+        "equation_rms": 0.1061059937559169,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.136638641682904,
+        "minimum_pair_distance": 0.00033546262790246046,
+        "minimum_turn": 5.566058969546002e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 6.263774184409947e-14
+      },
+      "nfev": 74,
+      "success": true
+    },
+    {
+      "attempt": 90,
+      "metrics": {
+        "closure_norm": 8.469714843274343e-06,
+        "equation_max_abs": 0.3015897432405457,
+        "equation_rms": 0.10596497416622579,
+        "maximum_coordinate": 1.0606411910321436,
+        "maximum_turn": 3.1365102419183803,
+        "minimum_pair_distance": 0.0003354626279024604,
+        "minimum_turn": 3.5421968883343117e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.986217456268261e-14
+      },
+      "nfev": 46,
+      "success": true
+    },
+    {
+      "attempt": 91,
+      "metrics": {
+        "closure_norm": 8.47201157901433e-06,
+        "equation_max_abs": 0.30158974492220425,
+        "equation_rms": 0.10596497386362977,
+        "maximum_coordinate": 1.0606412750051217,
+        "maximum_turn": 3.136510573090083,
+        "minimum_pair_distance": 0.00033546262790246155,
+        "minimum_turn": 3.5411188497458456e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.985004291427041e-14
+      },
+      "nfev": 74,
+      "success": true
+    },
+    {
+      "attempt": 92,
+      "metrics": {
+        "closure_norm": 8.439737595450783e-06,
+        "equation_max_abs": 0.30158974506495695,
+        "equation_rms": 0.1059649735667997,
+        "maximum_coordinate": 1.0606412530480176,
+        "maximum_turn": 3.1365108864317817,
+        "minimum_pair_distance": 0.00033546262790245683,
+        "minimum_turn": 3.537656671874462e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.981108106608603e-14
+      },
+      "nfev": 67,
+      "success": true
+    },
+    {
+      "attempt": 93,
+      "metrics": {
+        "closure_norm": 8.504838100249167e-06,
+        "equation_max_abs": 0.30158975014520356,
+        "equation_rms": 0.1059649752194939,
+        "maximum_coordinate": 1.0606412899063373,
+        "maximum_turn": 3.1365096627026148,
+        "minimum_pair_distance": 0.00033546262790246084,
+        "minimum_turn": 3.546424620768037e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9909751450676315e-14
+      },
+      "nfev": 48,
+      "success": true
+    },
+    {
+      "attempt": 94,
+      "metrics": {
+        "closure_norm": 8.50319406690085e-06,
+        "equation_max_abs": 0.30158974807071204,
+        "equation_rms": 0.10596497514610574,
+        "maximum_coordinate": 1.0606412219934522,
+        "maximum_turn": 3.136509471944216,
+        "minimum_pair_distance": 0.0003354626279024623,
+        "minimum_turn": 3.5527536724844976e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.99809755213889e-14
+      },
+      "nfev": 62,
+      "success": true
+    },
+    {
+      "attempt": 95,
+      "metrics": {
+        "closure_norm": 5.4630266557263814e-06,
+        "equation_max_abs": 0.30034820362182985,
+        "equation_rms": 0.10610599460561733,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1366379242211546,
+        "minimum_pair_distance": 0.0003354626279024761,
+        "minimum_turn": 4.077314252152131e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.5884127241928214e-14
+      },
+      "nfev": 64,
+      "success": true
+    },
+    {
+      "attempt": 96,
+      "metrics": {
+        "closure_norm": 8.440308954117837e-06,
+        "equation_max_abs": 0.30158974753167483,
+        "equation_rms": 0.10596497429055315,
+        "maximum_coordinate": 1.0606412664708695,
+        "maximum_turn": 3.1365103668435523,
+        "minimum_pair_distance": 0.0003354626279024645,
+        "minimum_turn": 3.537354021415838e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.980767532419046e-14
+      },
+      "nfev": 63,
+      "success": true
+    },
+    {
+      "attempt": 97,
+      "metrics": {
+        "closure_norm": 8.437537085266393e-06,
+        "equation_max_abs": 0.30158974776319036,
+        "equation_rms": 0.10596497464865919,
+        "maximum_coordinate": 1.0606412569265358,
+        "maximum_turn": 3.1365103465331465,
+        "minimum_pair_distance": 0.0003354626279024764,
+        "minimum_turn": 3.5669963917101423e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.0141256049187757e-14
+      },
+      "nfev": 56,
+      "success": true
+    },
+    {
+      "attempt": 98,
+      "metrics": {
+        "closure_norm": 6.0882109713157964e-06,
+        "equation_max_abs": 0.29737313310990265,
+        "equation_rms": 0.1092986772953771,
+        "maximum_coordinate": 1.040549318135887,
+        "maximum_turn": 3.136813217531152,
+        "minimum_pair_distance": 0.00033546262790247613,
+        "minimum_turn": 3.547955673626603e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.992698117253935e-14
+      },
+      "nfev": 43,
+      "success": true
+    },
+    {
+      "attempt": 99,
+      "metrics": {
+        "closure_norm": 8.554858778628642e-06,
+        "equation_max_abs": 0.30158975033924834,
+        "equation_rms": 0.10596497554728335,
+        "maximum_coordinate": 1.0606412448742695,
+        "maximum_turn": 3.1365091546094996,
+        "minimum_pair_distance": 0.00033546262790246496,
+        "minimum_turn": 4.380955805832194e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.930116271091739e-14
+      },
+      "nfev": 48,
+      "success": true
+    },
+    {
+      "attempt": 100,
+      "metrics": {
+        "closure_norm": 5.38830619482976e-06,
+        "equation_max_abs": 0.30034820195417355,
+        "equation_rms": 0.10610599533019546,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.136637537422438,
+        "minimum_pair_distance": 0.0003354626279024711,
+        "minimum_turn": 3.909469522861827e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.3995283545978445e-14
+      },
+      "nfev": 53,
+      "success": true
+    },
+    {
+      "attempt": 101,
+      "metrics": {
+        "closure_norm": 4.113299439239435e-06,
+        "equation_max_abs": 0.2968661001012811,
+        "equation_rms": 0.10935596348132966,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1369072225868,
+        "minimum_pair_distance": 0.00033546262790245905,
+        "minimum_turn": 3.7254629132539287e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.1924561841421753e-14
+      },
+      "nfev": 59,
+      "success": true
+    },
+    {
+      "attempt": 102,
+      "metrics": {
+        "closure_norm": 5.620732289663932e-06,
+        "equation_max_abs": 0.30034820742511936,
+        "equation_rms": 0.10610599865740383,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1366342918398034,
+        "minimum_pair_distance": 0.0003354626279024603,
+        "minimum_turn": 3.694034462539066e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.157088125076831e-14
+      },
+      "nfev": 72,
+      "success": true
+    },
+    {
+      "attempt": 103,
+      "metrics": {
+        "closure_norm": 8.463524443953509e-06,
+        "equation_max_abs": 0.3015897439187782,
+        "equation_rms": 0.10596497446085099,
+        "maximum_coordinate": 1.060641215363392,
+        "maximum_turn": 3.136510241110858,
+        "minimum_pair_distance": 0.00033546262790246876,
+        "minimum_turn": 3.5546559425249803e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.0002382854777435e-14
+      },
+      "nfev": 54,
+      "success": true
+    },
+    {
+      "attempt": 104,
+      "metrics": {
+        "closure_norm": 5.554665417523223e-06,
+        "equation_max_abs": 0.3003482052984164,
+        "equation_rms": 0.10610599865844011,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1366337432641145,
+        "minimum_pair_distance": 0.00033546262790246176,
+        "minimum_turn": 3.6591785608897953e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.1178629862288856e-14
+      },
+      "nfev": 68,
+      "success": true
+    },
+    {
+      "attempt": 105,
+      "metrics": {
+        "closure_norm": 8.474322276847704e-06,
+        "equation_max_abs": 0.3015897465130364,
+        "equation_rms": 0.10596497460077814,
+        "maximum_coordinate": 1.0606412356629535,
+        "maximum_turn": 3.1365100814197606,
+        "minimum_pair_distance": 0.0003354626279024566,
+        "minimum_turn": 3.540792457941942e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.98463696210125e-14
+      },
+      "nfev": 70,
+      "success": true
+    },
+    {
+      "attempt": 106,
+      "metrics": {
+        "closure_norm": 8.444015424184419e-06,
+        "equation_max_abs": 0.30158974493369695,
+        "equation_rms": 0.10596497408947889,
+        "maximum_coordinate": 1.0606412325484664,
+        "maximum_turn": 3.1365104967726083,
+        "minimum_pair_distance": 0.00033546262790247277,
+        "minimum_turn": 3.537759787911344e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.981224158482071e-14
+      },
+      "nfev": 53,
+      "success": true
+    },
+    {
+      "attempt": 107,
+      "metrics": {
+        "closure_norm": 8.440932821227221e-06,
+        "equation_max_abs": 0.3015897442410071,
+        "equation_rms": 0.10596497372595648,
+        "maximum_coordinate": 1.0606412509262102,
+        "maximum_turn": 3.136510693576251,
+        "minimum_pair_distance": 0.0003354626279024587,
+        "minimum_turn": 3.537844521421316e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9813195077463764e-14
+      },
+      "nfev": 73,
+      "success": true
+    },
+    {
+      "attempt": 108,
+      "metrics": {
+        "closure_norm": 8.488627500662448e-06,
+        "equation_max_abs": 0.30158974742787986,
+        "equation_rms": 0.10596497492734708,
+        "maximum_coordinate": 1.0606412397649818,
+        "maximum_turn": 3.1365097394481194,
+        "minimum_pair_distance": 0.00033546262790245705,
+        "minimum_turn": 3.5868907223923727e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.036513735334526e-14
+      },
+      "nfev": 65,
+      "success": true
+    },
+    {
+      "attempt": 109,
+      "metrics": {
+        "closure_norm": 8.427735180785006e-06,
+        "equation_max_abs": 0.3015897508161438,
+        "equation_rms": 0.10596497492030618,
+        "maximum_coordinate": 1.0606413136851411,
+        "maximum_turn": 3.1365101498101886,
+        "minimum_pair_distance": 0.0003354626279024692,
+        "minimum_turn": 3.6957908822987276e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.159064726198653e-14
+      },
+      "nfev": 52,
+      "success": true
+    },
+    {
+      "attempt": 110,
+      "metrics": {
+        "closure_norm": 6.1228289903472865e-06,
+        "equation_max_abs": 0.2973731375566044,
+        "equation_rms": 0.1092986781016408,
+        "maximum_coordinate": 1.0405492654646518,
+        "maximum_turn": 3.136812701670337,
+        "minimum_pair_distance": 0.0003354626279024581,
+        "minimum_turn": 3.879718253140318e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.366047725178082e-14
+      },
+      "nfev": 45,
+      "success": true
+    },
+    {
+      "attempt": 111,
+      "metrics": {
+        "closure_norm": 5.46664405516253e-06,
+        "equation_max_abs": 0.30034820981706684,
+        "equation_rms": 0.10610600003710971,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.136633226069798,
+        "minimum_pair_distance": 0.0003354626279024653,
+        "minimum_turn": 4.834395317410957e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 5.4403952244121725e-14
+      },
+      "nfev": 68,
+      "success": true
+    },
+    {
+      "attempt": 112,
+      "metrics": {
+        "closure_norm": 8.43463165632308e-06,
+        "equation_max_abs": 0.30158974613531886,
+        "equation_rms": 0.1059649741604955,
+        "maximum_coordinate": 1.0606412642782321,
+        "maximum_turn": 3.136510509324106,
+        "minimum_pair_distance": 0.00033546262790246507,
+        "minimum_turn": 3.5411783412859694e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.985071242945022e-14
+      },
+      "nfev": 53,
+      "success": true
+    },
+    {
+      "attempt": 113,
+      "metrics": {
+        "closure_norm": 8.525188920748126e-06,
+        "equation_max_abs": 0.3015897478336305,
+        "equation_rms": 0.10596497518118832,
+        "maximum_coordinate": 1.0606412429281529,
+        "maximum_turn": 3.1365095540397063,
+        "minimum_pair_distance": 0.0003354626279024632,
+        "minimum_turn": 3.544614842324751e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9889385044834434e-14
+      },
+      "nfev": 45,
+      "success": true
+    },
+    {
+      "attempt": 114,
+      "metrics": {
+        "closure_norm": 6.124575660347649e-06,
+        "equation_max_abs": 0.29737314566923256,
+        "equation_rms": 0.10929867783339159,
+        "maximum_coordinate": 1.040549340358603,
+        "maximum_turn": 3.13681278439205,
+        "minimum_pair_distance": 0.0003354626279024604,
+        "minimum_turn": 3.534145177644675e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.977156441736996e-14
+      },
+      "nfev": 42,
+      "success": true
+    },
+    {
+      "attempt": 115,
+      "metrics": {
+        "closure_norm": 8.437602942507197e-06,
+        "equation_max_abs": 0.3015897497100713,
+        "equation_rms": 0.10596497403360242,
+        "maximum_coordinate": 1.0606412401625551,
+        "maximum_turn": 3.136511045260967,
+        "minimum_pair_distance": 0.0003354626279024584,
+        "minimum_turn": 3.5403096754990487e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.984093671637854e-14
+      },
+      "nfev": 33,
+      "success": true
+    },
+    {
+      "attempt": 116,
+      "metrics": {
+        "closure_norm": 5.389327165848785e-06,
+        "equation_max_abs": 0.3003481978966586,
+        "equation_rms": 0.10610599458033275,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1366376843419075,
+        "minimum_pair_distance": 0.00033546262790246344,
+        "minimum_turn": 3.532205262530661e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.97497335245978e-14
+      },
+      "nfev": 61,
+      "success": true
+    },
+    {
+      "attempt": 117,
+      "metrics": {
+        "closure_norm": 8.430394178364986e-06,
+        "equation_max_abs": 0.3015897471294121,
+        "equation_rms": 0.10596497406196956,
+        "maximum_coordinate": 1.0606412652574886,
+        "maximum_turn": 3.13651049877182,
+        "minimum_pair_distance": 0.0003354626279024735,
+        "minimum_turn": 3.5364672105701613e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.979769550818004e-14
+      },
+      "nfev": 37,
+      "success": true
+    },
+    {
+      "attempt": 118,
+      "metrics": {
+        "closure_norm": 8.486345363703966e-06,
+        "equation_max_abs": 0.3015897480171537,
+        "equation_rms": 0.10596497421213139,
+        "maximum_coordinate": 1.0606412888557684,
+        "maximum_turn": 3.1365102188496023,
+        "minimum_pair_distance": 0.00033546262790247846,
+        "minimum_turn": 3.54445438948497e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.988757931550259e-14
+      },
+      "nfev": 42,
+      "success": true
+    },
+    {
+      "attempt": 119,
+      "metrics": {
+        "closure_norm": 6.066683654965424e-06,
+        "equation_max_abs": 0.29737313332342247,
+        "equation_rms": 0.10929867685826734,
+        "maximum_coordinate": 1.0405493058887187,
+        "maximum_turn": 3.136813651114756,
+        "minimum_pair_distance": 0.0003354626279024627,
+        "minimum_turn": 3.55005611305296e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.995061845638784e-14
+      },
+      "nfev": 46,
+      "success": true
+    },
+    {
+      "attempt": 120,
+      "metrics": {
+        "closure_norm": 8.388116769276357e-06,
+        "equation_max_abs": 0.30158974942997413,
+        "equation_rms": 0.1059649762475718,
+        "maximum_coordinate": 1.060641230416395,
+        "maximum_turn": 3.136509050661155,
+        "minimum_pair_distance": 0.00033546262790246615,
+        "minimum_turn": 3.9803150786481443e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.479254520415838e-14
+      },
+      "nfev": 96,
+      "success": true
+    },
+    {
+      "attempt": 121,
+      "metrics": {
+        "closure_norm": 5.421350023678173e-06,
+        "equation_max_abs": 0.30034820355687103,
+        "equation_rms": 0.10610599759800964,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1366350718590996,
+        "minimum_pair_distance": 0.0003354626279024646,
+        "minimum_turn": 3.6082247553994703e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.0605220322490976e-14
+      },
+      "nfev": 87,
+      "success": true
+    },
+    {
+      "attempt": 122,
+      "metrics": {
+        "closure_norm": 8.54544834556312e-06,
+        "equation_max_abs": 0.3015897473787281,
+        "equation_rms": 0.10596497447948963,
+        "maximum_coordinate": 1.0606412839402595,
+        "maximum_turn": 3.136510024880174,
+        "minimum_pair_distance": 0.0003354626279024588,
+        "minimum_turn": 3.5500161419102284e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.995016884272778e-14
+      },
+      "nfev": 55,
+      "success": true
+    },
+    {
+      "attempt": 123,
+      "metrics": {
+        "closure_norm": 6.091828310168947e-06,
+        "equation_max_abs": 0.2973731344799005,
+        "equation_rms": 0.10929867750024105,
+        "maximum_coordinate": 1.040549300429651,
+        "maximum_turn": 3.1368129936102855,
+        "minimum_pair_distance": 0.000335462627902465,
+        "minimum_turn": 3.5446677951612157e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 3.9889980871611655e-14
+      },
+      "nfev": 43,
+      "success": true
+    },
+    {
+      "attempt": 124,
+      "metrics": {
+        "closure_norm": 8.488990614802817e-06,
+        "equation_max_abs": 0.3015897468337181,
+        "equation_rms": 0.10596497482337564,
+        "maximum_coordinate": 1.0606412486987928,
+        "maximum_turn": 3.1365098322417087,
+        "minimum_pair_distance": 0.00033546262790245846,
+        "minimum_turn": 3.5639275614036333e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.0106720943871445e-14
+      },
+      "nfev": 60,
+      "success": true
+    },
+    {
+      "attempt": 125,
+      "metrics": {
+        "closure_norm": 8.482957877511148e-06,
+        "equation_max_abs": 0.3015897480730022,
+        "equation_rms": 0.10596497440538133,
+        "maximum_coordinate": 1.060641293178945,
+        "maximum_turn": 3.1365101951848504,
+        "minimum_pair_distance": 0.0003354626279024584,
+        "minimum_turn": 3.558646998931063e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 4.0047296243894484e-14
+      },
+      "nfev": 71,
+      "success": true
+    },
+    {
+      "attempt": 126,
+      "metrics": {
+        "closure_norm": 5.1558706849923415e-06,
+        "equation_max_abs": 0.30034820674677865,
+        "equation_rms": 0.10610595870366263,
+        "maximum_coordinate": 1.0,
+        "maximum_turn": 3.1366748733676126,
+        "minimum_pair_distance": 0.0003354626279024678,
+        "minimum_turn": 9.769839304928907e-07,
+        "nonpositive_support_count": 0,
+        "support_min": 1.0994505751348095e-13
+      },
+      "nfev": 65,
+      "success": true
+    },
+    {
+      "attempt": 127,
+      "metrics": {
+        "closure_norm": 0.002139545362501947,
+        "equation_max_abs": 0.29412183043576284,
+        "equation_rms": 0.1200339548865375,
+        "maximum_coordinate": 1.0857079894203878,
+        "maximum_turn": 3.1389707099961384,
+        "minimum_pair_distance": 0.000335462627925528,
+        "minimum_turn": 6.643362739555154e-06,
+        "nonpositive_support_count": 2,
+        "support_min": -9.753012986654578e-09
+      },
+      "nfev": 74,
+      "success": true
+    }
+  ],
+  "best": {
+    "edges": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        -0.00033535304480639133,
+        8.573800694077702e-06
+      ],
+      [
+        -0.192748963883781,
+        0.0019642971833183664
+      ],
+      [
+        -0.00033544521807458164,
+        3.4176585779874476e-06
+      ],
+      [
+        -0.021345435178260527,
+        0.00021249422285969424
+      ],
+      [
+        -0.0003354460094789666,
+        3.339078300425594e-06
+      ],
+      [
+        -0.00033544601383856434,
+        3.3386403036255227e-06
+      ],
+      [
+        -0.00033544603100614236,
+        3.336914965279091e-06
+      ],
+      [
+        -0.23850427871565255,
+        0.00034934781028611426
+      ],
+      [
+        -0.0008758301738234748,
+        -2.5434101902222093e-06
+      ],
+      [
+        -0.00033546042440854535,
+        -1.2158844097825091e-06
+      ],
+      [
+        -0.000335460422148657,
+        -1.216507749310886e-06
+      ],
+      [
+        -0.00033546042099201825,
+        -1.216826658651731e-06
+      ],
+      [
+        -0.0003354604202243723,
+        -1.2170382684406467e-06
+      ],
+      [
+        -0.0003354604196855096,
+        -1.217186789725975e-06
+      ],
+      [
+        -0.0003354604192136127,
+        -1.2173168390068412e-06
+      ],
+      [
+        -0.0003354604187766147,
+        -1.217437258171243e-06
+      ],
+      [
+        -0.00033546041834503243,
+        -1.2175561732947494e-06
+      ],
+      [
+        -0.5421646528013758,
+        -0.002540043776337234
+      ]
+    ],
+    "metrics": {
+      "closure_norm": 4.177677187353253e-06,
+      "equation_max_abs": 0.296866098296931,
+      "equation_rms": 0.10935596272168406,
+      "maximum_coordinate": 1.0,
+      "maximum_turn": 3.1369076834807585,
+      "minimum_pair_distance": 0.0003354626279024586,
+      "minimum_turn": 3.5448332197537417e-07,
+      "nonpositive_support_count": 0,
+      "support_min": 3.989184275534015e-14
+    },
+    "points": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0
+      ],
+      [
+        0.9996646469551936,
+        8.573800694077702e-06
+      ],
+      [
+        0.8069156830714126,
+        0.0019728709840124443
+      ],
+      [
+        0.806580237853338,
+        0.001976288642590432
+      ],
+      [
+        0.7852348026750775,
+        0.0021887828654501263
+      ],
+      [
+        0.7848993566655985,
+        0.0021921219437505517
+      ],
+      [
+        0.7845639106517599,
+        0.002195460584054177
+      ],
+      [
+        0.7842284646207538,
+        0.002198797499019456
+      ],
+      [
+        0.5457241859051012,
+        0.0025481453093055702
+      ],
+      [
+        0.5448483557312778,
+        0.002545601899115348
+      ],
+      [
+        0.5445128953068692,
+        0.0025443860147055654
+      ],
+      [
+        0.5441774348847206,
+        0.0025431695069562544
+      ],
+      [
+        0.5438419744637286,
+        0.0025419526802976026
+      ],
+      [
+        0.5435065140435043,
+        0.002540735642029162
+      ],
+      [
+        0.5431710536238188,
+        0.002539518455239436
+      ],
+      [
+        0.5428355932046052,
+        0.0025383011384004293
+      ],
+      [
+        0.5425001327858285,
+        0.0025370837011422583
+      ],
+      [
+        0.5421646723674836,
+        0.0025358661449689634
+      ]
+    ],
+    "turns": [
+      3.1369076834807585,
+      3.1160317306049596,
+      0.015370314709526729,
+      2.5353929116600984e-06,
+      0.00023338224530393054,
+      8.741407544634102e-07,
+      1.3057147343444656e-06,
+      5.143415724595659e-06,
+      0.00848262399804982,
+      0.004368734479996748,
+      0.0007205171663836431,
+      1.858161157518417e-06,
+      9.506615993676997e-07,
+      6.308040408640816e-07,
+      4.427386259405433e-07,
+      3.8767399470827075e-07,
+      3.58966833696197e-07,
+      3.5448332197537417e-07,
+      0.0010554783409085422
+    ],
+    "vector": [
+      -7.999999999999999,
+      -1.6463147168467265,
+      -7.999999999999999,
+      -3.8468678223974795,
+      -7.999999999999999,
+      -7.999999999999999,
+      -7.999999999999999,
+      -1.4333669559701547,
+      -7.0403341347324275,
+      -7.999999999999999,
+      -7.999999999999999,
+      -7.999999999999999,
+      -7.999999999999999,
+      -7.999999999999999,
+      -7.999999999999999,
+      -7.999999999999999,
+      -7.999999999999999,
+      -0.6121745617075364,
+      7.996998711599693,
+      7.990321522183359,
+      2.678443965035505,
+      -6.03140072708813,
+      -1.509071699719895,
+      -7.096263216854901,
+      -6.6949987668580055,
+      -5.3240319502399025,
+      2.08402576779495,
+      1.4204793066129446,
+      -0.3817801060488843,
+      -6.342161973135545,
+      -7.012346463247191,
+      -7.422509364836866,
+      -7.776525039083005,
+      -7.909339859223977,
+      -7.986274626867544,
+      -7.998843327589121
+    ]
+  },
+  "configuration": {
+    "completed_starts": 128,
+    "max_nfev": 20000,
+    "seed": 160019,
+    "starts": 128,
+    "timeout_seconds": 480.0
+  },
+  "elapsed_seconds": 321.0723269160371,
+  "epistemic_status": "HEURISTIC_CANDIDATE_GENERATION_ONLY",
+  "inputs": {
+    "cegar_implementation_sha256": "29db457d62c7ba10a096a07aa3600a34baf859bcf3019c4d20e04fc1455c57dc",
+    "probe": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-full-euclidean-feasibility/v16-euclidean-probe.json",
+    "probe_sha256": "7cbd30884a8e5733b2942d6b0c1186f9043895bffab231f1aa194b9cf9be8803",
+    "source": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar-v16-local-critical-reuse-second.json",
+    "source_sha256": "4305fde6500059ef45b268fe09bd99edd3e3ea63386e162b6524ce27e0ef61a3"
+  },
+  "schema": "p97-v16-full-positive-euclidean-edge-turn-fit-v1",
+  "terminal_status": "UNKNOWN_NO_NUMERICAL_FIT",
+  "trust_warning": "Numerical optimization is candidate generation only. A candidate must be replayed by exact arithmetic before it counts as SAT."
+}

@@ -1,0 +1,67 @@
+# Minimality forces a unique-four cover of the carrier
+
+Global minimality is carried unchanged all the way down the ATAIL frontier
+(`FrontierCommonDeletionParentResidual.minimal`), but downstream it is only
+ever spent as a discharge: a residual produces a removable vertex and
+minimality refutes it.  This module extracts the *positive* content instead.
+
+If no carrier point is removable then for every `x ∈ A` some other point `p`
+loses its whole K4 witness when `x` goes.  Selected classes at a common center
+with different radii are disjoint, so a center that keeps a four-class after
+deleting `x` can only be broken by a point lying in *every* one of its
+four-classes.  That forces the broken center to carry exactly one K4 radius,
+with a class of exactly four points, containing `x`.
+
+Recorded here, all general in `n` and free of cap or packet data:
+
+* `exists_isUniqueFourCenter_of_minimal` — every carrier point lies in the
+  four-point class of a unique-four center distinct from it.
+* `not_isUniqueFourCenter_of_fullyDeletionRobust` — a deletion-robust center is
+  never a unique-four center, so robust apices never serve as witnesses.
+* `card_le_four_mul_uniqueFourCenters` — those centers cover the carrier by
+  four-point classes, hence `|A| ≤ 4 * |U|`.
+theorem exists_isUniqueFourCenter_of_minimal
+
+**Minimality cover.**  In a minimal counterexample every carrier point `x`
+lies in the four-point class of some *other* point `p`, and `p` carries no K4
+radius other than that one.
+
+This is the positive form of `not_isRemovableVertex_of_minimal`: `A.erase x`
+must fail the K4 property somewhere, and the failing center is forced into the
+unique-four shape.
+theorem card_le_four_mul_uniqueFourCenters
+
+**Cover bound.**  The unique-four centers of a minimal counterexample cover
+the carrier by classes of exactly four points, so the carrier has at most four
+times as many points as there are unique-four centers.
+theorem fourClass_of_cover {α : Type _} [DecidableEq α] {T A B I : Finset α}
+
+Cardinality core of the non-surplus squeeze.
+
+If a four-or-more point class `T` is covered by three regions `A`, `B`, `I`,
+the two adjacent regions contribute at most one point each, and the interior
+region `I` has exactly two points, then the class has exactly four points and
+contains all of `I`.
+theorem a3_k4_cover {A : Finset ℝ²} (S : FiniteEndpointShell A)
+
+**The `a₃` K4 cover.**  From the row's frame inputs — `hexact` (giving the
+v₂-anchor frame and the `circle(v₂,1)` pins of `v₁,v₃,a₂,b₂`), `hC3pin`+`hcard`
+(giving the v₁-anchor frame and the `circle(v₁,1)` pins of `a₁,b₁,v₂`) — the
+shell's per-vertex K4 demand at the cap-`C₃` interior point `a₃` is
+unsatisfiable.
+
+No four of the other eight named points are equidistant from `a₃`: the
+`circle(a₃, r)` class meets the dead-pair clique `{v₁,v₃,a₂,b₂}` (all v₂-anchor
+dead pairs) in ≤ 1 point and `{a₁,b₁,v₂}` (all v₁-anchor dead pairs) in ≤ 1
+point, so it has ≤ 3 members — but K4 demands ≥ 4.  Branch-independent: no
+`hpacket` / p-branch is consulted.
+theorem n5_forced_m44
+
+Shell-facing `N4a -> N5` export: the instantiated endpoint one-hit bounds
+force the exact `(4,4,4)` cap vector.
+theorem exists_secondLargeCap_of_noM44
+
+**`≥ 5` witness bridge.**  With the proven opposite-cap lower bounds,
+the spine's no-`IsM44` exit fuel forces a *second* large cap: some cap other
+than the surplus cap has at least five points.  (The packet built from
+`(MT, hCirc, CP, i)` would otherwise be an `IsM44` witness.)

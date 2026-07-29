@@ -1,0 +1,5 @@
+theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion
+
+The normalized four-center common-deletion residue.  The checked finite
+shell split above reduces it to blocker coincidence or a bidirectional
+deletion-survival square.

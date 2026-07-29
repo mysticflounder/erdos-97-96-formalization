@@ -53,6 +53,25 @@ theorem selectedFourClass_survives_erase_of_not_mem
             ⟨fun hxz ↦ hz (hxz ▸ hx), K.support_subset_A hx⟩,
           K.support_eq_radius x hx⟩
 
+/-- A selected four-row survives erasing two points outside its support. -/
+theorem selectedFourClass_survives_double_erase_of_not_mem
+    {A : Finset ℝ²} {center z w : ℝ²}
+    (K : SelectedFourClass A center)
+    (hz : z ∉ K.support) (hw : w ∉ K.support) :
+    HasNEquidistantPointsAt 4 ((A.erase z).erase w) center := by
+  refine ⟨K.radius, K.radius_pos, ?_⟩
+  calc
+    4 = K.support.card := K.support_card.symm
+    _ ≤ (((A.erase z).erase w).filter fun x ↦ dist center x = K.radius).card := by
+      apply Finset.card_le_card
+      intro x hx
+      exact Finset.mem_filter.mpr
+        ⟨Finset.mem_erase.mpr
+            ⟨fun hxw ↦ hw (hxw ▸ hx),
+              Finset.mem_erase.mpr
+                ⟨fun hxz ↦ hz (hxz ▸ hx), K.support_subset_A hx⟩⟩,
+          K.support_eq_radius x hx⟩
+
 /-- A five-point radius class makes its center robust under every single
 carrier deletion. -/
 theorem fullyDeletionRobustAt_of_five_le_selectedClass

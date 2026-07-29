@@ -1,0 +1,19 @@
+{
+  "assertions_per_block_cap": 6,
+  "elapsed_seconds": 184.8826327500865,
+  "expected_count_difference": {
+    "role_bounds": [
+      24,
+      12
+    ]
+  },
+  "ground_formula": "GROUND_BOOL_OK nodes=1385967",
+  "label_count": 57,
+  "method": "independent concrete evaluation of corresponding legacy UF/Int-role and explicit-table/one-hot assertions on deterministic sampled total assignments; role samples respect the named role-domain constraints",
+  "sampled_assertion_evaluations": 478,
+  "samples": 2,
+  "schema": "p97-aligned-singleton-qf-bool-crosscheck-v1",
+  "seed": 97017,
+  "source_model_sha256": "cc6a5738d915adc2d8df0cd664adf1c525e3554dfbf384f115087e19536098e4",
+  "status": "PASS"
+}

@@ -1,0 +1,451 @@
+{
+  "aliases": [
+    [
+      "a0"
+    ],
+    [
+      "r1",
+      "z4",
+      "y",
+      "e3"
+    ],
+    [
+      "source"
+    ],
+    [
+      "r2",
+      "b1",
+      "s3",
+      "z2"
+    ],
+    [
+      "bs",
+      "r4"
+    ]
+  ],
+  "deletion_trials": [
+    {
+      "check": {
+        "elapsed_seconds": 0.0022114161401987076,
+        "model_substitution_failures": [],
+        "model_substitution_status": "PASS",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "SAT",
+        "timeout_ms": 10000
+      },
+      "omitted": "orient_0_1_3"
+    },
+    {
+      "check": {
+        "elapsed_seconds": 0.03419124986976385,
+        "model_substitution_failures": [],
+        "model_substitution_status": "PASS",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "SAT",
+        "timeout_ms": 10000
+      },
+      "omitted": "orient_0_1_4"
+    },
+    {
+      "check": {
+        "elapsed_seconds": 0.0014758750330656767,
+        "model_substitution_failures": [],
+        "model_substitution_status": "PASS",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "SAT",
+        "timeout_ms": 10000
+      },
+      "omitted": "orient_1_2_3"
+    },
+    {
+      "check": {
+        "elapsed_seconds": 0.004783499985933304,
+        "model_substitution_failures": [],
+        "model_substitution_status": "PASS",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "SAT",
+        "timeout_ms": 10000
+      },
+      "omitted": "orient_2_3_4"
+    },
+    {
+      "check": {
+        "elapsed_seconds": 0.00490670814178884,
+        "model_substitution_failures": [],
+        "model_substitution_status": "PASS",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "SAT",
+        "timeout_ms": 10000
+      },
+      "omitted": "orient_3_4_0"
+    },
+    {
+      "check": {
+        "elapsed_seconds": 0.00308991689234972,
+        "model_substitution_failures": [],
+        "model_substitution_status": "PASS",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "SAT",
+        "timeout_ms": 10000
+      },
+      "omitted": "eq_source_18"
+    },
+    {
+      "check": {
+        "elapsed_seconds": 0.0013099159114062786,
+        "model_substitution_failures": [],
+        "model_substitution_status": "PASS",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "SAT",
+        "timeout_ms": 10000
+      },
+      "omitted": "eq_source_19"
+    },
+    {
+      "check": {
+        "elapsed_seconds": 0.0015459160786122084,
+        "model_substitution_failures": [],
+        "model_substitution_status": "PASS",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "SAT",
+        "timeout_ms": 10000
+      },
+      "omitted": "eq_source_36"
+    }
+  ],
+  "direct_cvc5_replay": {
+    "command": [
+      "/Users/adam/bin/cvc5",
+      "--lang",
+      "smt2",
+      "--nl-cov",
+      "--tlimit",
+      "2000",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v15-exact-subset-mining/five-q4-6-9-10-15-minimal-direct-core.smt2"
+    ],
+    "elapsed_seconds": 2.008872332982719,
+    "fail_closed": true,
+    "reason_unknown": "cvc5 timeout without a status line",
+    "returncode": -6,
+    "solver": "cvc5",
+    "status": "UNKNOWN",
+    "stderr_tail": [
+      "cvc5 interrupted by timeout."
+    ],
+    "stdout_tail": [],
+    "timeout_ms": 2000
+  },
+  "direct_z3_replay": {
+    "command": [
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+      "-smt2",
+      "-t:2000",
+      "-T:2",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v15-exact-subset-mining/five-q4-6-9-10-15-minimal-direct-core.smt2"
+    ],
+    "elapsed_seconds": 2.0134620000608265,
+    "fail_closed": true,
+    "reason_unknown": null,
+    "returncode": 0,
+    "solver": "z3",
+    "status": "ERROR_MALFORMED_OUTPUT",
+    "stderr_tail": [],
+    "stdout_tail": [
+      "timeout"
+    ],
+    "timeout_ms": 2000
+  },
+  "normalized_cvc5_replay": {
+    "command": [
+      "/Users/adam/bin/cvc5",
+      "--lang",
+      "smt2",
+      "--nl-cov",
+      "--tlimit",
+      "30000",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v15-exact-subset-mining/five-q4-6-9-10-15-normalized-unsat-schema.smt2"
+    ],
+    "elapsed_seconds": 0.012217042036354542,
+    "fail_closed": true,
+    "reason_unknown": null,
+    "returncode": 0,
+    "solver": "cvc5",
+    "status": "UNSAT",
+    "stderr_tail": [],
+    "stdout_tail": [
+      "unsat"
+    ],
+    "timeout_ms": 30000
+  },
+  "normalized_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v15-exact-subset-mining/five-q4-6-9-10-15-normalized-unsat-schema.smt2",
+  "normalized_smt2_sha256": "8208dd6315e9c23f43a3ad3b2ce14a125b43b7af3e9057dc951ca87b4ddf243d",
+  "normalized_z3_replay": {
+    "command": [
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+      "-smt2",
+      "-t:30000",
+      "-T:30",
+      "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v15-exact-subset-mining/five-q4-6-9-10-15-normalized-unsat-schema.smt2"
+    ],
+    "elapsed_seconds": 0.010514291934669018,
+    "fail_closed": true,
+    "reason_unknown": null,
+    "returncode": 0,
+    "solver": "z3",
+    "status": "UNSAT",
+    "stderr_tail": [],
+    "stdout_tail": [
+      "unsat"
+    ],
+    "timeout_ms": 30000
+  },
+  "schema": "p97-v15-five-point-direct-core-validation-v1",
+  "selected_record_names": [
+    "gauge_x_0",
+    "gauge_y_0",
+    "gauge_x_1",
+    "gauge_y_1",
+    "orient_0_1_3",
+    "orient_0_1_4",
+    "orient_1_2_3",
+    "orient_2_3_4",
+    "orient_3_4_0",
+    "eq_source_18",
+    "eq_source_19",
+    "eq_source_36"
+  ],
+  "selected_records": [
+    {
+      "data": {
+        "local_vertex": 0,
+        "value": 0
+      },
+      "expression": "x_0 == 0",
+      "family": "gauge",
+      "name": "gauge_x_0"
+    },
+    {
+      "data": {
+        "local_vertex": 0,
+        "value": 0
+      },
+      "expression": "y_0 == 0",
+      "family": "gauge",
+      "name": "gauge_y_0"
+    },
+    {
+      "data": {
+        "local_vertex": 1,
+        "value": 1
+      },
+      "expression": "x_1 == 1",
+      "family": "gauge",
+      "name": "gauge_x_1"
+    },
+    {
+      "data": {
+        "local_vertex": 1,
+        "value": 0
+      },
+      "expression": "y_1 == 0",
+      "family": "gauge",
+      "name": "gauge_y_1"
+    },
+    {
+      "data": {
+        "global_triple": [
+          4,
+          6,
+          10
+        ],
+        "local_triple": [
+          0,
+          1,
+          3
+        ]
+      },
+      "expression": "(x_1 - x_0)*(y_3 - y_0) - (y_1 - y_0)*(x_3 - x_0) > 0",
+      "family": "strict_cyclic_orientation",
+      "name": "orient_0_1_3"
+    },
+    {
+      "data": {
+        "global_triple": [
+          4,
+          6,
+          15
+        ],
+        "local_triple": [
+          0,
+          1,
+          4
+        ]
+      },
+      "expression": "(x_1 - x_0)*(y_4 - y_0) - (y_1 - y_0)*(x_4 - x_0) > 0",
+      "family": "strict_cyclic_orientation",
+      "name": "orient_0_1_4"
+    },
+    {
+      "data": {
+        "global_triple": [
+          6,
+          9,
+          10
+        ],
+        "local_triple": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expression": "(x_2 - x_1)*(y_3 - y_1) - (y_2 - y_1)*(x_3 - x_1) > 0",
+      "family": "strict_cyclic_orientation",
+      "name": "orient_1_2_3"
+    },
+    {
+      "data": {
+        "global_triple": [
+          9,
+          10,
+          15
+        ],
+        "local_triple": [
+          2,
+          3,
+          4
+        ]
+      },
+      "expression": "(x_3 - x_2)*(y_4 - y_2) - (y_3 - y_2)*(x_4 - x_2) > 0",
+      "family": "strict_cyclic_orientation",
+      "name": "orient_2_3_4"
+    },
+    {
+      "data": {
+        "global_triple": [
+          10,
+          15,
+          4
+        ],
+        "local_triple": [
+          3,
+          4,
+          0
+        ]
+      },
+      "expression": "(x_4 - x_3)*(y_0 - y_3) - (y_4 - y_3)*(x_0 - x_3) > 0",
+      "family": "strict_cyclic_orientation",
+      "name": "orient_3_4_0"
+    },
+    {
+      "data": {
+        "global_left_edge": [
+          4,
+          6
+        ],
+        "global_right_edge": [
+          4,
+          10
+        ],
+        "local_left_edge": [
+          0,
+          1
+        ],
+        "local_right_edge": [
+          0,
+          3
+        ],
+        "source_index": 18
+      },
+      "expression": "(x_0 - x_1)*(x_0 - x_1) + (y_0 - y_1)*(y_0 - y_1) ==\n(x_0 - x_3)*(x_0 - x_3) + (y_0 - y_3)*(y_0 - y_3)",
+      "family": "positive_row_equality",
+      "name": "eq_source_18"
+    },
+    {
+      "data": {
+        "global_left_edge": [
+          4,
+          6
+        ],
+        "global_right_edge": [
+          4,
+          15
+        ],
+        "local_left_edge": [
+          0,
+          1
+        ],
+        "local_right_edge": [
+          0,
+          4
+        ],
+        "source_index": 19
+      },
+      "expression": "(x_0 - x_1)*(x_0 - x_1) + (y_0 - y_1)*(y_0 - y_1) ==\n(x_0 - x_4)*(x_0 - x_4) + (y_0 - y_4)*(y_0 - y_4)",
+      "family": "positive_row_equality",
+      "name": "eq_source_19"
+    },
+    {
+      "data": {
+        "global_left_edge": [
+          9,
+          15
+        ],
+        "global_right_edge": [
+          10,
+          15
+        ],
+        "local_left_edge": [
+          2,
+          4
+        ],
+        "local_right_edge": [
+          3,
+          4
+        ],
+        "source_index": 36
+      },
+      "expression": "(x_2 - x_4)*(x_2 - x_4) + (y_2 - y_4)*(y_2 - y_4) ==\n(x_3 - x_4)*(x_3 - x_4) + (y_3 - y_4)*(y_3 - y_4)",
+      "family": "positive_row_equality",
+      "name": "eq_source_36"
+    }
+  ],
+  "singular_identities": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v15-exact-subset-mining/five-q4-6-9-10-15-identities.sing",
+  "singular_identities_sha256": "900b2e172c6141e42135c50f085a873e4d490f6aceb5470f5f68d36375e051a6",
+  "singular_output": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v15-exact-subset-mining/five-q4-6-9-10-15-identities.out",
+  "singular_output_sha256": "748d2b340b4b6e1a75c38658ee375d1c7356756ba245e96813b2b45243c7ae4e",
+  "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v15-exact-subset-mining/five-q4-6-9-10-15-minimal-direct-core.smt2",
+  "smt2_sha256": "403d041d5bd5a45b25d487ffdde64d5e4b6c8656e8d29dea1c02b864b1a97c67",
+  "source_validation": {
+    "actual_hashes": {
+      "cegar_result_sha256": "cc1e1ec05744928814ecf5ca82ab6363e3cdfc053eb085fe2061cb965e314a64",
+      "cegar_script_current_sha256": "8db2e55d7f0dea0b87dd87050a176bf26132cd66de7da3be5ac4178019ec88c1",
+      "checkpoint_sha256": "bada05d574532ff035057ed2b9d7188e433e4a91e96f070c08b82fc0ea85e486",
+      "exact_positive_rows_smt2_sha256": "573057d79998c3fe5e3c94030d372715ad5b4d192b518711a6f790635dd46253",
+      "exact_probe_result_sha256": "781284a2ae62f1e4e390a1f2ebb32a5aa1da75e2aeb39ba2a84ed37d53a45d92"
+    },
+    "alias_class_count": 18,
+    "current_cegar_drift_policy": "current implementation drift is recorded but cannot change the immutable exact-probe target",
+    "current_cegar_matches_recorded": true,
+    "expected_hashes": {
+      "cegar_result_sha256": "cc1e1ec05744928814ecf5ca82ab6363e3cdfc053eb085fe2061cb965e314a64",
+      "checkpoint_sha256": "bada05d574532ff035057ed2b9d7188e433e4a91e96f070c08b82fc0ea85e486",
+      "exact_positive_rows_smt2_sha256": "573057d79998c3fe5e3c94030d372715ad5b4d192b518711a6f790635dd46253",
+      "exact_probe_result_sha256": "781284a2ae62f1e4e390a1f2ebb32a5aa1da75e2aeb39ba2a84ed37d53a45d92"
+    },
+    "full_formula_reason_unknown": "hard subprocess wall timeout",
+    "full_formula_status": "UNKNOWN",
+    "method": "fixed hash gates for exact probe/result/checkpoint/SMT plus schema, ordered-class, normalized-equation, assertion-count, and terminal row-replay checks",
+    "positive_equation_count": 38,
+    "probe_schema": "p97-aliased-euclidean-survivor-probe-v2-terminal-rows",
+    "recorded_cegar_script_sha256": "8db2e55d7f0dea0b87dd87050a176bf26132cd66de7da3be5ac4178019ec88c1",
+    "status": "PASS"
+  },
+  "subset": [
+    4,
+    6,
+    9,
+    10,
+    15
+  ],
+  "terminal_status": "DELETION_MINIMAL_EXACT_NORMALIZED_UNSAT"
+}

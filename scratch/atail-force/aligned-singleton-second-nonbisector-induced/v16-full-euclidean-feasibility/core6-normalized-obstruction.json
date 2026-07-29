@@ -1,0 +1,102 @@
+{
+  "bridge": [
+    "Sources 19,22,23 and cyclic order force q9=(u,-v), q11=(u,v).",
+    "The common q10 radius gives u^2+v^2=2u.",
+    "Opposite sides of chord q9-q11 give 0<u<1 and v>0.",
+    "cyclic(q5,q7,q9) and cyclic(q5,q7,q11) give the two determinant inequalities.",
+    "Sources 16,34 make q12 the reflection of q7 across line q5-q11; the two polynomial reflection equations encode this without division.",
+    "cyclic(q5,q7,q12) selects the distinct reflection branch.",
+    "The q9/q11 angle forced by the first circle is too wide for the second reflected pair to retain the cyclic order."
+  ],
+  "constraints": {
+    "circle": "u*u + v*v == 2*u",
+    "q12_reflection_x": "(u*u + v*v)*(c + a) == 2*(a*u + b*v)*u",
+    "q12_reflection_y": "(u*u + v*v)*(d + b) == 2*(a*u + b*v)*v",
+    "q7_before_q11": "a*v - b*u > 0",
+    "q7_before_q12": "a*d - b*c > 0",
+    "q7_before_q9": "-a*v - b*u > 0",
+    "u_below_one": "u < 1",
+    "u_positive": "u > 0",
+    "v_positive": "v > 0"
+  },
+  "cvc5": {
+    "command": [
+      "/Users/adam/bin/cvc5",
+      "--lang",
+      "smt2",
+      "--nl-cov",
+      "--tlimit",
+      "30000"
+    ],
+    "elapsed_seconds": 0.20583820808678865,
+    "fail_closed": true,
+    "reason_unknown": null,
+    "returncode": 0,
+    "solver": "cvc5",
+    "status": "UNSAT",
+    "stderr_tail": [
+      "<stdin>:3.2: No set-logic command was given before this point.",
+      "<stdin>:3.2: cvc5 will make all theories available.",
+      "<stdin>:3.2: Consider setting a stricter logic for (likely) better performance.",
+      "<stdin>:3.2: To suppress this warning in the future use (set-logic ALL)."
+    ],
+    "stdout_tail": [
+      "unsat"
+    ],
+    "timeout_ms": 30000
+  },
+  "epistemic_status": "VALIDATED_UNSAT",
+  "normalization": {
+    "q10": [
+      1,
+      0
+    ],
+    "q11": [
+      "u",
+      "v"
+    ],
+    "q12": [
+      "c",
+      "d"
+    ],
+    "q5": [
+      0,
+      0
+    ],
+    "q7": [
+      "a",
+      "b"
+    ],
+    "q9": [
+      "u",
+      "-v"
+    ]
+  },
+  "schema": "v16-core6-normalized-obstruction-v1",
+  "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-full-euclidean-feasibility/core6-normalized-obstruction.smt2",
+  "source_subset": [
+    5,
+    7,
+    9,
+    10,
+    11,
+    12
+  ],
+  "trust_scope": "Independent exact QF_NRA check of the normalized algebraic obstruction. The bridge is an auditable Euclidean derivation, not yet a kernel-checked Lean proof.",
+  "z3": {
+    "elapsed_seconds": 0.23256762512028217,
+    "reason_unknown": null,
+    "status": "UNSAT",
+    "unsat_core": [
+      "circle",
+      "u_positive",
+      "u_below_one",
+      "v_positive",
+      "q7_before_q9",
+      "q7_before_q11",
+      "q12_reflection_x",
+      "q12_reflection_y",
+      "q7_before_q12"
+    ]
+  }
+}

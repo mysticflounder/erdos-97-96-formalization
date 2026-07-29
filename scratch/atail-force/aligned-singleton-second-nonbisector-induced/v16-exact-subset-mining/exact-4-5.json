@@ -1,0 +1,1640 @@
+{
+  "cayley_menger_note": "Exact R^2 coordinates automatically imply the planar four-point Cayley-Menger determinant identities. Direct coordinate solving was used throughout the requested range; no separate distance-only determinant fallback was activated.",
+  "configuration": {
+    "core_query_ms": 30000,
+    "deterministic_enumeration": "size ascending; within size, induced equality count descending then quotient tuple lexicographic",
+    "hard_max_wall_seconds": 540.0,
+    "max_vertices": 5,
+    "min_vertices": 4,
+    "per_query_ms": 1000,
+    "timeout_seconds": 540.0
+  },
+  "elapsed_seconds": 52.475246750051156,
+  "encoded_omitted_ledger": {
+    "encoded": [
+      "the selected induced quotient vertices in recorded cyclic order",
+      "all recorded positive-row squared-distance equalities supported entirely on the subset",
+      "exact R^2 coordinates",
+      "sound translation/rotation/positive-scale gauge",
+      "pairwise distinctness",
+      "strict left support for every induced boundary edge and every other induced vertex"
+    ],
+    "omitted": [
+      "all quotient vertices outside the selected subset",
+      "positive-row equalities touching an omitted vertex",
+      "recorded false-row disequalities",
+      "the outer combinatorial constraints beyond the immutable selected row/equality ledger"
+    ],
+    "soundness_for_full_formula": "Any realization of the full 19-point positive-row formula restricts to every encoded induced subset. Therefore a validated UNSAT induced subset refutes that full recorded positive-row formula, despite the listed omissions."
+  },
+  "epistemic_status": "TRUSTED_EXACT_SOLVER_EVIDENCE_ONLY",
+  "inputs": {
+    "cegar_result": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar-v16-local-critical-reuse-second.json",
+    "cegar_result_sha256": "4305fde6500059ef45b268fe09bd99edd3e3ea63386e162b6524ce27e0ef61a3",
+    "cegar_script": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar.py",
+    "cegar_script_current_sha256": "29db457d62c7ba10a096a07aa3600a34baf859bcf3019c4d20e04fc1455c57dc",
+    "cegar_script_recorded_sha256": "29db457d62c7ba10a096a07aa3600a34baf859bcf3019c4d20e04fc1455c57dc",
+    "checkpoint": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar-v16-local-critical-reuse-second.checkpoint.json",
+    "checkpoint_sha256": "0fbe6cad9144ad555825ed09e7c37fc78c07c184250d4fbb8aff53c1f68a7a19",
+    "exact_positive_rows_smt2": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-exact-subset-mining/euclidean-survivor-probe-v16.positive_rows.smt2",
+    "exact_positive_rows_smt2_sha256": "08fd9aaa292be6574be7788897e106e903b865682fe72b07eebe271a20fadd2e",
+    "exact_probe_result": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-exact-subset-mining/euclidean-survivor-probe-v16.json",
+    "exact_probe_result_sha256": "90632f4c9b107a64458be1f6fb9f9ef3feb0ec81e4acde276a274c08eee60df0",
+    "miner_script": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/exact_euclidean_subset_core_miner.py",
+    "miner_script_sha256": "8c1d337c5e61691866e7aa6714acdb3f10ef59c003a0af9e980d95c1851b2b70"
+  },
+  "reason": "No exact core passed all fail-closed validation gates within the enumerated range and wall-clock budget.",
+  "runtime": {
+    "cvc5_binary": "This is cvc5 version 1.3.3 [git 8ff882e on branch HEAD]",
+    "python": "3.14.6",
+    "z3_binary": "Z3 version 4.16.0 - 64 bit",
+    "z3_python": "4.16.0"
+  },
+  "schema": "p97-exact-euclidean-subset-core-miner-v1",
+  "search": {
+    "higher_sizes_not_run_reason": "wall-clock/range termination",
+    "reached_vertex_sizes": [
+      4,
+      5
+    ],
+    "sizes": [
+      {
+        "checked_examples": [
+          {
+            "elapsed_seconds": 0.0028082909993827343,
+            "induced_equation_count": 4,
+            "induced_source_equation_indices": [
+              19,
+              22,
+              23,
+              36
+            ],
+            "status": "SAT",
+            "subset": [
+              5,
+              9,
+              10,
+              11
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0013634159695357084,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              0,
+              1,
+              22
+            ],
+            "status": "SAT",
+            "subset": [
+              0,
+              5,
+              9,
+              10
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0013582920655608177,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              0,
+              2,
+              23
+            ],
+            "status": "SAT",
+            "subset": [
+              0,
+              5,
+              10,
+              11
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0013542079832404852,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              1,
+              2,
+              36
+            ],
+            "status": "SAT",
+            "subset": [
+              0,
+              9,
+              10,
+              11
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0012557089794427156,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              3,
+              4,
+              14
+            ],
+            "status": "SAT",
+            "subset": [
+              1,
+              4,
+              7,
+              11
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0012295001652091742,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              3,
+              5,
+              15
+            ],
+            "status": "SAT",
+            "subset": [
+              1,
+              4,
+              11,
+              12
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0015094589907675982,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              6,
+              7,
+              31
+            ],
+            "status": "SAT",
+            "subset": [
+              1,
+              6,
+              8,
+              16
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0013995419722050428,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              6,
+              8,
+              32
+            ],
+            "status": "SAT",
+            "subset": [
+              1,
+              6,
+              11,
+              16
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0012797079980373383,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              4,
+              5,
+              34
+            ],
+            "status": "SAT",
+            "subset": [
+              1,
+              7,
+              11,
+              12
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0012197911273688078,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              7,
+              8,
+              35
+            ],
+            "status": "SAT",
+            "subset": [
+              1,
+              8,
+              11,
+              16
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0012919171713292599,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              9,
+              10,
+              33
+            ],
+            "status": "SAT",
+            "subset": [
+              2,
+              6,
+              17,
+              18
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0013052921276539564,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              11,
+              12,
+              33
+            ],
+            "status": "SAT",
+            "subset": [
+              3,
+              6,
+              17,
+              18
+            ]
+          },
+          {
+            "elapsed_seconds": 0.001394165912643075,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              14,
+              15,
+              34
+            ],
+            "status": "SAT",
+            "subset": [
+              4,
+              7,
+              11,
+              12
+            ]
+          },
+          {
+            "elapsed_seconds": 0.001677958993241191,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              16,
+              17,
+              26
+            ],
+            "status": "SAT",
+            "subset": [
+              5,
+              7,
+              12,
+              14
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0013719999697059393,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              16,
+              18,
+              27
+            ],
+            "status": "SAT",
+            "subset": [
+              5,
+              7,
+              12,
+              15
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0012702499516308308,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              17,
+              18,
+              29
+            ],
+            "status": "SAT",
+            "subset": [
+              5,
+              7,
+              14,
+              15
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0014565829187631607,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              19,
+              20,
+              24
+            ],
+            "status": "SAT",
+            "subset": [
+              5,
+              9,
+              11,
+              13
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0012969588860869408,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              19,
+              21,
+              25
+            ],
+            "status": "SAT",
+            "subset": [
+              5,
+              9,
+              11,
+              16
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0016086669638752937,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              20,
+              21,
+              28
+            ],
+            "status": "SAT",
+            "subset": [
+              5,
+              9,
+              13,
+              16
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0016812500543892384,
+            "induced_equation_count": 3,
+            "induced_source_equation_indices": [
+              24,
+              25,
+              28
+            ],
+            "status": "SAT",
+            "subset": [
+              5,
+              11,
+              13,
+              16
+            ]
+          }
+        ],
+        "fully_enumerated": true,
+        "fully_resolved": true,
+        "induced_equality_count_histogram": {
+          "0": 3335,
+          "1": 497,
+          "2": 22,
+          "3": 21,
+          "4": 1
+        },
+        "ordering": "descending induced equality count, then lexicographic subset",
+        "solver_checked_nonempty_subsets": 541,
+        "solver_status_counts": {
+          "SAT": 541
+        },
+        "stopping_reason": "SIZE_EXHAUSTED",
+        "total_induced_subsets": 3876,
+        "vertex_count": 4,
+        "zero_equality_subsets": {
+          "count": 3335,
+          "status": "SAT_BY_SHARED_EXACT_INTEGER_WITNESS",
+          "witness": {
+            "classification": "exact shared SAT witness for every size-k subset with zero induced equalities, since global labels do not occur elsewhere",
+            "coordinates": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                6
+              ]
+            ],
+            "minimum_integer_orientation": 2,
+            "minimum_squared_pair_distance": 1
+          }
+        }
+      },
+      {
+        "checked_examples": [
+          {
+            "elapsed_seconds": 0.00612641591578722,
+            "induced_equation_count": 7,
+            "induced_source_equation_indices": [
+              0,
+              1,
+              2,
+              19,
+              22,
+              23,
+              36
+            ],
+            "status": "SAT",
+            "subset": [
+              0,
+              5,
+              9,
+              10,
+              11
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0016883329953998327,
+            "induced_equation_count": 6,
+            "induced_source_equation_indices": [
+              3,
+              4,
+              5,
+              14,
+              15,
+              34
+            ],
+            "status": "SAT",
+            "subset": [
+              1,
+              4,
+              7,
+              11,
+              12
+            ]
+          },
+          {
+            "elapsed_seconds": 0.002472457941621542,
+            "induced_equation_count": 6,
+            "induced_source_equation_indices": [
+              6,
+              7,
+              8,
+              31,
+              32,
+              35
+            ],
+            "status": "SAT",
+            "subset": [
+              1,
+              6,
+              8,
+              11,
+              16
+            ]
+          },
+          {
+            "elapsed_seconds": 0.003418541047722101,
+            "induced_equation_count": 6,
+            "induced_source_equation_indices": [
+              16,
+              17,
+              18,
+              26,
+              27,
+              29
+            ],
+            "status": "SAT",
+            "subset": [
+              5,
+              7,
+              12,
+              14,
+              15
+            ]
+          },
+          {
+            "elapsed_seconds": 0.004392625065520406,
+            "induced_equation_count": 6,
+            "induced_source_equation_indices": [
+              19,
+              20,
+              22,
+              23,
+              24,
+              36
+            ],
+            "status": "SAT",
+            "subset": [
+              5,
+              9,
+              10,
+              11,
+              13
+            ]
+          },
+          {
+            "elapsed_seconds": 0.004680708050727844,
+            "induced_equation_count": 6,
+            "induced_source_equation_indices": [
+              19,
+              21,
+              22,
+              23,
+              25,
+              36
+            ],
+            "status": "SAT",
+            "subset": [
+              5,
+              9,
+              10,
+              11,
+              16
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0031127079855650663,
+            "induced_equation_count": 6,
+            "induced_source_equation_indices": [
+              19,
+              20,
+              21,
+              24,
+              25,
+              28
+            ],
+            "status": "SAT",
+            "subset": [
+              5,
+              9,
+              11,
+              13,
+              16
+            ]
+          },
+          {
+            "elapsed_seconds": 0.11855449993163347,
+            "induced_equation_count": 5,
+            "induced_source_equation_indices": [
+              9,
+              10,
+              11,
+              12,
+              33
+            ],
+            "status": "SAT",
+            "subset": [
+              2,
+              3,
+              6,
+              17,
+              18
+            ]
+          },
+          {
+            "cvc5_fallback": {
+              "command": [
+                "/Users/adam/bin/cvc5",
+                "--lang",
+                "smt2",
+                "--nl-cov",
+                "--tlimit",
+                "1000"
+              ],
+              "elapsed_seconds": 1.0070235000457615,
+              "fail_closed": true,
+              "reason_unknown": "cvc5 timeout without a status line",
+              "returncode": -6,
+              "solver": "cvc5",
+              "status": "UNKNOWN",
+              "stderr_tail": [
+                "cvc5 interrupted by timeout."
+              ],
+              "stdout_tail": [],
+              "timeout_ms": 1000
+            },
+            "elapsed_seconds": 1.1317497498821467,
+            "induced_equation_count": 5,
+            "induced_source_equation_indices": [
+              13,
+              19,
+              22,
+              23,
+              36
+            ],
+            "status": "UNKNOWN",
+            "subset": [
+              3,
+              5,
+              9,
+              10,
+              11
+            ]
+          },
+          {
+            "elapsed_seconds": 0.003331958083435893,
+            "induced_equation_count": 4,
+            "induced_source_equation_indices": [
+              1,
+              2,
+              13,
+              36
+            ],
+            "status": "SAT",
+            "subset": [
+              0,
+              3,
+              9,
+              10,
+              11
+            ]
+          },
+          {
+            "elapsed_seconds": 0.002641292056068778,
+            "induced_equation_count": 4,
+            "induced_source_equation_indices": [
+              0,
+              1,
+              20,
+              22
+            ],
+            "status": "SAT",
+            "subset": [
+              0,
+              5,
+              9,
+              10,
+              13
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0027470409404486418,
+            "induced_equation_count": 4,
+            "induced_source_equation_indices": [
+              0,
+              1,
+              21,
+              22
+            ],
+            "status": "SAT",
+            "subset": [
+              0,
+              5,
+              9,
+              10,
+              16
+            ]
+          },
+          {
+            "elapsed_seconds": 0.002630166942253709,
+            "induced_equation_count": 4,
+            "induced_source_equation_indices": [
+              0,
+              2,
+              23,
+              24
+            ],
+            "status": "SAT",
+            "subset": [
+              0,
+              5,
+              10,
+              11,
+              13
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0024669580161571503,
+            "induced_equation_count": 4,
+            "induced_source_equation_indices": [
+              0,
+              2,
+              23,
+              25
+            ],
+            "status": "SAT",
+            "subset": [
+              0,
+              5,
+              10,
+              11,
+              16
+            ]
+          },
+          {
+            "elapsed_seconds": 0.002288375049829483,
+            "induced_equation_count": 4,
+            "induced_source_equation_indices": [
+              3,
+              6,
+              8,
+              32
+            ],
+            "status": "SAT",
+            "subset": [
+              1,
+              4,
+              6,
+              11,
+              16
+            ]
+          },
+          {
+            "elapsed_seconds": 0.002184166107326746,
+            "induced_equation_count": 4,
+            "induced_source_equation_indices": [
+              3,
+              4,
+              8,
+              14
+            ],
+            "status": "SAT",
+            "subset": [
+              1,
+              4,
+              7,
+              11,
+              16
+            ]
+          },
+          {
+            "elapsed_seconds": 0.002517875051125884,
+            "induced_equation_count": 4,
+            "induced_source_equation_indices": [
+              3,
+              7,
+              8,
+              35
+            ],
+            "status": "SAT",
+            "subset": [
+              1,
+              4,
+              8,
+              11,
+              16
+            ]
+          },
+          {
+            "elapsed_seconds": 0.0020692499820142984,
+            "induced_equation_count": 4,
+            "induced_source_equation_indices": [
+              3,
+              5,
+              8,
+              15
+            ],
+            "status": "SAT",
+            "subset": [
+              1,
+              4,
+              11,
+              12,
+              16
+            ]
+          },
+          {
+            "elapsed_seconds": 0.6137007079087198,
+            "induced_equation_count": 4,
+            "induced_source_equation_indices": [
+              6,
+              8,
+              25,
+              32
+            ],
+            "status": "SAT",
+            "subset": [
+              1,
+              5,
+              6,
+              11,
+              16
+            ]
+          },
+          {
+            "elapsed_seconds": 0.004084500018507242,
+            "induced_equation_count": 4,
+            "induced_source_equation_indices": [
+              4,
+              5,
+              16,
+              34
+            ],
+            "status": "SAT",
+            "subset": [
+              1,
+              5,
+              7,
+              11,
+              12
+            ]
+          }
+        ],
+        "fully_enumerated": true,
+        "fully_resolved": false,
+        "induced_equality_count_histogram": {
+          "0": 8174,
+          "1": 2763,
+          "2": 353,
+          "3": 278,
+          "4": 51,
+          "5": 2,
+          "6": 6,
+          "7": 1
+        },
+        "ordering": "descending induced equality count, then lexicographic subset",
+        "solver_checked_nonempty_subsets": 3454,
+        "solver_status_counts": {
+          "CVC5_SAT": 10,
+          "CVC5_UNKNOWN": 10,
+          "SAT": 3434,
+          "UNKNOWN": 20
+        },
+        "stopping_reason": "SIZE_EXHAUSTED",
+        "total_induced_subsets": 11628,
+        "vertex_count": 5,
+        "zero_equality_subsets": {
+          "count": 8174,
+          "status": "SAT_BY_SHARED_EXACT_INTEGER_WITNESS",
+          "witness": {
+            "classification": "exact shared SAT witness for every size-k subset with zero induced equalities, since global labels do not occur elsewhere",
+            "coordinates": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                6
+              ],
+              [
+                4,
+                12
+              ]
+            ],
+            "minimum_integer_orientation": 2,
+            "minimum_squared_pair_distance": 1
+          }
+        }
+      }
+    ],
+    "unconfirmed_unsat_candidates": []
+  },
+  "self_test": {
+    "cvc5_known_unsat_gauge_distance_conflict": {
+      "command": [
+        "/Users/adam/bin/cvc5",
+        "--lang",
+        "smt2",
+        "--nl-cov",
+        "--tlimit",
+        "10000"
+      ],
+      "elapsed_seconds": 0.008096292149275541,
+      "fail_closed": true,
+      "reason_unknown": null,
+      "returncode": 0,
+      "solver": "cvc5",
+      "status": "UNSAT",
+      "stderr_tail": [],
+      "stdout_tail": [
+        "unsat"
+      ],
+      "timeout_ms": 10000
+    },
+    "exact_integer_convex_witnesses": {
+      "4": {
+        "classification": "exact shared SAT witness for every size-k subset with zero induced equalities, since global labels do not occur elsewhere",
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        "minimum_integer_orientation": 2,
+        "minimum_squared_pair_distance": 1
+      },
+      "5": {
+        "classification": "exact shared SAT witness for every size-k subset with zero induced equalities, since global labels do not occur elsewhere",
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            12
+          ]
+        ],
+        "minimum_integer_orientation": 2,
+        "minimum_squared_pair_distance": 1
+      },
+      "6": {
+        "classification": "exact shared SAT witness for every size-k subset with zero induced equalities, since global labels do not occur elsewhere",
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            12
+          ],
+          [
+            5,
+            20
+          ]
+        ],
+        "minimum_integer_orientation": 2,
+        "minimum_squared_pair_distance": 1
+      },
+      "7": {
+        "classification": "exact shared SAT witness for every size-k subset with zero induced equalities, since global labels do not occur elsewhere",
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            12
+          ],
+          [
+            5,
+            20
+          ],
+          [
+            6,
+            30
+          ]
+        ],
+        "minimum_integer_orientation": 2,
+        "minimum_squared_pair_distance": 1
+      },
+      "8": {
+        "classification": "exact shared SAT witness for every size-k subset with zero induced equalities, since global labels do not occur elsewhere",
+        "coordinates": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            12
+          ],
+          [
+            5,
+            20
+          ],
+          [
+            6,
+            30
+          ],
+          [
+            7,
+            42
+          ]
+        ],
+        "minimum_integer_orientation": 2,
+        "minimum_squared_pair_distance": 1
+      }
+    },
+    "status": "PASS",
+    "subprocess_fail_closed_classifier": "PASS",
+    "z3_known_sat_strict_quadrilateral": {
+      "assumption_tracked_kinds": [
+        "strict_cyclic_orientation",
+        "pairwise_distinct",
+        "positive_row_equality"
+      ],
+      "elapsed_seconds": 0.0009202910587191582,
+      "fixed_background_record_names": [
+        "gauge_x_0",
+        "gauge_y_0",
+        "gauge_x_1",
+        "gauge_y_1"
+      ],
+      "model_substitution_failures": [],
+      "model_substitution_status": "PASS",
+      "solver": "Z3 Python API",
+      "status": "SAT",
+      "timeout_ms": 10000
+    },
+    "z3_known_unsat_gauge_distance_conflict": {
+      "assumption_tracked_kinds": [
+        "strict_cyclic_orientation",
+        "pairwise_distinct",
+        "positive_row_equality"
+      ],
+      "elapsed_seconds": 0.0004275408573448658,
+      "fixed_background_record_names": [
+        "gauge_x_0",
+        "gauge_y_0",
+        "gauge_x_1",
+        "gauge_y_1"
+      ],
+      "solver": "Z3 Python API",
+      "status": "UNSAT",
+      "timeout_ms": 10000,
+      "unsat_core_record_names": [
+        "eq_source_10000"
+      ],
+      "unsat_core_size": 1
+    }
+  },
+  "source_validation": {
+    "actual_hashes": {
+      "cegar_result_sha256": "4305fde6500059ef45b268fe09bd99edd3e3ea63386e162b6524ce27e0ef61a3",
+      "cegar_script_current_sha256": "29db457d62c7ba10a096a07aa3600a34baf859bcf3019c4d20e04fc1455c57dc",
+      "checkpoint_sha256": "0fbe6cad9144ad555825ed09e7c37fc78c07c184250d4fbb8aff53c1f68a7a19",
+      "exact_positive_rows_smt2_sha256": "08fd9aaa292be6574be7788897e106e903b865682fe72b07eebe271a20fadd2e",
+      "exact_probe_result_sha256": "90632f4c9b107a64458be1f6fb9f9ef3feb0ec81e4acde276a274c08eee60df0"
+    },
+    "alias_class_count": 19,
+    "current_cegar_drift_policy": "current implementation drift is recorded but cannot change the immutable exact-probe target",
+    "current_cegar_matches_recorded": true,
+    "expected_hashes": {
+      "cegar_result_sha256": "4305fde6500059ef45b268fe09bd99edd3e3ea63386e162b6524ce27e0ef61a3",
+      "checkpoint_sha256": "0fbe6cad9144ad555825ed09e7c37fc78c07c184250d4fbb8aff53c1f68a7a19",
+      "exact_positive_rows_smt2_sha256": "08fd9aaa292be6574be7788897e106e903b865682fe72b07eebe271a20fadd2e",
+      "exact_probe_result_sha256": "90632f4c9b107a64458be1f6fb9f9ef3feb0ec81e4acde276a274c08eee60df0"
+    },
+    "full_formula_reason_unknown": "hard subprocess wall timeout",
+    "full_formula_status": "UNKNOWN",
+    "method": "fixed hash gates for exact probe/result/checkpoint/SMT plus schema, ordered-class, normalized-equation, assertion-count, and terminal row-replay checks",
+    "positive_equation_count": 38,
+    "probe_schema": "p97-aliased-euclidean-survivor-probe-v2-terminal-rows",
+    "recorded_cegar_script_sha256": "29db457d62c7ba10a096a07aa3600a34baf859bcf3019c4d20e04fc1455c57dc",
+    "status": "PASS"
+  },
+  "target": {
+    "equations": [
+      {
+        "left_edge": [
+          0,
+          10
+        ],
+        "right_edge": [
+          5,
+          10
+        ],
+        "source_index": 0
+      },
+      {
+        "left_edge": [
+          0,
+          10
+        ],
+        "right_edge": [
+          9,
+          10
+        ],
+        "source_index": 1
+      },
+      {
+        "left_edge": [
+          0,
+          10
+        ],
+        "right_edge": [
+          10,
+          11
+        ],
+        "source_index": 2
+      },
+      {
+        "left_edge": [
+          1,
+          11
+        ],
+        "right_edge": [
+          4,
+          11
+        ],
+        "source_index": 3
+      },
+      {
+        "left_edge": [
+          1,
+          11
+        ],
+        "right_edge": [
+          7,
+          11
+        ],
+        "source_index": 4
+      },
+      {
+        "left_edge": [
+          1,
+          11
+        ],
+        "right_edge": [
+          11,
+          12
+        ],
+        "source_index": 5
+      },
+      {
+        "left_edge": [
+          1,
+          16
+        ],
+        "right_edge": [
+          6,
+          16
+        ],
+        "source_index": 6
+      },
+      {
+        "left_edge": [
+          1,
+          16
+        ],
+        "right_edge": [
+          8,
+          16
+        ],
+        "source_index": 7
+      },
+      {
+        "left_edge": [
+          1,
+          16
+        ],
+        "right_edge": [
+          11,
+          16
+        ],
+        "source_index": 8
+      },
+      {
+        "left_edge": [
+          2,
+          6
+        ],
+        "right_edge": [
+          6,
+          17
+        ],
+        "source_index": 9
+      },
+      {
+        "left_edge": [
+          2,
+          6
+        ],
+        "right_edge": [
+          6,
+          18
+        ],
+        "source_index": 10
+      },
+      {
+        "left_edge": [
+          3,
+          6
+        ],
+        "right_edge": [
+          6,
+          17
+        ],
+        "source_index": 11
+      },
+      {
+        "left_edge": [
+          3,
+          6
+        ],
+        "right_edge": [
+          6,
+          18
+        ],
+        "source_index": 12
+      },
+      {
+        "left_edge": [
+          3,
+          11
+        ],
+        "right_edge": [
+          9,
+          11
+        ],
+        "source_index": 13
+      },
+      {
+        "left_edge": [
+          4,
+          11
+        ],
+        "right_edge": [
+          7,
+          11
+        ],
+        "source_index": 14
+      },
+      {
+        "left_edge": [
+          4,
+          11
+        ],
+        "right_edge": [
+          11,
+          12
+        ],
+        "source_index": 15
+      },
+      {
+        "left_edge": [
+          5,
+          7
+        ],
+        "right_edge": [
+          5,
+          12
+        ],
+        "source_index": 16
+      },
+      {
+        "left_edge": [
+          5,
+          7
+        ],
+        "right_edge": [
+          5,
+          14
+        ],
+        "source_index": 17
+      },
+      {
+        "left_edge": [
+          5,
+          7
+        ],
+        "right_edge": [
+          5,
+          15
+        ],
+        "source_index": 18
+      },
+      {
+        "left_edge": [
+          5,
+          9
+        ],
+        "right_edge": [
+          5,
+          11
+        ],
+        "source_index": 19
+      },
+      {
+        "left_edge": [
+          5,
+          9
+        ],
+        "right_edge": [
+          5,
+          13
+        ],
+        "source_index": 20
+      },
+      {
+        "left_edge": [
+          5,
+          9
+        ],
+        "right_edge": [
+          5,
+          16
+        ],
+        "source_index": 21
+      },
+      {
+        "left_edge": [
+          5,
+          10
+        ],
+        "right_edge": [
+          9,
+          10
+        ],
+        "source_index": 22
+      },
+      {
+        "left_edge": [
+          5,
+          10
+        ],
+        "right_edge": [
+          10,
+          11
+        ],
+        "source_index": 23
+      },
+      {
+        "left_edge": [
+          5,
+          11
+        ],
+        "right_edge": [
+          5,
+          13
+        ],
+        "source_index": 24
+      },
+      {
+        "left_edge": [
+          5,
+          11
+        ],
+        "right_edge": [
+          5,
+          16
+        ],
+        "source_index": 25
+      },
+      {
+        "left_edge": [
+          5,
+          12
+        ],
+        "right_edge": [
+          5,
+          14
+        ],
+        "source_index": 26
+      },
+      {
+        "left_edge": [
+          5,
+          12
+        ],
+        "right_edge": [
+          5,
+          15
+        ],
+        "source_index": 27
+      },
+      {
+        "left_edge": [
+          5,
+          13
+        ],
+        "right_edge": [
+          5,
+          16
+        ],
+        "source_index": 28
+      },
+      {
+        "left_edge": [
+          5,
+          14
+        ],
+        "right_edge": [
+          5,
+          15
+        ],
+        "source_index": 29
+      },
+      {
+        "left_edge": [
+          5,
+          16
+        ],
+        "right_edge": [
+          15,
+          16
+        ],
+        "source_index": 30
+      },
+      {
+        "left_edge": [
+          6,
+          16
+        ],
+        "right_edge": [
+          8,
+          16
+        ],
+        "source_index": 31
+      },
+      {
+        "left_edge": [
+          6,
+          16
+        ],
+        "right_edge": [
+          11,
+          16
+        ],
+        "source_index": 32
+      },
+      {
+        "left_edge": [
+          6,
+          17
+        ],
+        "right_edge": [
+          6,
+          18
+        ],
+        "source_index": 33
+      },
+      {
+        "left_edge": [
+          7,
+          11
+        ],
+        "right_edge": [
+          11,
+          12
+        ],
+        "source_index": 34
+      },
+      {
+        "left_edge": [
+          8,
+          16
+        ],
+        "right_edge": [
+          11,
+          16
+        ],
+        "source_index": 35
+      },
+      {
+        "left_edge": [
+          9,
+          10
+        ],
+        "right_edge": [
+          10,
+          11
+        ],
+        "source_index": 36
+      },
+      {
+        "left_edge": [
+          13,
+          16
+        ],
+        "right_edge": [
+          14,
+          16
+        ],
+        "source_index": 37
+      }
+    ],
+    "gauge_soundness": "the first two induced vertices are consecutive and distinct; translation, orientation-preserving rotation, and positive scaling send them to (0,0),(1,0) while preserving homogeneous distance equalities and orientation signs",
+    "ordered_alias_classes": [
+      [
+        "t",
+        "z3"
+      ],
+      [
+        "q",
+        "s2"
+      ],
+      [
+        "e4"
+      ],
+      [
+        "e3"
+      ],
+      [
+        "other"
+      ],
+      [
+        "a0",
+        "z"
+      ],
+      [
+        "a1",
+        "s4",
+        "be"
+      ],
+      [
+        "p2"
+      ],
+      [
+        "source"
+      ],
+      [
+        "r1",
+        "z4",
+        "y"
+      ],
+      [
+        "b2",
+        "bz"
+      ],
+      [
+        "r2",
+        "b1",
+        "s3",
+        "z2"
+      ],
+      [
+        "p1",
+        "x"
+      ],
+      [
+        "a2",
+        "r3"
+      ],
+      [
+        "p4"
+      ],
+      [
+        "p3"
+      ],
+      [
+        "bs",
+        "r4"
+      ],
+      [
+        "e2"
+      ],
+      [
+        "escape"
+      ]
+    ],
+    "positive_equation_count": 38,
+    "positive_equation_independence_warning": "The 38 source rows are explicit recorded equalities; no algebraic independence claim is made.",
+    "quotient_class_count": 19,
+    "strict_convexity_semantics": "each directed consecutive induced edge strictly supports every other induced vertex on its left",
+    "subset_semantics": "retain exactly the recorded positive-row equalities whose endpoints all lie in the induced cyclic subset"
+  },
+  "terminal_status": "UNKNOWN_NO_VALIDATED_CORE",
+  "trust_warning": "This is exact QF_NRA solver evidence with independent Z3/cvc5 agreement and explicit formula replay, not a proof certificate checked by Lean or another kernel. The selected 38 equalities are truth values from the hash-pinned survivor model, not universal consequences of the quotient/order constraints. UNKNOWN and timeouts are always no verdict.",
+  "validated_core": null
+}

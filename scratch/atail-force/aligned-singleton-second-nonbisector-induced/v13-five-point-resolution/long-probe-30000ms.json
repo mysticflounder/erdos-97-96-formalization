@@ -1,0 +1,195 @@
+{
+  "formulas": {
+    "2c5cb772688fd1a971f8494ee1be001d6c66d360ac670fae0532687955bd0317": {
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-5-10-18.smt2"
+        ],
+        "elapsed_seconds": 30.01435354212299,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 30000
+      },
+      "representative_case_id": "q0-1-5-10-18",
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-5-10-18.smt2",
+      "smt2_sha256": "2c5cb772688fd1a971f8494ee1be001d6c66d360ac670fae0532687955bd0317",
+      "z3": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:30000",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-5-10-18.smt2"
+        ],
+        "elapsed_seconds": 30.01577058294788,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "ERROR_MALFORMED_OUTPUT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "timeout"
+        ],
+        "timeout_ms": 30000
+      }
+    },
+    "a74b4a8d74ad995befc8e8eacf49b6d07d31062662e73506a455d67b2852ff74": {
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-5-18.smt2"
+        ],
+        "elapsed_seconds": 30.009842291940004,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 30000
+      },
+      "representative_case_id": "q0-1-2-5-18",
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-5-18.smt2",
+      "smt2_sha256": "a74b4a8d74ad995befc8e8eacf49b6d07d31062662e73506a455d67b2852ff74",
+      "z3": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:30000",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-5-18.smt2"
+        ],
+        "elapsed_seconds": 30.017201208043844,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "ERROR_MALFORMED_OUTPUT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "timeout"
+        ],
+        "timeout_ms": 30000
+      }
+    },
+    "c5737d432513e7110bf15dd53819ffffa45d07c779fcef5cf67447bc3393e5b7": {
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-13-18.smt2"
+        ],
+        "elapsed_seconds": 30.01152704190463,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 30000
+      },
+      "representative_case_id": "q0-1-2-13-18",
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-13-18.smt2",
+      "smt2_sha256": "c5737d432513e7110bf15dd53819ffffa45d07c779fcef5cf67447bc3393e5b7",
+      "z3": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:30000",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-13-18.smt2"
+        ],
+        "elapsed_seconds": 14.13432512502186,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      }
+    },
+    "fd2ccd143f8264fadb12253b23529bec4ce7ea3110f764714145c4f1df07daa2": {
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-16-18.smt2"
+        ],
+        "elapsed_seconds": 30.01180004188791,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 30000
+      },
+      "representative_case_id": "q0-1-2-16-18",
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-16-18.smt2",
+      "smt2_sha256": "fd2ccd143f8264fadb12253b23529bec4ce7ea3110f764714145c4f1df07daa2",
+      "z3": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:30000",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-16-18.smt2"
+        ],
+        "elapsed_seconds": 14.139483584091067,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      }
+    }
+  },
+  "schema": "p97-v13-five-point-resolution-long-probe-v1",
+  "timeout_ms_per_solver": 30000,
+  "unique_formula_count": 4
+}

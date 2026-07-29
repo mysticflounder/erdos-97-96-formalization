@@ -1,0 +1,76 @@
+{
+  "cuts": [
+    [
+      [
+        "order",
+        "p1",
+        "p2"
+      ],
+      [
+        "row",
+        "a0",
+        "p1",
+        "p2",
+        true
+      ],
+      [
+        "order",
+        "a0",
+        "p1"
+      ],
+      [
+        "order",
+        "p2",
+        "b1"
+      ],
+      [
+        "row",
+        "b1",
+        "p1",
+        "p2",
+        true
+      ]
+    ]
+  ],
+  "metadata": {
+    "escape_arm": "robust",
+    "named_occurrences": 26,
+    "names": [
+      "a0",
+      "a1",
+      "a2",
+      "p1",
+      "p2",
+      "r1",
+      "r2",
+      "q",
+      "other",
+      "z",
+      "t",
+      "source",
+      "b1",
+      "b2",
+      "bs",
+      "bz",
+      "s2",
+      "s3",
+      "s4",
+      "p3",
+      "p4",
+      "r3",
+      "r4",
+      "z2",
+      "z3",
+      "z4"
+    ],
+    "schema": "p97-aligned-singleton-induced-metric-cegar-v2",
+    "z_branch": "new"
+  },
+  "stats": {
+    "banked_cuts": 1,
+    "core_shrink_checks": 4,
+    "core_shrink_unknowns": 3,
+    "inner_calls": 2,
+    "outer_calls": 2
+  }
+}

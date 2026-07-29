@@ -1,0 +1,69 @@
+{
+  "checkpoint": "cegar-robust-new.checkpoint.json",
+  "core_sizes": [
+    {
+      "initial": 5,
+      "iteration": 0,
+      "shrunk": 5
+    }
+  ],
+  "cuts": 1,
+  "elapsed_seconds": 186.18251258297823,
+  "epistemic_status": "INDUCED_NECESSARY_CONDITION_ONLY",
+  "escape_arm": "robust",
+  "inner_reason_unknown": "canceled",
+  "named_occurrences": 26,
+  "opaque_or_oracular": [
+    "CounterexampleData.K4 outside the explicitly named exact shells",
+    "FullyDeletionRobustAt and tri-apex richness",
+    "minimality and the row-escape producer",
+    "noM44",
+    "MinimalUniqueFourCover and all carrier-wide cover/cardinality facts"
+  ],
+  "outer_constraint_counts": {
+    "aligned_named_trace": 10,
+    "apices_distinct": 1,
+    "canonical_blockers_distinct": 1,
+    "critical_shell_1": 1,
+    "critical_shell_2": 1,
+    "critical_shell_source": 1,
+    "distance_class_bounds": 650,
+    "first_apex_radius": 1,
+    "first_apex_rho": 1,
+    "first_cap_strict_interior_order": 10,
+    "first_outside_pair": 1,
+    "inside_outside_distinct": 20,
+    "mec_order_symmetry": 2,
+    "outside_cap_separation": 1,
+    "outside_first_closed_cap_order": 4,
+    "quotient_distance_incidence": 650,
+    "quotient_incidence_congruence": 7800,
+    "rank_bounds": 52,
+    "retained_disjoint_pairs": 1,
+    "retained_radii_distinct": 1,
+    "robust_escape_arm_opaque": 1,
+    "second_blocker_nonbisector": 1,
+    "second_outside_pair": 1,
+    "singleton_named_trace": 2,
+    "source_blocker_not_apices": 2,
+    "source_cross_pair_omissions": 2,
+    "z_blocker_branch": 1,
+    "z_blocker_not_first": 1,
+    "z_critical_shell": 1,
+    "z_new_from_first_pair": 2
+  },
+  "reason": "inner metric solver returned UNKNOWN: canceled",
+  "row_incidence_atoms": 153,
+  "schema": "p97-aligned-singleton-induced-metric-cegar-v2",
+  "scope_warning": "W is the quotient of named occurrences, not the full carrier D.A; exact-four exclusions range only over W.",
+  "stats": {
+    "banked_cuts": 1,
+    "core_shrink_checks": 4,
+    "core_shrink_unknowns": 3,
+    "inner_calls": 2,
+    "outer_calls": 2
+  },
+  "status": "UNKNOWN_FAIL_CLOSED",
+  "trust_warning": "SAT/UNSAT is solver evidence for this induced encoding, not a Lean theorem or a Euclidean-coordinate realization.",
+  "z_branch": "new"
+}

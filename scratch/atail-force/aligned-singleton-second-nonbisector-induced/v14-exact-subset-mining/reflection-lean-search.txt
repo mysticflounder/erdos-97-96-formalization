@@ -1,0 +1,10 @@
+Use these docs entries.
+
+`dist_reflectXAxis` gives exactly the reflection-distance part for planar points in `ℝ²`: it states that reflecting across the x-axis preserves Euclidean distance.
+
+For signed-area behavior, `signedArea2_reflection_neg` states that reflection at an axis line flips `signedArea2` sign (`signedArea2 u q v₂ = - signedArea2 y q v₂`) under the standard midpoint-on-axis/reflection hypothesis.
+
+For the obstruction side, the corpus exposes `false_of_second_three_rows_of_four_orientations` and a closely related `false_of_three_rows_of_four_orientations` (with cyclic-order signed-area hypotheses), but no separately named “positive-orientation” variant of the `_second_` theorem appears by name in the merged Lean corpus.
+  handles: Z5AN35 H2HBXE QD7QMH 4JJKDK  (read with `nthdegree docs show <handle> --lean`)
+searched: cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show --lean Z5AN35 && nthdegree docs s…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show --lean Z5AN35, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs search --lean "signedArea2 reflect", cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show --lean H2HBXE && nthdegree docs s…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs search --lean "false_of_second_three_r…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs search --lean "three rows four orienta…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show --lean QD7QMH && nthdegree docs s…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs search --lean "positive-orientation fa…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs search --lean --name "false_of_" "four…
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.

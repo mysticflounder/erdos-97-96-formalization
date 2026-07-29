@@ -97,11 +97,9 @@ private noncomputable def collisionRelocation
       actual_blocker_ne_of_deletion_survives
         H P.source₂_mem_A hwSurvives }
 
-/-- In the cap-eight branch, choose a source in the strict first indexed cap
-outside both collision pairs.  Its actual blocker differs from both collision
-blockers and both physical apices, and preserves one deletion from each
-collision pair. -/
-theorem exists_capSource_thirdBlocker_crossPairDeletionSurvivals
+/-- The pointwise third-blocker and cross-pair deletion-survival witness
+carried by a strict-cap source outside both collision pairs. -/
+abbrev CapSourceThirdBlockerCrossPairDeletionSurvivals
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -110,31 +108,44 @@ theorem exists_capSource_thirdBlocker_crossPairDeletionSurvivals
     {Fρ : CriticalPairFrontier D S ρ H}
     {Rρ : FrontierCommonDeletionParentResidual Fρ}
     (Pρ : RetainedInteriorBlockerCollision Rρ)
-    (secondApexRobust : FullyDeletionRobustAt D S.oppApex2)
+    (source : CriticalShellSystem.CarrierVertex D.A) : Prop :=
+  source.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
+    source.1 ∉
+      (({P.source₁, P.source₂} : Finset ℝ²) ∪
+        {Pρ.source₁, Pρ.source₂}) ∧
+    H.centerAt source.1 source.2 ≠
+      H.centerAt P.source₁ P.source₁_mem_A ∧
+    H.centerAt source.1 source.2 ≠
+      H.centerAt Pρ.source₁ Pρ.source₁_mem_A ∧
+    H.centerAt source.1 source.2 ≠ S.oppApex1 ∧
+    H.centerAt source.1 source.2 ≠ S.oppApex2 ∧
+    (HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+        (H.centerAt source.1 source.2) ∨
+      HasNEquidistantPointsAt 4 (D.A.erase P.source₂)
+        (H.centerAt source.1 source.2)) ∧
+    (HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
+        (H.centerAt source.1 source.2) ∨
+      HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₂)
+        (H.centerAt source.1 source.2))
+
+private theorem two_le_card_capInterior_sdiff_collisionSources
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
     (hpairsDisjoint :
       Disjoint
         ({P.source₁, P.source₂} : Finset ℝ²)
         {Pρ.source₁, Pρ.source₂})
     (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card) :
-    ∃ source : CriticalShellSystem.CarrierVertex D.A,
-      source.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
-        source.1 ∉
-          (({P.source₁, P.source₂} : Finset ℝ²) ∪
-            {Pρ.source₁, Pρ.source₂}) ∧
-        H.centerAt source.1 source.2 ≠
-          H.centerAt P.source₁ P.source₁_mem_A ∧
-        H.centerAt source.1 source.2 ≠
-          H.centerAt Pρ.source₁ Pρ.source₁_mem_A ∧
-        H.centerAt source.1 source.2 ≠ S.oppApex1 ∧
-        H.centerAt source.1 source.2 ≠ S.oppApex2 ∧
-        (HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
-            (H.centerAt source.1 source.2) ∨
-          HasNEquidistantPointsAt 4 (D.A.erase P.source₂)
-            (H.centerAt source.1 source.2)) ∧
-        (HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
-            (H.centerAt source.1 source.2) ∨
-          HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₂)
-            (H.centerAt source.1 source.2)) := by
+    2 ≤
+      ((S.capInteriorByIndex S.oppIndex1) \
+        (({P.source₁, P.source₂} : Finset ℝ²) ∪
+          {Pρ.source₁, Pρ.source₂})).card := by
   classical
   let pairSources : Finset ℝ² :=
     ({P.source₁, P.source₂} : Finset ℝ²) ∪
@@ -165,11 +176,33 @@ theorem exists_capSource_thirdBlocker_crossPairDeletionSurvivals
       S.capInteriorByIndex S.oppIndex1 ∩ pairSources = pairSources :=
     Finset.inter_eq_right.mpr hpairSubset
   rw [hinter, hpairCard] at hsplit
-  have houtside :
-      ((S.capInteriorByIndex S.oppIndex1) \ pairSources).Nonempty := by
-    apply Finset.card_pos.mp
-    omega
-  rcases houtside with ⟨q, hqOutside⟩
+  change 2 ≤ ((S.capInteriorByIndex S.oppIndex1) \ pairSources).card
+  omega
+
+private theorem capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (secondApexRobust : FullyDeletionRobustAt D S.oppApex2)
+    {q : ℝ²}
+    (hqOutside :
+      q ∈
+        (S.capInteriorByIndex S.oppIndex1) \
+          (({P.source₁, P.source₂} : Finset ℝ²) ∪
+            {Pρ.source₁, Pρ.source₂})) :
+    ∃ source : CriticalShellSystem.CarrierVertex D.A,
+      source.1 = q ∧
+        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source := by
+  classical
+  let pairSources : Finset ℝ² :=
+    ({P.source₁, P.source₂} : Finset ℝ²) ∪
+      {Pρ.source₁, Pρ.source₂}
+  change q ∈ (S.capInteriorByIndex S.oppIndex1) \ pairSources at hqOutside
   have hqParts := Finset.mem_sdiff.mp hqOutside
   have hqInterior : q ∈ S.capInteriorByIndex S.oppIndex1 := hqParts.1
   have hqCap : q ∈ S.capByIndex S.oppIndex1 :=
@@ -262,10 +295,185 @@ theorem exists_capSource_thirdBlocker_crossPairDeletionSurvivals
     · exact False.elim ((Rρ.actualBlocker_ne_firstApex q hqA) hfirst)
     · exact False.elim
         (hcenterNeρ (by simpa [Qρ, collisionRelocation] using hknown))
-  exact ⟨source, hqInterior, hqNotPairs, hcenterNe, hcenterNeρ,
+  exact ⟨source, rfl, hqInterior, hqNotPairs, hcenterNe, hcenterNeρ,
     R.actualBlocker_ne_firstApex q hqA,
     secondApexRobust.centerAt_ne H q hqA,
     hsurvives, hsurvivesρ⟩
+
+/-- In the cap-eight branch, choose a source in the strict first indexed cap
+outside both collision pairs.  Its actual blocker differs from both collision
+blockers and both physical apices, and preserves one deletion from each
+collision pair. -/
+theorem exists_capSource_thirdBlocker_crossPairDeletionSurvivals
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (secondApexRobust : FullyDeletionRobustAt D S.oppApex2)
+    (hpairsDisjoint :
+      Disjoint
+        ({P.source₁, P.source₂} : Finset ℝ²)
+        {Pρ.source₁, Pρ.source₂})
+    (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card) :
+    ∃ source : CriticalShellSystem.CarrierVertex D.A,
+      CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source := by
+  classical
+  have hcard :=
+    two_le_card_capInterior_sdiff_collisionSources
+      P Pρ hpairsDisjoint hcap
+  have houtside :
+      ((S.capInteriorByIndex S.oppIndex1) \
+        (({P.source₁, P.source₂} : Finset ℝ²) ∪
+          {Pρ.source₁, Pρ.source₂})).Nonempty := by
+    apply Finset.card_pos.mp
+    omega
+  rcases houtside with ⟨q, hqOutside⟩
+  obtain ⟨source, -, hsource⟩ :=
+    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+      P Pρ secondApexRobust hqOutside
+  exact ⟨source, hsource⟩
+
+/-- The cap-eight margin leaves two distinct strict-cap sources outside both
+collision pairs, each carrying the full third-blocker and cross-pair
+deletion-survival witness. -/
+theorem exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (secondApexRobust : FullyDeletionRobustAt D S.oppApex2)
+    (hpairsDisjoint :
+      Disjoint
+        ({P.source₁, P.source₂} : Finset ℝ²)
+        {Pρ.source₁, Pρ.source₂})
+    (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card) :
+    ∃ source source' : CriticalShellSystem.CarrierVertex D.A,
+      source.1 ≠ source'.1 ∧
+        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source ∧
+        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source' := by
+  classical
+  have hcard :=
+    two_le_card_capInterior_sdiff_collisionSources
+      P Pρ hpairsDisjoint hcap
+  have honeLt :
+      1 <
+        ((S.capInteriorByIndex S.oppIndex1) \
+          (({P.source₁, P.source₂} : Finset ℝ²) ∪
+            {Pρ.source₁, Pρ.source₂})).card := by
+    omega
+  rcases Finset.one_lt_card.mp honeLt with
+    ⟨q, hqOutside, q', hqOutside', hqNe⟩
+  obtain ⟨source, hsourceEq, hsource⟩ :=
+    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+      P Pρ secondApexRobust hqOutside
+  obtain ⟨source', hsourceEq', hsource'⟩ :=
+    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+      P Pρ secondApexRobust hqOutside'
+  refine ⟨source, source', ?_, hsource, hsource'⟩
+  simpa [hsourceEq, hsourceEq'] using hqNe
+
+/-- Two strict first-cap points on a common apex-centred radius, distinct from
+both retained collision radii, can be lifted without erasing their metric
+provenance.  Each lifted source carries the same third-blocker and cross-pair
+deletion-survival packet as the cardinality-only cap-eight producer. -/
+theorem
+    exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals_of_commonRadius
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (secondApexRobust : FullyDeletionRobustAt D S.oppApex2)
+    (commonRadius : ℝ)
+    (hcommonCard :
+      2 ≤
+        (SelectedClass D.A S.oppApex1 commonRadius ∩
+          S.capInteriorByIndex S.oppIndex1).card)
+    (hcommonNeRadius : commonRadius ≠ radius)
+    (hcommonNeρ : commonRadius ≠ ρ) :
+    ∃ source source' : CriticalShellSystem.CarrierVertex D.A,
+      source.1 ≠ source'.1 ∧
+        source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius ∧
+        source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius ∧
+        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source ∧
+        CapSourceThirdBlockerCrossPairDeletionSurvivals P Pρ source' := by
+  classical
+  have honeLt :
+      1 <
+        (SelectedClass D.A S.oppApex1 commonRadius ∩
+          S.capInteriorByIndex S.oppIndex1).card := by
+    omega
+  rcases Finset.one_lt_card.mp honeLt with
+    ⟨q, hq, q', hq', hqq'⟩
+  rcases Finset.mem_inter.mp hq with ⟨hqRadius, hqInterior⟩
+  rcases Finset.mem_inter.mp hq' with ⟨hqRadius', hqInterior'⟩
+  have hqNotPairs :
+      q ∉
+        (({P.source₁, P.source₂} : Finset ℝ²) ∪
+          {Pρ.source₁, Pρ.source₂}) := by
+    intro hqPairs
+    rcases Finset.mem_union.mp hqPairs with hqP | hqPρ
+    · simp only [Finset.mem_insert, Finset.mem_singleton] at hqP
+      rcases hqP with rfl | rfl
+      · apply hcommonNeRadius
+        exact (mem_selectedClass.mp hqRadius).2.symm.trans
+          (mem_selectedClass.mp P.source₁_mem_radius).2
+      · apply hcommonNeRadius
+        exact (mem_selectedClass.mp hqRadius).2.symm.trans
+          (mem_selectedClass.mp P.source₂_mem_radius).2
+    · simp only [Finset.mem_insert, Finset.mem_singleton] at hqPρ
+      rcases hqPρ with rfl | rfl
+      · apply hcommonNeρ
+        exact (mem_selectedClass.mp hqRadius).2.symm.trans
+          (mem_selectedClass.mp Pρ.source₁_mem_radius).2
+      · apply hcommonNeρ
+        exact (mem_selectedClass.mp hqRadius).2.symm.trans
+          (mem_selectedClass.mp Pρ.source₂_mem_radius).2
+  have hqNotPairs' :
+      q' ∉
+        (({P.source₁, P.source₂} : Finset ℝ²) ∪
+          {Pρ.source₁, Pρ.source₂}) := by
+    intro hqPairs
+    rcases Finset.mem_union.mp hqPairs with hqP | hqPρ
+    · simp only [Finset.mem_insert, Finset.mem_singleton] at hqP
+      rcases hqP with rfl | rfl
+      · apply hcommonNeRadius
+        exact (mem_selectedClass.mp hqRadius').2.symm.trans
+          (mem_selectedClass.mp P.source₁_mem_radius).2
+      · apply hcommonNeRadius
+        exact (mem_selectedClass.mp hqRadius').2.symm.trans
+          (mem_selectedClass.mp P.source₂_mem_radius).2
+    · simp only [Finset.mem_insert, Finset.mem_singleton] at hqPρ
+      rcases hqPρ with rfl | rfl
+      · apply hcommonNeρ
+        exact (mem_selectedClass.mp hqRadius').2.symm.trans
+          (mem_selectedClass.mp Pρ.source₁_mem_radius).2
+      · apply hcommonNeρ
+        exact (mem_selectedClass.mp hqRadius').2.symm.trans
+          (mem_selectedClass.mp Pρ.source₂_mem_radius).2
+  obtain ⟨source, hsourceEq, hsource⟩ :=
+    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+      P Pρ secondApexRobust
+      (Finset.mem_sdiff.mpr ⟨hqInterior, hqNotPairs⟩)
+  obtain ⟨source', hsourceEq', hsource'⟩ :=
+    capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
+      P Pρ secondApexRobust
+      (Finset.mem_sdiff.mpr ⟨hqInterior', hqNotPairs'⟩)
+  refine ⟨source, source', ?_, ?_, ?_, hsource, hsource'⟩
+  · simpa [hsourceEq, hsourceEq'] using hqq'
+  · simpa [hsourceEq] using hqRadius
+  · simpa [hsourceEq'] using hqRadius'
 
 /-- The four cross-blocker equalities left by the global cap-or-equality
 split. -/

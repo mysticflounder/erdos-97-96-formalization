@@ -1,0 +1,6 @@
+The exact theorem is `false_of_core_of_ccw`.
+
+Its statement is that five **distinct** points in strict convex cyclic order `W, F, P, X, Z` cannot realize the corresponding two-row circle-isosceles equality core (i.e. the configuration where `W` is equidistant from `F, X, Z` and `Z` is equidistant from `P, X`), so that setup is contradictory.
+  handles: Q5Q8FK  (read with `nthdegree docs show <handle> --lean`)
+searched: nthdegree docs show 1K23FC --lean, nthdegree docs show Q5Q8FK --lean, nthdegree docs show 2FR6XN --lean, nthdegree docs search --lean "strict convex cyclic order W F P X Z", nthdegree get Q5Q8FK --lean, nthdegree get Q5Q8FK
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.

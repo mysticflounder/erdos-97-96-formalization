@@ -1,0 +1,70 @@
+HANDLE MYY1W4
+# Six-point nested-center order core
+
+For six points in cyclic order `O,A,D,E,X,C`, the equalities
+
+`OA = OC = AC = OD = OE`, `DA = DE = DX`, and `EO = EX`
+
+are incompatible with strict convexity.  The proof needs only five of the
+signed-area inequalities forced by that cyclic order.  It is independent of
+the finite residual in which the pattern was discovered.
+HANDLE EXZAQX
+# Convex rhombus equality core
+
+This file packages the six-point metric obstruction left by the final global
+confinement residual system.  In cyclic order `a,b,c,x,y,d`, suppose
+`a,b,c,d` is an equal-sided quadrilateral and `b,c,y` and `x,d,a` are
+equilateral triangles with the same side length.  The two equilateral apices
+cannot occur in the displayed order between `c` and `d` on a strictly convex
+boundary.
+
+The proof uses only equality-closure data and signed-area inequalities.  It is
+independent of the finite census coverage claim that produced the pattern.
+HANDLE ASNDJZ
+theorem isConvexPolygon_three_of_affineIndependent {A B C : P}
+
+Three affine independent points always form a convex polygon.
+HANDLE EACYX4
+# Six-point two-circle convex-order core
+
+This module packages the reusable six-point obstruction isolated from a
+four-row common-system residual.  For points in cyclic order
+`A, P, Q, B, D, C`, the equalities
+
+`AB = AC = AD = BC`, `CD = CP`, and `DA = DQ`
+
+are incompatible with strict convexity.  Only these equalities and seven
+signed-area inequalities forced by cyclic order are used; no exact-row
+exclusion is needed.
+HANDLE WQ7GHW
+theorem six_point_circle_chain_collision
+
+The six-point circle-chain equalities force the anchor labels to collide.
+HANDLE MHNMPZ
+theorem six_point_twoCircle_order_incompatible
+
+Six points in cyclic order `A,P,Q,B,D,C` cannot satisfy the three inherited
+row-circle equalities.  The hypotheses are deliberately a monotone subset of
+the exact-row residual: no excluded-label inequality is used.
+HANDLE V6KZN0
+theorem six_point_two_pair_collision
+
+The six-point equality motif forces `D = E` or `E = F`.
+HANDLE 2YQWSJ
+theorem normalized_six_point_incompatible
+
+Division-free scalar form of the six-point obstruction.
+HANDLE C1Q3ZM
+# Six-point Euclidean row obstruction
+
+This module kernel-checks the six-point nonlinear cut emitted by the induced
+metric CEGAR checker.  For six points `A,B,C,D,E,F`, the equalities
+
+```text
+A : {B,D,F}
+D : {A,B}
+C : {B,D,E}
+```
+
+are incompatible with seven strict orientation signs.  The low-level theorem
+states exactly the metric and orientation data used by the computation.

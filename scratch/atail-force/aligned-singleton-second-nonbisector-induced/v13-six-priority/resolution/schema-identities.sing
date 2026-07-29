@@ -1,0 +1,13 @@
+ring r=0,(t,v,h,x,y,L,A),dp;
+ideal defs =
+  L-(1-x-t*y),
+  A-(t*(x+1)-y);
+poly F=(1-x^2-y^2)*(1+t^2)-2*L;
+poly rhs=-A^2+2*t*A-L^2;
+poly circleExpanded=(x-h)^2+(y-h*t)^2-((1-h)^2+(h*t)^2);
+poly circleNormalized=x^2+y^2-1+2*h*L;
+print("F_IDENTITY_REMAINDER");
+reduce(F-rhs,std(defs));
+print("CIRCLE_NORMALIZATION_REMAINDER");
+reduce(circleExpanded-circleNormalized,std(defs));
+quit;

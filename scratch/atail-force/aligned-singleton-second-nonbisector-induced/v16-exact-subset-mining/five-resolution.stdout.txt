@@ -1,0 +1,1 @@
+{"doubly_unknown_initial_count": 10, "output": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-exact-subset-mining/five-resolution.json", "terminal_status_counts": {"UNKNOWN_FAIL_CLOSED": 10}}

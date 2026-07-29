@@ -1,0 +1,116 @@
+{
+  "constraint_count": 34,
+  "cvc5": {
+    "command": [
+      "/Users/adam/bin/cvc5",
+      "--lang",
+      "smt2",
+      "--nl-cov",
+      "--tlimit",
+      "180000"
+    ],
+    "elapsed_seconds": 0.3039769579190761,
+    "fail_closed": true,
+    "reason_unknown": null,
+    "returncode": 0,
+    "solver": "cvc5",
+    "status": "UNSAT",
+    "stderr_tail": [
+      "<stdin>:3.2: No set-logic command was given before this point.",
+      "<stdin>:3.2: cvc5 will make all theories available.",
+      "<stdin>:3.2: Consider setting a stricter logic for (likely) better performance.",
+      "<stdin>:3.2: To suppress this warning in the future use (set-logic ALL)."
+    ],
+    "stdout_tail": [
+      "unsat"
+    ],
+    "timeout_ms": 180000
+  },
+  "epistemic_status": "UNKNOWN_FAIL_CLOSED",
+  "gauge": "q5=(0,0), q10=(1,0), justified by strict convex distinctness",
+  "induced_equations": [
+    {
+      "left_edge": [
+        5,
+        7
+      ],
+      "right_edge": [
+        5,
+        12
+      ],
+      "source_index": 16
+    },
+    {
+      "left_edge": [
+        5,
+        9
+      ],
+      "right_edge": [
+        5,
+        11
+      ],
+      "source_index": 19
+    },
+    {
+      "left_edge": [
+        5,
+        10
+      ],
+      "right_edge": [
+        9,
+        10
+      ],
+      "source_index": 22
+    },
+    {
+      "left_edge": [
+        5,
+        10
+      ],
+      "right_edge": [
+        10,
+        11
+      ],
+      "source_index": 23
+    },
+    {
+      "left_edge": [
+        7,
+        11
+      ],
+      "right_edge": [
+        11,
+        12
+      ],
+      "source_index": 34
+    },
+    {
+      "left_edge": [
+        9,
+        10
+      ],
+      "right_edge": [
+        10,
+        11
+      ],
+      "source_index": 36
+    }
+  ],
+  "schema": "v16-core6-rebased-v1",
+  "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-full-euclidean-feasibility/core6-rebased.smt2",
+  "subset": [
+    5,
+    7,
+    9,
+    10,
+    11,
+    12
+  ],
+  "trust_scope": "Exact QF_NRA classification of the induced six-vertex positive-row system. This is not CEGAR or Lean closure.",
+  "z3": {
+    "elapsed_seconds": 224.06990437512286,
+    "reason_unknown": "canceled",
+    "status": "UNKNOWN",
+    "unsat_core": null
+  }
+}

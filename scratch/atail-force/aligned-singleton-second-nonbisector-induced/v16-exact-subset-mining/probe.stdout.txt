@@ -1,0 +1,9 @@
+{
+  "elapsed_seconds": 120.00847287499346,
+  "formula_statuses": {
+    "positive_rows": "UNKNOWN"
+  },
+  "output": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-exact-subset-mining/euclidean-survivor-probe-v16.json",
+  "reason": "at least one bounded QF_NRA check returned UNKNOWN: {'positive_rows': 'UNKNOWN'}",
+  "terminal_status": "UNKNOWN_FAIL_CLOSED"
+}

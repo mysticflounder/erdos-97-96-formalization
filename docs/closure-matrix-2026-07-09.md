@@ -197,24 +197,35 @@ than promoted as a load-bearing obligation.
 
 The collision coordinator
 `exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows` is
-now source-clean.  Its checked downstream dispatch is kernel-wired to three
+source-clean.  At this 2026-07-26 checkpoint its checked downstream dispatch
+reached four
 narrower terminal theorems:
 `false_of_crossBlockerCoincidence`,
-`false_of_capSource_freshThirdBlockerFiber`, and
-`false_of_capSource_firstFiber_collisionFiveCenterDeletion`.
-These are three live declarations covering four semantic collision arms.  The
-canonical shell-cover proof is no longer an input to any of the three leaves
+`false_of_capSource_freshThirdBlockerFiber`,
+`false_of_capSource_freshOutsideFirstBlockerFiber_alignedSingletonRadius`, and
+`false_of_twoCapSources_oneSidedDeletionSurvival`.
+These are four live declarations covering the equality, fresh-third-fiber,
+aligned singleton-radius cap source, and one-sided row-omission arms.  The
+universal aligned-radius theorem is now a source-clean coordinator into the
+singleton-radius leaf.  The enlarged
+second-fiber orientation is source-clean symmetry wiring into the first-fiber
+coordinator.  The former collision-five-center descendants are no longer the
+load-bearing interface.
+The aligned singleton-radius arm has since been reduced by a source-clean
+parent to the strict second-blocker non-bisector child recorded in the v17
+checkpoint below; that child remains open.
+The canonical shell-cover proof is no longer an input to any of the four leaves
 or their coordinator chain: checked consumers reconstruct it directly from
 `CriticalShellSystem H`.  The canonical low-hit bound is likewise
 reconstructed only at its sole checked contradiction site instead of being
 forwarded through the exact-two interfaces.
-Post-refactor verification on 2026-07-28 passed both the 10,855-job focused
-`FrontierLiveClosure` build and the 11,591-job production-root build.  The
-refreshed kernel graph at build `53a38363d880` retains all three declarations
-on the published spine.  Each published root reaches the same 19 `sorry`
-declarations and no additional off-spine `sorry` declarations.  Of the 44,112
-current indexed minable symbols, 44,049 are fresh, none is stale, and 63 are
-never-mined.  Those 63 occur in 21 unbuilt off-spine WIP files: 51 symbols in
+Post-refactor verification on 2026-07-28 passed the 10,855-job focused
+`FrontierLiveClosure` build.  The refreshed kernel graph retains all four
+declarations on the published spine and reports 21 open obligations across
+the current roots.
+Of the 44,112 indexed minable symbols at the preceding full-production
+checkpoint, 44,049 were fresh, none was stale, and 63 were never-mined.  Those
+63 occurred in 21 unbuilt off-spine WIP files: 51 symbols in
 `scratch/` and 12 in `Census554/CapSelectedBVPlacements`.  Neither published
 root reaches any of them.
 The enlarged first-fiber theorem is a checked one-child coordinator for the
@@ -295,16 +306,170 @@ The concrete global route is now the following sharp decomposition.
    five-center-deletion residual produced by the checked first-fiber descent;
    the second-side case is already covered by symmetry.
 
-The first enlarged-known-fiber leaf has since been genuinely narrowed.
-`capSource_firstFiber_descent` uses both localized omission cycles and the
-tri-apex robustness packet.  Its cycle-aligned arm constructs the same
-five-center deletion residual directly; its other arm already carries that
-residual.  Therefore
-`false_of_capSource_freshOutsideFirstBlockerFiber` is source-clean and its sole
-load-bearing child is
-`false_of_capSource_firstFiber_collisionFiveCenterDeletion`.  The symmetric
-second-fiber wrapper swaps the packets and calls this first-fiber theorem, so
-no second-side `sorry` remains.
+The first enlarged-known-fiber leaf has since been narrowed by retaining the
+first-apex radius of the two extracted cap sources.  The source-proved
+`exists_two_capSources_thirdBlocker_crossPairDeletionSurvivals_of_commonRadius`
+and its local witness adapter lift any two strict first-cap points on one
+radius without erasing that common-radius membership.  Consequently
+`false_of_twoCapSources_mutualCrossMembership_distinctBlockers` is now a
+kernel-checked blocker-rigidity terminal: mutual row membership and the shared
+first-apex radius force the two blocker centers to agree.  A Lean 4.27 focused
+build and direct axiom checks give exactly
+`[propext, Classical.choice, Quot.sound]` for both declarations, with no
+`sorryAx`.
+
+The source-proved coordinator
+`false_of_capSource_freshOutsideFirstBlockerFiber` now splits on
+`FirstCapMultiPointRadiiRetained`.  If that predicate fails, it extracts a
+fresh multi-point first-apex radius distinct from both retained collision
+radii, preserves the radius through the two cap-source witnesses, and reaches
+the checked blocker-rigidity terminal on the mutual-cross-membership arm.  If
+the predicate holds, every
+first-apex radius with at least two strict first-cap points is one of `radius`
+or `ρ`.  The checked lemma
+`firstFiberCapSource_firstApexRadius_eq_singleton_of_aligned` then proves that
+the named cap source is the unique strict first-cap point on its own
+first-apex radius: a second point would align that radius with one of the two
+retained collision radii, contradicting the source's checked exclusion from
+both collision pairs.  The aligned-radii theorem is therefore source-clean,
+and the exact remaining load-bearing leaf is
+`false_of_capSource_freshOutsideFirstBlockerFiber_alignedSingletonRadius`.
+That leaf retains the named cap-source witness, its exact singleton-radius
+equation, the fresh enlarged first-blocker fiber, and the universal alignment
+packet.  It is directly wired and appears in the kernel-mined spine.
+The coordinator-interface frontier therefore replaces the under-specified
+arbitrary-radius mutual-cross-membership obligation by this universal
+two-retained-radii alignment plus exact singleton-radius residual; the
+pre-existing one-sided
+deletion-survival sibling remains open.  This checkpoint closes the named
+mutual-cross-membership theorem after strengthening its interface, but it
+does not reduce the total source-`sorry` count or close the enlarged-fiber
+parent.  The 10,855-job Lean 4.27 focused build passed after this narrowing;
+the singleton normalization has axioms exactly
+`[propext, Classical.choice, Quot.sound]`.
+
+The ordered-cap branch split is now production Lean.  Let `e` and `o` be
+`Q.source` and `Q.otherOutsidePoint`, and let `b` and `bρ` be the first and
+second collision blockers.  Both blockers lie in the first indexed cap,
+`b ≠ bρ`, and the explicit first row gives
+`dist b e = dist b o`.  If `dist bρ e = dist bρ o`, then
+`ATailUniqueRowProducerScratch.false_of_two_cap_centers_equidistant_outside_pair`
+contradicts ordered-cap uniqueness because `e,o` are distinct carrier points
+outside that cap.  Thus the only live branch has
+`dist bρ e ≠ dist bρ o`.
+
+The 2026-07-28 F3 audit also proves that the five-center residual contributes
+only negative incidence: `F3cRedundancyBank.f3c_joint_sharp` derives it from
+the cap-source witness, and the four arms merely omit a collision endpoint
+from the cap-source and opposite-blocker rows.  The cardinal/counting shadow
+in `scratch/f3-unbounded-counting-audit/REPORT.md` realizes the remaining
+abstract incidence constraints already at the forced minimum `|A| = 17` and
+extends by arbitrary four-point blocks.  This is not a Euclidean
+`CounterexampleData` model, but it rules out another finite-slot or pure
+incidence closure.  The concrete remaining route must therefore use the
+retained global geometry/minimality data to contradict the displayed strict
+non-bisector inequality, equivalently to force `bρ` to bisect `{e,o}` or to
+force both points into its selected row.  The equality consumer is complete;
+the missing work is exactly that positive producer.
+
+The induced-metric CEGAR continuation has now supplied one stronger Euclidean
+cut.  Its v12 survivor contains six cyclically ordered quotient points
+`A < B < C < D < E < F` with
+`AB = AF`, `AD = AF`, `DA = DB`, `CB = CE`, and `CD = CE`.
+`ATail/SixPointEuclideanObstruction.lean` proves this configuration impossible
+over `ℝ²`, exposes both boundary-order and three-selected-row consumers, and
+is imported by `FrontierLiveClosure`; Lean 4.27 reports exactly
+`[propext, Classical.choice, Quot.sound]`, with no `sorryAx`.
+The v13 detector was separately replayed against the serialized v12 survivor:
+it finds the intended ten-literal core, recognizes it as a six-point cut, and
+makes that frozen assignment UNSAT.  This closes one exact Euclidean survivor,
+not the live leaf.  A fresh v13 run banked 2,203 cuts and returned `ALIVE` with
+a different 19-class survivor before using the new six-point schema.  Exact
+subset mining on that survivor excludes every four-point obstruction.  It
+fully enumerates the five-point subsets; the 15 cases initially left
+`UNKNOWN` were subsequently resolved SAT with exact rational coordinate
+witnesses, independently replayed by Z3 and cvc5.  Thus no four- or five-point
+Euclidean cut exists in this survivor.  The full 19-point problem and the
+partially explored six-point layer still stop fail-closed.  A structural
+priority pass ranked all 27,132 six-class subsets and resolved its top 16:
+fourteen have exact rational SAT witnesses, while ranks 14 and 15 share one
+exact UNSAT schema.  For ordered points `P0 < P1 < P2 < P3 < P4 < P5`, that
+schema has the two selected rows
+`P0 : {P1,P3,P5}` and `P2 : {P1,P3,P4}`.  Z3 and cvc5 independently report
+UNSAT, and Singular checks the two polynomial identities used in the
+elimination.  `ATail/SixPointSparseEuclideanObstruction.lean` now proves the
+schema over `ℝ²` from exactly four independent distance equalities and six
+strict orientation signs; its public theorems have axioms exactly
+`[propext, Classical.choice, Quot.sound]`, with no `sorryAx`, and the module is
+imported by `FrontierLiveClosure`.
+
+The v14 CEGAR detector uses exactly five order literals and four positive
+row-equality literals for this sparse schema.  Its self-test passes, replay
+makes the saved v13 survivor UNSAT, and a fresh local/critical/reuse-second run
+banked 3,376 cuts, including eight sparse-six cuts.  That run is still
+`ALIVE`.  Exact mining of all 2,380 four-class subsets and all 6,188
+five-class subsets of its 17 quotient classes found one minimal five-class
+UNSAT core.  In increasing order its classes are
+`{bs,r3,e3} < {z,be} < {escape} < {source} < {a2,s3,e4}`, with rows
+`P1 : {P0,P2,P4}` and `P0 : {P3,P4}`.  This is the point-reversed form of the
+existing second five-point obstruction, not a new scalar identity.
+`FivePointEuclideanObstruction.false_of_second_three_rows_of_four_orientations_pos`
+kernel-checks the necessary reflection step, and
+`...false_of_five_ccw_reversed_second_two_selected_rows` is the direct
+selected-row consumer.  Both use only
+`[propext, Classical.choice, Quot.sound]`.
+
+The v15 detector encodes exactly the four successor-order and three
+row-equality literals of that core.  Its self-test passes; replay validates
+each literal against the frozen v14 survivor and makes that assignment UNSAT.
+A fresh local/critical/reuse-second run used the new cut 19 times in six
+batches, banked 3,785 cuts, and still returned `ALIVE` with a new survivor.
+Exact mining of all 3,060 four-class subsets and all 8,568 five-class subsets
+of its 18 quotient classes again found one minimal five-class UNSAT core.  In
+increasing order it is
+`W={a0} < F={r1,z4,y,e3} < P={source} < X={r2,b1,s3,z2} < Z={bs,r4}`,
+with `WF=WX=WZ` and `PZ=XZ`.  This exactly matches the registered 555/654
+consumer
+`Census554.FivePointCircleIsoscelesOrderBridge.false_of_core_of_ccw`.
+The new direct selected-row adapter
+`...false_of_two_selected_rows_of_ccw` consumes precisely a row at `W`
+containing `F,X,Z` and a row at `Z` containing `P,X`; it kernel-checks with
+only `[propext, Classical.choice, Quot.sound]`.  No new scalar theorem was
+needed.
+
+The resulting v16 local/critical/reuse-second survivor has 19 quotient
+classes.  Exact full-Euclidean analysis found a six-class
+mirror-interleaving obstruction at
+`a0 < p2 < r1 < b2 < r2 < p1`, with rows
+`a0:{p2,p1}`, `a0:{r1,r2}`, `b2:{a0,r1,r2}`, and `r2:{p2,p1}`.
+`ATail/SixPointEuclideanObstruction.lean` now proves exactly this schema over
+`ℝ²`; its public terminal has axioms
+`[propext, Classical.choice, Quot.sound]`, no `sorryAx`, and is imported by
+`FrontierLiveClosure`.  The v17 detector's frozen-survivor regression proves
+that its ten-literal direct cut is entailed and refutes that exact v16
+assignment.
+
+The completed 100,000-cut v16 custom ledger was migrated non-destructively and
+revalidated under v17: 99,911 four-point Kalmanson, 39 five-point Euclidean,
+18 reversed-second five-point, 22 circle-isosceles five-point, and 10 sparse
+six-point cuts.  The first resumed one-cut probe returned
+`UNKNOWN_FAIL_CLOSED` after 615.16 seconds because the outer solver timed out;
+it retained 100,000 cuts, found no survivor, and banked no mirror-interleaving
+cut.  This is a solver frontier, not exhaustion, certificate replay, or Lean
+closure.
+
+Thus the finite loop has narrowed this one induced branch again but has not
+exhausted it or closed the live leaf.  The computation presently covers only
+the local/critical/reuse-second arm.  The v14 critical/new-blocker exploration
+hit its cut budget, while the full robust arms timed out because their naive
+encoding creates 165 roles; even the bounded robust deletion-of-`escape`
+projection reached its cut budget without a survivor.  These are fail-closed
+search frontiers, not contradiction certificates.  The next bounded step is
+to replay v17 on the smaller local/critical/reuse-second frontier, then shard
+or otherwise soundly constrain the cyclic-order search before resuming the
+100,000-cut custom ledger.  Independently, any finite UNSAT result still needs
+a source-faithful live-to-finite producer (or a direct selected-row extraction)
+before it closes the live Lean leaf.
 
 The reusable restoration/cardinality part of the earlier extraction is
 retained in

@@ -1,0 +1,7043 @@
+{
+  "attempts": [
+    {
+      "attempt": 0,
+      "elapsed_seconds": 0.012347875162959099,
+      "evaluations_or_iterations": 34,
+      "metrics": {
+        "degenerate_support_denominator_count": 2,
+        "equation_l2": 1.680072297996111e-15,
+        "equation_max_abs": 6.661338147750939e-16,
+        "equation_rms": 2.4249754837652193e-16,
+        "maximum_absolute_coordinate": 1.6730080504398512,
+        "minimum_pair_distance": 0.0,
+        "nonpositive_support_count": 161,
+        "normalized_support_min": -0.9996709479832712,
+        "raw_support_min": -2.128028249284835,
+        "raw_support_quantiles": {
+          "q00": -2.128028249284835,
+          "q01": -1.706943888493709,
+          "q05": -1.300196003607759,
+          "q100": 2.1612188681038385,
+          "q50": 4.315984365681098e-17,
+          "q95": 1.5334002288767632
+        },
+        "signed_polygon_area": 0.7114592214853802,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              3,
+              10
+            ]
+          ],
+          "index": 17,
+          "residual": -6.661338147750939e-16
+        },
+        "worst_support": {
+          "index": 270,
+          "normalized": -0.927510904944158,
+          "raw": -2.128028249284835,
+          "triple": [
+            15,
+            16,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 97096029,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 1,
+      "elapsed_seconds": 0.01392045896500349,
+      "evaluations_or_iterations": 27,
+      "metrics": {
+        "degenerate_support_denominator_count": 8,
+        "equation_l2": 7.364386412590295e-16,
+        "equation_max_abs": 4.440892098500626e-16,
+        "equation_rms": 1.0629576194313574e-16,
+        "maximum_absolute_coordinate": 1.382879478330968,
+        "minimum_pair_distance": 0.0,
+        "nonpositive_support_count": 195,
+        "normalized_support_min": -0.9998700716347065,
+        "raw_support_min": -1.5702713269581896,
+        "raw_support_quantiles": {
+          "q00": -1.5702713269581896,
+          "q01": -1.5082473737701232,
+          "q05": -0.7064470801542939,
+          "q100": 1.7177821471272714,
+          "q50": 0.0,
+          "q95": 1.2377580124366747
+        },
+        "signed_polygon_area": 0.9689981713098055,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              8
+            ]
+          ],
+          "index": 8,
+          "residual": 4.440892098500626e-16
+        },
+        "worst_support": {
+          "index": 64,
+          "normalized": -0.9431020592809645,
+          "raw": -1.5702713269581896,
+          "triple": [
+            3,
+            4,
+            12
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`gtol` termination condition is satisfied.",
+      "scipy_status": 1,
+      "scipy_success": true,
+      "seed": 97200758,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 2,
+      "elapsed_seconds": 0.00822062510997057,
+      "evaluations_or_iterations": 14,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.922286525936904e-15,
+        "equation_max_abs": 8.881784197001252e-16,
+        "equation_rms": 2.774581608023155e-16,
+        "maximum_absolute_coordinate": 1.8822258781558807,
+        "minimum_pair_distance": 1.734723475976807e-17,
+        "nonpositive_support_count": 192,
+        "normalized_support_min": -0.9999545016823067,
+        "raw_support_min": -3.7953680138286776,
+        "raw_support_quantiles": {
+          "q00": -3.7953680138286776,
+          "q01": -2.400326192418759,
+          "q05": -1.3347088239026972,
+          "q100": 2.782086479389287,
+          "q50": -0.014966256155007653,
+          "q95": 1.4410128867503522
+        },
+        "signed_polygon_area": -0.13470459674732152,
+        "worst_equation": {
+          "equation": [
+            [
+              7,
+              10
+            ],
+            [
+              10,
+              12
+            ]
+          ],
+          "index": 39,
+          "residual": 8.881784197001252e-16
+        },
+        "worst_support": {
+          "index": 217,
+          "normalized": -0.760562459497747,
+          "raw": -3.7953680138286776,
+          "triple": [
+            12,
+            13,
+            1
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 97305487,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 3,
+      "elapsed_seconds": 0.008023540955036879,
+      "evaluations_or_iterations": 13,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.137640067256873e-15,
+        "equation_max_abs": 4.440892098500626e-16,
+        "equation_rms": 1.642041997679149e-16,
+        "maximum_absolute_coordinate": 1.6992280174398497,
+        "minimum_pair_distance": 1.2958088904903751e-17,
+        "nonpositive_support_count": 180,
+        "normalized_support_min": -0.9995103356270395,
+        "raw_support_min": -2.282193682887202,
+        "raw_support_quantiles": {
+          "q00": -2.282193682887202,
+          "q01": -1.7066238083871685,
+          "q05": -1.4616218898607662,
+          "q100": 2.282193682887202,
+          "q50": 2.8631872867919545e-18,
+          "q95": 1.53919633123391
+        },
+        "signed_polygon_area": 1.0721034254776027,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              8
+            ],
+            [
+              0,
+              16
+            ]
+          ],
+          "index": 16,
+          "residual": -4.440892098500626e-16
+        },
+        "worst_support": {
+          "index": 270,
+          "normalized": -0.9042151153256773,
+          "raw": -2.282193682887202,
+          "triple": [
+            15,
+            16,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`gtol` termination condition is satisfied.",
+      "scipy_status": 1,
+      "scipy_success": true,
+      "seed": 97410216,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 4,
+      "elapsed_seconds": 0.0073858750984072685,
+      "evaluations_or_iterations": 12,
+      "metrics": {
+        "degenerate_support_denominator_count": 2,
+        "equation_l2": 1.2250243314589854e-15,
+        "equation_max_abs": 6.661338147750939e-16,
+        "equation_rms": 1.7681703188292164e-16,
+        "maximum_absolute_coordinate": 1.28357412251859,
+        "minimum_pair_distance": 0.0,
+        "nonpositive_support_count": 149,
+        "normalized_support_min": -0.9993436635864169,
+        "raw_support_min": -1.2440474588146693,
+        "raw_support_quantiles": {
+          "q00": -1.2440474588146693,
+          "q01": -1.0334915039623374,
+          "q05": -0.5412941743064746,
+          "q100": 1.3448575045499607,
+          "q50": 0.007758490606684959,
+          "q95": 0.9851044619091763
+        },
+        "signed_polygon_area": 0.9973153604144778,
+        "worst_equation": {
+          "equation": [
+            [
+              7,
+              9
+            ],
+            [
+              7,
+              17
+            ]
+          ],
+          "index": 38,
+          "residual": 6.661338147750939e-16
+        },
+        "worst_support": {
+          "index": 70,
+          "normalized": -0.9640717484717404,
+          "raw": -1.2440474588146693,
+          "triple": [
+            3,
+            4,
+            18
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`gtol` termination condition is satisfied.",
+      "scipy_status": 1,
+      "scipy_success": true,
+      "seed": 97514945,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 5,
+      "elapsed_seconds": 0.012665665941312909,
+      "evaluations_or_iterations": 22,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.5488506508791417e-15,
+        "equation_max_abs": 6.661338147750939e-16,
+        "equation_rms": 2.235573350548999e-16,
+        "maximum_absolute_coordinate": 1.1063141047675245,
+        "minimum_pair_distance": 1.3877787807814457e-16,
+        "nonpositive_support_count": 175,
+        "normalized_support_min": -0.9999995927764473,
+        "raw_support_min": -1.4194480120838313,
+        "raw_support_quantiles": {
+          "q00": -1.4194480120838313,
+          "q01": -1.1103613774637253,
+          "q05": -0.6710766166228768,
+          "q100": 1.15660494465795,
+          "q50": 0.004571206335490692,
+          "q95": 0.7700347171803926
+        },
+        "signed_polygon_area": 0.4225282625562559,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              7
+            ],
+            [
+              7,
+              9
+            ]
+          ],
+          "index": 12,
+          "residual": 6.661338147750939e-16
+        },
+        "worst_support": {
+          "index": 146,
+          "normalized": -0.8274085251176051,
+          "raw": -1.4194480120838313,
+          "triple": [
+            8,
+            9,
+            2
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 97619674,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 6,
+      "elapsed_seconds": 0.013621709076687694,
+      "evaluations_or_iterations": 35,
+      "metrics": {
+        "degenerate_support_denominator_count": 6,
+        "equation_l2": 1.3506446028928519e-15,
+        "equation_max_abs": 4.440892098500626e-16,
+        "equation_rms": 1.9494875626492583e-16,
+        "maximum_absolute_coordinate": 1.7257472705246226,
+        "minimum_pair_distance": 0.0,
+        "nonpositive_support_count": 169,
+        "normalized_support_min": -0.9993691393853383,
+        "raw_support_min": -2.3803240836878983,
+        "raw_support_quantiles": {
+          "q00": -2.3803240836878983,
+          "q01": -1.7434126101379313,
+          "q05": -1.4834712415676385,
+          "q100": 2.380324083687898,
+          "q50": 0.009243787992879844,
+          "q95": 1.5446517216676652
+        },
+        "signed_polygon_area": 1.302164634547277,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              8
+            ]
+          ],
+          "index": 8,
+          "residual": -4.440892098500626e-16
+        },
+        "worst_support": {
+          "index": 270,
+          "normalized": -0.9072331786789811,
+          "raw": -2.3803240836878983,
+          "triple": [
+            15,
+            16,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 97724403,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 7,
+      "elapsed_seconds": 0.012203915975987911,
+      "evaluations_or_iterations": 36,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.2462222543165673e-15,
+        "equation_max_abs": 4.440892098500626e-16,
+        "equation_rms": 1.798766884999431e-16,
+        "maximum_absolute_coordinate": 1.5341586965257985,
+        "minimum_pair_distance": 6.913300821314559e-17,
+        "nonpositive_support_count": 170,
+        "normalized_support_min": -0.9999678698000541,
+        "raw_support_min": -1.7344929768839799,
+        "raw_support_quantiles": {
+          "q00": -1.7344929768839799,
+          "q01": -1.6297909240615331,
+          "q05": -0.9383622891875807,
+          "q100": 2.143201959501279,
+          "q50": 6.721063033758969e-17,
+          "q95": 1.4237024530792683
+        },
+        "signed_polygon_area": 1.0880274158755319,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              8
+            ],
+            [
+              0,
+              16
+            ]
+          ],
+          "index": 16,
+          "residual": 4.440892098500626e-16
+        },
+        "worst_support": {
+          "index": 64,
+          "normalized": -0.8635184178560199,
+          "raw": -1.7344929768839799,
+          "triple": [
+            3,
+            4,
+            12
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`gtol` termination condition is satisfied.",
+      "scipy_status": 1,
+      "scipy_success": true,
+      "seed": 97829132,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 8,
+      "elapsed_seconds": 0.010153292212635279,
+      "evaluations_or_iterations": 17,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 8.442669438144051e-16,
+        "equation_max_abs": 3.3306690738754696e-16,
+        "equation_rms": 1.2185943681978738e-16,
+        "maximum_absolute_coordinate": 1.4437969356362528,
+        "minimum_pair_distance": 2.7755575615628914e-17,
+        "nonpositive_support_count": 225,
+        "normalized_support_min": -0.9999996666018904,
+        "raw_support_min": -1.3416128929563267,
+        "raw_support_quantiles": {
+          "q00": -1.3416128929563267,
+          "q01": -1.15506725428075,
+          "q05": -0.892672929645768,
+          "q100": 2.190910681777618,
+          "q50": -0.11678459179840056,
+          "q95": 0.9667294119266924
+        },
+        "signed_polygon_area": -0.6995522926498604,
+        "worst_equation": {
+          "equation": [
+            [
+              6,
+              14
+            ],
+            [
+              6,
+              19
+            ]
+          ],
+          "index": 36,
+          "residual": 3.3306690738754696e-16
+        },
+        "worst_support": {
+          "index": 217,
+          "normalized": -0.85839071621874,
+          "raw": -1.3416128929563267,
+          "triple": [
+            12,
+            13,
+            1
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`gtol` termination condition is satisfied.",
+      "scipy_status": 1,
+      "scipy_success": true,
+      "seed": 97933861,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 9,
+      "elapsed_seconds": 0.0088042919524014,
+      "evaluations_or_iterations": 14,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.7235296186091125e-15,
+        "equation_max_abs": 8.881784197001252e-16,
+        "equation_rms": 2.4877007231506604e-16,
+        "maximum_absolute_coordinate": 1.7740633453786092,
+        "minimum_pair_distance": 1.8384070113280595e-17,
+        "nonpositive_support_count": 181,
+        "normalized_support_min": -0.9999658791327687,
+        "raw_support_min": -2.6565730307778703,
+        "raw_support_quantiles": {
+          "q00": -2.6565730307778703,
+          "q01": -1.7714948750634958,
+          "q05": -1.2026333115193666,
+          "q100": 2.6565730307778703,
+          "q50": 0.0,
+          "q95": 1.6833263897628445
+        },
+        "signed_polygon_area": 1.48986959159663,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              8
+            ],
+            [
+              0,
+              15
+            ]
+          ],
+          "index": 15,
+          "residual": 8.881784197001252e-16
+        },
+        "worst_support": {
+          "index": 287,
+          "normalized": -0.8822280775295244,
+          "raw": -2.6565730307778703,
+          "triple": [
+            15,
+            16,
+            19
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 98038590,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 10,
+      "elapsed_seconds": 0.015999624971300364,
+      "evaluations_or_iterations": 39,
+      "metrics": {
+        "degenerate_support_denominator_count": 2,
+        "equation_l2": 9.18873053048877e-16,
+        "equation_max_abs": 4.440892098500626e-16,
+        "equation_rms": 1.3262790113221558e-16,
+        "maximum_absolute_coordinate": 1.7669645602760424,
+        "minimum_pair_distance": 0.0,
+        "nonpositive_support_count": 144,
+        "normalized_support_min": -0.9999730814573705,
+        "raw_support_min": -2.616278781523324,
+        "raw_support_quantiles": {
+          "q00": -2.616278781523324,
+          "q01": -1.9246331620233852,
+          "q05": -0.9899937087881161,
+          "q100": 3.3575687063077484,
+          "q50": 0.05975656652959502,
+          "q95": 1.3297747645293034
+        },
+        "signed_polygon_area": 1.7828107213311286,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              8
+            ]
+          ],
+          "index": 8,
+          "residual": 4.440892098500626e-16
+        },
+        "worst_support": {
+          "index": 272,
+          "normalized": -0.7587390883825741,
+          "raw": -2.616278781523324,
+          "triple": [
+            15,
+            16,
+            2
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`gtol` termination condition is satisfied.",
+      "scipy_status": 1,
+      "scipy_success": true,
+      "seed": 98143319,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 11,
+      "elapsed_seconds": 0.008764292113482952,
+      "evaluations_or_iterations": 14,
+      "metrics": {
+        "degenerate_support_denominator_count": 4,
+        "equation_l2": 8.252325904466732e-16,
+        "equation_max_abs": 4.440892098500626e-16,
+        "equation_rms": 1.1911206455960975e-16,
+        "maximum_absolute_coordinate": 1.2564000030998361,
+        "minimum_pair_distance": 0.0,
+        "nonpositive_support_count": 180,
+        "normalized_support_min": -0.9997955990729859,
+        "raw_support_min": -1.1995378315381886,
+        "raw_support_quantiles": {
+          "q00": -1.1995378315381886,
+          "q01": -1.0784978794886495,
+          "q05": -0.7689586986655261,
+          "q100": 1.2879255530565865,
+          "q50": 1.549204624027361e-18,
+          "q95": 0.894607308846166
+        },
+        "signed_polygon_area": 0.5272368177530634,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              8
+            ],
+            [
+              0,
+              15
+            ]
+          ],
+          "index": 15,
+          "residual": 4.440892098500626e-16
+        },
+        "worst_support": {
+          "index": 149,
+          "normalized": -0.7063165947161595,
+          "raw": -1.1995378315381886,
+          "triple": [
+            8,
+            9,
+            5
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`gtol` termination condition is satisfied.",
+      "scipy_status": 1,
+      "scipy_success": true,
+      "seed": 98248048,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 12,
+      "elapsed_seconds": 0.012688165996223688,
+      "evaluations_or_iterations": 33,
+      "metrics": {
+        "degenerate_support_denominator_count": 8,
+        "equation_l2": 4.440892098500626e-16,
+        "equation_max_abs": 1.1102230246251565e-16,
+        "equation_rms": 6.409875621278546e-17,
+        "maximum_absolute_coordinate": 1.8647942646247915,
+        "minimum_pair_distance": 0.0,
+        "nonpositive_support_count": 168,
+        "normalized_support_min": -0.999891451505083,
+        "raw_support_min": -2.6350071874331773,
+        "raw_support_quantiles": {
+          "q00": -2.6350071874331773,
+          "q01": -2.2321639927926995,
+          "q05": -1.819782387643281,
+          "q100": 2.7785438823851605,
+          "q50": 0.044842709660861346,
+          "q95": 1.819782387643281
+        },
+        "signed_polygon_area": 1.136267811354678,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              11
+            ]
+          ],
+          "index": 3,
+          "residual": 1.1102230246251565e-16
+        },
+        "worst_support": {
+          "index": 272,
+          "normalized": -0.53533004746173,
+          "raw": -2.6350071874331773,
+          "triple": [
+            15,
+            16,
+            2
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`gtol` termination condition is satisfied.",
+      "scipy_status": 1,
+      "scipy_success": true,
+      "seed": 98352777,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 13,
+      "elapsed_seconds": 0.011032999958842993,
+      "evaluations_or_iterations": 20,
+      "metrics": {
+        "degenerate_support_denominator_count": 2,
+        "equation_l2": 1.1157603309187458e-15,
+        "equation_max_abs": 3.3306690738754696e-16,
+        "equation_rms": 1.6104613185176095e-16,
+        "maximum_absolute_coordinate": 1.5162569556050645,
+        "minimum_pair_distance": 0.0,
+        "nonpositive_support_count": 145,
+        "normalized_support_min": -0.9999819630568699,
+        "raw_support_min": -1.6996676401188884,
+        "raw_support_quantiles": {
+          "q00": -1.6996676401188884,
+          "q01": -1.5209008841721843,
+          "q05": -0.8852408160499863,
+          "q100": 1.7081586321821012,
+          "q50": 0.0002570133831707334,
+          "q95": 1.2976606233933599
+        },
+        "signed_polygon_area": 1.4053407936304627,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              3,
+              10
+            ]
+          ],
+          "index": 17,
+          "residual": -3.3306690738754696e-16
+        },
+        "worst_support": {
+          "index": 218,
+          "normalized": -0.7111631926350326,
+          "raw": -1.6996676401188884,
+          "triple": [
+            12,
+            13,
+            2
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`gtol` termination condition is satisfied.",
+      "scipy_status": 1,
+      "scipy_success": true,
+      "seed": 98457506,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 14,
+      "elapsed_seconds": 0.01591166597791016,
+      "evaluations_or_iterations": 44,
+      "metrics": {
+        "degenerate_support_denominator_count": 4,
+        "equation_l2": 1.2060109012779447e-15,
+        "equation_max_abs": 8.881784197001252e-16,
+        "equation_rms": 1.7407267962461114e-16,
+        "maximum_absolute_coordinate": 1.5668236696706777,
+        "minimum_pair_distance": 0.0,
+        "nonpositive_support_count": 187,
+        "normalized_support_min": -0.9999708179449985,
+        "raw_support_min": -1.6657655485299179,
+        "raw_support_quantiles": {
+          "q00": -1.6657655485299179,
+          "q01": -1.6103484938682582,
+          "q05": -0.9938533230171213,
+          "q100": 1.9843792897372334,
+          "q50": 0.0,
+          "q95": 1.4461101581135125
+        },
+        "signed_polygon_area": 0.8156117332877307,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              5
+            ],
+            [
+              0,
+              8
+            ]
+          ],
+          "index": 8,
+          "residual": 8.881784197001252e-16
+        },
+        "worst_support": {
+          "index": 64,
+          "normalized": -0.9094533803157313,
+          "raw": -1.6657655485299179,
+          "triple": [
+            3,
+            4,
+            12
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 98562235,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 15,
+      "elapsed_seconds": 0.012047499883919954,
+      "evaluations_or_iterations": 21,
+      "metrics": {
+        "degenerate_support_denominator_count": 4,
+        "equation_l2": 1.4770556661825108e-15,
+        "equation_max_abs": 6.661338147750939e-16,
+        "equation_rms": 2.1319462161963365e-16,
+        "maximum_absolute_coordinate": 1.6626205322754948,
+        "minimum_pair_distance": 0.0,
+        "nonpositive_support_count": 172,
+        "normalized_support_min": -0.9998231625157883,
+        "raw_support_min": -2.072736908313636,
+        "raw_support_quantiles": {
+          "q00": -2.072736908313636,
+          "q01": -1.6853369291411138,
+          "q05": -0.9096695973501113,
+          "q100": 2.072736908313636,
+          "q50": 4.9016963961526874e-17,
+          "q95": 1.4896060702736962
+        },
+        "signed_polygon_area": 1.2702562848553938,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              10
+            ],
+            [
+              10,
+              12
+            ]
+          ],
+          "index": 29,
+          "residual": -6.661338147750939e-16
+        },
+        "worst_support": {
+          "index": 270,
+          "normalized": -0.9274418119459333,
+          "raw": -2.072736908313636,
+          "triple": [
+            15,
+            16,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 98666964,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 16,
+      "elapsed_seconds": 0.01191229117102921,
+      "evaluations_or_iterations": 38,
+      "metrics": {
+        "degenerate_support_denominator_count": 4,
+        "equation_l2": 1.979811259392395e-15,
+        "equation_max_abs": 8.881784197001252e-16,
+        "equation_rms": 2.8576114088871287e-16,
+        "maximum_absolute_coordinate": 1.8372711293908048,
+        "minimum_pair_distance": 0.0,
+        "nonpositive_support_count": 155,
+        "normalized_support_min": -0.999712429767373,
+        "raw_support_min": -4.5257209712198145,
+        "raw_support_quantiles": {
+          "q00": -4.5257209712198145,
+          "q01": -3.5582631392842785,
+          "q05": -2.2325651927526327,
+          "q100": 4.5485049110004425,
+          "q50": 0.027638665513471383,
+          "q95": 2.4637461448210294
+        },
+        "signed_polygon_area": 1.516530426744479,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              3,
+              10
+            ]
+          ],
+          "index": 17,
+          "residual": -8.881784197001252e-16
+        },
+        "worst_support": {
+          "index": 272,
+          "normalized": -0.5655494095424347,
+          "raw": -4.5257209712198145,
+          "triple": [
+            15,
+            16,
+            2
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 98771693,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 17,
+      "elapsed_seconds": 0.00800070888362825,
+      "evaluations_or_iterations": 13,
+      "metrics": {
+        "degenerate_support_denominator_count": 4,
+        "equation_l2": 1.2743406644643015e-15,
+        "equation_max_abs": 5.551115123125783e-16,
+        "equation_rms": 1.8393523141693774e-16,
+        "maximum_absolute_coordinate": 1.278129855549631,
+        "minimum_pair_distance": 0.0,
+        "nonpositive_support_count": 188,
+        "normalized_support_min": -0.9992174259808856,
+        "raw_support_min": -1.7138803880119042,
+        "raw_support_quantiles": {
+          "q00": -1.7138803880119042,
+          "q01": -1.4528020147855036,
+          "q05": -1.162049739953482,
+          "q100": 1.7138803880119042,
+          "q50": 0.0,
+          "q95": 1.0271810282714064
+        },
+        "signed_polygon_area": 0.11020568194069946,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              8
+            ]
+          ],
+          "index": 32,
+          "residual": 5.551115123125783e-16
+        },
+        "worst_support": {
+          "index": 24,
+          "normalized": -0.9329829601849271,
+          "raw": -1.7138803880119042,
+          "triple": [
+            1,
+            2,
+            8
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`gtol` termination condition is satisfied.",
+      "scipy_status": 1,
+      "scipy_success": true,
+      "seed": 98876422,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 0,
+      "elapsed_seconds": 0.06969841686077416,
+      "evaluations_or_iterations": 46,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.9821096847596212,
+        "equation_max_abs": 0.44894565908920525,
+        "equation_rms": 0.14175532271742644,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 0.0025381754806359774,
+        "nonpositive_support_count": 136,
+        "normalized_support_min": -0.9999960199220852,
+        "raw_support_min": -0.05211968013262124,
+        "raw_support_quantiles": {
+          "q00": -0.05211968013262124,
+          "q01": -0.02414788350540847,
+          "q05": -0.011573313279122806,
+          "q100": 0.7309437393313142,
+          "q50": 0.003651061945589804,
+          "q95": 0.3931864038089175
+        },
+        "signed_polygon_area": 0.6262174294197751,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "index": 1,
+          "residual": 0.44894565908920525
+        },
+        "worst_support": {
+          "index": 109,
+          "normalized": -0.3234063634068519,
+          "raw": -0.05211968013262124,
+          "triple": [
+            6,
+            7,
+            1
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107096048,
+      "stage": "joint_penalty_w3"
+    },
+    {
+      "attempt": 1,
+      "elapsed_seconds": 0.0790740828961134,
+      "evaluations_or_iterations": 61,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4010574264071534,
+        "equation_max_abs": 0.7021374360081077,
+        "equation_rms": 0.20222522057157358,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 0.0003087361832941908,
+        "nonpositive_support_count": 174,
+        "normalized_support_min": -0.9999721112571889,
+        "raw_support_min": -0.010405986685023912,
+        "raw_support_quantiles": {
+          "q00": -0.010405986685023912,
+          "q01": -0.007816470505733392,
+          "q05": -0.003035855283358624,
+          "q100": 0.4793167490805388,
+          "q50": 1.0285560926745784e-05,
+          "q95": 0.3207054476377301
+        },
+        "signed_polygon_area": 0.3817297687089419,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.7021374360081077
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.8984208767186994,
+          "raw": -0.010405986685023912,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107200777,
+      "stage": "joint_penalty_w10"
+    },
+    {
+      "attempt": 2,
+      "elapsed_seconds": 0.8709430829621851,
+      "evaluations_or_iterations": 608,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4520884512731844,
+        "equation_max_abs": 0.6733822961532585,
+        "equation_rms": 0.20959091455742992,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 3.1270100159397686e-05,
+        "nonpositive_support_count": 174,
+        "normalized_support_min": -0.9981781876225374,
+        "raw_support_min": -0.001025641666447193,
+        "raw_support_quantiles": {
+          "q00": -0.001025641666447193,
+          "q01": -0.0007848416642506711,
+          "q05": -0.00036491974717943953,
+          "q100": 0.45849455943577583,
+          "q50": 1.8560820678859592e-07,
+          "q95": 0.4059403733149329
+        },
+        "signed_polygon_area": 0.4174659750676716,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.6733822961532585
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.8540662505744265,
+          "raw": -0.001025641666447193,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107305506,
+      "stage": "joint_penalty_w30"
+    },
+    {
+      "attempt": 3,
+      "elapsed_seconds": 1.268642834154889,
+      "evaluations_or_iterations": 1170,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4595333397842416,
+        "equation_max_abs": 0.6612730036145964,
+        "equation_rms": 0.21066549165391635,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 5.30724919682741e-06,
+        "nonpositive_support_count": 134,
+        "normalized_support_min": -0.9982519565461992,
+        "raw_support_min": -6.711379541317095e-05,
+        "raw_support_quantiles": {
+          "q00": -6.711379541317095e-05,
+          "q01": -4.841634869688042e-05,
+          "q05": -2.4996660468105682e-05,
+          "q100": 0.6369465488684033,
+          "q50": 4.0690722660711015e-07,
+          "q95": 0.4456501294598749
+        },
+        "signed_polygon_area": 0.4247656660227455,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.6612730036145964
+        },
+        "worst_support": {
+          "index": 338,
+          "normalized": -0.8758476779127679,
+          "raw": -6.711379541317095e-05,
+          "triple": [
+            18,
+            19,
+            14
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107410235,
+      "stage": "joint_penalty_w100"
+    },
+    {
+      "attempt": 4,
+      "elapsed_seconds": 0.06432029092684388,
+      "evaluations_or_iterations": 44,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.9821096876621764,
+        "equation_max_abs": 0.4489456739055898,
+        "equation_rms": 0.1417553231363742,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 0.0025381760156768015,
+        "nonpositive_support_count": 136,
+        "normalized_support_min": -0.99999601966242,
+        "raw_support_min": -0.05211968452422598,
+        "raw_support_quantiles": {
+          "q00": -0.05211968452422598,
+          "q01": -0.024147880774702243,
+          "q05": -0.011573312675705027,
+          "q100": 0.7309437324811788,
+          "q50": 0.0036510610475965913,
+          "q95": 0.3931863936143189
+        },
+        "signed_polygon_area": 0.6262174262597032,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "index": 1,
+          "residual": 0.4489456739055898
+        },
+        "worst_support": {
+          "index": 109,
+          "normalized": -0.32340640078635274,
+          "raw": -0.05211968452422598,
+          "triple": [
+            6,
+            7,
+            1
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107514964,
+      "stage": "joint_penalty_w3"
+    },
+    {
+      "attempt": 5,
+      "elapsed_seconds": 0.10592354205437005,
+      "evaluations_or_iterations": 72,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4010574155014162,
+        "equation_max_abs": 0.7021373689024777,
+        "equation_rms": 0.20222521899746598,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 0.00030873684418168906,
+        "nonpositive_support_count": 174,
+        "normalized_support_min": -0.9999720605249399,
+        "raw_support_min": -0.010405992642772588,
+        "raw_support_quantiles": {
+          "q00": -0.010405992642772588,
+          "q01": -0.007816477029811426,
+          "q05": -0.003035853647510707,
+          "q100": 0.47931727805161445,
+          "q50": 1.028549432001363e-05,
+          "q95": 0.32070499982991263
+        },
+        "signed_polygon_area": 0.3817297632578076,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.7021373689024777
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.8984211858941407,
+          "raw": -0.010405992642772588,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107619693,
+      "stage": "joint_penalty_w10"
+    },
+    {
+      "attempt": 6,
+      "elapsed_seconds": 0.9144943330902606,
+      "evaluations_or_iterations": 652,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4520884496582285,
+        "equation_max_abs": 0.6733822877966374,
+        "equation_rms": 0.20959091432433113,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 3.127011233662821e-05,
+        "nonpositive_support_count": 174,
+        "normalized_support_min": -0.9981782070613998,
+        "raw_support_min": -0.0010256422228305374,
+        "raw_support_quantiles": {
+          "q00": -0.0010256422228305374,
+          "q01": -0.0007848421320743699,
+          "q05": -0.00036491750606209585,
+          "q100": 0.45849467058367877,
+          "q50": 1.8561451548678803e-07,
+          "q95": 0.4059402033494047
+        },
+        "signed_polygon_area": 0.4174659857771326,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.6733822877966374
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.8540662860500285,
+          "raw": -0.0010256422228305374,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107724422,
+      "stage": "joint_penalty_w30"
+    },
+    {
+      "attempt": 7,
+      "elapsed_seconds": 3.3978405829984695,
+      "evaluations_or_iterations": 2316,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.457591878093251,
+        "equation_max_abs": 0.670820245233611,
+        "equation_rms": 0.21038526579643765,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 1.1819173205531358e-06,
+        "nonpositive_support_count": 172,
+        "normalized_support_min": -0.998903949674355,
+        "raw_support_min": -8.936555152775566e-05,
+        "raw_support_quantiles": {
+          "q00": -8.936555152775566e-05,
+          "q01": -6.794805724611073e-05,
+          "q05": -3.250871743485103e-05,
+          "q100": 0.4654821558921075,
+          "q50": 2.0949788264741138e-09,
+          "q95": 0.40966225997195266
+        },
+        "signed_polygon_area": 0.42066449571613934,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.670820245233611
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.8464421948253672,
+          "raw": -8.936555152775566e-05,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107829151,
+      "stage": "joint_penalty_w100"
+    },
+    {
+      "attempt": 8,
+      "elapsed_seconds": 0.0727193329948932,
+      "evaluations_or_iterations": 49,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.9821096858787259,
+        "equation_max_abs": 0.4489456786696916,
+        "equation_rms": 0.1417553228789553,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 0.002538176474199573,
+        "nonpositive_support_count": 136,
+        "normalized_support_min": -0.9999960195651902,
+        "raw_support_min": -0.05211967633959798,
+        "raw_support_quantiles": {
+          "q00": -0.05211967633959798,
+          "q01": -0.02414788888703012,
+          "q05": -0.011573312794053967,
+          "q100": 0.7309437416058563,
+          "q50": 0.003651062440120022,
+          "q95": 0.3931864103721077
+        },
+        "signed_polygon_area": 0.6262174230253205,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "index": 1,
+          "residual": 0.4489456786696916
+        },
+        "worst_support": {
+          "index": 109,
+          "normalized": -0.32340636074541873,
+          "raw": -0.05211967633959798,
+          "triple": [
+            6,
+            7,
+            1
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107933880,
+      "stage": "joint_penalty_w3"
+    },
+    {
+      "attempt": 9,
+      "elapsed_seconds": 0.08957987488247454,
+      "evaluations_or_iterations": 67,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4010574259317503,
+        "equation_max_abs": 0.7021374740564081,
+        "equation_rms": 0.20222522050295505,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 0.00030873609190973416,
+        "nonpositive_support_count": 174,
+        "normalized_support_min": -0.9999721108499683,
+        "raw_support_min": -0.01040598887207381,
+        "raw_support_quantiles": {
+          "q00": -0.01040598887207381,
+          "q01": -0.007816472213171837,
+          "q05": -0.0030358560311376293,
+          "q100": 0.47931669806794747,
+          "q50": 1.0285691759539047e-05,
+          "q95": 0.320705284765348
+        },
+        "signed_polygon_area": 0.3817297323949704,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.7021374740564081
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.8984209129869116,
+          "raw": -0.01040598887207381,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 108038609,
+      "stage": "joint_penalty_w10"
+    },
+    {
+      "attempt": 10,
+      "elapsed_seconds": 0.491662957938388,
+      "evaluations_or_iterations": 379,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4520884523705857,
+        "equation_max_abs": 0.6733823251827634,
+        "equation_rms": 0.20959091471582617,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 3.127010048197442e-05,
+        "nonpositive_support_count": 174,
+        "normalized_support_min": -0.9981782280509643,
+        "raw_support_min": -0.0010256411954788296,
+        "raw_support_quantiles": {
+          "q00": -0.0010256411954788296,
+          "q01": -0.0007848413113588052,
+          "q05": -0.0003649192066283407,
+          "q100": 0.45849478227756535,
+          "q50": 1.8557817231611853e-07,
+          "q95": 0.4059406423297454
+        },
+        "signed_polygon_area": 0.4174659933905246,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.6733823251827634
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.8540661201360248,
+          "raw": -0.0010256411954788296,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 108143338,
+      "stage": "joint_penalty_w30"
+    },
+    {
+      "attempt": 11,
+      "elapsed_seconds": 4.597771459026262,
+      "evaluations_or_iterations": 3124,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.457591878047856,
+        "equation_max_abs": 0.6708203056961819,
+        "equation_rms": 0.21038526578988548,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 1.18194625705247e-06,
+        "nonpositive_support_count": 172,
+        "normalized_support_min": -0.9989039245813658,
+        "raw_support_min": -8.936546747177096e-05,
+        "raw_support_quantiles": {
+          "q00": -8.936546747177096e-05,
+          "q01": -6.794799333762702e-05,
+          "q05": -3.250870497315331e-05,
+          "q100": 0.4654818400430522,
+          "q50": 2.094985620689973e-09,
+          "q95": 0.40966229759428724
+        },
+        "signed_polygon_area": 0.420664426101892,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.6708203056961819
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.84644212196662,
+          "raw": -8.936546747177096e-05,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 108248067,
+      "stage": "joint_penalty_w100"
+    },
+    {
+      "attempt": 12,
+      "elapsed_seconds": 0.0762082920409739,
+      "evaluations_or_iterations": 55,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.9821096901556171,
+        "equation_max_abs": 0.4489456823713661,
+        "equation_rms": 0.14175532349627135,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 0.002538176293709113,
+        "nonpositive_support_count": 136,
+        "normalized_support_min": -0.9999960195066486,
+        "raw_support_min": -0.05211968959640766,
+        "raw_support_quantiles": {
+          "q00": -0.05211968959640766,
+          "q01": -0.024147876782105407,
+          "q05": -0.011573312202586991,
+          "q100": 0.7309437254535769,
+          "q50": 0.0036510601374092552,
+          "q95": 0.39318638229075237
+        },
+        "signed_polygon_area": 0.6262174249152677,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "index": 1,
+          "residual": 0.4489456823713661
+        },
+        "worst_support": {
+          "index": 109,
+          "normalized": -0.3234064359162393,
+          "raw": -0.05211968959640766,
+          "triple": [
+            6,
+            7,
+            1
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 108352796,
+      "stage": "joint_penalty_w3"
+    },
+    {
+      "attempt": 13,
+      "elapsed_seconds": 0.10151337506249547,
+      "evaluations_or_iterations": 69,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4010573910192052,
+        "equation_max_abs": 0.702137452174166,
+        "equation_rms": 0.2022252154637632,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 0.00030873701702986933,
+        "nonpositive_support_count": 174,
+        "normalized_support_min": -0.9999720266151475,
+        "raw_support_min": -0.010406002735502821,
+        "raw_support_quantiles": {
+          "q00": -0.010406002735502821,
+          "q01": -0.007816485428872873,
+          "q05": -0.0030358520240647714,
+          "q100": 0.4793173887334999,
+          "q50": 1.028578167232525e-05,
+          "q95": 0.32070458457073137
+        },
+        "signed_polygon_area": 0.3817296260697552,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.702137452174166
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.8984213001201243,
+          "raw": -0.010406002735502821,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 108457525,
+      "stage": "joint_penalty_w10"
+    },
+    {
+      "attempt": 14,
+      "elapsed_seconds": 1.907063707942143,
+      "evaluations_or_iterations": 1315,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4520884480901983,
+        "equation_max_abs": 0.6733822826918903,
+        "equation_rms": 0.20959091409800548,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 3.127015157151266e-05,
+        "nonpositive_support_count": 174,
+        "normalized_support_min": -0.9981781799260147,
+        "raw_support_min": -0.0010256429352655688,
+        "raw_support_quantiles": {
+          "q00": -0.0010256429352655688,
+          "q01": -0.0007848426371350774,
+          "q05": -0.00036491758401049445,
+          "q100": 0.4584944961117538,
+          "q50": 1.8563105667702763e-07,
+          "q95": 0.4059399452598307
+        },
+        "signed_polygon_area": 0.4174659632396299,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.6733822826918903
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.8540664062302004,
+          "raw": -0.0010256429352655688,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 108562254,
+      "stage": "joint_penalty_w30"
+    },
+    {
+      "attempt": 15,
+      "elapsed_seconds": 4.791040916927159,
+      "evaluations_or_iterations": 3301,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4575918781858186,
+        "equation_max_abs": 0.6708201982989235,
+        "equation_rms": 0.21038526580979863,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 1.1819358495406747e-06,
+        "nonpositive_support_count": 172,
+        "normalized_support_min": -0.9989039595662504,
+        "raw_support_min": -8.936551537342358e-05,
+        "raw_support_quantiles": {
+          "q00": -8.936551537342358e-05,
+          "q01": -6.7948053493067e-05,
+          "q05": -3.250858947243518e-05,
+          "q100": 0.4654821111322218,
+          "q50": 2.094980540807543e-09,
+          "q95": 0.4096623007671074
+        },
+        "signed_polygon_area": 0.4206645022079557,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.6708201982989235
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.8464422708776855,
+          "raw": -8.936551537342358e-05,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 108666983,
+      "stage": "joint_penalty_w100"
+    },
+    {
+      "attempt": 16,
+      "elapsed_seconds": 0.07107729185372591,
+      "evaluations_or_iterations": 50,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.982109685305557,
+        "equation_max_abs": 0.44894566086542376,
+        "equation_rms": 0.1417553227962255,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 0.0025381754940638447,
+        "nonpositive_support_count": 136,
+        "normalized_support_min": -0.9999960198975466,
+        "raw_support_min": -0.05211968114077227,
+        "raw_support_quantiles": {
+          "q00": -0.05211968114077227,
+          "q01": -0.024147882586745436,
+          "q05": -0.011573313163114324,
+          "q100": 0.7309437368675368,
+          "q50": 0.0036510617010388127,
+          "q95": 0.3931864013489368
+        },
+        "signed_polygon_area": 0.6262174281648822,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "index": 1,
+          "residual": 0.44894566086542376
+        },
+        "worst_support": {
+          "index": 109,
+          "normalized": -0.3234063703001382,
+          "raw": -0.05211968114077227,
+          "triple": [
+            6,
+            7,
+            1
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 108771712,
+      "stage": "joint_penalty_w3"
+    },
+    {
+      "attempt": 17,
+      "elapsed_seconds": 0.11011133412830532,
+      "evaluations_or_iterations": 77,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4010574227999382,
+        "equation_max_abs": 0.7021374815563914,
+        "equation_rms": 0.2022252200509169,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 0.0003087359179955208,
+        "nonpositive_support_count": 174,
+        "normalized_support_min": -0.999972126394359,
+        "raw_support_min": -0.010405988847454898,
+        "raw_support_quantiles": {
+          "q00": -0.010405988847454898,
+          "q01": -0.007816472089949403,
+          "q05": -0.0030358556914228765,
+          "q100": 0.4793166364469769,
+          "q50": 1.0285698533662812e-05,
+          "q95": 0.32070538010411986
+        },
+        "signed_polygon_area": 0.38172974424122696,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.7021374815563914
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.8984208456018535,
+          "raw": -0.010405988847454898,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 108876441,
+      "stage": "joint_penalty_w10"
+    },
+    {
+      "attempt": 18,
+      "elapsed_seconds": 0.4528963330667466,
+      "evaluations_or_iterations": 354,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4520884511814445,
+        "equation_max_abs": 0.6733823229476683,
+        "equation_rms": 0.20959091454418843,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 3.127011201839463e-05,
+        "nonpositive_support_count": 174,
+        "normalized_support_min": -0.9981782222653933,
+        "raw_support_min": -0.0010256416808182255,
+        "raw_support_quantiles": {
+          "q00": -0.0010256416808182255,
+          "q01": -0.0007848416976312954,
+          "q05": -0.0003649186867425403,
+          "q100": 0.4584947427058017,
+          "q50": 1.8559668081791073e-07,
+          "q95": 0.4059404964662371
+        },
+        "signed_polygon_area": 0.41746598354142234,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.6733823229476683
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.8540661611068903,
+          "raw": -0.0010256416808182255,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 108981170,
+      "stage": "joint_penalty_w30"
+    },
+    {
+      "attempt": 19,
+      "elapsed_seconds": 3.894916458055377,
+      "evaluations_or_iterations": 2718,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4575918786004045,
+        "equation_max_abs": 0.6708201625389021,
+        "equation_rms": 0.21038526586963896,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 1.1819411973763773e-06,
+        "nonpositive_support_count": 172,
+        "normalized_support_min": -0.9989039438564014,
+        "raw_support_min": -8.936528105677656e-05,
+        "raw_support_quantiles": {
+          "q00": -8.936528105677656e-05,
+          "q01": -6.794784064105452e-05,
+          "q05": -3.250864342056686e-05,
+          "q100": 0.4654821942405968,
+          "q50": 2.0949860937086876e-09,
+          "q95": 0.40966237846677805
+        },
+        "signed_polygon_area": 0.42066458636268944,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.6708201625389021
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.846442024577018,
+          "raw": -8.936528105677656e-05,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 109085899,
+      "stage": "joint_penalty_w100"
+    },
+    {
+      "attempt": 20,
+      "elapsed_seconds": 0.07788908295333385,
+      "evaluations_or_iterations": 54,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.9821096883994936,
+        "equation_max_abs": 0.4489456725156509,
+        "equation_rms": 0.1417553232427968,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 0.0025381759692543683,
+        "nonpositive_support_count": 136,
+        "normalized_support_min": -0.9999960196608577,
+        "raw_support_min": -0.05211968706937443,
+        "raw_support_quantiles": {
+          "q00": -0.05211968706937443,
+          "q01": -0.024147878268997076,
+          "q05": -0.011573312584761146,
+          "q100": 0.7309437302885804,
+          "q50": 0.0036510606580660333,
+          "q95": 0.3931863886222997
+        },
+        "signed_polygon_area": 0.6262174278014205,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "index": 1,
+          "residual": 0.4489456725156509
+        },
+        "worst_support": {
+          "index": 109,
+          "normalized": -0.3234064137056448,
+          "raw": -0.05211968706937443,
+          "triple": [
+            6,
+            7,
+            1
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 109190628,
+      "stage": "joint_penalty_w3"
+    },
+    {
+      "attempt": 21,
+      "elapsed_seconds": 0.09564458299428225,
+      "evaluations_or_iterations": 66,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4010574294724962,
+        "equation_max_abs": 0.7021374791907888,
+        "equation_rms": 0.2022252210140177,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 0.0003087359874783264,
+        "nonpositive_support_count": 174,
+        "normalized_support_min": -0.9999721276576609,
+        "raw_support_min": -0.010405987468661459,
+        "raw_support_quantiles": {
+          "q00": -0.010405987468661459,
+          "q01": -0.007816470914308031,
+          "q05": -0.0030358563391202687,
+          "q100": 0.47931661659800673,
+          "q50": 1.0285484336131032e-05,
+          "q95": 0.32070536580109726
+        },
+        "signed_polygon_area": 0.38172974326396525,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.7021374791907888
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.8984208694278686,
+          "raw": -0.010405987468661459,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 109295357,
+      "stage": "joint_penalty_w10"
+    },
+    {
+      "attempt": 22,
+      "elapsed_seconds": 0.7412008750252426,
+      "evaluations_or_iterations": 503,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4520884493805926,
+        "equation_max_abs": 0.6733822811908652,
+        "equation_rms": 0.20959091428425786,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 3.127012441334595e-05,
+        "nonpositive_support_count": 174,
+        "normalized_support_min": -0.998178194808984,
+        "raw_support_min": -0.0010256423641769614,
+        "raw_support_quantiles": {
+          "q00": -0.0010256423641769614,
+          "q01": -0.0007848422054869532,
+          "q05": -0.00036491802549035537,
+          "q100": 0.45849460065389597,
+          "q50": 1.8561843833042688e-07,
+          "q95": 0.40594017426485185
+        },
+        "signed_polygon_area": 0.41746598523643885,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.6733822811908652
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.8540662958111898,
+          "raw": -0.0010256423641769614,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 109400086,
+      "stage": "joint_penalty_w30"
+    },
+    {
+      "attempt": 23,
+      "elapsed_seconds": 3.560303415870294,
+      "evaluations_or_iterations": 2439,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.457591878600125,
+        "equation_max_abs": 0.6708201520063868,
+        "equation_rms": 0.21038526586959863,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 1.181982634123465e-06,
+        "nonpositive_support_count": 172,
+        "normalized_support_min": -0.9989039667270159,
+        "raw_support_min": -8.936531736296114e-05,
+        "raw_support_quantiles": {
+          "q00": -8.936531736296114e-05,
+          "q01": -6.794787199030951e-05,
+          "q05": -3.25086287549053e-05,
+          "q100": 0.46548234597141164,
+          "q50": 2.094981846697536e-09,
+          "q95": 0.409662129473292
+        },
+        "signed_polygon_area": 0.4206646600004695,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "index": 0,
+          "residual": 0.6708201520063868
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": -0.8464420674082243,
+          "raw": -8.936531736296114e-05,
+          "triple": [
+            3,
+            4,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 109504815,
+      "stage": "joint_penalty_w100"
+    },
+    {
+      "attempt": 0,
+      "elapsed_seconds": 0.05883083282969892,
+      "evaluations_or_iterations": 6,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 30.40110089923523,
+        "equation_max_abs": 10.723981848553551,
+        "equation_rms": 4.3880209469586084,
+        "maximum_absolute_coordinate": 2.496772608736567,
+        "minimum_pair_distance": 0.011828698061976258,
+        "nonpositive_support_count": 135,
+        "normalized_support_min": -0.001033187896379757,
+        "raw_support_min": -0.00012014101087174286,
+        "raw_support_quantiles": {
+          "q00": -0.00012014101087174286,
+          "q01": -0.00010067333052685113,
+          "q05": -5.973825256765389e-05,
+          "q100": 0.00015207417341255166,
+          "q50": 8.718430472215623e-06,
+          "q95": 8.089940776259341e-05
+        },
+        "signed_polygon_area": 0.00011715756366562961,
+        "worst_equation": {
+          "equation": [
+            [
+              4,
+              10
+            ],
+            [
+              10,
+              16
+            ]
+          ],
+          "index": 31,
+          "residual": -10.723981848553551
+        },
+        "worst_support": {
+          "index": 158,
+          "normalized": -0.0006680174029315292,
+          "raw": -0.00012014101087174286,
+          "triple": [
+            8,
+            9,
+            16
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 117096062,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 1,
+      "elapsed_seconds": 0.08871204196475446,
+      "evaluations_or_iterations": 7,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 52.80109457340845,
+        "equation_max_abs": 21.024384368980883,
+        "equation_rms": 7.621181541366063,
+        "maximum_absolute_coordinate": 4.037691758579642,
+        "minimum_pair_distance": 0.0034539934327053622,
+        "nonpositive_support_count": 69,
+        "normalized_support_min": -0.00039421033669652123,
+        "raw_support_min": -2.1646158995563947e-05,
+        "raw_support_quantiles": {
+          "q00": -2.1646158995563947e-05,
+          "q01": -1.943462485520831e-05,
+          "q05": -1.030638271277804e-05,
+          "q100": 0.000112408792859898,
+          "q50": 1.2353258694304937e-05,
+          "q95": 7.977438541546297e-05
+        },
+        "signed_polygon_area": 0.0001949765242882144,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              4
+            ],
+            [
+              4,
+              13
+            ]
+          ],
+          "index": 7,
+          "residual": -21.024384368980883
+        },
+        "worst_support": {
+          "index": 163,
+          "normalized": -1.7114017231123557e-05,
+          "raw": -2.1646158995563947e-05,
+          "triple": [
+            9,
+            10,
+            1
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 117200791,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 2,
+      "elapsed_seconds": 0.8782131250482053,
+      "evaluations_or_iterations": 137,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4714457920979866,
+        "equation_max_abs": 0.6764637351017015,
+        "equation_rms": 0.2123849060414287,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 4.072986635008496e-06,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 2.5056664646388554e-06,
+        "raw_support_min": 9.99999998675563e-07,
+        "raw_support_quantiles": {
+          "q00": 9.99999998675563e-07,
+          "q01": 9.999999992229067e-07,
+          "q05": 9.999999999914091e-07,
+          "q100": 0.4595090401708361,
+          "q50": 0.0003827893893344255,
+          "q95": 0.281457705833637
+        },
+        "signed_polygon_area": 0.3428073116690857,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "index": 1,
+          "residual": 0.6764637351017015
+        },
+        "worst_support": {
+          "index": 151,
+          "normalized": 0.0003547456415079725,
+          "raw": 9.99999998675563e-07,
+          "triple": [
+            8,
+            9,
+            7
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 117305520,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 3,
+      "elapsed_seconds": 0.16304662497714162,
+      "evaluations_or_iterations": 18,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.8268367964632342,
+        "equation_max_abs": 0.8528753110410084,
+        "equation_rms": 0.2636811790508905,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 0.0013415234704863988,
+        "nonpositive_support_count": 45,
+        "normalized_support_min": -0.874894607366297,
+        "raw_support_min": -0.006908465361467335,
+        "raw_support_quantiles": {
+          "q00": -0.006908465361467335,
+          "q01": -0.0015586357628653525,
+          "q05": -0.00012406719630013322,
+          "q100": 0.40749228558775463,
+          "q50": 0.0010993240469607819,
+          "q95": 0.25068724217690674
+        },
+        "signed_polygon_area": 0.3031052284723949,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "index": 1,
+          "residual": 0.8528753110410084
+        },
+        "worst_support": {
+          "index": 91,
+          "normalized": -0.874894607366297,
+          "raw": -0.006908465361467335,
+          "triple": [
+            5,
+            6,
+            1
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 117410249,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 4,
+      "elapsed_seconds": 0.744650665903464,
+      "evaluations_or_iterations": 116,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4690891154670227,
+        "equation_max_abs": 0.6687041067915783,
+        "equation_rms": 0.21204474906960868,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 5.54742638320519e-06,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 2.395626801233193e-06,
+        "raw_support_min": 9.999999974188642e-07,
+        "raw_support_quantiles": {
+          "q00": 9.999999974188642e-07,
+          "q01": 9.999999991510527e-07,
+          "q05": 9.999999999945017e-07,
+          "q100": 0.4812633274152085,
+          "q50": 0.00023983199699402046,
+          "q95": 0.23294878866319207
+        },
+        "signed_polygon_area": 0.29765046794732297,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "index": 1,
+          "residual": 0.6687041067915783
+        },
+        "worst_support": {
+          "index": 151,
+          "normalized": 0.00038153528510490904,
+          "raw": 9.999999974188642e-07,
+          "triple": [
+            8,
+            9,
+            7
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 117514978,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 5,
+      "elapsed_seconds": 0.2692679159808904,
+      "evaluations_or_iterations": 36,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 2.71844358503797,
+        "equation_max_abs": 1.2780307808865097,
+        "equation_rms": 0.39237353389962076,
+        "maximum_absolute_coordinate": 1.0041307130338133,
+        "minimum_pair_distance": 0.0014322221713260405,
+        "nonpositive_support_count": 92,
+        "normalized_support_min": -0.319395068703511,
+        "raw_support_min": -0.0015173457938958588,
+        "raw_support_quantiles": {
+          "q00": -0.0015173457938958588,
+          "q01": -0.0013802256219405844,
+          "q05": -0.0004699835573870393,
+          "q100": 0.005666819712940156,
+          "q50": 0.00010519077371579373,
+          "q95": 0.0022965330542478713
+        },
+        "signed_polygon_area": 0.004043338386787765,
+        "worst_equation": {
+          "equation": [
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              19
+            ]
+          ],
+          "index": 21,
+          "residual": -1.2780307808865097
+        },
+        "worst_support": {
+          "index": 97,
+          "normalized": -0.015054757877553128,
+          "raw": -0.0015173457938958588,
+          "triple": [
+            5,
+            6,
+            9
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 117619707,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 6,
+      "elapsed_seconds": 0.05854820809327066,
+      "evaluations_or_iterations": 6,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 222.3336628245455,
+        "equation_max_abs": 86.2630027498667,
+        "equation_rms": 32.09110002041671,
+        "maximum_absolute_coordinate": 6.617050587289269,
+        "minimum_pair_distance": 0.0049014825687782,
+        "nonpositive_support_count": 100,
+        "normalized_support_min": -0.21694421974757924,
+        "raw_support_min": -0.005745007888664089,
+        "raw_support_quantiles": {
+          "q00": -0.005745007888664089,
+          "q01": -0.003911584148524466,
+          "q05": -0.0024935235573419466,
+          "q100": 0.019134953490210868,
+          "q50": 0.000616375729639012,
+          "q95": 0.00995207241190954
+        },
+        "signed_polygon_area": 0.016494980302646678,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              10
+            ],
+            [
+              10,
+              12
+            ]
+          ],
+          "index": 29,
+          "residual": 86.2630027498667
+        },
+        "worst_support": {
+          "index": 333,
+          "normalized": -0.0013636081566322106,
+          "raw": -0.005745007888664089,
+          "triple": [
+            18,
+            19,
+            9
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 117724436,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 7,
+      "elapsed_seconds": 0.10660150018520653,
+      "evaluations_or_iterations": 13,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 56.779414432710844,
+        "equation_max_abs": 20.44666759845524,
+        "equation_rms": 8.195402551788732,
+        "maximum_absolute_coordinate": 4.4960284446326435,
+        "minimum_pair_distance": 0.007899066293926974,
+        "nonpositive_support_count": 128,
+        "normalized_support_min": -0.0280514796625441,
+        "raw_support_min": -0.0008941635509790967,
+        "raw_support_quantiles": {
+          "q00": -0.0008941635509790967,
+          "q01": -0.0006427330658382979,
+          "q05": -0.0004496745327496021,
+          "q100": 0.002496405834973552,
+          "q50": 7.431858556567359e-05,
+          "q95": 0.0011690694118182733
+        },
+        "signed_polygon_area": 0.0017647982158631708,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              11
+            ]
+          ],
+          "index": 3,
+          "residual": -20.44666759845524
+        },
+        "worst_support": {
+          "index": 145,
+          "normalized": -0.00028652309956128533,
+          "raw": -0.0008941635509790967,
+          "triple": [
+            8,
+            9,
+            1
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 117829165,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 8,
+      "elapsed_seconds": 0.06748308287933469,
+      "evaluations_or_iterations": 5,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 65.06777414879258,
+        "equation_max_abs": 23.370607761879036,
+        "equation_rms": 9.391724230093793,
+        "maximum_absolute_coordinate": 4.83524401082936,
+        "minimum_pair_distance": 0.009359861398945379,
+        "nonpositive_support_count": 67,
+        "normalized_support_min": -0.002378344777532973,
+        "raw_support_min": -2.2477816931367868e-05,
+        "raw_support_quantiles": {
+          "q00": -2.2477816931367868e-05,
+          "q01": -2.0605900355929853e-05,
+          "q05": -1.1286195804452413e-05,
+          "q100": 8.378787005108412e-05,
+          "q50": 1.1061871371238995e-05,
+          "q95": 5.350232114294116e-05
+        },
+        "signed_polygon_area": 0.00014294594448775676,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              8
+            ],
+            [
+              0,
+              16
+            ]
+          ],
+          "index": 16,
+          "residual": 23.370607761879036
+        },
+        "worst_support": {
+          "index": 125,
+          "normalized": -1.6306075108119623e-05,
+          "raw": -2.2477816931367868e-05,
+          "triple": [
+            6,
+            7,
+            19
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 117933894,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 9,
+      "elapsed_seconds": 0.10236229188740253,
+      "evaluations_or_iterations": 11,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 7.486056143181852,
+        "equation_max_abs": 2.0567395213208264,
+        "equation_rms": 1.0805191323586736,
+        "maximum_absolute_coordinate": 1.5563840594931193,
+        "minimum_pair_distance": 0.0010824482045302059,
+        "nonpositive_support_count": 172,
+        "normalized_support_min": -0.06448504764211604,
+        "raw_support_min": -0.00012894779813233596,
+        "raw_support_quantiles": {
+          "q00": -0.00012894779813233596,
+          "q01": -0.00011771188480152515,
+          "q05": -8.029039304081134e-05,
+          "q100": 0.00027005287516395737,
+          "q50": 6.094425440799882e-07,
+          "q95": 9.718727741644831e-05
+        },
+        "signed_polygon_area": 5.986482964542777e-05,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              7,
+              10
+            ]
+          ],
+          "index": 18,
+          "residual": 2.0567395213208264
+        },
+        "worst_support": {
+          "index": 198,
+          "normalized": -0.0024179022644179263,
+          "raw": -0.00012894779813233596,
+          "triple": [
+            11,
+            12,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 118038623,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 10,
+      "elapsed_seconds": 0.87794025009498,
+      "evaluations_or_iterations": 143,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4714457920979644,
+        "equation_max_abs": 0.6764637379239054,
+        "equation_rms": 0.21238490604142546,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 4.072985951390952e-06,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 2.5056664599881948e-06,
+        "raw_support_min": 9.99999998339135e-07,
+        "raw_support_quantiles": {
+          "q00": 9.99999998339135e-07,
+          "q01": 9.999999990691213e-07,
+          "q05": 9.999999999977263e-07,
+          "q100": 0.45950903473551846,
+          "q50": 0.00038278944859928654,
+          "q95": 0.2814577538923177
+        },
+        "signed_polygon_area": 0.34280731494605204,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "index": 1,
+          "residual": 0.6764637379239054
+        },
+        "worst_support": {
+          "index": 133,
+          "normalized": 2.1544087165454104e-05,
+          "raw": 9.99999998339135e-07,
+          "triple": [
+            7,
+            8,
+            9
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 118143352,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 11,
+      "elapsed_seconds": 0.048805875005200505,
+      "evaluations_or_iterations": 6,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 35.49487307700024,
+        "equation_max_abs": 14.3815163366443,
+        "equation_rms": 5.123243631464422,
+        "maximum_absolute_coordinate": 3.428521853327568,
+        "minimum_pair_distance": 0.007656372606860865,
+        "nonpositive_support_count": 71,
+        "normalized_support_min": -0.00046859162722693887,
+        "raw_support_min": -0.0010483801979952177,
+        "raw_support_quantiles": {
+          "q00": -0.0010483801979952177,
+          "q01": -0.0008026545984961215,
+          "q05": -7.72791850522275e-05,
+          "q100": 0.002230966170458239,
+          "q50": 1.3659396955974946e-05,
+          "q95": 0.000603566705127405
+        },
+        "signed_polygon_area": 0.0009574699737288118,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              4
+            ],
+            [
+              4,
+              13
+            ]
+          ],
+          "index": 7,
+          "residual": -14.3815163366443
+        },
+        "worst_support": {
+          "index": 353,
+          "normalized": -0.0003915852591764752,
+          "raw": -0.0010483801979952177,
+          "triple": [
+            19,
+            0,
+            12
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 118248081,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 12,
+      "elapsed_seconds": 0.4789911250118166,
+      "evaluations_or_iterations": 84,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4690891154670251,
+        "equation_max_abs": 0.6687041182939861,
+        "equation_rms": 0.21204474906960905,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 5.547427128770179e-06,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 2.395626801757284e-06,
+        "raw_support_min": 9.999999989709051e-07,
+        "raw_support_quantiles": {
+          "q00": 9.999999989709051e-07,
+          "q01": 9.999999993010766e-07,
+          "q05": 1.0000000000059673e-06,
+          "q100": 0.4812633199576396,
+          "q50": 0.00023983198341071422,
+          "q95": 0.2329487911968095
+        },
+        "signed_polygon_area": 0.29765045516195376,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "index": 1,
+          "residual": 0.6687041182939861
+        },
+        "worst_support": {
+          "index": 17,
+          "normalized": 0.18026374673489354,
+          "raw": 9.999999989709051e-07,
+          "triple": [
+            0,
+            1,
+            19
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 118352810,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 13,
+      "elapsed_seconds": 0.6581979589536786,
+      "evaluations_or_iterations": 109,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4690891154670207,
+        "equation_max_abs": 0.6687041126516066,
+        "equation_rms": 0.21204474906960843,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 5.547426319546471e-06,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 2.395626798095656e-06,
+        "raw_support_min": 9.99999998169132e-07,
+        "raw_support_quantiles": {
+          "q00": 9.99999998169132e-07,
+          "q01": 9.999999990860777e-07,
+          "q05": 9.999999999987868e-07,
+          "q100": 0.4812633216086063,
+          "q50": 0.00023983200339519807,
+          "q95": 0.23294878510183165
+        },
+        "signed_polygon_area": 0.29765046413316126,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "index": 1,
+          "residual": 0.6687041126516066
+        },
+        "worst_support": {
+          "index": 19,
+          "normalized": 2.395626798095656e-06,
+          "raw": 9.99999998169132e-07,
+          "triple": [
+            1,
+            2,
+            3
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 118457539,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 14,
+      "elapsed_seconds": 0.6510950829833746,
+      "evaluations_or_iterations": 104,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.469089115467027,
+        "equation_max_abs": 0.6687041161300907,
+        "equation_rms": 0.21204474906960927,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 5.547427040619822e-06,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 2.3956268199089006e-06,
+        "raw_support_min": 9.999999980153922e-07,
+        "raw_support_quantiles": {
+          "q00": 9.999999980153922e-07,
+          "q01": 9.999999994095094e-07,
+          "q05": 9.999999999987775e-07,
+          "q100": 0.4812633214315972,
+          "q50": 0.00023983198256530904,
+          "q95": 0.2329487890086653
+        },
+        "signed_polygon_area": 0.29765045711919286,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "index": 1,
+          "residual": 0.6687041161300907
+        },
+        "worst_support": {
+          "index": 151,
+          "normalized": 0.0003815354294569297,
+          "raw": 9.999999980153922e-07,
+          "triple": [
+            8,
+            9,
+            7
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 118562268,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 15,
+      "elapsed_seconds": 0.5406778331380337,
+      "evaluations_or_iterations": 84,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4690891154670236,
+        "equation_max_abs": 0.6687041352879544,
+        "equation_rms": 0.21204474906960882,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 5.54742732054853e-06,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 2.3956267600397128e-06,
+        "raw_support_min": 9.99999998627099e-07,
+        "raw_support_quantiles": {
+          "q00": 9.99999998627099e-07,
+          "q01": 9.999999997501492e-07,
+          "q05": 1.0000000000096263e-06,
+          "q100": 0.48126330528664135,
+          "q50": 0.00023983211477825617,
+          "q95": 0.23294878626696258
+        },
+        "signed_polygon_area": 0.2976504425180419,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "index": 1,
+          "residual": 0.6687041352879544
+        },
+        "worst_support": {
+          "index": 37,
+          "normalized": 6.2102959374747455e-06,
+          "raw": 9.99999998627099e-07,
+          "triple": [
+            2,
+            3,
+            1
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 118666997,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 16,
+      "elapsed_seconds": 0.0323408751282841,
+      "evaluations_or_iterations": 2,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 391.7275449985969,
+        "equation_max_abs": 112.04150385966022,
+        "equation_rms": 56.541000888482785,
+        "maximum_absolute_coordinate": 10.368871583897993,
+        "minimum_pair_distance": 0.8201991082924952,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 0.07855335011522249,
+        "raw_support_min": 0.19498570761495684,
+        "raw_support_quantiles": {
+          "q00": 0.19498570761495684,
+          "q01": 0.35833642471831106,
+          "q05": 0.6655098657038907,
+          "q100": 25.64652254235437,
+          "q50": 8.4358572322884,
+          "q95": 21.140099101795744
+        },
+        "signed_polygon_area": 83.83295214174076,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              11
+            ]
+          ],
+          "index": 3,
+          "residual": -112.04150385966022
+        },
+        "worst_support": {
+          "index": 303,
+          "normalized": 0.18618629648884868,
+          "raw": 0.19498570761495684,
+          "triple": [
+            16,
+            17,
+            15
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 118771726,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 17,
+      "elapsed_seconds": 0.6974574590567499,
+      "evaluations_or_iterations": 116,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4690891154670118,
+        "equation_max_abs": 0.6687041188444741,
+        "equation_rms": 0.2120447490696071,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 5.5474250231710975e-06,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 2.3956264518576724e-06,
+        "raw_support_min": 9.999999979852514e-07,
+        "raw_support_quantiles": {
+          "q00": 9.999999979852514e-07,
+          "q01": 9.999999991566203e-07,
+          "q05": 9.999999999891406e-07,
+          "q100": 0.4812633260574728,
+          "q50": 0.0002398320327768823,
+          "q95": 0.23294880128648804
+        },
+        "signed_polygon_area": 0.29765048386516835,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              7
+            ]
+          ],
+          "index": 1,
+          "residual": 0.6687041188444741
+        },
+        "worst_support": {
+          "index": 133,
+          "normalized": 1.4531343717460385e-05,
+          "raw": 9.999999979852514e-07,
+          "triple": [
+            7,
+            8,
+            9
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 118876455,
+      "stage": "strict_constrained_slsqp"
+    }
+  ],
+  "configuration": {
+    "base_seed": 97096029,
+    "coordinate_bound": 30.0,
+    "equality_starts": 18,
+    "max_nfev": 6000,
+    "max_slsqp_iterations": 2500,
+    "penalty_starts": 24,
+    "penalty_weights": [
+      3.0,
+      10.0,
+      30.0,
+      100.0
+    ],
+    "requested_support_margin": 1e-06,
+    "slsqp_starts": 18,
+    "thresholds": {
+      "equality_max_abs": 1e-08,
+      "equality_rms": 1e-09,
+      "minimum_pair_distance": 1e-06,
+      "normalized_support_margin": 1e-08,
+      "raw_support_margin": 1e-06
+    },
+    "timeout_seconds": 420.0
+  },
+  "elapsed_seconds": 35.92671150015667,
+  "epistemic_status": "NUMERICAL_DIAGNOSTIC_ONLY",
+  "inputs": {
+    "cegar_result": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar-v9-local-robust-new.json",
+    "cegar_result_sha256": "90bdaca3614add5ca456fdbdc96dc2ea1d8009e42f729f150bada30e03bbe4d1",
+    "cegar_script": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar.py",
+    "cegar_script_current_sha256": "2bba611b5bd64bd038b4c0c3973c5772bac4433bcbcc81098fc347fa0c88bef8",
+    "cegar_script_recorded_sha256": "4a5278cb5da186e9b7c3ec39cb002d38d1a37ae84c1d76a02718cea1d2ba85c0",
+    "checkpoint": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar-v9-local-robust-new.checkpoint.json",
+    "checkpoint_sha256": "3d17df2d340024e18c3ec6692182eee7d5ca4c52f2d9799509506eb2f067823b",
+    "exact_positive_rows_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/euclidean-survivor-probe-v9-local-robust-new.positive_rows.smt2",
+    "exact_positive_rows_smt2_sha256": "02ad0315200190370419e0ff7192ebd321922301cc17d7b6acf7facb922514ce",
+    "exact_probe_result": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/euclidean-survivor-probe-v9-local-robust-new.json",
+    "exact_probe_result_sha256": "d08d275d1f5eee7bf31e9c68312da69dccf1e660041704a9c4e2027a960aa9a9",
+    "exact_probe_script": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/euclidean_survivor_probe.py",
+    "exact_probe_script_sha256": "48ff2264e4ccaeae3c0403b63dc76e2d7f20d7e0af81a686b22483a8f8af121d",
+    "numerical_script": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/numerical_euclidean_fit.py",
+    "numerical_script_sha256": "3c1841f77604337f513d10e28dc06b28d3cc093d556368797a9e63b88de63e13"
+  },
+  "reason": "bounded deterministic multistart found no candidate meeting both the distance-equality tolerances and strict-convex margins; this does not certify infeasibility",
+  "runtime": {
+    "numpy": "2.5.1",
+    "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+    "python": "3.14.6",
+    "scipy": "1.18.0",
+    "z3": "4.16.0"
+  },
+  "schema": "p97-numerical-euclidean-survivor-fit-v1",
+  "search_summary": {
+    "budget_expired": false,
+    "completed_attempt_count": 60,
+    "completed_by_stage": {
+      "equality_only_least_squares": 18,
+      "joint_penalty_w10": 6,
+      "joint_penalty_w100": 6,
+      "joint_penalty_w3": 6,
+      "joint_penalty_w30": 6,
+      "strict_constrained_slsqp": 18
+    },
+    "interrupted_stage": null,
+    "plausible_candidate_count": 0
+  },
+  "selected_candidates": {
+    "best_equation_fit_candidate": {
+      "attempt": {
+        "attempt": 11,
+        "elapsed_seconds": 0.008764292113482952,
+        "evaluations_or_iterations": 14,
+        "metrics": {
+          "degenerate_support_denominator_count": 4,
+          "equation_l2": 8.252325904466732e-16,
+          "equation_max_abs": 4.440892098500626e-16,
+          "equation_rms": 1.1911206455960975e-16,
+          "maximum_absolute_coordinate": 1.2564000030998361,
+          "minimum_pair_distance": 0.0,
+          "nonpositive_support_count": 180,
+          "normalized_support_min": -0.9997955990729859,
+          "raw_support_min": -1.1995378315381886,
+          "raw_support_quantiles": {
+            "q00": -1.1995378315381886,
+            "q01": -1.0784978794886495,
+            "q05": -0.7689586986655261,
+            "q100": 1.2879255530565865,
+            "q50": 1.549204624027361e-18,
+            "q95": 0.894607308846166
+          },
+          "signed_polygon_area": 0.5272368177530634,
+          "worst_equation": {
+            "equation": [
+              [
+                0,
+                8
+              ],
+              [
+                0,
+                15
+              ]
+            ],
+            "index": 15,
+            "residual": 4.440892098500626e-16
+          },
+          "worst_support": {
+            "index": 149,
+            "normalized": -0.7063165947161595,
+            "raw": -1.1995378315381886,
+            "triple": [
+              8,
+              9,
+              5
+            ]
+          }
+        },
+        "plausible_fit": false,
+        "scipy_message": "`gtol` termination condition is satisfied.",
+        "scipy_status": 1,
+        "scipy_success": true,
+        "seed": 98248048,
+        "stage": "equality_only_least_squares"
+      },
+      "detail": {
+        "coordinates": [
+          {
+            "aliases": [
+              "a0",
+              "t",
+              "s4",
+              "z4",
+              "be"
+            ],
+            "quotient_index": 0,
+            "x": 0.0,
+            "y": 0.0
+          },
+          {
+            "aliases": [
+              "bz",
+              "r4",
+              "e2"
+            ],
+            "quotient_index": 1,
+            "x": 1.0,
+            "y": 0.0
+          },
+          {
+            "aliases": [
+              "q"
+            ],
+            "quotient_index": 2,
+            "x": 1.2564000030998361,
+            "y": -0.15020905445767016
+          },
+          {
+            "aliases": [
+              "z"
+            ],
+            "quotient_index": 3,
+            "x": 0.6721568662694639,
+            "y": 0.9447321735104304
+          },
+          {
+            "aliases": [
+              "a1",
+              "r3",
+              "escape"
+            ],
+            "quotient_index": 4,
+            "x": 1.0,
+            "y": -2.6681724591235508e-17
+          },
+          {
+            "aliases": [
+              "p2"
+            ],
+            "quotient_index": 5,
+            "x": 1.1161247743735612,
+            "y": -0.31397328002314934
+          },
+          {
+            "aliases": [
+              "b1"
+            ],
+            "quotient_index": 6,
+            "x": 0.5,
+            "y": 0.3557393751987229
+          },
+          {
+            "aliases": [
+              "r1",
+              "bs",
+              "e3"
+            ],
+            "quotient_index": 7,
+            "x": 1.0,
+            "y": -4.2842228861336244e-17
+          },
+          {
+            "aliases": [
+              "p1"
+            ],
+            "quotient_index": 8,
+            "x": 0.06929318440444704,
+            "y": 1.1573729680332177
+          },
+          {
+            "aliases": [
+              "source"
+            ],
+            "quotient_index": 9,
+            "x": 0.9965304872020287,
+            "y": 0.9999939812223595
+          },
+          {
+            "aliases": [
+              "b2"
+            ],
+            "quotient_index": 10,
+            "x": 0.5,
+            "y": 0.3557393751987229
+          },
+          {
+            "aliases": [
+              "z2"
+            ],
+            "quotient_index": 11,
+            "x": 0.777437055342698,
+            "y": 0.9749183225611624
+          },
+          {
+            "aliases": [
+              "r2",
+              "e4"
+            ],
+            "quotient_index": 12,
+            "x": 0.32784313373053603,
+            "y": 0.9447321735104304
+          },
+          {
+            "aliases": [
+              "a2"
+            ],
+            "quotient_index": 13,
+            "x": 1.1545091334043132,
+            "y": 0.9879913601315794
+          },
+          {
+            "aliases": [
+              "s3"
+            ],
+            "quotient_index": 14,
+            "x": 0.672156866269464,
+            "y": 0.9447321735104304
+          },
+          {
+            "aliases": [
+              "p3"
+            ],
+            "quotient_index": 15,
+            "x": 0.06929318440444694,
+            "y": 1.1573729680332174
+          },
+          {
+            "aliases": [
+              "p4"
+            ],
+            "quotient_index": 16,
+            "x": 0.672156866269464,
+            "y": 0.9447321735104304
+          },
+          {
+            "aliases": [
+              "s2"
+            ],
+            "quotient_index": 17,
+            "x": 0.5073866397976103,
+            "y": 0.8702482848877731
+          },
+          {
+            "aliases": [
+              "other"
+            ],
+            "quotient_index": 18,
+            "x": -0.3250351083774139,
+            "y": 0.7397209478110958
+          },
+          {
+            "aliases": [
+              "z3"
+            ],
+            "quotient_index": 19,
+            "x": -1.6916669078681406e-18,
+            "y": -8.365498772372995e-17
+          }
+        ],
+        "equation_residuals": [
+          {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "index": 0,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                7
+              ]
+            ],
+            "index": 1,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            "index": 2,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                11
+              ]
+            ],
+            "index": 3,
+            "residual": 1.1102230246251565e-16
+          },
+          {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                19
+              ]
+            ],
+            "index": 4,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                0,
+                4
+              ],
+              [
+                0,
+                7
+              ]
+            ],
+            "index": 5,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                0,
+                4
+              ],
+              [
+                0,
+                12
+              ]
+            ],
+            "index": 6,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                13
+              ]
+            ],
+            "index": 7,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                0,
+                5
+              ],
+              [
+                0,
+                8
+              ]
+            ],
+            "index": 8,
+            "residual": -2.220446049250313e-16
+          },
+          {
+            "equation": [
+              [
+                0,
+                6
+              ],
+              [
+                6,
+                7
+              ]
+            ],
+            "index": 9,
+            "residual": -5.551115123125783e-17
+          },
+          {
+            "equation": [
+              [
+                0,
+                6
+              ],
+              [
+                6,
+                16
+              ]
+            ],
+            "index": 10,
+            "residual": -1.1102230246251565e-16
+          },
+          {
+            "equation": [
+              [
+                0,
+                7
+              ],
+              [
+                0,
+                12
+              ]
+            ],
+            "index": 11,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                0,
+                7
+              ],
+              [
+                7,
+                9
+              ]
+            ],
+            "index": 12,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                0,
+                7
+              ],
+              [
+                7,
+                14
+              ]
+            ],
+            "index": 13,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                0,
+                7
+              ],
+              [
+                7,
+                17
+              ]
+            ],
+            "index": 14,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                0,
+                8
+              ],
+              [
+                0,
+                15
+              ]
+            ],
+            "index": 15,
+            "residual": 4.440892098500626e-16
+          },
+          {
+            "equation": [
+              [
+                0,
+                8
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "index": 16,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                0,
+                10
+              ],
+              [
+                3,
+                10
+              ]
+            ],
+            "index": 17,
+            "residual": -5.551115123125783e-17
+          },
+          {
+            "equation": [
+              [
+                0,
+                10
+              ],
+              [
+                7,
+                10
+              ]
+            ],
+            "index": 18,
+            "residual": -5.551115123125783e-17
+          },
+          {
+            "equation": [
+              [
+                0,
+                10
+              ],
+              [
+                10,
+                12
+              ]
+            ],
+            "index": 19,
+            "residual": -5.551115123125783e-17
+          },
+          {
+            "equation": [
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                11
+              ]
+            ],
+            "index": 20,
+            "residual": 1.1102230246251565e-16
+          },
+          {
+            "equation": [
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                19
+              ]
+            ],
+            "index": 21,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                1,
+                6
+              ],
+              [
+                6,
+                14
+              ]
+            ],
+            "index": 22,
+            "residual": -1.1102230246251565e-16
+          },
+          {
+            "equation": [
+              [
+                1,
+                6
+              ],
+              [
+                6,
+                19
+              ]
+            ],
+            "index": 23,
+            "residual": -1.1102230246251565e-16
+          },
+          {
+            "equation": [
+              [
+                1,
+                11
+              ],
+              [
+                1,
+                19
+              ]
+            ],
+            "index": 24,
+            "residual": -1.1102230246251565e-16
+          },
+          {
+            "equation": [
+              [
+                2,
+                6
+              ],
+              [
+                5,
+                6
+              ]
+            ],
+            "index": 25,
+            "residual": 3.3306690738754696e-16
+          },
+          {
+            "equation": [
+              [
+                2,
+                6
+              ],
+              [
+                6,
+                8
+              ]
+            ],
+            "index": 26,
+            "residual": 1.1102230246251565e-16
+          },
+          {
+            "equation": [
+              [
+                2,
+                6
+              ],
+              [
+                6,
+                18
+              ]
+            ],
+            "index": 27,
+            "residual": 2.220446049250313e-16
+          },
+          {
+            "equation": [
+              [
+                3,
+                10
+              ],
+              [
+                7,
+                10
+              ]
+            ],
+            "index": 28,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                3,
+                10
+              ],
+              [
+                10,
+                12
+              ]
+            ],
+            "index": 29,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                4,
+                10
+              ],
+              [
+                10,
+                14
+              ]
+            ],
+            "index": 30,
+            "residual": -1.1102230246251565e-16
+          },
+          {
+            "equation": [
+              [
+                4,
+                10
+              ],
+              [
+                10,
+                16
+              ]
+            ],
+            "index": 31,
+            "residual": -1.1102230246251565e-16
+          },
+          {
+            "equation": [
+              [
+                5,
+                6
+              ],
+              [
+                6,
+                8
+              ]
+            ],
+            "index": 32,
+            "residual": -2.220446049250313e-16
+          },
+          {
+            "equation": [
+              [
+                5,
+                6
+              ],
+              [
+                6,
+                18
+              ]
+            ],
+            "index": 33,
+            "residual": -1.1102230246251565e-16
+          },
+          {
+            "equation": [
+              [
+                6,
+                7
+              ],
+              [
+                6,
+                16
+              ]
+            ],
+            "index": 34,
+            "residual": -5.551115123125783e-17
+          },
+          {
+            "equation": [
+              [
+                6,
+                8
+              ],
+              [
+                6,
+                18
+              ]
+            ],
+            "index": 35,
+            "residual": 1.1102230246251565e-16
+          },
+          {
+            "equation": [
+              [
+                6,
+                14
+              ],
+              [
+                6,
+                19
+              ]
+            ],
+            "index": 36,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                7,
+                9
+              ],
+              [
+                7,
+                14
+              ]
+            ],
+            "index": 37,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                7,
+                9
+              ],
+              [
+                7,
+                17
+              ]
+            ],
+            "index": 38,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                7,
+                10
+              ],
+              [
+                10,
+                12
+              ]
+            ],
+            "index": 39,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                7,
+                13
+              ],
+              [
+                7,
+                16
+              ]
+            ],
+            "index": 40,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                7,
+                13
+              ],
+              [
+                7,
+                19
+              ]
+            ],
+            "index": 41,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                7,
+                14
+              ],
+              [
+                7,
+                17
+              ]
+            ],
+            "index": 42,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                7,
+                16
+              ],
+              [
+                7,
+                19
+              ]
+            ],
+            "index": 43,
+            "residual": 0.0
+          },
+          {
+            "equation": [
+              [
+                8,
+                10
+              ],
+              [
+                10,
+                13
+              ]
+            ],
+            "index": 44,
+            "residual": 1.1102230246251565e-16
+          },
+          {
+            "equation": [
+              [
+                8,
+                10
+              ],
+              [
+                10,
+                15
+              ]
+            ],
+            "index": 45,
+            "residual": 2.220446049250313e-16
+          },
+          {
+            "equation": [
+              [
+                10,
+                13
+              ],
+              [
+                10,
+                15
+              ]
+            ],
+            "index": 46,
+            "residual": 1.1102230246251565e-16
+          },
+          {
+            "equation": [
+              [
+                10,
+                14
+              ],
+              [
+                10,
+                16
+              ]
+            ],
+            "index": 47,
+            "residual": 0.0
+          }
+        ],
+        "metrics": {
+          "degenerate_support_denominator_count": 4,
+          "equation_l2": 8.252325904466732e-16,
+          "equation_max_abs": 4.440892098500626e-16,
+          "equation_rms": 1.1911206455960975e-16,
+          "maximum_absolute_coordinate": 1.2564000030998361,
+          "minimum_pair_distance": 0.0,
+          "nonpositive_support_count": 180,
+          "normalized_support_min": -0.9997955990729859,
+          "raw_support_min": -1.1995378315381886,
+          "raw_support_quantiles": {
+            "q00": -1.1995378315381886,
+            "q01": -1.0784978794886495,
+            "q05": -0.7689586986655261,
+            "q100": 1.2879255530565865,
+            "q50": 1.549204624027361e-18,
+            "q95": 0.894607308846166
+          },
+          "signed_polygon_area": 0.5272368177530634,
+          "worst_equation": {
+            "equation": [
+              [
+                0,
+                8
+              ],
+              [
+                0,
+                15
+              ]
+            ],
+            "index": 15,
+            "residual": 4.440892098500626e-16
+          },
+          "worst_support": {
+            "index": 149,
+            "normalized": -0.7063165947161595,
+            "raw": -1.1995378315381886,
+            "triple": [
+              8,
+              9,
+              5
+            ]
+          }
+        },
+        "twenty_smallest_supports": [
+          {
+            "index": 149,
+            "normalized": -0.7063165947161595,
+            "raw": -1.1995378315381886,
+            "triple": [
+              8,
+              9,
+              5
+            ]
+          },
+          {
+            "index": 137,
+            "normalized": -0.7395487557727158,
+            "raw": -1.0983549869403717,
+            "triple": [
+              7,
+              8,
+              13
+            ]
+          },
+          {
+            "index": 161,
+            "normalized": -0.9941383690957326,
+            "raw": -1.0840646803644223,
+            "triple": [
+              8,
+              9,
+              19
+            ]
+          },
+          {
+            "index": 144,
+            "normalized": -0.9941383690957326,
+            "raw": -1.0840646803644223,
+            "triple": [
+              8,
+              9,
+              0
+            ]
+          },
+          {
+            "index": 221,
+            "normalized": -0.8740955592693566,
+            "raw": -1.0746294246427737,
+            "triple": [
+              12,
+              13,
+              5
+            ]
+          },
+          {
+            "index": 146,
+            "normalized": -0.6174734930372371,
+            "raw": -1.0256131593585165,
+            "triple": [
+              8,
+              9,
+              2
+            ]
+          },
+          {
+            "index": 70,
+            "normalized": -0.9913982514868064,
+            "raw": -1.009290864298511,
+            "triple": [
+              3,
+              4,
+              18
+            ]
+          },
+          {
+            "index": 218,
+            "normalized": -0.7954329978559459,
+            "raw": -0.9453192997026794,
+            "triple": [
+              12,
+              13,
+              2
+            ]
+          },
+          {
+            "index": 71,
+            "normalized": -0.8148138234377642,
+            "raw": -0.9447321735104304,
+            "triple": [
+              3,
+              4,
+              19
+            ]
+          },
+          {
+            "index": 54,
+            "normalized": -0.8148138234377642,
+            "raw": -0.9447321735104304,
+            "triple": [
+              3,
+              4,
+              0
+            ]
+          },
+          {
+            "index": 133,
+            "normalized": -0.6239597032003281,
+            "raw": -0.9266856935535641,
+            "triple": [
+              7,
+              8,
+              9
+            ]
+          },
+          {
+            "index": 151,
+            "normalized": -0.6634351862154054,
+            "raw": -0.9266856935535641,
+            "triple": [
+              8,
+              9,
+              7
+            ]
+          },
+          {
+            "index": 148,
+            "normalized": -0.6634351862154054,
+            "raw": -0.9266856935535641,
+            "triple": [
+              8,
+              9,
+              4
+            ]
+          },
+          {
+            "index": 145,
+            "normalized": -0.6634351862154054,
+            "raw": -0.9266856935535641,
+            "triple": [
+              8,
+              9,
+              1
+            ]
+          },
+          {
+            "index": 101,
+            "normalized": -0.6984433932111045,
+            "raw": -0.8278791611631615,
+            "triple": [
+              5,
+              6,
+              13
+            ]
+          },
+          {
+            "index": 217,
+            "normalized": -0.8439957334938073,
+            "raw": -0.8100549259556176,
+            "triple": [
+              12,
+              13,
+              1
+            ]
+          },
+          {
+            "index": 220,
+            "normalized": -0.8439957334938073,
+            "raw": -0.8100549259556176,
+            "triple": [
+              12,
+              13,
+              4
+            ]
+          },
+          {
+            "index": 223,
+            "normalized": -0.8439957334938073,
+            "raw": -0.8100549259556176,
+            "triple": [
+              12,
+              13,
+              7
+            ]
+          },
+          {
+            "index": 233,
+            "normalized": -0.9263088056058915,
+            "raw": -0.7667957393344687,
+            "triple": [
+              12,
+              13,
+              19
+            ]
+          },
+          {
+            "index": 216,
+            "normalized": -0.9263088056058913,
+            "raw": -0.7667957393344685,
+            "triple": [
+              12,
+              13,
+              0
+            ]
+          }
+        ]
+      }
+    },
+    "best_joint_tradeoff_candidate": {
+      "attempt": {
+        "attempt": 19,
+        "elapsed_seconds": 3.894916458055377,
+        "evaluations_or_iterations": 2718,
+        "metrics": {
+          "degenerate_support_denominator_count": 0,
+          "equation_l2": 1.4575918786004045,
+          "equation_max_abs": 0.6708201625389021,
+          "equation_rms": 0.21038526586963896,
+          "maximum_absolute_coordinate": 1.0,
+          "minimum_pair_distance": 1.1819411973763773e-06,
+          "nonpositive_support_count": 172,
+          "normalized_support_min": -0.9989039438564014,
+          "raw_support_min": -8.936528105677656e-05,
+          "raw_support_quantiles": {
+            "q00": -8.936528105677656e-05,
+            "q01": -6.794784064105452e-05,
+            "q05": -3.250864342056686e-05,
+            "q100": 0.4654821942405968,
+            "q50": 2.0949860937086876e-09,
+            "q95": 0.40966237846677805
+          },
+          "signed_polygon_area": 0.42066458636268944,
+          "worst_equation": {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "index": 0,
+            "residual": 0.6708201625389021
+          },
+          "worst_support": {
+            "index": 54,
+            "normalized": -0.846442024577018,
+            "raw": -8.936528105677656e-05,
+            "triple": [
+              3,
+              4,
+              0
+            ]
+          }
+        },
+        "plausible_fit": false,
+        "scipy_message": "`ftol` termination condition is satisfied.",
+        "scipy_status": 2,
+        "scipy_success": true,
+        "seed": 109085899,
+        "stage": "joint_penalty_w100"
+      },
+      "detail": {
+        "coordinates": [
+          {
+            "aliases": [
+              "a0",
+              "t",
+              "s4",
+              "z4",
+              "be"
+            ],
+            "quotient_index": 0,
+            "x": 0.0,
+            "y": 0.0
+          },
+          {
+            "aliases": [
+              "bz",
+              "r4",
+              "e2"
+            ],
+            "quotient_index": 1,
+            "x": 1.0,
+            "y": 0.0
+          },
+          {
+            "aliases": [
+              "q"
+            ],
+            "quotient_index": 2,
+            "x": 0.6556363202582719,
+            "y": 0.4654821942405968
+          },
+          {
+            "aliases": [
+              "z"
+            ],
+            "quotient_index": 3,
+            "x": 0.3427110783109719,
+            "y": 0.4600179173983525
+          },
+          {
+            "aliases": [
+              "a1",
+              "r3",
+              "escape"
+            ],
+            "quotient_index": 4,
+            "x": 0.342894554944203,
+            "y": 0.460003436564027
+          },
+          {
+            "aliases": [
+              "p2"
+            ],
+            "quotient_index": 5,
+            "x": 0.34300980004730397,
+            "y": 0.45996976224686903
+          },
+          {
+            "aliases": [
+              "b1"
+            ],
+            "quotient_index": 6,
+            "x": 0.3431385062477113,
+            "y": 0.4599442571973823
+          },
+          {
+            "aliases": [
+              "r1",
+              "bs",
+              "e3"
+            ],
+            "quotient_index": 7,
+            "x": 0.34318386760289477,
+            "y": 0.4599525481781668
+          },
+          {
+            "aliases": [
+              "p1"
+            ],
+            "quotient_index": 8,
+            "x": 0.10250713138611192,
+            "y": 0.45560873167650956
+          },
+          {
+            "aliases": [
+              "source"
+            ],
+            "quotient_index": 9,
+            "x": 0.10251084581091985,
+            "y": 0.45559243588544546
+          },
+          {
+            "aliases": [
+              "b2"
+            ],
+            "quotient_index": 10,
+            "x": 0.10256870566151385,
+            "y": 0.4555765382525235
+          },
+          {
+            "aliases": [
+              "z2"
+            ],
+            "quotient_index": 11,
+            "x": 0.10266579943124371,
+            "y": 0.4555838380783914
+          },
+          {
+            "aliases": [
+              "r2",
+              "e4"
+            ],
+            "quotient_index": 12,
+            "x": -0.17264889759329677,
+            "y": 0.45065381360846213
+          },
+          {
+            "aliases": [
+              "a2"
+            ],
+            "quotient_index": 13,
+            "x": -0.17264829170147686,
+            "y": 0.45065482843854476
+          },
+          {
+            "aliases": [
+              "s3"
+            ],
+            "quotient_index": 14,
+            "x": -0.17265048846039036,
+            "y": 0.45065578990568095
+          },
+          {
+            "aliases": [
+              "p3"
+            ],
+            "quotient_index": 15,
+            "x": -0.16319418489858023,
+            "y": 0.42607711426779665
+          },
+          {
+            "aliases": [
+              "p4"
+            ],
+            "quotient_index": 16,
+            "x": -0.1567209653679899,
+            "y": 0.4092436582481854
+          },
+          {
+            "aliases": [
+              "s2"
+            ],
+            "quotient_index": 17,
+            "x": -0.11029917967515775,
+            "y": 0.28808623450967813
+          },
+          {
+            "aliases": [
+              "other"
+            ],
+            "quotient_index": 18,
+            "x": -0.10972041201166693,
+            "y": 0.2865846310939388
+          },
+          {
+            "aliases": [
+              "z3"
+            ],
+            "quotient_index": 19,
+            "x": 2.576991610621058e-05,
+            "y": 1.5985684804482614e-05
+          }
+        ],
+        "equation_residuals": [
+          {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "index": 0,
+            "residual": 0.6708201625389021
+          },
+          {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                7
+              ]
+            ],
+            "index": 1,
+            "residual": 0.67066848644153
+          },
+          {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            "index": 2,
+            "residual": 0.3563547890973572
+          },
+          {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                11
+              ]
+            ],
+            "index": 3,
+            "residual": -0.012765301028607068
+          },
+          {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                19
+              ]
+            ],
+            "index": 4,
+            "residual": 5.153891258180554e-05
+          },
+          {
+            "equation": [
+              [
+                0,
+                4
+              ],
+              [
+                0,
+                7
+              ]
+            ],
+            "index": 5,
+            "residual": -0.00015167609737215537
+          },
+          {
+            "equation": [
+              [
+                0,
+                4
+              ],
+              [
+                0,
+                12
+              ]
+            ],
+            "index": 6,
+            "residual": 0.09628333590106666
+          },
+          {
+            "equation": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                13
+              ]
+            ],
+            "index": 7,
+            "residual": 0.06330801425968308
+          },
+          {
+            "equation": [
+              [
+                0,
+                5
+              ],
+              [
+                0,
+                8
+              ]
+            ],
+            "index": 8,
+            "residual": 0.11114087674504536
+          },
+          {
+            "equation": [
+              [
+                0,
+                6
+              ],
+              [
+                6,
+                7
+              ]
+            ],
+            "index": 9,
+            "residual": 0.32929275207236947
+          },
+          {
+            "equation": [
+              [
+                0,
+                6
+              ],
+              [
+                6,
+                16
+              ]
+            ],
+            "index": 10,
+            "residual": 0.07686271210102702
+          },
+          {
+            "equation": [
+              [
+                0,
+                7
+              ],
+              [
+                0,
+                12
+              ]
+            ],
+            "index": 11,
+            "residual": 0.09643501199843882
+          },
+          {
+            "equation": [
+              [
+                0,
+                7
+              ],
+              [
+                7,
+                9
+              ]
+            ],
+            "index": 12,
+            "residual": 0.27138899956078444
+          },
+          {
+            "equation": [
+              [
+                0,
+                7
+              ],
+              [
+                7,
+                14
+              ]
+            ],
+            "index": 13,
+            "residual": 0.06316000094886898
+          },
+          {
+            "equation": [
+              [
+                0,
+                7
+              ],
+              [
+                7,
+                17
+              ]
+            ],
+            "index": 14,
+            "residual": 0.09414660961588628
+          },
+          {
+            "equation": [
+              [
+                0,
+                8
+              ],
+              [
+                0,
+                15
+              ]
+            ],
+            "index": 15,
+            "residual": 0.009912979077402267
+          },
+          {
+            "equation": [
+              [
+                0,
+                8
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "index": 16,
+            "residual": 0.026045195562655027
+          },
+          {
+            "equation": [
+              [
+                0,
+                10
+              ],
+              [
+                3,
+                10
+              ]
+            ],
+            "index": 17,
+            "residual": 0.16038223659680306
+          },
+          {
+            "equation": [
+              [
+                0,
+                10
+              ],
+              [
+                7,
+                10
+              ]
+            ],
+            "index": 18,
+            "residual": 0.16015551596828495
+          },
+          {
+            "equation": [
+              [
+                0,
+                10
+              ],
+              [
+                10,
+                12
+              ]
+            ],
+            "index": 19,
+            "residual": 0.14230135922798767
+          },
+          {
+            "equation": [
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                11
+              ]
+            ],
+            "index": 20,
+            "residual": -0.36912009012596425
+          },
+          {
+            "equation": [
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                19
+              ]
+            ],
+            "index": 21,
+            "residual": -0.3563032501847754
+          },
+          {
+            "equation": [
+              [
+                1,
+                6
+              ],
+              [
+                6,
+                14
+              ]
+            ],
+            "index": 22,
+            "residual": 0.3768911790167166
+          },
+          {
+            "equation": [
+              [
+                1,
+                6
+              ],
+              [
+                6,
+                19
+              ]
+            ],
+            "index": 23,
+            "residual": 0.3137553769338307
+          },
+          {
+            "equation": [
+              [
+                1,
+                11
+              ],
+              [
+                1,
+                19
+              ]
+            ],
+            "index": 24,
+            "residual": 0.012816839941188873
+          },
+          {
+            "equation": [
+              [
+                2,
+                6
+              ],
+              [
+                5,
+                6
+              ]
+            ],
+            "index": 25,
+            "residual": 0.09768553529227995
+          },
+          {
+            "equation": [
+              [
+                2,
+                6
+              ],
+              [
+                6,
+                8
+              ]
+            ],
+            "index": 26,
+            "residual": 0.03976329715874782
+          },
+          {
+            "equation": [
+              [
+                2,
+                6
+              ],
+              [
+                6,
+                18
+              ]
+            ],
+            "index": 27,
+            "residual": -0.13744920730170646
+          },
+          {
+            "equation": [
+              [
+                3,
+                10
+              ],
+              [
+                7,
+                10
+              ]
+            ],
+            "index": 28,
+            "residual": -0.00022672062851809838
+          },
+          {
+            "equation": [
+              [
+                3,
+                10
+              ],
+              [
+                10,
+                12
+              ]
+            ],
+            "index": 29,
+            "residual": -0.018080877368815383
+          },
+          {
+            "equation": [
+              [
+                4,
+                10
+              ],
+              [
+                10,
+                14
+              ]
+            ],
+            "index": 30,
+            "residual": -0.017993707315297133
+          },
+          {
+            "equation": [
+              [
+                4,
+                10
+              ],
+              [
+                10,
+                16
+              ]
+            ],
+            "index": 31,
+            "residual": -0.011601758009978438
+          },
+          {
+            "equation": [
+              [
+                5,
+                6
+              ],
+              [
+                6,
+                8
+              ]
+            ],
+            "index": 32,
+            "residual": -0.057922238133532124
+          },
+          {
+            "equation": [
+              [
+                5,
+                6
+              ],
+              [
+                6,
+                18
+              ]
+            ],
+            "index": 33,
+            "residual": -0.2351347425939864
+          },
+          {
+            "equation": [
+              [
+                6,
+                7
+              ],
+              [
+                6,
+                16
+              ]
+            ],
+            "index": 34,
+            "residual": -0.25243003997134245
+          },
+          {
+            "equation": [
+              [
+                6,
+                8
+              ],
+              [
+                6,
+                18
+              ]
+            ],
+            "index": 35,
+            "residual": -0.17721250446045428
+          },
+          {
+            "equation": [
+              [
+                6,
+                14
+              ],
+              [
+                6,
+                19
+              ]
+            ],
+            "index": 36,
+            "residual": -0.06313580208288588
+          },
+          {
+            "equation": [
+              [
+                7,
+                9
+              ],
+              [
+                7,
+                14
+              ]
+            ],
+            "index": 37,
+            "residual": -0.20822899861191546
+          },
+          {
+            "equation": [
+              [
+                7,
+                9
+              ],
+              [
+                7,
+                17
+              ]
+            ],
+            "index": 38,
+            "residual": -0.17724238994489816
+          },
+          {
+            "equation": [
+              [
+                7,
+                10
+              ],
+              [
+                10,
+                12
+              ]
+            ],
+            "index": 39,
+            "residual": -0.017854156740297285
+          },
+          {
+            "equation": [
+              [
+                7,
+                13
+              ],
+              [
+                7,
+                16
+              ]
+            ],
+            "index": 40,
+            "residual": 0.013693030619388147
+          },
+          {
+            "equation": [
+              [
+                7,
+                13
+              ],
+              [
+                7,
+                19
+              ]
+            ],
+            "index": 41,
+            "residual": -0.06312985736125887
+          },
+          {
+            "equation": [
+              [
+                7,
+                14
+              ],
+              [
+                7,
+                17
+              ]
+            ],
+            "index": 42,
+            "residual": 0.0309866086670173
+          },
+          {
+            "equation": [
+              [
+                7,
+                16
+              ],
+              [
+                7,
+                19
+              ]
+            ],
+            "index": 43,
+            "residual": -0.07682288798064701
+          },
+          {
+            "equation": [
+              [
+                8,
+                10
+              ],
+              [
+                10,
+                13
+              ]
+            ],
+            "index": 44,
+            "residual": -0.0757686140371855
+          },
+          {
+            "equation": [
+              [
+                8,
+                10
+              ],
+              [
+                10,
+                15
+              ]
+            ],
+            "index": 45,
+            "residual": -0.07150012518647926
+          },
+          {
+            "equation": [
+              [
+                10,
+                13
+              ],
+              [
+                10,
+                15
+              ]
+            ],
+            "index": 46,
+            "residual": 0.004268488850706242
+          },
+          {
+            "equation": [
+              [
+                10,
+                14
+              ],
+              [
+                10,
+                16
+              ]
+            ],
+            "index": 47,
+            "residual": 0.006391949305318695
+          }
+        ],
+        "metrics": {
+          "degenerate_support_denominator_count": 0,
+          "equation_l2": 1.4575918786004045,
+          "equation_max_abs": 0.6708201625389021,
+          "equation_rms": 0.21038526586963896,
+          "maximum_absolute_coordinate": 1.0,
+          "minimum_pair_distance": 1.1819411973763773e-06,
+          "nonpositive_support_count": 172,
+          "normalized_support_min": -0.9989039438564014,
+          "raw_support_min": -8.936528105677656e-05,
+          "raw_support_quantiles": {
+            "q00": -8.936528105677656e-05,
+            "q01": -6.794784064105452e-05,
+            "q05": -3.250864342056686e-05,
+            "q100": 0.4654821942405968,
+            "q50": 2.0949860937086876e-09,
+            "q95": 0.40966237846677805
+          },
+          "signed_polygon_area": 0.42066458636268944,
+          "worst_equation": {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "index": 0,
+            "residual": 0.6708201625389021
+          },
+          "worst_support": {
+            "index": 54,
+            "normalized": -0.846442024577018,
+            "raw": -8.936528105677656e-05,
+            "triple": [
+              3,
+              4,
+              0
+            ]
+          }
+        },
+        "twenty_smallest_supports": [
+          {
+            "index": 54,
+            "normalized": -0.846442024577018,
+            "raw": -8.936528105677656e-05,
+            "triple": [
+              3,
+              4,
+              0
+            ]
+          },
+          {
+            "index": 71,
+            "normalized": -0.8464523425060085,
+            "raw": -8.936197488726303e-05,
+            "triple": [
+              3,
+              4,
+              19
+            ]
+          },
+          {
+            "index": 55,
+            "normalized": -0.5071531818134309,
+            "raw": -7.488444673124008e-05,
+            "triple": [
+              3,
+              4,
+              1
+            ]
+          },
+          {
+            "index": 90,
+            "normalized": -0.9025557849373558,
+            "raw": -6.794944232569973e-05,
+            "triple": [
+              5,
+              6,
+              0
+            ]
+          },
+          {
+            "index": 107,
+            "normalized": -0.9025641162095592,
+            "raw": -6.794672760596208e-05,
+            "triple": [
+              5,
+              6,
+              19
+            ]
+          },
+          {
+            "index": 72,
+            "normalized": -0.9372012836345209,
+            "raw": -6.455988346854164e-05,
+            "triple": [
+              4,
+              5,
+              0
+            ]
+          },
+          {
+            "index": 89,
+            "normalized": -0.9372080362651947,
+            "raw": -6.455717341232012e-05,
+            "triple": [
+              4,
+              5,
+              19
+            ]
+          },
+          {
+            "index": 181,
+            "normalized": -0.5182359286816829,
+            "raw": -5.078473567653144e-05,
+            "triple": [
+              10,
+              11,
+              1
+            ]
+          },
+          {
+            "index": 180,
+            "normalized": -0.9563678208486674,
+            "raw": -4.348490980858569e-05,
+            "triple": [
+              10,
+              11,
+              0
+            ]
+          },
+          {
+            "index": 197,
+            "normalized": -0.9563813528957298,
+            "raw": -4.348354581408652e-05,
+            "triple": [
+              10,
+              11,
+              19
+            ]
+          },
+          {
+            "index": 91,
+            "normalized": -0.40334899622224435,
+            "raw": -4.244439283897046e-05,
+            "triple": [
+              5,
+              6,
+              1
+            ]
+          },
+          {
+            "index": 70,
+            "normalized": -0.4302956462906837,
+            "raw": -3.837254091635601e-05,
+            "triple": [
+              3,
+              4,
+              18
+            ]
+          },
+          {
+            "index": 69,
+            "normalized": -0.427295219701946,
+            "raw": -3.8105412815835825e-05,
+            "triple": [
+              3,
+              4,
+              17
+            ]
+          },
+          {
+            "index": 201,
+            "normalized": -0.0005647887258036865,
+            "raw": -3.733810578980686e-05,
+            "triple": [
+              11,
+              12,
+              3
+            ]
+          },
+          {
+            "index": 88,
+            "normalized": -0.6053285869114102,
+            "raw": -3.5227168063752415e-05,
+            "triple": [
+              4,
+              5,
+              18
+            ]
+          },
+          {
+            "index": 87,
+            "normalized": -0.6026825240654329,
+            "raw": -3.5073605229149933e-05,
+            "triple": [
+              4,
+              5,
+              17
+            ]
+          },
+          {
+            "index": 106,
+            "normalized": -0.5323514828952198,
+            "raw": -3.386264790052274e-05,
+            "triple": [
+              5,
+              6,
+              18
+            ]
+          },
+          {
+            "index": 105,
+            "normalized": -0.5295385557720728,
+            "raw": -3.36841437282629e-05,
+            "triple": [
+              5,
+              6,
+              17
+            ]
+          },
+          {
+            "index": 202,
+            "normalized": -0.0004904266328317608,
+            "raw": -3.24467749833197e-05,
+            "triple": [
+              11,
+              12,
+              4
+            ]
+          },
+          {
+            "index": 73,
+            "normalized": -0.32070440134663225,
+            "raw": -3.0885566310591533e-05,
+            "triple": [
+              4,
+              5,
+              1
+            ]
+          }
+        ]
+      }
+    },
+    "best_strict_order_candidate": {
+      "attempt": {
+        "attempt": 17,
+        "elapsed_seconds": 0.6974574590567499,
+        "evaluations_or_iterations": 116,
+        "metrics": {
+          "degenerate_support_denominator_count": 0,
+          "equation_l2": 1.4690891154670118,
+          "equation_max_abs": 0.6687041188444741,
+          "equation_rms": 0.2120447490696071,
+          "maximum_absolute_coordinate": 1.0,
+          "minimum_pair_distance": 5.5474250231710975e-06,
+          "nonpositive_support_count": 0,
+          "normalized_support_min": 2.3956264518576724e-06,
+          "raw_support_min": 9.999999979852514e-07,
+          "raw_support_quantiles": {
+            "q00": 9.999999979852514e-07,
+            "q01": 9.999999991566203e-07,
+            "q05": 9.999999999891406e-07,
+            "q100": 0.4812633260574728,
+            "q50": 0.0002398320327768823,
+            "q95": 0.23294880128648804
+          },
+          "signed_polygon_area": 0.29765048386516835,
+          "worst_equation": {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                7
+              ]
+            ],
+            "index": 1,
+            "residual": 0.6687041188444741
+          },
+          "worst_support": {
+            "index": 133,
+            "normalized": 1.4531343717460385e-05,
+            "raw": 9.999999979852514e-07,
+            "triple": [
+              7,
+              8,
+              9
+            ]
+          }
+        },
+        "plausible_fit": false,
+        "scipy_message": "Optimization terminated successfully",
+        "scipy_status": 0,
+        "scipy_success": true,
+        "seed": 118876455,
+        "stage": "strict_constrained_slsqp"
+      },
+      "detail": {
+        "coordinates": [
+          {
+            "aliases": [
+              "a0",
+              "t",
+              "s4",
+              "z4",
+              "be"
+            ],
+            "quotient_index": 0,
+            "x": 0.0,
+            "y": 0.0
+          },
+          {
+            "aliases": [
+              "bz",
+              "r4",
+              "e2"
+            ],
+            "quotient_index": 1,
+            "x": 1.0,
+            "y": 0.0
+          },
+          {
+            "aliases": [
+              "q"
+            ],
+            "quotient_index": 2,
+            "x": 0.588752870579057,
+            "y": 0.2954322714324236
+          },
+          {
+            "aliases": [
+              "z"
+            ],
+            "quotient_index": 3,
+            "x": 0.3304870144443196,
+            "y": 0.4809632163383717
+          },
+          {
+            "aliases": [
+              "a1",
+              "r3",
+              "escape"
+            ],
+            "quotient_index": 4,
+            "x": 0.3300638608104218,
+            "y": 0.4812633260574728
+          },
+          {
+            "aliases": [
+              "p2"
+            ],
+            "quotient_index": 5,
+            "x": 0.3276993870859505,
+            "y": 0.4805770541423684
+          },
+          {
+            "aliases": [
+              "b1"
+            ],
+            "quotient_index": 6,
+            "x": 0.3254564875829756,
+            "y": 0.47950314119886894
+          },
+          {
+            "aliases": [
+              "r1",
+              "bs",
+              "e3"
+            ],
+            "quotient_index": 7,
+            "x": 0.3217264983784303,
+            "y": 0.4772713498594691
+          },
+          {
+            "aliases": [
+              "p1"
+            ],
+            "quotient_index": 8,
+            "x": 0.10106250873223249,
+            "y": 0.3449717763356982
+          },
+          {
+            "aliases": [
+              "source"
+            ],
+            "quotient_index": 9,
+            "x": 0.0923274326853492,
+            "y": 0.339730110771902
+          },
+          {
+            "aliases": [
+              "b2"
+            ],
+            "quotient_index": 10,
+            "x": 0.08890910830092172,
+            "y": 0.33756439256746845
+          },
+          {
+            "aliases": [
+              "z2"
+            ],
+            "quotient_index": 11,
+            "x": 0.08499015743888878,
+            "y": 0.334788955786982
+          },
+          {
+            "aliases": [
+              "r2",
+              "e4"
+            ],
+            "quotient_index": 12,
+            "x": 0.08168584542999191,
+            "y": 0.33219364152005487
+          },
+          {
+            "aliases": [
+              "a2"
+            ],
+            "quotient_index": 13,
+            "x": -0.07693872259305207,
+            "y": 0.20730210483515712
+          },
+          {
+            "aliases": [
+              "s3"
+            ],
+            "quotient_index": 14,
+            "x": -0.07818590290853437,
+            "y": 0.20631384514702927
+          },
+          {
+            "aliases": [
+              "p3"
+            ],
+            "quotient_index": 15,
+            "x": -0.07855947007625884,
+            "y": 0.2052160236406472
+          },
+          {
+            "aliases": [
+              "p4"
+            ],
+            "quotient_index": 16,
+            "x": -0.07833067742882506,
+            "y": 0.20321149386438295
+          },
+          {
+            "aliases": [
+              "s2"
+            ],
+            "quotient_index": 17,
+            "x": -0.07747052981354895,
+            "y": 0.20004621947761628
+          },
+          {
+            "aliases": [
+              "other"
+            ],
+            "quotient_index": 18,
+            "x": -0.07639948589537011,
+            "y": 0.19726745471808457
+          },
+          {
+            "aliases": [
+              "z3"
+            ],
+            "quotient_index": 19,
+            "x": -5.45654876162635e-06,
+            "y": 9.99999999849402e-07
+          }
+        ],
+        "equation_residuals": [
+          {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "index": 0,
+            "residual": 0.6594434587790171
+          },
+          {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                7
+              ]
+            ],
+            "index": 1,
+            "residual": 0.6687041188444741
+          },
+          {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                3
+              ]
+            ],
+            "index": 2,
+            "residual": 0.32042674670176796
+          },
+          {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                11
+              ]
+            ],
+            "index": 3,
+            "residual": 0.050673343099352786
+          },
+          {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                19
+              ]
+            ],
+            "index": 4,
+            "residual": -1.091312829748503e-05
+          },
+          {
+            "equation": [
+              [
+                0,
+                4
+              ],
+              [
+                0,
+                7
+              ]
+            ],
+            "index": 5,
+            "residual": 0.009260660065457005
+          },
+          {
+            "equation": [
+              [
+                0,
+                4
+              ],
+              [
+                0,
+                12
+              ]
+            ],
+            "index": 6,
+            "residual": 0.22353134841101563
+          },
+          {
+            "equation": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                13
+              ]
+            ],
+            "index": 7,
+            "residual": 0.09985068759025856
+          },
+          {
+            "equation": [
+              [
+                0,
+                5
+              ],
+              [
+                0,
+                8
+              ]
+            ],
+            "index": 8,
+            "residual": 0.20912203612520494
+          },
+          {
+            "equation": [
+              [
+                0,
+                6
+              ],
+              [
+                6,
+                7
+              ]
+            ],
+            "index": 9,
+            "residual": 0.3358262940173813
+          },
+          {
+            "equation": [
+              [
+                0,
+                6
+              ],
+              [
+                6,
+                16
+              ]
+            ],
+            "index": 10,
+            "residual": 0.09646403871435888
+          },
+          {
+            "equation": [
+              [
+                0,
+                7
+              ],
+              [
+                0,
+                12
+              ]
+            ],
+            "index": 11,
+            "residual": 0.21427068834555862
+          },
+          {
+            "equation": [
+              [
+                0,
+                7
+              ],
+              [
+                7,
+                9
+              ]
+            ],
+            "index": 12,
+            "residual": 0.259754357364924
+          },
+          {
+            "equation": [
+              [
+                0,
+                7
+              ],
+              [
+                7,
+                14
+              ]
+            ],
+            "index": 13,
+            "residual": 0.09794798309242775
+          },
+          {
+            "equation": [
+              [
+                0,
+                7
+              ],
+              [
+                7,
+                17
+              ]
+            ],
+            "index": 14,
+            "residual": 0.0950838409229827
+          },
+          {
+            "equation": [
+              [
+                0,
+                8
+              ],
+              [
+                0,
+                15
+              ]
+            ],
+            "index": 15,
+            "residual": 0.08093395044191828
+          },
+          {
+            "equation": [
+              [
+                0,
+                8
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "index": 16,
+            "residual": 0.08178855087440676
+          },
+          {
+            "equation": [
+              [
+                0,
+                10
+              ],
+              [
+                3,
+                10
+              ]
+            ],
+            "index": 17,
+            "residual": 0.042931441272802046
+          },
+          {
+            "equation": [
+              [
+                0,
+                10
+              ],
+              [
+                7,
+                10
+              ]
+            ],
+            "index": 18,
+            "residual": 0.04813257763001727
+          },
+          {
+            "equation": [
+              [
+                0,
+                10
+              ],
+              [
+                10,
+                12
+              ]
+            ],
+            "index": 19,
+            "residual": 0.12177352817499312
+          },
+          {
+            "equation": [
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                11
+              ]
+            ],
+            "index": 20,
+            "residual": -0.2697534036024152
+          },
+          {
+            "equation": [
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                19
+              ]
+            ],
+            "index": 21,
+            "residual": -0.32043765983006545
+          },
+          {
+            "equation": [
+              [
+                1,
+                6
+              ],
+              [
+                6,
+                14
+              ]
+            ],
+            "index": 22,
+            "residual": 0.4473726416844786
+          },
+          {
+            "equation": [
+              [
+                1,
+                6
+              ],
+              [
+                6,
+                19
+              ]
+            ],
+            "index": 23,
+            "residual": 0.34908443207116874
+          },
+          {
+            "equation": [
+              [
+                1,
+                11
+              ],
+              [
+                1,
+                19
+              ]
+            ],
+            "index": 24,
+            "residual": -0.05068425622765027
+          },
+          {
+            "equation": [
+              [
+                2,
+                6
+              ],
+              [
+                5,
+                6
+              ]
+            ],
+            "index": 25,
+            "residual": 0.1032008865082042
+          },
+          {
+            "equation": [
+              [
+                2,
+                6
+              ],
+              [
+                6,
+                8
+              ]
+            ],
+            "index": 26,
+            "residual": 0.03475572451897957
+          },
+          {
+            "equation": [
+              [
+                2,
+                6
+              ],
+              [
+                6,
+                18
+              ]
+            ],
+            "index": 27,
+            "residual": -0.1379381357481136
+          },
+          {
+            "equation": [
+              [
+                3,
+                10
+              ],
+              [
+                7,
+                10
+              ]
+            ],
+            "index": 28,
+            "residual": 0.005201136357215225
+          },
+          {
+            "equation": [
+              [
+                3,
+                10
+              ],
+              [
+                10,
+                12
+              ]
+            ],
+            "index": 29,
+            "residual": 0.07884208690219108
+          },
+          {
+            "equation": [
+              [
+                4,
+                10
+              ],
+              [
+                10,
+                14
+              ]
+            ],
+            "index": 30,
+            "residual": 0.03365754917482973
+          },
+          {
+            "equation": [
+              [
+                4,
+                10
+              ],
+              [
+                10,
+                16
+              ]
+            ],
+            "index": 31,
+            "residual": 0.03278515082322977
+          },
+          {
+            "equation": [
+              [
+                5,
+                6
+              ],
+              [
+                6,
+                8
+              ]
+            ],
+            "index": 32,
+            "residual": -0.06844516198922464
+          },
+          {
+            "equation": [
+              [
+                5,
+                6
+              ],
+              [
+                6,
+                18
+              ]
+            ],
+            "index": 33,
+            "residual": -0.2411390222563178
+          },
+          {
+            "equation": [
+              [
+                6,
+                7
+              ],
+              [
+                6,
+                16
+              ]
+            ],
+            "index": 34,
+            "residual": -0.23936225530302244
+          },
+          {
+            "equation": [
+              [
+                6,
+                8
+              ],
+              [
+                6,
+                18
+              ]
+            ],
+            "index": 35,
+            "residual": -0.17269386026709316
+          },
+          {
+            "equation": [
+              [
+                6,
+                14
+              ],
+              [
+                6,
+                19
+              ]
+            ],
+            "index": 36,
+            "residual": -0.09828820961330986
+          },
+          {
+            "equation": [
+              [
+                7,
+                9
+              ],
+              [
+                7,
+                14
+              ]
+            ],
+            "index": 37,
+            "residual": -0.1618063742724963
+          },
+          {
+            "equation": [
+              [
+                7,
+                9
+              ],
+              [
+                7,
+                17
+              ]
+            ],
+            "index": 38,
+            "residual": -0.16467051644194136
+          },
+          {
+            "equation": [
+              [
+                7,
+                10
+              ],
+              [
+                10,
+                12
+              ]
+            ],
+            "index": 39,
+            "residual": 0.07364095054497585
+          },
+          {
+            "equation": [
+              [
+                7,
+                13
+              ],
+              [
+                7,
+                16
+              ]
+            ],
+            "index": 40,
+            "residual": -0.0033371969116867684
+          },
+          {
+            "equation": [
+              [
+                7,
+                13
+              ],
+              [
+                7,
+                19
+              ]
+            ],
+            "index": 41,
+            "residual": -0.09948108600501498
+          },
+          {
+            "equation": [
+              [
+                7,
+                14
+              ],
+              [
+                7,
+                17
+              ]
+            ],
+            "index": 42,
+            "residual": -0.0028641421694450553
+          },
+          {
+            "equation": [
+              [
+                7,
+                16
+              ],
+              [
+                7,
+                19
+              ]
+            ],
+            "index": 43,
+            "residual": -0.09614388909332822
+          },
+          {
+            "equation": [
+              [
+                8,
+                10
+              ],
+              [
+                10,
+                13
+              ]
+            ],
+            "index": 44,
+            "residual": -0.044271192141157975
+          },
+          {
+            "equation": [
+              [
+                8,
+                10
+              ],
+              [
+                10,
+                15
+              ]
+            ],
+            "index": 45,
+            "residual": -0.04535924102493023
+          },
+          {
+            "equation": [
+              [
+                10,
+                13
+              ],
+              [
+                10,
+                15
+              ]
+            ],
+            "index": 46,
+            "residual": -0.001088048883772258
+          },
+          {
+            "equation": [
+              [
+                10,
+                14
+              ],
+              [
+                10,
+                16
+              ]
+            ],
+            "index": 47,
+            "residual": -0.0008723983515999609
+          }
+        ],
+        "metrics": {
+          "degenerate_support_denominator_count": 0,
+          "equation_l2": 1.4690891154670118,
+          "equation_max_abs": 0.6687041188444741,
+          "equation_rms": 0.2120447490696071,
+          "maximum_absolute_coordinate": 1.0,
+          "minimum_pair_distance": 5.5474250231710975e-06,
+          "nonpositive_support_count": 0,
+          "normalized_support_min": 2.3956264518576724e-06,
+          "raw_support_min": 9.999999979852514e-07,
+          "raw_support_quantiles": {
+            "q00": 9.999999979852514e-07,
+            "q01": 9.999999991566203e-07,
+            "q05": 9.999999999891406e-07,
+            "q100": 0.4812633260574728,
+            "q50": 0.0002398320327768823,
+            "q95": 0.23294880128648804
+          },
+          "signed_polygon_area": 0.29765048386516835,
+          "worst_equation": {
+            "equation": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                7
+              ]
+            ],
+            "index": 1,
+            "residual": 0.6687041188444741
+          },
+          "worst_support": {
+            "index": 133,
+            "normalized": 1.4531343717460385e-05,
+            "raw": 9.999999979852514e-07,
+            "triple": [
+              7,
+              8,
+              9
+            ]
+          }
+        },
+        "twenty_smallest_supports": [
+          {
+            "index": 133,
+            "normalized": 1.4531343717460385e-05,
+            "raw": 9.999999979852514e-07,
+            "triple": [
+              7,
+              8,
+              9
+            ]
+          },
+          {
+            "index": 151,
+            "normalized": 0.0003815356515724811,
+            "raw": 9.99999997985685e-07,
+            "triple": [
+              8,
+              9,
+              7
+            ]
+          },
+          {
+            "index": 37,
+            "normalized": 6.2102960001118045e-06,
+            "raw": 9.999999987381214e-07,
+            "triple": [
+              2,
+              3,
+              1
+            ]
+          },
+          {
+            "index": 19,
+            "normalized": 2.3956264518576724e-06,
+            "raw": 9.999999987519992e-07,
+            "triple": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "index": 56,
+            "normalized": 0.006061752051656131,
+            "raw": 9.999999994377977e-07,
+            "triple": [
+              3,
+              4,
+              2
+            ]
+          },
+          {
+            "index": 38,
+            "normalized": 9.872842741677715e-06,
+            "raw": 9.999999994389497e-07,
+            "triple": [
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "index": 114,
+            "normalized": 0.0008793268978476276,
+            "raw": 9.999999998103973e-07,
+            "triple": [
+              6,
+              7,
+              8
+            ]
+          },
+          {
+            "index": 132,
+            "normalized": 0.0008941826177646918,
+            "raw": 9.999999998103973e-07,
+            "triple": [
+              7,
+              8,
+              6
+            ]
+          },
+          {
+            "index": 17,
+            "normalized": 0.18026381531476163,
+            "raw": 9.99999999849402e-07,
+            "triple": [
+              0,
+              1,
+              19
+            ]
+          },
+          {
+            "index": 342,
+            "normalized": 0.18026283170174043,
+            "raw": 9.999999998494022e-07,
+            "triple": [
+              19,
+              0,
+              1
+            ]
+          },
+          {
+            "index": 324,
+            "normalized": 2.234601117475309e-05,
+            "raw": 9.99999999863957e-07,
+            "triple": [
+              18,
+              19,
+              0
+            ]
+          },
+          {
+            "index": 359,
+            "normalized": 0.8521411630070683,
+            "raw": 9.99999999867282e-07,
+            "triple": [
+              19,
+              0,
+              18
+            ]
+          },
+          {
+            "index": 190,
+            "normalized": 0.023134566719447046,
+            "raw": 9.999999999248315e-07,
+            "triple": [
+              10,
+              11,
+              12
+            ]
+          },
+          {
+            "index": 208,
+            "normalized": 0.04956049124107707,
+            "raw": 9.999999999248332e-07,
+            "triple": [
+              11,
+              12,
+              10
+            ]
+          },
+          {
+            "index": 94,
+            "normalized": 0.16333220210047258,
+            "raw": 9.999999999808593e-07,
+            "triple": [
+              5,
+              6,
+              4
+            ]
+          },
+          {
+            "index": 76,
+            "normalized": 0.08235045564359329,
+            "raw": 9.999999999808593e-07,
+            "triple": [
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "index": 171,
+            "normalized": 0.027935842780328585,
+            "raw": 9.999999999884606e-07,
+            "triple": [
+              9,
+              10,
+              11
+            ]
+          },
+          {
+            "index": 189,
+            "normalized": 0.05145937237218905,
+            "raw": 9.999999999884623e-07,
+            "triple": [
+              10,
+              11,
+              9
+            ]
+          },
+          {
+            "index": 304,
+            "normalized": 0.048780417866593935,
+            "raw": 9.999999999891764e-07,
+            "triple": [
+              16,
+              17,
+              18
+            ]
+          },
+          {
+            "index": 322,
+            "normalized": 0.10237373485876336,
+            "raw": 9.999999999891768e-07,
+            "triple": [
+              17,
+              18,
+              16
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "self_test": {
+    "crossed_order_raw_support_min": -1.0,
+    "description": "a perturbed unit square refits its four distance equalities with positive support; a crossed vertex order has negative support",
+    "exact_square_metrics": {
+      "degenerate_support_denominator_count": 0,
+      "equation_l2": 0.0,
+      "equation_max_abs": 0.0,
+      "equation_rms": 0.0,
+      "maximum_absolute_coordinate": 1.0,
+      "minimum_pair_distance": 1.0,
+      "nonpositive_support_count": 0,
+      "normalized_support_min": 0.7071067811865475,
+      "raw_support_min": 1.0,
+      "raw_support_quantiles": {
+        "q00": 1.0,
+        "q01": 1.0,
+        "q05": 1.0,
+        "q100": 1.0,
+        "q50": 1.0,
+        "q95": 1.0
+      },
+      "signed_polygon_area": 1.0,
+      "worst_equation": {
+        "equation": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "index": 0,
+        "residual": 0.0
+      },
+      "worst_support": {
+        "index": 0,
+        "normalized": 0.7071067811865475,
+        "raw": 1.0,
+        "triple": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    "refit_metrics": {
+      "degenerate_support_denominator_count": 0,
+      "equation_l2": 0.0,
+      "equation_max_abs": 0.0,
+      "equation_rms": 0.0,
+      "maximum_absolute_coordinate": 1.0,
+      "minimum_pair_distance": 1.0,
+      "nonpositive_support_count": 0,
+      "normalized_support_min": 0.7071067811865474,
+      "raw_support_min": 0.9999999999999999,
+      "raw_support_quantiles": {
+        "q00": 0.9999999999999999,
+        "q01": 0.9999999999999999,
+        "q05": 0.9999999999999999,
+        "q100": 1.0,
+        "q50": 1.0,
+        "q95": 1.0
+      },
+      "signed_polygon_area": 1.0,
+      "worst_equation": {
+        "equation": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "index": 0,
+        "residual": 0.0
+      },
+      "worst_support": {
+        "index": 6,
+        "normalized": 0.7071067811865474,
+        "raw": 0.9999999999999999,
+        "triple": [
+          3,
+          0,
+          1
+        ]
+      }
+    },
+    "status": "PASS"
+  },
+  "source_validation": {
+    "alias_class_count": 20,
+    "assertion_counts": {
+      "false_row_disequalities": 0,
+      "gauge": 4,
+      "positive_row_equalities": 48,
+      "strict_convex_support": 360
+    },
+    "cegar_implementation": {
+      "current_sha256": "2bba611b5bd64bd038b4c0c3973c5772bac4433bcbcc81098fc347fa0c88bef8",
+      "fresh_replay_gate": "replay_survivor intentionally requires the recorded implementation hash; the immutable result/checkpoint/probe/SMT ledgers remain the numerical target when current cegar.py has moved",
+      "matches_recorded": false,
+      "recorded_sha256": "4a5278cb5da186e9b7c3ec39cb002d38d1a37ae84c1d76a02718cea1d2ba85c0"
+    },
+    "fresh_outer_replay_seconds": null,
+    "fresh_outer_replay_status": "SKIPPED_CURRENT_CEGAR_IMPLEMENTATION_DRIFT",
+    "fresh_replay_row_selection": {
+      "available": false,
+      "classification": "row truth values are pinned-model choices and need not be fixed by the pinned quotient/order constraints",
+      "fresh_positive_equation_count": null,
+      "matches_recorded_exact_probe": null,
+      "overlap_count": null,
+      "recorded_positive_equation_count": 48
+    },
+    "live_rebuilt_smt2_matches_recorded": true,
+    "live_rebuilt_smt2_sha256": "02ad0315200190370419e0ff7192ebd321922301cc17d7b6acf7facb922514ce",
+    "method": "recorded CEGAR result/checkpoint consistency and exact-probe input and SMT hash checks, imported normalize_classes validation, and live build_formula reconstruction from the recorded exact-probe positive equation list",
+    "positive_equation_count": 48,
+    "recorded_exact_formula_reason_unknown": "hard subprocess wall timeout",
+    "recorded_exact_formula_status": "UNKNOWN",
+    "status": "PASS"
+  },
+  "target": {
+    "alias_class_count": 20,
+    "alias_classes_in_order": [
+      [
+        "a0",
+        "t",
+        "s4",
+        "z4",
+        "be"
+      ],
+      [
+        "bz",
+        "r4",
+        "e2"
+      ],
+      [
+        "q"
+      ],
+      [
+        "z"
+      ],
+      [
+        "a1",
+        "r3",
+        "escape"
+      ],
+      [
+        "p2"
+      ],
+      [
+        "b1"
+      ],
+      [
+        "r1",
+        "bs",
+        "e3"
+      ],
+      [
+        "p1"
+      ],
+      [
+        "source"
+      ],
+      [
+        "b2"
+      ],
+      [
+        "z2"
+      ],
+      [
+        "r2",
+        "e4"
+      ],
+      [
+        "a2"
+      ],
+      [
+        "s3"
+      ],
+      [
+        "p3"
+      ],
+      [
+        "p4"
+      ],
+      [
+        "s2"
+      ],
+      [
+        "other"
+      ],
+      [
+        "z3"
+      ]
+    ],
+    "gauge": {
+      "q0": [
+        0.0,
+        0.0
+      ],
+      "q1": [
+        1.0,
+        0.0
+      ]
+    },
+    "positive_equation_count": 48,
+    "strict_support_count": 360
+  },
+  "terminal_status": "UNKNOWN_NO_FIT_FOUND",
+  "trust_warning": "Floating-point optimization is neither exact SAT nor UNSAT. No-fit-found is only UNKNOWN. The selected positive rows belong to one pinned outer SAT model and are not proved universal here."
+}

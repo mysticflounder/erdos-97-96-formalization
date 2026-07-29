@@ -1,0 +1,288 @@
+{
+  "terminal_status": "UNKNOWN_NO_FIT_FOUND",
+  "reason": "bounded deterministic multistart found no candidate meeting both the distance-equality tolerances and strict-convex margins; this does not certify infeasibility",
+  "target": {
+    "alias_class_count": 19,
+    "alias_classes_in_order": [
+      [
+        "t",
+        "z3"
+      ],
+      [
+        "q",
+        "s2"
+      ],
+      [
+        "e4"
+      ],
+      [
+        "e3"
+      ],
+      [
+        "other"
+      ],
+      [
+        "a0",
+        "z"
+      ],
+      [
+        "a1",
+        "s4",
+        "be"
+      ],
+      [
+        "p2"
+      ],
+      [
+        "source"
+      ],
+      [
+        "r1",
+        "z4",
+        "y"
+      ],
+      [
+        "b2",
+        "bz"
+      ],
+      [
+        "r2",
+        "b1",
+        "s3",
+        "z2"
+      ],
+      [
+        "p1",
+        "x"
+      ],
+      [
+        "a2",
+        "r3"
+      ],
+      [
+        "p4"
+      ],
+      [
+        "p3"
+      ],
+      [
+        "bs",
+        "r4"
+      ],
+      [
+        "e2"
+      ],
+      [
+        "escape"
+      ]
+    ],
+    "gauge": {
+      "q0": [
+        0.0,
+        0.0
+      ],
+      "q1": [
+        1.0,
+        0.0
+      ]
+    },
+    "positive_equation_count": 38,
+    "strict_support_count": 323
+  },
+  "search_summary": {
+    "budget_expired": false,
+    "completed_attempt_count": 72,
+    "completed_by_stage": {
+      "equality_only_least_squares": 24,
+      "joint_penalty_w10": 6,
+      "joint_penalty_w100": 6,
+      "joint_penalty_w3": 6,
+      "joint_penalty_w30": 6,
+      "strict_constrained_slsqp": 24
+    },
+    "interrupted_stage": null,
+    "plausible_candidate_count": 0
+  },
+  "selected_candidates": [
+    {
+      "stage": null,
+      "attempt": {
+        "attempt": 18,
+        "elapsed_seconds": 0.023055583937093616,
+        "evaluations_or_iterations": 53,
+        "metrics": {
+          "degenerate_support_denominator_count": 0,
+          "equation_l2": 3.962845931298438E-15,
+          "equation_max_abs": 1.7763568394002505E-15,
+          "equation_rms": 6.428584986974929E-16,
+          "maximum_absolute_coordinate": 3.536857338839264,
+          "minimum_pair_distance": 2.8492833092919057E-16,
+          "nonpositive_support_count": 164,
+          "normalized_support_min": -0.9999998404369215,
+          "raw_support_min": -5.0051572425931266,
+          "raw_support_quantiles": {
+            "q00": -5.0051572425931266,
+            "q01": -3.6219659663823704,
+            "q05": -2.732941075524105,
+            "q100": 5.848229882002512,
+            "q50": -3.3306690738754696E-16,
+            "q95": 3.1314278732868996
+          },
+          "signed_polygon_area": 1.5601226085767363,
+          "worst_equation": {
+            "equation": [
+              [
+                5,
+                7
+              ],
+              [
+                5,
+                12
+              ]
+            ],
+            "index": 16,
+            "residual": -1.7763568394002505E-15
+          },
+          "worst_support": {
+            "index": 205,
+            "normalized": -0.7372360123693547,
+            "raw": -5.0051572425931266,
+            "triple": [
+              12,
+              13,
+              1
+            ]
+          }
+        },
+        "plausible_fit": false,
+        "scipy_message": "`xtol` termination condition is satisfied.",
+        "scipy_status": 3,
+        "scipy_success": true,
+        "seed": 98981151,
+        "stage": "equality_only_least_squares"
+      },
+      "plausible_fit": null,
+      "metrics": null
+    },
+    {
+      "stage": null,
+      "attempt": {
+        "attempt": 4,
+        "elapsed_seconds": 0.0646763329859823,
+        "evaluations_or_iterations": 51,
+        "metrics": {
+          "degenerate_support_denominator_count": 0,
+          "equation_l2": 8.189064032124259E-7,
+          "equation_max_abs": 4.080288977076374E-7,
+          "equation_rms": 1.3284416050220096E-7,
+          "maximum_absolute_coordinate": 1.0013588946043344,
+          "minimum_pair_distance": 0.000002785926313065112,
+          "nonpositive_support_count": 73,
+          "normalized_support_min": -0.9999994641162562,
+          "raw_support_min": -0.0000014495713177896495,
+          "raw_support_quantiles": {
+            "q00": -0.0000014495713177896495,
+            "q01": -2.0476359606989206E-7,
+            "q05": -3.1223718937560714E-9,
+            "q100": 0.000006858994218875763,
+            "q50": 1.0846016980278104E-9,
+            "q95": 0.0000034987923533342608
+          },
+          "signed_polygon_area": 0.000004886661759947425,
+          "worst_equation": {
+            "equation": [
+              [
+                3,
+                11
+              ],
+              [
+                9,
+                11
+              ]
+            ],
+            "index": 13,
+            "residual": 4.080288977076374E-7
+          },
+          "worst_support": {
+            "index": 170,
+            "normalized": -0.0000057904144065232195,
+            "raw": -0.0000014495713177896495,
+            "triple": [
+              10,
+              11,
+              0
+            ]
+          }
+        },
+        "plausible_fit": false,
+        "scipy_message": "`ftol` termination condition is satisfied.",
+        "scipy_status": 2,
+        "scipy_success": true,
+        "seed": 107514964,
+        "stage": "joint_penalty_w3"
+      },
+      "plausible_fit": null,
+      "metrics": null
+    },
+    {
+      "stage": null,
+      "attempt": {
+        "attempt": 3,
+        "elapsed_seconds": 0.374470500042662,
+        "evaluations_or_iterations": 72,
+        "metrics": {
+          "degenerate_support_denominator_count": 0,
+          "equation_l2": 0.6994864174463533,
+          "equation_max_abs": 0.3138737529625403,
+          "equation_rms": 0.11347168069981324,
+          "maximum_absolute_coordinate": 1.012785034268115,
+          "minimum_pair_distance": 0.0028071422846894303,
+          "nonpositive_support_count": 0,
+          "normalized_support_min": 9.873757635179453E-7,
+          "raw_support_min": 9.997748561856794E-7,
+          "raw_support_quantiles": {
+            "q00": 9.997748561856794E-7,
+            "q01": 9.99831930588081E-7,
+            "q05": 9.999953223738498E-7,
+            "q100": 0.06194472799138545,
+            "q50": 0.00011561809829602803,
+            "q95": 0.03531692940529788
+          },
+          "signed_polygon_area": 0.033977393683132844,
+          "worst_equation": {
+            "equation": [
+              [
+                0,
+                10
+              ],
+              [
+                10,
+                11
+              ]
+            ],
+            "index": 2,
+            "residual": 0.3138737529625403
+          },
+          "worst_support": {
+            "index": 54,
+            "normalized": 0.0018510137652193604,
+            "raw": 9.997748561856794E-7,
+            "triple": [
+              3,
+              4,
+              5
+            ]
+          }
+        },
+        "plausible_fit": false,
+        "scipy_message": "Positive directional derivative for linesearch",
+        "scipy_status": 8,
+        "scipy_success": false,
+        "seed": 117410249,
+        "stage": "strict_constrained_slsqp"
+      },
+      "plausible_fit": null,
+      "metrics": null
+    }
+  ]
+}

@@ -1,0 +1,889 @@
+{
+  "apices": [
+    0,
+    5,
+    12
+  ],
+  "blockers": {
+    "0": 8,
+    "1": 7,
+    "10": 8,
+    "11": 6,
+    "12": 7,
+    "13": 14,
+    "14": 7,
+    "15": 8,
+    "16": 10,
+    "2": 10,
+    "3": 14,
+    "4": 16,
+    "5": 4,
+    "6": 8,
+    "7": 10,
+    "8": 6,
+    "9": 16
+  },
+  "caps": {
+    "first_opposite": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "second_opposite": [
+      0,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "surplus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "connectivity_refinements": 0,
+  "constraint_counts": {
+    "all_multi_point_radii_aligned": 15,
+    "apex_rich": 3,
+    "blocker_contains_source": 224,
+    "blocker_forbidden": 65,
+    "blocker_total": 17,
+    "blockers_distinct": 1,
+    "cap_center_row_le_two": 20,
+    "cap_endpoint_row_le_one": 6,
+    "center_zero_class_separate": 544,
+    "critical_no_qfree": 3360,
+    "critical_shell_eq_full_class": 3808,
+    "cross_omission_rectangle": 4,
+    "cycle_p_blocker": 1,
+    "cycle_p_choice": 1,
+    "cycle_p_omitted_by_second": 1,
+    "cycle_r_blocker": 1,
+    "cycle_r_choice": 1,
+    "cycle_r_omitted_by_first": 1,
+    "first_blocker_row_exact": 17,
+    "no_center_covers_all_apices": 17,
+    "not_robust_cover_card": 1,
+    "outside_first_cap_roles": 2,
+    "outside_points_distinct": 1,
+    "p1_blocker": 1,
+    "p2_blocker": 1,
+    "p_class_card_eq_four": 1,
+    "p_class_strict_trace": 6,
+    "p_radius_pair": 1,
+    "pair_bisector_centers": 136,
+    "partition_reflexive": 289,
+    "partition_symmetric": 2312,
+    "partition_transitive": 28560,
+    "q_blocker": 1,
+    "r1_blocker": 1,
+    "r2_blocker": 1,
+    "r_class_card_eq_four": 1,
+    "r_class_strict_trace": 6,
+    "r_radius_pair": 1,
+    "radii_distinct": 1,
+    "retained_sources_distinct": 1,
+    "role_bounds": 24,
+    "row_card_eq_four": 17,
+    "row_nonself": 17,
+    "row_one_radius": 2040,
+    "second_blocker_strict_trace": 6,
+    "second_blocker_target": 1,
+    "shared_pair_alternation": 9520,
+    "singleton_source_blocker": 1,
+    "singleton_strict_trace": 6,
+    "source_blocker_distinct": 2,
+    "source_omits_p_pair": 1,
+    "source_omits_r_pair": 1,
+    "strict_cap_roles": 7,
+    "two_circle_intersection": 136
+  },
+  "elapsed_seconds": 17.954499375075102,
+  "epistemic_status": "BOUNDED_COMBINATORIAL_SURVIVOR_NOT_EUCLIDEAN_NOT_LEAN",
+  "equality_classes": {
+    "0": [
+      [
+        0
+      ],
+      [
+        1,
+        6,
+        10,
+        12
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        8,
+        11,
+        14
+      ],
+      [
+        4
+      ],
+      [
+        5
+      ],
+      [
+        7
+      ],
+      [
+        9
+      ],
+      [
+        13
+      ],
+      [
+        15
+      ],
+      [
+        16
+      ]
+    ],
+    "1": [
+      [
+        0,
+        3
+      ],
+      [
+        1
+      ],
+      [
+        2,
+        13,
+        14
+      ],
+      [
+        4,
+        12
+      ],
+      [
+        5,
+        10,
+        11,
+        15
+      ],
+      [
+        6,
+        7,
+        8,
+        9,
+        16
+      ]
+    ],
+    "10": [
+      [
+        0
+      ],
+      [
+        1,
+        9
+      ],
+      [
+        2,
+        7,
+        12,
+        16
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5
+      ],
+      [
+        6
+      ],
+      [
+        8,
+        14,
+        15
+      ],
+      [
+        10
+      ],
+      [
+        11
+      ],
+      [
+        13
+      ]
+    ],
+    "11": [
+      [
+        0,
+        2,
+        6,
+        7,
+        9,
+        13,
+        14
+      ],
+      [
+        1
+      ],
+      [
+        3,
+        8,
+        10,
+        12
+      ],
+      [
+        4,
+        5,
+        15,
+        16
+      ],
+      [
+        11
+      ]
+    ],
+    "12": [
+      [
+        0,
+        2,
+        3,
+        8
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        4,
+        7,
+        14,
+        16
+      ],
+      [
+        5
+      ],
+      [
+        9
+      ],
+      [
+        10
+      ],
+      [
+        11
+      ],
+      [
+        12
+      ],
+      [
+        13
+      ],
+      [
+        15
+      ]
+    ],
+    "13": [
+      [
+        0
+      ],
+      [
+        1,
+        10
+      ],
+      [
+        2,
+        6,
+        8,
+        16
+      ],
+      [
+        3,
+        5,
+        9,
+        12,
+        14
+      ],
+      [
+        4,
+        7,
+        11,
+        15
+      ],
+      [
+        13
+      ]
+    ],
+    "14": [
+      [
+        0,
+        2,
+        8
+      ],
+      [
+        1
+      ],
+      [
+        3,
+        11,
+        13,
+        15
+      ],
+      [
+        4,
+        6,
+        10
+      ],
+      [
+        5
+      ],
+      [
+        7
+      ],
+      [
+        9
+      ],
+      [
+        12
+      ],
+      [
+        14
+      ],
+      [
+        16
+      ]
+    ],
+    "15": [
+      [
+        0,
+        1,
+        3,
+        4,
+        5,
+        10,
+        13,
+        14
+      ],
+      [
+        2,
+        9,
+        11
+      ],
+      [
+        6
+      ],
+      [
+        7
+      ],
+      [
+        8
+      ],
+      [
+        12
+      ],
+      [
+        15
+      ],
+      [
+        16
+      ]
+    ],
+    "16": [
+      [
+        0
+      ],
+      [
+        1,
+        8
+      ],
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        4,
+        9,
+        14,
+        15
+      ],
+      [
+        5
+      ],
+      [
+        6
+      ],
+      [
+        7
+      ],
+      [
+        10
+      ],
+      [
+        11
+      ],
+      [
+        12
+      ],
+      [
+        13
+      ],
+      [
+        16
+      ]
+    ],
+    "2": [
+      [
+        0,
+        1,
+        4,
+        6,
+        7,
+        8,
+        10,
+        11,
+        14
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        15
+      ],
+      [
+        5,
+        9,
+        12,
+        13
+      ],
+      [
+        16
+      ]
+    ],
+    "3": [
+      [
+        0,
+        16
+      ],
+      [
+        1
+      ],
+      [
+        2,
+        5,
+        6,
+        8,
+        13,
+        15
+      ],
+      [
+        3
+      ],
+      [
+        4
+      ],
+      [
+        7
+      ],
+      [
+        9
+      ],
+      [
+        10
+      ],
+      [
+        11,
+        14
+      ],
+      [
+        12
+      ]
+    ],
+    "4": [
+      [
+        0,
+        6,
+        16
+      ],
+      [
+        1,
+        5,
+        8,
+        10
+      ],
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        4
+      ],
+      [
+        7,
+        14
+      ],
+      [
+        9
+      ],
+      [
+        11
+      ],
+      [
+        12
+      ],
+      [
+        13
+      ],
+      [
+        15
+      ]
+    ],
+    "5": [
+      [
+        0,
+        6
+      ],
+      [
+        1,
+        4,
+        10,
+        13,
+        16
+      ],
+      [
+        2,
+        8,
+        11,
+        12
+      ],
+      [
+        3,
+        7,
+        15
+      ],
+      [
+        5
+      ],
+      [
+        9
+      ],
+      [
+        14
+      ]
+    ],
+    "6": [
+      [
+        0,
+        8,
+        11,
+        14
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        4,
+        10
+      ],
+      [
+        5
+      ],
+      [
+        6
+      ],
+      [
+        7,
+        16
+      ],
+      [
+        9
+      ],
+      [
+        12
+      ],
+      [
+        13
+      ],
+      [
+        15
+      ]
+    ],
+    "7": [
+      [
+        0
+      ],
+      [
+        1,
+        5,
+        12,
+        14
+      ],
+      [
+        2
+      ],
+      [
+        3,
+        4,
+        6
+      ],
+      [
+        7
+      ],
+      [
+        8,
+        9,
+        11
+      ],
+      [
+        10,
+        15
+      ],
+      [
+        13
+      ],
+      [
+        16
+      ]
+    ],
+    "8": [
+      [
+        0,
+        6,
+        10,
+        15
+      ],
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        4,
+        14
+      ],
+      [
+        5
+      ],
+      [
+        7,
+        12
+      ],
+      [
+        8
+      ],
+      [
+        9,
+        11
+      ],
+      [
+        13
+      ],
+      [
+        16
+      ]
+    ],
+    "9": [
+      [
+        0,
+        13
+      ],
+      [
+        1,
+        3,
+        7,
+        11
+      ],
+      [
+        2
+      ],
+      [
+        4
+      ],
+      [
+        5,
+        6,
+        15,
+        16
+      ],
+      [
+        8,
+        10
+      ],
+      [
+        9
+      ],
+      [
+        12
+      ],
+      [
+        14
+      ]
+    ]
+  },
+  "first_strict_cap": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "n": 17,
+  "not_robust_centers": [
+    4,
+    6,
+    7,
+    8,
+    10,
+    14,
+    16
+  ],
+  "omitted": [
+    "Euclidean coordinates and MEC/cap realizability",
+    "strict metric triangle and Kalmanson inequalities",
+    "full geometric content of noM44",
+    "theorem-bank cuts not derived directly in this script"
+  ],
+  "roles": {
+    "b1": 8,
+    "b2": 6,
+    "bsource": 16,
+    "cycle_p": 10,
+    "cycle_r": 11,
+    "other": 0,
+    "p1": 6,
+    "p2": 10,
+    "q": 15,
+    "r1": 11,
+    "r2": 8,
+    "source": 9
+  },
+  "rows": {
+    "0": [
+      1,
+      6,
+      10,
+      12
+    ],
+    "1": [
+      6,
+      7,
+      8,
+      16
+    ],
+    "10": [
+      2,
+      7,
+      12,
+      16
+    ],
+    "11": [
+      2,
+      6,
+      13,
+      14
+    ],
+    "12": [
+      0,
+      2,
+      3,
+      8
+    ],
+    "13": [
+      3,
+      5,
+      9,
+      12
+    ],
+    "14": [
+      3,
+      11,
+      13,
+      15
+    ],
+    "15": [
+      0,
+      1,
+      4,
+      13
+    ],
+    "16": [
+      4,
+      9,
+      14,
+      15
+    ],
+    "2": [
+      4,
+      7,
+      10,
+      11
+    ],
+    "3": [
+      5,
+      6,
+      13,
+      15
+    ],
+    "4": [
+      1,
+      5,
+      8,
+      10
+    ],
+    "5": [
+      4,
+      10,
+      13,
+      16
+    ],
+    "6": [
+      0,
+      8,
+      11,
+      14
+    ],
+    "7": [
+      1,
+      5,
+      12,
+      14
+    ],
+    "8": [
+      0,
+      6,
+      10,
+      15
+    ],
+    "9": [
+      1,
+      3,
+      7,
+      11
+    ]
+  },
+  "schema": "p97-aligned-singleton-second-nonbisector-outer-v1",
+  "status": "SAT",
+  "target": "second_blocker_nonbisector"
+}

@@ -1,0 +1,904 @@
+{
+  "checkpoint": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar-v6-robust-reuse.checkpoint.json",
+  "core_sizes": [
+    {
+      "initial": 5,
+      "iteration": 0,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 1,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 2,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 3,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 4,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 5,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 6,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 7,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 8,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 9,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 10,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 11,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 12,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 13,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 14,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 15,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 16,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 17,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 18,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 19,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 20,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 21,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 22,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 23,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 24,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 25,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 26,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 27,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 28,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 29,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 30,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 31,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 32,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 33,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 34,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 35,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 36,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 37,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 38,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 39,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 40,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 41,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 42,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 43,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 44,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 45,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 46,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 47,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 48,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 49,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 50,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 51,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 52,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 53,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 54,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 55,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 56,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 57,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 58,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 59,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 60,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 61,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 62,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 63,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 64,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 65,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 66,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 67,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 68,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 69,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 70,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 71,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 72,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 73,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 74,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 75,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 76,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 77,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 78,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 79,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 80,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 81,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 82,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 83,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 84,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 85,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 86,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 87,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 88,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 89,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 90,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 91,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 92,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 93,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 94,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 95,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 96,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 97,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 98,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 99,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 100,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 101,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 102,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 103,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 104,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 105,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 106,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 107,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 108,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 109,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 110,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 111,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 112,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 113,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 114,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 115,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 116,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 117,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 118,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 119,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 120,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 121,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 122,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 123,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    },
+    {
+      "initial": 5,
+      "iteration": 124,
+      "shrunk": 5,
+      "source": "proved-four-point-kalmanson-schema"
+    }
+  ],
+  "cuts": 125,
+  "elapsed_seconds": 37.17882658285089,
+  "epistemic_status": "INDUCED_NECESSARY_CONDITION_ONLY",
+  "escape_arm": "robust",
+  "named_occurrences": 26,
+  "opaque_or_oracular": [
+    "CounterexampleData.K4 outside the explicitly named exact shells",
+    "FullyDeletionRobustAt and tri-apex richness",
+    "minimality and the row-escape producer",
+    "noM44",
+    "MinimalUniqueFourCover and all carrier-wide cover/cardinality facts"
+  ],
+  "outer_constraint_counts": {
+    "aligned_named_trace": 21,
+    "apex_triple_exclusion": 23,
+    "apices_distinct": 1,
+    "canonical_blockers_distinct": 1,
+    "critical_shell_1": 1,
+    "critical_shell_2": 1,
+    "critical_shell_source": 1,
+    "distance_class_bounds": 650,
+    "first_apex_radius": 1,
+    "first_apex_rho": 1,
+    "first_cap_strict_interior_order": 14,
+    "first_outside_pair": 1,
+    "inside_outside_distinct": 20,
+    "mec_order_symmetry": 2,
+    "outside_cap_separation": 1,
+    "outside_first_closed_cap_order": 4,
+    "outside_first_strict_cap_order": 4,
+    "quotient_distance_incidence": 650,
+    "quotient_incidence_congruence": 7800,
+    "rank_bounds": 52,
+    "retained_disjoint_pairs": 1,
+    "retained_radii_distinct": 1,
+    "robust_escape_arm_opaque": 1,
+    "second_blocker_nonbisector": 1,
+    "second_outside_pair": 1,
+    "singleton_named_trace": 6,
+    "source_blocker_not_apices": 2,
+    "source_cross_pair_omissions": 2,
+    "z_blocker_branch": 1,
+    "z_blocker_not_first": 1,
+    "z_critical_shell": 1,
+    "z_new_from_first_pair": 2,
+    "z_reused_support": 8
+  },
+  "reason": "an induced quotient/order has a strict Kalmanson metric",
+  "required_row_incidence_atoms": 206,
+  "row_incidence_atoms": 339,
+  "schema": "p97-aligned-singleton-induced-metric-cegar-v6",
+  "scope_warning": "W is the quotient of named occurrences, not the full carrier D.A; exact-four exclusions range only over W.",
+  "stats": {
+    "banked_cuts": 125,
+    "direct_four_point_kalmanson_cuts": 125,
+    "inner_calls": 1,
+    "outer_calls": 126
+  },
+  "status": "ALIVE",
+  "survivor": {
+    "alias_classes_in_order": [
+      [
+        "a0"
+      ],
+      [
+        "s2"
+      ],
+      [
+        "z"
+      ],
+      [
+        "q"
+      ],
+      [
+        "r3"
+      ],
+      [
+        "a1"
+      ],
+      [
+        "source"
+      ],
+      [
+        "p1",
+        "s3"
+      ],
+      [
+        "s4"
+      ],
+      [
+        "r1",
+        "b1",
+        "z3"
+      ],
+      [
+        "b2",
+        "bz"
+      ],
+      [
+        "bs"
+      ],
+      [
+        "p2"
+      ],
+      [
+        "r2",
+        "z2"
+      ],
+      [
+        "a2"
+      ],
+      [
+        "other"
+      ],
+      [
+        "p4"
+      ],
+      [
+        "p3"
+      ],
+      [
+        "r4"
+      ],
+      [
+        "t",
+        "z4"
+      ]
+    ],
+    "inner_constraint_counts": {
+      "scale": 1,
+      "strict_kalmanson": 26164,
+      "strict_triangle": 7302,
+      "tracked_alias_distinct": 318,
+      "tracked_alias_equal": 7,
+      "tracked_row_incidence": 206
+    },
+    "iteration": 125,
+    "metric_sample": {
+      "d(a0,a1)": "1",
+      "d(a0,p1)": "699/568",
+      "d(a0,r1)": "95/71",
+      "d(b1,p1)": "393/284",
+      "d(b2,other)": "739/568",
+      "d(b2,q)": "747/568",
+      "d(b2,r1)": "787/568"
+    }
+  },
+  "trust_warning": "SAT/UNSAT is solver evidence for this induced encoding, not a Lean theorem or a Euclidean-coordinate realization.",
+  "z_branch": "reuse-second"
+}

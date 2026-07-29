@@ -1,0 +1,311 @@
+{
+  "core_sizes": [],
+  "cuts": 0,
+  "elapsed_seconds": 8.289472041185945,
+  "epistemic_status": "INDUCED_NECESSARY_CONDITION_ONLY",
+  "escape_arm": "critical",
+  "global_tier": "custom",
+  "implementation_sha256": "8927e371bafc056e6e2b2f6545f0ef51d665fd12263ea12b4135f005ef6bf89b",
+  "metadata": {
+    "cover_points": [
+      "escape"
+    ],
+    "escape_arm": "critical",
+    "global_k4_centers": [
+      "q"
+    ],
+    "global_tier": "custom",
+    "implementation_sha256": "8927e371bafc056e6e2b2f6545f0ef51d665fd12263ea12b4135f005ef6bf89b",
+    "named_occurrences": 55,
+    "names": [
+      "a0",
+      "a1",
+      "a2",
+      "p1",
+      "p2",
+      "r1",
+      "r2",
+      "q",
+      "other",
+      "z",
+      "t",
+      "source",
+      "b1",
+      "b2",
+      "bs",
+      "bz",
+      "s2",
+      "s3",
+      "s4",
+      "p3",
+      "p4",
+      "r3",
+      "r4",
+      "z2",
+      "z3",
+      "z4",
+      "x",
+      "y",
+      "be",
+      "escape",
+      "e2",
+      "e3",
+      "e4",
+      "cover_escape",
+      "cover_escape_2",
+      "cover_escape_3",
+      "cover_escape_4",
+      "rich6_a1_1",
+      "rich6_a1_2",
+      "rich6_a1_3",
+      "rich6_a1_4",
+      "rich6_a1_5",
+      "rich6_a1_6",
+      "rich4a_a1_1",
+      "rich4a_a1_2",
+      "rich4a_a1_3",
+      "rich4a_a1_4",
+      "rich4b_a1_1",
+      "rich4b_a1_2",
+      "rich4b_a1_3",
+      "rich4b_a1_4",
+      "global_k4_q_1",
+      "global_k4_q_2",
+      "global_k4_q_3",
+      "global_k4_q_4"
+    ],
+    "original_named_occurrences": 33,
+    "original_names": [
+      "a0",
+      "a1",
+      "a2",
+      "p1",
+      "p2",
+      "r1",
+      "r2",
+      "q",
+      "other",
+      "z",
+      "t",
+      "source",
+      "b1",
+      "b2",
+      "bs",
+      "bz",
+      "s2",
+      "s3",
+      "s4",
+      "p3",
+      "p4",
+      "r3",
+      "r4",
+      "z2",
+      "z3",
+      "z4",
+      "x",
+      "y",
+      "be",
+      "escape",
+      "e2",
+      "e3",
+      "e4"
+    ],
+    "outer_only": true,
+    "rich_apices": [
+      "a1"
+    ],
+    "robust_deletions": [],
+    "schema": "p97-aligned-singleton-induced-metric-cegar-v9-sound-projections",
+    "z_branch": "new"
+  },
+  "named_occurrences": 55,
+  "opaque_or_oracular": [
+    "carrier points outside the frozen original named snapshot",
+    "recursive FullyDeletionRobustAt obligations for generated witnesses",
+    "exact rich-class cardinality beyond selected-six/two-selected-four witnesses",
+    "MinimalUniqueFourCover beyond pointwise original-named covers",
+    "global K4 witnesses outside full tier and outside original named centers",
+    "cap cardinality witnesses not needed by these named projections",
+    "noM44"
+  ],
+  "outer_constraint_counts": {
+    "aligned_first_apex_k4_classification": 33,
+    "aligned_named_trace": 21,
+    "apex_triple_exclusion": 30,
+    "apices_distinct": 1,
+    "canonical_blockers_distinct": 1,
+    "conditional_named_shell_intersection": 66,
+    "conditional_rich_apex_shell_intersection": 36,
+    "critical_blocker_not_robust_apices": 9,
+    "critical_escape_exact4": 1,
+    "critical_shell_1": 1,
+    "critical_shell_2": 1,
+    "critical_shell_coherence": 6,
+    "critical_shell_source": 1,
+    "cross_retained_deletion_bound": 33,
+    "cross_retained_endpoints": 2,
+    "distance_class_bounds": 1485,
+    "escape_center_in_seed": 1,
+    "escape_outside_seed": 12,
+    "first_apex_radius": 1,
+    "first_apex_rho": 1,
+    "first_cap_strict_interior_order": 14,
+    "first_outside_pair": 1,
+    "global_k4_at_original_named_center": 1,
+    "inside_outside_distinct": 20,
+    "mec_order_symmetry": 2,
+    "minimality_cover_center_not_rich_apices": 3,
+    "minimality_original_named_unique4_cover": 1,
+    "outside_cap_separation": 1,
+    "outside_first_closed_cap_order": 4,
+    "outside_first_strict_cap_order": 4,
+    "quotient_diagonal_zero": 55,
+    "quotient_distance_incidence": 2970,
+    "rank_bounds": 55,
+    "retained_disjoint_pairs": 1,
+    "retained_radii_distinct": 1,
+    "rich_class_selected_six_or_two_selected_four": 1,
+    "second_blocker_nonbisector": 1,
+    "second_outside_pair": 1,
+    "singleton_named_trace": 6,
+    "source_cross_pair_omissions": 2,
+    "unique_shell_same_center_coherence": 10,
+    "z_blocker_branch": 1,
+    "z_blocker_not_first": 1,
+    "z_blocker_not_robust_apices": 3,
+    "z_critical_shell": 1,
+    "z_new_from_first_pair": 2
+  },
+  "outer_only": true,
+  "projected_facts": [
+    "producer-selected escape row in both arms; exact4 only in critical arm",
+    "robust deletion survival at every original named point using fresh rows",
+    "aligned first-apex K4 radius classification over original names",
+    "cross-retained source survival and post-deletion K4 bound",
+    "minimality unique4 cover for every original named point in full tier",
+    "global selected4 at original named centers lacking a supplied row in full tier",
+    "a1/a2 rich disjunction: selected-six or two distinct-radius selected4 rows",
+    "conditional two-circle intersections for every active named row"
+  ],
+  "reason": "the full named-occurrence incidence/order abstraction has a model; metric realizability was not checked",
+  "required_row_incidence_atoms": 3575,
+  "row_incidence_atoms": 3575,
+  "schema": "p97-aligned-singleton-induced-metric-cegar-v9-sound-projections",
+  "scope_warning": "The original snapshot is frozen before fresh witnesses are generated; witness-producing quantified projections do not recurse over generated witnesses, while exact-four exclusions range over all named occurrences.",
+  "stats": {
+    "outer_calls": 1
+  },
+  "status": "OUTER_SAT_INDUCED",
+  "survivor": {
+    "alias_classes_in_order": [
+      [
+        "s3",
+        "p4",
+        "z3",
+        "cover_escape",
+        "rich6_a1_2",
+        "rich6_a1_5",
+        "rich4b_a1_1",
+        "global_k4_q_3"
+      ],
+      [
+        "a0",
+        "cover_escape_3",
+        "rich6_a1_4",
+        "rich4b_a1_3"
+      ],
+      [
+        "cover_escape_4",
+        "rich4a_a1_3",
+        "global_k4_q_2"
+      ],
+      [
+        "bs",
+        "rich4a_a1_4"
+      ],
+      [
+        "other",
+        "z4",
+        "e2",
+        "cover_escape_2"
+      ],
+      [
+        "e3"
+      ],
+      [
+        "q"
+      ],
+      [
+        "escape"
+      ],
+      [
+        "r4",
+        "global_k4_q_1"
+      ],
+      [
+        "p3"
+      ],
+      [
+        "t",
+        "rich4b_a1_2"
+      ],
+      [
+        "a1"
+      ],
+      [
+        "source",
+        "rich4b_a1_4"
+      ],
+      [
+        "r2",
+        "y"
+      ],
+      [
+        "b1"
+      ],
+      [
+        "p1",
+        "be"
+      ],
+      [
+        "r1",
+        "s4",
+        "e4"
+      ],
+      [
+        "bz"
+      ],
+      [
+        "b2",
+        "z2",
+        "rich6_a1_3",
+        "rich6_a1_6",
+        "global_k4_q_4"
+      ],
+      [
+        "p2",
+        "x",
+        "rich6_a1_1"
+      ],
+      [
+        "s2"
+      ],
+      [
+        "rich4a_a1_2"
+      ],
+      [
+        "rich4a_a1_1"
+      ],
+      [
+        "a2",
+        "r3"
+      ],
+      [
+        "z"
+      ]
+    ],
+    "iteration": 0
+  },
+  "trust_warning": "SAT/UNSAT is solver evidence for this induced encoding, not a Lean theorem or a Euclidean-coordinate realization.",
+  "z_branch": "new"
+}

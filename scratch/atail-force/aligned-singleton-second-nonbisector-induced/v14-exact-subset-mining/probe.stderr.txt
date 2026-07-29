@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/euclidean_survivor_probe.py", line 728, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/euclidean_survivor_probe.py", line 577, in main
+    replay = replay_survivor(args.result, args.checkpoint, budget)
+  File "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/euclidean_survivor_probe.py", line 200, in replay_survivor
+    budget.remaining_ms()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/euclidean_survivor_probe.py", line 79, in remaining_ms
+    raise TimeoutError("global wall-clock budget expired")
+TimeoutError: global wall-clock budget expired

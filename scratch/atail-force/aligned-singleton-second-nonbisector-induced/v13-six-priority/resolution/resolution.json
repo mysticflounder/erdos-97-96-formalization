@@ -1,0 +1,1508 @@
+{
+  "alias_classes_in_order": [
+    [
+      "a0",
+      "escape"
+    ],
+    [
+      "a1",
+      "s3",
+      "p3",
+      "be"
+    ],
+    [
+      "r2",
+      "z4"
+    ],
+    [
+      "b2",
+      "bz"
+    ],
+    [
+      "s2"
+    ],
+    [
+      "p2"
+    ],
+    [
+      "b1"
+    ],
+    [
+      "p1",
+      "x"
+    ],
+    [
+      "s4"
+    ],
+    [
+      "source"
+    ],
+    [
+      "r1",
+      "z3",
+      "y"
+    ],
+    [
+      "a2",
+      "r3"
+    ],
+    [
+      "t",
+      "bs",
+      "z2"
+    ],
+    [
+      "e4"
+    ],
+    [
+      "p4"
+    ],
+    [
+      "z"
+    ],
+    [
+      "e2"
+    ],
+    [
+      "q"
+    ],
+    [
+      "other",
+      "r4",
+      "e3"
+    ]
+  ],
+  "cases": [
+    {
+      "base_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-1-base.smt2",
+      "base_smt2_sha256": "25684b05cb84442e500550bd13f02998e4e2cf18ae5e6de7527b674d46ee2e5f",
+      "coordinates": [
+        {
+          "global_class": 0,
+          "local_vertex": 0,
+          "x": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 1,
+          "local_vertex": 1,
+          "x": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 5,
+          "local_vertex": 2,
+          "x": {
+            "denominator": 65,
+            "numerator": 63
+          },
+          "y": {
+            "denominator": 65,
+            "numerator": 16
+          }
+        },
+        {
+          "global_class": 6,
+          "local_vertex": 3,
+          "x": {
+            "denominator": 1042,
+            "numerator": 851
+          },
+          "y": {
+            "denominator": 1042,
+            "numerator": 667
+          }
+        },
+        {
+          "global_class": 7,
+          "local_vertex": 4,
+          "x": {
+            "denominator": 17,
+            "numerator": 8
+          },
+          "y": {
+            "denominator": 17,
+            "numerator": 15
+          }
+        },
+        {
+          "global_class": 18,
+          "local_vertex": 5,
+          "x": {
+            "denominator": 185,
+            "numerator": 81
+          },
+          "y": {
+            "denominator": 185,
+            "numerator": 153
+          }
+        }
+      ],
+      "cvc5_independent_replay": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-1-rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.010679832892492414,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "cvc5",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      },
+      "exact_fraction_check": {
+        "equality_differences": {
+          "0": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "1": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "28": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "30": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "32": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "5": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "9": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        "failures": [],
+        "minimum_orientation": {
+          "denominator": 3145,
+          "numerator": 9
+        },
+        "minimum_squared_distance": {
+          "denominator": 3145,
+          "numerator": 13
+        },
+        "status": "PASS"
+      },
+      "rank": 1,
+      "rational_parameters": [
+        {
+          "denominator": 8,
+          "numerator": 1
+        },
+        {
+          "denominator": 5,
+          "numerator": 3
+        },
+        {
+          "denominator": 9,
+          "numerator": 17
+        }
+      ],
+      "schema": "A",
+      "source_equation_indices": [
+        0,
+        1,
+        5,
+        9,
+        28,
+        30,
+        32
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        5,
+        6,
+        7,
+        18
+      ],
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-1-rational-witness.smt2",
+      "witness_smt2_sha256": "eef3926ed652b19c5f595b69c4e015b7ba7958d3f282bbd6d0e57e421a5d836a",
+      "z3_fresh_replay": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:30000",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-1-rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.008077667094767094,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      }
+    },
+    {
+      "base_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-4-base.smt2",
+      "base_smt2_sha256": "8df3b61bd92dc00e62ef6b58042133326c47f20263a8bfb20778b9bda457345a",
+      "coordinates": [
+        {
+          "global_class": 0,
+          "local_vertex": 0,
+          "x": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 1,
+          "local_vertex": 1,
+          "x": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 5,
+          "local_vertex": 2,
+          "x": {
+            "denominator": 13,
+            "numerator": 12
+          },
+          "y": {
+            "denominator": 13,
+            "numerator": 5
+          }
+        },
+        {
+          "global_class": 13,
+          "local_vertex": 3,
+          "x": {
+            "denominator": 41,
+            "numerator": 32
+          },
+          "y": {
+            "denominator": 41,
+            "numerator": 40
+          }
+        },
+        {
+          "global_class": 14,
+          "local_vertex": 4,
+          "x": {
+            "denominator": 65,
+            "numerator": 33
+          },
+          "y": {
+            "denominator": 65,
+            "numerator": 56
+          }
+        },
+        {
+          "global_class": 16,
+          "local_vertex": 5,
+          "x": {
+            "denominator": 157,
+            "numerator": 72
+          },
+          "y": {
+            "denominator": 157,
+            "numerator": 132
+          }
+        }
+      ],
+      "cvc5_independent_replay": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-4-rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.011120999930426478,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "cvc5",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      },
+      "exact_fraction_check": {
+        "equality_differences": {
+          "0": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "10": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "18": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "2": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "3": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "4": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        "failures": [],
+        "minimum_orientation": {
+          "denominator": 418405,
+          "numerator": 28
+        },
+        "minimum_squared_distance": {
+          "denominator": 10205,
+          "numerator": 29
+        },
+        "status": "PASS"
+      },
+      "rank": 4,
+      "rational_parameters": [
+        {
+          "denominator": 5,
+          "numerator": 1
+        },
+        {
+          "denominator": 7,
+          "numerator": 4
+        },
+        {
+          "denominator": 4,
+          "numerator": 5
+        },
+        {
+          "denominator": 6,
+          "numerator": 11
+        }
+      ],
+      "schema": "B",
+      "source_equation_indices": [
+        0,
+        2,
+        3,
+        4,
+        10,
+        18
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        5,
+        13,
+        14,
+        16
+      ],
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-4-rational-witness.smt2",
+      "witness_smt2_sha256": "50c30e4ee7715f8263a11c197ca04bdcd6ae2c1b4785de163bd139a974e68c51",
+      "z3_fresh_replay": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:30000",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-4-rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.008086249930784106,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      }
+    },
+    {
+      "base_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-6-base.smt2",
+      "base_smt2_sha256": "8df3b61bd92dc00e62ef6b58042133326c47f20263a8bfb20778b9bda457345a",
+      "coordinates": [
+        {
+          "global_class": 0,
+          "local_vertex": 0,
+          "x": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 1,
+          "local_vertex": 1,
+          "x": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 7,
+          "local_vertex": 2,
+          "x": {
+            "denominator": 13,
+            "numerator": 12
+          },
+          "y": {
+            "denominator": 13,
+            "numerator": 5
+          }
+        },
+        {
+          "global_class": 13,
+          "local_vertex": 3,
+          "x": {
+            "denominator": 41,
+            "numerator": 32
+          },
+          "y": {
+            "denominator": 41,
+            "numerator": 40
+          }
+        },
+        {
+          "global_class": 14,
+          "local_vertex": 4,
+          "x": {
+            "denominator": 65,
+            "numerator": 33
+          },
+          "y": {
+            "denominator": 65,
+            "numerator": 56
+          }
+        },
+        {
+          "global_class": 16,
+          "local_vertex": 5,
+          "x": {
+            "denominator": 157,
+            "numerator": 72
+          },
+          "y": {
+            "denominator": 157,
+            "numerator": 132
+          }
+        }
+      ],
+      "cvc5_independent_replay": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-6-rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.0109140002168715,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "cvc5",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      },
+      "exact_fraction_check": {
+        "equality_differences": {
+          "1": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "11": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "18": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "2": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "3": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "4": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        "failures": [],
+        "minimum_orientation": {
+          "denominator": 418405,
+          "numerator": 28
+        },
+        "minimum_squared_distance": {
+          "denominator": 10205,
+          "numerator": 29
+        },
+        "status": "PASS"
+      },
+      "rank": 6,
+      "rational_parameters": [
+        {
+          "denominator": 5,
+          "numerator": 1
+        },
+        {
+          "denominator": 7,
+          "numerator": 4
+        },
+        {
+          "denominator": 4,
+          "numerator": 5
+        },
+        {
+          "denominator": 6,
+          "numerator": 11
+        }
+      ],
+      "schema": "B",
+      "source_equation_indices": [
+        1,
+        2,
+        3,
+        4,
+        11,
+        18
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        7,
+        13,
+        14,
+        16
+      ],
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-6-rational-witness.smt2",
+      "witness_smt2_sha256": "50c30e4ee7715f8263a11c197ca04bdcd6ae2c1b4785de163bd139a974e68c51",
+      "z3_fresh_replay": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:30000",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-6-rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.007954875007271767,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      }
+    },
+    {
+      "base_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-8-base.smt2",
+      "base_smt2_sha256": "cd12f2a4a962bdfcd464ce5b5f838d4badd288d595869feb092c4001d0a9176b",
+      "coordinates": [
+        {
+          "global_class": 0,
+          "local_vertex": 0,
+          "x": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 1,
+          "local_vertex": 1,
+          "x": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 2,
+          "local_vertex": 2,
+          "x": {
+            "denominator": 1105,
+            "numerator": 1918
+          },
+          "y": {
+            "denominator": 1105,
+            "numerator": 56
+          }
+        },
+        {
+          "global_class": 10,
+          "local_vertex": 3,
+          "x": {
+            "denominator": 65,
+            "numerator": 112
+          },
+          "y": {
+            "denominator": 65,
+            "numerator": 14
+          }
+        },
+        {
+          "global_class": 16,
+          "local_vertex": 4,
+          "x": {
+            "denominator": 5,
+            "numerator": 8
+          },
+          "y": {
+            "denominator": 5,
+            "numerator": 4
+          }
+        },
+        {
+          "global_class": 18,
+          "local_vertex": 5,
+          "x": {
+            "denominator": 65,
+            "numerator": 98
+          },
+          "y": {
+            "denominator": 65,
+            "numerator": 56
+          }
+        }
+      ],
+      "cvc5_independent_replay": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-8-rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.012155333068221807,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "cvc5",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      },
+      "exact_fraction_check": {
+        "equality_differences": {
+          "13": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "19": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "4": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "5": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "6": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "8": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        "failures": [],
+        "minimum_orientation": {
+          "denominator": 71825,
+          "numerator": 924
+        },
+        "minimum_squared_distance": {
+          "denominator": 325,
+          "numerator": 4
+        },
+        "status": "PASS"
+      },
+      "rank": 8,
+      "rational_parameters": [
+        {
+          "denominator": 4,
+          "numerator": -1
+        },
+        {
+          "denominator": 5,
+          "numerator": -1
+        },
+        {
+          "denominator": 2,
+          "numerator": 1
+        },
+        {
+          "denominator": 7,
+          "numerator": 4
+        }
+      ],
+      "schema": "C",
+      "source_equation_indices": [
+        4,
+        5,
+        6,
+        8,
+        13,
+        19
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        2,
+        10,
+        16,
+        18
+      ],
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-8-rational-witness.smt2",
+      "witness_smt2_sha256": "9610b1201bc926e2700e24460e6f99ed0e5200bf548d4c299f4d8f370e94d63b",
+      "z3_fresh_replay": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:30000",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-8-rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.008984084008261561,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      }
+    },
+    {
+      "base_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-9-base.smt2",
+      "base_smt2_sha256": "cd12f2a4a962bdfcd464ce5b5f838d4badd288d595869feb092c4001d0a9176b",
+      "coordinates": [
+        {
+          "global_class": 0,
+          "local_vertex": 0,
+          "x": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 1,
+          "local_vertex": 1,
+          "x": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 2,
+          "local_vertex": 2,
+          "x": {
+            "denominator": 1105,
+            "numerator": 1918
+          },
+          "y": {
+            "denominator": 1105,
+            "numerator": 56
+          }
+        },
+        {
+          "global_class": 11,
+          "local_vertex": 3,
+          "x": {
+            "denominator": 65,
+            "numerator": 112
+          },
+          "y": {
+            "denominator": 65,
+            "numerator": 14
+          }
+        },
+        {
+          "global_class": 16,
+          "local_vertex": 4,
+          "x": {
+            "denominator": 5,
+            "numerator": 8
+          },
+          "y": {
+            "denominator": 5,
+            "numerator": 4
+          }
+        },
+        {
+          "global_class": 18,
+          "local_vertex": 5,
+          "x": {
+            "denominator": 65,
+            "numerator": 98
+          },
+          "y": {
+            "denominator": 65,
+            "numerator": 56
+          }
+        }
+      ],
+      "cvc5_independent_replay": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-9-rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.011551416013389826,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "cvc5",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      },
+      "exact_fraction_check": {
+        "equality_differences": {
+          "14": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "19": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "4": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "5": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "7": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "8": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        "failures": [],
+        "minimum_orientation": {
+          "denominator": 71825,
+          "numerator": 924
+        },
+        "minimum_squared_distance": {
+          "denominator": 325,
+          "numerator": 4
+        },
+        "status": "PASS"
+      },
+      "rank": 9,
+      "rational_parameters": [
+        {
+          "denominator": 4,
+          "numerator": -1
+        },
+        {
+          "denominator": 5,
+          "numerator": -1
+        },
+        {
+          "denominator": 2,
+          "numerator": 1
+        },
+        {
+          "denominator": 7,
+          "numerator": 4
+        }
+      ],
+      "schema": "C",
+      "source_equation_indices": [
+        4,
+        5,
+        7,
+        8,
+        14,
+        19
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        2,
+        11,
+        16,
+        18
+      ],
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-9-rational-witness.smt2",
+      "witness_smt2_sha256": "9610b1201bc926e2700e24460e6f99ed0e5200bf548d4c299f4d8f370e94d63b",
+      "z3_fresh_replay": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:30000",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-9-rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.00852962490171194,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      }
+    },
+    {
+      "base_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-10-base.smt2",
+      "base_smt2_sha256": "cd12f2a4a962bdfcd464ce5b5f838d4badd288d595869feb092c4001d0a9176b",
+      "coordinates": [
+        {
+          "global_class": 0,
+          "local_vertex": 0,
+          "x": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 1,
+          "local_vertex": 1,
+          "x": {
+            "denominator": 1,
+            "numerator": 1
+          },
+          "y": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        {
+          "global_class": 10,
+          "local_vertex": 2,
+          "x": {
+            "denominator": 1105,
+            "numerator": 1918
+          },
+          "y": {
+            "denominator": 1105,
+            "numerator": 56
+          }
+        },
+        {
+          "global_class": 11,
+          "local_vertex": 3,
+          "x": {
+            "denominator": 65,
+            "numerator": 112
+          },
+          "y": {
+            "denominator": 65,
+            "numerator": 14
+          }
+        },
+        {
+          "global_class": 16,
+          "local_vertex": 4,
+          "x": {
+            "denominator": 5,
+            "numerator": 8
+          },
+          "y": {
+            "denominator": 5,
+            "numerator": 4
+          }
+        },
+        {
+          "global_class": 18,
+          "local_vertex": 5,
+          "x": {
+            "denominator": 65,
+            "numerator": 98
+          },
+          "y": {
+            "denominator": 65,
+            "numerator": 56
+          }
+        }
+      ],
+      "cvc5_independent_replay": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-10-rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.010946833994239569,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "cvc5",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      },
+      "exact_fraction_check": {
+        "equality_differences": {
+          "12": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "13": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "14": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "19": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "4": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "5": {
+            "denominator": 1,
+            "numerator": 0
+          }
+        },
+        "failures": [],
+        "minimum_orientation": {
+          "denominator": 71825,
+          "numerator": 924
+        },
+        "minimum_squared_distance": {
+          "denominator": 325,
+          "numerator": 4
+        },
+        "status": "PASS"
+      },
+      "rank": 10,
+      "rational_parameters": [
+        {
+          "denominator": 4,
+          "numerator": -1
+        },
+        {
+          "denominator": 5,
+          "numerator": -1
+        },
+        {
+          "denominator": 2,
+          "numerator": 1
+        },
+        {
+          "denominator": 7,
+          "numerator": 4
+        }
+      ],
+      "schema": "C",
+      "source_equation_indices": [
+        4,
+        5,
+        12,
+        13,
+        14,
+        19
+      ],
+      "status": "SAT_EXACT_RATIONAL_WITNESS",
+      "subset": [
+        0,
+        1,
+        10,
+        11,
+        16,
+        18
+      ],
+      "witness_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-10-rational-witness.smt2",
+      "witness_smt2_sha256": "9610b1201bc926e2700e24460e6f99ed0e5200bf548d4c299f4d8f370e94d63b",
+      "z3_fresh_replay": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:30000",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-10-rational-witness.smt2"
+        ],
+        "elapsed_seconds": 0.00823720800690353,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "SAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "sat"
+        ],
+        "timeout_ms": 30000
+      }
+    },
+    {
+      "base_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-14-base.smt2",
+      "base_smt2_sha256": "4739542154cf1b84db644845f4986c6c0c5d40f60192786168dc1fb091065317",
+      "cvc5_independent_replay": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-14-15-normalized-unsat-schema.smt2"
+        ],
+        "elapsed_seconds": 0.0075188749469816685,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "cvc5",
+        "status": "UNSAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "unsat"
+        ],
+        "timeout_ms": 30000
+      },
+      "equality_core": [
+        "d2(p0,p1)=d2(p0,p3)=d2(p0,p5)",
+        "d2(p2,p1)=d2(p2,p3)=d2(p2,p4)"
+      ],
+      "local_shape_check": "PASS",
+      "normalized_schema_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-14-15-normalized-unsat-schema.smt2",
+      "normalized_schema_smt2_sha256": "8b667b22dbab20d4ddedc1582edae0ca68df9b0e73fae772e59733f725ee6b83",
+      "orientation_core": [
+        "orient(p0,p1,p3)>0",
+        "orient(p0,p1,p5)>0",
+        "orient(p0,p3,p5)>0",
+        "orient(p1,p2,p3)>0",
+        "orient(p1,p3,p4)>0",
+        "orient(p3,p4,p5)>0"
+      ],
+      "rank": 14,
+      "schema": "D",
+      "singular_identity_check": "PASS",
+      "singular_identity_output": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/schema-identities.out",
+      "singular_identity_script": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/schema-identities.sing",
+      "source_equation_indices": [
+        6,
+        8,
+        13,
+        20,
+        21,
+        23
+      ],
+      "status": "UNSAT_EXACT_NORMALIZED_SCHEMA",
+      "subset": [
+        0,
+        2,
+        3,
+        10,
+        12,
+        18
+      ],
+      "z3_fresh_replay": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:30000",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-14-15-normalized-unsat-schema.smt2"
+        ],
+        "elapsed_seconds": 0.007039874792098999,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "UNSAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "unsat"
+        ],
+        "timeout_ms": 30000
+      }
+    },
+    {
+      "base_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-15-base.smt2",
+      "base_smt2_sha256": "4739542154cf1b84db644845f4986c6c0c5d40f60192786168dc1fb091065317",
+      "cvc5_independent_replay": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-14-15-normalized-unsat-schema.smt2"
+        ],
+        "elapsed_seconds": 0.0075188749469816685,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "cvc5",
+        "status": "UNSAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "unsat"
+        ],
+        "timeout_ms": 30000
+      },
+      "equality_core": [
+        "d2(p0,p1)=d2(p0,p3)=d2(p0,p5)",
+        "d2(p2,p1)=d2(p2,p3)=d2(p2,p4)"
+      ],
+      "local_shape_check": "PASS",
+      "normalized_schema_smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-14-15-normalized-unsat-schema.smt2",
+      "normalized_schema_smt2_sha256": "8b667b22dbab20d4ddedc1582edae0ca68df9b0e73fae772e59733f725ee6b83",
+      "orientation_core": [
+        "orient(p0,p1,p3)>0",
+        "orient(p0,p1,p5)>0",
+        "orient(p0,p3,p5)>0",
+        "orient(p1,p2,p3)>0",
+        "orient(p1,p3,p4)>0",
+        "orient(p3,p4,p5)>0"
+      ],
+      "rank": 15,
+      "schema": "D",
+      "singular_identity_check": "PASS",
+      "singular_identity_output": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/schema-identities.out",
+      "singular_identity_script": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/schema-identities.sing",
+      "source_equation_indices": [
+        6,
+        8,
+        13,
+        20,
+        22,
+        24
+      ],
+      "status": "UNSAT_EXACT_NORMALIZED_SCHEMA",
+      "subset": [
+        0,
+        2,
+        3,
+        10,
+        15,
+        18
+      ],
+      "z3_fresh_replay": {
+        "command": [
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+          "-smt2",
+          "-t:30000",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-14-15-normalized-unsat-schema.smt2"
+        ],
+        "elapsed_seconds": 0.007039874792098999,
+        "fail_closed": true,
+        "reason_unknown": null,
+        "returncode": 0,
+        "solver": "z3",
+        "status": "UNSAT",
+        "stderr_tail": [],
+        "stdout_tail": [
+          "unsat"
+        ],
+        "timeout_ms": 30000
+      }
+    }
+  ],
+  "method": "three rational circle/circumcenter parameterizations for six SAT cases; a normalized exact equality-orientation contradiction for two UNSAT cases; fresh Z3 and independent cvc5 replay",
+  "schema": "p97-v13-six-priority-resolution-v1",
+  "source_result": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/v13-six-priority-search.json",
+  "source_result_sha256": "acb4dabf276dbb9fdc8ae62251fb45974ed82d19a1e9c6c7bf6bd4e8e0707027",
+  "source_validation": {
+    "actual_hashes": {
+      "cegar_result_sha256": "9cd24ead3bb06cd8bec88ace811eeb102dc5e8be46be1d9e1a4a1820d20a1832",
+      "cegar_script_current_sha256": "5b8a0377568ea1cad18467dc7ece9db7cfcd76bafec50936a578368899f2fafe",
+      "checkpoint_sha256": "ad37fe94d08af00786e67759bbdd21359f3647d227d93e9417b9b8b4842de0b9",
+      "exact_positive_rows_smt2_sha256": "72c2ff63f22811bcac1bd4acd40deb3b351b88d7b9d14fdb74277c872dbd621b",
+      "exact_probe_result_sha256": "0ae9731498e8f42748e994df5a08bf376a59cc709a07b328dbe65b3d267e6ca5"
+    },
+    "alias_class_count": 19,
+    "current_cegar_drift_policy": "current implementation drift is recorded but cannot change the immutable exact-probe target",
+    "current_cegar_matches_recorded": true,
+    "expected_hashes": {
+      "cegar_result_sha256": "9cd24ead3bb06cd8bec88ace811eeb102dc5e8be46be1d9e1a4a1820d20a1832",
+      "checkpoint_sha256": "ad37fe94d08af00786e67759bbdd21359f3647d227d93e9417b9b8b4842de0b9",
+      "exact_positive_rows_smt2_sha256": "72c2ff63f22811bcac1bd4acd40deb3b351b88d7b9d14fdb74277c872dbd621b",
+      "exact_probe_result_sha256": "0ae9731498e8f42748e994df5a08bf376a59cc709a07b328dbe65b3d267e6ca5"
+    },
+    "full_formula_reason_unknown": "hard subprocess wall timeout",
+    "full_formula_status": "UNKNOWN",
+    "method": "fixed hash gates for exact probe/result/checkpoint/SMT plus schema, ordered-class, normalized-equation, assertion-count, and terminal row-replay checks",
+    "positive_equation_count": 35,
+    "probe_schema": "p97-aliased-euclidean-survivor-probe-v2-terminal-rows",
+    "recorded_cegar_script_sha256": "5b8a0377568ea1cad18467dc7ece9db7cfcd76bafec50936a578368899f2fafe",
+    "status": "PASS"
+  },
+  "status_counts": {
+    "SAT_EXACT_RATIONAL_WITNESS": 6,
+    "UNSAT_EXACT_NORMALIZED_SCHEMA": 2
+  },
+  "terminal_status": "ALL_EIGHT_RESOLVED_6_SAT_2_UNSAT",
+  "trust_boundary": "directly checkable exact witnesses for the recorded induced-positive QF_NRA formulas; not Lean/kernel closure and not the full survivor formula",
+  "unsat_schema_validation": {
+    "cvc5_independent_replay": {
+      "command": [
+        "/Users/adam/bin/cvc5",
+        "--lang",
+        "smt2",
+        "--nl-cov",
+        "--tlimit",
+        "30000",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-14-15-normalized-unsat-schema.smt2"
+      ],
+      "elapsed_seconds": 0.0075188749469816685,
+      "fail_closed": true,
+      "reason_unknown": null,
+      "returncode": 0,
+      "solver": "cvc5",
+      "status": "UNSAT",
+      "stderr_tail": [],
+      "stdout_tail": [
+        "unsat"
+      ],
+      "timeout_ms": 30000
+    },
+    "singular_identity_check": "PASS",
+    "singular_output": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/schema-identities.out",
+    "singular_output_sha256": "3b34ce7c1e744d9bf2c55d0dd47aedd9e5d6169247be3a3d9a5b95b949df2dad",
+    "z3_fresh_replay": {
+      "command": [
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+        "-smt2",
+        "-t:30000",
+        "-T:30",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-six-priority/resolution/rank-14-15-normalized-unsat-schema.smt2"
+      ],
+      "elapsed_seconds": 0.007039874792098999,
+      "fail_closed": true,
+      "reason_unknown": null,
+      "returncode": 0,
+      "solver": "z3",
+      "status": "UNSAT",
+      "stderr_tail": [],
+      "stdout_tail": [
+        "unsat"
+      ],
+      "timeout_ms": 30000
+    }
+  }
+}

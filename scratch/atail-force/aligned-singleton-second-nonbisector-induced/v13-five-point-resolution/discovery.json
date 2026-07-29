@@ -1,0 +1,800 @@
+{
+  "alias_classes_in_order": [
+    [
+      "a0",
+      "escape"
+    ],
+    [
+      "a1",
+      "s3",
+      "p3",
+      "be"
+    ],
+    [
+      "r2",
+      "z4"
+    ],
+    [
+      "b2",
+      "bz"
+    ],
+    [
+      "s2"
+    ],
+    [
+      "p2"
+    ],
+    [
+      "b1"
+    ],
+    [
+      "p1",
+      "x"
+    ],
+    [
+      "s4"
+    ],
+    [
+      "source"
+    ],
+    [
+      "r1",
+      "z3",
+      "y"
+    ],
+    [
+      "a2",
+      "r3"
+    ],
+    [
+      "t",
+      "bs",
+      "z2"
+    ],
+    [
+      "e4"
+    ],
+    [
+      "p4"
+    ],
+    [
+      "z"
+    ],
+    [
+      "e2"
+    ],
+    [
+      "q"
+    ],
+    [
+      "other",
+      "r4",
+      "e3"
+    ]
+  ],
+  "cases": [
+    {
+      "case_id": "q0-1-2-16-18",
+      "cvc5_initial": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "1000"
+        ],
+        "elapsed_seconds": 1.015710667008534,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 1000
+      },
+      "induced_source_equation_indices": [
+        4,
+        5,
+        8,
+        19
+      ],
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-16-18.smt2",
+      "smt2_sha256": "fd2ccd143f8264fadb12253b23529bec4ce7ea3110f764714145c4f1df07daa2",
+      "subset": [
+        0,
+        1,
+        2,
+        16,
+        18
+      ],
+      "z3_initial": {
+        "elapsed_seconds": 1.1226992500014603,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "UNKNOWN",
+        "timeout_ms": 1000
+      }
+    },
+    {
+      "case_id": "q0-1-10-16-18",
+      "cvc5_initial": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "1000"
+        ],
+        "elapsed_seconds": 1.0131050411146134,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 1000
+      },
+      "induced_source_equation_indices": [
+        4,
+        5,
+        13,
+        19
+      ],
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-10-16-18.smt2",
+      "smt2_sha256": "fd2ccd143f8264fadb12253b23529bec4ce7ea3110f764714145c4f1df07daa2",
+      "subset": [
+        0,
+        1,
+        10,
+        16,
+        18
+      ],
+      "z3_initial": {
+        "elapsed_seconds": 1.152857125038281,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "UNKNOWN",
+        "timeout_ms": 1000
+      }
+    },
+    {
+      "case_id": "q0-1-11-16-18",
+      "cvc5_initial": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "1000"
+        ],
+        "elapsed_seconds": 1.0155057499650866,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 1000
+      },
+      "induced_source_equation_indices": [
+        4,
+        5,
+        14,
+        19
+      ],
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-11-16-18.smt2",
+      "smt2_sha256": "fd2ccd143f8264fadb12253b23529bec4ce7ea3110f764714145c4f1df07daa2",
+      "subset": [
+        0,
+        1,
+        11,
+        16,
+        18
+      ],
+      "z3_initial": {
+        "elapsed_seconds": 1.1218510831240565,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "UNKNOWN",
+        "timeout_ms": 1000
+      }
+    },
+    {
+      "case_id": "q0-1-2-5-18",
+      "cvc5_initial": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "1000"
+        ],
+        "elapsed_seconds": 1.0135661661624908,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 1000
+      },
+      "induced_source_equation_indices": [
+        0,
+        5,
+        8
+      ],
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-5-18.smt2",
+      "smt2_sha256": "a74b4a8d74ad995befc8e8eacf49b6d07d31062662e73506a455d67b2852ff74",
+      "subset": [
+        0,
+        1,
+        2,
+        5,
+        18
+      ],
+      "z3_initial": {
+        "elapsed_seconds": 1.1232262081466615,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "UNKNOWN",
+        "timeout_ms": 1000
+      }
+    },
+    {
+      "case_id": "q0-1-2-7-18",
+      "cvc5_initial": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "1000"
+        ],
+        "elapsed_seconds": 1.012423292035237,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 1000
+      },
+      "induced_source_equation_indices": [
+        1,
+        5,
+        8
+      ],
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-7-18.smt2",
+      "smt2_sha256": "a74b4a8d74ad995befc8e8eacf49b6d07d31062662e73506a455d67b2852ff74",
+      "subset": [
+        0,
+        1,
+        2,
+        7,
+        18
+      ],
+      "z3_initial": {
+        "elapsed_seconds": 1.120567541802302,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "UNKNOWN",
+        "timeout_ms": 1000
+      }
+    },
+    {
+      "case_id": "q0-1-2-13-18",
+      "cvc5_initial": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "1000"
+        ],
+        "elapsed_seconds": 1.0153054168913513,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 1000
+      },
+      "induced_source_equation_indices": [
+        3,
+        5,
+        8
+      ],
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-13-18.smt2",
+      "smt2_sha256": "c5737d432513e7110bf15dd53819ffffa45d07c779fcef5cf67447bc3393e5b7",
+      "subset": [
+        0,
+        1,
+        2,
+        13,
+        18
+      ],
+      "z3_initial": {
+        "elapsed_seconds": 1.1406166250817478,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "UNKNOWN",
+        "timeout_ms": 1000
+      }
+    },
+    {
+      "case_id": "q0-1-2-14-18",
+      "cvc5_initial": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "1000"
+        ],
+        "elapsed_seconds": 1.013591542141512,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 1000
+      },
+      "induced_source_equation_indices": [
+        2,
+        5,
+        8
+      ],
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-2-14-18.smt2",
+      "smt2_sha256": "a74b4a8d74ad995befc8e8eacf49b6d07d31062662e73506a455d67b2852ff74",
+      "subset": [
+        0,
+        1,
+        2,
+        14,
+        18
+      ],
+      "z3_initial": {
+        "elapsed_seconds": 1.1210438329726458,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "UNKNOWN",
+        "timeout_ms": 1000
+      }
+    },
+    {
+      "case_id": "q0-1-5-10-18",
+      "cvc5_initial": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "1000"
+        ],
+        "elapsed_seconds": 1.0157621668186039,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 1000
+      },
+      "induced_source_equation_indices": [
+        0,
+        5,
+        13
+      ],
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-5-10-18.smt2",
+      "smt2_sha256": "2c5cb772688fd1a971f8494ee1be001d6c66d360ac670fae0532687955bd0317",
+      "subset": [
+        0,
+        1,
+        5,
+        10,
+        18
+      ],
+      "z3_initial": {
+        "elapsed_seconds": 1.138763374881819,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "UNKNOWN",
+        "timeout_ms": 1000
+      }
+    },
+    {
+      "case_id": "q0-1-5-11-18",
+      "cvc5_initial": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "1000"
+        ],
+        "elapsed_seconds": 1.0153797920793295,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 1000
+      },
+      "induced_source_equation_indices": [
+        0,
+        5,
+        14
+      ],
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-5-11-18.smt2",
+      "smt2_sha256": "2c5cb772688fd1a971f8494ee1be001d6c66d360ac670fae0532687955bd0317",
+      "subset": [
+        0,
+        1,
+        5,
+        11,
+        18
+      ],
+      "z3_initial": {
+        "elapsed_seconds": 1.125396457966417,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "UNKNOWN",
+        "timeout_ms": 1000
+      }
+    },
+    {
+      "case_id": "q0-1-7-10-18",
+      "cvc5_initial": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "1000"
+        ],
+        "elapsed_seconds": 1.0127345831133425,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 1000
+      },
+      "induced_source_equation_indices": [
+        1,
+        5,
+        13
+      ],
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-7-10-18.smt2",
+      "smt2_sha256": "2c5cb772688fd1a971f8494ee1be001d6c66d360ac670fae0532687955bd0317",
+      "subset": [
+        0,
+        1,
+        7,
+        10,
+        18
+      ],
+      "z3_initial": {
+        "elapsed_seconds": 1.1194810830056667,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "UNKNOWN",
+        "timeout_ms": 1000
+      }
+    },
+    {
+      "case_id": "q0-1-7-11-18",
+      "cvc5_initial": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "1000"
+        ],
+        "elapsed_seconds": 1.0131843748968095,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 1000
+      },
+      "induced_source_equation_indices": [
+        1,
+        5,
+        14
+      ],
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-7-11-18.smt2",
+      "smt2_sha256": "2c5cb772688fd1a971f8494ee1be001d6c66d360ac670fae0532687955bd0317",
+      "subset": [
+        0,
+        1,
+        7,
+        11,
+        18
+      ],
+      "z3_initial": {
+        "elapsed_seconds": 1.1229115000460297,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "UNKNOWN",
+        "timeout_ms": 1000
+      }
+    },
+    {
+      "case_id": "q0-1-10-13-18",
+      "cvc5_initial": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "1000"
+        ],
+        "elapsed_seconds": 1.0162578339222819,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 1000
+      },
+      "induced_source_equation_indices": [
+        3,
+        5,
+        13
+      ],
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-10-13-18.smt2",
+      "smt2_sha256": "c5737d432513e7110bf15dd53819ffffa45d07c779fcef5cf67447bc3393e5b7",
+      "subset": [
+        0,
+        1,
+        10,
+        13,
+        18
+      ],
+      "z3_initial": {
+        "elapsed_seconds": 1.129361208062619,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "UNKNOWN",
+        "timeout_ms": 1000
+      }
+    },
+    {
+      "case_id": "q0-1-10-14-18",
+      "cvc5_initial": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "1000"
+        ],
+        "elapsed_seconds": 1.019835083046928,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 1000
+      },
+      "induced_source_equation_indices": [
+        2,
+        5,
+        13
+      ],
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-10-14-18.smt2",
+      "smt2_sha256": "a74b4a8d74ad995befc8e8eacf49b6d07d31062662e73506a455d67b2852ff74",
+      "subset": [
+        0,
+        1,
+        10,
+        14,
+        18
+      ],
+      "z3_initial": {
+        "elapsed_seconds": 1.1412950409576297,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "UNKNOWN",
+        "timeout_ms": 1000
+      }
+    },
+    {
+      "case_id": "q0-1-11-13-18",
+      "cvc5_initial": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "1000"
+        ],
+        "elapsed_seconds": 1.0151322919409722,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 1000
+      },
+      "induced_source_equation_indices": [
+        3,
+        5,
+        14
+      ],
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-11-13-18.smt2",
+      "smt2_sha256": "c5737d432513e7110bf15dd53819ffffa45d07c779fcef5cf67447bc3393e5b7",
+      "subset": [
+        0,
+        1,
+        11,
+        13,
+        18
+      ],
+      "z3_initial": {
+        "elapsed_seconds": 1.1224406249821186,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "UNKNOWN",
+        "timeout_ms": 1000
+      }
+    },
+    {
+      "case_id": "q0-1-11-14-18",
+      "cvc5_initial": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "1000"
+        ],
+        "elapsed_seconds": 1.01480529201217,
+        "fail_closed": true,
+        "reason_unknown": "cvc5 timeout without a status line",
+        "returncode": -6,
+        "solver": "cvc5",
+        "status": "UNKNOWN",
+        "stderr_tail": [
+          "cvc5 interrupted by timeout."
+        ],
+        "stdout_tail": [],
+        "timeout_ms": 1000
+      },
+      "induced_source_equation_indices": [
+        2,
+        5,
+        14
+      ],
+      "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v13-five-point-resolution/q0-1-11-14-18.smt2",
+      "smt2_sha256": "a74b4a8d74ad995befc8e8eacf49b6d07d31062662e73506a455d67b2852ff74",
+      "subset": [
+        0,
+        1,
+        11,
+        14,
+        18
+      ],
+      "z3_initial": {
+        "elapsed_seconds": 1.1701573750469834,
+        "reason_unknown": "timeout",
+        "solver": "Z3 Python API fresh direct assertions",
+        "status": "UNKNOWN",
+        "timeout_ms": 1000
+      }
+    }
+  ],
+  "histogram": {
+    "0": 8394,
+    "1": 2645,
+    "2": 258,
+    "3": 296,
+    "4": 29,
+    "5": 1,
+    "6": 5
+  },
+  "phase": "DISCOVERY",
+  "schema": "p97-v13-five-point-resolution-v1",
+  "source_result": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/exact-euclidean-subset-core-v13-local-critical-reuse-second.json",
+  "source_result_sha256": "1640d7f0b1f3cfb4b10d0db1a0fcc266b47ea61ff7c245f4bd0ced4c27f5aa53",
+  "source_validation": {
+    "actual_hashes": {
+      "cegar_result_sha256": "9cd24ead3bb06cd8bec88ace811eeb102dc5e8be46be1d9e1a4a1820d20a1832",
+      "cegar_script_current_sha256": "5b8a0377568ea1cad18467dc7ece9db7cfcd76bafec50936a578368899f2fafe",
+      "checkpoint_sha256": "ad37fe94d08af00786e67759bbdd21359f3647d227d93e9417b9b8b4842de0b9",
+      "exact_positive_rows_smt2_sha256": "72c2ff63f22811bcac1bd4acd40deb3b351b88d7b9d14fdb74277c872dbd621b",
+      "exact_probe_result_sha256": "0ae9731498e8f42748e994df5a08bf376a59cc709a07b328dbe65b3d267e6ca5"
+    },
+    "alias_class_count": 19,
+    "current_cegar_drift_policy": "current implementation drift is recorded but cannot change the immutable exact-probe target",
+    "current_cegar_matches_recorded": true,
+    "expected_hashes": {
+      "cegar_result_sha256": "9cd24ead3bb06cd8bec88ace811eeb102dc5e8be46be1d9e1a4a1820d20a1832",
+      "checkpoint_sha256": "ad37fe94d08af00786e67759bbdd21359f3647d227d93e9417b9b8b4842de0b9",
+      "exact_positive_rows_smt2_sha256": "72c2ff63f22811bcac1bd4acd40deb3b351b88d7b9d14fdb74277c872dbd621b",
+      "exact_probe_result_sha256": "0ae9731498e8f42748e994df5a08bf376a59cc709a07b328dbe65b3d267e6ca5"
+    },
+    "full_formula_reason_unknown": "hard subprocess wall timeout",
+    "full_formula_status": "UNKNOWN",
+    "method": "fixed hash gates for exact probe/result/checkpoint/SMT plus schema, ordered-class, normalized-equation, assertion-count, and terminal row-replay checks",
+    "positive_equation_count": 35,
+    "probe_schema": "p97-aliased-euclidean-survivor-probe-v2-terminal-rows",
+    "recorded_cegar_script_sha256": "5b8a0377568ea1cad18467dc7ece9db7cfcd76bafec50936a578368899f2fafe",
+    "status": "PASS"
+  },
+  "status_counts": {
+    "CVC5_SAT": 9,
+    "CVC5_UNKNOWN": 15,
+    "SAT": 3210,
+    "UNKNOWN": 24
+  },
+  "unresolved_count": 15
+}

@@ -1,0 +1,10 @@
+{
+  "blocker_count": 17,
+  "input": "scratch/atail-force/aligned-singleton-second-nonbisector-cegar/nonbisector.json",
+  "n": 17,
+  "not_robust_count": 7,
+  "row_count": 17,
+  "schema": "p97-aligned-singleton-second-nonbisector-verification-v1",
+  "target": "second_blocker_nonbisector",
+  "verified": true
+}

@@ -1,0 +1,418 @@
+{
+  "checkpoint_survivor": {
+    "named_occurrence_count": 31,
+    "ordered_alias_class_count": 19,
+    "ordered_alias_classes": [
+      [
+        "a0",
+        "z3",
+        "e2"
+      ],
+      [
+        "z",
+        "s4"
+      ],
+      [
+        "r4"
+      ],
+      [
+        "other"
+      ],
+      [
+        "q",
+        "t"
+      ],
+      [
+        "a1",
+        "e4"
+      ],
+      [
+        "r1",
+        "be"
+      ],
+      [
+        "p1"
+      ],
+      [
+        "source",
+        "b2"
+      ],
+      [
+        "r2",
+        "b1"
+      ],
+      [
+        "p2"
+      ],
+      [
+        "a2",
+        "s2",
+        "r3"
+      ],
+      [
+        "z2"
+      ],
+      [
+        "e3"
+      ],
+      [
+        "bz"
+      ],
+      [
+        "escape"
+      ],
+      [
+        "bs",
+        "p4",
+        "z4"
+      ],
+      [
+        "s3"
+      ],
+      [
+        "p3"
+      ]
+    ],
+    "status": "SAT"
+  },
+  "core": {
+    "relation_count": 3,
+    "relation_counts": {
+      "strict_kalmanson": 1,
+      "true_row_equality": 2
+    },
+    "relations": [
+      {
+        "center_class": {
+          "index": 0,
+          "members": [
+            "a0",
+            "z3",
+            "e2"
+          ],
+          "representative": "a0"
+        },
+        "id": "R00009",
+        "kind": "true_row_equality",
+        "named_roles": {
+          "center": "a0",
+          "left": "r1",
+          "right": "r4"
+        },
+        "relation": {
+          "lhs": [
+            {
+              "kind": "distance",
+              "left_class": {
+                "index": 0,
+                "members": [
+                  "a0",
+                  "z3",
+                  "e2"
+                ],
+                "representative": "a0"
+              },
+              "right_class": {
+                "index": 6,
+                "members": [
+                  "r1",
+                  "be"
+                ],
+                "representative": "r1"
+              },
+              "symbol": "D0_6"
+            }
+          ],
+          "operator": "=",
+          "rhs": [
+            {
+              "kind": "distance",
+              "left_class": {
+                "index": 0,
+                "members": [
+                  "a0",
+                  "z3",
+                  "e2"
+                ],
+                "representative": "a0"
+              },
+              "right_class": {
+                "index": 2,
+                "members": [
+                  "r4"
+                ],
+                "representative": "r4"
+              },
+              "symbol": "D0_2"
+            }
+          ]
+        }
+      },
+      {
+        "center_class": {
+          "index": 14,
+          "members": [
+            "bz"
+          ],
+          "representative": "bz"
+        },
+        "id": "R00126",
+        "kind": "true_row_equality",
+        "named_roles": {
+          "center": "bz",
+          "left": "be",
+          "right": "r4"
+        },
+        "relation": {
+          "lhs": [
+            {
+              "kind": "distance",
+              "left_class": {
+                "index": 6,
+                "members": [
+                  "r1",
+                  "be"
+                ],
+                "representative": "r1"
+              },
+              "right_class": {
+                "index": 14,
+                "members": [
+                  "bz"
+                ],
+                "representative": "bz"
+              },
+              "symbol": "D6_14"
+            }
+          ],
+          "operator": "=",
+          "rhs": [
+            {
+              "kind": "distance",
+              "left_class": {
+                "index": 2,
+                "members": [
+                  "r4"
+                ],
+                "representative": "r4"
+              },
+              "right_class": {
+                "index": 14,
+                "members": [
+                  "bz"
+                ],
+                "representative": "bz"
+              },
+              "symbol": "D2_14"
+            }
+          ]
+        }
+      },
+      {
+        "id": "R03431",
+        "kind": "strict_kalmanson",
+        "ordered_classes": [
+          {
+            "index": 0,
+            "members": [
+              "a0",
+              "z3",
+              "e2"
+            ],
+            "representative": "a0"
+          },
+          {
+            "index": 2,
+            "members": [
+              "r4"
+            ],
+            "representative": "r4"
+          },
+          {
+            "index": 6,
+            "members": [
+              "r1",
+              "be"
+            ],
+            "representative": "r1"
+          },
+          {
+            "index": 14,
+            "members": [
+              "bz"
+            ],
+            "representative": "bz"
+          }
+        ],
+        "relation": {
+          "lhs": [
+            {
+              "kind": "distance",
+              "left_class": {
+                "index": 0,
+                "members": [
+                  "a0",
+                  "z3",
+                  "e2"
+                ],
+                "representative": "a0"
+              },
+              "right_class": {
+                "index": 2,
+                "members": [
+                  "r4"
+                ],
+                "representative": "r4"
+              },
+              "symbol": "D0_2"
+            },
+            {
+              "kind": "distance",
+              "left_class": {
+                "index": 6,
+                "members": [
+                  "r1",
+                  "be"
+                ],
+                "representative": "r1"
+              },
+              "right_class": {
+                "index": 14,
+                "members": [
+                  "bz"
+                ],
+                "representative": "bz"
+              },
+              "symbol": "D6_14"
+            }
+          ],
+          "operator": "<",
+          "rhs": [
+            {
+              "kind": "distance",
+              "left_class": {
+                "index": 0,
+                "members": [
+                  "a0",
+                  "z3",
+                  "e2"
+                ],
+                "representative": "a0"
+              },
+              "right_class": {
+                "index": 6,
+                "members": [
+                  "r1",
+                  "be"
+                ],
+                "representative": "r1"
+              },
+              "symbol": "D0_6"
+            },
+            {
+              "kind": "distance",
+              "left_class": {
+                "index": 2,
+                "members": [
+                  "r4"
+                ],
+                "representative": "r4"
+              },
+              "right_class": {
+                "index": 14,
+                "members": [
+                  "bz"
+                ],
+                "representative": "bz"
+              },
+              "symbol": "D2_14"
+            }
+          ]
+        },
+        "side": "adjacent_pairs"
+      }
+    ],
+    "relations_sha256": "70d6b0b2d9f68358e888742878f0b025ebaa832a4e929bbfba6337485450d71b"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "z3": "4.16.0"
+  },
+  "metric_system": {
+    "base_constraints": {
+      "positive_distance_pairs": 171,
+      "scale": {
+        "pair": [
+          0,
+          5
+        ],
+        "roles": [
+          "a0",
+          "a1"
+        ],
+        "value": "1"
+      }
+    },
+    "tracked_relation_count": 10813,
+    "tracked_relation_counts": {
+      "strict_kalmanson": 7752,
+      "strict_triangle": 2907,
+      "true_row_equality": 154
+    },
+    "tracked_relations_sha256": "5c2941491cad4e8b2d5680708f477ce1a2979dfc845b0f8fbc4a314b64a5efc4"
+  },
+  "payload_without_self_hash_sha256": "a5355f53499a0cc65fa2bfffd8c18f237198c6c8db01ac40d06f2989a64b39be",
+  "result": "UNSAT",
+  "schema": "p97-local-robust-checkpoint-survivor-metric-core-v2",
+  "source": {
+    "analyzer_path": "metric_core_extractor.py",
+    "analyzer_sha256": "07200aac12b0eeb933aa8031a8859325335de9ac410f485206ae8f6540fa020b",
+    "cegar_path": "cegar.py",
+    "cegar_sha256": "7c0cb525420cfd4d3de4a9bd9fd13f63e7868890b04e4316f3016195e7db9de7",
+    "checkpoint_keys_ignored_except_cuts": [
+      "metadata",
+      "stats"
+    ],
+    "checkpoint_path": "cegar-v8-local-robust-batched32k.checkpoint.json",
+    "checkpoint_sha256": "f16824fcd25606d5e80d40fe8e26cab67a3ad63f9a42fe217c02432f2e75c4a1",
+    "configuration": {
+      "escape_arm": "robust",
+      "global_tier": "local",
+      "logic_metric": "QF_LRA",
+      "logic_outer": "QF_UFBV",
+      "random_seed": 0,
+      "z_branch": "new"
+    },
+    "validated_cut_count": 1985,
+    "validated_cuts_sha256": "00838f0e92ed7b31c6da83accba3ec2f41b71536e23cd49d58673f2b18035a3c",
+    "validated_literal_count": 9925
+  },
+  "trust_scope": [
+    "The fresh outer SAT model and metric UNSAT result are Z3 solver evidence for this checkpoint cut set and current configuration only.",
+    "QF_LRA uses exact rational linear-arithmetic semantics, but this artifact contains no independently replayed Farkas, DRAT/LRAT, or Lean proof certificate.",
+    "Checkpoint metadata and stats are deliberately ignored; only the literal arrays are parsed, validated against the current OuterMap names, hashed, and replayed.",
+    "The core is inclusion-minimal under single deletion within Z3's returned assumption core; it is not claimed minimum-size or universal beyond this fresh checkpoint survivor. In particular, it says nothing about the original run's lost terminal assignment."
+  ],
+  "validation": {
+    "complete_system_status": "UNSAT",
+    "core_alone_status": "UNSAT",
+    "greedy_core_size": 3,
+    "greedy_shrink_checks": 3,
+    "inclusion_minimal": true,
+    "single_deletion_replays": [
+      {
+        "omitted": "R00009",
+        "status": "SAT"
+      },
+      {
+        "omitted": "R00126",
+        "status": "SAT"
+      },
+      {
+        "omitted": "R03431",
+        "status": "SAT"
+      }
+    ],
+    "z3_initial_core_size": 3
+  }
+}

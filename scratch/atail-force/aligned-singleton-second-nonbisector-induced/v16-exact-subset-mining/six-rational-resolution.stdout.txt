@@ -1,0 +1,1 @@
+{"output": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-exact-subset-mining/six-rank1-rank2-resolution.json", "statuses": ["SAT_EXACT_RATIONAL_WITNESS", "SAT_EXACT_RATIONAL_WITNESS"], "terminal_status": "ALL_TWO_SAT_EXACT_RATIONAL_WITNESSES"}

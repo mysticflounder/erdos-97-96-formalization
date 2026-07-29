@@ -1,0 +1,264 @@
+{
+  "constraint_counts": {
+    "gauge": 4,
+    "pairwise_distinct": 45,
+    "positive_row_equality": 18,
+    "strict_cyclic_orientation": 80
+  },
+  "cvc5": {
+    "command": [
+      "/Users/adam/bin/cvc5",
+      "--lang",
+      "smt2",
+      "--nl-cov",
+      "--tlimit",
+      "120000"
+    ],
+    "elapsed_seconds": 120.05249558296055,
+    "fail_closed": true,
+    "reason_unknown": "cvc5 timeout without a status line",
+    "returncode": -6,
+    "solver": "cvc5",
+    "status": "UNKNOWN",
+    "stderr_tail": [
+      "cvc5 interrupted by timeout."
+    ],
+    "stdout_tail": [],
+    "timeout_ms": 120000
+  },
+  "elapsed_seconds": 243.0815904168412,
+  "epistemic_status": "UNKNOWN_FAIL_CLOSED",
+  "induced_equations": [
+    {
+      "left_edge": [
+        5,
+        7
+      ],
+      "right_edge": [
+        5,
+        12
+      ],
+      "source_index": 16
+    },
+    {
+      "left_edge": [
+        5,
+        7
+      ],
+      "right_edge": [
+        5,
+        14
+      ],
+      "source_index": 17
+    },
+    {
+      "left_edge": [
+        5,
+        7
+      ],
+      "right_edge": [
+        5,
+        15
+      ],
+      "source_index": 18
+    },
+    {
+      "left_edge": [
+        5,
+        9
+      ],
+      "right_edge": [
+        5,
+        11
+      ],
+      "source_index": 19
+    },
+    {
+      "left_edge": [
+        5,
+        9
+      ],
+      "right_edge": [
+        5,
+        13
+      ],
+      "source_index": 20
+    },
+    {
+      "left_edge": [
+        5,
+        9
+      ],
+      "right_edge": [
+        5,
+        16
+      ],
+      "source_index": 21
+    },
+    {
+      "left_edge": [
+        5,
+        10
+      ],
+      "right_edge": [
+        9,
+        10
+      ],
+      "source_index": 22
+    },
+    {
+      "left_edge": [
+        5,
+        10
+      ],
+      "right_edge": [
+        10,
+        11
+      ],
+      "source_index": 23
+    },
+    {
+      "left_edge": [
+        5,
+        11
+      ],
+      "right_edge": [
+        5,
+        13
+      ],
+      "source_index": 24
+    },
+    {
+      "left_edge": [
+        5,
+        11
+      ],
+      "right_edge": [
+        5,
+        16
+      ],
+      "source_index": 25
+    },
+    {
+      "left_edge": [
+        5,
+        12
+      ],
+      "right_edge": [
+        5,
+        14
+      ],
+      "source_index": 26
+    },
+    {
+      "left_edge": [
+        5,
+        12
+      ],
+      "right_edge": [
+        5,
+        15
+      ],
+      "source_index": 27
+    },
+    {
+      "left_edge": [
+        5,
+        13
+      ],
+      "right_edge": [
+        5,
+        16
+      ],
+      "source_index": 28
+    },
+    {
+      "left_edge": [
+        5,
+        14
+      ],
+      "right_edge": [
+        5,
+        15
+      ],
+      "source_index": 29
+    },
+    {
+      "left_edge": [
+        5,
+        16
+      ],
+      "right_edge": [
+        15,
+        16
+      ],
+      "source_index": 30
+    },
+    {
+      "left_edge": [
+        7,
+        11
+      ],
+      "right_edge": [
+        11,
+        12
+      ],
+      "source_index": 34
+    },
+    {
+      "left_edge": [
+        9,
+        10
+      ],
+      "right_edge": [
+        10,
+        11
+      ],
+      "source_index": 36
+    },
+    {
+      "left_edge": [
+        13,
+        16
+      ],
+      "right_edge": [
+        14,
+        16
+      ],
+      "source_index": 37
+    }
+  ],
+  "schema": "v16-strategic-subset-check-v1",
+  "smt2": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/aligned-singleton-second-nonbisector-induced/v16-full-euclidean-feasibility/core10-concentric-interleave.smt2",
+  "subset": [
+    5,
+    7,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "trust_scope": "QF_NRA solver classification only; not CEGAR or Lean closure. UNSAT requires agreement of Z3 and cvc5. SAT requires exact model substitution and still witnesses only this induced subsystem.",
+  "z3": {
+    "assumption_tracked_kinds": [
+      "strict_cyclic_orientation",
+      "pairwise_distinct",
+      "positive_row_equality"
+    ],
+    "elapsed_seconds": 123.02180308313109,
+    "fixed_background_record_names": [
+      "gauge_x_0",
+      "gauge_y_0",
+      "gauge_x_1",
+      "gauge_y_1"
+    ],
+    "reason_unknown": "canceled",
+    "solver": "Z3 Python API",
+    "status": "UNKNOWN",
+    "timeout_ms": 120000
+  }
+}

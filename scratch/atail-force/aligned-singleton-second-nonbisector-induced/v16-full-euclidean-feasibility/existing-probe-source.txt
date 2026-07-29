@@ -1,0 +1,259 @@
+#!/usr/bin/env python3
+"""Bounded exact R^2 probe for a current aliased CEGAR survivor.
+
+The input result and checkpoint are accepted only when their metadata matches
+the current ``cegar.py`` implementation and a freshly constructed outer map.
+Every checkpoint cut is replayed, the survivor's recorded alias classes,
+their order, and every required-row truth value are pinned, and the pinned
+outer map must replay SAT.
+
+The Euclidean formula has one coordinate pair per alias class.  Every directed
+boundary edge is required to strictly support every other class, which exactly
+encodes the recorded strict-convex cyclic order.  Positive required-row atoms
+selected by the pinned outer model become squared-distance equalities.  With
+``--include-false-rows``, selected false rows are additionally imposed as
+disequalities in a separate, stronger diagnostic.
+
+Z3 is a trusted discovery/checking oracle here, not a proof-producing kernel.
+SAT and UNSAT are solver evidence only.  UNKNOWN and timeouts fail closed.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import importlib.util
+import json
+import math
+import subprocess
+import sys
+import time
+from dataclasses import dataclass
+from pathlib import Path
+from types import SimpleNamespace
+from typing import Any, Iterable
+
+import z3
+
+
+HERE = Path(__file__).resolve().parent
+CEGAR = HERE / "cegar.py"
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    raw = json.loads(path.read_text())
+    if not isinstance(raw, dict):
+        raise ValueError(f"expected a JSON object: {path}")
+    return raw
+
+
+def load_cegar() -> Any:
+    spec = importlib.util.spec_from_file_location(
+        "atail_induced_cegar_survivor_probe", CEGAR
+    )
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"cannot import {CEGAR}")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+@dataclass
+class Budget:
+    deadline: float
+
+    @classmethod
+    def start(cls, timeout_seconds: float) -> "Budget":
+        if timeout_seconds <= 0:
+            raise ValueError("--timeout-seconds must be positive")
+        return cls(time.monotonic() + timeout_seconds)
+
+    def remaining_ms(self) -> int:
+        remaining = self.deadline - time.monotonic()
+        if remaining <= 0:
+            raise TimeoutError("global wall-clock budget expired")
+        return max(1, int(remaining * 1000))
+
+
+def normalize_classes(
+    raw_classes: object, names: tuple[str, ...]
+) -> list[list[str]]:
+    if not isinstance(raw_classes, list) or len(raw_classes) < 3:
+        raise ValueError("survivor must record at least three alias classes")
+    classes: list[list[str]] = []
+    flattened: list[str] = []
+    for raw_class in raw_classes:
+        if (
+            not isinstance(raw_class, list)
+            or not raw_class
+            or not all(isinstance(name, str) for name in raw_class)
+        ):
+            raise ValueError("invalid survivor alias class")
+        cls = list(raw_class)
+        classes.append(cls)
+        flattened.extend(cls)
+    if len(flattened) != len(set(flattened)):
+        raise ValueError("survivor alias classes overlap")
+    if set(flattened) != set(names):
+        missing = sorted(set(names) - set(flattened))
+        extra = sorted(set(flattened) - set(names))
+        raise ValueError(
+            f"survivor alias classes do not partition names: "
+            f"missing={missing}, extra={extra}"
+        )
+    return classes
+
+
+def normalize_row_assignment(
+    raw_assignment: object,
+    cg: Any,
+    outer: Any,
+) -> list[Any]:
+    if not isinstance(raw_assignment, list):
+        raise ValueError("survivor has no terminal required-row assignment")
+    literals = [cg.Literal.from_json(raw) for raw in raw_assignment]
+    for literal in literals:
+        if (
+            literal.kind != "row"
+            or len(literal.args) != 4
+            or not all(isinstance(arg, str) for arg in literal.args[:3])
+            or any(arg not in outer.names for arg in literal.args[:3])
+            or literal.args[1] == literal.args[2]
+            or type(literal.args[3]) is not bool
+        ):
+            raise ValueError(
+                "terminal row assignment contains an invalid row entry"
+            )
+    expected_keys = sorted(outer.required_rows)
+    actual_keys = [
+        (str(literal.args[0]), str(literal.args[1]), str(literal.args[2]))
+        for literal in literals
+    ]
+    if actual_keys != expected_keys:
+        raise ValueError(
+            "terminal row assignment is not the canonical complete required-row census"
+        )
+    return literals
+
+
+def current_metadata(cg: Any, payload: dict[str, Any], outer: Any) -> dict[str, object]:
+    return cg.checkpoint_metadata(
+        SimpleNamespace(
+            z_branch=payload["z_branch"],
+            escape_arm=payload["escape_arm"],
+            global_tier=payload["global_tier"],
+            outer_only=payload["metadata"]["outer_only"],
+        ),
+        outer,
+    )
+
+
+def replay_survivor(
+    result_path: Path,
+    checkpoint_path: Path,
+    budget: Budget,
+) -> dict[str, Any]:
+    payload = load_json(result_path)
+    checkpoint = load_json(checkpoint_path)
+    if payload.get("status") != "ALIVE":
+        raise ValueError("result has no ALIVE survivor")
+    survivor = payload.get("survivor")
+    if not isinstance(survivor, dict):
+        raise ValueError("result has no survivor object")
+    metadata = payload.get("metadata")
+    if not isinstance(metadata, dict):
+        raise ValueError("result has no metadata object")
+
+    implementation_sha = sha256(CEGAR)
+    if payload.get("implementation_sha256") != implementation_sha:
+        raise ValueError("result implementation hash does not match current cegar.py")
+    if metadata.get("implementation_sha256") != implementation_sha:
+        raise ValueError("result metadata implementation hash is inconsistent")
+    if checkpoint.get("metadata") != metadata:
+        raise ValueError("checkpoint and result metadata differ")
+
+    cg = load_cegar()
+    outer = cg.OuterMap(
+        timeout_ms=budget.remaining_ms(),
+        random_seed=0,
+        z_branch=payload["z_branch"],
+        escape_arm=payload["escape_arm"],
+        global_tier=payload["global_tier"],
+    )
+    expected_metadata = current_metadata(cg, payload, outer)
+    if metadata != expected_metadata:
+        raise ValueError("artifact metadata does not match the current outer map")
+    recorded_counts = payload.get("outer_constraint_counts")
+    live_counts = dict(sorted(outer.counts.items()))
+    if recorded_counts != live_counts:
+        raise ValueError("recorded outer constraint ledger does not match current map")
+
+    cuts = cg.load_checkpoint(checkpoint_path, expected_metadata, outer.names)
+    if payload.get("cuts") != len(cuts):
+        raise ValueError("result cut count does not match checkpoint")
+    for cut in cuts:
+        budget.remaining_ms()
+        outer.add_cut(cut)
+
+    classes = normalize_classes(
+        survivor.get("alias_classes_in_order"), outer.names
+    )
+    row_assignment = normalize_row_assignment(
+        survivor.get("required_row_assignment"), cg, outer
+    )
+    class_of = {
+        name: class_index
+        for class_index, cls in enumerate(classes)
+        for name in cls
+    }
+    for cls in classes:
+        for name in cls[1:]:
+            outer.solver.add(outer.same(cls[0], name))
+    for left, right in zip(classes, classes[1:]):
+        outer.solver.add(outer.before(left[0], right[0]))
+    for literal in row_assignment:
+        outer.solver.add(outer.literal_expr(literal))
+
+    outer.solver.set(timeout=budget.remaining_ms())
+    started = time.monotonic()
+    status = outer.solver.check()
+    elapsed = time.monotonic() - started
+    if status == z3.unknown:
+        raise RuntimeError(
+            "pinned outer replay UNKNOWN (fail closed): "
+            f"{outer.solver.reason_unknown()}"
+        )
+    if status != z3.sat:
+        raise RuntimeError(f"pinned outer replay was {status}, expected SAT")
+    model = outer.solver.model()
+    if outer.alias_classes(model) != classes:
+        raise RuntimeError("SAT replay model does not reproduce recorded alias classes")
+    if outer.required_row_assignment(model) != [
+        literal.to_json() for literal in row_assignment
+    ]:
+        raise RuntimeError(
+            "SAT replay model does not reproduce the terminal row assignment"
+        )
+
+    positive_named_rows: list[list[str]] = []
+    false_named_rows: list[list[str]] = []
+    for literal in row_assignment:
+        center, left, right, equal = literal.args
+        target = positive_named_rows if bool(equal) else false_named_rows
+        target.append([str(center), str(left), str(right)])
+
+    def quotient_rows(named_rows: Iterable[list[str]]) -> list[list[int]]:
+        rows = {
+            (
+                class_of[center],
+                min(class_of[left], class_of[right]),
+                max(class_of[left], class_of[right]),
+            )
+            for center, left, right in named_rows
+        }
+        return [list(row) for row in sorted(rows)]

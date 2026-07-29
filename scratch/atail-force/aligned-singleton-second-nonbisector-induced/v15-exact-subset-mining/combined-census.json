@@ -1,0 +1,111 @@
+{
+  "schema": "p97-v15-exact-induced-subset-audit-v1",
+  "terminal_status": "VALIDATED_MINIMAL_FIVE_CLASS_UNSAT",
+  "epistemic_status": "TRUSTED_EXACT_SOLVER_AND_CAS_EVIDENCE_ONLY",
+  "source": {
+    "cegar_result": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar-v15-local-critical-reuse-second.json",
+    "cegar_result_sha256": "cc1e1ec05744928814ecf5ca82ab6363e3cdfc053eb085fe2061cb965e314a64",
+    "alias_class_count": 18,
+    "positive_quotient_equation_count": 38
+  },
+  "census": {
+    "4": {
+      "total": 3060,
+      "sat": 3060,
+      "unsat": 0,
+      "unknown": 0,
+      "fully_enumerated": true
+    },
+    "5": {
+      "total": 8568,
+      "sat": 8567,
+      "unsat": 1,
+      "unknown": 0,
+      "fully_enumerated": true,
+      "sat_breakdown": {
+        "shared_exact_integer_witness": 5563,
+        "initial_z3_exact_model_substitution": 2997,
+        "initial_cvc5_sat_after_z3_unknown": 4,
+        "long_z3_exact_model_substitution": 3
+      }
+    },
+    "6": {
+      "run": false,
+      "reason": "A deletion-minimal five-class UNSAT core was validated, so a six-class scan cannot improve subset minimality."
+    }
+  },
+  "minimal_core": {
+    "global_classes": [4, 6, 9, 10, 15],
+    "aliases_in_order": [
+      ["a0"],
+      ["r1", "z4", "y", "e3"],
+      ["source"],
+      ["r2", "b1", "s3", "z2"],
+      ["bs", "r4"]
+    ],
+    "role_map": {
+      "W": 4,
+      "F": 6,
+      "P": 9,
+      "X": 10,
+      "Z": 15
+    },
+    "order_literals": [
+      "orient(W,F,X)>0",
+      "orient(W,F,Z)>0",
+      "orient(F,P,X)>0",
+      "orient(P,X,Z)>0",
+      "orient(X,Z,W)>0"
+    ],
+    "row_equalities": [
+      {
+        "source_index": 18,
+        "global": "d(4,6)=d(4,10)",
+        "roles": "WF=WX"
+      },
+      {
+        "source_index": 19,
+        "global": "d(4,6)=d(4,15)",
+        "roles": "WF=WZ"
+      },
+      {
+        "source_index": 36,
+        "global": "d(9,15)=d(10,15)",
+        "roles": "PZ=XZ"
+      }
+    ],
+    "redundant_induced_equality_omitted": {
+      "source_index": 23,
+      "global": "d(4,10)=d(4,15)",
+      "roles": "WX=WZ"
+    },
+    "deletion_minimal": true,
+    "deletion_test": "Deleting any one of the five order literals or three row equalities gives an exact-substitution Z3 SAT model."
+  },
+  "validation": {
+    "unreduced_direct_formula": {
+      "z3_120s": "UNKNOWN_TIMEOUT",
+      "cvc5_120s": "UNKNOWN_TIMEOUT"
+    },
+    "normalized_schema": {
+      "z3": "UNSAT",
+      "cvc5": "UNSAT",
+      "smt2": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/v15-exact-subset-mining/five-q4-6-9-10-15-normalized-unsat-schema.smt2",
+      "smt2_sha256": "8208dd6315e9c23f43a3ad3b2ce14a125b43b7af3e9057dc951ca87b4ddf243d"
+    },
+    "identities": {
+      "solver": "Singular 4.4.1",
+      "status": "PASS_ALL_ZERO",
+      "script": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/v15-exact-subset-mining/five-q4-6-9-10-15-identities.sing",
+      "script_sha256": "900b2e172c6141e42135c50f085a873e4d490f6aceb5470f5f68d36375e051a6"
+    }
+  },
+  "registered_bank_match": {
+    "status": "EXACT_MATCH",
+    "theorem": "Problem97.Census554.FivePointCircleIsoscelesOrderBridge.false_of_core_of_ccw",
+    "registered_pattern": "strict convex cyclic order W,F,P,X,Z with WF=WX=WZ and PZ=XZ",
+    "registry": "docs/general-n-certificate-bank-mining-2026-07-09.md",
+    "source": "lean/Erdos9796Proof/P97/Census554/FivePointCircleIsoscelesOrderBridge.lean"
+  },
+  "trust_boundary": "This refutes the positive-equality induced ordered-Euclidean abstraction of the hash-pinned survivor. It is not a proof that the row equalities follow universally from the quotient constraints, not a production publish-target closure, and not a new Lean/kernel proof."
+}

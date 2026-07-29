@@ -1,0 +1,3970 @@
+{
+  "terminal_status": "UNKNOWN_NO_FIT_FOUND",
+  "reason": "bounded deterministic multistart found no candidate meeting both the distance-equality tolerances and strict-convex margins; this does not certify infeasibility",
+  "ledger": null,
+  "dimensions": null,
+  "attempts": [
+    {
+      "attempt": 0,
+      "elapsed_seconds": 0.007674667052924633,
+      "evaluations_or_iterations": 31,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 3.3104758156166774E-14,
+        "equation_max_abs": 2.1316282072803006E-14,
+        "equation_rms": 5.3703009142835766E-15,
+        "maximum_absolute_coordinate": 5.285710833038237,
+        "minimum_pair_distance": 0.039764823573661276,
+        "nonpositive_support_count": 161,
+        "normalized_support_min": -0.9990270001408638,
+        "raw_support_min": -14.611695572074856,
+        "raw_support_quantiles": {
+          "q00": -14.611695572074856,
+          "q01": -11.883696418285446,
+          "q05": -9.485259559051984,
+          "q100": 18.803363154388745,
+          "q50": 0.014396942068457541,
+          "q95": 7.731850828374909
+        },
+        "signed_polygon_area": -1.4226152434449346,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              14
+            ]
+          ],
+          "index": 17,
+          "residual": -2.1316282072803006E-14
+        },
+        "worst_support": {
+          "index": 78,
+          "normalized": -0.9902680756892809,
+          "raw": -14.611695572074856,
+          "triple": [
+            4,
+            5,
+            12
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 97096029,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 1,
+      "elapsed_seconds": 0.02137591689825058,
+      "evaluations_or_iterations": 48,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 9.364347457555128E-15,
+        "equation_max_abs": 3.552713678800501E-15,
+        "equation_rms": 1.519097752526836E-15,
+        "maximum_absolute_coordinate": 5.524368965807664,
+        "minimum_pair_distance": 3.0287934084557967E-15,
+        "nonpositive_support_count": 149,
+        "normalized_support_min": -0.9999622500797422,
+        "raw_support_min": -14.83677162992938,
+        "raw_support_quantiles": {
+          "q00": -14.83677162992938,
+          "q01": -12.193707738783646,
+          "q05": -8.611496183065636,
+          "q100": 17.03734874671592,
+          "q50": 0.0588262759777759,
+          "q95": 7.831627413651245
+        },
+        "signed_polygon_area": -1.2996700224993698,
+        "worst_equation": {
+          "equation": [
+            [
+              4,
+              11
+            ],
+            [
+              11,
+              12
+            ]
+          ],
+          "index": 15,
+          "residual": 3.552713678800501E-15
+        },
+        "worst_support": {
+          "index": 243,
+          "normalized": -0.9711626979731185,
+          "raw": -14.83677162992938,
+          "triple": [
+            14,
+            15,
+            5
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 97200758,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 2,
+      "elapsed_seconds": 0.021263750037178397,
+      "evaluations_or_iterations": 50,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 3.473227388891899E-14,
+        "equation_max_abs": 2.1316282072803006E-14,
+        "equation_rms": 5.634318829363315E-15,
+        "maximum_absolute_coordinate": 8.793435052525346,
+        "minimum_pair_distance": 2.220446049250313E-16,
+        "nonpositive_support_count": 112,
+        "normalized_support_min": -0.998825764590997,
+        "raw_support_min": -42.20153963266286,
+        "raw_support_quantiles": {
+          "q00": -42.20153963266286,
+          "q01": -33.869884157217115,
+          "q05": -17.60897964212997,
+          "q100": 39.00608366265034,
+          "q50": 2.0179853618841346,
+          "q95": 22.913541300395472
+        },
+        "signed_polygon_area": 21.082860932495997,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              12
+            ],
+            [
+              5,
+              15
+            ]
+          ],
+          "index": 27,
+          "residual": 2.1316282072803006E-14
+        },
+        "worst_support": {
+          "index": 208,
+          "normalized": -0.6464486581250729,
+          "raw": -42.20153963266286,
+          "triple": [
+            12,
+            13,
+            4
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 97305487,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 3,
+      "elapsed_seconds": 0.005454333033412695,
+      "evaluations_or_iterations": 10,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.924628532490988E-14,
+        "equation_max_abs": 7.105427357601002E-15,
+        "equation_rms": 3.1221597568950205E-15,
+        "maximum_absolute_coordinate": 5.249335641012658,
+        "minimum_pair_distance": 0.06873584076545898,
+        "nonpositive_support_count": 157,
+        "normalized_support_min": -0.9995466933620575,
+        "raw_support_min": -15.052510396591927,
+        "raw_support_quantiles": {
+          "q00": -15.052510396591927,
+          "q01": -11.697868563129052,
+          "q05": -8.992022273024956,
+          "q100": 18.74125550520937,
+          "q50": 0.1184070417396137,
+          "q95": 7.371831826958103
+        },
+        "signed_polygon_area": -1.251701039284493,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              15
+            ]
+          ],
+          "index": 18,
+          "residual": 7.105427357601002E-15
+        },
+        "worst_support": {
+          "index": 209,
+          "normalized": -0.7349723883768899,
+          "raw": -15.052510396591927,
+          "triple": [
+            12,
+            13,
+            5
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 97410216,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 4,
+      "elapsed_seconds": 0.006446375045925379,
+      "evaluations_or_iterations": 11,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 2.4605912650217244E-14,
+        "equation_max_abs": 7.105427357601002E-15,
+        "equation_rms": 3.991606118337649E-15,
+        "maximum_absolute_coordinate": 6.0024874485126025,
+        "minimum_pair_distance": 0.3240562780109645,
+        "nonpositive_support_count": 136,
+        "normalized_support_min": -0.9993314531936008,
+        "raw_support_min": -22.922925000833356,
+        "raw_support_quantiles": {
+          "q00": -22.922925000833356,
+          "q01": -17.890893460900696,
+          "q05": -14.267381765036664,
+          "q100": 25.831992643437093,
+          "q50": 0.8840410843658798,
+          "q95": 14.022492791518005
+        },
+        "signed_polygon_area": 4.448135741904035,
+        "worst_equation": {
+          "equation": [
+            [
+              1,
+              11
+            ],
+            [
+              7,
+              11
+            ]
+          ],
+          "index": 4,
+          "residual": -7.105427357601002E-15
+        },
+        "worst_support": {
+          "index": 78,
+          "normalized": -0.816122150400608,
+          "raw": -22.922925000833356,
+          "triple": [
+            4,
+            5,
+            12
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 97514945,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 5,
+      "elapsed_seconds": 0.021438375115394592,
+      "evaluations_or_iterations": 45,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 8.671290312598328E-15,
+        "equation_max_abs": 3.552713678800501E-15,
+        "equation_rms": 1.406669037547115E-15,
+        "maximum_absolute_coordinate": 4.189073558458953,
+        "minimum_pair_distance": 1.1102230246251565E-16,
+        "nonpositive_support_count": 134,
+        "normalized_support_min": -0.9999961807253118,
+        "raw_support_min": -14.666507688252231,
+        "raw_support_quantiles": {
+          "q00": -14.666507688252231,
+          "q01": -12.275486688660061,
+          "q05": -6.163000096191377,
+          "q100": 15.34615705104598,
+          "q50": 0.3563823472426531,
+          "q95": 7.449001140771
+        },
+        "signed_polygon_area": 5.620881230889571,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              12
+            ]
+          ],
+          "index": 16,
+          "residual": -3.552713678800501E-15
+        },
+        "worst_support": {
+          "index": 211,
+          "normalized": -0.7459039049029195,
+          "raw": -14.666507688252231,
+          "triple": [
+            12,
+            13,
+            7
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 97619674,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 6,
+      "elapsed_seconds": 0.005308666033670306,
+      "evaluations_or_iterations": 9,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 2.6227594425580137E-14,
+        "equation_max_abs": 1.4210854715202004E-14,
+        "equation_rms": 4.254677640558875E-15,
+        "maximum_absolute_coordinate": 7.356073966836912,
+        "minimum_pair_distance": 0.09262425927968744,
+        "nonpositive_support_count": 142,
+        "normalized_support_min": -0.9998262749263265,
+        "raw_support_min": -35.00744249243558,
+        "raw_support_quantiles": {
+          "q00": -35.00744249243558,
+          "q01": -31.488498546250725,
+          "q05": -16.99029693451307,
+          "q100": 33.350102813966835,
+          "q50": 0.8217158812359876,
+          "q95": 16.977186530692084
+        },
+        "signed_polygon_area": 3.0731589981988203,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              12
+            ],
+            [
+              5,
+              14
+            ]
+          ],
+          "index": 26,
+          "residual": -1.4210854715202004E-14
+        },
+        "worst_support": {
+          "index": 243,
+          "normalized": -0.9563867201261046,
+          "raw": -35.00744249243558,
+          "triple": [
+            14,
+            15,
+            5
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 97724403,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 7,
+      "elapsed_seconds": 0.02015079208649695,
+      "evaluations_or_iterations": 43,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.2723673454668232E-14,
+        "equation_max_abs": 5.329070518200751E-15,
+        "equation_rms": 2.0640523898200396E-15,
+        "maximum_absolute_coordinate": 6.023737538373013,
+        "minimum_pair_distance": 4.577566798522237E-16,
+        "nonpositive_support_count": 142,
+        "normalized_support_min": -0.9995311181830232,
+        "raw_support_min": -13.570470628496833,
+        "raw_support_quantiles": {
+          "q00": -13.570470628496833,
+          "q01": -12.9497368136777,
+          "q05": -8.261292683607488,
+          "q100": 15.060005161063428,
+          "q50": 0.12979720419930912,
+          "q95": 8.847831861026899
+        },
+        "signed_polygon_area": 4.2425704635867,
+        "worst_equation": {
+          "equation": [
+            [
+              1,
+              11
+            ],
+            [
+              7,
+              11
+            ]
+          ],
+          "index": 4,
+          "residual": -5.329070518200751E-15
+        },
+        "worst_support": {
+          "index": 39,
+          "normalized": -0.5721234892861486,
+          "raw": -13.570470628496833,
+          "triple": [
+            2,
+            3,
+            7
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 97829132,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 8,
+      "elapsed_seconds": 0.022157750092446804,
+      "evaluations_or_iterations": 48,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 6.113108352025041E-15,
+        "equation_max_abs": 1.7763568394002505E-15,
+        "equation_rms": 9.916771243918359E-16,
+        "maximum_absolute_coordinate": 3.956440384059105,
+        "minimum_pair_distance": 4.163336342344337E-16,
+        "nonpositive_support_count": 142,
+        "normalized_support_min": -0.9999492075384093,
+        "raw_support_min": -7.55736507115269,
+        "raw_support_quantiles": {
+          "q00": -7.55736507115269,
+          "q01": -6.516184776414667,
+          "q05": -4.4756839590473,
+          "q100": 7.6217266858021775,
+          "q50": 0.09619326621279167,
+          "q95": 4.311804645832942
+        },
+        "signed_polygon_area": 0.12547517650490558,
+        "worst_equation": {
+          "equation": [
+            [
+              4,
+              11
+            ],
+            [
+              7,
+              11
+            ]
+          ],
+          "index": 14,
+          "residual": 1.7763568394002505E-15
+        },
+        "worst_support": {
+          "index": 243,
+          "normalized": -0.9479192828605096,
+          "raw": -7.55736507115269,
+          "triple": [
+            14,
+            15,
+            5
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 97933861,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 9,
+      "elapsed_seconds": 0.005659041926264763,
+      "evaluations_or_iterations": 10,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.9917599093883288E-14,
+        "equation_max_abs": 7.105427357601002E-15,
+        "equation_rms": 3.2310612305225354E-15,
+        "maximum_absolute_coordinate": 5.301401256052574,
+        "minimum_pair_distance": 0.2108074434991708,
+        "nonpositive_support_count": 151,
+        "normalized_support_min": -0.9999863014919618,
+        "raw_support_min": -13.947797544741041,
+        "raw_support_quantiles": {
+          "q00": -13.947797544741041,
+          "q01": -11.572227621988327,
+          "q05": -8.355193631127852,
+          "q100": 17.973493526951486,
+          "q50": 0.26911173951615375,
+          "q95": 7.310053710104887
+        },
+        "signed_polygon_area": -0.20263266183796574,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              12
+            ]
+          ],
+          "index": 16,
+          "residual": -7.105427357601002E-15
+        },
+        "worst_support": {
+          "index": 209,
+          "normalized": -0.7593016247714898,
+          "raw": -13.947797544741041,
+          "triple": [
+            12,
+            13,
+            5
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 98038590,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 10,
+      "elapsed_seconds": 0.005273874849081039,
+      "evaluations_or_iterations": 10,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 7.483924389696347E-14,
+        "equation_max_abs": 4.263256414560601E-14,
+        "equation_rms": 1.2140528501317161E-14,
+        "maximum_absolute_coordinate": 9.513322258490543,
+        "minimum_pair_distance": 0.1876175314298593,
+        "nonpositive_support_count": 149,
+        "normalized_support_min": -0.9999933880498147,
+        "raw_support_min": -48.96162910495331,
+        "raw_support_quantiles": {
+          "q00": -48.96162910495331,
+          "q01": -37.595228250425684,
+          "q05": -22.73213612261115,
+          "q100": 45.679209184055594,
+          "q50": 0.9109370821860328,
+          "q95": 23.796115402591987
+        },
+        "signed_polygon_area": -1.5378330848603579,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              12
+            ]
+          ],
+          "index": 16,
+          "residual": 4.263256414560601E-14
+        },
+        "worst_support": {
+          "index": 243,
+          "normalized": -0.9619783812913157,
+          "raw": -48.96162910495331,
+          "triple": [
+            14,
+            15,
+            5
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 98143319,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 11,
+      "elapsed_seconds": 0.020480707986280322,
+      "evaluations_or_iterations": 48,
+      "metrics": {
+        "degenerate_support_denominator_count": 2,
+        "equation_l2": 7.486623336267464E-15,
+        "equation_max_abs": 3.552713678800501E-15,
+        "equation_rms": 1.2144906770800387E-15,
+        "maximum_absolute_coordinate": 4.253612921631803,
+        "minimum_pair_distance": 0.0,
+        "nonpositive_support_count": 135,
+        "normalized_support_min": -0.9999865872694912,
+        "raw_support_min": -15.436069943323561,
+        "raw_support_quantiles": {
+          "q00": -15.436069943323561,
+          "q01": -11.88664897576813,
+          "q05": -6.241440123100009,
+          "q100": 16.899315544093678,
+          "q50": 0.6735860383350009,
+          "q95": 9.527156877168958
+        },
+        "signed_polygon_area": 7.160093393075256,
+        "worst_equation": {
+          "equation": [
+            [
+              4,
+              11
+            ],
+            [
+              11,
+              12
+            ]
+          ],
+          "index": 15,
+          "residual": 3.552713678800501E-15
+        },
+        "worst_support": {
+          "index": 64,
+          "normalized": -0.9897946391910785,
+          "raw": -15.436069943323561,
+          "triple": [
+            3,
+            4,
+            15
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 98248048,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 12,
+      "elapsed_seconds": 0.020665334071964025,
+      "evaluations_or_iterations": 44,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 6.514082902173065E-14,
+        "equation_max_abs": 2.842170943040401E-14,
+        "equation_rms": 1.0567237857541166E-14,
+        "maximum_absolute_coordinate": 14.189244423267512,
+        "minimum_pair_distance": 4.996003610813204E-16,
+        "nonpositive_support_count": 114,
+        "normalized_support_min": -0.9995536114007008,
+        "raw_support_min": -77.89387006661266,
+        "raw_support_quantiles": {
+          "q00": -77.89387006661266,
+          "q01": -60.93879319336387,
+          "q05": -29.79919499590745,
+          "q100": 88.85776293902448,
+          "q50": 2.3563014134691067,
+          "q95": 44.59589081501661
+        },
+        "signed_polygon_area": 61.180804313324465,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              12
+            ]
+          ],
+          "index": 16,
+          "residual": 2.842170943040401E-14
+        },
+        "worst_support": {
+          "index": 39,
+          "normalized": -0.7470518678748193,
+          "raw": -77.89387006661266,
+          "triple": [
+            2,
+            3,
+            7
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 98352777,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 13,
+      "elapsed_seconds": 0.009508041897788644,
+      "evaluations_or_iterations": 35,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.591332863903449E-14,
+        "equation_max_abs": 7.105427357601002E-15,
+        "equation_rms": 2.5814827867450386E-15,
+        "maximum_absolute_coordinate": 5.645986544942822,
+        "minimum_pair_distance": 0.16232879032657468,
+        "nonpositive_support_count": 154,
+        "normalized_support_min": -0.9998120666147362,
+        "raw_support_min": -15.44505904740482,
+        "raw_support_quantiles": {
+          "q00": -15.44505904740482,
+          "q01": -11.868398825845235,
+          "q05": -8.330858964206934,
+          "q100": 16.580828909229265,
+          "q50": 0.11593422505221751,
+          "q95": 7.682934848701042
+        },
+        "signed_polygon_area": -1.267971184405312,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              12
+            ]
+          ],
+          "index": 16,
+          "residual": -7.105427357601002E-15
+        },
+        "worst_support": {
+          "index": 80,
+          "normalized": -0.998860387078792,
+          "raw": -15.44505904740482,
+          "triple": [
+            4,
+            5,
+            14
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 98457506,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 14,
+      "elapsed_seconds": 0.007021208060905337,
+      "evaluations_or_iterations": 12,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 6.586909791551327E-14,
+        "equation_max_abs": 4.263256414560601E-14,
+        "equation_rms": 1.0685378672455912E-14,
+        "maximum_absolute_coordinate": 9.697168710822313,
+        "minimum_pair_distance": 0.49691173352876294,
+        "nonpositive_support_count": 163,
+        "normalized_support_min": -0.9999445516061614,
+        "raw_support_min": -38.68711836739861,
+        "raw_support_quantiles": {
+          "q00": -38.68711836739861,
+          "q01": -34.547953055892044,
+          "q05": -20.838583094275805,
+          "q100": 51.623628153762205,
+          "q50": -0.17048910490550462,
+          "q95": 24.615843030326566
+        },
+        "signed_polygon_area": -0.4538996135295612,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              12
+            ]
+          ],
+          "index": 16,
+          "residual": -4.263256414560601E-14
+        },
+        "worst_support": {
+          "index": 90,
+          "normalized": -0.5162800973732008,
+          "raw": -38.68711836739861,
+          "triple": [
+            5,
+            6,
+            7
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 98562235,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 15,
+      "elapsed_seconds": 0.00555962510406971,
+      "evaluations_or_iterations": 10,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 2.236486346295675E-14,
+        "equation_max_abs": 1.4210854715202004E-14,
+        "equation_rms": 3.628059934356311E-15,
+        "maximum_absolute_coordinate": 5.53608463951431,
+        "minimum_pair_distance": 0.07785475080100858,
+        "nonpositive_support_count": 145,
+        "normalized_support_min": -0.9999997880587759,
+        "raw_support_min": -13.963805334963268,
+        "raw_support_quantiles": {
+          "q00": -13.963805334963268,
+          "q01": -12.461800302936071,
+          "q05": -8.6509946581326,
+          "q100": 18.266353521580385,
+          "q50": 0.33517038646212427,
+          "q95": 8.324009205401591
+        },
+        "signed_polygon_area": 0.7501646967564142,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              12
+            ],
+            [
+              5,
+              15
+            ]
+          ],
+          "index": 27,
+          "residual": -1.4210854715202004E-14
+        },
+        "worst_support": {
+          "index": 209,
+          "normalized": -0.7363533192765029,
+          "raw": -13.963805334963268,
+          "triple": [
+            12,
+            13,
+            5
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 98666964,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 16,
+      "elapsed_seconds": 0.005260040983557701,
+      "evaluations_or_iterations": 9,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.780792194218199E-14,
+        "equation_max_abs": 7.105427357601002E-15,
+        "equation_rms": 2.8888264048464513E-15,
+        "maximum_absolute_coordinate": 5.891748941476416,
+        "minimum_pair_distance": 0.5577225669100101,
+        "nonpositive_support_count": 147,
+        "normalized_support_min": -0.9999817140463152,
+        "raw_support_min": -16.641482327524404,
+        "raw_support_quantiles": {
+          "q00": -16.641482327524404,
+          "q01": -13.672533126826181,
+          "q05": -10.129171867791916,
+          "q100": 24.622839396841005,
+          "q50": 0.33752050311879983,
+          "q95": 11.945592384295571
+        },
+        "signed_polygon_area": 2.856151222661653,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              15
+            ]
+          ],
+          "index": 18,
+          "residual": 7.105427357601002E-15
+        },
+        "worst_support": {
+          "index": 243,
+          "normalized": -0.9756175585082189,
+          "raw": -16.641482327524404,
+          "triple": [
+            14,
+            15,
+            5
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 98771693,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 17,
+      "elapsed_seconds": 0.02162862499244511,
+      "evaluations_or_iterations": 46,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 6.340827709244459E-15,
+        "equation_max_abs": 4.5723885718086904E-15,
+        "equation_rms": 1.0286180821389536E-15,
+        "maximum_absolute_coordinate": 4.084307084461999,
+        "minimum_pair_distance": 1.5553031891404223E-15,
+        "nonpositive_support_count": 162,
+        "normalized_support_min": -0.9999926937824223,
+        "raw_support_min": -9.408812835538548,
+        "raw_support_quantiles": {
+          "q00": -9.408812835538548,
+          "q01": -7.360603631264921,
+          "q05": -4.505897868176293,
+          "q100": 8.647450366028512,
+          "q50": -4.367157517559672E-9,
+          "q95": 4.082764168061186
+        },
+        "signed_polygon_area": -1.347053914781433,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 4.5723885718086904E-15
+        },
+        "worst_support": {
+          "index": 80,
+          "normalized": -0.9672271342697434,
+          "raw": -9.408812835538548,
+          "triple": [
+            4,
+            5,
+            14
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 98876422,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 18,
+      "elapsed_seconds": 0.023055583937093616,
+      "evaluations_or_iterations": 53,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 3.962845931298438E-15,
+        "equation_max_abs": 1.7763568394002505E-15,
+        "equation_rms": 6.428584986974929E-16,
+        "maximum_absolute_coordinate": 3.536857338839264,
+        "minimum_pair_distance": 2.8492833092919057E-16,
+        "nonpositive_support_count": 164,
+        "normalized_support_min": -0.9999998404369215,
+        "raw_support_min": -5.0051572425931266,
+        "raw_support_quantiles": {
+          "q00": -5.0051572425931266,
+          "q01": -3.6219659663823704,
+          "q05": -2.732941075524105,
+          "q100": 5.848229882002512,
+          "q50": -3.3306690738754696E-16,
+          "q95": 3.1314278732868996
+        },
+        "signed_polygon_area": 1.5601226085767363,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              12
+            ]
+          ],
+          "index": 16,
+          "residual": -1.7763568394002505E-15
+        },
+        "worst_support": {
+          "index": 205,
+          "normalized": -0.7372360123693547,
+          "raw": -5.0051572425931266,
+          "triple": [
+            12,
+            13,
+            1
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 98981151,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 19,
+      "elapsed_seconds": 0.0062567919958382845,
+      "evaluations_or_iterations": 11,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.428568449081123E-14,
+        "equation_max_abs": 7.105427357601002E-15,
+        "equation_rms": 2.317444039925092E-15,
+        "maximum_absolute_coordinate": 5.287827285634189,
+        "minimum_pair_distance": 0.156133258581886,
+        "nonpositive_support_count": 149,
+        "normalized_support_min": -0.9997224105724659,
+        "raw_support_min": -15.234151717438277,
+        "raw_support_quantiles": {
+          "q00": -15.234151717438277,
+          "q01": -11.367360362455416,
+          "q05": -7.4100021921727715,
+          "q100": 16.74772816882936,
+          "q50": 0.2191019628066857,
+          "q95": 6.551051234672804
+        },
+        "signed_polygon_area": 0.145901500004478,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              12
+            ]
+          ],
+          "index": 16,
+          "residual": 7.105427357601002E-15
+        },
+        "worst_support": {
+          "index": 243,
+          "normalized": -0.9734625974760549,
+          "raw": -15.234151717438277,
+          "triple": [
+            14,
+            15,
+            5
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 99085880,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 20,
+      "elapsed_seconds": 0.006655458128079772,
+      "evaluations_or_iterations": 30,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 9.792016025277183E-15,
+        "equation_max_abs": 5.329070518200751E-15,
+        "equation_rms": 1.5884747553556655E-15,
+        "maximum_absolute_coordinate": 2.8721834990383184,
+        "minimum_pair_distance": 0.013160308742320263,
+        "nonpositive_support_count": 149,
+        "normalized_support_min": -0.9999924331722362,
+        "raw_support_min": -5.815820762163588,
+        "raw_support_quantiles": {
+          "q00": -5.815820762163588,
+          "q01": -4.762494024783871,
+          "q05": -2.5895128938238754,
+          "q100": 5.69398564186885,
+          "q50": 0.22457840103538373,
+          "q95": 3.7249759154854023
+        },
+        "signed_polygon_area": 2.219616014415904,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              15
+            ]
+          ],
+          "index": 18,
+          "residual": -5.329070518200751E-15
+        },
+        "worst_support": {
+          "index": 206,
+          "normalized": -0.771842587764661,
+          "raw": -5.815820762163588,
+          "triple": [
+            12,
+            13,
+            2
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 99190609,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 21,
+      "elapsed_seconds": 0.007384999888017774,
+      "evaluations_or_iterations": 32,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.3151340367799278E-14,
+        "equation_max_abs": 7.105427357601002E-15,
+        "equation_rms": 2.133429124238764E-15,
+        "maximum_absolute_coordinate": 5.21213212622423,
+        "minimum_pair_distance": 0.0037927641757172516,
+        "nonpositive_support_count": 166,
+        "normalized_support_min": -0.9999953370792422,
+        "raw_support_min": -14.317967579214791,
+        "raw_support_quantiles": {
+          "q00": -14.317967579214791,
+          "q01": -11.44957390764296,
+          "q05": -8.939905172445886,
+          "q100": 18.20844939606585,
+          "q50": -0.024081696607314657,
+          "q95": 7.493122831170344
+        },
+        "signed_polygon_area": -1.6140538065017973,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              16
+            ],
+            [
+              15,
+              16
+            ]
+          ],
+          "index": 30,
+          "residual": 7.105427357601002E-15
+        },
+        "worst_support": {
+          "index": 78,
+          "normalized": -0.9781583331643346,
+          "raw": -14.317967579214791,
+          "triple": [
+            4,
+            5,
+            12
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 99295338,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 22,
+      "elapsed_seconds": 0.021232083905488253,
+      "evaluations_or_iterations": 50,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4257945994277125E-14,
+        "equation_max_abs": 1.0572660921929057E-14,
+        "equation_rms": 2.3129442615972983E-15,
+        "maximum_absolute_coordinate": 6.992770230994436,
+        "minimum_pair_distance": 1.1102230246251565E-16,
+        "nonpositive_support_count": 135,
+        "normalized_support_min": -0.9999909049892968,
+        "raw_support_min": -18.481408854738095,
+        "raw_support_quantiles": {
+          "q00": -18.481408854738095,
+          "q01": -13.952532119526252,
+          "q05": -8.126045433852818,
+          "q100": 17.77365214984476,
+          "q50": 0.6556023886642093,
+          "q95": 10.638725057691174
+        },
+        "signed_polygon_area": 5.694387640879385,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 1.0572660921929057E-14
+        },
+        "worst_support": {
+          "index": 209,
+          "normalized": -0.6432377548587046,
+          "raw": -18.481408854738095,
+          "triple": [
+            12,
+            13,
+            5
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 99400067,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 23,
+      "elapsed_seconds": 0.004655000055208802,
+      "evaluations_or_iterations": 8,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 2.7676414850366775E-14,
+        "equation_max_abs": 1.4210854715202004E-14,
+        "equation_rms": 4.489707348831039E-15,
+        "maximum_absolute_coordinate": 5.433494090757361,
+        "minimum_pair_distance": 0.06696901015552123,
+        "nonpositive_support_count": 139,
+        "normalized_support_min": -0.9999892303036833,
+        "raw_support_min": -20.496381892397547,
+        "raw_support_quantiles": {
+          "q00": -20.496381892397547,
+          "q01": -13.6640689444228,
+          "q05": -9.505674077722158,
+          "q100": 22.41367826699551,
+          "q50": 0.6988140404325269,
+          "q95": 11.847918752004178
+        },
+        "signed_polygon_area": 5.155178513315422,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              12
+            ]
+          ],
+          "index": 16,
+          "residual": 1.4210854715202004E-14
+        },
+        "worst_support": {
+          "index": 78,
+          "normalized": -0.8852740402712623,
+          "raw": -20.496381892397547,
+          "triple": [
+            4,
+            5,
+            12
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 99504796,
+      "stage": "equality_only_least_squares"
+    },
+    {
+      "attempt": 0,
+      "elapsed_seconds": 0.06185054196976125,
+      "evaluations_or_iterations": 49,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 8.189067665344235E-7,
+        "equation_max_abs": 4.0802953037562425E-7,
+        "equation_rms": 1.3284421944081174E-7,
+        "maximum_absolute_coordinate": 1.001358900273161,
+        "minimum_pair_distance": 0.000002785926706949844,
+        "nonpositive_support_count": 73,
+        "normalized_support_min": -0.9999994641338212,
+        "raw_support_min": -0.0000014495713766963462,
+        "raw_support_quantiles": {
+          "q00": -0.0000014495713766963462,
+          "q01": -2.047635296945563E-7,
+          "q05": -3.1224070140678037E-9,
+          "q100": 0.000006858993963238365,
+          "q50": 1.0846055788366563E-9,
+          "q95": 0.000003498791773680167
+        },
+        "signed_polygon_area": 0.0000048866616816311255,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 4.0802953037562425E-7
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000005790414568892539,
+          "raw": -0.0000014495713766963462,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107096048,
+      "stage": "joint_penalty_w3"
+    },
+    {
+      "attempt": 1,
+      "elapsed_seconds": 0.08331112493760884,
+      "evaluations_or_iterations": 73,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.000003552347997933022,
+        "equation_max_abs": 0.0000019111085387916913,
+        "equation_rms": 5.762669405757139E-7,
+        "maximum_absolute_coordinate": 1.0001245814375965,
+        "minimum_pair_distance": 0.00000214518456116674,
+        "nonpositive_support_count": 108,
+        "normalized_support_min": -0.9999913184635001,
+        "raw_support_min": -0.0000014567635269916537,
+        "raw_support_quantiles": {
+          "q00": -0.0000014567635269916537,
+          "q01": -2.0274183818321277E-7,
+          "q05": -5.154717560264048E-9,
+          "q100": 0.000006889256780620472,
+          "q50": 2.531975317861408E-9,
+          "q95": 0.00000350059307126136
+        },
+        "signed_polygon_area": 0.000004911608166131767,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.0000019111085387916913
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000005854428756787162,
+          "raw": -0.0000014567635269916537,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107200777,
+      "stage": "joint_penalty_w10"
+    },
+    {
+      "attempt": 2,
+      "elapsed_seconds": 0.2978223750833422,
+      "evaluations_or_iterations": 300,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.0000195508931410469,
+        "equation_max_abs": 0.000009728500809031912,
+        "equation_rms": 0.000003171573669716306,
+        "maximum_absolute_coordinate": 1.0066623611097447,
+        "minimum_pair_distance": 0.0000028994299506905217,
+        "nonpositive_support_count": 70,
+        "normalized_support_min": -0.9999315943991193,
+        "raw_support_min": -0.0000014981826125366872,
+        "raw_support_quantiles": {
+          "q00": -0.0000014981826125366872,
+          "q01": -2.0045070831530738E-7,
+          "q05": -1.3265121140674675E-8,
+          "q100": 0.000006944830233845208,
+          "q50": 6.23262670316812E-9,
+          "q95": 0.0000035056561506067095
+        },
+        "signed_polygon_area": 0.000005012417437107577,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.000009728500809031912
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000005952510992546531,
+          "raw": -0.0000014981826125366872,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 107305506,
+      "stage": "joint_penalty_w30"
+    },
+    {
+      "attempt": 3,
+      "elapsed_seconds": 1.044046957977116,
+      "evaluations_or_iterations": 1055,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.00010677395078343967,
+        "equation_max_abs": 0.00005238241034032516,
+        "equation_rms": 0.000017321022035835676,
+        "maximum_absolute_coordinate": 1.0155046076472751,
+        "minimum_pair_distance": 0.0000031801853949111654,
+        "nonpositive_support_count": 69,
+        "normalized_support_min": -0.9905478711044657,
+        "raw_support_min": -0.0000016107383248751604,
+        "raw_support_quantiles": {
+          "q00": -0.0000016107383248751604,
+          "q01": -2.3907163099112227E-7,
+          "q05": -2.7386004553984518E-8,
+          "q100": 0.000007285837572462103,
+          "q50": 1.7124894984890132E-8,
+          "q95": 0.000003794008405918472
+        },
+        "signed_polygon_area": 0.000005367728539281713,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.00005238241034032516
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000006342078671037266,
+          "raw": -0.0000016107383248751604,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107410235,
+      "stage": "joint_penalty_w100"
+    },
+    {
+      "attempt": 4,
+      "elapsed_seconds": 0.0646763329859823,
+      "evaluations_or_iterations": 51,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 8.189064032124259E-7,
+        "equation_max_abs": 4.080288977076374E-7,
+        "equation_rms": 1.3284416050220096E-7,
+        "maximum_absolute_coordinate": 1.0013588946043344,
+        "minimum_pair_distance": 0.000002785926313065112,
+        "nonpositive_support_count": 73,
+        "normalized_support_min": -0.9999994641162562,
+        "raw_support_min": -0.0000014495713177896495,
+        "raw_support_quantiles": {
+          "q00": -0.0000014495713177896495,
+          "q01": -2.0476359606989206E-7,
+          "q05": -3.1223718937560714E-9,
+          "q100": 0.000006858994218875763,
+          "q50": 1.0846016980278104E-9,
+          "q95": 0.0000034987923533342608
+        },
+        "signed_polygon_area": 0.000004886661759947425,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 4.080288977076374E-7
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.0000057904144065232195,
+          "raw": -0.0000014495713177896495,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107514964,
+      "stage": "joint_penalty_w3"
+    },
+    {
+      "attempt": 5,
+      "elapsed_seconds": 0.08757599978707731,
+      "evaluations_or_iterations": 79,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.0000035523472327283358,
+        "equation_max_abs": 0.00000191110390140413,
+        "equation_rms": 5.762668164431223E-7,
+        "maximum_absolute_coordinate": 1.0001245803257481,
+        "minimum_pair_distance": 0.000002145242026274706,
+        "nonpositive_support_count": 108,
+        "normalized_support_min": -0.9999913184960101,
+        "raw_support_min": -0.0000014567636138059817,
+        "raw_support_quantiles": {
+          "q00": -0.0000014567636138059817,
+          "q01": -2.0274181037434108E-7,
+          "q05": -5.154724755841062E-9,
+          "q100": 0.0000068892570536999315,
+          "q50": 2.5319766075903085E-9,
+          "q95": 0.0000035005931385281796
+        },
+        "signed_polygon_area": 0.000004911608381168457,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.00000191110390140413
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.0000058544291453802945,
+          "raw": -0.0000014567636138059817,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107619693,
+      "stage": "joint_penalty_w10"
+    },
+    {
+      "attempt": 6,
+      "elapsed_seconds": 0.179677875014022,
+      "evaluations_or_iterations": 192,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.000016922097680722667,
+        "equation_max_abs": 0.000009756238882453792,
+        "equation_rms": 0.0000027451267342804115,
+        "maximum_absolute_coordinate": 1.0062566697480486,
+        "minimum_pair_distance": 0.000002852617994316082,
+        "nonpositive_support_count": 85,
+        "normalized_support_min": -0.9999712960360887,
+        "raw_support_min": -0.0000014786291388154028,
+        "raw_support_quantiles": {
+          "q00": -0.0000014786291388154028,
+          "q01": -2.0099421865276515E-7,
+          "q05": -1.2204015171037447E-8,
+          "q100": 0.000006877888416802394,
+          "q50": 5.295921826074308E-9,
+          "q95": 0.0000034651077241997356
+        },
+        "signed_polygon_area": 0.000004947686061522283,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.000009756238882453792
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000005879881708633231,
+          "raw": -0.0000014786291388154028,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 107724422,
+      "stage": "joint_penalty_w30"
+    },
+    {
+      "attempt": 7,
+      "elapsed_seconds": 1.0643622500356287,
+      "evaluations_or_iterations": 1071,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.00008689034656491361,
+        "equation_max_abs": 0.00004825658110409093,
+        "equation_rms": 0.000014095475502304757,
+        "maximum_absolute_coordinate": 1.0005545147920136,
+        "minimum_pair_distance": 0.000003053481129949614,
+        "nonpositive_support_count": 106,
+        "normalized_support_min": -0.9929537852839058,
+        "raw_support_min": -0.0000015408380339300167,
+        "raw_support_quantiles": {
+          "q00": -0.0000015408380339300167,
+          "q01": -2.0660961834796385E-7,
+          "q05": -2.553870442462816E-8,
+          "q100": 0.00000715873855109844,
+          "q50": 1.3260419416618957E-8,
+          "q95": 0.0000036195716032404642
+        },
+        "signed_polygon_area": 0.00000518393104159619,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.00004825658110409093
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000006306445148032209,
+          "raw": -0.0000015408380339300167,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107829151,
+      "stage": "joint_penalty_w100"
+    },
+    {
+      "attempt": 8,
+      "elapsed_seconds": 0.07304670801386237,
+      "evaluations_or_iterations": 59,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 8.189064922140582E-7,
+        "equation_max_abs": 4.0802899570509017E-7,
+        "equation_rms": 1.3284417494017223E-7,
+        "maximum_absolute_coordinate": 1.0013588953827723,
+        "minimum_pair_distance": 0.0000027859263634681457,
+        "nonpositive_support_count": 73,
+        "normalized_support_min": -0.9999994641186358,
+        "raw_support_min": -0.0000014495713249448341,
+        "raw_support_quantiles": {
+          "q00": -0.0000014495713249448341,
+          "q01": -2.0476358765272314E-7,
+          "q05": -3.122376612011533E-9,
+          "q100": 0.000006858994182644763,
+          "q50": 1.0846022395342857E-9,
+          "q95": 0.0000034987922764613664
+        },
+        "signed_polygon_area": 0.000004886661748018156,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 4.0802899570509017E-7
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.0000057904144252709555,
+          "raw": -0.0000014495713249448341,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 107933880,
+      "stage": "joint_penalty_w3"
+    },
+    {
+      "attempt": 9,
+      "elapsed_seconds": 0.0688794159796089,
+      "evaluations_or_iterations": 60,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.000003552346928557492,
+        "equation_max_abs": 0.000001911102946098024,
+        "equation_rms": 5.762667671000957E-7,
+        "maximum_absolute_coordinate": 1.000124580338028,
+        "minimum_pair_distance": 0.000002145241739279005,
+        "nonpositive_support_count": 108,
+        "normalized_support_min": -0.9999913184935207,
+        "raw_support_min": -0.000001456763613526297,
+        "raw_support_quantiles": {
+          "q00": -0.000001456763613526297,
+          "q01": -2.0274181343962809E-7,
+          "q05": -5.154724973639116E-9,
+          "q100": 0.0000068892570682562655,
+          "q50": 2.5319765329852123E-9,
+          "q95": 0.000003500593144868601
+        },
+        "signed_polygon_area": 0.000004911608387886973,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.000001911102946098024
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000005854429145753246,
+          "raw": -0.000001456763613526297,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 108038609,
+      "stage": "joint_penalty_w10"
+    },
+    {
+      "attempt": 10,
+      "elapsed_seconds": 0.28156341589055955,
+      "evaluations_or_iterations": 286,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.00001950888552903862,
+        "equation_max_abs": 0.00000971987447485065,
+        "equation_rms": 0.000003164759135198013,
+        "maximum_absolute_coordinate": 1.0066551569412525,
+        "minimum_pair_distance": 0.0000028994564313743487,
+        "nonpositive_support_count": 70,
+        "normalized_support_min": -0.9999319093002811,
+        "raw_support_min": -0.0000014982115385494612,
+        "raw_support_quantiles": {
+          "q00": -0.0000014982115385494612,
+          "q01": -2.0040600439209914E-7,
+          "q05": -1.3249293753543061E-8,
+          "q100": 0.000006944971466308743,
+          "q50": 6.217966685395405E-9,
+          "q95": 0.000003505651000774218
+        },
+        "signed_polygon_area": 0.000005012468582174099,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.00000971987447485065
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000005952695998690784,
+          "raw": -0.0000014982115385494612,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 108143338,
+      "stage": "joint_penalty_w30"
+    },
+    {
+      "attempt": 11,
+      "elapsed_seconds": 0.9220167500898242,
+      "evaluations_or_iterations": 950,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.00009285168217001303,
+        "equation_max_abs": 0.00005133812709594023,
+        "equation_rms": 0.000015062531836001399,
+        "maximum_absolute_coordinate": 1.0145479770862307,
+        "minimum_pair_distance": 0.0000030219858438092837,
+        "nonpositive_support_count": 84,
+        "normalized_support_min": -0.996796007293522,
+        "raw_support_min": -0.0000015664061319350603,
+        "raw_support_quantiles": {
+          "q00": -0.0000015664061319350603,
+          "q01": -2.3804363946876015E-7,
+          "q05": -2.754094769368134E-8,
+          "q100": 0.000007141545650817034,
+          "q50": 1.498814001895385E-8,
+          "q95": 0.0000036752601288247505
+        },
+        "signed_polygon_area": 0.000005220829514028348,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.00005133812709594023
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.0000061787953598898266,
+          "raw": -0.0000015664061319350603,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 108248067,
+      "stage": "joint_penalty_w100"
+    },
+    {
+      "attempt": 12,
+      "elapsed_seconds": 0.05599454091861844,
+      "evaluations_or_iterations": 46,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.0000010675163033971813,
+        "equation_max_abs": 5.077894814381788E-7,
+        "equation_rms": 1.73174011817349E-7,
+        "maximum_absolute_coordinate": 1.0024248188171117,
+        "minimum_pair_distance": 0.0000012377395352355452,
+        "nonpositive_support_count": 99,
+        "normalized_support_min": -0.9999999041606329,
+        "raw_support_min": -0.0000014537914181874716,
+        "raw_support_quantiles": {
+          "q00": -0.0000014537914181874716,
+          "q01": -2.2149210376097277E-7,
+          "q05": -8.049792174223878E-9,
+          "q100": 0.000006950950162894896,
+          "q50": 2.4638901530130057E-9,
+          "q95": 0.0000035517839547198527
+        },
+        "signed_polygon_area": 0.000004940643455824764,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 5.077894814381788E-7
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000005831091054003427,
+          "raw": -0.0000014537914181874716,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 108352796,
+      "stage": "joint_penalty_w3"
+    },
+    {
+      "attempt": 13,
+      "elapsed_seconds": 0.0682558340486139,
+      "evaluations_or_iterations": 54,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.0000042368053876218755,
+        "equation_max_abs": 0.000002113289881610733,
+        "equation_rms": 6.873005910344919E-7,
+        "maximum_absolute_coordinate": 1.0030997204381755,
+        "minimum_pair_distance": 0.0000028220890696114126,
+        "nonpositive_support_count": 72,
+        "normalized_support_min": -0.9999987328290036,
+        "raw_support_min": -0.0000014650607011375639,
+        "raw_support_quantiles": {
+          "q00": -0.0000014650607011375639,
+          "q01": -2.018945593688176E-7,
+          "q05": -6.753112619462733E-9,
+          "q100": 0.000006884021551216513,
+          "q50": 2.6204961304099885E-9,
+          "q95": 0.000003492797728145019
+        },
+        "signed_polygon_area": 0.000004925083932975327,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.000002113289881610733
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000005842012633819276,
+          "raw": -0.0000014650607011375639,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 108457525,
+      "stage": "joint_penalty_w10"
+    },
+    {
+      "attempt": 14,
+      "elapsed_seconds": 0.24694066704250872,
+      "evaluations_or_iterations": 250,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.000019523955104646596,
+        "equation_max_abs": 0.000009724969340383074,
+        "equation_rms": 0.0000031672037431689764,
+        "maximum_absolute_coordinate": 1.0066572487829133,
+        "minimum_pair_distance": 0.0000028992880488800805,
+        "nonpositive_support_count": 70,
+        "normalized_support_min": -0.9999319642771718,
+        "raw_support_min": -0.0000014981414506954013,
+        "raw_support_quantiles": {
+          "q00": -0.0000014981414506954013,
+          "q01": -2.0041097640444545E-7,
+          "q05": -1.3254735811692124E-8,
+          "q100": 0.000006944626246141098,
+          "q50": 6.217591115896377E-9,
+          "q95": 0.0000035053888333906554
+        },
+        "signed_polygon_area": 0.000005012245836303831,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.000009724969340383074
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000005952403606408983,
+          "raw": -0.0000014981414506954013,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 108562254,
+      "stage": "joint_penalty_w30"
+    },
+    {
+      "attempt": 15,
+      "elapsed_seconds": 1.1077812500298023,
+      "evaluations_or_iterations": 1114,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.00010677417338620708,
+        "equation_max_abs": 0.00005238248394939607,
+        "equation_rms": 0.00001732105814677296,
+        "maximum_absolute_coordinate": 1.0155046218922865,
+        "minimum_pair_distance": 0.0000031801864450117974,
+        "nonpositive_support_count": 69,
+        "normalized_support_min": -0.9905478093623922,
+        "raw_support_min": -0.0000016107385725012189,
+        "raw_support_quantiles": {
+          "q00": -0.0000016107385725012189,
+          "q01": -2.390717551209098E-7,
+          "q05": -2.73860438567698E-8,
+          "q100": 0.0000072858381289315296,
+          "q50": 1.7124922362697838E-8,
+          "q95": 0.0000037940091365410365
+        },
+        "signed_polygon_area": 0.000005367729220126294,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.00005238248394939607
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000006342079524153838,
+          "raw": -0.0000016107385725012189,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 108666983,
+      "stage": "joint_penalty_w100"
+    },
+    {
+      "attempt": 16,
+      "elapsed_seconds": 0.05759904091246426,
+      "evaluations_or_iterations": 46,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 8.950869560442681E-7,
+        "equation_max_abs": 4.5005682997030936E-7,
+        "equation_rms": 1.4520227804510954E-7,
+        "maximum_absolute_coordinate": 1.0020660966628487,
+        "minimum_pair_distance": 7.734982146047711E-7,
+        "nonpositive_support_count": 96,
+        "normalized_support_min": -0.999999751760279,
+        "raw_support_min": -0.0000014507815958288613,
+        "raw_support_quantiles": {
+          "q00": -0.0000014507815958288613,
+          "q01": -2.0684127449039548E-7,
+          "q05": -5.117987386126807E-9,
+          "q100": 0.000006899327593529259,
+          "q50": 2.11268969301743E-9,
+          "q95": 0.0000035130976203789614
+        },
+        "signed_polygon_area": 0.000004907492989528626,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              11
+            ],
+            [
+              5,
+              16
+            ]
+          ],
+          "index": 25,
+          "residual": -4.5005682997030936E-7
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.0000058188789627537035,
+          "raw": -0.0000014507815958288613,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 108771712,
+      "stage": "joint_penalty_w3"
+    },
+    {
+      "attempt": 17,
+      "elapsed_seconds": 0.10324179101735353,
+      "evaluations_or_iterations": 90,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.0000060309993344039134,
+        "equation_max_abs": 0.0000029149246662420182,
+        "equation_rms": 9.783572828656855E-7,
+        "maximum_absolute_coordinate": 1.005582987293703,
+        "minimum_pair_distance": 0.000002582107875035682,
+        "nonpositive_support_count": 93,
+        "normalized_support_min": -0.9999886703930752,
+        "raw_support_min": -0.000001480502063900336,
+        "raw_support_quantiles": {
+          "q00": -0.000001480502063900336,
+          "q01": -2.4037171196773926E-7,
+          "q05": -1.963494606802285E-8,
+          "q100": 0.0000071093912881930005,
+          "q50": 7.482107191338957E-9,
+          "q95": 0.000003619497543419664
+        },
+        "signed_polygon_area": 0.00000506804770298402,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              11
+            ],
+            [
+              5,
+              16
+            ]
+          ],
+          "index": 25,
+          "residual": -0.0000029149246662420182
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000005964823825161784,
+          "raw": -0.000001480502063900336,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Both `ftol` and `xtol` termination conditions are satisfied.",
+      "scipy_status": 4,
+      "scipy_success": true,
+      "seed": 108876441,
+      "stage": "joint_penalty_w10"
+    },
+    {
+      "attempt": 18,
+      "elapsed_seconds": 0.2620476670563221,
+      "evaluations_or_iterations": 265,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.000018339614739424555,
+        "equation_max_abs": 0.000009704486988687346,
+        "equation_rms": 0.0000029750783660201304,
+        "maximum_absolute_coordinate": 1.006510022395178,
+        "minimum_pair_distance": 0.0000029485262215862175,
+        "nonpositive_support_count": 77,
+        "normalized_support_min": -0.9999734231851788,
+        "raw_support_min": -0.0000014903377522122422,
+        "raw_support_quantiles": {
+          "q00": -0.0000014903377522122422,
+          "q01": -1.9934502123732676E-7,
+          "q05": -1.2188499513909078E-8,
+          "q100": 0.0000069178741566532675,
+          "q50": 5.45943188147344E-9,
+          "q95": 0.000003509663722174506
+        },
+        "signed_polygon_area": 0.000004985471654845569,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.000009704486988687346
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000005923125958559126,
+          "raw": -0.0000014903377522122422,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`xtol` termination condition is satisfied.",
+      "scipy_status": 3,
+      "scipy_success": true,
+      "seed": 108981170,
+      "stage": "joint_penalty_w30"
+    },
+    {
+      "attempt": 19,
+      "elapsed_seconds": 1.081128166988492,
+      "evaluations_or_iterations": 1085,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.00010677422746268763,
+        "equation_max_abs": 0.000052382526934024186,
+        "equation_rms": 0.000017321066919136484,
+        "maximum_absolute_coordinate": 1.0155046257720783,
+        "minimum_pair_distance": 0.0000031801854468947438,
+        "nonpositive_support_count": 69,
+        "normalized_support_min": -0.9905478306808881,
+        "raw_support_min": -0.0000016107382486817818,
+        "raw_support_quantiles": {
+          "q00": -0.0000016107382486817818,
+          "q01": -2.390716909336226E-7,
+          "q05": -2.73860536995671E-8,
+          "q100": 0.000007285836813057935,
+          "q50": 1.7124917219966492E-8,
+          "q95": 0.000003794008193675886
+        },
+        "signed_polygon_area": 0.000005367728249749523,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.000052382526934024186
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.0000063420782444488894,
+          "raw": -0.0000016107382486817818,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 109085899,
+      "stage": "joint_penalty_w100"
+    },
+    {
+      "attempt": 20,
+      "elapsed_seconds": 0.058153541991487145,
+      "evaluations_or_iterations": 47,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 8.189135929617567E-7,
+        "equation_max_abs": 4.080318997580745E-7,
+        "equation_rms": 1.32845326833555E-7,
+        "maximum_absolute_coordinate": 1.0013589037445498,
+        "minimum_pair_distance": 0.000002785926329927723,
+        "nonpositive_support_count": 73,
+        "normalized_support_min": -0.9999994641327797,
+        "raw_support_min": -0.0000014495712580267669,
+        "raw_support_quantiles": {
+          "q00": -0.0000014495712580267669,
+          "q01": -2.047636068818091E-7,
+          "q05": -3.1224106298081564E-9,
+          "q100": 0.000006858993632927216,
+          "q50": 1.084609315293089E-9,
+          "q95": 0.000003498791889390289
+        },
+        "signed_polygon_area": 0.000004886661446550964,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 4.080318997580745E-7
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000005790414082134722,
+          "raw": -0.0000014495712580267669,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 109190628,
+      "stage": "joint_penalty_w3"
+    },
+    {
+      "attempt": 21,
+      "elapsed_seconds": 0.07455070805735886,
+      "evaluations_or_iterations": 63,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.0000035523480235132974,
+        "equation_max_abs": 0.0000019111083674785895,
+        "equation_rms": 5.762669447253824E-7,
+        "maximum_absolute_coordinate": 1.0001245813665987,
+        "minimum_pair_distance": 0.000002145188209356457,
+        "nonpositive_support_count": 108,
+        "normalized_support_min": -0.9999913184647684,
+        "raw_support_min": -0.0000014567635320389064,
+        "raw_support_quantiles": {
+          "q00": -0.0000014567635320389064,
+          "q01": -2.0274183682855748E-7,
+          "q05": -5.154718124271435E-9,
+          "q100": 0.000006889256792264221,
+          "q50": 2.5319754298274707E-9,
+          "q95": 0.000003500593079515622
+        },
+        "signed_polygon_area": 0.000004911608176730195,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.0000019111083674785895
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000005854428780168699,
+          "raw": -0.0000014567635320389064,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 109295357,
+      "stage": "joint_penalty_w10"
+    },
+    {
+      "attempt": 22,
+      "elapsed_seconds": 0.23638191702775657,
+      "evaluations_or_iterations": 227,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.000016083175890651977,
+        "equation_max_abs": 0.000008791589833373854,
+        "equation_rms": 0.0000026090356492775807,
+        "maximum_absolute_coordinate": 1.0002572255989723,
+        "minimum_pair_distance": 0.0000028660953903900383,
+        "nonpositive_support_count": 107,
+        "normalized_support_min": -0.9999317803826328,
+        "raw_support_min": -0.0000014774575866229694,
+        "raw_support_quantiles": {
+          "q00": -0.0000014774575866229694,
+          "q01": -1.9768281972501874E-7,
+          "q05": -1.0818506651198345E-8,
+          "q100": 0.000006940180231119585,
+          "q50": 5.428988862189516E-9,
+          "q95": 0.000003493769700353474
+        },
+        "signed_polygon_area": 0.000004971047105855173,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.000008791589833373854
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.0000059687931359611856,
+          "raw": -0.0000014774575866229694,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 109400086,
+      "stage": "joint_penalty_w30"
+    },
+    {
+      "attempt": 23,
+      "elapsed_seconds": 1.0975334160029888,
+      "evaluations_or_iterations": 1117,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.00010677433969861706,
+        "equation_max_abs": 0.00005238253877471694,
+        "equation_rms": 0.000017321085126208453,
+        "maximum_absolute_coordinate": 1.0155046335239721,
+        "minimum_pair_distance": 0.0000031801867438210557,
+        "nonpositive_support_count": 69,
+        "normalized_support_min": -0.9905477716083144,
+        "raw_support_min": -0.0000016107385517920112,
+        "raw_support_quantiles": {
+          "q00": -0.0000016107385517920112,
+          "q01": -2.3907181645459565E-7,
+          "q05": -2.7386075616227205E-8,
+          "q100": 0.000007285837681681205,
+          "q50": 1.7124936790500184E-8,
+          "q95": 0.0000037940092063061585
+        },
+        "signed_polygon_area": 0.000005367729067034032,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              11
+            ],
+            [
+              9,
+              11
+            ]
+          ],
+          "index": 13,
+          "residual": 0.00005238253877471694
+        },
+        "worst_support": {
+          "index": 170,
+          "normalized": -0.000006342079339564966,
+          "raw": -0.0000016107385517920112,
+          "triple": [
+            10,
+            11,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "`ftol` termination condition is satisfied.",
+      "scipy_status": 2,
+      "scipy_success": true,
+      "seed": 109504815,
+      "stage": "joint_penalty_w100"
+    },
+    {
+      "attempt": 0,
+      "elapsed_seconds": 0.5000843750312924,
+      "evaluations_or_iterations": 84,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.6994865051487708,
+        "equation_max_abs": 0.31386829216400164,
+        "equation_rms": 0.11347169492702404,
+        "maximum_absolute_coordinate": 1.0127359724487464,
+        "minimum_pair_distance": 0.002807494429192036,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 9.874241951929391E-7,
+        "raw_support_min": 9.999999981755086E-7,
+        "raw_support_quantiles": {
+          "q00": 9.999999981755086E-7,
+          "q01": 9.999999994537022E-7,
+          "q05": 0.0000010000000000233825,
+          "q100": 0.0619394812601016,
+          "q50": 0.00011557636409788367,
+          "q95": 0.03531387943667408
+        },
+        "signed_polygon_area": 0.03397241256462133,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "index": 2,
+          "residual": 0.31386829216400164
+        },
+        "worst_support": {
+          "index": 179,
+          "normalized": 0.0017047402911390685,
+          "raw": 9.999999981755086E-7,
+          "triple": [
+            10,
+            11,
+            9
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 117096062,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 1,
+      "elapsed_seconds": 0.538355499971658,
+      "evaluations_or_iterations": 88,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.6994865051486584,
+        "equation_max_abs": 0.31386830865687615,
+        "equation_rms": 0.1134716949270058,
+        "maximum_absolute_coordinate": 1.0127371279528452,
+        "minimum_pair_distance": 0.002807496312103239,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 9.874230662021729E-7,
+        "raw_support_min": 9.999999991850905E-7,
+        "raw_support_quantiles": {
+          "q00": 9.999999991850905E-7,
+          "q01": 9.999999992415626E-7,
+          "q05": 0.000001000000000025908,
+          "q100": 0.061939506497760616,
+          "q50": 0.00011557746121400536,
+          "q95": 0.03531384904333025
+        },
+        "signed_polygon_area": 0.03397246920758192,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "index": 2,
+          "residual": 0.31386830865687615
+        },
+        "worst_support": {
+          "index": 179,
+          "normalized": 0.001704737982184908,
+          "raw": 9.999999991850905E-7,
+          "triple": [
+            10,
+            11,
+            9
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 117200791,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 2,
+      "elapsed_seconds": 0.43633233313448727,
+      "evaluations_or_iterations": 75,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.6994865051486405,
+        "equation_max_abs": 0.3138682915232498,
+        "equation_rms": 0.1134716949270029,
+        "maximum_absolute_coordinate": 1.0127369025815167,
+        "minimum_pair_distance": 0.0028074959839066347,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 9.874232868617216E-7,
+        "raw_support_min": 9.999999972292372E-7,
+        "raw_support_quantiles": {
+          "q00": 9.999999972292372E-7,
+          "q01": 9.99999999752006E-7,
+          "q05": 9.999999999657711E-7,
+          "q100": 0.061939498354686984,
+          "q50": 0.00011557725532500846,
+          "q95": 0.03531384653431684
+        },
+        "signed_polygon_area": 0.03397245644347238,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "index": 2,
+          "residual": 0.3138682915232498
+        },
+        "worst_support": {
+          "index": 289,
+          "normalized": 0.0002257062284156496,
+          "raw": 9.999999972292372E-7,
+          "triple": [
+            17,
+            18,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 117305520,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 3,
+      "elapsed_seconds": 0.374470500042662,
+      "evaluations_or_iterations": 72,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.6994864174463533,
+        "equation_max_abs": 0.3138737529625403,
+        "equation_rms": 0.11347168069981324,
+        "maximum_absolute_coordinate": 1.012785034268115,
+        "minimum_pair_distance": 0.0028071422846894303,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 9.873757635179453E-7,
+        "raw_support_min": 9.997748561856794E-7,
+        "raw_support_quantiles": {
+          "q00": 9.997748561856794E-7,
+          "q01": 9.99831930588081E-7,
+          "q05": 9.999953223738498E-7,
+          "q100": 0.06194472799138545,
+          "q50": 0.00011561809829602803,
+          "q95": 0.03531692940529788
+        },
+        "signed_polygon_area": 0.033977393683132844,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "index": 2,
+          "residual": 0.3138737529625403
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": 0.0018510137652193604,
+          "raw": 9.997748561856794E-7,
+          "triple": [
+            3,
+            4,
+            5
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Positive directional derivative for linesearch",
+      "scipy_status": 8,
+      "scipy_success": false,
+      "seed": 117410249,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 4,
+      "elapsed_seconds": 0.03360554110258818,
+      "evaluations_or_iterations": 5,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 93.31130804759212,
+        "equation_max_abs": 39.32453763996559,
+        "equation_rms": 15.137092999050752,
+        "maximum_absolute_coordinate": 6.808135464466067,
+        "minimum_pair_distance": 0.004611809879564839,
+        "nonpositive_support_count": 96,
+        "normalized_support_min": -0.00032990532375693215,
+        "raw_support_min": -0.00009175824515413637,
+        "raw_support_quantiles": {
+          "q00": -0.00009175824515413637,
+          "q01": -0.000046885589755073806,
+          "q05": -0.000031530082248805746,
+          "q100": 0.0002715759204653451,
+          "q50": 0.00001450272712914322,
+          "q95": 0.00014183315390694124
+        },
+        "signed_polygon_area": 0.00021353631470248546,
+        "worst_equation": {
+          "equation": [
+            [
+              1,
+              16
+            ],
+            [
+              11,
+              16
+            ]
+          ],
+          "index": 8,
+          "residual": 39.32453763996559
+        },
+        "worst_support": {
+          "index": 267,
+          "normalized": -0.00003419230633296501,
+          "raw": -0.00009175824515413637,
+          "triple": [
+            15,
+            16,
+            12
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 117514978,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 5,
+      "elapsed_seconds": 0.7017217501997948,
+      "evaluations_or_iterations": 117,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 2.0022884041162063,
+        "equation_max_abs": 0.95636227059268,
+        "equation_rms": 0.3248140704293776,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 0.0014191259489480445,
+        "nonpositive_support_count": 7,
+        "normalized_support_min": -0.0031053857473471043,
+        "raw_support_min": -0.000332487955268905,
+        "raw_support_quantiles": {
+          "q00": -0.000332487955268905,
+          "q01": -0.0001841895860081748,
+          "q05": 0.000002309309275395735,
+          "q100": 0.8043895723507993,
+          "q50": 0.0013624097220747318,
+          "q95": 0.2677539795486193
+        },
+        "signed_polygon_area": 0.41288731542510215,
+        "worst_equation": {
+          "equation": [
+            [
+              1,
+              16
+            ],
+            [
+              11,
+              16
+            ]
+          ],
+          "index": 8,
+          "residual": 0.95636227059268
+        },
+        "worst_support": {
+          "index": 88,
+          "normalized": -0.003020295706128192,
+          "raw": -0.000332487955268905,
+          "triple": [
+            5,
+            6,
+            3
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 117619707,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 6,
+      "elapsed_seconds": 0.6363444160670042,
+      "evaluations_or_iterations": 114,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.6994865051483292,
+        "equation_max_abs": 0.3138682836051064,
+        "equation_rms": 0.11347169492695242,
+        "maximum_absolute_coordinate": 1.012736806561053,
+        "minimum_pair_distance": 0.0028074962313188226,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 9.87423379956194E-7,
+        "raw_support_min": 9.99999999239443E-7,
+        "raw_support_quantiles": {
+          "q00": 9.99999999239443E-7,
+          "q01": 9.999999994091754E-7,
+          "q05": 9.99999999983627E-7,
+          "q100": 0.06193947581441427,
+          "q50": 0.00011557714559428707,
+          "q95": 0.03531384324836544
+        },
+        "signed_polygon_area": 0.03397244011695881,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "index": 2,
+          "residual": 0.3138682836051064
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": 0.001859695184370494,
+          "raw": 9.99999999239443E-7,
+          "triple": [
+            3,
+            4,
+            5
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 117724436,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 7,
+      "elapsed_seconds": 0.6381755420006812,
+      "evaluations_or_iterations": 107,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.6994865051483875,
+        "equation_max_abs": 0.3138682891996827,
+        "equation_rms": 0.11347169492696188,
+        "maximum_absolute_coordinate": 1.0127368075188459,
+        "minimum_pair_distance": 0.0028074963051982235,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 9.874233777444344E-7,
+        "raw_support_min": 9.999999968091089E-7,
+        "raw_support_quantiles": {
+          "q00": 9.999999968091089E-7,
+          "q01": 9.99999999372509E-7,
+          "q05": 9.999999999765558E-7,
+          "q100": 0.06193947692656046,
+          "q50": 0.00011557712676100174,
+          "q95": 0.035313845649462626
+        },
+        "signed_polygon_area": 0.0339724401886339,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "index": 2,
+          "residual": 0.3138682891996827
+        },
+        "worst_support": {
+          "index": 36,
+          "normalized": 0.00003409499285825971,
+          "raw": 9.999999968091089E-7,
+          "triple": [
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 117829165,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 8,
+      "elapsed_seconds": 0.16389604192227125,
+      "evaluations_or_iterations": 28,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 2.3243420998152255,
+        "equation_max_abs": 0.9867264853853126,
+        "equation_rms": 0.37705807862608653,
+        "maximum_absolute_coordinate": 1.0,
+        "minimum_pair_distance": 0.0037908866331633675,
+        "nonpositive_support_count": 127,
+        "normalized_support_min": -0.9999421834666026,
+        "raw_support_min": -0.22867861037871143,
+        "raw_support_quantiles": {
+          "q00": -0.22867861037871143,
+          "q01": -0.09734577378708252,
+          "q05": -0.05200039414855943,
+          "q100": 0.935291216241277,
+          "q50": 0.0021007899912550265,
+          "q95": 0.3700694615514455
+        },
+        "signed_polygon_area": 0.4199086281810277,
+        "worst_equation": {
+          "equation": [
+            [
+              1,
+              11
+            ],
+            [
+              11,
+              12
+            ]
+          ],
+          "index": 5,
+          "residual": 0.9867264853853126
+        },
+        "worst_support": {
+          "index": 154,
+          "normalized": -0.9967497563003643,
+          "raw": -0.22867861037871143,
+          "triple": [
+            9,
+            10,
+            1
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 117933894,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 9,
+      "elapsed_seconds": 0.06155804102309048,
+      "evaluations_or_iterations": 6,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 33.565200251025885,
+        "equation_max_abs": 10.056587319376666,
+        "equation_rms": 5.444994485260047,
+        "maximum_absolute_coordinate": 3.544307883640047,
+        "minimum_pair_distance": 0.015395226817012244,
+        "nonpositive_support_count": 73,
+        "normalized_support_min": -0.0011670475543632238,
+        "raw_support_min": -0.000015769163254010365,
+        "raw_support_quantiles": {
+          "q00": -0.000015769163254010365,
+          "q01": -0.00001370763991741462,
+          "q05": -0.0000095945904907295,
+          "q100": 0.00006277023585725727,
+          "q50": 0.000006887747635489622,
+          "q95": 0.00003418528323507623
+        },
+        "signed_polygon_area": 0.00007538914876815175,
+        "worst_equation": {
+          "equation": [
+            [
+              3,
+              6
+            ],
+            [
+              6,
+              17
+            ]
+          ],
+          "index": 11,
+          "residual": -10.056587319376666
+        },
+        "worst_support": {
+          "index": 212,
+          "normalized": -0.00001072375047066345,
+          "raw": -0.000015769163254010365,
+          "triple": [
+            12,
+            13,
+            8
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 118038623,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 10,
+      "elapsed_seconds": 0.056355416076257825,
+      "evaluations_or_iterations": 11,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.4681133472215029,
+        "equation_max_abs": 0.5347456617839155,
+        "equation_rms": 0.23815943356731287,
+        "maximum_absolute_coordinate": 1.01001170797591,
+        "minimum_pair_distance": 0.00023715255551725573,
+        "nonpositive_support_count": 47,
+        "normalized_support_min": -0.9892190083613095,
+        "raw_support_min": -0.0011478745048220927,
+        "raw_support_quantiles": {
+          "q00": -0.0011478745048220927,
+          "q01": -0.00078779725918003,
+          "q05": -0.00016243286259773224,
+          "q100": 0.16316980275141754,
+          "q50": 0.000798935103831217,
+          "q95": 0.08816559242202249
+        },
+        "signed_polygon_area": 0.11589797786175794,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              9,
+              10
+            ]
+          ],
+          "index": 1,
+          "residual": 0.5347456617839155
+        },
+        "worst_support": {
+          "index": 102,
+          "normalized": -0.3269662678781952,
+          "raw": -0.0011478745048220927,
+          "triple": [
+            6,
+            7,
+            0
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "More than 3*n iterations in LSQ subproblem",
+      "scipy_status": 3,
+      "scipy_success": false,
+      "seed": 118143352,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 11,
+      "elapsed_seconds": 0.6123262089677155,
+      "evaluations_or_iterations": 96,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.6994865051485841,
+        "equation_max_abs": 0.3138683017366757,
+        "equation_rms": 0.11347169492699376,
+        "maximum_absolute_coordinate": 1.0127369317849169,
+        "minimum_pair_distance": 0.002807495871403958,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 9.874232691234477E-7,
+        "raw_support_min": 9.999999970077347E-7,
+        "raw_support_quantiles": {
+          "q00": 9.999999970077347E-7,
+          "q01": 9.999999994871355E-7,
+          "q05": 9.999999999962042E-7,
+          "q100": 0.06193950231660715,
+          "q50": 0.00011557725605288954,
+          "q95": 0.03531385442032533
+        },
+        "signed_polygon_area": 0.03397245953862504,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "index": 2,
+          "residual": 0.3138683017366757
+        },
+        "worst_support": {
+          "index": 36,
+          "normalized": 0.000034094951425193454,
+          "raw": 9.999999970077347E-7,
+          "triple": [
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 118248081,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 12,
+      "elapsed_seconds": 0.41653375001624227,
+      "evaluations_or_iterations": 68,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.6994865051486122,
+        "equation_max_abs": 0.3138683061052057,
+        "equation_rms": 0.11347169492699831,
+        "maximum_absolute_coordinate": 1.0127369093824057,
+        "minimum_pair_distance": 0.002807495891622976,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 9.874232795835938E-7,
+        "raw_support_min": 9.999999997619352E-7,
+        "raw_support_quantiles": {
+          "q00": 9.999999997619352E-7,
+          "q01": 9.999999997958288E-7,
+          "q05": 0.000001000000000003946,
+          "q100": 0.06193950412668298,
+          "q50": 0.00011557725449810608,
+          "q95": 0.035313856552536264
+        },
+        "signed_polygon_area": 0.033972459701978756,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "index": 2,
+          "residual": 0.3138683061052057
+        },
+        "worst_support": {
+          "index": 108,
+          "normalized": 0.012096256737930954,
+          "raw": 9.999999997619352E-7,
+          "triple": [
+            6,
+            7,
+            8
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 118352810,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 13,
+      "elapsed_seconds": 0.627598708961159,
+      "evaluations_or_iterations": 108,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.6994865051487693,
+        "equation_max_abs": 0.31386828324285415,
+        "equation_rms": 0.11347169492702382,
+        "maximum_absolute_coordinate": 1.012735950703176,
+        "minimum_pair_distance": 0.0028074940488459136,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 9.874242144845831E-7,
+        "raw_support_min": 9.999999997182402E-7,
+        "raw_support_quantiles": {
+          "q00": 9.999999997182402E-7,
+          "q01": 9.999999997774463E-7,
+          "q05": 0.0000010000000000192265,
+          "q100": 0.061939479648635797,
+          "q50": 0.00011557640798242757,
+          "q95": 0.03531387742255518
+        },
+        "signed_polygon_area": 0.03397241064528755,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "index": 2,
+          "residual": 0.31386828324285415
+        },
+        "worst_support": {
+          "index": 162,
+          "normalized": 0.000022602558246240973,
+          "raw": 9.999999997182402E-7,
+          "triple": [
+            9,
+            10,
+            11
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 118457539,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 14,
+      "elapsed_seconds": 0.6798319588415325,
+      "evaluations_or_iterations": 110,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.6994865051486406,
+        "equation_max_abs": 0.31386830292744483,
+        "equation_rms": 0.11347169492700293,
+        "maximum_absolute_coordinate": 1.012736893366934,
+        "minimum_pair_distance": 0.0028074959241971083,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 9.874232937473903E-7,
+        "raw_support_min": 9.999999965497677E-7,
+        "raw_support_quantiles": {
+          "q00": 9.999999965497677E-7,
+          "q01": 9.999999991326245E-7,
+          "q05": 9.999999999960217E-7,
+          "q100": 0.06193950090749568,
+          "q50": 0.00011557723796457267,
+          "q95": 0.035313854617901055
+        },
+        "signed_polygon_area": 0.033972457301989875,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "index": 2,
+          "residual": 0.31386830292744483
+        },
+        "worst_support": {
+          "index": 322,
+          "normalized": 0.00022951868179751404,
+          "raw": 9.999999965497677E-7,
+          "triple": [
+            18,
+            0,
+            17
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 118562268,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 15,
+      "elapsed_seconds": 0.09290125011466444,
+      "evaluations_or_iterations": 9,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 9.049203007259178,
+        "equation_max_abs": 3.4343477530759206,
+        "equation_rms": 1.4679745719383541,
+        "maximum_absolute_coordinate": 1.3222703726978051,
+        "minimum_pair_distance": 0.004819061619516379,
+        "nonpositive_support_count": 99,
+        "normalized_support_min": -0.04256978997122873,
+        "raw_support_min": -0.00009648517379720457,
+        "raw_support_quantiles": {
+          "q00": -0.00009648517379720457,
+          "q01": -0.00008414240465086905,
+          "q05": -0.00004332806138979599,
+          "q100": 0.0005800556505240872,
+          "q50": 0.000018538838914346933,
+          "q95": 0.0002675645332507741
+        },
+        "signed_polygon_area": 0.00039477214790137143,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              11
+            ],
+            [
+              5,
+              13
+            ]
+          ],
+          "index": 24,
+          "residual": -3.4343477530759206
+        },
+        "worst_support": {
+          "index": 155,
+          "normalized": -0.0004600782431758324,
+          "raw": -0.00009648517379720457,
+          "triple": [
+            9,
+            10,
+            2
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 118666997,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 16,
+      "elapsed_seconds": 0.034588417038321495,
+      "evaluations_or_iterations": 2,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 428.02757161557304,
+        "equation_max_abs": 148.858586770481,
+        "equation_rms": 69.4352409506275,
+        "maximum_absolute_coordinate": 12.079425161175747,
+        "minimum_pair_distance": 0.9213506178857497,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 0.06667902097409155,
+        "raw_support_min": 0.2523510830474013,
+        "raw_support_quantiles": {
+          "q00": 0.2523510830474013,
+          "q01": 0.424743796640549,
+          "q05": 0.8364804840720409,
+          "q100": 29.82342227999286,
+          "q50": 9.844469557848258,
+          "q95": 24.795067370754715
+        },
+        "signed_polygon_area": 93.19097721053313,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              9,
+              10
+            ]
+          ],
+          "index": 1,
+          "residual": 148.858586770481
+        },
+        "worst_support": {
+          "index": 270,
+          "normalized": 0.1034155044325205,
+          "raw": 0.2523510830474013,
+          "triple": [
+            15,
+            16,
+            17
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 118771726,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 17,
+      "elapsed_seconds": 0.14548016712069511,
+      "evaluations_or_iterations": 22,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 1.690847192987415,
+        "equation_max_abs": 0.8502233536752027,
+        "equation_rms": 0.2742916345613791,
+        "maximum_absolute_coordinate": 1.3154167627989133,
+        "minimum_pair_distance": 0.002208551539913038,
+        "nonpositive_support_count": 200,
+        "normalized_support_min": -0.9981707834928654,
+        "raw_support_min": -0.3381456710363744,
+        "raw_support_quantiles": {
+          "q00": -0.3381456710363744,
+          "q01": -0.28197243667116756,
+          "q05": -0.25340431344252984,
+          "q100": 0.2218619255754653,
+          "q50": -0.000029094313463747448,
+          "q95": 0.010394538556759363
+        },
+        "signed_polygon_area": -0.2754305536688436,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              9,
+              10
+            ]
+          ],
+          "index": 1,
+          "residual": 0.8502233536752027
+        },
+        "worst_support": {
+          "index": 0,
+          "normalized": -0.24896897118459668,
+          "raw": -0.3381456710363744,
+          "triple": [
+            0,
+            1,
+            2
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 118876455,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 18,
+      "elapsed_seconds": 0.11961916694417596,
+      "evaluations_or_iterations": 12,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 14.311480607011799,
+        "equation_max_abs": 4.685559464987132,
+        "equation_rms": 2.3216287225548022,
+        "maximum_absolute_coordinate": 1.2495575869967608,
+        "minimum_pair_distance": 0.002405659117479665,
+        "nonpositive_support_count": 54,
+        "normalized_support_min": -0.18517049086774703,
+        "raw_support_min": -0.0005245775217771278,
+        "raw_support_quantiles": {
+          "q00": -0.0005245775217771278,
+          "q01": -0.0004881614756937818,
+          "q05": -0.00026568706893101895,
+          "q100": 0.0025518156878968773,
+          "q50": 0.00021369702160657292,
+          "q95": 0.0011790823742438077
+        },
+        "signed_polygon_area": 0.0028758307799528447,
+        "worst_equation": {
+          "equation": [
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              12
+            ]
+          ],
+          "index": 16,
+          "residual": -4.685559464987132
+        },
+        "worst_support": {
+          "index": 30,
+          "normalized": -0.0015359657177188507,
+          "raw": -0.0005245775217771278,
+          "triple": [
+            1,
+            2,
+            15
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 118981184,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 19,
+      "elapsed_seconds": 0.07812308287248015,
+      "evaluations_or_iterations": 13,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 11.040199975622848,
+        "equation_max_abs": 6.254135020199444,
+        "equation_rms": 1.7909569296133485,
+        "maximum_absolute_coordinate": 2.0209637930960547,
+        "minimum_pair_distance": 0.005040227661068672,
+        "nonpositive_support_count": 98,
+        "normalized_support_min": -0.013723806648466258,
+        "raw_support_min": -0.00014638430925518637,
+        "raw_support_quantiles": {
+          "q00": -0.00014638430925518637,
+          "q01": -0.00013998080750306975,
+          "q05": -0.00008168490008390766,
+          "q100": 0.00036430880639191525,
+          "q50": 0.00001169875279567221,
+          "q95": 0.0001982250232757068
+        },
+        "signed_polygon_area": 0.0002570697245906389,
+        "worst_equation": {
+          "equation": [
+            [
+              4,
+              11
+            ],
+            [
+              11,
+              12
+            ]
+          ],
+          "index": 15,
+          "residual": 6.254135020199444
+        },
+        "worst_support": {
+          "index": 19,
+          "normalized": -0.00017905639239717349,
+          "raw": -0.00014638430925518637,
+          "triple": [
+            1,
+            2,
+            4
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Inequality constraints incompatible",
+      "scipy_status": 4,
+      "scipy_success": false,
+      "seed": 119085913,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 20,
+      "elapsed_seconds": 0.6078972078394145,
+      "evaluations_or_iterations": 101,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.6994865051483701,
+        "equation_max_abs": 0.31386829567185787,
+        "equation_rms": 0.11347169492695904,
+        "maximum_absolute_coordinate": 1.0127367955293392,
+        "minimum_pair_distance": 0.002807495671325198,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 9.874233901073964E-7,
+        "raw_support_min": 9.999999976723371E-7,
+        "raw_support_quantiles": {
+          "q00": 9.999999976723371E-7,
+          "q01": 9.999999993575375E-7,
+          "q05": 9.999999999951138E-7,
+          "q100": 0.061939491171853205,
+          "q50": 0.00011557718435982657,
+          "q95": 0.03531385201934952
+        },
+        "signed_polygon_area": 0.03397244847427242,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "index": 2,
+          "residual": 0.31386829567185787
+        },
+        "worst_support": {
+          "index": 54,
+          "normalized": 0.0018596939337848773,
+          "raw": 9.999999976723371E-7,
+          "triple": [
+            3,
+            4,
+            5
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 119190642,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 21,
+      "elapsed_seconds": 0.4561844998970628,
+      "evaluations_or_iterations": 85,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.7816592619049593,
+        "equation_max_abs": 0.2927743246304836,
+        "equation_rms": 0.12680187630624543,
+        "maximum_absolute_coordinate": 1.02040293445705,
+        "minimum_pair_distance": 0.0008336111757638818,
+        "nonpositive_support_count": 59,
+        "normalized_support_min": -0.6511463193381689,
+        "raw_support_min": -0.002824355877463382,
+        "raw_support_quantiles": {
+          "q00": -0.002824355877463382,
+          "q01": -0.0027193542839378314,
+          "q05": -0.0008744954734581586,
+          "q100": 0.10367900179048567,
+          "q50": 0.0003235340616219908,
+          "q95": 0.05182317216142506
+        },
+        "signed_polygon_area": 0.056817351582112006,
+        "worst_equation": {
+          "equation": [
+            [
+              1,
+              16
+            ],
+            [
+              11,
+              16
+            ]
+          ],
+          "index": 8,
+          "residual": 0.2927743246304836
+        },
+        "worst_support": {
+          "index": 39,
+          "normalized": -0.04781612274893382,
+          "raw": -0.002824355877463382,
+          "triple": [
+            2,
+            3,
+            7
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Positive directional derivative for linesearch",
+      "scipy_status": 8,
+      "scipy_success": false,
+      "seed": 119295371,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 22,
+      "elapsed_seconds": 0.4811741248704493,
+      "evaluations_or_iterations": 81,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.6994865051486419,
+        "equation_max_abs": 0.31386829636152885,
+        "equation_rms": 0.11347169492700314,
+        "maximum_absolute_coordinate": 1.0127367284239026,
+        "minimum_pair_distance": 0.002807495990643472,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 9.8742345501474E-7,
+        "raw_support_min": 9.999999981148136E-7,
+        "raw_support_quantiles": {
+          "q00": 9.999999981148136E-7,
+          "q01": 9.999999994113739E-7,
+          "q05": 9.999999999970915E-7,
+          "q100": 0.061939484199466904,
+          "q50": 0.00011557707580555398,
+          "q95": 0.03531386007980644
+        },
+        "signed_polygon_area": 0.03397244194915537,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "index": 2,
+          "residual": 0.31386829636152885
+        },
+        "worst_support": {
+          "index": 322,
+          "normalized": 0.00022951873017520874,
+          "raw": 9.999999981148136E-7,
+          "triple": [
+            18,
+            0,
+            17
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 119400100,
+      "stage": "strict_constrained_slsqp"
+    },
+    {
+      "attempt": 23,
+      "elapsed_seconds": 0.6272892500273883,
+      "evaluations_or_iterations": 99,
+      "metrics": {
+        "degenerate_support_denominator_count": 0,
+        "equation_l2": 0.6994865051486482,
+        "equation_max_abs": 0.31386831643053076,
+        "equation_rms": 0.11347169492700417,
+        "maximum_absolute_coordinate": 1.012737534917665,
+        "minimum_pair_distance": 0.0028074967555115483,
+        "nonpositive_support_count": 0,
+        "normalized_support_min": 9.874226692242888E-7,
+        "raw_support_min": 9.999999985135831E-7,
+        "raw_support_quantiles": {
+          "q00": 9.999999985135831E-7,
+          "q01": 9.99999998803333E-7,
+          "q05": 9.999999999946257E-7,
+          "q100": 0.061939496653444004,
+          "q50": 0.00011557782133832581,
+          "q95": 0.0353138280909065
+        },
+        "signed_polygon_area": 0.033972476694419454,
+        "worst_equation": {
+          "equation": [
+            [
+              0,
+              10
+            ],
+            [
+              10,
+              11
+            ]
+          ],
+          "index": 2,
+          "residual": 0.31386831643053076
+        },
+        "worst_support": {
+          "index": 144,
+          "normalized": 0.0007577958820116044,
+          "raw": 9.999999985135831E-7,
+          "triple": [
+            8,
+            9,
+            10
+          ]
+        }
+      },
+      "plausible_fit": false,
+      "scipy_message": "Optimization terminated successfully",
+      "scipy_status": 0,
+      "scipy_success": true,
+      "seed": 119504829,
+      "stage": "strict_constrained_slsqp"
+    }
+  ],
+  "best_candidate": null,
+  "verification": null
+}

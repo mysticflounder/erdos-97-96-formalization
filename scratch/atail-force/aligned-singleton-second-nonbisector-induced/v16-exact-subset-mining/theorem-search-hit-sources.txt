@@ -1,0 +1,312 @@
+HANDLE MYY1W4
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean:11
+/-!
+HANDLE EXZAQX
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean:8
+/-!
+HANDLE EACYX4
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:11
+/-!
+HANDLE WQ7GHW
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:70
+theorem six_point_circle_chain_collision
+    {A B C D E F : ℝ²}
+    (hBA_BC : dist B A = dist B C)
+    (hBA_BD : dist B A = dist B D)
+    (hCA_CB : dist C A = dist C B)
+    (hCA_CE : dist C A = dist C E)
+    (hCA_CF : dist C A = dist C F)
+    (hDC_DE : dist D C = dist D E)
+    (hEA_EF : dist E A = dist E F)
+    (hFB_FD : dist F B = dist F D)
+    (hFB_FE : dist F B = dist F E) : A = B := by
+  by_contra hAB
+  let T : ℝ² → ℝ² := normSim A B
+  let c := T C
+  let d := T D
+  let e := T E
+  let f := T F
+  have hdist (X Y : ℝ²) :
+      dist (T X) (T Y) = (dist A B)⁻¹ * dist X Y := by
+    simpa [T] using normSim_dist_image A B hAB X Y
+  have hT0 : T A = pt 0 0 := by
+    simpa [T] using normSim_fst A B
+  have hT1 : T B = pt 1 0 := by
+    simpa [T] using normSim_snd A B hAB
+  have map_dist_eq {X Y Z R : ℝ²} (h : dist X Y = dist Z R) :
+      dist (T X) (T Y) = dist (T Z) (T R) := by
+    rw [hdist, hdist, h]
+  apply normalized_sixPointCircleChain_incompatible
+      (C := c) (D := d) (E := e) (F := f)
+  · simpa [c, hT0, hT1] using map_dist_eq hBA_BC
+  · simpa [d, hT0, hT1] using map_dist_eq hBA_BD
+  · simpa [c, hT0, hT1] using map_dist_eq hCA_CB
+  · simpa [c, e, hT0] using map_dist_eq hCA_CE
+  · simpa [c, f, hT0] using map_dist_eq hCA_CF
+  · simpa [c, d, e] using map_dist_eq hDC_DE
+  · simpa [e, f, hT0] using map_dist_eq hEA_EF
+  · simpa [d, f, hT1] using map_dist_eq hFB_FD
+  · simpa [e, f, hT1] using map_dist_eq hFB_FE
+HANDLE MHNMPZ
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:323
+theorem six_point_twoCircle_order_incompatible
+    {A P Q B D C : ℝ²}
+    (hAB : A ≠ B)
+    (hAB_AC : dist A B = dist A C)
+    (hAB_AD : dist A B = dist A D)
+    (hAB_BC : dist A B = dist B C)
+    (hCD_CP : dist C D = dist C P)
+    (hDA_DQ : dist D A = dist D Q)
+    (hABC : 0 < signedArea2 A B C)
+    (hABD : 0 < signedArea2 A B D)
+    (hBDC : 0 < signedArea2 B D C)
+    (hAPB : 0 < signedArea2 A P B)
+    (hAQB : 0 < signedArea2 A Q B)
+    (hQBD : 0 < signedArea2 Q B D)
+    (hAPQ : 0 < signedArea2 A P Q) : False := by
+  let T := normSim A B
+  let H := T C 1
+  let u := T D 0
+  let v := T D 1
+  let p := T P 0
+  let q := T P 1
+  let r := T Q 0
+  let s := T Q 1
+  have hTA : T A = pt 0 0 := by
+    simpa [T] using normSim_fst A B
+  have hTB : T B = pt 1 0 := by
+    simpa [T] using normSim_snd A B hAB
+  have map_dist_eq {X Y Z W : ℝ²} (heq : dist X Y = dist Z W) :
+      dist (T X) (T Y) = dist (T Z) (T W) := by
+    simp only [T, normSim_dist_image A B hAB]
+    rw [heq]
+  have hCfst : T C 0 = 1 / 2 := by
+    apply normSim_center_fst_eq_half_of_equidistant hAB
+    exact hAB_AC.symm.trans hAB_BC
+  have hCunit := normSim_dist_sq_eq_one hAB hAB_AC
+  change (T A 0 - T C 0) ^ 2 + (T A 1 - T C 1) ^ 2 = 1 at hCunit
+  rw [hTA] at hCunit
+  simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one, zero_sub,
+    neg_sq] at hCunit
+  have hHsq : H ^ 2 = 3 / 4 := by
+    dsimp [H]
+    rw [hCfst] at hCunit
+    nlinarith only [hCunit]
+  have hDunit := normSim_dist_sq_eq_one hAB hAB_AD
+  change (T A 0 - T D 0) ^ 2 + (T A 1 - T D 1) ^ 2 = 1 at hDunit
+  rw [hTA] at hDunit
+  simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one, zero_sub,
+    neg_sq] at hDunit
+  have huv : u ^ 2 + v ^ 2 = 1 := by
+    simpa [u, v] using hDunit
+  have hCDCP := congrArg (fun x : ℝ => x ^ 2) (map_dist_eq hCD_CP)
+  change dist (T C) (T D) ^ 2 = dist (T C) (T P) ^ 2 at hCDCP
+  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hCDCP
+  have hpCircle :
+      (p - 1 / 2) ^ 2 + (q - H) ^ 2 =
+        (u - 1 / 2) ^ 2 + (v - H) ^ 2 := by
+    dsimp [p, q, u, v, H]
+    rw [hCfst] at hCDCP
+    nlinarith only [hCDCP]
+  have hDADQ := congrArg (fun x : ℝ => x ^ 2) (map_dist_eq hDA_DQ)
+  change dist (T D) (T A) ^ 2 = dist (T D) (T Q) ^ 2 at hDADQ
+  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hDADQ
+  rw [hTA] at hDADQ
+  simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero] at hDADQ
+  have hqCircle : (r - u) ^ 2 + (s - v) ^ 2 = 1 := by
+    dsimp [r, s, u, v]
+    dsimp [u, v] at huv
+    nlinarith only [hDADQ, huv]
+  have hABC' := normSim_signedArea_pos hAB hABC
+  change 0 < signedArea2 (T A) (T B) (T C) at hABC'
+  rw [hTA, hTB] at hABC'
+  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one,
+    sub_zero, one_mul, sub_zero] at hABC'
+  have hHpos : 0 < H := by simpa [H] using hABC'
+  have hABD' := normSim_signedArea_pos hAB hABD
+  change 0 < signedArea2 (T A) (T B) (T D) at hABD'
+  rw [hTA, hTB] at hABD'
+  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one,
+    sub_zero, one_mul, sub_zero] at hABD'
+  have hvPos : 0 < v := by simpa [v] using hABD'
+  have hBDC' := normSim_signedArea_pos hAB hBDC
+  change 0 < signedArea2 (T B) (T D) (T C) at hBDC'
+  rw [hTB] at hBDC'
+  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one,
+    sub_zero] at hBDC'
+  have hBDCscalar : 0 < (u - 1) * H + v / 2 := by
+    dsimp [u, v, H]
+    rw [hCfst] at hBDC'
+    nlinarith only [hBDC']
+  have hAPB' := normSim_signedArea_pos hAB hAPB
+  change 0 < signedArea2 (T A) (T P) (T B) at hAPB'
+  rw [hTA, hTB] at hAPB'
+  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one,
+    sub_zero, zero_sub, mul_zero, one_mul] at hAPB'
+  have hAPBscalar : 0 < -q := by simpa [q] using hAPB'
+  have hAQB' := normSim_signedArea_pos hAB hAQB
+  change 0 < signedArea2 (T A) (T Q) (T B) at hAQB'
+  rw [hTA, hTB] at hAQB'
+  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one,
+    sub_zero, zero_sub, mul_zero, one_mul] at hAQB'
+  have hAQBscalar : 0 < -s := by simpa [s] using hAQB'
+  have hQBD' := normSim_signedArea_pos hAB hQBD
+  change 0 < signedArea2 (T Q) (T B) (T D) at hQBD'
+  rw [hTB] at hQBD'
+  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one] at hQBD'
+  have hQBDscalar : 0 < (1 - r) * (v - s) + s * (u - r) := by
+    dsimp [r, s, u, v]
+    nlinarith only [hQBD']
+  have hAPQ' := normSim_signedArea_pos hAB hAPQ
+HANDLE V6KZN0
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:91
+theorem six_point_two_pair_collision
+    {A B C D E F : ℝ²}
+    (hAB : A ≠ B)
+    (hAB_AC : dist A B = dist A C)
+    (hAB_AE : dist A B = dist A E)
+    (hFA_FC : dist F A = dist F C)
+    (hFA_FD : dist F A = dist F D)
+    (hFA_FE : dist F A = dist F E)
+    (hBD_BF : dist B D = dist B F)
+    (hCB_CD : dist C B = dist C D)
+    (hEB_EC : dist E B = dist E C)
+    (hEB_ED : dist E B = dist E D) : D = E ∨ E = F := by
+  by_contra hcollision
+  rcases not_or.mp hcollision with ⟨hDE, hEF⟩
+  let T : ℝ² → ℝ² := normSim A B
+  have hdist (X Y : ℝ²) :
+      dist (T X) (T Y) = (dist A B)⁻¹ * dist X Y := by
+    simpa [T] using normSim_dist_image A B hAB X Y
+  have hT0 : T A = pt 0 0 := by
+    simpa [T] using normSim_fst A B
+  have hT1 : T B = pt 1 0 := by
+    simpa [T] using normSim_snd A B hAB
+  have hscale : (dist A B)⁻¹ ≠ 0 :=
+    inv_ne_zero (dist_ne_zero.mpr hAB)
+  have hTinj : Function.Injective T := by
+    intro X Y hXY
+    apply dist_eq_zero.mp
+    have himage : dist (T X) (T Y) = 0 := dist_eq_zero.mpr hXY
+    rw [hdist] at himage
+    exact (mul_eq_zero.mp himage).resolve_left hscale
+  have map_dist_eq {X Y Z R : ℝ²} (h : dist X Y = dist Z R) :
+      dist (T X) (T Y) = dist (T Z) (T R) := by
+    rw [hdist, hdist, h]
+  apply normalized_sixPointTwoPair_incompatible
+      (C := T C) (D := T D) (E := T E) (F := T F)
+  · simpa [hT0, hT1] using map_dist_eq hAB_AC
+  · simpa [hT0, hT1] using map_dist_eq hAB_AE
+  · simpa [hT0] using map_dist_eq hFA_FC
+  · simpa [hT0] using map_dist_eq hFA_FD
+  · simpa [hT0] using map_dist_eq hFA_FE
+  · simpa [hT1] using map_dist_eq hBD_BF
+  · simpa [hT1] using map_dist_eq hCB_CD
+  · simpa [hT1] using map_dist_eq hEB_EC
+  · simpa [hT1] using map_dist_eq hEB_ED
+  · exact fun h => hDE (hTinj h)
+  · exact fun h => hEF (hTinj h)
+HANDLE 2YQWSJ
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean:62
+private theorem normalized_six_point_incompatible
+    (y s m n p q : ℝ)
+    (hysq : y ^ 2 = 3 / 4)
+    (hkpos : 0 < 2 * s - y)
+    (hFcircle : p ^ 2 + q ^ 2 = 1)
+    (hEcircle :
+      (m - 2 * y * s) ^ 2 + (n - s) ^ 2 =
+        (1 - 2 * y * s) ^ 2 + s ^ 2)
+    (hFAB : 0 < q)
+    (hFAC : 0 < 2 * y * q - p)
+    (hFAD : 0 < q / 2 - p * y)
+    (hDEB : 0 < y * (1 - m) - n / 2)
+    (hEFD : 0 < (p - m) * (y - n) - (q - n) * (1 / 2 - m)) :
+    False := by
+  have hy4 : 4 * y ^ 2 - 3 = 0 := by
+    nlinarith only [hysq]
+  have hyne : y ≠ 0 := by
+    intro hy
+    rw [hy] at hysq
+    norm_num at hysq
+  have hypos : 0 < y := by
+    rcases lt_or_gt_of_ne hyne with hyneg | hypos
+    · have hp_lt : p < 2 * y * q := by linarith only [hFAC]
+      have hmul := mul_lt_mul_of_neg_left hp_lt hyneg
+      nlinarith only [hysq, hFAD, hFAB, hmul]
+    · exact hypos
+  let fv : ℝ := y * q - p / 2
+  let fn : ℝ := y * (1 - p) - q / 2
+  let a : ℝ := fv - 1 / 2
+  have hFAB_id : y * (a + 1) - fn / 2 = q := by
+    dsimp [a, fv, fn]
+    linear_combination q / 4 * hy4
+  have hFAD_id : y * a + fn / 2 = q / 2 - p * y := by
+    dsimp [a, fv, fn]
+    linear_combination q / 4 * hy4
+  have hFAB' : 0 < y * (a + 1) - fn / 2 := by
+    rw [hFAB_id]
+    exact hFAB
+  have hFAD' : 0 < y * a + fn / 2 := by
+    rw [hFAD_id]
+    exact hFAD
+  have hfvpos : 0 < fv := by
+    dsimp [a] at hFAB' hFAD'
+    nlinarith only [hypos, hFAB', hFAD']
+  have ha_gt_neg_half : -(1 / 2 : ℝ) < a := by
+    dsimp [a]
+    linarith only [hfvpos]
+  have hFchord : a * (a + 1) + fn ^ 2 - 2 * y * fn = 0 := by
+    dsimp [a, fv, fn]
+    nlinarith only [hysq, hFcircle]
+  have hapos : 0 < a := by
+    by_contra hnot
+    have hanonpos : a ≤ 0 := le_of_not_gt hnot
+    have ha1pos : 0 < a + 1 := by linarith only [ha_gt_neg_half]
+    have haprod : a * (a + 1) ≤ 0 :=
+      mul_nonpos_of_nonpos_of_nonneg hanonpos ha1pos.le
+    have hfnprod : 0 ≤ fn * (fn - 2 * y) := by
+      nlinarith only [hFchord, haprod]
+    have hfnpos : 0 < fn := by
+      nlinarith only [hFAD', hypos, hanonpos]
+    rcases (mul_nonneg_iff.mp hfnprod) with hsame | hsame
+    · have hfn2y : 2 * y ≤ fn := by linarith only [hsame.2]
+      nlinarith only [hFAB', hypos, hanonpos, hfn2y]
+    · exact False.elim (not_le_of_gt hfnpos hsame.1)
+  have hafactor : 0 < a * (a + 1) := by positivity
+  have hfnprodpos : 0 < fn * (2 * y - fn) := by
+    nlinarith only [hFchord, hafactor]
+  have hfnpos : 0 < fn := by
+    rcases (mul_pos_iff.mp hfnprodpos) with hsame | hsame
+    · exact hsame.1
+    · have hfnneg : fn < 0 := hsame.1
+      have hyltfn : 2 * y < fn := by linarith only [hsame.2]
+      linarith only [hypos, hfnneg, hyltfn]
+  let ev : ℝ := y * n - m / 2
+  let en : ℝ := y * (1 - m) - n / 2
+  let b : ℝ := 1 / 2 - ev
+  let k : ℝ := 2 * s - y
+  have henpos : 0 < en := by simpa [en] using hDEB
+  have hkpos' : 0 < k := by simpa [k] using hkpos
+  have hEcircle' : ev ^ 2 + (en + k) ^ 2 = 1 / 4 + k ^ 2 := by
+    dsimp [ev, en, k]
+    linear_combination hEcircle + (m ^ 2 + n ^ 2 - 1) / 4 * hy4
+  have hevSqLt : ev ^ 2 < (1 / 2 : ℝ) ^ 2 := by
+    have hcross : 0 < 2 * en * k :=
+      mul_pos (mul_pos (by norm_num) henpos) hkpos'
+    have hensq : 0 < en ^ 2 := sq_pos_of_pos henpos
+    nlinarith only [hEcircle', hcross, hensq]
+  have hevlt : ev < 1 / 2 := by
+    nlinarith only [hevSqLt, sq_nonneg (ev + 1 / 2)]
+  have hbpos : 0 < b := by simpa [b] using sub_pos.mpr hevlt
+  have hcrossIdentity :
+      (p - m) * (y - n) - (q - n) * (1 / 2 - m) =
+        -(a * en + b * fn) := by
+    dsimp [a, fv, fn, en, b, ev]
+    linear_combination (-m * q + n * p - n + q) / 4 * hy4
+  have hsumpos : 0 < a * en + b * fn :=
+    add_pos (mul_pos hapos henpos) (mul_pos hbpos hfnpos)
+  rw [hcrossIdentity] at hEFD
+  linarith
+HANDLE C1Q3ZM
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean:13
+/-!
