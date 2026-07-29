@@ -1,0 +1,56 @@
+[
+  {
+    "expected": "SAT",
+    "gate": "d4_two_bisector_positive",
+    "n_clauses": 625,
+    "n_variables": 172,
+    "proof_verified": false,
+    "tag_counts": {
+      "BANKED": 7,
+      "COUNT": 20,
+      "DEF": 210,
+      "DERIVED": 12,
+      "GEOM": 354,
+      "HYP": 20,
+      "SMOKE": 2
+    },
+    "verdict": "SAT",
+    "wall_seconds": 0.009
+  },
+  {
+    "expected": "UNSAT",
+    "gate": "d4_fresh_third_unsat",
+    "n_clauses": 626,
+    "n_variables": 172,
+    "proof_verified": true,
+    "tag_counts": {
+      "BANKED": 7,
+      "COUNT": 20,
+      "DEF": 210,
+      "DERIVED": 12,
+      "GEOM": 354,
+      "HYP": 20,
+      "SMOKE": 3
+    },
+    "verdict": "UNSAT",
+    "wall_seconds": 0.031
+  },
+  {
+    "expected": "SAT",
+    "gate": "d4_third_without_bisector_geom",
+    "n_clauses": 622,
+    "n_variables": 172,
+    "proof_verified": false,
+    "tag_counts": {
+      "BANKED": 7,
+      "COUNT": 20,
+      "DEF": 210,
+      "DERIVED": 12,
+      "GEOM": 350,
+      "HYP": 20,
+      "SMOKE": 3
+    },
+    "verdict": "SAT",
+    "wall_seconds": 0.007
+  }
+]

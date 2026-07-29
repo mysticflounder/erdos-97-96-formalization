@@ -1,0 +1,70 @@
+{
+  "runs": [
+    {
+      "cnf_file": "out/dr-common.cnf",
+      "interpretation": "incidence-shadow evidence only; not a geometric model",
+      "model_file": "out/dr-common.model.json",
+      "n_clauses": 12888,
+      "n_variables": 478,
+      "proof_verified": false,
+      "run": "dr-common",
+      "scope": "named-local incidence shadow only",
+      "verdict": "SAT",
+      "wall_seconds": 0.011
+    },
+    {
+      "cnf_file": "out/dr-d1.cnf",
+      "interpretation": "incidence-shadow evidence only; not a geometric model",
+      "model_file": "out/dr-d1.model.json",
+      "n_clauses": 12928,
+      "n_variables": 478,
+      "proof_verified": false,
+      "run": "dr-d1",
+      "scope": "named-local incidence shadow only",
+      "verdict": "SAT",
+      "wall_seconds": 0.011
+    },
+    {
+      "cnf_file": "out/dr-d2.cnf",
+      "interpretation": "incidence-shadow evidence only; not a geometric model",
+      "model_file": "out/dr-d2.model.json",
+      "n_clauses": 12985,
+      "n_variables": 478,
+      "proof_verified": false,
+      "run": "dr-d2",
+      "scope": "named-local incidence shadow only",
+      "verdict": "SAT",
+      "wall_seconds": 0.011
+    }
+  ],
+  "tag_clause_counts": {
+    "D1-CAP-U": 4,
+    "D1-CAP-X": 4,
+    "D1-CAP-Y": 4,
+    "D1-DISJ": 16,
+    "D1-ROW-X": 6,
+    "D1-ROW-Y": 6,
+    "D2-INGRESS": 4,
+    "D2-ORIGINAL-OUTSIDE-V": 32,
+    "D2-ROW-V": 6,
+    "D2-SWAP": 5,
+    "D2-SWAPPED-OUTSIDE-U": 32,
+    "D2-V-SELECT": 14,
+    "D2-V-SELECT-DIST": 4,
+    "EQ": 12180,
+    "I-B-DEL": 64,
+    "I-B1": 6,
+    "I-B1-CENTER": 4,
+    "I-B2": 6,
+    "I-B2-CENTER": 4,
+    "I-CENTERS": 1,
+    "I-DEL": 2,
+    "I-DEL-CENTERS": 16,
+    "I-OVERLAP": 560,
+    "R-MOSER": 3,
+    "R-U": 6,
+    "R-U-SELECT": 28,
+    "R-U-SELECT-DIST": 8
+  },
+  "timeout_seconds": 60
+}

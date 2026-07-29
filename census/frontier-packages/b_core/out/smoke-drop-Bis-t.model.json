@@ -1,0 +1,8 @@
+{
+  "Bis(a2)": true,
+  "Bis(b1)": true,
+  "Bis(t)": false,
+  "Ne(b1,a2)": true,
+  "Ne(t,a2)": true,
+  "Ne(t,b1)": true
+}

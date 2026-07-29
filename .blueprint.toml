@@ -15,7 +15,7 @@ root_slug = "root"
 # query `proof-blueprint symbols --with-sorry` for the corpus census, and
 # refresh refs plus both publish-target spines for reachability before reporting
 # or publishing.
-target_symbol = ["Problem97.erdos97_rhs", "Problem96.erdos96_rhs"]
+target_symbol = ["Problem97.erdos97_rhs"]
 state = "wip"  # "wip" | "complete" — config compat; affects no verdict (sorry is always open work)
 
 [axioms]

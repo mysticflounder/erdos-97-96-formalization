@@ -101,9 +101,11 @@ def main() -> int:
     # base+A1 -- see encoding.py::build_del3_clauses docstring.
     del3_extra = encoder.build_del3_clauses()
 
-    # 2. base+P  (= base + DEL2 + DEL3 -- see encoding.py / RESULTS.md for
-    # why P2,P3 contribute no further NEW clauses beyond DEL2/DEL3)
-    base_p_extra = list(encoder.del2_clauses) + list(del3_extra)
+    # 2. base+P (= base + DEL2 + C10 + DEL3).  C10 is the exact
+    # source-support projection enabled by P3; see encoding.py / RESULTS.md.
+    base_p_extra = (
+        list(encoder.del2_clauses) + list(encoder.c10_clauses) + list(del3_extra)
+    )
     base_p_record = run_one(
         encoder, "base+P", list(encoder.base_clauses), base_p_extra, args.timeout_seconds
     )
@@ -112,7 +114,10 @@ def main() -> int:
     # 3. base+P+A<k>
     for leaf in LEAVES:
         extra = (
-            list(encoder.del2_clauses) + list(del3_extra) + encoder.leaf_delta_clauses(leaf)
+            list(encoder.del2_clauses)
+            + list(encoder.c10_clauses)
+            + list(del3_extra)
+            + encoder.leaf_delta_clauses(leaf)
         )
         record = run_one(
             encoder, f"base+P+{leaf}", list(encoder.base_clauses), extra, args.timeout_seconds

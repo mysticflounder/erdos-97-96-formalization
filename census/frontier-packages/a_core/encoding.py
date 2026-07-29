@@ -146,6 +146,9 @@ class ACoreEncoder:
         self.rbt2 = 0
 
         self.del2_clauses: list[tuple[int, ...]] = []
+        # (C10) is a P3/source-only projection, not a base clause.  See
+        # _build_c10_projection() for the kernel-checked provenance.
+        self.c10_clauses: list[tuple[int, ...]] = []
         # (DEL3) is built on demand (NOT during __init__/_build()) because,
         # unlike (DEL2), its Sinz at-most-2 encoding allocates new counter
         # variables -- see build_del3_clauses() docstring for why it must be
@@ -195,6 +198,7 @@ class ACoreEncoder:
         self._build_cl1()
         self._build_inT()
         self._build_rows()
+        self._build_c10_projection()
         self._build_del()
         self._build_blocker()
         self._build_sv()
@@ -297,9 +301,10 @@ class ACoreEncoder:
     def _build_inT(self) -> None:
         for p in LABELS:
             self.inT[p] = self._new(f"inT({p})")
-        # Units [(G1)+Remark]
+        # Units [(G1)+Remark], plus source context (C6).
         for p in SHELL_GROUP:
             self.add(self.inT[p])
+        self.add(self.inT["oth"])  # (C6): other ∈ T
         self.add(-self.inT["a2"])  # (B3)
         # (T1) exactness [(B9)+(G1)], same one-directional pattern as (CL1);
         # converse via (EQ3).
@@ -351,6 +356,21 @@ class ACoreEncoder:
         for p in LABELS:
             self.add(-cl1v, -self.row_v[p], self.cl1[p])
             self.add(-cl1v, self.row_v[p], -self.cl1[p])
+
+    def _build_c10_projection(self) -> None:
+        """Build the P3/source-context projection of (C10), without adding
+        it to the frozen base.
+
+        Under P3, ``u = source``.  Applying
+        ``Problem97.ATailCriticalPairFrontier.
+        cross_deletion_survives_iff_not_mem_selected_support`` to the qh
+        and wh deletion-survival branches of C10 gives respectively
+        ``qh ∉ Row(u)`` and ``wh ∉ Row(u)``.  Their disjunction is exactly
+        this binary clause.  It belongs in every physical base+P run and
+        no base or base+A1 run.
+        """
+
+        self.c10_clauses = [(-self.row_u["qh"], -self.row_u["wh"])]
 
     # -- deletion set del(p) -------------------------------------------------
 

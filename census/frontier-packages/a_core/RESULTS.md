@@ -562,3 +562,104 @@ choice)
   is the same schema, not a new clause family, applied to a label the A1
   leaf table introduces but for which the spec did not spell out the
   closure explicitly.
+
+## 8. CEGAR iteration 3 (v1.3, 2026-07-28)
+
+### 8.1 Refinement
+
+The source-context hypothesis `(C6)` explicitly states
+`other ∈ 𝒯`. Versions through v1.2 omitted that fact, and all eight
+v1.2 decoded models exploited the omission by setting `inT(oth)=F`.
+The v1.3 base adds the single source-tagged unit `inT(oth)`. Together
+with (T1) exactness, every model must choose exactly one of
+`eq(oth,zd)`, `eq(oth,v)`, or `eq(oth,xv)`.
+
+### 8.2 Smoke gates
+
+All gates pass:
+
+- G-BASE remains SAT.
+- New G-C6 (`base ∧ ¬inT(oth)`) is UNSAT, DRAT verified.
+- G-EXCL remains 10/10 UNSAT, every DRAT verified.
+- Revised G-SAT is SAT. It uses the coherent alias `oth=zd`, changes
+  `β(v)` from `zd` to `OUT`, and sets `β(oth)=β(zd)=v`; this respects
+  target/source congruence, (BM1), and (BM2).
+- All four v1.2 probes remain UNSAT, every DRAT verified.
+
+### 8.3 Package verdicts
+
+| Run | Verdict | Variables | Clauses | Wall time |
+|---|---:|---:|---:|---:|
+| base | SAT | 871 | 19,111 | 0.017 s |
+| base+P | SAT | 881 | 19,137 | 0.016 s |
+| base+P+A2 | SAT | 881 | 19,138 | 0.016 s |
+| base+P+A3 | SAT | 881 | 19,140 | 0.016 s |
+| base+P+A6 | SAT | 881 | 19,144 | 0.016 s |
+| base+P+A7 | SAT | 881 | 19,141 | 0.016 s |
+| base+P+A8 | SAT | 881 | 19,140 | 0.016 s |
+| base+A1 | SAT | 1,062 | 19,581 | 0.017 s |
+
+Every run gained exactly one clause and no variables. The decoded
+alias choices are: `oth=zd` for base, base+P, A1, and A3;
+`oth=xv` for A2; and `oth=v` for A6, A7, and A8. These choices are
+solver witnesses, not derived geometric facts.
+
+**Terminal status:** all six A leaves remain **OPEN**. The repair
+strictly narrows the incidence models and removes a source-invalid
+escape, but it does not close the A package. The next A refinement
+must use additional source structure or move these alias types to
+exact metric realization/nonrealizability; SAT alone is not evidence
+of a geometric realization.
+
+## 9. C10 full-distance-class projection (2026-07-29)
+
+### 9.1 Provenance and scope
+
+The new physical-context clause is
+
+`¬row_u(qh) ∨ ¬row_u(wh)`.
+
+Its branch provenance is the kernel-checked theorem
+`Problem97.ATailCriticalPairFrontier.cross_deletion_survives_iff_not_mem_selected_support`
+(`CriticalPairFrontier.lean:781`): deletion survival at a source blocker is
+equivalent to omission from the selected exact critical four-shell support.
+After (P3) identifies `u` with the source, the two C10 alternatives project
+respectively to `¬row_u(qh)` and `¬row_u(wh)`. The clause is therefore
+included in `base+P` and every physical A leaf, and excluded from `base`
+and `base+A1`.
+
+### 9.2 Focused regression
+
+The focused G-C10 gate passed:
+
+| Variant | Expected | Verdict | Proof |
+|---|---:|---:|---:|
+| pre-C10: `row_u(qh) ∧ row_u(wh)` | SAT | SAT | — |
+| with C10: `row_u(qh) ∧ row_u(wh)` | UNSAT | UNSAT | DRAT verified |
+| `¬row_u(qh) ∧ row_u(wh)` | SAT | SAT | — |
+| `row_u(qh) ∧ ¬row_u(wh)` | SAT | SAT | — |
+
+The scope/shape check also passed: exactly one C10 clause, present in
+`base+P` and all five physical leaf clause sets, absent from base and A1.
+
+### 9.3 Package verdicts
+
+An artifact-isolated rerun (temporary output directory) gave:
+
+| Run | Verdict | Variables | Clauses |
+|---|---:|---:|---:|
+| base | SAT | 871 | 19,111 |
+| base+P | SAT | 881 | 19,138 |
+| base+P+A2 | SAT | 881 | 19,139 |
+| base+P+A3 | SAT | 881 | 19,141 |
+| base+P+A6 | SAT | 881 | 19,145 |
+| base+P+A7 | SAT | 881 | 19,142 |
+| base+P+A8 | SAT | 881 | 19,141 |
+| base+A1 | SAT | 1,062 | 19,581 |
+
+Only physical runs gain the one C10 clause; no run gains a variable.
+
+**Trust boundary:** the Lean equivalence supplies kernel-checked provenance
+for the branch projection. Clause wiring and the reported SAT/UNSAT outcomes
+remain diagnostic Python/CNF evidence; they do not constitute Lean closure
+or metric realization. All six A leaves remain **OPEN**.

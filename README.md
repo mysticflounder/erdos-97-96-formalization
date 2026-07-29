@@ -4,13 +4,20 @@ A Lean 4 formalization of the resolutions of two Erdős problems on convex
 point sets in the plane, checked against the canonical problem statements
 in [`formal-conjectures`](https://github.com/google-deepmind/formal-conjectures).
 
-The remaining direct production proof surface is **6 `sorry`-carrying symbols /
-6 textual holes**, all in the A-tail frontier below the route-B tail of the
-removable-vertex core. The former two parent obligations are now source-clean
-checked coordinators: the unique-radius arm dispatches to the closed card-11
-exact-four certificate plus four open exact-four/exact-five leaves, and the
-all-large-caps tri-apex arm dispatches to two concrete low-hit leaves. The
-endpoint, pinned-surplus, and erased-pin
+The remaining direct production proof surface is **20 `sorry`-carrying leaf
+theorems**, all in the A-tail frontier below the route-B tail of the
+removable-vertex core (`P97/ATail/FrontierLiveClosure.lean`, four of them in
+its nested `TwoSourceExactCollisionRowsTerminal` namespace). The frontier's
+former two parent obligations are source-clean checked coordinators that now
+fan out, through several further case splits, into nine named computational
+case packages tracked in `census/frontier-packages/` (B1, B2, B3, A, C, D-R,
+D-E, E, F-Γ) plus the still-open collision/blocker terminal branches. Each
+package has a finite named-local incidence abstraction that is SAT-audited
+(satisfiable, with DRAT-checked negative probes) but this is explicitly **not**
+a closure of the corresponding Lean leaf — see **Proof status** below and
+`census/frontier-packages/SESSION3-TRIAGE-2026-07-28.md` for the leaf-by-leaf
+computational status and what each still needs. The endpoint, pinned-surplus,
+and erased-pin
 Front-B branches are closed; the ERASE card-{10,11} classifier closure is
 committed at `652fdfcb`. **This is the main repo where the proof is being
 closed.** The former companion repo
@@ -60,34 +67,47 @@ convex `A` ([`unit_distance_pairs_bound`](lean/Erdos9796Proof/P96/EuclideanPeeli
 
 ## Proof status
 
-**Both published claims still reach `sorryAx` through six direct Front-A
-leaf theorems.** The hard core of the descent step —
+**Both published claims still reach `sorryAx` through twenty direct A-tail
+leaf theorems** (`proof-blueprint spine`, current as of this checkout). The
+hard core of the descent step —
 [`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean#L811)
 (*every nonempty convex `HasNEquidistantProperty 4` set with `9 < |A|` that is
 minimal under the strong-induction hypothesis contains a removable vertex*) —
 is assembled from a three-way split (surplus-cap packet extraction, the
 `IsM44` pinned-surplus branch, the non-`IsM44` descent branch). The
 current direct source obligations are all in
-`P97/ATail/FrontierLiveClosure.lean`:
+`P97/ATail/FrontierLiveClosure.lean` (four of them in its nested
+`TwoSourceExactCollisionRowsTerminal` namespace), grouped below by the named
+computational case package each belongs to
+(`census/frontier-packages/SESSION3-TRIAGE-2026-07-28.md` has the full
+leaf-by-leaf computational status and first-missing-bridge description):
 
-| Arm | Source surface | Symbols | Textual holes |
-|---|---|---:|---:|
-| Unique radius, exact four, card at least 12, robust surface | `false_of_exactFourPostCardElevenRobustSurface` | 1 | 1 |
-| Unique radius, exact four, card at least 12, swapped protected exact four | `false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome` | 1 | 1 |
-| Unique radius, exact five, distinct obstruction centers | `false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual` | 1 | 1 |
-| Unique radius, exact five, common obstruction center | `false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual` | 1 | 1 |
-| Tri-apex low-hit, equal blockers | `false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits` | 1 | 1 |
-| Tri-apex low-hit, distinct blockers | `false_of_retainedInteriorDirectedOmission_and_all_low_hits` | 1 | 1 |
-| **Total** | | **6** | **6** |
+| Package | Leaves open | What each package's SAT audit has (and has not) established |
+|---|---:|---|
+| B1 | 1 | Direct-shadow SAT only; not yet an official package verdict (prerequisite ingress missing) |
+| B2, B3 | 2 | Named-local canonical-row / mutual-omission projection SAT; needs a global/metric consequence beyond it |
+| A | 6 | All eight v1.3 runs SAT, all negative probes DRAT-verified; needs exact metric/global geometry beyond the current clause set |
+| C | 2 | Base/C1/C2 SAT, all probe UNSATs DRAT-verified; needs a metric/global realization obstruction beyond the placement projection |
+| D-R | 2 | SAT with 25/25 negative probes DRAT-verified; needs a finite consequence of universal no-five/no-M44 or exact real-radius content |
+| D-E | 2 | Open-carrier named-witness projection SAT; needs a proved finite cutoff or cardinality-free symbolic certificate |
+| E | 1 | Counting/incidence abstraction SAT; needs the unencoded all-low-hit family plus remaining survival/minimality geometry |
+| F-Γ | 4 | Abstract incidence/cardinality only — no finite completeness reduction exists yet for this package |
+| **Total** | **20** | |
 
-The source census reports exactly those six symbols. The checked parent
-coordinators `false_of_originalFrontierUniqueRadiusArm` and
-`false_of_frontierAllLargeCapsTriApexRobustResidual` are source-clean and
-dispatch exhaustively to these leaves, with the exact-four card-11 branch
-closed by the promoted certificate ingress. Refreshing `proof-blueprint` after
-the production build confirms their publish-spine reachability. The former
-shared-radius and LIVE-Q/C declarations were bypassed and retired when the
-caller moved to `CriticalPairFrontier`; they were not individually proved.
+Every SAT verdict above is a finite named-local incidence abstraction, not a
+Euclidean realization, and does **not** refute or close the corresponding
+Lean leaf; every DRAT-checked UNSAT is a smoke/probe result, not a verdict for
+a live leaf. The census/SAT lane's own accounting (SESSION3-TRIAGE, dated
+2026-07-28) states this explicitly: "the Session-3 result is therefore zero
+computational closures." The checked parent coordinators
+`false_of_originalFrontierUniqueRadiusArm` and
+`false_of_twoLargeCaps_commonCriticalMap` (among others in the chain) are
+source-clean and dispatch exhaustively down to these leaves, with the
+exact-four card-11 branch closed by the promoted certificate ingress.
+Refreshing `proof-blueprint` after the production build confirms publish-spine
+reachability. The former shared-radius and LIVE-Q/C declarations were bypassed
+and retired when the caller moved to `CriticalPairFrontier`; they were not
+individually proved.
 The former Front-B obligations `isM44EndpointResidualsExcluded`,
 `isM44PinnedSurplusResidualsExcluded`, and
 `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` are source-clean
@@ -98,14 +118,14 @@ axiom set.
 The Lean kernel reports the axiom closure of both published claims as the
 Lean core axioms plus:
 
-- `sorryAx` — traces exactly to the five Front-A leaves above;
+- `sorryAx` — traces exactly to the twenty A-tail leaves above;
 - `Lean.ofReduceBool` and `Lean.trustCompiler` — from `native_decide` in the
   generated finite-bank certificate shards (`SurplusCOMPGBank*`,
   `EndpointCertificate/*`), allowed under the project's `native_decide`
   policy (kernel-checked closure + the evaluated checkers are plain verified
   Lean with no `unsafe` / `@[implemented_by]` / `@[extern]`).
 
-Once those five leaves are proven, `sorryAx` drops out and both closures
+Once those twenty leaves are proven, `sorryAx` drops out and both closures
 become the core axioms plus the two compiler axioms — the declared trust
 boundary of the certificate infrastructure.
 
@@ -273,7 +293,7 @@ lock so concurrent invocations serialize:
 ./scripts/lake-build.sh
 ```
 
-A successful build prints `declaration uses 'sorry'` warnings for the six
+A successful build prints `declaration uses 'sorry'` warnings for the twenty
 leaf theorems in `P97/ATail/FrontierLiveClosure.lean` and nothing else of
 substance.
 (Lean's mathlib-style linters emit a handful of cosmetic
@@ -314,7 +334,7 @@ lean/
       RemovableVertexAxiom.lean -- removable-vertex assembly; A-tail leaves downstream
       U1LargeCapRouteBTail.lean -- imported U-lane route-B tail; source-clean coordinator
       ATail/
-        FrontierLiveClosure.lean -- six load-bearing production leaf obligations
+        FrontierLiveClosure.lean -- twenty load-bearing production leaf obligations
         CardElevenUniqueFourCertificateIngress.lean -- closed card-11 exact-four branch
       Foundation.lean           -- shared vocabulary + signed-area primitives
       Dumitrescu/               -- isosceles-counting lemma chain (L1 … Lc3)
@@ -474,7 +494,7 @@ a final single-apex exhaustion:
 
 ### Status of the removable-vertex lemma: current residuals
 
-The five Front-A leaves in the **Proof status** table are the open frontier;
+The twenty A-tail leaves in the **Proof status** table are the open frontier;
 everything else on the descent path is closed and kernel-audited: the base
 case `FiniteN9Closure` (axiom closure: `propext, Classical.choice,
 Quot.sound`), the cap-sum bridge (`|A| > 9 ⇒ some opposite cap is surplus`),
@@ -482,10 +502,6 @@ the counting bound `counterexample_card_ge_nine` (`|A| ≥ 9`), the surplus-cap
 packet extraction (`largeK4SurplusCapPacket`), the pinned-surplus finite-bank
 handoff (`pinnedSurplusCOMPGBankBridge`), and the non-`IsM44` descent adapter
 (`removableVertexOfLarge_of_nonIsM44`).
-
-A separate unresolved branch is currently tracked directly as
-`exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows` in
-`P97/ATail/FrontierLiveClosure.lean`.
 
 **Active work happens in this repo.**
 [`docs/closure-plan-full-spec-2026-07-09.md`](docs/closure-plan-full-spec-2026-07-09.md)

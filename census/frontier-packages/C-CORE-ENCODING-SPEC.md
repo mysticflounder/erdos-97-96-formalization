@@ -1,4 +1,4 @@
-# C-core Layer-1 incidence encoding — specification (2026-07-28, v1.0)
+# C-core Layer-1 incidence encoding — specification (2026-07-29, v1.1)
 
 Session-2 artifact of `docs/computational-closure-plan-2026-07-28.md` (§5 row
 2, §8). Source of truth for the hypotheses:
@@ -44,8 +44,14 @@ Every source-tagged hypothesis becomes a conditional pair
   active arm automatically].
 - (C6.8) c′(source)≠c′(other): srcU→(¬b(u,y)∨¬b(oth,y)) per y;
   ¬srcU→(¬b(xu,y)∨¬b(oth,y)) per y.
-- (C6.9): OMITTED (K4-at-c′(source) content, same no-sound-projection
-  reasoning as A's (C10) — record in backlog).
+- (C6.9): in each physical verdict leaf,
+  ¬row_src(qh) ∨ ¬row_src(wh). The kernel-checked theorem
+  `Problem97.ATailCriticalPairFrontier.cross_deletion_survives_iff_not_mem_selected_support`
+  (`lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:781`) identifies
+  K4 survival after deleting a point with that point avoiding the selected
+  critical-four support. Since `row_src=Σ′(source)`, the two survival
+  alternatives project exactly to this clause. It is present in C1 and C2,
+  but absent from the abstract/common `base`.
 - (C6.12) u=source ∨ u∉Σ′(source): ¬srcU→¬row_src(u).
 
 **Row of source** `row_src(p)` (Σ′(source)) — a third row family over the
@@ -126,13 +132,16 @@ Amended:
 
 ## 5. Leaf deltas
 
-**Leaf C1** (P=a₂): units ¬srcU [(C9.3), so source=xu]; (DEL2)+(DEL3);
-placement [(C9.4), subsumes (C9.2)]: b(xu,zd) ∨ b(xu,u) ∨ b(xu,v) ∨
-b(xu,xv). (b(xu,xu) is excluded by BM2, matching c′(source)≠source.)
+**Leaf C1** (P=a₂): (C6.9) projected source-row survival clause
+¬row_src(qh) ∨ ¬row_src(wh); unit ¬srcU [(C9.3), so source=xu];
+(DEL2)+(DEL3); placement [(C9.4), subsumes (C9.2)]: b(xu,zd) ∨ b(xu,u) ∨
+b(xu,v) ∨ b(xu,xv). (b(xu,xu) is excluded by BM2, matching
+c′(source)≠source.)
 
 **Leaf C2** (P≠a₂): the A1-run mechanics carry over — P is a fresh label
 built last, mutating the CNF past the frozen base (same call-ordering
-contract as A's gamma):
+contract as A's gamma). It also carries the same physical-branch (C6.9)
+clause ¬row_src(qh) ∨ ¬row_src(wh):
 - P∈A∖Γ₂ (C8.2) bakes distinctness from the five T-labels and from oth
   (oth∈Γ₂ by (C6.6)); P≠a₂ (C10.1); eq atoms P×{a0,a1,qh,wh,f1,f2} with
   the (EQ1)-per-baked-group and (EQ4)-triangle schemas as in A's gamma.
@@ -157,9 +166,12 @@ contract as A's gamma):
 
 ## 6. Runs
 
-1. `base`: (C0)–(C8) families (§3–§4, minus DEL2/DEL3).
-2. `base+C1`: base + leaf C1 delta — a package verdict run.
-3. `base+C2`: base + leaf C2 delta (built last) — a package verdict run.
+1. `base`: abstract/common (C0)–(C8) families (§3–§4, minus DEL2/DEL3
+   and minus the physical-branch C6.9 projection).
+2. `base+C1`: base + physical leaf C1 delta, including C6.9 — a package
+   verdict run.
+3. `base+C2`: base + physical leaf C2 delta, including C6.9 (built last)
+   — a package verdict run.
 
 There is no shared-𝔓 run; the two leaves are the two verdicts. Artifacts,
 manifest, decoded models as in the A spec §5.
@@ -174,6 +186,11 @@ manifest, decoded models as in the A spec §5.
   placement clause) must be checkable; minimum: base+C1 delta + srcU must
   be UNSAT (C1 forces ¬srcU). Also base+C1 + del-triple UNSAT (DEL3 gate,
   = A's P-DEL3 pattern).
+- G-C69, separately for C1 and C2: the pre-C6.9 branch plus
+  row_src(qh)∧row_src(wh) remains SAT; the current branch plus both
+  memberships is UNSAT with verified DRAT; each one-point omission with
+  the other membership retained remains SAT. Assert zero C6.9 occurrences
+  in `base` and exactly one in each physical leaf delta.
 - P-SRC: base + ¬srcU + row_src(u) → UNSAT [(C6.12)].
 - P-COL: base+C2 + ¬col(s,t) for all 10 pairs → UNSAT [(COL)
   at-least-one].
@@ -190,8 +207,7 @@ then code.
 
 ## 9. Backlog (sound omissions)
 
-(C6.9) source K4-survival disjunction (no projection); (C2.4)/(C2.6)
-frontier splits beyond (FB) (the retained disjuncts are K4 facts about
-unlabeled witnesses); (C3.1) minimality; (C3.2) noM44; (C8.6) right arm
-in leaf C2 (MC not given); A-core iteration-3 note: inT(oth)=T missing
-in a_core (same fact IS asserted here).
+(C2.4)/(C2.6) frontier splits beyond (FB) (the retained disjuncts are K4
+facts about unlabeled witnesses); (C3.1) minimality; (C3.2) noM44;
+(C8.6) right arm in leaf C2 (MC not given); A-core iteration-3 note:
+inT(oth)=T missing in a_core (same fact IS asserted here).

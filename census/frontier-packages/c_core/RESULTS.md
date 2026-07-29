@@ -1,6 +1,6 @@
 # C-core Layer-1 incidence encoder — results
 
-Implements `census/frontier-packages/C-CORE-ENCODING-SPEC.md` (v1.0), a
+Implements `census/frontier-packages/C-CORE-ENCODING-SPEC.md` (v1.1), a
 DELTA spec against `A-CORE-ENCODING-SPEC.md` (v1.2). Code:
 `census/frontier-packages/c_core/{encoding.py,run.py,smoke.py}`, copy-and-
 adapted from `a_core`'s files per the spec's own instruction ("do NOT
@@ -14,13 +14,20 @@ spec approved, has a model." UNSAT would mean the package is contradictory
 at the incidence layer; **SAT means nothing negative.** None of the SAT
 verdicts below are a geometric closure result.
 
+Version 1.1 promotes C6.9 using the kernel-checked
+`Problem97.ATailCriticalPairFrontier.cross_deletion_survives_iff_not_mem_selected_support`
+at `lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:781`. With
+`row_src=Σ′(source)`, its two K4-survival alternatives project to
+`¬row_src(qh) ∨ ¬row_src(wh)`. The clause is present in exactly the two
+physical verdict leaves and absent from the abstract/common `base`.
+
 ## 0. Encoder size
 
 | Run | Vars | Clauses |
 |---|---:|---:|
-| `base` ((C0)-(C8), minus (DEL2)/(DEL3)) | 920 | 19727 |
-| `base+C1` (base + leaf C1 delta) | 930 | 19755 |
-| `base+C2` (base + leaf C2 extension, built last) | 956 | 19833 |
+| `base` (abstract/common; minus physical C6.9 and (DEL2)/(DEL3)) | 920 | 19727 |
+| `base+C1` (base + physical leaf C1 delta) | 930 | 19756 |
+| `base+C2` (base + physical leaf C2 extension, built last) | 956 | 19834 |
 
 `base+C2`'s declared 956 is 930+26 (leaf C1's own delta adds 0 new
 variables) rather than 920+26=946: (DEL3)'s 10 Sinz auxiliary variables are
@@ -30,10 +37,19 @@ already-advanced global variable counter for `base+C2`), so those 10 IDs
 end up **declared-but-unused** in `base+C2`'s DIMACS header. This is the
 same bookkeeping artifact the a_core RESULTS.md documents for `base+A1`
 in v1.2 — confirmed harmless (CaDiCaL accepts unused declared variables;
-`base+C2`'s own 106 leaf-extra clauses only ever reference the 26 variables
-`build_leaf_c2_extension` itself allocates).
+`base+C2` has 107 leaf-extra clauses: the one C6.9 clause references
+existing `row_src` variables, while the other 106 clauses only reference
+the 26 variables `build_leaf_c2_extension` itself allocates).
 
-All solves complete in 0.016-0.017s, nowhere near the 60s timeout budget.
+The v1.1 size/status delta is exact: `base` is unchanged; each physical
+leaf gains one clause and no variables. The three verdicts remain
+SAT/SAT/SAT. The three decoded model files remain three decoded model
+files, are value-for-value unchanged from v1.0, and retain respectively
+115, 112, and 128 true named atoms. `run.py` does not enumerate all
+satisfying assignments, so no total model count is claimed; these are
+three single decoded witness artifacts, one per SAT verdict run.
+
+All solves complete in 0.017-0.018s, nowhere near the 60s timeout budget.
 
 ## 1. Base family clause/variable breakdown
 
@@ -114,6 +130,22 @@ Command: `uv run python census/frontier-packages/c_core/smoke.py`.
 | G-SAT (hand-built total assignment) | SAT | SAT | yes |
 | G-EXCL analog: `base+C1 + srcU` | UNSAT (DRAT verified) | UNSAT | yes |
 | G-EXCL analog: `base+C1 + del(zd)&del(u)&del(xu)` (DEL3 gate) | UNSAT (DRAT verified) | UNSAT | yes |
+| G-C69 (both physical leaves) | all 8 branch variants as expected | mixed | yes |
+
+G-C69 first asserts that the C6.9 clause
+`¬row_src(qh) ∨ ¬row_src(wh)` occurs zero times in `base` and exactly once
+in each of the C1 and C2 deltas. For each leaf independently:
+
+| Variant | C1 | C2 |
+|---|---|---|
+| pre-C6.9 branch + both memberships | SAT | SAT |
+| current branch + both memberships | UNSAT (DRAT verified) | UNSAT (DRAT verified) |
+| current branch + qh omitted, wh retained | SAT | SAT |
+| current branch + wh omitted, qh retained | SAT | SAT |
+
+Thus C6.9 removes exactly the double-membership corner exercised by this
+gate; neither individual survival alternative is accidentally excluded by
+the other encoded physical-branch rules.
 
 | Probe | Assertion | Verdict | DRAT verified |
 |---|---|---|---|
@@ -188,9 +220,9 @@ Command: `uv run python census/frontier-packages/c_core/run.py`. Output:
 
 | Run | Verdict | Vars | Clauses | Wall |
 |---|---|---:|---:|---:|
-| `base` | **SAT** | 920 | 19727 | 0.017s |
-| `base+C1` | **SAT** | 930 | 19755 | 0.017s |
-| `base+C2` | **SAT** | 956 | 19833 | 0.016s |
+| `base` | **SAT** | 920 | 19727 | 0.018s |
+| `base+C1` | **SAT** | 930 | 19756 | 0.018s |
+| `base+C2` | **SAT** | 956 | 19834 | 0.017s |
 
 Unlike A, there is no shared-context run (C spec section 6: "the two
 leaves ARE the two verdicts"). Both leaf verdicts (`base+C1`, `base+C2`)

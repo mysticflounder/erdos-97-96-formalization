@@ -1,6 +1,6 @@
 """Layer-1 incidence encoder for the C-core physical-apex-boundary package.
 
-Implements ``census/frontier-packages/C-CORE-ENCODING-SPEC.md`` (v1.0), a
+Implements ``census/frontier-packages/C-CORE-ENCODING-SPEC.md`` (v1.1), a
 DELTA spec against ``A-CORE-ENCODING-SPEC.md`` (v1.2).  Every clause-emitting
 block below carries the spec tag that justifies it (C-tags where the C spec
 amends/adds, A-tags carried over verbatim where the C spec's section 4 says
@@ -108,10 +108,11 @@ BAKED_DISTINCT_PAIRS: frozenset[frozenset[str]] = _ALL_LABEL_PAIRS - EQ_PAIRS
 
 
 class CCoreEncoder:
-    """Builds the shared 'base' CNF (C spec section 6: (C0)-(C8) families,
-    section 3-4 amendments, minus DEL2/DEL3 which are leaf-C1-only) plus the
-    stashed leaf-C1 delta (DEL2/DEL3/srcU-unit/placement) and the leaf-C2
-    extension (fresh label P, COL family, etc.).
+    """Builds the shared abstract/common 'base' CNF (C spec section 6:
+    (C0)-(C8) families, section 3-4 amendments, minus physical-branch C6.9
+    and minus DEL2/DEL3 which are leaf-C1-only) plus the stashed leaf-C1
+    delta (C6.9/DEL2/DEL3/srcU-unit/placement) and the leaf-C2 extension
+    (C6.9, fresh label P, COL family, etc.).
     """
 
     MAXN = 24
@@ -157,6 +158,11 @@ class CCoreEncoder:
         self.cs4_m: dict[str, int] = {}
 
         self.del2_clauses: list[tuple[int, ...]] = []
+        # (C6.9) physical-branch projection.  This is a clause over
+        # already-existing row_src atoms, but it is deliberately stashed
+        # rather than emitted into the frozen base: C6.9 belongs to both
+        # physical verdict leaves, not the abstract/common base stage.
+        self.c69_clauses: list[tuple[int, ...]] = []
         # (DEL3, leaf-C1-only): built on demand for the same reason as
         # a_core's build_del3_clauses -- its Sinz at-most-2 encoding
         # allocates new counter variables, so it must not leak into
@@ -167,6 +173,16 @@ class CCoreEncoder:
         self.leaf_c2_names: dict[str, Any] = {}
 
         self._build()
+        # Problem97.ATailCriticalPairFrontier.
+        # cross_deletion_survives_iff_not_mem_selected_support
+        # (lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:781)
+        # turns C6.9's
+        #   K4(A\{qh}, c'(source)) or K4(A\{wh}, c'(source))
+        # into qh ∉ Sigma'(source) or wh ∉ Sigma'(source).  Since row_src
+        # is exactly Sigma'(source), the physical-branch clause is:
+        self.c69_clauses = [
+            (-self.row_src["qh"], -self.row_src["wh"]),
+        ]
         # Frozen snapshot: everything added to self.cnf up to this point is
         # exactly the C spec's 'base' (section 6, run 1).  Nothing added
         # after this line mutates this prefix.
@@ -863,14 +879,16 @@ class CCoreEncoder:
     # -- section 5: leaf C1 delta --------------------------------------------
 
     def leaf_c1_delta_clauses(self, del3_extra: Sequence[tuple[int, ...]]) -> list[tuple[int, ...]]:
-        """(C9.3) unit ~srcU; (DEL2)+(DEL3); (C9.4)-subsumes-(C9.2)
-        placement: b(xu,zd) v b(xu,u) v b(xu,v) v b(xu,xv).
+        """(C6.9) projected source-row survival clause; (C9.3) unit
+        ~srcU; (DEL2)+(DEL3); (C9.4)-subsumes-(C9.2) placement:
+        b(xu,zd) v b(xu,u) v b(xu,v) v b(xu,xv).
         `del3_extra` must be the (already-built, see build_del3_clauses)
         (DEL3) clause list -- passed in rather than read off self.del3_clauses
         so callers control build ordering explicitly, matching a_core's
         run.py convention for (DEL3)/(DEL2) placement."""
         b = self.b
-        clauses: list[tuple[int, ...]] = [(-self.srcU,)]
+        clauses: list[tuple[int, ...]] = list(self.c69_clauses)
+        clauses.append((-self.srcU,))
         clauses += list(self.del2_clauses)
         clauses += list(del3_extra)
         clauses.append(
@@ -996,7 +1014,10 @@ class CCoreEncoder:
         # DEL1 only (already in base, unconditional) -- no DEL2/DEL3 here
         # (both need P=a2, i.e. leaf C1 only).
 
-        return list(self.cnf.clauses[before:])
+        # C6.9 is shared by both physical verdict leaves but absent from
+        # the abstract/common base.  Prepend the stashed existing-variable
+        # clause to C2's freshly allocated extension delta.
+        return list(self.c69_clauses) + list(self.cnf.clauses[before:])
 
 
 class RunInstance:

@@ -1,7 +1,7 @@
 """Smoke gates for the C-core encoder (spec section 7), run IN ORDER:
 G-BASE, G-SAT (hand-built witness), the G-EXCL analog (base+C1+srcU clash,
-base+C1+del-triple DEL3 clash), then the four named probes P-SRC, P-COL,
-P-E5C, P-E8-src.
+base+C1+del-triple DEL3 clash), G-C69 (both physical leaves), then the four
+named probes P-SRC, P-COL, P-E5C, P-E8-src.
 
 Run from the repo root:
   uv run python census/frontier-packages/c_core/smoke.py
@@ -288,6 +288,101 @@ def gate_c1_del_triple(
     }
 
 
+def gate_c69(
+    encoder: "enc.CCoreEncoder",
+    c1_extra: list[tuple[int, ...]],
+    c2_extra: list[tuple[int, ...]],
+    timeout_seconds: int,
+) -> dict[str, Any]:
+    """Regression for the kernel-backed C6.9 projection in both physical
+    verdict leaves.
+
+    For each leaf, the pre-C6.9 formula still admits both qh and wh in
+    row_src.  Adding C6.9 refutes that double membership with a verified
+    DRAT proof, while either individual omission remains admitted.
+    """
+
+    if len(encoder.c69_clauses) != 1:
+        raise AssertionError(f"expected one C6.9 clause, got {encoder.c69_clauses!r}")
+    c69 = encoder.c69_clauses[0]
+    qh = encoder.row_src["qh"]
+    wh = encoder.row_src["wh"]
+
+    def _without_c69(extra: list[tuple[int, ...]]) -> list[tuple[int, ...]]:
+        hits = sum(clause == c69 for clause in extra)
+        if hits != 1:
+            raise AssertionError(f"expected one C6.9 occurrence in leaf delta, got {hits}")
+        removed = False
+        old: list[tuple[int, ...]] = []
+        for clause in extra:
+            if clause == c69 and not removed:
+                removed = True
+                continue
+            old.append(clause)
+        return old
+
+    presence = {
+        "base_occurrences": sum(clause == c69 for clause in encoder.base_clauses),
+        "C1_occurrences": sum(clause == c69 for clause in c1_extra),
+        "C2_occurrences": sum(clause == c69 for clause in c2_extra),
+    }
+    presence_ok = presence == {
+        "base_occurrences": 0,
+        "C1_occurrences": 1,
+        "C2_occurrences": 1,
+    }
+    presence["pass"] = presence_ok
+
+    variants: list[dict[str, Any]] = []
+
+    def _run(
+        branch: str,
+        variant: str,
+        branch_extra: list[tuple[int, ...]],
+        assumptions: list[tuple[int, ...]],
+        expected: str,
+    ) -> None:
+        stem = f"g_c69_{branch.lower()}_{variant}"
+        proof_path = OUT_DIR / f"{stem}.drat" if expected == "UNSAT" else None
+        instance = enc.RunInstance(encoder, encoder.base_clauses)
+        start = time.monotonic()
+        result = enc.solve_cadical(
+            instance,
+            OUT_DIR / f"{stem}.cnf",
+            extra_clauses=list(branch_extra) + assumptions,
+            timeout_seconds=timeout_seconds,
+            proof_path=proof_path,
+        )
+        wall = time.monotonic() - start
+        proof_ok = expected != "UNSAT" or result.proof_verified is True
+        variants.append(
+            {
+                "branch": branch,
+                "variant": variant,
+                "verdict": result.verdict,
+                "expected": expected,
+                "pass": result.verdict == expected and proof_ok,
+                "proof_verified": result.proof_verified,
+                "wall_seconds": round(wall, 3),
+            }
+        )
+
+    for branch, current in (("C1", c1_extra), ("C2", c2_extra)):
+        old = _without_c69(current)
+        _run(branch, "pre_c69_both_memberships", old, [(qh,), (wh,)], "SAT")
+        _run(branch, "c69_both_memberships", current, [(qh,), (wh,)], "UNSAT")
+        _run(branch, "c69_omit_qh_only", current, [(-qh,), (wh,)], "SAT")
+        _run(branch, "c69_omit_wh_only", current, [(qh,), (-wh,)], "SAT")
+
+    return {
+        "gate": "G-C69",
+        "clause": [-qh, -wh],
+        "presence": presence,
+        "variants": variants,
+        "pass": bool(presence["pass"]) and all(item["pass"] for item in variants),
+    }
+
+
 def gate_probes(
     encoder: "enc.CCoreEncoder",
     c2_extra: list[tuple[int, ...]],
@@ -410,13 +505,17 @@ def main() -> int:
     report["G-EXCL-del-triple"] = del_triple
     print(json.dumps(del_triple, indent=2))
 
+    c69_result = gate_c69(encoder, c1_extra, c2_extra, timeout_seconds=60)
+    report["G-C69"] = c69_result
+    print(json.dumps(c69_result, indent=2))
+
     probes_result = gate_probes(encoder, c2_extra, timeout_seconds=60)
     report["G-PROBES"] = probes_result
     print(json.dumps(probes_result, indent=2))
 
     report["ALL_GATES_PASS"] = (
         base_result["pass"] and sat_result["pass"] and srcu_clash["pass"]
-        and del_triple["pass"] and probes_result["pass"]
+        and del_triple["pass"] and c69_result["pass"] and probes_result["pass"]
     )
     (OUT_DIR / "smoke_report.json").write_text(
         json.dumps(report, sort_keys=True, indent=2), encoding="utf-8"

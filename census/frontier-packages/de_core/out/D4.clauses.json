@@ -1,0 +1,9630 @@
+[
+  {
+    "clause": 1,
+    "literals": [
+      -13,
+      12
+    ],
+    "named_literals": [
+      "not carrierCard_ge(2)",
+      "carrierCard_ge(1)"
+    ],
+    "rule": "carrier.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 2,
+    "literals": [
+      -14,
+      13
+    ],
+    "named_literals": [
+      "not carrierCard_ge(3)",
+      "carrierCard_ge(2)"
+    ],
+    "rule": "carrier.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 3,
+    "literals": [
+      -15,
+      14
+    ],
+    "named_literals": [
+      "not carrierCard_ge(4)",
+      "carrierCard_ge(3)"
+    ],
+    "rule": "carrier.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 4,
+    "literals": [
+      -16,
+      15
+    ],
+    "named_literals": [
+      "not carrierCard_ge(5)",
+      "carrierCard_ge(4)"
+    ],
+    "rule": "carrier.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 5,
+    "literals": [
+      -17,
+      16
+    ],
+    "named_literals": [
+      "not carrierCard_ge(6)",
+      "carrierCard_ge(5)"
+    ],
+    "rule": "carrier.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 6,
+    "literals": [
+      -18,
+      17
+    ],
+    "named_literals": [
+      "not carrierCard_ge(7)",
+      "carrierCard_ge(6)"
+    ],
+    "rule": "carrier.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 7,
+    "literals": [
+      -19,
+      18
+    ],
+    "named_literals": [
+      "not carrierCard_ge(8)",
+      "carrierCard_ge(7)"
+    ],
+    "rule": "carrier.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 8,
+    "literals": [
+      -20,
+      19
+    ],
+    "named_literals": [
+      "not carrierCard_ge(9)",
+      "carrierCard_ge(8)"
+    ],
+    "rule": "carrier.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 9,
+    "literals": [
+      -21,
+      20
+    ],
+    "named_literals": [
+      "not carrierCard_ge(10)",
+      "carrierCard_ge(9)"
+    ],
+    "rule": "carrier.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 10,
+    "literals": [
+      -22,
+      21
+    ],
+    "named_literals": [
+      "not carrierCard_ge(11)",
+      "carrierCard_ge(10)"
+    ],
+    "rule": "carrier.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 11,
+    "literals": [
+      -23,
+      22
+    ],
+    "named_literals": [
+      "not carrierCard_ge(12)",
+      "carrierCard_ge(11)"
+    ],
+    "rule": "carrier.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 12,
+    "literals": [
+      -24,
+      23
+    ],
+    "named_literals": [
+      "not carrierCard_ge(13)",
+      "carrierCard_ge(12)"
+    ],
+    "rule": "carrier.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 13,
+    "literals": [
+      -25,
+      24
+    ],
+    "named_literals": [
+      "not carrierCard_ge(14)",
+      "carrierCard_ge(13)"
+    ],
+    "rule": "carrier.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 14,
+    "literals": [
+      -26,
+      25
+    ],
+    "named_literals": [
+      "not carrierCard_ge(15)",
+      "carrierCard_ge(14)"
+    ],
+    "rule": "carrier.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 15,
+    "literals": [
+      -27,
+      26
+    ],
+    "named_literals": [
+      "not carrierCard_ge(16)",
+      "carrierCard_ge(15)"
+    ],
+    "rule": "carrier.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 16,
+    "literals": [
+      21
+    ],
+    "named_literals": [
+      "carrierCard_ge(10)"
+    ],
+    "rule": "E.carrier_card_gt_nine",
+    "tag": "HYP"
+  },
+  {
+    "clause": 17,
+    "literals": [
+      -7,
+      6
+    ],
+    "named_literals": [
+      "not exactFiveCard_ge(2)",
+      "exactFiveCard_ge(1)"
+    ],
+    "rule": "exactFive.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 18,
+    "literals": [
+      -8,
+      7
+    ],
+    "named_literals": [
+      "not exactFiveCard_ge(3)",
+      "exactFiveCard_ge(2)"
+    ],
+    "rule": "exactFive.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 19,
+    "literals": [
+      -9,
+      8
+    ],
+    "named_literals": [
+      "not exactFiveCard_ge(4)",
+      "exactFiveCard_ge(3)"
+    ],
+    "rule": "exactFive.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 20,
+    "literals": [
+      -10,
+      9
+    ],
+    "named_literals": [
+      "not exactFiveCard_ge(5)",
+      "exactFiveCard_ge(4)"
+    ],
+    "rule": "exactFive.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 21,
+    "literals": [
+      -11,
+      10
+    ],
+    "named_literals": [
+      "not exactFiveCard_ge(6)",
+      "exactFiveCard_ge(5)"
+    ],
+    "rule": "exactFive.lower.monotone",
+    "tag": "COUNT"
+  },
+  {
+    "clause": 22,
+    "literals": [
+      10
+    ],
+    "named_literals": [
+      "exactFiveCard_ge(5)"
+    ],
+    "rule": "E.class_card_eq_five.lower",
+    "tag": "HYP"
+  },
+  {
+    "clause": 23,
+    "literals": [
+      -11
+    ],
+    "named_literals": [
+      "not exactFiveCard_ge(6)"
+    ],
+    "rule": "E.class_card_eq_five.upper",
+    "tag": "HYP"
+  },
+  {
+    "clause": 24,
+    "literals": [
+      1
+    ],
+    "named_literals": [
+      "inExactFive(q)"
+    ],
+    "rule": "E.exactFive.named_witness",
+    "tag": "HYP"
+  },
+  {
+    "clause": 25,
+    "literals": [
+      2
+    ],
+    "named_literals": [
+      "inExactFive(w)"
+    ],
+    "rule": "E.exactFive.named_witness",
+    "tag": "HYP"
+  },
+  {
+    "clause": 26,
+    "literals": [
+      3
+    ],
+    "named_literals": [
+      "inExactFive(u1)"
+    ],
+    "rule": "E.exactFive.named_witness",
+    "tag": "HYP"
+  },
+  {
+    "clause": 27,
+    "literals": [
+      4
+    ],
+    "named_literals": [
+      "inExactFive(u2)"
+    ],
+    "rule": "E.exactFive.named_witness",
+    "tag": "HYP"
+  },
+  {
+    "clause": 28,
+    "literals": [
+      5
+    ],
+    "named_literals": [
+      "inExactFive(u3)"
+    ],
+    "rule": "E.exactFive.named_witness",
+    "tag": "HYP"
+  },
+  {
+    "clause": 29,
+    "literals": [
+      28
+    ],
+    "named_literals": [
+      "K1(del=q,center=a1)"
+    ],
+    "rule": "E.firstApex_fullyDeletionRobust.q",
+    "tag": "HYP"
+  },
+  {
+    "clause": 30,
+    "literals": [
+      33
+    ],
+    "named_literals": [
+      "K1(del=w,center=a1)"
+    ],
+    "rule": "E.firstApex_fullyDeletionRobust.w",
+    "tag": "HYP"
+  },
+  {
+    "clause": 31,
+    "literals": [
+      -38
+    ],
+    "named_literals": [
+      "not K2(del=q,w,center=a1)"
+    ],
+    "rule": "E.interiorPair_doubleDeletion_obstructs",
+    "tag": "HYP"
+  },
+  {
+    "clause": 32,
+    "literals": [
+      39
+    ],
+    "named_literals": [
+      "K2(del=q,w,center=a2)"
+    ],
+    "rule": "E.interior.secondApex_double_survival",
+    "tag": "HYP"
+  },
+  {
+    "clause": 33,
+    "literals": [
+      -38,
+      28
+    ],
+    "named_literals": [
+      "not K2(del=q,w,center=a1)",
+      "K1(del=q,center=a1)"
+    ],
+    "rule": "K2.implies.K1q",
+    "tag": "DERIVED"
+  },
+  {
+    "clause": 34,
+    "literals": [
+      -38,
+      33
+    ],
+    "named_literals": [
+      "not K2(del=q,w,center=a1)",
+      "K1(del=w,center=a1)"
+    ],
+    "rule": "K2.implies.K1w",
+    "tag": "DERIVED"
+  },
+  {
+    "clause": 35,
+    "literals": [
+      -39,
+      29
+    ],
+    "named_literals": [
+      "not K2(del=q,w,center=a2)",
+      "K1(del=q,center=a2)"
+    ],
+    "rule": "K2.implies.K1q",
+    "tag": "DERIVED"
+  },
+  {
+    "clause": 36,
+    "literals": [
+      -39,
+      34
+    ],
+    "named_literals": [
+      "not K2(del=q,w,center=a2)",
+      "K1(del=w,center=a2)"
+    ],
+    "rule": "K2.implies.K1w",
+    "tag": "DERIVED"
+  },
+  {
+    "clause": 37,
+    "literals": [
+      -40,
+      30
+    ],
+    "named_literals": [
+      "not K2(del=q,w,center=bq)",
+      "K1(del=q,center=bq)"
+    ],
+    "rule": "K2.implies.K1q",
+    "tag": "DERIVED"
+  },
+  {
+    "clause": 38,
+    "literals": [
+      -40,
+      35
+    ],
+    "named_literals": [
+      "not K2(del=q,w,center=bq)",
+      "K1(del=w,center=bq)"
+    ],
+    "rule": "K2.implies.K1w",
+    "tag": "DERIVED"
+  },
+  {
+    "clause": 39,
+    "literals": [
+      -41,
+      31
+    ],
+    "named_literals": [
+      "not K2(del=q,w,center=bw)",
+      "K1(del=q,center=bw)"
+    ],
+    "rule": "K2.implies.K1q",
+    "tag": "DERIVED"
+  },
+  {
+    "clause": 40,
+    "literals": [
+      -41,
+      36
+    ],
+    "named_literals": [
+      "not K2(del=q,w,center=bw)",
+      "K1(del=w,center=bw)"
+    ],
+    "rule": "K2.implies.K1w",
+    "tag": "DERIVED"
+  },
+  {
+    "clause": 41,
+    "literals": [
+      -42,
+      32
+    ],
+    "named_literals": [
+      "not K2(del=q,w,center=b)",
+      "K1(del=q,center=b)"
+    ],
+    "rule": "K2.implies.K1q",
+    "tag": "DERIVED"
+  },
+  {
+    "clause": 42,
+    "literals": [
+      -42,
+      37
+    ],
+    "named_literals": [
+      "not K2(del=q,w,center=b)",
+      "K1(del=w,center=b)"
+    ],
+    "rule": "K2.implies.K1w",
+    "tag": "DERIVED"
+  },
+  {
+    "clause": 43,
+    "literals": [
+      -30
+    ],
+    "named_literals": [
+      "not K1(del=q,center=bq)"
+    ],
+    "rule": "E.blocker_q.no_qfree",
+    "tag": "HYP"
+  },
+  {
+    "clause": 44,
+    "literals": [
+      -36
+    ],
+    "named_literals": [
+      "not K1(del=w,center=bw)"
+    ],
+    "rule": "E.blocker_w.no_qfree",
+    "tag": "HYP"
+  },
+  {
+    "clause": 45,
+    "literals": [
+      163
+    ],
+    "named_literals": [
+      "bis(q,w;a1)"
+    ],
+    "rule": "E.firstApex_is_bisector",
+    "tag": "DERIVED"
+  },
+  {
+    "clause": 46,
+    "literals": [
+      -78,
+      43
+    ],
+    "named_literals": [
+      "not rowHit(a1,a2,q)",
+      "row(a1,q)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 47,
+    "literals": [
+      -78,
+      50
+    ],
+    "named_literals": [
+      "not rowHit(a1,a2,q)",
+      "row(a2,q)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 48,
+    "literals": [
+      -43,
+      -50,
+      78
+    ],
+    "named_literals": [
+      "not row(a1,q)",
+      "not row(a2,q)",
+      "rowHit(a1,a2,q)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 49,
+    "literals": [
+      -79,
+      44
+    ],
+    "named_literals": [
+      "not rowHit(a1,a2,w)",
+      "row(a1,w)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 50,
+    "literals": [
+      -79,
+      51
+    ],
+    "named_literals": [
+      "not rowHit(a1,a2,w)",
+      "row(a2,w)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 51,
+    "literals": [
+      -44,
+      -51,
+      79
+    ],
+    "named_literals": [
+      "not row(a1,w)",
+      "not row(a2,w)",
+      "rowHit(a1,a2,w)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 52,
+    "literals": [
+      -80,
+      45
+    ],
+    "named_literals": [
+      "not rowHit(a1,a2,u1)",
+      "row(a1,u1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 53,
+    "literals": [
+      -80,
+      52
+    ],
+    "named_literals": [
+      "not rowHit(a1,a2,u1)",
+      "row(a2,u1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 54,
+    "literals": [
+      -45,
+      -52,
+      80
+    ],
+    "named_literals": [
+      "not row(a1,u1)",
+      "not row(a2,u1)",
+      "rowHit(a1,a2,u1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 55,
+    "literals": [
+      -81,
+      46
+    ],
+    "named_literals": [
+      "not rowHit(a1,a2,u2)",
+      "row(a1,u2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 56,
+    "literals": [
+      -81,
+      53
+    ],
+    "named_literals": [
+      "not rowHit(a1,a2,u2)",
+      "row(a2,u2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 57,
+    "literals": [
+      -46,
+      -53,
+      81
+    ],
+    "named_literals": [
+      "not row(a1,u2)",
+      "not row(a2,u2)",
+      "rowHit(a1,a2,u2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 58,
+    "literals": [
+      -82,
+      47
+    ],
+    "named_literals": [
+      "not rowHit(a1,a2,u3)",
+      "row(a1,u3)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 59,
+    "literals": [
+      -82,
+      54
+    ],
+    "named_literals": [
+      "not rowHit(a1,a2,u3)",
+      "row(a2,u3)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 60,
+    "literals": [
+      -47,
+      -54,
+      82
+    ],
+    "named_literals": [
+      "not row(a1,u3)",
+      "not row(a2,u3)",
+      "rowHit(a1,a2,u3)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 61,
+    "literals": [
+      -83,
+      48
+    ],
+    "named_literals": [
+      "not rowHit(a1,a2,s1)",
+      "row(a1,s1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 62,
+    "literals": [
+      -83,
+      55
+    ],
+    "named_literals": [
+      "not rowHit(a1,a2,s1)",
+      "row(a2,s1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 63,
+    "literals": [
+      -48,
+      -55,
+      83
+    ],
+    "named_literals": [
+      "not row(a1,s1)",
+      "not row(a2,s1)",
+      "rowHit(a1,a2,s1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 64,
+    "literals": [
+      -84,
+      49
+    ],
+    "named_literals": [
+      "not rowHit(a1,a2,s2)",
+      "row(a1,s2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 65,
+    "literals": [
+      -84,
+      56
+    ],
+    "named_literals": [
+      "not rowHit(a1,a2,s2)",
+      "row(a2,s2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 66,
+    "literals": [
+      -49,
+      -56,
+      84
+    ],
+    "named_literals": [
+      "not row(a1,s2)",
+      "not row(a2,s2)",
+      "rowHit(a1,a2,s2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 67,
+    "literals": [
+      -85,
+      43
+    ],
+    "named_literals": [
+      "not rowHit(a1,bq,q)",
+      "row(a1,q)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 68,
+    "literals": [
+      -85,
+      57
+    ],
+    "named_literals": [
+      "not rowHit(a1,bq,q)",
+      "row(bq,q)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 69,
+    "literals": [
+      -43,
+      -57,
+      85
+    ],
+    "named_literals": [
+      "not row(a1,q)",
+      "not row(bq,q)",
+      "rowHit(a1,bq,q)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 70,
+    "literals": [
+      -86,
+      44
+    ],
+    "named_literals": [
+      "not rowHit(a1,bq,w)",
+      "row(a1,w)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 71,
+    "literals": [
+      -86,
+      58
+    ],
+    "named_literals": [
+      "not rowHit(a1,bq,w)",
+      "row(bq,w)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 72,
+    "literals": [
+      -44,
+      -58,
+      86
+    ],
+    "named_literals": [
+      "not row(a1,w)",
+      "not row(bq,w)",
+      "rowHit(a1,bq,w)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 73,
+    "literals": [
+      -87,
+      45
+    ],
+    "named_literals": [
+      "not rowHit(a1,bq,u1)",
+      "row(a1,u1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 74,
+    "literals": [
+      -87,
+      59
+    ],
+    "named_literals": [
+      "not rowHit(a1,bq,u1)",
+      "row(bq,u1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 75,
+    "literals": [
+      -45,
+      -59,
+      87
+    ],
+    "named_literals": [
+      "not row(a1,u1)",
+      "not row(bq,u1)",
+      "rowHit(a1,bq,u1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 76,
+    "literals": [
+      -88,
+      46
+    ],
+    "named_literals": [
+      "not rowHit(a1,bq,u2)",
+      "row(a1,u2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 77,
+    "literals": [
+      -88,
+      60
+    ],
+    "named_literals": [
+      "not rowHit(a1,bq,u2)",
+      "row(bq,u2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 78,
+    "literals": [
+      -46,
+      -60,
+      88
+    ],
+    "named_literals": [
+      "not row(a1,u2)",
+      "not row(bq,u2)",
+      "rowHit(a1,bq,u2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 79,
+    "literals": [
+      -89,
+      47
+    ],
+    "named_literals": [
+      "not rowHit(a1,bq,u3)",
+      "row(a1,u3)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 80,
+    "literals": [
+      -89,
+      61
+    ],
+    "named_literals": [
+      "not rowHit(a1,bq,u3)",
+      "row(bq,u3)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 81,
+    "literals": [
+      -47,
+      -61,
+      89
+    ],
+    "named_literals": [
+      "not row(a1,u3)",
+      "not row(bq,u3)",
+      "rowHit(a1,bq,u3)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 82,
+    "literals": [
+      -90,
+      48
+    ],
+    "named_literals": [
+      "not rowHit(a1,bq,s1)",
+      "row(a1,s1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 83,
+    "literals": [
+      -90,
+      62
+    ],
+    "named_literals": [
+      "not rowHit(a1,bq,s1)",
+      "row(bq,s1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 84,
+    "literals": [
+      -48,
+      -62,
+      90
+    ],
+    "named_literals": [
+      "not row(a1,s1)",
+      "not row(bq,s1)",
+      "rowHit(a1,bq,s1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 85,
+    "literals": [
+      -91,
+      49
+    ],
+    "named_literals": [
+      "not rowHit(a1,bq,s2)",
+      "row(a1,s2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 86,
+    "literals": [
+      -91,
+      63
+    ],
+    "named_literals": [
+      "not rowHit(a1,bq,s2)",
+      "row(bq,s2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 87,
+    "literals": [
+      -49,
+      -63,
+      91
+    ],
+    "named_literals": [
+      "not row(a1,s2)",
+      "not row(bq,s2)",
+      "rowHit(a1,bq,s2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 88,
+    "literals": [
+      -92,
+      43
+    ],
+    "named_literals": [
+      "not rowHit(a1,bw,q)",
+      "row(a1,q)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 89,
+    "literals": [
+      -92,
+      64
+    ],
+    "named_literals": [
+      "not rowHit(a1,bw,q)",
+      "row(bw,q)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 90,
+    "literals": [
+      -43,
+      -64,
+      92
+    ],
+    "named_literals": [
+      "not row(a1,q)",
+      "not row(bw,q)",
+      "rowHit(a1,bw,q)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 91,
+    "literals": [
+      -93,
+      44
+    ],
+    "named_literals": [
+      "not rowHit(a1,bw,w)",
+      "row(a1,w)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 92,
+    "literals": [
+      -93,
+      65
+    ],
+    "named_literals": [
+      "not rowHit(a1,bw,w)",
+      "row(bw,w)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 93,
+    "literals": [
+      -44,
+      -65,
+      93
+    ],
+    "named_literals": [
+      "not row(a1,w)",
+      "not row(bw,w)",
+      "rowHit(a1,bw,w)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 94,
+    "literals": [
+      -94,
+      45
+    ],
+    "named_literals": [
+      "not rowHit(a1,bw,u1)",
+      "row(a1,u1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 95,
+    "literals": [
+      -94,
+      66
+    ],
+    "named_literals": [
+      "not rowHit(a1,bw,u1)",
+      "row(bw,u1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 96,
+    "literals": [
+      -45,
+      -66,
+      94
+    ],
+    "named_literals": [
+      "not row(a1,u1)",
+      "not row(bw,u1)",
+      "rowHit(a1,bw,u1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 97,
+    "literals": [
+      -95,
+      46
+    ],
+    "named_literals": [
+      "not rowHit(a1,bw,u2)",
+      "row(a1,u2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 98,
+    "literals": [
+      -95,
+      67
+    ],
+    "named_literals": [
+      "not rowHit(a1,bw,u2)",
+      "row(bw,u2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 99,
+    "literals": [
+      -46,
+      -67,
+      95
+    ],
+    "named_literals": [
+      "not row(a1,u2)",
+      "not row(bw,u2)",
+      "rowHit(a1,bw,u2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 100,
+    "literals": [
+      -96,
+      47
+    ],
+    "named_literals": [
+      "not rowHit(a1,bw,u3)",
+      "row(a1,u3)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 101,
+    "literals": [
+      -96,
+      68
+    ],
+    "named_literals": [
+      "not rowHit(a1,bw,u3)",
+      "row(bw,u3)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 102,
+    "literals": [
+      -47,
+      -68,
+      96
+    ],
+    "named_literals": [
+      "not row(a1,u3)",
+      "not row(bw,u3)",
+      "rowHit(a1,bw,u3)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 103,
+    "literals": [
+      -97,
+      48
+    ],
+    "named_literals": [
+      "not rowHit(a1,bw,s1)",
+      "row(a1,s1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 104,
+    "literals": [
+      -97,
+      69
+    ],
+    "named_literals": [
+      "not rowHit(a1,bw,s1)",
+      "row(bw,s1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 105,
+    "literals": [
+      -48,
+      -69,
+      97
+    ],
+    "named_literals": [
+      "not row(a1,s1)",
+      "not row(bw,s1)",
+      "rowHit(a1,bw,s1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 106,
+    "literals": [
+      -98,
+      49
+    ],
+    "named_literals": [
+      "not rowHit(a1,bw,s2)",
+      "row(a1,s2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 107,
+    "literals": [
+      -98,
+      70
+    ],
+    "named_literals": [
+      "not rowHit(a1,bw,s2)",
+      "row(bw,s2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 108,
+    "literals": [
+      -49,
+      -70,
+      98
+    ],
+    "named_literals": [
+      "not row(a1,s2)",
+      "not row(bw,s2)",
+      "rowHit(a1,bw,s2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 109,
+    "literals": [
+      -99,
+      43
+    ],
+    "named_literals": [
+      "not rowHit(a1,b,q)",
+      "row(a1,q)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 110,
+    "literals": [
+      -99,
+      71
+    ],
+    "named_literals": [
+      "not rowHit(a1,b,q)",
+      "row(b,q)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 111,
+    "literals": [
+      -43,
+      -71,
+      99
+    ],
+    "named_literals": [
+      "not row(a1,q)",
+      "not row(b,q)",
+      "rowHit(a1,b,q)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 112,
+    "literals": [
+      -100,
+      44
+    ],
+    "named_literals": [
+      "not rowHit(a1,b,w)",
+      "row(a1,w)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 113,
+    "literals": [
+      -100,
+      72
+    ],
+    "named_literals": [
+      "not rowHit(a1,b,w)",
+      "row(b,w)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 114,
+    "literals": [
+      -44,
+      -72,
+      100
+    ],
+    "named_literals": [
+      "not row(a1,w)",
+      "not row(b,w)",
+      "rowHit(a1,b,w)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 115,
+    "literals": [
+      -101,
+      45
+    ],
+    "named_literals": [
+      "not rowHit(a1,b,u1)",
+      "row(a1,u1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 116,
+    "literals": [
+      -101,
+      73
+    ],
+    "named_literals": [
+      "not rowHit(a1,b,u1)",
+      "row(b,u1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 117,
+    "literals": [
+      -45,
+      -73,
+      101
+    ],
+    "named_literals": [
+      "not row(a1,u1)",
+      "not row(b,u1)",
+      "rowHit(a1,b,u1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 118,
+    "literals": [
+      -102,
+      46
+    ],
+    "named_literals": [
+      "not rowHit(a1,b,u2)",
+      "row(a1,u2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 119,
+    "literals": [
+      -102,
+      74
+    ],
+    "named_literals": [
+      "not rowHit(a1,b,u2)",
+      "row(b,u2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 120,
+    "literals": [
+      -46,
+      -74,
+      102
+    ],
+    "named_literals": [
+      "not row(a1,u2)",
+      "not row(b,u2)",
+      "rowHit(a1,b,u2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 121,
+    "literals": [
+      -103,
+      47
+    ],
+    "named_literals": [
+      "not rowHit(a1,b,u3)",
+      "row(a1,u3)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 122,
+    "literals": [
+      -103,
+      75
+    ],
+    "named_literals": [
+      "not rowHit(a1,b,u3)",
+      "row(b,u3)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 123,
+    "literals": [
+      -47,
+      -75,
+      103
+    ],
+    "named_literals": [
+      "not row(a1,u3)",
+      "not row(b,u3)",
+      "rowHit(a1,b,u3)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 124,
+    "literals": [
+      -104,
+      48
+    ],
+    "named_literals": [
+      "not rowHit(a1,b,s1)",
+      "row(a1,s1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 125,
+    "literals": [
+      -104,
+      76
+    ],
+    "named_literals": [
+      "not rowHit(a1,b,s1)",
+      "row(b,s1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 126,
+    "literals": [
+      -48,
+      -76,
+      104
+    ],
+    "named_literals": [
+      "not row(a1,s1)",
+      "not row(b,s1)",
+      "rowHit(a1,b,s1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 127,
+    "literals": [
+      -105,
+      49
+    ],
+    "named_literals": [
+      "not rowHit(a1,b,s2)",
+      "row(a1,s2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 128,
+    "literals": [
+      -105,
+      77
+    ],
+    "named_literals": [
+      "not rowHit(a1,b,s2)",
+      "row(b,s2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 129,
+    "literals": [
+      -49,
+      -77,
+      105
+    ],
+    "named_literals": [
+      "not row(a1,s2)",
+      "not row(b,s2)",
+      "rowHit(a1,b,s2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 130,
+    "literals": [
+      -106,
+      50
+    ],
+    "named_literals": [
+      "not rowHit(a2,bq,q)",
+      "row(a2,q)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 131,
+    "literals": [
+      -106,
+      57
+    ],
+    "named_literals": [
+      "not rowHit(a2,bq,q)",
+      "row(bq,q)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 132,
+    "literals": [
+      -50,
+      -57,
+      106
+    ],
+    "named_literals": [
+      "not row(a2,q)",
+      "not row(bq,q)",
+      "rowHit(a2,bq,q)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 133,
+    "literals": [
+      -107,
+      51
+    ],
+    "named_literals": [
+      "not rowHit(a2,bq,w)",
+      "row(a2,w)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 134,
+    "literals": [
+      -107,
+      58
+    ],
+    "named_literals": [
+      "not rowHit(a2,bq,w)",
+      "row(bq,w)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 135,
+    "literals": [
+      -51,
+      -58,
+      107
+    ],
+    "named_literals": [
+      "not row(a2,w)",
+      "not row(bq,w)",
+      "rowHit(a2,bq,w)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 136,
+    "literals": [
+      -108,
+      52
+    ],
+    "named_literals": [
+      "not rowHit(a2,bq,u1)",
+      "row(a2,u1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 137,
+    "literals": [
+      -108,
+      59
+    ],
+    "named_literals": [
+      "not rowHit(a2,bq,u1)",
+      "row(bq,u1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 138,
+    "literals": [
+      -52,
+      -59,
+      108
+    ],
+    "named_literals": [
+      "not row(a2,u1)",
+      "not row(bq,u1)",
+      "rowHit(a2,bq,u1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 139,
+    "literals": [
+      -109,
+      53
+    ],
+    "named_literals": [
+      "not rowHit(a2,bq,u2)",
+      "row(a2,u2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 140,
+    "literals": [
+      -109,
+      60
+    ],
+    "named_literals": [
+      "not rowHit(a2,bq,u2)",
+      "row(bq,u2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 141,
+    "literals": [
+      -53,
+      -60,
+      109
+    ],
+    "named_literals": [
+      "not row(a2,u2)",
+      "not row(bq,u2)",
+      "rowHit(a2,bq,u2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 142,
+    "literals": [
+      -110,
+      54
+    ],
+    "named_literals": [
+      "not rowHit(a2,bq,u3)",
+      "row(a2,u3)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 143,
+    "literals": [
+      -110,
+      61
+    ],
+    "named_literals": [
+      "not rowHit(a2,bq,u3)",
+      "row(bq,u3)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 144,
+    "literals": [
+      -54,
+      -61,
+      110
+    ],
+    "named_literals": [
+      "not row(a2,u3)",
+      "not row(bq,u3)",
+      "rowHit(a2,bq,u3)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 145,
+    "literals": [
+      -111,
+      55
+    ],
+    "named_literals": [
+      "not rowHit(a2,bq,s1)",
+      "row(a2,s1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 146,
+    "literals": [
+      -111,
+      62
+    ],
+    "named_literals": [
+      "not rowHit(a2,bq,s1)",
+      "row(bq,s1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 147,
+    "literals": [
+      -55,
+      -62,
+      111
+    ],
+    "named_literals": [
+      "not row(a2,s1)",
+      "not row(bq,s1)",
+      "rowHit(a2,bq,s1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 148,
+    "literals": [
+      -112,
+      56
+    ],
+    "named_literals": [
+      "not rowHit(a2,bq,s2)",
+      "row(a2,s2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 149,
+    "literals": [
+      -112,
+      63
+    ],
+    "named_literals": [
+      "not rowHit(a2,bq,s2)",
+      "row(bq,s2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 150,
+    "literals": [
+      -56,
+      -63,
+      112
+    ],
+    "named_literals": [
+      "not row(a2,s2)",
+      "not row(bq,s2)",
+      "rowHit(a2,bq,s2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 151,
+    "literals": [
+      -113,
+      50
+    ],
+    "named_literals": [
+      "not rowHit(a2,bw,q)",
+      "row(a2,q)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 152,
+    "literals": [
+      -113,
+      64
+    ],
+    "named_literals": [
+      "not rowHit(a2,bw,q)",
+      "row(bw,q)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 153,
+    "literals": [
+      -50,
+      -64,
+      113
+    ],
+    "named_literals": [
+      "not row(a2,q)",
+      "not row(bw,q)",
+      "rowHit(a2,bw,q)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 154,
+    "literals": [
+      -114,
+      51
+    ],
+    "named_literals": [
+      "not rowHit(a2,bw,w)",
+      "row(a2,w)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 155,
+    "literals": [
+      -114,
+      65
+    ],
+    "named_literals": [
+      "not rowHit(a2,bw,w)",
+      "row(bw,w)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 156,
+    "literals": [
+      -51,
+      -65,
+      114
+    ],
+    "named_literals": [
+      "not row(a2,w)",
+      "not row(bw,w)",
+      "rowHit(a2,bw,w)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 157,
+    "literals": [
+      -115,
+      52
+    ],
+    "named_literals": [
+      "not rowHit(a2,bw,u1)",
+      "row(a2,u1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 158,
+    "literals": [
+      -115,
+      66
+    ],
+    "named_literals": [
+      "not rowHit(a2,bw,u1)",
+      "row(bw,u1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 159,
+    "literals": [
+      -52,
+      -66,
+      115
+    ],
+    "named_literals": [
+      "not row(a2,u1)",
+      "not row(bw,u1)",
+      "rowHit(a2,bw,u1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 160,
+    "literals": [
+      -116,
+      53
+    ],
+    "named_literals": [
+      "not rowHit(a2,bw,u2)",
+      "row(a2,u2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 161,
+    "literals": [
+      -116,
+      67
+    ],
+    "named_literals": [
+      "not rowHit(a2,bw,u2)",
+      "row(bw,u2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 162,
+    "literals": [
+      -53,
+      -67,
+      116
+    ],
+    "named_literals": [
+      "not row(a2,u2)",
+      "not row(bw,u2)",
+      "rowHit(a2,bw,u2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 163,
+    "literals": [
+      -117,
+      54
+    ],
+    "named_literals": [
+      "not rowHit(a2,bw,u3)",
+      "row(a2,u3)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 164,
+    "literals": [
+      -117,
+      68
+    ],
+    "named_literals": [
+      "not rowHit(a2,bw,u3)",
+      "row(bw,u3)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 165,
+    "literals": [
+      -54,
+      -68,
+      117
+    ],
+    "named_literals": [
+      "not row(a2,u3)",
+      "not row(bw,u3)",
+      "rowHit(a2,bw,u3)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 166,
+    "literals": [
+      -118,
+      55
+    ],
+    "named_literals": [
+      "not rowHit(a2,bw,s1)",
+      "row(a2,s1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 167,
+    "literals": [
+      -118,
+      69
+    ],
+    "named_literals": [
+      "not rowHit(a2,bw,s1)",
+      "row(bw,s1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 168,
+    "literals": [
+      -55,
+      -69,
+      118
+    ],
+    "named_literals": [
+      "not row(a2,s1)",
+      "not row(bw,s1)",
+      "rowHit(a2,bw,s1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 169,
+    "literals": [
+      -119,
+      56
+    ],
+    "named_literals": [
+      "not rowHit(a2,bw,s2)",
+      "row(a2,s2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 170,
+    "literals": [
+      -119,
+      70
+    ],
+    "named_literals": [
+      "not rowHit(a2,bw,s2)",
+      "row(bw,s2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 171,
+    "literals": [
+      -56,
+      -70,
+      119
+    ],
+    "named_literals": [
+      "not row(a2,s2)",
+      "not row(bw,s2)",
+      "rowHit(a2,bw,s2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 172,
+    "literals": [
+      -120,
+      50
+    ],
+    "named_literals": [
+      "not rowHit(a2,b,q)",
+      "row(a2,q)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 173,
+    "literals": [
+      -120,
+      71
+    ],
+    "named_literals": [
+      "not rowHit(a2,b,q)",
+      "row(b,q)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 174,
+    "literals": [
+      -50,
+      -71,
+      120
+    ],
+    "named_literals": [
+      "not row(a2,q)",
+      "not row(b,q)",
+      "rowHit(a2,b,q)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 175,
+    "literals": [
+      -121,
+      51
+    ],
+    "named_literals": [
+      "not rowHit(a2,b,w)",
+      "row(a2,w)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 176,
+    "literals": [
+      -121,
+      72
+    ],
+    "named_literals": [
+      "not rowHit(a2,b,w)",
+      "row(b,w)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 177,
+    "literals": [
+      -51,
+      -72,
+      121
+    ],
+    "named_literals": [
+      "not row(a2,w)",
+      "not row(b,w)",
+      "rowHit(a2,b,w)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 178,
+    "literals": [
+      -122,
+      52
+    ],
+    "named_literals": [
+      "not rowHit(a2,b,u1)",
+      "row(a2,u1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 179,
+    "literals": [
+      -122,
+      73
+    ],
+    "named_literals": [
+      "not rowHit(a2,b,u1)",
+      "row(b,u1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 180,
+    "literals": [
+      -52,
+      -73,
+      122
+    ],
+    "named_literals": [
+      "not row(a2,u1)",
+      "not row(b,u1)",
+      "rowHit(a2,b,u1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 181,
+    "literals": [
+      -123,
+      53
+    ],
+    "named_literals": [
+      "not rowHit(a2,b,u2)",
+      "row(a2,u2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 182,
+    "literals": [
+      -123,
+      74
+    ],
+    "named_literals": [
+      "not rowHit(a2,b,u2)",
+      "row(b,u2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 183,
+    "literals": [
+      -53,
+      -74,
+      123
+    ],
+    "named_literals": [
+      "not row(a2,u2)",
+      "not row(b,u2)",
+      "rowHit(a2,b,u2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 184,
+    "literals": [
+      -124,
+      54
+    ],
+    "named_literals": [
+      "not rowHit(a2,b,u3)",
+      "row(a2,u3)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 185,
+    "literals": [
+      -124,
+      75
+    ],
+    "named_literals": [
+      "not rowHit(a2,b,u3)",
+      "row(b,u3)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 186,
+    "literals": [
+      -54,
+      -75,
+      124
+    ],
+    "named_literals": [
+      "not row(a2,u3)",
+      "not row(b,u3)",
+      "rowHit(a2,b,u3)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 187,
+    "literals": [
+      -125,
+      55
+    ],
+    "named_literals": [
+      "not rowHit(a2,b,s1)",
+      "row(a2,s1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 188,
+    "literals": [
+      -125,
+      76
+    ],
+    "named_literals": [
+      "not rowHit(a2,b,s1)",
+      "row(b,s1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 189,
+    "literals": [
+      -55,
+      -76,
+      125
+    ],
+    "named_literals": [
+      "not row(a2,s1)",
+      "not row(b,s1)",
+      "rowHit(a2,b,s1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 190,
+    "literals": [
+      -126,
+      56
+    ],
+    "named_literals": [
+      "not rowHit(a2,b,s2)",
+      "row(a2,s2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 191,
+    "literals": [
+      -126,
+      77
+    ],
+    "named_literals": [
+      "not rowHit(a2,b,s2)",
+      "row(b,s2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 192,
+    "literals": [
+      -56,
+      -77,
+      126
+    ],
+    "named_literals": [
+      "not row(a2,s2)",
+      "not row(b,s2)",
+      "rowHit(a2,b,s2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 193,
+    "literals": [
+      -127,
+      57
+    ],
+    "named_literals": [
+      "not rowHit(bq,bw,q)",
+      "row(bq,q)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 194,
+    "literals": [
+      -127,
+      64
+    ],
+    "named_literals": [
+      "not rowHit(bq,bw,q)",
+      "row(bw,q)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 195,
+    "literals": [
+      -57,
+      -64,
+      127
+    ],
+    "named_literals": [
+      "not row(bq,q)",
+      "not row(bw,q)",
+      "rowHit(bq,bw,q)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 196,
+    "literals": [
+      -128,
+      58
+    ],
+    "named_literals": [
+      "not rowHit(bq,bw,w)",
+      "row(bq,w)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 197,
+    "literals": [
+      -128,
+      65
+    ],
+    "named_literals": [
+      "not rowHit(bq,bw,w)",
+      "row(bw,w)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 198,
+    "literals": [
+      -58,
+      -65,
+      128
+    ],
+    "named_literals": [
+      "not row(bq,w)",
+      "not row(bw,w)",
+      "rowHit(bq,bw,w)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 199,
+    "literals": [
+      -129,
+      59
+    ],
+    "named_literals": [
+      "not rowHit(bq,bw,u1)",
+      "row(bq,u1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 200,
+    "literals": [
+      -129,
+      66
+    ],
+    "named_literals": [
+      "not rowHit(bq,bw,u1)",
+      "row(bw,u1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 201,
+    "literals": [
+      -59,
+      -66,
+      129
+    ],
+    "named_literals": [
+      "not row(bq,u1)",
+      "not row(bw,u1)",
+      "rowHit(bq,bw,u1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 202,
+    "literals": [
+      -130,
+      60
+    ],
+    "named_literals": [
+      "not rowHit(bq,bw,u2)",
+      "row(bq,u2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 203,
+    "literals": [
+      -130,
+      67
+    ],
+    "named_literals": [
+      "not rowHit(bq,bw,u2)",
+      "row(bw,u2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 204,
+    "literals": [
+      -60,
+      -67,
+      130
+    ],
+    "named_literals": [
+      "not row(bq,u2)",
+      "not row(bw,u2)",
+      "rowHit(bq,bw,u2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 205,
+    "literals": [
+      -131,
+      61
+    ],
+    "named_literals": [
+      "not rowHit(bq,bw,u3)",
+      "row(bq,u3)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 206,
+    "literals": [
+      -131,
+      68
+    ],
+    "named_literals": [
+      "not rowHit(bq,bw,u3)",
+      "row(bw,u3)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 207,
+    "literals": [
+      -61,
+      -68,
+      131
+    ],
+    "named_literals": [
+      "not row(bq,u3)",
+      "not row(bw,u3)",
+      "rowHit(bq,bw,u3)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 208,
+    "literals": [
+      -132,
+      62
+    ],
+    "named_literals": [
+      "not rowHit(bq,bw,s1)",
+      "row(bq,s1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 209,
+    "literals": [
+      -132,
+      69
+    ],
+    "named_literals": [
+      "not rowHit(bq,bw,s1)",
+      "row(bw,s1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 210,
+    "literals": [
+      -62,
+      -69,
+      132
+    ],
+    "named_literals": [
+      "not row(bq,s1)",
+      "not row(bw,s1)",
+      "rowHit(bq,bw,s1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 211,
+    "literals": [
+      -133,
+      63
+    ],
+    "named_literals": [
+      "not rowHit(bq,bw,s2)",
+      "row(bq,s2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 212,
+    "literals": [
+      -133,
+      70
+    ],
+    "named_literals": [
+      "not rowHit(bq,bw,s2)",
+      "row(bw,s2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 213,
+    "literals": [
+      -63,
+      -70,
+      133
+    ],
+    "named_literals": [
+      "not row(bq,s2)",
+      "not row(bw,s2)",
+      "rowHit(bq,bw,s2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 214,
+    "literals": [
+      -134,
+      57
+    ],
+    "named_literals": [
+      "not rowHit(bq,b,q)",
+      "row(bq,q)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 215,
+    "literals": [
+      -134,
+      71
+    ],
+    "named_literals": [
+      "not rowHit(bq,b,q)",
+      "row(b,q)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 216,
+    "literals": [
+      -57,
+      -71,
+      134
+    ],
+    "named_literals": [
+      "not row(bq,q)",
+      "not row(b,q)",
+      "rowHit(bq,b,q)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 217,
+    "literals": [
+      -135,
+      58
+    ],
+    "named_literals": [
+      "not rowHit(bq,b,w)",
+      "row(bq,w)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 218,
+    "literals": [
+      -135,
+      72
+    ],
+    "named_literals": [
+      "not rowHit(bq,b,w)",
+      "row(b,w)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 219,
+    "literals": [
+      -58,
+      -72,
+      135
+    ],
+    "named_literals": [
+      "not row(bq,w)",
+      "not row(b,w)",
+      "rowHit(bq,b,w)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 220,
+    "literals": [
+      -136,
+      59
+    ],
+    "named_literals": [
+      "not rowHit(bq,b,u1)",
+      "row(bq,u1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 221,
+    "literals": [
+      -136,
+      73
+    ],
+    "named_literals": [
+      "not rowHit(bq,b,u1)",
+      "row(b,u1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 222,
+    "literals": [
+      -59,
+      -73,
+      136
+    ],
+    "named_literals": [
+      "not row(bq,u1)",
+      "not row(b,u1)",
+      "rowHit(bq,b,u1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 223,
+    "literals": [
+      -137,
+      60
+    ],
+    "named_literals": [
+      "not rowHit(bq,b,u2)",
+      "row(bq,u2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 224,
+    "literals": [
+      -137,
+      74
+    ],
+    "named_literals": [
+      "not rowHit(bq,b,u2)",
+      "row(b,u2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 225,
+    "literals": [
+      -60,
+      -74,
+      137
+    ],
+    "named_literals": [
+      "not row(bq,u2)",
+      "not row(b,u2)",
+      "rowHit(bq,b,u2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 226,
+    "literals": [
+      -138,
+      61
+    ],
+    "named_literals": [
+      "not rowHit(bq,b,u3)",
+      "row(bq,u3)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 227,
+    "literals": [
+      -138,
+      75
+    ],
+    "named_literals": [
+      "not rowHit(bq,b,u3)",
+      "row(b,u3)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 228,
+    "literals": [
+      -61,
+      -75,
+      138
+    ],
+    "named_literals": [
+      "not row(bq,u3)",
+      "not row(b,u3)",
+      "rowHit(bq,b,u3)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 229,
+    "literals": [
+      -139,
+      62
+    ],
+    "named_literals": [
+      "not rowHit(bq,b,s1)",
+      "row(bq,s1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 230,
+    "literals": [
+      -139,
+      76
+    ],
+    "named_literals": [
+      "not rowHit(bq,b,s1)",
+      "row(b,s1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 231,
+    "literals": [
+      -62,
+      -76,
+      139
+    ],
+    "named_literals": [
+      "not row(bq,s1)",
+      "not row(b,s1)",
+      "rowHit(bq,b,s1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 232,
+    "literals": [
+      -140,
+      63
+    ],
+    "named_literals": [
+      "not rowHit(bq,b,s2)",
+      "row(bq,s2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 233,
+    "literals": [
+      -140,
+      77
+    ],
+    "named_literals": [
+      "not rowHit(bq,b,s2)",
+      "row(b,s2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 234,
+    "literals": [
+      -63,
+      -77,
+      140
+    ],
+    "named_literals": [
+      "not row(bq,s2)",
+      "not row(b,s2)",
+      "rowHit(bq,b,s2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 235,
+    "literals": [
+      -141,
+      64
+    ],
+    "named_literals": [
+      "not rowHit(bw,b,q)",
+      "row(bw,q)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 236,
+    "literals": [
+      -141,
+      71
+    ],
+    "named_literals": [
+      "not rowHit(bw,b,q)",
+      "row(b,q)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 237,
+    "literals": [
+      -64,
+      -71,
+      141
+    ],
+    "named_literals": [
+      "not row(bw,q)",
+      "not row(b,q)",
+      "rowHit(bw,b,q)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 238,
+    "literals": [
+      -142,
+      65
+    ],
+    "named_literals": [
+      "not rowHit(bw,b,w)",
+      "row(bw,w)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 239,
+    "literals": [
+      -142,
+      72
+    ],
+    "named_literals": [
+      "not rowHit(bw,b,w)",
+      "row(b,w)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 240,
+    "literals": [
+      -65,
+      -72,
+      142
+    ],
+    "named_literals": [
+      "not row(bw,w)",
+      "not row(b,w)",
+      "rowHit(bw,b,w)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 241,
+    "literals": [
+      -143,
+      66
+    ],
+    "named_literals": [
+      "not rowHit(bw,b,u1)",
+      "row(bw,u1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 242,
+    "literals": [
+      -143,
+      73
+    ],
+    "named_literals": [
+      "not rowHit(bw,b,u1)",
+      "row(b,u1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 243,
+    "literals": [
+      -66,
+      -73,
+      143
+    ],
+    "named_literals": [
+      "not row(bw,u1)",
+      "not row(b,u1)",
+      "rowHit(bw,b,u1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 244,
+    "literals": [
+      -144,
+      67
+    ],
+    "named_literals": [
+      "not rowHit(bw,b,u2)",
+      "row(bw,u2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 245,
+    "literals": [
+      -144,
+      74
+    ],
+    "named_literals": [
+      "not rowHit(bw,b,u2)",
+      "row(b,u2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 246,
+    "literals": [
+      -67,
+      -74,
+      144
+    ],
+    "named_literals": [
+      "not row(bw,u2)",
+      "not row(b,u2)",
+      "rowHit(bw,b,u2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 247,
+    "literals": [
+      -145,
+      68
+    ],
+    "named_literals": [
+      "not rowHit(bw,b,u3)",
+      "row(bw,u3)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 248,
+    "literals": [
+      -145,
+      75
+    ],
+    "named_literals": [
+      "not rowHit(bw,b,u3)",
+      "row(b,u3)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 249,
+    "literals": [
+      -68,
+      -75,
+      145
+    ],
+    "named_literals": [
+      "not row(bw,u3)",
+      "not row(b,u3)",
+      "rowHit(bw,b,u3)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 250,
+    "literals": [
+      -146,
+      69
+    ],
+    "named_literals": [
+      "not rowHit(bw,b,s1)",
+      "row(bw,s1)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 251,
+    "literals": [
+      -146,
+      76
+    ],
+    "named_literals": [
+      "not rowHit(bw,b,s1)",
+      "row(b,s1)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 252,
+    "literals": [
+      -69,
+      -76,
+      146
+    ],
+    "named_literals": [
+      "not row(bw,s1)",
+      "not row(b,s1)",
+      "rowHit(bw,b,s1)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 253,
+    "literals": [
+      -147,
+      70
+    ],
+    "named_literals": [
+      "not rowHit(bw,b,s2)",
+      "row(bw,s2)"
+    ],
+    "rule": "rowHit.forward.left",
+    "tag": "DEF"
+  },
+  {
+    "clause": 254,
+    "literals": [
+      -147,
+      77
+    ],
+    "named_literals": [
+      "not rowHit(bw,b,s2)",
+      "row(b,s2)"
+    ],
+    "rule": "rowHit.forward.right",
+    "tag": "DEF"
+  },
+  {
+    "clause": 255,
+    "literals": [
+      -70,
+      -77,
+      147
+    ],
+    "named_literals": [
+      "not row(bw,s2)",
+      "not row(b,s2)",
+      "rowHit(bw,b,s2)"
+    ],
+    "rule": "rowHit.backward",
+    "tag": "DEF"
+  },
+  {
+    "clause": 256,
+    "literals": [
+      -148,
+      -78,
+      -79,
+      -80
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,q)",
+      "not rowHit(a1,a2,w)",
+      "not rowHit(a1,a2,u1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 257,
+    "literals": [
+      -148,
+      -78,
+      -79,
+      -81
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,q)",
+      "not rowHit(a1,a2,w)",
+      "not rowHit(a1,a2,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 258,
+    "literals": [
+      -148,
+      -78,
+      -79,
+      -82
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,q)",
+      "not rowHit(a1,a2,w)",
+      "not rowHit(a1,a2,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 259,
+    "literals": [
+      -148,
+      -78,
+      -79,
+      -83
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,q)",
+      "not rowHit(a1,a2,w)",
+      "not rowHit(a1,a2,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 260,
+    "literals": [
+      -148,
+      -78,
+      -79,
+      -84
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,q)",
+      "not rowHit(a1,a2,w)",
+      "not rowHit(a1,a2,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 261,
+    "literals": [
+      -148,
+      -78,
+      -80,
+      -81
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,q)",
+      "not rowHit(a1,a2,u1)",
+      "not rowHit(a1,a2,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 262,
+    "literals": [
+      -148,
+      -78,
+      -80,
+      -82
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,q)",
+      "not rowHit(a1,a2,u1)",
+      "not rowHit(a1,a2,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 263,
+    "literals": [
+      -148,
+      -78,
+      -80,
+      -83
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,q)",
+      "not rowHit(a1,a2,u1)",
+      "not rowHit(a1,a2,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 264,
+    "literals": [
+      -148,
+      -78,
+      -80,
+      -84
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,q)",
+      "not rowHit(a1,a2,u1)",
+      "not rowHit(a1,a2,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 265,
+    "literals": [
+      -148,
+      -78,
+      -81,
+      -82
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,q)",
+      "not rowHit(a1,a2,u2)",
+      "not rowHit(a1,a2,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 266,
+    "literals": [
+      -148,
+      -78,
+      -81,
+      -83
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,q)",
+      "not rowHit(a1,a2,u2)",
+      "not rowHit(a1,a2,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 267,
+    "literals": [
+      -148,
+      -78,
+      -81,
+      -84
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,q)",
+      "not rowHit(a1,a2,u2)",
+      "not rowHit(a1,a2,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 268,
+    "literals": [
+      -148,
+      -78,
+      -82,
+      -83
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,q)",
+      "not rowHit(a1,a2,u3)",
+      "not rowHit(a1,a2,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 269,
+    "literals": [
+      -148,
+      -78,
+      -82,
+      -84
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,q)",
+      "not rowHit(a1,a2,u3)",
+      "not rowHit(a1,a2,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 270,
+    "literals": [
+      -148,
+      -78,
+      -83,
+      -84
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,q)",
+      "not rowHit(a1,a2,s1)",
+      "not rowHit(a1,a2,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 271,
+    "literals": [
+      -148,
+      -79,
+      -80,
+      -81
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,w)",
+      "not rowHit(a1,a2,u1)",
+      "not rowHit(a1,a2,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 272,
+    "literals": [
+      -148,
+      -79,
+      -80,
+      -82
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,w)",
+      "not rowHit(a1,a2,u1)",
+      "not rowHit(a1,a2,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 273,
+    "literals": [
+      -148,
+      -79,
+      -80,
+      -83
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,w)",
+      "not rowHit(a1,a2,u1)",
+      "not rowHit(a1,a2,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 274,
+    "literals": [
+      -148,
+      -79,
+      -80,
+      -84
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,w)",
+      "not rowHit(a1,a2,u1)",
+      "not rowHit(a1,a2,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 275,
+    "literals": [
+      -148,
+      -79,
+      -81,
+      -82
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,w)",
+      "not rowHit(a1,a2,u2)",
+      "not rowHit(a1,a2,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 276,
+    "literals": [
+      -148,
+      -79,
+      -81,
+      -83
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,w)",
+      "not rowHit(a1,a2,u2)",
+      "not rowHit(a1,a2,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 277,
+    "literals": [
+      -148,
+      -79,
+      -81,
+      -84
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,w)",
+      "not rowHit(a1,a2,u2)",
+      "not rowHit(a1,a2,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 278,
+    "literals": [
+      -148,
+      -79,
+      -82,
+      -83
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,w)",
+      "not rowHit(a1,a2,u3)",
+      "not rowHit(a1,a2,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 279,
+    "literals": [
+      -148,
+      -79,
+      -82,
+      -84
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,w)",
+      "not rowHit(a1,a2,u3)",
+      "not rowHit(a1,a2,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 280,
+    "literals": [
+      -148,
+      -79,
+      -83,
+      -84
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,w)",
+      "not rowHit(a1,a2,s1)",
+      "not rowHit(a1,a2,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 281,
+    "literals": [
+      -148,
+      -80,
+      -81,
+      -82
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,u1)",
+      "not rowHit(a1,a2,u2)",
+      "not rowHit(a1,a2,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 282,
+    "literals": [
+      -148,
+      -80,
+      -81,
+      -83
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,u1)",
+      "not rowHit(a1,a2,u2)",
+      "not rowHit(a1,a2,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 283,
+    "literals": [
+      -148,
+      -80,
+      -81,
+      -84
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,u1)",
+      "not rowHit(a1,a2,u2)",
+      "not rowHit(a1,a2,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 284,
+    "literals": [
+      -148,
+      -80,
+      -82,
+      -83
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,u1)",
+      "not rowHit(a1,a2,u3)",
+      "not rowHit(a1,a2,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 285,
+    "literals": [
+      -148,
+      -80,
+      -82,
+      -84
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,u1)",
+      "not rowHit(a1,a2,u3)",
+      "not rowHit(a1,a2,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 286,
+    "literals": [
+      -148,
+      -80,
+      -83,
+      -84
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,u1)",
+      "not rowHit(a1,a2,s1)",
+      "not rowHit(a1,a2,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 287,
+    "literals": [
+      -148,
+      -81,
+      -82,
+      -83
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,u2)",
+      "not rowHit(a1,a2,u3)",
+      "not rowHit(a1,a2,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 288,
+    "literals": [
+      -148,
+      -81,
+      -82,
+      -84
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,u2)",
+      "not rowHit(a1,a2,u3)",
+      "not rowHit(a1,a2,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 289,
+    "literals": [
+      -148,
+      -81,
+      -83,
+      -84
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,u2)",
+      "not rowHit(a1,a2,s1)",
+      "not rowHit(a1,a2,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 290,
+    "literals": [
+      -148,
+      -82,
+      -83,
+      -84
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not rowHit(a1,a2,u3)",
+      "not rowHit(a1,a2,s1)",
+      "not rowHit(a1,a2,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 291,
+    "literals": [
+      -149,
+      -85,
+      -86,
+      -87
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,q)",
+      "not rowHit(a1,bq,w)",
+      "not rowHit(a1,bq,u1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 292,
+    "literals": [
+      -149,
+      -85,
+      -86,
+      -88
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,q)",
+      "not rowHit(a1,bq,w)",
+      "not rowHit(a1,bq,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 293,
+    "literals": [
+      -149,
+      -85,
+      -86,
+      -89
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,q)",
+      "not rowHit(a1,bq,w)",
+      "not rowHit(a1,bq,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 294,
+    "literals": [
+      -149,
+      -85,
+      -86,
+      -90
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,q)",
+      "not rowHit(a1,bq,w)",
+      "not rowHit(a1,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 295,
+    "literals": [
+      -149,
+      -85,
+      -86,
+      -91
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,q)",
+      "not rowHit(a1,bq,w)",
+      "not rowHit(a1,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 296,
+    "literals": [
+      -149,
+      -85,
+      -87,
+      -88
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,q)",
+      "not rowHit(a1,bq,u1)",
+      "not rowHit(a1,bq,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 297,
+    "literals": [
+      -149,
+      -85,
+      -87,
+      -89
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,q)",
+      "not rowHit(a1,bq,u1)",
+      "not rowHit(a1,bq,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 298,
+    "literals": [
+      -149,
+      -85,
+      -87,
+      -90
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,q)",
+      "not rowHit(a1,bq,u1)",
+      "not rowHit(a1,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 299,
+    "literals": [
+      -149,
+      -85,
+      -87,
+      -91
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,q)",
+      "not rowHit(a1,bq,u1)",
+      "not rowHit(a1,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 300,
+    "literals": [
+      -149,
+      -85,
+      -88,
+      -89
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,q)",
+      "not rowHit(a1,bq,u2)",
+      "not rowHit(a1,bq,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 301,
+    "literals": [
+      -149,
+      -85,
+      -88,
+      -90
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,q)",
+      "not rowHit(a1,bq,u2)",
+      "not rowHit(a1,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 302,
+    "literals": [
+      -149,
+      -85,
+      -88,
+      -91
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,q)",
+      "not rowHit(a1,bq,u2)",
+      "not rowHit(a1,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 303,
+    "literals": [
+      -149,
+      -85,
+      -89,
+      -90
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,q)",
+      "not rowHit(a1,bq,u3)",
+      "not rowHit(a1,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 304,
+    "literals": [
+      -149,
+      -85,
+      -89,
+      -91
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,q)",
+      "not rowHit(a1,bq,u3)",
+      "not rowHit(a1,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 305,
+    "literals": [
+      -149,
+      -85,
+      -90,
+      -91
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,q)",
+      "not rowHit(a1,bq,s1)",
+      "not rowHit(a1,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 306,
+    "literals": [
+      -149,
+      -86,
+      -87,
+      -88
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,w)",
+      "not rowHit(a1,bq,u1)",
+      "not rowHit(a1,bq,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 307,
+    "literals": [
+      -149,
+      -86,
+      -87,
+      -89
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,w)",
+      "not rowHit(a1,bq,u1)",
+      "not rowHit(a1,bq,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 308,
+    "literals": [
+      -149,
+      -86,
+      -87,
+      -90
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,w)",
+      "not rowHit(a1,bq,u1)",
+      "not rowHit(a1,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 309,
+    "literals": [
+      -149,
+      -86,
+      -87,
+      -91
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,w)",
+      "not rowHit(a1,bq,u1)",
+      "not rowHit(a1,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 310,
+    "literals": [
+      -149,
+      -86,
+      -88,
+      -89
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,w)",
+      "not rowHit(a1,bq,u2)",
+      "not rowHit(a1,bq,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 311,
+    "literals": [
+      -149,
+      -86,
+      -88,
+      -90
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,w)",
+      "not rowHit(a1,bq,u2)",
+      "not rowHit(a1,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 312,
+    "literals": [
+      -149,
+      -86,
+      -88,
+      -91
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,w)",
+      "not rowHit(a1,bq,u2)",
+      "not rowHit(a1,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 313,
+    "literals": [
+      -149,
+      -86,
+      -89,
+      -90
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,w)",
+      "not rowHit(a1,bq,u3)",
+      "not rowHit(a1,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 314,
+    "literals": [
+      -149,
+      -86,
+      -89,
+      -91
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,w)",
+      "not rowHit(a1,bq,u3)",
+      "not rowHit(a1,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 315,
+    "literals": [
+      -149,
+      -86,
+      -90,
+      -91
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,w)",
+      "not rowHit(a1,bq,s1)",
+      "not rowHit(a1,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 316,
+    "literals": [
+      -149,
+      -87,
+      -88,
+      -89
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,u1)",
+      "not rowHit(a1,bq,u2)",
+      "not rowHit(a1,bq,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 317,
+    "literals": [
+      -149,
+      -87,
+      -88,
+      -90
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,u1)",
+      "not rowHit(a1,bq,u2)",
+      "not rowHit(a1,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 318,
+    "literals": [
+      -149,
+      -87,
+      -88,
+      -91
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,u1)",
+      "not rowHit(a1,bq,u2)",
+      "not rowHit(a1,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 319,
+    "literals": [
+      -149,
+      -87,
+      -89,
+      -90
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,u1)",
+      "not rowHit(a1,bq,u3)",
+      "not rowHit(a1,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 320,
+    "literals": [
+      -149,
+      -87,
+      -89,
+      -91
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,u1)",
+      "not rowHit(a1,bq,u3)",
+      "not rowHit(a1,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 321,
+    "literals": [
+      -149,
+      -87,
+      -90,
+      -91
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,u1)",
+      "not rowHit(a1,bq,s1)",
+      "not rowHit(a1,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 322,
+    "literals": [
+      -149,
+      -88,
+      -89,
+      -90
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,u2)",
+      "not rowHit(a1,bq,u3)",
+      "not rowHit(a1,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 323,
+    "literals": [
+      -149,
+      -88,
+      -89,
+      -91
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,u2)",
+      "not rowHit(a1,bq,u3)",
+      "not rowHit(a1,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 324,
+    "literals": [
+      -149,
+      -88,
+      -90,
+      -91
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,u2)",
+      "not rowHit(a1,bq,s1)",
+      "not rowHit(a1,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 325,
+    "literals": [
+      -149,
+      -89,
+      -90,
+      -91
+    ],
+    "named_literals": [
+      "not distinct(a1,bq)",
+      "not rowHit(a1,bq,u3)",
+      "not rowHit(a1,bq,s1)",
+      "not rowHit(a1,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 326,
+    "literals": [
+      -150,
+      -92,
+      -93,
+      -94
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,q)",
+      "not rowHit(a1,bw,w)",
+      "not rowHit(a1,bw,u1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 327,
+    "literals": [
+      -150,
+      -92,
+      -93,
+      -95
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,q)",
+      "not rowHit(a1,bw,w)",
+      "not rowHit(a1,bw,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 328,
+    "literals": [
+      -150,
+      -92,
+      -93,
+      -96
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,q)",
+      "not rowHit(a1,bw,w)",
+      "not rowHit(a1,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 329,
+    "literals": [
+      -150,
+      -92,
+      -93,
+      -97
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,q)",
+      "not rowHit(a1,bw,w)",
+      "not rowHit(a1,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 330,
+    "literals": [
+      -150,
+      -92,
+      -93,
+      -98
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,q)",
+      "not rowHit(a1,bw,w)",
+      "not rowHit(a1,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 331,
+    "literals": [
+      -150,
+      -92,
+      -94,
+      -95
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,q)",
+      "not rowHit(a1,bw,u1)",
+      "not rowHit(a1,bw,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 332,
+    "literals": [
+      -150,
+      -92,
+      -94,
+      -96
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,q)",
+      "not rowHit(a1,bw,u1)",
+      "not rowHit(a1,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 333,
+    "literals": [
+      -150,
+      -92,
+      -94,
+      -97
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,q)",
+      "not rowHit(a1,bw,u1)",
+      "not rowHit(a1,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 334,
+    "literals": [
+      -150,
+      -92,
+      -94,
+      -98
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,q)",
+      "not rowHit(a1,bw,u1)",
+      "not rowHit(a1,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 335,
+    "literals": [
+      -150,
+      -92,
+      -95,
+      -96
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,q)",
+      "not rowHit(a1,bw,u2)",
+      "not rowHit(a1,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 336,
+    "literals": [
+      -150,
+      -92,
+      -95,
+      -97
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,q)",
+      "not rowHit(a1,bw,u2)",
+      "not rowHit(a1,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 337,
+    "literals": [
+      -150,
+      -92,
+      -95,
+      -98
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,q)",
+      "not rowHit(a1,bw,u2)",
+      "not rowHit(a1,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 338,
+    "literals": [
+      -150,
+      -92,
+      -96,
+      -97
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,q)",
+      "not rowHit(a1,bw,u3)",
+      "not rowHit(a1,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 339,
+    "literals": [
+      -150,
+      -92,
+      -96,
+      -98
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,q)",
+      "not rowHit(a1,bw,u3)",
+      "not rowHit(a1,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 340,
+    "literals": [
+      -150,
+      -92,
+      -97,
+      -98
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,q)",
+      "not rowHit(a1,bw,s1)",
+      "not rowHit(a1,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 341,
+    "literals": [
+      -150,
+      -93,
+      -94,
+      -95
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,w)",
+      "not rowHit(a1,bw,u1)",
+      "not rowHit(a1,bw,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 342,
+    "literals": [
+      -150,
+      -93,
+      -94,
+      -96
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,w)",
+      "not rowHit(a1,bw,u1)",
+      "not rowHit(a1,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 343,
+    "literals": [
+      -150,
+      -93,
+      -94,
+      -97
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,w)",
+      "not rowHit(a1,bw,u1)",
+      "not rowHit(a1,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 344,
+    "literals": [
+      -150,
+      -93,
+      -94,
+      -98
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,w)",
+      "not rowHit(a1,bw,u1)",
+      "not rowHit(a1,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 345,
+    "literals": [
+      -150,
+      -93,
+      -95,
+      -96
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,w)",
+      "not rowHit(a1,bw,u2)",
+      "not rowHit(a1,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 346,
+    "literals": [
+      -150,
+      -93,
+      -95,
+      -97
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,w)",
+      "not rowHit(a1,bw,u2)",
+      "not rowHit(a1,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 347,
+    "literals": [
+      -150,
+      -93,
+      -95,
+      -98
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,w)",
+      "not rowHit(a1,bw,u2)",
+      "not rowHit(a1,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 348,
+    "literals": [
+      -150,
+      -93,
+      -96,
+      -97
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,w)",
+      "not rowHit(a1,bw,u3)",
+      "not rowHit(a1,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 349,
+    "literals": [
+      -150,
+      -93,
+      -96,
+      -98
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,w)",
+      "not rowHit(a1,bw,u3)",
+      "not rowHit(a1,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 350,
+    "literals": [
+      -150,
+      -93,
+      -97,
+      -98
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,w)",
+      "not rowHit(a1,bw,s1)",
+      "not rowHit(a1,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 351,
+    "literals": [
+      -150,
+      -94,
+      -95,
+      -96
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,u1)",
+      "not rowHit(a1,bw,u2)",
+      "not rowHit(a1,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 352,
+    "literals": [
+      -150,
+      -94,
+      -95,
+      -97
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,u1)",
+      "not rowHit(a1,bw,u2)",
+      "not rowHit(a1,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 353,
+    "literals": [
+      -150,
+      -94,
+      -95,
+      -98
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,u1)",
+      "not rowHit(a1,bw,u2)",
+      "not rowHit(a1,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 354,
+    "literals": [
+      -150,
+      -94,
+      -96,
+      -97
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,u1)",
+      "not rowHit(a1,bw,u3)",
+      "not rowHit(a1,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 355,
+    "literals": [
+      -150,
+      -94,
+      -96,
+      -98
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,u1)",
+      "not rowHit(a1,bw,u3)",
+      "not rowHit(a1,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 356,
+    "literals": [
+      -150,
+      -94,
+      -97,
+      -98
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,u1)",
+      "not rowHit(a1,bw,s1)",
+      "not rowHit(a1,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 357,
+    "literals": [
+      -150,
+      -95,
+      -96,
+      -97
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,u2)",
+      "not rowHit(a1,bw,u3)",
+      "not rowHit(a1,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 358,
+    "literals": [
+      -150,
+      -95,
+      -96,
+      -98
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,u2)",
+      "not rowHit(a1,bw,u3)",
+      "not rowHit(a1,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 359,
+    "literals": [
+      -150,
+      -95,
+      -97,
+      -98
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,u2)",
+      "not rowHit(a1,bw,s1)",
+      "not rowHit(a1,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 360,
+    "literals": [
+      -150,
+      -96,
+      -97,
+      -98
+    ],
+    "named_literals": [
+      "not distinct(a1,bw)",
+      "not rowHit(a1,bw,u3)",
+      "not rowHit(a1,bw,s1)",
+      "not rowHit(a1,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 361,
+    "literals": [
+      -151,
+      -99,
+      -100,
+      -101
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,q)",
+      "not rowHit(a1,b,w)",
+      "not rowHit(a1,b,u1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 362,
+    "literals": [
+      -151,
+      -99,
+      -100,
+      -102
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,q)",
+      "not rowHit(a1,b,w)",
+      "not rowHit(a1,b,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 363,
+    "literals": [
+      -151,
+      -99,
+      -100,
+      -103
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,q)",
+      "not rowHit(a1,b,w)",
+      "not rowHit(a1,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 364,
+    "literals": [
+      -151,
+      -99,
+      -100,
+      -104
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,q)",
+      "not rowHit(a1,b,w)",
+      "not rowHit(a1,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 365,
+    "literals": [
+      -151,
+      -99,
+      -100,
+      -105
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,q)",
+      "not rowHit(a1,b,w)",
+      "not rowHit(a1,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 366,
+    "literals": [
+      -151,
+      -99,
+      -101,
+      -102
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,q)",
+      "not rowHit(a1,b,u1)",
+      "not rowHit(a1,b,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 367,
+    "literals": [
+      -151,
+      -99,
+      -101,
+      -103
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,q)",
+      "not rowHit(a1,b,u1)",
+      "not rowHit(a1,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 368,
+    "literals": [
+      -151,
+      -99,
+      -101,
+      -104
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,q)",
+      "not rowHit(a1,b,u1)",
+      "not rowHit(a1,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 369,
+    "literals": [
+      -151,
+      -99,
+      -101,
+      -105
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,q)",
+      "not rowHit(a1,b,u1)",
+      "not rowHit(a1,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 370,
+    "literals": [
+      -151,
+      -99,
+      -102,
+      -103
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,q)",
+      "not rowHit(a1,b,u2)",
+      "not rowHit(a1,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 371,
+    "literals": [
+      -151,
+      -99,
+      -102,
+      -104
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,q)",
+      "not rowHit(a1,b,u2)",
+      "not rowHit(a1,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 372,
+    "literals": [
+      -151,
+      -99,
+      -102,
+      -105
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,q)",
+      "not rowHit(a1,b,u2)",
+      "not rowHit(a1,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 373,
+    "literals": [
+      -151,
+      -99,
+      -103,
+      -104
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,q)",
+      "not rowHit(a1,b,u3)",
+      "not rowHit(a1,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 374,
+    "literals": [
+      -151,
+      -99,
+      -103,
+      -105
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,q)",
+      "not rowHit(a1,b,u3)",
+      "not rowHit(a1,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 375,
+    "literals": [
+      -151,
+      -99,
+      -104,
+      -105
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,q)",
+      "not rowHit(a1,b,s1)",
+      "not rowHit(a1,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 376,
+    "literals": [
+      -151,
+      -100,
+      -101,
+      -102
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,w)",
+      "not rowHit(a1,b,u1)",
+      "not rowHit(a1,b,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 377,
+    "literals": [
+      -151,
+      -100,
+      -101,
+      -103
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,w)",
+      "not rowHit(a1,b,u1)",
+      "not rowHit(a1,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 378,
+    "literals": [
+      -151,
+      -100,
+      -101,
+      -104
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,w)",
+      "not rowHit(a1,b,u1)",
+      "not rowHit(a1,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 379,
+    "literals": [
+      -151,
+      -100,
+      -101,
+      -105
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,w)",
+      "not rowHit(a1,b,u1)",
+      "not rowHit(a1,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 380,
+    "literals": [
+      -151,
+      -100,
+      -102,
+      -103
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,w)",
+      "not rowHit(a1,b,u2)",
+      "not rowHit(a1,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 381,
+    "literals": [
+      -151,
+      -100,
+      -102,
+      -104
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,w)",
+      "not rowHit(a1,b,u2)",
+      "not rowHit(a1,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 382,
+    "literals": [
+      -151,
+      -100,
+      -102,
+      -105
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,w)",
+      "not rowHit(a1,b,u2)",
+      "not rowHit(a1,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 383,
+    "literals": [
+      -151,
+      -100,
+      -103,
+      -104
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,w)",
+      "not rowHit(a1,b,u3)",
+      "not rowHit(a1,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 384,
+    "literals": [
+      -151,
+      -100,
+      -103,
+      -105
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,w)",
+      "not rowHit(a1,b,u3)",
+      "not rowHit(a1,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 385,
+    "literals": [
+      -151,
+      -100,
+      -104,
+      -105
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,w)",
+      "not rowHit(a1,b,s1)",
+      "not rowHit(a1,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 386,
+    "literals": [
+      -151,
+      -101,
+      -102,
+      -103
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,u1)",
+      "not rowHit(a1,b,u2)",
+      "not rowHit(a1,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 387,
+    "literals": [
+      -151,
+      -101,
+      -102,
+      -104
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,u1)",
+      "not rowHit(a1,b,u2)",
+      "not rowHit(a1,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 388,
+    "literals": [
+      -151,
+      -101,
+      -102,
+      -105
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,u1)",
+      "not rowHit(a1,b,u2)",
+      "not rowHit(a1,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 389,
+    "literals": [
+      -151,
+      -101,
+      -103,
+      -104
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,u1)",
+      "not rowHit(a1,b,u3)",
+      "not rowHit(a1,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 390,
+    "literals": [
+      -151,
+      -101,
+      -103,
+      -105
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,u1)",
+      "not rowHit(a1,b,u3)",
+      "not rowHit(a1,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 391,
+    "literals": [
+      -151,
+      -101,
+      -104,
+      -105
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,u1)",
+      "not rowHit(a1,b,s1)",
+      "not rowHit(a1,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 392,
+    "literals": [
+      -151,
+      -102,
+      -103,
+      -104
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,u2)",
+      "not rowHit(a1,b,u3)",
+      "not rowHit(a1,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 393,
+    "literals": [
+      -151,
+      -102,
+      -103,
+      -105
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,u2)",
+      "not rowHit(a1,b,u3)",
+      "not rowHit(a1,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 394,
+    "literals": [
+      -151,
+      -102,
+      -104,
+      -105
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,u2)",
+      "not rowHit(a1,b,s1)",
+      "not rowHit(a1,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 395,
+    "literals": [
+      -151,
+      -103,
+      -104,
+      -105
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not rowHit(a1,b,u3)",
+      "not rowHit(a1,b,s1)",
+      "not rowHit(a1,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 396,
+    "literals": [
+      -153,
+      -106,
+      -107,
+      -108
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,q)",
+      "not rowHit(a2,bq,w)",
+      "not rowHit(a2,bq,u1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 397,
+    "literals": [
+      -153,
+      -106,
+      -107,
+      -109
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,q)",
+      "not rowHit(a2,bq,w)",
+      "not rowHit(a2,bq,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 398,
+    "literals": [
+      -153,
+      -106,
+      -107,
+      -110
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,q)",
+      "not rowHit(a2,bq,w)",
+      "not rowHit(a2,bq,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 399,
+    "literals": [
+      -153,
+      -106,
+      -107,
+      -111
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,q)",
+      "not rowHit(a2,bq,w)",
+      "not rowHit(a2,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 400,
+    "literals": [
+      -153,
+      -106,
+      -107,
+      -112
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,q)",
+      "not rowHit(a2,bq,w)",
+      "not rowHit(a2,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 401,
+    "literals": [
+      -153,
+      -106,
+      -108,
+      -109
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,q)",
+      "not rowHit(a2,bq,u1)",
+      "not rowHit(a2,bq,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 402,
+    "literals": [
+      -153,
+      -106,
+      -108,
+      -110
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,q)",
+      "not rowHit(a2,bq,u1)",
+      "not rowHit(a2,bq,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 403,
+    "literals": [
+      -153,
+      -106,
+      -108,
+      -111
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,q)",
+      "not rowHit(a2,bq,u1)",
+      "not rowHit(a2,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 404,
+    "literals": [
+      -153,
+      -106,
+      -108,
+      -112
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,q)",
+      "not rowHit(a2,bq,u1)",
+      "not rowHit(a2,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 405,
+    "literals": [
+      -153,
+      -106,
+      -109,
+      -110
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,q)",
+      "not rowHit(a2,bq,u2)",
+      "not rowHit(a2,bq,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 406,
+    "literals": [
+      -153,
+      -106,
+      -109,
+      -111
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,q)",
+      "not rowHit(a2,bq,u2)",
+      "not rowHit(a2,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 407,
+    "literals": [
+      -153,
+      -106,
+      -109,
+      -112
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,q)",
+      "not rowHit(a2,bq,u2)",
+      "not rowHit(a2,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 408,
+    "literals": [
+      -153,
+      -106,
+      -110,
+      -111
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,q)",
+      "not rowHit(a2,bq,u3)",
+      "not rowHit(a2,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 409,
+    "literals": [
+      -153,
+      -106,
+      -110,
+      -112
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,q)",
+      "not rowHit(a2,bq,u3)",
+      "not rowHit(a2,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 410,
+    "literals": [
+      -153,
+      -106,
+      -111,
+      -112
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,q)",
+      "not rowHit(a2,bq,s1)",
+      "not rowHit(a2,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 411,
+    "literals": [
+      -153,
+      -107,
+      -108,
+      -109
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,w)",
+      "not rowHit(a2,bq,u1)",
+      "not rowHit(a2,bq,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 412,
+    "literals": [
+      -153,
+      -107,
+      -108,
+      -110
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,w)",
+      "not rowHit(a2,bq,u1)",
+      "not rowHit(a2,bq,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 413,
+    "literals": [
+      -153,
+      -107,
+      -108,
+      -111
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,w)",
+      "not rowHit(a2,bq,u1)",
+      "not rowHit(a2,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 414,
+    "literals": [
+      -153,
+      -107,
+      -108,
+      -112
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,w)",
+      "not rowHit(a2,bq,u1)",
+      "not rowHit(a2,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 415,
+    "literals": [
+      -153,
+      -107,
+      -109,
+      -110
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,w)",
+      "not rowHit(a2,bq,u2)",
+      "not rowHit(a2,bq,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 416,
+    "literals": [
+      -153,
+      -107,
+      -109,
+      -111
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,w)",
+      "not rowHit(a2,bq,u2)",
+      "not rowHit(a2,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 417,
+    "literals": [
+      -153,
+      -107,
+      -109,
+      -112
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,w)",
+      "not rowHit(a2,bq,u2)",
+      "not rowHit(a2,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 418,
+    "literals": [
+      -153,
+      -107,
+      -110,
+      -111
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,w)",
+      "not rowHit(a2,bq,u3)",
+      "not rowHit(a2,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 419,
+    "literals": [
+      -153,
+      -107,
+      -110,
+      -112
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,w)",
+      "not rowHit(a2,bq,u3)",
+      "not rowHit(a2,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 420,
+    "literals": [
+      -153,
+      -107,
+      -111,
+      -112
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,w)",
+      "not rowHit(a2,bq,s1)",
+      "not rowHit(a2,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 421,
+    "literals": [
+      -153,
+      -108,
+      -109,
+      -110
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,u1)",
+      "not rowHit(a2,bq,u2)",
+      "not rowHit(a2,bq,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 422,
+    "literals": [
+      -153,
+      -108,
+      -109,
+      -111
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,u1)",
+      "not rowHit(a2,bq,u2)",
+      "not rowHit(a2,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 423,
+    "literals": [
+      -153,
+      -108,
+      -109,
+      -112
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,u1)",
+      "not rowHit(a2,bq,u2)",
+      "not rowHit(a2,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 424,
+    "literals": [
+      -153,
+      -108,
+      -110,
+      -111
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,u1)",
+      "not rowHit(a2,bq,u3)",
+      "not rowHit(a2,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 425,
+    "literals": [
+      -153,
+      -108,
+      -110,
+      -112
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,u1)",
+      "not rowHit(a2,bq,u3)",
+      "not rowHit(a2,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 426,
+    "literals": [
+      -153,
+      -108,
+      -111,
+      -112
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,u1)",
+      "not rowHit(a2,bq,s1)",
+      "not rowHit(a2,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 427,
+    "literals": [
+      -153,
+      -109,
+      -110,
+      -111
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,u2)",
+      "not rowHit(a2,bq,u3)",
+      "not rowHit(a2,bq,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 428,
+    "literals": [
+      -153,
+      -109,
+      -110,
+      -112
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,u2)",
+      "not rowHit(a2,bq,u3)",
+      "not rowHit(a2,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 429,
+    "literals": [
+      -153,
+      -109,
+      -111,
+      -112
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,u2)",
+      "not rowHit(a2,bq,s1)",
+      "not rowHit(a2,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 430,
+    "literals": [
+      -153,
+      -110,
+      -111,
+      -112
+    ],
+    "named_literals": [
+      "not distinct(a2,bq)",
+      "not rowHit(a2,bq,u3)",
+      "not rowHit(a2,bq,s1)",
+      "not rowHit(a2,bq,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 431,
+    "literals": [
+      -154,
+      -113,
+      -114,
+      -115
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,q)",
+      "not rowHit(a2,bw,w)",
+      "not rowHit(a2,bw,u1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 432,
+    "literals": [
+      -154,
+      -113,
+      -114,
+      -116
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,q)",
+      "not rowHit(a2,bw,w)",
+      "not rowHit(a2,bw,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 433,
+    "literals": [
+      -154,
+      -113,
+      -114,
+      -117
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,q)",
+      "not rowHit(a2,bw,w)",
+      "not rowHit(a2,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 434,
+    "literals": [
+      -154,
+      -113,
+      -114,
+      -118
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,q)",
+      "not rowHit(a2,bw,w)",
+      "not rowHit(a2,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 435,
+    "literals": [
+      -154,
+      -113,
+      -114,
+      -119
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,q)",
+      "not rowHit(a2,bw,w)",
+      "not rowHit(a2,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 436,
+    "literals": [
+      -154,
+      -113,
+      -115,
+      -116
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,q)",
+      "not rowHit(a2,bw,u1)",
+      "not rowHit(a2,bw,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 437,
+    "literals": [
+      -154,
+      -113,
+      -115,
+      -117
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,q)",
+      "not rowHit(a2,bw,u1)",
+      "not rowHit(a2,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 438,
+    "literals": [
+      -154,
+      -113,
+      -115,
+      -118
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,q)",
+      "not rowHit(a2,bw,u1)",
+      "not rowHit(a2,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 439,
+    "literals": [
+      -154,
+      -113,
+      -115,
+      -119
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,q)",
+      "not rowHit(a2,bw,u1)",
+      "not rowHit(a2,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 440,
+    "literals": [
+      -154,
+      -113,
+      -116,
+      -117
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,q)",
+      "not rowHit(a2,bw,u2)",
+      "not rowHit(a2,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 441,
+    "literals": [
+      -154,
+      -113,
+      -116,
+      -118
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,q)",
+      "not rowHit(a2,bw,u2)",
+      "not rowHit(a2,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 442,
+    "literals": [
+      -154,
+      -113,
+      -116,
+      -119
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,q)",
+      "not rowHit(a2,bw,u2)",
+      "not rowHit(a2,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 443,
+    "literals": [
+      -154,
+      -113,
+      -117,
+      -118
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,q)",
+      "not rowHit(a2,bw,u3)",
+      "not rowHit(a2,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 444,
+    "literals": [
+      -154,
+      -113,
+      -117,
+      -119
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,q)",
+      "not rowHit(a2,bw,u3)",
+      "not rowHit(a2,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 445,
+    "literals": [
+      -154,
+      -113,
+      -118,
+      -119
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,q)",
+      "not rowHit(a2,bw,s1)",
+      "not rowHit(a2,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 446,
+    "literals": [
+      -154,
+      -114,
+      -115,
+      -116
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,w)",
+      "not rowHit(a2,bw,u1)",
+      "not rowHit(a2,bw,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 447,
+    "literals": [
+      -154,
+      -114,
+      -115,
+      -117
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,w)",
+      "not rowHit(a2,bw,u1)",
+      "not rowHit(a2,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 448,
+    "literals": [
+      -154,
+      -114,
+      -115,
+      -118
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,w)",
+      "not rowHit(a2,bw,u1)",
+      "not rowHit(a2,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 449,
+    "literals": [
+      -154,
+      -114,
+      -115,
+      -119
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,w)",
+      "not rowHit(a2,bw,u1)",
+      "not rowHit(a2,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 450,
+    "literals": [
+      -154,
+      -114,
+      -116,
+      -117
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,w)",
+      "not rowHit(a2,bw,u2)",
+      "not rowHit(a2,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 451,
+    "literals": [
+      -154,
+      -114,
+      -116,
+      -118
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,w)",
+      "not rowHit(a2,bw,u2)",
+      "not rowHit(a2,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 452,
+    "literals": [
+      -154,
+      -114,
+      -116,
+      -119
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,w)",
+      "not rowHit(a2,bw,u2)",
+      "not rowHit(a2,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 453,
+    "literals": [
+      -154,
+      -114,
+      -117,
+      -118
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,w)",
+      "not rowHit(a2,bw,u3)",
+      "not rowHit(a2,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 454,
+    "literals": [
+      -154,
+      -114,
+      -117,
+      -119
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,w)",
+      "not rowHit(a2,bw,u3)",
+      "not rowHit(a2,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 455,
+    "literals": [
+      -154,
+      -114,
+      -118,
+      -119
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,w)",
+      "not rowHit(a2,bw,s1)",
+      "not rowHit(a2,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 456,
+    "literals": [
+      -154,
+      -115,
+      -116,
+      -117
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,u1)",
+      "not rowHit(a2,bw,u2)",
+      "not rowHit(a2,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 457,
+    "literals": [
+      -154,
+      -115,
+      -116,
+      -118
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,u1)",
+      "not rowHit(a2,bw,u2)",
+      "not rowHit(a2,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 458,
+    "literals": [
+      -154,
+      -115,
+      -116,
+      -119
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,u1)",
+      "not rowHit(a2,bw,u2)",
+      "not rowHit(a2,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 459,
+    "literals": [
+      -154,
+      -115,
+      -117,
+      -118
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,u1)",
+      "not rowHit(a2,bw,u3)",
+      "not rowHit(a2,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 460,
+    "literals": [
+      -154,
+      -115,
+      -117,
+      -119
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,u1)",
+      "not rowHit(a2,bw,u3)",
+      "not rowHit(a2,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 461,
+    "literals": [
+      -154,
+      -115,
+      -118,
+      -119
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,u1)",
+      "not rowHit(a2,bw,s1)",
+      "not rowHit(a2,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 462,
+    "literals": [
+      -154,
+      -116,
+      -117,
+      -118
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,u2)",
+      "not rowHit(a2,bw,u3)",
+      "not rowHit(a2,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 463,
+    "literals": [
+      -154,
+      -116,
+      -117,
+      -119
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,u2)",
+      "not rowHit(a2,bw,u3)",
+      "not rowHit(a2,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 464,
+    "literals": [
+      -154,
+      -116,
+      -118,
+      -119
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,u2)",
+      "not rowHit(a2,bw,s1)",
+      "not rowHit(a2,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 465,
+    "literals": [
+      -154,
+      -117,
+      -118,
+      -119
+    ],
+    "named_literals": [
+      "not distinct(a2,bw)",
+      "not rowHit(a2,bw,u3)",
+      "not rowHit(a2,bw,s1)",
+      "not rowHit(a2,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 466,
+    "literals": [
+      -155,
+      -120,
+      -121,
+      -122
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,q)",
+      "not rowHit(a2,b,w)",
+      "not rowHit(a2,b,u1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 467,
+    "literals": [
+      -155,
+      -120,
+      -121,
+      -123
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,q)",
+      "not rowHit(a2,b,w)",
+      "not rowHit(a2,b,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 468,
+    "literals": [
+      -155,
+      -120,
+      -121,
+      -124
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,q)",
+      "not rowHit(a2,b,w)",
+      "not rowHit(a2,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 469,
+    "literals": [
+      -155,
+      -120,
+      -121,
+      -125
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,q)",
+      "not rowHit(a2,b,w)",
+      "not rowHit(a2,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 470,
+    "literals": [
+      -155,
+      -120,
+      -121,
+      -126
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,q)",
+      "not rowHit(a2,b,w)",
+      "not rowHit(a2,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 471,
+    "literals": [
+      -155,
+      -120,
+      -122,
+      -123
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,q)",
+      "not rowHit(a2,b,u1)",
+      "not rowHit(a2,b,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 472,
+    "literals": [
+      -155,
+      -120,
+      -122,
+      -124
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,q)",
+      "not rowHit(a2,b,u1)",
+      "not rowHit(a2,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 473,
+    "literals": [
+      -155,
+      -120,
+      -122,
+      -125
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,q)",
+      "not rowHit(a2,b,u1)",
+      "not rowHit(a2,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 474,
+    "literals": [
+      -155,
+      -120,
+      -122,
+      -126
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,q)",
+      "not rowHit(a2,b,u1)",
+      "not rowHit(a2,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 475,
+    "literals": [
+      -155,
+      -120,
+      -123,
+      -124
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,q)",
+      "not rowHit(a2,b,u2)",
+      "not rowHit(a2,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 476,
+    "literals": [
+      -155,
+      -120,
+      -123,
+      -125
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,q)",
+      "not rowHit(a2,b,u2)",
+      "not rowHit(a2,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 477,
+    "literals": [
+      -155,
+      -120,
+      -123,
+      -126
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,q)",
+      "not rowHit(a2,b,u2)",
+      "not rowHit(a2,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 478,
+    "literals": [
+      -155,
+      -120,
+      -124,
+      -125
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,q)",
+      "not rowHit(a2,b,u3)",
+      "not rowHit(a2,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 479,
+    "literals": [
+      -155,
+      -120,
+      -124,
+      -126
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,q)",
+      "not rowHit(a2,b,u3)",
+      "not rowHit(a2,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 480,
+    "literals": [
+      -155,
+      -120,
+      -125,
+      -126
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,q)",
+      "not rowHit(a2,b,s1)",
+      "not rowHit(a2,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 481,
+    "literals": [
+      -155,
+      -121,
+      -122,
+      -123
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,w)",
+      "not rowHit(a2,b,u1)",
+      "not rowHit(a2,b,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 482,
+    "literals": [
+      -155,
+      -121,
+      -122,
+      -124
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,w)",
+      "not rowHit(a2,b,u1)",
+      "not rowHit(a2,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 483,
+    "literals": [
+      -155,
+      -121,
+      -122,
+      -125
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,w)",
+      "not rowHit(a2,b,u1)",
+      "not rowHit(a2,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 484,
+    "literals": [
+      -155,
+      -121,
+      -122,
+      -126
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,w)",
+      "not rowHit(a2,b,u1)",
+      "not rowHit(a2,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 485,
+    "literals": [
+      -155,
+      -121,
+      -123,
+      -124
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,w)",
+      "not rowHit(a2,b,u2)",
+      "not rowHit(a2,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 486,
+    "literals": [
+      -155,
+      -121,
+      -123,
+      -125
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,w)",
+      "not rowHit(a2,b,u2)",
+      "not rowHit(a2,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 487,
+    "literals": [
+      -155,
+      -121,
+      -123,
+      -126
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,w)",
+      "not rowHit(a2,b,u2)",
+      "not rowHit(a2,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 488,
+    "literals": [
+      -155,
+      -121,
+      -124,
+      -125
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,w)",
+      "not rowHit(a2,b,u3)",
+      "not rowHit(a2,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 489,
+    "literals": [
+      -155,
+      -121,
+      -124,
+      -126
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,w)",
+      "not rowHit(a2,b,u3)",
+      "not rowHit(a2,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 490,
+    "literals": [
+      -155,
+      -121,
+      -125,
+      -126
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,w)",
+      "not rowHit(a2,b,s1)",
+      "not rowHit(a2,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 491,
+    "literals": [
+      -155,
+      -122,
+      -123,
+      -124
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,u1)",
+      "not rowHit(a2,b,u2)",
+      "not rowHit(a2,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 492,
+    "literals": [
+      -155,
+      -122,
+      -123,
+      -125
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,u1)",
+      "not rowHit(a2,b,u2)",
+      "not rowHit(a2,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 493,
+    "literals": [
+      -155,
+      -122,
+      -123,
+      -126
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,u1)",
+      "not rowHit(a2,b,u2)",
+      "not rowHit(a2,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 494,
+    "literals": [
+      -155,
+      -122,
+      -124,
+      -125
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,u1)",
+      "not rowHit(a2,b,u3)",
+      "not rowHit(a2,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 495,
+    "literals": [
+      -155,
+      -122,
+      -124,
+      -126
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,u1)",
+      "not rowHit(a2,b,u3)",
+      "not rowHit(a2,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 496,
+    "literals": [
+      -155,
+      -122,
+      -125,
+      -126
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,u1)",
+      "not rowHit(a2,b,s1)",
+      "not rowHit(a2,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 497,
+    "literals": [
+      -155,
+      -123,
+      -124,
+      -125
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,u2)",
+      "not rowHit(a2,b,u3)",
+      "not rowHit(a2,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 498,
+    "literals": [
+      -155,
+      -123,
+      -124,
+      -126
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,u2)",
+      "not rowHit(a2,b,u3)",
+      "not rowHit(a2,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 499,
+    "literals": [
+      -155,
+      -123,
+      -125,
+      -126
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,u2)",
+      "not rowHit(a2,b,s1)",
+      "not rowHit(a2,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 500,
+    "literals": [
+      -155,
+      -124,
+      -125,
+      -126
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not rowHit(a2,b,u3)",
+      "not rowHit(a2,b,s1)",
+      "not rowHit(a2,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 501,
+    "literals": [
+      -157,
+      -127,
+      -128,
+      -129
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,q)",
+      "not rowHit(bq,bw,w)",
+      "not rowHit(bq,bw,u1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 502,
+    "literals": [
+      -157,
+      -127,
+      -128,
+      -130
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,q)",
+      "not rowHit(bq,bw,w)",
+      "not rowHit(bq,bw,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 503,
+    "literals": [
+      -157,
+      -127,
+      -128,
+      -131
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,q)",
+      "not rowHit(bq,bw,w)",
+      "not rowHit(bq,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 504,
+    "literals": [
+      -157,
+      -127,
+      -128,
+      -132
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,q)",
+      "not rowHit(bq,bw,w)",
+      "not rowHit(bq,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 505,
+    "literals": [
+      -157,
+      -127,
+      -128,
+      -133
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,q)",
+      "not rowHit(bq,bw,w)",
+      "not rowHit(bq,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 506,
+    "literals": [
+      -157,
+      -127,
+      -129,
+      -130
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,q)",
+      "not rowHit(bq,bw,u1)",
+      "not rowHit(bq,bw,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 507,
+    "literals": [
+      -157,
+      -127,
+      -129,
+      -131
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,q)",
+      "not rowHit(bq,bw,u1)",
+      "not rowHit(bq,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 508,
+    "literals": [
+      -157,
+      -127,
+      -129,
+      -132
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,q)",
+      "not rowHit(bq,bw,u1)",
+      "not rowHit(bq,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 509,
+    "literals": [
+      -157,
+      -127,
+      -129,
+      -133
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,q)",
+      "not rowHit(bq,bw,u1)",
+      "not rowHit(bq,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 510,
+    "literals": [
+      -157,
+      -127,
+      -130,
+      -131
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,q)",
+      "not rowHit(bq,bw,u2)",
+      "not rowHit(bq,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 511,
+    "literals": [
+      -157,
+      -127,
+      -130,
+      -132
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,q)",
+      "not rowHit(bq,bw,u2)",
+      "not rowHit(bq,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 512,
+    "literals": [
+      -157,
+      -127,
+      -130,
+      -133
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,q)",
+      "not rowHit(bq,bw,u2)",
+      "not rowHit(bq,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 513,
+    "literals": [
+      -157,
+      -127,
+      -131,
+      -132
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,q)",
+      "not rowHit(bq,bw,u3)",
+      "not rowHit(bq,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 514,
+    "literals": [
+      -157,
+      -127,
+      -131,
+      -133
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,q)",
+      "not rowHit(bq,bw,u3)",
+      "not rowHit(bq,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 515,
+    "literals": [
+      -157,
+      -127,
+      -132,
+      -133
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,q)",
+      "not rowHit(bq,bw,s1)",
+      "not rowHit(bq,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 516,
+    "literals": [
+      -157,
+      -128,
+      -129,
+      -130
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,w)",
+      "not rowHit(bq,bw,u1)",
+      "not rowHit(bq,bw,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 517,
+    "literals": [
+      -157,
+      -128,
+      -129,
+      -131
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,w)",
+      "not rowHit(bq,bw,u1)",
+      "not rowHit(bq,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 518,
+    "literals": [
+      -157,
+      -128,
+      -129,
+      -132
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,w)",
+      "not rowHit(bq,bw,u1)",
+      "not rowHit(bq,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 519,
+    "literals": [
+      -157,
+      -128,
+      -129,
+      -133
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,w)",
+      "not rowHit(bq,bw,u1)",
+      "not rowHit(bq,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 520,
+    "literals": [
+      -157,
+      -128,
+      -130,
+      -131
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,w)",
+      "not rowHit(bq,bw,u2)",
+      "not rowHit(bq,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 521,
+    "literals": [
+      -157,
+      -128,
+      -130,
+      -132
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,w)",
+      "not rowHit(bq,bw,u2)",
+      "not rowHit(bq,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 522,
+    "literals": [
+      -157,
+      -128,
+      -130,
+      -133
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,w)",
+      "not rowHit(bq,bw,u2)",
+      "not rowHit(bq,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 523,
+    "literals": [
+      -157,
+      -128,
+      -131,
+      -132
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,w)",
+      "not rowHit(bq,bw,u3)",
+      "not rowHit(bq,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 524,
+    "literals": [
+      -157,
+      -128,
+      -131,
+      -133
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,w)",
+      "not rowHit(bq,bw,u3)",
+      "not rowHit(bq,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 525,
+    "literals": [
+      -157,
+      -128,
+      -132,
+      -133
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,w)",
+      "not rowHit(bq,bw,s1)",
+      "not rowHit(bq,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 526,
+    "literals": [
+      -157,
+      -129,
+      -130,
+      -131
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,u1)",
+      "not rowHit(bq,bw,u2)",
+      "not rowHit(bq,bw,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 527,
+    "literals": [
+      -157,
+      -129,
+      -130,
+      -132
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,u1)",
+      "not rowHit(bq,bw,u2)",
+      "not rowHit(bq,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 528,
+    "literals": [
+      -157,
+      -129,
+      -130,
+      -133
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,u1)",
+      "not rowHit(bq,bw,u2)",
+      "not rowHit(bq,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 529,
+    "literals": [
+      -157,
+      -129,
+      -131,
+      -132
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,u1)",
+      "not rowHit(bq,bw,u3)",
+      "not rowHit(bq,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 530,
+    "literals": [
+      -157,
+      -129,
+      -131,
+      -133
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,u1)",
+      "not rowHit(bq,bw,u3)",
+      "not rowHit(bq,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 531,
+    "literals": [
+      -157,
+      -129,
+      -132,
+      -133
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,u1)",
+      "not rowHit(bq,bw,s1)",
+      "not rowHit(bq,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 532,
+    "literals": [
+      -157,
+      -130,
+      -131,
+      -132
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,u2)",
+      "not rowHit(bq,bw,u3)",
+      "not rowHit(bq,bw,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 533,
+    "literals": [
+      -157,
+      -130,
+      -131,
+      -133
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,u2)",
+      "not rowHit(bq,bw,u3)",
+      "not rowHit(bq,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 534,
+    "literals": [
+      -157,
+      -130,
+      -132,
+      -133
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,u2)",
+      "not rowHit(bq,bw,s1)",
+      "not rowHit(bq,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 535,
+    "literals": [
+      -157,
+      -131,
+      -132,
+      -133
+    ],
+    "named_literals": [
+      "not distinct(bq,bw)",
+      "not rowHit(bq,bw,u3)",
+      "not rowHit(bq,bw,s1)",
+      "not rowHit(bq,bw,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 536,
+    "literals": [
+      -158,
+      -134,
+      -135,
+      -136
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,q)",
+      "not rowHit(bq,b,w)",
+      "not rowHit(bq,b,u1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 537,
+    "literals": [
+      -158,
+      -134,
+      -135,
+      -137
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,q)",
+      "not rowHit(bq,b,w)",
+      "not rowHit(bq,b,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 538,
+    "literals": [
+      -158,
+      -134,
+      -135,
+      -138
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,q)",
+      "not rowHit(bq,b,w)",
+      "not rowHit(bq,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 539,
+    "literals": [
+      -158,
+      -134,
+      -135,
+      -139
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,q)",
+      "not rowHit(bq,b,w)",
+      "not rowHit(bq,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 540,
+    "literals": [
+      -158,
+      -134,
+      -135,
+      -140
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,q)",
+      "not rowHit(bq,b,w)",
+      "not rowHit(bq,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 541,
+    "literals": [
+      -158,
+      -134,
+      -136,
+      -137
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,q)",
+      "not rowHit(bq,b,u1)",
+      "not rowHit(bq,b,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 542,
+    "literals": [
+      -158,
+      -134,
+      -136,
+      -138
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,q)",
+      "not rowHit(bq,b,u1)",
+      "not rowHit(bq,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 543,
+    "literals": [
+      -158,
+      -134,
+      -136,
+      -139
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,q)",
+      "not rowHit(bq,b,u1)",
+      "not rowHit(bq,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 544,
+    "literals": [
+      -158,
+      -134,
+      -136,
+      -140
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,q)",
+      "not rowHit(bq,b,u1)",
+      "not rowHit(bq,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 545,
+    "literals": [
+      -158,
+      -134,
+      -137,
+      -138
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,q)",
+      "not rowHit(bq,b,u2)",
+      "not rowHit(bq,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 546,
+    "literals": [
+      -158,
+      -134,
+      -137,
+      -139
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,q)",
+      "not rowHit(bq,b,u2)",
+      "not rowHit(bq,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 547,
+    "literals": [
+      -158,
+      -134,
+      -137,
+      -140
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,q)",
+      "not rowHit(bq,b,u2)",
+      "not rowHit(bq,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 548,
+    "literals": [
+      -158,
+      -134,
+      -138,
+      -139
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,q)",
+      "not rowHit(bq,b,u3)",
+      "not rowHit(bq,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 549,
+    "literals": [
+      -158,
+      -134,
+      -138,
+      -140
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,q)",
+      "not rowHit(bq,b,u3)",
+      "not rowHit(bq,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 550,
+    "literals": [
+      -158,
+      -134,
+      -139,
+      -140
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,q)",
+      "not rowHit(bq,b,s1)",
+      "not rowHit(bq,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 551,
+    "literals": [
+      -158,
+      -135,
+      -136,
+      -137
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,w)",
+      "not rowHit(bq,b,u1)",
+      "not rowHit(bq,b,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 552,
+    "literals": [
+      -158,
+      -135,
+      -136,
+      -138
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,w)",
+      "not rowHit(bq,b,u1)",
+      "not rowHit(bq,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 553,
+    "literals": [
+      -158,
+      -135,
+      -136,
+      -139
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,w)",
+      "not rowHit(bq,b,u1)",
+      "not rowHit(bq,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 554,
+    "literals": [
+      -158,
+      -135,
+      -136,
+      -140
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,w)",
+      "not rowHit(bq,b,u1)",
+      "not rowHit(bq,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 555,
+    "literals": [
+      -158,
+      -135,
+      -137,
+      -138
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,w)",
+      "not rowHit(bq,b,u2)",
+      "not rowHit(bq,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 556,
+    "literals": [
+      -158,
+      -135,
+      -137,
+      -139
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,w)",
+      "not rowHit(bq,b,u2)",
+      "not rowHit(bq,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 557,
+    "literals": [
+      -158,
+      -135,
+      -137,
+      -140
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,w)",
+      "not rowHit(bq,b,u2)",
+      "not rowHit(bq,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 558,
+    "literals": [
+      -158,
+      -135,
+      -138,
+      -139
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,w)",
+      "not rowHit(bq,b,u3)",
+      "not rowHit(bq,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 559,
+    "literals": [
+      -158,
+      -135,
+      -138,
+      -140
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,w)",
+      "not rowHit(bq,b,u3)",
+      "not rowHit(bq,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 560,
+    "literals": [
+      -158,
+      -135,
+      -139,
+      -140
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,w)",
+      "not rowHit(bq,b,s1)",
+      "not rowHit(bq,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 561,
+    "literals": [
+      -158,
+      -136,
+      -137,
+      -138
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,u1)",
+      "not rowHit(bq,b,u2)",
+      "not rowHit(bq,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 562,
+    "literals": [
+      -158,
+      -136,
+      -137,
+      -139
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,u1)",
+      "not rowHit(bq,b,u2)",
+      "not rowHit(bq,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 563,
+    "literals": [
+      -158,
+      -136,
+      -137,
+      -140
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,u1)",
+      "not rowHit(bq,b,u2)",
+      "not rowHit(bq,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 564,
+    "literals": [
+      -158,
+      -136,
+      -138,
+      -139
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,u1)",
+      "not rowHit(bq,b,u3)",
+      "not rowHit(bq,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 565,
+    "literals": [
+      -158,
+      -136,
+      -138,
+      -140
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,u1)",
+      "not rowHit(bq,b,u3)",
+      "not rowHit(bq,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 566,
+    "literals": [
+      -158,
+      -136,
+      -139,
+      -140
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,u1)",
+      "not rowHit(bq,b,s1)",
+      "not rowHit(bq,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 567,
+    "literals": [
+      -158,
+      -137,
+      -138,
+      -139
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,u2)",
+      "not rowHit(bq,b,u3)",
+      "not rowHit(bq,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 568,
+    "literals": [
+      -158,
+      -137,
+      -138,
+      -140
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,u2)",
+      "not rowHit(bq,b,u3)",
+      "not rowHit(bq,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 569,
+    "literals": [
+      -158,
+      -137,
+      -139,
+      -140
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,u2)",
+      "not rowHit(bq,b,s1)",
+      "not rowHit(bq,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 570,
+    "literals": [
+      -158,
+      -138,
+      -139,
+      -140
+    ],
+    "named_literals": [
+      "not distinct(bq,b)",
+      "not rowHit(bq,b,u3)",
+      "not rowHit(bq,b,s1)",
+      "not rowHit(bq,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 571,
+    "literals": [
+      -160,
+      -141,
+      -142,
+      -143
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,q)",
+      "not rowHit(bw,b,w)",
+      "not rowHit(bw,b,u1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 572,
+    "literals": [
+      -160,
+      -141,
+      -142,
+      -144
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,q)",
+      "not rowHit(bw,b,w)",
+      "not rowHit(bw,b,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 573,
+    "literals": [
+      -160,
+      -141,
+      -142,
+      -145
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,q)",
+      "not rowHit(bw,b,w)",
+      "not rowHit(bw,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 574,
+    "literals": [
+      -160,
+      -141,
+      -142,
+      -146
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,q)",
+      "not rowHit(bw,b,w)",
+      "not rowHit(bw,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 575,
+    "literals": [
+      -160,
+      -141,
+      -142,
+      -147
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,q)",
+      "not rowHit(bw,b,w)",
+      "not rowHit(bw,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 576,
+    "literals": [
+      -160,
+      -141,
+      -143,
+      -144
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,q)",
+      "not rowHit(bw,b,u1)",
+      "not rowHit(bw,b,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 577,
+    "literals": [
+      -160,
+      -141,
+      -143,
+      -145
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,q)",
+      "not rowHit(bw,b,u1)",
+      "not rowHit(bw,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 578,
+    "literals": [
+      -160,
+      -141,
+      -143,
+      -146
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,q)",
+      "not rowHit(bw,b,u1)",
+      "not rowHit(bw,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 579,
+    "literals": [
+      -160,
+      -141,
+      -143,
+      -147
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,q)",
+      "not rowHit(bw,b,u1)",
+      "not rowHit(bw,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 580,
+    "literals": [
+      -160,
+      -141,
+      -144,
+      -145
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,q)",
+      "not rowHit(bw,b,u2)",
+      "not rowHit(bw,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 581,
+    "literals": [
+      -160,
+      -141,
+      -144,
+      -146
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,q)",
+      "not rowHit(bw,b,u2)",
+      "not rowHit(bw,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 582,
+    "literals": [
+      -160,
+      -141,
+      -144,
+      -147
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,q)",
+      "not rowHit(bw,b,u2)",
+      "not rowHit(bw,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 583,
+    "literals": [
+      -160,
+      -141,
+      -145,
+      -146
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,q)",
+      "not rowHit(bw,b,u3)",
+      "not rowHit(bw,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 584,
+    "literals": [
+      -160,
+      -141,
+      -145,
+      -147
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,q)",
+      "not rowHit(bw,b,u3)",
+      "not rowHit(bw,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 585,
+    "literals": [
+      -160,
+      -141,
+      -146,
+      -147
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,q)",
+      "not rowHit(bw,b,s1)",
+      "not rowHit(bw,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 586,
+    "literals": [
+      -160,
+      -142,
+      -143,
+      -144
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,w)",
+      "not rowHit(bw,b,u1)",
+      "not rowHit(bw,b,u2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 587,
+    "literals": [
+      -160,
+      -142,
+      -143,
+      -145
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,w)",
+      "not rowHit(bw,b,u1)",
+      "not rowHit(bw,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 588,
+    "literals": [
+      -160,
+      -142,
+      -143,
+      -146
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,w)",
+      "not rowHit(bw,b,u1)",
+      "not rowHit(bw,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 589,
+    "literals": [
+      -160,
+      -142,
+      -143,
+      -147
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,w)",
+      "not rowHit(bw,b,u1)",
+      "not rowHit(bw,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 590,
+    "literals": [
+      -160,
+      -142,
+      -144,
+      -145
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,w)",
+      "not rowHit(bw,b,u2)",
+      "not rowHit(bw,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 591,
+    "literals": [
+      -160,
+      -142,
+      -144,
+      -146
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,w)",
+      "not rowHit(bw,b,u2)",
+      "not rowHit(bw,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 592,
+    "literals": [
+      -160,
+      -142,
+      -144,
+      -147
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,w)",
+      "not rowHit(bw,b,u2)",
+      "not rowHit(bw,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 593,
+    "literals": [
+      -160,
+      -142,
+      -145,
+      -146
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,w)",
+      "not rowHit(bw,b,u3)",
+      "not rowHit(bw,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 594,
+    "literals": [
+      -160,
+      -142,
+      -145,
+      -147
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,w)",
+      "not rowHit(bw,b,u3)",
+      "not rowHit(bw,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 595,
+    "literals": [
+      -160,
+      -142,
+      -146,
+      -147
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,w)",
+      "not rowHit(bw,b,s1)",
+      "not rowHit(bw,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 596,
+    "literals": [
+      -160,
+      -143,
+      -144,
+      -145
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,u1)",
+      "not rowHit(bw,b,u2)",
+      "not rowHit(bw,b,u3)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 597,
+    "literals": [
+      -160,
+      -143,
+      -144,
+      -146
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,u1)",
+      "not rowHit(bw,b,u2)",
+      "not rowHit(bw,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 598,
+    "literals": [
+      -160,
+      -143,
+      -144,
+      -147
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,u1)",
+      "not rowHit(bw,b,u2)",
+      "not rowHit(bw,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 599,
+    "literals": [
+      -160,
+      -143,
+      -145,
+      -146
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,u1)",
+      "not rowHit(bw,b,u3)",
+      "not rowHit(bw,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 600,
+    "literals": [
+      -160,
+      -143,
+      -145,
+      -147
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,u1)",
+      "not rowHit(bw,b,u3)",
+      "not rowHit(bw,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 601,
+    "literals": [
+      -160,
+      -143,
+      -146,
+      -147
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,u1)",
+      "not rowHit(bw,b,s1)",
+      "not rowHit(bw,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 602,
+    "literals": [
+      -160,
+      -144,
+      -145,
+      -146
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,u2)",
+      "not rowHit(bw,b,u3)",
+      "not rowHit(bw,b,s1)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 603,
+    "literals": [
+      -160,
+      -144,
+      -145,
+      -147
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,u2)",
+      "not rowHit(bw,b,u3)",
+      "not rowHit(bw,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 604,
+    "literals": [
+      -160,
+      -144,
+      -146,
+      -147
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,u2)",
+      "not rowHit(bw,b,s1)",
+      "not rowHit(bw,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 605,
+    "literals": [
+      -160,
+      -145,
+      -146,
+      -147
+    ],
+    "named_literals": [
+      "not distinct(bw,b)",
+      "not rowHit(bw,b,u3)",
+      "not rowHit(bw,b,s1)",
+      "not rowHit(bw,b,s2)"
+    ],
+    "rule": "circleIntersection.atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 606,
+    "literals": [
+      -148,
+      -151,
+      -155,
+      -163,
+      -164,
+      -165
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not distinct(a1,b)",
+      "not distinct(a2,b)",
+      "not bis(q,w;a1)",
+      "not bis(q,w;a2)",
+      "not bis(q,w;b)"
+    ],
+    "rule": "perpBisector.carrier_atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 607,
+    "literals": [
+      -148,
+      -152,
+      -156,
+      -163,
+      -164,
+      -166
+    ],
+    "named_literals": [
+      "not distinct(a1,a2)",
+      "not distinct(a1,c3)",
+      "not distinct(a2,c3)",
+      "not bis(q,w;a1)",
+      "not bis(q,w;a2)",
+      "not bis(q,w;c3)"
+    ],
+    "rule": "perpBisector.carrier_atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 608,
+    "literals": [
+      -151,
+      -152,
+      -162,
+      -163,
+      -165,
+      -166
+    ],
+    "named_literals": [
+      "not distinct(a1,b)",
+      "not distinct(a1,c3)",
+      "not distinct(b,c3)",
+      "not bis(q,w;a1)",
+      "not bis(q,w;b)",
+      "not bis(q,w;c3)"
+    ],
+    "rule": "perpBisector.carrier_atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 609,
+    "literals": [
+      -155,
+      -156,
+      -162,
+      -164,
+      -165,
+      -166
+    ],
+    "named_literals": [
+      "not distinct(a2,b)",
+      "not distinct(a2,c3)",
+      "not distinct(b,c3)",
+      "not bis(q,w;a2)",
+      "not bis(q,w;b)",
+      "not bis(q,w;c3)"
+    ],
+    "rule": "perpBisector.carrier_atMostTwo",
+    "tag": "GEOM"
+  },
+  {
+    "clause": 610,
+    "literals": [
+      148
+    ],
+    "named_literals": [
+      "distinct(a1,a2)"
+    ],
+    "rule": "D4.a1_a2_b_pairwise_ne",
+    "tag": "BANKED"
+  },
+  {
+    "clause": 611,
+    "literals": [
+      151
+    ],
+    "named_literals": [
+      "distinct(a1,b)"
+    ],
+    "rule": "D4.a1_a2_b_pairwise_ne",
+    "tag": "BANKED"
+  },
+  {
+    "clause": 612,
+    "literals": [
+      155
+    ],
+    "named_literals": [
+      "distinct(a2,b)"
+    ],
+    "rule": "D4.a1_a2_b_pairwise_ne",
+    "tag": "BANKED"
+  },
+  {
+    "clause": 613,
+    "literals": [
+      -32
+    ],
+    "named_literals": [
+      "not K1(del=q,center=b)"
+    ],
+    "rule": "D4.common_blocker.no_qfree_q",
+    "tag": "HYP"
+  },
+  {
+    "clause": 614,
+    "literals": [
+      -37
+    ],
+    "named_literals": [
+      "not K1(del=w,center=b)"
+    ],
+    "rule": "D4.common_blocker.no_qfree_w",
+    "tag": "HYP"
+  },
+  {
+    "clause": 615,
+    "literals": [
+      171
+    ],
+    "named_literals": [
+      "inFirstCapInterior(b)"
+    ],
+    "rule": "D4.common_blocker.in_first_cap",
+    "tag": "HYP"
+  },
+  {
+    "clause": 616,
+    "literals": [
+      -172
+    ],
+    "named_literals": [
+      "not inSurplus(b)"
+    ],
+    "rule": "D4.common_blocker.not_surplus",
+    "tag": "HYP"
+  },
+  {
+    "clause": 617,
+    "literals": [
+      71
+    ],
+    "named_literals": [
+      "row(b,q)"
+    ],
+    "rule": "D4.mutual_cross_membership.q",
+    "tag": "HYP"
+  },
+  {
+    "clause": 618,
+    "literals": [
+      72
+    ],
+    "named_literals": [
+      "row(b,w)"
+    ],
+    "rule": "D4.mutual_cross_membership.w",
+    "tag": "HYP"
+  },
+  {
+    "clause": 619,
+    "literals": [
+      76
+    ],
+    "named_literals": [
+      "row(b,s1)"
+    ],
+    "rule": "D4.sharedRow.third_member",
+    "tag": "BANKED"
+  },
+  {
+    "clause": 620,
+    "literals": [
+      77
+    ],
+    "named_literals": [
+      "row(b,s2)"
+    ],
+    "rule": "D4.sharedRow.fourth_member",
+    "tag": "BANKED"
+  },
+  {
+    "clause": 621,
+    "literals": [
+      165
+    ],
+    "named_literals": [
+      "bis(q,w;b)"
+    ],
+    "rule": "D4.mutual_membership.common_is_bisector",
+    "tag": "DERIVED"
+  },
+  {
+    "clause": 622,
+    "literals": [
+      -164
+    ],
+    "named_literals": [
+      "not bis(q,w;a2)"
+    ],
+    "rule": "D4.no_third.named_a2",
+    "tag": "BANKED"
+  },
+  {
+    "clause": 623,
+    "literals": [
+      28,
+      33
+    ],
+    "named_literals": [
+      "K1(del=q,center=a1)",
+      "K1(del=w,center=a1)"
+    ],
+    "rule": "D4.global_cover.named_a1",
+    "tag": "BANKED"
+  },
+  {
+    "clause": 624,
+    "literals": [
+      29,
+      34
+    ],
+    "named_literals": [
+      "K1(del=q,center=a2)",
+      "K1(del=w,center=a2)"
+    ],
+    "rule": "D4.global_cover.named_a2",
+    "tag": "BANKED"
+  }
+]

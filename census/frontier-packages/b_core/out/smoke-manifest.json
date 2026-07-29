@@ -1,0 +1,86 @@
+{
+  "cases": [
+    {
+      "case": "third-bisector",
+      "clause_tags": [
+        "SMOKE-direct:Bis(b1)",
+        "SMOKE-direct:Bis(a2)",
+        "SMOKE-direct:Ne(b1,a2)",
+        "SMOKE-direct:Bis(t)",
+        "SMOKE-direct:Ne(t,b1)",
+        "SMOKE-direct:Ne(t,a2)",
+        "SMOKE-bank:apex-at-most-two-bisectors"
+      ],
+      "cnf_file": "out/smoke-third-bisector.cnf",
+      "n_clauses": 7,
+      "n_variables": 6,
+      "omitted_unit": null,
+      "proof_verified": true,
+      "verdict": "UNSAT",
+      "wall_seconds": 0.029
+    },
+    {
+      "case": "drop-Bis-t",
+      "clause_tags": [
+        "SMOKE-direct:Bis(b1)",
+        "SMOKE-direct:Bis(a2)",
+        "SMOKE-direct:Ne(b1,a2)",
+        "SMOKE-direct:Ne(t,b1)",
+        "SMOKE-direct:Ne(t,a2)",
+        "SMOKE-bank:apex-at-most-two-bisectors"
+      ],
+      "cnf_file": "out/smoke-drop-Bis-t.cnf",
+      "model_file": "out/smoke-drop-Bis-t.model.json",
+      "n_clauses": 6,
+      "n_variables": 6,
+      "omitted_atom_false_in_model": true,
+      "omitted_unit": "Bis(t)",
+      "proof_verified": false,
+      "verdict": "SAT",
+      "wall_seconds": 0.005
+    },
+    {
+      "case": "drop-Ne-t-b1",
+      "clause_tags": [
+        "SMOKE-direct:Bis(b1)",
+        "SMOKE-direct:Bis(a2)",
+        "SMOKE-direct:Ne(b1,a2)",
+        "SMOKE-direct:Bis(t)",
+        "SMOKE-direct:Ne(t,a2)",
+        "SMOKE-bank:apex-at-most-two-bisectors"
+      ],
+      "cnf_file": "out/smoke-drop-Ne-t-b1.cnf",
+      "model_file": "out/smoke-drop-Ne-t-b1.model.json",
+      "n_clauses": 6,
+      "n_variables": 6,
+      "omitted_atom_false_in_model": true,
+      "omitted_unit": "Ne(t,b1)",
+      "proof_verified": false,
+      "verdict": "SAT",
+      "wall_seconds": 0.005
+    },
+    {
+      "case": "drop-Ne-t-a2",
+      "clause_tags": [
+        "SMOKE-direct:Bis(b1)",
+        "SMOKE-direct:Bis(a2)",
+        "SMOKE-direct:Ne(b1,a2)",
+        "SMOKE-direct:Bis(t)",
+        "SMOKE-direct:Ne(t,b1)",
+        "SMOKE-bank:apex-at-most-two-bisectors"
+      ],
+      "cnf_file": "out/smoke-drop-Ne-t-a2.cnf",
+      "model_file": "out/smoke-drop-Ne-t-a2.model.json",
+      "n_clauses": 6,
+      "n_variables": 6,
+      "omitted_atom_false_in_model": true,
+      "omitted_unit": "Ne(t,a2)",
+      "proof_verified": false,
+      "verdict": "SAT",
+      "wall_seconds": 0.005
+    }
+  ],
+  "note": "DRAT applies to the UNSAT full gate. SAT near-misses are checked by CaDiCaL models, including falsity of the omitted atom.",
+  "schema": "p97-b-core-third-bisector-smoke.v1",
+  "status": "PASS"
+}

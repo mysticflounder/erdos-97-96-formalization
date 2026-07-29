@@ -5,7 +5,95 @@
     "gate": "G-BASE",
     "pass": true,
     "verdict": "SAT",
-    "wall_seconds": 0.016
+    "wall_seconds": 0.018
+  },
+  "G-C69": {
+    "clause": [
+      -426,
+      -427
+    ],
+    "gate": "G-C69",
+    "pass": true,
+    "presence": {
+      "C1_occurrences": 1,
+      "C2_occurrences": 1,
+      "base_occurrences": 0,
+      "pass": true
+    },
+    "variants": [
+      {
+        "branch": "C1",
+        "expected": "SAT",
+        "pass": true,
+        "proof_verified": false,
+        "variant": "pre_c69_both_memberships",
+        "verdict": "SAT",
+        "wall_seconds": 0.017
+      },
+      {
+        "branch": "C1",
+        "expected": "UNSAT",
+        "pass": true,
+        "proof_verified": true,
+        "variant": "c69_both_memberships",
+        "verdict": "UNSAT",
+        "wall_seconds": 0.048
+      },
+      {
+        "branch": "C1",
+        "expected": "SAT",
+        "pass": true,
+        "proof_verified": false,
+        "variant": "c69_omit_qh_only",
+        "verdict": "SAT",
+        "wall_seconds": 0.018
+      },
+      {
+        "branch": "C1",
+        "expected": "SAT",
+        "pass": true,
+        "proof_verified": false,
+        "variant": "c69_omit_wh_only",
+        "verdict": "SAT",
+        "wall_seconds": 0.017
+      },
+      {
+        "branch": "C2",
+        "expected": "SAT",
+        "pass": true,
+        "proof_verified": false,
+        "variant": "pre_c69_both_memberships",
+        "verdict": "SAT",
+        "wall_seconds": 0.017
+      },
+      {
+        "branch": "C2",
+        "expected": "UNSAT",
+        "pass": true,
+        "proof_verified": true,
+        "variant": "c69_both_memberships",
+        "verdict": "UNSAT",
+        "wall_seconds": 0.05
+      },
+      {
+        "branch": "C2",
+        "expected": "SAT",
+        "pass": true,
+        "proof_verified": false,
+        "variant": "c69_omit_qh_only",
+        "verdict": "SAT",
+        "wall_seconds": 0.018
+      },
+      {
+        "branch": "C2",
+        "expected": "SAT",
+        "pass": true,
+        "proof_verified": false,
+        "variant": "c69_omit_wh_only",
+        "verdict": "SAT",
+        "wall_seconds": 0.017
+      }
+    ]
   },
   "G-EXCL-del-triple": {
     "expected": "UNSAT",
@@ -13,7 +101,7 @@
     "pass": true,
     "proof_verified": true,
     "verdict": "UNSAT",
-    "wall_seconds": 0.044
+    "wall_seconds": 0.05
   },
   "G-EXCL-srcU": {
     "expected": "UNSAT",
@@ -21,7 +109,7 @@
     "pass": true,
     "proof_verified": true,
     "verdict": "UNSAT",
-    "wall_seconds": 0.045
+    "wall_seconds": 0.05
   },
   "G-PROBES": {
     "gate": "G-PROBES",
@@ -33,7 +121,7 @@
         "probe": "P-SRC",
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.045
+        "wall_seconds": 0.049
       },
       {
         "expected": "UNSAT",
@@ -41,7 +129,7 @@
         "probe": "P-COL",
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.046
+        "wall_seconds": 0.05
       },
       {
         "expected": "UNSAT",
@@ -49,7 +137,7 @@
         "probe": "P-E5C",
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.046
+        "wall_seconds": 0.05
       },
       {
         "expected": "UNSAT",
@@ -57,7 +145,7 @@
         "probe": "P-E8-src",
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.046
+        "wall_seconds": 0.049
       }
     ]
   },
@@ -70,6 +158,6 @@
     "pass": true,
     "variant": "hand-built-total-assignment (spec section 7 default for C)",
     "verdict": "SAT",
-    "wall_seconds": 0.016
+    "wall_seconds": 0.018
   }
 }

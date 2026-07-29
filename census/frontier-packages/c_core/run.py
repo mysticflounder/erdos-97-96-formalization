@@ -1,11 +1,13 @@
 """CLI driving the C-core Layer-1 incidence runs (spec section 6).
 
 Runs, in order:
-  1. base      -- (C0)-(C8) families, minus (DEL2)/(DEL3)
-  2. base+C1   -- base + leaf C1 delta (~srcU, (DEL2), (DEL3), placement)
-                  -- a package verdict run
-  3. base+C2   -- base + leaf C2 delta (fresh label P, (COL), (COL-E8),
-                  (E5C), built last) -- a package verdict run
+  1. base      -- abstract/common (C0)-(C8) families, minus physical C6.9
+                  and minus (DEL2)/(DEL3)
+  2. base+C1   -- base + physical leaf C1 delta (C6.9, ~srcU, (DEL2),
+                  (DEL3), placement) -- a package verdict run
+  3. base+C2   -- base + physical leaf C2 delta (C6.9, fresh label P,
+                  (COL), (COL-E8), (E5C), built last) -- a package verdict
+                  run
 
 There is no shared-context run: the two leaves ARE the two verdicts (C spec
 section 6, unlike A's shared base+P).
@@ -90,7 +92,7 @@ def main() -> int:
 
     manifest: list[dict[str, Any]] = []
 
-    # 1. base
+    # 1. abstract/common base (physical-branch C6.9 is deliberately absent)
     base_record = run_one(encoder, "base", list(encoder.base_clauses), [], args.timeout_seconds)
     manifest.append(base_record)
 
@@ -101,14 +103,15 @@ def main() -> int:
     # docstring.
     del3_extra = encoder.build_del3_clauses()
 
-    # 2. base+C1
+    # 2. base+C1 physical verdict (leaf delta includes C6.9)
     c1_extra = encoder.leaf_c1_delta_clauses(del3_extra)
     c1_record = run_one(
         encoder, "base+C1", list(encoder.base_clauses), c1_extra, args.timeout_seconds
     )
     manifest.append(c1_record)
 
-    # 3. base+C2 (built last: mutates encoder.cnf past base_clauses)
+    # 3. base+C2 physical verdict (includes C6.9; built last because the
+    # fresh-P extension mutates encoder.cnf past base_clauses)
     c2_extra = encoder.build_leaf_c2_extension()
     c2_record = run_one(
         encoder, "base+C2", list(encoder.base_clauses), c2_extra, args.timeout_seconds

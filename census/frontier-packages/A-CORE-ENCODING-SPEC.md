@@ -1,4 +1,4 @@
-# A-core Layer-1 incidence encoding — specification (2026-07-28, v1.2)
+# A-core Layer-1 incidence encoding — specification (2026-07-28, v1.3)
 
 Session-1 artifact of `docs/computational-closure-plan-2026-07-28.md` (§4, §5
 row 1, §8). Source of truth for the hypotheses:
@@ -98,7 +98,8 @@ O₂°) and `moser(p)`:
   existing eq atoms; if p has no eq atom to any of the four, cl1(p)=F).
 
 **Physical class** `inT(p)` (p ∈ 𝒯 = Cl(a₂,ρ)):
-- Units: inT(zd)=inT(u)=inT(xu)=inT(v)=inT(xv)=T (G1)+Remark; inT(a2)=F (B3).
+- Units: inT(zd)=inT(u)=inT(xu)=inT(v)=inT(xv)=T
+  (G1)+Remark; **inT(oth)=T (C6)**; inT(a2)=F (B3).
 - (T1) exactness [(B9)+(G1)]: for every other label p: inT(p) →
   ⋁ eq(p,t) over t ∈ {zd,u,xu,v,xv} with an existing eq atom (else inT(p)=F).
 
@@ -243,14 +244,14 @@ dumped as a single `manifest.json`.
 
 ## 7. Omitted hypotheses (CEGAR backlog — sound to omit)
 
-Still omitted after iteration 2 (§9): (S1) ingress packet beyond (N8)/(FB)
+Still omitted after iteration 3 (§10): (S1) ingress packet beyond (N8)/(FB)
 (the CD(z*;·,·) packet's own witness sets are unlabeled); F-chain labels
 q̄,w̄ as first-class points beyond the (FB) selector; (E1) minimality; (E2)
 no-(m,4,4); (E6) beyond the (BM4) pattern (at this layer E6 only re-derives
-E5-shaped content — no independent atoms exist for K4(A∖{x};a₁)); (C10)
-(needs K4-at-β(u) atoms; the witness 4-set need not be Row(u), so no sound
-projection onto current atoms); S5(b)'s inner 4-set structure (moot — s5b
-refuted). Discharged with NO content at this layer: (G6) — under 𝔓 (γ=a₂)
+E5-shaped content — no independent atoms exist for K4(A∖{x};a₁));
+S5(b)'s inner 4-set structure (moot — s5b refuted). C10 is no longer
+omitted: its exact full-distance-class projection is promoted in §11.
+Discharged with NO content at this layer: (G6) — under 𝔓 (γ=a₂)
 its first arm is automatic (any two Δ-members are coradial about a₂ at ρ);
 under A1, (A1.b) grants the MC arm outright.
 
@@ -372,3 +373,56 @@ a labeled point; counting it would double-count — sound omission).
 - Verdict reruns: all 8 runs of §5 with the new families (DEL3 in the 𝔓
   runs only; E5/E8d/gamma-caps in base+A1 only; everything else in base).
   Record SAT/UNSAT + counts as before; decoded-model diffs for SAT runs.
+
+## 10. CEGAR iteration 3 (v1.3, 2026-07-28) — source-context repair
+
+The v1.2 base omitted the explicit source hypothesis `(C6)`
+`other ∈ 𝒯`. Add the base unit `inT(oth)`. With (T1) exactness this
+forces
+
+`eq(oth,zd) ∨ eq(oth,v) ∨ eq(oth,xv)`.
+
+This is a source-mandated repair, not a learned or symmetry-breaking
+clause. Labels may coincide, so no particular disjunct is asserted.
+
+### 10.1 Iteration-3 gates
+
+- **G-C6:** `base ∧ ¬inT(oth)` must be UNSAT with a verified DRAT proof.
+- Rerun G-BASE, G-EXCL, the four v1.2 probes, and every §5 verdict.
+- Revise G-SAT away from all-equalities-false generic position. A valid
+  auditable choice is `eq(oth,zd)=T`, with blocker targets chosen
+  consistently under source/target congruence and (BM2); the positive
+  gate must remain SAT.
+
+## 11. C10 full-distance-class projection (2026-07-29)
+
+The physical context identifies `u` with `source` by (P3). For a
+`CriticalShellSystem`, the kernel-checked theorem
+
+`Problem97.ATailCriticalPairFrontier.cross_deletion_survives_iff_not_mem_selected_support`
+
+states that, at a source blocker, a four-point equidistant class survives
+deletion of `w` exactly when `w` is absent from the selected exact critical
+four-shell support. Applying it to the `qh` and `wh` alternatives in (C10)
+projects those alternatives respectively to
+
+`¬row_u(qh)` and `¬row_u(wh)`.
+
+Thus the whole C10 disjunction projects exactly—not merely as a necessary
+weakening—to the single clause
+
+`¬row_u(qh) ∨ ¬row_u(wh)`.
+
+Tag this clause **physical/P3-only**. It is present in `base+P` and every
+`base+P+A<k>` leaf, but absent from `base` and `base+A1`, where `u` is not
+identified with the source. The projection allocates no new atom.
+
+### 11.1 C10 gate
+
+- The pre-C10 physical cube
+  `row_u(qh) ∧ row_u(wh)` must be SAT, showing the new result is not
+  inherited from an older clause family.
+- With C10 added, that same cube must be UNSAT with a verified DRAT proof.
+- Each individual omission branch remains admitted:
+  `¬row_u(qh) ∧ row_u(wh)` is SAT and
+  `row_u(qh) ∧ ¬row_u(wh)` is SAT.

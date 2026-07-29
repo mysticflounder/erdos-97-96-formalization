@@ -1,6 +1,7 @@
-"""Smoke gates for the A-core encoder (spec section 6, extended by section
-9.1 for CEGAR iteration 2 / v1.2), run IN ORDER: G-BASE, G-EXCL (all 10
-delta pairs), G-SAT (witness), G-PROBES (the four v1.2 probes).
+"""Smoke gates for the A-core encoder (spec section 6, extended by sections
+9.1, 10.1, and 11.1), run IN ORDER: G-BASE, G-C6, G-C10,
+G-EXCL (all 10 delta pairs), G-SAT (witness), G-PROBES (the four v1.2
+probes).
 
 Also runs the validation checks the dispatch called out explicitly:
   - (S5B)/(S5A) unit-propagates s5a (a direct 2-clause resolution check, not
@@ -9,7 +10,10 @@ Also runs the validation checks the dispatch called out explicitly:
     absent from base+A1's clause set.
   - (DEL3, v1.2) at-most-two clauses are present in base+P-shaped runs and
     absent from base's own clauses and from base+A1's clause set.
+  - (C10) the exact source-support clause is present in base+P-shaped runs,
+    absent from base/base+A1, and excludes only the double-membership cube.
   - G-EXCL's UNSAT clash is attributed to a specific clause family per pair.
+  - G-C6: base + ~inT(oth) is UNSAT with a verified DRAT proof (v1.3).
   - G-PROBES: P-DEL3, P-E8, P-FB, P-CD5, each expected UNSAT with a
     verified DRAT proof (spec section 9.1).
 
@@ -163,8 +167,8 @@ def hand_built_assumptions(encoder: "enc.ACoreEncoder") -> list[tuple[int, ...]]
     faithful label mapping exists, so per spec we hand-build a total
     assignment satisfying every section-2 family by construction instead.
 
-    This function fixes every semantically load-bearing atom explicitly (all
-    35 eq atoms false = "generic position", cap-interior placement for the
+    This function fixes every semantically load-bearing atom explicitly (one
+    source-mandated alias and every other eq atom false, cap-interior placement for the
     six non-unit non-Moser labels, the integer layer nSig=3/nO1=2/nO2=6 (with
     n=14 left to be DERIVED by (N1) rather than asserted, as an extra check
     that (N1) is wired correctly -- bumped from v1.1's nO2=5/n=13 per (N8)),
@@ -208,10 +212,11 @@ def hand_built_assumptions(encoder: "enc.ACoreEncoder") -> list[tuple[int, ...]]
     lit = lambda name, value: _lit(encoder, name, value)
     assumptions: list[tuple[int, ...]] = []
 
-    # Generic position: every eq atom false.
+    # v1.3 (C6)+(T1): `oth` must alias a member of the exact five-point
+    # physical class. Choose oth=zd; every other eq atom remains false.
     for pair in enc.EQ_PAIRS:
         p, q = sorted(pair)
-        assumptions.append(lit(f"eq({p},{q})", False))
+        assumptions.append(lit(f"eq({p},{q})", pair == frozenset(("oth", "zd"))))
 
     # Cap interiors for the six non-unit, non-Moser labels.
     for p in ("zd", "xu", "v", "xv"):
@@ -239,9 +244,12 @@ def hand_built_assumptions(encoder: "enc.ACoreEncoder") -> list[tuple[int, ...]]
     # Blocker-map targets (BM4-forced b(qh,a1),b(wh,a1) reasserted for
     # clarity even though they are already forced units given cl1(qh/wh)=T).
     assumptions.append(lit("b(u,xv)", True))
-    assumptions.append(lit("b(v,zd)", True))
+    # Avoid zd/oth as a target: target congruence would make both syntactic
+    # targets true and conflict with BM1's exactly-one encoding.
+    assumptions.append(lit("b(v,OUT)", True))
     assumptions.append(lit("b(zd,v)", True))
-    assumptions.append(lit("b(oth,zd)", True))
+    # Source congruence for oth=zd requires their blocker targets to agree.
+    assumptions.append(lit("b(oth,v)", True))
     assumptions.append(lit("b(qh,a1)", True))
     assumptions.append(lit("b(wh,a1)", True))
     assumptions.append(lit("b(xu,OUT)", True))
@@ -291,6 +299,47 @@ def check_del3_presence(
         "del3_clause_count": len(del3),
         "absent_from_base_clauses": not (del3 & set(encoder.base_clauses)),
         "absent_from_base_plus_A1": not (del3 & a1_extra),
+    }
+
+
+def check_c10_presence(
+    encoder: "enc.ACoreEncoder",
+    del3_extra: list[tuple[int, ...]],
+    a1_extra: set[tuple[int, ...]],
+) -> dict[str, Any]:
+    """Check the audited C10 clause's exact shape and physical-only scope.
+
+    The two branch projections use the kernel-checked equivalence
+    Problem97.ATailCriticalPairFrontier.
+    cross_deletion_survives_iff_not_mem_selected_support; after P3 makes
+    u the source, their disjunction is exactly
+    ``~row_u(qh) | ~row_u(wh)``.
+    """
+
+    expected = {(-encoder.row_u["qh"], -encoder.row_u["wh"])}
+    c10 = set(encoder.c10_clauses)
+    physical = set(encoder.del2_clauses) | c10 | set(del3_extra)
+    leaf_checks = {}
+    for leaf in LEAVES:
+        extra = physical | set(encoder.leaf_delta_clauses(leaf))
+        leaf_checks[leaf] = c10 <= extra
+    scope_pass = (
+        c10 == expected
+        and c10 <= physical
+        and all(leaf_checks.values())
+        and not (c10 & set(encoder.base_clauses))
+        and not (c10 & (set(encoder.base_clauses) | a1_extra))
+    )
+    return {
+        "pass": scope_pass,
+        "exact_clause": c10 == expected,
+        "c10_clause_count": len(c10),
+        "present_in_base_plus_P": c10 <= physical,
+        "present_in_each_leaf_run": leaf_checks,
+        "absent_from_base": not (c10 & set(encoder.base_clauses)),
+        "absent_from_base_plus_A1": not (
+            c10 & (set(encoder.base_clauses) | a1_extra)
+        ),
     }
 
 
@@ -363,6 +412,115 @@ def gate_probes(
     }
 
 
+def gate_c6(encoder: "enc.ACoreEncoder", timeout_seconds: int) -> dict[str, Any]:
+    """(spec section 10.1) The v1.3 source-context unit must refute its
+    negation, with the resulting UNSAT proof checked by DRAT."""
+
+    instance = enc.RunInstance(encoder, encoder.base_clauses)
+    cnf_path = OUT_DIR / "g_c6.cnf"
+    proof_path = OUT_DIR / "g_c6.drat"
+    start = time.monotonic()
+    result = enc.solve_cadical(
+        instance,
+        cnf_path,
+        extra_clauses=[_lit(encoder, "inT(oth)", False)],
+        timeout_seconds=timeout_seconds,
+        proof_path=proof_path,
+    )
+    wall = time.monotonic() - start
+    return {
+        "gate": "G-C6",
+        "verdict": result.verdict,
+        "expected": "UNSAT",
+        "pass": result.verdict == "UNSAT" and result.proof_verified,
+        "proof_verified": result.proof_verified,
+        "wall_seconds": round(wall, 3),
+    }
+
+
+def gate_c10(
+    encoder: "enc.ACoreEncoder",
+    del3_extra: list[tuple[int, ...]],
+    timeout_seconds: int,
+) -> dict[str, Any]:
+    """Regression for the exact C10 projection.
+
+    Before C10, the physical cube with both qh and wh in Row(u) must still
+    be admitted.  Adding C10 must make exactly that cube UNSAT with a
+    verified DRAT proof, while either single-omission branch remains SAT.
+    """
+
+    physical_pre_c10 = list(encoder.del2_clauses) + list(del3_extra)
+    c10 = list(encoder.c10_clauses)
+
+    def run_variant(
+        name: str,
+        clauses: list[tuple[int, ...]],
+        expected: str,
+        verify_proof: bool = False,
+    ) -> dict[str, Any]:
+        instance = enc.RunInstance(encoder, encoder.base_clauses)
+        cnf_path = OUT_DIR / f"g_c10_{name}.cnf"
+        proof_path = OUT_DIR / f"g_c10_{name}.drat" if verify_proof else None
+        start = time.monotonic()
+        result = enc.solve_cadical(
+            instance,
+            cnf_path,
+            extra_clauses=clauses,
+            timeout_seconds=timeout_seconds,
+            proof_path=proof_path,
+        )
+        wall = time.monotonic() - start
+        passed = result.verdict == expected and (
+            not verify_proof or result.proof_verified
+        )
+        return {
+            "variant": name,
+            "verdict": result.verdict,
+            "expected": expected,
+            "pass": passed,
+            "proof_verified": result.proof_verified,
+            "wall_seconds": round(wall, 3),
+        }
+
+    qh_in = _lit(encoder, "row_u(qh)", True)
+    wh_in = _lit(encoder, "row_u(wh)", True)
+    qh_out = _lit(encoder, "row_u(qh)", False)
+    wh_out = _lit(encoder, "row_u(wh)", False)
+    variants = [
+        run_variant(
+            "pre_double_membership",
+            physical_pre_c10 + [qh_in, wh_in],
+            "SAT",
+        ),
+        run_variant(
+            "post_double_membership",
+            physical_pre_c10 + c10 + [qh_in, wh_in],
+            "UNSAT",
+            verify_proof=True,
+        ),
+        run_variant(
+            "omit_qh_only",
+            physical_pre_c10 + c10 + [qh_out, wh_in],
+            "SAT",
+        ),
+        run_variant(
+            "omit_wh_only",
+            physical_pre_c10 + c10 + [qh_in, wh_out],
+            "SAT",
+        ),
+    ]
+    return {
+        "gate": "G-C10",
+        "provenance": (
+            "Problem97.ATailCriticalPairFrontier."
+            "cross_deletion_survives_iff_not_mem_selected_support"
+        ),
+        "variants": variants,
+        "pass": all(variant["pass"] for variant in variants),
+    }
+
+
 def gate_sat(encoder: "enc.ACoreEncoder", timeout_seconds: int) -> dict[str, Any]:
     assumptions = hand_built_assumptions(encoder)
     instance = enc.RunInstance(encoder, encoder.base_clauses)
@@ -406,6 +564,7 @@ def main() -> int:
     report["s5_unit_propagation"] = check_s5_unit_propagation(encoder)
     report["del2_presence"] = check_del2_presence(encoder, a1_extra)
     report["del3_presence"] = check_del3_presence(encoder, del3_extra, a1_extra)
+    report["c10_presence"] = check_c10_presence(encoder, del3_extra, a1_extra)
 
     base_result = gate_base(encoder, timeout_seconds=60)
     report["G-BASE"] = base_result
@@ -418,6 +577,14 @@ def main() -> int:
             json.dumps(report, sort_keys=True, indent=2), encoding="utf-8"
         )
         return 1
+
+    c6_result = gate_c6(encoder, timeout_seconds=60)
+    report["G-C6"] = c6_result
+    print(json.dumps(c6_result, indent=2))
+
+    c10_result = gate_c10(encoder, del3_extra, timeout_seconds=60)
+    report["G-C10"] = c10_result
+    print(json.dumps(c10_result, indent=2))
 
     excl_result = gate_excl(encoder, timeout_seconds=60)
     report["G-EXCL"] = excl_result
@@ -432,7 +599,12 @@ def main() -> int:
     print(json.dumps(probes_result, indent=2))
 
     report["ALL_GATES_PASS"] = (
-        base_result["pass"] and excl_result["pass"] and sat_result["pass"]
+        base_result["pass"]
+        and c6_result["pass"]
+        and report["c10_presence"]["pass"]
+        and c10_result["pass"]
+        and excl_result["pass"]
+        and sat_result["pass"]
         and probes_result["pass"]
     )
     (OUT_DIR / "smoke_report.json").write_text(

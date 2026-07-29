@@ -1,0 +1,280 @@
+{
+  "all_gates_pass": true,
+  "gates": [
+    {
+      "expected": "SAT",
+      "gate": "positive-dr-common",
+      "model_file": "out/smoke/positive-dr-common.model.json",
+      "pass": true,
+      "proof_verified": false,
+      "run": "dr-common",
+      "verdict": "SAT",
+      "wall_seconds": 0.011
+    },
+    {
+      "expected": "SAT",
+      "gate": "positive-dr-d1",
+      "model_file": "out/smoke/positive-dr-d1.model.json",
+      "pass": true,
+      "proof_verified": false,
+      "run": "dr-d1",
+      "verdict": "SAT",
+      "wall_seconds": 0.011
+    },
+    {
+      "expected": "SAT",
+      "gate": "positive-dr-d2",
+      "model_file": "out/smoke/positive-dr-d2.model.json",
+      "pass": true,
+      "proof_verified": false,
+      "run": "dr-d2",
+      "verdict": "SAT",
+      "wall_seconds": 0.011
+    },
+    {
+      "expected": "SAT",
+      "gate": "positive-overlap-two",
+      "model_file": "out/smoke/positive-overlap-two.model.json",
+      "pass": true,
+      "proof_verified": false,
+      "run": "dr-common",
+      "verdict": "SAT",
+      "wall_seconds": 0.011
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X0-Y0",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.037
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X0-Y1",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.039
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X0-Y2",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.038
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X0-Y3",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.039
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X1-Y0",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.038
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X1-Y1",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.038
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X1-Y2",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.039
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X1-Y3",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.039
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X2-Y0",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.038
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X2-Y1",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.038
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X2-Y2",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.037
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X2-Y3",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.038
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X3-Y0",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.038
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X3-Y1",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.039
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X3-Y2",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.038
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-disjoint-X3-Y3",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d1",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.038
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-overlap-three",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-common",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.038
+    },
+    {
+      "expected": "PASS",
+      "gate": "direct-double-role-swap",
+      "pass": true,
+      "proof_verified": false,
+      "scope": "five role/cap aliases only; no packet or a0p identity",
+      "verdict": "PASS",
+      "wall_seconds": 0.0
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-swap-alias-1",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d2",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.039
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-swap-alias-2",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d2",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.038
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-swap-alias-3",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d2",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.039
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-swap-alias-4",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d2",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.038
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-swap-alias-5",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-d2",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.039
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-qF-wF-same-slot",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-common",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.039
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-p-pP-same-slot",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-common",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.04
+    },
+    {
+      "expected": "UNSAT",
+      "gate": "negative-double-deletion-choice",
+      "pass": true,
+      "proof_verified": true,
+      "run": "dr-common",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.039
+    }
+  ],
+  "scope": "named-local incidence shadow; not a carrier enumeration"
+}

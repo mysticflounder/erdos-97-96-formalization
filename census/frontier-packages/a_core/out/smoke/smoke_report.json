@@ -5,7 +5,54 @@
     "gate": "G-BASE",
     "pass": true,
     "verdict": "SAT",
-    "wall_seconds": 0.016
+    "wall_seconds": 0.017
+  },
+  "G-C10": {
+    "gate": "G-C10",
+    "pass": true,
+    "provenance": "Problem97.ATailCriticalPairFrontier.cross_deletion_survives_iff_not_mem_selected_support",
+    "variants": [
+      {
+        "expected": "SAT",
+        "pass": true,
+        "proof_verified": false,
+        "variant": "pre_double_membership",
+        "verdict": "SAT",
+        "wall_seconds": 0.017
+      },
+      {
+        "expected": "UNSAT",
+        "pass": true,
+        "proof_verified": true,
+        "variant": "post_double_membership",
+        "verdict": "UNSAT",
+        "wall_seconds": 0.046
+      },
+      {
+        "expected": "SAT",
+        "pass": true,
+        "proof_verified": false,
+        "variant": "omit_qh_only",
+        "verdict": "SAT",
+        "wall_seconds": 0.016
+      },
+      {
+        "expected": "SAT",
+        "pass": true,
+        "proof_verified": false,
+        "variant": "omit_wh_only",
+        "verdict": "SAT",
+        "wall_seconds": 0.016
+      }
+    ]
+  },
+  "G-C6": {
+    "expected": "UNSAT",
+    "gate": "G-C6",
+    "pass": true,
+    "proof_verified": true,
+    "verdict": "UNSAT",
+    "wall_seconds": 0.047
   },
   "G-EXCL": {
     "gate": "G-EXCL",
@@ -17,7 +64,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.044
+        "wall_seconds": 0.046
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,zd) vs b(u,xv)",
@@ -26,7 +73,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.044
+        "wall_seconds": 0.047
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,zd) vs b(u,xv)",
@@ -35,7 +82,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.044
+        "wall_seconds": 0.046
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,zd) vs b(u,xv)",
@@ -44,7 +91,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.044
+        "wall_seconds": 0.046
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,v) vs b(u,xv)",
@@ -53,7 +100,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.044
+        "wall_seconds": 0.045
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,v) vs b(u,xv)",
@@ -62,7 +109,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.044
+        "wall_seconds": 0.047
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,v) vs b(u,xv)",
@@ -71,7 +118,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.044
+        "wall_seconds": 0.047
       },
       {
         "clash_family": "inO2i(xu) unit clash: A6 asserts T, A7 asserts F",
@@ -80,7 +127,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.044
+        "wall_seconds": 0.046
       },
       {
         "clash_family": "inO2i(xu) unit clash: A6 asserts T, A8 asserts F",
@@ -89,7 +136,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.045
+        "wall_seconds": 0.047
       },
       {
         "clash_family": "inO2i(v)/inO2i(xv) pattern clash: A7 forces both T (A7.d), A8's (A8.d) clause forbids both T",
@@ -98,7 +145,7 @@
         "pass": true,
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.044
+        "wall_seconds": 0.046
       }
     ],
     "pass": true
@@ -113,7 +160,7 @@
         "probe": "P-DEL3",
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.044
+        "wall_seconds": 0.046
       },
       {
         "expected": "UNSAT",
@@ -121,7 +168,7 @@
         "probe": "P-E8",
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.043
+        "wall_seconds": 0.046
       },
       {
         "expected": "UNSAT",
@@ -129,7 +176,7 @@
         "probe": "P-FB",
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.044
+        "wall_seconds": 0.048
       },
       {
         "expected": "UNSAT",
@@ -137,7 +184,7 @@
         "probe": "P-CD5",
         "proof_verified": true,
         "verdict": "UNSAT",
-        "wall_seconds": 0.044
+        "wall_seconds": 0.05
       }
     ]
   },
@@ -151,6 +198,21 @@
     "variant": "hand-built-total-assignment (downgrade; witness does not map)",
     "verdict": "SAT",
     "wall_seconds": 0.016
+  },
+  "c10_presence": {
+    "absent_from_base": true,
+    "absent_from_base_plus_A1": true,
+    "c10_clause_count": 1,
+    "exact_clause": true,
+    "pass": true,
+    "present_in_base_plus_P": true,
+    "present_in_each_leaf_run": {
+      "A2": true,
+      "A3": true,
+      "A6": true,
+      "A7": true,
+      "A8": true
+    }
   },
   "del2_presence": {
     "absent_from_base_plus_A1": true,

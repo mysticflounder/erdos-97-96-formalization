@@ -124,7 +124,7 @@
     "proof_verified": false,
     "run": "base",
     "verdict": "SAT",
-    "wall_seconds": 0.017
+    "wall_seconds": 0.018
   },
   {
     "cnf_file": "out/base+C1.cnf",
@@ -243,7 +243,7 @@
       "sv(xv)",
       "sv(zd)"
     ],
-    "n_clauses": 19755,
+    "n_clauses": 19756,
     "n_variables": 930,
     "proof_verified": false,
     "run": "base+C1",
@@ -383,7 +383,7 @@
       "sv(xv)",
       "sv(zd)"
     ],
-    "n_clauses": 19833,
+    "n_clauses": 19834,
     "n_variables": 956,
     "proof_verified": false,
     "run": "base+C2",
