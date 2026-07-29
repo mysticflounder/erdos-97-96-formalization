@@ -25,6 +25,23 @@ Pattern occurrence = as a submatrix: any rows r₁ < r₂ < ... and
 columns c₁ < c₂ < ... realizing the stated cell set; only 1-cells are
 constrained (Fig. 4 caption: "• = 1"; blank cells unconstrained).
 
+**Orientation convention: C2 (opposed), PINNED 2026-07-28.** The
+traversal of the polygon listing rows in increasing order meets the
+columns in DECREASING index order (full cycle = a₁..a_α, b_β..b₁ — the
+planar "both sides bottom-to-top" layout of FR's own Table-1
+indexing). Discovered by the P2 proof effort: the convention is
+load-bearing — under the aligned reading (C1) P2's variant A is
+REALIZABLE (exact hexagon witness, sympy-verified, see
+`fr-pattern-p2-proof-draft.md` §6), and decisively, FR's own certified
+20-gon cut matrix contains a P2 occurrence in the C1 (column-reversed)
+reading but zero P1/P2/P4 occurrences in its native C2 reading
+(`p2_convention_checks.py`) — so FR's Lemma 1 is only true in C2. All
+pattern statements and proofs below are read in C2. Valid symmetries
+of the C2 cut matrix: transposition (A↔B) and simultaneous reversal of
+both axes (plane reflection); single-axis reversal is NOT a symmetry.
+P1 is orientation-neutral (K₂,₂ invariant under either axis reversal),
+so its proof is unaffected.
+
 ## The patterns (Fig. 4)
 
 - **P1 (rectangle, 4 cells)** — HIGH-CONFIDENCE transcription:
@@ -140,7 +157,7 @@ same-distance-cut setting.
 | Pattern | Transcription | Proof |
 |---|---|---|
 | P1 | HIGH confidence | PROVEN + AUDITED: math-skeptic audit 2026-07-28 returned NEEDS WORK with four exact patches (F2 adjacent-vertex case, F3 half-plane containment proof, F4 different-arcs derivation + two implicit clauses); patches applied verbatim same day; the audit report states the patched text survives all its attacks |
-| P2 | HIGH confidence | OPEN obligation |
+| P2 | HIGH confidence; convention pinned C2 | PROOF DRAFT (math-prover 2026-07-28, `fr-pattern-p2-proof-draft.md`): both variants forbidden under C2, general δ; orchestrator verified key steps line-by-line + exact C1 witness + FR-matrix consistency scan; math-skeptic audit IN FLIGHT — NOT ADMITTED until it passes |
 | P3 | HIGH (lettered family); instance-subsumption is my inference | OPEN obligation |
 | P4 | MODERATE-HIGH (dashed-ellipsis reading) | OPEN obligation |
 
