@@ -283,3 +283,47 @@ half-matrix (unordered pair {i,j} contributes BOTH A_iB_j and A_jB_i;
 the first scan set only one) and reported one C1 P2-B occurrence;
 corrected same day to the symmetric 30-one matrix — native-C2 results
 unchanged (all zero), C1 count corrected to 16.
+
+## Amendment 2026-07-28 (v2): R-P3 (spec section 4.5)
+
+R-P3 covers ONLY the CERTIFIED portion of the P3 forbidden-pattern
+family — row-cases R1/R3, both column sub-cases — per
+`scratch/p97-search-lane/fr-pattern-p3-proof-draft.md` Theorem 2,
+PROVEN + AUDITED 2026-07-28 (math-skeptic; one low-severity finding,
+F4, a vacuous n=4 step in Proposition 3, patched same day; no other
+gap found in the audited scope). Row-case R2 is OPEN — CONJECTURED
+with empirical support only — and is deliberately excluded.
+
+### Changes
+
+- `rules.py`: `find_p3_occurrence` (witness-returning scanner over
+  four relative templates: R1×C1, R1×C2, R3×C1, R3×C2, derived
+  directly from Theorem 2's cell definitions and verified closed
+  under transpose so one scan covers both pattern orientations),
+  `r_p3_predicate`, `R_P3` (ADMITTED), `ADMITTED_CUT_MATRIX_RULES`
+  now `(R_P1, R_P2, R_P3)`, `ALL_RULES` now 6 rules — rule-bank hash
+  changed again.
+- Soundness check (module-level comment + gate, orchestrator
+  2026-07-28): R2's own relative templates at the same dimensions are
+  set-DISTINCT from all four admitted templates, so a matrix whose
+  only qualifying occurrence is a pure R2 pattern is not fired on —
+  verified both by direct set comparison and computationally in the
+  gate.
+- `controls.py` G-RULES: registry-shape check updated 5 → 6 rules
+  (authorized by spec 4.5). `controls2.py`: `find_p3_occurrence`,
+  `R_P3` imported; G-CUTPAT extended with kill+spare for all four
+  templates plus a pure-R2 spare control.
+
+### Gate outcomes
+
+Both suites green post-amendment: `controls.py` ALL_GATES_PASS = True,
+`controls2.py` all 14 gates PASS. G-CUTPAT additionally: R-P3 kills
+each of the four minimal-dimension templates and spares each with one
+required cell removed; a pure R2×C1 and pure R2×C2 occurrence (no
+admitted template subset present) are both spared, confirming the
+soundness check computationally. The existing S-FR-20 native-C2
+positive control (must fire no rule) now implicitly also covers R-P3,
+since it runs with the full default `ADMITTED_CUT_MATRIX_RULES`.
+
+R-P3 is not yet consumed anywhere; Phase 3 must discharge the same
+convex/contiguous/same-δ/C2 hypotheses as R-P1/R-P2 before use.

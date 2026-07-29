@@ -266,6 +266,57 @@ mixed-radius matrix; the hypothesis tags are the audit trail.
   variant-B occurrences); `prune_cut_matrix` hard-refuses a
   node-domain rule.
 
+### 4.5 Cut-pattern rule R-P3 (amendment 2026-07-28, v1.2)
+
+Same `"cut-matrix"` domain and semantics contract as §4.4 (subset
+semantics, C2-read, consumer owns convex/contiguous/same-δ
+hypotheses). R-P3 covers ONLY the CERTIFIED portion of the P3
+forbidden-pattern family — row-cases R1 (`r_a<r_b<r_c<r_d`) and R3
+(`r_b=r_c`), both column sub-cases — per
+`scratch/p97-search-lane/fr-pattern-p3-proof-draft.md` Theorem 2,
+PROVEN + AUDITED 2026-07-28 (math-skeptic; finding F4, a vacuous
+n=4 step in Proposition 3, patched same day). Row-case R2
+(`r_a<r_c<r_b<r_d`) is OPEN — CONJECTURED with empirical support only,
+NOT proven — and is explicitly excluded from this rule.
+
+- Four relative templates, one per (row-case, column-case) pair,
+  derived directly from Theorem 2's cell definitions (orchestrator,
+  2026-07-28) and checked closed under transpose so a single scan
+  covers both pattern orientations (Proposition 5) — no separate
+  orientation pass, mirroring how R-P2's variant B is variant A's
+  transpose:
+  - R1×C1 (4 rows × 4 cols): `{(0,0),(0,1),(1,0),(2,3),(3,2),(3,3)}`
+    — self-transpose.
+  - R1×C2 (4 rows × 3 cols): `{(0,0),(0,1),(1,0),(2,2),(3,1),(3,2)}`
+    — transpose of R3×C1.
+  - R3×C1 (3 rows × 4 cols): `{(0,0),(0,1),(1,0),(1,3),(2,2),(2,3)}`
+    — transpose of R1×C2.
+  - R3×C2 (3 rows × 3 cols, the "plain drawing" instance): `{(0,0),
+    (0,1),(1,0),(1,2),(2,1),(2,2)}` — self-transpose.
+- True (prune) iff some choice of matrix rows (ascending) and columns
+  (ascending) matching one template's dimensions has all six
+  positions 1. `find_p3_occurrence` returns `(variant_name, rows,
+  cols)`, mirroring `find_p2_occurrence`.
+- Soundness check against row-case R2 (orchestrator, 2026-07-28,
+  recorded here since it is not visible from the templates alone):
+  R2's own two relative templates (4×4 and 4×3, derived the same way
+  from Theorem 2 §5.2's cyclic order) are set-DISTINCT from all four
+  admitted templates at the same dimensions (R2×C1 vs R1×C1: R2 has
+  cells `(2,0),(1,3)` where R1×C1 has `(1,0),(2,3)`; R2×C2 vs R1×C2:
+  R2 has `(2,0),(1,2)` where R1×C2 has `(1,0),(2,2)`) — so a matrix
+  whose only qualifying occurrence is a pure R2 pattern is NOT fired
+  on by R-P3, i.e. this admission does not silently extend to the
+  unproven case.
+- Hypotheses: `("convex", "contiguous-cut", "same-distance-cells",
+  "C2-orientation")` — same as R-P2, C2 load-bearing for the same
+  reason (Lemma R′ reuses the patched restriction bracket, which is a
+  C2-specific argument).
+- Gate (appended to G-CUTPAT): R-P3 kills one hand-built occurrence
+  per template (all four) and spares each with one required cell
+  removed; a hand-built pure-R2 occurrence (no template subset
+  present) is spared, confirming the soundness check above
+  computationally, not just by the set-difference argument.
+
 ## 5. Cell iterator + bank (`iterate.py`, new)
 
 - `rule_bank_hash() -> str`: sha256 over the sorted

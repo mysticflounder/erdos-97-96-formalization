@@ -20,7 +20,7 @@ move CANDIDATE -> ADMITTED.  Registries are now split by domain:
 ``ADMITTED_RULES`` (node-domain: R-CIRC2), ``ADMITTED_ANNOTATED_RULES``
 (annotated-node-domain: R-FIBER4), ``ADMITTED_CELL_RULES``
 (cell-domain: R-CAPGE4), ``ADMITTED_CUT_MATRIX_RULES``
-(cut-matrix-domain: R-P1, R-P2 -- spec section 4.4 amendment), plus
+(cut-matrix-domain: R-P1, R-P2, R-P3 -- spec sections 4.4/4.5 amendments), plus
 ``ALL_RULES`` -- a single registry of every rule (all now ADMITTED)
 used for the rule-bank hash (``iterate.py``'s ``rule_bank_hash``).
 ``CANDIDATE_RULES`` is now empty -- the only remaining
@@ -50,13 +50,16 @@ __all__ = [
     "r_capge4_predicate",
     "r_p1_predicate",
     "r_p2_predicate",
+    "r_p3_predicate",
     "find_p1_occurrence",
     "find_p2_occurrence",
+    "find_p3_occurrence",
     "R_CIRC2",
     "R_FIBER4",
     "R_CAPGE4",
     "R_P1",
     "R_P2",
+    "R_P3",
     "ADMITTED_RULES",
     "ADMITTED_ANNOTATED_RULES",
     "ADMITTED_CELL_RULES",
@@ -452,12 +455,101 @@ R_P2 = Rule(
 )
 
 
+# ---------------------------------------------------------------------------
+# R-P3 (ADMITTED, spec section 4.5 amendment 2026-07-28).  Cut-matrix domain,
+# same semantics contract as R-P1/R-P2.  Covers ONLY the CERTIFIED portion of
+# the P3 forbidden-pattern family: row-cases R1 (r_a<r_b<r_c<r_d) and R3
+# (r_b=r_c), both column sub-cases (fr-pattern-p3-proof-draft.md Theorem 2,
+# PROVEN + AUDITED 2026-07-28).  Row-case R2 (r_a<r_c<r_b<r_d) is OPEN --
+# CONJECTURED with empirical support only -- and is DELIBERATELY EXCLUDED.
+#
+# Four relative templates, derived directly from Theorem 2's cell
+# definitions (orchestrator, 2026-07-28).  Checked closed under transpose --
+# R1xC1 and R3xC2 are each self-transpose, R1xC2 and R3xC1 are each other's
+# transpose -- so scanning a C2-read matrix for all four covers BOTH pattern
+# orientations (Proposition 5) without a separate orientation pass, exactly
+# as R-P2's variant B is variant A's transpose.
+#
+# Soundness check against R2 (orchestrator, 2026-07-28): R2's own relative
+# templates (same dimensions, derived the same way from Theorem 2 section
+# 5.2's cyclic order) are set-DISTINCT from all four admitted templates:
+#   R2xC1 = {(0,0),(0,1),(2,0),(1,3),(3,2),(3,3)} vs R1xC1's (1,0),(2,3)
+#   R2xC2 = {(0,0),(0,1),(2,0),(1,2),(3,1),(3,2)} vs R1xC2's (1,0),(2,2)
+# so a matrix whose only qualifying occurrence is a pure R2 pattern is NOT
+# fired on -- this admission does not silently extend to the unproven case.
+# ---------------------------------------------------------------------------
+
+_P3_R1C1 = ((0, 0), (0, 1), (1, 0), (2, 3), (3, 2), (3, 3))  # 4 rows x 4 cols
+_P3_R1C2 = ((0, 0), (0, 1), (1, 0), (2, 2), (3, 1), (3, 2))  # 4 rows x 3 cols
+_P3_R3C1 = ((0, 0), (0, 1), (1, 0), (1, 3), (2, 2), (2, 3))  # 3 rows x 4 cols
+_P3_R3C2 = ((0, 0), (0, 1), (1, 0), (1, 2), (2, 1), (2, 2))  # 3 rows x 3 cols
+
+_P3_VARIANTS = (
+    ("R1xC1", 4, 4, _P3_R1C1),
+    ("R1xC2", 4, 3, _P3_R1C2),
+    ("R3xC1", 3, 4, _P3_R3C1),
+    ("R3xC2", 3, 3, _P3_R3C2),
+)
+
+
+def find_p3_occurrence(
+    matrix: _CutMatrix,
+) -> tuple[str, tuple[int, ...], tuple[int, ...]] | None:
+    """First (variant, rows, cols) P3 R1/R3-sub-family occurrence, else None.
+
+    variant is one of "R1xC1", "R1xC2", "R3xC1", "R3xC2".  Row-case R2 is
+    NOT scanned for (see module-level comment above) -- it is unproven.
+    """
+
+    mat = _validate_cut_matrix(matrix)
+    n_rows = len(mat)
+    n_cols = len(mat[0]) if mat else 0
+    for name, nr, nc, cells in _P3_VARIANTS:
+        if n_rows < nr or n_cols < nc:
+            continue
+        for rows in combinations(range(n_rows), nr):
+            for cols in combinations(range(n_cols), nc):
+                if all(mat[rows[ri]][cols[ci]] for ri, ci in cells):
+                    return (name, rows, cols)
+    return None
+
+
+def r_p3_predicate(matrix: _CutMatrix) -> bool:
+    """True (prune) iff the C2 cut matrix contains a P3 R1/R3-sub-family
+    occurrence (row-case R2 excluded, unproven) as a submatrix."""
+
+    return find_p3_occurrence(matrix) is not None
+
+
+R_P3 = Rule(
+    id="R-P3",
+    status=ADMITTED,
+    hypotheses=("convex", "contiguous-cut", "same-distance-cells", "C2-orientation"),
+    predicate=r_p3_predicate,
+    citation=(
+        "scratch/p97-search-lane/fr-pattern-p3-proof-draft.md Theorem 2 "
+        "(row-cases R1/R3 only), PROVEN + AUDITED 2026-07-28 (math-skeptic; "
+        "finding F4, a vacuous n=4 step in Proposition 3, patched same day; "
+        "no other gap found): a new mechanism (no strictly convex n-gon has "
+        "4 acute interior angles, applied via a coincidental-apex transfer) "
+        "forbids both orientations of the R1/R3 sub-family under C2. "
+        "Row-case R2 is OPEN (CONJECTURED, empirical support only, "
+        "fr-pattern-p3-proof-draft.md section 5.2/8) and is DELIBERATELY "
+        "EXCLUDED from this rule -- see the module-level soundness check "
+        "comment. C2 is LOAD-BEARING for the same reason as R-P2 (Lemma R' "
+        "reuses the patched C2-specific restriction bracket). "
+        "PHASE2-SPEC.md section 4.5."
+    ),
+    domain="cut-matrix",
+)
+
+
 ADMITTED_RULES: tuple[Rule, ...] = (R_CIRC2,)
 ADMITTED_ANNOTATED_RULES: tuple[Rule, ...] = (R_FIBER4,)
 ADMITTED_CELL_RULES: tuple[Rule, ...] = (R_CAPGE4,)
-ADMITTED_CUT_MATRIX_RULES: tuple[Rule, ...] = (R_P1, R_P2)
+ADMITTED_CUT_MATRIX_RULES: tuple[Rule, ...] = (R_P1, R_P2, R_P3)
 CANDIDATE_RULES: tuple[Rule, ...] = ()
-ALL_RULES: tuple[Rule, ...] = (R_CIRC2, R_FIBER4, R_CAPGE4, R_P1, R_P2)
+ALL_RULES: tuple[Rule, ...] = (R_CIRC2, R_FIBER4, R_CAPGE4, R_P1, R_P2, R_P3)
 
 
 def apply_rule(rule: Rule, obj: Any) -> bool:

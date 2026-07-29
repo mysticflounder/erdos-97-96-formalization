@@ -49,8 +49,10 @@ from rules import (  # noqa: E402
     R_FIBER4,
     R_P1,
     R_P2,
+    R_P3,
     apply_rule,
     find_p2_occurrence,
+    find_p3_occurrence,
     prune_cut_matrix,
     r_fiber4_predicate,
     r_fiber4_profile_violates,
@@ -755,8 +757,51 @@ def gate_cutpat() -> str:
         else:
             raise AssertionError(f"malformed matrix accepted: {bad}")
 
-    assert R_P1.domain == R_P2.domain == "cut-matrix"
-    return "P1/P2 kill+spare, FR-20 survives C2 / fires R-P2 in C1 (16 B-hits), refusal+validation OK"
+    # R-P3 (section 4.5 amendment): kill+spare for each of the four
+    # certified R1/R3-sub-family templates, at their exact minimal
+    # dimensions (P1/P2's non-contiguous embedding already covers subset
+    # semantics; this block's job is the template shapes themselves).
+    p3_templates = {
+        "R1xC1": (4, 4, ((0, 0), (0, 1), (1, 0), (2, 3), (3, 2), (3, 3))),
+        "R1xC2": (4, 3, ((0, 0), (0, 1), (1, 0), (2, 2), (3, 1), (3, 2))),
+        "R3xC1": (3, 4, ((0, 0), (0, 1), (1, 0), (1, 3), (2, 2), (2, 3))),
+        "R3xC2": (3, 3, ((0, 0), (0, 1), (1, 0), (1, 2), (2, 1), (2, 2))),
+    }
+    for name, (nr, nc, cells) in p3_templates.items():
+        kill = [[0] * nc for _ in range(nr)]
+        for r, c in cells:
+            kill[r][c] = 1
+        res = prune_cut_matrix(kill)
+        assert res.pruned and res.fired == ("R-P3",), f"P3 {name} kill: {res}"
+        occ = find_p3_occurrence(kill)
+        assert occ is not None and occ[0] == name, f"P3 {name} witness: {occ}"
+
+        spare = [row[:] for row in kill]
+        r0, c0 = cells[0]
+        spare[r0][c0] = 0
+        res = prune_cut_matrix(spare)
+        assert not res.pruned, f"P3 {name} spare fired: {res}"
+
+    # Soundness control: pure row-case-R2 occurrences (unproven, excluded
+    # by design) must NOT fire R-P3, at both column sub-cases.
+    r2c1 = [[0] * 4 for _ in range(4)]
+    for r, c in ((0, 0), (0, 1), (2, 0), (1, 3), (3, 2), (3, 3)):
+        r2c1[r][c] = 1
+    res = prune_cut_matrix(r2c1)
+    assert not res.pruned, f"pure R2xC1 over-pruned by R-P3: {res}"
+
+    r2c2 = [[0] * 3 for _ in range(4)]
+    for r, c in ((0, 0), (0, 1), (2, 0), (1, 2), (3, 1), (3, 2)):
+        r2c2[r][c] = 1
+    res = prune_cut_matrix(r2c2)
+    assert not res.pruned, f"pure R2xC2 over-pruned by R-P3: {res}"
+
+    assert R_P1.domain == R_P2.domain == R_P3.domain == "cut-matrix"
+    return (
+        "P1/P2 kill+spare, FR-20 survives C2 / fires R-P2 in C1 (16 B-hits), "
+        "P3 kill+spare all 4 R1/R3 templates, pure-R2 spared (soundness), "
+        "refusal+validation OK"
+    )
 
 
 GATES: tuple[tuple[str, GateFn], ...] = (

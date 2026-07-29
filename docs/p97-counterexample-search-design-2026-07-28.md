@@ -189,16 +189,22 @@ Phase 2 (annotations, annotated canonicalization, R-FIBER4/R-CAPGE4
 promotions, cell iterator + jsonl bank, seeds S-K3-9/S-FR-20, 14 gates
 in `controls2.py`) are landed and orchestrator-validated
 (`census/p97_search/RESULTS.md`). Rule bank: R-CIRC2, R-FIBER4,
-R-CAPGE4, R-P1, R-P2, all ADMITTED. Kernel gate SATISFIED 2026-07-28:
-the three cited Lean frame theorems (`nonempty_surplusCapPacket_of_K4`,
-`capTriple_caps_card_ge_four`, `SurplusCapPacket.capSum`) each
-kernel-check to core axioms only. P1 and P2 forbidden-pattern proofs
-are PROVEN+AUDITED (P2: math-skeptic 2026-07-28, blocking gap patched
-same day; orientation convention pinned C2 — load-bearing, see
+R-CAPGE4, R-P1, R-P2, R-P3, all ADMITTED. Kernel gate SATISFIED
+2026-07-28: the three cited Lean frame theorems
+(`nonempty_surplusCapPacket_of_K4`, `capTriple_caps_card_ge_four`,
+`SurplusCapPacket.capSum`) each kernel-check to core axioms only. P1
+and P2 forbidden-pattern proofs are PROVEN+AUDITED (P2: math-skeptic
+2026-07-28, blocking gap patched same day; orientation convention
+pinned C2 — load-bearing, see
 `scratch/p97-search-lane/fr-pattern-lemma1.md`) and admitted as
 cut-matrix-domain rules R-P1/R-P2 (PHASE2-SPEC §4.4: same-distance
 C2-read cut matrices only; consumer owns the semantics; NO
-shell-semantics generalization). The blocker-annotation existence
+shell-semantics generalization). P3's row-cases R1/R3 (both
+orientations, both column sub-cases) are PROVEN+AUDITED and admitted
+as R-P3 (PHASE2-SPEC §4.5); P3's row-case R2 is OPEN (CONJECTURED,
+empirical support only) and is deliberately excluded from R-P3 — see
+`scratch/p97-search-lane/fr-pattern-p3-proof-draft.md`. The
+blocker-annotation existence
 {{NEEDS_PROOF}} item is RESOLVED-BY-COMPOSITION: Theorem C
 (`scratch/p97-search-lane/blocker-annotation-existence.md`,
 AUDITED-WITH-PATCHES 2026-07-28) replaces the per-configuration
@@ -206,6 +212,7 @@ existence claim — full [9,N] census coverage of B1-annotatable nodes
 implies unconditional non-existence for n ≤ N, via minimality, not a
 per-cell existence hypothesis. Per-cell claims remain
 annotation-conditional; only range closure composes. Open before
-Phase 3: P3/P4 forbidden-pattern proofs (P3 draft in, R2 row-case
-open — see `fr-pattern-p3-proof-draft.md`; P4 in flight) and Phase 3
-per-cell coverage itself.
+Phase 3: P3's R2 row-case (CONJECTURED, no proof), P4's proof draft
+(claims full closure — both variants, all k≥3, both C1 and C2 —
+draft in at `fr-pattern-p4-proof-draft.md`, AWAITING ADVERSARIAL
+AUDIT, not yet citable), and Phase 3 per-cell coverage itself.
