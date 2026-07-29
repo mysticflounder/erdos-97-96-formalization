@@ -162,12 +162,23 @@ that cell's claim. ∎
    exactly {propext, Classical.choice, Quot.sound}); the three frame
    declarations were kernel-checked to the same core-axiom set per
    HANDOFF-2026-07-28.md §1 (R-CAPGE4 kernel gate).
-3. Lean target (follow-up, well-scoped): formalize Lemma D
-   (`K4_delete_of_indeg_zero`: ConvexIndep (A.erase x) +
-   HasNEquidistantProperty 4 (A.erase x) from indeg-0) and Corollary
-   D9. Theorem C's census-coverage hypothesis is a statement about
-   the Python bank, so C itself stays a paper theorem over banked
-   Lean inputs, like the per-cell claims themselves.
+3. Lean target: DONE 2026-07-28
+   (`lean/Erdos9796Proof/P97/K4WitnessDeletion.lean`). Formalizes a
+   `IsWitnessSystem A S` predicate (§2's witness-system semantics) and
+   both `Problem97.K4_delete_of_indeg_zero` (Lemma D) and
+   `Problem97.exists_witness_mem_of_card_eq_nine` (Corollary D9),
+   sorry-free, kernel-checked to exactly `{propext, Classical.choice,
+   Quot.sound}` (`proof-blueprint axioms`, 2026-07-28). Nonemptiness of
+   `A.erase x` is derived from the existing `card_ge_five_of_K4`
+   rather than reproving it from the witness system, per that lemma's
+   proof shape. NOT wired into either configured spine target
+   (`Problem97.erdos97_rhs`, `Problem96.erdos96_rhs`) — both are
+   fully proven and importable but currently off-spine, standing
+   alongside `counterexample_card_ge_nine` as banked infrastructure
+   for this lane, not consumed by the ATail descent route. Theorem
+   C's census-coverage hypothesis is a statement about the Python
+   bank, so C itself stays a paper theorem over banked Lean inputs,
+   like the per-cell claims themselves.
 4. Profiled cells currently admit cap-annotated objects only
    (`iterate.py` raises on cap+blocker combined). Theorem C's coverage
    hypothesis (ii) requires, at n > 9, covering all cap-profile cells
