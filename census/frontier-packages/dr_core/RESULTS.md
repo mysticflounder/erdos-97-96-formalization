@@ -35,6 +35,13 @@ assert `S''=S`, `a0''=a0`, or any packet identity.
 
 Exact CNFs, decoded models, and the run manifest are under `out/`.
 
+DRAT is an UNSAT certificate format; all three production runs are SAT, so
+the `out/*.drat` files emitted alongside them are degenerate solver
+byproducts (`dr-common.drat` and `dr-d1.drat` are zero bytes, `dr-d2.drat`
+is 64 bytes) with no certificate content, and the manifest records
+`proof_verified: false` for each. The SAT verdicts rest on the decoded
+CaDiCaL models in `out/*.model.json`, not on DRAT verification.
+
 ## Interpretation and first remaining boundary
 
 All verdicts concern only the hypothesis-tagged named-local incidence shadow.

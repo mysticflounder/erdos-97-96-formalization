@@ -105,7 +105,7 @@
     "proof_verified": false,
     "run": "base",
     "verdict": "SAT",
-    "wall_seconds": 0.017
+    "wall_seconds": 0.018
   },
   {
     "cnf_file": "out/base+P.cnf",
@@ -205,12 +205,12 @@
       "sv(xv)",
       "sv(zd)"
     ],
-    "n_clauses": 19137,
+    "n_clauses": 19138,
     "n_variables": 881,
     "proof_verified": false,
     "run": "base+P",
     "verdict": "SAT",
-    "wall_seconds": 0.016
+    "wall_seconds": 0.017
   },
   {
     "cnf_file": "out/base+P+A2.cnf",
@@ -321,12 +321,12 @@
       "sv(xv)",
       "sv(zd)"
     ],
-    "n_clauses": 19138,
+    "n_clauses": 19139,
     "n_variables": 881,
     "proof_verified": false,
     "run": "base+P+A2",
     "verdict": "SAT",
-    "wall_seconds": 0.016
+    "wall_seconds": 0.017
   },
   {
     "cnf_file": "out/base+P+A3.cnf",
@@ -432,12 +432,12 @@
       "sv(xv)",
       "sv(zd)"
     ],
-    "n_clauses": 19140,
+    "n_clauses": 19141,
     "n_variables": 881,
     "proof_verified": false,
     "run": "base+P+A3",
     "verdict": "SAT",
-    "wall_seconds": 0.016
+    "wall_seconds": 0.017
   },
   {
     "cnf_file": "out/base+P+A6.cnf",
@@ -542,12 +542,12 @@
       "sv(xv)",
       "sv(zd)"
     ],
-    "n_clauses": 19144,
+    "n_clauses": 19145,
     "n_variables": 881,
     "proof_verified": false,
     "run": "base+P+A6",
     "verdict": "SAT",
-    "wall_seconds": 0.016
+    "wall_seconds": 0.018
   },
   {
     "cnf_file": "out/base+P+A7.cnf",
@@ -659,12 +659,12 @@
       "sv(xv)",
       "sv(zd)"
     ],
-    "n_clauses": 19141,
+    "n_clauses": 19142,
     "n_variables": 881,
     "proof_verified": false,
     "run": "base+P+A7",
     "verdict": "SAT",
-    "wall_seconds": 0.016
+    "wall_seconds": 0.017
   },
   {
     "cnf_file": "out/base+P+A8.cnf",
@@ -776,12 +776,12 @@
       "sv(xv)",
       "sv(zd)"
     ],
-    "n_clauses": 19140,
+    "n_clauses": 19141,
     "n_variables": 881,
     "proof_verified": false,
     "run": "base+P+A8",
     "verdict": "SAT",
-    "wall_seconds": 0.016
+    "wall_seconds": 0.017
   },
   {
     "cnf_file": "out/base+A1.cnf",
@@ -932,6 +932,6 @@
     "proof_verified": false,
     "run": "base+A1",
     "verdict": "SAT",
-    "wall_seconds": 0.017
+    "wall_seconds": 0.018
   }
 ]

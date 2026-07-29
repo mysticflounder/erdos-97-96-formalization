@@ -1,4 +1,4 @@
-# A-core Layer-1 incidence encoding — specification (2026-07-28, v1.3)
+# A-core Layer-1 incidence encoding — specification (2026-07-29, v1.4)
 
 Session-1 artifact of `docs/computational-closure-plan-2026-07-28.md` (§4, §5
 row 1, §8). Source of truth for the hypotheses:
@@ -394,7 +394,7 @@ clause. Labels may coincide, so no particular disjunct is asserted.
   consistently under source/target congruence and (BM2); the positive
   gate must remain SAT.
 
-## 11. C10 full-distance-class projection (2026-07-29)
+## 11. C10 full-distance-class projection (v1.4, 2026-07-29)
 
 The physical context identifies `u` with `source` by (P3). For a
 `CriticalShellSystem`, the kernel-checked theorem

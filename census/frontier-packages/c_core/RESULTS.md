@@ -90,7 +90,7 @@ hand-recomputing every sub-family (int-var declarations, N2/N3/N4/N5/N7,
 S6 arms) from first principles reproduces 15985 exactly, confirming no
 stray clauses.
 
-### Leaf C1 delta (28 clauses, 10 new vars — the 10 are (DEL3)'s Sinz aux)
+### Leaf C1 delta (29 clauses, 10 new vars — the 10 are (DEL3)'s Sinz aux)
 
 | Piece | Clauses | Tag |
 |---|---:|---|
@@ -98,12 +98,14 @@ stray clauses.
 | (DEL2) at-least-two | 5 | leaf-C1-only |
 | (DEL3) at-most-two (10 new Sinz aux vars) | 21 | leaf-C1-only |
 | placement `b(xu,zd) v b(xu,u) v b(xu,v) v b(xu,xv)` | 1 | (C9.4), subsumes (C9.2) |
-| **total** | **28** | |
+| `¬row_src(qh) ∨ ¬row_src(wh)` | 1 | (C6.9), v1.1 |
+| **total** | **29** | |
 
-### Leaf C2 delta (106 clauses, 26 new vars — built last)
+### Leaf C2 delta (107 clauses, 26 new vars — built last)
 
 | Piece | New vars | Clauses | Tag |
 |---|---:|---:|---|
+| `¬row_src(qh) ∨ ¬row_src(wh)` | 0 | 1 | (C6.9), v1.1 |
 | P's 6 eq atoms (`eq(P,{a0,a1,qh,wh,f1,f2})`) | 6 | 0 | (C8.2)+eq-target list |
 | (EQ1) at-most-1, P vs MOSER_GROUP (Sinz, 2 items) | 2 | 4 | consistency |
 | (EQ1) at-most-1, P vs FRONTIER_GROUP (Sinz, 4 items) | 4 | 10 | consistency |
@@ -112,7 +114,7 @@ stray clauses.
 | (COL) collision family (10 pairs) | 10 | 21 | (C10.2) |
 | (COL-E8) bisector-coincidence instances (10 pairs x 2 orientations) | 0 | 20 | (C3.8) |
 | (E5C) restoration radius capture (5 T-labels) | 0 | 5 | (C8.4)+(C8.5)+(C3.5) |
-| **total** | **26** | **106** | |
+| **total** | **26** | **107** | |
 
 Every one of the 10 (COL-E8) pairs had **both** orientations instantiable
 (20, not fewer): `u` now carries eq atoms to both `qh` and `wh` (the new C

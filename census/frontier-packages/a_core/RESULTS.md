@@ -25,8 +25,9 @@ pairs that themselves carry a real eq atom). All numbers below are from the
 **post-(EQ4) build**; §5 records the before/after delta and the regression
 check.
 
-Implements `census/frontier-packages/A-CORE-ENCODING-SPEC.md` (v1.2, section
-9 / CEGAR iteration 2 — see §6). Code:
+Implements `census/frontier-packages/A-CORE-ENCODING-SPEC.md` (v1.4: spec
+§9 / CEGAR iteration 2 → §6 below, spec §10 / CEGAR iteration 3 → §8, spec
+§11 / C10 projection → §9). Code:
 `census/frontier-packages/a_core/{encoding.py,run.py,smoke.py}`. All commands
 run from the repo root via `uv run python census/frontier-packages/a_core/...`
 (the `a_core` directory has no hyphen, but its parent `frontier-packages`
