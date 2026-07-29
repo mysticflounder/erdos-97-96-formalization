@@ -168,7 +168,7 @@ same-distance-cut setting.
 | P1 | HIGH confidence | PROVEN + AUDITED: math-skeptic audit 2026-07-28 returned NEEDS WORK with four exact patches (F2 adjacent-vertex case, F3 half-plane containment proof, F4 different-arcs derivation + two implicit clauses); patches applied verbatim same day; the audit report states the patched text survives all its attacks |
 | P2 | HIGH confidence; convention pinned C2 | PROVEN + AUDITED (`fr-pattern-p2-proof-draft.md`): both variants forbidden under C2, general δ; math-skeptic audit 2026-07-28 returned NEEDS WORK with one blocking gap (F1: Lemma R's restriction-order bracket cited L2 where adjacency can fail; patch L1-for-adjacent / L2(iii)-for-non-adjacent) + clarifications F2–F5; all patches applied verbatim same day; the audit independently reverified every computation (L2–L5, Theorem 1 Steps 1–5, Corollary, Proposition 2) and supplied an exact rational-interval witness certificate (`p2_exact_witness_certificate.py`); orchestrator separately verified key steps line-by-line + exact C1 witness + FR-matrix consistency scan |
 | P3 | HIGH (lettered family); instance-subsumption is my inference | PARTIAL: row-cases R1/R3 (`rb≤rc`), both orientations, both column sub-cases — PROVEN + AUDITED (`fr-pattern-p3-proof-draft.md`, Theorem 2): a new mechanism (Prop 3, no strictly convex n-gon has 4 acute angles, applied via a coincidental-apex transfer, L6) — math-skeptic audit 2026-07-28 returned NEEDS WORK with one low-severity finding (F4: Proposition 3's n=4 case used a vacuous empty-sum step; Theorem 2 never instantiates n=4, so no propagation); patched same day; all other claims (Lemma R′, the Claim, L6, Lemma 4, Theorem 2, Prop 5, orientation-2 corollary) confirmed by independent re-derivation. Row-case R2 (`rb>rc`) — OPEN obligation, CONJECTURED with empirical support only (supremum-margin ≈0 in degenerate limits, 300-400 restart probes, no proof) |
-| P4 | MODERATE-HIGH (dashed-ellipsis reading) | OPEN obligation |
+| P4 | MODERATE-HIGH (dashed-ellipsis reading) | CERTIFIED, both variants, all k≥3, both C1 AND C2 (`fr-pattern-p4-proof-draft.md`): new toolkit (Lemma M quadrilateral inequality, Lemma X uncrossing, Lemma U totally-crossing-matching uniqueness, Lemma E antipodal extremality, Proposition C chain-induction) — math-skeptic audit 2026-07-28 returned NEEDS WORK with two citation-only findings (F1: restriction-order bracket reused on non-arc-union subsets without a stated general lemma, patched by adding Lemma R″; F2: the C1/C2 corollary's general-k algebra was asserted from a k=3..6 script only, patched by writing out the general substitution) — no mathematical error found anywhere; every core lemma independently confirmed "PROVEN, survives intact." Bonus: P4 is forbidden under BOTH conventions (unlike P2), explaining rather than merely matching the zero-occurrence FR-20 scan under either reading |
 
 No P-pattern may be ADMITTED as a census rule until its transcription
 is settled AND its proof is written and adversarially audited. P1 and
@@ -176,8 +176,10 @@ P2 satisfy the gate and are ADMITTED 2026-07-28 as cut-matrix-domain
 rules R-P1/R-P2 (`census/p97_search/rules.py`, PHASE2-SPEC §4.4):
 same-distance C2-read cut matrices only, consumer owns the matrix
 semantics, no shell-semantics (per-point radius) generalization. P3's
-R1/R3 sub-family is CERTIFIED (proven + audited) but not yet admitted
-as a rule pending cut-matrix template design (R2 must NOT be folded
-into any admitted rule until it closes). P4 remains open. Table 2
+R1/R3 sub-family is likewise ADMITTED as R-P3 (PHASE2-SPEC §4.5; R2
+must NOT be folded into any admitted rule until it closes). P4's proof
+is CERTIFIED but admission is BLOCKED on transcription confidence only
+(MODERATE-HIGH, not HIGH — the gate's other half is independent of the
+proof audit and requires re-reading the original Fig. 4). Table 2
 g-values are FR's computed claims over pattern-feasibility; any use
 beyond citation requires recomputation from admitted patterns.

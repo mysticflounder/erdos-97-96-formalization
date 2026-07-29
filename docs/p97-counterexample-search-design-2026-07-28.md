@@ -211,8 +211,11 @@ AUDITED-WITH-PATCHES 2026-07-28) replaces the per-configuration
 existence claim — full [9,N] census coverage of B1-annotatable nodes
 implies unconditional non-existence for n ≤ N, via minimality, not a
 per-cell existence hypothesis. Per-cell claims remain
-annotation-conditional; only range closure composes. Open before
-Phase 3: P3's R2 row-case (CONJECTURED, no proof), P4's proof draft
-(claims full closure — both variants, all k≥3, both C1 and C2 —
-draft in at `fr-pattern-p4-proof-draft.md`, AWAITING ADVERSARIAL
-AUDIT, not yet citable), and Phase 3 per-cell coverage itself.
+annotation-conditional; only range closure composes. P4's proof (both
+variants, all k≥3, both C1 and C2) is PROVEN + AUDITED 2026-07-28
+(`fr-pattern-p4-proof-draft.md`; two citation-only findings patched,
+no error found) but admission as R-P4 is BLOCKED on transcription
+confidence (MODERATE-HIGH, not HIGH) independent of the proof audit.
+Open before Phase 3: P3's R2 row-case (CONJECTURED, no proof), P4's
+transcription re-verification against Fig. 4, and Phase 3 per-cell
+coverage itself.
