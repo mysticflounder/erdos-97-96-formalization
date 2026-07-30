@@ -9,10 +9,12 @@ import Erdos9796Proof.P97.EndpointCertificate.ShadowSearch
 /-!
 # Endpoint finite shadow search shard, `.Q2`, `.v = 712`, `.w = 771`
 
-This generated shard checks fixed `.u` subtrees in the endpoint shadow search.
-Each theorem says every valid endpoint shadow in that subtree is row-bank
-covered.  Keeping these native computations in small modules lets downstream
-coverage proofs import theorem constants instead of re-running the search.
+This generated shard checks the *reachable* fixed `.u` subtrees in the endpoint
+shadow search.  Each theorem says every valid endpoint shadow in that subtree is
+row-bank covered.  Keeping these native computations in small modules lets
+downstream coverage proofs import theorem constants instead of re-running the
+search.  Triples the DFS pruning tests already reject carry no theorem here;
+`EndpointCertificate.ShadowSearchPruning` covers them without enumeration.
 -/
 
 namespace Problem97
@@ -43,33 +45,9 @@ theorem q2_v712_w771_u568_valid :
       true := by
   native_decide
 
-/-- Valid shadows in `.Q2/712/771/600` are row-bank covered. -/
-theorem q2_v712_w771_u600_valid :
-    endpointDepth3SubtreeValidAllAccepted .Q2 712 771 600 =
-      true := by
-  native_decide
-
-/-- Valid shadows in `.Q2/712/771/616` are row-bank covered. -/
-theorem q2_v712_w771_u616_valid :
-    endpointDepth3SubtreeValidAllAccepted .Q2 712 771 616 =
-      true := by
-  native_decide
-
 /-- Valid shadows in `.Q2/712/771/624` are row-bank covered. -/
 theorem q2_v712_w771_u624_valid :
     endpointDepth3SubtreeValidAllAccepted .Q2 712 771 624 =
-      true := by
-  native_decide
-
-/-- Valid shadows in `.Q2/712/771/664` are row-bank covered. -/
-theorem q2_v712_w771_u664_valid :
-    endpointDepth3SubtreeValidAllAccepted .Q2 712 771 664 =
-      true := by
-  native_decide
-
-/-- Valid shadows in `.Q2/712/771/680` are row-bank covered. -/
-theorem q2_v712_w771_u680_valid :
-    endpointDepth3SubtreeValidAllAccepted .Q2 712 771 680 =
       true := by
   native_decide
 

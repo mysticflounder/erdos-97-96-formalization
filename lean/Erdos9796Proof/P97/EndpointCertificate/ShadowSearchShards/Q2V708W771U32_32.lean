@@ -9,10 +9,12 @@ import Erdos9796Proof.P97.EndpointCertificate.ShadowSearch
 /-!
 # Endpoint finite shadow search shard, `.Q2`, `.v = 708`, `.w = 771`
 
-This generated shard checks fixed `.u` subtrees in the endpoint shadow search.
-Each theorem says every valid endpoint shadow in that subtree is row-bank
-covered.  Keeping these native computations in small modules lets downstream
-coverage proofs import theorem constants instead of re-running the search.
+This generated shard checks the *reachable* fixed `.u` subtrees in the endpoint
+shadow search.  Each theorem says every valid endpoint shadow in that subtree is
+row-bank covered.  Keeping these native computations in small modules lets
+downstream coverage proofs import theorem constants instead of re-running the
+search.  Triples the DFS pruning tests already reject carry no theorem here;
+`EndpointCertificate.ShadowSearchPruning` covers them without enumeration.
 -/
 
 namespace Problem97

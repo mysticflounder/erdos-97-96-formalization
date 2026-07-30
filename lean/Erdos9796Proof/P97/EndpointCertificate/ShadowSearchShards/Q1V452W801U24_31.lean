@@ -9,10 +9,12 @@ import Erdos9796Proof.P97.EndpointCertificate.ShadowSearch
 /-!
 # Endpoint finite shadow search shard, `.Q1`, `.v = 452`, `.w = 801`
 
-This generated shard checks fixed `.u` subtrees in the endpoint shadow search.
-Each theorem says every valid endpoint shadow in that subtree is row-bank
-covered.  Keeping these native computations in small modules lets downstream
-coverage proofs import theorem constants instead of re-running the search.
+This generated shard checks the *reachable* fixed `.u` subtrees in the endpoint
+shadow search.  Each theorem says every valid endpoint shadow in that subtree is
+row-bank covered.  Keeping these native computations in small modules lets
+downstream coverage proofs import theorem constants instead of re-running the
+search.  Triples the DFS pruning tests already reject carry no theorem here;
+`EndpointCertificate.ShadowSearchPruning` covers them without enumeration.
 -/
 
 namespace Problem97
@@ -25,51 +27,15 @@ namespace Search
 
 namespace Depth3Cert
 
-/-- Valid shadows in `.Q1/452/801/556` are row-bank covered. -/
-theorem q1_v452_w801_u556_valid :
-    endpointDepth3SubtreeValidAllAccepted .Q1 452 801 556 =
-      true := by
-  native_decide
-
-/-- Valid shadows in `.Q1/452/801/564` are row-bank covered. -/
-theorem q1_v452_w801_u564_valid :
-    endpointDepth3SubtreeValidAllAccepted .Q1 452 801 564 =
-      true := by
-  native_decide
-
-/-- Valid shadows in `.Q1/452/801/568` are row-bank covered. -/
-theorem q1_v452_w801_u568_valid :
-    endpointDepth3SubtreeValidAllAccepted .Q1 452 801 568 =
-      true := by
-  native_decide
-
 /-- Valid shadows in `.Q1/452/801/600` are row-bank covered. -/
 theorem q1_v452_w801_u600_valid :
     endpointDepth3SubtreeValidAllAccepted .Q1 452 801 600 =
       true := by
   native_decide
 
-/-- Valid shadows in `.Q1/452/801/616` are row-bank covered. -/
-theorem q1_v452_w801_u616_valid :
-    endpointDepth3SubtreeValidAllAccepted .Q1 452 801 616 =
-      true := by
-  native_decide
-
-/-- Valid shadows in `.Q1/452/801/624` are row-bank covered. -/
-theorem q1_v452_w801_u624_valid :
-    endpointDepth3SubtreeValidAllAccepted .Q1 452 801 624 =
-      true := by
-  native_decide
-
 /-- Valid shadows in `.Q1/452/801/664` are row-bank covered. -/
 theorem q1_v452_w801_u664_valid :
     endpointDepth3SubtreeValidAllAccepted .Q1 452 801 664 =
-      true := by
-  native_decide
-
-/-- Valid shadows in `.Q1/452/801/680` are row-bank covered. -/
-theorem q1_v452_w801_u680_valid :
-    endpointDepth3SubtreeValidAllAccepted .Q1 452 801 680 =
       true := by
   native_decide
 

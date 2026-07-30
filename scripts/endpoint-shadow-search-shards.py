@@ -2,7 +2,26 @@
 # Copyright (c) 2026 Adam McKenna. All rights reserved.
 # Released under Apache 2.0 license as described in the file LICENSE.
 # Author: Adam McKenna <adam@mysticflounder.ai>
-"""Emit Lean shards for endpoint finite-shadow search coverage."""
+"""Emit Lean shards for endpoint finite-shadow search coverage.
+
+Only the *reachable* fixed `.v`/`.w`/`.u` triples get a search certificate.  A
+triple is unreachable when the depth-3 state it names is already rejected by the
+DFS pruning tests, and `EndpointCertificate.ShadowSearchPruning` proves the
+coverage claim for those triples without enumerating the subtree:
+
+* `endpointDepth3SubtreeValidAllAccepted_of_pairCounts_false` — the depth-3 pair
+  counts already exceed the bound, so the subtree is empty;
+* `endpointDepth3SubtreeValidAllAccepted_of_crossSep_uw_false` and
+  `..._of_crossSep_uv_false` — the fixed `.u` mask is not cross-separated from
+  the fixed `.w` (resp. `.v`) mask, so no leaf of the subtree is a valid
+  endpoint shadow.
+
+The classification below re-implements the three Lean predicates
+(`SurplusCOMPGBank.crossSeparationOKForMasks`, `incrementPairCounts`,
+`pairCountsOK`).  It carries no trust: every pruned triple is emitted with a
+`by decide` on the corresponding Lean predicate, so a misclassification is a
+build error, not an unsound proof.
+"""
 
 from __future__ import annotations
 
@@ -53,6 +72,80 @@ UMASKS = [
 CHUNK_SIZE = 8
 MODULE_ROOT = "Erdos9796Proof.P97.EndpointCertificate.ShadowSearchShards"
 
+# Mirrors of the Lean definitions in `Erdos9796Proof.P97.SurplusCOMPGBank`.
+ALL_LABELS = ["u", "v", "w", "s1", "s2", "s3", "Pw", "Pu", "Q1", "Q2"]
+LABEL_INDEX = {label: index for index, label in enumerate(ALL_LABELS)}
+HULL_POS = {"u": 0, "Q1": 1, "Q2": 2, "v": 3, "s1": 4, "s2": 5, "s3": 6,
+            "w": 7, "Pw": 8, "Pu": 9}
+LABEL_PAIRS = [(x, y) for i, x in enumerate(ALL_LABELS) for y in ALL_LABELS[i + 1:]]
+LABEL_COUNT = len(ALL_LABELS)
+
+
+def mask_has(mask: int, label: str) -> bool:
+    return bool(mask >> LABEL_INDEX[label] & 1)
+
+
+def between(a: str, b: str, x: str) -> bool:
+    da = (HULL_POS[x] + LABEL_COUNT - HULL_POS[a]) % LABEL_COUNT
+    db = (HULL_POS[b] + LABEL_COUNT - HULL_POS[a]) % LABEL_COUNT
+    return 0 < da < db
+
+
+def separated(a: str, b: str, x: str, y: str) -> bool:
+    return between(a, b, x) != between(a, b, y)
+
+
+def cross_separation_ok(c: str, cmask: int, cp: str, cpmask: int) -> bool:
+    for x, y in LABEL_PAIRS:
+        if x in (c, cp) or y in (c, cp):
+            continue
+        if (mask_has(cmask, x) and mask_has(cmask, y)
+                and mask_has(cpmask, x) and mask_has(cpmask, y)):
+            if not separated(c, cp, x, y):
+                return False
+    return True
+
+
+def increment_pair_counts(center: str, mask: int, counts: list[int]) -> list[int]:
+    def hit(pair: tuple[str, str]) -> bool:
+        x, y = pair
+        if center in (x, y):
+            return False
+        return mask_has(mask, x) and mask_has(mask, y)
+
+    return [count + (1 if hit(pair) else 0)
+            for count, pair in zip(counts, LABEL_PAIRS)]
+
+
+def depth3_state_counts(vmask: int, wmask: int, umask: int) -> list[int]:
+    counts = [0] * len(LABEL_PAIRS)
+    counts = increment_pair_counts("v", vmask, counts)
+    counts = increment_pair_counts("w", wmask, counts)
+    return increment_pair_counts("u", umask, counts)
+
+
+def classify(vmask: int, wmask: int, umask: int) -> str:
+    """`live`, or the name of the pruning route that kills this triple.
+
+    Ordering is deliberate: on the current mask sets every pair-count-dead
+    triple is *also* cross-separation dead, so testing the counts first is what
+    keeps the `pairCounts` route load-bearing rather than vestigial.
+    """
+    if not all(count <= 2 for count in depth3_state_counts(vmask, wmask, umask)):
+        return "count"
+    if not cross_separation_ok("u", umask, "w", wmask):
+        return "sep_uw"
+    if not cross_separation_ok("u", umask, "v", vmask):
+        return "sep_uv"
+    return "live"
+
+
+PRUNING_LEMMA = {
+    "count": "endpointDepth3SubtreeValidAllAccepted_of_pairCounts_false",
+    "sep_uw": "endpointDepth3SubtreeValidAllAccepted_of_crossSep_uw_false",
+    "sep_uv": "endpointDepth3SubtreeValidAllAccepted_of_crossSep_uv_false",
+}
+
 
 def write_text_if_changed(path: Path, text: str) -> None:
     if path.exists() and path.read_text() == text:
@@ -83,9 +176,13 @@ def theorem_name(escapee: str, vmask: int, wmask: int, umask: int) -> str:
     return f"{escapee.lower()}_v{vmask}_w{wmask}_u{umask:03d}_valid"
 
 
+def live_umasks(vmask: int, wmask: int, chunk: list[int]) -> list[int]:
+    return [umask for umask in chunk if classify(vmask, wmask, umask) == "live"]
+
+
 def shard_text(escapee: str, vmask: int, wmask: int, start: int, chunk: list[int]) -> str:
     theorem_blocks = []
-    for umask in chunk:
+    for umask in live_umasks(vmask, wmask, chunk):
         theorem_blocks.append(
             f"""/-- Valid shadows in `.{escapee}/{vmask}/{wmask}/{umask}` are row-bank covered. -/
 theorem {theorem_name(escapee, vmask, wmask, umask)} :
@@ -105,10 +202,12 @@ import Erdos9796Proof.P97.EndpointCertificate.ShadowSearch
 /-!
 # Endpoint finite shadow search shard, `.{escapee}`, `.v = {vmask}`, `.w = {wmask}`
 
-This generated shard checks fixed `.u` subtrees in the endpoint shadow search.
-Each theorem says every valid endpoint shadow in that subtree is row-bank
-covered.  Keeping these native computations in small modules lets downstream
-coverage proofs import theorem constants instead of re-running the search.
+This generated shard checks the *reachable* fixed `.u` subtrees in the endpoint
+shadow search.  Each theorem says every valid endpoint shadow in that subtree is
+row-bank covered.  Keeping these native computations in small modules lets
+downstream coverage proofs import theorem constants instead of re-running the
+search.  Triples the DFS pruning tests already reject carry no theorem here;
+`EndpointCertificate.ShadowSearchPruning` covers them without enumeration.
 -/
 
 namespace Problem97
@@ -144,9 +243,13 @@ def exact_lines(escapee: str, vmasks: list[int]) -> str:
     for vmask in vmasks:
         for wmask in WMASKS:
             for umask in UMASKS:
-                lines.append(
-                    f"  · exact Depth3Cert.{theorem_name(escapee, vmask, wmask, umask)}"
-                )
+                verdict = classify(vmask, wmask, umask)
+                if verdict == "live":
+                    lines.append(
+                        f"  · exact Depth3Cert.{theorem_name(escapee, vmask, wmask, umask)}"
+                    )
+                else:
+                    lines.append(f"  · exact {PRUNING_LEMMA[verdict]} (by decide)")
     return "\n".join(lines)
 
 
@@ -225,32 +328,48 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
+import Erdos9796Proof.P97.EndpointCertificate.ShadowSearchPruning
 {imports}
 
 /-!
 # Endpoint finite shadow search shards
 
-This generated coordinator imports every fixed depth-3 endpoint search shard.
+This generated coordinator imports every reachable fixed depth-3 endpoint search
+shard and dispatches the unreachable triples to the enumeration-free pruning
+lemmas in `EndpointCertificate.ShadowSearchPruning`.
 -/
 
 {coverage_theorems()}
 """
 
 
-def emit(out_dir: Path) -> None:
+def emit(out_dir: Path) -> tuple[list[str], list[Path]]:
+    """Write the live shards and `All.lean`; delete fully-pruned shard modules.
+
+    Returns the module stems written and the stale module paths removed.
+    """
     out_dir.mkdir(parents=True, exist_ok=True)
     module_names: list[str] = []
+    stale: list[Path] = []
     for escapee, vmasks in ESCAPEES.items():
         for vmask in vmasks:
             for wmask in WMASKS:
                 for start, chunk in chunks(UMASKS, CHUNK_SIZE):
                     stem = module_stem(escapee, vmask, wmask, start, chunk)
+                    path = out_dir / f"{stem}.lean"
+                    if not live_umasks(vmask, wmask, chunk):
+                        # Every triple in this window is pruned; no module.
+                        if path.exists():
+                            stale.append(path)
+                        continue
                     module_names.append(stem)
                     write_text_if_changed(
-                        out_dir / f"{stem}.lean",
-                        shard_text(escapee, vmask, wmask, start, chunk),
+                        path, shard_text(escapee, vmask, wmask, start, chunk)
                     )
+    for path in stale:
+        path.unlink()
     write_text_if_changed(out_dir / "All.lean", all_imports(module_names))
+    return module_names, stale
 
 
 def main() -> None:
@@ -262,8 +381,20 @@ def main() -> None:
         help="directory where Lean shard modules should be written",
     )
     args = parser.parse_args()
-    emit(args.out_dir)
+    module_names, stale = emit(args.out_dir)
+    verdicts = [classify(vmask, wmask, umask)
+                for vmasks in ESCAPEES.values()
+                for vmask in vmasks
+                for wmask in WMASKS
+                for umask in UMASKS]
+    live = verdicts.count("live")
     print(f"emitted endpoint shadow search shards: {args.out_dir}")
+    print(f"  triples: {len(verdicts)} total, {live} certified, "
+          f"{len(verdicts) - live} pruned "
+          f"(count={verdicts.count('count')}, "
+          f"sep_uw={verdicts.count('sep_uw')}, "
+          f"sep_uv={verdicts.count('sep_uv')})")
+    print(f"  modules: {len(module_names)} written, {len(stale)} removed")
 
 
 if __name__ == "__main__":

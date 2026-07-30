@@ -76,7 +76,9 @@ earlier working note.
 ## Load-bearing `native_decide` inventory
 
 Static citation trace from the two exact-ten entry points, filtered by each
-module's import closure.
+module's import closure. **This table is the pre-rewrite baseline**, kept as the
+measurement reference; rows 1 and 2 have since been reduced by L1/L2 and T2 —
+see "Consolidated tally".
 
 | lane | leaves | invocations |
 |---|---:|---:|
@@ -193,7 +195,7 @@ along the full 10-centre assignment chain — a genuinely 10-ary condition.
 Separation being pairwise and killing 99% of *expansions* is not the same as
 separation determining the solution set. Both statements are true.
 
-### Positive result: 576 of 1056 endpoint shards are removable
+### Positive result: 576 of 1056 endpoint shards are removable — **IMPLEMENTED**
 
 Shard census, 1056 = 2 × 4 × 4 × 33:
 
@@ -209,28 +211,61 @@ escapee = 480 admissible; 1056 − 480 = 576.
 
 The 534 separation failures are **always at (v,u) or (w,u), never (v,w)**
 (240 / 222 / 72). The 42 count failures are exactly the pairs `{s_i, Q_j}`,
-7 shards for each of the 6 combinations.
+7 shards for each of the 6 combinations, and every one of them is *also*
+separation-dead — the two dead classes are nested, not disjoint. The table rows
+are disjoint only because "separation already fails" counts the 534 triples
+whose pair counts are still in bounds.
 
-The cause is mechanical, not mathematical: `ShadowSearchCoverage.lean:76-80`
+The cause is mechanical, not mathematical: `ShadowSearchCoverage.lean:75-80`
 destructures the DFS path and discards
 `_hsepV, _hcountsV, _hsepW, _hcountsW, _hsepU, _hcountsU`, so
-`endpointDepth3SubtreeValidAllAccepted_of_mem_candidates`
-(`ShadowSearchShards/All.lean:1271`) must hold for all 1056 mask triples rather
-than the 480 reachable ones. Two enumeration-free lemmas close the gap:
+`endpointDepth3SubtreeValidAllAccepted_of_mem_candidates` must hold for all 1056
+mask triples rather than the 480 reachable ones. Two enumeration-free lemmas
+close the gap, in `EndpointCertificate/ShadowSearchPruning.lean`:
 
-- **L1** (42 shards). If the depth-3 `pairCounts` already violate `pairCountsOK`,
-  then `endpointDepth3SubtreeResult escapee vmask wmask umask = []`, because
-  `incrementPairCounts` is pointwise monotone and `endpointSearchAux` re-checks
-  `pairCountsOK` at its first step. The `.all` is vacuous.
-- **L2** (534 shards). If `crossSeparationOKForMasks .v vmask .u umask = false`
-  or `crossSeparationOKForMasks .w wmask .u umask = false`, then `separationOK`
-  is false at every leaf — `endpointDepth3RestPlan` (`ShadowSearch.lean:61`)
-  never reassigns v, w, u — so `endpointShadowOK escapee {masks} = false` and the
-  `!endpointShadowOK ||` disjunct discharges the shard. Checked load-bearing: of
-  25 sampled separation-dead shards, 4 produced raw leaves (7 total) and **0**
-  were `endpointShadowOK`.
+- **L1** (42 shards),
+  `endpointDepth3SubtreeValidAllAccepted_of_pairCounts_false`. If the depth-3
+  `pairCounts` already violate `pairCountsOK`, then
+  `endpointDepth3SubtreeResult escapee vmask wmask umask = []`, because
+  `incrementPairCounts` is pointwise monotone and `endpointSearchAux` re-tests
+  `pairCountsOK` before descending. The `.all` is vacuous.
+- **L2** (534 shards),
+  `endpointDepth3SubtreeValidAllAccepted_of_crossSep_uw_false` and
+  `..._of_crossSep_uv_false`. If
+  `crossSeparationOKForMasks .u umask .w wmask = false` or
+  `crossSeparationOKForMasks .u umask .v vmask = false`, then
+  `searchSeparationOK` is false at every leaf — `endpointDepth3RestPlan`
+  (`ShadowSearch.lean:61`) never reassigns v, w, u, and `orderedLabelPairs`
+  carries `(.u, .w)` and `(.u, .v)` in exactly that argument order — so
+  `endpointShadowOK escapee {masks} = false` and the `!endpointShadowOK ||`
+  disjunct of `endpointDepth3SubtreeValidAllAccepted` discharges the shard.
 
-**Measured reduction: 1059 → 483 searches (54.5% of the endpoint shards).**
+Note the argument order. Both hypotheses are stated as `.u` against the earlier
+centre, which is the form the DFS itself produces at the `.u` step
+(`assignedSeparationOK .u umask [.w, .v] _`) and the form that appears in
+`searchSeparationOK`'s scan over `orderedLabelPairs`. No symmetry lemma for
+`crossSeparationOKForMasks` is needed.
+
+`ShadowSearchCoverage.lean` is **unchanged**: the pruning lemmas conclude
+`endpointDepth3SubtreeValidAllAccepted _ v w u = true` from a decidable test on
+the three fixed masks alone, so the dispatch keeps its original signature and the
+discarded path hypotheses stay discarded. This is a smaller change than the
+originally planned "thread `_hsepU`/`_hcountsU` through the dispatch".
+
+The generator (`scripts/endpoint-shadow-search-shards.py`) classifies each
+triple and emits a `native_decide` certificate only for the live ones; the other
+576 become `exact <pruning lemma> (by decide)` in the dispatch. The classifier
+re-implements `crossSeparationOKForMasks`, `incrementPairCounts`, and
+`pairCountsOK` in Python; it carries no trust, since a misclassification makes
+the emitted `by decide` fail. It was validated against a `lake env lean --run`
+dump of the same four predicates over all 1056 triples: **0 mismatches**.
+
+The count route is tested *first*, which is what keeps L1 load-bearing rather
+than vestigial given the nesting above. Emission split: 42 L1, 294 uw, 240 uv,
+480 certificates.
+
+**Measured reduction: 1056 → 480 endpoint shard certificates; 1059 → 483
+searches (54.5% of the endpoint shards).** Shard modules: 160 → 124.
 Extending the same argument one level (no admissible `Pw` against the prefix)
 removes 32 more: 608/1056, 1059 → 451. Diminishing past that.
 
@@ -473,15 +508,20 @@ against the actual generator sets.
 
 ## Consolidated tally
 
-| lane | now | after L1/L2 + T1 + T2 |
-|---|---:|---:|
-| DFS searches | 1059 | 483 (451 with one more level) |
-| `normalizePoly` shape subgoals | 3625 | 0 |
-| ideal-membership certificates | 252 | 252 (smaller; positive statements) |
-| bookkeeping | ~40 | ~40, most likely plain `decide` |
-| **`native_decide` invocations** | **~4976** | **~775** |
+`analysed` is the state this document was written against; `landed` is the
+current tree; `target` is after the remaining items.
+
+| lane | analysed | landed | target |
+|---|---:|---:|---:|
+| DFS searches | 1059 | 483 | 483 (451 with one more level) |
+| `normalizePoly` shape subgoals | 3625 | 0 | 0 |
+| ideal-membership certificates | 252 | 252 | 252 (smaller; positive statements) |
+| bookkeeping | ~40 | ~40 | ~40, most likely plain `decide` |
+| **`native_decide` invocations** | **~4976** | **~775** | **~775** |
 
 An ~84% cut, all of it enumeration-free reasoning, none of it new mathematics.
+T2 and L1/L2 together account for all of it; T1 shrinks the payload of the 252
+remaining certificates without changing the count.
 
 ## Build-performance impact
 
@@ -499,7 +539,10 @@ the arithmetic payload of 236 polynomial checks.
 
 The 84% reduction in invocation count must not be reported as an 84% wall-time
 reduction without measurement.  Native checks have very unequal costs and Lake
-compiles independent modules in parallel.  In the same live build, separate
+compiles independent modules in parallel.  For the endpoint shard family that
+measurement now exists — see "Endpoint shard family, measured" below, where the
+unequal costs run in the *favourable* direction — but it has not been made for
+the surplus family or for T2.  In the same live build, separate
 `ErasedCertificate/P2Placement*Native` and
 `ErasedCertificate/P4SPlacement*Native` modules were still taking more than
 20 minutes each.  Those modules are outside the endpoint/surplus rewrite
@@ -512,6 +555,62 @@ the rewrite and compare:
 2. rebuild time after invalidating the endpoint/surplus definitions;
 3. peak parallelism and the longest individual native checks; and
 4. the same measurements for the unaffected `ErasedCertificate` family.
+
+### Endpoint shard family, measured (2026-07-30)
+
+Both states were produced by the same generator script and built with the same
+`lake build Erdos9796Proof.P97.EndpointCertificate.ShadowSearchCoverage` from a
+cold shard family (every shard module invalidated, everything below it warm), on
+the same machine under the same background load from the other lanes.
+
+| | before | after |
+|---|---:|---:|
+| shard certificates (`native_decide`) | 1056 | 480 |
+| shard modules | 160 | 124 |
+| Lake jobs | 166 | 131 |
+| CPU time (`user`) | 78m07s | 19m33s |
+| wall time | 7m27s | 1m50s |
+
+**A 4.0× CPU reduction, against a 2.2× reduction in certificate count.** The
+pruned triples were disproportionately expensive, which is what the earlier
+per-shard expansion profile (min 120, median 28,800, max 617,280) predicts:
+`endpointSearchAux` tests `assignedSeparationOK` only when it *assigns* a
+centre, so a triple that is already separation-dead in its `{v,w,u}` prefix is
+not pruned at depth 3 — it explores the whole seven-centre subtree and only
+fails at the final `endpointShadowOK`. Removing those triples removes more work
+per certificate than removing a live one would.
+
+Caveat on the figures: the two runs saw different background load from the other
+lanes (`load_1m` ≈ 26 for the after-run, ≈ 32 for the baseline), and the baseline
+ran second. Wall time is the more confounded of the two; CPU time is the primary
+figure. The contention skew flatters the result, but not by enough to explain the
+gap — the ratio stays well above the 2.2× count ratio under any plausible
+correction.
+
+Axiom closure of the replacement, checked with `#print axioms`:
+
+```
+endpointDepth3SubtreeValidAllAccepted_of_pairCounts_false  → [propext, Quot.sound]
+endpointDepth3SubtreeValidAllAccepted_of_crossSep_uw_false → [propext, Quot.sound]
+endpointDepth3SubtreeValidAllAccepted_of_crossSep_uv_false → [propext, Quot.sound]
+```
+
+So the 576 removed shard checks are not merely traded for cheaper native ones —
+they are discharged with **no compiler trust at all**, inside the three-axiom
+budget, and below even the `Classical.choice` line. The compiler-trusted surface
+of the endpoint DFS lane shrinks by 54.5%, not just its invocation count.
+
+The axiom closure of the consumer is unchanged, as it must be while any shard
+certificate remains native:
+
+```
+endpointShadowInBank_of_endpointShadowOK
+  → [propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound]
+```
+
+identical before and after. L1/L2 reduce how much compiler trust the lane
+*exercises*; they do not remove it from the closure. Only eliminating all 480
+remaining certificates would do that, and nothing in this document proposes to.
 
 ### Separate `ErasedCertificate` bottleneck
 
@@ -696,10 +795,15 @@ for the three new theorems was checked by the `pp.explicit` diff
 4. T2 (removes 3625 subgoals and 117 proof-script files).  This is the first
    implementation target because it removes repeated work by construction and
    does not change the certificate mathematics.
-5. L1 + L2 (removes 576 shard checks).  Self-contained and independently
-   measurable.
+5. ~~L1 + L2 (removes 576 shard checks).  Self-contained and independently
+   measurable.~~ **DONE 2026-07-30** — see "Positive result: 576 of 1056
+   endpoint shards are removable" above and "Endpoint shard family, measured"
+   below.
 6. Rebuild and compare against the baseline.  Land T2/L1/L2 only with
    source-clean theorem checks and a recorded wall-time/module-family delta.
+   **Done for L1/L2** ("Endpoint shard family, measured").  Still owed for T2:
+   no pre-T2 baseline was captured before that change landed, so its delta is
+   not recoverable by direct comparison.
 7. T1 (deletes the `tau` column and 236 generators).  Do this after T2 settles
    the shared emitters.
 8. Pursue the `Int` coefficient checker and explicit completeness certificates
