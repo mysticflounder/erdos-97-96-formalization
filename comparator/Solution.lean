@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 import Erdos9796Proof
+import Erdos9796Proof.P97.FiniteN10
 
 /-!
 # Solution.lean — comparator solution module
@@ -11,6 +12,12 @@ import Erdos9796Proof
 Discharges every `sorry` stub in `Challenge.lean` by importing the project
 (`import Erdos9796Proof`) and inhabiting each headline statement with the real
 project theorem.
+
+`Erdos9796Proof.P97.FiniteN10` is imported separately because the project root
+does not reach it: the root imports only the two upstream-vocabulary bridges,
+whose descent route does not pass through the fixed-card exact-ten endpoint.
+`Problem97.FiniteN10Closure` is a standalone endpoint, so gating it here
+requires naming its module.
 
 Each theorem here states the **exact same signature** as its namesake in
 `Challenge.lean` — same `Headline.` name, identical statement text — and proves
@@ -437,5 +444,54 @@ theorem equilateral_inscribed_side_eq_radius_mul_sqrt_three
     dist p₁ p₃ = s.radius * Real.sqrt 3 :=
   Problem97.equilateral_inscribed_side_eq_radius_mul_sqrt_three
     h1 h2 h3 h12 h13 h23 hd12 hd23
+
+/- ## Compiler-trusted tier
+
+Sorry-free, but the exact-ten certificate bank is discharged by
+`native_decide`, so these carry `Lean.ofReduceBool` and `Lean.trustCompiler` in
+addition to the core three axioms. Gated by `config-native.json`, audited by
+`axiom-audit-native.lean`. See the matching section of `Challenge.lean` for why
+the split exists and why `Problem97.FiniteN11Closure` is absent. -/
+
+/-- **No 10-point convex-independent planar set has the 4-equidistant
+property.** The exact-ten finite endpoint. -/
+theorem finiteN10Closure :
+    ∀ A : Finset (EuclideanSpace ℝ (Fin 2)), A.card = 10 →
+      (∀ a ∈ (A : Set (EuclideanSpace ℝ (Fin 2))),
+        a ∉ convexHull ℝ ((A : Set (EuclideanSpace ℝ (Fin 2))) \ {a})) →
+      ¬ (∀ p ∈ A, ∃ r : ℝ, r > 0 ∧
+        (A.filter fun q => dist p q = r).card ≥ 4) :=
+  Problem97.FiniteN10Closure
+
+/-- **Every Problem-97 counterexample has at least 11 points.**
+
+`Problem97.counterexample_card_ge_ten` gives `10 ≤ |A|`; the exact-ten endpoint
+`Problem97.FiniteN10Closure` rules out equality. Same composition as
+`Problem97.counterexample_card_ge_ten` itself, one level up. -/
+theorem counterexample_card_ge_eleven
+    {A : Finset (EuclideanSpace ℝ (Fin 2))} (hne : A.Nonempty)
+    (hconv : ∀ a ∈ (A : Set (EuclideanSpace ℝ (Fin 2))),
+      a ∉ convexHull ℝ ((A : Set (EuclideanSpace ℝ (Fin 2))) \ {a}))
+    (hK4 : ∀ p ∈ A, ∃ r : ℝ, r > 0 ∧
+      (A.filter fun q => dist p q = r).card ≥ 4) :
+    11 ≤ A.card := by
+  rcases (Problem97.counterexample_card_ge_ten hne hconv hK4).lt_or_eq with
+    hlt | heq
+  · omega
+  · exact absurd hK4 (Problem97.FiniteN10Closure A heq.symm hconv)
+
+/-- **Erdős 97 holds for every point set of at most 10 points.**
+
+The contrapositive of `counterexample_card_ge_eleven`. -/
+theorem erdos97_of_card_le_ten
+    {A : Finset (EuclideanSpace ℝ (Fin 2))} (hne : A.Nonempty)
+    (hconv : ∀ a ∈ (A : Set (EuclideanSpace ℝ (Fin 2))),
+      a ∉ convexHull ℝ ((A : Set (EuclideanSpace ℝ (Fin 2))) \ {a}))
+    (hcard : A.card ≤ 10) :
+    ¬ (∀ p ∈ A, ∃ r : ℝ, r > 0 ∧
+      (A.filter fun q => dist p q = r).card ≥ 4) := by
+  intro hK4
+  have := counterexample_card_ge_eleven hne hconv hK4
+  omega
 
 end Headline

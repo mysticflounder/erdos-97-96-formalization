@@ -606,14 +606,91 @@ to pursue the three-axiom tier: implement T2 and L1/L2 as tractability work,
 measure them, then decide whether T1 and the Int checker rewrite justify their
 additional migration cost.
 
+## Comparator tier status (2026-07-30)
+
+Next steps 1 and 2 are done.  The recommendation above — put `FiniteN10Closure`
+in an explicit compiler-trusted tier rather than waiting on the Int rewrite —
+was implemented.
+
+**Axiom closures, measured directly** (`lake env lean` against the built
+oleans, importing `Erdos9796Proof.P97.FiniteN11`):
+
+| Theorem | Closure |
+|---|---|
+| `Problem97.FiniteN9Closure` | `{propext, Classical.choice, Quot.sound}` |
+| `Problem97.FiniteN10Closure` | those **+** `{Lean.ofReduceBool, Lean.trustCompiler}`, **no `sorryAx`** |
+| `Problem97.FiniteN11Closure` | those **+ `sorryAx`** |
+
+This confirms the earlier audit for `FiniteN10Closure` — five axioms, no
+`sorryAx` — and is no longer a citation inference.
+
+**The tier.**  `comparator/` is now split by axiom budget over the same
+`Challenge`/`Solution` pair:
+
+| Tier | Manifest | Permitted axioms | Count |
+|---|---|---|---|
+| core | `config.json` / `axiom-audit.lean` | `propext`, `Classical.choice`, `Quot.sound` | 24 |
+| native | `config-native.json` / `axiom-audit-native.lean` | those **+** `Lean.ofReduceBool`, `Lean.trustCompiler` | 3 |
+
+The three native-tier entries are `Headline.finiteN10Closure`
+(`Problem97.FiniteN10Closure`), `Headline.counterexample_card_ge_eleven`
+(every counterexample has ≥ 11 points), and `Headline.erdos97_of_card_le_ten`
+(its contrapositive).  The latter two are composed in `Solution.lean` from
+`Problem97.counterexample_card_ge_ten` with equality killed by
+`Problem97.FiniteN10Closure` — the same shape `counterexample_card_ge_ten` uses
+one level down against `FiniteN9Closure`.
+
+`check-conformance.sh` was rewritten to be tier-driven: permitted sets are read
+from the config files rather than hardcoded, each tier's config and audit file
+are cross-checked for the same name set, the tiers must be disjoint, and every
+reported axiom must be in its tier's permitted set.  That last check subsumes
+the old grep guards — `sorryAx` is in no tier's set, and a core-tier theorem
+that starts using `native_decide` reports `Lean.ofReduceBool`, which core does
+not permit.
+
+**Two facts worth recording.**
+
+1. `Problem97.FiniteN10Closure` is **not in the project root's import closure**.
+   `Erdos9796Proof` imports only `P97.UpstreamBridge` and `P96.UpstreamBridge`,
+   and that descent route does not pass through the fixed-card exact-ten
+   endpoint; nothing in the tree imports `P97/FiniteN10.lean` except
+   `P97/FiniteN11.lean`.  This corroborates the "nothing imports it, it is
+   off-spine" note above, and it means `Solution.lean` has to name the module
+   explicitly.
+2. **`FiniteN11Closure` cannot be gated in any tier**, including conditionally.
+   It still reaches `sorryAx` (measured 2026-07-30) through
+   `ATailFiniteN11Frontier.false_of_twoLargeCaps_commonCriticalMap_of_card_eq_eleven`,
+   which splits into two arms — the unique-radius arm, whose open leaf is the
+   exact-five common-obstruction-center residual at `FiniteN11Frontier.lean:42`,
+   and `false_of_frontierCommonDeletionPhysicalSecondApex` in
+   `FrontierLiveClosure`, which carries `sorryAx` of its own (ExactSkeletonPilot,
+   convo #2485).  The `FiniteN11Frontier.lean:42` docstring calling its leaf
+   "the sole open fixed-cardinality-eleven leaf" is stale; the live residual set
+   belongs to the exact-eleven lane, not this one.
+   A conditional gate is not a workaround: that hypothesis quantifies over
+   `CounterexampleData`, `SurplusCapPacket`, and `CriticalShellSystem`, project
+   structures with no faithful mathlib-only restatement, so stating it in
+   `Challenge.lean` would defeat the module's purpose.
+   `counterexample_card_ge_eleven` is the strongest proved eleven-point
+   statement available — a lower bound on a counterexample's size, not its
+   exclusion.  When the leaf closes, `finiteN11Closure` joins the native tier
+   by the same three-line pattern as `finiteN10Closure`.
+
+**Verification.** `check-conformance.sh` passes both tiers.  Statement identity
+for the three new theorems was checked by the `pp.explicit` diff
+(`Challenge` vs `Solution`, 455 lines each, 0 differences).  A real
+`leanprover/comparator` run against `config-native.json` has **not** been done.
+
 ## Next steps, in dependency order
 
-1. After the active `FiniteN11` build finishes, refresh
+1. ~~After the active `FiniteN11` build finishes, refresh
    `#print axioms Problem97.FiniteN10Closure` and preserve the exact output in
-   the audit artifacts.
-2. Add `FiniteN10Closure` to an explicitly compiler-trusted comparator tier.
+   the audit artifacts.~~ **DONE 2026-07-30** — see "Comparator tier status"
+   below.
+2. ~~Add `FiniteN10Closure` to an explicitly compiler-trusted comparator tier.
    Do not add it to the existing three-axiom theorem set or make that clean tier
-   depend on it.  Coordinate this with the active comparator-wiring owner.
+   depend on it.  Coordinate this with the active comparator-wiring owner.~~
+   **DONE 2026-07-30** — see "Comparator tier status" below.
 3. Capture the build baseline described above before changing the certificate
    representation.
 4. T2 (removes 3625 subgoals and 117 proof-script files).  This is the first

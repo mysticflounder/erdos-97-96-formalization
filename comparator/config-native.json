@@ -1,0 +1,17 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "enable_nanoda": true,
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice",
+    "Lean.ofReduceBool",
+    "Lean.trustCompiler"
+  ],
+  "theorem_names": [
+    "Headline.finiteN10Closure",
+    "Headline.counterexample_card_ge_eleven",
+    "Headline.erdos97_of_card_le_ten"
+  ]
+}

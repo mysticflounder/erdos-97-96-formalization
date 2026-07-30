@@ -167,6 +167,22 @@ including a non-obvious `lean4export` version pin needed at Lean v4.27.0.
 `./comparator/check-conformance.sh` is the cheap offline pre-flight (build +
 axiom audit, no external toolchain).
 
+A **second, compiler-trusted tier** (`comparator/config-native.json`, added
+2026-07-30) gates 3 further results whose proofs run the exact-ten certificate
+bank through `native_decide`: `Problem97.FiniteN10Closure` (no 10-point
+counterexample), the resulting bound *every counterexample has at least 11
+points*, and its contrapositive *Erdős 97 holds for |A| ≤ 10*. These are
+sorry-free but additionally depend on `Lean.ofReduceBool` and
+`Lean.trustCompiler`, so they are held in a separate manifest rather than
+diluting the three-axiom set above — the project's `native_decide` policy
+requires compiler trust to be explicit and reported. The native tier has passed
+the offline pre-flight and the `pp.explicit` statement-identity diff; it has not
+yet had a real comparator run.
+
+`Problem97.FiniteN11Closure` is **not** gated in either tier: it is fully wired
+and builds green, but still reaches `sorryAx` through the open card-eleven
+A-tail frontier residuals.
+
 ### Erdős 97 — unconditional partial results
 
 | Theorem | Statement |
@@ -260,10 +276,11 @@ whole P96 branch's openness enter through exactly one gateway.
 
 mathlib has no minimum enclosing circle; this development builds one. See
 [`comparator/README.md`](comparator/README.md) for the full gated list (24
-theorems, including the Welzl invariant, the Moser non-obtuse triple, the
-Dumitrescu/Fox–Pach double count, and the planar metric kernels), for how each
-project definition is inlined into mathlib terms, and for the audit boundary —
-what is deliberately *not* gated, and why.
+core-tier theorems, including the Welzl invariant, the Moser non-obtuse triple,
+the Dumitrescu/Fox–Pach double count, and the planar metric kernels, plus 3 in
+the compiler-trusted tier), for how each project definition is inlined into
+mathlib terms, and for the audit boundary — what is deliberately *not* gated,
+and why.
 
 ## Building from a clean checkout
 
@@ -360,9 +377,11 @@ lean/
 comparator/                   -- mathlib-only auditability gate (see its README)
   Challenge.lean              -- headline claims as sorry stubs, `import Mathlib`
   Solution.lean               -- same statements, discharged from the project
-  config.json                 -- leanprover/comparator config + permitted axioms
-  axiom-audit.lean            -- #print axioms for every gated theorem
-  check-conformance.sh        -- offline pre-flight (build + axiom audit)
+  config.json                 -- core tier: 3 core axioms only (24 theorems)
+  axiom-audit.lean            -- #print axioms for every core-tier theorem
+  config-native.json          -- native tier: + ofReduceBool/trustCompiler (3)
+  axiom-audit-native.lean     -- #print axioms for every native-tier theorem
+  check-conformance.sh        -- offline pre-flight, both tiers
 certificates/                 -- JSON certificate banks (endpoint/, surplus/)
 scripts/
   lake-build.sh               -- locked build wrapper

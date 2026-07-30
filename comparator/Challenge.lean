@@ -429,4 +429,57 @@ theorem equilateral_inscribed_side_eq_radius_mul_sqrt_three
     dist p₁ p₃ = s.radius * Real.sqrt 3 :=
   sorry
 
+/- ## Compiler-trusted tier
+
+Everything above is gated by `config.json`, whose `permitted_axioms` is exactly
+`{propext, Classical.choice, Quot.sound}`.
+
+The results below are equally sorry-free, but their proofs run the exact-ten
+certificate bank through `native_decide`, so their axiom closure additionally
+contains `Lean.ofReduceBool` and `Lean.trustCompiler`. They are therefore gated
+by a **separate** manifest, `config-native.json`, which permits those two and
+nothing else beyond the core three. The split is deliberate: a reviewer who
+declines to trust the Lean compiler can read `config.json` alone and still get a
+complete, self-consistent gate.
+
+This is the project's `native_decide` policy (README, "bv_decide standard"):
+compiler trust is permitted but must be *explicit and reported*, never silent.
+
+`Problem97.FiniteN11Closure` is **not** here. It still reaches `sorryAx` — its
+card-eleven exact-five common-obstruction-center leaf
+(`ATailFiniteN11Frontier.false_of_twoLargeCaps_commonCriticalMap_of_card_eq_eleven`)
+is open — so no tier can gate it. `counterexample_card_ge_eleven` below is the
+strongest proved statement about eleven points: it bounds a counterexample's
+size from below, it does not exclude one. -/
+
+/-- **No 10-point convex-independent planar set has the 4-equidistant
+property.** The exact-ten finite endpoint. -/
+theorem finiteN10Closure :
+    ∀ A : Finset (EuclideanSpace ℝ (Fin 2)), A.card = 10 →
+      (∀ a ∈ (A : Set (EuclideanSpace ℝ (Fin 2))),
+        a ∉ convexHull ℝ ((A : Set (EuclideanSpace ℝ (Fin 2))) \ {a})) →
+      ¬ (∀ p ∈ A, ∃ r : ℝ, r > 0 ∧
+        (A.filter fun q => dist p q = r).card ≥ 4) :=
+  sorry
+
+/-- **Every Problem-97 counterexample has at least 11 points.** -/
+theorem counterexample_card_ge_eleven
+    {A : Finset (EuclideanSpace ℝ (Fin 2))} (hne : A.Nonempty)
+    (hconv : ∀ a ∈ (A : Set (EuclideanSpace ℝ (Fin 2))),
+      a ∉ convexHull ℝ ((A : Set (EuclideanSpace ℝ (Fin 2))) \ {a}))
+    (hK4 : ∀ p ∈ A, ∃ r : ℝ, r > 0 ∧
+      (A.filter fun q => dist p q = r).card ≥ 4) :
+    11 ≤ A.card :=
+  sorry
+
+/-- **Erdős 97 holds for every point set of at most 10 points.** -/
+theorem erdos97_of_card_le_ten
+    {A : Finset (EuclideanSpace ℝ (Fin 2))} (hne : A.Nonempty)
+    (hconv : ∀ a ∈ (A : Set (EuclideanSpace ℝ (Fin 2))),
+      a ∉ convexHull ℝ ((A : Set (EuclideanSpace ℝ (Fin 2))) \ {a}))
+    (hcard : A.card ≤ 10) :
+    ¬ (∀ p ∈ A, ∃ r : ℝ, r > 0 ∧
+      (A.filter fun q => dist p q = r).card ≥ 4) :=
+  sorry
+
 end Headline
