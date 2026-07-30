@@ -91,7 +91,7 @@ leaf-by-leaf computational status and first-missing-bridge description):
 | D-R | 2 | SAT with 25/25 negative probes DRAT-verified; needs a finite consequence of universal no-five/no-M44 or exact real-radius content |
 | D-E | 2 | Open-carrier named-witness projection SAT; needs a proved finite cutoff or cardinality-free symbolic certificate |
 | E | 1 | Counting/incidence abstraction SAT; needs the unencoded all-low-hit family plus remaining survival/minimality geometry |
-| F-Γ | 4 | Abstract incidence/cardinality only — no finite completeness reduction exists yet for this package |
+| F-Γ | 4 | No finite completeness reduction; v17 local metric search leaves an 18-class survivor, while the exact full probe and 205 six-class cases remain fail-closed `UNKNOWN` |
 | **Total** | **20** | |
 
 Every SAT verdict above is a finite named-local incidence abstraction, not a

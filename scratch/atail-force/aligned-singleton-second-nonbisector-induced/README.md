@@ -201,9 +201,47 @@ the outer solver returned `UNKNOWN` with reason `timeout`; it retained exactly
 `93b08cf60b186cc9fede435ddd996d69c9e780fea553defe949ccf7469713b3c`).
 
 This checkpoint therefore closes the known frozen v16 survivor but does not
-close the live Lean leaf.  The next computational step is to avoid another
-monolithic solve over the 100,000-cut custom ledger: first replay v17 on the
-smaller local/critical/reuse-second frontier, then shard or otherwise constrain
-the cyclic-order search before resuming the custom checkpoint.  Any finite
-`UNSAT` result still needs a source-faithful live-to-finite producer, or a
-direct selected-row extraction, before it can discharge the on-spine `sorry`.
+close the live Lean leaf.
+
+The smaller v16 local/critical/reuse-second checkpoint contained 4,086 cuts.
+The generalized migration retained and revalidated 4,078 universal
+theorem-shaped cuts and deliberately dropped eight old quotient-specific
+relation cuts for rediscovery.  A v17 resume then banked 1,855 new cuts and
+returned `ALIVE` after 16.42 seconds with 5,933 total cuts and an 18-class
+survivor.  The immutable 4,078-cut migration artifact is
+`cegar-v17-local-critical-reuse-second.original-migrated.checkpoint.json`
+(SHA-256
+`cace3498b7ce04e0cc186edc9b10268b742e1070de2b001d29756f29ca244586`);
+`v17-local-migration-report.json` records the exact eight dropped indices and
+schema census.  The result and resumed checkpoint are respectively
+
+```text
+cegar-v17-local-critical-reuse-second.json
+  sha256 bd3e6567e7d130932d51c14edd6980c6fa3d046cc0e3194c88afdab6c8eb783c
+cegar-v17-local-critical-reuse-second.migrated.checkpoint.json
+  sha256 11234e5710d46b46550689929767b522e2d77c1b76f3ca4841654d7a54086f2a
+```
+
+The hash-pinned survivor has 35 recorded positive quotient-row equations.
+An exact-coordinate `QF_NRA` feasibility probe over all 18 ordered classes
+ended `UNKNOWN_FAIL_CLOSED` at its hard 600-second subprocess wall limit.  It
+is neither a realization nor a contradiction.  Exact induced-subset mining
+then exhausted all 3,060 four-class and 8,568 five-class subsets; every checked
+case was `SAT`, so `NONE_FOUND_IN_EXHAUSTED_RANGE`.  The six-class pass visited
+all 18,564 subsets but left 205 solver-`UNKNOWN` cases and therefore ended
+`UNKNOWN_NO_VALIDATED_CORE` after 324.564392 seconds.  No candidate passed the
+required shrinking plus fresh Z3 and independent cvc5 validation gates.
+
+The next sound bounded step is the stronger custom projection with
+`--global-k4-center q`.  The existing 5,933-cut checkpoint can be reused only
+through a guarded metadata rebase that verifies the v17 implementation hash,
+the local projection fields, the exact cut count, and that every stored cut
+mentions only the unchanged 33 original roles.  Ordinary `--resume` must then
+revalidate every rebased cut under the 37-role custom projection before use.
+If that projection survives, `--cover-point q` is the next strengthening; if
+cyclic-order search becomes the bottleneck, it must be split by a sound
+coverage manifest rather than by random seeds.
+
+Any finite `UNSAT` result still needs a source-faithful live-to-finite producer,
+or a direct selected-row extraction, before it can discharge the on-spine
+`sorry`.

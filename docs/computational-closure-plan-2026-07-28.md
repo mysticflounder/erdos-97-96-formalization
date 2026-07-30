@@ -27,7 +27,7 @@ the current live total to 20.
 | D-R | 2 | `false_of_exactFourPostCardElevenTwoRadiusBranch`, `false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome` |
 | D-E | 2 | `false_of_firstApexUniqueRadiusExactFive{Distinct,Common}ObstructionCenter(s)Residual` |
 | E | 1 | `false_of_retainedInteriorDirectedOmission_and_all_low_hits` |
-| F-Γ | 4 | `TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`, `...false_of_capSource_freshThirdBlockerFiber`, `...false_of_twoCapSources_mutualCrossMembership_distinctBlockers`, `...false_of_twoCapSources_oneSidedDeletionSurvival` |
+| F-Γ | 4 | `TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`, `...false_of_capSource_freshThirdBlockerFiber`, `...false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector`, `...false_of_twoCapSources_oneSidedDeletionSurvival` |
 | B | 3 | `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision`, `false_of_exactFourMutualOmission_fourCenterCommonDeletion_{blockerCoincidence,survivalSquare}` |
 
 Notes: F4 (`freshOutsideSecondBlockerFiber`) is closed by the landed fiber
@@ -89,10 +89,17 @@ These results shape where compute is spent; do not re-run them.
   produce the missing positive Euclidean/global bridge: force the second
   blocker to bisect the pair (or force both pair points into its selected
   row), contradicting the live inequality.
-  The v17 mirror-interleaving six-point cut now refutes the exact frozen v16
-  local survivor, but the resumed 100,000-cut outer ledger timed out
-  fail-closed.  It neither proves this live child nor supplies the required
-  live-to-finite producer; see the K-A-LIVE v17 checkpoint in
+  The v17 mirror-interleaving six-point cut refutes the exact frozen v16 local
+  survivor, but the resumed 100,000-cut outer ledger timed out fail-closed.
+  The smaller local/critical/reuse-second projection completed at 5,933 cuts
+  with an 18-class survivor.  Its exact full-coordinate probe timed out
+  fail-closed at 600 seconds; exhaustive four- and five-class subset mining
+  found no UNSAT core, while the complete six-class traversal retained 205
+  solver-`UNKNOWN` cases and no validated core.  The next bounded
+  strengthening is custom global K4 at `q`, reusing the ledger only through a
+  guarded metadata rebase followed by ordinary cut revalidation.  None of
+  these results proves the live child or supplies the required live-to-finite
+  producer; see the K-A-LIVE v17 checkpoint in
   `docs/closure-matrix-2026-07-09.md`.
 - **Equality-arm routes are dead** (`scratch/collision-equality-arms/`):
   the four collision equality alternatives all produce
@@ -166,7 +173,7 @@ semantics, D/E share the residual frame.
 | 1 | A-core (6) | Partition T = {z_d} ∪ I_u ∪ I_v, |I_u| = |I_v| = 2 disjoint; β-pattern with β(x) = a₁ iff x ∈ Cl(a₁,r); CD overlap ≤ 2; cap-growth trichotomy; leaf deltas A2–A8 (β(source) placement × N_u/N_v row-heaviness) | Encoder must find SAT on the 15-point witness's incidence type restricted to the layers it realizes; leaf-delta consistency: A3–A5 and A7–A8 deltas mutually exclusive by construction |
 | 2 | C-core (2) | Same skeleton as A (Γ₂ = {z*} ∪ I_u ∪ I_v); C1 placement trichotomy; C2 explicit collision arm | Same witness gate; C1 trichotomy exhaustiveness checked against A's version |
 | 3 | E (1) | Cover bound |A| ≤ 4|N|; cap-sum identity; derived n ≥ 15; unique-four shell cover as functional map x ↦ Row(x) into 4-blocks; directed-omission arm choice; E9 low-hit ≤ 2 clauses | Reproduce the kernel-checked low-hit consumers' arithmetic on a hand-built 15-point pattern |
-| 4 | F-Γ (4) | Γ restated in `lean/scratch/f3c-redundancy-bank/F3cRedundancy.lean`; pairs-disjointness; shell ∩ cap = sources; current four leaf deltas | Fixed-slot completeness is unavailable: a 17-point shadow and an unbounded four-point-block extension survive. Route through a new geometric bridge, not a closed named universe |
+| 4 | F-Γ (4) | Γ restated in `lean/scratch/f3c-redundancy-bank/F3cRedundancy.lean`; pairs-disjointness; shell ∩ cap = sources; deltas for cross-blocker coincidence, fresh third blocker fiber, aligned singleton radius with strict second-blocker non-bisection, and one-sided deletion survival | Fixed-slot completeness is unavailable: a 17-point shadow and an unbounded four-point-block extension survive. Route through a new geometric bridge, not a closed named universe |
 | 5 | D-R (2) | Two disjoint selected 4-classes K₁ ∩ K₂ = ∅; no-five-row at a₂; D2's five role-swap equalities S ↔ S′ | Verify the five syntactic role/cap aliases under the double renaming; do not assert `S′′ = S` or packet equality |
 | 6 | D-E (2) | Exact-five class; D3 distinct-centers vs D4 common-center arm; D4's exactly-2-on-bisector cardinality | D4's bisector-2 clause must be consistent with the banked `b1_bisectorSet_eq_pair` mechanism (Dumitrescu L1 bound ≤ 2) |
 | 7 | B (3) | B2 canonical-row forcing + mutual-omission survival; B3 removable-iff-survival (`lean/scratch/b-family-bank/`). The live B1 leaf does not currently expose the bank's support equality, two cross-memberships, and exact two-point intersection prerequisites | Refute a third-bisector configuration; classify B1 as ingress-missing rather than importing unavailable bank consequences |

@@ -5,13 +5,12 @@ Date: 2026-07-28.
 ## Executive verdict
 
 The live `FrontierLiveClosure.lean` frontier has **20**, not 19,
-load-bearing `sorry` theorems.  The 19-leaf baseline in
-`docs/computational-closure-plan-2026-07-28.md` predates the source-clean F3
-narrowing: the former single F3 residual is now represented by
-`false_of_twoCapSources_mutualCrossMembership_distinctBlockers` and
-`false_of_twoCapSources_oneSidedDeletionSurvival`.  Both are consumed by
-`false_of_twoCapSources_firstFiber`, and `docs/live-blueprint.md` marks both
-as live `sorry` dependencies.
+load-bearing `sorry` theorems.  The mutual-cross-membership F3 theorem named
+by the original Session-3 snapshot is now source-clean.  Its surviving
+aligned singleton-radius branch is the directly consumed
+`false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector`;
+the one-sided deletion-survival sibling remains open.  The generated
+`docs/live-blueprint.md` is the authority for this current dependency set.
 
 The Session-3 result is therefore **zero computational closures**:
 
@@ -53,7 +52,7 @@ All declarations below are in
 | 16 | E | `false_of_retainedInteriorDirectedOmission_and_all_low_hits` | `OPEN_INC_SAT` | The unencoded E9 all-low-hit family and the remaining unlabeled survival/minimality geometry |
 | 17 | F-Γ | `false_of_crossBlockerCoincidence` | `OPEN_NO_FINITE_COMPLETENESS` | A positive cross-hit consequence from the equality arms using global geometry |
 | 18 | F-Γ | `false_of_capSource_freshThirdBlockerFiber` | `OPEN_NO_FINITE_COMPLETENESS` | A positive incidence/center or rich-slice relation between the cap-source row and fresh fiber |
-| 19 | F-Γ | `false_of_twoCapSources_mutualCrossMembership_distinctBlockers` | `OPEN_GEOMETRY` | Close the common-omission branch when one blocker-cap index is the first cap |
+| 19 | F-Γ | `false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector` | `OPEN_GEOMETRY` | Use retained global geometry/minimality to contradict the concrete strict second-blocker non-bisection |
 | 20 | F-Γ | `false_of_twoCapSources_oneSidedDeletionSurvival` | `OPEN_GEOMETRY` | Synchronize the surviving deletion row with the five named robust centers and obtain bounded-support confinement |
 
 ## Audited package evidence
@@ -66,7 +65,7 @@ All declarations below are in
 | D-R | `dr-common`, `dr-d1`, `dr-d2` SAT | 25/25 negative probes DRAT-verified; four positive fixtures SAT | named-local incidence shadow |
 | D-E | base-E, D3-left, D3-right, D4 SAT | fresh third bisector UNSAT with verified DRAT; dependency-removal near miss SAT | open-carrier named-witness projection |
 | B | B2/B3 and pinned arms SAT; B1 omitted | third-bisector smoke UNSAT with verified DRAT; three near misses SAT | named-local projection |
-| F-Γ | no complete finite verdict | 17-point shadow plus unbounded four-point-block extension | abstract incidence/cardinality only |
+| F-Γ | no complete finite verdict | 17-point shadow and unbounded extension survive; v17 local metric projection has an 18-class survivor; exact full probe and six-class residuals remain fail-closed `UNKNOWN` | no source-faithful finite completeness producer |
 
 ## Consequence for the compute lane
 

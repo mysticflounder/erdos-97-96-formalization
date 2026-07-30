@@ -1,0 +1,43 @@
+{
+  "current_cegar_sha256": "fea2e57eccd77d3df3ccaae3ffa77a148649af901cd058bdb645d712bfaa3258",
+  "cut_count": 4078,
+  "dropped_unrecognized_cut_indices": [
+    2036,
+    2305,
+    2426,
+    2652,
+    2653,
+    2818,
+    2864,
+    4041
+  ],
+  "projection_fields_checked": [
+    "z_branch",
+    "escape_arm",
+    "global_tier",
+    "cover_points",
+    "global_k4_centers",
+    "rich_apices",
+    "robust_deletions",
+    "outer_only",
+    "named_occurrences",
+    "original_named_occurrences",
+    "original_names",
+    "names"
+  ],
+  "resume_validation": "required-fail-closed",
+  "schema_counts": {
+    "circle_isosceles_five_point": 1,
+    "five_point_euclidean": 14,
+    "four_point_kalmanson": 4038,
+    "reversed_second_five_point_euclidean": 19,
+    "sparse_six_point_euclidean": 6
+  },
+  "source_checkpoint": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar-v16-local-critical-reuse-second.checkpoint.json",
+  "source_checkpoint_sha256": "0fbe6cad9144ad555825ed09e7c37fc78c07c184250d4fbb8aff53c1f68a7a19",
+  "source_cut_count": 4086,
+  "status": "MIGRATED_V16_TO_V17",
+  "target_checkpoint": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar-v17-local-critical-reuse-second.original-migrated.checkpoint.json",
+  "target_checkpoint_sha256": "cace3498b7ce04e0cc186edc9b10268b742e1070de2b001d29756f29ca244586",
+  "trust_scope": "external-discovery-only-not-Lean-closure"
+}

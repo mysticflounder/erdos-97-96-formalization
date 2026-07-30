@@ -331,12 +331,13 @@ or `ρ`.  The checked lemma
 the named cap source is the unique strict first-cap point on its own
 first-apex radius: a second point would align that radius with one of the two
 retained collision radii, contradicting the source's checked exclusion from
-both collision pairs.  The aligned-radii theorem is therefore source-clean,
-and the exact remaining load-bearing leaf is
-`false_of_capSource_freshOutsideFirstBlockerFiber_alignedSingletonRadius`.
+both collision pairs.  The aligned-radii theorem and its singleton-radius
+wrapper are therefore source-clean.  The exact remaining load-bearing leaf is
+`false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector`.
 That leaf retains the named cap-source witness, its exact singleton-radius
-equation, the fresh enlarged first-blocker fiber, and the universal alignment
-packet.  It is directly wired and appears in the kernel-mined spine.
+equation, one concrete fresh enlarged-fiber witness, the universal alignment
+packet, and the strict second-blocker non-bisection proved by the wrapper.  It
+is directly wired through that wrapper and appears in the kernel-mined spine.
 The coordinator-interface frontier therefore replaces the under-specified
 arbitrary-radius mutual-cross-membership obligation by this universal
 two-retained-radii alignment plus exact singleton-radius residual; the
@@ -458,18 +459,35 @@ it retained 100,000 cuts, found no survivor, and banked no mirror-interleaving
 cut.  This is a solver frontier, not exhaustion, certificate replay, or Lean
 closure.
 
-Thus the finite loop has narrowed this one induced branch again but has not
-exhausted it or closed the live leaf.  The computation presently covers only
-the local/critical/reuse-second arm.  The v14 critical/new-blocker exploration
-hit its cut budget, while the full robust arms timed out because their naive
-encoding creates 165 roles; even the bounded robust deletion-of-`escape`
-projection reached its cut budget without a survivor.  These are fail-closed
-search frontiers, not contradiction certificates.  The next bounded step is
-to replay v17 on the smaller local/critical/reuse-second frontier, then shard
-or otherwise soundly constrain the cyclic-order search before resuming the
-100,000-cut custom ledger.  Independently, any finite UNSAT result still needs
-a source-faithful live-to-finite producer (or a direct selected-row extraction)
-before it closes the live Lean leaf.
+The smaller local/critical/reuse-second replay is now complete.  Its v16
+checkpoint had 4,086 cuts; the generalized migration retained and revalidated
+4,078 universal theorem-shaped cuts and dropped eight old quotient-specific
+relation cuts for rediscovery.  The v17 resume banked another 1,855 cuts and
+returned `ALIVE` in 16.42 seconds with 5,933 total cuts and an 18-class
+survivor.  Thus this finite local projection has an 18-class induced
+order/metric survivor; this is neither Euclidean consistency nor exhaustion
+of the live hypotheses.
+
+The survivor records 35 positive quotient-row equations.  An exact-coordinate
+full 18-class `QF_NRA` probe ended `UNKNOWN_FAIL_CLOSED` at its hard 600-second
+subprocess limit.  Exact induced-subset mining exhausted all 3,060 four-class
+and 8,568 five-class subsets with no UNSAT core.  The six-class pass visited
+all 18,564 subsets, but 205 cases retained solver-`UNKNOWN` status and the run
+ended `UNKNOWN_NO_VALIDATED_CORE` after 324.564392 seconds.  These are
+fail-closed search frontiers, not contradiction certificates or Lean closure.
+
+The next bounded step is a stronger sound custom projection with
+`--global-k4-center q`.  A guarded metadata rebase can carry forward the 5,933
+cuts because all of them are universal hereditary obstruction schemas over the
+unchanged 33 original roles; the ordinary resume path must still revalidate
+every cut after adding the four global-`q` witnesses.  If that 37-role
+projection survives, the next strengthening is `--cover-point q`.  If
+cyclic-order search becomes the bottleneck, the search must be partitioned
+with an explicit coverage manifest rather than by random seeds.  The
+critical/new-blocker and robust arms remain separate fail-closed frontiers.
+Independently, any finite UNSAT result still needs a source-faithful
+live-to-finite producer (or a direct selected-row extraction) before it closes
+the live Lean leaf.
 
 The reusable restoration/cardinality part of the earlier extraction is
 retained in

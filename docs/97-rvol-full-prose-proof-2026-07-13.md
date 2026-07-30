@@ -1,9 +1,10 @@
 # Problem 97 full prose proof — the RVOL route (2026-07-13)
 
-Status: current full prose proof of the Problem 97 formalization target,
-written against kernel ground truth of the working tree on `main` (spine
-build `a0ba98b8849e`, refreshed 2026-07-17; counts cross-checked against the
-generated `docs/live-blueprint.md` and the source).
+Status: historical full-proof snapshot, not current frontier authority.  It
+was written against kernel ground truth at spine build `a0ba98b8849e`
+(refreshed 2026-07-17).  Use the generated `docs/live-blueprint.md` for the
+current kernel-mined dependency spine and
+`docs/closure-matrix-2026-07-09.md` for current dispatch status.
 
 **RVOL** = `RemovableVertexOfLarge`, the removable-vertex theorem for large
 counterexamples (`lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:54`).

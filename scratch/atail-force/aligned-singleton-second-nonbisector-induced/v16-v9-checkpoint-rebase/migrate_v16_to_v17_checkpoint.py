@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Migrate the completed v16 checkpoint to the v17 solver schema.
+"""Migrate a v16 checkpoint to the v17 solver schema.
 
 The source is read once and never modified.  Every source cut must parse under
 the current literal vocabulary and match one of the universal theorem-shaped
@@ -57,6 +57,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE)
     parser.add_argument("--target", type=Path, default=DEFAULT_TARGET)
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
+    parser.add_argument(
+        "--drop-unrecognized",
+        action="store_true",
+        help=(
+            "drop source cuts outside the universal theorem schemas; "
+            "the resumed solver must rediscover them"
+        ),
+    )
     return parser.parse_args()
 
 
@@ -76,22 +84,43 @@ def main() -> None:
         )
 
     cegar = load_cegar()
+    def metadata_tuple(field: str) -> tuple[str, ...]:
+        value = old_metadata.get(field)
+        if not isinstance(value, list) or not all(
+            isinstance(item, str) for item in value
+        ):
+            raise ValueError(f"source metadata field {field!r} is not a string list")
+        return tuple(value)
+
+    z_branch = old_metadata.get("z_branch")
+    escape_arm = old_metadata.get("escape_arm")
+    global_tier = old_metadata.get("global_tier")
+    outer_only = old_metadata.get("outer_only")
+    if not isinstance(z_branch, str):
+        raise ValueError("source metadata field 'z_branch' is not a string")
+    if not isinstance(escape_arm, str):
+        raise ValueError("source metadata field 'escape_arm' is not a string")
+    if not isinstance(global_tier, str):
+        raise ValueError("source metadata field 'global_tier' is not a string")
+    if not isinstance(outer_only, bool):
+        raise ValueError("source metadata field 'outer_only' is not a boolean")
+
     outer = cegar.OuterMap(
         timeout_ms=60_000,
         random_seed=0,
-        z_branch="reuse-second",
-        escape_arm="critical",
-        global_tier="custom",
-        cover_points=("escape", "z"),
-        global_k4_centers=("q", "other", "z", "t"),
-        rich_apices=("a1", "a2"),
-        robust_deletions=(),
+        z_branch=z_branch,
+        escape_arm=escape_arm,
+        global_tier=global_tier,
+        cover_points=metadata_tuple("cover_points"),
+        global_k4_centers=metadata_tuple("global_k4_centers"),
+        rich_apices=metadata_tuple("rich_apices"),
+        robust_deletions=metadata_tuple("robust_deletions"),
     )
     run_args = argparse.Namespace(
-        z_branch="reuse-second",
-        escape_arm="critical",
-        global_tier="custom",
-        outer_only=False,
+        z_branch=z_branch,
+        escape_arm=escape_arm,
+        global_tier=global_tier,
+        outer_only=outer_only,
     )
     metadata = cegar.checkpoint_metadata(run_args, outer)
 
@@ -139,6 +168,7 @@ def main() -> None:
         raise ValueError("source checkpoint cuts must be a list")
     cuts = []
     seen = set()
+    dropped_unrecognized: list[int] = []
     schema_counts: Counter[str] = Counter()
     for number, raw_core in enumerate(raw_cuts):
         if not isinstance(raw_core, list) or not raw_core:
@@ -154,6 +184,9 @@ def main() -> None:
             name for name, recognize in recognizers
             if recognize(core) is not None
         ]
+        if not matches and args.drop_unrecognized:
+            dropped_unrecognized.append(number)
+            continue
         if len(matches) != 1:
             raise ValueError(
                 f"cut {number} matched {len(matches)} v16 schemas: {matches!r}"
@@ -172,7 +205,10 @@ def main() -> None:
             "source checkpoint stats are not nonnegative integer counters"
         )
     stats = Counter(old_stats)
+    stats["source_banked_cuts"] = stats["banked_cuts"]
+    stats["banked_cuts"] = len(cuts)
     stats["migrated_source_cuts"] = len(cuts)
+    stats["dropped_unrecognized_source_cuts"] = len(dropped_unrecognized)
     for schema, count in schema_counts.items():
         stats[f"migrated_{schema}_cuts"] = count
 
@@ -188,10 +224,13 @@ def main() -> None:
         "target_implementation_sha256": metadata["implementation_sha256"],
         "projection_fields_checked": list(projection_fields),
         "schema_counts": dict(sorted(schema_counts.items())),
+        "dropped_unrecognized_source_cut_indices": dropped_unrecognized,
         "validation": (
-            "Every source cut parsed under the current literal vocabulary, "
-            "was unique, and matched exactly one universal v16 theorem schema. "
-            "The v17 resume revalidates every cut again before use."
+            "Every source cut parsed under the current literal vocabulary and "
+            "was unique. Every retained cut matched exactly one universal v16 "
+            "theorem schema. Unrecognized cuts were "
+            f"{'dropped for rediscovery' if args.drop_unrecognized else 'rejected'}. "
+            "The v17 resume revalidates every retained cut again before use."
         ),
         "trust_scope": "external solver checkpoint; not Lean theorem closure",
     }
@@ -205,6 +244,8 @@ def main() -> None:
         "target_checkpoint_sha256": sha256(args.target),
         "current_cegar_sha256": sha256(CEGAR_PATH),
         "cut_count": len(cuts),
+        "source_cut_count": len(raw_cuts),
+        "dropped_unrecognized_cut_indices": dropped_unrecognized,
         "schema_counts": dict(sorted(schema_counts.items())),
         "projection_fields_checked": list(projection_fields),
         "resume_validation": "required-fail-closed",
