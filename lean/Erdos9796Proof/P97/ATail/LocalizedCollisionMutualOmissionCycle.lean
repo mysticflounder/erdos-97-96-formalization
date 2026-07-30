@@ -40,7 +40,7 @@ attribute [local instance] Classical.propDecidable
 /-- Repackage the strict-cap collision as the production retained-radius
 collision.  This is only an adapter: all equal-blocker and exact-support data
 come from the retained critical system. -/
-private def retainedRadiusCollisionOfInteriorCollision
+def retainedRadiusCollisionOfInteriorCollision
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}

@@ -91,6 +91,31 @@ theorem uniqueFourClass_eq
   unfold uniqueFourClass
   rw [dif_pos hex, hchoice, hr']
 
+/-- Deleting any member of a unique-four center's selected class destroys
+every four-point equidistant witness at that center. -/
+theorem not_hasNEquidistantPointsAt_erase_of_mem_uniqueFourClass
+    {A : Finset ℝ²} {c x : ℝ²} (hc : IsUniqueFourCenter A c)
+    (hx : x ∈ uniqueFourClass A c) :
+    ¬ HasNEquidistantPointsAt 4 (A.erase x) c := by
+  classical
+  have hc' := hc
+  obtain ⟨-, r, hr, hcard, huniq⟩ := hc
+  have hx' : x ∈ SelectedClass A c r := by
+    rw [← uniqueFourClass_eq hc' hr hcard]
+    exact hx
+  intro hsurvives
+  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt hsurvives with
+    ⟨ρ, hρ, hfourErase⟩
+  have hfourFull : 4 ≤ (SelectedClass A c ρ).card := by
+    refine hfourErase.trans (Finset.card_le_card ?_)
+    intro z hz
+    rcases mem_selectedClass.mp hz with ⟨hzErase, hzdist⟩
+    exact mem_selectedClass.mpr ⟨Finset.mem_of_mem_erase hzErase, hzdist⟩
+  have hρr : ρ = r := huniq ρ hρ hfourFull
+  subst ρ
+  rw [selectedClass_erase_eq, Finset.card_erase_of_mem hx', hcard] at hfourErase
+  omega
+
 /-- **Minimality cover.**  In a minimal counterexample every carrier point `x`
 lies in the four-point class of some *other* point `p`, and `p` carries no K4
 radius other than that one.

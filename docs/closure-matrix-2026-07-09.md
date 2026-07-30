@@ -332,22 +332,17 @@ the named cap source is the unique strict first-cap point on its own
 first-apex radius: a second point would align that radius with one of the two
 retained collision radii, contradicting the source's checked exclusion from
 both collision pairs.  The aligned-radii theorem and its singleton-radius
-wrapper are therefore source-clean.  The exact remaining load-bearing leaf is
-`false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector`.
-That leaf retains the named cap-source witness, its exact singleton-radius
-equation, one concrete fresh enlarged-fiber witness, the universal alignment
-packet, and the strict second-blocker non-bisection proved by the wrapper.  It
-is directly wired through that wrapper and appears in the kernel-mined spine.
-The coordinator-interface frontier therefore replaces the under-specified
-arbitrary-radius mutual-cross-membership obligation by this universal
-two-retained-radii alignment plus exact singleton-radius residual; the
-pre-existing one-sided
-deletion-survival sibling remains open.  This checkpoint closes the named
-mutual-cross-membership theorem after strengthening its interface, but it
-does not reduce the total source-`sorry` count or close the enlarged-fiber
-parent.  The 10,855-job Lean 4.27 focused build passed after this narrowing;
-the singleton normalization has axioms exactly
-`[propext, Classical.choice, Quot.sound]`.
+wrapper are therefore source-clean.  At this 2026-07-28 checkpoint,
+`false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector`
+was the exact remaining load-bearing leaf.  It retained the named cap-source
+witness, its exact singleton-radius equation, one concrete fresh
+enlarged-fiber witness, the universal alignment packet, and the strict
+second-blocker non-bisection proved by the wrapper.  The 2026-07-30
+canonical-row override/rebase checkpoint below supersedes that frontier:
+this declaration is now a source-clean compatibility theorem reducing to
+the already-open fresh-third-blocker leaf.  The 10,855-job Lean 4.27 focused
+build passed after the original narrowing; the singleton normalization has
+axioms exactly `[propext, Classical.choice, Quot.sound]`.
 
 The ordered-cap branch split is now production Lean.  Let `e` and `o` be
 `Q.source` and `Q.otherOutsidePoint`, and let `b` and `bρ` be the first and
@@ -367,11 +362,11 @@ in `scratch/f3-unbounded-counting-audit/REPORT.md` realizes the remaining
 abstract incidence constraints already at the forced minimum `|A| = 17` and
 extends by arbitrary four-point blocks.  This is not a Euclidean
 `CounterexampleData` model, but it rules out another finite-slot or pure
-incidence closure.  The concrete remaining route must therefore use the
-retained global geometry/minimality data to contradict the displayed strict
-non-bisector inequality, equivalently to force `bρ` to bisect `{e,o}` or to
-force both points into its selected row.  The equality consumer is complete;
-the missing work is exactly that positive producer.
+incidence closure.  At that checkpoint the concrete route was therefore to
+use the retained global geometry/minimality data to contradict the displayed
+strict non-bisector inequality.  The 2026-07-30 override/rebase route bypasses
+that positive producer and instead reduces the branch to the fresh-third
+terminal.
 
 The induced-metric CEGAR continuation has now supplied one stronger Euclidean
 cut.  Its v12 survivor contains six cyclically ordered quotient points
@@ -506,13 +501,14 @@ retains the escaping point and its deletion-blocked critical row in the
 non-robust arm.  Using
 `CriticalShellSystem.selectedFourClass_support_eq_shell`, the live leaf now
 proves unconditionally that the escape center differs from the first, second,
-and cap-source blockers, and hence from the `q`-cover center.  This checkpoint
-closes no `sorry`.
+and cap-source blockers, and hence from the `q`-cover center.  This historical
+checkpoint closed no `sorry`.
 `false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector`
-remains the single load-bearing leaf.  Its coordinator-interface frontier is
-unchanged before and after: one direct leaf, with the same two-way second-row
-continuation and two-way robust-versus-critical escape continuation
-(constructor fan-out `2 × 2`); no new obligation was introduced.
+was then the single load-bearing leaf.  Its coordinator-interface frontier
+was unchanged before and after: one direct leaf, with the same two-way
+second-row continuation and two-way robust-versus-critical escape
+continuation (constructor fan-out `2 × 2`); no new obligation was introduced.
+The 2026-07-30 checkpoint below supersedes this status.
 
 The local two-selected-row order route is now classified as a no-go rather
 than the first missing bridge.  The deterministic common-boundary audit
@@ -544,7 +540,8 @@ The isolated declarations have exactly
 full-module build was still running at this checkpoint, so a refreshed
 module-level axiom audit remains pending.
 
-The nearest existing clean terminal for the escape row is
+Before the override/rebase extraction, the nearest existing clean terminal for
+the escape row was
 `false_of_centerAt_selectedFourClass_inter_card_ge_three`.  After rewriting
 the source-faithful `q` cover to the first shell, the smallest direct missing
 producer is
@@ -594,18 +591,20 @@ escape-center inequalities.  The remaining obstruction is source
 faithfulness: `CriticalSelectedFourClass D.A z escapeCenter` and deletion
 failure at `escapeCenter` do not imply that the original arbitrary
 `CriticalShellSystem H` chose `escapeCenter` as the blocker of either fresh
-support point.  An `overrideAt` construction can make that choice, but the
-current coordinator has no whole-packet rebase transporting both frontiers,
-residuals, collisions, localized cycles, and cap-source data to the overridden
-system.
+support point.  An `overrideAt` construction can make that choice, but at
+this checkpoint the coordinator had no whole-packet rebase transporting both
+frontiers, residuals, collisions, localized cycles, and cap-source data to
+the overridden system.  The 2026-07-30 checkpoint below supplies exactly that
+rebase.
 
-The remaining bridge must couple those global points to the escape
-continuation, minimal-deletion core, cap localization, or full deletion
-filters.  This checkpoint closes no `sorry`; the coordinator-interface
-frontier remains one direct load-bearing leaf with the same `2 × 2`
-continuation fan-out, and it introduces no new obligation.  No new CEGAR
-process was started.  Any finite UNSAT result would still require independent
-certificate validation and a checked source-to-certificate adapter.
+At this historical checkpoint the remaining bridge was expected to couple
+those global points to the escape continuation, minimal-deletion core, cap
+localization, or full deletion filters.  It closed no `sorry`; the
+coordinator-interface frontier remained one direct load-bearing leaf with the
+same `2 × 2` continuation fan-out, and it introduced no new obligation.  No
+new CEGAR process was started.  Any finite UNSAT result would still require
+independent certificate validation and a checked source-to-certificate
+adapter.
 
 The v19 finite projection now reflects the two source equalities that made the
 saved v18 survivor inadmissible.  If the minimal critical cover through `q` is
@@ -615,9 +614,10 @@ first shell.  The escape center is also constrained, in both continuation
 arms, to differ from `b1`, `b2`, and `bs`.  The schema bump makes every v18
 checkpoint fail closed rather than resume under these stronger constraints.
 The bounded self-test and replay-metadata unit tests pass; no v19 CEGAR round
-was started.  This improves source fidelity but closes no `sorry` and leaves
-the coordinator frontier and the missing positive three-hit producer
-unchanged.
+was started.  At the v19 checkpoint this improved source fidelity but closed
+no `sorry` and left the coordinator frontier and the missing positive
+three-hit producer unchanged.  The source extraction below supersedes that
+frontier without running another CEGAR round.
 
 Two additional candidate shortcuts were rejected at source level.  The
 card-at-least-fourteen SurvivalCover producer requires
@@ -677,6 +677,61 @@ upper bound,
 `¬ ∃ T : SurplusCapPacket D.A, T.IsM44`; it also bounds the designated surplus
 cap rather than the indexed opposite cap.  The U5 sibling-bank theorem remains
 neither import-reachable nor hypothesis-compatible with this packet.
+
+#### K-A-LIVE canonical-row override/rebase checkpoint (2026-07-30)
+
+The aligned/nonbisector leaf is now source-clean.  The universal
+critical-row escape supplies a carrier point `q` outside the two retained
+collision rows and the cap-source row.  Let `K` be the canonical selected
+four-class at `q`.  If `K` contained both sources of either retained collision,
+`retainedRadiusCollisionOfInteriorCollision` would identify its center with
+that collision blocker; same-center selected-support coherence would then put
+`q` back in the corresponding excluded row.  Hence `K` contains neither
+collision pair in full.  Since `K` has four points and contains `q`,
+`exists_second_outside_two_pairs` chooses a second point `v ≠ q` outside all
+four named collision sources.
+
+`not_hasNEquidistantPointsAt_erase_of_mem_uniqueFourClass` proves that deleting
+`v` destroys every four-point equidistant witness at the center of `K`.
+The proof installs a copy of `K` at `v` with
+`CriticalShellSystem.overrideAt`.  The overridden system therefore has the
+fresh mutually incident fiber `(q,v)` at a blocker distinct from both retained
+collision blockers.  The checked rebase layer transports the two frontiers,
+their residual packets, retained blocker collisions, localized common-deletion
+packets, mutual-omission cycles, and both cap-source cross-pair deletion views.
+The resulting packet is exactly
+`false_of_capSource_freshThirdBlockerFiber`.
+
+This route is exposed by the public theorem
+`TwoSourceExactCollisionRowsTerminal.false_of_freshCanonicalRowOverride`.
+Keeping it public is part of the trust profile: when it was private, the
+kernel-mined graph collapsed the reduction and incorrectly presented the
+compatibility theorem as terminal.  The public edge makes the remaining
+dependency loud:
+
+```text
+false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
+  -> false_of_freshCanonicalRowOverride
+  -> false_of_capSource_freshThirdBlockerFiber [sorry]
+  -> sorryAx
+```
+
+The former aligned/nonbisector declaration retains its enlarged-fiber,
+singleton-radius, alignment, and nonbisector parameters for downstream
+compatibility, but no longer has a direct `sorry`.  Its immediate
+coordinator-interface fan-out changes from one load-bearing aligned leaf with
+the internal `2 × 2` continuation to one checked reduction and then the single
+pre-existing fresh-third leaf; no new obligation is introduced.  Accordingly
+the direct F-Γ frontier decreases from four leaves to three, and the global
+direct source-`sorry` total decreases from 20 to 19.
+
+A focused Lean 4.27 build of
+`Erdos9796Proof.P97.ATail.FrontierLiveClosure` completed successfully and
+refreshed the kernel graph.  Direct verification of the compatibility theorem
+reports `[propext, sorryAx, Classical.choice, Quot.sound]`: this checkpoint
+closes one direct source `sorry`, but it is not unconditional or
+kernel-complete.  The remaining mathematical terminal on this path is
+`false_of_capSource_freshThirdBlockerFiber`.
 
 ### K-A-UNIQUE-PHYSICAL-SPLIT radius-normal-form checkpoint (2026-07-26)
 

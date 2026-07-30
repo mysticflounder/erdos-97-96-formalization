@@ -9,7 +9,7 @@ nothing below depends on them.
 
 ## 1. Baseline
 
-20 open spine obligations (live blueprint 2026-07-28, identical for
+19 direct open spine obligations (refreshed kernel mine 2026-07-30, identical for
 `Problem97.erdos97_rhs` and `Problem96.erdos96_rhs`; kernel `#print axioms`
 is the arbiter — the refs miner has a known dropped-edge bug). All in
 `ATail/FrontierLiveClosure.lean` (FLC), namespace
@@ -18,7 +18,9 @@ simplification refactor (`a0f73bc1`): initially 19 leaves, with A dropping 8→6
 (two `blockerV` arms closed; `blockerVRowOther_*` renamed `blockerVRow_*`)
 and B growing 1→3 (B2/B3 are live named leaves again). A later source-clean
 F3 narrowing replaced one residual by two directly consumed theorems, taking
-the current live total to 20.
+the live total to 20.  The 2026-07-30 canonical-row override/rebase closes the
+aligned/nonbisector source leaf by reducing it to the already-open fresh-third
+leaf, returning the direct total to 19.
 
 | Pkg | Leaves | Declarations |
 |---|---|---|
@@ -27,14 +29,18 @@ the current live total to 20.
 | D-R | 2 | `false_of_exactFourPostCardElevenTwoRadiusBranch`, `false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome` |
 | D-E | 2 | `false_of_firstApexUniqueRadiusExactFive{Distinct,Common}ObstructionCenter(s)Residual` |
 | E | 1 | `false_of_retainedInteriorDirectedOmission_and_all_low_hits` |
-| F-Γ | 4 | `TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`, `...false_of_capSource_freshThirdBlockerFiber`, `...false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector`, `...false_of_twoCapSources_oneSidedDeletionSurvival` |
+| F-Γ | 3 | `TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`, `...false_of_capSource_freshThirdBlockerFiber`, `...false_of_twoCapSources_oneSidedDeletionSurvival` |
 | B | 3 | `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision`, `false_of_exactFourMutualOmission_fourCenterCommonDeletion_{blockerCoincidence,survivalSquare}` |
 
 Notes: F4 (`freshOutsideSecondBlockerFiber`) is closed by the landed fiber
 swap. Hypothesis lists must be re-read from the tree at encode time; the
 solve-prompt family docs are the unfolded plain-math references. The B
 package regains its banked B2/B3 normal forms as direct leaf targets
-(`lean/scratch/b-family-bank/`).
+(`lean/scratch/b-family-bank/`).  The compatibility theorem
+`false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector` is
+source-clean and is not a separate leaf; its transitive trust path is the
+public `false_of_freshCanonicalRowOverride` reduction followed by
+`false_of_capSource_freshThirdBlockerFiber`, which still reaches `sorryAx`.
 
 ## 2. Ground rules (binding)
 
@@ -80,15 +86,19 @@ These results shape where compute is spent; do not re-run them.
   `f3c_joint_sharp` (two simultaneous five-center survivals) is free
   ammunition for the F encoding.  The production five-center coordinator now
   closes the branch where the second collision blocker bisects the explicit
-  first-fiber outside pair, using ordered-cap uniqueness.  Its sole live child
-  assumes the strict non-bisector inequality.  The cardinal-minimal
+  first-fiber outside pair, using ordered-cap uniqueness.  The former strict
+  non-bisector child is now source-clean.  The universal critical-row escape
+  supplies a canonical row outside both collision rows and the cap-source row;
+  a second point outside both collision pairs is installed with
+  `CriticalShellSystem.overrideAt`, and the frontier, residual, collision,
+  localized-cycle, and cap-source packets are rebased to the overridden
+  system.  The public reduction then invokes the still-open fresh-third-blocker
+  terminal.  Thus the aligned/nonbisector child no longer needs its own
+  positive bisection or three-hit producer.  The cardinal-minimal
   17-point incidence shadow in
   `scratch/f3-unbounded-counting-audit/REPORT.md` satisfies all remaining
-  abstract F3 constraints and extends unboundedly, so neither fixed-slot
-  completeness nor pure incidence/counting can prove that child.  F-Γ must
-  produce the missing positive Euclidean/global bridge: force the second
-  blocker to bisect the pair (or force both pair points into its selected
-  row), contradicting the live inequality.
+  abstract F3 constraints and extends unboundedly; this explains the failure
+  of the superseded direct fixed-slot/incidence route.
   The v17 mirror-interleaving six-point cut refutes the exact frozen v16 local
   survivor, but the resumed 100,000-cut outer ledger timed out fail-closed.
   The smaller local/critical/reuse-second projection completed at 5,933 cuts
@@ -104,9 +114,9 @@ These results shape where compute is spent; do not re-run them.
   existing coherence, and excludes the escape center from `b1`, `b2`, and
   `bs` in both continuation arms.  Its schema rejects v18 checkpoints, and
   the bounded self-test plus replay-metadata tests pass.  No v19 CEGAR round
-  has been started.  None of these results proves the live child or supplies
-  the required positive three-hit producer; see the current K-A-LIVE
-  checkpoint in `docs/closure-matrix-2026-07-09.md`.
+  has been started.  None of these results closes the remaining fresh-third
+  terminal; see the current K-A-LIVE checkpoint in
+  `docs/closure-matrix-2026-07-09.md`.
 - **Equality-arm routes are dead** (`scratch/collision-equality-arms/`):
   the four collision equality alternatives all produce
   center-not-in-own-support, the opposite of the needed cross-row
@@ -114,7 +124,7 @@ These results shape where compute is spent; do not re-run them.
 - **The consolidated metric question (Q)** (dead-ends): the global
   per-vertex-K4 forced-repeated-circle incidence is irreducibly metric /
   ∃ℝ-flavoured. The plan does not attempt to decide (Q) wholesale; it
-  attacks the 20 live leaves' finite case structure, where each leaf's
+  attacks the 19 live leaves' finite case structure, where each leaf's
   hypothesis stack is strictly richer than (Q).
 
 ## 4. The engine: two-layer CEGAR per package
@@ -179,7 +189,7 @@ semantics, D/E share the residual frame.
 | 1 | A-core (6) | Partition T = {z_d} ∪ I_u ∪ I_v, |I_u| = |I_v| = 2 disjoint; β-pattern with β(x) = a₁ iff x ∈ Cl(a₁,r); CD overlap ≤ 2; cap-growth trichotomy; leaf deltas A2–A8 (β(source) placement × N_u/N_v row-heaviness) | Encoder must find SAT on the 15-point witness's incidence type restricted to the layers it realizes; leaf-delta consistency: A3–A5 and A7–A8 deltas mutually exclusive by construction |
 | 2 | C-core (2) | Same skeleton as A (Γ₂ = {z*} ∪ I_u ∪ I_v); C1 placement trichotomy; C2 explicit collision arm | Same witness gate; C1 trichotomy exhaustiveness checked against A's version |
 | 3 | E (1) | Cover bound |A| ≤ 4|N|; cap-sum identity; derived n ≥ 15; unique-four shell cover as functional map x ↦ Row(x) into 4-blocks; directed-omission arm choice; E9 low-hit ≤ 2 clauses | Reproduce the kernel-checked low-hit consumers' arithmetic on a hand-built 15-point pattern |
-| 4 | F-Γ (4) | Γ restated in `lean/scratch/f3c-redundancy-bank/F3cRedundancy.lean`; pairs-disjointness; shell ∩ cap = sources; deltas for cross-blocker coincidence, fresh third blocker fiber, aligned singleton radius with strict second-blocker non-bisection, and one-sided deletion survival | Fixed-slot completeness is unavailable: a 17-point shadow and an unbounded four-point-block extension survive. Route through a new geometric bridge, not a closed named universe |
+| 4 | F-Γ (3) | Γ restated in `lean/scratch/f3c-redundancy-bank/F3cRedundancy.lean`; pairs-disjointness; shell ∩ cap = sources; deltas for cross-blocker coincidence, fresh third blocker fiber, and one-sided deletion survival. The former aligned/nonbisector delta is a checked reduction to fresh-third | Fixed-slot completeness is unavailable: a 17-point shadow and an unbounded four-point-block extension survive. Route the remaining leaves through geometric/global bridges, not a closed named universe |
 | 5 | D-R (2) | Two disjoint selected 4-classes K₁ ∩ K₂ = ∅; no-five-row at a₂; D2's five role-swap equalities S ↔ S′ | Verify the five syntactic role/cap aliases under the double renaming; do not assert `S′′ = S` or packet equality |
 | 6 | D-E (2) | Exact-five class; D3 distinct-centers vs D4 common-center arm; D4's exactly-2-on-bisector cardinality | D4's bisector-2 clause must be consistent with the banked `b1_bisectorSet_eq_pair` mechanism (Dumitrescu L1 bound ≤ 2) |
 | 7 | B (3) | B2 canonical-row forcing + mutual-omission survival; B3 removable-iff-survival (`lean/scratch/b-family-bank/`). The live B1 leaf does not currently expose the bank's support equality, two cross-memberships, and exact two-point intersection prerequisites | Refute a third-bisector configuration; classify B1 as ingress-missing rather than importing unavailable bank consequences |
