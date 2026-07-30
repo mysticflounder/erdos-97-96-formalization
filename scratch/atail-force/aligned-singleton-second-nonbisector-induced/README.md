@@ -57,11 +57,22 @@ The live source ingress for the optional `q` constraints is
 exposes the arbitrary selected four-row required by `--global-k4-center q`
 and the canonical exact unique-four critical row required by
 `--cover-point q`.  The same packet proves that the cover center avoids all
-three rich apices and lies in a strict indexed cap.  When the escape center is
-fully deletion robust, the live leaf also derives that the cover center is
-different from it.  These are stronger source facts than the corresponding
-finite constraints; the remaining trust boundary is exhaustive certified
-finite closure and its checked adapter, not the row extraction itself.
+three rich apices and lies in a strict indexed cap.  The checked theorem
+`firstFiber_sourceFaithfulCriticalCover_eq_firstShell` now proves more: this
+cover center is exactly the first collision blocker, its canonical support is
+the first collision shell and the explicit four-point first row, and the named
+first blocker inherits the indexed-cap localization.  The live leaf also uses
+`selectedFourClass_support_eq_shell` to prove unconditionally that the escape
+center is different from the first, second, and cap-source blockers; hence it
+is different from the `q`-cover center.  These are stronger source facts than
+the corresponding finite constraints.  The remaining trust boundary is a
+terminal geometric contradiction or exhaustive certified finite closure plus
+its checked adapter, not row extraction.
+
+A Lean 4.27 build and live kernel audit give the new theorem exactly
+`[propext, Classical.choice, Quot.sound]`, with no `sorryAx`.  Reference mining
+confirms its direct use by the live leaf and the leaf's path to the configured
+publish target.
 
 ## Runs
 
@@ -246,17 +257,41 @@ all 18,564 subsets but left 205 solver-`UNKNOWN` cases and therefore ended
 `UNKNOWN_NO_VALIDATED_CORE` after 324.564392 seconds.  No candidate passed the
 required shrinking plus fresh Z3 and independent cvc5 validation gates.
 
-The next sound bounded step is the stronger custom projection with
-`--global-k4-center q`.  The existing 5,933-cut checkpoint can be reused only
-through a guarded metadata rebase that verifies the v17 implementation hash,
-the local projection fields, the exact cut count, and that every stored cut
-mentions only the unchanged 33 original roles.  Ordinary `--resume` must then
-revalidate every rebased cut under the 37-role custom projection before use.
-If that projection survives, `--cover-point q` is the next strengthening; if
-cyclic-order search becomes the bottleneck, it must be split by a sound
-coverage manifest rather than by random seeds.
+## v18 `q`-cover checkpoint and source correction
 
-Any finite `UNSAT` result still needs independent certificate validation and a
-checked source-to-certificate adapter before it can discharge the on-spine
-`sorry`.  The source-faithful selected-row and cover extraction for the two
-optional `q` flags is now present and directly consumed by that live leaf.
+The guarded rebase and resume with both `--global-k4-center q` and
+`--cover-point q` completed before the CEGAR pause.  The result
+`v17-v18-checkpoint-rebase/cegar-v18-custom-q-cover-q-critical-reuse-second.json`
+is `ALIVE` with epistemic status `INDUCED_NECESSARY_CONDITION_ONLY`: iteration
+3 returned a 23-class exact strict-Kalmanson quotient survivor after
+1714.299807 seconds with 14,740 total cuts.  It is not a Euclidean-coordinate
+model.  The iteration-1 quotient core is `VALIDATED_AND_BANKED`, with five
+shrunk relations and fourteen translated outer literals.  No new solver
+process was started at this source checkpoint.
+
+The saved survivor gives `cover_q` and `b1` distinct quotient classes.  That
+assignment is now source-incompatible: `Q.blockers_eq`, support transport, and
+the explicit first-fiber shell prove `cover_q = b1` exactly.  A future resumed
+projection must identify those roles and must encode the unconditional
+nonaliases between the escape center and all three canonical blockers.  Merely
+adding the weaker first-cap order `a1 < cover_q < a2` would lose a proved
+equality and is therefore superseded.
+
+This checkpoint closes no `sorry`.
+`false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector`
+remains the one load-bearing leaf.  Its coordinator frontier is unchanged:
+one direct leaf, with the same two-way second-row continuation and two-way
+robust-versus-critical escape continuation (constructor fan-out `2 × 2`).
+The nearest existing production consumer is
+`SixPointEuclideanObstruction.false_of_six_ccw_two_selected_rows`: take the
+first-apex radius row and the first-blocker critical row, with
+`P.source₁,P.source₂` as their shared pair.  Their row memberships,
+distinctness, remaining support points, and the no-third-common-point bound
+are already available.  The exact missing bridge is to choose one remaining
+point from each row and prove an exhaustive common-boundary cyclic-order split
+whose matching branches give the consumer's
+`A < B < C < D < E < F` placement; assuming only that order would leave the
+complementary placements open.  The escape-row circle/intersection route
+remains a fallback after the three blocker aliases are excluded.  Any future
+finite `UNSAT` still needs independent certificate validation and a checked
+source-to-certificate adapter.

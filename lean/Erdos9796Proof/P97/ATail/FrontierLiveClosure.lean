@@ -9494,6 +9494,51 @@ theorem exists_globalK4Row_and_sourceFaithfulCriticalCover
       H.no_qfree_at q.1 q.2, hcoverNe₁, hcoverNe₂, hcoverNe₃,
       exists_blockerCenter_mem_capInteriorByIndex (T := T) q⟩
 
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- The source-faithful critical cover at the enlarged first-fiber point is
+not a new anonymous row: its center is the first collision row's actual
+blocker, and its support is exactly the already exposed first shell.
+
+This is the source equality hidden by a finite projection that gives the
+`q`-cover center a fresh role.  It also transports indexed-cap localization
+from the `q` cover to the named first blocker. -/
+theorem firstFiber_sourceFaithfulCriticalCover_eq_firstShell
+    (Q : FreshOutsideFirstBlockerFiber P Pρ) :
+    H.centerAt Q.source.1 Q.source.2 =
+        H.centerAt P.source₁ P.source₁_mem_A ∧
+      (H.selectedAt Q.source.1
+          Q.source.2).toCriticalFourShell.support =
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support ∧
+      (H.selectedAt Q.source.1
+          Q.source.2).toCriticalFourShell.support =
+        {P.source₁, P.source₂, Q.source.1, Q.otherOutsidePoint} ∧
+      ∃ i : Fin 3,
+        H.centerAt P.source₁ P.source₁_mem_A ∈
+          S.capInteriorByIndex i := by
+  have hcenter :
+      H.centerAt Q.source.1 Q.source.2 =
+        H.centerAt P.source₁ P.source₁_mem_A := by
+    simpa [CriticalShellSystem.blockerVertex] using
+      congrArg Subtype.val Q.blockers_eq
+  have hsupport :
+      (H.selectedAt Q.source.1
+          Q.source.2).toCriticalFourShell.support =
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support :=
+    ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+      H Q.source.2 P.source₁_mem_A hcenter
+  rcases
+      exists_blockerCenter_mem_capInteriorByIndex
+        (T := T) Q.source with
+    ⟨i, hi⟩
+  exact
+    ⟨hcenter, hsupport,
+      hsupport.trans (firstFiber_shell_eq_explicitFour P Pρ Q),
+      i, hcenter ▸ hi⟩
+
 /-- The exact positive-incidence residual after ordered-cap geometry has
 excluded a second bisection of the first blocker's two outside points.
 
@@ -9572,13 +9617,51 @@ theorem false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
     ⟨⟨qGlobalRow⟩, ⟨qCoverRow⟩, hqCoverUnique, hqCoverBlocked,
       hqCoverNeFirstApex, hqCoverNeSecondApex, hqCoverNeSurplusApex,
       qCoverCapIndex, hqCoverCap⟩
-  have hqCoverNeEscape_of_robust
-      (hrobust : FullyDeletionRobustAt D escapeCenter) :
-      H.centerAt Q.source.1 Q.source.2 ≠ escapeCenter := by
+  rcases
+      firstFiber_sourceFaithfulCriticalCover_eq_firstShell
+        (T := T) P Pρ Q with
+    ⟨hqCoverCenterEqFirst, hqCoverSupportEqFirst,
+      hqCoverSupportEqExplicit, firstBlockerCapIndex,
+      hfirstBlockerCap⟩
+  have hescapeCenterNeFirstBlocker :
+      escapeCenter ≠
+        H.centerAt P.source₁ P.source₁_mem_A := by
     intro hcenter
-    exact
-      not_isUniqueFourCenter_of_fullyDeletionRobust hrobust
-        (hcenter ▸ hqCoverUnique)
+    subst escapeCenter
+    have hsupportEq :=
+      H.selectedFourClass_support_eq_shell
+        P.source₁ P.source₁_mem_A escapeRow
+    apply hescapePointOutside
+    simp only [criticalTripleShellSeed, Finset.mem_union]
+    exact Or.inl (Or.inl (hsupportEq ▸ hescapePointInRow))
+  have hescapeCenterNeSecondBlocker :
+      escapeCenter ≠
+        H.centerAt Pρ.source₁ Pρ.source₁_mem_A := by
+    intro hcenter
+    subst escapeCenter
+    have hsupportEq :=
+      H.selectedFourClass_support_eq_shell
+        Pρ.source₁ Pρ.source₁_mem_A escapeRow
+    apply hescapePointOutside
+    simp only [criticalTripleShellSeed, Finset.mem_union]
+    exact Or.inl (Or.inr (hsupportEq ▸ hescapePointInRow))
+  have hescapeCenterNeSourceBlocker :
+      escapeCenter ≠ H.centerAt source.1 source.2 := by
+    intro hcenter
+    subst escapeCenter
+    have hsupportEq :=
+      H.selectedFourClass_support_eq_shell
+        source.1 source.2 escapeRow
+    apply hescapePointOutside
+    simp only [criticalTripleShellSeed, Finset.mem_union]
+    exact Or.inr (hsupportEq ▸ hescapePointInRow)
+  have hfirstBlockerNeEscape :
+      H.centerAt P.source₁ P.source₁_mem_A ≠ escapeCenter :=
+    Ne.symm hescapeCenterNeFirstBlocker
+  have hqCoverNeEscape :
+      H.centerAt Q.source.1 Q.source.2 ≠ escapeCenter := by
+    rw [hqCoverCenterEqFirst]
+    exact hfirstBlockerNeEscape
   sorry
 
 /-- The singleton-radius normal form for the exact aligned residual.

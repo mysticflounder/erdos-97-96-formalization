@@ -476,33 +476,59 @@ all 18,564 subsets, but 205 cases retained solver-`UNKNOWN` status and the run
 ended `UNKNOWN_NO_VALIDATED_CORE` after 324.564392 seconds.  These are
 fail-closed search frontiers, not contradiction certificates or Lean closure.
 
-The next bounded step is a stronger sound custom projection with
-`--global-k4-center q`.  A guarded metadata rebase can carry forward the 5,933
-cuts because all of them are universal hereditary obstruction schemas over the
-unchanged 33 original roles; the ordinary resume path must still revalidate
-every cut after adding the four global-`q` witnesses.  If that 37-role
-projection survives, the next strengthening is `--cover-point q`.  If
-cyclic-order search becomes the bottleneck, the search must be partitioned
-with an explicit coverage manifest rather than by random seeds.  The
-critical/new-blocker and robust arms remain separate fail-closed frontiers.
-The source-faithful ingress for both custom flags is now production Lean.
+The guarded v18 rebase and resume with both `--global-k4-center q` and
+`--cover-point q` completed before the CEGAR pause.  It returned `ALIVE` at
+iteration 3 after 1714.299807 seconds with 14,740 cuts and a 23-class exact
+strict-Kalmanson quotient survivor.  Its epistemic status is
+`INDUCED_NECESSARY_CONDITION_ONLY`; it is not a Euclidean-coordinate model or
+Lean closure.  The iteration-1 quotient core is `VALIDATED_AND_BANKED`, with
+five shrunk relations and fourteen translated outer literals.  No new solver
+process was started at the subsequent source checkpoint.
+
+The source-faithful ingress for both custom flags is production Lean.
 `exists_globalK4Row_and_sourceFaithfulCriticalCover`, instantiated at
 `Q.source`, simultaneously exposes an arbitrary selected four-row centered at
-`q` and the canonical exact critical cover row through `q`.  It also retains
-the cover center's global unique-four property, the actual deletion
-obstruction, explicit disequalities from all three rich apices, and strict-cap
-localization.  The live non-bisector leaf calls this producer directly.
+`q` and the canonical exact critical cover row through `q`.  The checked
+`firstFiber_sourceFaithfulCriticalCover_eq_firstShell` now proves that this
+cover center is exactly the first collision blocker, its support is both the
+first collision shell and the explicit first row, and that blocker lies in an
+indexed strict cap.  The saved v18 survivor instead keeps `cover_q` and `b1`
+in distinct quotient classes, so it is source-incompatible.  A future resumed
+projection must identify those roles rather than merely add the weaker cap
+order constraint.  The Lean 4.27 build and live kernel audit give the new
+theorem exactly `[propext, Classical.choice, Quot.sound]`, with no `sorryAx`;
+reference mining confirms its direct use by the live leaf and its path to the
+configured publish target.
+
 Moreover,
 `exists_criticalRow_escape_or_fullyDeletionRobust_criticalTripleShellSeed`
-now retains the escaping point and its deletion-blocked critical row in the
-non-robust arm; in the robust arm the live leaf proves that the `q`-cover
-center differs from the robust escape center.  Thus the missing work after a
-finite UNSAT result is no longer row extraction for these two flags, but an
-independently checked certificate plus a source-to-certificate adapter (or a
-direct Lean contradiction).  No such exhaustive certificate currently
-exists, and
+retains the escaping point and its deletion-blocked critical row in the
+non-robust arm.  Using
+`CriticalShellSystem.selectedFourClass_support_eq_shell`, the live leaf now
+proves unconditionally that the escape center differs from the first, second,
+and cap-source blockers, and hence from the `q`-cover center.  This checkpoint
+closes no `sorry`.
 `false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector`
-remains the single load-bearing `sorry` for this branch.
+remains the single load-bearing leaf.  Its coordinator-interface frontier is
+unchanged before and after: one direct leaf, with the same two-way second-row
+continuation and two-way robust-versus-critical escape continuation
+(constructor fan-out `2 × 2`); no new obligation was introduced.
+
+The closest imported production consumer is now identified precisely:
+`SixPointEuclideanObstruction.false_of_six_ccw_two_selected_rows`.  Use the
+first-apex radius row and the first-blocker critical row, with
+`P.source₁,P.source₂` as their shared pair.  The two row packets, shared-pair
+memberships and distinctness, two choices of remaining first-blocker-row
+point, and the at-most-two row-intersection bound are already checked.  The
+first missing bridge is an exhaustive common-boundary cyclic-order placement
+of one remaining point from each row whose matching branches supply the
+consumer's `A < B < C < D < E < F` order (equivalently its seven orientation
+hypotheses).  A one-branch order assumption is not an auditable narrowing
+because its complementary placements have no current consumer.  The
+escape-row circle/intersection route remains a fallback after excluding the
+three blocker aliases.  Any finite UNSAT result would still require
+independent certificate validation and a checked source-to-certificate
+adapter.
 
 The reusable restoration/cardinality part of the earlier extraction is
 retained in
