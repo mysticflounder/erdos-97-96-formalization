@@ -28,81 +28,12 @@ namespace Bank
 open EndpointCertificate
 open EndpointCertificate.Variables
 
-/-- The endpoint certificate x-coordinate variable for labels that remain
-ordinary variables in the `.v`, `.w` normal-axis gauge. -/
-def endpointXVarOfLabel : SurplusCOMPGBank.Label → Option EndpointVar
-  | .u => some .ux
-  | .v => none
-  | .w => none
-  | .s1 => some .s1x
-  | .s2 => some .s2x
-  | .s3 => some .s3x
-  | .Pw => some .pwx
-  | .Pu => some .pux
-  | .Q1 => some .q1x
-  | .Q2 => some .q2x
-
-/-- The endpoint certificate y-coordinate variable for labels that remain
-ordinary variables in the `.v`, `.w` normal-axis gauge. -/
-def endpointYVarOfLabel : SurplusCOMPGBank.Label → Option EndpointVar
-  | .u => some .uy
-  | .v => none
-  | .w => none
-  | .s1 => some .s1y
-  | .s2 => some .s2y
-  | .s3 => some .s3y
-  | .Pw => some .pwy
-  | .Pu => some .puy
-  | .Q1 => some .q1y
-  | .Q2 => some .q2y
-
-/-- The surplus label-to-variable map agrees with any normal-axis assignment on
-x-coordinates. -/
-theorem endpointNormalAxisAssignment_xVar_eq
-    {pointOf : SurplusCOMPGBank.Label → ℝ²}
-    {τ : ℝ}
-    {label : SurplusCOMPGBank.Label} {xvar : EndpointVar}
-    (hvar : endpointXVarOfLabel label = some xvar) :
-    endpointNormalAxisAssignment pointOf τ xvar.index =
-      endpointNormalAxisCoord pointOf label 0 := by
-  cases label <;> simp [endpointXVarOfLabel] at hvar
-  all_goals
-    subst xvar
-    simp [endpointNormalAxisAssignment, EndpointVar.eval]
-
-/-- The surplus label-to-variable map agrees with the forced `s1,s3`
-normal-axis assignment on x-coordinates. -/
-theorem endpointS1S3Assignment_xVar_eq
-    {pointOf : SurplusCOMPGBank.Label → ℝ²}
-    {label : SurplusCOMPGBank.Label} {xvar : EndpointVar}
-    (hvar : endpointXVarOfLabel label = some xvar) :
-    endpointS1S3Assignment pointOf xvar.index =
-      endpointNormalAxisCoord pointOf label 0 := by
-  exact endpointNormalAxisAssignment_xVar_eq hvar
-
-/-- The surplus label-to-variable map agrees with any normal-axis assignment on
-y-coordinates. -/
-theorem endpointNormalAxisAssignment_yVar_eq
-    {pointOf : SurplusCOMPGBank.Label → ℝ²}
-    {τ : ℝ}
-    {label : SurplusCOMPGBank.Label} {yvar : EndpointVar}
-    (hvar : endpointYVarOfLabel label = some yvar) :
-    endpointNormalAxisAssignment pointOf τ yvar.index =
-      endpointNormalAxisCoord pointOf label 1 := by
-  cases label <;> simp [endpointYVarOfLabel] at hvar
-  all_goals
-    subst yvar
-    simp [endpointNormalAxisAssignment, EndpointVar.eval]
-
-/-- The surplus label-to-variable map agrees with the forced `s1,s3`
-normal-axis assignment on y-coordinates. -/
-theorem endpointS1S3Assignment_yVar_eq
-    {pointOf : SurplusCOMPGBank.Label → ℝ²}
-    {label : SurplusCOMPGBank.Label} {yvar : EndpointVar}
-    (hvar : endpointYVarOfLabel label = some yvar) :
-    endpointS1S3Assignment pointOf yvar.index =
-      endpointNormalAxisCoord pointOf label 1 := by
-  exact endpointNormalAxisAssignment_yVar_eq hvar
+/-!
+`endpointXVarOfLabel`, `endpointYVarOfLabel`, and their four assignment
+agreement lemmas now live in `EndpointCertificate.GeneratorZeros`, in the same
+`EndpointCertificate.Variables` namespace this module opens, so that the
+endpoint row-zero rules can use them without depending on the surplus lane.
+-/
 
 /-- Rabinowitsch slack for a row-specific separator pair. -/
 noncomputable def endpointPairSlack

@@ -11,15 +11,19 @@ excluded from the current tier.
 
 This document records what the exact-ten route's `native_decide` population
 actually contains mathematically, which parts are liftable to enumeration-free
-proofs, and which are not. It is an analysis artifact, not a plan of record; no
-Lean source was changed and no build was run while producing it.
+proofs, and which are not. It is an analysis artifact, not a plan of record.
+The original census changed no Lean source and ran no build.  A later review
+added live build-performance observations from an already-running focused
+`FiniteN11` build; that review also changed no Lean or comparator source.
 
 Toolchain at time of writing: `leanprover/lean4:v4.27.0`, mathlib `v4.27.0`.
 
 ## Status of `FiniteN10` itself
 
-- `lean/Erdos9796Proof/P97/FiniteN10.lean` is untracked and **has never been
-  compiled** — no `.olean` exists for it.
+- `lean/Erdos9796Proof/P97/FiniteN10.lean` is still untracked, but the earlier
+  statement that it had never been compiled is now stale.  A focused build
+  completed on 2026-07-30 and
+  `.lake/build/lib/lean/Erdos9796Proof/P97/FiniteN10.olean` exists.
 - Nothing imports it. It is off-spine. The acyclic insertion point is
   `lean/Erdos9796Proof/P97/UniversalLocal.lean` (root →
   `P97.UpstreamBridge` → `P97.UniversalLocal`); `UniversalLocal` is not in
@@ -28,9 +32,13 @@ Toolchain at time of writing: `leanprover/lean4:v4.27.0`, mathlib `v4.27.0`.
   the root's 3600: itself and `P97.U1CardTenCapProfile`.
 - Source closure contains no `sorry` and no `axiom` declarations. The seven
   `sorry` grep hits are prose in docstrings.
-- `#print axioms Problem97.FiniteN10Closure` has **not** been run.
-  {{NEEDS_PROOF}} — everything below about its axiom closure is inferred from a
-  static citation trace, not from the kernel.
+- A post-build kernel audit of `Problem97.FiniteN10Closure` completed and found
+  the expected five-axiom closure:
+  `{propext, Quot.sound, Classical.choice, Lean.ofReduceBool,
+  Lean.trustCompiler}`, with no `sorryAx`.  The currently running
+  `FiniteN11` rebuild has invalidated editor imports temporarily, so this audit
+  should be refreshed after that build finishes; the earlier successful audit
+  is no longer merely a static citation inference.
 
 One structural note on the working-tree diff that produced it: the split
 extracted the `card = 5` branch into
@@ -309,12 +317,28 @@ There are only **three distinct targets `D` across all 252**:
 | certs | D | what the row forces |
 |---:|---|---|
 | 127 | \|u\|² | **u = v** |
-| 103 | \|s1−s3\|² | **s1 = s3** |
+| 115 | \|s1−s3\|² | **s1 = s3** |
 | 6 | \|u−s1\|² | **u = s1** |
-| 16 | — | row directly unrealizable |
+| 4 | — | row directly unrealizable |
 
-The 16 with no Rabinowitsch generator are `EpQ1008/1009/1028/2000/2001/2002/
-2008/2019/2020/2024/2041/2054/2064/2074`, `R001NoSeparatorR001N`, `R001NoSeparatorR001Y`.
+**Corrected 2026-07-30** (this table previously read 103 / 16). The atom
+histogram above is decisive and was already inconsistent with the old numbers:
+`rabinowitschSqNormPoly` has 127 instances over 1 tuple, and
+`rabinowitschSqDistPoly` has 121 over 2 tuples — so the two `sqDist` targets
+must sum to 121, not 109, and the Rabinowitsch-free remainder is
+252 − 248 = **4**, not 16.
+
+A direct count against the generated Lean confirms the split: **115 of the 117
+endpoint rows carry the `s1 = s3` Rabinowitsch generator**, and only
+`ep_Q2_000` and `ep_Q2_001` do not. The old "14 `EpQ` rows with no Rabinowitsch
+generator" conflated those two with the 12 *product-sum* rows
+(`ep_Q1_008/009/028`, `ep_Q2_002/008/019/020/024/041/054/064/074`), which do
+carry it but package their payload as checked product blocks rather than a
+direct generator list. On the relaxed-split side `R001NoSeparatorR001N` and
+`R001NoSeparatorR001Y` genuinely have none.
+
+The T1 restatement `D^N ∈ ideal(G')` therefore applies to 248 of the 252
+certificates.
 
 So each row is not proving an opaque contradiction — it is proving that its
 circle-incidence pattern collapses two labelled points.
@@ -350,6 +374,61 @@ source of the 3625.
 subgoals with 0** and deletes the 117 `RowZeros/{Direct,Product}/EpQ*.lean`
 proof scripts. Needs one `Decidable`-instance generalization; no new algebra, no
 new geometry.
+
+#### T2 implementation status (2026-07-30)
+
+Infrastructure landed and type-checked; generated files not yet regenerated.
+
+- `EndpointCertificate/RowZeros/RuleData.lean` — `EndpointGeneratorRule` (12
+  constructors), `poly`, `normalizedPoly`, `rulePolys`. Imports only
+  `PolynomialGeometry` + `ShadowBank`, so the 117 pattern modules do not gain a
+  Mathlib-geometry import.
+- `EndpointCertificate/RowZeros/DirectSoundness.lean` — `ok` (a `Bool`
+  function, not a tactic-built `Decidable` instance), `rulesOK`,
+  `EndpointGeneratorRule.evalPoly_eq_zero` over all 12 constructors, and
+  `evaluationZeros_of_rulesOK`.
+- `endpointXVarOfLabel` / `endpointYVarOfLabel` and their four assignment
+  agreement lemmas moved from `SurplusCertificate/GeometryCore.lean` into
+  `EndpointCertificate/GeneratorZeros.lean` (same
+  `EndpointCertificate.Variables` namespace, so all six existing consumers
+  resolve them unchanged). This is what lets the endpoint rules reuse the map
+  without depending on the surplus lane.
+- `scripts/endpoint-certificate.py` — `endpoint_generator_rule` mirrors the
+  existing classification branch table; `emit_lean_certificate` now emits
+  `<pid>_rules` and defines `<pid>_generators := RowZeros.rulePolys <pid>_rules`;
+  `emit_direct_row_zero_module` emits one `decide` in place of the 31-bullet
+  script.
+
+Validation performed without taking the Lake lock (`lake env lean` on
+concatenated scratch modules, elaborating against the existing oleans):
+
+1. Both new modules elaborate clean.
+2. Rule coverage over **all 117 certificates / 3625 generators: 0 unclassified**,
+   and the rule histogram reproduces the old shape-lemma usage census exactly —
+   1117 `.ordinary`, 774 `.ordinaryVLeft`, 438 `.ordinaryWLeft`, 351 `.exactW`,
+   345 `.exactV`, 186 `.ordinaryVW`, 152 `.ordinaryVRight`,
+   141 `.ordinaryWRight`, 115 `.distinctS1S3`, 6 `.exactVUnitFlipped`.
+3. Payload neutrality, checked in Lean for `ep_Q1_000`:
+   `rulePolys ep_Q1_000_rules = Patterns.ep_Q1_000_generators`. This holds by
+   construction — `checkCertificate` requires `generators.all isNormalizedPoly`,
+   and the 3625 retired subgoals asserted
+   `normalizePoly literal = normalizePoly shape` — so no certificate
+   coefficient is re-derived.
+4. **`rulesOK ep_Q1_000_rules row.toShadow = true` closes by kernel `decide`.**
+   T2 therefore takes the endpoint shape-matching population 3625 → **0**
+   native invocations, not 3625 → 117: the surviving per-row obligation is
+   kernel-checked. (The surplus side still needs `native_decide` for its
+   analogue because `GeneratorRule.instDecidableValid` is tactic-built and does
+   not reduce.)
+5. End-to-end elaboration of the actual emitted `Patterns/EpQ1000.lean` +
+   `RowZeros/Direct/EpQ1000.lean`: 0 errors. Row-zero module 409 → 59 lines;
+   pattern module 1012 → 804.
+6. `SurplusCertificate/GeometryCore.lean` re-elaborates clean after the move.
+
+Remaining before regeneration: the 12 product-sum rows still use the literal
+generator path (`emit_computed_generator_module`,
+`emit_computed_product_row_zero_module`). Then regenerate, rebuild, and record
+the module-family delta.
 
 **T3.** State the ten equidistance constructors once over an abstract centre —
 `coordSqDist c p = coordSqDist c q → evalPoly ν (sqDistToCenterDiffPoly …) = 0` —
@@ -404,11 +483,97 @@ against the actual generator sets.
 
 An ~84% cut, all of it enumeration-free reasoning, none of it new mathematics.
 
+## Build-performance impact
+
+The rewrite has value independent of the comparator trust tier: it should
+materially reduce cold builds and builds after changes high in the certificate
+dependency graph.
+
+A live focused `FiniteN11` build on 2026-07-30 compiled 120
+`EndpointCertificate` pattern/row-zero modules and 534 `SurplusCertificate`
+modules before reaching the later certificate banks.  Thus T2 does not merely
+remove visually noisy proof text: it removes 117 modules' generated row-zero
+scripts and 3625 native shape checks from an import closure that is exercised by
+the current headline builds.  L1/L2 remove 576 DFS shard checks, and T1 reduces
+the arithmetic payload of 236 polynomial checks.
+
+The 84% reduction in invocation count must not be reported as an 84% wall-time
+reduction without measurement.  Native checks have very unequal costs and Lake
+compiles independent modules in parallel.  In the same live build, separate
+`ErasedCertificate/P2Placement*Native` and
+`ErasedCertificate/P4SPlacement*Native` modules were still taking more than
+20 minutes each.  Those modules are outside the endpoint/surplus rewrite
+analyzed here and remain a separate build bottleneck.
+
+The implementation should therefore record a module-family baseline before
+the rewrite and compare:
+
+1. clean-build wall time and aggregate reported module time;
+2. rebuild time after invalidating the endpoint/surplus definitions;
+3. peak parallelism and the longest individual native checks; and
+4. the same measurements for the unaffected `ErasedCertificate` family.
+
+### Separate `ErasedCertificate` bottleneck
+
+The live build gives a more precise census than the source filenames alone.
+There are 112 P2/P4-S modules whose names end in `Native`, but only **64
+expensive `native_decide` leaves**: 32 P2 and 32 P4-S.  The other 48 modules
+compose or re-export those leaf results.
+
+At the 2026-07-30 snapshot:
+
+- 13 completed P2 leaves had median reported time 3670 seconds and maximum
+  4182 seconds;
+- 21 completed P4-S leaves had median 1954 seconds and maximum 2922 seconds;
+- 30 computational leaves remained active;
+- the 32 active Erased workers consumed about 30 cores and 159 GiB RSS on the
+  32-core, 256-GiB host, with no active swapping.
+
+Thus this is primarily a CPU/search problem, not a Lake failure or a swapping
+problem, and P2 is the critical-path family.  Lowering the job count might
+still improve per-worker throughput, but that must be decided by an A/B build;
+the current snapshot alone does not justify it.
+
+The source audit found several changes worth benchmarking before a new
+certificate representation:
+
+1. Both P2 and P4-S test `localCandidateOK` in the chunk predicate and then
+   immediately call a placement helper that tests it again.
+2. `candidateRows` scans all 2048 support masks although these lanes only use
+   the 330 four-point masks.
+3. `allKilledAt` fully insertion-sorts every domain list even though it consumes
+   only the smallest domain.
+4. Every recursive node recomputes compatibility against the whole assigned
+   prefix, the equality closure, normalized roots, and every metric-core scan.
+
+Items 1--3 admit local equivalence lemmas and can preserve all public theorem
+statements.  They are the first Erased-specific implementation experiment.
+Item 4 has the larger potential payoff, but needs an invariant-carrying search
+state and a new soundness proof; it belongs after a one-leaf benchmark confirms
+that the local changes are insufficient.
+
+There is already a checked row-nogood interface in
+`CapSelectedNogoodCertificate.lean` and
+`CapSelectedNogoodClassifier.lean`, but its historical cap-selected mining run
+also records why a direct reuse is not yet the answer.  The flat bank contained
+149,434 subsumption-minimal nogoods and occupied about 617 MiB before Lean
+elaboration.  Moreover, `allCertified` still performs the full DFS and checks
+the bank at every prefix.  Therefore an Erased certificate rewrite should not
+mean emitting the same flat bank for P2/P4-S.  A viable replacement must encode
+coverage compactly--for example a structurally shared trie/DAG or a checked
+branch proof--so Lean verifies a precomputed result instead of rediscovering
+the search.
+
 ## What this does and does not buy for the comparator
 
 It does **not** make `FiniteN10Closure` clean at three axioms. The 483 remaining
 searches still require `native_decide`, and the 252 ideal memberships would
 additionally need the coefficient-representation change below.
+
+That does not make the rewrite low priority.  Comparator admission and build
+performance are separate objectives: the project can expose exact ten in an
+explicit compiler-trusted tier immediately while still performing T2 and
+L1/L2 for build tractability.
 
 Root cause of the certificate lane's kernel-infeasibility, recorded here because
 it is easy to misdiagnose as scale: `Checker.lean` has `Term.coeff : Rat`, and
@@ -435,24 +600,53 @@ So the tier decision stands on its own:
    beside the current 24 theorems at three axioms. Small cost; reports the
    compiler-trust dependency explicitly rather than hiding it.
 
-{{NEEDS_ADAM_INPUT}} — which tier `finiteN10Closure` goes in.
+**Recommendation.** Put `FiniteN10Closure` in the explicit compiler-trusted
+second tier now.  Do not make the build-performance rewrite wait on a decision
+to pursue the three-axiom tier: implement T2 and L1/L2 as tractability work,
+measure them, then decide whether T1 and the Int checker rewrite justify their
+additional migration cost.
 
 ## Next steps, in dependency order
 
-1. Build `FiniteN10` and run `#print axioms Problem97.FiniteN10Closure` to
-   replace the static trace with the kernel's answer. Blocked on the build lock.
-2. Wire `import Erdos9796Proof.P97.FiniteN10` into `UniversalLocal.lean` — needed
-   for the comparator to see it at all, independent of tier.
-3. L1 + L2 (removes 576 shard certificates). Self-contained, no dependency on 1–2.
-4. T2 (removes 3625 subgoals and 117 files). Self-contained.
-5. T1 (deletes the `tau` column and 236 generators). Depends on 4 being settled
-   first if both touch the same emitters.
-6. R1, R2, T3 — payload and proof-size reductions, any time.
+1. After the active `FiniteN11` build finishes, refresh
+   `#print axioms Problem97.FiniteN10Closure` and preserve the exact output in
+   the audit artifacts.
+2. Add `FiniteN10Closure` to an explicitly compiler-trusted comparator tier.
+   Do not add it to the existing three-axiom theorem set or make that clean tier
+   depend on it.  Coordinate this with the active comparator-wiring owner.
+3. Capture the build baseline described above before changing the certificate
+   representation.
+4. T2 (removes 3625 subgoals and 117 proof-script files).  This is the first
+   implementation target because it removes repeated work by construction and
+   does not change the certificate mathematics.
+5. L1 + L2 (removes 576 shard checks).  Self-contained and independently
+   measurable.
+6. Rebuild and compare against the baseline.  Land T2/L1/L2 only with
+   source-clean theorem checks and a recorded wall-time/module-family delta.
+7. T1 (deletes the `tau` column and 236 generators).  Do this after T2 settles
+   the shared emitters.
+8. Pursue the `Int` coefficient checker and explicit completeness certificates
+   only if admission to the existing three-axiom tier remains a project goal.
+9. For ErasedCertificate, benchmark items 1--3 above on one of the slowest P2
+   leaves against its preserved baseline.  If the result is material, apply
+   the equivalence-preserving evaluator to all 64 leaves and repeat the
+   32-versus-24-job comparison.
+10. In parallel, prototype a compact checked branch/trie certificate for one P2
+    leaf.  Do not promote the historical flat nogood representation unless its
+    matching and payload costs are first eliminated.
+11. If both experiments leave the P2 tail too large, introduce an incremental
+    DFS state for compatibility and equality closure, then prove it equivalent
+    to the current classifier.
+12. R1, R2, T3 — payload and proof-size reductions, any time.
 
 ## Provenance
 
-Every count above is a measurement from a validated Python port, not a Lean
-kernel result. Scratch scripts under the session scratchpad
+Every mathematical census count above is a measurement from a validated Python
+port, not a Lean kernel result. Scratch scripts under the session scratchpad
 (`p97port.py`, `search.py`, `measure_ep.py`, `measure_cg.py`, `am_search.py`,
 `am_analysis.py`, `am_shards.py`, `am_consistency.py`, and others); they were not
-committed. No repository Lean source was modified and no build was run.
+committed.  The 120/534 module counts and 20-minute-class native-module timings
+in the build-performance section come from
+`lean/scratch/finite-n11-focused-build-20260730.log`.  This revision modified
+only this document; it did not edit Lean or comparator source or start another
+build.

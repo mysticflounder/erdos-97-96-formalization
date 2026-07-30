@@ -821,7 +821,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.EndpointCertificate.Checker
+import Erdos9796Proof.P97.EndpointCertificate.RowZeros.RuleData
 
 /-!
 # Endpoint certificate {pid}
@@ -831,18 +831,29 @@ set.  The theorem checks the generated rational-polynomial identity with
 `native_decide`; its expected audit cost is `Lean.ofReduceBool` plus
 `Lean.trustCompiler`.
 
+Generators are *derived* from the semantic rule list below rather than emitted
+as literal polynomial data, so the row-zero proof needs no polynomial-shape
+matching subgoals.
+
 Source certificate: `{source}`.
 {namespace_note}
 -/
+
+set_option linter.style.longLine false
 
 namespace Problem97
 
 namespace EndpointCertificate
 {namespace_open}
+open Variables
+
+/-- Generator rules for endpoint certificate `{pid}`. -/
+def {lean_name}_rules : List RowZeros.EndpointGeneratorRule :=
+{endpoint_rule_list(generators, variables)}
 
 /-- Generator polynomials for endpoint certificate `{pid}`. -/
 def {lean_name}_generators : List Poly :=
-{lean_poly_list(generators, variables)}
+  RowZeros.rulePolys {lean_name}_rules
 
 /-- Coefficient polynomials for endpoint certificate `{pid}`. -/
 def {lean_name}_coefficients : List Poly :=
@@ -911,6 +922,107 @@ def endpoint_var(point: str, axis: str) -> str:
 
 def endpoint_var_index(point: str, axis: str) -> str:
     return f"{endpoint_var(point, axis)}.index"
+
+
+def endpoint_generator_rule(classification: dict[str, object]) -> str:
+    """Return the `RowZeros.EndpointGeneratorRule` term for one generator.
+
+    The rule records the geometric fact that makes the generator vanish, plus
+    the endpoint variables the gauge assigns to its labels.  Generator
+    polynomials are derived from the rule
+    (`RowZeros.EndpointGeneratorRule.normalizedPoly`), so no
+    polynomial-shape matching proof is emitted; `EndpointGeneratorRule.Valid`
+    re-checks both the incidences and the label-to-variable pairing against the
+    row's own shadow.
+
+    The branch structure mirrors the geometric-content table in
+    `EndpointCertificate.GeneratorZeros`; every branch here has a matching
+    `EndpointGeneratorRule` constructor whose `poly` is exactly the polynomial
+    shape this branch used to assert by `native_decide`.
+    """
+    kind = classification.get("kind")
+    if kind == "rabinowitsch_distinct":
+        pair = classification.get("pair")
+        if pair != ["s1", "s3"]:
+            raise ValueError(f"unsupported endpoint Rabinowitsch pair {pair!r}")
+        return ".distinctS1S3"
+
+    if kind != "distance_eq":
+        raise ValueError(f"unsupported endpoint generator classification {classification!r}")
+
+    center = str(classification["center"])
+    left, right = [str(point) for point in classification["witnesses"]]
+    if classification.get("sign") == -1:
+        left, right = right, left
+
+    def vx(point: str) -> str:
+        return endpoint_var(point, "x")
+
+    def vy(point: str) -> str:
+        return endpoint_var(point, "y")
+
+    if center == "v":
+        if point_is_variable(left) and point_is_variable(right):
+            return (
+                f".exactV {lean_label(left)} {lean_label(right)} "
+                f"{vx(left)} {vy(left)} {vx(right)} {vy(right)}"
+            )
+        if point_is_variable(left) and right == "w":
+            return f".exactVUnit {lean_label(left)} {vx(left)} {vy(left)}"
+        if left == "w" and point_is_variable(right):
+            return f".exactVUnitFlipped {lean_label(right)} {vx(right)} {vy(right)}"
+
+    if center == "w":
+        if point_is_variable(left) and point_is_variable(right):
+            return (
+                f".exactW {lean_label(left)} {lean_label(right)} "
+                f"{vx(left)} {vy(left)} {vx(right)} {vy(right)}"
+            )
+        if point_is_variable(left) and right == "v":
+            return f".exactWUnit {lean_label(left)} {vx(left)} {vy(left)}"
+
+    if point_is_variable(center):
+        if point_is_variable(left) and point_is_variable(right):
+            return (
+                f".ordinary {lean_label(center)} {lean_label(left)} "
+                f"{lean_label(right)} {vx(center)} {vy(center)} "
+                f"{vx(left)} {vy(left)} {vx(right)} {vy(right)}"
+            )
+        if left == "v" and point_is_variable(right):
+            return (
+                f".ordinaryVLeft {lean_label(center)} {lean_label(right)} "
+                f"{vx(center)} {vy(center)} {vx(right)} {vy(right)}"
+            )
+        if point_is_variable(left) and right == "v":
+            return (
+                f".ordinaryVRight {lean_label(center)} {lean_label(left)} "
+                f"{vx(center)} {vy(center)} {vx(left)} {vy(left)}"
+            )
+        if left == "w" and point_is_variable(right):
+            return (
+                f".ordinaryWLeft {lean_label(center)} {lean_label(right)} "
+                f"{vx(center)} {vy(center)} {vx(right)} {vy(right)}"
+            )
+        if point_is_variable(left) and right == "w":
+            return (
+                f".ordinaryWRight {lean_label(center)} {lean_label(left)} "
+                f"{vx(center)} {vy(center)} {vx(left)} {vy(left)}"
+            )
+        if left == "v" and right == "w":
+            return f".ordinaryVW {lean_label(center)} {vx(center)}"
+
+    raise ValueError(
+        "unsupported endpoint generator shape "
+        f"center={center!r}, left={left!r}, right={right!r}, "
+        f"classification={classification!r}"
+    )
+
+
+def endpoint_rule_list(generators: list[str], variables: list[str]) -> str:
+    return lean_list([
+        endpoint_generator_rule(classify_generator(str(generator), variables))
+        for generator in generators
+    ])
 
 
 def endpoint_coord_simp() -> str:
@@ -1142,13 +1254,6 @@ def emit_direct_row_zero_module(cert_path: Path, out_path: Path) -> str | None:
     stem = lean_module_stem(pid)
     row_name = f"{pid}_row"
     row_expr = endpoint_row_expr(pid)
-    classifications = [
-        classify_generator(str(generator), [str(variable) for variable in variables])
-        for generator in generators
-    ]
-    proofs = [endpoint_generator_zero_proof(classification) for classification in classifications]
-    cases = "\n".join("  \u00b7 " + proof.replace("\n", "\n    ") for proof in proofs)
-    rcases_pattern = " | ".join("rfl" for _ in generators)
     source = cert_path.as_posix()
     module = f"""/-
 Copyright (c) 2026 Adam McKenna. All rights reserved.
@@ -1157,7 +1262,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.EndpointCertificate.AggregateSoundness
-import Erdos9796Proof.P97.EndpointCertificate.GeneratorZeros
+import Erdos9796Proof.P97.EndpointCertificate.RowZeros.DirectSoundness
 import Erdos9796Proof.P97.EndpointCertificate.Patterns.{stem}
 
 /-!
@@ -1167,11 +1272,14 @@ This generated module proves that the direct certificate payload for endpoint
 row `{pid}` vanishes under the endpoint normal-axis assignment attached to any
 metric interpretation of the row shadow.
 
+The generators are derived from `Patterns.{pid}_rules`, so the whole row-local
+obligation is the single kernel-decidable check that every rule is supported by
+this row's shadow.  No polynomial-shape matching subgoal is emitted.
+
 Source certificate: `{source}`.
 -/
 
 set_option linter.style.longLine false
-set_option linter.unusedSimpArgs false
 
 open scoped EuclideanGeometry
 
@@ -1185,7 +1293,11 @@ namespace Variables
 private def {row_name} : ShadowBank.EndpointRow :=
   {row_expr}
 
-set_option linter.style.nativeDecide false in
+/-- Every generator rule of `{pid}` is supported by its own row shadow. -/
+private theorem {pid}_rulesOK :
+    RowZeros.rulesOK Patterns.{pid}_rules {row_name}.toShadow = true := by
+  decide
+
 /-- Every generator in direct endpoint certificate `{pid}` evaluates to zero
 under a metric interpretation of its finite shadow. -/
 theorem {pid}_evaluationZeros_of_metricShadow
@@ -1193,12 +1305,9 @@ theorem {pid}_evaluationZeros_of_metricShadow
     (hmetric : EndpointMetricShadow pointOf {row_name}.toShadow) :
     Patterns.CertificatePayload.evaluationZeros (.direct Patterns.{pid})
       (endpointS1S3Assignment pointOf) := by
-  dsimp [Patterns.CertificatePayload.evaluationZeros, Patterns.{pid}]
-  intro g hg
-  simp only [Patterns.{pid}_generators, List.mem_cons, List.not_mem_nil,
-    or_false] at hg
-  rcases hg with {rcases_pattern}
-{cases}
+  dsimp [Patterns.CertificatePayload.evaluationZeros, Patterns.{pid},
+    Patterns.{pid}_generators]
+  exact RowZeros.evaluationZeros_of_rulesOK {pid}_rulesOK hmetric
 
 end Variables
 
