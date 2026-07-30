@@ -7286,16 +7286,148 @@ theorem false_of_crossBlockerCoincidence
     False := by
   sorry
 
+/-- Source-exact witness carried by the cap-eight third-row surface, with the
+existential source exposed for downstream geometric alignment arguments. -/
+abbrev CapSourceThirdCanonicalRowWitness
+    (source : CriticalShellSystem.CarrierVertex D.A) : Prop :=
+  8 ≤ (S.capByIndex S.oppIndex1).card ∧
+    source.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
+    source.1 ∉
+      (({P.source₁, P.source₂} : Finset ℝ²) ∪
+        {Pρ.source₁, Pρ.source₂}) ∧
+    H.centerAt source.1 source.2 ≠
+      H.centerAt P.source₁ P.source₁_mem_A ∧
+    H.centerAt source.1 source.2 ≠
+      H.centerAt Pρ.source₁ Pρ.source₁_mem_A ∧
+    H.centerAt source.1 source.2 ≠ S.oppApex1 ∧
+    H.centerAt source.1 source.2 ≠ S.oppApex2 ∧
+    source.1 ∈
+      (H.selectedAt source.1 source.2).toCriticalFourShell.support ∧
+    (H.selectedAt source.1
+      source.2).toCriticalFourShell.support.card = 4 ∧
+    CrossPairDeletionView (H := H) source P.source₁ P.source₂ ∧
+    CrossPairDeletionView (H := H) source Pρ.source₁ Pρ.source₂
+
+/-- Concrete positive incidence/localization packet for the cap-source row
+and a fresh third blocker fiber.  It fixes the actual cap-source witness:
+the two distinct blockers lie in one indexed cap while both fiber sources
+lie outside that cap and on the cap-source row. -/
+abbrev FreshThirdSameCapCrossRowAlignment
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (source : CriticalShellSystem.CarrierVertex D.A) : Prop :=
+  ∃ capIndex : Fin 3,
+    H.centerAt Q.source₁.1 Q.source₁.2 ∈ S.capByIndex capIndex ∧
+      H.centerAt source.1 source.2 ∈ S.capByIndex capIndex ∧
+      H.centerAt source.1 source.2 ≠
+        H.centerAt Q.source₁.1 Q.source₁.2 ∧
+      Q.source₁.1 ∉ S.capByIndex capIndex ∧
+      Q.source₂.1 ∉ S.capByIndex capIndex ∧
+      Q.source₁.1 ∈
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support ∧
+      Q.source₂.1 ∈
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- The positive same-cap cross-row alignment is impossible by ordered-cap
+uniqueness: two distinct cap centers cannot bisect the same outside pair. -/
+theorem false_of_freshThird_sameCapCrossRowAlignment
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (halign : FreshThirdSameCapCrossRowAlignment P Pρ Q source) :
+    False := by
+  rcases halign with
+    ⟨capIndex, hcommonCap, hsourceCap, hcentersNe,
+      hsource₁Off, hsource₂Off, hsource₁Row, hsource₂Row⟩
+  let Kcommon :=
+    (H.selectedAt Q.source₁.1
+      Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+  let Ksource :=
+    (H.selectedAt source.1
+      source.2).toCriticalFourShell.toSelectedFourClass
+  have hoverlap :=
+    selectedFourClass_outside_overlap_card_le_one
+      S capIndex hcommonCap hsourceCap hcentersNe.symm Kcommon Ksource
+  have hsource₁Common : Q.source₁.1 ∈ Kcommon.support := by
+    exact
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.q_mem_support
+  have hsource₂Common : Q.source₂.1 ∈ Kcommon.support := by
+    exact Q.source₂_mem_source₁_shell
+  have hsource₁Overlap :
+      Q.source₁.1 ∈
+        ((Kcommon.support \ S.capByIndex capIndex) ∩
+          (Ksource.support \ S.capByIndex capIndex)) := by
+    exact
+      Finset.mem_inter.mpr
+        ⟨Finset.mem_sdiff.mpr ⟨hsource₁Common, hsource₁Off⟩,
+          Finset.mem_sdiff.mpr ⟨hsource₁Row, hsource₁Off⟩⟩
+  have hsource₂Overlap :
+      Q.source₂.1 ∈
+        ((Kcommon.support \ S.capByIndex capIndex) ∩
+          (Ksource.support \ S.capByIndex capIndex)) := by
+    exact
+      Finset.mem_inter.mpr
+        ⟨Finset.mem_sdiff.mpr ⟨hsource₂Common, hsource₂Off⟩,
+          Finset.mem_sdiff.mpr ⟨hsource₂Row, hsource₂Off⟩⟩
+  have hsourcesPointsNe : Q.source₁.1 ≠ Q.source₂.1 := by
+    intro h
+    exact Q.sources_ne (Subtype.ext h)
+  have htwo :
+      1 <
+        ((Kcommon.support \ S.capByIndex capIndex) ∩
+          (Ksource.support \ S.capByIndex capIndex)).card :=
+    Finset.one_lt_card.mpr
+      ⟨Q.source₁.1, hsource₁Overlap,
+        Q.source₂.1, hsource₂Overlap, hsourcesPointsNe⟩
+  omega
+
+/-- Remaining fresh-third producer obligation after kernel-closing the
+fixed-row same-cap cross-incidence packet.  This is strictly narrower than
+the former leaf: it retains the actual cap-source witness and asserts that
+its concrete alignment with the chosen fresh fiber fails. -/
+theorem false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hsource : CapSourceThirdCanonicalRowWitness P Pρ source)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hnoAlignment :
+      ¬ FreshThirdSameCapCrossRowAlignment P Pρ Q source) :
+    False := by
+  sorry
+
 /-- Positive cap-eight alignment required for a fresh third blocker fiber.
 
-The cap source row and fresh fiber currently have no positive incidence,
-center, or rich-slice relation.  This leaf is strictly narrower than the
-parent because both checked producer packets are explicit hypotheses. -/
+The concrete same-cap cross-row branch is now kernel-closed.  The remaining
+branch exposes its pointwise failure for the actual cap source and fresh
+fiber rather than hiding the missing bridge in the parent contradiction. -/
 theorem false_of_capSource_freshThirdBlockerFiber
     (hcapSource : CapSourceThirdCanonicalRowSurface P Pρ)
     (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
     False := by
-  sorry
+  rcases hthird with ⟨Q⟩
+  rcases hcapSource with
+    ⟨hcap, source, hsourceInterior, hsourceOutside,
+      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+      hcenterNeFirstApex, hcenterNeSecondApex,
+      hsourceMem, hsourceCard, hfirstView, hsecondView⟩
+  have hsource : CapSourceThirdCanonicalRowWitness P Pρ source :=
+    ⟨hcap, hsourceInterior, hsourceOutside,
+      hcenterNeFirstBlocker, hcenterNeSecondBlocker,
+      hcenterNeFirstApex, hcenterNeSecondApex,
+      hsourceMem, hsourceCard, hfirstView, hsecondView⟩
+  by_cases halign :
+      FreshThirdSameCapCrossRowAlignment P Pρ Q source
+  · exact
+      false_of_freshThird_sameCapCrossRowAlignment
+        (P := P) (Pρ := Pρ) Q source halign
+  · exact
+      false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow
+        P Pρ hρne hfrontierFour hρfour
+        hfrontierInteriorEq hρInteriorEq
+        T hpairsDisjoint hblockersNe
+        LPρ hLPρ MPρ LP hLP MP
+        source hsource Q halign
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe
@@ -7315,23 +7447,7 @@ theorem firstFiber_shell_eq_explicitFour
 existential source exposed so that the first-fiber descent can retain it. -/
 abbrev FirstFiberCapSourceWitness
     (source : CriticalShellSystem.CarrierVertex D.A) : Prop :=
-  8 ≤ (S.capByIndex S.oppIndex1).card ∧
-    source.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
-    source.1 ∉
-      (({P.source₁, P.source₂} : Finset ℝ²) ∪
-        {Pρ.source₁, Pρ.source₂}) ∧
-    H.centerAt source.1 source.2 ≠
-      H.centerAt P.source₁ P.source₁_mem_A ∧
-    H.centerAt source.1 source.2 ≠
-      H.centerAt Pρ.source₁ Pρ.source₁_mem_A ∧
-    H.centerAt source.1 source.2 ≠ S.oppApex1 ∧
-    H.centerAt source.1 source.2 ≠ S.oppApex2 ∧
-    source.1 ∈
-      (H.selectedAt source.1 source.2).toCriticalFourShell.support ∧
-    (H.selectedAt source.1
-      source.2).toCriticalFourShell.support.card = 4 ∧
-    CrossPairDeletionView (H := H) source P.source₁ P.source₂ ∧
-    CrossPairDeletionView (H := H) source Pρ.source₁ Pρ.source₂
+  CapSourceThirdCanonicalRowWitness P Pρ source
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe

@@ -733,6 +733,57 @@ closes one direct source `sorry`, but it is not unconditional or
 kernel-complete.  The remaining mathematical terminal on this path is
 `false_of_capSource_freshThirdBlockerFiber`.
 
+#### K-A-LIVE fresh-third fixed-row same-cap checkpoint (2026-07-30)
+
+The fresh-third leaf now exposes the actual cap-source row instead of
+discarding its witness behind an existential surface.  For that fixed source
+and fresh fiber, `FreshThirdSameCapCrossRowAlignment` says that some indexed
+cap contains both blocker centers, contains neither collision source, and that
+both collision sources occur in the fixed cap-source selected row.
+
+The positive branch is discharged by
+`TwoSourceExactCollisionRowsTerminal.false_of_freshThird_sameCapCrossRowAlignment`.
+The common-blocker selected row and cap-source selected row then have two
+distinct points in their outside-cap overlap.  This contradicts
+`selectedFourClass_outside_overlap_card_le_one`, since their distinct centers
+lie in the same ordered cap.  The original
+`false_of_capSource_freshThirdBlockerFiber` is consequently a source-clean
+two-way coordinator:
+
+```text
+false_of_capSource_freshThirdBlockerFiber
+  +-- FreshThirdSameCapCrossRowAlignment
+  |     -> false_of_freshThird_sameCapCrossRowAlignment [checked terminal]
+  `-- not FreshThirdSameCapCrossRowAlignment
+        -> false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow [sorry]
+        -> sorryAx
+```
+
+The coordinator-interface frontier changes from one opaque fresh-third leaf
+to one checked positive terminal and one strictly narrower residual retaining
+the concrete source, its canonical-row witness, the concrete fresh fiber, and
+the failed same-cap alignment.  Immediate constructor fan-out is two; the
+direct F-Γ leaf count remains three and the global direct source-`sorry` count
+is unchanged.  This is not unconditional closure: the new negative residual
+is the load-bearing obligation.
+
+The alternative deletion split at the three points consisting of both
+collision sources and their common blocker was not promoted.  It yields the
+two old-blocker cases plus a fresh-center/failed-deletion case, but none of
+those three arms currently has a checked terminal, so it would increase the
+frontier without improving aggregate tractability.
+
+Verification at this checkpoint is production-wide: the 2026-07-30 full
+Lean 4.27 build completed successfully and regenerated the live blueprint.
+`#print axioms` for
+`false_of_freshThird_sameCapCrossRowAlignment` reports only `propext`,
+`Classical.choice`, and `Quot.sound`; the coordinator and its negative
+residual additionally report `sorryAx`.  The refreshed spine therefore
+reaches exactly one `sorry` through this coordinator, namely
+`false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow`.  The
+positive arm is unconditional within the ordinary three-axiom trust profile;
+the parent is not yet kernel-closed.
+
 ### K-A-UNIQUE-PHYSICAL-SPLIT radius-normal-form checkpoint (2026-07-26)
 
 `ExactFourRobustCapExpansion.lean` now proves, under Lean 4.27, that all

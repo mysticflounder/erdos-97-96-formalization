@@ -14,6 +14,11 @@ moreLeanArgs = ["-M16384", "-s2097152"]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
 relaxedAutoImplicit = false
 weak.linter.mathlibStandardSet = true
+# The generated certificate banks are machine-emitted with long literal
+# polynomial lists; the 100-column rule produces thousands of warnings there and
+# nothing actionable anywhere. Off package-wide so no source file needs its own
+# `set_option linter.style.longLine false`.
+weak.linter.style.longLine = false
 
 [[require]]
 name = "mathlib"

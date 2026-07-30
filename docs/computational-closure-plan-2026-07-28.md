@@ -20,7 +20,9 @@ and B growing 1→3 (B2/B3 are live named leaves again). A later source-clean
 F3 narrowing replaced one residual by two directly consumed theorems, taking
 the live total to 20.  The 2026-07-30 canonical-row override/rebase closes the
 aligned/nonbisector source leaf by reducing it to the already-open fresh-third
-leaf, returning the direct total to 19.
+leaf, returning the direct total to 19.  The subsequent fixed-row same-cap
+split closes the positive alignment branch and replaces the opaque fresh-third
+leaf by one strictly narrower negative residual; the direct total remains 19.
 
 | Pkg | Leaves | Declarations |
 |---|---|---|
@@ -29,7 +31,7 @@ leaf, returning the direct total to 19.
 | D-R | 2 | `false_of_exactFourPostCardElevenTwoRadiusBranch`, `false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome` |
 | D-E | 2 | `false_of_firstApexUniqueRadiusExactFive{Distinct,Common}ObstructionCenter(s)Residual` |
 | E | 1 | `false_of_retainedInteriorDirectedOmission_and_all_low_hits` |
-| F-Γ | 3 | `TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`, `...false_of_capSource_freshThirdBlockerFiber`, `...false_of_twoCapSources_oneSidedDeletionSurvival` |
+| F-Γ | 3 | `TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`, `...false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow`, `...false_of_twoCapSources_oneSidedDeletionSurvival` |
 | B | 3 | `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision`, `false_of_exactFourMutualOmission_fourCenterCommonDeletion_{blockerCoincidence,survivalSquare}` |
 
 Notes: F4 (`freshOutsideSecondBlockerFiber`) is closed by the landed fiber
@@ -40,7 +42,13 @@ package regains its banked B2/B3 normal forms as direct leaf targets
 `false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector` is
 source-clean and is not a separate leaf; its transitive trust path is the
 public `false_of_freshCanonicalRowOverride` reduction followed by
-`false_of_capSource_freshThirdBlockerFiber`, which still reaches `sorryAx`.
+the source-clean `false_of_capSource_freshThirdBlockerFiber` coordinator and
+then
+`false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow`, which
+still reaches `sorryAx`.  The coordinator's positive same-cap alignment arm
+is kernel-checked by `false_of_freshThird_sameCapCrossRowAlignment`.  The
+2026-07-30 full Lean 4.27 build is green; its refreshed spine identifies the
+negative no-alignment theorem as the coordinator's sole reachable `sorry`.
 
 ## 2. Ground rules (binding)
 
@@ -189,7 +197,7 @@ semantics, D/E share the residual frame.
 | 1 | A-core (6) | Partition T = {z_d} ∪ I_u ∪ I_v, |I_u| = |I_v| = 2 disjoint; β-pattern with β(x) = a₁ iff x ∈ Cl(a₁,r); CD overlap ≤ 2; cap-growth trichotomy; leaf deltas A2–A8 (β(source) placement × N_u/N_v row-heaviness) | Encoder must find SAT on the 15-point witness's incidence type restricted to the layers it realizes; leaf-delta consistency: A3–A5 and A7–A8 deltas mutually exclusive by construction |
 | 2 | C-core (2) | Same skeleton as A (Γ₂ = {z*} ∪ I_u ∪ I_v); C1 placement trichotomy; C2 explicit collision arm | Same witness gate; C1 trichotomy exhaustiveness checked against A's version |
 | 3 | E (1) | Cover bound |A| ≤ 4|N|; cap-sum identity; derived n ≥ 15; unique-four shell cover as functional map x ↦ Row(x) into 4-blocks; directed-omission arm choice; E9 low-hit ≤ 2 clauses | Reproduce the kernel-checked low-hit consumers' arithmetic on a hand-built 15-point pattern |
-| 4 | F-Γ (3) | Γ restated in `lean/scratch/f3c-redundancy-bank/F3cRedundancy.lean`; pairs-disjointness; shell ∩ cap = sources; deltas for cross-blocker coincidence, fresh third blocker fiber, and one-sided deletion survival. The former aligned/nonbisector delta is a checked reduction to fresh-third | Fixed-slot completeness is unavailable: a 17-point shadow and an unbounded four-point-block extension survive. Route the remaining leaves through geometric/global bridges, not a closed named universe |
+| 4 | F-Γ (3) | Γ restated in `lean/scratch/f3c-redundancy-bank/F3cRedundancy.lean`; pairs-disjointness; shell ∩ cap = sources; deltas for cross-blocker coincidence, fixed-row fresh-third failure of same-cap cross-row alignment, and one-sided deletion survival. The former aligned/nonbisector delta reduces to fresh-third, whose positive same-cap arm is now checked | Fixed-slot completeness is unavailable: a 17-point shadow and an unbounded four-point-block extension survive. Route the remaining leaves through geometric/global bridges, not a closed named universe |
 | 5 | D-R (2) | Two disjoint selected 4-classes K₁ ∩ K₂ = ∅; no-five-row at a₂; D2's five role-swap equalities S ↔ S′ | Verify the five syntactic role/cap aliases under the double renaming; do not assert `S′′ = S` or packet equality |
 | 6 | D-E (2) | Exact-five class; D3 distinct-centers vs D4 common-center arm; D4's exactly-2-on-bisector cardinality | D4's bisector-2 clause must be consistent with the banked `b1_bisectorSet_eq_pair` mechanism (Dumitrescu L1 bound ≤ 2) |
 | 7 | B (3) | B2 canonical-row forcing + mutual-omission survival; B3 removable-iff-survival (`lean/scratch/b-family-bank/`). The live B1 leaf does not currently expose the bank's support equality, two cross-memberships, and exact two-point intersection prerequisites | Refute a third-bisector configuration; classify B1 as ingress-missing rather than importing unavailable bank consequences |
