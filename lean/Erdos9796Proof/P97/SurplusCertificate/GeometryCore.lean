@@ -28,7 +28,7 @@ namespace Bank
 open EndpointCertificate
 open EndpointCertificate.Variables
 
-/-!
+/-
 `endpointXVarOfLabel`, `endpointYVarOfLabel`, and their four assignment
 agreement lemmas now live in `EndpointCertificate.GeneratorZeros`, in the same
 `EndpointCertificate.Variables` namespace this module opens, so that the
