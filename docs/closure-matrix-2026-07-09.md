@@ -485,9 +485,24 @@ projection survives, the next strengthening is `--cover-point q`.  If
 cyclic-order search becomes the bottleneck, the search must be partitioned
 with an explicit coverage manifest rather than by random seeds.  The
 critical/new-blocker and robust arms remain separate fail-closed frontiers.
-Independently, any finite UNSAT result still needs a source-faithful
-live-to-finite producer (or a direct selected-row extraction) before it closes
-the live Lean leaf.
+The source-faithful ingress for both custom flags is now production Lean.
+`exists_globalK4Row_and_sourceFaithfulCriticalCover`, instantiated at
+`Q.source`, simultaneously exposes an arbitrary selected four-row centered at
+`q` and the canonical exact critical cover row through `q`.  It also retains
+the cover center's global unique-four property, the actual deletion
+obstruction, explicit disequalities from all three rich apices, and strict-cap
+localization.  The live non-bisector leaf calls this producer directly.
+Moreover,
+`exists_criticalRow_escape_or_fullyDeletionRobust_criticalTripleShellSeed`
+now retains the escaping point and its deletion-blocked critical row in the
+non-robust arm; in the robust arm the live leaf proves that the `q`-cover
+center differs from the robust escape center.  Thus the missing work after a
+finite UNSAT result is no longer row extraction for these two flags, but an
+independently checked certificate plus a source-to-certificate adapter (or a
+direct Lean contradiction).  No such exhaustive certificate currently
+exists, and
+`false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector`
+remains the single load-bearing `sorry` for this branch.
 
 The reusable restoration/cardinality part of the earlier extraction is
 retained in

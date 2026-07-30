@@ -46,8 +46,22 @@ constraints.  UNSAT would still be an uncertified SMT result for this encoding
 and would require an encoding audit and independent proof-producing route
 before any Lean promotion.
 
-In the robust escape arm no `escapePoint` is inserted into `W`: the exposed
-theorem interface does not retain its carrier-membership proof.
+In both escape arms the production theorem now retains `escapePoint` together
+with membership in an exact selected four-row, so carrier membership follows
+from that row's support inclusion.  In the non-robust arm it additionally
+retains the source-indexed critical row and the fact that deleting
+`escapePoint` destroys K4 at the escape center.
+
+The live source ingress for the optional `q` constraints is
+`exists_globalK4Row_and_sourceFaithfulCriticalCover`.  At `q = Q.source` it
+exposes the arbitrary selected four-row required by `--global-k4-center q`
+and the canonical exact unique-four critical row required by
+`--cover-point q`.  The same packet proves that the cover center avoids all
+three rich apices and lies in a strict indexed cap.  When the escape center is
+fully deletion robust, the live leaf also derives that the cover center is
+different from it.  These are stronger source facts than the corresponding
+finite constraints; the remaining trust boundary is exhaustive certified
+finite closure and its checked adapter, not the row extraction itself.
 
 ## Runs
 
@@ -242,6 +256,7 @@ If that projection survives, `--cover-point q` is the next strengthening; if
 cyclic-order search becomes the bottleneck, it must be split by a sound
 coverage manifest rather than by random seeds.
 
-Any finite `UNSAT` result still needs a source-faithful live-to-finite producer,
-or a direct selected-row extraction, before it can discharge the on-spine
-`sorry`.
+Any finite `UNSAT` result still needs independent certificate validation and a
+checked source-to-certificate adapter before it can discharge the on-spine
+`sorry`.  The source-faithful selected-row and cover extraction for the two
+optional `q` flags is now present and directly consumed by that live leaf.

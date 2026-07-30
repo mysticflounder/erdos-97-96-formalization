@@ -9364,7 +9364,8 @@ theorem exists_criticalRow_escape_or_fullyDeletionRobust_criticalTripleShellSeed
             z ∈ K.support ∧
               z ∉ criticalTripleShellSeed P Pρ source ∧
                 (FullyDeletionRobustAt D center ∨
-                  Nonempty (CriticalSelectedFourClass D.A z center)) := by
+                  ∃ C : CriticalSelectedFourClass D.A z center,
+                    ¬ HasNEquidistantPointsAt 4 (D.A.erase z) center) := by
   rcases
       exists_selectedRow_escape_criticalTripleShellSeed
         P Pρ hlarge source with
@@ -9431,9 +9432,67 @@ theorem exists_criticalRow_escape_or_fullyDeletionRobust_criticalTripleShellSeed
         exact K.support_eq_radius z hzK
       rw [hradius₁Eq, Finset.card_erase_of_mem hzRadius₀, hcard₀] at hcardErase
       omega
-    exact
+    rcases
       ATAILStageOnePrescribedApexDichotomy.criticalSelectedFourClass_at_of_no_qfree
-        D.K4 hcenterA hcenterNeZ hblocked
+        D.K4 hcenterA hcenterNeZ hblocked with
+      ⟨C⟩
+    exact ⟨C, hblocked⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- Source-faithful ingress for the finite `q`-projection.
+
+At every named carrier point `q`, global K4 supplies an arbitrary selected
+four-row centered at `q`.  Independently, the critical-shell system supplies
+the exact unique-four cover row through `q`, together with its deletion
+obstruction.  Tri-apex deletion robustness excludes each rich apex as that
+cover row's center, and localizes the center to a strict indexed cap. -/
+theorem exists_globalK4Row_and_sourceFaithfulCriticalCover
+    (q : CriticalShellSystem.CarrierVertex D.A) :
+    Nonempty (SelectedFourClass D.A q.1) ∧
+      Nonempty (CriticalSelectedFourClass D.A q.1
+        (H.centerAt q.1 q.2)) ∧
+      IsUniqueFourCenter D.A (H.centerAt q.1 q.2) ∧
+      ¬ HasNEquidistantPointsAt 4
+        (D.A.erase q.1) (H.centerAt q.1 q.2) ∧
+      H.centerAt q.1 q.2 ≠ S.oppApex1 ∧
+      H.centerAt q.1 q.2 ≠ S.oppApex2 ∧
+      H.centerAt q.1 q.2 ≠ S.surplusApex ∧
+      ∃ i : Fin 3,
+        H.centerAt q.1 q.2 ∈ S.capInteriorByIndex i := by
+  rcases exists_selectedFourClass_of_globalK4 D.K4 q.2 with ⟨Kq⟩
+  have hcoverUnique :
+      IsUniqueFourCenter D.A (H.centerAt q.1 q.2) :=
+    isUniqueFourCenter_centerAt H q.1 q.2
+  have hcoverNe₁ :
+      H.centerAt q.1 q.2 ≠ S.oppApex1 := by
+    intro hcenter
+    exact
+      not_isUniqueFourCenter_of_fullyDeletionRobust
+          (fullyDeletionRobustAt_of_apexRichClassStructure
+            T.oppApex1_rich)
+        (hcenter ▸ hcoverUnique)
+  have hcoverNe₂ :
+      H.centerAt q.1 q.2 ≠ S.oppApex2 := by
+    intro hcenter
+    exact
+      not_isUniqueFourCenter_of_fullyDeletionRobust
+          (fullyDeletionRobustAt_of_apexRichClassStructure
+            T.oppApex2_rich)
+        (hcenter ▸ hcoverUnique)
+  have hcoverNe₃ :
+      H.centerAt q.1 q.2 ≠ S.surplusApex := by
+    intro hcenter
+    exact
+      not_isUniqueFourCenter_of_fullyDeletionRobust
+          (fullyDeletionRobustAt_of_apexRichClassStructure
+            T.surplusApex_rich)
+        (hcenter ▸ hcoverUnique)
+  exact
+    ⟨⟨Kq⟩, ⟨H.selectedAt q.1 q.2⟩, hcoverUnique,
+      H.no_qfree_at q.1 q.2, hcoverNe₁, hcoverNe₂, hcoverNe₃,
+      exists_blockerCenter_mem_capInteriorByIndex (T := T) q⟩
 
 /-- The exact positive-incidence residual after ordered-cap geometry has
 excluded a second bisection of the first blocker's two outside points.
@@ -9507,6 +9566,19 @@ theorem false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
         P Pρ L source with
     ⟨escapeCenter, hescapeCenter, escapeRow, escapePoint,
       hescapePointInRow, hescapePointOutside, hescapeContinuation⟩
+  rcases
+      exists_globalK4Row_and_sourceFaithfulCriticalCover
+        (T := T) Q.source with
+    ⟨⟨qGlobalRow⟩, ⟨qCoverRow⟩, hqCoverUnique, hqCoverBlocked,
+      hqCoverNeFirstApex, hqCoverNeSecondApex, hqCoverNeSurplusApex,
+      qCoverCapIndex, hqCoverCap⟩
+  have hqCoverNeEscape_of_robust
+      (hrobust : FullyDeletionRobustAt D escapeCenter) :
+      H.centerAt Q.source.1 Q.source.2 ≠ escapeCenter := by
+    intro hcenter
+    exact
+      not_isUniqueFourCenter_of_fullyDeletionRobust hrobust
+        (hcenter ▸ hqCoverUnique)
   sorry
 
 /-- The singleton-radius normal form for the exact aligned residual.
