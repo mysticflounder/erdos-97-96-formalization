@@ -1025,202 +1025,6 @@ def endpoint_rule_list(generators: list[str], variables: list[str]) -> str:
     ])
 
 
-def endpoint_coord_simp() -> str:
-    return "(by simp [endpointS1S3Assignment, EndpointVar.eval])"
-
-
-def endpoint_normalization_zero(shape: str, proof: str) -> str:
-    return f"""exact evalPoly_eq_zero_of_normalizePoly_eq
-      (endpointS1S3Assignment pointOf) (q := {shape})
-      (by native_decide)
-      (by
-        exact {proof})"""
-
-
-def endpoint_generator_zero_proof(classification: dict[str, object]) -> str:
-    kind = classification.get("kind")
-    if kind == "rabinowitsch_distinct":
-        pair = classification.get("pair")
-        if pair != ["s1", "s3"]:
-            raise ValueError(f"unsupported endpoint Rabinowitsch pair {pair!r}")
-        shape = (
-            "rabinowitschSqDistPoly EndpointVar.tau.index "
-            "EndpointVar.s1x.index EndpointVar.s1y.index "
-            "EndpointVar.s3x.index EndpointVar.s3y.index"
-        )
-        proof = (
-            "evalPoly_endpointS1S3_rabinowitschSqDistPoly_eq_zero_of_metricShadow "
-            "hmetric"
-        )
-        return endpoint_normalization_zero(shape, proof)
-
-    if kind != "distance_eq":
-        raise ValueError(f"unsupported endpoint generator classification {classification!r}")
-
-    center = str(classification["center"])
-    left, right = [str(point) for point in classification["witnesses"]]
-    if classification.get("sign") == -1:
-        left, right = right, left
-
-    coord = endpoint_coord_simp()
-    if center == "v":
-        if point_is_variable(left) and point_is_variable(right):
-            shape = (
-                f"sqNormDiffPoly {endpoint_var_index(left, 'x')} "
-                f"{endpoint_var_index(left, 'y')} {endpoint_var_index(right, 'x')} "
-                f"{endpoint_var_index(right, 'y')}"
-            )
-            proof = f"""evalPoly_endpoint_sqNormDiffPoly_eq_zero_of_metricShadow
-          (a := {lean_label(left)}) (b := {lean_label(right)})
-          (ax := {endpoint_var(left, 'x')}) (ay := {endpoint_var(left, 'y')})
-          (bx := {endpoint_var(right, 'x')}) (b_y := {endpoint_var(right, 'y')})
-          hmetric
-          {coord} {coord} {coord} {coord}
-          (by decide) (by decide)"""
-            return endpoint_normalization_zero(shape, proof)
-        if point_is_variable(left) and right == "w":
-            shape = (
-                f"sqNormMinusOnePoly {endpoint_var_index(left, 'x')} "
-                f"{endpoint_var_index(left, 'y')}"
-            )
-            proof = f"""evalPoly_endpoint_sqNormMinusOnePoly_eq_zero_of_metricShadow
-          (a := {lean_label(left)})
-          (ax := {endpoint_var(left, 'x')}) (ay := {endpoint_var(left, 'y')})
-          hmetric
-          {coord} {coord}
-          (by decide) (by decide)"""
-            return endpoint_normalization_zero(shape, proof)
-        if left == "w" and point_is_variable(right):
-            shape = (
-                f"oneMinusSqNormPoly {endpoint_var_index(right, 'x')} "
-                f"{endpoint_var_index(right, 'y')}"
-            )
-            proof = f"""evalPoly_endpoint_oneMinusSqNormPoly_eq_zero_of_metricShadow
-          (a := {lean_label(right)})
-          (ax := {endpoint_var(right, 'x')}) (ay := {endpoint_var(right, 'y')})
-          hmetric
-          {coord} {coord}
-          (by decide) (by decide)"""
-            return endpoint_normalization_zero(shape, proof)
-
-    if center == "w":
-        if point_is_variable(left) and point_is_variable(right):
-            shape = (
-                f"sqDistToUnitXDiffPoly {endpoint_var_index(left, 'x')} "
-                f"{endpoint_var_index(left, 'y')} {endpoint_var_index(right, 'x')} "
-                f"{endpoint_var_index(right, 'y')}"
-            )
-            proof = f"""evalPoly_endpoint_sqDistToUnitXDiffPoly_eq_zero_of_metricShadow
-          (a := {lean_label(left)}) (b := {lean_label(right)})
-          (ax := {endpoint_var(left, 'x')}) (ay := {endpoint_var(left, 'y')})
-          (bx := {endpoint_var(right, 'x')}) (b_y := {endpoint_var(right, 'y')})
-          hmetric
-          {coord} {coord} {coord} {coord}
-          (by decide) (by decide)"""
-            return endpoint_normalization_zero(shape, proof)
-        if point_is_variable(left) and right == "v":
-            shape = (
-                f"sqDistToUnitXMinusOnePoly {endpoint_var_index(left, 'x')} "
-                f"{endpoint_var_index(left, 'y')}"
-            )
-            proof = f"""evalPoly_endpoint_sqDistToUnitXMinusOnePoly_eq_zero_of_metricShadow
-          (a := {lean_label(left)})
-          (ax := {endpoint_var(left, 'x')}) (ay := {endpoint_var(left, 'y')})
-          hmetric
-          {coord} {coord}
-          (by decide) (by decide)"""
-            return endpoint_normalization_zero(shape, proof)
-
-    if point_is_variable(center):
-        if point_is_variable(left) and point_is_variable(right):
-            shape = (
-                f"sqDistToCenterDiffPoly {endpoint_var_index(center, 'x')} "
-                f"{endpoint_var_index(center, 'y')} {endpoint_var_index(left, 'x')} "
-                f"{endpoint_var_index(left, 'y')} {endpoint_var_index(right, 'x')} "
-                f"{endpoint_var_index(right, 'y')}"
-            )
-            proof = f"""evalPoly_endpoint_sqDistToCenterDiffPoly_eq_zero_of_metricShadow
-          (center := {lean_label(center)}) (a := {lean_label(left)})
-          (b := {lean_label(right)})
-          (cx := {endpoint_var(center, 'x')}) (cy := {endpoint_var(center, 'y')})
-          (ax := {endpoint_var(left, 'x')}) (ay := {endpoint_var(left, 'y')})
-          (bx := {endpoint_var(right, 'x')}) (b_y := {endpoint_var(right, 'y')})
-          hmetric
-          {coord} {coord} {coord} {coord} {coord} {coord}
-          (by decide) (by decide)"""
-            return endpoint_normalization_zero(shape, proof)
-        if left == "v" and point_is_variable(right):
-            shape = (
-                f"sqNormFirstMinusSqDistPoly {endpoint_var_index(center, 'x')} "
-                f"{endpoint_var_index(center, 'y')} {endpoint_var_index(right, 'x')} "
-                f"{endpoint_var_index(right, 'y')}"
-            )
-            proof = f"""evalPoly_endpoint_sqNormFirstMinusSqDistPoly_eq_zero_of_metricShadow
-          (a := {lean_label(center)}) (b := {lean_label(right)})
-          (ax := {endpoint_var(center, 'x')}) (ay := {endpoint_var(center, 'y')})
-          (bx := {endpoint_var(right, 'x')}) (b_y := {endpoint_var(right, 'y')})
-          hmetric
-          {coord} {coord} {coord} {coord}
-          (by decide) (by decide)"""
-            return endpoint_normalization_zero(shape, proof)
-        if point_is_variable(left) and right == "v":
-            shape = (
-                f"sqDistMinusSqNormFirstPoly {endpoint_var_index(center, 'x')} "
-                f"{endpoint_var_index(center, 'y')} {endpoint_var_index(left, 'x')} "
-                f"{endpoint_var_index(left, 'y')}"
-            )
-            proof = f"""evalPoly_endpoint_sqDistMinusSqNormFirstPoly_eq_zero_of_metricShadow
-          (a := {lean_label(center)}) (b := {lean_label(left)})
-          (ax := {endpoint_var(center, 'x')}) (ay := {endpoint_var(center, 'y')})
-          (bx := {endpoint_var(left, 'x')}) (b_y := {endpoint_var(left, 'y')})
-          hmetric
-          {coord} {coord} {coord} {coord}
-          (by decide) (by decide)"""
-            return endpoint_normalization_zero(shape, proof)
-        if left == "w" and point_is_variable(right):
-            shape = (
-                f"sqDistUnitXToPointMinusCenterDistPoly {endpoint_var_index(right, 'x')} "
-                f"{endpoint_var_index(right, 'y')} {endpoint_var_index(center, 'x')} "
-                f"{endpoint_var_index(center, 'y')}"
-            )
-            proof = f"""evalPoly_endpoint_sqDistUnitXToPointMinusCenterDistPoly_eq_zero_of_metricShadow
-          (center := {lean_label(right)}) (a := {lean_label(center)})
-          (cx := {endpoint_var(right, 'x')}) (cy := {endpoint_var(right, 'y')})
-          (ax := {endpoint_var(center, 'x')}) (ay := {endpoint_var(center, 'y')})
-          hmetric
-          {coord} {coord} {coord} {coord}
-          (by decide) (by decide)"""
-            return endpoint_normalization_zero(shape, proof)
-        if point_is_variable(left) and right == "w":
-            shape = (
-                f"sqDistPointToUnitXDiffPoly {endpoint_var_index(left, 'x')} "
-                f"{endpoint_var_index(left, 'y')} {endpoint_var_index(center, 'x')} "
-                f"{endpoint_var_index(center, 'y')}"
-            )
-            proof = f"""evalPoly_endpoint_sqDistPointToUnitXDiffPoly_eq_zero_of_metricShadow
-          (center := {lean_label(left)}) (a := {lean_label(center)})
-          (cx := {endpoint_var(left, 'x')}) (cy := {endpoint_var(left, 'y')})
-          (ax := {endpoint_var(center, 'x')}) (ay := {endpoint_var(center, 'y')})
-          hmetric
-          {coord} {coord} {coord} {coord}
-          (by decide) (by decide)"""
-            return endpoint_normalization_zero(shape, proof)
-        if left == "v" and right == "w":
-            shape = f"twiceVarMinusOnePoly {endpoint_var_index(center, 'x')}"
-            proof = f"""evalPoly_endpoint_twiceVarMinusOnePoly_eq_zero_of_metricShadow
-          (a := {lean_label(center)}) (ax := {endpoint_var(center, 'x')})
-          hmetric
-          {coord}
-          (by decide) (by decide)"""
-            return endpoint_normalization_zero(shape, proof)
-
-    raise ValueError(
-        "unsupported endpoint generator shape "
-        f"center={center!r}, left={left!r}, right={right!r}, "
-        f"classification={classification!r}"
-    )
-
-
 PRODUCT_SUM_ENDPOINT_IDS = {
     "ep_Q1_008",
     "ep_Q1_009",
@@ -1838,19 +1642,12 @@ ENDPOINT_COMPUTED_SHARD_MAX_PAYLOAD_BYTES = 200_000
 def emit_computed_generator_module(
     pid: str,
     lean_name: str,
-    generators: list[Poly],
+    generator_exprs: list[str],
+    variables: list[str],
     out_path: Path,
 ) -> None:
     stem = lean_module_stem(pid)
     generator_namespace = f"{stem}Generators"
-    generator_names = [f"{lean_name}_generator_{idx:02d}" for idx in range(len(generators))]
-    definitions = "\n\n".join(
-        f"""/-- Generator polynomial {idx} for endpoint certificate `{pid}`. -/
-def {name} : Poly :=
-{lean_poly(generators[idx])}"""
-        for idx, name in enumerate(generator_names)
-    )
-    entries = ",\n".join(f"  {name}" for name in generator_names)
     module = f"""/-
 Copyright (c) 2026 Adam McKenna. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
@@ -1858,6 +1655,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.EndpointCertificate.ProductCertificate
+import Erdos9796Proof.P97.EndpointCertificate.RowZeros.RuleData
 
 set_option linter.style.longLine false
 
@@ -1866,6 +1664,10 @@ set_option linter.style.longLine false
 
 This generated module stores the endpoint generator list once. Product rows
 refer to these generators by index from computed coefficient blocks.
+
+Generators are *derived* from the semantic rule list rather than emitted as
+literal polynomial data, so the row-zero proof needs no polynomial-shape
+matching subgoals.
 -/
 
 namespace Problem97
@@ -1876,13 +1678,15 @@ namespace Patterns
 
 namespace {generator_namespace}
 
-{definitions}
+open Variables
+
+/-- Generator rules for endpoint certificate `{pid}`. -/
+def {lean_name}_rules : List RowZeros.EndpointGeneratorRule :=
+{endpoint_rule_list(generator_exprs, variables)}
 
 /-- Generator list for endpoint certificate `{pid}`. -/
 def {lean_name}_generators : List Poly :=
-[
-{entries}
-]
+  RowZeros.rulePolys {lean_name}_rules
 
 end {generator_namespace}
 
@@ -1993,7 +1797,8 @@ def emit_term_sharded_lean_certificate(
     emit_computed_generator_module(
         pid,
         lean_name,
-        generators,
+        [str(expr) for expr in generator_exprs],
+        [str(variable) for variable in variables],
         coordinator_out.parent / f"{stem}Generators.lean",
     )
 
@@ -2122,13 +1927,6 @@ def emit_computed_product_row_zero_module(
     generator_namespace = f"{stem}Generators"
     row_name = f"{pid}_row"
     row_expr = endpoint_row_expr(pid)
-    classifications = [
-        classify_generator(str(generator), [str(variable) for variable in variables])
-        for generator in generators
-    ]
-    proofs = [endpoint_generator_zero_proof(classification) for classification in classifications]
-    cases = "\n".join("  · " + proof.replace("\n", "\n    ") for proof in proofs)
-    rcases_pattern = " | ".join("rfl" for _ in generators)
     source = cert_path.as_posix()
     module = f"""/-
 Copyright (c) 2026 Adam McKenna. All rights reserved.
@@ -2137,7 +1935,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.EndpointCertificate.AggregateSoundness
-import Erdos9796Proof.P97.EndpointCertificate.GeneratorZeros
+import Erdos9796Proof.P97.EndpointCertificate.RowZeros.DirectSoundness
 import Erdos9796Proof.P97.EndpointCertificate.ProductCertificateSoundness
 import Erdos9796Proof.P97.EndpointCertificate.Patterns.{stem}
 
@@ -2147,11 +1945,15 @@ import Erdos9796Proof.P97.EndpointCertificate.Patterns.{stem}
 This generated module uses the shared computed-product soundness theorem. The
 row-specific content is only the finite endpoint generator-zero data.
 
+The generators are derived from `Patterns.{generator_namespace}.{pid}_rules`, so
+the whole row-local obligation is the single kernel-decidable check that every
+rule is supported by this row's shadow.  No polynomial-shape matching subgoal is
+emitted.
+
 Source certificate: `{source}`.
 -/
 
 set_option linter.style.longLine false
-set_option linter.unusedSimpArgs false
 
 open scoped EuclideanGeometry
 
@@ -2164,7 +1966,12 @@ namespace Variables
 private def {row_name} : ShadowBank.EndpointRow :=
   {row_expr}
 
-set_option linter.style.nativeDecide false in
+/-- Every generator rule of `{pid}` is supported by its own row shadow. -/
+private theorem {pid}_rulesOK :
+    RowZeros.rulesOK Patterns.{generator_namespace}.{pid}_rules
+      {row_name}.toShadow = true := by
+  decide
+
 /-- Every computed product in endpoint certificate `{pid}` evaluates to zero
 under a metric interpretation of its finite shadow. -/
 theorem {pid}_evaluationZeros_of_metricShadow
@@ -2177,11 +1984,8 @@ theorem {pid}_evaluationZeros_of_metricShadow
     evalPoly (endpointS1S3Assignment pointOf) p = 0
   refine evaluationZeros_of_computedProductBlocks
     (endpointS1S3Assignment pointOf) Patterns.{pid}_productBlocks ?_
-  intro g hg
-  simp only [Patterns.{generator_namespace}.{pid}_generators,
-    List.mem_cons, List.not_mem_nil, or_false] at hg
-  rcases hg with {rcases_pattern}
-{cases}
+  dsimp [Patterns.{generator_namespace}.{pid}_generators]
+  exact RowZeros.evaluationZeros_of_rulesOK {pid}_rulesOK hmetric
 
 end Variables
 

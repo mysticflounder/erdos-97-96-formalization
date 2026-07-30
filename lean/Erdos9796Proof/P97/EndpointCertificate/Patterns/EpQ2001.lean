@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.EndpointCertificate.Checker
+import Erdos9796Proof.P97.EndpointCertificate.RowZeros.RuleData
 
 /-!
 # Endpoint certificate ep_Q2_001
@@ -14,11 +14,17 @@ set.  The theorem checks the generated rational-polynomial identity with
 `native_decide`; its expected audit cost is `Lean.ofReduceBool` plus
 `Lean.trustCompiler`.
 
+Generators are *derived* from the semantic rule list below rather than emitted
+as literal polynomial data, so the row-zero proof needs no polynomial-shape
+matching subgoals.
+
 Source certificate: `certificates/endpoint/ep_Q2_001.json`.
 
 This generated module lives in the `Patterns` namespace.
 
 -/
+
+set_option linter.style.longLine false
 
 namespace Problem97
 
@@ -26,242 +32,46 @@ namespace EndpointCertificate
 
 namespace Patterns
 
+open Variables
+
+/-- Generator rules for endpoint certificate `ep_Q2_001`. -/
+def ep_Q2_001_rules : List RowZeros.EndpointGeneratorRule :=
+[
+  .ordinary .u .s1 .s2 EndpointVar.ux EndpointVar.uy EndpointVar.s1x EndpointVar.s1y EndpointVar.s2x EndpointVar.s2y,
+  .ordinary .u .s1 .Pu EndpointVar.ux EndpointVar.uy EndpointVar.s1x EndpointVar.s1y EndpointVar.pux EndpointVar.puy,
+  .ordinary .u .s1 .Q1 EndpointVar.ux EndpointVar.uy EndpointVar.s1x EndpointVar.s1y EndpointVar.q1x EndpointVar.q1y,
+  .exactVUnitFlipped .Pw EndpointVar.pwx EndpointVar.pwy,
+  .exactVUnitFlipped .Pu EndpointVar.pux EndpointVar.puy,
+  .exactVUnitFlipped .Q2 EndpointVar.q2x EndpointVar.q2y,
+  .exactW .u .s3 EndpointVar.ux EndpointVar.uy EndpointVar.s3x EndpointVar.s3y,
+  .exactW .u .Q1 EndpointVar.ux EndpointVar.uy EndpointVar.q1x EndpointVar.q1y,
+  .exactW .u .Q2 EndpointVar.ux EndpointVar.uy EndpointVar.q2x EndpointVar.q2y,
+  .ordinaryVLeft .s1 .s2 EndpointVar.s1x EndpointVar.s1y EndpointVar.s2x EndpointVar.s2y,
+  .ordinaryVLeft .s1 .Pw EndpointVar.s1x EndpointVar.s1y EndpointVar.pwx EndpointVar.pwy,
+  .ordinaryVLeft .s1 .Q1 EndpointVar.s1x EndpointVar.s1y EndpointVar.q1x EndpointVar.q1y,
+  .ordinary .s2 .u .s1 EndpointVar.s2x EndpointVar.s2y EndpointVar.ux EndpointVar.uy EndpointVar.s1x EndpointVar.s1y,
+  .ordinary .s2 .u .s3 EndpointVar.s2x EndpointVar.s2y EndpointVar.ux EndpointVar.uy EndpointVar.s3x EndpointVar.s3y,
+  .ordinary .s2 .u .Pw EndpointVar.s2x EndpointVar.s2y EndpointVar.ux EndpointVar.uy EndpointVar.pwx EndpointVar.pwy,
+  .ordinaryVRight .s3 .u EndpointVar.s3x EndpointVar.s3y EndpointVar.ux EndpointVar.uy,
+  .ordinary .s3 .u .s2 EndpointVar.s3x EndpointVar.s3y EndpointVar.ux EndpointVar.uy EndpointVar.s2x EndpointVar.s2y,
+  .ordinary .s3 .u .Pu EndpointVar.s3x EndpointVar.s3y EndpointVar.ux EndpointVar.uy EndpointVar.pux EndpointVar.puy,
+  .ordinaryWLeft .Pw .s1 EndpointVar.pwx EndpointVar.pwy EndpointVar.s1x EndpointVar.s1y,
+  .ordinaryWLeft .Pw .s3 EndpointVar.pwx EndpointVar.pwy EndpointVar.s3x EndpointVar.s3y,
+  .ordinaryWLeft .Pw .Pu EndpointVar.pwx EndpointVar.pwy EndpointVar.pux EndpointVar.puy,
+  .ordinaryVLeft .Pu .s1 EndpointVar.pux EndpointVar.puy EndpointVar.s1x EndpointVar.s1y,
+  .ordinaryVLeft .Pu .Pw EndpointVar.pux EndpointVar.puy EndpointVar.pwx EndpointVar.pwy,
+  .ordinaryVLeft .Pu .Q2 EndpointVar.pux EndpointVar.puy EndpointVar.q2x EndpointVar.q2y,
+  .ordinaryWRight .Q1 .u EndpointVar.q1x EndpointVar.q1y EndpointVar.ux EndpointVar.uy,
+  .ordinary .Q1 .u .s2 EndpointVar.q1x EndpointVar.q1y EndpointVar.ux EndpointVar.uy EndpointVar.s2x EndpointVar.s2y,
+  .ordinary .Q1 .u .Q2 EndpointVar.q1x EndpointVar.q1y EndpointVar.ux EndpointVar.uy EndpointVar.q2x EndpointVar.q2y,
+  .ordinaryVLeft .Q2 .s3 EndpointVar.q2x EndpointVar.q2y EndpointVar.s3x EndpointVar.s3y,
+  .ordinaryVLeft .Q2 .Pu EndpointVar.q2x EndpointVar.q2y EndpointVar.pux EndpointVar.puy,
+  .ordinaryVLeft .Q2 .Q1 EndpointVar.q2x EndpointVar.q2y EndpointVar.q1x EndpointVar.q1y
+]
 
 /-- Generator polynomials for endpoint certificate `ep_Q2_001`. -/
 def ep_Q2_001_generators : List Poly :=
-[
-  [
-  term (-2 : Rat) [(0, 1), (2, 1)],
-  term (2 : Rat) [(0, 1), (4, 1)],
-  term (-2 : Rat) [(1, 1), (3, 1)],
-  term (2 : Rat) [(1, 1), (5, 1)],
-  term (1 : Rat) [(2, 2)],
-  term (1 : Rat) [(3, 2)],
-  term (-1 : Rat) [(4, 2)],
-  term (-1 : Rat) [(5, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (2, 1)],
-  term (2 : Rat) [(0, 1), (10, 1)],
-  term (-2 : Rat) [(1, 1), (3, 1)],
-  term (2 : Rat) [(1, 1), (11, 1)],
-  term (1 : Rat) [(2, 2)],
-  term (1 : Rat) [(3, 2)],
-  term (-1 : Rat) [(10, 2)],
-  term (-1 : Rat) [(11, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (2, 1)],
-  term (2 : Rat) [(0, 1), (12, 1)],
-  term (-2 : Rat) [(1, 1), (3, 1)],
-  term (2 : Rat) [(1, 1), (13, 1)],
-  term (1 : Rat) [(2, 2)],
-  term (1 : Rat) [(3, 2)],
-  term (-1 : Rat) [(12, 2)],
-  term (-1 : Rat) [(13, 2)]
-],
-  [
-  term (1 : Rat) [],
-  term (-1 : Rat) [(8, 2)],
-  term (-1 : Rat) [(9, 2)]
-],
-  [
-  term (1 : Rat) [],
-  term (-1 : Rat) [(10, 2)],
-  term (-1 : Rat) [(11, 2)]
-],
-  [
-  term (1 : Rat) [],
-  term (-1 : Rat) [(14, 2)],
-  term (-1 : Rat) [(15, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(6, 1)],
-  term (-1 : Rat) [(6, 2)],
-  term (-1 : Rat) [(7, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(12, 1)],
-  term (-1 : Rat) [(12, 2)],
-  term (-1 : Rat) [(13, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(14, 1)],
-  term (-1 : Rat) [(14, 2)],
-  term (-1 : Rat) [(15, 2)]
-],
-  [
-  term (2 : Rat) [(2, 1), (4, 1)],
-  term (2 : Rat) [(3, 1), (5, 1)],
-  term (-1 : Rat) [(4, 2)],
-  term (-1 : Rat) [(5, 2)]
-],
-  [
-  term (2 : Rat) [(2, 1), (8, 1)],
-  term (2 : Rat) [(3, 1), (9, 1)],
-  term (-1 : Rat) [(8, 2)],
-  term (-1 : Rat) [(9, 2)]
-],
-  [
-  term (2 : Rat) [(2, 1), (12, 1)],
-  term (2 : Rat) [(3, 1), (13, 1)],
-  term (-1 : Rat) [(12, 2)],
-  term (-1 : Rat) [(13, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (4, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (5, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(2, 1), (4, 1)],
-  term (-1 : Rat) [(2, 2)],
-  term (2 : Rat) [(3, 1), (5, 1)],
-  term (-1 : Rat) [(3, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (4, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (5, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(4, 1), (6, 1)],
-  term (2 : Rat) [(5, 1), (7, 1)],
-  term (-1 : Rat) [(6, 2)],
-  term (-1 : Rat) [(7, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (4, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (5, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(4, 1), (8, 1)],
-  term (2 : Rat) [(5, 1), (9, 1)],
-  term (-1 : Rat) [(8, 2)],
-  term (-1 : Rat) [(9, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (6, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (7, 1)],
-  term (1 : Rat) [(1, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (6, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (7, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(4, 1), (6, 1)],
-  term (-1 : Rat) [(4, 2)],
-  term (2 : Rat) [(5, 1), (7, 1)],
-  term (-1 : Rat) [(5, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (6, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (7, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(6, 1), (10, 1)],
-  term (2 : Rat) [(7, 1), (11, 1)],
-  term (-1 : Rat) [(10, 2)],
-  term (-1 : Rat) [(11, 2)]
-],
-  [
-  term (1 : Rat) [],
-  term (2 : Rat) [(2, 1), (8, 1)],
-  term (-1 : Rat) [(2, 2)],
-  term (2 : Rat) [(3, 1), (9, 1)],
-  term (-1 : Rat) [(3, 2)],
-  term (-2 : Rat) [(8, 1)]
-],
-  [
-  term (1 : Rat) [],
-  term (2 : Rat) [(6, 1), (8, 1)],
-  term (-1 : Rat) [(6, 2)],
-  term (2 : Rat) [(7, 1), (9, 1)],
-  term (-1 : Rat) [(7, 2)],
-  term (-2 : Rat) [(8, 1)]
-],
-  [
-  term (1 : Rat) [],
-  term (-2 : Rat) [(8, 1)],
-  term (2 : Rat) [(8, 1), (10, 1)],
-  term (2 : Rat) [(9, 1), (11, 1)],
-  term (-1 : Rat) [(10, 2)],
-  term (-1 : Rat) [(11, 2)]
-],
-  [
-  term (2 : Rat) [(2, 1), (10, 1)],
-  term (-1 : Rat) [(2, 2)],
-  term (2 : Rat) [(3, 1), (11, 1)],
-  term (-1 : Rat) [(3, 2)]
-],
-  [
-  term (2 : Rat) [(8, 1), (10, 1)],
-  term (-1 : Rat) [(8, 2)],
-  term (2 : Rat) [(9, 1), (11, 1)],
-  term (-1 : Rat) [(9, 2)]
-],
-  [
-  term (2 : Rat) [(10, 1), (14, 1)],
-  term (2 : Rat) [(11, 1), (15, 1)],
-  term (-1 : Rat) [(14, 2)],
-  term (-1 : Rat) [(15, 2)]
-],
-  [
-  term (-1 : Rat) [],
-  term (-2 : Rat) [(0, 1), (12, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (13, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(12, 1)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (12, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (13, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(4, 1), (12, 1)],
-  term (-1 : Rat) [(4, 2)],
-  term (2 : Rat) [(5, 1), (13, 1)],
-  term (-1 : Rat) [(5, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (12, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (13, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(12, 1), (14, 1)],
-  term (2 : Rat) [(13, 1), (15, 1)],
-  term (-1 : Rat) [(14, 2)],
-  term (-1 : Rat) [(15, 2)]
-],
-  [
-  term (2 : Rat) [(6, 1), (14, 1)],
-  term (-1 : Rat) [(6, 2)],
-  term (2 : Rat) [(7, 1), (15, 1)],
-  term (-1 : Rat) [(7, 2)]
-],
-  [
-  term (2 : Rat) [(10, 1), (14, 1)],
-  term (-1 : Rat) [(10, 2)],
-  term (2 : Rat) [(11, 1), (15, 1)],
-  term (-1 : Rat) [(11, 2)]
-],
-  [
-  term (2 : Rat) [(12, 1), (14, 1)],
-  term (-1 : Rat) [(12, 2)],
-  term (2 : Rat) [(13, 1), (15, 1)],
-  term (-1 : Rat) [(13, 2)]
-]
-]
+  RowZeros.rulePolys ep_Q2_001_rules
 
 /-- Coefficient polynomials for endpoint certificate `ep_Q2_001`. -/
 def ep_Q2_001_coefficients : List Poly :=
