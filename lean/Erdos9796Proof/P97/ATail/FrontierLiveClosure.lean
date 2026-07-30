@@ -9539,6 +9539,88 @@ theorem firstFiber_sourceFaithfulCriticalCover_eq_firstShell
       hsupport.trans (firstFiber_shell_eq_explicitFour P Pρ Q),
       i, hcenter ▸ hi⟩
 
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- The global K4 row centered at an enlarged-fiber source meets the
+source-faithful first-blocker shell in at most two points.
+
+The two circle centers are distinct: the enlarged-fiber source lies on the
+blocker shell, while that shell cannot contain its own center.  This is the
+first genuinely global incidence constraint missing from the local
+two-selected-row order model. -/
+theorem firstFiber_globalRow_inter_firstShell_card_le_two
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (Kq : SelectedFourClass D.A Q.source.1) :
+    (Kq.support ∩
+      (H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.support).card ≤ 2 := by
+  have hcentersNe :
+      Q.source.1 ≠ H.centerAt P.source₁ P.source₁_mem_A := by
+    intro hcenters
+    apply
+      (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.toSelectedFourClass.center_not_mem
+    simpa [hcenters] using Q.source_mem_shell
+  exact
+    SelectedFourClass.inter_card_le_two Kq
+      (H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.toSelectedFourClass
+      hcentersNe
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- At least two points of the global K4 row centered at an enlarged-fiber
+source lie outside the source-faithful first-blocker shell.
+
+This is the positive form of
+`firstFiber_globalRow_inter_firstShell_card_le_two`: the global row has
+exactly four points, while distinct circle centers permit at most two common
+points. -/
+theorem firstFiber_globalRow_sdiff_firstShell_card_ge_two
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (Kq : SelectedFourClass D.A Q.source.1) :
+    2 ≤
+      (Kq.support \
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support).card := by
+  have hinter :
+      (Kq.support ∩
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support).card ≤ 2 :=
+    firstFiber_globalRow_inter_firstShell_card_le_two
+      P Pρ Q Kq
+  have hdecomp :=
+    Finset.card_sdiff_add_card_inter Kq.support
+      (H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.support
+  rw [Kq.support_card] at hdecomp
+  omega
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- Two distinct named points of the global K4 row lie outside the
+source-faithful first-blocker shell. -/
+theorem exists_two_firstFiber_globalRow_points_outside_firstShell
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (Kq : SelectedFourClass D.A Q.source.1) :
+    ∃ u ∈
+        Kq.support \
+          (H.selectedAt P.source₁
+            P.source₁_mem_A).toCriticalFourShell.support,
+      ∃ v ∈
+          Kq.support \
+            (H.selectedAt P.source₁
+              P.source₁_mem_A).toCriticalFourShell.support,
+        u ≠ v := by
+  apply Finset.one_lt_card.mp
+  have htwo :=
+    firstFiber_globalRow_sdiff_firstShell_card_ge_two
+      P Pρ Q Kq
+  omega
+
 /-- The exact positive-incidence residual after ordered-cap geometry has
 excluded a second bisection of the first blocker's two outside points.
 
@@ -9623,6 +9705,11 @@ theorem false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
     ⟨hqCoverCenterEqFirst, hqCoverSupportEqFirst,
       hqCoverSupportEqExplicit, firstBlockerCapIndex,
       hfirstBlockerCap⟩
+  rcases
+      exists_two_firstFiber_globalRow_points_outside_firstShell
+        P Pρ Q qGlobalRow with
+    ⟨qOutside₁, hqOutside₁, qOutside₂, hqOutside₂,
+      hqOutsideNe⟩
   have hescapeCenterNeFirstBlocker :
       escapeCenter ≠
         H.centerAt P.source₁ P.source₁_mem_A := by

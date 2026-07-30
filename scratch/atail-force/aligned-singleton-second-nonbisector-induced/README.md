@@ -74,6 +74,22 @@ A Lean 4.27 build and live kernel audit give the new theorem exactly
 confirms its direct use by the live leaf and the leaf's path to the configured
 publish target.
 
+The next source extraction uses the arbitrary global row rather than its
+critical cover.  Since `Q.source` belongs to the first-blocker shell but that
+shell omits its own center, the two row centers are distinct.  The checked
+two-circle intersection bound therefore gives
+`firstFiber_globalRow_inter_firstShell_card_le_two`, and exact row cardinality
+gives the positive consequence
+`firstFiber_globalRow_sdiff_firstShell_card_ge_two`: at least two points of
+the global row lie outside the explicit first shell.
+`exists_two_firstFiber_globalRow_points_outside_firstShell` names two distinct
+such points, and the live leaf consumes that witness packet.  All three proof
+bodies and their exact live-leaf call shapes pass an isolated Lean 4.27 check.
+The isolated declarations have exactly
+`[propext, Classical.choice, Quot.sound]`, with no `sorryAx`.  The serialized
+full-module build was still running at this checkpoint, so this does not yet
+claim a refreshed module-level axiom audit.
+
 ## Runs
 
 ```bash
@@ -282,16 +298,77 @@ This checkpoint closes no `sorry`.
 remains the one load-bearing leaf.  Its coordinator frontier is unchanged:
 one direct leaf, with the same two-way second-row continuation and two-way
 robust-versus-critical escape continuation (constructor fan-out `2 × 2`).
-The nearest existing production consumer is
-`SixPointEuclideanObstruction.false_of_six_ccw_two_selected_rows`: take the
-first-apex radius row and the first-blocker critical row, with
-`P.source₁,P.source₂` as their shared pair.  Their row memberships,
-distinctness, remaining support points, and the no-third-common-point bound
-are already available.  The exact missing bridge is to choose one remaining
-point from each row and prove an exhaustive common-boundary cyclic-order split
-whose matching branches give the consumer's
-`A < B < C < D < E < F` placement; assuming only that order would leave the
-complementary placements open.  The escape-row circle/intersection route
-remains a fallback after the three blocker aliases are excluded.  Any future
-finite `UNSAT` still needs independent certificate validation and a checked
-source-to-certificate adapter.
+The former local-order route through
+`SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows` is now
+classified as a no-go for this leaf.  The deterministic order audit
+
+```bash
+uv run python audit_six_point_order_coverage.py
+```
+
+covers 11 of the 16 complementary-arc words and leaves exactly
+`CCFEE`, `CFCEE`, `ECCFE`, `ECFCE`, and `EECCF`.  The exact normalized
+two-circle probe
+
+```bash
+uv run python probe_two_circle_convexity.py
+```
+
+finds deterministic strictly convex numerical witnesses for all five
+residual words.  This is empirical route falsification, not a Lean theorem,
+but it shows that the two selected rows plus their shared chord do not imply
+the missing contradiction; another local cyclic-order kernel would be false.
+The theorem-bank audit likewise found no existing imported consumer that
+eliminates these five words.
+
+The live route must therefore use data absent from that local model.  The new
+checked extraction supplies two named global-row points outside the explicit
+first shell.  The nearest existing clean terminal for the escape row is
+`false_of_centerAt_selectedFourClass_inter_card_ge_three`; after rewriting the
+source-faithful `q` cover, its missing positive producer is
+
+```text
+3 ≤
+  ({P.source₁, P.source₂, Q.source.1, Q.otherOutsidePoint} ∩
+    escapeRow.support).card.
+```
+
+The new global row is not the escape row, so its two fresh points do not prove
+this inequality by themselves.  The remaining bridge must couple the global
+row's two outside-shell points with the escape continuation, minimal deletion
+core, cap localization, or full deletion filters strongly enough either to
+identify the rows or force a three-point overlap.  No new CEGAR process was
+started at this checkpoint.  Any future finite `UNSAT` still needs independent
+certificate validation and a checked source-to-certificate adapter.
+
+Two tempting follow-ons have also been audited and are not closure routes:
+
+1. `exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions`
+   is circular here.  Its non-three-hit branches are eliminated by invoking
+   this aligned-singleton leaf or one of the other open terminal leaves, so it
+   cannot be extracted as the missing source-clean producer.
+2. The cap arithmetic does prove `17 ≤ D.A.card`: the cap-source witness gives
+   eight points in the first cap, the other two caps give six each, and
+   `S.capSum` subtracts the three pairwise-shared vertices.  Consequently the
+   at-most-twelve critical triple-shell seed united with any four-point row is
+   a proper subset of the carrier.  The resulting outside point supplies only
+   negative incidence and an anonymous critical cover; it does not imply the
+   required three-hit overlap.
+
+The robust-versus-critical escape split is now audited to its exact source
+boundary:
+
+- Robust escape gives an arbitrary equal-blocker pair.  It reaches
+  `FreshThirdBlockerFiber` only when that blocker is proved distinct from both
+  named collision blockers; otherwise the pair may just be the original `P`
+  or `Pρ` fiber.
+- Critical escape gives at least two support points fresh from the four named
+  collision sources.  The source-clean scratch theorem
+  `criticalSelectedFourClass_center_eq_commonBlocker_of_no_qfree` in
+  `lean/scratch/trace-critical-row-pair-localizer/Main.lean` supplies the
+  needed pair-exclusion argument.  What it does not supply is
+  `H.centerAt u huA = escapeCenter` for either fresh point: the prescribed
+  critical row and the arbitrary canonical system `H` are independent
+  choices.  `overrideAt` can enforce those identities only after changing
+  `H`, and there is no current whole-coordinator rebase for the dependent
+  frontier/collision/cycle packet.

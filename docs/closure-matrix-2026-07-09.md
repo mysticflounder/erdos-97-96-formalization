@@ -514,21 +514,98 @@ unchanged before and after: one direct leaf, with the same two-way second-row
 continuation and two-way robust-versus-critical escape continuation
 (constructor fan-out `2 × 2`); no new obligation was introduced.
 
-The closest imported production consumer is now identified precisely:
-`SixPointEuclideanObstruction.false_of_six_ccw_two_selected_rows`.  Use the
-first-apex radius row and the first-blocker critical row, with
-`P.source₁,P.source₂` as their shared pair.  The two row packets, shared-pair
-memberships and distinctness, two choices of remaining first-blocker-row
-point, and the at-most-two row-intersection bound are already checked.  The
-first missing bridge is an exhaustive common-boundary cyclic-order placement
-of one remaining point from each row whose matching branches supply the
-consumer's `A < B < C < D < E < F` order (equivalently its seven orientation
-hypotheses).  A one-branch order assumption is not an auditable narrowing
-because its complementary placements have no current consumer.  The
-escape-row circle/intersection route remains a fallback after excluding the
-three blocker aliases.  Any finite UNSAT result would still require
-independent certificate validation and a checked source-to-certificate
-adapter.
+The local two-selected-row order route is now classified as a no-go rather
+than the first missing bridge.  The deterministic common-boundary audit
+implemented by
+`scratch/atail-force/aligned-singleton-second-nonbisector-induced/audit_six_point_order_coverage.py`
+shows that the imported sparse six-point consumer covers 11 of 16
+complementary-arc words.  The residual words are exactly `CCFEE`, `CFCEE`,
+`ECCFE`, `ECFCE`, and `EECCF`.  The exact normalized two-circle diagnostic
+`probe_two_circle_convexity.py` finds deterministic strictly convex numerical
+witnesses for all five.  This is empirical route falsification, not
+kernel-level closure, but it demonstrates that the two rows and their shared
+chord do not imply another local cyclic-order contradiction.  Independent
+Lean-bank search found no imported theorem eliminating those five words.
+
+The live leaf now extracts genuinely global incidence instead.  The
+source-clean theorem
+`firstFiber_globalRow_inter_firstShell_card_le_two` proves that the arbitrary
+global K4 row centered at `Q.source` meets the source-faithful first-blocker
+shell in at most two points: `Q.source` lies on the shell, while the shell
+omits its own center, so the two circle centers are distinct.  Exact row
+cardinality then gives
+`firstFiber_globalRow_sdiff_firstShell_card_ge_two`, namely at least two
+global-row points outside the explicit first shell.  The theorem
+`exists_two_firstFiber_globalRow_points_outside_firstShell` names two distinct
+such points, and the live leaf consumes that witness packet.  All three proof
+bodies and their exact live-leaf call shapes pass an isolated Lean 4.27 check.
+The isolated declarations have exactly
+`[propext, Classical.choice, Quot.sound]`, with no `sorryAx`.  The serialized
+full-module build was still running at this checkpoint, so a refreshed
+module-level axiom audit remains pending.
+
+The nearest existing clean terminal for the escape row is
+`false_of_centerAt_selectedFourClass_inter_card_ge_three`.  After rewriting
+the source-faithful `q` cover to the first shell, the smallest direct missing
+producer is
+
+```text
+3 ≤
+  ({P.source₁, P.source₂, Q.source.1, Q.otherOutsidePoint} ∩
+    escapeRow.support).card.
+```
+
+The arbitrary global row is not yet identified with the escape row, so the
+new two-point outside-shell result does not supply this lower bound by itself.
+Two further source audits make that boundary precise.  First, the apparent
+downstream three-hit producer
+`exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions`
+is circular for this purpose: its body reaches the current aligned-singleton
+leaf (or one of the other three open `TwoSourceExactCollisionRowsTerminal`
+leaves) before eliminating the non-three-hit arms.  It cannot be mined as a
+source-clean positive producer.
+
+Second, cap arithmetic does strengthen the carrier count without any solver:
+the cap-source witness gives first-cap cardinality at least eight, the other
+two caps have cardinality at least six, and `S.capSum` therefore gives
+`17 ≤ D.A.card`.  Since the critical triple-shell seed has cardinality at most
+twelve, its union with any selected four-row has cardinality at most sixteen.
+Thus a carrier point exists outside both.  This is a valid source-level
+strengthening, but it yields another negative incidence and another anonymous
+critical cover; it does not force the displayed three-point overlap or feed a
+pre-leaf terminal.
+
+The two escape-continuation arms have now been traced separately.  In the
+fully deletion-robust arm,
+`FullyDeletionRobustAt.exists_distinct_sources_same_blocker` produces an
+arbitrary duplicate blocker fiber.  It reduces to the open fresh-third-fiber
+terminal only if its common blocker is distinct from both named collision
+blockers; without that condition it may simply return the already-known `P`
+or `Pρ` collision pair.  It implies neither cross-blocker coincidence nor a
+second cap-source packet.
+
+In the critical-row arm, the row itself does contain at least two points
+outside the four named collision sources.  The source-clean scratch theorem
+`criticalSelectedFourClass_center_eq_commonBlocker_of_no_qfree` in
+`lean/scratch/trace-critical-row-pair-localizer/Main.lean` proves that a
+critical row containing both endpoints of either collision pair would have
+that pair's common blocker as its center, contradicting the three established
+escape-center inequalities.  The remaining obstruction is source
+faithfulness: `CriticalSelectedFourClass D.A z escapeCenter` and deletion
+failure at `escapeCenter` do not imply that the original arbitrary
+`CriticalShellSystem H` chose `escapeCenter` as the blocker of either fresh
+support point.  An `overrideAt` construction can make that choice, but the
+current coordinator has no whole-packet rebase transporting both frontiers,
+residuals, collisions, localized cycles, and cap-source data to the overridden
+system.
+
+The remaining bridge must couple those global points to the escape
+continuation, minimal-deletion core, cap localization, or full deletion
+filters.  This checkpoint closes no `sorry`; the coordinator-interface
+frontier remains one direct load-bearing leaf with the same `2 × 2`
+continuation fan-out, and it introduces no new obligation.  No new CEGAR
+process was started.  Any finite UNSAT result would still require independent
+certificate validation and a checked source-to-certificate adapter.
 
 The reusable restoration/cardinality part of the earlier extraction is
 retained in
