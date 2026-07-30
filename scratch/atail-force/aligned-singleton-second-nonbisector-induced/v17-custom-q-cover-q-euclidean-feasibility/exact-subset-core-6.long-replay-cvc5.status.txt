@@ -1,0 +1,7 @@
+solver=cvc5
+version=cvc5 1.3.3 git 8ff882e
+command=cvc5 --lang smt2 --nl-cov --tlimit=299000 exact-subset-core-6.smt2
+outer_timeout_seconds=300
+exit_code=134
+wall_seconds=299
+input_sha256=6ff34d28c8e0707eaf63c758552addb3dcf01e6d81ff6ebcd068b9f852e905d1

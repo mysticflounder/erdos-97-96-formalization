@@ -1,0 +1,8 @@
+theorem false_of_capSource_freshOutsideFirstBlockerFiber_alignedSingletonRadius
+
+The singleton-radius normal form for the exact aligned residual.
+
+Narrowing measure: in addition to the universal two-retained-radii alignment,
+this leaf exposes the cap-eight producer's actual named source, its complete
+cross-pair deletion-survival witness, and the exact singleton equation for
+that source's first-apex radius inside the strict cap.

@@ -1,0 +1,27 @@
+{
+  "added_names": [],
+  "immutable_target_checkpoint": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/v17-v18-checkpoint-rebase/cegar-v18-custom-q-cover-q-critical-reuse-second.initial-rebased.checkpoint.json",
+  "immutable_target_checkpoint_sha256": "85235fa11e9c154d47070901c7d995f136e3d3a597f77bfed4d96c72522a05d0",
+  "named_occurrences": 41,
+  "semantic_target_revalidation": "required-via-ordinary-resume-before-use",
+  "source_checkpoint": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar-v17-custom-q-cover-q-critical-reuse-second.rebased.checkpoint.json",
+  "source_checkpoint_sha256": "156b17046e6f6a2392e2fb2de2c104d003f881e69a1648a78a03a68374eddeb9",
+  "source_cut_count": 14139,
+  "source_replayed_metric_unsat_cuts": 23,
+  "source_schema": "p97-aligned-singleton-induced-metric-cegar-v17-mirror-interleaving-six-point-schema",
+  "status": "REBASED_FOR_MANDATORY_ORDINARY_RESUME_REVALIDATION",
+  "target_schema": "p97-aligned-singleton-induced-metric-cegar-v18-two-triple-row-six-point-schema",
+  "trust_scope": "external-discovery-only-not-Lean-closure",
+  "universal_schema_counts": {
+    "circle_isosceles_five_point": 13,
+    "five_point_euclidean": 55,
+    "four_point_kalmanson": 13992,
+    "mirror_interleaving_six_point_euclidean": 2,
+    "reversed_second_five_point_euclidean": 37,
+    "six_point_euclidean": 0,
+    "sparse_six_point_euclidean": 17,
+    "two_triple_row_six_point_euclidean": 0
+  },
+  "working_target_checkpoint": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/v17-v18-checkpoint-rebase/cegar-v18-custom-q-cover-q-critical-reuse-second.rebased.checkpoint.json",
+  "working_target_checkpoint_sha256": "85235fa11e9c154d47070901c7d995f136e3d3a597f77bfed4d96c72522a05d0"
+}

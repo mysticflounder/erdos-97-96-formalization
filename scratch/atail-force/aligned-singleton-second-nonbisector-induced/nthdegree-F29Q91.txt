@@ -1,0 +1,4 @@
+theorem false_of_twoCapSources_of_blockers_off_firstCap
+
+Two distinct blocker centers outside the source cap cannot both bisect
+the chord joining two distinct source-cap points.

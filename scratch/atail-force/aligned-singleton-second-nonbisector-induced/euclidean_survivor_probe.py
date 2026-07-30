@@ -153,6 +153,17 @@ def current_metadata(cg: Any, payload: dict[str, Any], outer: Any) -> dict[str, 
     )
 
 
+def metadata_name_tuple(metadata: dict[str, Any], key: str) -> tuple[str, ...]:
+    raw = metadata.get(key)
+    if (
+        not isinstance(raw, list)
+        or not all(isinstance(name, str) for name in raw)
+        or len(raw) != len(set(raw))
+    ):
+        raise ValueError(f"result metadata has an invalid {key} census")
+    return tuple(raw)
+
+
 def replay_survivor(
     result_path: Path,
     checkpoint_path: Path,
@@ -184,6 +195,14 @@ def replay_survivor(
         z_branch=payload["z_branch"],
         escape_arm=payload["escape_arm"],
         global_tier=payload["global_tier"],
+        cover_points=metadata_name_tuple(metadata, "cover_points"),
+        global_k4_centers=metadata_name_tuple(
+            metadata, "global_k4_centers"
+        ),
+        rich_apices=metadata_name_tuple(metadata, "rich_apices"),
+        robust_deletions=metadata_name_tuple(
+            metadata, "robust_deletions"
+        ),
     )
     expected_metadata = current_metadata(cg, payload, outer)
     if metadata != expected_metadata:

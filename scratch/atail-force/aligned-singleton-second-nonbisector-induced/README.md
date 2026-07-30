@@ -288,10 +288,33 @@ process was started at this source checkpoint.
 The saved survivor gives `cover_q` and `b1` distinct quotient classes.  That
 assignment is now source-incompatible: `Q.blockers_eq`, support transport, and
 the explicit first-fiber shell prove `cover_q = b1` exactly.  A future resumed
-projection must identify those roles and must encode the unconditional
-nonaliases between the escape center and all three canonical blockers.  Merely
-adding the weaker first-cap order `a1 < cover_q < a2` would lose a proved
-equality and is therefore superseded.
+projection was therefore required to identify those roles and encode the
+unconditional nonaliases between the escape center and all three canonical
+blockers.  Merely adding the weaker first-cap order
+`a1 < cover_q < a2` would lose a proved equality and is therefore
+superseded.
+
+## v19 source-faithful projection checkpoint
+
+The source correction is now implemented in `cegar.py`, without starting a
+new CEGAR round:
+
+- whenever the projection materializes the minimal critical cover through
+  `q`, it asserts `cover_q = b1`;
+- the existing same-center coherence for unique four-rows then forces that
+  cover's support to equal the canonical first shell
+  `{p1, p2, q, other}`; and
+- in both escape-continuation arms, `be` is distinct from the three canonical
+  blockers `b1`, `b2`, and `bs`.
+
+The checkpoint schema is now
+`p97-aligned-singleton-induced-metric-cegar-v19-source-faithful-projection-schema`,
+so a v18 checkpoint cannot be resumed silently under the stronger
+projection.  The bounded `--self-test` checks the equality, the induced
+support identification, all three nonaliases, and the schema invalidation; it
+passes.  The replay-metadata unit tests also pass under the v19 schema.  This
+is a fidelity checkpoint only: no new survivor or UNSAT result has been
+claimed, no CEGAR loop was started, and no `sorry` was closed.
 
 This checkpoint closes no `sorry`.
 `false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector`

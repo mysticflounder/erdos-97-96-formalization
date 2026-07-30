@@ -607,6 +607,27 @@ continuation fan-out, and it introduces no new obligation.  No new CEGAR
 process was started.  Any finite UNSAT result would still require independent
 certificate validation and a checked source-to-certificate adapter.
 
+The v19 finite projection now reflects the two source equalities that made the
+saved v18 survivor inadmissible.  If the minimal critical cover through `q` is
+materialized, its center is identified with `b1`; existing same-center
+unique-row coherence consequently identifies its support with the canonical
+first shell.  The escape center is also constrained, in both continuation
+arms, to differ from `b1`, `b2`, and `bs`.  The schema bump makes every v18
+checkpoint fail closed rather than resume under these stronger constraints.
+The bounded self-test and replay-metadata unit tests pass; no v19 CEGAR round
+was started.  This improves source fidelity but closes no `sorry` and leaves
+the coordinator frontier and the missing positive three-hit producer
+unchanged.
+
+Two additional candidate shortcuts were rejected at source level.  The
+card-at-least-fourteen SurvivalCover producer requires
+`SelectedClass D.A S.oppApex1 r` to have cardinality different from four;
+both natural collision radii in this leaf instead have cardinality exactly
+four.  Separately, the cap partition plus the fact that no center covers all
+three apices still permits the non-apex points of a selected four-row to split
+between different cap interiors.  It therefore does not force three points
+of that row into any cap or into the escape row.
+
 The reusable restoration/cardinality part of the earlier extraction is
 retained in
 `ATailGlobalMinimalDeletion.five_le_selectedClass_of_restoration_and_sharedRadius`:

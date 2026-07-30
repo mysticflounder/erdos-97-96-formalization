@@ -1,0 +1,11 @@
+theorem false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
+
+The exact positive-incidence residual after ordered-cap geometry has
+excluded a second bisection of the first blocker's two outside points.
+
+Narrowing measure: compared with the singleton-radius parent, this leaf
+exposes the actual enlarged-fiber witness and assumes the strict
+second-blocker non-bisection that the parent proves from ordered-cap
+uniqueness.  Thus the remaining proof must use the retained global
+geometry/minimality packet to contradict one concrete distance inequality;
+it cannot discharge the branch by another finite omission split.

@@ -13,7 +13,8 @@ directly on its alias-class quotient, and lazily separates strict triangle and
 Kalmanson inequalities.  A rational generic perturbation replays all frozen
 disequalities before SAT.  The outer loop first cuts proved four-point
 Kalmanson cancellations and proved five- and six-point Euclidean incidence
-patterns, including the mirror-interleaving six-point obstruction;
+patterns, including the mirror-interleaving and two-triple-row six-point
+obstructions;
 a quotient UNSAT is replayed by the assumption-tracked inner QF_LRA checker
 before any generalized core is negated.  SAT is a survivor of this necessary
 relaxation; UNKNOWN and every budget/cap stop fail closed.
@@ -50,7 +51,7 @@ COMMON_ESCAPE_ROLES = ("be", "escape")
 CRITICAL_ESCAPE_ROLES = ("e2", "e3", "e4")
 ROBUST_ESCAPE_SUPPORT = ("er1", "er2", "er3", "er4")
 SCHEMA = (
-    "p97-aligned-singleton-induced-metric-cegar-v17-mirror-interleaving-six-point-schema"
+    "p97-aligned-singleton-induced-metric-cegar-v19-source-faithful-projection-schema"
 )
 
 
@@ -798,6 +799,10 @@ class OuterMap:
             "escape_outside_seed",
             *(z3.Not(self.same("escape", point)) for point in seed),
         )
+        self.add(
+            "escape_center_not_seed_blockers",
+            *(z3.Not(self.same("be", blocker)) for blocker in ("b1", "b2", "bs")),
+        )
 
         if self.escape_arm == "critical":
             escape_support = ("escape", "e2", "e3", "e4")
@@ -859,6 +864,13 @@ class OuterMap:
                 )
             named_rows.append(
                 (cover_center, cover_support, z3.BoolVal(True), True)
+            )
+
+        if "q" in self.minimal_cover_witnesses:
+            q_cover_center, _ = self.minimal_cover_witnesses["q"]
+            self.add(
+                "q_source_faithful_cover_center",
+                self.same(q_cover_center, "b1"),
             )
 
         for center, support in self.global_k4_supports.items():
@@ -1618,6 +1630,92 @@ class OuterMap:
                 raise RuntimeError(
                     "direct sparse six-point Euclidean schema did not produce nine "
                     "distinct literals"
+                )
+            cores.append(core)
+            if limit is not None and len(cores) >= limit:
+                return cores
+        return cores
+
+    def direct_two_triple_row_six_point_euclidean_cores(
+        self,
+        model: z3.ModelRef,
+        *,
+        limit: int | None = None,
+    ) -> list[list[Literal]]:
+        """Find the proved nine-literal two-triple-row obstruction.
+
+        Let ``a < b < c < d < e < f`` be six distinct points in the cyclic
+        order of a strictly convex planar set.  The required equalities are
+
+          BA = BC = BD,  FA = FD = FE.
+
+        Strict cyclic order supplies the orientation hypotheses, so the cut
+        consists of the five successor-order literals and the four positive
+        row equalities ``row(b,a,c)``, ``row(b,a,d)``, ``row(f,a,d)``, and
+        ``row(f,a,e)``.
+        """
+        if limit is not None and limit <= 0:
+            return []
+        ranks = {
+            name: model.eval(self.rank[self.ix(name)], model_completion=True).as_long()
+            for name in self.names
+        }
+        representative_by_rank: dict[int, str] = {}
+        for name in self.names:
+            representative_by_rank.setdefault(ranks[name], name)
+        ordered = [
+            representative_by_rank[rank]
+            for rank in sorted(representative_by_rank)
+        ]
+        classes = {
+            (i, j): model.eval(edge, model_completion=True).as_long()
+            for (i, j), edge in self.edge_class.items()
+        }
+
+        def class_of(left: str, right: str) -> int:
+            i, j = self.ix(left), self.ix(right)
+            return 0 if i == j else classes[min(i, j), max(i, j)]
+
+        def row_literal(center: str, left: str, right: str) -> Literal:
+            left, right = sorted((left, right))
+            return Literal("row", (center, left, right, True))
+
+        cores: list[list[Literal]] = []
+        for a_pos, b_pos, c_pos, d_pos, e_pos, f_pos in itertools.combinations(
+            range(len(ordered)), 6
+        ):
+            a, b, c, d, e, f = (
+                ordered[a_pos],
+                ordered[b_pos],
+                ordered[c_pos],
+                ordered[d_pos],
+                ordered[e_pos],
+                ordered[f_pos],
+            )
+            b_class = class_of(b, a)
+            f_class = class_of(f, a)
+            if (
+                class_of(b, c) != b_class
+                or class_of(b, d) != b_class
+                or class_of(f, d) != f_class
+                or class_of(f, e) != f_class
+            ):
+                continue
+            core = [
+                Literal("order", (a, b)),
+                Literal("order", (b, c)),
+                Literal("order", (c, d)),
+                Literal("order", (d, e)),
+                Literal("order", (e, f)),
+                row_literal(b, a, c),
+                row_literal(b, a, d),
+                row_literal(f, a, d),
+                row_literal(f, a, e),
+            ]
+            if len(core) != 9 or len(set(core)) != 9:
+                raise RuntimeError(
+                    "direct two-triple-row six-point Euclidean schema did not "
+                    "produce nine distinct literals"
                 )
             cores.append(core)
             if limit is not None and len(cores) >= limit:
@@ -2930,13 +3028,61 @@ def mirror_interleaving_six_point_euclidean_core_points(
     return (a, b, c, d, e, f) if actual_rows == expected_rows else None
 
 
+def two_triple_row_six_point_euclidean_core_points(
+    core: list[Literal],
+) -> tuple[str, str, str, str, str, str] | None:
+    """Recognize the two-triple-row six-point core in any literal order."""
+    if len(core) != 9 or len(set(core)) != 9:
+        return None
+    orders = [literal for literal in core if literal.kind == "order"]
+    rows = [literal for literal in core if literal.kind == "row"]
+    if len(orders) != 5 or len(rows) != 4:
+        return None
+
+    successor: dict[str, str] = {}
+    predecessor: dict[str, str] = {}
+    for literal in orders:
+        left, right = map(str, literal.args)
+        if left in successor or right in predecessor:
+            return None
+        successor[left] = right
+        predecessor[right] = left
+    starts = set(successor) - set(predecessor)
+    if len(starts) != 1:
+        return None
+    chain = [starts.pop()]
+    while chain[-1] in successor:
+        chain.append(successor[chain[-1]])
+    if len(chain) != 6 or len(set(chain)) != 6:
+        return None
+    if set(successor) | set(predecessor) != set(chain):
+        return None
+    a, b, c, d, e, f = chain
+
+    actual_rows: set[tuple[str, frozenset[str]]] = set()
+    for literal in rows:
+        center, left, right, equal = literal.args
+        if type(equal) is not bool or not equal:
+            return None
+        actual_rows.add(
+            (str(center), frozenset((str(left), str(right))))
+        )
+    expected_rows = {
+        (b, frozenset((a, c))),
+        (b, frozenset((a, d))),
+        (f, frozenset((a, d))),
+        (f, frozenset((a, e))),
+    }
+    return (a, b, c, d, e, f) if actual_rows == expected_rows else None
+
+
 def revalidate_checkpoint_cuts(
     outer: OuterMap,
     cuts: list[list[Literal]],
     *,
     timeout_ms: int,
     deadline: float,
-) -> tuple[int, int, int, int, int, int, int, int, int]:
+) -> tuple[int, int, int, int, int, int, int, int, int, int]:
     """Replay or syntactically re-prove every loaded cut.
 
     The direct four-point Kalmanson and five- and six-point Euclidean schemas
@@ -2952,6 +3098,7 @@ def revalidate_checkpoint_cuts(
     six_point_euclidean = 0
     sparse_six_point_euclidean = 0
     mirror_interleaving_six_point_euclidean = 0
+    two_triple_row_six_point_euclidean = 0
     outer_redundant = 0
     for number, core in enumerate(cuts):
         remaining_ms = int((deadline - time.monotonic()) * 1000)
@@ -2977,6 +3124,9 @@ def revalidate_checkpoint_cuts(
             continue
         if mirror_interleaving_six_point_euclidean_core_points(core) is not None:
             mirror_interleaving_six_point_euclidean += 1
+            continue
+        if two_triple_row_six_point_euclidean_core_points(core) is not None:
+            two_triple_row_six_point_euclidean += 1
             continue
         outer.solver.set(timeout=min(timeout_ms, remaining_ms))
         assumptions = [outer.literal_expr(literal) for literal in core]
@@ -3024,6 +3174,7 @@ def revalidate_checkpoint_cuts(
         six_point_euclidean,
         sparse_six_point_euclidean,
         mirror_interleaving_six_point_euclidean,
+        two_triple_row_six_point_euclidean,
         outer_redundant,
     )
 
@@ -3180,9 +3331,54 @@ def smoke_test() -> None:
     ):
         raise RuntimeError("full quantified projection counts are incomplete")
     if SCHEMA != (
-        "p97-aligned-singleton-induced-metric-cegar-v17-mirror-interleaving-six-point-schema"
+        "p97-aligned-singleton-induced-metric-cegar-v19-source-faithful-projection-schema"
     ):
         raise RuntimeError("stale checkpoint schema was not invalidated")
+
+    source_faithful_projection = OuterMap(
+        timeout_ms=1,
+        random_seed=0,
+        z_branch="new",
+        escape_arm="critical",
+        global_tier="local",
+        cover_points=("q",),
+    )
+    if source_faithful_projection.counts["q_source_faithful_cover_center"] != 1:
+        raise RuntimeError("q source-faithful cover center was not identified")
+    if source_faithful_projection.counts["escape_center_not_seed_blockers"] != 3:
+        raise RuntimeError("escape center seed-blocker nonaliases are incomplete")
+    q_cover_center, q_cover_support = (
+        source_faithful_projection.minimal_cover_witnesses["q"]
+    )
+    source_faithful_projection.solver.push()
+    source_faithful_projection.solver.add(
+        z3.Not(source_faithful_projection.same(q_cover_center, "b1"))
+    )
+    if source_faithful_projection.solver.check() != z3.unsat:
+        raise RuntimeError("q source-faithful cover center can differ from b1")
+    source_faithful_projection.solver.pop()
+    source_faithful_projection.solver.push()
+    source_faithful_projection.solver.add(
+        z3.Not(
+            source_faithful_projection.support_set_equal_formula(
+                q_cover_support,
+                ("p1", "p2", "q", "other"),
+            )
+        )
+    )
+    if source_faithful_projection.solver.check() != z3.unsat:
+        raise RuntimeError("q source-faithful cover support can differ from shell1")
+    source_faithful_projection.solver.pop()
+    for blocker in ("b1", "b2", "bs"):
+        source_faithful_projection.solver.push()
+        source_faithful_projection.solver.add(
+            source_faithful_projection.same("be", blocker)
+        )
+        if source_faithful_projection.solver.check() != z3.unsat:
+            raise RuntimeError(
+                f"escape center can alias source-faithful blocker {blocker}"
+            )
+        source_faithful_projection.solver.pop()
 
     outer = OuterMap(
         timeout_ms=30_000,
@@ -3801,6 +3997,134 @@ def smoke_test() -> None:
             "mirror-interleaving and earlier six-point recognizers overlap"
         )
 
+    two_triple_row_six_outer = SmokeSixPointOuter()
+    two_triple_row_six_outer_solver = z3.Solver()
+    two_triple_row_six_edge_values = {
+        edge_key: 70 + number
+        for number, edge_key in enumerate(
+            two_triple_row_six_outer.edge_class
+        )
+    }
+    two_triple_row_six_edge_values.update(
+        {
+            (0, 1): 1,
+            (1, 2): 1,
+            (1, 3): 1,
+            (0, 5): 2,
+            (3, 5): 2,
+            (4, 5): 2,
+        }
+    )
+    two_triple_row_six_outer_solver.add(
+        *(
+            rank == i
+            for i, rank in enumerate(two_triple_row_six_outer.rank)
+        ),
+        *(
+            two_triple_row_six_outer.edge_class[edge_key] == value
+            for edge_key, value in two_triple_row_six_edge_values.items()
+        ),
+    )
+    if two_triple_row_six_outer_solver.check() != z3.sat:
+        raise RuntimeError(
+            "two-triple-row six-point outer smoke model was not SAT"
+        )
+    two_triple_row_six_cores = (
+        OuterMap.direct_two_triple_row_six_point_euclidean_cores(
+            two_triple_row_six_outer,  # type: ignore[arg-type]
+            two_triple_row_six_outer_solver.model(),
+            limit=2,
+        )
+    )
+    expected_two_triple_row_six_core = {
+        Literal("order", ("a", "b")),
+        Literal("order", ("b", "c")),
+        Literal("order", ("c", "d")),
+        Literal("order", ("d", "e")),
+        Literal("order", ("e", "f")),
+        Literal("row", ("b", "a", "c", True)),
+        Literal("row", ("b", "a", "d", True)),
+        Literal("row", ("f", "a", "d", True)),
+        Literal("row", ("f", "a", "e", True)),
+    }
+    if (
+        len(two_triple_row_six_cores) != 1
+        or set(two_triple_row_six_cores[0])
+        != expected_two_triple_row_six_core
+    ):
+        raise RuntimeError(
+            "two-triple-row six-point Euclidean direct-core selection failed"
+        )
+    if two_triple_row_six_point_euclidean_core_points(
+        two_triple_row_six_cores[0]
+    ) != ("a", "b", "c", "d", "e", "f"):
+        raise RuntimeError(
+            "two-triple-row six-point Euclidean recognition failed"
+        )
+    malformed_two_triple_row_six_core = list(two_triple_row_six_cores[0])
+    malformed_two_triple_row_six_core[-1] = Literal(
+        "row", ("f", "b", "e", True)
+    )
+    if (
+        two_triple_row_six_point_euclidean_core_points(
+            malformed_two_triple_row_six_core
+        )
+        is not None
+    ):
+        raise RuntimeError(
+            "malformed two-triple-row six-point core was accepted"
+        )
+    separated_two_triple_row_six_solver = z3.Solver()
+    separated_two_triple_row_six_edge_values = dict(
+        two_triple_row_six_edge_values
+    )
+    separated_two_triple_row_six_edge_values[(4, 5)] = 99
+    separated_two_triple_row_six_solver.add(
+        *(
+            rank == i
+            for i, rank in enumerate(two_triple_row_six_outer.rank)
+        ),
+        *(
+            two_triple_row_six_outer.edge_class[edge_key] == value
+            for edge_key, value in (
+                separated_two_triple_row_six_edge_values.items()
+            )
+        ),
+    )
+    if (
+        separated_two_triple_row_six_solver.check() != z3.sat
+        or OuterMap.direct_two_triple_row_six_point_euclidean_cores(
+            two_triple_row_six_outer,  # type: ignore[arg-type]
+            separated_two_triple_row_six_solver.model(),
+        )
+    ):
+        raise RuntimeError(
+            "separated two-triple-row six-point smoke model produced a cut"
+        )
+    if (
+        six_point_euclidean_core_points(two_triple_row_six_cores[0])
+        is not None
+        or sparse_six_point_euclidean_core_points(
+            two_triple_row_six_cores[0]
+        )
+        is not None
+        or mirror_interleaving_six_point_euclidean_core_points(
+            two_triple_row_six_cores[0]
+        )
+        is not None
+        or two_triple_row_six_point_euclidean_core_points(legacy_six_core)
+        is not None
+        or two_triple_row_six_point_euclidean_core_points(six_cores[0])
+        is not None
+        or two_triple_row_six_point_euclidean_core_points(
+            mirror_six_cores[0]
+        )
+        is not None
+    ):
+        raise RuntimeError(
+            "two-triple-row and earlier six-point recognizers overlap"
+        )
+
     class SmokeCheckpointOuter:
         def __init__(self) -> None:
             self.solver = z3.Solver()
@@ -3823,11 +4147,12 @@ def smoke_test() -> None:
             legacy_six_core,
             six_cores[0],
             mirror_six_cores[0],
+            two_triple_row_six_cores[0],
         ],
         timeout_ms=30_000,
         deadline=time.monotonic() + 30,
     )
-    if checkpoint_counts != (0, 1, 2, 1, 1, 1, 1, 1, 0):
+    if checkpoint_counts != (0, 1, 2, 1, 1, 1, 1, 1, 1, 0):
         raise RuntimeError(
             "direct Euclidean checkpoint counters were not independent"
         )
@@ -4429,6 +4754,8 @@ def run(args: argparse.Namespace) -> dict[str, object]:
     stats["direct_circle_isosceles_five_point_batches"] = 0
     stats["direct_mirror_interleaving_six_point_euclidean_cuts"] = 0
     stats["direct_mirror_interleaving_six_point_euclidean_batches"] = 0
+    stats["direct_two_triple_row_six_point_euclidean_cuts"] = 0
+    stats["direct_two_triple_row_six_point_euclidean_batches"] = 0
     cuts: list[list[Literal]] = []
     core_sizes: list[dict[str, object]] = []
 
@@ -4448,6 +4775,7 @@ def run(args: argparse.Namespace) -> dict[str, object]:
             six_point_rechecked,
             sparse_six_point_rechecked,
             mirror_interleaving_six_point_rechecked,
+            two_triple_row_six_point_rechecked,
             redundant,
         ) = revalidate_checkpoint_cuts(
             outer,
@@ -4473,6 +4801,9 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         )
         stats["revalidated_mirror_interleaving_six_point_euclidean_cuts"] = (
             mirror_interleaving_six_point_rechecked
+        )
+        stats["revalidated_two_triple_row_six_point_euclidean_cuts"] = (
+            two_triple_row_six_point_rechecked
         )
         stats["outer_redundant_checkpoint_cuts"] = redundant
 
@@ -4567,6 +4898,19 @@ def run(args: argparse.Namespace) -> dict[str, object]:
                 ),
             )
         )
+        direct_two_triple_row_six_cores = (
+            outer.direct_two_triple_row_six_point_euclidean_cores(
+                outer_model,
+                limit=(
+                    direct_limit
+                    - len(direct_four_cores)
+                    - len(direct_five_cores)
+                    - len(direct_reversed_second_five_cores)
+                    - len(direct_circle_isosceles_five_cores)
+                    - len(direct_mirror_interleaving_six_cores)
+                ),
+            )
+        )
         direct_sparse_six_cores = outer.direct_sparse_six_point_euclidean_cores(
             outer_model,
             limit=(
@@ -4576,6 +4920,7 @@ def run(args: argparse.Namespace) -> dict[str, object]:
                 - len(direct_reversed_second_five_cores)
                 - len(direct_circle_isosceles_five_cores)
                 - len(direct_mirror_interleaving_six_cores)
+                - len(direct_two_triple_row_six_cores)
             ),
         )
         direct_cores = [
@@ -4596,6 +4941,12 @@ def run(args: argparse.Namespace) -> dict[str, object]:
                 core,
             )
             for core in direct_mirror_interleaving_six_cores
+        ] + [
+            (
+                "proved-two-triple-row-six-point-euclidean-schema",
+                core,
+            )
+            for core in direct_two_triple_row_six_cores
         ] + [
             ("proved-sparse-six-point-euclidean-schema", core)
             for core in direct_sparse_six_cores
@@ -4648,6 +4999,13 @@ def run(args: argparse.Namespace) -> dict[str, object]:
                 ] += len(direct_mirror_interleaving_six_cores)
                 stats[
                     "direct_mirror_interleaving_six_point_euclidean_batches"
+                ] += 1
+            if direct_two_triple_row_six_cores:
+                stats[
+                    "direct_two_triple_row_six_point_euclidean_cuts"
+                ] += len(direct_two_triple_row_six_cores)
+                stats[
+                    "direct_two_triple_row_six_point_euclidean_batches"
                 ] += 1
             if direct_sparse_six_cores:
                 stats["direct_sparse_six_point_euclidean_cuts"] += len(

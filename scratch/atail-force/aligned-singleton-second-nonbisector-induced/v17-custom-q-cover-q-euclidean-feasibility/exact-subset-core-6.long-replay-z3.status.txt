@@ -1,0 +1,7 @@
+solver=z3
+version=Z3 version 4.17.0 - 64 bit - build hashcode daf2506b6002149d531cb6c9d8ba976a040cd647
+command=z3 -smt2 -T:299 exact-subset-core-6.smt2
+outer_timeout_seconds=300
+exit_code=0
+wall_seconds=299
+input_sha256=6ff34d28c8e0707eaf63c758552addb3dcf01e6d81ff6ebcd068b9f852e905d1

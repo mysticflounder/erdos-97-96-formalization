@@ -1,0 +1,28 @@
+{
+  "added_names": [
+    "global_k4_q_1",
+    "global_k4_q_2",
+    "global_k4_q_3",
+    "global_k4_q_4"
+  ],
+  "current_cegar_sha256": "fea2e57eccd77d3df3ccaae3ffa77a148649af901cd058bdb645d712bfaa3258",
+  "schema_counts": {
+    "circle_isosceles_five_point": 5,
+    "five_point_euclidean": 19,
+    "four_point_kalmanson": 5875,
+    "mirror_interleaving_six_point_euclidean": 2,
+    "reversed_second_five_point_euclidean": 24,
+    "six_point_euclidean": 0,
+    "sparse_six_point_euclidean": 8
+  },
+  "semantic_revalidation": "required-via-ordinary-resume",
+  "source_checkpoint": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar-v17-local-critical-reuse-second.migrated.checkpoint.json",
+  "source_checkpoint_sha256": "11234e5710d46b46550689929767b522e2d77c1b76f3ca4841654d7a54086f2a",
+  "source_cut_count": 5933,
+  "source_named_occurrences": 33,
+  "status": "REBASED_FOR_MANDATORY_RESUME_REVALIDATION",
+  "target_checkpoint": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar-v17-custom-q-critical-reuse-second.initial-rebased.checkpoint.json",
+  "target_checkpoint_sha256": "4d7b3fe4b865bb362645f8d348cd455b3096ddf4e155ead8a39345cf4f1e491a",
+  "target_named_occurrences": 37,
+  "trust_scope": "external-discovery-only-not-Lean-closure"
+}

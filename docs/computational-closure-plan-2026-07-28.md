@@ -95,12 +95,18 @@ These results shape where compute is spent; do not re-run them.
   with an 18-class survivor.  Its exact full-coordinate probe timed out
   fail-closed at 600 seconds; exhaustive four- and five-class subset mining
   found no UNSAT core, while the complete six-class traversal retained 205
-  solver-`UNKNOWN` cases and no validated core.  The next bounded
-  strengthening is custom global K4 at `q`, reusing the ledger only through a
-  guarded metadata rebase followed by ordinary cut revalidation.  None of
-  these results proves the live child or supplies the required live-to-finite
-  producer; see the K-A-LIVE v17 checkpoint in
-  `docs/closure-matrix-2026-07-09.md`.
+  solver-`UNKNOWN` cases and no validated core.  The custom v18 projection
+  with both a global K4 row and a minimal cover at `q` returned an induced
+  necessary-condition survivor after 14,740 cuts, but that survivor separates
+  `cover_q` from `b1` and is incompatible with the subsequently extracted
+  source-faithful Lean equality.  The prepared v19 projection now asserts
+  `cover_q = b1`, derives equality of the two unique-row supports through
+  existing coherence, and excludes the escape center from `b1`, `b2`, and
+  `bs` in both continuation arms.  Its schema rejects v18 checkpoints, and
+  the bounded self-test plus replay-metadata tests pass.  No v19 CEGAR round
+  has been started.  None of these results proves the live child or supplies
+  the required positive three-hit producer; see the current K-A-LIVE
+  checkpoint in `docs/closure-matrix-2026-07-09.md`.
 - **Equality-arm routes are dead** (`scratch/collision-equality-arms/`):
   the four collision equality alternatives all produce
   center-not-in-own-support, the opposite of the needed cross-row
