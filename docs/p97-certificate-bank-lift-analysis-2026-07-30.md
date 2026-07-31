@@ -666,6 +666,48 @@ identical before and after. L1/L2 reduce how much compiler trust the lane
 *exercises*; they do not remove it from the closure. Only eliminating all 480
 remaining certificates would do that, and nothing in this document proposes to.
 
+### Negative result: `precompileModules` is a 5.3× CPU regression (2026-07-31)
+
+Tested in an isolated `git worktree` clone under the session scratchpad, with a
+CoW copy of `.lake/packages`, so the shared tree was never touched. Both arms
+built the same target (`EndpointCertificate.ShadowSearchCoverage`) from a cold
+package build, back to back, at the same system load (1-minute average 104–116).
+
+| | `precompileModules` | control | |
+|---|---:|---:|---|
+| Lake jobs | 389 | 131 | |
+| wall | 25m49s | 4m17s | 6.0× |
+| user CPU | 105m56s | 19m50s | **5.3×** |
+| `ShadowSearchShards.All` | 279s | 16s | 17× |
+| `ShadowSearchCoverage` | 251s | 0.4s | ~600× |
+| shard `Q1V452W771U08_15` | 184s | 60s | 3.1× |
+
+The control's 19m50s CPU agrees to within 2% with the 19m33s recorded for the
+same family in the shared tree at load ~26, which is the evidence that user CPU
+is load-robust here and that the clone is representative.
+
+Two secondary findings, both contrary to what was expected going in:
+
+1. **mathlib does not need precompiling.** After a successful build with
+   `precompileModules = true`, mathlib had 0 object files and 0 shared
+   libraries, as did `formal_conjectures` — the 812 `.c` files Lake emitted for
+   it were never compiled or linked. Only our own modules got native artifacts
+   (129 dylibs against 132 oleans). The feared mathlib C-compilation cost
+   (7523 `.c` files, ~1.6 CPU-hours by a 20-file sample) never arises.
+2. **The precompilation jobs themselves are free.** Every `:c.o` and `:dynlib`
+   job ran in 49–83 ms.
+
+The regression is therefore not in the linking but in elaboration: forcing code
+generation over modules whose content is enormous literal certificate data and
+proof terms costs far more than the interpreted calls it removes. The effect is
+worst exactly where the data is largest — the aggregator and coverage modules,
+not the individual shards.
+
+**Do not enable `precompileModules` on this package.** The motivating
+observation — a shard module spending 16.1s wall against 5.6s user, the gap
+being C-compiler subprocess time — is real, but precompiling imports is not the
+way to recover it.
+
 ### Separate `ErasedCertificate` bottleneck
 
 The live build gives a more precise census than the source filenames alone.
