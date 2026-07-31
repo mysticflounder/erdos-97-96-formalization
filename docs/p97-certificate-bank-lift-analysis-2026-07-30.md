@@ -801,11 +801,14 @@ for the three new theorems was checked by the `pp.explicit` diff
    measurable.~~ **DONE 2026-07-30** — see "Positive result: 576 of 1056
    endpoint shards are removable" above and "Endpoint shard family, measured"
    below.
-6. Rebuild and compare against the baseline.  Land T2/L1/L2 only with
-   source-clean theorem checks and a recorded wall-time/module-family delta.
-   **Done for L1/L2** ("Endpoint shard family, measured").  Still owed for T2:
-   no pre-T2 baseline was captured before that change landed, so its delta is
-   not recoverable by direct comparison.
+6. ~~Rebuild and compare against the baseline.  Land T2/L1/L2 only with
+   source-clean theorem checks and a recorded wall-time/module-family delta.~~
+   **CLOSED 2026-07-30, Adam's call.**  Done for L1/L2 ("Endpoint shard family,
+   measured").  Not done for T2 and will not be: no pre-T2 baseline was captured
+   before that change landed, so the delta is not recoverable by direct
+   comparison, and re-deriving it was judged not worth a from-scratch rebuild of
+   the pre-T2 commit.  T2's 3625 → 0 invocation reduction stands; its wall-time
+   effect is unmeasured and should not be asserted.
 7. T1 (deletes the `tau` column and 236 generators).  Do this after T2 settles
    the shared emitters.
 8. Pursue the `Int` coefficient checker and explicit completeness certificates
