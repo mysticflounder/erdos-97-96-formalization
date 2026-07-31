@@ -378,14 +378,65 @@ certificates.
 So each row is not proving an opaque contradiction — it is proving that its
 circle-incidence pattern collapses two labelled points.
 
-**T1.** Replace, per row, `checkCertificate cert = true → False` by
-`sumCanonProducts (zip Ĉ G') = D^N`, consumed through the already-existing
+**T1, as originally proposed.** Replace, per row,
+`checkCertificate cert = true → False` by `sumCanonProducts (zip Ĉ G') = D^N`,
+consumed through the already-existing
 `evalPoly_target_eq_zero_of_checkProductSumEq`
 (`EndpointCertificate/Soundness.lean:449-459`) plus `pow_eq_zero_iff` and
 `dist_eq_zero`. Deletes 236 Rabinowitsch generators and the entire `tau` column
-(17 → 16 variables), and drops every coefficient degree by N. No new proof
-obligation — the same reflection over strictly smaller data — and the reflection
-now yields the reusable facts `u = v`, `s1 = s3`, `u = s1`.
+(17 → 16 variables).
+
+**T1 is retired.** The claim that this is "the same reflection over strictly
+smaller data" is false; see the next section. The `u = v` / `s1 = s3` /
+`u = s1` facts it was wanted for are obtainable from the unchanged certificates.
+
+### Negative result: the T1 tau-clearing enlarges the payload — **T1 DROPPED**
+
+Measured 2026-07-30 with `scripts/t1-tau-clearing-probe.py` over all of
+`certificates/endpoint/`. 115 of the 117 endpoint certificates carry a `tau`
+column (`ep_Q2_000` and `ep_Q2_001` do not, matching the census above). For each
+one the script substitutes `t := 1/D`, clears `D^N`, and confirms
+`Σ Ĉᵢ Gᵢ = D^N`: **115 of 115 reconstructed identities verify**, so what follows
+measures T1 working exactly as specified, not a failed reconstruction.
+
+| | before | after | |
+|---|---:|---:|---|
+| product monomials, 115 rows | 692,276 | 1,895,938 | **2.74×** |
+
+`N = 1` on 113 rows and `N = 2` on 2. The per-row ratio is not a uniform factor:
+median 1.00×, min 0.93×, max 5.65×. 87 rows are flat, losing exactly the 7
+monomials of the deleted Rabinowitsch product out of tens of thousands. 24 rows
+grow by 1.4–5.7×, and they are the expensive ones: **92% of the total increase
+comes from 12 certificates and 71% from 5**, the worst being `ep_Q2_041` at
+69,734 → 336,387.
+
+The mechanism is that clearing `tau` is a substitution, not a deletion:
+`Ĉᵢ = Σₖ c_{i,k}·D^(N−k)`. A coefficient that is purely `t^N` survives unchanged
+— those are the 87 flat rows — but any coefficient with a `t`-free part is
+multiplied by `D`, itself a 6-term degree-2 polynomial. The trade is one
+generator out of 31 against a ~6× enlargement of every mixed-degree coefficient.
+Total degree therefore *rises*; only the degree in `tau` falls. Restricting T1
+to the rows where it is free saves 609 monomials out of 692,276 (0.09%), so the
+selective variant is not worth building either.
+
+Two limits on this measurement. Monomial count before canonical merging is a
+proxy for checker cost, not a measured build delta. And it covers the 115
+endpoint rows, not the 135 relaxed-split ones, whose certificates are not stored
+in the same per-row JSON form; the surplus side shares the constructors and the
+`tau` schema, so the mechanism should carry over, but the magnitude there is
+unmeasured and is not claimed.
+
+**The semantic content does not require T1.** `GeneratorZeros.lean:495-497`
+shows `pointOf .s1 ≠ pointOf .s3` is an *input*, supplied by
+`EndpointMetricShadow.point_ne` — so each row already means "`s1 ≠ s3` together
+with these incidences is inconsistent", and the coincidence follows from the
+existing certificate by contraposition. The identity `Σ Cᵢ Gᵢ = 1` holds for all
+`ν`; given a configuration zeroing the non-Rabinowitsch generators, if `D ≠ 0`
+then instantiating `tau := 1/D` zeros `R` as well and yields `1 = 0`; hence
+`D = 0`, hence the coincidence. That is one generic lemma alongside
+`evalPoly_target_eq_zero_of_checkProductSumEq`, with no payload change, no
+emitter change, and no regeneration of 248 rows. {{UNVALIDATED}} — the argument
+is stated but not yet written in Lean.
 
 ### Positive result: 3625 shape-matching subgoals are removable by construction
 
@@ -488,10 +539,11 @@ pairwise intersections are 30-of-31 (41 such pairs, all within one relaxed row
 family). The 214 atoms nearly saturate their label universe — e.g.
 `sqNormFirstMinusSqDistPoly` uses 46 of the 56 possible ordered label pairs.
 These are 252 different circle-incidence patterns on 10 points, not instances of
-one pattern. T1 reduces them to four statement *forms*; the 236 witnesses remain
-236 separate Gröbner computations (coefficient term counts 30 → 16937, median
-321, total 403,831; max coefficient monomial degree 3–10; numerators up to 172
-digits).
+one pattern. T1 would have reduced them to four statement *forms*, but the 236
+witnesses remain 236 separate Gröbner computations either way (coefficient term
+counts 30 → 16937, median 321, total 403,831; max coefficient monomial degree
+3–10; numerators up to 172 digits). With T1 dropped, the four forms are reached
+instead by contraposition on the unchanged witnesses.
 
 ### Structural handle, unexploited
 
@@ -520,8 +572,9 @@ current tree; `target` is after the remaining items.
 | **`native_decide` invocations** | **~4976** | **~775** | **~775** |
 
 An ~84% cut, all of it enumeration-free reasoning, none of it new mathematics.
-T2 and L1/L2 together account for all of it; T1 shrinks the payload of the 252
-remaining certificates without changing the count.
+T2 and L1/L2 together account for all of it. T1 would not have changed the
+count, and — measured — would have enlarged the payload of the 252 remaining
+certificates by 2.74×; it is dropped.
 
 ## Build-performance impact
 
@@ -534,8 +587,9 @@ A live focused `FiniteN11` build on 2026-07-30 compiled 120
 modules before reaching the later certificate banks.  Thus T2 does not merely
 remove visually noisy proof text: it removes 117 modules' generated row-zero
 scripts and 3625 native shape checks from an import closure that is exercised by
-the current headline builds.  L1/L2 remove 576 DFS shard checks, and T1 reduces
-the arithmetic payload of 236 polynomial checks.
+the current headline builds.  L1/L2 remove 576 DFS shard checks.  T1 was
+expected to reduce the arithmetic payload of 236 polynomial checks; it was
+measured to enlarge it 2.74× and has been dropped.
 
 The 84% reduction in invocation count must not be reported as an 84% wall-time
 reduction without measurement.  Native checks have very unequal costs and Lake
@@ -703,7 +757,8 @@ So the tier decision stands on its own:
 second tier now.  Do not make the build-performance rewrite wait on a decision
 to pursue the three-axiom tier: implement T2 and L1/L2 as tractability work,
 measure them, then decide whether T1 and the Int checker rewrite justify their
-additional migration cost.
+additional migration cost.  **Resolved for T1 on 2026-07-30:** it does not — the
+measurement retired it.  The Int checker remains open.
 
 ## Comparator tier status (2026-07-30)
 
@@ -809,8 +864,15 @@ for the three new theorems was checked by the `pp.explicit` diff
    comparison, and re-deriving it was judged not worth a from-scratch rebuild of
    the pre-T2 commit.  T2's 3625 → 0 invocation reduction stands; its wall-time
    effect is unmeasured and should not be asserted.
-7. T1 (deletes the `tau` column and 236 generators).  Do this after T2 settles
-   the shared emitters.
+7. ~~T1 (deletes the `tau` column and 236 generators).  Do this after T2 settles
+   the shared emitters.~~ **DROPPED 2026-07-30** — see "Negative result: the T1
+   tau-clearing enlarges the payload" above.  Measured over all 115 tau-carrying
+   endpoint certificates: the clearing verifies on every one and grows the
+   payload 2.74×, because substituting `t := 1/D` multiplies every `t`-free
+   coefficient slice by `D`.  T1 never changed the invocation count, so nothing
+   is lost on the tally.  If the `u = v` / `s1 = s3` / `u = s1` facts are wanted,
+   take them by contraposition on the unchanged certificates — one generic lemma,
+   no emitter or payload change.  That lemma is the follow-on task, if any.
 8. Pursue the `Int` coefficient checker and explicit completeness certificates
    only if admission to the existing three-axiom tier remains a project goal.
 9. For ErasedCertificate, benchmark items 1--3 above on one of the slowest P2
@@ -828,11 +890,13 @@ for the three new theorems was checked by the `pp.explicit` diff
 ## Provenance
 
 Every mathematical census count above is a measurement from a validated Python
-port, not a Lean kernel result. Scratch scripts under the session scratchpad
+port, not a Lean kernel result. The T1 payload measurement is reproducible from
+`scripts/t1-tau-clearing-probe.py`, which is committed; the earlier census
+scripts are not. Scratch scripts under the session scratchpad
 (`p97port.py`, `search.py`, `measure_ep.py`, `measure_cg.py`, `am_search.py`,
 `am_analysis.py`, `am_shards.py`, `am_consistency.py`, and others); they were not
 committed.  The 120/534 module counts and 20-minute-class native-module timings
 in the build-performance section come from
-`lean/scratch/finite-n11-focused-build-20260730.log`.  This revision modified
-only this document; it did not edit Lean or comparator source or start another
-build.
+`lean/scratch/finite-n11-focused-build-20260730.log`.  The 2026-07-30 T1
+revision modified this document and added `scripts/t1-tau-clearing-probe.py`; it
+did not edit Lean or comparator source or start a build.
