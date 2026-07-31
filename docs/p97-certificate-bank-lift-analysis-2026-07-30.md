@@ -792,9 +792,11 @@ for the three new theorems was checked by the `pp.explicit` diff
    **DONE 2026-07-30** — see "Comparator tier status" below.
 3. Capture the build baseline described above before changing the certificate
    representation.
-4. T2 (removes 3625 subgoals and 117 proof-script files).  This is the first
+4. ~~T2 (removes 3625 subgoals and 117 proof-script files).  This is the first
    implementation target because it removes repeated work by construction and
-   does not change the certificate mathematics.
+   does not change the certificate mathematics.~~ **DONE 2026-07-30** — see
+   "T2 implementation status" above.  Verified in-tree: `RowZeros` is at 1
+   `native_decide`, `Patterns` at 328.
 5. ~~L1 + L2 (removes 576 shard checks).  Self-contained and independently
    measurable.~~ **DONE 2026-07-30** — see "Positive result: 576 of 1056
    endpoint shards are removable" above and "Endpoint shard family, measured"
