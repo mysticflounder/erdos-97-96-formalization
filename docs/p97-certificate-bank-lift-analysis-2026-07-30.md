@@ -708,6 +708,20 @@ observation — a shard module spending 16.1s wall against 5.6s user, the gap
 being C-compiler subprocess time — is real, but precompiling imports is not the
 way to recover it.
 
+**`Elab.async` is tabled, unmeasured (2026-07-31, Adam's call).** It is the last
+untried item from the 2026-07-14 cold-build lever ranking and still defaults to
+`false` on `leanprover/lean4:v4.27.0` (re-verified via `getOptionDecls`). No
+claim is made here about whether it helps: it was never benchmarked. The reason
+it is not a free experiment is that `leanOptions` are part of every module's
+build trace, so setting it invalidates all package oleans and forces a full
+rebuild for every agent working in the tree. Note also that it parallelizes
+elaboration *across declarations within a module*, and the certificate shard
+modules hold one theorem each — the plausible beneficiaries are the
+multi-declaration files (`SurplusCOMPGBankGeometry`, 349 decides;
+`SurplusM44Packet`, 358 theorems), not the banks. If it is revived, measure it
+in an isolated clone first, by the same protocol used for `precompileModules`
+above.
+
 ### Separate `ErasedCertificate` bottleneck
 
 The live build gives a more precise census than the source filenames alone.
