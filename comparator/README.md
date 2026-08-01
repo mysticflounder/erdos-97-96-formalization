@@ -101,20 +101,37 @@ comparator.** The tier was added 2026-07-30 with the three exact-ten results and
 extended 2026-08-01 with the three exact-eleven results. What has been checked:
 
 * `check-conformance.sh` passes for the exact-ten three (2026-07-30) — manifest
-  cross-check, build, axiom-budget audit, tier disjointness. A full run covering
-  all six is pending.
+  cross-check, build, axiom-budget audit, tier disjointness. Its two build-free
+  steps were re-run over all six on 2026-08-01 and pass: each tier's
+  `theorem_names` matches its audit file's `#print axioms` lines (24 core, 6
+  native) and the two tiers are disjoint. The build and axiom-audit steps over
+  all six are still pending — see "Queued" below.
 * All six theorems' `#print axioms` closures measured directly as exactly
   `{propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
   Quot.sound}` — no `sorryAx`, no custom axioms. The exact-eleven three were
   measured on 2026-08-01 by elaborating their `Solution.lean` statements and
   proof terms against the project.
-* `Challenge.lean` elaborates against mathlib alone with the six native-tier
-  stubs present (30 stubs total; 24 core + 6 native), and each tier's
-  `theorem_names` matches its audit file's `#print axioms` lines.
+* `Challenge.lean` elaborates against mathlib alone (`lake env lean`, exit 0,
+  2026-08-01) with the six native-tier stubs present, reporting exactly 30
+  `declaration uses 'sorry'` warnings — one per stub, 24 core + 6 native. It
+  imports `Mathlib` and nothing from the project.
+* Every gated theorem's *source* signature is byte-identical between
+  `Challenge.lean` and `Solution.lean` — all 30 checked mechanically on
+  2026-08-01 by extracting each declaration header up to its `:=` and diffing.
+  This is weaker than the `pp.explicit` diff below (it compares source text, not
+  elaborated terms) and weaker still than the comparator's export-level check;
+  it exists to catch a stub and its proof drifting apart at edit time.
 * Statement identity by the `pp.explicit` diff described below: the exact-ten
   three agree between `Challenge` and `Solution` with **0 differences**
   (455 lines each, 2026-07-30). That diff has **not** been re-run for the
   exact-eleven three.
+
+Queued as of 2026-08-01, blocked on a full library rebuild (an unrelated lane's
+touch of `P97/ErasedCertificate/P4SPlacementDefs.lean` and the classifier
+modules invalidated the whole `ErasedCertificate` native tree, ~112 modules):
+`check-conformance.sh`'s build and axiom-audit steps over all six, and the
+`pp.explicit` diff for the exact-eleven three. The Challenge side of that diff
+is already captured; only the Solution side needs the built library.
 
 What has **not** been checked: the export-level identity and dual-kernel replay,
 i.e. a real [leanprover/comparator](https://github.com/leanprover/comparator) run
@@ -212,15 +229,20 @@ before that run succeeded: every gated theorem elaborated from each module
 separately under `set_option pp.explicit true`, and the two outputs diffed. All
 24 core-tier theorems agree with **0 differences**; the first 3 native-tier
 theorems were checked the same way on 2026-07-30 and also agree with 0
-differences. The 3 exact-eleven theorems added 2026-08-01 have not had this
-diff run yet. That
+differences. The 3 exact-eleven theorems added 2026-08-01 have their `Challenge`
+side captured (151, 151 and 153 pretty-printed lines) but not yet their
+`Solution` side, which needs the built library. That
 check is weaker than the comparator's — it compares pretty-printed terms rather
 than exported expressions — and is kept only because it needs no external
 toolchain.
 
-One wrinkle if you re-run it: a theorem with no implicit arguments prints as
+Two wrinkles if you re-run it. A theorem with no implicit arguments prints as
 `Headline.foo : …` rather than `@Headline.foo : …`, so a filter keyed on the
-`@` silently drops it. `finiteN10Closure` is the current instance.
+`@` silently drops it; `finiteN10Closure` and `finiteN11Closure` are the current
+instances. And `lake env lean` cannot `import Challenge`/`import Solution`
+unless those oleans are already built, so the practical recipe is to append the
+`set_option pp.explicit true` and `#check` lines to a *copy* of each module,
+after its `end Headline`, and elaborate the copy.
 
 ## What is in the core tier (24)
 
