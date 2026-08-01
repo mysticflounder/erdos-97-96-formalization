@@ -21,10 +21,13 @@ bank against compact checkpoint zero.
 -/
 
 open Std.Sat
+open scoped EuclideanGeometry
 
 namespace Problem97
 namespace ExactFiveCommonShellV7
 
+open Census554
+open Census554.CoverCnf
 open CheckpointedRup.CompactIngress
 
 set_option maxRecDepth 100000

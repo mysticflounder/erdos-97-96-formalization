@@ -179,9 +179,15 @@ requires compiler trust to be explicit and reported. The native tier has passed
 the offline pre-flight and the `pp.explicit` statement-identity diff; it has not
 yet had a real comparator run.
 
-`Problem97.FiniteN11Closure` is **not** gated in either tier: it is fully wired
-and builds green, but still reaches `sorryAx` through the open card-eleven
-A-tail frontier residuals.
+The next finite milestone is also closed in project source:
+`Problem97.FiniteN11Closure` proves that no 11-point counterexample exists.
+On 2026-08-01 its root target built successfully and its transitive axiom
+closure was measured as exactly
+`{propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
+Quot.sound}`, with no `sorryAx`.  Thus, under the project's explicit
+compiler-trusted tier, every counterexample has at least 12 points.  The
+mathlib-only wrapper and `config-native.json` comparator admission are tracked
+separately and are not claimed by this source-level gate.
 
 ### Erdős 97 — unconditional partial results
 
@@ -193,11 +199,13 @@ A-tail frontier residuals.
 | [`Problem97.not_hasNEquidistantProperty_four_of_card_le_nine`](lean/Erdos9796Proof/P97/UniversalLocal.lean#L75) | **Erdős 97 holds for every point set of at most 9 points** |
 | [`Problem97.UniversalProblem97_of_reduction`](lean/Erdos9796Proof/P97/UniversalProblem97.lean#L60) | a counting obstruction plus a descent step above 9 yield Erdős 97 in full |
 
-The `n ≥ 10` bound is, as far as we are aware, the best published bound on the
-size of a hypothetical counterexample. {{UNVALIDATED}} — the literature check
-found only an unrefereed argument for `n ≥ 7` on the erdosproblems.com
-discussion page; treat the record claim as unconfirmed, not the theorem, which
-is machine-checked.
+The three-core-axiom result in this table gives `n ≥ 10`; the separately
+reported compiler-trusted finite endpoints above strengthen the project bound
+to `n ≥ 12`.  As far as we are aware, even the former is the best published
+bound on the size of a hypothetical counterexample. {{UNVALIDATED}} — the
+literature check found only an unrefereed argument for `n ≥ 7` on the
+erdosproblems.com discussion page; treat the record claim as unconfirmed, not
+the machine-checked bounds.
 
 ### The pinned-multiplicity reformulation
 

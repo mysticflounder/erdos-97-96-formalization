@@ -10,9 +10,9 @@ import Erdos9796Proof.P97.RemovableVertexAxiom.Continuation
 /-!
 # Finite n = 11 endpoint
 
-`FiniteN11Closure` is the headline exact-eleven endpoint.  Its only active
-mathematical obligation is the fixed-card exact-five common-obstruction-center
-leaf in `ATail.FiniteN11Frontier`.
+`FiniteN11Closure` is the headline exact-eleven endpoint.  The fixed-card
+exact-five common-obstruction-center branch is discharged by the authenticated
+G3 and retained-`s2_o0` certificate banks in `ATail.FiniteN11Frontier`.
 
 The `IsM44` arm uses the already-closed `(6,4,4)` removable-vertex route and
 the exact-ten endpoint.  The no-`IsM44` arm uses the fixed-card A-tail frontier,
@@ -39,9 +39,8 @@ private theorem finiteN11_smaller_carrier_false
       not_hasNEquidistantProperty_four_of_card_le_nine
         hne hconv (by omega) hK4
 
-/-- The `n = 11` endpoint.  The theorem is deliberately wired now so that its
-single transitive `sorry` is the card-eleven exact-five common-center leaf,
-rather than either general exact-five production obligation. -/
+/-- The `n = 11` endpoint.  Its finite certificate leaves use the project's
+explicit compiler-trusted `native_decide` tier. -/
 theorem FiniteN11Closure : FiniteN11ClosureStatement := by
   intro A hcard hconv hK4
   have hne : A.Nonempty := Finset.card_pos.mp (by omega)

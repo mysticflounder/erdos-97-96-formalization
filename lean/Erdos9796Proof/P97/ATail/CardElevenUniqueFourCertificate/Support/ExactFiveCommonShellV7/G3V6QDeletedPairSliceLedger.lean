@@ -223,12 +223,13 @@ theorem g3V6QDeletedPairSlice_perm_checkpoint :
           retainedPrefixCount).take retainedV6QDeletedPairCount) := by
   native_decide
 
-/-- Exhaustive audit that the source-ordered witness list has length 21 and
-every listed local-four row has the required q-deleted incidence. -/
 set_option maxHeartbeats 0 in
--- This executable audit checks all 3960 q-deleted pairs and their 21 witnesses.
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exhaustive audit that the source-ordered witness list has length 21 and
+every listed local-four row has the required q-deleted incidence.
+
+This executable audit checks all 3960 q-deleted pairs and their 21 witnesses. -/
 theorem v6QDeletedPairWitnesses_valid :
     ∀ qDeletedPair : Fin 3960,
       let row := qDeletedPairRow qDeletedPair
@@ -241,12 +242,13 @@ theorem v6QDeletedPairWitnesses_valid :
             row.second ∈ (localFourRow localFour).support := by
   native_decide
 
-/-- Exhaustive audit that the 21 source witnesses cover every admissible
-encoder local-four row. -/
 set_option maxHeartbeats 0 in
--- This executable audit checks all 3960 q-deleted pairs against all 2310 local-four rows.
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exhaustive audit that the 21 source witnesses cover every admissible
+encoder local-four row.
+
+This executable audit checks all 3960 q-deleted pairs against all 2310 local-four rows. -/
 private theorem v6QDeletedPairWitnesses_complete :
     ∀ qDeletedPair : Fin 3960,
       let row := qDeletedPairRow qDeletedPair
@@ -282,8 +284,10 @@ theorem CanonicalPacket.renderV6QDeletedPairOccurrence_sat
       let localFour := witnesses.getD slot.val 0
       have hlocalFourMem : localFour ∈ witnesses := by
         have hslot : slot.val < witnesses.length := by
-          simpa [hwitnessLength] using slot.isLt
-        rw [List.getD_eq_getElem witnesses slot.val hslot]
+          rw [hwitnessLength]
+          exact slot.isLt
+        change witnesses.getD slot.val 0 ∈ witnesses
+        rw [List.getD_eq_getElem witnesses (0 : Fin 2310) hslot]
         exact List.getElem_mem hslot
       obtain ⟨hcenter, hdeleted, hfirst, hsecond⟩ :=
         hwitnessValid localFour hlocalFourMem

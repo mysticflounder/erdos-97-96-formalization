@@ -16,13 +16,17 @@ fixed `s2_o0` shell case.
 -/
 
 open Std.Sat
+open scoped EuclideanGeometry
 
 namespace Problem97
 namespace ExactFiveCommonShellV7
 
+open Census554
 open Census554.CoverCnf
 
 set_option maxRecDepth 1000000
+
+attribute [local instance] Classical.propDecidable
 
 private theorem CanonicalPacket.s2O0_evalClauseD_fullRadius_eq_inherited
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
@@ -50,13 +54,113 @@ private theorem CanonicalPacket.s2O0_evalClauseD_fullRadius_eq_inherited
     _ = P.inheritedTailValuation literal.natAbs :=
       (P.inheritedTailValuation_eq_separation_of_lt (by omega)).symm
 
-set_option maxHeartbeats 0 in
+private theorem CanonicalPacket.s2O0_evalClauseD_fullRadius_eq_fullSourceChoice
+    {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
+    {surplus second : Fin 3}
+    {frame : MultiCenter.JointCapIndexFrame surplus second}
+    {L : Card11CapLabeling CP frame}
+    {H : CriticalShellSystem A}
+    (P : CanonicalPacket L) (shadow : SourceIndexedShadow H L P.cube)
+    (clause : List Int)
+    (hbound : ∀ literal ∈ clause,
+      0 < literal.natAbs ∧ literal.natAbs < 41005) :
+    evalClauseD (P.s2O0RetainedCoreValuation shadow) clause =
+      evalClauseD (P.fullSourceChoiceValuation shadow) clause := by
+  apply evalClauseD_congr
+  intro literal hliteral
+  change P.fullRadiusValuation shadow .s2_o9 literal.natAbs = _
+  exact P.fullRadiusValuation_eq_fullSourceChoice_of_lt shadow .s2_o9
+    (hbound literal hliteral).1 (hbound literal hliteral).2
+
 set_option linter.style.nativeDecide false in
-private theorem s2O0InheritedSourceTailClauses_literal_bounds :
-    ∀ clause ∈ s2O0InheritedSourceTailClausesFor s2O0ShellCase,
-      ∀ literal ∈ clause,
-        0 < literal.natAbs ∧ literal.natAbs < 27287 := by
+private theorem s2O0ShellCaseApexChoiceClause_literal_bounds :
+    ∀ literal ∈ shellCaseApexChoiceClause s2O0ShellCase,
+      0 < literal.natAbs ∧ literal.natAbs < 27287 := by
   native_decide
+
+set_option linter.style.nativeDecide false in
+private theorem s2O0BlockerShellChoiceClause_literal_bounds :
+    ∀ literal ∈ blockerShellChoiceClause,
+      0 < literal.natAbs ∧ literal.natAbs < 27287 := by
+  native_decide
+
+private def commonSourceChoiceAsFull
+    (source : CommonSource) (choice : Fin 84) :
+    SourceChoiceIndex (commonSourceLabel source) :=
+  ⟨choice.val, by
+    fin_cases source <;>
+      simp [sourceChoiceCount, commonSourceLabel]⟩
+
+set_option maxHeartbeats 0 in
+-- Native reduction exhausts the two common sources and their 84 choices.
+set_option linter.style.nativeDecide false in
+private theorem commonSourceImplicationClause_eq_full :
+    ∀ occurrence : CommonSourceOccurrence,
+      commonSourceImplicationClause occurrence =
+        sourceChoiceImplicationClause (commonSourceLabel occurrence.1)
+          (commonSourceChoiceAsFull occurrence.1 occurrence.2) := by
+  native_decide
+
+set_option maxHeartbeats 0 in
+-- Native reduction exhausts the two common-source totality clauses.
+set_option linter.style.nativeDecide false in
+private theorem commonSourceTotalityClause_eq_full :
+    ∀ source : CommonSource,
+      commonSourceTotalityClause source =
+        sourceChoiceTotalityClause (commonSourceLabel source) := by
+  native_decide
+
+private theorem s2O0SourceChoiceVariable_upperBound
+    (source : Label) (choice : SourceChoiceIndex source) :
+    sourceChoiceVariable source choice < 41005 := by
+  have hchoice := choice.isLt
+  fin_cases source <;>
+    simp [sourceChoiceVariable, sourceChoiceStart, sourceChoiceCount]
+      at hchoice ⊢ <;>
+    omega
+
+private theorem s2O0SourceChoiceXVar_bounds
+    (source : Label) (choice : SourceChoiceIndex source) :
+    0 < xVar (sourceChoiceAt source choice).1.val
+        (sourceChoiceAt source choice).2 ∧
+      xVar (sourceChoiceAt source choice).1.val
+          (sourceChoiceAt source choice).2 < 41005 := by
+  have hfacts := sourceChoiceAt_facts source choice
+  exact ⟨one_le_xVar (sourceChoiceAt source choice).1.val
+      (sourceChoiceAt source choice).2,
+    lt_of_le_of_lt
+      (xVar_le_nX (sourceChoiceAt source choice).1.isLt hfacts.1)
+      (lt_trans nX_lt_pairIndicatorStart (by omega))⟩
+
+private theorem commonSourceImplicationClause_literal_bounds
+    (occurrence : CommonSourceOccurrence) :
+    ∀ literal ∈ commonSourceImplicationClause occurrence,
+      0 < literal.natAbs ∧ literal.natAbs < 41005 := by
+  rw [commonSourceImplicationClause_eq_full occurrence]
+  intro literal hliteral
+  simp only [sourceChoiceImplicationClause, List.mem_cons,
+    List.not_mem_nil, or_false] at hliteral
+  rcases hliteral with rfl | rfl
+  · simpa using ⟨sourceChoiceVariable_pos
+      (commonSourceLabel occurrence.1)
+      (commonSourceChoiceAsFull occurrence.1 occurrence.2),
+      s2O0SourceChoiceVariable_upperBound
+        (commonSourceLabel occurrence.1)
+        (commonSourceChoiceAsFull occurrence.1 occurrence.2)⟩
+  · simpa using s2O0SourceChoiceXVar_bounds
+      (commonSourceLabel occurrence.1)
+      (commonSourceChoiceAsFull occurrence.1 occurrence.2)
+
+private theorem commonSourceTotalityClause_literal_bounds
+    (source : CommonSource) :
+    ∀ literal ∈ commonSourceTotalityClause source,
+      0 < literal.natAbs ∧ literal.natAbs < 41005 := by
+  rw [commonSourceTotalityClause_eq_full source]
+  intro literal hliteral
+  simp only [sourceChoiceTotalityClause, List.mem_map] at hliteral
+  obtain ⟨choice, _hchoice, rfl⟩ := hliteral
+  simpa using ⟨sourceChoiceVariable_pos (commonSourceLabel source) choice,
+    s2O0SourceChoiceVariable_upperBound (commonSourceLabel source) choice⟩
 
 /-- The exact 169-clause inherited source tail is satisfied by the direct
 `s2_o0` valuation. -/
@@ -74,27 +178,56 @@ theorem CanonicalPacket.s2O0InheritedSourceTailClauses_sat
     (hseven : shadow.centerOf 7 = 8) :
     ∀ clause ∈ P.s2O0InheritedSourceTailClauses,
       evalClauseD (P.s2O0RetainedCoreValuation shadow) clause = true := by
-  have hfamily :=
+  have hinherited :=
     P.shellCaseInheritedTailFamily_sat hP shadow hApexChoice hsix hseven
+  have hsource :=
+    P.fullSourceChoiceFamily_sat_of_commonCenters hP shadow hsix hseven
   intro clause hclause
   have hclauseFixed :
       clause ∈ s2O0InheritedSourceTailClausesFor s2O0ShellCase := by
     simpa [CanonicalPacket.s2O0InheritedSourceTailClauses, hShellCase] using
       hclause
-  rw [P.s2O0_evalClauseD_fullRadius_eq_inherited shadow clause
-    (s2O0InheritedSourceTailClauses_literal_bounds clause hclauseFixed)]
-  rcases hfamily with ⟨hapex, hblocker, himplication, htotality⟩
   simp only [s2O0InheritedSourceTailClausesFor, List.mem_append,
-    List.mem_cons, List.mem_singleton, List.mem_map] at hclauseFixed
-  rcases hclauseFixed with
-      (rfl | rfl) | ⟨occurrence, hoccurrence, rfl⟩ | rfl |
-        ⟨occurrence, hoccurrence, rfl⟩ | rfl
-  · simpa [hShellCase] using hapex
-  · exact hblocker
-  · exact himplication occurrence (List.mem_filter.mp hoccurrence).1
-  · exact htotality 0
-  · exact himplication occurrence (List.mem_filter.mp hoccurrence).1
-  · exact htotality 1
+    List.mem_cons, List.not_mem_nil, or_false, List.mem_map] at hclauseFixed
+  rcases hclauseFixed with hprefix | htotalityOne
+  · rcases hprefix with hprefix | ⟨occurrence, _hoccurrence, rfl⟩
+    · rcases hprefix with hprefix | htotalityZero
+      · rcases hprefix with hlow | ⟨occurrence, _hoccurrence, rfl⟩
+        · rcases hlow with hapex | hblocker
+          · rcases hapex with rfl
+            rw [P.s2O0_evalClauseD_fullRadius_eq_inherited shadow
+              (shellCaseApexChoiceClause s2O0ShellCase)
+              s2O0ShellCaseApexChoiceClause_literal_bounds]
+            simpa [hShellCase] using hinherited.1
+          · rcases hblocker with rfl
+            rw [P.s2O0_evalClauseD_fullRadius_eq_inherited shadow
+              blockerShellChoiceClause
+              s2O0BlockerShellChoiceClause_literal_bounds]
+            exact hinherited.2.1
+        · rw [P.s2O0_evalClauseD_fullRadius_eq_fullSourceChoice shadow
+              (commonSourceImplicationClause occurrence)
+              (commonSourceImplicationClause_literal_bounds occurrence)]
+          rw [commonSourceImplicationClause_eq_full occurrence]
+          exact hsource.1 (commonSourceLabel occurrence.1)
+            (commonSourceChoiceAsFull occurrence.1 occurrence.2)
+      · rcases htotalityZero with rfl
+        rw [P.s2O0_evalClauseD_fullRadius_eq_fullSourceChoice shadow
+          (commonSourceTotalityClause 0)
+          (commonSourceTotalityClause_literal_bounds 0)]
+        rw [commonSourceTotalityClause_eq_full 0]
+        exact hsource.2.1 (commonSourceLabel 0)
+    · rw [P.s2O0_evalClauseD_fullRadius_eq_fullSourceChoice shadow
+          (commonSourceImplicationClause occurrence)
+          (commonSourceImplicationClause_literal_bounds occurrence)]
+      rw [commonSourceImplicationClause_eq_full occurrence]
+      exact hsource.1 (commonSourceLabel occurrence.1)
+        (commonSourceChoiceAsFull occurrence.1 occurrence.2)
+  · rcases htotalityOne with rfl
+    rw [P.s2O0_evalClauseD_fullRadius_eq_fullSourceChoice shadow
+      (commonSourceTotalityClause 1)
+      (commonSourceTotalityClause_literal_bounds 1)]
+    rw [commonSourceTotalityClause_eq_full 1]
+    exact hsource.2.1 (commonSourceLabel 1)
 
 private def s2O0FirstApexExactFiveKindAtValid
     (index : Fin S2O0RetainedFamily.firstApexExactFive.sourceCount) : Prop :=
@@ -122,6 +255,7 @@ private instance
     infer_instance
 
 set_option maxHeartbeats 0 in
+-- Native reduction exhausts the retained first-apex exact-five family.
 set_option linter.style.nativeDecide false in
 private theorem s2O0FirstApexExactFiveKindAt_valid :
     ∀ index : Fin S2O0RetainedFamily.firstApexExactFive.sourceCount,
@@ -182,9 +316,10 @@ theorem CanonicalPacket.s2O0FirstApexExactFiveClause_sat
           exact P.not_localEqHolds_one_of_shell_outside
             hinside' houtside' heq.symm
       simp [firstApexExactFivePayload, evalClauseD, evalLitD,
-        encodeG3Var_pos, P.fullRadiusValuation_localEquality, hnot]
+        P.fullRadiusValuation_localEquality, hnot]
 
 set_option maxHeartbeats 0 in
+-- Native reduction exhausts the retained first-apex global-equality family.
 set_option linter.style.nativeDecide false in
 theorem s2O0FirstApexGlobalEqPairAt_valid :
     ∀ index : Fin S2O0RetainedFamily.firstApexGlobalEquality.sourceCount,
@@ -227,8 +362,12 @@ theorem CanonicalPacket.s2O0FirstApexGlobalEqClause_sat
   change evalClauseD (P.fullRadiusValuation shadow .s2_o9)
     (firstApexGlobalEqUnit pair.1 pair.2) = true
   unfold firstApexGlobalEqUnit evalClauseD
-  simp [evalLitD, P.fullRadiusValuation_globalEquality, hglobal]
-  exact encodeG3Var_pos _
+  have hpositive :
+      0 < encodeG3Var
+        (.globalEquality (firstApexGlobalEqualityIndex pair.1 pair.2)) :=
+    encodeG3Var_pos _
+  simpa [evalLitD, P.fullRadiusValuation_globalEquality, hglobal] using
+    hpositive
 
 end ExactFiveCommonShellV7
 end Problem97

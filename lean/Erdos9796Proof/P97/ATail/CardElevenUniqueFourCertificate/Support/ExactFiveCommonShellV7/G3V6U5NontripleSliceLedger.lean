@@ -25,9 +25,12 @@ namespace ExactFiveCommonShellV7
 
 open Census554
 open Census554.CoverCnf
+open Census554.CoverIndexBridge
 open CheckpointedRup.CompactIngress
 open CheckpointedRup.CompactBoundary
 open CheckpointedRup.SemanticBoundary
+
+attribute [local instance] Classical.propDecidable
 
 set_option maxRecDepth 100000
 
@@ -260,8 +263,7 @@ private theorem sourceChoiceVariable_lt
     (source : Label) (choice : SourceChoiceIndex source) :
     sourceChoiceVariable source choice < 41005 := by
   fin_cases source <;>
-    simp [sourceChoiceVariable, sourceChoiceStart, sourceChoiceCount] at
-      choice ⊢ <;>
+    simp [sourceChoiceVariable, sourceChoiceStart, sourceChoiceCount] at choice ⊢ <;>
     omega
 
 private theorem CanonicalPacket.qDeletedPairHolds_canonical_iff
@@ -319,17 +321,40 @@ theorem CanonicalPacket.renderV6U5NontripleOccurrence_sat
           occurrence.center occurrence.t) := by
     rw [← hpairXRow]
     exact of_decide_eq_true hpairXValue
+  have hdecodedCenter :
+      (sourceChoiceAt occurrence.source occurrence.choice).1 =
+        occurrence.center := by
+    simpa using congrArg Prod.fst hdecode
+  have hdecodedIndex :
+      (sourceChoiceAt occurrence.source occurrence.choice).2 =
+        occurrence.candidateIndex := by
+    simpa using congrArg Prod.snd hdecode
+  have hcandidate :
+      occurrence.candidateIndex =
+        coverIndex P.cube.cube occurrence.center := by
+    calc
+      occurrence.candidateIndex =
+          (sourceChoiceAt occurrence.source occurrence.choice).2 :=
+        hdecodedIndex.symm
+      _ = P.baseIndex
+          (sourceChoiceAt occurrence.source occurrence.choice).1.val :=
+        hchoice.2
+      _ = coverIndex P.cube.cube occurrence.center := by
+        rw [hdecodedCenter]
+        rfl
   have ht : occurrence.t ∈ P.cube.cube occurrence.center := by
     apply of_decide_eq_true
     rw [← coverIndex_testBit_of_cubeOk hP occurrence.center occurrence.t]
-    simpa [hdecode, hchoice.2] using htBit
+    rw [← hcandidate]
+    simpa [occurrence] using htBit
   have hx : occurrence.x ∉ P.cube.cube occurrence.center := by
     apply of_decide_eq_false
     rw [← coverIndex_testBit_of_cubeOk hP occurrence.center occurrence.x]
-    simpa [hdecode, hchoice.2] using hxBit
+    rw [← hcandidate]
+    simpa [occurrence] using hxBit
   exact P.u5NontripleChoice_incompatible shadow
     occurrence.source occurrence.center occurrence.t occurrence.x
-    occurrence.choice (by simpa [hdecode]) hchoice ht hx
+    occurrence.choice hdecodedCenter hchoice ht hx
     ((P.qDeletedPairHolds_canonical_iff occurrence.source occurrence.t
       occurrence.center occurrence.x).mp hpairT)
     ((P.qDeletedPairHolds_canonical_iff occurrence.source occurrence.x

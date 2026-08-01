@@ -22,13 +22,12 @@ constructor fan-out three:
 1. the exact-four residual, closed by the checked card-eleven certificate;
 2. the exact-five residual with distinct obstruction centers, closed by the
    card-eleven common-deletion argument; and
-3. the exact-five residual with a common obstruction center, retained below
-   as the single loud fixed-card obligation.
+3. the exact-five residual with a common obstruction center, closed below by
+   the authenticated G3 and retained-`s2_o0` certificate banks.
 
 The remaining `card ≠ 11` production branch continues to use the general
-frontier.  Thus the new obligation is strictly narrower than its production
-parent and is consumed by the universal no-`IsM44` spine in
-`RemovableVertexAxiom.Continuation`.
+frontier.  The closed fixed-card branch is consumed by the universal
+no-`IsM44` spine in `RemovableVertexAxiom.Continuation`.
 -/
 
 open scoped EuclideanGeometry

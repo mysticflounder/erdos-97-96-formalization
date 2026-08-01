@@ -23,9 +23,12 @@ namespace ExactFiveCommonShellV7
 
 open Census554
 open Census554.CoverCnf
+open Census554.CoverIndexBridge
 open CheckpointedRup.CompactIngress
 open CheckpointedRup.CompactBoundary
 open CheckpointedRup.SemanticBoundary
+
+attribute [local instance] Classical.propDecidable
 
 set_option maxRecDepth 100000
 
@@ -311,8 +314,7 @@ private theorem commonBisectorSourceChoiceVariable_lt
     (source : Label) (choice : SourceChoiceIndex source) :
     sourceChoiceVariable source choice < 41005 := by
   fin_cases source <;>
-    simp [sourceChoiceVariable, sourceChoiceStart, sourceChoiceCount] at
-      choice ⊢ <;>
+    simp [sourceChoiceVariable, sourceChoiceStart, sourceChoiceCount] at choice ⊢ <;>
     omega
 
 /-- Every occurrence in the complete V6 U5 common-bisector family is
@@ -344,28 +346,54 @@ theorem CanonicalPacket.renderV6U5CommonBisectorOccurrence_sat
       (commonBisectorSourceChoiceVariable_lt
         occurrence.source occurrence.choice),
     P.fullSourceChoiceValuation_choice] at hchoiceValue
-  rw [P.fullRadiusValuation_localEquality] at
-    heq1Value heq2Value heq3Value
+  rw [P.fullRadiusValuation_localEquality] at heq1Value heq2Value heq3Value
   have hchoice :
       P.sourceChoiceHolds shadow occurrence.source occurrence.choice :=
     of_decide_eq_true hchoiceValue
+  have hdecodedCenter :
+      (sourceChoiceAt occurrence.source occurrence.choice).1 =
+        occurrence.center := by
+    simpa using congrArg Prod.fst hdecode
+  have hdecodedIndex :
+      (sourceChoiceAt occurrence.source occurrence.choice).2 =
+        occurrence.candidateIndex := by
+    simpa using congrArg Prod.snd hdecode
+  have hcandidate :
+      occurrence.candidateIndex =
+        coverIndex P.cube.cube occurrence.center := by
+    calc
+      occurrence.candidateIndex =
+          (sourceChoiceAt occurrence.source occurrence.choice).2 :=
+        hdecodedIndex.symm
+      _ = P.baseIndex
+          (sourceChoiceAt occurrence.source occurrence.choice).1.val :=
+        hchoice.2
+      _ = coverIndex P.cube.cube occurrence.center := by
+        rw [hdecodedCenter]
+        rfl
   have ht1 : occurrence.t1 ∈ P.cube.cube occurrence.center := by
     apply of_decide_eq_true
     rw [← coverIndex_testBit_of_cubeOk hP occurrence.center occurrence.t1]
-    simpa [hdecode, hchoice.2] using ht1Bit
+    rw [← hcandidate]
+    simpa [occurrence] using ht1Bit
   have ht2 : occurrence.t2 ∈ P.cube.cube occurrence.center := by
     apply of_decide_eq_true
     rw [← coverIndex_testBit_of_cubeOk hP occurrence.center occurrence.t2]
-    simpa [hdecode, hchoice.2] using ht2Bit
+    rw [← hcandidate]
+    simpa [occurrence] using ht2Bit
   have ht3 : occurrence.t3 ∈ P.cube.cube occurrence.center := by
     apply of_decide_eq_true
     rw [← coverIndex_testBit_of_cubeOk hP occurrence.center occurrence.t3]
-    simpa [hdecode, hchoice.2] using ht3Bit
+    rw [← hcandidate]
+    simpa [occurrence] using ht3Bit
   have heq1 :
       P.globalEqHolds
         (canonicalGlobalRow
           (canonicalEdge occurrence.x occurrence.center)
           (canonicalEdge occurrence.x occurrence.t1)) := by
+    apply
+      (P.globalEqHolds_canonicalStar_iff occurrence.x occurrence.center
+        occurrence.t1).2
     have hlocal :
         P.localEqHolds
           (localEqRow
@@ -374,18 +402,17 @@ theorem CanonicalPacket.renderV6U5CommonBisectorOccurrence_sat
       of_decide_eq_true heq1Value
     rcases heq1Row with hrow | hrow
     · rw [hrow] at hlocal
-      simpa [CanonicalPacket.localEqHolds,
-        CanonicalPacket.globalEqHolds, canonicalGlobalRow,
-        canonicalEdge, dist_comm] using hlocal
+      simpa only [CanonicalPacket.localEqHolds] using hlocal
     · rw [hrow] at hlocal
-      simpa [CanonicalPacket.localEqHolds,
-        CanonicalPacket.globalEqHolds, canonicalGlobalRow,
-        canonicalEdge, dist_comm] using hlocal
+      simpa only [CanonicalPacket.localEqHolds] using hlocal.symm
   have heq2 :
       P.globalEqHolds
         (canonicalGlobalRow
           (canonicalEdge occurrence.x occurrence.center)
           (canonicalEdge occurrence.x occurrence.t2)) := by
+    apply
+      (P.globalEqHolds_canonicalStar_iff occurrence.x occurrence.center
+        occurrence.t2).2
     have hlocal :
         P.localEqHolds
           (localEqRow
@@ -394,18 +421,17 @@ theorem CanonicalPacket.renderV6U5CommonBisectorOccurrence_sat
       of_decide_eq_true heq2Value
     rcases heq2Row with hrow | hrow
     · rw [hrow] at hlocal
-      simpa [CanonicalPacket.localEqHolds,
-        CanonicalPacket.globalEqHolds, canonicalGlobalRow,
-        canonicalEdge, dist_comm] using hlocal
+      simpa only [CanonicalPacket.localEqHolds] using hlocal
     · rw [hrow] at hlocal
-      simpa [CanonicalPacket.localEqHolds,
-        CanonicalPacket.globalEqHolds, canonicalGlobalRow,
-        canonicalEdge, dist_comm] using hlocal
+      simpa only [CanonicalPacket.localEqHolds] using hlocal.symm
   have heq3 :
       P.globalEqHolds
         (canonicalGlobalRow
           (canonicalEdge occurrence.x occurrence.center)
           (canonicalEdge occurrence.x occurrence.t3)) := by
+    apply
+      (P.globalEqHolds_canonicalStar_iff occurrence.x occurrence.center
+        occurrence.t3).2
     have hlocal :
         P.localEqHolds
           (localEqRow
@@ -414,17 +440,13 @@ theorem CanonicalPacket.renderV6U5CommonBisectorOccurrence_sat
       of_decide_eq_true heq3Value
     rcases heq3Row with hrow | hrow
     · rw [hrow] at hlocal
-      simpa [CanonicalPacket.localEqHolds,
-        CanonicalPacket.globalEqHolds, canonicalGlobalRow,
-        canonicalEdge, dist_comm] using hlocal
+      simpa only [CanonicalPacket.localEqHolds] using hlocal
     · rw [hrow] at hlocal
-      simpa [CanonicalPacket.localEqHolds,
-        CanonicalPacket.globalEqHolds, canonicalGlobalRow,
-        canonicalEdge, dist_comm] using hlocal
+      simpa only [CanonicalPacket.localEqHolds] using hlocal.symm
   exact P.u5CommonBisectorChoice_incompatible shadow
     occurrence.source occurrence.center occurrence.x
     occurrence.t1 occurrence.t2 occurrence.t3 occurrence.choice
-    (by simpa using congrArg Prod.fst hdecode)
+    hdecodedCenter
     hchoice ht1 ht2 ht3 ht12 ht13 ht23 row
     (localFourRow_mem_encoderLocalFourRows
       (commonBisectorLocalFourIndex occurrence))

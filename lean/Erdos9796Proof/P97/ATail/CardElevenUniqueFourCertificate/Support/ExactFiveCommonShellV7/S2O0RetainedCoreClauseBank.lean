@@ -4,16 +4,15 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.ExactFiveCommonShellV7.S2O0SpecialFamilySemantics
-import Erdos9796Proof.P97.Certificate.G3ParsedClauseNormalization
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.ExactFiveCommonShellV7.S2O0RetainedCoreComputedFacts
 
 /-!
-# Complete semantic bank for the exact-eleven `s2_o0` retained core
+# Semantic bank for the exact-eleven `s2_o0` retained core
 
 The compact LRAT ingress proves that the frozen 81,253-clause core is
-unsatisfiable.  This module authenticates the 21 retained source-family
-segments against that exact core and proves that the direct geometric
-valuation satisfies every source clause.
+unsatisfiable. This module assembles the proof that the direct geometric
+valuation satisfies every authenticated source clause and derives the
+contradiction with the frozen core.
 -/
 
 open Std.Sat
@@ -21,55 +20,12 @@ open Std.Sat
 namespace Problem97
 namespace ExactFiveCommonShellV7
 
+open Census554
 open Census554.CoverCnf
 open CheckpointedRup.SemanticBoundary
 
+-- The final 21-family membership split unfolds a deeply nested append chain.
 set_option maxRecDepth 1000000
-
-def s2O0ConvexFiveClauses : List (List Int) :=
-  s2O0RetainedRenderedClauses .convexFive fun index =>
-    renderConvexFiveOccurrence (convexFiveOccurrenceAt index)
-
-set_option maxHeartbeats 0 in
-set_option linter.style.nativeDecide false in
-private theorem s2O0RetainedConvexFiveOccurrences_valid :
-    ∀ index ∈ s2O0RetainedIndices .convexFive,
-      (convexFiveOccurrenceAt index).Valid := by
-  native_decide
-
-/-- The exact source clauses represented by the retained core, in the 21
-source-family segments' original order. -/
-def s2O0RetainedCoreSourceClauses : List (List Int) :=
-  s2O0InheritedBaseClauses ++
-  s2O0InheritedSeparationClauses ++
-  s2O0InheritedSourceTailClausesFor s2O0ShellCase ++
-  s2O0LocalTransitivityClauses ++
-  s2O0SelectedLocalEqualityClauses ++
-  s2O0SourceCenterClauses ++
-  s2O0UsedCenterClauses ++
-  s2O0ExactBlockerClauses ++
-  s2O0NoQFreeClauses ++
-  s2O0FirstApexExactFiveClauses s2O0ShellCase ++
-  s2O0GlobalTransitivityClauses ++
-  s2O0SelectedGlobalEqualityClauses ++
-  s2O0FirstApexGlobalEqualityClauses s2O0ShellCase ++
-  s2O0DuplicateCenterClauses ++
-  s2O0PerpendicularBisectorClauses ++
-  s2O0ConvexFiveClauses ++
-  s2O0V6LocalFourClauses ++
-  s2O0V6QDeletedPairClauses ++
-  s2O0V6U5NontripleClauses ++
-  s2O0V6U5CommonBisectorClauses ++
-  s2O0V7TwoCenterBisectorClauses
-
-set_option maxHeartbeats 0 in
-set_option linter.style.nativeDecide false in
-/-- The rendered source bank is clausewise identical up to literal order to
-the exact runtime-parsed core consumed by the LRAT ingress. -/
-theorem s2O0RetainedCoreSourceClauses_perm_core :
-    List.Forall₂ List.Perm s2O0RetainedCoreSourceClauses
-      (signedClausesOfFormula S2O0TextIngress.coreFormula) := by
-  native_decide
 
 private theorem s2O0RetainedRenderedClauses_sat
     (sigma : Nat → Bool) (family : S2O0RetainedFamily)
@@ -81,6 +37,57 @@ private theorem s2O0RetainedRenderedClauses_sat
   unfold s2O0RetainedRenderedClauses at hclause
   obtain ⟨index, _hindex, rfl⟩ := List.mem_map.mp hclause
   exact hsat index
+
+private theorem s2O0RetainedCoreSourceClauses_decompose :
+    s2O0RetainedCoreSourceClauses =
+      s2O0InheritedBaseClauses ++
+      s2O0InheritedSeparationClauses ++
+      s2O0InheritedSourceTailClausesFor s2O0ShellCase ++
+      s2O0LocalTransitivityClauses ++
+      s2O0SelectedLocalEqualityClauses ++
+      s2O0SourceCenterClauses ++
+      s2O0UsedCenterClauses ++
+      s2O0ExactBlockerClauses ++
+      s2O0NoQFreeClauses ++
+      s2O0FirstApexExactFiveClauses s2O0ShellCase ++
+      s2O0GlobalTransitivityClauses ++
+      s2O0SelectedGlobalEqualityClauses ++
+      s2O0FirstApexGlobalEqualityClauses s2O0ShellCase ++
+      s2O0DuplicateCenterClauses ++
+      s2O0PerpendicularBisectorClauses ++
+      s2O0ConvexFiveClauses ++
+      s2O0V6LocalFourClauses ++
+      s2O0V6QDeletedPairClauses ++
+      s2O0V6U5NontripleClauses ++
+      s2O0V6U5CommonBisectorClauses ++
+      s2O0V7TwoCenterBisectorClauses := by
+  rfl
+
+private theorem s2O0RetainedCoreSourceClauses_mem_iff (clause : List Int) :
+    clause ∈ s2O0RetainedCoreSourceClauses ↔
+      clause ∈ s2O0InheritedBaseClauses ∨
+      clause ∈ s2O0InheritedSeparationClauses ∨
+      clause ∈ s2O0InheritedSourceTailClausesFor s2O0ShellCase ∨
+      clause ∈ s2O0LocalTransitivityClauses ∨
+      clause ∈ s2O0SelectedLocalEqualityClauses ∨
+      clause ∈ s2O0SourceCenterClauses ∨
+      clause ∈ s2O0UsedCenterClauses ∨
+      clause ∈ s2O0ExactBlockerClauses ∨
+      clause ∈ s2O0NoQFreeClauses ∨
+      clause ∈ s2O0FirstApexExactFiveClauses s2O0ShellCase ∨
+      clause ∈ s2O0GlobalTransitivityClauses ∨
+      clause ∈ s2O0SelectedGlobalEqualityClauses ∨
+      clause ∈ s2O0FirstApexGlobalEqualityClauses s2O0ShellCase ∨
+      clause ∈ s2O0DuplicateCenterClauses ∨
+      clause ∈ s2O0PerpendicularBisectorClauses ∨
+      clause ∈ s2O0ConvexFiveClauses ∨
+      clause ∈ s2O0V6LocalFourClauses ∨
+      clause ∈ s2O0V6QDeletedPairClauses ∨
+      clause ∈ s2O0V6U5NontripleClauses ∨
+      clause ∈ s2O0V6U5CommonBisectorClauses ∨
+      clause ∈ s2O0V7TwoCenterBisectorClauses := by
+  rw [s2O0RetainedCoreSourceClauses_decompose]
+  simp only [List.mem_append, or_assoc]
 
 /-- Every rendered source clause of the exact retained core is satisfied by
 the direct `s2_o0` full-radius valuation. -/
@@ -291,8 +298,7 @@ theorem CanonicalPacket.s2O0RetainedCoreSourceClauses_sat
           shadow .s2_o9 (twoCenterBisectorOccurrenceAt index)
           (twoCenterBisectorOccurrenceAt_valid index))
   intro clause hclause
-  simp only [s2O0RetainedCoreSourceClauses, List.mem_append] at hclause
-  rcases hclause with
+  rcases (s2O0RetainedCoreSourceClauses_mem_iff clause).mp hclause with
       hclause | hclause | hclause | hclause | hclause | hclause |
       hclause | hclause | hclause | hclause | hclause | hclause |
       hclause | hclause | hclause | hclause | hclause | hclause |
@@ -350,8 +356,6 @@ theorem CanonicalPacket.false_of_s2O0RetainedCore
 end ExactFiveCommonShellV7
 end Problem97
 
-#print axioms
-  Problem97.ExactFiveCommonShellV7.s2O0RetainedCoreSourceClauses_perm_core
 #print axioms
   Problem97.ExactFiveCommonShellV7.CanonicalPacket.s2O0RetainedCoreSourceClauses_sat
 #print axioms

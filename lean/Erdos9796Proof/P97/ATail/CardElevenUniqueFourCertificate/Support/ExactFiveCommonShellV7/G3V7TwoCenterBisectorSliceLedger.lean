@@ -243,6 +243,11 @@ def TwoCenterBisectorOccurrence.Valid
           ((selectorIndexEquiv occurrence.selector).symm secondCenter)
           ((selectorIndexEquiv occurrence.selector).symm rightEndpoint))
 
+private instance (occurrence : TwoCenterBisectorOccurrence) :
+    Decidable occurrence.Valid := by
+  unfold TwoCenterBisectorOccurrence.Valid
+  infer_instance
+
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
@@ -278,6 +283,7 @@ theorem CanonicalPacket.renderTwoCenterBisectorOccurrence_sat
     (hvalid : occurrence.Valid) :
     evalClauseD (P.fullRadiusValuation shadow selected)
       (renderTwoCenterBisectorOccurrence occurrence) = true := by
+  classical
   let firstCenter := occurrence.position occurrence.firstCenter
   let secondCenter := occurrence.position occurrence.secondCenter
   let firstEndpoint := occurrence.position occurrence.firstEndpoint
@@ -308,8 +314,7 @@ theorem CanonicalPacket.renderTwoCenterBisectorOccurrence_sat
   have hselector :
       occurrence.selector = P.boundaryOrder.selector :=
     of_decide_eq_true hselectorValue
-  rw [P.fullRadiusValuation_globalEquality] at
-    hfirstValue hsecondValue
+  rw [P.fullRadiusValuation_globalEquality] at hfirstValue hsecondValue
   have hfirstProp :
       P.globalEqHolds (globalEqRow firstEq) := by
     exact of_decide_eq_true hfirstValue
@@ -339,20 +344,33 @@ theorem CanonicalPacket.renderTwoCenterBisectorOccurrence_sat
         ((firstCenter < leftEndpoint ∧ leftEndpoint < secondCenter) ↔
           (firstCenter < rightEndpoint ∧
             rightEndpoint < secondCenter)) := by
-      simpa [min_eq_left (le_of_lt hcenterOrder),
-        max_eq_right (le_of_lt hcenterOrder)] using hside
+      change
+        ((min firstCenter secondCenter < leftEndpoint ∧
+            leftEndpoint < max firstCenter secondCenter) ↔
+          (min firstCenter secondCenter < rightEndpoint ∧
+            rightEndpoint < max firstCenter secondCenter)) at hside
+      rw [min_eq_left (le_of_lt hcenterOrder),
+        max_eq_right (le_of_lt hcenterOrder)] at hside
+      exact hside
     exact (hcyclic occurrence.selector firstEq secondEq
       firstCenter secondCenter leftEndpoint rightEndpoint
       hselectorSource hfirstRow hsecondRow hcenterOrder hendpoints
       hleftFirst hleftSecond hrightFirst hrightSecond hside')
       ⟨hfirstSource, hsecondSource⟩
-  · have hreverse : secondCenter < firstCenter := by omega
+  · have hreverse : secondCenter < firstCenter :=
+      lt_of_le_of_ne (le_of_not_gt hcenterOrder) hcenters.symm
     have hside' :
         ((secondCenter < leftEndpoint ∧ leftEndpoint < firstCenter) ↔
           (secondCenter < rightEndpoint ∧
             rightEndpoint < firstCenter)) := by
-      simpa [min_eq_right (le_of_lt hreverse),
-        max_eq_left (le_of_lt hreverse)] using hside
+      change
+        ((min firstCenter secondCenter < leftEndpoint ∧
+            leftEndpoint < max firstCenter secondCenter) ↔
+          (min firstCenter secondCenter < rightEndpoint ∧
+            rightEndpoint < max firstCenter secondCenter)) at hside
+      rw [min_eq_right (le_of_lt hreverse),
+        max_eq_left (le_of_lt hreverse)] at hside
+      exact hside
     exact (hcyclic occurrence.selector secondEq firstEq
       secondCenter firstCenter leftEndpoint rightEndpoint
       hselectorSource hsecondRow hfirstRow hreverse hendpoints
@@ -375,8 +393,10 @@ theorem CanonicalPacket.g3TwoCenterBisectorSlice_sat
       evalClauseD (P.fullRadiusValuation shadow selected) clause = true := by
   intro clause hclause
   obtain ⟨occurrence, hoccurrence, rfl⟩ := List.mem_map.mp hclause
+  have hoccurrenceArray : occurrence ∈ g3TwoCenterBisectorSlice :=
+    Array.mem_toList_iff.mp hoccurrence
   exact P.renderTwoCenterBisectorOccurrence_sat hcard shadow selected
-    occurrence (g3TwoCenterBisectorSlice_valid occurrence hoccurrence)
+    occurrence (g3TwoCenterBisectorSlice_valid occurrence hoccurrenceArray)
 
 /-- Every parsed clause in the retained v7 two-center slice is semantically
 satisfied by the total G3 valuation. -/
