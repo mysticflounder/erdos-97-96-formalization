@@ -121,17 +121,36 @@ extended 2026-08-01 with the three exact-eleven results. What has been checked:
   This is weaker than the `pp.explicit` diff below (it compares source text, not
   elaborated terms) and weaker still than the comparator's export-level check;
   it exists to catch a stub and its proof drifting apart at edit time.
-* Statement identity by the `pp.explicit` diff described below: the exact-ten
-  three agree between `Challenge` and `Solution` with **0 differences**
-  (455 lines each, 2026-07-30). That diff has **not** been re-run for the
-  exact-eleven three.
+* Statement identity by the `pp.explicit` diff described below, now run for
+  **all six** (2026-08-01): every one agrees between `Challenge` and `Solution`
+  with **0 differences** — 151 lines each for `finiteN10Closure`,
+  `counterexample_card_ge_eleven`, `finiteN11Closure` and
+  `counterexample_card_ge_twelve`; 153 each for `erdos97_of_card_le_ten` and
+  `erdos97_of_card_le_eleven`; 910 lines compared in total. The exact-ten three
+  were previously checked the same way on 2026-07-30.
+* The library itself builds: `lake build Erdos9796Proof.P97.FiniteN11` completed
+  2026-08-01 at `[11957/11957]`, exit 0, from a clean-vs-`HEAD` certificate tree.
 
-Queued as of 2026-08-01, blocked on a full library rebuild (an unrelated lane's
-touch of `P97/ErasedCertificate/P4SPlacementDefs.lean` and the classifier
-modules invalidated the whole `ErasedCertificate` native tree, ~112 modules):
-`check-conformance.sh`'s build and axiom-audit steps over all six, and the
-`pp.explicit` diff for the exact-eleven three. The Challenge side of that diff
-is already captured; only the Solution side needs the built library.
+Queued as of 2026-08-01: `check-conformance.sh`'s build and axiom-audit steps
+over all six. These are blocked on an **import cycle in the working tree that
+does not exist at `HEAD`**. An unrelated lane added
+`import Erdos9796Proof.P97.PinnedMultiplicity` to `P97/WitnessPacketInterface.lean`
+(uncommitted), closing the loop
+
+    WitnessPacketInterface → PinnedMultiplicity → UniversalProblem97
+      → N9Endpoint.Closure → N8.N8kDistribution → N8.N8aArcTwoCircle
+      → U2.OneHitRealization → U2.OneHitMonotone → U2.OneHitBound
+      → WitnessPacketInterface
+
+because `U2/OneHitBound.lean:1` already imports `WitnessPacketInterface`. Lake
+reports it as `build cycle detected` at `U2.OneHitBound`, and every module above
+it fails with cascading `bad import`, including `Solution`. `HEAD` has no such
+import and no cycle, which is why the `FiniteN11` build above succeeded before
+that edit landed. Nothing here is attributable to the exact-eleven work; re-run
+the gate once that lane commits or reverts.
+
+If you re-derive this, trust `lake`'s cycle listing — it names every edge on the
+loop. A hand-rolled DFS over `^import` lines got this wrong once.
 
 What has **not** been checked: the export-level identity and dual-kernel replay,
 i.e. a real [leanprover/comparator](https://github.com/leanprover/comparator) run
@@ -229,9 +248,9 @@ before that run succeeded: every gated theorem elaborated from each module
 separately under `set_option pp.explicit true`, and the two outputs diffed. All
 24 core-tier theorems agree with **0 differences**; the first 3 native-tier
 theorems were checked the same way on 2026-07-30 and also agree with 0
-differences. The 3 exact-eleven theorems added 2026-08-01 have their `Challenge`
-side captured (151, 151 and 153 pretty-printed lines) but not yet their
-`Solution` side, which needs the built library. That
+differences. The 3 exact-eleven theorems added 2026-08-01 were checked the same
+way that day and also agree with **0 differences** (151, 151 and 153
+pretty-printed lines). That
 check is weaker than the comparator's — it compares pretty-printed terms rather
 than exported expressions — and is kept only because it needs no external
 toolchain.

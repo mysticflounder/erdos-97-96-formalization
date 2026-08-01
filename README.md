@@ -198,12 +198,14 @@ Each of the six has been measured directly at `{propext, Classical.choice,
 Lean.ofReduceBool, Lean.trustCompiler, Quot.sound}` with no `sorryAx`. The
 offline pre-flight (`comparator/check-conformance.sh`) and the `pp.explicit`
 statement-identity diff have been run in full for the three exact-ten results.
-For the three exact-eleven results the pre-flight's manifest cross-check and
-tier-disjointness steps pass, `Challenge.lean` elaborates against mathlib alone
-with all 30 stubs, and all 30 source signatures match between `Challenge.lean`
-and `Solution.lean`; the pre-flight's build and axiom-audit steps, the
-`pp.explicit` diff, and a real comparator run are still outstanding. See
-`comparator/README.md`, "Native-tier status", for the exact split.
+For the three exact-eleven results the `pp.explicit` diff now also passes with 0
+differences, as do the pre-flight's manifest cross-check and tier-disjointness
+steps; `Challenge.lean` elaborates against mathlib alone with all 30 stubs, and
+all 30 source signatures match between `Challenge.lean` and `Solution.lean`.
+Outstanding: the pre-flight's build and axiom-audit steps — blocked on an import
+cycle present only in the working tree, from an unrelated lane's uncommitted
+edit, not at `HEAD` — and a real comparator run. See `comparator/README.md`,
+"Native-tier status", for the exact split.
 
 ### Erdős 97 — unconditional partial results
 
