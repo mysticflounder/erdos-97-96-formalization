@@ -876,6 +876,99 @@ the new packet and its consumers compile on the live spine.
 
 All these structures must continue to refer to the **actual full `CriticalShellSystem` support**. They must not silently replace it with a chosen four-subset carried by a common-deletion certificate; that distinction is load-bearing throughout the live interface.
 
+## 2026-08-01 constructor-frontier refinement
+
+The former mixed terminal
+`false_of_capSource_firstFiber_collisionFiveCenterDeletion` is now a
+source-clean two-constructor coordinator.  Its literal `sorry` was replaced by
+exactly two load-bearing leaves:
+
+* `false_of_capSource_firstFiber_outsidePairDeletionExactRows`; and
+* `false_of_capSource_firstFiber_crossedThreeRowExactSupports`.
+
+This is not a mechanical split into the four collision-endpoint deletions or
+the raw two-deletion/two-crossed orientation cases.  The deletion leaf is
+generic in a deleted point proved to be one of the two named first-row
+off-cap points and receives its complete
+`FiveSurvivorExactRowsBoundary`.  The crossed leaf is generic in the two
+orientations and receives the complete fixed-role three-row support packet.
+Both retain the independent four-way
+`FirstFiberCollisionFiveCenterExactRowsResidual`.  The parent proves the two
+orientation disjunctions and dispatches all four raw constructors to these two
+leaves.  Thus the coordinator-interface frontier changed from one mixed
+obligation with an implicit immediate fan-out of four to two explicit
+constructor obligations with immediate fan-out two.  Each new leaf has
+strictly stronger, parent-produced hypotheses and is transitively consumed by
+the same publish target.  A direct Lean 4.27 source check of
+`FrontierLiveClosure.lean` exits successfully after the rewire; this is not a
+full-build, refreshed-blueprint, or transitive-axiom closure claim.
+
+The theorem-bank audit fixes the first missing bridge for each leaf:
+
+1. The deletion leaf already has the exact
+   `U5QDeletedK4Class` row type used by the general-n U5 bank, but it exposes no
+   positive cross-row incidence.  The closest three-row tetrahedron consumer
+   already fails at its first membership `y ∈ Bx`.  The closest five-row
+   consumer additionally requires a dangerous-triple classifier, two
+   q-critical triple rows, and twelve positive incidences.  Those sibling-bank
+   declarations are not currently present or import-reachable in this Lean
+   tree, and copying them would still leave the positive producer open.
+2. The crossed leaf has three exact selected supports and both complementary
+   omissions.  No current or registered theorem unconditionally produces a
+   shared fourth occurrence.  The smallest incidence bridge is
+   `crossedRows.commonFourth ∈ oppositeRow.support` (equivalently, but more
+   weakly than, equality of the two anonymous fourth points).  After that
+   bridge, the remaining distinct obligation is a cyclic recut/order adapter
+   for the generic six-role Kalmanson triangle.  The generic consumer itself
+   is cardinality-independent and source-clean; the card-11 decoder adapter is
+   not reusable because it assumes `D.A.card = 11`.
+
+The first source-clean blocker-map extraction for the crossed leaf is now in
+production Lean.  Both anonymous fourth points have actual blocker distinct
+from the first collision blocker.  Moreover, support locking proves both
+cross directions:
+
+* if `crossedRows.oppositeFourth` has the common source blocker, then it equals
+  `crossedRows.commonFourth`; and
+* if `crossedRows.commonFourth` has the opposite collision blocker, then it
+  equals `crossedRows.oppositeFourth`.
+
+Thus either cross-blocker equality supplies the previously missing shared
+occurrence without an extra incidence assumption.  This does **not** prove
+that either equality holds.  The honest remaining producer is a finite
+blocker-map saturation/classification theorem forcing one of these cross
+equalities, or else a direct metric contradiction in the complementary arm.
+A single fourth point with blocker distinct from the two named collision
+blockers is not a `FreshThirdBlockerFiber`: that packet requires a second,
+distinct source with the same blocker.  The existing fresh-third terminal is
+also downstream through this crossed leaf, so routing through it here would be
+cyclic.  The new extraction and its downstream deduplication pass a direct
+Lean 4.27 source check of `FrontierLiveClosure.lean`; this remains short of a
+full build, blueprint refresh, or transitive-axiom closure gate.
+
+Accordingly, the concrete closure route is now:
+
+```text
+checked four-way outside-pair producer
+  -> checked two-leaf coordinator
+     -> deletion leaf:
+          positive survivor-row occurrence/classifier
+          -> general-n U5 incompatibility
+     -> crossed leaf:
+          cross-blocker equality / saturation classifier
+          -> shared occurrence (or a stronger direct crossed-row consumer)
+          -> cyclic-role adapter
+          -> generic Kalmanson incompatibility
+  -> former anchor coordinator
+  -> existing cap-source and publish coordinators
+```
+
+The acceptance gate is to prove both leaves, run the Lean 4.27 target/full
+build as appropriate, refresh the autogenerated proof blueprint, and verify
+the transitive axiom profile.  Closing the former mixed theorem syntactically
+does not yet close a production obligation because its two descendants are
+still open.
+
 # What I would not do
 
 I would not:
