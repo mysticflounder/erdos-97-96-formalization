@@ -1,12 +1,30 @@
 # Shortest-side bi-equidistance exclusion
 
-Date: 2026-07-24. A general-n, cardinality-free law for Problem 97, not present
-in any mined bank or indexed Lean corpus. Status: PROVEN, with the proof
-checked step by step and the one non-elementary step validated numerically.
+Date: 2026-07-24. A general-n, cardinality-free candidate for Problem 97, not
+present in any mined bank or indexed Lean corpus. Status: CONJECTURED /
+EMPIRICALLY VERIFIED. The normalized algebraic core is kernel-checked in
+`lean/Erdos9796Proof/Geometry/ShortestSideBiEquidistance.lean`, and the first
+reusable adapters are now kernel-checked in
+`lean/Erdos9796Proof/Geometry/SimilarityFrame.lean`,
+`lean/Erdos9796Proof/Geometry/ConvexIndepHull.lean`, and
+`lean/Erdos9796Proof/P97/MEC/ShortestSideDiskAdapter.lean`. The full
+arbitrary-configuration assembly remains open.
+
+**Audit correction (2026-08-01).** The coordinate argument has a genuine
+endpoint gap in Step 4: `ConvexIndep` does not by itself exclude `w = v₃`, and
+that case lies on the triangle boundary at `t = q`. The clean repair is to
+prove the Step-5 height inequality `q > R - h` first; this rules out every
+`t ≥ q`, including the endpoint, before the strict cross-section argument is
+used for `0 < t < q`. The coordinate estimates and their combined
+disk-versus-triangle contradiction are now formalized. The similarity,
+convex-hull, and MEC closed-disk interfaces are also formalized one-way; the
+remaining gap is composing them with the non-obtuse shortest-side triangle
+hypotheses in an arbitrary configuration. The statement therefore remains a
+conjectural research target rather than a proved general lemma.
 
 ## Statement
 
-**Theorem.** Let `A ⊂ ℝ²` be finite and in strictly convex position
+**Conjecture.** Let `A ⊂ ℝ²` be finite and in strictly convex position
 (`ConvexIndep`). Let the minimum enclosing circle of `A` have centre `O` and
 radius `R`, and let `v₁, v₂, v₃ ∈ A` lie on that circle with the triangle
 `T = v₁v₂v₃` non-obtuse (equivalently `O ∈ T`). If `v₁v₂` is a **shortest side**
@@ -43,8 +61,10 @@ from `u` and `w`, so both lie on the perpendicular bisector of `uw`. Since
     |ξ| ≤ D(t) := √(a² − 2ht − t²),        t ≤ R − h.
 
 **Step 4 — the triangle constraint.** `ConvexIndep` forces
-`A ∩ T ⊆ {v₁,v₂,v₃}`: an interior point of `T` would fail to be a hull vertex.
-So `w ∉ T` (it is not `v₁` or `v₂`, which lie on `L` where `t = 0`). For
+`A ∩ T ⊆ {v₁,v₂,v₃}`: a non-vertex point of `T` would fail to be a hull
+vertex. Thus, for `0 < t < q`, `w ∉ T` (it is not any of the three vertices).
+The endpoint `t = q`, where `w` could equal `v₃`, is not excluded here; Step 5
+must be established before this strict cross-section argument is used. For
 `0 < t < q` the cross-section of `T` at height `t` is the interval
 `[−a + t(p+a)/q, a + t(p−a)/q]`, whose endpoints are `−(a − t(a+p)/q)` and
 `a − t(a−p)/q`. Being outside it gives, taking the weaker of the two bounds,
@@ -53,7 +73,8 @@ So `w ∉ T` (it is not `v₁` or `v₂`, which lie on `L` where `t = 0`). For
 
 For `t ≥ q` the point `w` is above `v₃` and automatically outside `T`.
 
-**Step 5 — the case `t ≥ q` is impossible.** It needs `q ≤ R − h`, i.e.
+**Step 5 — the case `t ≥ q` is impossible.** This should be proved before
+using the strict conclusion in Step 4. It needs `q ≤ R − h`, i.e.
 `2 sin γ₁ sin γ₂ ≤ 1 − cos γ₃`. Using
 `2 sin γ₁ sin γ₂ = cos(γ₁−γ₂) + cos γ₃` (from `γ₁ + γ₂ = π − γ₃`), this is
 `cos(γ₁−γ₂) + 2 cos γ₃ ≤ 1`. The shortest-side hypothesis gives
@@ -77,7 +98,8 @@ every `t > 0`.
 
 It remains that `a − kt > 0` on the whole admissible range. From
 `a(a+|p|) ≤ hq` we get `a/k = aq/(a+|p|) ≥ a²/h = (R−h)(R+h)/h > R − h ≥ t`.
-So `|ξ| ≤ D(t) < a − kt < |ξ|` — contradiction. ∎
+So `|ξ| ≤ D(t) < a − kt < |ξ|` — contradiction, once the missing ordering
+of the endpoint cases has been repaired as above.
 
 ## Corollaries
 
@@ -119,7 +141,7 @@ support-local axiom family used by `schema_mine.decide_schema` and
 `metric_oracle.py` — positivity, strict triangle, strict Kalmanson per cyclic
 4-subset — does not model the minimum enclosing circle or the support triangle,
 so this law cannot be expressed as a pure-equality schema over that family. It
-is the first proven law of the shape the general-n covering step was found to
+remains a candidate law of the shape the general-n covering step was found to
 need.
 
 ## Independent validation
