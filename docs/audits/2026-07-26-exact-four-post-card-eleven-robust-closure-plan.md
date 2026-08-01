@@ -919,6 +919,15 @@ exceptional arms must each feed checked terminals.
 
 ## Two-collision global route checkpoint (2026-07-27)
 
+The 2026-07-27 four-leaf checkpoint recorded below is historical and was
+superseded by the 2026-07-30 cap-source consolidation.  The current direct
+F-Γ frontier has two leaves:
+`false_of_crossBlockerCoincidence` and
+`false_of_capSourceThirdCanonicalRowSurface`.  The former fresh-third,
+enlarged-fiber, one-sided-deletion, and aligned/nonbisector declarations are
+compatibility adapters.  The remainder of this checkpoint preserves the
+earlier proof-routing and build record as historical material.
+
 The previously admitted direct bridge
 `exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows` is
 now a source-clean coordinator whose four narrower leaves form the live

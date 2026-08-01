@@ -1,0 +1,56 @@
+{
+  "candidate": {
+    "path": "scratch/census-554/separation_probe_runs/run-20260713T054559Z-oracle13-from-iter813/combined_frontier.json",
+    "sha256": "63f69c20f5c166493a8bdd194c62d51b399d893d35fadb8341b74b8c7b918cad",
+    "source_iteration": 316,
+    "source_schema": "census554_frozen_separation_probe.v1",
+    "source_seed": 1618033988,
+    "source_status": "combined-frontier"
+  },
+  "candidate_screen": {
+    "deadness_signal": true,
+    "elapsed_seconds": 0.717818,
+    "timeout_seconds": 30.0,
+    "trust": "screen only; False conflates nonempty, timeout, and solver failure"
+  },
+  "certificate_stats": {
+    "certifier_id": "census554-exact-certifier-v2-cumulative-cpu:b7fa961c34a07b5bb909512dcf80c1fcce68c6984eeb0a1207a35df0c68eb7b7",
+    "child_cpu_seconds": 240.06913,
+    "cpu_budget_exhausted": true,
+    "cpu_budget_seconds": 240.0,
+    "cpu_seconds": 240.07509100000001,
+    "outcome": "budget_exhausted",
+    "self_cpu_seconds": 0.005964999999999998,
+    "wall_guard_tripped": false
+  },
+  "controls": {
+    "known_dead": {
+      "deadness_signal": true,
+      "elapsed_seconds": 0.007109,
+      "timeout_seconds": 30.0,
+      "trust": "screen only; False conflates nonempty, timeout, and solver failure"
+    },
+    "known_satisfiable": {
+      "deadness_signal": false,
+      "elapsed_seconds": 0.005806,
+      "timeout_seconds": 30.0,
+      "trust": "screen only; False conflates nonempty, timeout, and solver failure"
+    }
+  },
+  "model": {
+    "included": [
+      "selected equidistance equalities",
+      "pairwise distinctness"
+    ],
+    "omitted": [
+      "convexity",
+      "cyclic hull order",
+      "distance-class exactness",
+      "all non-selected distance inequalities"
+    ],
+    "points": 11,
+    "selected_equidistance_equalities": 33
+  },
+  "schema": "p97_fixed_n11_realization_pilot.v1",
+  "status": "UNKNOWN_CERTIFICATE_NOT_OBTAINED"
+}

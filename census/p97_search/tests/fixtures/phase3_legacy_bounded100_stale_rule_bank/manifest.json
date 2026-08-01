@@ -1,0 +1,44 @@
+{
+  "artifact_hashes": {
+    "bank.jsonl": "7d4b53a6c439166fa76a1968d172165b9f51920a24b0ccb1f2716db7296a80da",
+    "base.cnf": "5cb7f2a0d7ce521ad57c7b1258518fbcfaea72d2b0ccdcca2f0b2f93c49edab9",
+    "models.jsonl": "b87c43da266ec6db6228685f22324bd42ed0bded1e27716d7964f8d0635e9e59"
+  },
+  "base_clause_count": 5532,
+  "base_variable_count": 204,
+  "canonical_count": 100,
+  "cell": {
+    "exact": true,
+    "k": 4,
+    "n": 10,
+    "profile": [
+      4,
+      4,
+      5
+    ]
+  },
+  "checker_version": "usage: drat-trim [INPUT] [<PROOF>] [<option> ...]",
+  "clause_tags": {
+    "B-MEM": 90,
+    "B-TOTAL": 370,
+    "CAP-PROFILE": 424,
+    "CAP-TOTAL": 28,
+    "S-CIRC2": 2520,
+    "S-D1": 0,
+    "S-EXACT": 2100
+  },
+  "diagnostic": "model limit reached after valid decoded model(s)",
+  "mode": "cap+blocker-annotated",
+  "model_limit": 100,
+  "raw_count": 100,
+  "result_claim": "SAT witness census only; semantic enumeration is incomplete",
+  "rule_bank_hash": "ea5f0ac3517b908385028e45fb157408766cd7cab10157a55f28589824c64139",
+  "semantic_variable_count": 201,
+  "solver_version": "3.0.0",
+  "spec_version": "phase3-v0.1",
+  "status": "PARTIAL",
+  "terminal_clause_count": null,
+  "terminal_variable_count": null,
+  "timeout_s": 60,
+  "unsat_verified": false
+}

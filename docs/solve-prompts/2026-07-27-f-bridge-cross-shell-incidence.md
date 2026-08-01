@@ -1,6 +1,14 @@
 # Solve prompt — Family F, Bridge 1: a named positive cross-shell incidence
 
 Date: 2026-07-27.
+
+> **Historical-status notice (2026-07-30):** This round-2 prompt preserves a
+> consumed 2026-07-27 frontier snapshot. Its four F1–F4 leaves and source line
+> numbers are historical, not current obligations. The live direct frontier
+> now consists of `false_of_crossBlockerCoincidence` and
+> `false_of_capSourceThirdCanonicalRowSurface`. Use the closure matrix,
+> computational closure plan, and generated blueprint for current status.
+
 Round: 2.  Round 1 ran `docs/solve-prompts/2026-07-27-exact-collision-terminals.md`
 ("the F doc") against the four `sorry` leaves F1–F4 of
 `Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal`

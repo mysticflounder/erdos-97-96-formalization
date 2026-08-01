@@ -1,0 +1,21 @@
+{
+  "alias_maps": 95,
+  "branches_checked": 343,
+  "carrier_scope": "local named roles only; no fixed carrier cardinality",
+  "command": "uv run python scratch/atail-force/fresh-third-no-alignment-euclidean-v2/model.py --timeout-ms 250 --max-cases 500",
+  "complete_branch_exhaustion": false,
+  "counts": {
+    "sat": 0,
+    "unknown": 340,
+    "unsat": 3
+  },
+  "exact_alias_order_branch_space": 1268640,
+  "first_sat_model": null,
+  "logic": "QF_NRA",
+  "solver": "Z3 4.16.0",
+  "timeout_ms_per_case": 250,
+  "unknown_reasons": {
+    "timeout": 340
+  },
+  "verdict": "UNKNOWN"
+}

@@ -1,0 +1,39 @@
+HANDLE S4SG46
+# Actual-center classifier for a frontier common pair
+
+On a directed cross-membership arm, the first apex and the selected blocker
+at the first source are already two carrier centers equidistant from the
+frontier pair. Convex independence permits no third carrier center on the
+same perpendicular bisector.
+
+This module records the source-faithful consequence for the retained total
+`CriticalShellSystem`: at every source, its actual blocker either preserves
+one of the two frontier-source deletions or coincides with one of the two
+known centers. The full frontier has one additional exact-card-four escape.
+HANDLE CSJSDF
+theorem frontierDeletionSurvival_or_actualBlocker_eq_knownCenter
+
+Total-map classifier for one source: its actual blocker preserves one of
+the frontier-source deletions or is one of the two saturated common-pair
+centers.
+HANDLE VVZ82B
+theorem false_of_twoCapSources_mutualCrossMembership_distinctBlockers
+
+Mutual cross-membership with distinct blocker values is the remaining
+geometric arm of the two-cap-source split.
+HANDLE WMPVQX
+theorem blocker_centers_eq_of_five_le_of_mutual_cross_membership
+
+If the first-apex radius class has at least five points, mutual cross
+membership forces the two chosen source blockers to coincide.
+HANDLE AQ13YV
+theorem cardFour_or_frontierDeletionSurvival_or_actualBlocker_eq_knownCenter
+
+Full-frontier form. On a directed cross hit, every source of the total
+critical map satisfies the survival/alignment classifier unless the first
+apex lies in the exact-card-four unique-radius arm.
+HANDLE BQBWQK
+theorem deletionSurvival_cover_of_mem_outside_qBlockerFiber
+
+Away from the exact-card-four arm, an outside source preserves one of the
+two frontier deletions at its actual blocker.

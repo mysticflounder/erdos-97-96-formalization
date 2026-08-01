@@ -1,0 +1,243 @@
+{
+  "banks": {
+    "cube22_frozen": {
+      "elapsed_seconds": 471.765653,
+      "loader_summary": {
+        "covered_certificate_count": 35424,
+        "kept_antichain_count": 34532,
+        "kept_cap_order_antichain_count": 35,
+        "kept_five_point_cap_order_antichain_count": 19,
+        "kept_kalmanson_cap_order_antichain_count": 15,
+        "kept_rhombus_cap_order_antichain_count": 1,
+        "kept_structural_antichain_count": 34497,
+        "kept_structural_row_antichain_count": 34616,
+        "source_cap_order_unique_certificate_count": 35,
+        "source_certificate_schema_histogram": {
+          "p97-phase3-cap-order-convex-five-point-certificate-v1": 19,
+          "p97-phase3-cap-order-convex-rhombus-certificate-v1": 1,
+          "p97-phase3-cap-order-five-point-three-selected-row-kalmanson-certificate-v1": 15,
+          "structural-row-certificate": 35389
+        },
+        "source_five_point_cap_order_unique_certificate_count": 19,
+        "source_kalmanson_cap_order_unique_certificate_count": 15,
+        "source_record_count": 35424,
+        "source_rhombus_cap_order_unique_certificate_count": 1,
+        "source_stage_histogram": {
+          "cap-order-convex-five-point-exhaustive": 19,
+          "cap-order-convex-rhombus-exhaustive": 1,
+          "cap-order-five-point-three-selected-row-kalmanson-exhaustive": 15,
+          "equality-duplicate-center": 32808,
+          "equality-eight-point-five-circle-collision": 6,
+          "equality-equal-k4": 170,
+          "equality-equilateral-bisector-collision": 1544,
+          "equality-perpendicular-bisector-convex": 302,
+          "equality-seven-point-circle-network-collision": 1,
+          "equality-seven-point-five-circle-collision": 7,
+          "equality-seven-point-six-circle-collision": 2,
+          "equality-seven-point-six-circle-collision-b": 10,
+          "equality-seven-point-twin-four-circle-collision": 1,
+          "equality-six-point-circle-chain-collision": 4,
+          "equality-six-point-five-circle-collision-a": 5,
+          "equality-six-point-five-circle-collision-b": 8,
+          "equality-six-point-five-circle-collision-c": 6,
+          "equality-six-point-two-pair-collision": 13,
+          "equality-six-row-anchor-collision": 9,
+          "equality-surplus-source-collision": 11,
+          "equality-three-triad-collision": 482
+        },
+        "source_structural_unique_certificate_count": 35389,
+        "source_unique_certificate_count": 35424,
+        "structural_projected_duplicate_clause_count": 0,
+        "structural_projected_subsumed_clause_count": 119,
+        "structural_projected_unique_clause_count": 34616,
+        "subsumed_certificate_count": 892
+      },
+      "path": "scratch/p97-distinct-distance-lane/phase3_projected_cube22_frozen_learned_20260729/learned-certificates.jsonl",
+      "returned_category_counts": {
+        "p97-phase3-cap-order-convex-five-point-certificate-v1": 19,
+        "p97-phase3-cap-order-convex-rhombus-certificate-v1": 1,
+        "p97-phase3-cap-order-five-point-three-selected-row-kalmanson-certificate-v1": 15,
+        "structural-row-certificate": 34497
+      },
+      "returned_learned_cut_count": 34532,
+      "returned_unique_clause_count": 34532
+    },
+    "kalmanson_sequential_frozen": {
+      "elapsed_seconds": 643.848702,
+      "loader_summary": {
+        "covered_certificate_count": 65679,
+        "kept_antichain_count": 22319,
+        "kept_cap_order_antichain_count": 0,
+        "kept_five_point_cap_order_antichain_count": 0,
+        "kept_kalmanson_cap_order_antichain_count": 0,
+        "kept_rhombus_cap_order_antichain_count": 0,
+        "kept_structural_antichain_count": 22319,
+        "kept_structural_row_antichain_count": 54815,
+        "source_cap_order_unique_certificate_count": 0,
+        "source_certificate_schema_histogram": {
+          "structural-row-certificate": 65679
+        },
+        "source_five_point_cap_order_unique_certificate_count": 0,
+        "source_kalmanson_cap_order_unique_certificate_count": 0,
+        "source_record_count": 65679,
+        "source_rhombus_cap_order_unique_certificate_count": 0,
+        "source_stage_histogram": {
+          "equality-duplicate-center": 64523,
+          "equality-eight-point-five-circle-collision": 2,
+          "equality-equal-k4": 73,
+          "equality-equilateral-bisector-collision": 723,
+          "equality-perpendicular-bisector-convex": 97,
+          "equality-seven-point-five-circle-collision": 4,
+          "equality-seven-point-six-circle-collision": 1,
+          "equality-seven-point-six-circle-collision-b": 3,
+          "equality-six-point-circle-chain-collision": 1,
+          "equality-six-point-five-circle-collision-a": 4,
+          "equality-six-point-five-circle-collision-b": 5,
+          "equality-six-point-five-circle-collision-c": 6,
+          "equality-six-point-two-pair-collision": 13,
+          "equality-six-row-anchor-collision": 7,
+          "equality-surplus-source-collision": 5,
+          "equality-three-triad-collision": 212
+        },
+        "source_structural_unique_certificate_count": 65679,
+        "source_unique_certificate_count": 65679,
+        "structural_projected_duplicate_clause_count": 32025,
+        "structural_projected_subsumed_clause_count": 471,
+        "structural_projected_unique_clause_count": 22790,
+        "subsumed_certificate_count": 43360
+      },
+      "path": "scratch/p97-distinct-distance-lane/phase3_kalmanson_sequential_frozen_learned_20260729/learned-certificates.jsonl",
+      "returned_category_counts": {
+        "structural-row-certificate": 22319
+      },
+      "returned_learned_cut_count": 22319,
+      "returned_unique_clause_count": 22319
+    },
+    "projected_sequential_frozen": {
+      "elapsed_seconds": 411.31226,
+      "loader_summary": {
+        "covered_certificate_count": 45316,
+        "kept_antichain_count": 42702,
+        "kept_cap_order_antichain_count": 6,
+        "kept_five_point_cap_order_antichain_count": 5,
+        "kept_kalmanson_cap_order_antichain_count": 1,
+        "kept_rhombus_cap_order_antichain_count": 0,
+        "kept_structural_antichain_count": 42696,
+        "kept_structural_row_antichain_count": 42977,
+        "source_cap_order_unique_certificate_count": 6,
+        "source_certificate_schema_histogram": {
+          "p97-phase3-cap-order-convex-five-point-certificate-v1": 5,
+          "p97-phase3-cap-order-five-point-three-selected-row-kalmanson-certificate-v1": 1,
+          "structural-row-certificate": 45310
+        },
+        "source_five_point_cap_order_unique_certificate_count": 5,
+        "source_kalmanson_cap_order_unique_certificate_count": 1,
+        "source_record_count": 45316,
+        "source_rhombus_cap_order_unique_certificate_count": 0,
+        "source_stage_histogram": {
+          "cap-order-convex-five-point-exhaustive": 5,
+          "cap-order-five-point-three-selected-row-kalmanson-exhaustive": 1,
+          "equality-duplicate-center": 42234,
+          "equality-eight-point-five-circle-collision": 10,
+          "equality-equal-k4": 210,
+          "equality-equilateral-bisector-collision": 1912,
+          "equality-perpendicular-bisector-convex": 293,
+          "equality-seven-point-circle-network-collision": 1,
+          "equality-seven-point-five-circle-collision": 9,
+          "equality-seven-point-six-circle-collision": 1,
+          "equality-seven-point-six-circle-collision-b": 12,
+          "equality-seven-point-twin-four-circle-collision": 1,
+          "equality-six-point-circle-chain-collision": 1,
+          "equality-six-point-five-circle-collision-a": 5,
+          "equality-six-point-five-circle-collision-b": 8,
+          "equality-six-point-five-circle-collision-c": 6,
+          "equality-six-point-two-pair-collision": 19,
+          "equality-six-row-anchor-collision": 6,
+          "equality-surplus-source-collision": 10,
+          "equality-three-triad-collision": 572
+        },
+        "source_structural_unique_certificate_count": 45310,
+        "source_unique_certificate_count": 45316,
+        "structural_projected_duplicate_clause_count": 0,
+        "structural_projected_subsumed_clause_count": 281,
+        "structural_projected_unique_clause_count": 42977,
+        "subsumed_certificate_count": 2614
+      },
+      "path": "scratch/p97-distinct-distance-lane/phase3_projected_sequential_frozen_learned_20260729/learned-certificates.jsonl",
+      "returned_category_counts": {
+        "p97-phase3-cap-order-convex-five-point-certificate-v1": 5,
+        "p97-phase3-cap-order-five-point-three-selected-row-kalmanson-certificate-v1": 1,
+        "structural-row-certificate": 42696
+      },
+      "returned_learned_cut_count": 42702,
+      "returned_unique_clause_count": 42702
+    }
+  },
+  "encoding": {
+    "base_clause_count": 5532,
+    "cell": {
+      "exact": true,
+      "k": 4,
+      "n": 10,
+      "profile": [
+        4,
+        4,
+        5
+      ]
+    },
+    "variable_count": 204
+  },
+  "loader": "census.p97_search.phase3_structural_cegar._bootstrap_certificates",
+  "ordered_incremental": {
+    "cube22_frozen": {
+      "already_seen_exact_clause_count": 0,
+      "new_exact_clause_count": 34532
+    },
+    "kalmanson_sequential_frozen": {
+      "already_seen_exact_clause_count": 12413,
+      "new_exact_clause_count": 9906
+    },
+    "projected_sequential_frozen": {
+      "already_seen_exact_clause_count": 23357,
+      "new_exact_clause_count": 19345
+    }
+  },
+  "pairwise": {
+    "cube22_frozen__vs__kalmanson_sequential_frozen": {
+      "category_intersection_counts": {
+        "p97-phase3-cap-order-convex-five-point-certificate-v1": 0,
+        "p97-phase3-cap-order-convex-rhombus-certificate-v1": 0,
+        "p97-phase3-cap-order-five-point-three-selected-row-kalmanson-certificate-v1": 0,
+        "structural-row-certificate": 12130
+      },
+      "cube22_frozen_only_count": 22402,
+      "exact_clause_intersection_count": 12130,
+      "jaccard": 0.27123722635898123,
+      "kalmanson_sequential_frozen_only_count": 10189
+    },
+    "cube22_frozen__vs__projected_sequential_frozen": {
+      "category_intersection_counts": {
+        "p97-phase3-cap-order-convex-five-point-certificate-v1": 5,
+        "p97-phase3-cap-order-convex-rhombus-certificate-v1": 0,
+        "p97-phase3-cap-order-five-point-three-selected-row-kalmanson-certificate-v1": 1,
+        "structural-row-certificate": 23351
+      },
+      "cube22_frozen_only_count": 11175,
+      "exact_clause_intersection_count": 23357,
+      "jaccard": 0.43352450953096866,
+      "projected_sequential_frozen_only_count": 19345
+    },
+    "projected_sequential_frozen__vs__kalmanson_sequential_frozen": {
+      "category_intersection_counts": {
+        "p97-phase3-cap-order-convex-five-point-certificate-v1": 0,
+        "p97-phase3-cap-order-five-point-three-selected-row-kalmanson-certificate-v1": 0,
+        "structural-row-certificate": 12238
+      },
+      "exact_clause_intersection_count": 12238,
+      "jaccard": 0.23185495329935774,
+      "kalmanson_sequential_frozen_only_count": 10081,
+      "projected_sequential_frozen_only_count": 30464
+    }
+  },
+  "union_exact_clause_count": 63783
+}

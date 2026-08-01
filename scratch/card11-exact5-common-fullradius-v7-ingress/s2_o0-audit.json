@@ -1,0 +1,42 @@
+{
+  "case": {
+    "o": 0,
+    "s": 2
+  },
+  "clauses": 1370778,
+  "hashes": {
+    "input.cnf": "94bc1ddb59166cc86e146c036ab7229a7eea878c28579e2df0520eec1b2a892d",
+    "manifest.json": "1520d535b2be6a09632c46597e330a75756904abd333091b3c26fbb05639f8c2",
+    "proof.drat": "0735adbd23bd5e3240018b946e2e2cdf74ce6b6caa9c10acfa4f560f5d0064df"
+  },
+  "proof_bytes": 29451925,
+  "provenance_sha256": "b64d4f809c4d89cdd7fa6966491762b6f1e4408ac169142aabb9dc16b4eecf6c",
+  "schema": "card11_exact5_common_fullradius.v7",
+  "source_provenance_current_matches": {
+    "census_profile": true,
+    "common_projection_driver": true,
+    "convex_five_point_core": true,
+    "cover_encoder": true,
+    "critical_shell_interface": true,
+    "duplicate_center_core": true,
+    "duplicate_center_core_executable": true,
+    "duplicate_center_core_soundness": true,
+    "fullradius_driver": true,
+    "independent_verifier": true,
+    "ordered_core_signs": true,
+    "perpendicular_bisector_core": true,
+    "perpendicular_bisector_core_executable": true,
+    "perpendicular_bisector_core_soundness": true,
+    "separation_encoder": true,
+    "source_indexed_driver": true,
+    "two_center_bisector_parity_theorems": true,
+    "u5_global_incidence_kernels": true,
+    "v5_fullradius_driver": true,
+    "v5_post_theorem_bank_audit": true,
+    "v6_encoder": true
+  },
+  "status": "DRAT_VERIFIED_FIXED_CNF",
+  "v7_theorem_backed_clauses": 190080,
+  "variables": 49357,
+  "verification_sha256": "f8101d380a268bb6b0d361780003d1b2c2ff077af5a69f6cd89716a7759d85bb"
+}

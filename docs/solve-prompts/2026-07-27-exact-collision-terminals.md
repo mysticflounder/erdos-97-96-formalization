@@ -1,6 +1,15 @@
 # Solve prompt — Family F: exact collision terminals (four leaves, all goals `False`)
 
 Date: 2026-07-27.
+
+> **Historical-status notice (2026-07-30):** This is a consumed 2026-07-27
+> snapshot, not a live frontier map. Its four F1–F4 leaves and source line
+> numbers are prompt-time data. The current direct
+> `TwoSourceExactCollisionRowsTerminal` frontier has two sorries:
+> `false_of_crossBlockerCoincidence` and
+> `false_of_capSourceThirdCanonicalRowSurface`. See the closure matrix,
+> computational closure plan, and generated blueprint for current status.
+
 STATUS: CONSUMED (2026-07-28) — round 1 ran and its response is
 `2026-07-27-f-round1-response.md`; do not redispatch this document. The live
 F-family prompts are the four round-2 bridge documents

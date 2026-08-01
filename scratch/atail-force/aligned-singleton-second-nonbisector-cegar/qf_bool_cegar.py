@@ -11,17 +11,22 @@ from pathlib import Path
 
 import z3
 
+import duplicate_center_cegar
 import metric_check
 import qf_bool_model as outer
 
 
 LEGACY_CEGAR_SHA256 = "d9b019e98323f4cfb420db96e9cfd2120e00985f55bc0e0e751ef1a2b9a3b6a7"
 METRIC_CHECK_SHA256 = "cff5feb1d5cec07f6342c5304494c12494c9c622e322005077e29ede0368b46a"
+DUPLICATE_CENTER_CEGAR_SHA256 = (
+    "36f344c98ea3a88bc4056deeb9a048023f967bbfb70d6e80a52b4ab6831d89eb"
+)
 HERE = Path(__file__).resolve().parent
 SOURCE_HASHES = {
     "model.py": outer.LEGACY_MODEL_SHA256,
     "cegar.py": LEGACY_CEGAR_SHA256,
     "metric_check.py": METRIC_CHECK_SHA256,
+    "duplicate_center_cegar.py": DUPLICATE_CENTER_CEGAR_SHA256,
 }
 for filename, expected in SOURCE_HASHES.items():
     actual = hashlib.sha256((HERE / filename).read_bytes()).hexdigest()
@@ -31,7 +36,7 @@ for filename, expected in SOURCE_HASHES.items():
         )
 
 CHECKPOINT_SCHEMA = (
-    "p97-aligned-singleton-second-nonbisector-qf-bool-cegar-checkpoint-v1"
+    "p97-aligned-singleton-second-nonbisector-qf-bool-cegar-checkpoint-v2"
 )
 
 
@@ -96,6 +101,18 @@ def apply_refinement(
             flips.append(z3.Not(atom) if bool(core_item["equal"]) else atom)
         encoding.add("metric_cegar_cut", z3.Or(*flips))
         return False
+    if kind == duplicate_center_cegar.KIND:
+        antecedents = duplicate_center_cegar.validate_refinement(item, outer.N)
+        encoding.add(
+            "duplicate_center_equality_core_cegar_cut",
+            z3.Or(
+                *(
+                    z3.Not(encoding.member(center, point))
+                    for center, point in antecedents
+                )
+            ),
+        )
+        return False
     raise ValueError(f"unknown checkpoint refinement kind {kind!r}")
 
 
@@ -117,6 +134,10 @@ def unknown_payload(
         "n": outer.N,
         "refinement_count": len(refinements),
         "connectivity_refinements": connectivity_refinements,
+        "duplicate_center_refinements": sum(
+            item.get("kind") == duplicate_center_cegar.KIND
+            for item in refinements
+        ),
         "constraint_counts": dict(sorted(encoding.counts.items())),
         "refinements": refinements,
         "elapsed_seconds": time.monotonic() - started,
@@ -188,6 +209,10 @@ def run(args: argparse.Namespace) -> dict[str, object]:
                 "n": outer.N,
                 "refinement_count": len(refinements),
                 "connectivity_refinements": connectivity_refinements,
+                "duplicate_center_refinements": sum(
+                    item.get("kind") == duplicate_center_cegar.KIND
+                    for item in refinements
+                ),
                 "constraint_counts": dict(sorted(encoding.counts.items())),
                 "refinements": refinements,
                 "build_elapsed_seconds": build_elapsed,
@@ -204,6 +229,28 @@ def run(args: argparse.Namespace) -> dict[str, object]:
             )
             for center in range(outer.N)
         }
+        duplicate_cores = duplicate_center_cegar.find_duplicate_center_cores(
+            rows,
+            outer.N,
+            limit=args.duplicate_center_cuts_per_witness,
+        )
+        if duplicate_cores:
+            for core in duplicate_cores:
+                refinement = {
+                    "attempt": attempt,
+                    "outer_elapsed_seconds": outer_elapsed,
+                    **core,
+                }
+                apply_refinement(encoding, refinement)
+                refinements.append(refinement)
+            write_checkpoint(
+                args.checkpoint,
+                started=started,
+                refinements=refinements,
+                status="RUNNING",
+            )
+            continue
+
         components = outer.strongly_connected_components(rows)
         if len(components) != 1:
             sinks = outer.sink_components(rows, components)
@@ -258,6 +305,10 @@ def run(args: argparse.Namespace) -> dict[str, object]:
                     "metric_gate": metric_result,
                     "metric_refinement_count": sum(
                         item["kind"] == "METRIC_UNSAT_CORE"
+                        for item in refinements
+                    ),
+                    "duplicate_center_refinements": sum(
+                        item.get("kind") == duplicate_center_cegar.KIND
                         for item in refinements
                     ),
                     "refinements": refinements,
@@ -324,9 +375,14 @@ def main() -> None:
     parser.add_argument("--outer-timeout-ms", type=int, default=300_000)
     parser.add_argument("--metric-timeout-ms", type=int, default=300_000)
     parser.add_argument("--max-refinements", type=int, default=1000)
+    parser.add_argument(
+        "--duplicate-center-cuts-per-witness", type=int, default=32
+    )
     parser.add_argument("--random-seed", type=int, default=0)
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
+    if args.duplicate_center_cuts_per_witness < 0:
+        parser.error("--duplicate-center-cuts-per-witness must be nonnegative")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     result = run(args)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")

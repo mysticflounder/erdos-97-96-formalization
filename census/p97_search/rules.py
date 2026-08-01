@@ -20,7 +20,8 @@ move CANDIDATE -> ADMITTED.  Registries are now split by domain:
 ``ADMITTED_RULES`` (node-domain: R-CIRC2), ``ADMITTED_ANNOTATED_RULES``
 (annotated-node-domain: R-FIBER4), ``ADMITTED_CELL_RULES``
 (cell-domain: R-CAPGE4), ``ADMITTED_CUT_MATRIX_RULES``
-(cut-matrix-domain: R-P1, R-P2, R-P3 -- spec sections 4.4/4.5 amendments), plus
+(cut-matrix-domain: R-P1, R-P2, R-P3, R-P4, R-P4-B-COL -- spec
+sections 4.4--4.7 amendments), plus
 ``ALL_RULES`` -- a single registry of every rule (all now ADMITTED)
 used for the rule-bank hash (``iterate.py``'s ``rule_bank_hash``).
 ``CANDIDATE_RULES`` is now empty -- the only remaining
@@ -51,15 +52,22 @@ __all__ = [
     "r_p1_predicate",
     "r_p2_predicate",
     "r_p3_predicate",
+    "r_p4_predicate",
+    "r_p4_b_col_predicate",
     "find_p1_occurrence",
     "find_p2_occurrence",
     "find_p3_occurrence",
+    "find_p4_occurrence",
+    "find_p4_b_col_occurrence",
+    "fr_theorem3_dense_small",
     "R_CIRC2",
     "R_FIBER4",
     "R_CAPGE4",
     "R_P1",
     "R_P2",
     "R_P3",
+    "R_P4",
+    "R_P4_B_COL",
     "ADMITTED_RULES",
     "ADMITTED_ANNOTATED_RULES",
     "ADMITTED_CELL_RULES",
@@ -368,6 +376,29 @@ def _validate_cut_matrix(matrix: _CutMatrix) -> tuple[tuple[int, ...], ...]:
     return rows
 
 
+def fr_theorem3_dense_small(matrix: _CutMatrix) -> bool:
+    """Diagnostic for the certified Fishburn--Reeds Theorem-3 antecedent.
+
+    Return whether both dimensions are at least three,
+    ``rows + columns < 20``, and every row and column has degree at least
+    three.  This pure helper validates the same rectangular 0/1 input accepted
+    by the cut-pattern scanners, but deliberately performs no pattern scan and
+    is not a pruning ``Rule``.  The caller still owns all cut-matrix geometry
+    and source-pattern attribution.
+    """
+
+    mat = _validate_cut_matrix(matrix)
+    n_rows = len(mat)
+    n_cols = len(mat[0]) if mat else 0
+    return (
+        n_rows >= 3
+        and n_cols >= 3
+        and n_rows + n_cols < 20
+        and all(sum(row) >= 3 for row in mat)
+        and all(sum(mat[r][c] for r in range(n_rows)) >= 3 for c in range(n_cols))
+    )
+
+
 def find_p1_occurrence(matrix: _CutMatrix) -> tuple[int, int, int, int] | None:
     """First (r1, r2, c1, c2) with all four cells 1 (a K_{2,2}), else None."""
 
@@ -456,50 +487,100 @@ R_P2 = Rule(
 
 
 # ---------------------------------------------------------------------------
-# R-P3 (ADMITTED, spec section 4.5 amendment 2026-07-28).  Cut-matrix domain,
-# same semantics contract as R-P1/R-P2.  Covers ONLY the CERTIFIED portion of
-# the P3 forbidden-pattern family: row-cases R1 (r_a<r_b<r_c<r_d) and R3
-# (r_b=r_c), both column sub-cases (fr-pattern-p3-proof-draft.md Theorem 2,
-# PROVEN + AUDITED 2026-07-28).  Row-case R2 (r_a<r_c<r_b<r_d) is OPEN --
-# CONJECTURED with empirical support only -- and is DELIBERATELY EXCLUDED.
+# R-P3 (ADMITTED, spec section 4.5 amendments 2026-07-28).  Cut-matrix
+# domain, same semantics contract as R-P1/R-P2.  Covers the FULL source P3
+# family: exact row-order cases R1 (r_a<r_b<r_c<r_d), R2
+# (r_a<r_c<r_b<r_d), and R3 (r_b=r_c), each with distinct inner columns
+# (c_k<c_h) or merged inner columns (c_k=c_h), plus their transposes.
 #
-# Four relative templates, derived directly from Theorem 2's cell
-# definitions (orchestrator, 2026-07-28).  Checked closed under transpose --
-# R1xC1 and R3xC2 are each self-transpose, R1xC2 and R3xC1 are each other's
-# transpose -- so scanning a C2-read matrix for all four covers BOTH pattern
-# orientations (Proposition 5) without a separate orientation pass, exactly
-# as R-P2's variant B is variant A's transpose.
-#
-# Soundness check against R2 (orchestrator, 2026-07-28): R2's own relative
-# templates (same dimensions, derived the same way from Theorem 2 section
-# 5.2's cyclic order) are set-DISTINCT from all four admitted templates:
-#   R2xC1 = {(0,0),(0,1),(2,0),(1,3),(3,2),(3,3)} vs R1xC1's (1,0),(2,3)
-#   R2xC2 = {(0,0),(0,1),(2,0),(1,2),(3,1),(3,2)} vs R1xC2's (1,0),(2,2)
-# so a matrix whose only qualifying occurrence is a pure R2 pattern is NOT
-# fired on -- this admission does not silently extend to the unproven case.
+# The six orientation-1 templates come directly from the source cell set.
+# We then transpose every template (Proposition 5), deduplicate equal shapes,
+# and scan the resulting eight distinct shapes.  R1/distinct-inner and
+# R3/merged-inner are self-transpose; R1/merged-inner and R3/distinct-inner
+# transpose to one another; only R2 contributes two additional transpose
+# shapes.  This construction makes the orientation closure explicit without
+# overloading "C1"/"C2": here C2 means only the pinned opposed traversal
+# convention.
 # ---------------------------------------------------------------------------
 
-_P3_R1C1 = ((0, 0), (0, 1), (1, 0), (2, 3), (3, 2), (3, 3))  # 4 rows x 4 cols
-_P3_R1C2 = ((0, 0), (0, 1), (1, 0), (2, 2), (3, 1), (3, 2))  # 4 rows x 3 cols
-_P3_R3C1 = ((0, 0), (0, 1), (1, 0), (1, 3), (2, 2), (2, 3))  # 3 rows x 4 cols
-_P3_R3C2 = ((0, 0), (0, 1), (1, 0), (1, 2), (2, 1), (2, 2))  # 3 rows x 3 cols
-
-_P3_VARIANTS = (
-    ("R1xC1", 4, 4, _P3_R1C1),
-    ("R1xC2", 4, 3, _P3_R1C2),
-    ("R3xC1", 3, 4, _P3_R3C1),
-    ("R3xC2", 3, 3, _P3_R3C2),
+_P3_SOURCE_VARIANTS = (
+    (
+        "R1-distinct-inner",
+        4,
+        4,
+        ((0, 0), (0, 1), (1, 0), (2, 3), (3, 2), (3, 3)),
+    ),
+    (
+        "R1-merged-inner",
+        4,
+        3,
+        ((0, 0), (0, 1), (1, 0), (2, 2), (3, 1), (3, 2)),
+    ),
+    (
+        "R2-distinct-inner",
+        4,
+        4,
+        ((0, 0), (0, 1), (2, 0), (1, 3), (3, 2), (3, 3)),
+    ),
+    (
+        "R2-merged-inner",
+        4,
+        3,
+        ((0, 0), (0, 1), (2, 0), (1, 2), (3, 1), (3, 2)),
+    ),
+    (
+        "R3-distinct-inner",
+        3,
+        4,
+        ((0, 0), (0, 1), (1, 0), (1, 3), (2, 2), (2, 3)),
+    ),
+    (
+        "R3-merged-inner",
+        3,
+        3,
+        ((0, 0), (0, 1), (1, 0), (1, 2), (2, 1), (2, 2)),
+    ),
 )
+
+
+def _p3_transpose_variant(
+    variant: tuple[str, int, int, tuple[tuple[int, int], ...]],
+) -> tuple[str, int, int, tuple[tuple[int, int], ...]]:
+    name, n_rows, n_cols, cells = variant
+    return (
+        f"{name}-transpose",
+        n_cols,
+        n_rows,
+        tuple(sorted((col, row) for row, col in cells)),
+    )
+
+
+def _p3_all_variants(
+) -> tuple[tuple[str, int, int, tuple[tuple[int, int], ...]], ...]:
+    """Source orientation followed by its distinct transpose shapes."""
+
+    variants = _P3_SOURCE_VARIANTS + tuple(
+        _p3_transpose_variant(variant) for variant in _P3_SOURCE_VARIANTS
+    )
+    seen: set[tuple[int, int, frozenset[tuple[int, int]]]] = set()
+    unique = []
+    for variant in variants:
+        name, n_rows, n_cols, cells = variant
+        key = (n_rows, n_cols, frozenset(cells))
+        if key not in seen:
+            seen.add(key)
+            unique.append((name, n_rows, n_cols, cells))
+    return tuple(unique)
+
+
+_P3_VARIANTS = _p3_all_variants()
+assert len(_P3_VARIANTS) == 8
 
 
 def find_p3_occurrence(
     matrix: _CutMatrix,
 ) -> tuple[str, tuple[int, ...], tuple[int, ...]] | None:
-    """First (variant, rows, cols) P3 R1/R3-sub-family occurrence, else None.
-
-    variant is one of "R1xC1", "R1xC2", "R3xC1", "R3xC2".  Row-case R2 is
-    NOT scanned for (see module-level comment above) -- it is unproven.
-    """
+    """First (variant, rows, cols) full source-P3 occurrence, else None."""
 
     mat = _validate_cut_matrix(matrix)
     n_rows = len(mat)
@@ -515,8 +596,7 @@ def find_p3_occurrence(
 
 
 def r_p3_predicate(matrix: _CutMatrix) -> bool:
-    """True (prune) iff the C2 cut matrix contains a P3 R1/R3-sub-family
-    occurrence (row-case R2 excluded, unproven) as a submatrix."""
+    """True iff the C2 cut matrix contains a full source-P3 occurrence."""
 
     return find_p3_occurrence(matrix) is not None
 
@@ -527,18 +607,154 @@ R_P3 = Rule(
     hypotheses=("convex", "contiguous-cut", "same-distance-cells", "C2-orientation"),
     predicate=r_p3_predicate,
     citation=(
-        "scratch/p97-search-lane/fr-pattern-p3-proof-draft.md Theorem 2 "
-        "(row-cases R1/R3 only), PROVEN + AUDITED 2026-07-28 (math-skeptic; "
-        "finding F4, a vacuous n=4 step in Proposition 3, patched same day; "
-        "no other gap found): a new mechanism (no strictly convex n-gon has "
-        "4 acute interior angles, applied via a coincidental-apex transfer) "
-        "forbids both orientations of the R1/R3 sub-family under C2. "
-        "Row-case R2 is OPEN (CONJECTURED, empirical support only, "
-        "fr-pattern-p3-proof-draft.md section 5.2/8) and is DELIBERATELY "
-        "EXCLUDED from this rule -- see the module-level soundness check "
-        "comment. C2 is LOAD-BEARING for the same reason as R-P2 (Lemma R' "
-        "reuses the patched C2-specific restriction bracket). "
+        "scratch/p97-search-lane/fr-pattern-p3-proof-draft.md Theorems 2 and "
+        "6 and Proposition 4, plus p3-r2-compute/RESULTS.md sections 3-4 "
+        "and p3-r2-compute/SKEPTIC-2026-07-28.md, PROVEN + independently "
+        "CERTIFIED 2026-07-28: the "
+        "four-acute-angle mechanism forbids row cases R1/R3, and exact radial-"
+        "order angle contradictions forbid R2 for both distinct and merged "
+        "inner columns. Proposition 5 transfers every case to the transposed "
+        "source orientation. Lemma R' supplies restriction inheritance from "
+        "an ambient cut to the selected strictly convex polygon. C2 is "
+        "LOAD-BEARING because Lemma R' uses the patched C2-specific "
+        "restriction bracket. "
         "PHASE2-SPEC.md section 4.5."
+    ),
+    domain="cut-matrix",
+)
+
+
+# ---------------------------------------------------------------------------
+# R-P4 (ADMITTED, spec section 4.6 amendment 2026-07-28).  The original
+# Figure 4 was checked independently twice at 600 dpi.  In zero-based
+# relative indices on a selected k x k submatrix (k >= 3):
+#   A = {(i,k-2-i),(i,k-1-i): 0 <= i <= k-2}
+#       union {(k-1,0),(k-1,k-1)}
+#   B = {(0,0),(0,k-1)}
+#       union {(i,k-1-i),(i,k-i): 1 <= i <= k-1}.
+# B is the simultaneous row-and-column reversal of A.  The column-only
+# reversal B_col from the original draft was a mis-transcription and is
+# deliberately NOT scanned by R-P4; it has a separate admitted rule below.
+# ---------------------------------------------------------------------------
+
+
+def _p4_cells(k: int, variant: str) -> tuple[tuple[int, int], ...]:
+    if variant == "A":
+        return tuple(
+            cell
+            for i in range(k - 1)
+            for cell in ((i, k - 2 - i), (i, k - 1 - i))
+        ) + ((k - 1, 0), (k - 1, k - 1))
+    if variant == "B":
+        return ((0, 0), (0, k - 1)) + tuple(
+            cell
+            for i in range(1, k)
+            for cell in ((i, k - 1 - i), (i, k - i))
+        )
+    raise ValueError(f"unknown P4 variant {variant!r}")
+
+
+def find_p4_occurrence(
+    matrix: _CutMatrix,
+) -> tuple[str, tuple[int, ...], tuple[int, ...]] | None:
+    """First actual Figure-4 P4 occurrence (variant, rows, cols), else None."""
+
+    mat = _validate_cut_matrix(matrix)
+    n_rows = len(mat)
+    n_cols = len(mat[0]) if mat else 0
+    for k in range(3, min(n_rows, n_cols) + 1):
+        cells_by_variant = tuple(
+            (variant, _p4_cells(k, variant)) for variant in ("A", "B")
+        )
+        for rows in combinations(range(n_rows), k):
+            for cols in combinations(range(n_cols), k):
+                for variant, cells in cells_by_variant:
+                    if all(mat[rows[ri]][cols[ci]] for ri, ci in cells):
+                        return (variant, rows, cols)
+    return None
+
+
+def r_p4_predicate(matrix: _CutMatrix) -> bool:
+    """True iff the C2 cut matrix contains an actual Figure-4 P4 pattern."""
+
+    return find_p4_occurrence(matrix) is not None
+
+
+R_P4 = Rule(
+    id="R-P4",
+    status=ADMITTED,
+    hypotheses=("convex", "contiguous-cut", "same-distance-cells", "C2-orientation"),
+    predicate=r_p4_predicate,
+    citation=(
+        "scratch/p97-search-lane/fr-pattern-p4-proof-draft.md sections 7/7A, "
+        "PROVEN + AUDITED 2026-07-28: variant A is forbidden by "
+        "antipodal-matching extremality; the source variant B is its "
+        "simultaneous row-and-column reversal and is forbidden by a "
+        "C2-preserving symmetry. Source transcription HIGH confidence after "
+        "two independent 600 dpi inspections of the original Fishburn-Reeds "
+        "PDF page 8 / printed page 88. The auxiliary column-only B_col is "
+        "not scanned by R-P4 and has a separate rule ID. "
+        "PHASE2-SPEC.md section 4.6."
+    ),
+    domain="cut-matrix",
+)
+
+
+# ---------------------------------------------------------------------------
+# R-P4-B-COL (ADMITTED, spec section 4.7 amendment 2026-07-28).
+# This is NOT a Figure-4/source P4 variant.  It is the independently proved
+# auxiliary B_col family from fr-pattern-p4-proof-draft.md sections 8--10.
+# In zero-based relative indices on a selected k x k submatrix (k >= 3):
+#   B_col = {(i,i),(i,i+1): 0 <= i <= k-2}
+#           union {(k-1,k-1),(k-1,0)}.
+# Keeping a distinct scanner and rule ID preserves the source-transcription
+# boundary of R-P4 while admitting the extra certified obstruction.
+# ---------------------------------------------------------------------------
+
+
+def _p4_b_col_cells(k: int) -> tuple[tuple[int, int], ...]:
+    return tuple(
+        cell
+        for i in range(k - 1)
+        for cell in ((i, i), (i, i + 1))
+    ) + ((k - 1, k - 1), (k - 1, 0))
+
+
+def find_p4_b_col_occurrence(
+    matrix: _CutMatrix,
+) -> tuple[tuple[int, ...], tuple[int, ...]] | None:
+    """First auxiliary B_col occurrence (rows, cols), else None."""
+
+    mat = _validate_cut_matrix(matrix)
+    n_rows = len(mat)
+    n_cols = len(mat[0]) if mat else 0
+    for k in range(3, min(n_rows, n_cols) + 1):
+        cells = _p4_b_col_cells(k)
+        for rows in combinations(range(n_rows), k):
+            for cols in combinations(range(n_cols), k):
+                if all(mat[rows[ri]][cols[ci]] for ri, ci in cells):
+                    return (rows, cols)
+    return None
+
+
+def r_p4_b_col_predicate(matrix: _CutMatrix) -> bool:
+    """True iff the C2 cut matrix contains the certified auxiliary B_col."""
+
+    return find_p4_b_col_occurrence(matrix) is not None
+
+
+R_P4_B_COL = Rule(
+    id="R-P4-B-COL",
+    status=ADMITTED,
+    hypotheses=("convex", "contiguous-cut", "same-distance-cells", "C2-orientation"),
+    predicate=r_p4_b_col_predicate,
+    citation=(
+        "scratch/p97-search-lane/fr-pattern-p4-proof-draft.md sections 8--10, "
+        "PROVEN + AUDITED 2026-07-28: auxiliary B_col has cells "
+        "(rho_i,c_i),(rho_i,c_{i+1}) with cyclic c_{k+1}=c_1 and is "
+        "forbidden by Proposition C's strict chain inequality F_k>N_k. "
+        "This is an independently certified auxiliary obstruction, NOT a "
+        "Fishburn-Reeds Figure-4/source P4 variant. PHASE2-SPEC.md section 4.7."
     ),
     domain="cut-matrix",
 )
@@ -547,9 +763,24 @@ R_P3 = Rule(
 ADMITTED_RULES: tuple[Rule, ...] = (R_CIRC2,)
 ADMITTED_ANNOTATED_RULES: tuple[Rule, ...] = (R_FIBER4,)
 ADMITTED_CELL_RULES: tuple[Rule, ...] = (R_CAPGE4,)
-ADMITTED_CUT_MATRIX_RULES: tuple[Rule, ...] = (R_P1, R_P2, R_P3)
+ADMITTED_CUT_MATRIX_RULES: tuple[Rule, ...] = (
+    R_P1,
+    R_P2,
+    R_P3,
+    R_P4,
+    R_P4_B_COL,
+)
 CANDIDATE_RULES: tuple[Rule, ...] = ()
-ALL_RULES: tuple[Rule, ...] = (R_CIRC2, R_FIBER4, R_CAPGE4, R_P1, R_P2, R_P3)
+ALL_RULES: tuple[Rule, ...] = (
+    R_CIRC2,
+    R_FIBER4,
+    R_CAPGE4,
+    R_P1,
+    R_P2,
+    R_P3,
+    R_P4,
+    R_P4_B_COL,
+)
 
 
 def apply_rule(rule: Rule, obj: Any) -> bool:

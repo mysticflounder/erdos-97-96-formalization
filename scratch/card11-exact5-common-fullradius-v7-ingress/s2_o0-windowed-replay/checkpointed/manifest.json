@@ -1,0 +1,129 @@
+{
+  "artifacts": {
+    "checkpoint_cnf": {
+      "byte_count": 137110,
+      "path": "checkpoint.cnf",
+      "sha256": "7be869d4069e10c3d825c36c9a5b29ada74c92fcf26a98539caef5b8893d5f16"
+    },
+    "checkpoint_map": {
+      "byte_count": 70747,
+      "path": "checkpoint-map.tsv",
+      "sha256": "efd3b93e1461444bc15e6a6cf86ac6ee79421f4040c89400d5cd0c0fd6481951"
+    },
+    "shard_1_lrat": {
+      "byte_count": 771519,
+      "path": "shard-1.lrat",
+      "sha256": "e42bbaf1a306628d5a83f934d71d38b06c0b76d8c5b8e924e1081894c3f7ee1c"
+    },
+    "shard_2_lrat": {
+      "byte_count": 1782622,
+      "path": "shard-2.lrat",
+      "sha256": "8e0abf27ab48cc1630dc16fc4b3e9b2386c4074e74830e54b8e2fdb8fe7a33b5"
+    },
+    "start_cnf": {
+      "byte_count": 1409695,
+      "path": "start.cnf",
+      "sha256": "ee65de56f8b1f733957bd17b939efae63dbc9afbab21c0837af35f3cdae8b24c"
+    }
+  },
+  "bindings": {
+    "checkpoint": "a1e4cbcd0d3b7db8d0282ec8fa6c2a021d8e29a50215160889d133626824dfef",
+    "construction": "Each binding is SHA-256(label NUL predecessor/content digests as raw 32-byte values).",
+    "shard_1": "917633c5a3c832bf2292cbeea277f3edcba642d62cfd5a1ea8417f41ea3598d4",
+    "shard_2": "15d05da1f0e8920d5683d62d0254aba4f88a38b0c5760fcf08e2e3a60de69003"
+  },
+  "claim_scope": "This package is a deterministic re-encoding of one hashed normalized pure-RUP proof. It is not itself a RUP proof check, a source-to-CNF bridge, or a production theorem.",
+  "counts": {
+    "additions": 6611,
+    "base_clause_count": 81253,
+    "checkpoint_active_clause_count": 6547,
+    "deleted_ids": 87619,
+    "deletions": 5039,
+    "final_active_clause_count": 245,
+    "hints": 301200,
+    "peak_active_clause_count": 81253,
+    "shard_1": {
+      "additions": 3305,
+      "deleted_ids": 78011,
+      "deletions": 3057,
+      "hints": 31320,
+      "lines": 6362
+    },
+    "shard_2": {
+      "additions": 3306,
+      "deleted_ids": 9608,
+      "deletions": 1982,
+      "hints": 269880,
+      "lines": 5288
+    },
+    "source_lines": 11650,
+    "terminal_empty_global_ids": [
+      87864
+    ],
+    "variable_count": 49357
+  },
+  "epistemic_status": "STRUCTURALLY VALIDATED PURE-RUP SHARDS; LEAN REPLAY REQUIRED",
+  "lean_replay": null,
+  "materializer_invariants": [
+    "The source certificate hash and its CNF/LRAT artifact hashes match when a source certificate is supplied.",
+    "Base ids are 1..N and addition ids are dense append ids.",
+    "Every addition has exactly two zero terminators.",
+    "Every source and added clause has distinct variables and is non-tautological.",
+    "Every hint is positive, earlier than its addition, and active.",
+    "Every deletion names an active clause and repeated deletions are rejected.",
+    "The checkpoint is the active clause list ordered by global id.",
+    "The second shard translates every deletion and hint through one injective local-id map; missing mappings are rejected.",
+    "The final active formula contains an empty clause."
+  ],
+  "numbering": {
+    "base_clause_ids": [
+      1,
+      81253
+    ],
+    "checkpoint_local_ids": [
+      1,
+      6547
+    ],
+    "checkpoint_order": "increasing_active_global_clause_id",
+    "deletion_action_id": 1,
+    "global_addition_ids": [
+      81254,
+      87864
+    ],
+    "second_shard_first_global_addition": 84559,
+    "second_shard_first_local_addition": 6548,
+    "split_source_byte_offset": 771519,
+    "split_source_line": 6363
+  },
+  "package_sha256": "86a40ec2597f370b1893cdb363e24e0d30f509b1ccc255fe5cff61e4643d5390",
+  "schema": "p97-checkpointed-pure-rup-package-v1",
+  "source": {
+    "certificate": {
+      "byte_count": 1728,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-ingress/s2_o0-windowed-replay/source-manifest.json",
+      "sha256": "551c2aa18f39479c61e835da1cf39971a215111a5f2d81409297bb555a134986"
+    },
+    "cnf": {
+      "byte_count": 1409695,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-ingress/s2_o0-ingress/core.cnf",
+      "sha256": "ee65de56f8b1f733957bd17b939efae63dbc9afbab21c0837af35f3cdae8b24c"
+    },
+    "normalized_lrat": {
+      "byte_count": 2868693,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-ingress/s2_o0-pure-rup/core.plain.dense.lrat",
+      "sha256": "9475c3f9923546a16bd5ebdc01cc538b77cbd6d4f9d1119ef01c93f5fe399350"
+    }
+  },
+  "tools": {
+    "lean_checker": {
+      "byte_count": 32211,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/Certificate/CheckpointedRup.lean",
+      "sha256": "6c670c24b989f8024f43f6362ffc031c040eba77e68293060aa65cb9cb25a8e8"
+    },
+    "materializer": {
+      "byte_count": 41618,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-lrat-ingress/materialize_checkpointed_rup.py",
+      "sha256": "e3c28ae5fe05679973022b08266ec1d6c7a6bd097a9753aeb8ace5fc0a1a9939"
+    }
+  }
+}

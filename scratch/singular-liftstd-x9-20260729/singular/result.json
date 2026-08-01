@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "/opt/homebrew/bin/Singular",
+    "-q",
+    "scratch/singular-liftstd-x9-20260729/singular/job.sing"
+  ],
+  "elapsed_seconds": 1606.5692189580295,
+  "returncode": 0,
+  "stdin": "DEVNULL"
+}

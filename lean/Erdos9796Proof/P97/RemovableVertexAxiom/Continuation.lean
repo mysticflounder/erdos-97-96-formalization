@@ -2,7 +2,8 @@ import Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusBank
 import Erdos9796Proof.P97.RemovableVertexAxiom.ErasedPinRowResiduals
 import Erdos9796Proof.P97.ErasedCertificate.P4UClosure
 import Erdos9796Proof.P97.ErasedCertificate.P4SClosure
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure
+import Erdos9796Proof.P97.ATail.FiniteN11Frontier
+import Erdos9796Proof.P97.PropositionEExactTen
 
 /-!
 # Removable-vertex continuation branch
@@ -19,6 +20,7 @@ open scoped EuclideanGeometry
 namespace Problem97
 
 open SurplusCOMPGBank
+open ATailFiniteN11Frontier
 open CapSelectedRowCounting.SurplusCapPacket
 
 /-- The local non-surplus Moser-cap containment input supplies the `U2`
@@ -237,13 +239,14 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
             ha1_notin_base, ha0_off, ha1_off⟩
         -- The direct surplus-opposite branch now has the exact U5 dangerous
         -- triple, selected candidate, exact radius class, and auxiliary
-        -- off-circle support vertices.  The card-ten arm is handled by the P4U
-        -- bank; the card-eleven branch remains a classifier obligation.
+        -- off-circle support vertices.  The card-ten arm is handled directly
+        -- by Proposition E; the card-eleven branch remains a classifier
+        -- obligation.
         by_cases hcard5 : S.surplusCap.card = 5
-        · exact
-            ErasedCertificate.false_of_surplusOppositeErasedPinTriple_of_cardFive
-              hne hconv hK4 hM44 hcontain hcard5 hxI
-              (by simpa [D] using htriple)
+        · exact propositionE_n10_of_u2FullDistanceClasses D
+            (card_eq_ten_of_isM44_card_five hDIsM44
+              (by simpa [D] using hcard5))
+            hDIsM44 hDU2.2.1
         · have hgt5 : 5 < S.surplusCap.card := by
             have hge5 := hM44.surplus_card_ge_five
             omega
@@ -277,13 +280,14 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
             ha1_notin_base, ha0_off, ha1_off⟩
         -- The direct surplus-interior branch now has the exact U5 dangerous
         -- triple, selected candidate, exact radius class, and auxiliary
-        -- off-circle support vertices.  The card-ten arm is handled by the P4S
-        -- bank; the card-eleven branch remains a classifier obligation.
+        -- off-circle support vertices.  The card-ten arm is handled directly
+        -- by Proposition E; the card-eleven branch remains a classifier
+        -- obligation.
         by_cases hcard5 : S.surplusCap.card = 5
-        · exact
-            ErasedCertificate.false_of_surplusInteriorErasedPinTriple_of_cardFive
-              hne hconv hK4 hM44 hcontain hcard5 hxI hpI
-              (by simpa [D] using htriple)
+        · exact propositionE_n10_of_u2FullDistanceClasses D
+            (card_eq_ten_of_isM44_card_five hDIsM44
+              (by simpa [D] using hcard5))
+            hDIsM44 hDU2.2.1
         · have hgt5 : 5 < S.surplusCap.card := by
             have hge5 := hM44.surplus_card_ge_five
             omega
@@ -755,8 +759,11 @@ theorem removableVertexOfLarge_of_nonIsM44 :
   -- Minimality supplies a critical shell system for the A-tail contradiction.
   obtain ⟨H⟩ := D.exists_criticalShellSystem_of_minimal hmin
   exfalso
-  exact ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap
-    D.packet hmin hNoM44D hDcard H
+  by_cases hcard11 : D.A.card = 11
+  · exact false_of_twoLargeCaps_commonCriticalMap_of_card_eq_eleven
+      D.packet hmin hNoM44D hcard11 H
+  · exact ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap
+      D.packet hmin hNoM44D hDcard H
 
 /-- Closed adapter from the three-way split to the existing removable-vertex
 spine node. -/

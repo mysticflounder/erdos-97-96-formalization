@@ -1,0 +1,98 @@
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:20:* a common-deletion packet at the fresh blocker and physical apex;
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:161:structure FreshOutsideSecondBlockerFiber
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:207:def FreshOutsideSecondBlockerFiber.toSwappedFirst
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:216:    (Q : FreshOutsideSecondBlockerFiber P Pρ) :
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:350:      Nonempty (FreshOutsideSecondBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:161:structure FreshOutsideSecondBlockerFiber
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:207:def FreshOutsideSecondBlockerFiber.toSwappedFirst
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:216:    (Q : FreshOutsideSecondBlockerFiber P Pρ) :
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:350:      Nonempty (FreshOutsideSecondBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/RobustLargeRadius.lean:20:* a common-deletion packet at the fresh blocker and physical apex;
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:416:      hfreshA (oppApex1_mem_A S) hblockerA
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:29:namespace ATAILStageOneMinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:34:structure MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:47:theorem MinimalDeletionCore.shellAt_radius_eq
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:49:    (K : MinimalDeletionCore A U center)
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:155:theorem exists_minimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:167:    Nonempty (MinimalDeletionCore A U center) := by
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:226:theorem MinimalDeletionCore.capByIndex_card_ge_six_of_two_sources
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:229:    (K : MinimalDeletionCore D.A U center)
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:295:theorem MinimalDeletionCore.capByIndex_card_ge_six
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:298:    (K : MinimalDeletionCore D.A U center)
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:311:end ATAILStageOneMinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:141:      hfreshA (oppApex1_mem_A S) hblockerA
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:7:import Erdos9796Proof.P97.ATail.MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:19:`MinimalDeletionCore` supplies one exact critical shell per deleted source
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:28:open ATAILStageOneMinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:220:theorem exists_fresh_sharedRadiusPair_or_minimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:232:        Nonempty (MinimalDeletionCore D.A V center)) := by
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:246:    apply exists_minimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1542:/-- The fresh-blocker arm reduces, by the checked blocker-two-cycle
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1621:physical class; otherwise the two deleted sources furnish two fresh blockers
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1708:      (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1763:        (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1770:        (ATAILStageOneMinimalDeletionCore.exists_minimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2089:          (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2115:      ATAILStageOneMinimalDeletionCore.MinimalDeletionCore D.A U c :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2156:        (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2160:          (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore D.A U c)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2204:      ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7282:/-- Positive cap-eight alignment required for a fresh third blocker fiber.
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7644:/-- Mutual cross-membership at one fresh blocker value is exactly a fresh
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8997:private theorem firstApex_minimalDeletionCore_of_crossRetainedEndpoints
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9005:      (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9039:  apply ATAILStageOneMinimalDeletionCore.exists_minimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9130:second enlarged-fiber packet. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9145:    Nonempty (FreshOutsideSecondBlockerFiber P Pρ) := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9292:    firstApex_minimalDeletionCore_of_crossRetainedEndpoints
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9299:      Nonempty (FreshOutsideSecondBlockerFiber P Pρ) ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9354:collision radii, so the fresh co-radial blocker-rigidity terminal is
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9427:    (hsecond : Nonempty (FreshOutsideSecondBlockerFiber P Pρ)) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9444:    (hsecond.map FreshOutsideSecondBlockerFiber.toSwappedFirst)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10063:fresh point's blocker.  The two source shells omit one another and their actual
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:21:survives at both the first apex and the fresh point's actual blocker.  Together
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:272:      L.fresh_ne_source₂.symm P.blockers_eq.symm
+lean/Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean:141:      hfreshA (oppApex1_mem_A S) hblockerA
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1542:/-- The fresh-blocker arm reduces, by the checked blocker-two-cycle
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1621:physical class; otherwise the two deleted sources furnish two fresh blockers
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1708:      (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1763:        (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1770:        (ATAILStageOneMinimalDeletionCore.exists_minimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2089:          (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2115:      ATAILStageOneMinimalDeletionCore.MinimalDeletionCore D.A U c :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2156:        (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2160:          (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore D.A U c)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2204:      ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7282:/-- Positive cap-eight alignment required for a fresh third blocker fiber.
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7644:/-- Mutual cross-membership at one fresh blocker value is exactly a fresh
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8997:private theorem firstApex_minimalDeletionCore_of_crossRetainedEndpoints
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9005:      (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9039:  apply ATAILStageOneMinimalDeletionCore.exists_minimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9130:second enlarged-fiber packet. -/
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9145:    Nonempty (FreshOutsideSecondBlockerFiber P Pρ) := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9292:    firstApex_minimalDeletionCore_of_crossRetainedEndpoints
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9299:      Nonempty (FreshOutsideSecondBlockerFiber P Pρ) ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9354:collision radii, so the fresh co-radial blocker-rigidity terminal is
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9427:    (hsecond : Nonempty (FreshOutsideSecondBlockerFiber P Pρ)) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:9444:    (hsecond.map FreshOutsideSecondBlockerFiber.toSwappedFirst)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10063:fresh point's blocker.  The two source shells omit one another and their actual
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:21:survives at both the first apex and the fresh point's actual blocker.  Together
+lean/Erdos9796Proof/P97/ATail/LocalizedCollisionMutualOmissionCycle.lean:272:      L.fresh_ne_source₂.symm P.blockers_eq.symm
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:29:namespace ATAILStageOneMinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:34:structure MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:47:theorem MinimalDeletionCore.shellAt_radius_eq
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:49:    (K : MinimalDeletionCore A U center)
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:155:theorem exists_minimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:167:    Nonempty (MinimalDeletionCore A U center) := by
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:226:theorem MinimalDeletionCore.capByIndex_card_ge_six_of_two_sources
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:229:    (K : MinimalDeletionCore D.A U center)
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:295:theorem MinimalDeletionCore.capByIndex_card_ge_six
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:298:    (K : MinimalDeletionCore D.A U center)
+lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:311:end ATAILStageOneMinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:7:import Erdos9796Proof.P97.ATail.MinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:19:`MinimalDeletionCore` supplies one exact critical shell per deleted source
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:28:open ATAILStageOneMinimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:220:theorem exists_fresh_sharedRadiusPair_or_minimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:232:        Nonempty (MinimalDeletionCore D.A V center)) := by
+lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:246:    apply exists_minimalDeletionCore
+lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean:416:      hfreshA (oppApex1_mem_A S) hblockerA

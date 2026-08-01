@@ -1,0 +1,39 @@
+{
+  "additions": 421331,
+  "artifacts": {
+    "normalization_log": {
+      "byte_count": 164,
+      "path": "normalize-lrat.log",
+      "sha256": "e2881eefd93726d41333237aa8d64ec8c5c539e0f938ce7044dd597dd84a6318"
+    },
+    "normalized_lrat": {
+      "byte_count": 740872924,
+      "path": "proof.normalized.lrat",
+      "sha256": "34ab8181df08a9a45594d58347a7a859e71d515e4efcd6f901d8dfebe69abf5b"
+    },
+    "raw_drat": {
+      "byte_count": 319630155,
+      "path": "proof.drat",
+      "sha256": "85d5fde40d58a64e58daac312933c38b26cc027b1b60289bde6204434d55ae69"
+    },
+    "raw_lrat": {
+      "byte_count": 741830534,
+      "path": "proof.lrat",
+      "sha256": "6c9d62e8a3b46054f61bcd17b6faf8695604f8e9635231c3dc9eef2e5fd61c4f"
+    },
+    "verification_log": {
+      "byte_count": 1161,
+      "path": "drat-trim.log",
+      "sha256": "9c78ecb02a1ea4e275846bdd6ebda942bc449021b3345c06359577fb6adf2ea8"
+    }
+  },
+  "checker_base_clauses": 273018,
+  "epistemic_status": "drat-trim independently verified this exact raw proof with zero RAT lemmas; Lean replay has not been run",
+  "proof_kind": "PURE_RUP",
+  "rat_lemmas": 0,
+  "redundant_literals": 1,
+  "schema": "card11_exact5_common_fullradius.v7.g3.pure-rup.v1",
+  "source_base_clauses": 273017,
+  "source_core_sha256": "310b30d0b9ad2787599ee9b0edce999edfb333934901ca578734182076771683",
+  "status": "EXTERNALLY_VERIFIED"
+}

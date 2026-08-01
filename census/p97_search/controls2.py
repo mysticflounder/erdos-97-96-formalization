@@ -3,8 +3,9 @@
 Implements ``census/p97_search/PHASE2-SPEC.md`` section 7 in full:
 G-P1-REGRESS, G-ANN-B1, G-CANON-ANN, G-CAP-ANN, G-FIBER, G-CAPGE4,
 G-ITER-DEDUP, G-ITER-SHADOW, G-ITER-KILL, G-SEEDED-2, G-SEED-K3,
-G-SEED-FR20, G-BANK-REVAL; plus G-CUTPAT (section 4.4 amendment,
-R-P1/R-P2 cut-matrix rules).
+G-SEED-FR20, G-BANK-REVAL; plus G-CUTPAT (sections 4.4--4.7 amendments,
+R-P1/R-P2/full-source-P3/P4 cut-matrix rules).  Phase-3 prerequisites add
+G-CANON-JOINT-EXACT, G-ITER-COMBINED, and G-ITER-MIXED-MODE.
 
 Run from the repo root:
     uv run python census/p97_search/controls2.py
@@ -50,9 +51,14 @@ from rules import (  # noqa: E402
     R_P1,
     R_P2,
     R_P3,
+    R_P4,
+    R_P4_B_COL,
     apply_rule,
     find_p2_occurrence,
     find_p3_occurrence,
+    find_p4_occurrence,
+    find_p4_b_col_occurrence,
+    fr_theorem3_dense_small,
     prune_cut_matrix,
     r_fiber4_predicate,
     r_fiber4_profile_violates,
@@ -175,6 +181,21 @@ def _random_cap_annotated_node(rng: random.Random, n: int, k: int) -> AnnotatedN
     return AnnotatedNode(node=node, caps=caps)
 
 
+def _random_combined_annotated_node(
+    rng: random.Random, n: int, k: int
+) -> AnnotatedNode:
+    blocker_anode = _random_blocker_annotated_node(rng, n, k)
+    node = blocker_anode.node
+    M = frozenset(rng.sample(range(n), 3))
+    f = {x: rng.randint(0, 2) for x in range(n) if x not in M}
+    caps = CapAnnotation(node=node, M=M, f=f)
+    return AnnotatedNode(
+        node=node,
+        blocker=blocker_anode.blocker,
+        caps=caps,
+    )
+
+
 def _transport_annotated(anode: AnnotatedNode, perm: list[int]) -> AnnotatedNode:
     new_node = relabel(anode.node, perm)
     new_blocker = None
@@ -211,17 +232,19 @@ def _symmetric_complete_node(n: int, k: int) -> Node:
 
 def gate_canon_ann() -> str:
     rng = random.Random(20260728)
-    trials = 100
-    kinds_checked = {"blocker": 0, "caps": 0}
+    trials = 120
+    kinds_checked = {"blocker": 0, "caps": 0, "combined": 0}
 
     for trial in range(trials):
         n = rng.randint(4, 6)
         k = rng.randint(1, max(1, n - 3))
-        kind = "blocker" if trial % 2 == 0 else "caps"
+        kind = ("blocker", "caps", "combined")[trial % 3]
         if kind == "blocker":
             anode = _random_blocker_annotated_node(rng, n, k)
-        else:
+        elif kind == "caps":
             anode = _random_cap_annotated_node(rng, n, k)
+        else:
+            anode = _random_combined_annotated_node(rng, n, k)
         kinds_checked[kind] += 1
 
         perm = list(range(n))
@@ -254,7 +277,14 @@ def gate_canon_ann() -> str:
     sym_caps = CapAnnotation(node=sym_node, M=sym_M, f=sym_f)
     sym_anode = AnnotatedNode(node=sym_node, blocker=sym_blocker, caps=None)
     sym_anode_caps = AnnotatedNode(node=sym_node, blocker=None, caps=sym_caps)
-    for label, anode in (("blocker", sym_anode), ("caps", sym_anode_caps)):
+    sym_anode_combined = AnnotatedNode(
+        node=sym_node, blocker=sym_blocker, caps=sym_caps
+    )
+    for label, anode in (
+        ("blocker", sym_anode),
+        ("caps", sym_anode_caps),
+        ("combined", sym_anode_combined),
+    ):
         rand_perm = list(range(n))
         rng.shuffle(rand_perm)
         transported = _transport_annotated(anode, rand_perm)
@@ -267,7 +297,86 @@ def gate_canon_ann() -> str:
     return (
         f"{trials}/{trials} random (annotated node, sigma) pairs agree "
         f"({kinds_checked}); symmetric n=4 node has |canonical_perms|={len(perms)} > 1, "
-        "both annotation kinds pass invariance on it too"
+        "all three annotation modes pass invariance on it too"
+    )
+
+
+# ---------------------------------------------------------------------------
+# G-CANON-JOINT-EXACT: on the fully symmetric n=4 node, enumerate all
+# 3^4 valid blocker maps and all 4*3 cap annotations.  Joint canonical
+# equality must induce exactly the same partition as an independent
+# brute-force search over all 4! label permutations and all 3! cap-index
+# permutations.  This detects over-merging that invariance alone cannot.
+# ---------------------------------------------------------------------------
+
+
+def _bruteforce_combined_key(anode: AnnotatedNode) -> tuple[Any, ...]:
+    from itertools import permutations
+
+    best: tuple[Any, ...] | None = None
+    n = anode.node.n
+    for perm_t in permutations(range(n)):
+        transported = _transport_annotated(anode, list(perm_t))
+        assert transported.blocker is not None and transported.caps is not None
+        moser = transported.caps.sorted_moser()
+        m_index = {m: j for j, m in enumerate(moser)}
+        for tau in permutations(range(3)):
+            cap_part = tuple(
+                ("M", tau[m_index[p]])
+                if p in m_index
+                else ("f", tau[transported.caps.f[p]])
+                for p in range(n)
+            )
+            candidate = (transported.blocker.c, cap_part)
+            if best is None or candidate < best:
+                best = candidate
+    assert best is not None
+    return best
+
+
+def gate_canon_joint_exact() -> str:
+    from itertools import combinations, product
+
+    n, k = 4, 1
+    node = _symmetric_complete_node(n, k)
+    canon_to_brute: dict[Any, set[Any]] = {}
+    brute_to_canon: dict[Any, set[Any]] = {}
+    count = 0
+
+    blocker_choices = [
+        tuple(choice)
+        for choice in product(*(tuple(q for q in range(n) if q != x) for x in range(n)))
+    ]
+    for c in blocker_choices:
+        blocker = BlockerAnnotation(node=node, c=c)
+        for M_t in combinations(range(n), 3):
+            M = frozenset(M_t)
+            non_moser = tuple(sorted(set(range(n)) - M))
+            for values in product(range(3), repeat=len(non_moser)):
+                caps = CapAnnotation(
+                    node=node,
+                    M=M,
+                    f=dict(zip(non_moser, values, strict=True)),
+                )
+                anode = AnnotatedNode(node=node, blocker=blocker, caps=caps)
+                canon_key = canonical_annotated(anode)
+                brute_key = _bruteforce_combined_key(anode)
+                canon_to_brute.setdefault(canon_key, set()).add(brute_key)
+                brute_to_canon.setdefault(brute_key, set()).add(canon_key)
+                count += 1
+
+    if any(len(keys) != 1 for keys in canon_to_brute.values()):
+        raise GateFailure("G-CANON-JOINT-EXACT: canonical form over-merged brute orbits")
+    if any(len(keys) != 1 for keys in brute_to_canon.values()):
+        raise GateFailure("G-CANON-JOINT-EXACT: canonical form split a brute orbit")
+    if len(canon_to_brute) != len(brute_to_canon):
+        raise GateFailure(
+            "G-CANON-JOINT-EXACT: canonical/brute orbit counts differ "
+            f"({len(canon_to_brute)} != {len(brute_to_canon)})"
+        )
+    return (
+        f"{count} combined annotations partition into {len(canon_to_brute)} "
+        "orbits identically under joint canonicalization and brute-force isomorphism"
     )
 
 
@@ -524,6 +633,92 @@ def gate_iter_kill() -> str:
 
 
 # ---------------------------------------------------------------------------
+# G-ITER-COMBINED: Phase-3 prerequisite.  A profiled exact cell accepts
+# one object carrying both annotations, applies blocker checks, and
+# publishes both the frame and blocker hypothesis tags.
+# ---------------------------------------------------------------------------
+
+
+def _combined_fixture() -> tuple[AnnotatedNode, Cell]:
+    n, k = 10, 4
+    offsets = (1, 2, 3, 5)
+    node = Node(
+        n=n,
+        k=k,
+        shells=tuple(
+            frozenset((p + offset) % n for offset in offsets) for p in range(n)
+        ),
+    )
+    blocker = BlockerAnnotation(
+        node=node,
+        c=tuple((x - 1) % n for x in range(n)),
+    )
+    M = frozenset({0, 1, 2})
+    caps = CapAnnotation(
+        node=node,
+        M=M,
+        f={3: 0, 4: 0, 5: 1, 6: 1, 7: 2, 8: 2, 9: 2},
+    )
+    anode = AnnotatedNode(node=node, blocker=blocker, caps=caps)
+    cell = Cell(k=k, n=n, profile=(4, 4, 5), exact=True)
+    return anode, cell
+
+
+def gate_iter_combined() -> str:
+    anode, cell = _combined_fixture()
+    bank = CanonicalBank(_bank_path("g-iter-combined"), cell)
+    gen = Generator(
+        name="g-iter-combined-probe",
+        coverage="PARTIAL",
+        produce=lambda _cell: iter((anode,)),
+    )
+    manifest = iterate_cell(cell, gen, bank)
+    entries = list(bank.entries().values())
+    if len(entries) != 1 or entries[0]["status"] != "OPEN":
+        raise GateFailure(f"G-ITER-COMBINED: expected one OPEN entry, got {entries}")
+    expected_hypotheses = ["blocker-annotated", "convex", "k=4", "n>9"]
+    if manifest["mode"] != "cap+blocker-annotated":
+        raise GateFailure(f"G-ITER-COMBINED: wrong mode {manifest['mode']!r}")
+    if manifest["published_hypotheses"] != expected_hypotheses:
+        raise GateFailure(
+            "G-ITER-COMBINED: wrong published hypotheses "
+            f"{manifest['published_hypotheses']!r}"
+        )
+    return (
+        "n=10 exact cyclic shell fixture banks OPEN in combined mode with "
+        f"published_hypotheses={expected_hypotheses}"
+    )
+
+
+# ---------------------------------------------------------------------------
+# G-ITER-MIXED-MODE: mode consistency is checked over every produced object,
+# even when the first object is rejected by cell admission.
+# ---------------------------------------------------------------------------
+
+
+def gate_iter_mixed_mode() -> str:
+    anode, cell = _combined_fixture()
+    bank = CanonicalBank(_bank_path("g-iter-mixed-mode"), cell)
+    gen = Generator(
+        name="g-iter-mixed-mode-probe",
+        coverage="PARTIAL",
+        # The bare object is rejected by this profiled cell.  It must still
+        # establish the run mode, causing the following combined object to
+        # fail the no-mixed-modes contract.
+        produce=lambda _cell: iter((anode.node, anode)),
+    )
+    try:
+        iterate_cell(cell, gen, bank)
+    except ValueError as exc:
+        if "mixed object modes" not in str(exc):
+            raise GateFailure(f"G-ITER-MIXED-MODE: wrong error: {exc}") from exc
+        return "rejected bare then admitted combined is rejected as mixed mode"
+    raise GateFailure(
+        "G-ITER-MIXED-MODE: rejected bare object hid a following combined mode"
+    )
+
+
+# ---------------------------------------------------------------------------
 # G-SEEDED-2: Phase-1 G-SEEDED plant-and-recover, through the full
 # iterate_cell path: exactly the planted valid node ends OPEN.
 # ---------------------------------------------------------------------------
@@ -675,6 +870,57 @@ def gate_cutpat() -> str:
 
     from itertools import combinations as _comb
 
+    # Diagnostic-only Fishburn--Reeds Theorem-3 antecedent.  Calling the
+    # helper must neither mutate the matrix nor alter the full scanner's
+    # exact attribution, order, or hypothesis union.
+    dense_3x3 = [[1] * 3 for _ in range(3)]
+    dense_copy = [row[:] for row in dense_3x3]
+    dense_before = prune_cut_matrix(dense_3x3)
+    expected_dense_fired = ("R-P1", "R-P2", "R-P3", "R-P4", "R-P4-B-COL")
+    expected_dense_hypotheses = frozenset(
+        {
+            "convex",
+            "one-side-contiguous-arc",
+            "contiguous-cut",
+            "same-distance-cells",
+            "C2-orientation",
+        }
+    )
+    assert dense_before.fired == expected_dense_fired, (
+        f"Theorem-3 diagnostic attribution baseline: {dense_before}"
+    )
+    assert dense_before.hypotheses == expected_dense_hypotheses, (
+        f"Theorem-3 diagnostic hypothesis baseline: {dense_before}"
+    )
+    assert fr_theorem3_dense_small(dense_3x3), (
+        "3x3 all-ones matrix must satisfy the dense-small diagnostic"
+    )
+    assert dense_3x3 == dense_copy, "Theorem-3 diagnostic mutated its input"
+    dense_after = prune_cut_matrix(dense_3x3)
+    assert dense_after == dense_before, (
+        "calling the Theorem-3 diagnostic changed exact pruning attribution: "
+        f"before={dense_before}, after={dense_after}"
+    )
+
+    degree_miss = [row[:] for row in dense_3x3]
+    degree_miss[0][0] = 0
+    assert not fr_theorem3_dense_small(degree_miss), (
+        "degree-two row/column must miss the dense-small diagnostic"
+    )
+    dense_3x4 = [[1] * 4 for _ in range(3)]
+    dense_4x3 = [list(row) for row in zip(*dense_3x4)]
+    assert fr_theorem3_dense_small(dense_3x4)
+    assert fr_theorem3_dense_small(dense_3x4) == fr_theorem3_dense_small(dense_4x3), (
+        "dense-small diagnostic is not transpose invariant"
+    )
+    degree_miss_t = [list(row) for row in zip(*degree_miss)]
+    assert fr_theorem3_dense_small(degree_miss) == fr_theorem3_dense_small(
+        degree_miss_t
+    ), "degree-miss diagnostic is not transpose invariant"
+    assert not fr_theorem3_dense_small([]), (
+        "empty matrix must not satisfy the Theorem-3 cut diagnostic vacuously"
+    )
+
     # R-P1 kill: K_{2,2} at non-contiguous rows/cols in a 3x4 matrix.
     p1_kill = [[0, 1, 0, 1], [0, 0, 0, 0], [0, 1, 0, 1]]
     res = prune_cut_matrix(p1_kill)
@@ -709,8 +955,12 @@ def gate_cutpat() -> str:
     res = prune_cut_matrix(va_spare)
     assert not res.pruned, f"P2 spare fired: {res}"
 
-    # Positive control: the S-FR-20 symmetric cut matrix (native C2)
-    # must fire NEITHER rule -- the configuration is exactly certified
+    # Exact-boundary control: the S-FR-20 symmetric cut matrix (native C2)
+    # has alpha+beta=20 and degree 3, so the strict dense-small diagnostic
+    # is false.  It must also survive the four source P1--P4 scanners.  The
+    # auxiliary B_col rule is checked only by the full-bank soundness scan
+    # and is not counted as Fishburn--Reeds Theorem-3 source evidence.
+    # The configuration is exactly certified
     # realizable (fr-certify/), so any firing would be an over-prune.
     fr = [[0] * 10 for _ in range(10)]
     for i, j in _seeds_mod._FR20_PAIRS:
@@ -719,6 +969,11 @@ def gate_cutpat() -> str:
     assert sum(map(sum, fr)) == 30 and all(sum(row) == 3 for row in fr), (
         "FR matrix must be symmetric with 30 ones, degree 3 per row"
     )
+    assert not fr_theorem3_dense_small(fr), (
+        "FR-20 alpha+beta=20 boundary must miss the strict dense-small diagnostic"
+    )
+    source_res = prune_cut_matrix(fr, rules=(R_P1, R_P2, R_P3, R_P4))
+    assert not source_res.pruned, f"FR-20 native C2 source P1--P4 over-pruned: {source_res}"
     res = prune_cut_matrix(fr)
     assert not res.pruned, f"FR-20 native C2 over-pruned: {res}"
 
@@ -748,24 +1003,65 @@ def gate_cutpat() -> str:
     else:
         raise AssertionError("prune_cut_matrix accepted a node-domain rule")
 
-    # Input validation: ragged and non-0/1 matrices raise ValueError.
+    # Input validation: both the scanner and diagnostic reject ragged and
+    # non-0/1 matrices via the shared cut-matrix validator.
     for bad in ([[0, 1], [0]], [[0, 2], [0, 1]]):
-        try:
-            prune_cut_matrix(bad)
-        except ValueError:
-            pass
-        else:
-            raise AssertionError(f"malformed matrix accepted: {bad}")
+        for consumer in (prune_cut_matrix, fr_theorem3_dense_small):
+            try:
+                consumer(bad)
+            except ValueError:
+                pass
+            else:
+                raise AssertionError(
+                    f"{consumer.__name__} accepted malformed matrix: {bad}"
+                )
 
-    # R-P3 (section 4.5 amendment): kill+spare for each of the four
-    # certified R1/R3-sub-family templates, at their exact minimal
-    # dimensions (P1/P2's non-contiguous embedding already covers subset
-    # semantics; this block's job is the template shapes themselves).
+    # R-P3 (section 4.5 amendment): exact positive, all-one-cell-deletion
+    # spare, and source-name noncollision controls for the six source
+    # orientation-1 row/inner-column cases plus the two additional R2
+    # transpose shapes.  The remaining four transposes are already equal to
+    # source shapes, so these eight templates are the full transpose closure.
     p3_templates = {
-        "R1xC1": (4, 4, ((0, 0), (0, 1), (1, 0), (2, 3), (3, 2), (3, 3))),
-        "R1xC2": (4, 3, ((0, 0), (0, 1), (1, 0), (2, 2), (3, 1), (3, 2))),
-        "R3xC1": (3, 4, ((0, 0), (0, 1), (1, 0), (1, 3), (2, 2), (2, 3))),
-        "R3xC2": (3, 3, ((0, 0), (0, 1), (1, 0), (1, 2), (2, 1), (2, 2))),
+        "R1-distinct-inner": (
+            4,
+            4,
+            ((0, 0), (0, 1), (1, 0), (2, 3), (3, 2), (3, 3)),
+        ),
+        "R1-merged-inner": (
+            4,
+            3,
+            ((0, 0), (0, 1), (1, 0), (2, 2), (3, 1), (3, 2)),
+        ),
+        "R2-distinct-inner": (
+            4,
+            4,
+            ((0, 0), (0, 1), (2, 0), (1, 3), (3, 2), (3, 3)),
+        ),
+        "R2-merged-inner": (
+            4,
+            3,
+            ((0, 0), (0, 1), (2, 0), (1, 2), (3, 1), (3, 2)),
+        ),
+        "R3-distinct-inner": (
+            3,
+            4,
+            ((0, 0), (0, 1), (1, 0), (1, 3), (2, 2), (2, 3)),
+        ),
+        "R3-merged-inner": (
+            3,
+            3,
+            ((0, 0), (0, 1), (1, 0), (1, 2), (2, 1), (2, 2)),
+        ),
+        "R2-distinct-inner-transpose": (
+            4,
+            4,
+            ((0, 0), (0, 2), (1, 0), (2, 3), (3, 1), (3, 3)),
+        ),
+        "R2-merged-inner-transpose": (
+            3,
+            4,
+            ((0, 0), (0, 2), (1, 0), (1, 3), (2, 1), (2, 3)),
+        ),
     }
     for name, (nr, nc, cells) in p3_templates.items():
         kill = [[0] * nc for _ in range(nr)]
@@ -774,32 +1070,138 @@ def gate_cutpat() -> str:
         res = prune_cut_matrix(kill)
         assert res.pruned and res.fired == ("R-P3",), f"P3 {name} kill: {res}"
         occ = find_p3_occurrence(kill)
-        assert occ is not None and occ[0] == name, f"P3 {name} witness: {occ}"
+        assert occ == (name, tuple(range(nr)), tuple(range(nc))), (
+            f"P3 {name} source-name collision/witness mismatch: {occ}"
+        )
 
-        spare = [row[:] for row in kill]
-        r0, c0 = cells[0]
-        spare[r0][c0] = 0
-        res = prune_cut_matrix(spare)
-        assert not res.pruned, f"P3 {name} spare fired: {res}"
+        for r0, c0 in cells:
+            spare = [row[:] for row in kill]
+            spare[r0][c0] = 0
+            res = prune_cut_matrix(spare, rules=(R_P3,))
+            assert not res.pruned, f"P3 {name} deletion spare {(r0, c0)} fired: {res}"
+            assert find_p3_occurrence(spare) is None, (
+                f"P3 {name} deletion spare {(r0, c0)} collided with another template"
+            )
 
-    # Soundness control: pure row-case-R2 occurrences (unproven, excluded
-    # by design) must NOT fire R-P3, at both column sub-cases.
-    r2c1 = [[0] * 4 for _ in range(4)]
-    for r, c in ((0, 0), (0, 1), (2, 0), (1, 3), (3, 2), (3, 3)):
-        r2c1[r][c] = 1
-    res = prune_cut_matrix(r2c1)
-    assert not res.pruned, f"pure R2xC1 over-pruned by R-P3: {res}"
+    # R-P4 (section 4.6 amendment): both actual source variants at k=3
+    # and k=5, embedded on non-contiguous rows and columns.  Isolate R-P4
+    # because the k=3 cycle may also be recognized by another admitted
+    # pattern rule.
+    p4_embeddings = {
+        3: ((0, 2, 5), (1, 3, 5), 6, 6),
+        5: ((0, 2, 4, 6, 8), (1, 3, 5, 7, 9), 9, 10),
+    }
+    for k, (rows, cols, nr, nc) in p4_embeddings.items():
+        relative = {
+            "A": tuple(
+                cell
+                for i in range(k - 1)
+                for cell in ((i, k - 2 - i), (i, k - 1 - i))
+            )
+            + ((k - 1, 0), (k - 1, k - 1)),
+            "B": ((0, 0), (0, k - 1))
+            + tuple(
+                cell
+                for i in range(1, k)
+                for cell in ((i, k - 1 - i), (i, k - i))
+            ),
+        }
+        for variant, cells in relative.items():
+            kill = [[0] * nc for _ in range(nr)]
+            for ri, ci in cells:
+                kill[rows[ri]][cols[ci]] = 1
+            res = prune_cut_matrix(kill, rules=(R_P4,))
+            assert res.pruned and res.fired == ("R-P4",), (
+                f"P4 {variant} k={k} kill: {res}"
+            )
+            occ = find_p4_occurrence(kill)
+            assert occ == (variant, rows, cols), f"P4 {variant} k={k} witness: {occ}"
 
-    r2c2 = [[0] * 3 for _ in range(4)]
-    for r, c in ((0, 0), (0, 1), (2, 0), (1, 2), (3, 1), (3, 2)):
-        r2c2[r][c] = 1
-    res = prune_cut_matrix(r2c2)
-    assert not res.pruned, f"pure R2xC2 over-pruned by R-P3: {res}"
+            spare = [row[:] for row in kill]
+            ri, ci = cells[0]
+            spare[rows[ri]][cols[ci]] = 0
+            res = prune_cut_matrix(spare, rules=(R_P4,))
+            assert not res.pruned, f"P4 {variant} k={k} spare fired: {res}"
 
-    assert R_P1.domain == R_P2.domain == R_P3.domain == "cut-matrix"
+            # The separately admitted auxiliary B_col scanner must not
+            # absorb either actual Figure-4 variant.
+            res = prune_cut_matrix(kill, rules=(R_P4_B_COL,))
+            assert not res.pruned, (
+                f"source P4 {variant} k={k} misclassified as B_col: {res}"
+            )
+
+    # Every B_col occurrence is already subsumed by P2-A.  For k >= 3,
+    # relative rows (0,k-2,k-1) and columns (0,1,k-1) select exactly
+    # P2-A's five cells.  Check the explicit non-contiguous witness at
+    # representative k=3 and k=5.
+    for k, (rows, cols, nr, nc) in p4_embeddings.items():
+        b_col_subsumed = [[0] * nc for _ in range(nr)]
+        for i in range(k - 1):
+            b_col_subsumed[rows[i]][cols[i]] = 1
+            b_col_subsumed[rows[i]][cols[i + 1]] = 1
+        b_col_subsumed[rows[k - 1]][cols[k - 1]] = 1
+        b_col_subsumed[rows[k - 1]][cols[0]] = 1
+
+        expected_p2 = (
+            "A",
+            (rows[0], rows[k - 2], rows[k - 1]),
+            (cols[0], cols[1], cols[k - 1]),
+        )
+        occ = find_p2_occurrence(b_col_subsumed)
+        assert occ == expected_p2, (
+            f"B_col k={k} embedded P2-A witness: {occ}, expected {expected_p2}"
+        )
+        res = prune_cut_matrix(b_col_subsumed, rules=(R_P2,))
+        assert res.pruned and res.fired == ("R-P2",), (
+            f"B_col k={k} must be subsumed by R-P2: {res}"
+        )
+
+    # R-P4-B-COL (section 4.7 amendment): exact non-contiguous k=4
+    # embedding.  It fires the auxiliary rule, remains outside R-P4's
+    # source A/B scanner, and deletion of one required cell spares it.
+    b_col_rows = (0, 2, 4, 6)
+    b_col_cols = (1, 3, 5, 7)
+    b_col = [[0] * 8 for _ in range(7)]
+    b_col_cells = tuple(
+        cell
+        for i in range(3)
+        for cell in ((i, i), (i, i + 1))
+    ) + ((3, 3), (3, 0))
+    for ri, ci in b_col_cells:
+        b_col[b_col_rows[ri]][b_col_cols[ci]] = 1
+
+    res = prune_cut_matrix(b_col, rules=(R_P4, R_P4_B_COL))
+    assert res.pruned and res.fired == ("R-P4-B-COL",), (
+        f"B_col must fire only its auxiliary P4 rule: {res}"
+    )
+    occ = find_p4_b_col_occurrence(b_col)
+    assert occ == (b_col_rows, b_col_cols), f"B_col witness mismatch: {occ}"
+    assert find_p4_occurrence(b_col) is None, (
+        "B_col must remain outside the actual Figure-4 A/B scanner"
+    )
+
+    b_col_spare = [row[:] for row in b_col]
+    ri, ci = b_col_cells[0]
+    b_col_spare[b_col_rows[ri]][b_col_cols[ci]] = 0
+    res = prune_cut_matrix(b_col_spare, rules=(R_P4_B_COL,))
+    assert not res.pruned, f"B_col 2k-1 spare fired: {res}"
+
+    assert (
+        R_P1.domain
+        == R_P2.domain
+        == R_P3.domain
+        == R_P4.domain
+        == R_P4_B_COL.domain
+        == "cut-matrix"
+    )
     return (
-        "P1/P2 kill+spare, FR-20 survives C2 / fires R-P2 in C1 (16 B-hits), "
-        "P3 kill+spare all 4 R1/R3 templates, pure-R2 spared (soundness), "
+        "Theorem-3 diagnostic: 3x3 positive, degree miss, transpose, malformed, "
+        "FR-20 strict boundary, and exact attribution noninterference; "
+        "P1/P2 kill+spare, FR-20 survives source C2 / fires R-P2 in C1 (16 B-hits), "
+        "P3 full-source transpose closure: 8 exact positives, 48 deletion spares, "
+        "source names noncolliding, "
+        "P4 A/B kill+spare at k=3,5; B_col exact kill+spare, source separation, "
+        "and explicit P2-A subsumption at k=3,5, "
         "refusal+validation OK"
     )
 
@@ -808,12 +1210,15 @@ GATES: tuple[tuple[str, GateFn], ...] = (
     ("G-P1-REGRESS", gate_p1_regress),
     ("G-ANN-B1", gate_ann_b1),
     ("G-CANON-ANN", gate_canon_ann),
+    ("G-CANON-JOINT-EXACT", gate_canon_joint_exact),
     ("G-CAP-ANN", gate_cap_ann),
     ("G-FIBER", gate_fiber),
     ("G-CAPGE4", gate_capge4),
     ("G-ITER-DEDUP", gate_iter_dedup),
     ("G-ITER-SHADOW", gate_iter_shadow),
     ("G-ITER-KILL", gate_iter_kill),
+    ("G-ITER-COMBINED", gate_iter_combined),
+    ("G-ITER-MIXED-MODE", gate_iter_mixed_mode),
     ("G-SEEDED-2", gate_seeded_2),
     ("G-SEED-K3", gate_seed_k3),
     ("G-SEED-FR20", gate_seed_fr20),

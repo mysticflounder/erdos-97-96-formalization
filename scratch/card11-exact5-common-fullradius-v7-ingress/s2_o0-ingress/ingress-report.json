@@ -1,0 +1,151 @@
+{
+  "artifacts": {
+    "Card11Exact5CommonFullradiusV7S2O0Core.lean": {
+      "bytes": 1773267,
+      "sha256": "fee613932ae8ae626dd9a213b337cb8227fd4d661baa9d77cdcc76c5549636bf"
+    },
+    "core-to-input-clause-id.json": {
+      "bytes": 808301,
+      "sha256": "c907a571e229aff75f494b36ccd182cbe21986daefcb3093c2f6093baeb74915"
+    },
+    "core.cnf": {
+      "bytes": 1409695,
+      "sha256": "ee65de56f8b1f733957bd17b939efae63dbc9afbab21c0837af35f3cdae8b24c"
+    },
+    "core.drat": {
+      "bytes": 4445366,
+      "sha256": "f033fd57e434f553088249a23aa00da026a8b3f7413ff50467c992d436b98e5f"
+    },
+    "core.normalized.lrat": {
+      "bytes": 14671520,
+      "sha256": "92cab4742d021bf584458f28f5ab6ad26bd5f5329eec553dfa9fee438b5fad1d"
+    },
+    "core.raw.lrat": {
+      "bytes": 14921125,
+      "sha256": "941a21e7ab621b7dc9874e1a79d3c39b91c29f228d2a5eff9bea9a93c85e1674"
+    }
+  },
+  "claim_scope": "Fixed v7 trimmed-core CNF UNSAT only; source-to-valuation and four-case cover are not supplied.",
+  "core_clause_count_by_manifest_block": {
+    "<unclassified-or-overlap>": 47256,
+    "convex-five-point-core-forward-exclusions": 395,
+    "duplicate-center-core-exclusions": 188,
+    "first-apex-exact-five-global-equality-seeds": 10,
+    "first-apex-named-exact-five-entire-class": 7,
+    "global-edge-equality-transitivity": 1464,
+    "local-equality-transitivity": 73,
+    "perpendicular-bisector-core-exclusions": 172,
+    "selected-row-global-equality-seeds": 8214,
+    "selected-row-internal-radius-equalities": 4642,
+    "source-center-iff-some-source-row-choice": 164,
+    "source-choice-implies-entire-blocker-radius-class": 16,
+    "source-choice-no-qfree-after-that-source-deletion": 101,
+    "used-center-iff-some-source-center-map": 1,
+    "v6-local-four-class-witness-iff": 12,
+    "v6-qdeleted-pair-witness-iff": 4,
+    "v6-u5-common-bisector-triple-incompatibilities": 2,
+    "v6-u5-nontriple-equilateral-incompatibilities": 10,
+    "v7-global-two-center-bisector-parity": 18522
+  },
+  "core_to_input_policy": "first available exact signed-literal-multiset occurrence; each input occurrence is consumed at most once",
+  "counts": {
+    "certificate_padding_variable": 85276,
+    "checker_base_clauses": 81254,
+    "core_clauses": 81253,
+    "core_variables": 49357,
+    "input_clauses": 1370778,
+    "input_variables": 49357,
+    "max_certificate_variable": 85275
+  },
+  "expected_native_axioms": [
+    "Lean.ofReduceBool",
+    "Lean.trustCompiler"
+  ],
+  "input_audit": {
+    "case": {
+      "o": 0,
+      "s": 2
+    },
+    "clauses": 1370778,
+    "hashes": {
+      "input.cnf": "94bc1ddb59166cc86e146c036ab7229a7eea878c28579e2df0520eec1b2a892d",
+      "manifest.json": "1520d535b2be6a09632c46597e330a75756904abd333091b3c26fbb05639f8c2",
+      "proof.drat": "0735adbd23bd5e3240018b946e2e2cdf74ce6b6caa9c10acfa4f560f5d0064df"
+    },
+    "proof_bytes": 29451925,
+    "provenance_sha256": "b64d4f809c4d89cdd7fa6966491762b6f1e4408ac169142aabb9dc16b4eecf6c",
+    "schema": "card11_exact5_common_fullradius.v7",
+    "source_provenance_current_matches": {
+      "census_profile": true,
+      "common_projection_driver": true,
+      "convex_five_point_core": true,
+      "cover_encoder": true,
+      "critical_shell_interface": true,
+      "duplicate_center_core": true,
+      "duplicate_center_core_executable": true,
+      "duplicate_center_core_soundness": true,
+      "fullradius_driver": true,
+      "independent_verifier": true,
+      "ordered_core_signs": true,
+      "perpendicular_bisector_core": true,
+      "perpendicular_bisector_core_executable": true,
+      "perpendicular_bisector_core_soundness": true,
+      "separation_encoder": true,
+      "source_indexed_driver": true,
+      "two_center_bisector_parity_theorems": true,
+      "u5_global_incidence_kernels": true,
+      "v5_fullradius_driver": true,
+      "v5_post_theorem_bank_audit": true,
+      "v6_encoder": true
+    },
+    "status": "DRAT_VERIFIED_FIXED_CNF",
+    "v7_theorem_backed_clauses": 190080,
+    "variables": 49357,
+    "verification_sha256": "f8101d380a268bb6b0d361780003d1b2c2ff077af5a69f6cd89716a7759d85bb"
+  },
+  "lean_replay_command": [
+    "cd",
+    "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean",
+    "&&",
+    "lake",
+    "env",
+    "lean",
+    "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-ingress/s2_o0-ingress/Card11Exact5CommonFullradiusV7S2O0Core.lean"
+  ],
+  "runs": {
+    "extract_core_and_core_relative_drat": {
+      "log_sha256": "52ba54735edb2499766f367a2ba5d284ea2217c180c4b7cf7d9ad21f8cc18fa9",
+      "reused_preserved_stage": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-ingress/s2_o0-ingress.failed-19235-1785443033241823000"
+    },
+    "normalize_lrat": {
+      "command": [
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/python3",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-ingress/normalize_lrat_for_padded_core.py",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-ingress/.s2_o0-ingress.stage-79539-1785443454867039000/core.raw.lrat",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-ingress/.s2_o0-ingress.stage-79539-1785443454867039000/core.normalized.lrat",
+        "--source-base-clauses",
+        "81253",
+        "--checker-base-clauses",
+        "81254"
+      ],
+      "elapsed_seconds": 0.9195137498900294,
+      "exit_code": 0,
+      "log_sha256": "742d2707890be21758b7739636e1553b93284b96030c320e72c026d1a0295635"
+    },
+    "verify_core_relative_drat_and_emit_lrat": {
+      "log_sha256": "a838b5f649f627e0097ed044e4625c6c936fb292c44c39dba0872fa63734fcf4",
+      "reused_preserved_stage": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-ingress/s2_o0-ingress.failed-19235-1785443033241823000"
+    }
+  },
+  "status": "LRAT_MATERIALIZED_LEAN_REPLAY_PENDING",
+  "tools": {
+    "drat_trim": {
+      "path": "/Users/adam/.local/bin/drat-trim",
+      "sha256": "eb781b99f2aaf5c9102eb6efd07c2d0aa71b44a0e8002a74e3dda1030be96a92"
+    },
+    "normalizer": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-ingress/normalize_lrat_for_padded_core.py",
+      "sha256": "f2f45f633f5202f6f3fdf9324f9e9ecd34246a7d713ec18fc538143b82013a5b"
+    }
+  }
+}

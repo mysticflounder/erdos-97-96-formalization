@@ -1,0 +1,7 @@
+Use `exists_three_hit_of_two_collisionRows_capCross_normalForm` (`WDJ7PM`).  
+It is the source theorem for the exact setup you describe (two distinct first-apex radii, each with two strict first-cap points in the normalized exact‑four/large-cap regime) and concludes a **three-hit canonical shell at a rich Moser apex**.
+
+If you are in the branch where every low-impact outcome is already excluded, the matching contradiction-closure theorem is `false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits` (`5X3K8R`), which routes all remaining low-hit possibilities away and closes via the positive three-hit producer.
+  handles: WDJ7PM 5X3K8R  (read with `nthdegree docs show <handle> --lean`)
+searched: nthdegree docs show MYH23H --lean, nthdegree docs show WDJ7PM --lean, nthdegree docs show QX5SC6 --lean, nthdegree docs show M4FAVP --lean, nthdegree docs show 5X3K8R --lean, nthdegree docs show WDJ7PM --lean, nthdegree docs show GXXTFQ --lean, nthdegree docs show MYH23H --lean
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.

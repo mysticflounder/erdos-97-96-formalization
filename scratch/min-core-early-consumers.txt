@@ -1,0 +1,271 @@
+      crossPacket
+
+/-- The fresh-blocker arm reduces, by the checked blocker-two-cycle
+contradiction and symmetry, to one directed cross-omission residue. -/
+theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (u v : CarrierVertex D.A)
+    (huNeV : u ≠ v)
+    (huClass :
+      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvClass :
+      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvOmitted :
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (first second :
+      ExactFourMutualOmissionJointDeletion R rho u v)
+    (hdeletedNe : first.deleted ≠ second.deleted)
+    (hdeletedBlockersNe :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2)
+    (hfirstBlockerNeU :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt u.1 u.2)
+    (hfirstBlockerNeV :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt v.1 v.2)
+    (hfirstBlockerNeApex :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠ S.oppApex2)
+    (hsecondBlockerNeU :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt u.1 u.2)
+    (hsecondBlockerNeV :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt v.1 v.2)
+    (hsecondBlockerNeApex :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠ S.oppApex2) :
+    False := by
+  rcases exactFour_twoDeletion_crossOmission first second hdeletedNe
+      hdeletedBlockersNe hfirstBlockerNeApex hsecondBlockerNeApex with
+    hfirstNotMem | hsecondNotMem
+  · exact
+      false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
+        R hcard surface rho hrho hfive u v huNeV huClass hvClass
+        hvOmitted huOmitted first second hdeletedNe hdeletedBlockersNe
+        hfirstBlockerNeU hfirstBlockerNeV hfirstBlockerNeApex
+        hsecondBlockerNeU hsecondBlockerNeV hsecondBlockerNeApex
+        hfirstNotMem
+  · exact
+      false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
+        R hcard surface rho hrho hfive u v huNeV huClass hvClass
+        hvOmitted huOmitted second first hdeletedNe.symm
+        hdeletedBlockersNe.symm
+        hsecondBlockerNeU hsecondBlockerNeV hsecondBlockerNeApex
+        hfirstBlockerNeU hfirstBlockerNeV hfirstBlockerNeApex
+        hsecondNotMem
+
+/-- The two-deletion exact-four residue is exhaustively narrowed according to
+whether the deleted sources have equal actual blockers.  In the collision arm
+their equal canonical rows have an exact two-point intersection with the
+physical class; otherwise the two deleted sources furnish two fresh blockers
+outside the original blocker pair and the physical apex. -/
+theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (u v : CarrierVertex D.A)
+    (huNeV : u ≠ v)
+    (huClass :
+      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvClass :
+      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvOmitted :
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (first second :
+      ExactFourMutualOmissionJointDeletion R rho u v)
+    (hdeletedNe : first.deleted ≠ second.deleted) :
+    False := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  by_cases hblockersEq :
+      Hlate.centerAt first.deleted.1 first.deleted.2 =
+        Hlate.centerAt second.deleted.1 second.deleted.2
+  · exact
+      false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision
+        R hcard surface rho hrho hfive u v huNeV huClass hvClass
+          hvOmitted huOmitted first second hdeletedNe hblockersEq
+  · exact
+      false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters
+        R hcard surface rho hrho hfive u v huNeV huClass hvClass
+          hvOmitted huOmitted first second hdeletedNe
+          (by simpa [Hlate] using hblockersEq)
+          first.uPacket.actual_blocker_ne_center₁
+          first.vPacket.actual_blocker_ne_center₁
+          first.uPacket.actual_blocker_ne_center₂
+          second.uPacket.actual_blocker_ne_center₁
+          second.vPacket.actual_blocker_ne_center₁
+          second.uPacket.actual_blocker_ne_center₂
+
+/-- The rigid `2+2+1` class together with a globally card-minimal blocking
+subdeletion.  This retains the global geometry discarded by the local rigid
+partition. -/
+structure ExactFourMutualOmissionRigid221GlobalDeletion
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (rho : ℝ) (u v : CarrierVertex D.A)
+    (jointDeletion : ExactFourMutualOmissionJointDeletion R rho u v) where
+  rigid :
+    let C := SelectedClass D.A S.oppApex2 rho
+    let Iu :=
+      ((lateFirstApexSystem R).selectedAt
+        u.1 u.2).toCriticalFourShell.support ∩ C
+    let Iv :=
+      ((lateFirstApexSystem R).selectedAt
+        v.1 v.2).toCriticalFourShell.support ∩ C
+    Iu.card = 2 ∧ Iv.card = 2 ∧ Disjoint Iu Iv ∧
+      C = insert jointDeletion.deleted.1 (Iu ∪ Iv)
+  center : ℝ²
+  deleted : Finset ℝ²
+  center_mem_remaining :
+    center ∈ D.A \ SelectedClass D.A S.oppApex2 rho
+  deleted_nonempty : deleted.Nonempty
+  deleted_subset_class :
+    deleted ⊆ SelectedClass D.A S.oppApex2 rho
+  deleted_card_le_five : deleted.card ≤ 5
+  blocked : ¬ HasNEquidistantPointsAt 4 (D.A \ deleted) center
+  restores :
+    ∀ s ∈ deleted,
+      HasNEquidistantPointsAt 4 (D.A \ deleted.erase s) center
+  geometry :
+    (∃ s ∈ deleted, ∃ t ∈ deleted,
+      s ≠ t ∧ dist center s = dist center t) ∨
+    Nonempty
+      (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+        D.A deleted center)
+
+/-- Global minimality extracts a strictly stronger, finite global-deletion
+frontier from the rigid exact-five class.  No first-apex exact-five result is
+used. -/
+theorem exactFourMutualOmissionRigid221_globalDeletion
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (rho : ℝ) (hrho : 0 < rho)
+    (u v : CarrierVertex D.A)
+    (jointDeletion : ExactFourMutualOmissionJointDeletion R rho u v)
+    (hclassFive : (SelectedClass D.A S.oppApex2 rho).card = 5)
+    (hrigid :
+      let C := SelectedClass D.A S.oppApex2 rho
+      let Iu :=
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support ∩ C
+      let Iv :=
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support ∩ C
+      Iu.card = 2 ∧ Iv.card = 2 ∧ Disjoint Iu Iv ∧
+        C = insert jointDeletion.deleted.1 (Iu ∪ Iv)) :
+    Nonempty
+      (ExactFourMutualOmissionRigid221GlobalDeletion
+        R rho u v jointDeletion) := by
+  classical
+  let C := SelectedClass D.A S.oppApex2 rho
+  have hCsub : C ⊆ D.A := fun _ hx => (mem_selectedClass.mp hx).1
+  have hCne : C.Nonempty :=
+    Finset.card_pos.mp (by dsimp [C]; omega)
+  have happApexMem : S.oppApex2 ∈ D.A :=
+    jointDeletion.uPacket.center₂_mem_A
+  have happApexNotC : S.oppApex2 ∉ C := by
+    intro hx
+    have hdist := (mem_selectedClass.mp hx).2
+    rw [dist_self] at hdist
+    linarith
+  have hremaining : (D.A \ C).Nonempty :=
+    ⟨S.oppApex2,
+      Finset.mem_sdiff.mpr ⟨happApexMem, happApexNotC⟩⟩
+  rcases
+      ATailGlobalMinimalDeletion.exists_global_cardMinimal_blocking_subdeletion
+        R.minimal hCsub hCne hremaining with
+    ⟨center, hcenter, deleted, hdeleted, hsubset,
+      hblocked, hrestores⟩
+  have hcenterA : center ∈ D.A :=
+    (Finset.mem_sdiff.mp hcenter).1
+  have hdeletedSubA : deleted ⊆ D.A := hsubset.trans hCsub
+  have hgeometry :
+      (∃ s ∈ deleted, ∃ t ∈ deleted,
+        s ≠ t ∧ dist center s = dist center t) ∨
+      Nonempty
+        (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
+          D.A deleted center) := by
+    by_cases hcollision :
+        ∃ s ∈ deleted, ∃ t ∈ deleted,
+          s ≠ t ∧ dist center s = dist center t
+    · exact Or.inl hcollision
+    · refine Or.inr
+        (ATAILStageOneMinimalDeletionCore.exists_minimalDeletionCore
+          hdeletedSubA hcenterA ?_ hblocked hrestores)
+      intro s hs t ht hst heq
+      exact hcollision ⟨s, hs, t, ht, hst, heq⟩
+  refine ⟨{
+    rigid := hrigid
+    center := center
+    deleted := deleted
+    center_mem_remaining := by simpa [C] using hcenter
+    deleted_nonempty := hdeleted
+    deleted_subset_class := by simpa [C] using hsubset
+    deleted_card_le_five := ?_
+    blocked := hblocked
+    restores := hrestores
+    geometry := hgeometry
+  }⟩
+  have hle : deleted.card ≤ C.card := Finset.card_le_card hsubset
+  dsimp [C] at hle
+  omega
+
+/-- In the genuinely third-row arm `u ≠ source`, the two-point `u` block is
+exactly `{source,u}`.  The source row meets that block only at `source`, and
+the three actual blockers belonging to `source`, `u`, and `v` are pairwise
+distinct. -/
+theorem exactFourRigid221_context_u_ne_source_normalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    {rho : ℝ} {source other u v : CarrierVertex D.A}
+    {jointDeletion : ExactFourMutualOmissionJointDeletion R rho u v}
+    (huClass :
+      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (context :
+      ExactFourMutualOmissionSourceContext
+        R rho source other u v)
+    (hblockersUVNe :
+      (lateFirstApexSystem R).centerAt u.1 u.2 ≠
+        (lateFirstApexSystem R).centerAt v.1 v.2)
+    (G : ExactFourMutualOmissionRigid221GlobalDeletion
+      R rho u v jointDeletion)

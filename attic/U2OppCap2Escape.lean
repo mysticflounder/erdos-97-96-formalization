@@ -7,15 +7,15 @@ import Erdos9796Proof.P97.U2NonSurplusOneHit
 import Erdos9796Proof.P97.U2.WitnessReflectionKernel
 
 /-!
-# oppCap2 adjacent-cap escape at `oppApex1` — reflection kill
+# U2 adjacent-cap escape reduction
 
-This file discharges the **oppCap2 branch** of the first-apex escape disjunction
+This file reduces the **oppCap2 branch** of the first-apex escape disjunction
 `U2NonSurplusSqueeze.StrictAdjacentEscapeAtOppApex1`.  That disjunction splits an
 exact-radius escape witness `x` into
 
 * the *surplus branch* `x ∈ surplusCap \ (oppCap1 ∪ oppCap2)`, left as the named
   residual `surplusEscapeExcludedAtOppApex1_holds`, and
-* the *oppCap2 branch* `x ∈ oppCap2 \ (surplusCap ∪ oppCap1)`, discharged here.
+* the *oppCap2 branch* `x ∈ oppCap2 \ (surplusCap ∪ oppCap1)`, reduced here.
 
 ## oppCap2 branch mechanism (SEP reflection)
 
@@ -40,8 +40,14 @@ radius at `oppApex2`), so `x ∈ Δ`, and pins a unique `oppCap1`-hit `w'` of `�
   on the `oppApex1` circle, the pair `{x, surplusApex}` sits on two common
   circles and dies by the same reflection kill (both points are off the surplus
   cap).  The residual — `surplusApex` strictly off the `oppApex1` circle, so the
-  kernel has no second circle — is carried as the named obligation
+  kernel has no second circle — is carried as the first named obligation
   `oppCap2_endpointEscape_false`.
+
+The pinned surplus escape is reduced to the second named obligation
+`surplusEscape_pinnedFamily_sep_false`.  These are the only two `sorry` leaves
+in this module.  This file is a `PARKED-SPEC`: exact ten instead uses the
+label-complete endpoint and pinned-surplus certificate producers, so these
+general escape leaves are not active proof obligations.
 -/
 
 open scoped EuclideanGeometry

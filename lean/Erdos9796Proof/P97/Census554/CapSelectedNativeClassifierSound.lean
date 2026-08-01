@@ -15,6 +15,8 @@ used only for closed finite bitmask identities; the search-coverage and
 equality-closure arguments remain ordinary Lean proofs.
 -/
 
+set_option maxRecDepth 100000
+
 namespace Problem97
 namespace Census554
 namespace CapSelectedNativeClassifierSound
@@ -46,11 +48,22 @@ theorem rowOfPattern_mem_candidateRows_of_localCandidateSpec
   have hlocal :
       localCandidateOK center.val deleted.val (rowMaskOf P center) = true := by
     exact (localCandidateOK_maskOfFinset_iff center deleted (row P center)).2 h
+  have hlocalFourPoint :
+      localCandidateOKFourPoint center.val deleted.val
+        (rowMaskOf P center) = true := by
+    simp only [localCandidateOK, Bool.and_eq_true] at hlocal
+    exact hlocal.2
+  have hcount :
+      (countPoints (rowMaskOf P center) labels == 4) = true := by
+    simp only [localCandidateOK, Bool.and_eq_true] at hlocal
+    exact hlocal.1
   have hlt : rowMaskOf P center < 2048 :=
     maskOfFinset_lt_2048 (row P center)
-  simp only [candidateRows, List.mem_filterMap]
-  refine ⟨rowMaskOf P center, List.mem_range.mpr hlt, ?_⟩
-  simp [hlocal, rowOfPattern]
+  simp only [candidateRows, fourPointMasks_eq_reference,
+    fourPointMasksReference, List.mem_filterMap, List.mem_filter]
+  refine ⟨rowMaskOf P center,
+    ⟨List.mem_range.mpr hlt, hcount⟩, ?_⟩
+  simp [hlocalFourPoint, rowOfPattern]
 
 /-- The proof-facing incidence and pinned-shell premises supply every local
 condition used to enumerate a row. -/

@@ -1,0 +1,286 @@
+/-- Assemble a cap-aware card-11 labeling from the exact strict-interior
+cardinalities. -/
+theorem nonempty_of_interior_card_eq
+    {A : Finset ℝ²} {M : MoserTriangle A} (CP : CapTriple A M)
+    {surplus second : Fin 3} (hsecond : second ≠ surplus)
+    (frame : MultiCenter.JointCapIndexFrame surplus second)
+    (hcard : A.card = 11)
+    (hSurplus : (capInteriorAt CP surplus).card = 3)
+    (hSecond : (capInteriorAt CP second).card = 3)
+    (hRest : (capInteriorAt CP frame.rest).card = 2) :
+    Nonempty (Card11CapLabeling CP frame) := by
+  classical
+  let eSurplus : Fin 3 ≃ capInteriorAt CP surplus :=
+    (Finset.equivFinOfCardEq hSurplus).symm
+  let eSecond : Fin 3 ≃ capInteriorAt CP second :=
+    (Finset.equivFinOfCardEq hSecond).symm
+  let eRest : Fin 2 ≃ capInteriorAt CP frame.rest :=
+    (Finset.equivFinOfCardEq hRest).symm
+  let head : Fin 3 → ℝ² := fun i => apexAt M (frameIndex frame i)
+  let partPoint : Card11LabelPart → ℝ²
+    | Sum.inl i => head i
+    | Sum.inr (Sum.inl i) => eSurplus i
+    | Sum.inr (Sum.inr (Sum.inl i)) => eSecond i
+    | Sum.inr (Sum.inr (Sum.inr i)) => eRest i
+  let pointOf : Fin 11 → ℝ² := fun p => partPoint (card11LabelSplit p)
+  have hhead : Function.Injective head :=
+    (apexAt_injective M).comp (frameIndex_injective hsecond frame)
+  have hSurplusSecond :
+      Disjoint (capInteriorAt CP surplus) (capInteriorAt CP second) :=
+    Card11Labeling.capInteriorAt_disjoint_of_ne CP hsecond.symm
+  have hSurplusRest :
+      Disjoint (capInteriorAt CP surplus) (capInteriorAt CP frame.rest) :=
+    Card11Labeling.capInteriorAt_disjoint_of_ne CP
+      frame.rest_ne_surplus.symm
+  have hSecondRest :
+      Disjoint (capInteriorAt CP second) (capInteriorAt CP frame.rest) :=
+    Card11Labeling.capInteriorAt_disjoint_of_ne CP
+      frame.rest_ne_second.symm
+  have hpart : Function.Injective partPoint := by
+    intro a b hab
+    rcases a with i | a
+    · rcases b with j | b
+      · exact congrArg Sum.inl (hhead hab)
+      · rcases b with j | b
+        · exfalso
+          change head i = (eSurplus j : ℝ²) at hab
+          have hmem : head i ∈ M.verts :=
+            apexAt_mem_verts M (frameIndex frame i)
+          exact (Card11Labeling.not_mem_verts_of_mem_capInteriorAt CP
+            (eSurplus j).property) (hab ▸ hmem)
+        · rcases b with j | j
+          · exfalso
+            change head i = (eSecond j : ℝ²) at hab
+            have hmem : head i ∈ M.verts :=
+              apexAt_mem_verts M (frameIndex frame i)
+            exact (Card11Labeling.not_mem_verts_of_mem_capInteriorAt CP
+              (eSecond j).property) (hab ▸ hmem)
+          · exfalso
+            change head i = (eRest j : ℝ²) at hab
+            have hmem : head i ∈ M.verts :=
+              apexAt_mem_verts M (frameIndex frame i)
+            exact (Card11Labeling.not_mem_verts_of_mem_capInteriorAt CP
+              (eRest j).property) (hab ▸ hmem)
+    · rcases a with i | a
+      · rcases b with j | b
+        · exfalso
+          change (eSurplus i : ℝ²) = head j at hab
+          have hmem : head j ∈ M.verts :=
+            apexAt_mem_verts M (frameIndex frame j)
+          exact (Card11Labeling.not_mem_verts_of_mem_capInteriorAt CP
+            (eSurplus i).property) (hab.symm ▸ hmem)
+        · rcases b with j | b
+          · exact congrArg (fun k => Sum.inr (Sum.inl k))
+              (eSurplus.injective (Subtype.ext hab))
+          · rcases b with j | j
+            · exfalso
+              change (eSurplus i : ℝ²) = (eSecond j : ℝ²) at hab
+              exact Finset.disjoint_left.mp hSurplusSecond
+                (eSurplus i).property (hab ▸ (eSecond j).property)
+            · exfalso
+              change (eSurplus i : ℝ²) = (eRest j : ℝ²) at hab
+              exact Finset.disjoint_left.mp hSurplusRest
+                (eSurplus i).property (hab ▸ (eRest j).property)
+      · rcases a with i | i
+        · rcases b with j | b
+          · exfalso
+            change (eSecond i : ℝ²) = head j at hab
+            have hmem : head j ∈ M.verts :=
+              apexAt_mem_verts M (frameIndex frame j)
+            exact (Card11Labeling.not_mem_verts_of_mem_capInteriorAt CP
+              (eSecond i).property) (hab.symm ▸ hmem)
+          · rcases b with j | b
+            · exfalso
+              change (eSecond i : ℝ²) = (eSurplus j : ℝ²) at hab
+              exact Finset.disjoint_left.mp hSurplusSecond.symm
+                (eSecond i).property (hab ▸ (eSurplus j).property)
+            · rcases b with j | j
+              · exact congrArg (fun k => Sum.inr (Sum.inr (Sum.inl k)))
+                  (eSecond.injective (Subtype.ext hab))
+              · exfalso
+                change (eSecond i : ℝ²) = (eRest j : ℝ²) at hab
+                exact Finset.disjoint_left.mp hSecondRest
+                  (eSecond i).property (hab ▸ (eRest j).property)
+        · rcases b with j | b
+          · exfalso
+            change (eRest i : ℝ²) = head j at hab
+            have hmem : head j ∈ M.verts :=
+              apexAt_mem_verts M (frameIndex frame j)
+            exact (Card11Labeling.not_mem_verts_of_mem_capInteriorAt CP
+              (eRest i).property) (hab.symm ▸ hmem)
+          · rcases b with j | b
+            · exfalso
+              change (eRest i : ℝ²) = (eSurplus j : ℝ²) at hab
+              exact Finset.disjoint_left.mp hSurplusRest.symm
+                (eRest i).property (hab ▸ (eSurplus j).property)
+            · rcases b with j | j
+              · exfalso
+                change (eRest i : ℝ²) = (eSecond j : ℝ²) at hab
+                exact Finset.disjoint_left.mp hSecondRest.symm
+                  (eRest i).property (hab ▸ (eSecond j).property)
+              · exact congrArg (fun k => Sum.inr (Sum.inr (Sum.inr k)))
+                  (eRest.injective (Subtype.ext hab))
+  have hpoint : Function.Injective pointOf :=
+    hpart.comp card11LabelSplit.injective
+  have hmem : ∀ p, pointOf p ∈ A := by
+    intro p
+    cases hsplit : card11LabelSplit p with
+    | inl i =>
+        change partPoint (card11LabelSplit p) ∈ A
+        rw [hsplit]
+        exact apexAt_mem M (frameIndex frame i)
+    | inr tail =>
+        cases tail with
+        | inl i =>
+            change partPoint (card11LabelSplit p) ∈ A
+            rw [hsplit]
+            exact Card11Labeling.capInteriorAt_subset CP surplus
+              (eSurplus i).property
+        | inr tail =>
+            cases tail with
+            | inl i =>
+                change partPoint (card11LabelSplit p) ∈ A
+                rw [hsplit]
+                exact Card11Labeling.capInteriorAt_subset CP second
+                  (eSecond i).property
+            | inr i =>
+                change partPoint (card11LabelSplit p) ∈ A
+                rw [hsplit]
+                exact Card11Labeling.capInteriorAt_subset CP frame.rest
+                  (eRest i).property
+  have himageSubset : Finset.univ.image pointOf ⊆ A := by
+    intro x hx
+    rcases Finset.mem_image.mp hx with ⟨p, _hp, rfl⟩
+    exact hmem p
+  have himageCard : (Finset.univ.image pointOf).card = 11 := by
+    rw [Finset.card_image_of_injective _ hpoint, Finset.card_univ,
+      Fintype.card_fin]
+  have himageEq : Finset.univ.image pointOf = A := by
+    apply Finset.eq_of_subset_of_card_le himageSubset
+    rw [himageCard, hcard]
+  have hsurj : ∀ x ∈ A, ∃ p, pointOf p = x := by
+    intro x hx
+    have hxImage : x ∈ Finset.univ.image pointOf := himageEq.symm ▸ hx
+    rcases Finset.mem_image.mp hxImage with ⟨p, _hp, hp⟩
+    exact ⟨p, hp⟩
+  have hzero : pointOf 0 = apexAt M surplus := by
+    change partPoint (card11LabelSplit 0) = apexAt M surplus
+    rw [Card11Labeling.card11LabelSplit_zero]
+    rfl
+  have hone : pointOf 1 = apexAt M second := by
+    change partPoint (card11LabelSplit 1) = apexAt M second
+    rw [Card11Labeling.card11LabelSplit_one]
+    rfl
+  have htwo : pointOf 2 = apexAt M frame.rest := by
+    change partPoint (card11LabelSplit 2) = apexAt M frame.rest
+    rw [Card11Labeling.card11LabelSplit_two]
+    rfl
+  let L : Card11Labeling M frame :=
+    { pointOf := pointOf
+      injective := hpoint
+      mem_carrier := hmem
+      carrier_surjective := hsurj
+      point_zero := hzero
+      point_one := hone
+      point_two := htwo }
+  have hSurplusSubset :
+      Card11Labeling.capSInteriorLabels ⊆
+        L.interiorLabels CP surplus := by
+    intro p hp
+    simp only [Card11Labeling.capSInteriorLabels, Finset.mem_insert,
+      Finset.mem_singleton] at hp
+    rcases hp with rfl | rfl | rfl
+    · apply (Card11Labeling.mem_labelsOf L).mpr
+      change partPoint (card11LabelSplit 3) ∈ capInteriorAt CP surplus
+      rw [Card11Labeling.card11LabelSplit_three]
+      exact (eSurplus 0).property
+    · apply (Card11Labeling.mem_labelsOf L).mpr
+      change partPoint (card11LabelSplit 4) ∈ capInteriorAt CP surplus
+      rw [Card11Labeling.card11LabelSplit_four]
+      exact (eSurplus 1).property
+    · apply (Card11Labeling.mem_labelsOf L).mpr
+      change partPoint (card11LabelSplit 5) ∈ capInteriorAt CP surplus
+      rw [Card11Labeling.card11LabelSplit_five]
+      exact (eSurplus 2).property
+  have hSecondSubset :
+      Card11Labeling.capO1InteriorLabels ⊆
+        L.interiorLabels CP second := by
+    intro p hp
+    simp only [Card11Labeling.capO1InteriorLabels, Finset.mem_insert,
+      Finset.mem_singleton] at hp
+    rcases hp with rfl | rfl | rfl
+    · apply (Card11Labeling.mem_labelsOf L).mpr
+      change partPoint (card11LabelSplit 6) ∈ capInteriorAt CP second
+      rw [Card11Labeling.card11LabelSplit_six]
+      exact (eSecond 0).property
+    · apply (Card11Labeling.mem_labelsOf L).mpr
+      change partPoint (card11LabelSplit 7) ∈ capInteriorAt CP second
+      rw [Card11Labeling.card11LabelSplit_seven]
+      exact (eSecond 1).property
+    · apply (Card11Labeling.mem_labelsOf L).mpr
+      change partPoint (card11LabelSplit 8) ∈ capInteriorAt CP second
+      rw [Card11Labeling.card11LabelSplit_eight]
+      exact (eSecond 2).property
+  have hRestSubset :
+      Card11Labeling.capO2InteriorLabels ⊆
+        L.interiorLabels CP frame.rest := by
+    intro p hp
+    simp only [Card11Labeling.capO2InteriorLabels, Finset.mem_insert,
+      Finset.mem_singleton] at hp
+    rcases hp with rfl | rfl
+    · apply (Card11Labeling.mem_labelsOf L).mpr
+      change partPoint (card11LabelSplit 9) ∈ capInteriorAt CP frame.rest
+      rw [Card11Labeling.card11LabelSplit_nine]
+      exact (eRest 0).property
+    · apply (Card11Labeling.mem_labelsOf L).mpr
+      change partPoint (card11LabelSplit 10) ∈ capInteriorAt CP frame.rest
+      rw [Card11Labeling.card11LabelSplit_ten]
+      exact (eRest 1).property
+  have hSurplusEq :
+      L.interiorLabels CP surplus =
+        Card11Labeling.capSInteriorLabels := by
+    symm
+    apply Finset.eq_of_subset_of_card_le hSurplusSubset
+    rw [L.interiorLabels_card_eq CP, hSurplus]
+    decide
+  have hSecondEq :
+      L.interiorLabels CP second =
+        Card11Labeling.capO1InteriorLabels := by
+    symm
+    apply Finset.eq_of_subset_of_card_le hSecondSubset
+    rw [L.interiorLabels_card_eq CP, hSecond]
+    decide
+  have hRestEq :
+      L.interiorLabels CP frame.rest =
+        Card11Labeling.capO2InteriorLabels := by
+    symm
+    apply Finset.eq_of_subset_of_card_le hRestSubset
+    rw [L.interiorLabels_card_eq CP, hRest]
+    decide
+  exact ⟨{
+    toCard11Labeling := L
+    surplusInterior_eq := hSurplusEq
+    secondInterior_eq := hSecondEq
+    restInterior_eq := hRestEq }
+  ⟩
+
+/-- The exact card-11 `(5,5,4)` profile constructs the cap-aware canonical
+labeling required by the finite census. -/
+theorem nonempty_of_card_eq_eleven
+    {D : CounterexampleData}
+    {hncol : ¬ Collinear ℝ (D.A : Set ℝ²)}
+    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+    (hCirc : ∃ h12 h23 h13,
+      MT.toMoserTriangle.case_split = Or.inl ⟨h12, h23, h13⟩)
+    {M : MoserTriangle D.A} (CP : CapTriple D.A M)
+    (hM : M = MT.toMoserTriangle.toStructural hCirc)
+    {surplus second : Fin 3} (hsecond : second ≠ surplus)
+    (frame : MultiCenter.JointCapIndexFrame surplus second)
+    (hsurplus : 4 < (CP.capAt surplus).card)
+    (hsecond5 : 5 ≤ (CP.capAt second).card)
+    (hcard11 : D.A.card = 11) :
+    Nonempty (Card11CapLabeling CP frame) := by
+  have hprofile :=
+    capInteriorProfile_eq_332_of_card_eq_eleven
+      MT hCirc CP hM hsecond hsurplus hsecond5 hcard11
+  exact nonempty_of_interior_card_eq CP hsecond frame hcard11

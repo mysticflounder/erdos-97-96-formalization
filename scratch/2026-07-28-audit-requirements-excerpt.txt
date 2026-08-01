@@ -1,0 +1,286 @@
+
+- there were 22 direct project declarations depending on `sorryAx`;
+- all 22 were kernel-live from a published target;
+- all 22 were in
+  `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean`;
+- no project declaration had exactly the type of any one of those 22
+  obligations; and
+- no live obligation was merely an off-spine or orphan placeholder.
+
+The source-wide exact-type comparison is stronger than a textual theorem-name
+search, but it does not rule out a reusable theorem whose statement needs a
+nontrivial adapter.
+
+## 1. Bypass `U1LargeCapRouteBTail` from the production continuation
+
+Status: **IMPLEMENTED / BUILD VERIFIED**.
+
+Changed consumer:
+
+`Problem97.RemovableVertexAxiom.removableVertexOfLarge_of_nonIsM44` in
+`lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean`.
+
+Former route:
+
+1. construct `D : CounterexampleData`;
+2. prove `D.Minimal`, `9 < D.A.card`, and absence of an `IsM44` packet;
+3. obtain `Nonempty (CriticalShellSystem D.A)`;
+4. construct a MEC cap triple;
+5. split exact-pair versus non-exact surplus; and
+6. call `u1_largeCap_routeB_tail_false`.
+
+The first three steps already produce exactly the inputs of:
+
+`Problem97.ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap`
+
+```lean
+(S : SurplusCapPacket D.A)
+(hmin : D.Minimal)
+(hNoM44 : ¬ ∃ T : SurplusCapPacket D.A, T.IsM44)
+(hcard : 9 < D.A.card)
+(H : CriticalShellSystem D.A) :
+False
+```
+
+The replacement proof used by the continuation is:
+
+```lean
+example : NonIsM44DescentStatement := by
+  classical
+  intro A hne hconv hK4 hgt hMin hNoM44
+  obtain ⟨packet⟩ := MEC.nonempty_surplusCapPacket_of_K4 hne hconv hK4 hgt
+  let D : CounterexampleData := ⟨A, hne, hconv, hK4, packet⟩
+  have hDA : D.A = A := rfl
+  have hDcard : 9 < D.A.card := by
+    rw [hDA]
+    exact hgt
+  have hmin : D.Minimal := by
+    intro B hBne hBconv hBK4
+    by_contra hlt
+    exact hMin B (not_le.mp hlt) hBne hBconv hBK4
+  have hNoM44D : ¬ ∃ S : SurplusCapPacket D.A, S.IsM44 := by
+    rw [hDA]
+    exact hNoM44
+  obtain ⟨H⟩ := D.exists_criticalShellSystem_of_minimal hmin
+  exfalso
+  exact ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap
+    D.packet hmin hNoM44D hDcard H
+```
+
+Import search found `Continuation.lean` to be the only importer of
+`Erdos9796Proof.P97.U1LargeCapRouteBTail`. Replacing that import by the direct
+A-tail dependency removed the 3,565-line, 93-declaration
+`U1LargeCapRouteBTail.lean` coordinator from the published dependency graph.
+
+This change:
+
+- delete a redundant MEC/cap-triple reconstruction and branch split;
+- remove stale commentary claiming that the old route-B residual is the live
+  continuation boundary;
+- add no proof obligation; and
+- close no existing `sorry`: the direct A-tail terminal already reaches the
+  same live frontier.
+
+The focused continuation build passes on Lean 4.27.
+
+## 2. Identify the second fresh blocker fiber with the swapped first fiber
+
+Status: **IMPLEMENTED / BUILD VERIFIED / ONE LIVE OBLIGATION REMOVED**.
+
+The structures
+
+- `FreshOutsideFirstBlockerFiber P Pρ`, and
+- `FreshOutsideSecondBlockerFiber P Pρ`
+
+in
+`lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean`
+are mirror images. A field-permutation adapter from
+
+```lean
+FreshOutsideSecondBlockerFiber P Pρ
+```
+
+to
+
+```lean
+FreshOutsideFirstBlockerFiber Pρ P
+```
+
+typechecked. The mapping:
+
+- swaps the first- and second-side inequality fields;
+- reinterprets the blocker/source-shell fields as the first-side fields under
+  `P ↔ Pρ`;
+- swaps the two `otherOutsidePoint` exclusion fields; and
+- preserves the unordered outside-point pair equality.
+
+The live first-fiber descent already had the substantial implementation in
+`FrontierLiveClosure.lean` and
+`ATail/FirstFiberOverlapDescent.lean`. The second-fiber terminal is now an
+adapter into that same descent rather than a separate mathematical
+obligation.
+
+The combined build and corrected fresh kernel scan reduced the
+implementation-time frontier from 22 on-spine declarations to 21.  There was
+no off-spine declaration; the earlier classification was caused by the
+multiline-declaration indexing artifact described in the implementation
+update.
+
+The implementation uses explicit swap-parametric adapters and reconstructs
+the row-indexed robust residual for the swapped collision.  No parallel
+second-side descent library was introduced.
+
+## 3. Consolidate four blocker-row terminals into two generic terminals
+
+Status: **IMPLEMENTED / BUILD VERIFIED / TWO LIVE OBLIGATIONS REMOVED**.
+
+Four live terminals differ only by whether the actual blocker is literally
+`P.v.1` or the other member of the same rigid `v` row:
+
+- blocker-`v`, opposite-row-heavy;
+- blocker-`v`, neither row heavy;
+- blocker in the `v` row but not `v`, opposite-row-heavy; and
+- blocker in the `v` row but not `v`, sparse rows.
+
+The stable shared hypothesis is:
+
+```lean
+(lateFirstApexSystem R).centerAt P.source.1 P.source.2 ∈
+  ((lateFirstApexSystem R).selectedAt
+      P.v.1 P.v.2).toCriticalFourShell.support ∩
+    SelectedClass D.A S.oppApex2 P.rho
+```
+
+The non-`v` branches already carry this hypothesis. In the blocker-`v`
+branches it is derivable by rewriting the blocker equality and using the
+critical shell's source/q membership together with `P.hvClass`.
+
+The four terminals were replaced by:
+
+1. one generic `v`-row-blocker, opposite-row-heavy contradiction; and
+2. one generic `v`-row-blocker, neither-row-heavy contradiction.
+
+The source-row-heavy terminal remains separate: its non-`v` branch has
+additional exact-five/growth decomposition and is not part of this proposed
+merge.
+
+Both identity coordinators now call the two generic terminals.  The
+blocker-`v` coordinator proves the membership by rewriting its equality and
+combining `q_mem_support` with `P.hvClass`; the blocker-other coordinator
+passes through its existing membership fact.  No external production
+consumer referenced the four removed declarations.
+
+The focused Lean 4.27 build passed.  A fresh source index and kernel call-graph
+mine measured 19 on-spine declarations and no off-spine declarations, down
+from 21 on-spine declarations before this change.  Each replacement terminal
+has weaker equality-specific hypotheses and is therefore a genuinely stronger
+interface, but its contradiction still has to be proved.
+
+## 4. Generalize the fixed U3 audit frame from `IsM44` to cardinality
+
+Status: **IMPLEMENTED / BUILD VERIFIED / NO BARE-CARDINALITY LIVE CALLER YET**.
+
+Former primary theorem:
+
+`Problem97.U3LocalizedNoQFreePacket.exists_fixedTripleAuditFrame` in
+`lean/Erdos9796Proof/P97/U3ToU5Terminal.lean`.
+
+It currently assumes:
+
+```lean
+hM44 : D.IsM44
+```
+
+The two uses of this assumption are cardinality wrappers:
+
+1. `exists_selectedCandidateSkeleton_of_isM44` immediately derives
+   `9 < D.A.card` and calls the already existing
+   `exists_selectedCandidateSkeleton_of_card_gt_nine`;
+2. `U5DangerousTriple.exists_two_off_circle_aux` uses `hM44` only to prove
+   `10 ≤ D.A.card`, which is equivalent to `9 < D.A.card` for a natural
+   cardinality.
+
+The implementation now:
+
+- exposes `exists_two_off_circle_aux_of_card_gt_nine` with
+  `9 < D.A.card`;
+- retains `exists_two_off_circle_aux` as a thin `IsM44` compatibility
+  corollary; and
+- exposes `exists_fixedTripleAuditFrame_of_card_gt_nine`, while retaining the
+  former theorem as an `IsM44` compatibility corollary.
+
+This makes the complete bounded U3-to-U5 audit frame available on the live
+non-`IsM44` A-tail branch.
+
+Focused builds of both changed modules pass on Lean 4.27.  The strengthened
+theorems introduce no new trust dependency.
+
+It does not yet close a terminal. A further bridge must do at least one of:
+
+- exclude the q-critical alternative in
+  `exists_card_four_or_qCritical_of_globalK4`;
+- confine every audit center's exact q-deleted four-class to the bounded
+  support required by `false_of_rowwiseConfinedQDeletedClasses`; or
+- preserve enough live identities to convert the audit output into an
+  existing common-deletion, cross-blocker, collision, or five-center
+  terminal.
+
+A registry-first search of the current tree, the sibling `p97-rvol` banks,
+and the two legacy theorem inventories found no declaration that supplies any
+of those three bridges.  The closest proved eliminator is
+`exists_qDeleted_escape_or_criticalFourShell`: it produces a concrete audit
+center with either a q-deleted exact-four class escaping `U5BoundedSupport`
+or a `CriticalFourShell`.  No current A-tail terminal consumes that
+disjunction.
+
+Consequently, constructing the cardinality-first frame was the available
+refactor/strengthening.  Wiring a future proved
+`RowwiseConfinedQDeletedClasses` into
+`false_of_rowwiseConfinedQDeletedClasses` would be mechanical, but producing
+that confinement—or classifying both arms of the escape/critical-shell
+disjunction into an existing incidence terminal—is new mathematical work,
+not an unimplemented source refactor hidden by this audit.
+
+## Other interface simplifications
+
+### Preserve both survival and omission views
+
+`ATail/TwoCollisionGlobalProducer.lean` directly produces cross-deletion
+survival disjunctions in
+`exists_capSource_thirdBlocker_crossPairDeletionSurvivals`.
+
+Those facts are converted into selected-support omissions in
+`CapSourceThirdCanonicalRowSurface`, then converted back into survival facts
+in the first-fiber descent using
+`cross_deletion_survives_iff_not_mem_selected_support`.
+
+Implementation status: **IMPLEMENTED AND BUILD-VERIFIED.**
+
+`CrossPairDeletionView` now stores the producer-native survival statement and
+derives the selected-support omission through one proved equivalence.  Both
+`CapSourceThirdCanonicalRowSurface` and `FirstFiberCapSourceWitness` carry
+these view packets, and the first-fiber descent uses the derived omission
+without converting it back into a separately stored survival fact.
+
+Focused no-refresh builds of `TwoCollisionGlobalProducer` and
+`FrontierLiveClosure` pass on the current Lean 4.27 source.  The refactor
+adds or removes no `sorry`; it normalizes the packet interface only.
+
+### Expose the exact blocker equivalence as a normal form
+
+`ATail/AnchoredDoubleDeletionProducer.lean` proves:
+
+`both_frontierDeletions_blocked_iff_actualBlocker_eq_qBlocker`.
+
+Later consumers weaken this to a three-way cover, prove blocker inequality,
+and eliminate the equality branch. A direct off-fiber two-way survival normal
+form should be exposed and consumed instead.
+
+Implementation status: **IMPLEMENTED AND BUILD-VERIFIED.**
+
+The new primitive equivalence is
+`frontierDeletion_survival_iff_actualBlocker_ne_qBlocker`; the
+consumer-shaped off-fiber form is
+`mem_outside_qBlockerFiber_iff_frontierDeletion_survival`.
+`deletionSurvival_cover_of_mem_outside_qBlockerFiber` now applies the latter
+directly, and the unused three-way adapter has been removed.  This is a

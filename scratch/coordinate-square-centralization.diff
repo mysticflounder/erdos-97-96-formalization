@@ -1,0 +1,455 @@
+diff --git a/lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean b/lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean
+index cf1301a7..37fbf806 100644
+--- a/lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean
++++ b/lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean
+@@ -50,5 +50,4 @@ namespace FiniteEndpointShell
+ private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Census554/CertCheck.lean b/lean/Erdos9796Proof/P97/Census554/CertCheck.lean
+index fb831484..7a941b60 100644
+--- a/lean/Erdos9796Proof/P97/Census554/CertCheck.lean
++++ b/lean/Erdos9796Proof/P97/Census554/CertCheck.lean
+@@ -119,5 +119,4 @@ the recipe used across the project). -/
+ private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean b/lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean
+index 0ab766ae..91548333 100644
+--- a/lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean
++++ b/lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean
+@@ -25,5 +25,4 @@ namespace EqualityCore
+ private theorem dist_sq_coord (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean b/lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean
+index ef29f2c9..dfa30719 100644
+--- a/lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean
++++ b/lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean
+@@ -133,5 +133,4 @@ private theorem scalar_incompatibility
+ private theorem dist_sq_coords (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean b/lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean
+index 92a3beb7..2de1812d 100644
+--- a/lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean
++++ b/lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean
+@@ -25,5 +25,4 @@ namespace EqualityCore
+ private theorem largeFiveCircle_dist_sq_coord (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean b/lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean
+index 80bf3ebd..b9f69a45 100644
+--- a/lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean
++++ b/lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean
+@@ -24,5 +24,4 @@ namespace EqualityCore
+ private theorem circleNetwork_dist_sq_coord (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean b/lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean
+index a69aa6be..b39efcc8 100644
+--- a/lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean
++++ b/lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean
+@@ -24,5 +24,4 @@ namespace EqualityCore
+ private theorem sevenPoint_dist_sq_coord (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean b/lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean
+index cb2e4a48..268bc5c6 100644
+--- a/lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean
++++ b/lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean
+@@ -25,5 +25,4 @@ namespace EqualityCore
+ private theorem sevenPointSixCircle_dist_sq_coord (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean b/lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean
+index 023b640c..096b834d 100644
+--- a/lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean
++++ b/lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean
+@@ -25,5 +25,4 @@ namespace EqualityCore
+ private theorem sevenPointSixCircleB_dist_sq_coord (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean b/lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean
+index 62d3f1fe..87393625 100644
+--- a/lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean
++++ b/lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean
+@@ -25,5 +25,4 @@ namespace EqualityCore
+ private theorem sevenPointTwinFourCircle_dist_sq_coord (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean b/lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean
+index 1ab68182..1c048dca 100644
+--- a/lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean
++++ b/lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean
+@@ -25,5 +25,4 @@ namespace EqualityCore
+ private theorem sixPointCircleChain_dist_sq_coord (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean b/lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean
+index be3bdd3b..5a3705d4 100644
+--- a/lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean
++++ b/lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean
+@@ -25,5 +25,4 @@ namespace EqualityCore
+ private theorem sixPointFiveCircle_dist_sq_coord (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean b/lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean
+index b13965ce..0345c3c8 100644
+--- a/lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean
++++ b/lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean
+@@ -24,5 +24,4 @@ namespace EqualityCore
+ private theorem sixPointTwoPair_dist_sq_coord (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean b/lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean
+index 829ea9d8..1295bcb6 100644
+--- a/lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean
++++ b/lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean
+@@ -24,5 +24,4 @@ namespace EqualityCore
+ private theorem sixRow_dist_sq_coord (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean b/lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean
+index a6255603..6f2862ec 100644
+--- a/lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean
++++ b/lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean
+@@ -26,5 +26,4 @@ namespace EqualityCore
+ private theorem surplusSource_dist_sq_coord (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean b/lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean
+index 52816bb3..0737b159 100644
+--- a/lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean
++++ b/lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean
+@@ -30,5 +30,4 @@ namespace EqualityCore
+ private theorem threeTriad_dist_sq_coord (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Foundation.lean b/lean/Erdos9796Proof/P97/Foundation.lean
+index 8dd6a1bf..8bcf4a1d 100644
+--- a/lean/Erdos9796Proof/P97/Foundation.lean
++++ b/lean/Erdos9796Proof/P97/Foundation.lean
+@@ -24,2 +24,8 @@ export Erdos97 (HasNEquidistantPointsAt HasNEquidistantPointsOn HasNEquidistantP
+ 
++/-- Coordinate expansion of squared distance on `ℝ²`. -/
++theorem dist_sq_coord (x y : ℝ²) :
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
++  rw [EuclideanSpace.dist_sq_eq]
++  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++
+ /-- Convex independence of a `Finset` of plane points: the extreme-point
+diff --git a/lean/Erdos9796Proof/P97/N4d/BisectorKill.lean b/lean/Erdos9796Proof/P97/N4d/BisectorKill.lean
+index 5c3308b3..cf2af78d 100644
+--- a/lean/Erdos9796Proof/P97/N4d/BisectorKill.lean
++++ b/lean/Erdos9796Proof/P97/N4d/BisectorKill.lean
+@@ -41,5 +41,4 @@ namespace Problem97
+ private theorem bisectorKill_dist_sq_coords (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean b/lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean
+index e9ae40ec..861ed7ca 100644
+--- a/lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean
++++ b/lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean
+@@ -45,5 +45,4 @@ namespace FiniteEndpointShell
+ private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean b/lean/Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean
+index af3906bb..b72d6bd2 100644
+--- a/lean/Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean
++++ b/lean/Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean
+@@ -304,5 +304,4 @@ private theorem v1_lt_v1v2_of_mem_I3
+ private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean b/lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean
+index 94c0d5f9..5718c076 100644
+--- a/lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean
++++ b/lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean
+@@ -21,5 +21,4 @@ namespace Problem97
+ private theorem dist_sq_coords (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean b/lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean
+index 2b944863..1e73cf35 100644
+--- a/lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean
++++ b/lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean
+@@ -576,5 +576,4 @@ private theorem c3_vertex_same_open_side_as_v2_local
+ private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean b/lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean
+index 5c2e2bf3..7a9f32f9 100644
+--- a/lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean
++++ b/lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean
+@@ -813,5 +813,4 @@ private theorem c3_vertex_same_open_side_as_v2
+ private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean b/lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean
+index 88aad2eb..70250778 100644
+--- a/lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean
++++ b/lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean
+@@ -39,5 +39,4 @@ namespace Problem97
+ private theorem dist_sq_coords (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean b/lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean
+index 97f66162..02e53a2a 100644
+--- a/lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean
++++ b/lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean
+@@ -330,6 +330,4 @@ theorem eq_of_dist_eq_three_of_pairwise_ne
+   -- squared-distance in coordinates
+-  have sq : ∀ X Y : ℝ², dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
+-    intro X Y
+-    rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-    simp [Fin.sum_univ_two, PiLp.sub_apply, Real.norm_eq_abs, sq_abs]
++  have sq : ∀ X Y : ℝ², dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 :=
++    Problem97.dist_sq_coord
+   have eA1 : (A 0 - P 0) ^ 2 + (A 1 - P 1) ^ 2 = (A 0 - Q 0) ^ 2 + (A 1 - Q 1) ^ 2 := by
+@@ -543,5 +541,4 @@ vector wrappers): `dist X Y ^ 2 = (X 0 − Y 0)² + (X 1 − Y 1)²`. -/
+ private theorem dist_sq_coords (X Y : ℝ²) :
+-    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, PiLp.sub_apply, Real.norm_eq_abs, sq_abs]
++    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 :=
++  Problem97.dist_sq_coord X Y
+ 
+diff --git a/lean/Erdos9796Proof/P97/N4d/TrackBPilotSupport.lean b/lean/Erdos9796Proof/P97/N4d/TrackBPilotSupport.lean
+index 8aae8536..4fd9bb76 100644
+--- a/lean/Erdos9796Proof/P97/N4d/TrackBPilotSupport.lean
++++ b/lean/Erdos9796Proof/P97/N4d/TrackBPilotSupport.lean
+@@ -36,5 +36,4 @@ namespace Problem97
+ private theorem trackB_dist_sq_coords (X Y : ℝ²) :
+-    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, PiLp.sub_apply, Real.norm_eq_abs, sq_abs]
++    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 :=
++  Problem97.dist_sq_coord X Y
+ 
+diff --git a/lean/Erdos9796Proof/P97/N8/N8kDistribution.lean b/lean/Erdos9796Proof/P97/N8/N8kDistribution.lean
+index bfe416b2..31225ed2 100644
+--- a/lean/Erdos9796Proof/P97/N8/N8kDistribution.lean
++++ b/lean/Erdos9796Proof/P97/N8/N8kDistribution.lean
+@@ -44,6 +44,4 @@ private lemma angular_prop_dist (x v2 v3 o : ℝ²)
+     dist x v2 ^ 2 * signedArea2 o v2 v3 = dist v2 v3 ^ 2 * signedArea2 x v2 v3 := by
+-  have dist_sq : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 := fun p q => by
+-    simp only [EuclideanSpace.dist_eq, Fin.sum_univ_two]
+-    rw [Real.sq_sqrt (by positivity)]
+-    simp [Real.dist_eq]
++  have dist_sq : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 :=
++    Problem97.dist_sq_coord
+   have h1 : (x 0 - v2 0) ^ 2 + (x 1 - v2 1) ^ 2 =
+@@ -217,5 +215,4 @@ private lemma sameSide_prod_pos_apexVertex
+     0 < signedArea2 x vb va * signedArea2 vb va vc := by
+-  have ds : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 := fun p q => by
+-    simp only [EuclideanSpace.dist_eq, Fin.sum_univ_two]
+-    rw [Real.sq_sqrt (by positivity)]; simp [Real.dist_eq]
++  have ds : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 :=
++    Problem97.dist_sq_coord
+   have hmid : ∀ i : Fin 2, (midpoint ℝ vb va) i = ((vb i + va i) / 2 : ℝ) := by
+@@ -278,5 +275,4 @@ private lemma inner_chord_eq_dist_diff (x c e w : ℝ²) :
+       = (dist c w ^ 2 - dist c e ^ 2) + (dist x e ^ 2 - dist x w ^ 2) := by
+-  have ds : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 := fun p q => by
+-    simp only [EuclideanSpace.dist_eq, Fin.sum_univ_two]
+-    rw [Real.sq_sqrt (by positivity)]; simp [Real.dist_eq]
++  have ds : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 :=
++    Problem97.dist_sq_coord
+   have hInner : ⟪c - x, e - w⟫_ℝ
+diff --git a/lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean b/lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean
+index 55f4ab90..e3ecc333 100644
+--- a/lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean
++++ b/lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean
+@@ -1455,5 +1455,4 @@ abbrev I3V3A2DeltaNormalization
+ private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/Q3SharedInterior.lean b/lean/Erdos9796Proof/P97/Q3SharedInterior.lean
+index b3d0d71f..7be4a79a 100644
+--- a/lean/Erdos9796Proof/P97/Q3SharedInterior.lean
++++ b/lean/Erdos9796Proof/P97/Q3SharedInterior.lean
+@@ -31,5 +31,4 @@ namespace Problem97
+ private theorem q3_dist_sq_coord (x c : ℝ²) :
+-    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 :=
++  Problem97.dist_sq_coord x c
+ 
+diff --git a/lean/Erdos9796Proof/P97/SurplusCOMPGBankSep.lean b/lean/Erdos9796Proof/P97/SurplusCOMPGBankSep.lean
+index ae244b0b..d536699c 100644
+--- a/lean/Erdos9796Proof/P97/SurplusCOMPGBankSep.lean
++++ b/lean/Erdos9796Proof/P97/SurplusCOMPGBankSep.lean
+@@ -26,5 +26,4 @@ namespace SurplusCOMPGBank
+ theorem dist_sq_coord (x c : ℝ²) :
+-    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 := by
+-  rw [EuclideanSpace.dist_sq_eq]
+-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
++    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 :=
++  Problem97.dist_sq_coord x c
+ 
+diff --git a/lean/Erdos9796Proof/P97/U1CarrierInjection.lean b/lean/Erdos9796Proof/P97/U1CarrierInjection.lean
+index 49bbeb15..4bb7b466 100644
+--- a/lean/Erdos9796Proof/P97/U1CarrierInjection.lean
++++ b/lean/Erdos9796Proof/P97/U1CarrierInjection.lean
+@@ -75,5 +75,4 @@ theorem normalScale_gauge_witness_unit {p q : ℝ²} {r : ℝ}
+ private theorem dist_sq_coord (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 
+diff --git a/lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean b/lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean
+index 7a963803..7fd5561b 100644
+--- a/lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean
++++ b/lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean
+@@ -91,5 +91,4 @@ theorem capU1U2_dist_sq (α γ : ℝ) :
+   have norm_sub_sq : ∀ (a b : ℝ²),
+-      dist a b ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 := fun a b => by
+-    rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-    simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++      dist a b ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 :=
++    Problem97.dist_sq_coord
+   rw [norm_sub_sq]
+@@ -194,5 +193,4 @@ theorem capU1U3_dist_sq (α δ : ℝ) :
+   have norm_sub_sq : ∀ (a b : ℝ²),
+-      dist a b ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 := fun a b => by
+-    rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-    simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++      dist a b ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 :=
++    Problem97.dist_sq_coord
+   rw [norm_sub_sq]
+diff --git a/lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean b/lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean
+index c5f7718e..e4390c26 100644
+--- a/lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean
++++ b/lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean
+@@ -91,5 +91,4 @@ private theorem sameDist_disk_onArcOpposite_coord_centered
+ private theorem dist_sq_coord (u v : ℝ²) :
+-    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
++  Problem97.dist_sq_coord u v
+ 
+diff --git a/lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean b/lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean
+index 682ece9d..b4c0a06e 100644
+--- a/lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean
++++ b/lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean
+@@ -79,5 +79,4 @@ noncomputable def normSim (p₁ p₂ x : ℝ²) : ℝ² :=
+ private theorem normSq_sub (u v : ℝ²) :
+-    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
++  Problem97.dist_sq_coord u v
+ 
+diff --git a/lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean b/lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean
+index 1830d079..dfb43891 100644
+--- a/lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean
++++ b/lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean
+@@ -206,5 +206,4 @@ theorem u5_common_bisector_triple_incompatibility
+ private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+-    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
++    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
++  Problem97.dist_sq_coord x y
+ 

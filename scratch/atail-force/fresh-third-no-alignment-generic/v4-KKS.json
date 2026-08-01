@@ -1,0 +1,231 @@
+{
+  "alignment_cap_cases": [
+    {
+      "arm": false,
+      "atoms": {
+        "blockers_distinct": true,
+        "q1_in_source_row": false,
+        "q1_off_cap": false,
+        "q2_in_source_row": false,
+        "q2_off_cap": true,
+        "q_blocker_in_cap": false,
+        "source_blocker_in_cap": false
+      },
+      "cap": 0
+    },
+    {
+      "arm": false,
+      "atoms": {
+        "blockers_distinct": true,
+        "q1_in_source_row": false,
+        "q1_off_cap": true,
+        "q2_in_source_row": false,
+        "q2_off_cap": true,
+        "q_blocker_in_cap": false,
+        "source_blocker_in_cap": false
+      },
+      "cap": 1
+    },
+    {
+      "arm": false,
+      "atoms": {
+        "blockers_distinct": true,
+        "q1_in_source_row": false,
+        "q1_off_cap": true,
+        "q2_in_source_row": false,
+        "q2_off_cap": false,
+        "q_blocker_in_cap": true,
+        "source_blocker_in_cap": true
+      },
+      "cap": 2
+    }
+  ],
+  "constraint_counts": {
+    "all_named_actual_blocker_metric_projection": 11663,
+    "all_named_no_qfree_three_slots": 11449,
+    "apex_rich_class_structure_disjunctions": 3,
+    "cap_0_cardinality_witnesses": 7,
+    "cap_1_cardinality_witnesses": 9,
+    "cap_2_cardinality_witnesses": 7,
+    "cap_source_blocker_exclusions": 4,
+    "cap_source_blocker_function": 2,
+    "cap_source_exact_four_row": 1,
+    "cap_source_fresh_from_named_pairs": 4,
+    "cap_source_strict_interior": 1,
+    "closed_cap_apex_pattern": 9,
+    "cross_pair_deletion_view_p": 1,
+    "cross_pair_deletion_view_rho": 1,
+    "distance_class_projection": 11342,
+    "distance_diagonal": 107,
+    "equal_blocker_support_coherence": 1,
+    "frontier_exact_four_row": 1,
+    "frontier_interior_intersection_exact": 2,
+    "frontier_radii_distinct": 1,
+    "hno_alignment_cap_0": 1,
+    "hno_alignment_cap_1": 1,
+    "hno_alignment_cap_2": 1,
+    "known_blockers_distinct": 1,
+    "lp_fresh_fields": 4,
+    "lprho_fresh_fields": 4,
+    "moser_apices_distinct": 1,
+    "moser_triangle_unit_distance_class": 2,
+    "mp_blockers_ne": 1,
+    "mp_collision_actual_blocker_exclusions": 2,
+    "mp_collision_apex_q_deleted_exact_four": 1,
+    "mp_collision_blocker_q_deleted_exact_four": 1,
+    "mp_collision_centers_ne": 1,
+    "mp_collision_deletion_survival": 2,
+    "mp_collision_source_blocker": 2,
+    "mp_collision_source_choice_and_freshness": 3,
+    "mp_collision_support_overlap_le_two": 1,
+    "mp_directed_omissions": 2,
+    "mp_fresh_actual_blocker_exclusions": 2,
+    "mp_fresh_apex_q_deleted_exact_four": 1,
+    "mp_fresh_blocker_q_deleted_exact_four": 1,
+    "mp_fresh_centers_ne": 1,
+    "mp_fresh_deletion_survival": 2,
+    "mp_fresh_support_overlap_le_two": 1,
+    "mpr_collision_actual_blocker_exclusions": 2,
+    "mpr_collision_apex_q_deleted_exact_four": 1,
+    "mpr_collision_blocker_q_deleted_exact_four": 1,
+    "mpr_collision_centers_ne": 1,
+    "mpr_collision_deletion_survival": 2,
+    "mpr_collision_support_overlap_le_two": 1,
+    "mpr_fresh_actual_blocker_exclusions": 2,
+    "mpr_fresh_apex_q_deleted_exact_four": 1,
+    "mpr_fresh_blocker_q_deleted_exact_four": 1,
+    "mpr_fresh_centers_ne": 1,
+    "mpr_fresh_deletion_survival": 2,
+    "mpr_fresh_support_overlap_le_two": 1,
+    "mprho_blockers_ne": 1,
+    "mprho_collision_source_blocker": 2,
+    "mprho_collision_source_choice_and_freshness": 3,
+    "mprho_directed_omissions": 2,
+    "named_nonmoser_exactly_one_cap": 107,
+    "p_common_blocker": 4,
+    "p_critical_exact_four_row": 1,
+    "q1_critical_exact_four_row": 1,
+    "q2_critical_exact_four_row": 1,
+    "q_blocker_fresh_from_known_blockers": 2,
+    "q_common_blocker": 4,
+    "q_mutual_shell_incidence": 2,
+    "q_sources_distinct": 1,
+    "q_sources_fresh_from_named_pairs": 8,
+    "represented_center_not_all_three_apices": 107,
+    "requested_rich_pattern": 3,
+    "retained_pair_distinct_and_disjoint": 1,
+    "retained_sources_first_opposite_interior": 4,
+    "rho_common_blocker": 4,
+    "rho_critical_exact_four_row": 1,
+    "rho_exact_four_row": 1,
+    "rho_interior_intersection_exact": 2,
+    "tri_apex_blocker_vertex_exclusions": 321
+  },
+  "elapsed_seconds": 31.35196,
+  "epistemic_status": "NAMED_NECESSARY_CONDITION_PROJECTION_ONLY",
+  "named_occurrences": 107,
+  "nontrivial_alias_classes": [
+    [
+      "v2",
+      "rc3",
+      "mpr_collision_blocker_3",
+      "mp_fresh_blocker_2"
+    ],
+    [
+      "p1",
+      "mpr_source",
+      "mpr_fresh_blocker_4",
+      "mp_collision_blocker_1"
+    ],
+    [
+      "p2",
+      "mpr_fresh_blocker_1",
+      "mp_collision_blocker_4"
+    ],
+    [
+      "r1",
+      "mp_source",
+      "mpr_collision_blocker_2",
+      "mp_fresh_blocker_4"
+    ],
+    [
+      "r2",
+      "mpr_collision_blocker_4",
+      "mp_fresh_blocker_1"
+    ],
+    [
+      "pc3",
+      "mpr_fresh_blocker_3",
+      "mp_collision_blocker_2"
+    ],
+    [
+      "pc4",
+      "mpr_fresh_blocker_2",
+      "mp_collision_blocker_3"
+    ],
+    [
+      "rc4",
+      "mpr_collision_blocker_1",
+      "mp_fresh_blocker_3"
+    ],
+    [
+      "bp",
+      "mp_collision_apex_3"
+    ],
+    [
+      "br",
+      "mp_fresh_apex_4",
+      "rich_oppApex2_w3"
+    ],
+    [
+      "source",
+      "rich_surplusApex_w5"
+    ],
+    [
+      "q1e3",
+      "q2e4"
+    ],
+    [
+      "q1e4",
+      "q2e3"
+    ],
+    [
+      "mpr_fresh_apex_2",
+      "rich_surplusApex_w6"
+    ]
+  ],
+  "opp_apex1": "v2",
+  "opp_apex2": "v3",
+  "opp_index1": 1,
+  "opp_index2": 2,
+  "q_blocker_equals_cap_source_blocker": false,
+  "requested_blocker_relation": "free",
+  "requested_rich_pattern": "KKS",
+  "rich_apex_arms": {
+    "oppApex1": {
+      "center": "v2",
+      "six_point": false,
+      "two_k4": true
+    },
+    "oppApex2": {
+      "center": "v3",
+      "six_point": false,
+      "two_k4": true
+    },
+    "surplusApex": {
+      "center": "v1",
+      "six_point": true,
+      "two_k4": false
+    }
+  },
+  "schema": "p97-fresh-third-no-alignment-generic-v4",
+  "solver_status": "SAT",
+  "surplus_index": 0,
+  "target": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow",
+  "theorem_closure_claim": false,
+  "trust_boundary": [
+    "Z3 checks only this quantifier-free named quotient.",
+    "SAT is a surviving relaxation, not a Euclidean realization.",
+    "UNSAT would refute only this encoding after an independent source-fidelity audit; it would not by itself close Lean."
+  ]
+}

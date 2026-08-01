@@ -1,0 +1,286 @@
+        }
+        matched = (
+            min(
+                candidates,
+                key=lambda item: (len(item), tuple(sorted(item))),
+            )
+            if candidates
+            else None
+        )
+        if matched is None:
+            kept.append(clause)
+            by_anchor[clause[0]].append(clause)
+            clause_sets[clause] = clause_set
+            cover[clause] = clause
+        else:
+            cover[clause] = matched
+    return tuple(kept), cover
+
+
+def _bootstrap_certificates(
+    encoding: Any, source: Path
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    raw = _strict_json_lines(source)
+    source_fields = {
+        "schema",
+        "index",
+        "origin",
+        "raw_sat_index",
+        "assignment_sha256",
+        "semantic_assignment",
+        "stage",
+        "certificate",
+        "clause",
+        "clause_sha256",
+        "superseded_nogood_sha256",
+        "previous_record_sha256",
+        "record_sha256",
+    }
+    structural_by_key: dict[Any, dict[str, Any]] = {}
+    cap_order_by_schema: dict[
+        str, dict[tuple[int, ...], dict[str, Any]]
+    ] = {
+        CAP_ORDER_CERTIFICATE_SCHEMA: {},
+        RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA: {},
+        KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA: {},
+    }
+    source_structural_bank = certificates._NogoodBank()
+    source_cap_order_clauses: dict[str, set[tuple[int, ...]]] = {
+        CAP_ORDER_CERTIFICATE_SCHEMA: set(),
+        RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA: set(),
+        KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA: set(),
+    }
+    stages: Counter[str] = Counter()
+    schemas: Counter[str] = Counter()
+    previous: str | None = None
+    for index, record in enumerate(raw):
+        where = f"bootstrap record {index}"
+        if set(record) != source_fields:
+            raise StructuralCegarError(
+                f"{where} learned-record fields mismatch"
+            )
+        _validate_record_hash(record, previous, where=where)
+        previous = record["record_sha256"]
+        if (
+            record.get("schema") != _learned_schema(encoding)
+            or record.get("index") != index
+        ):
+            raise StructuralCegarError(
+                f"{where} learned-record identity mismatch"
+            )
+        certificate = record.get("certificate")
+        if not isinstance(certificate, dict):
+            raise StructuralCegarError(
+                f"{where} lacks a certificate"
+            )
+        try:
+            if "schema" not in certificate:
+                replayed, selected = _replay_certificate_json(certificate)
+                legacy_clause = _clause_for_rows(encoding, selected)
+                current_clause = _clause_for_structural_certificate(
+                    encoding, replayed, selected
+                )
+                key = certificates._rows_key(selected)
+                _matched, superseded, added = source_structural_bank.add(
+                    key, replayed
+                )
+                if not added:
+                    raise StructuralCegarError(
+                        "source learned certificate was redundant"
+                    )
+                expected_superseded = sorted(
+                    certificates._nogood_sha256(old)
+                    for old in superseded
+                )
+                if (
+                    record.get("superseded_nogood_sha256")
+                    != expected_superseded
+                ):
+                    raise StructuralCegarError(
+                        "source learned supersession list mismatch"
+                    )
+                current = structural_by_key.get(key)
+                if (
+                    current is None
+                    or _canonical_bytes(replayed) < _canonical_bytes(current)
+                ):
+                    structural_by_key[key] = replayed
+                schema = "structural-row-certificate"
+                source_origin = record.get("origin")
+                if source_origin in {
+                    "solver",
+                    "bootstrap-structural-prefix",
+                }:
+                    clause = legacy_clause
+                elif source_origin in {
+                    STRUCTURAL_PATH_ORIGIN,
+                    BOOTSTRAP_STRUCTURAL_PATH_ORIGIN,
+                }:
+                    clause = current_clause
+                else:
+                    raise StructuralCegarError(
+                        "structural source origin mismatch"
+                    )
+                dynamic_origins = {"solver", STRUCTURAL_PATH_ORIGIN}
+                bootstrap_origins = {
+                    "bootstrap-structural-prefix",
+                    BOOTSTRAP_STRUCTURAL_PATH_ORIGIN,
+                }
+                expected_stage = replayed["stage"]
+            elif certificate["schema"] == CAP_ORDER_CERTIFICATE_SCHEMA:
+                replayed, _selected, _facts = _replay_cap_order_certificate(
+                    certificate
+                )
+                clause = _clause_for_cap_order_certificate(encoding, replayed)
+                current = cap_order_by_schema[
+                    CAP_ORDER_CERTIFICATE_SCHEMA
+                ].get(clause)
+                if (
+                    current is None
+                    or _canonical_bytes(replayed) < _canonical_bytes(current)
+                ):
+                    cap_order_by_schema[CAP_ORDER_CERTIFICATE_SCHEMA][
+                        clause
+                    ] = replayed
+                schema = CAP_ORDER_CERTIFICATE_SCHEMA
+                dynamic_origin = CAP_ORDER_ORIGIN
+                bootstrap_origin = BOOTSTRAP_CAP_ORDER_ORIGIN
+                dynamic_origins = {dynamic_origin}
+                bootstrap_origins = {bootstrap_origin}
+                expected_stage = CAP_ORDER_STAGE
+            elif certificate["schema"] == RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA:
+                replayed, _selected, _facts = (
+                    _replay_rhombus_cap_order_certificate(certificate)
+                )
+                clause = _clause_for_rhombus_cap_order_certificate(
+                    encoding, replayed
+                )
+                current = cap_order_by_schema[
+                    RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA
+                ].get(clause)
+                if (
+                    current is None
+                    or _canonical_bytes(replayed) < _canonical_bytes(current)
+                ):
+                    cap_order_by_schema[RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA][
+                        clause
+                    ] = replayed
+                schema = RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA
+                dynamic_origin = RHOMBUS_CAP_ORDER_ORIGIN
+                bootstrap_origin = BOOTSTRAP_RHOMBUS_CAP_ORDER_ORIGIN
+                dynamic_origins = {dynamic_origin}
+                bootstrap_origins = {bootstrap_origin}
+                expected_stage = RHOMBUS_CAP_ORDER_STAGE
+            elif certificate["schema"] == KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA:
+                replayed, _selected, _facts = (
+                    _replay_kalmanson_cap_order_certificate(certificate)
+                )
+                clause = _clause_for_kalmanson_cap_order_certificate(
+                    encoding, replayed
+                )
+                current = cap_order_by_schema[
+                    KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA
+                ].get(clause)
+                if (
+                    current is None
+                    or _canonical_bytes(replayed) < _canonical_bytes(current)
+                ):
+                    cap_order_by_schema[
+                        KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA
+                    ][clause] = replayed
+                schema = KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA
+                dynamic_origin = KALMANSON_CAP_ORDER_ORIGIN
+                bootstrap_origin = BOOTSTRAP_KALMANSON_CAP_ORDER_ORIGIN
+                dynamic_origins = {dynamic_origin}
+                bootstrap_origins = {bootstrap_origin}
+                expected_stage = KALMANSON_CAP_ORDER_STAGE
+            else:
+                raise StructuralCegarError(
+                    f"unknown certificate schema {certificate.get('schema')!r}"
+                )
+            if schema != "structural-row-certificate":
+                if clause in source_cap_order_clauses[schema]:
+                    raise StructuralCegarError(
+                        "duplicate source cap-order learned clause"
+                    )
+                source_cap_order_clauses[schema].add(clause)
+                if record.get("superseded_nogood_sha256") != []:
+                    raise StructuralCegarError(
+                        "cap-order source supersession list mismatch"
+                    )
+            if (
+                record.get("origin")
+                not in dynamic_origins | bootstrap_origins
+                or record.get("stage") != expected_stage
+                or record.get("clause") != list(clause)
+                or record.get("clause_sha256")
+                != _sha256_value(list(clause))
+            ):
+                raise StructuralCegarError(
+                    "learned-record certificate linkage mismatch"
+                )
+            if record["origin"] in bootstrap_origins:
+                if (
+                    record.get("raw_sat_index") is not None
+                    or record.get("assignment_sha256") is not None
+                    or record.get("semantic_assignment") is not None
+                ):
+                    raise StructuralCegarError(
+                        "bootstrapped learned-record assignment mismatch"
+                    )
+            else:
+                raw_sat_index = record.get("raw_sat_index")
+                if (
+                    isinstance(raw_sat_index, bool)
+                    or not isinstance(raw_sat_index, int)
+                    or raw_sat_index < 0
+                ):
+                    raise StructuralCegarError(
+                        "solver learned-record raw SAT index mismatch"
+                    )
+                assignment = encoding.assignment_from_record(record)
+                obj = encoding.decode(assignment)
+                encoding.validate(obj, assignment)
+                rows = _metric_rows(obj)
+                if schema == "structural-row-certificate":
+                    found = _detection(rows)
+                    if found is None:
+                        raise StructuralCegarError(
+                            "solver certificate replay became non-detected"
+                        )
+                    regenerated, regenerated_rows = _certificate(rows, found)
+                    if regenerated != replayed or regenerated_rows != selected:
+                        raise StructuralCegarError(
+                            "solver certificate replay drift"
+                        )
+                    _clause_for_structural_certificate(
+                        encoding, replayed, selected, assignment
+                    )
+                elif schema == CAP_ORDER_CERTIFICATE_SCHEMA:
+                    regenerated_result = _cap_order_certificate(obj, rows)
+                    if (
+                        regenerated_result is None
+                        or regenerated_result[0] != replayed
+                    ):
+                        raise StructuralCegarError(
+                            "cap-order certificate replay drift"
+                        )
+                    _clause_for_cap_order_certificate(
+                        encoding, replayed, assignment
+                    )
+                elif schema == RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA:
+                    regenerated_result = _rhombus_cap_order_certificate(
+                        obj, rows
+                    )
+                    if (
+                        regenerated_result is None
+                        or regenerated_result[0] != replayed
+                    ):
+                        raise StructuralCegarError(
+                            "rhombus cap-order certificate replay drift"
+                        )
+                    _clause_for_rhombus_cap_order_certificate(
+                        encoding, replayed, assignment
+                    )
+                else:
+                    regenerated_result = _kalmanson_cap_order_certificate(

@@ -266,56 +266,206 @@ mixed-radius matrix; the hypothesis tags are the audit trail.
   variant-B occurrences); `prune_cut_matrix` hard-refuses a
   node-domain rule.
 
-### 4.5 Cut-pattern rule R-P3 (amendment 2026-07-28, v1.2)
+### 4.5 Cut-pattern rule R-P3 (amendment 2026-07-28, v1.5)
 
-Same `"cut-matrix"` domain and semantics contract as §4.4 (subset
-semantics, C2-read, consumer owns convex/contiguous/same-δ
-hypotheses). R-P3 covers ONLY the CERTIFIED portion of the P3
-forbidden-pattern family — row-cases R1 (`r_a<r_b<r_c<r_d`) and R3
-(`r_b=r_c`), both column sub-cases — per
-`scratch/p97-search-lane/fr-pattern-p3-proof-draft.md` Theorem 2,
-PROVEN + AUDITED 2026-07-28 (math-skeptic; finding F4, a vacuous
-n=4 step in Proposition 3, patched same day). Row-case R2
-(`r_a<r_c<r_b<r_d`) is OPEN — CONJECTURED with empirical support only,
-NOT proven — and is explicitly excluded from this rule.
+Same `"cut-matrix"` domain and semantics contract as §4.4: subset
+semantics, a C2 reading, and consumer-owned strict-convexity,
+contiguous-cut, and same-δ hypotheses. R-P3 covers the full source P3
+family. Theorem 2 closes row-cases R1/R3, Proposition 4 closes R2 in
+both inner-column cases by exact angle contradictions, Proposition 5
+supplies the transposed orientation, and Theorem 6 assembles the
+family. The independent report
+`scratch/p97-search-lane/p3-r2-compute/SKEPTIC-2026-07-28.md` certifies
+the R2 proof; its exact derivations are also recorded in
+`p3-r2-compute/RESULTS.md` §§3–4.
 
-- Four relative templates, one per (row-case, column-case) pair,
-  derived directly from Theorem 2's cell definitions (orchestrator,
-  2026-07-28) and checked closed under transpose so a single scan
-  covers both pattern orientations (Proposition 5) — no separate
-  orientation pass, mirroring how R-P2's variant B is variant A's
-  transpose:
-  - R1×C1 (4 rows × 4 cols): `{(0,0),(0,1),(1,0),(2,3),(3,2),(3,3)}`
-    — self-transpose.
-  - R1×C2 (4 rows × 3 cols): `{(0,0),(0,1),(1,0),(2,2),(3,1),(3,2)}`
-    — transpose of R3×C1.
-  - R3×C1 (3 rows × 4 cols): `{(0,0),(0,1),(1,0),(1,3),(2,2),(2,3)}`
-    — transpose of R1×C2.
-  - R3×C2 (3 rows × 3 cols, the "plain drawing" instance): `{(0,0),
-    (0,1),(1,0),(1,2),(2,1),(2,2)}` — self-transpose.
-- True (prune) iff some choice of matrix rows (ascending) and columns
-  (ascending) matching one template's dimensions has all six
-  positions 1. `find_p3_occurrence` returns `(variant_name, rows,
-  cols)`, mirroring `find_p2_occurrence`.
-- Soundness check against row-case R2 (orchestrator, 2026-07-28,
-  recorded here since it is not visible from the templates alone):
-  R2's own two relative templates (4×4 and 4×3, derived the same way
-  from Theorem 2 §5.2's cyclic order) are set-DISTINCT from all four
-  admitted templates at the same dimensions (R2×C1 vs R1×C1: R2 has
-  cells `(2,0),(1,3)` where R1×C1 has `(1,0),(2,3)`; R2×C2 vs R1×C2:
-  R2 has `(2,0),(1,2)` where R1×C2 has `(1,0),(2,2)`) — so a matrix
-  whose only qualifying occurrence is a pure R2 pattern is NOT fired
-  on by R-P3, i.e. this admission does not silently extend to the
-  unproven case.
-- Hypotheses: `("convex", "contiguous-cut", "same-distance-cells",
-  "C2-orientation")` — same as R-P2, C2 load-bearing for the same
-  reason (Lemma R′ reuses the patched restriction bracket, which is a
-  C2-specific argument).
-- Gate (appended to G-CUTPAT): R-P3 kills one hand-built occurrence
-  per template (all four) and spares each with one required cell
-  removed; a hand-built pure-R2 occurrence (no template subset
-  present) is spared, confirming the soundness check above
-  computationally, not just by the set-difference argument.
+- Six orientation-1 templates come directly from the source cell set:
+  - R1 distinct-inner (4×4):
+    `{(0,0),(0,1),(1,0),(2,3),(3,2),(3,3)}`.
+  - R1 merged-inner (4×3):
+    `{(0,0),(0,1),(1,0),(2,2),(3,1),(3,2)}`.
+  - R2 distinct-inner (4×4):
+    `{(0,0),(0,1),(2,0),(1,3),(3,2),(3,3)}`.
+  - R2 merged-inner (4×3):
+    `{(0,0),(0,1),(2,0),(1,2),(3,1),(3,2)}`.
+  - R3 distinct-inner (3×4):
+    `{(0,0),(0,1),(1,0),(1,3),(2,2),(2,3)}`.
+  - R3 merged-inner (3×3):
+    `{(0,0),(0,1),(1,0),(1,2),(2,1),(2,2)}`.
+- Transpose every source template and deduplicate equal shapes.
+  This leaves eight distinct templates: the six above plus the two
+  genuinely new R2 transposes. The scanner performs this construction
+  explicitly.
+- True (prune) iff some ascending row/column selection has all six
+  positions of one template equal to 1. `find_p3_occurrence` returns
+  `(variant_name, rows, cols)`.
+- Hypotheses are `("convex", "contiguous-cut",
+  "same-distance-cells", "C2-orientation")`. Lemma R′, including its
+  restriction-inheritance clause, is load-bearing. This admission
+  does not extend to shell semantics or per-point radii.
+- G-CUTPAT requires eight exact-template positives, exact witness-name
+  noncollision, and all 48 single-required-cell deletions spared with
+  no alternate P3 match.
+- The public rule ID and registry count do not change. The rule-bank
+  hash does change because the citation records the expanded certified
+  semantics; stale pruned banks therefore require revalidation.
+
+### 4.6 Cut-pattern rule R-P4 (amendment 2026-07-28, v1.3)
+
+Same `"cut-matrix"` domain and semantics contract as §4.4: subset
+semantics, C2-read, with the consumer owning strict convexity,
+contiguous-cut, same-δ, and orientation hypotheses. R-P4 covers the two
+actual Figure 4 variants for every k ≥ 3.
+
+Admission basis:
+
+- Source transcription is HIGH confidence after two independent 600 dpi
+  inspections of the original Fishburn–Reeds PDF, page 8 / printed
+  p. 88. The label is `P4: 2k cells, k ≥ 3`.
+- `scratch/p97-search-lane/fr-pattern-p4-proof-draft.md` is PROVEN +
+  AUDITED 2026-07-28. Variant A is forbidden by antipodal-matching
+  extremality; the source right-hand variant is its simultaneous
+  row-and-column reversal and is forbidden by the C2-preserving symmetry
+  in §7A. The separately proved column-only reversal `B_col` is an
+  auxiliary result and is deliberately not attributed to, or scanned
+  by R-P4 as, Figure 4; §4.7 admits it under a separate rule ID.
+
+For each k ≥ 3, use zero-based relative indices in a selected k×k
+submatrix:
+
+- A: `{(i,k-2-i),(i,k-1-i) : 0≤i≤k-2} ∪
+  {(k-1,0),(k-1,k-1)}`.
+- B: `{(0,0),(0,k-1)} ∪
+  {(i,k-1-i),(i,k-i) : 1≤i≤k-1}`.
+
+True (prune) iff there exist k ≥ 3, k ascending matrix rows, and k
+ascending matrix columns for which all 2k positions of A or B are 1.
+`find_p4_occurrence` returns `(variant_name, rows, cols)`. Extra 1-cells
+are allowed. Hypotheses are
+`("convex", "contiguous-cut", "same-distance-cells",
+"C2-orientation")`.
+
+Gate (appended to G-CUTPAT): for k=3 and k=5, each actual source variant
+is killed when embedded at non-contiguous rows/columns; deleting one
+required cell spares it under `rules=(R_P4,)`; the witness returned by
+`find_p4_occurrence` is exact. An isolated `B_col` k=4 matrix is spared
+by `rules=(R_P4,)`, preventing regression to the corrected
+mis-transcription. The certified-realizable FR-20 native C2 matrix
+continues to survive the full admitted cut-pattern bank.
+
+### 4.7 Auxiliary cut-pattern rule R-P4-B-COL (amendment 2026-07-28, v1.4)
+
+`R-P4-B-COL` is a separate admitted `"cut-matrix"` rule for the
+independently certified auxiliary pattern `B_col`. It does not alter
+`R-P4`: `B_col` is the former column-only-reversal transcription and is
+not attributed to Fishburn--Reeds Figure 4.
+
+Admission basis:
+
+- `scratch/p97-search-lane/fr-pattern-p4-proof-draft.md` §§8--10 is
+  PROVEN + AUDITED 2026-07-28. Proposition C proves the strict chain
+  inequality `F_k > N_k`, while a same-δ occurrence would make both
+  alternating matching totals equal to `kδ`.
+- The certification covers every `k ≥ 3` (indeed the proof also covers
+  `k=2`, already represented by R-P1), subset semantics, and a general
+  common distance. The engineering admission deliberately begins at
+  `k=3`.
+
+For each `k ≥ 3`, use zero-based relative indices in a selected `k×k`
+submatrix:
+
+`B_col = {(i,i),(i,i+1) : 0≤i≤k−2}
+         ∪ {(k−1,k−1),(k−1,0)}`.
+
+True (prune) iff there exist `k` ascending matrix rows and `k` ascending
+matrix columns for which all `2k` positions are 1. Extra 1-cells are
+allowed. `find_p4_b_col_occurrence` returns `(rows, cols)`.
+`R-P4-B-COL` retains the standard conservative cut-matrix hypotheses
+`("convex", "contiguous-cut", "same-distance-cells",
+"C2-orientation")`; the consumer still owns those semantics. The proof
+draft additionally proves convention-independence, but this admission
+does not broaden the engine's C2-read cut-matrix contract.
+
+Gate (appended to G-CUTPAT): an exact non-contiguous `k=4` embedding
+fires only `R-P4-B-COL` when checked against `(R_P4, R_P4_B_COL)`,
+returns the exact selected rows/columns, and is spared after deleting a
+required cell. Exact source A/B matrices at `k=3,5` do not fire
+`R-P4-B-COL`, while the `B_col` matrix does not fire `R-P4`. This proves
+scanner separation from the two current source variants.
+
+The new rule has **zero incremental pruning power** over the already
+admitted R-P2. Universally, for every `k ≥ 3`, a `B_col` occurrence on
+selected rows `(r_0,...,r_{k-1})` and columns
+`(c_0,...,c_{k-1})` contains the R-P2 variant-A occurrence on relative
+rows `(0,k−2,k−1)` and relative columns `(0,1,k−1)`. Indeed, its five
+P2-A cells are
+
+`(r_0,c_0), (r_0,c_1), (r_{k−2},c_{k−1}),
+ (r_{k−1},c_0), (r_{k−1},c_{k−1})`;
+
+the first two are the `i=0` consecutive pair, the third is the shifted
+cell for `i=k−2`, and the last two are the wrap-row pair. Since `k ≥ 3`,
+the three selected row and column indices are strictly increasing, so
+this is a valid R-P2 witness. Thus `R-P4-B-COL` records independent
+certificate provenance and exposes a direct diagnostic, but cannot
+prune any matrix spared by R-P2. G-CUTPAT checks the exact embedded
+P2-A witness at `k=3,5`.
+
+### 4.8 Fishburn--Reeds Theorem-3 diagnostic (amendment 2026-07-28, v1.6)
+
+`fr_theorem3_dense_small(matrix) -> bool` is an exported, pure,
+validated diagnostic. It uses the same rectangular 0/1 validator as
+the source-pattern scanners and returns exactly whether
+`alpha + beta < 20` and every row and every column has degree at least
+three. It explicitly requires `alpha,beta >= 3` so an empty axis cannot
+satisfy the universal degree clauses vacuously.
+
+This helper is deliberately **not a `Rule`**. It is absent from
+`ADMITTED_CUT_MATRIX_RULES`, `ALL_RULES`, and therefore the persistent
+rule-bank hash. It is not called by `prune_cut_matrix`; `PruneResult`
+and the scanner's collect-all fired-ID order and hypothesis union are
+unchanged.
+
+The certification behind the diagnostic is the direct 56-case
+Lemma-2 sweep in
+`scratch/p97-search-lane/theorem3-table2/`: for every
+`3 <= alpha <= beta` with `alpha + beta <= 19`, the CNF encoding of
+row/column degree at least three plus avoidance of source P1, both P2
+variants, full source P3 (including R2 and transpose), and the two
+source P4 variants is UNSAT. Every CaDiCaL proof was accepted by
+fail-closed `drat-trim`, and an independent skeptic audit returned
+CERTIFIED. Auxiliary `B_col` is not emitted or consumed by this
+certificate and must not be counted as Fishburn--Reeds source evidence.
+
+Trust boundary: this is certificate-backed Python/CNF/DRAT evidence
+conditional on the audited source transcription and generator. It is
+not a Lean-kernel theorem and does not itself prove the geometric
+cut-matrix hypotheses. The combined Theorem-3 use additionally depends
+on the separately audited P1--P4 geometric exclusions and on the
+consumer supplying strict convexity, contiguous cut arcs, one common
+distance, and the C2 reading.
+
+The diagnostic adds zero incremental pruning: it only recognizes an
+antecedent for which the complete source scan is certificate-backed to
+find at least one of R-P1 through R-P4, while the current pruning path
+already scans all rules to retain full attribution. A future boolean
+early-exit may consult it only for a consumer that explicitly does not
+need the complete fired tuple and hypothesis union; the default
+`prune_cut_matrix` path must remain collect-all.
+
+The direct sweep does not consume Table 2 and is not blocked by its
+unresolved discrepancy: the printed table says `g(6,8)=18`, whereas
+the independently scanned candidate transcription has a certified
+19-one feasible witness and `g_candidate(6,8)=19`. Table 2 must not be
+treated as an exact verified bank until that mismatch is resolved.
+
+G-CUTPAT checks a positive 3x3 all-ones matrix, a degree miss,
+transpose invariance, malformed-input rejection, and the strict
+`alpha+beta=20` boundary using the native degree-three FR-20 matrix.
+FR-20 is false for the diagnostic and spared by the source-only
+P1--P4 scan. The gate also records an exact full-bank `PruneResult`
+before and after a helper call, proving that fired tuple/order,
+hypotheses, and input are unchanged.
 
 ## 5. Cell iterator + bank (`iterate.py`, new)
 

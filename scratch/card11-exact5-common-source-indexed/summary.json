@@ -1,0 +1,277 @@
+{
+  "promotable": false,
+  "promotion_reason": "finite SAT incidence shadow with an unencoded no_qfree-after-deletion quantifier",
+  "results": [
+    {
+      "case": {
+        "o": 0,
+        "s": 2
+      },
+      "clauses": 414047,
+      "cnf_sha256": "370e6e3f1f3cc77e1b08e0b823a15f92019c8142d0d8ce48bef97afaf5491a95",
+      "command": [
+        "cadical",
+        "-q",
+        "-t",
+        "900",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-source-indexed/runs/s2_o0/input.cnf",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-source-indexed/runs/s2_o0/proof.drat"
+      ],
+      "model_validation": {
+        "all_assigned": true,
+        "assignment_variables": 41004,
+        "cnf_satisfied": true,
+        "expected_variables": 41004,
+        "first_unresolved_clauses": [],
+        "first_unsatisfied_clauses": [],
+        "unresolved_clause_count": 0,
+        "unsatisfied_clause_count": 0
+      },
+      "proof_bytes": 7245925,
+      "proof_sha256": "72ecb2bcb962ec5b4272f12ba1c330c1e48f7a469a7920f70fb7dd5515a0c1c5",
+      "returncode": 10,
+      "schema": "card11_exact5_common_source_indexed.v1",
+      "source_indexed": {
+        "choice_clauses": 26189,
+        "choice_variables": 13100,
+        "common_sources_forced_to_blocker": [
+          6,
+          7
+        ],
+        "domain_sizes": {
+          "0": 689,
+          "1": 760,
+          "10": 701,
+          "2": 766,
+          "3": 686,
+          "4": 686,
+          "5": 686,
+          "6": 84,
+          "7": 84,
+          "8": 707,
+          "9": 701
+        }
+      },
+      "structural_validation": {
+        "base_structural_validation": {
+          "independent_cube_ok": true,
+          "independent_selected_orders_valid": true,
+          "independent_shell_ok": true,
+          "selected_order_count": 1
+        },
+        "independent_common_pair_saturated": true,
+        "independent_pair_capacity_le_two": true,
+        "independent_triple_capacity_le_one": true,
+        "source_deletion_selected_support_card_three": true,
+        "source_map_total_functional_and_exact": true
+      },
+      "variables": 41004,
+      "verdict": "SAT",
+      "wall_seconds": 1.4071045408491045
+    },
+    {
+      "case": {
+        "o": 9,
+        "s": 2
+      },
+      "clauses": 414047,
+      "cnf_sha256": "39770dc2822b7cab4ead996a2ffdcaa72584255c2c204dda7016c5bfec4508bf",
+      "command": [
+        "cadical",
+        "-q",
+        "-t",
+        "900",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-source-indexed/runs/s2_o9/input.cnf",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-source-indexed/runs/s2_o9/proof.drat"
+      ],
+      "model_validation": {
+        "all_assigned": true,
+        "assignment_variables": 41004,
+        "cnf_satisfied": true,
+        "expected_variables": 41004,
+        "first_unresolved_clauses": [],
+        "first_unsatisfied_clauses": [],
+        "unresolved_clause_count": 0,
+        "unsatisfied_clause_count": 0
+      },
+      "proof_bytes": 7071251,
+      "proof_sha256": "fe0e897c428ee3478f140b165de095701b45d393764d9046712f9497e43b7de4",
+      "returncode": 10,
+      "schema": "card11_exact5_common_source_indexed.v1",
+      "source_indexed": {
+        "choice_clauses": 26189,
+        "choice_variables": 13100,
+        "common_sources_forced_to_blocker": [
+          6,
+          7
+        ],
+        "domain_sizes": {
+          "0": 689,
+          "1": 760,
+          "10": 701,
+          "2": 766,
+          "3": 686,
+          "4": 686,
+          "5": 686,
+          "6": 84,
+          "7": 84,
+          "8": 707,
+          "9": 701
+        }
+      },
+      "structural_validation": {
+        "base_structural_validation": {
+          "independent_cube_ok": true,
+          "independent_selected_orders_valid": true,
+          "independent_shell_ok": true,
+          "selected_order_count": 1
+        },
+        "independent_common_pair_saturated": true,
+        "independent_pair_capacity_le_two": true,
+        "independent_triple_capacity_le_one": true,
+        "source_deletion_selected_support_card_three": true,
+        "source_map_total_functional_and_exact": true
+      },
+      "variables": 41004,
+      "verdict": "SAT",
+      "wall_seconds": 1.420240833889693
+    },
+    {
+      "case": {
+        "o": 0,
+        "s": 3
+      },
+      "clauses": 414047,
+      "cnf_sha256": "92592d62e3c0a20ad105a035b272d15dd60412a13364d3b75178626fc7fafba2",
+      "command": [
+        "cadical",
+        "-q",
+        "-t",
+        "900",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-source-indexed/runs/s3_o0/input.cnf",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-source-indexed/runs/s3_o0/proof.drat"
+      ],
+      "model_validation": {
+        "all_assigned": true,
+        "assignment_variables": 41004,
+        "cnf_satisfied": true,
+        "expected_variables": 41004,
+        "first_unresolved_clauses": [],
+        "first_unsatisfied_clauses": [],
+        "unresolved_clause_count": 0,
+        "unsatisfied_clause_count": 0
+      },
+      "proof_bytes": 6633663,
+      "proof_sha256": "d002f6a562bfb136a8e4a81979ec9993a2b1224b6b85bdb868b74d6ee8cc870d",
+      "returncode": 10,
+      "schema": "card11_exact5_common_source_indexed.v1",
+      "source_indexed": {
+        "choice_clauses": 26189,
+        "choice_variables": 13100,
+        "common_sources_forced_to_blocker": [
+          6,
+          7
+        ],
+        "domain_sizes": {
+          "0": 689,
+          "1": 760,
+          "10": 701,
+          "2": 766,
+          "3": 686,
+          "4": 686,
+          "5": 686,
+          "6": 84,
+          "7": 84,
+          "8": 707,
+          "9": 701
+        }
+      },
+      "structural_validation": {
+        "base_structural_validation": {
+          "independent_cube_ok": true,
+          "independent_selected_orders_valid": true,
+          "independent_shell_ok": true,
+          "selected_order_count": 2
+        },
+        "independent_common_pair_saturated": true,
+        "independent_pair_capacity_le_two": true,
+        "independent_triple_capacity_le_one": true,
+        "source_deletion_selected_support_card_three": true,
+        "source_map_total_functional_and_exact": true
+      },
+      "variables": 41004,
+      "verdict": "SAT",
+      "wall_seconds": 1.3690900830551982
+    },
+    {
+      "case": {
+        "o": 9,
+        "s": 3
+      },
+      "clauses": 414047,
+      "cnf_sha256": "1f4a2446173af16baae7fa9cb16ddc63df87481d834b6f00f2de34193731deb2",
+      "command": [
+        "cadical",
+        "-q",
+        "-t",
+        "900",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-source-indexed/runs/s3_o9/input.cnf",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-source-indexed/runs/s3_o9/proof.drat"
+      ],
+      "model_validation": {
+        "all_assigned": true,
+        "assignment_variables": 41004,
+        "cnf_satisfied": true,
+        "expected_variables": 41004,
+        "first_unresolved_clauses": [],
+        "first_unsatisfied_clauses": [],
+        "unresolved_clause_count": 0,
+        "unsatisfied_clause_count": 0
+      },
+      "proof_bytes": 7187856,
+      "proof_sha256": "a804251d1dff253fa0d09c1d8243ddd9d7fc1fc23882426805f6ccf1b551f499",
+      "returncode": 10,
+      "schema": "card11_exact5_common_source_indexed.v1",
+      "source_indexed": {
+        "choice_clauses": 26189,
+        "choice_variables": 13100,
+        "common_sources_forced_to_blocker": [
+          6,
+          7
+        ],
+        "domain_sizes": {
+          "0": 689,
+          "1": 760,
+          "10": 701,
+          "2": 766,
+          "3": 686,
+          "4": 686,
+          "5": 686,
+          "6": 84,
+          "7": 84,
+          "8": 707,
+          "9": 701
+        }
+      },
+      "structural_validation": {
+        "base_structural_validation": {
+          "independent_cube_ok": true,
+          "independent_selected_orders_valid": true,
+          "independent_shell_ok": true,
+          "selected_order_count": 2
+        },
+        "independent_common_pair_saturated": true,
+        "independent_pair_capacity_le_two": true,
+        "independent_triple_capacity_le_one": true,
+        "source_deletion_selected_support_card_three": true,
+        "source_map_total_functional_and_exact": true
+      },
+      "variables": 41004,
+      "verdict": "SAT",
+      "wall_seconds": 1.3738994169980288
+    }
+  ],
+  "schema": "card11_exact5_common_source_indexed.v1",
+  "serial": true,
+  "timeout_per_case_seconds": 900
+}

@@ -1,0 +1,191 @@
+  source_not_mem_firstCap :
+    source.1 ∉ S.capByIndex S.oppIndex1
+  otherOutsidePoint : ℝ²
+  otherOutsidePoint_mem_A : otherOutsidePoint ∈ D.A
+  otherOutsidePoint_ne_source : otherOutsidePoint ≠ source.1
+  otherOutsidePoint_ne_second₁ : otherOutsidePoint ≠ Pρ.source₁
+  otherOutsidePoint_ne_second₂ : otherOutsidePoint ≠ Pρ.source₂
+  otherOutsidePoint_mem_shell :
+    otherOutsidePoint ∈
+      (H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.support
+  otherOutsidePoint_not_mem_firstCap :
+    otherOutsidePoint ∉ S.capByIndex S.oppIndex1
+  outside_eq_pair :
+    (H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.support \
+        S.capByIndex S.oppIndex1 =
+      {source.1, otherOutsidePoint}
+
+/-- The symmetric geometric content of a third source in the second known
+blocker fiber, after excluding a named cross hit. -/
+structure FreshOutsideSecondBlockerFiber
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius radiusρ : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S radiusρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ) : Type where
+  source : CriticalShellSystem.CarrierVertex D.A
+  source_ne_first₁ :
+    source ≠ ⟨P.source₁, P.source₁_mem_A⟩
+  source_ne_first₂ :
+    source ≠ ⟨P.source₂, P.source₂_mem_A⟩
+  source_ne_second₁ :
+    source ≠ ⟨Pρ.source₁, Pρ.source₁_mem_A⟩
+  source_ne_second₂ :
+    source ≠ ⟨Pρ.source₂, Pρ.source₂_mem_A⟩
+  blockers_eq :
+    H.blockerVertex source =
+      H.blockerVertex ⟨Pρ.source₁, Pρ.source₁_mem_A⟩
+  source_mem_shell :
+    source.1 ∈
+      (H.selectedAt Pρ.source₁
+        Pρ.source₁_mem_A).toCriticalFourShell.support
+  source_not_mem_firstCap :
+    source.1 ∉ S.capByIndex S.oppIndex1
+  otherOutsidePoint : ℝ²
+  otherOutsidePoint_mem_A : otherOutsidePoint ∈ D.A
+  otherOutsidePoint_ne_source : otherOutsidePoint ≠ source.1
+  otherOutsidePoint_ne_first₁ : otherOutsidePoint ≠ P.source₁
+  otherOutsidePoint_ne_first₂ : otherOutsidePoint ≠ P.source₂
+  otherOutsidePoint_mem_shell :
+    otherOutsidePoint ∈
+      (H.selectedAt Pρ.source₁
+        Pρ.source₁_mem_A).toCriticalFourShell.support
+  otherOutsidePoint_not_mem_firstCap :
+    otherOutsidePoint ∉ S.capByIndex S.oppIndex1
+  outside_eq_pair :
+    (H.selectedAt Pρ.source₁
+        Pρ.source₁_mem_A).toCriticalFourShell.support \
+        S.capByIndex S.oppIndex1 =
+      {source.1, otherOutsidePoint}
+
+/-- A second-side enlarged blocker fiber is the first-side packet after
+swapping the two collision rows. -/
+def FreshOutsideSecondBlockerFiber.toSwappedFirst
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius radiusρ : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorBlockerCollision R}
+    {Fρ : CriticalPairFrontier D S radiusρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    {Pρ : RetainedInteriorBlockerCollision Rρ}
+    (Q : FreshOutsideSecondBlockerFiber P Pρ) :
+    FreshOutsideFirstBlockerFiber Pρ P where
+  source := Q.source
+  source_ne_first₁ := Q.source_ne_second₁
+  source_ne_first₂ := Q.source_ne_second₂
+  source_ne_second₁ := Q.source_ne_first₁
+  source_ne_second₂ := Q.source_ne_first₂
+  blockers_eq := Q.blockers_eq
+  source_mem_shell := Q.source_mem_shell
+  source_not_mem_firstCap := Q.source_not_mem_firstCap
+  otherOutsidePoint := Q.otherOutsidePoint
+  otherOutsidePoint_mem_A := Q.otherOutsidePoint_mem_A
+  otherOutsidePoint_ne_source := Q.otherOutsidePoint_ne_source
+  otherOutsidePoint_ne_second₁ := Q.otherOutsidePoint_ne_first₁
+  otherOutsidePoint_ne_second₂ := Q.otherOutsidePoint_ne_first₂
+  otherOutsidePoint_mem_shell := Q.otherOutsidePoint_mem_shell
+  otherOutsidePoint_not_mem_firstCap :=
+    Q.otherOutsidePoint_not_mem_firstCap
+  outside_eq_pair := Q.outside_eq_pair
+
+private theorem source_mem_other_shell_of_blockers_eq
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    (source target : CriticalShellSystem.CarrierVertex A)
+    (hblockers :
+      H.blockerVertex source = H.blockerVertex target) :
+    source.1 ∈
+      (H.selectedAt target.1 target.2).toCriticalFourShell.support := by
+  have hsupports :=
+    selectedSupports_eq_of_actualBlockers_eq H
+      source.2 target.2 (congrArg Subtype.val hblockers)
+  rw [← hsupports]
+  exact
+    (H.selectedAt source.1
+      source.2).toCriticalFourShell.q_mem_support
+
+theorem collisionShell_sdiff_firstCap_card_eq_two
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R) :
+    ((H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.support \
+      S.capByIndex S.oppIndex1).card = 2 := by
+  have hsplit :=
+    Finset.card_sdiff_add_card_inter
+      (H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.support
+      (S.capByIndex S.oppIndex1)
+  rw [P.shell_inter_cap_eq_sources,
+    (H.selectedAt P.source₁
+      P.source₁_mem_A).toCriticalFourShell.support_card] at hsplit
+  simpa [P.sources_ne] using hsplit
+
+private theorem exists_other_outsidePoint
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    (x : ℝ²) :
+    ∃ y ∈
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support,
+      y ∉ S.capByIndex S.oppIndex1 ∧ y ≠ x := by
+  classical
+  let outside :=
+    (H.selectedAt P.source₁
+      P.source₁_mem_A).toCriticalFourShell.support \
+      S.capByIndex S.oppIndex1
+  have hcard : outside.card = 2 := by
+    simpa [outside] using collisionShell_sdiff_firstCap_card_eq_two P
+  have hone : 1 < outside.card := by omega
+  rcases Finset.one_lt_card.mp hone with
+    ⟨u, hu, v, hv, huv⟩
+  rcases Finset.mem_sdiff.mp hu with ⟨huShell, huOutside⟩
+  rcases Finset.mem_sdiff.mp hv with ⟨hvShell, hvOutside⟩
+  by_cases hux : u = x
+  · refine ⟨v, hvShell, hvOutside, ?_⟩
+    intro hvx
+    exact huv (hux.trans hvx.symm)
+  · exact ⟨u, huShell, huOutside, hux⟩
+
+private theorem outside_eq_pair
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {x y : ℝ²}
+    (hxShell :
+      x ∈
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support)
+    (hxOutside : x ∉ S.capByIndex S.oppIndex1)
+    (hyShell :
+      y ∈
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support)
+    (hyOutside : y ∉ S.capByIndex S.oppIndex1)
+    (hyx : y ≠ x) :
+    (H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.support \
+        S.capByIndex S.oppIndex1 =
+      {x, y} := by
+  classical
+  have hsubset :
+      ({x, y} : Finset ℝ²) ⊆
+        (H.selectedAt P.source₁
+            P.source₁_mem_A).toCriticalFourShell.support \
+          S.capByIndex S.oppIndex1 := by
+    intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl
+    · exact Finset.mem_sdiff.mpr ⟨hxShell, hxOutside⟩

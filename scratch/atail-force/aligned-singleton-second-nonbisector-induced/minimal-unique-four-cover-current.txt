@@ -1,0 +1,434 @@
+     1	/-
+     2	Copyright (c) 2026 Adam McKenna. All rights reserved.
+     3	Released under Apache 2.0 license as described in the file LICENSE.
+     4	Authors: Adam McKenna
+     5	-/
+     6	
+     7	import Erdos9796Proof.P97.ATail.DeletionRobustness
+     8	import Erdos9796Proof.P97.SmallerCounterexample
+     9	import Erdos9796Proof.P97.U1TwoShortCapReduction
+    10	
+    11	/-!
+    12	# Minimality forces a unique-four cover of the carrier
+    13	
+    14	Global minimality is carried unchanged all the way down the ATAIL frontier
+    15	(`FrontierCommonDeletionParentResidual.minimal`), but downstream it is only
+    16	ever spent as a discharge: a residual produces a removable vertex and
+    17	minimality refutes it.  This module extracts the *positive* content instead.
+    18	
+    19	If no carrier point is removable then for every `x ∈ A` some other point `p`
+    20	loses its whole K4 witness when `x` goes.  Selected classes at a common center
+    21	with different radii are disjoint, so a center that keeps a four-class after
+    22	deleting `x` can only be broken by a point lying in *every* one of its
+    23	four-classes.  That forces the broken center to carry exactly one K4 radius,
+    24	with a class of exactly four points, containing `x`.
+    25	
+    26	Recorded here, all general in `n` and free of cap or packet data:
+    27	
+    28	* `exists_isUniqueFourCenter_of_minimal` — every carrier point lies in the
+    29	  four-point class of a unique-four center distinct from it.
+    30	* `not_isUniqueFourCenter_of_fullyDeletionRobust` — a deletion-robust center is
+    31	  never a unique-four center, so robust apices never serve as witnesses.
+    32	* `card_le_four_mul_uniqueFourCenters` — those centers cover the carrier by
+    33	  four-point classes, hence `|A| ≤ 4 * |U|`.
+    34	-/
+    35	
+    36	open scoped EuclideanGeometry
+    37	open EuclideanGeometry
+    38	
+    39	namespace Problem97
+    40	namespace ATailMinimalUniqueFourCover
+    41	
+    42	open ATailDeletionRobustness
+    43	
+    44	attribute [local instance] Classical.propDecidable
+    45	
+    46	/-- A center carrying exactly one K4 radius, whose class has exactly four
+    47	points.  Deleting any member of that class destroys the center's witness. -/
+    48	def IsUniqueFourCenter (A : Finset ℝ²) (p : ℝ²) : Prop :=
+    49	  p ∈ A ∧ ∃ r : ℝ, 0 < r ∧ (SelectedClass A p r).card = 4 ∧
+    50	    ∀ ρ : ℝ, 0 < ρ → 4 ≤ (SelectedClass A p ρ).card → ρ = r
+    51	
+    52	/-- Selected classes at a common center with distinct radii are disjoint: a
+    53	point of both would have two different distances to the center. -/
+    54	theorem selectedClass_radius_unique_of_mem
+    55	    {A : Finset ℝ²} {p x : ℝ²} {r ρ : ℝ}
+    56	    (hr : x ∈ SelectedClass A p r) (hρ : x ∈ SelectedClass A p ρ) :
+    57	    r = ρ := by
+    58	  have h1 := (mem_selectedClass.mp hr).2
+    59	  have h2 := (mem_selectedClass.mp hρ).2
+    60	  rw [← h1, ← h2]
+    61	
+    62	/-- The four-point class of a center that has one, and `∅` otherwise.  At a
+    63	`IsUniqueFourCenter` the choice is pinned by `uniqueFourClass_eq`. -/
+    64	noncomputable def uniqueFourClass (A : Finset ℝ²) (p : ℝ²) : Finset ℝ² :=
+    65	  if h : ∃ r : ℝ, 0 < r ∧ (SelectedClass A p r).card = 4 then
+    66	    SelectedClass A p h.choose
+    67	  else ∅
+    68	
+    69	theorem uniqueFourClass_card_le (A : Finset ℝ²) (p : ℝ²) :
+    70	    (uniqueFourClass A p).card ≤ 4 := by
+    71	  classical
+    72	  unfold uniqueFourClass
+    73	  by_cases h : ∃ r : ℝ, 0 < r ∧ (SelectedClass A p r).card = 4
+    74	  · rw [dif_pos h]
+    75	    exact le_of_eq h.choose_spec.2
+    76	  · rw [dif_neg h]
+    77	    simp
+    78	
+    79	/-- At a unique-four center the selector returns the one four-class. -/
+    80	theorem uniqueFourClass_eq
+    81	    {A : Finset ℝ²} {p : ℝ²} (hp : IsUniqueFourCenter A p)
+    82	    {r : ℝ} (hr : 0 < r) (hcard : (SelectedClass A p r).card = 4) :
+    83	    uniqueFourClass A p = SelectedClass A p r := by
+    84	  classical
+    85	  obtain ⟨-, r₀, hr₀pos, hr₀card, huniq⟩ := hp
+    86	  have hex : ∃ ρ : ℝ, 0 < ρ ∧ (SelectedClass A p ρ).card = 4 := ⟨r, hr, hcard⟩
+    87	  have hspec := hex.choose_spec
+    88	  have hchoice : hex.choose = r₀ :=
+    89	    huniq hex.choose hspec.1 (le_of_eq hspec.2.symm)
+    90	  have hr' : r = r₀ := huniq r hr (le_of_eq hcard.symm)
+    91	  unfold uniqueFourClass
+    92	  rw [dif_pos hex, hchoice, hr']
+    93	
+    94	/-- **Minimality cover.**  In a minimal counterexample every carrier point `x`
+    95	lies in the four-point class of some *other* point `p`, and `p` carries no K4
+    96	radius other than that one.
+    97	
+    98	This is the positive form of `not_isRemovableVertex_of_minimal`: `A.erase x`
+    99	must fail the K4 property somewhere, and the failing center is forced into the
+   100	unique-four shape. -/
+   101	theorem exists_isUniqueFourCenter_of_minimal
+   102	    {D : CounterexampleData} (hmin : D.Minimal) {x : ℝ²} (hx : x ∈ D.A) :
+   103	    ∃ p : ℝ², ∃ r : ℝ, p ≠ x ∧ IsUniqueFourCenter D.A p ∧
+   104	      0 < r ∧ (SelectedClass D.A p r).card = 4 ∧
+   105	      x ∈ SelectedClass D.A p r := by
+   106	  classical
+   107	  have hnrem : ¬ IsRemovableVertex D.A x :=
+   108	    CounterexampleData.not_isRemovableVertex_of_minimal hmin x
+   109	  have hfail : ¬ HasNEquidistantProperty 4 (D.A.erase x) := fun h =>
+   110	    hnrem ⟨hx, h⟩
+   111	  -- Some center of `A.erase x` has no surviving four-class.
+   112	  obtain ⟨p, hpErase, hpNoFour⟩ :
+   113	      ∃ p ∈ D.A.erase x, ¬ HasNEquidistantPointsAt 4 (D.A.erase x) p := by
+   114	    by_contra hcon
+   115	    push_neg at hcon
+   116	    exact hfail fun p hp => hcon p hp
+   117	  have hpx : p ≠ x := Finset.ne_of_mem_erase hpErase
+   118	  have hpA : p ∈ D.A := Finset.mem_of_mem_erase hpErase
+   119	  -- Restated: every class at `p` drops below four when `x` goes.
+   120	  have hsmall : ∀ ρ : ℝ, 0 < ρ →
+   121	      ((SelectedClass D.A p ρ).erase x).card ≤ 3 := by
+   122	    intro ρ hρ
+   123	    by_contra hge
+   124	    push_neg at hge
+   125	    refine hpNoFour ⟨ρ, hρ, ?_⟩
+   126	    have hEq : SelectedClass (D.A.erase x) p ρ =
+   127	        (SelectedClass D.A p ρ).erase x := selectedClass_erase_eq D.A x p ρ
+   128	    have hfour : 4 ≤ (SelectedClass (D.A.erase x) p ρ).card := by
+   129	      rw [hEq]; omega
+   130	    simpa [SelectedClass] using hfour
+   131	  -- Hence any four-class at `p` contains `x` and has exactly four points.
+   132	  have hkey : ∀ ρ : ℝ, 0 < ρ → 4 ≤ (SelectedClass D.A p ρ).card →
+   133	      x ∈ SelectedClass D.A p ρ ∧ (SelectedClass D.A p ρ).card = 4 := by
+   134	    intro ρ hρ hcard
+   135	    have hs := hsmall ρ hρ
+   136	    by_cases hmem : x ∈ SelectedClass D.A p ρ
+   137	    · refine ⟨hmem, ?_⟩
+   138	      rw [Finset.card_erase_of_mem hmem] at hs
+   139	      omega
+   140	    · exfalso
+   141	      have hsub : SelectedClass D.A p ρ ⊆ (SelectedClass D.A p ρ).erase x :=
+   142	        Finset.subset_erase.mpr ⟨Finset.Subset.refl _, hmem⟩
+   143	      have := Finset.card_le_card hsub
+   144	      omega
+   145	  -- `p` is a carrier point, so it has some four-class to begin with.
+   146	  obtain ⟨r, hrpos, hrcard⟩ := D.K4 p hpA
+   147	  have hrcard' : 4 ≤ (SelectedClass D.A p r).card := by
+   148	    simpa [SelectedClass] using hrcard
+   149	  obtain ⟨hxr, hcard4⟩ := hkey r hrpos hrcard'
+   150	  refine ⟨p, r, hpx, ⟨hpA, r, hrpos, hcard4, ?_⟩, hrpos, hcard4, hxr⟩
+   151	  -- Uniqueness: `x` lies in every four-class at `p`, and classes at a common
+   152	  -- center with distinct radii are disjoint.
+   153	  intro ρ hρ hcard
+   154	  exact selectedClass_radius_unique_of_mem (hkey ρ hρ hcard).1 hxr
+   155	
+   156	/-- A deletion-robust center is never a unique-four center: deleting a member
+   157	of its single class leaves three equidistant points, and no other radius can
+   158	take over. -/
+   159	theorem not_isUniqueFourCenter_of_fullyDeletionRobust
+   160	    {D : CounterexampleData} {c : ℝ²}
+   161	    (hrob : FullyDeletionRobustAt D c) :
+   162	    ¬ IsUniqueFourCenter D.A c := by
+   163	  classical
+   164	  rintro ⟨-, r, hrpos, hcard, huniq⟩
+   165	  obtain ⟨z, hz⟩ : (SelectedClass D.A c r).Nonempty := by
+   166	    rw [← Finset.card_pos, hcard]; omega
+   167	  have hzA : z ∈ D.A := (mem_selectedClass.mp hz).1
+   168	  obtain ⟨ρ, hρpos, hρcard⟩ := hrob.survives z hzA
+   169	  have hEq : SelectedClass (D.A.erase z) c ρ =
+   170	      (SelectedClass D.A c ρ).erase z := selectedClass_erase_eq D.A z c ρ
+   171	  have hρcard' : 4 ≤ ((SelectedClass D.A c ρ).erase z).card := by
+   172	    rw [← hEq]
+   173	    simpa [SelectedClass] using hρcard
+   174	  have hfull : 4 ≤ (SelectedClass D.A c ρ).card :=
+   175	    hρcard'.trans Finset.card_erase_le
+   176	  have hρr : ρ = r := huniq ρ hρpos hfull
+   177	  subst hρr
+   178	  rw [Finset.card_erase_of_mem hz, hcard] at hρcard'
+   179	  omega
+   180	
+   181	/-- A center carrying a class of five or more points is deletion robust: one
+   182	deletion leaves at least four. -/
+   183	theorem fullyDeletionRobustAt_of_large_class
+   184	    {D : CounterexampleData} {c : ℝ²} {r : ℝ} (hr : 0 < r)
+   185	    (hcard : 5 ≤ (SelectedClass D.A c r).card) :
+   186	    FullyDeletionRobustAt D c :=
+   187	  fullyDeletionRobustAt_of_five_le_selectedClass hr hcard
+   188	
+   189	/-- A center carrying two distinct K4 radii is deletion robust: classes at a
+   190	common center with distinct radii are disjoint, so one deletion cannot break
+   191	both. -/
+   192	theorem fullyDeletionRobustAt_of_two_K4_radii
+   193	    {D : CounterexampleData} {c : ℝ²} {r₁ r₂ : ℝ}
+   194	    (hr₁ : 0 < r₁) (hr₂ : 0 < r₂) (hne : r₁ ≠ r₂)
+   195	    (h₁ : 4 ≤ (SelectedClass D.A c r₁).card)
+   196	    (h₂ : 4 ≤ (SelectedClass D.A c r₂).card) :
+   197	    FullyDeletionRobustAt D c := by
+   198	  classical
+   199	  refine ⟨fun z _ => ?_⟩
+   200	  by_cases hz : z ∈ SelectedClass D.A c r₁
+   201	  · -- `z` cannot also lie on the second radius, so that class survives whole.
+   202	    have hznot : z ∉ SelectedClass D.A c r₂ := fun hz₂ =>
+   203	      hne (selectedClass_radius_unique_of_mem hz hz₂)
+   204	    refine ⟨r₂, hr₂, ?_⟩
+   205	    have hEq : SelectedClass (D.A.erase z) c r₂ =
+   206	        (SelectedClass D.A c r₂).erase z := selectedClass_erase_eq D.A z c r₂
+   207	    have hsub : SelectedClass D.A c r₂ ⊆ (SelectedClass D.A c r₂).erase z :=
+   208	      Finset.subset_erase.mpr ⟨Finset.Subset.refl _, hznot⟩
+   209	    have hfour : 4 ≤ (SelectedClass (D.A.erase z) c r₂).card := by
+   210	      rw [hEq]; exact h₂.trans (Finset.card_le_card hsub)
+   211	    simpa [SelectedClass] using hfour
+   212	  · refine ⟨r₁, hr₁, ?_⟩
+   213	    have hEq : SelectedClass (D.A.erase z) c r₁ =
+   214	        (SelectedClass D.A c r₁).erase z := selectedClass_erase_eq D.A z c r₁
+   215	    have hsub : SelectedClass D.A c r₁ ⊆ (SelectedClass D.A c r₁).erase z :=
+   216	      Finset.subset_erase.mpr ⟨Finset.Subset.refl _, hz⟩
+   217	    have hfour : 4 ≤ (SelectedClass (D.A.erase z) c r₁).card := by
+   218	      rw [hEq]; exact h₁.trans (Finset.card_le_card hsub)
+   219	    simpa [SelectedClass] using hfour
+   220	
+   221	/-- **Converse of `not_isUniqueFourCenter_of_fullyDeletionRobust`.**  A carrier
+   222	point that fails deletion robustness is exactly a unique-four center.
+   223	
+   224	Together the two directions say `¬ FullyDeletionRobustAt D p ↔
+   225	IsUniqueFourCenter D.A p` for `p ∈ D.A`, which turns the cover bound into a
+   226	statement about robustness alone: at most a quarter of the carrier can be
+   227	deletion robust's complement, i.e. `|A| ≤ 4 * |{p ∈ A : ¬ robust at p}|`. -/
+   228	theorem isUniqueFourCenter_of_not_fullyDeletionRobust
+   229	    {D : CounterexampleData} {c : ℝ²} (hc : c ∈ D.A)
+   230	    (hnr : ¬ FullyDeletionRobustAt D c) :
+   231	    IsUniqueFourCenter D.A c := by
+   232	  classical
+   233	  obtain ⟨r, hrpos, hrcard⟩ := D.K4 c hc
+   234	  have hr4 : 4 ≤ (SelectedClass D.A c r).card := by
+   235	    simpa [SelectedClass] using hrcard
+   236	  have huniq : ∀ ρ : ℝ, 0 < ρ → 4 ≤ (SelectedClass D.A c ρ).card → ρ = r := by
+   237	    intro ρ hρ hρcard
+   238	    by_contra hne
+   239	    exact hnr (fullyDeletionRobustAt_of_two_K4_radii hρ hrpos hne hρcard hr4)
+   240	  have hle : (SelectedClass D.A c r).card ≤ 4 := by
+   241	    by_contra hgt
+   242	    push_neg at hgt
+   243	    exact hnr (fullyDeletionRobustAt_of_large_class hrpos (by omega))
+   244	  exact ⟨hc, r, hrpos, le_antisymm hle hr4, huniq⟩
+   245	
+   246	/-- The blocker chosen by a critical-shell system for a source is a
+   247	unique-four center.  This is the source-faithful form of the cover: the
+   248	blocker is the named center already carried by `H`, not a fresh existential
+   249	choice recovered from minimality. -/
+   250	theorem isUniqueFourCenter_centerAt
+   251	    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+   252	    (q : ℝ²) (hq : q ∈ D.A) :
+   253	    IsUniqueFourCenter D.A (H.centerAt q hq) := by
+   254	  have hcenterA : H.centerAt q hq ∈ D.A :=
+   255	    Finset.mem_of_mem_erase
+   256	      (H.selectedAt q hq).toCriticalFourShell.center_mem
+   257	  exact isUniqueFourCenter_of_not_fullyDeletionRobust hcenterA (by
+   258	    intro hrob
+   259	    exact H.no_qfree_at q hq (hrob.survives q hq))
+   260	
+   261	/-- A critical-shell system's chosen blocker is distinct from its source. -/
+   262	theorem centerAt_ne_source
+   263	    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+   264	    (q : ℝ²) (hq : q ∈ D.A) :
+   265	    H.centerAt q hq ≠ q :=
+   266	  Finset.ne_of_mem_erase
+   267	    (H.selectedAt q hq).toCriticalFourShell.center_mem
+   268	
+   269	/-- The chosen critical shell through a source is exactly the unique four-class
+   270	of its chosen blocker. -/
+   271	theorem uniqueFourClass_centerAt_eq_selectedAt_support
+   272	    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+   273	    (q : ℝ²) (hq : q ∈ D.A) :
+   274	    uniqueFourClass D.A (H.centerAt q hq) =
+   275	      (H.selectedAt q hq).toCriticalFourShell.support := by
+   276	  have hcard :
+   277	      (SelectedClass D.A (H.centerAt q hq)
+   278	        (H.selectedAt q hq).toCriticalFourShell.radius).card = 4 := by
+   279	    simpa [SelectedClass,
+   280	      (H.selectedAt q hq).toCriticalFourShell.support_eq] using
+   281	        (H.selectedAt q hq).toCriticalFourShell.support_card
+   282	  rw [uniqueFourClass_eq (isUniqueFourCenter_centerAt H q hq)
+   283	    (H.selectedAt q hq).toCriticalFourShell.radius_pos hcard]
+   284	  simpa [SelectedClass] using
+   285	    (H.selectedAt q hq).toCriticalFourShell.support_eq.symm
+   286	
+   287	/-- Every source lies in the canonical unique four-class of its chosen
+   288	critical-shell blocker. -/
+   289	theorem source_mem_uniqueFourClass_centerAt
+   290	    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+   291	    (q : ℝ²) (hq : q ∈ D.A) :
+   292	    q ∈ uniqueFourClass D.A (H.centerAt q hq) := by
+   293	  rw [uniqueFourClass_centerAt_eq_selectedAt_support H q hq]
+   294	  exact (H.selectedAt q hq).toCriticalFourShell.q_mem_support
+   295	
+   296	/-- A critical shell and an arbitrary radius class at a distinct center meet
+   297	in at most two points.  Unlike `SelectedFourClass.inter_card_le_two`, the
+   298	second circle need not contain four carrier points. -/
+   299	theorem criticalFourShell_inter_selectedClass_card_le_two
+   300	    {A : Finset ℝ²} {q center p : ℝ²} {radius : ℝ}
+   301	    (K : CriticalFourShell A q center) (hcenters : center ≠ p) :
+   302	    (K.support ∩ SelectedClass A p radius).card ≤ 2 := by
+   303	  classical
+   304	  by_contra hle
+   305	  have hthree :
+   306	      3 ≤ (K.support ∩ SelectedClass A p radius).card := by
+   307	    omega
+   308	  rcases Finset.exists_subset_card_eq
+   309	      (s := K.support ∩ SelectedClass A p radius) hthree with
+   310	    ⟨E, hEsubset, hEcard⟩
+   311	  rw [Finset.card_eq_three] at hEcard
+   312	  rcases hEcard with ⟨a, b, c, hab, hac, hbc, hEeq⟩
+   313	  have haE : a ∈ E := by simp [hEeq]
+   314	  have hbE : b ∈ E := by simp [hEeq]
+   315	  have hcE : c ∈ E := by simp [hEeq]
+   316	  have haK : a ∈ K.support := (Finset.mem_inter.mp (hEsubset haE)).1
+   317	  have hbK : b ∈ K.support := (Finset.mem_inter.mp (hEsubset hbE)).1
+   318	  have hcK : c ∈ K.support := (Finset.mem_inter.mp (hEsubset hcE)).1
+   319	  have haClass : a ∈ SelectedClass A p radius :=
+   320	    (Finset.mem_inter.mp (hEsubset haE)).2
+   321	  have hbClass : b ∈ SelectedClass A p radius :=
+   322	    (Finset.mem_inter.mp (hEsubset hbE)).2
+   323	  have hcClass : c ∈ SelectedClass A p radius :=
+   324	    (Finset.mem_inter.mp (hEsubset hcE)).2
+   325	  let shellSphere : Sphere ℝ² := ⟨center, K.radius⟩
+   326	  let classSphere : Sphere ℝ² := ⟨p, radius⟩
+   327	  have hspheres : shellSphere ≠ classSphere := by
+   328	    intro h
+   329	    exact hcenters (congrArg (fun s : Sphere ℝ² => s.1) h)
+   330	  have haShell : a ∈ shellSphere := by
+   331	    rw [mem_sphere]
+   332	    calc
+   333	      dist a center = dist center a := dist_comm a center
+   334	      _ = K.radius := K.support_eq_radius a haK
+   335	  have hbShell : b ∈ shellSphere := by
+   336	    rw [mem_sphere]
+   337	    calc
+   338	      dist b center = dist center b := dist_comm b center
+   339	      _ = K.radius := K.support_eq_radius b hbK
+   340	  have hcShell : c ∈ shellSphere := by
+   341	    rw [mem_sphere]
+   342	    calc
+   343	      dist c center = dist center c := dist_comm c center
+   344	      _ = K.radius := K.support_eq_radius c hcK
+   345	  have haSelected : a ∈ classSphere := by
+   346	    rw [mem_sphere]
+   347	    calc
+   348	      dist a p = dist p a := dist_comm a p
+   349	      _ = radius := (mem_selectedClass.mp haClass).2
+   350	  have hbSelected : b ∈ classSphere := by
+   351	    rw [mem_sphere]
+   352	    calc
+   353	      dist b p = dist p b := dist_comm b p
+   354	      _ = radius := (mem_selectedClass.mp hbClass).2
+   355	  have hcSelected : c ∈ classSphere := by
+   356	    rw [mem_sphere]
+   357	    calc
+   358	      dist c p = dist p c := dist_comm c p
+   359	      _ = radius := (mem_selectedClass.mp hcClass).2
+   360	  rcases two_circle_common_point_eq_endpoint hspheres hab
+   361	      haShell hbShell haSelected hbSelected hcShell hcSelected with hca | hcb
+   362	  · exact hac hca.symm
+   363	  · exact hbc hcb.symm
+   364	
+   365	/-- A canonical critical shell cannot share three points with a selected
+   366	four-class at a distinct center.  This is the terminal two-circle consumer for
+   367	the remaining all-large-caps collision problem. -/
+   368	theorem false_of_centerAt_selectedFourClass_inter_card_ge_three
+   369	    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+   370	    (q : ℝ²) (hq : q ∈ D.A) {p : ℝ²}
+   371	    (K : SelectedFourClass D.A p)
+   372	    (hcenters : H.centerAt q hq ≠ p)
+   373	    (hthree :
+   374	      3 ≤ ((H.selectedAt q hq).toCriticalFourShell.support ∩
+   375	        K.support).card) :
+   376	    False := by
+   377	  have htwo :
+   378	      ((H.selectedAt q hq).toCriticalFourShell.support ∩
+   379	        K.support).card ≤ 2 :=
+   380	    SelectedFourClass.inter_card_le_two
+   381	      (H.selectedAt q hq).toSelectedFourClass K hcenters
+   382	  omega
+   383	
+   384	/-- **Cover bound.**  The unique-four centers of a minimal counterexample cover
+   385	the carrier by classes of exactly four points, so the carrier has at most four
+   386	times as many points as there are unique-four centers. -/
+   387	theorem card_le_four_mul_uniqueFourCenters
+   388	    {D : CounterexampleData} (hmin : D.Minimal) :
+   389	    D.A.card ≤
+   390	      4 * (D.A.filter (fun p => IsUniqueFourCenter D.A p)).card := by
+   391	  classical
+   392	  set U : Finset ℝ² := D.A.filter (fun p => IsUniqueFourCenter D.A p) with hU
+   393	  have hcover : D.A ⊆ U.biUnion (fun p => uniqueFourClass D.A p) := by
+   394	    intro x hx
+   395	    obtain ⟨p, r, -, hp, hrpos, hcard, hxr⟩ :=
+   396	      exists_isUniqueFourCenter_of_minimal hmin hx
+   397	    have hpU : p ∈ U := Finset.mem_filter.mpr ⟨hp.1, hp⟩
+   398	    refine Finset.mem_biUnion.mpr ⟨p, hpU, ?_⟩
+   399	    rw [uniqueFourClass_eq hp hrpos hcard]
+   400	    exact hxr
+   401	  calc
+   402	    D.A.card ≤ (U.biUnion (fun p => uniqueFourClass D.A p)).card :=
+   403	      Finset.card_le_card hcover
+   404	    _ ≤ ∑ p ∈ U, (uniqueFourClass D.A p).card := Finset.card_biUnion_le
+   405	    _ ≤ ∑ _p ∈ U, 4 :=
+   406	      Finset.sum_le_sum fun p _ => uniqueFourClass_card_le D.A p
+   407	    _ = 4 * U.card := by
+   408	      rw [Finset.sum_const, smul_eq_mul, mul_comm]
+   409	
+   410	/-- The carrier points at which deletion robustness fails. -/
+   411	noncomputable def notRobustCenters (D : CounterexampleData) : Finset ℝ² :=
+   412	  D.A.filter (fun p => ¬ FullyDeletionRobustAt D p)
+   413	
+   414	/-- **The cover bound in robustness form.**  By the two directions above the
+   415	unique-four centers are exactly the points where deletion robustness fails, so
+   416	the cover bound reads `|A| ≤ 4 * |non-robust points|`.
+   417	
+   418	This is the sharpest statement of what an ATAIL terminal has to produce: a
+   419	contradiction needs MORE than three quarters of the carrier to be deletion
+   420	robust.  Harvesting robustness at distinguished points yields a bounded number
+   421	of them, so no fixed number of such harvests reaches this bound as `n` grows. -/
+   422	theorem card_le_four_mul_notRobustCenters
+   423	    {D : CounterexampleData} (hmin : D.Minimal) :
+   424	    D.A.card ≤ 4 * (notRobustCenters D).card := by
+   425	  classical
+   426	  refine (card_le_four_mul_uniqueFourCenters hmin).trans ?_
+   427	  refine Nat.mul_le_mul_left 4 (Finset.card_le_card ?_)
+   428	  intro p hp
+   429	  rcases Finset.mem_filter.mp hp with ⟨hpA, hpU⟩
+   430	  exact Finset.mem_filter.mpr
+   431	    ⟨hpA, fun hrob => not_isUniqueFourCenter_of_fullyDeletionRobust hrob hpU⟩
+   432	
+   433	end ATailMinimalUniqueFourCover
+   434	end Problem97

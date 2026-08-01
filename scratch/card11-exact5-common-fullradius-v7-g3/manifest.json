@@ -1,0 +1,27 @@
+{
+  "clauses": 1370871,
+  "common_clauses": 1370732,
+  "construction": "all-four common position clauses, one selector-totality clause, and selector-guarded case deltas for s2_o9/s3_o0/s3_o9",
+  "delta_positions": 46,
+  "guarded_delta_clauses": 138,
+  "input_sha256": {
+    "s2_o0": "94bc1ddb59166cc86e146c036ab7229a7eea878c28579e2df0520eec1b2a892d",
+    "s2_o9": "bdd863e9d146cd64693d9c201f770b64b43082d34598d554434abcfd1bc50b57",
+    "s3_o0": "062a4dc3659894758daf047119207f4889d5372d5a11d06c99a5b0ed656561d8",
+    "s3_o9": "764ad8c855afde936150fd0bc422bc315b75311286fa15cfb3cb8dff23b739ee"
+  },
+  "output_sha256": "17569ab86af1d72db6c66ec385176cc020bd62711cfb2e61953dd3e4d36b4ce8",
+  "schema": "card11_exact5_common_fullradius.v7.g3.v1",
+  "selected_cases": [
+    "s2_o9",
+    "s3_o0",
+    "s3_o9"
+  ],
+  "selector_variables": {
+    "s2_o9": 49358,
+    "s3_o0": 49359,
+    "s3_o9": 49360
+  },
+  "status": "CNF_MATERIALIZED",
+  "variables": 49360
+}

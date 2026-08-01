@@ -39,6 +39,16 @@ abbrev FiniteN9ClosureStatement : Prop :=
   ∀ A : Finset ℝ², A.card = 9 → ConvexIndep A →
     ¬ HasNEquidistantProperty 4 A
 
+/-- Statement of the `n = 10` finite endpoint. -/
+abbrev FiniteN10ClosureStatement : Prop :=
+  ∀ A : Finset ℝ², A.card = 10 → ConvexIndep A →
+    ¬ HasNEquidistantProperty 4 A
+
+/-- Statement of the `n = 11` finite endpoint. -/
+abbrev FiniteN11ClosureStatement : Prop :=
+  ∀ A : Finset ℝ², A.card = 11 → ConvexIndep A →
+    ¬ HasNEquidistantProperty 4 A
+
 /- ### Signed-area arc-side predicate
 
 A lightweight algebraic predicate for "point `v` lies on the closed MEC arc

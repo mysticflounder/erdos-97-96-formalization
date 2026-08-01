@@ -1,0 +1,14 @@
+ring r=0,(x,y),dp;
+ideal I=x+y,x-y;
+matrix T;
+ideal G=liftstd(I,T,"slimgb");
+ideal J=2*x;
+matrix U;
+matrix K=lift(G,J,U,"slimgb");
+matrix C=T*K;
+poly identity=I[1]*C[1,1]+I[2]*C[2,1];
+if (identity==2*x) { print("KNOWN_MEMBER_PASS"); }
+else { print("KNOWN_MEMBER_FAIL"); }
+if (reduce(1,G)!=0) { print("KNOWN_NONMEMBER_PASS"); }
+else { print("KNOWN_NONMEMBER_FAIL"); }
+quit;

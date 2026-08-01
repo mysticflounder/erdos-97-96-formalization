@@ -284,46 +284,194 @@ the first scan set only one) and reported one C1 P2-B occurrence;
 corrected same day to the symmetric 30-one matrix — native-C2 results
 unchanged (all zero), C1 count corrected to 16.
 
-## Amendment 2026-07-28 (v2): R-P3 (spec section 4.5)
+## Amendment 2026-07-28 (v5 update to v2): full-source R-P3
 
-R-P3 covers ONLY the CERTIFIED portion of the P3 forbidden-pattern
-family — row-cases R1/R3, both column sub-cases — per
-`scratch/p97-search-lane/fr-pattern-p3-proof-draft.md` Theorem 2,
-PROVEN + AUDITED 2026-07-28 (math-skeptic; one low-severity finding,
-F4, a vacuous n=4 step in Proposition 3, patched same day; no other
-gap found in the audited scope). Row-case R2 is OPEN — CONJECTURED
-with empirical support only — and is deliberately excluded.
+R-P3 now covers the complete certified P3 forbidden-pattern family.
+Theorem 2 closes R1/R3, Proposition 4 closes R2 in the distinct- and
+merged-inner-column cases by exact angle contradictions, Proposition
+5 supplies transpose symmetry, and Theorem 6 assembles the result.
+The independent report
+`scratch/p97-search-lane/p3-r2-compute/SKEPTIC-2026-07-28.md` returns
+CERTIFIED; the load-bearing derivations are in
+`p3-r2-compute/RESULTS.md` §§3–4. Lemma R′ restriction inheritance
+remains an explicit hypothesis bridge.
 
 ### Changes
 
-- `rules.py`: `find_p3_occurrence` (witness-returning scanner over
-  four relative templates: R1×C1, R1×C2, R3×C1, R3×C2, derived
-  directly from Theorem 2's cell definitions and verified closed
-  under transpose so one scan covers both pattern orientations),
-  `r_p3_predicate`, `R_P3` (ADMITTED), `ADMITTED_CUT_MATRIX_RULES`
-  now `(R_P1, R_P2, R_P3)`, `ALL_RULES` now 6 rules — rule-bank hash
-  changed again.
-- Soundness check (module-level comment + gate, orchestrator
-  2026-07-28): R2's own relative templates at the same dimensions are
-  set-DISTINCT from all four admitted templates, so a matrix whose
-  only qualifying occurrence is a pure R2 pattern is not fired on —
-  verified both by direct set comparison and computationally in the
-  gate.
-- `controls.py` G-RULES: registry-shape check updated 5 → 6 rules
-  (authorized by spec 4.5). `controls2.py`: `find_p3_occurrence`,
-  `R_P3` imported; G-CUTPAT extended with kill+spare for all four
-  templates plus a pure-R2 spare control.
+- `rules.py` expands `find_p3_occurrence` from the old scoped family
+  to six source templates (R1/R2/R3, each distinct- or merged-inner),
+  then transposes and deduplicates them to eight shapes. Witness names
+  use the unambiguous `distinct-inner`/`merged-inner` terminology.
+- `controls2.py` gives G-CUTPAT an independent static eight-template
+  oracle: eight exact positives with exact witness-name checks and all
+  48 single-required-cell deletions spared, including the check that
+  no deletion exposes an alternate P3 match.
+- `controls.py` receives documentation only. R-P3 retains its public
+  ID, so the rule registry and its cardinality are unchanged.
+- The rule-bank hash changes because the expanded certification is
+  recorded in the rule citation. Previously pruned banks must be
+  revalidated against the new hash.
 
 ### Gate outcomes
 
-Both suites green post-amendment: `controls.py` ALL_GATES_PASS = True,
-`controls2.py` all 14 gates PASS. G-CUTPAT additionally: R-P3 kills
-each of the four minimal-dimension templates and spares each with one
-required cell removed; a pure R2×C1 and pure R2×C2 occurrence (no
-admitted template subset present) are both spared, confirming the
-soundness check computationally. The existing S-FR-20 native-C2
-positive control (must fire no rule) now implicitly also covers R-P3,
-since it runs with the full default `ADMITTED_CUT_MATRIX_RULES`.
+Both standalone suites are green after the expansion:
+`controls.py` reports `ALL_GATES_PASS = True`; `controls2.py` reports
+all 14 gates PASS. G-CUTPAT specifically reports eight exact P3
+positives, 48 deletion spares, and noncolliding source names.
 
-R-P3 is not yet consumed anywhere; Phase 3 must discharge the same
-convex/contiguous/same-δ/C2 hypotheses as R-P1/R-P2 before use.
+The downstream trust boundary is unchanged: any Phase-3 consumer must
+discharge strict convexity, contiguous-cut, same-δ, and C2-reading
+hypotheses. This rule is not a shell-semantics generalization.
+
+## Amendment 2026-07-28 (v3): R-P4 (spec section 4.6)
+
+Two independent direct 600-dpi audits of Fishburn--Reeds Figure 4
+(source PDF page 8, printed page 88) certify the following `2k`-cell
+patterns for every `k ≥ 3`:
+
+- A:
+  `{(r_i,c_{k-i}),(r_i,c_{k-i+1}):1≤i≤k−1}
+   ∪ {(r_k,c_1),(r_k,c_k)}`;
+- B:
+  `{(r_1,c_1),(r_1,c_k)}
+   ∪ {(r_i,c_{k+1-i}),(r_i,c_{k+2-i}):2≤i≤k}`.
+
+Pattern B is the simultaneous row-and-column reversal of A. The
+previously considered column-only reversal `B_col` is not the source
+pattern; it remains a proved auxiliary statement and is deliberately
+not scanned by `R-P4` (the v4 amendment below gives it a separate ID).
+
+### Changes
+
+- `rules.py`: `find_p4_occurrence`, `r_p4_predicate`, and admitted
+  `R_P4`; the scanner checks A and B over every chosen `k`-row and
+  `k`-column submatrix for `3 ≤ k ≤ min(rows,cols)`.
+- `ADMITTED_CUT_MATRIX_RULES` is now
+  `(R_P1, R_P2, R_P3, R_P4)` and `ALL_RULES` now has 7 rules.
+- `controls2.py`: G-CUTPAT has exact A/B kill-and-spare controls at
+  noncontiguous embeddings for `k=3` and `k=5`, plus a `B_col`
+  non-firing control.
+- `controls.py`: registry-shape expectations updated to 7 rules.
+
+The rule has the same semantic trust boundary as R-P1/R-P2/R-P3:
+the scanner sees only a binary cut matrix; a Phase-3 consumer must
+establish convexity, contiguity, one common distance, and the C2
+reading before applying the geometric theorem.
+
+## Amendment 2026-07-28 (v4): auxiliary R-P4-B-COL (spec section 4.7)
+
+The independently proved auxiliary `B_col` obstruction is now admitted
+without changing the source-only meaning of `R-P4`. For every `k ≥ 3`,
+its zero-based relative cell set is
+
+`{(i,i),(i,i+1):0≤i≤k−2} ∪ {(k−1,k−1),(k−1,0)}`.
+
+`scratch/p97-search-lane/fr-pattern-p4-proof-draft.md` §§8--10 proves
+this family forbidden: the two alternating matchings would both total
+`kδ`, while Proposition C proves the shifted total is strictly larger.
+The result is PROVEN + AUDITED 2026-07-28, but it is auxiliary and must
+not be attributed to Fishburn--Reeds Figure 4.
+
+### Changes
+
+- `rules.py`: added `find_p4_b_col_occurrence`,
+  `r_p4_b_col_predicate`, and admitted `R_P4_B_COL` with ID
+  `R-P4-B-COL`. `R_P4` still scans only source A/B.
+- `ADMITTED_CUT_MATRIX_RULES` now appends `R_P4_B_COL`; `ALL_RULES`
+  now has 8 rules, so the rule-bank hash changes.
+- `controls2.py`: G-CUTPAT now has an exact non-contiguous `k=4`
+  B_col kill, exact witness, one-cell spare, and bidirectional scanner
+  separation from source A/B at `k=3,5`.
+- `controls.py`: registry-shape expectations updated to 8 rules.
+
+The admission retains the conservative C2 cut-matrix trust contract:
+strict convexity, contiguous cut arcs, and one common distance for all
+1-cells remain consumer obligations. The proof itself also establishes
+C1/C2 convention-independence, but the engine contract is not broadened.
+
+This admission adds provenance but **zero new pruning beyond R-P2**.
+For every `k ≥ 3`, each B_col occurrence contains P2-A on relative rows
+`(0,k−2,k−1)` and columns `(0,1,k−1)`: the five cells are
+`(0,0),(0,1),(k−2,k−1),(k−1,0),(k−1,k−1)`. The first pair comes from
+the `i=0` B_col row, the middle cell from the shifted entry at `i=k−2`,
+and the last pair from the wrap row. These row and column triples are
+strictly increasing for `k ≥ 3`, proving universal R-P2 subsumption,
+not merely observed scanner overlap. G-CUTPAT verifies the explicit
+embedded P2-A witness at `k=3,5`. `R-P4-B-COL` therefore supplies
+independent certificate attribution and diagnostics only; it cannot
+prune a matrix that the admitted R-P2 rule spares, and remains distinct
+from the actual source P4 variants.
+
+## Amendment 2026-07-28 (v6): Theorem-3 diagnostic only
+
+`rules.py` now exports
+`fr_theorem3_dense_small(matrix)`: after the shared rectangular 0/1
+validation, it returns whether `rows + columns < 20` and every
+row/column degree is at least three, with both dimensions explicitly
+at least three to exclude vacuous empty-axis cases. It is pure and diagnostic-only:
+it is not a `Rule`, is absent from `ADMITTED_CUT_MATRIX_RULES` and
+`ALL_RULES`, does not enter the bank hash, and is not consulted by
+`prune_cut_matrix`. `PruneResult`, exact fired-ID order, and hypothesis
+collection are unchanged.
+
+The backing evidence is the direct Lemma-2 certificate sweep under
+`scratch/p97-search-lane/theorem3-table2/`: all 56 cases
+`3 <= alpha <= beta`, `alpha + beta <= 19` are
+certificate-checked UNSAT for row/column degree at least three while
+avoiding source P1/P2/full-P3/source-P4. The hardened run requires
+CaDiCaL's UNSAT exit status and `drat-trim` return code zero with an
+exact standalone `s VERIFIED` line; the independent skeptic audit
+replayed all 56 proofs and returned CERTIFIED.
+
+This is a Python/CNF/DRAT certificate conditional on the audited
+transcription and generator, not a Lean theorem or a proof of the
+consumer's geometry. Combined Theorem-3 use still requires the
+separately audited geometric P1--P4 exclusions and a C2-read,
+strictly-convex, contiguous, single-distance cut matrix. Auxiliary
+`B_col` was excluded from the certificate and is not Fishburn--Reeds
+Theorem-3 source evidence.
+
+The helper adds zero incremental pruning. The full source scanner
+already retains the source obstruction and complete attribution;
+short-circuiting on the diagnostic would discard the remaining fired
+IDs and hypotheses. Such an early exit is reserved for a future
+consumer that explicitly does not require full attribution.
+
+The direct sweep consumes no Table-2 value. The unresolved discrepancy
+therefore remains visible but non-blocking for this result: the printed
+table gives `g(6,8)=18`, while the candidate source transcription has
+a certified, independently scanned 19-one feasible matrix and
+`g_candidate(6,8)=19`. Table 2 is not imported as an exact bank.
+
+G-CUTPAT now covers:
+
+- a positive 3x3 all-ones diagnostic and a one-cell degree miss;
+- transpose invariance for both positive and negative cases;
+- ragged and non-0/1 rejection through the shared validator;
+- the native degree-three FR-20 matrix at the exact
+  `alpha+beta=20` boundary: diagnostic false and source P1--P4 scan
+  spare; and
+- exact full-bank noninterference: the 3x3 all-ones matrix fires
+  `("R-P1", "R-P2", "R-P3", "R-P4", "R-P4-B-COL")` with the same
+  hypothesis union before and after the helper call, and the input is
+  unchanged.
+
+The required regressions are green: `controls.py` and `controls2.py`
+both report `ALL_GATES_PASS = True`; the complete logs are
+`scratch/p97-search-lane/theorem3-table2/controls-theorem3-diagnostic.log`
+and
+`scratch/p97-search-lane/theorem3-table2/controls2-theorem3-diagnostic.log`.
+
+## Phase 3 pointer (2026-07-28)
+
+The fail-closed SAT enumerator, combined cap+blocker mode, permanent controls,
+and first bounded production probes are recorded in `PHASE3-RESULTS.md`.
+All Phase-1, Phase-2, and Phase-3 controls pass.  The production probes are
+`PARTIAL`, with 29 OPEN canonical `(3,9)` survivors and 100 OPEN canonical
+`(4,10,(4,4,5))` combined survivors among the first 100 raw models.  These
+are structural candidates only; no Euclidean realization, non-existence,
+finite-range coverage, or Lean closure is claimed.
+
+The current replay fixtures and all later screening totals are authoritative
+in `PHASE3-RESULTS.md`; this top-level ledger intentionally does not duplicate
+their evolving counts.

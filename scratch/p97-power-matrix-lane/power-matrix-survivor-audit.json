@@ -1,0 +1,267 @@
+{
+  "aligned_v17": {
+    "candidate_circle_count": 8,
+    "center_summaries": {
+      "a0": {
+        "full_relative_to_18_quotient_columns": 2,
+        "radius_classes_size_ge_4": 2,
+        "row_atoms": 528
+      },
+      "a1": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 33
+      },
+      "a2": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 1,
+        "row_atoms": 33
+      },
+      "b1": {
+        "full_relative_to_18_quotient_columns": 1,
+        "radius_classes_size_ge_4": 1,
+        "row_atoms": 497
+      },
+      "b2": {
+        "full_relative_to_18_quotient_columns": 1,
+        "radius_classes_size_ge_4": 1,
+        "row_atoms": 497
+      },
+      "be": {
+        "full_relative_to_18_quotient_columns": 1,
+        "radius_classes_size_ge_4": 1,
+        "row_atoms": 34
+      },
+      "bs": {
+        "full_relative_to_18_quotient_columns": 1,
+        "radius_classes_size_ge_4": 1,
+        "row_atoms": 497
+      },
+      "bz": {
+        "full_relative_to_18_quotient_columns": 1,
+        "radius_classes_size_ge_4": 1,
+        "row_atoms": 497
+      },
+      "e2": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "e3": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "e4": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "escape": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "other": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "p1": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "p2": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "p3": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "p4": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "q": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "r1": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "r2": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "r3": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "r4": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "s2": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "s3": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "s4": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "source": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "t": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "x": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "y": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "z": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "z2": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "z3": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      },
+      "z4": {
+        "full_relative_to_18_quotient_columns": 0,
+        "radius_classes_size_ge_4": 0,
+        "row_atoms": 2
+      }
+    },
+    "circle_summaries": [
+      {
+        "center": "Q0:a0",
+        "full_relative_to_columns": true,
+        "label": "C[a0;Q11:r3]",
+        "zero_count": 4
+      },
+      {
+        "center": "Q0:a0",
+        "full_relative_to_columns": true,
+        "label": "C[a0;Q13:p3]",
+        "zero_count": 4
+      },
+      {
+        "center": "Q8:a2",
+        "full_relative_to_columns": false,
+        "label": "C[a2;Q0:a0]",
+        "zero_count": 4
+      },
+      {
+        "center": "Q3:r1",
+        "full_relative_to_columns": true,
+        "label": "C[b1;Q0:a0]",
+        "zero_count": 4
+      },
+      {
+        "center": "Q6:b2",
+        "full_relative_to_columns": true,
+        "label": "C[b2;Q15:t]",
+        "zero_count": 4
+      },
+      {
+        "center": "Q8:a2",
+        "full_relative_to_columns": true,
+        "label": "C[be;Q0:a0]",
+        "zero_count": 4
+      },
+      {
+        "center": "Q9:bs",
+        "full_relative_to_columns": true,
+        "label": "C[bs;Q0:a0]",
+        "zero_count": 4
+      },
+      {
+        "center": "Q6:b2",
+        "full_relative_to_columns": true,
+        "label": "C[bz;Q15:t]",
+        "zero_count": 4
+      }
+    ],
+    "full_relative_to_recorded_columns_count": 7,
+    "minor_5x5_hit_count": 0,
+    "minor_5x5_hits": [],
+    "path": "scratch/atail-force/aligned-singleton-second-nonbisector-induced/cegar-v17-local-critical-reuse-second.json",
+    "quotient_column_count": 18,
+    "row_difference_4x4_hit_count": 0,
+    "row_difference_4x4_hits": [],
+    "sha256": "bd3e6567e7d130932d51c14edd6980c6fa3d046cc0e3194c88afdab6c8eb783c"
+  },
+  "phase3": {
+    "circle_provenance_counts": {
+      "chosen four-subset; off-support unknown": 380
+    },
+    "files": [
+      {
+        "new_unique_metric_skeletons": 35,
+        "path": "scratch/p97-distinct-distance-lane/phase3_old_source_dedup_snapshot_20260729/survivors-deduplicated-current-source.jsonl",
+        "record_count": 193,
+        "sha256": "a9dbd12981039ab8a10c045c0155eaed250b30747ea31ee885bbda3a5d9fd53a"
+      },
+      {
+        "new_unique_metric_skeletons": 3,
+        "path": "scratch/p97-distinct-distance-lane/phase3_structural_cegar_projected_sequential_global_v2_20260729/survivors.jsonl",
+        "record_count": 163,
+        "sha256": "2945c37c3cabcb55cf59044db95ac6189cb5bfb3daf8bd9e6e5d6040dda47972"
+      },
+      {
+        "new_unique_metric_skeletons": 0,
+        "path": "scratch/p97-distinct-distance-lane/paused_projected_current_source_survivors_162_20260729/survivors.jsonl",
+        "record_count": 162,
+        "sha256": "294ca7357502e14e7664b746669d4ad0c0a5722b92715319be1b42a1cdbc4722"
+      }
+    ],
+    "minor_5x5_hit_count": 0,
+    "minor_5x5_hits": [],
+    "row_difference_4x4_hit_count": 0,
+    "row_difference_4x4_hits": [],
+    "unique_metric_skeleton_count": 38
+  },
+  "schema": "p97-power-pattern-audit-v1",
+  "soundness_policy": {
+    "nonzero": "positive-radius own center, exact off-support entry, or recorded false equal-distance atom",
+    "search_scope": "exhaustive center-diagonal 5x5 minors and corresponding center-diagonal 4x4 row-difference minors",
+    "unknown": "never used to kill or support a determinant term",
+    "zero": "proved circle membership / equal-distance atom"
+  }
+}

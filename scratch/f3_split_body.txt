@@ -1,0 +1,126 @@
+theorem exactFour_fourSurvivingCenters_survivalSquare_split
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    {rho : ℝ} (hrho : 0 < rho)
+    {u v : CarrierVertex D.A}
+    (first second : ExactFourMutualOmissionJointDeletion R rho u v)
+    (hsecondBlockerNeU :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt u.1 u.2)
+    (hsecondBlockerNeV :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt v.1 v.2)
+    (hsecondBlockerNeApex :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠ S.oppApex2)
+    (crossPacket :
+      CommonDeletionTwoCenterPacket
+        D (lateFirstApexSystem R) first.deleted.1
+        ((lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2)
+        S.oppApex2) :
+    let q := first.deleted.1
+    let a := S.oppApex2
+    let bu := (lateFirstApexSystem R).centerAt u.1 u.2
+    let bv := (lateFirstApexSystem R).centerAt v.1 v.2
+    let br :=
+      (lateFirstApexSystem R).centerAt
+        second.deleted.1 second.deleted.2
+    let bq :=
+      (lateFirstApexSystem R).centerAt
+        first.deleted.1 first.deleted.2
+    q = bu ∨ q = bv ∨ q = br ∨
+      (HasNEquidistantPointsAt 4 (D.A.erase q) a ∧
+        HasNEquidistantPointsAt 4 (D.A.erase a) bq) ∨
+      (HasNEquidistantPointsAt 4 (D.A.erase q) bu ∧
+        HasNEquidistantPointsAt 4 (D.A.erase bu) bq) ∨
+      (HasNEquidistantPointsAt 4 (D.A.erase q) bv ∧
+        HasNEquidistantPointsAt 4 (D.A.erase bv) bq) ∨
+      (HasNEquidistantPointsAt 4 (D.A.erase q) br ∧
+        HasNEquidistantPointsAt 4 (D.A.erase br) bq) := by
+  dsimp only
+  let K :=
+    ((lateFirstApexSystem R).selectedAt
+      first.deleted.1 first.deleted.2).toCriticalFourShell
+  have hqNeA : first.deleted.1 ≠ S.oppApex2 := by
+    intro hqa
+    have hdist :
+        dist S.oppApex2 first.deleted.1 = rho :=
+      (mem_selectedClass.mp first.deleted_mem_class).2
+    rw [hqa, dist_self] at hdist
+    linarith
+  have hsplit :=
+    four_mem_card_four_split
+      (K := K.support)
+      (q := first.deleted.1)
+      (a := S.oppApex2)
+      (b := (lateFirstApexSystem R).centerAt u.1 u.2)
+      (c := (lateFirstApexSystem R).centerAt v.1 v.2)
+      (d := (lateFirstApexSystem R).centerAt
+        second.deleted.1 second.deleted.2)
+      K.support_card
+      K.q_mem_support
+      first.uPacket.centers_ne.symm
+      first.vPacket.centers_ne.symm
+      hsecondBlockerNeApex.symm
+      first.blockers_ne
+      hsecondBlockerNeU.symm
+      hsecondBlockerNeV.symm
+  rcases hsplit with hqa | hqbu | hqbv | hqbr | ha | hbu | hbv | hbr
+  · exact False.elim (hqNeA hqa)
+  · exact Or.inl hqbu
+  · exact Or.inr (Or.inl hqbv)
+  · exact Or.inr (Or.inr (Or.inl hqbr))
+  · exact Or.inr (Or.inr (Or.inr (Or.inl
+      ⟨first.uPacket.survives₂,
+        (cross_deletion_survives_iff_not_mem_selected_support
+          (lateFirstApexSystem R) first.deleted.2).mpr ha⟩)))
+  · exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inl
+      ⟨first.uPacket.survives₁,
+        (cross_deletion_survives_iff_not_mem_selected_support
+          (lateFirstApexSystem R) first.deleted.2).mpr hbu⟩))))
+  · exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl
+      ⟨first.vPacket.survives₁,
+        (cross_deletion_survives_iff_not_mem_selected_support
+          (lateFirstApexSystem R) first.deleted.2).mpr hbv⟩)))))
+  · exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr
+      ⟨crossPacket.survives₁,
+        (cross_deletion_survives_iff_not_mem_selected_support
+          (lateFirstApexSystem R) first.deleted.2).mpr hbr⟩)))))
+
+/-- A set of cardinality at most two that already contains two distinct
+points cannot contain a third point distinct from both. -/
+private theorem third_not_mem_of_card_le_two
+    {α : Type*} {T : Finset α} {x y z : α}
+    (hT : T.card ≤ 2) (hx : x ∈ T) (hy : y ∈ T)
+    (hxy : x ≠ y) (hxz : x ≠ z) (hyz : y ≠ z) :
+    z ∉ T := by
+  classical
+  intro hz
+  have hcardErase : (T.erase x).card ≤ 1 := by
+    rw [Finset.card_erase_of_mem hx]
+    omega
+  have hyErase : y ∈ T.erase x :=
+    Finset.mem_erase.mpr ⟨Ne.symm hxy, hy⟩
+  have hzErase : z ∈ T.erase x :=
+    Finset.mem_erase.mpr ⟨Ne.symm hxz, hz⟩
+  exact
+    hyz ((Finset.card_le_one.mp hcardErase) y hyErase z hzErase)
+
+/-- The common deleted source mutually omits at least one member of the
+original mutually omitted pair.  Its own actual row already contains the
+deleted source, while every actual row meets the physical second-apex class
+in at most two points. -/
+theorem exactFour_jointDeleted_mutualOmission_with_one_original
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    {rho : ℝ} {u v : CarrierVertex D.A}
+    (huNeV : u ≠ v)
+    (huClass : u.1 ∈ SelectedClass D.A S.oppApex2 rho)

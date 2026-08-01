@@ -1,0 +1,14 @@
+import Erdos9796Proof.P97.Phase3MetricCertificateBank
+
+#print axioms Problem97.TwoTripleRowSixPointEuclideanObstruction.metric_orientation_incompatibility
+#print axioms Problem97.TwoTripleRowSixPointEuclideanObstruction.false_of_six_ccw_two_triple_row_equalities
+#print axioms Problem97.Phase3SurvivorSingularSystem00.facts
+#print axioms Problem97.Phase3SurvivorSingularSystem00.cofactors
+#print axioms Problem97.Phase3SurvivorSingularSystem00.cofactor_indices_lt
+#print axioms Problem97.Phase3SurvivorSingularSystem00.checker
+#print axioms Problem97.Phase3SurvivorSingularSystem00.false_of_facts_eval_zero
+#print axioms Problem97.Phase3SurvivorSingularSystem01.facts
+#print axioms Problem97.Phase3SurvivorSingularSystem01.cofactors
+#print axioms Problem97.Phase3SurvivorSingularSystem01.cofactor_indices_lt
+#print axioms Problem97.Phase3SurvivorSingularSystem01.checker
+#print axioms Problem97.Phase3SurvivorSingularSystem01.false_of_facts_eval_zero

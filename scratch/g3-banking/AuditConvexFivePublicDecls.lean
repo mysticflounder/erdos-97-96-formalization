@@ -1,0 +1,15 @@
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.ExactFiveCommonShellV7.G3ConvexFiveSliceLedger
+
+#print axioms Problem97.ExactFiveCommonShellV7.ConvexFiveClauseIndex
+#print axioms Problem97.ExactFiveCommonShellV7.g3RetainedConvexFiveIndices
+#print axioms Problem97.ExactFiveCommonShellV7.ConvexFiveOccurrence
+#print axioms Problem97.ExactFiveCommonShellV7.convexFiveLabelAt
+#print axioms Problem97.ExactFiveCommonShellV7.renderConvexFiveOccurrence
+#print axioms Problem97.ExactFiveCommonShellV7.g3ConvexFiveSlice
+#print axioms Problem97.ExactFiveCommonShellV7.g3ConvexFiveSliceClauses
+#print axioms Problem97.ExactFiveCommonShellV7.g3ConvexFiveSlice_size
+#print axioms Problem97.ExactFiveCommonShellV7.g3ConvexFiveSlice_perm_checkpoint
+#print axioms Problem97.ExactFiveCommonShellV7.ConvexFiveOccurrence.Valid
+#print axioms Problem97.ExactFiveCommonShellV7.CanonicalPacket.renderConvexFiveOccurrence_sat
+#print axioms Problem97.ExactFiveCommonShellV7.CanonicalPacket.g3ConvexFiveSlice_sat
+#print axioms Problem97.ExactFiveCommonShellV7.CanonicalPacket.g3Checkpoint0_convexFiveSlice_signed_sat

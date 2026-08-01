@@ -1,0 +1,37 @@
+theorem false_of_two_cap_centers_equidistant_outside_pair
+
+Two distinct centers in one indexed ordered cap cannot both bisect the
+same distinct carrier pair outside that cap.
+theorem false_of_two_cap_centers_equidistant_outside_pair
+
+Two distinct centers in one indexed ordered cap cannot both bisect the
+same distinct carrier pair outside that cap.
+theorem eq_of_dist_eq_three_of_pairwise_ne
+
+**L5 (circumcenter coincidence, PROVEN, uniform).**  For `P Q R A B : ℝ²`
+with `P, Q, R` pairwise distinct, if `A` is equidistant from `P, Q, R`
+(`dist A P = dist A Q` and `dist A P = dist A R`) and `B` is equidistant from
+`P, Q, R`, then `A = B`.
+
+Two distinct points cannot both be equidistant from three pairwise-distinct
+points: the equidistant center of a non-degenerate triple is unique (the
+circumcenter).  This is the §4 lemma core, the b₂ q'=E obstruction.
+theorem off_v3_circle {D : CounterexampleData} {q v1 v3 qs w u : ℝ²}
+
+**c5d3b same-circle branch is vacuous.**  From a `C5D3BRowPacket` the
+selected residual `u` cannot lie on the dangerous `v3`-centered row circle: if it
+did, `u` would be a third common point of the two distinct row circles
+`B(q, dist v3 q)` and `B(v3, dist v3 q)` (whose crossings are `v1`, `qs`), forcing
+`u = v1` or `u = qs` and contradicting `u_ne_v1` / `u_ne_qs`.
+
+This derives the `C5D3BTerminalPacket.u_off_v3_circle` field from the base row
+packet, so it is not an independent hypothesis.
+theorem c5b3c_crossSide_contradiction
+
+**c5b3c cross-side row contradiction** (`U2a2-1a3d2c2d4c5d2a2`).  In the
+shared-large cross-side row `c5b3c`, the strict large-cap witness `u` satisfies
+`|qu| = |qv₃|` and `|v₃u| = |v₃q|` (the `c5d2a1` packet), so `u` is a common
+point of the two distinct circles `B(q, |qv₃|)` and `B(v₃, |v₃q|)`, which meet
+exactly at `v₁` and `q*` (the equilateral packet identifies both as common
+points).  Since `u ≠ v₁` and `u ≠ q*` (cap disjointness — `u ∈ int(C₁)` but
+`v₁` is an endpoint and `q* ∈ S₃`), this is impossible.

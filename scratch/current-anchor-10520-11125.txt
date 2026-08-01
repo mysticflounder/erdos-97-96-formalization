@@ -1,0 +1,606 @@
+    have hsupportEq :=
+      ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+        H q.2 source.2 hcenter
+    apply hqSource
+    rw [← hsupportEq]
+    exact K.q_mem_support
+  let QP : RetainedRadiusCollision (R := R) :=
+    retainedRadiusCollisionOfInteriorCollision P
+  let QPρ : RetainedRadiusCollision (R := Rρ) :=
+    retainedRadiusCollisionOfInteriorCollision Pρ
+  have hnotFirst :
+      ¬ (P.source₁ ∈ K.support ∧ P.source₂ ∈ K.support) := by
+    rintro ⟨h₁, h₂⟩
+    exact false_of_distinct_actualRow_contains_collisionSources
+      QP q.2 hcenterNeFirst h₁ h₂
+  have hnotSecond :
+      ¬ (Pρ.source₁ ∈ K.support ∧ Pρ.source₂ ∈ K.support) := by
+    rintro ⟨h₁, h₂⟩
+    exact false_of_distinct_actualRow_contains_collisionSources
+      QPρ q.2 hcenterNeSecond h₁ h₂
+  have hqNeFirst₁ : q.1 ≠ P.source₁ := by
+    intro h
+    apply hqFirst
+    rw [h]
+    exact
+      (H.selectedAt P.source₁
+        P.source₁_mem_A).toCriticalFourShell.q_mem_support
+  have hqNeFirst₂ : q.1 ≠ P.source₂ := by
+    intro h
+    apply hqFirst
+    rw [h]
+    exact P.source₂_mem_source₁_shell
+  have hqNeSecond₁ : q.1 ≠ Pρ.source₁ := by
+    intro h
+    apply hqSecond
+    rw [h]
+    exact
+      (H.selectedAt Pρ.source₁
+        Pρ.source₁_mem_A).toCriticalFourShell.q_mem_support
+  have hqNeSecond₂ : q.1 ≠ Pρ.source₂ := by
+    intro h
+    apply hqSecond
+    rw [h]
+    exact Pρ.source₂_mem_source₁_shell
+  have hqOutside :
+      q.1 ∉
+        ({P.source₁, P.source₂, Pρ.source₁, Pρ.source₂} :
+          Finset ℝ²) := by
+    simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+    exact ⟨hqNeFirst₁, hqNeFirst₂, hqNeSecond₁, hqNeSecond₂⟩
+  rcases
+      exists_second_outside_two_pairs K.support q.1
+        P.source₁ P.source₂ Pρ.source₁ Pρ.source₂
+        K.support_card hqOutside hnotFirst hnotSecond with
+    ⟨v, hvK, hvq, hvOutside⟩
+  have hvA : v ∈ D.A := K.support_subset_A hvK
+  have hvNeFirst₁ : v ≠ P.source₁ := by
+    intro h
+    apply hvOutside
+    simp [h]
+  have hvNeFirst₂ : v ≠ P.source₂ := by
+    intro h
+    apply hvOutside
+    simp [h]
+  have hvNeSecond₁ : v ≠ Pρ.source₁ := by
+    intro h
+    apply hvOutside
+    simp [h]
+  have hvNeSecond₂ : v ≠ Pρ.source₂ := by
+    intro h
+    apply hvOutside
+    simp [h]
+  let Kv : CriticalFourShell D.A v center := {
+    center_mem := Finset.mem_erase.mpr
+      ⟨by
+        intro h
+        subst v
+        exact K.center_not_mem_support hvK,
+       (Finset.mem_erase.mp K.center_mem).2⟩
+    radius := K.radius
+    radius_pos := K.radius_pos
+    support := K.support
+    support_eq := K.support_eq
+    support_card := K.support_card
+    q_mem_support := hvK }
+  rcases CriticalSelectedFourClass.exists_of_shell Kv with
+    ⟨Cv, hCv⟩
+  have hvUnique :
+      v ∈ uniqueFourClass D.A center := by
+    rw [uniqueFourClass_centerAt_eq_selectedAt_support H q.1 q.2]
+    exact hvK
+  have hblocked :
+      ¬ HasNEquidistantPointsAt 4 (D.A.erase v) center :=
+    not_hasNEquidistantPointsAt_erase_of_mem_uniqueFourClass
+      (isUniqueFourCenter_centerAt H q.1 q.2) hvUnique
+  let H' : CriticalShellSystem D.A := H.overrideAt Cv hblocked
+  have hcenterPreserved :
+      ∀ (z : ℝ²) (hz : z ∈ D.A), z ≠ v →
+        H'.centerAt z hz = H.centerAt z hz := by
+    intro z hz hzv
+    exact H.overrideAt_centerAt_of_ne Cv hblocked hz hzv
+  have hsupportPreserved :
+      ∀ (z : ℝ²) (hz : z ∈ D.A), z ≠ v →
+        (H'.selectedAt z hz).toCriticalFourShell.support =
+          (H.selectedAt z hz).toCriticalFourShell.support := by
+    intro z hz hzv
+    exact overrideAt_selectedSupport_eq_of_ne H Cv hblocked hz hzv
+  have hcenterQ : H'.centerAt q.1 q.2 = center :=
+    hcenterPreserved q.1 q.2 hvq.symm
+  have hcenterV : H'.centerAt v hvA = center :=
+    H.overrideAt_centerAt Cv hblocked hvA
+  have hsupportQ :
+      (H'.selectedAt q.1 q.2).toCriticalFourShell.support =
+        K.support :=
+    hsupportPreserved q.1 q.2 hvq.symm
+  have hsupportV :
+      (H'.selectedAt v hvA).toCriticalFourShell.support =
+        K.support := by
+    rw [overrideAt_selectedSupport_eq H Cv hblocked hvA, hCv]
+  have hcenterFirst₁ :
+      H'.centerAt P.source₁ P.source₁_mem_A =
+        H.centerAt P.source₁ P.source₁_mem_A :=
+    hcenterPreserved P.source₁ P.source₁_mem_A hvNeFirst₁.symm
+  have hcenterFirst₂ :
+      H'.centerAt P.source₂ P.source₂_mem_A =
+        H.centerAt P.source₂ P.source₂_mem_A :=
+    hcenterPreserved P.source₂ P.source₂_mem_A hvNeFirst₂.symm
+  have hcenterSecond₁ :
+      H'.centerAt Pρ.source₁ Pρ.source₁_mem_A =
+        H.centerAt Pρ.source₁ Pρ.source₁_mem_A :=
+    hcenterPreserved Pρ.source₁ Pρ.source₁_mem_A hvNeSecond₁.symm
+  have hcenterSecond₂ :
+      H'.centerAt Pρ.source₂ Pρ.source₂_mem_A =
+        H.centerAt Pρ.source₂ Pρ.source₂_mem_A :=
+    hcenterPreserved Pρ.source₂ Pρ.source₂_mem_A hvNeSecond₂.symm
+  have hsupportFirst₁ :
+      (H'.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support =
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support :=
+    hsupportPreserved P.source₁ P.source₁_mem_A hvNeFirst₁.symm
+  have hsupportSecond₁ :
+      (H'.selectedAt Pρ.source₁
+          Pρ.source₁_mem_A).toCriticalFourShell.support =
+        (H.selectedAt Pρ.source₁
+          Pρ.source₁_mem_A).toCriticalFourShell.support :=
+    hsupportPreserved Pρ.source₁ Pρ.source₁_mem_A hvNeSecond₁.symm
+  let F' : CriticalPairFrontier D S radius H' :=
+    rebaseCriticalPairFrontierSystem F H'
+  let R' : FrontierCommonDeletionParentResidual F' :=
+    rebaseFrontierCommonDeletionParentResidual R H'
+  let Fρ' : CriticalPairFrontier D S ρ H' :=
+    rebaseCriticalPairFrontierSystem Fρ H'
+  let Rρ' : FrontierCommonDeletionParentResidual Fρ' :=
+    rebaseFrontierCommonDeletionParentResidual Rρ H'
+  let P' : RetainedInteriorBlockerCollision R' :=
+    rebaseRetainedInteriorBlockerCollision P
+      hcenterFirst₁ hcenterFirst₂
+  let Pρ' : RetainedInteriorBlockerCollision Rρ' :=
+    rebaseRetainedInteriorBlockerCollision Pρ
+      hcenterSecond₁ hcenterSecond₂
+  let B' : FrontierBiApexRobustResidual R' :=
+    rebaseFrontierBiApexRobustResidual B H'
+  let L' : FrontierLargeOppositeCapsBiApexRobustResidual B' :=
+    rebaseFrontierLargeOppositeCapsBiApexRobustResidual L H'
+  let N' : FrontierAllLargeCapsBiApexRobustResidual L' :=
+    ⟨N.surplusCap_card_ge_six⟩
+  let T' : FrontierAllLargeCapsTriApexRobustResidual N' :=
+    ⟨T.oppApex1_rich, T.oppApex2_rich, T.surplusApex_rich,
+      T.notRobustCover_card, T.no_center_covers_all_apices⟩
+  let LPρ' : LocalizedCollisionCommonDeletion P' :=
+    rebaseLocalizedCollisionCommonDeletion P LPρ P'
+      rfl rfl hcenterFirst₁ hsupportFirst₁
+  let LP' : LocalizedCollisionCommonDeletion Pρ' :=
+    rebaseLocalizedCollisionCommonDeletion Pρ LP Pρ'
+      rfl rfl hcenterSecond₁ hsupportSecond₁
+  have hLPρFreshNeV : LPρ.fresh ≠ v := by
+    intro h
+    exact hvNeSecond₁ (h.symm.trans hLPρ)
+  have hLPFreshNeV : LP.fresh ≠ v := by
+    intro h
+    exact hvNeFirst₁ (h.symm.trans hLP)
+  have hMPρCollisionNeV : MPρ.collisionSource ≠ v := by
+    intro h
+    rcases MPρ.collisionSource_eq with hs | hs
+    · exact hvNeFirst₁ (h.symm.trans hs)
+    · exact hvNeFirst₂ (h.symm.trans hs)
+  have hMPCollisionNeV : MP.collisionSource ≠ v := by
+    intro h
+    rcases MP.collisionSource_eq with hs | hs
+    · exact hvNeSecond₁ (h.symm.trans hs)
+    · exact hvNeSecond₂ (h.symm.trans hs)
+  have hMPρCollisionCenter :
+      H'.centerAt MPρ.collisionSource MPρ.collisionSource_mem_A =
+        H.centerAt MPρ.collisionSource MPρ.collisionSource_mem_A :=
+    hcenterPreserved MPρ.collisionSource MPρ.collisionSource_mem_A
+      hMPρCollisionNeV
+  have hMPCollisionCenter :
+      H'.centerAt MP.collisionSource MP.collisionSource_mem_A =
+        H.centerAt MP.collisionSource MP.collisionSource_mem_A :=
+    hcenterPreserved MP.collisionSource MP.collisionSource_mem_A
+      hMPCollisionNeV
+  have hLPρFreshCenter :
+      H'.centerAt LPρ.fresh LPρ.packet.q_mem_A =
+        H.centerAt LPρ.fresh LPρ.packet.q_mem_A :=
+    hcenterPreserved LPρ.fresh LPρ.packet.q_mem_A hLPρFreshNeV
+  have hLPFreshCenter :
+      H'.centerAt LP.fresh LP.packet.q_mem_A =
+        H.centerAt LP.fresh LP.packet.q_mem_A :=
+    hcenterPreserved LP.fresh LP.packet.q_mem_A hLPFreshNeV
+  have hMPρCollisionSupport :
+      (H'.selectedAt MPρ.collisionSource
+          MPρ.collisionSource_mem_A).toCriticalFourShell.support =
+        (H.selectedAt MPρ.collisionSource
+          MPρ.collisionSource_mem_A).toCriticalFourShell.support :=
+    hsupportPreserved MPρ.collisionSource MPρ.collisionSource_mem_A
+      hMPρCollisionNeV
+  have hMPCollisionSupport :
+      (H'.selectedAt MP.collisionSource
+          MP.collisionSource_mem_A).toCriticalFourShell.support =
+        (H.selectedAt MP.collisionSource
+          MP.collisionSource_mem_A).toCriticalFourShell.support :=
+    hsupportPreserved MP.collisionSource MP.collisionSource_mem_A
+      hMPCollisionNeV
+  have hLPρFreshSupport :
+      (H'.selectedAt LPρ.fresh
+          LPρ.packet.q_mem_A).toCriticalFourShell.support =
+        (H.selectedAt LPρ.fresh
+          LPρ.packet.q_mem_A).toCriticalFourShell.support :=
+    hsupportPreserved LPρ.fresh LPρ.packet.q_mem_A hLPρFreshNeV
+  have hLPFreshSupport :
+      (H'.selectedAt LP.fresh
+          LP.packet.q_mem_A).toCriticalFourShell.support =
+        (H.selectedAt LP.fresh
+          LP.packet.q_mem_A).toCriticalFourShell.support :=
+    hsupportPreserved LP.fresh LP.packet.q_mem_A hLPFreshNeV
+  let MPρ' : LocalizedCollisionMutualOmissionCycle P' LPρ' :=
+    rebaseLocalizedCollisionMutualOmissionCycle P LPρ MPρ P' LPρ'
+      rfl rfl rfl hMPρCollisionCenter hLPρFreshCenter
+      hcenterFirst₁ hMPρCollisionSupport hLPρFreshSupport
+  let MP' : LocalizedCollisionMutualOmissionCycle Pρ' LP' :=
+    rebaseLocalizedCollisionMutualOmissionCycle Pρ LP MP Pρ' LP'
+      rfl rfl rfl hMPCollisionCenter hLPFreshCenter
+      hcenterSecond₁ hMPCollisionSupport hLPFreshSupport
+  have hLPρ' : LPρ'.fresh = Pρ'.source₁ := by
+    simpa [LPρ', Pρ', rebaseLocalizedCollisionCommonDeletion,
+      rebaseRetainedInteriorBlockerCollision] using hLPρ
+  have hLP' : LP'.fresh = P'.source₁ := by
+    simpa [LP', P', rebaseLocalizedCollisionCommonDeletion,
+      rebaseRetainedInteriorBlockerCollision] using hLP
+  have hblockersNe' :
+      H'.centerAt Pρ'.source₁ Pρ'.source₁_mem_A ≠
+        H'.centerAt P'.source₁ P'.source₁_mem_A := by
+    change
+      H'.centerAt Pρ.source₁ Pρ.source₁_mem_A ≠
+        H'.centerAt P.source₁ P.source₁_mem_A
+    rw [hcenterSecond₁, hcenterFirst₁]
+    exact hblockersNe
+  let third : FreshThirdBlockerFiber P' Pρ' := {
+    source₁ := q
+    source₂ := ⟨v, hvA⟩
+    sources_ne := by
+      intro h
+      exact hvq (congrArg Subtype.val h).symm
+    blockers_eq := by
+      apply Subtype.ext
+      exact hcenterQ.trans hcenterV.symm
+    blocker_ne_first := by
+      intro h
+      apply hcenterNeFirst
+      have hv := congrArg Subtype.val h
+      change
+        H'.centerAt q.1 q.2 =
+          H'.centerAt P.source₁ P.source₁_mem_A at hv
+      exact hcenterQ.symm.trans (hv.trans hcenterFirst₁)
+    blocker_ne_second := by
+      intro h
+      apply hcenterNeSecond
+      have hv := congrArg Subtype.val h
+      change
+        H'.centerAt q.1 q.2 =
+          H'.centerAt Pρ.source₁ Pρ.source₁_mem_A at hv
+      exact hcenterQ.symm.trans (hv.trans hcenterSecond₁)
+    source₁_ne_first₁ := by
+      intro h
+      exact hqNeFirst₁ (congrArg Subtype.val h)
+    source₁_ne_first₂ := by
+      intro h
+      exact hqNeFirst₂ (congrArg Subtype.val h)
+    source₁_ne_second₁ := by
+      intro h
+      exact hqNeSecond₁ (congrArg Subtype.val h)
+    source₁_ne_second₂ := by
+      intro h
+      exact hqNeSecond₂ (congrArg Subtype.val h)
+    source₂_ne_first₁ := by
+      intro h
+      exact hvNeFirst₁ (congrArg Subtype.val h)
+    source₂_ne_first₂ := by
+      intro h
+      exact hvNeFirst₂ (congrArg Subtype.val h)
+    source₂_ne_second₁ := by
+      intro h
+      exact hvNeSecond₁ (congrArg Subtype.val h)
+    source₂_ne_second₂ := by
+      intro h
+      exact hvNeSecond₂ (congrArg Subtype.val h)
+    source₁_mem_source₂_shell := by
+      rw [hsupportV]
+      exact K.q_mem_support
+    source₂_mem_source₁_shell := by
+      rw [hsupportQ]
+      exact hvK }
+  rcases hsource with
+    ⟨hcapEight, hsourceInterior, hsourceOutside,
+      hsourceCenterNeFirst, hsourceCenterNeSecond,
+      hsourceCenterNeFirstApex, hsourceCenterNeSecondApex,
+      hsourceMem, hsourceCard, hsourceFirstView, hsourceSecondView⟩
+  have hsourceOutside' :
+      source.1 ∉
+        (({P'.source₁, P'.source₂} : Finset ℝ²) ∪
+          {Pρ'.source₁, Pρ'.source₂}) := by
+    change
+      source.1 ∉
+        (({P.source₁, P.source₂} : Finset ℝ²) ∪
+          {Pρ.source₁, Pρ.source₂})
+    exact hsourceOutside
+  have hcapSource' : CapSourceThirdCanonicalRowSurface P' Pρ' := by
+    by_cases hvSource : v = source.1
+    · subst v
+      have hcenterSource' :
+          H'.centerAt source.1 source.2 = center := by
+        exact hcenterV
+      have hsupportSource' :
+          (H'.selectedAt source.1
+              source.2).toCriticalFourShell.support =
+            K.support := by
+        exact hsupportV
+      have hsourceMemK : source.1 ∈ K.support := by
+        exact hvK
+      have homitFirstK :
+          P.source₁ ∉ K.support ∨ P.source₂ ∉ K.support := by
+        by_cases hmem : P.source₁ ∈ K.support
+        · exact Or.inr (fun hmem₂ => hnotFirst ⟨hmem, hmem₂⟩)
+        · exact Or.inl hmem
+      have homitSecondK :
+          Pρ.source₁ ∉ K.support ∨ Pρ.source₂ ∉ K.support := by
+        by_cases hmem : Pρ.source₁ ∈ K.support
+        · exact Or.inr (fun hmem₂ => hnotSecond ⟨hmem, hmem₂⟩)
+        · exact Or.inl hmem
+      have hsourceFirstView' :
+          CrossPairDeletionView (H := H') source
+            P'.source₁ P'.source₂ := by
+        constructor
+        apply
+          (crossPairDeletionSurvival_iff_selectedSupportOmission
+            (H := H') source P'.source₁ P'.source₂).mpr
+        change
+          P.source₁ ∉
+              (H'.selectedAt source.1
+                source.2).toCriticalFourShell.support ∨
+            P.source₂ ∉
+              (H'.selectedAt source.1
+                source.2).toCriticalFourShell.support
+        rw [hsupportSource']
+        exact homitFirstK
+      have hsourceSecondView' :
+          CrossPairDeletionView (H := H') source
+            Pρ'.source₁ Pρ'.source₂ := by
+        constructor
+        apply
+          (crossPairDeletionSurvival_iff_selectedSupportOmission
+            (H := H') source Pρ'.source₁ Pρ'.source₂).mpr
+        change
+          Pρ.source₁ ∉
+              (H'.selectedAt source.1
+                source.2).toCriticalFourShell.support ∨
+            Pρ.source₂ ∉
+              (H'.selectedAt source.1
+                source.2).toCriticalFourShell.support
+        rw [hsupportSource']
+        exact homitSecondK
+      refine
+        ⟨hcapEight, source, hsourceInterior, hsourceOutside', ?_, ?_,
+          ?_, ?_, ?_, ?_, hsourceFirstView', hsourceSecondView'⟩
+      · intro h
+        apply hcenterNeFirst
+        change
+          H'.centerAt source.1 source.2 =
+            H'.centerAt P.source₁ P.source₁_mem_A at h
+        exact hcenterSource'.symm.trans (h.trans hcenterFirst₁)
+      · intro h
+        apply hcenterNeSecond
+        change
+          H'.centerAt source.1 source.2 =
+            H'.centerAt Pρ.source₁ Pρ.source₁_mem_A at h
+        exact hcenterSource'.symm.trans (h.trans hcenterSecond₁)
+      · exact
+          R'.firstApexFullyDeletionRobust.centerAt_ne
+            H' source.1 source.2
+      · exact B'.secondApex_robust.centerAt_ne H' source.1 source.2
+      · rw [hsupportSource']
+        exact hsourceMemK
+      · rw [hsupportSource']
+        exact K.support_card
+    · have hsourceNeV : source.1 ≠ v := by
+        intro h
+        exact hvSource h.symm
+      have hcenterSource' :
+          H'.centerAt source.1 source.2 =
+            H.centerAt source.1 source.2 :=
+        hcenterPreserved source.1 source.2 hsourceNeV
+      have hsupportSource' :
+          (H'.selectedAt source.1
+              source.2).toCriticalFourShell.support =
+            (H.selectedAt source.1
+              source.2).toCriticalFourShell.support :=
+        hsupportPreserved source.1 source.2 hsourceNeV
+      have hsourceFirstView' :
+          CrossPairDeletionView (H := H') source
+            P'.source₁ P'.source₂ := by
+        change
+          CrossPairDeletionView (H := H') source
+            P.source₁ P.source₂
+        exact
+          rebaseCrossPairDeletionView source P.source₁ P.source₂
+            hsourceFirstView hsupportSource'
+      have hsourceSecondView' :
+          CrossPairDeletionView (H := H') source
+            Pρ'.source₁ Pρ'.source₂ := by
+        change
+          CrossPairDeletionView (H := H') source
+            Pρ.source₁ Pρ.source₂
+        exact
+          rebaseCrossPairDeletionView source Pρ.source₁ Pρ.source₂
+            hsourceSecondView hsupportSource'
+      refine
+        ⟨hcapEight, source, hsourceInterior, hsourceOutside', ?_, ?_,
+          ?_, ?_, ?_, ?_, hsourceFirstView', hsourceSecondView'⟩
+      · intro h
+        apply hsourceCenterNeFirst
+        change
+          H'.centerAt source.1 source.2 =
+            H'.centerAt P.source₁ P.source₁_mem_A at h
+        exact hcenterSource'.symm.trans (h.trans hcenterFirst₁)
+      · intro h
+        apply hsourceCenterNeSecond
+        change
+          H'.centerAt source.1 source.2 =
+            H'.centerAt Pρ.source₁ Pρ.source₁_mem_A at h
+        exact hcenterSource'.symm.trans (h.trans hcenterSecond₁)
+      · intro h
+        exact hsourceCenterNeFirstApex
+          (hcenterSource'.symm.trans h)
+      · intro h
+        exact hsourceCenterNeSecondApex
+          (hcenterSource'.symm.trans h)
+      · rw [hsupportSource']
+        exact hsourceMem
+      · rw [hsupportSource']
+        exact hsourceCard
+  have hfrontierInteriorEq' :
+      SelectedClass D.A S.oppApex1 radius ∩
+          S.capInteriorByIndex S.oppIndex1 =
+        {P'.source₁, P'.source₂} := by
+    change
+      SelectedClass D.A S.oppApex1 radius ∩
+          S.capInteriorByIndex S.oppIndex1 =
+        {P.source₁, P.source₂}
+    exact hfrontierInteriorEq
+  have hρInteriorEq' :
+      SelectedClass D.A S.oppApex1 ρ ∩
+          S.capInteriorByIndex S.oppIndex1 =
+        {Pρ'.source₁, Pρ'.source₂} := by
+    change
+      SelectedClass D.A S.oppApex1 ρ ∩
+          S.capInteriorByIndex S.oppIndex1 =
+        {Pρ.source₁, Pρ.source₂}
+    exact hρInteriorEq
+  have hpairsDisjoint' :
+      Disjoint
+        ({P'.source₁, P'.source₂} : Finset ℝ²)
+        {Pρ'.source₁, Pρ'.source₂} := by
+    change
+      Disjoint
+        ({P.source₁, P.source₂} : Finset ℝ²)
+        {Pρ.source₁, Pρ.source₂}
+    exact hpairsDisjoint
+  exact
+    false_of_capSource_freshThirdBlockerFiber
+      (P := P') (Pρ := Pρ')
+      (hρne := hρne)
+      (hfrontierFour := hfrontierFour)
+      (hρfour := hρfour)
+      (hfrontierInteriorEq := hfrontierInteriorEq')
+      (hρInteriorEq := hρInteriorEq')
+      (T := T')
+      (hpairsDisjoint := hpairsDisjoint')
+      (hblockersNe := hblockersNe')
+      (LPρ := LPρ') (hLPρ := hLPρ') (MPρ := MPρ')
+      (LP := LP') (hLP := hLP') (MP := MP')
+      hcapSource' ⟨third⟩
+
+/-- Compatibility form of the former aligned/nonbisector residual.
+
+The universal critical-row escape supplies a canonical row outside the two
+collision rows and the cap-source row.  Overriding a second point of that row
+with the same selected four-class creates a fresh third blocker fiber while
+preserving every retained collision packet and cap-source deletion view.
+The contradiction is therefore delegated to
+`false_of_capSource_freshThirdBlockerFiber`; the enlarged-fiber,
+singleton-radius, alignment, and nonbisector arguments remain in the
+signature only for downstream compatibility. -/
+theorem false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hsource : FirstFiberCapSourceWitness P Pρ source)
+    (hsingleton :
+      SelectedClass D.A S.oppApex1 (dist S.oppApex1 source.1) ∩
+          S.capInteriorByIndex S.oppIndex1 =
+        {source.1})
+    (haligned :
+      FirstCapMultiPointRadiiRetained
+        (S := S) (radius := radius) (ρ := ρ))
+    (hsecondNe :
+      dist (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) Q.source.1 ≠
+        dist (H.centerAt Pρ.source₁ Pρ.source₁_mem_A)
+          Q.otherOutsidePoint) :
+    False := by
+  rcases
+      exists_criticalRow_escape_or_fullyDeletionRobust_criticalTripleShellSeed
+        P Pρ L source with
+    ⟨_, _, escapeRow, escapePoint, hescapePointInRow,
+      hescapePointOutside, _⟩
+  have hescapePointA : escapePoint ∈ D.A :=
+    escapeRow.support_subset_A hescapePointInRow
+  let q : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨escapePoint, hescapePointA⟩
+  have hqFirst :
+      q.1 ∉
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support := by
+    intro hmem
+    apply hescapePointOutside
+    simp only [criticalTripleShellSeed, Finset.mem_union]
+    exact Or.inl (Or.inl hmem)
+  have hqSecond :
+      q.1 ∉
+        (H.selectedAt Pρ.source₁
+          Pρ.source₁_mem_A).toCriticalFourShell.support := by
+    intro hmem
+    apply hescapePointOutside
+    simp only [criticalTripleShellSeed, Finset.mem_union]
+    exact Or.inl (Or.inr hmem)
+  have hqSource :
+      q.1 ∉
+        (H.selectedAt source.1
+          source.2).toCriticalFourShell.support := by
+    intro hmem
+    apply hescapePointOutside
+    simp only [criticalTripleShellSeed, Finset.mem_union]
+    exact Or.inr hmem
+  exact
+    false_of_freshCanonicalRowOverride
+      P Pρ hρne hfrontierFour hρfour
+      hfrontierInteriorEq hρInteriorEq T hpairsDisjoint hblockersNe
+      LPρ hLPρ MPρ LP hLP MP source q hsource
+      hqFirst hqSecond hqSource
+
+/-- The singleton-radius normal form for the exact aligned residual.
+
+Narrowing measure: in addition to the universal two-retained-radii alignment,
+this leaf exposes the cap-eight producer's actual named source, its complete
+cross-pair deletion-survival witness, and the exact singleton equation for
+that source's first-apex radius inside the strict cap. -/
+theorem false_of_capSource_freshOutsideFirstBlockerFiber_alignedSingletonRadius
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hsource : FirstFiberCapSourceWitness P Pρ source)
+    (hsingleton :
+      SelectedClass D.A S.oppApex1 (dist S.oppApex1 source.1) ∩
+          S.capInteriorByIndex S.oppIndex1 =
+        {source.1})
+    (hfirst : Nonempty (FreshOutsideFirstBlockerFiber P Pρ))
+    (haligned :
+      FirstCapMultiPointRadiiRetained
+        (S := S) (radius := radius) (ρ := ρ)) :
+    False := by
+  rcases hfirst with ⟨Q⟩
+  exact
+    false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
+      P Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+      T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP
+      Q source hsource hsingleton haligned
+      (secondBlocker_dist_ne_of_freshOutsideFirstBlockerFiber
+        P Pρ hblockersNe Q)
+
+/-- The exact aligned residual after retaining first-apex radius provenance.
+Every strict-cap radius with two points is already one of the two retained
+collision radii, so the fresh co-radial blocker-rigidity terminal is
+unavailable.
+
+Narrowing measure: the previous first-fiber leaf allowed its two cap sources
+to lie on arbitrary unrelated first-apex radii.  This leaf assumes the
+universal two-radius alignment forced after excluding every fresh multi-point
+radius. -/
+theorem false_of_capSource_freshOutsideFirstBlockerFiber_alignedRadii

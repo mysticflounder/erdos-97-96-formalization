@@ -1,0 +1,214 @@
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:207:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean-208-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean-209-
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean-210-private theorem dist_eq_of_sq_eq {a b c : ℝ²}
+--
+lean/Erdos9796Proof/P97/SurplusCOMPGBankSep.lean:27:    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 :=
+lean/Erdos9796Proof/P97/SurplusCOMPGBankSep.lean-28-  Problem97.dist_sq_coord x c
+lean/Erdos9796Proof/P97/SurplusCOMPGBankSep.lean-29-
+lean/Erdos9796Proof/P97/SurplusCOMPGBankSep.lean-30-/-- Chord separation of shared equidistant points.  If `x` and `y` are both
+--
+lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean:80:    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
+lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean-81-  Problem97.dist_sq_coord u v
+lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean-82-
+lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean-83-/-- The base-length square `ℓ² = (p₂₀−p₁₀)² + (p₂₁−p₁₁)²` is positive when `p₁ ≠ p₂`. -/
+--
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:45:  have dist_sq : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 := fun p q => by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean-46-    simp only [EuclideanSpace.dist_eq, Fin.sum_univ_two]
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean-47-    rw [Real.sq_sqrt (by positivity)]
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean-48-    simp [Real.dist_eq]
+--
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:218:  have ds : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 := fun p q => by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean-219-    simp only [EuclideanSpace.dist_eq, Fin.sum_univ_two]
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean-220-    rw [Real.sq_sqrt (by positivity)]; simp [Real.dist_eq]
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean-221-  have hmid : ∀ i : Fin 2, (midpoint ℝ vb va) i = ((vb i + va i) / 2 : ℝ) := by
+--
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:279:  have ds : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 := fun p q => by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean-280-    simp only [EuclideanSpace.dist_eq, Fin.sum_univ_two]
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean-281-    rw [Real.sq_sqrt (by positivity)]; simp [Real.dist_eq]
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean-282-  have hInner : ⟪c - x, e - w⟫_ℝ
+--
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean:92:      dist a b ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 := fun a b => by
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean-93-    rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean-94-    simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean-95-  rw [norm_sub_sq]
+--
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean:195:      dist a b ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 := fun a b => by
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean-196-    rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean-197-    simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean-198-  rw [norm_sub_sq]
+--
+lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean:92:    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
+lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean-93-  Problem97.dist_sq_coord u v
+lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean-94-
+lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean-95-/-- Same-distance points in the MEC disk lie on the closed arc opposite the
+--
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:76:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean-77-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean-78-
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean-79-/-- Squared coordinate distance in the normalized plane. -/
+--
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:193:    dist A B ^ 2 = (A 0 - B 0) ^ 2 + (A 1 - B 1) ^ 2 := by
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean-194-  exact dist_sq_coord (normalAxis p q a) (normalAxis p q b)
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean-195-
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean-196-/-- Coordinate squared distance between two normal-axis images. -/
+--
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:31:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean-32-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean-33-
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean-34-/-- The scalar system obtained after sending `A,D` to `(0,0),(1,0)` is
+--
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean-26-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean-27-
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean-28-set_option maxHeartbeats 2000000 in
+--
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean-27-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean-28-
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean-29--- The best normalization pair has an exact eleven-polynomial UNIT certificate.
+--
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:134:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean-135-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean-136-
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean-137-private theorem normSim_dist_sq_eq_one
+--
+lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean:51:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean-52-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean-53-
+lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean-54-private noncomputable def similarityTransportComp
+--
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:1456:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean-1457-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean-1458-
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean-1459-/-- **(A) Affine identity** for the `q'=E` column.  When `qs` and `q` lie on a
+--
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:2085:      dist c p ^ 2 = (c 0 - p 0) ^ 2 + (c 1 - p 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean-2086-    rw [dist_sq_eq_coord_sq_add_coord_sq]
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean-2087-  have hygap : c 1 < c 1 - p 1 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean-2088-    linarith
+--
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:30:    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean-31-  SurplusCOMPGBank.dist_sq_coord u v
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean-32-
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean-33-set_option maxHeartbeats 2000000 in
+--
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:32:    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean-33-  Problem97.dist_sq_coord x c
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean-34-
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean-35-private theorem normSim_base_sq_pos {p₁ p₂ : ℝ²} (hp : p₁ ≠ p₂) :
+--
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean-26-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean-27-
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean-28-set_option maxHeartbeats 8000000 in
+--
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:73:    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean-74-  SurplusCOMPGBank.dist_sq_coord u v
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean-75-
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean-76-/-- Axis reflection preserves Euclidean distance. -/
+--
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean-27-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean-28-
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean-29-set_option maxHeartbeats 8000000 in
+--
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean-27-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean-28-
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean-29-set_option maxHeartbeats 4000000 in
+--
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:27:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean-28-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean-29-
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean-30-/-- The reflected scalar system left by the normalized seven-point
+--
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean-27-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean-28-
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean-29-set_option maxHeartbeats 12000000 in
+--
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean-27-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean-28-
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean-29-/-- An orientation-free equilateral hinge over the normalized anchors has
+--
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean-26-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean-27-
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean-28-set_option maxHeartbeats 2000000 in
+--
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean-26-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean-27-
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean-28-/-- Coordinate dot product used by the normalized calculation. -/
+--
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean-27-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean-28-
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean-29-set_option maxHeartbeats 12000000 in
+--
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:120:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean-121-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean-122-
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean-123-/-- `envOf` reads the coordinate of label `p ≥ 2`, axis `ax`, at the flat
+--
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean-27-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean-28-
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean-29-set_option maxHeartbeats 6000000 in
+--
+lean/Erdos9796Proof/P97/Foundation.lean:27:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Foundation.lean-28-  rw [EuclideanSpace.dist_sq_eq]
+lean/Erdos9796Proof/P97/Foundation.lean-29-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+lean/Erdos9796Proof/P97/Foundation.lean-30-
+--
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:814:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean-815-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean-816-
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean-817-private noncomputable def similarityTransportComp
+--
+lean/Erdos9796Proof/P97/N4d/TrackBPilotSupport.lean:37:    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/TrackBPilotSupport.lean-38-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+lean/Erdos9796Proof/P97/N4d/TrackBPilotSupport.lean-39-  simp [Fin.sum_univ_two, PiLp.sub_apply, Real.norm_eq_abs, sq_abs]
+lean/Erdos9796Proof/P97/N4d/TrackBPilotSupport.lean-40-
+--
+lean/Erdos9796Proof/P97/N4d/BisectorKill.lean:42:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/BisectorKill.lean-43-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/N4d/BisectorKill.lean-44-
+lean/Erdos9796Proof/P97/N4d/BisectorKill.lean-45-/-- Scalar core of the boundary-anchored bisector kill.
+--
+lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean:22:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean-23-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean-24-
+lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean-25-private theorem vec2_c0 (a b : ℝ) : (Problem97.CGN.vec2 a b) 0 = a := by
+--
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:46:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean-47-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean-48-
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean-49-private noncomputable def similarityTransportComp
+--
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean:40:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean-41-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean-42-
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean-43-private theorem vec2_c0 (a b : ℝ) : (Problem97.CGN.vec2 a b) 0 = a := by
+--
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:331:  have sq : ∀ X Y : ℝ², dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean-332-    intro X Y
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean-333-    rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean-334-    simp [Fin.sum_univ_two, PiLp.sub_apply, Real.norm_eq_abs, sq_abs]
+--
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:544:    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean-545-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean-546-  simp [Fin.sum_univ_two, PiLp.sub_apply, Real.norm_eq_abs, sq_abs]
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean-547-
+--
+lean/Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean:305:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean-306-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean-307-
+lean/Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean-308-private theorem signedArea2_baseChord_vec2 (p : ℝ²) :
+--
+lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean:577:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
+lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean-578-  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean-579-
+lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean-580-private theorem signedArea2_baseChord_vec2 (p : ℝ²) :

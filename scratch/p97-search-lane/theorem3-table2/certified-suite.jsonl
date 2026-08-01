@@ -1,0 +1,7 @@
+{"case": "2x2", "claimed_g": 3, "lower_s": 0.004, "status": "CERTIFIED-CANDIDATE-TRANSCRIPTION", "upper_drat": true, "upper_s": 0.003}
+{"case": "3x3", "claimed_g": 6, "lower_s": 0.005, "status": "CERTIFIED-CANDIDATE-TRANSCRIPTION", "upper_drat": true, "upper_s": 0.004}
+{"case": "4x4", "claimed_g": 9, "lower_s": 0.007, "status": "CERTIFIED-CANDIDATE-TRANSCRIPTION", "upper_drat": true, "upper_s": 0.007}
+{"case": "4x6", "claimed_g": 12, "lower_s": 0.019, "status": "CERTIFIED-CANDIDATE-TRANSCRIPTION", "upper_drat": true, "upper_s": 0.04}
+{"case": "5x8", "claimed_g": 17, "lower_s": 0.472, "status": "CERTIFIED-CANDIDATE-TRANSCRIPTION", "upper_drat": true, "upper_s": 3.614}
+{"case": "6x6", "claimed_g": 15, "lower_s": 0.016, "status": "CERTIFIED-CANDIDATE-TRANSCRIPTION", "upper_drat": true, "upper_s": 0.932}
+{"case": "6x7", "claimed_g": 17, "lower_s": 0.463, "status": "CERTIFIED-CANDIDATE-TRANSCRIPTION", "upper_drat": true, "upper_s": 4.383}

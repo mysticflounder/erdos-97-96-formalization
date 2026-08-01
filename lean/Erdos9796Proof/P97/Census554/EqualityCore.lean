@@ -133,6 +133,23 @@ def ExactAt {α : Type*} (P : RowPattern α) (pointOf : α → ℝ²) (c : α) :
   ∀ a ∈ P c, ∀ z, z ∉ P c →
     dist (pointOf c) (pointOf z) ≠ dist (pointOf c) (pointOf a)
 
+/-- A realized exact row has exactly the expected metric semantics: all of
+its members lie at one center distance, and no outside label lies at that
+distance.  This bundles the positive and negative directions used by finite
+equality encoders. -/
+theorem Realizes.exactRowSemantic
+    {α : Type*} {P : RowPattern α} {pointOf : α → ℝ²} {c : α}
+    (hreal : Realizes P pointOf) (hexact : ExactAt P pointOf c) :
+    (∀ a ∈ P c, ∀ b ∈ P c,
+      edgeDist pointOf (c, a) = edgeDist pointOf (c, b)) ∧
+    (∀ a ∈ P c, ∀ z, z ∉ P c →
+      edgeDist pointOf (c, a) ≠ edgeDist pointOf (c, z)) := by
+  constructor
+  · intro a ha b hb
+    simpa [edgeDist] using hreal.equidist c a ha b hb
+  · intro a ha z hz heq
+    exact hexact a ha z hz (by simpa [edgeDist] using heq.symm)
+
 /-- A closure witness forcing an excluded label onto the circle of an exact
 row. -/
 structure ExactOffCircleCore {α : Type*} (P : RowPattern α) where

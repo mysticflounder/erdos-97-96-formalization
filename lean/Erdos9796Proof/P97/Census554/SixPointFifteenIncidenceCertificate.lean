@@ -1,0 +1,232 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+import Erdos9796Proof.P97.U5GramCertPoly
+
+/-!
+# Generated Phase-3 QQ unit checker: six-point fifteen-incidence obstruction
+
+Mechanically generated from the validated output of
+`census/p97_search/phase3_qq_certificate_lean_emitter.py` by retaining
+the nine nonzero cofactor terms (original fact indices
+`0, 1, 3, 4, 6, 9, 10, 12, 21`) and remapping their fact indices.
+The validated source is
+`scratch/p97-distinct-distance-lane/phase3_new_survivors_singular_cert_3_20260729/`
+`system-02-b66cc99cc9ed/certificate.json`.
+
+This file contains only exact generated SparsePoly data, a Boolean
+unit-ideal check, an index-bound audit, and the theorem-facing
+`false_of_facts_eval_zero` handoff. It proves no Phase-3 coverage or
+P97 closure theorem.
+
+Validated source certificate payload SHA-256:
+`1e8658c4b50499ce61ff1b633ed176889147cbb60890367d0acb833f1896490b`.
+Source system SHA-256: `53a7a1ed59d1cc4b6b68e46145661c3fb878845b5daaa0694b34fe2e73bb3fa4`.
+Source metric rows SHA-256: `b66cc99cc9edaf3d5c0aa99c80b7310f0073cd00134ec9a023c05c70706c57d9`.
+-/
+
+set_option linter.style.longLine false
+set_option linter.style.nativeDecide false
+set_option maxRecDepth 100000
+
+namespace Problem97
+namespace Census554
+namespace SixPointFifteenIncidenceCertificate
+
+open U5GramCert
+
+set_option maxHeartbeats 0 in
+-- Generated exact polynomial data can exceed the default heartbeat budget.
+/-- The nine facts having nonzero cofactors in the exact artifact. -/
+def facts : List SparsePoly :=
+[
+  [
+    ([2], (-1 : ℚ)),
+    ([0, 2], (-1 : ℚ)),
+    ([], (1 : ℚ))
+  ],
+  [
+    ([0, 0, 0, 0, 2], (-1 : ℚ)),
+    ([0, 0, 0, 0, 0, 2], (-1 : ℚ)),
+    ([], (1 : ℚ))
+  ],
+  [
+    ([2], (1 : ℚ)),
+    ([1], (-2 : ℚ)),
+    ([0, 2], (1 : ℚ)),
+    ([0, 0, 2], (-1 : ℚ)),
+    ([0, 0, 1], (2 : ℚ)),
+    ([0, 0, 0, 2], (-1 : ℚ))
+  ],
+  [
+    ([2], (1 : ℚ)),
+    ([1], (-2 : ℚ)),
+    ([0, 2], (1 : ℚ)),
+    ([0, 0, 0, 0, 2], (-1 : ℚ)),
+    ([0, 0, 0, 0, 1], (2 : ℚ)),
+    ([0, 0, 0, 0, 0, 2], (-1 : ℚ))
+  ],
+  [
+    ([1, 0, 1], (2 : ℚ)),
+    ([0, 1, 0, 1], (2 : ℚ)),
+    ([0, 0, 2], (-1 : ℚ)),
+    ([0, 0, 0, 2], (-1 : ℚ))
+  ],
+  [
+    ([0, 0, 1], (2 : ℚ)),
+    ([], (-1 : ℚ))
+  ],
+  [
+    ([0, 0, 1, 0, 1], (2 : ℚ)),
+    ([0, 0, 0, 1, 0, 1], (2 : ℚ)),
+    ([0, 0, 0, 0, 2], (-1 : ℚ)),
+    ([0, 0, 0, 0, 0, 2], (-1 : ℚ))
+  ],
+  [
+    ([2], (-1 : ℚ)),
+    ([1, 0, 0, 0, 1], (2 : ℚ)),
+    ([0, 2], (-1 : ℚ)),
+    ([0, 1, 0, 0, 0, 1], (2 : ℚ))
+  ],
+  [
+    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], (2 : ℚ)),
+    ([], (-1 : ℚ))
+  ]
+]
+
+set_option maxHeartbeats 0 in
+-- Generated exact polynomial data can exceed the default heartbeat budget.
+/-- Nonzero cofactors paired with their remapped retained-fact indices. -/
+def cofactors : List (ℕ × SparsePoly) :=
+[
+  (0, [
+      ([1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1], ((16 : ℚ) / (3 : ℚ))),
+      ([1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 2], (8 : ℚ)),
+      ([1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 1, 0, 1, 2, 0, 0, 0, 0, 0, 1], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 2], (-8 : ℚ)),
+      ([0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1], ((16 : ℚ) / (3 : ℚ))),
+      ([0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 2], (8 : ℚ)),
+      ([0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], ((16 : ℚ) / (3 : ℚ))),
+      ([0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 2], (-8 : ℚ)),
+      ([0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1], ((-4 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1], ((16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], (2 : ℚ)),
+      ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], ((8 : ℚ) / (3 : ℚ)))
+    ]),
+  (1, [
+      ([1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1], ((-16 : ℚ) / (3 : ℚ))),
+      ([1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 2], (-8 : ℚ)),
+      ([1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1], ((16 : ℚ) / (3 : ℚ))),
+      ([0, 1, 0, 1, 2, 0, 0, 0, 0, 0, 1], ((16 : ℚ) / (3 : ℚ))),
+      ([0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 2], (8 : ℚ)),
+      ([0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1], ((-32 : ℚ) / (3 : ℚ))),
+      ([0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 2], (-16 : ℚ)),
+      ([0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1], ((32 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1], ((-32 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 1, 1, 1], ((16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 2], (-16 : ℚ)),
+      ([0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1], (8 : ℚ)),
+      ([0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1], (-4 : ℚ)),
+      ([0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1], ((32 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 0, 2], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], (-10 : ℚ)),
+      ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], ((-16 : ℚ) / (3 : ℚ))),
+      ([], ((16 : ℚ) / (3 : ℚ)))
+    ]),
+  (2, [
+      ([0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1], ((-8 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], (-4 : ℚ))
+    ]),
+  (3, [
+      ([1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1], ((16 : ℚ) / (3 : ℚ))),
+      ([1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 2], (8 : ℚ)),
+      ([1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 1, 0, 1, 2, 0, 0, 0, 0, 0, 1], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 2], (-8 : ℚ)),
+      ([0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1], ((16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1], ((4 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], (6 : ℚ))
+    ]),
+  (4, [
+      ([0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1], ((8 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], (4 : ℚ))
+    ]),
+  (5, [
+      ([1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1], ((-8 : ℚ) / (3 : ℚ))),
+      ([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], (-4 : ℚ)),
+      ([0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1], ((-8 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 2], ((16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1], ((-8 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2], ((4 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3], (8 : ℚ)),
+      ([0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 2], (-4 : ℚ)),
+      ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3], (8 : ℚ))
+    ]),
+  (6, [
+      ([0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1], ((8 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], (4 : ℚ))
+    ]),
+  (7, [
+      ([0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 2], (-8 : ℚ)),
+      ([0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1], ((16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 2], (-8 : ℚ)),
+      ([0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1], ((16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], ((-8 : ℚ) / (3 : ℚ)))
+    ]),
+  (8, [
+      ([0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 2], (-8 : ℚ)),
+      ([0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2], (-8 : ℚ)),
+      ([0, 0, 0, 1, 3, 1], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 1], (-8 : ℚ)),
+      ([0, 0, 0, 1, 1, 3], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 1, 1, 1], ((16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 1, 0, 3, 0, 0, 0, 0, 1], (-8 : ℚ)),
+      ([0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1], (8 : ℚ)),
+      ([0, 0, 0, 0, 2, 2], ((16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 2], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1], ((8 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1], ((-16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 0, 4], ((16 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 0, 2], ((-32 : ℚ) / (3 : ℚ))),
+      ([0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 2], (4 : ℚ)),
+      ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2], (4 : ℚ)),
+      ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], (6 : ℚ)),
+      ([], ((13 : ℚ) / (3 : ℚ)))
+    ])
+]
+
+set_option maxRecDepth 100000 in
+set_option maxHeartbeats 0 in
+-- Reduction over the generated certificate can exceed the default budget.
+/-- Every emitted cofactor retains an in-range artifact fact index. -/
+theorem cofactor_indices_lt :
+    ∀ ic ∈ cofactors, ic.1 < facts.length := by
+  native_decide
+
+set_option maxRecDepth 100000 in
+set_option maxHeartbeats 0 in
+-- Exact normalized certificate checking can exceed the default budget.
+/-- The normalized SparsePoly checker accepts the exact QQ identity. -/
+theorem checker :
+    unitIdealCertCheckerNormalized facts cofactors = true := by
+  native_decide
+
+/-- Any valuation satisfying all nine retained artifact facts is contradictory. -/
+theorem false_of_facts_eval_zero (ν : ℕ → ℝ)
+    (hfacts : ∀ f ∈ facts, eval ν f = 0) : False := by
+  exact false_of_unitIdealCertCheckerNormalized
+    ν facts cofactors checker hfacts
+
+end SixPointFifteenIncidenceCertificate
+end Census554
+end Problem97

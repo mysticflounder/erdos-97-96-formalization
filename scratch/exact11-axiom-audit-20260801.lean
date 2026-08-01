@@ -1,0 +1,9 @@
+import Erdos9796Proof.P97.FiniteN11
+import Erdos9796Proof.P97.ATail.FiniteN11Frontier
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.ExactFiveCommonShellV7.G3Checkpoint0ClauseBank
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.ExactFiveCommonShellV7.S2O0RetainedCoreClauseBank
+
+#print axioms Problem97.FiniteN11Closure
+#print axioms Problem97.ATailFiniteN11Frontier.false_of_twoLargeCaps_commonCriticalMap_of_card_eq_eleven
+#print axioms Problem97.ExactFiveCommonShellV7.CanonicalPacket.g3Checkpoint0_all_signed_sat
+#print axioms Problem97.ExactFiveCommonShellV7.CanonicalPacket.s2O0RetainedCoreSourceClauses_sat

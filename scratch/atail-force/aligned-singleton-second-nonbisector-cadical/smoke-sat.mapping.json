@@ -1,0 +1,17 @@
+{
+  "cnf_sha256": "47d20c34d3ea32c892e01d683d108309f766833d89c62168ac832f4dba788f4f",
+  "mapping_identity": "DIMACS id is canonical; some Z3-generated auxiliary labels repeat",
+  "mapping_location": "DIMACS c <id> <Z3-label> comment lines",
+  "missing_source_variables": [],
+  "noninjective_label_ids": 0,
+  "noninjective_labels": [],
+  "num_auxiliary_variables": 2,
+  "num_clauses": 10,
+  "num_original_variables": 3,
+  "num_source_variables": 3,
+  "num_variables": 5,
+  "schema": "z3-pb2bv-bit-blast-tseitin-cnf-dimacs-v1",
+  "source_path": "scratch/atail-force/aligned-singleton-second-nonbisector-cegar/qf_bool_model.py",
+  "source_sha256": "4e7cca7b8fb097387b42aec35358534fee57465b4e6f4d5035acd0295b292219",
+  "z3_version": "Z3 4.16.0.0"
+}

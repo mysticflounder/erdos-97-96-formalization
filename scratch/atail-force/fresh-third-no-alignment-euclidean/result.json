@@ -1,0 +1,71 @@
+{
+  "counts": {
+    "sat": 1,
+    "unknown": 0,
+    "unsat": 0
+  },
+  "first_sat_model": {
+    "coordinates": {
+      "a1": [
+        "0",
+        "0"
+      ],
+      "a2": [
+        "0",
+        "-1"
+      ],
+      "bp": [
+        "0",
+        "1"
+      ],
+      "bq": [
+        "0",
+        "3"
+      ],
+      "br": [
+        "0",
+        "4"
+      ],
+      "p1": [
+        "-2",
+        "5"
+      ],
+      "p2": [
+        "2",
+        "5"
+      ],
+      "q1": [
+        "-1",
+        "2"
+      ],
+      "q2": [
+        "1",
+        "2"
+      ],
+      "r1": [
+        "-3",
+        "10"
+      ],
+      "r2": [
+        "3",
+        "10"
+      ]
+    },
+    "cyclic_order": [
+      "p1",
+      "q1",
+      "q2",
+      "p2",
+      "r2",
+      "r1"
+    ]
+  },
+  "logic": "QF_NRA",
+  "mode": "exact rational witness replay",
+  "order_case_space": 120,
+  "order_cases_checked": 1,
+  "solver": "Z3 4.16.0",
+  "timeout_ms_per_case": 10000,
+  "unknown_reasons": {},
+  "verdict": "SAT"
+}

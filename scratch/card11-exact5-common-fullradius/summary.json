@@ -1,0 +1,174 @@
+{
+  "maximum_concurrent_cadical_processes": 1,
+  "results": [
+    {
+      "case": {
+        "o": 0,
+        "s": 2
+      },
+      "clauses": 512308,
+      "cnf_sha256": "4c2fa2c5c11dbc06eb3154ebd27e68485a95372168d03bea47472534ca75fdf7",
+      "command": [
+        "cadical",
+        "-q",
+        "-t",
+        "900",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s2_o0/input.cnf",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s2_o0/proof.drat"
+      ],
+      "independent_verification": {
+        "cnf_sha256": "4c2fa2c5c11dbc06eb3154ebd27e68485a95372168d03bea47472534ca75fdf7",
+        "command": [
+          "drat-trim",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s2_o0/input.cnf",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s2_o0/proof.drat"
+        ],
+        "drat_exact_verified_line": true,
+        "drat_trim_returncode": 0,
+        "manifest_sha256": "fca731dccc17921e109f87b06b128b7987f1f6d5dd5841a7a576461fda14556e",
+        "mode": "UNSAT-DRAT",
+        "output_tail": "s deletion of (pseudo) unit clause [0] -41076 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41081 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41090 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41091 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41071 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41077 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41082 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41092 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41093 0\nc finished parsing, read 10177 bytes from proof file\nc UNSAT via unit propagation on the input instance\nc 6 of 512308 clauses in core                            \nc 1 of 2182 lemmas in core using 6 resolution steps\nc 0 RAT lemmas in core; 0 redundant literals in core lemmas\ns VERIFIED\nc verification time: 0.204 seconds\n",
+        "proof_bytes": 10177,
+        "proof_sha256": "9b6ff53fc109b30fd154e7d1fb84b27cf18d2552dd85823ce7afed55f861a9aa",
+        "source_to_valuation_trust_gap": "certificate proves only this exact CNF; it does not prove the geometric-to-labelled source/blocker valuation adapter",
+        "verified": true
+      },
+      "manifest_sha256": "fca731dccc17921e109f87b06b128b7987f1f6d5dd5841a7a576461fda14556e",
+      "proof_bytes": 10177,
+      "proof_sha256": "9b6ff53fc109b30fd154e7d1fb84b27cf18d2552dd85823ce7afed55f861a9aa",
+      "returncode": 20,
+      "schema": "card11_exact5_common_fullradius.v1",
+      "variables": 41510,
+      "verdict": "UNSAT",
+      "wall_seconds": 0.0943419171962887
+    },
+    {
+      "case": {
+        "o": 9,
+        "s": 2
+      },
+      "clauses": 512308,
+      "cnf_sha256": "a0cde8b3634d3d94a487098e914df6803fe51c9409b4710b84cb79c689d5f75f",
+      "command": [
+        "cadical",
+        "-q",
+        "-t",
+        "900",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s2_o9/input.cnf",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s2_o9/proof.drat"
+      ],
+      "independent_verification": {
+        "cnf_sha256": "a0cde8b3634d3d94a487098e914df6803fe51c9409b4710b84cb79c689d5f75f",
+        "command": [
+          "drat-trim",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s2_o9/input.cnf",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s2_o9/proof.drat"
+        ],
+        "drat_exact_verified_line": true,
+        "drat_trim_returncode": 0,
+        "manifest_sha256": "ea3f3a8c76ef494180f55793b990a84c4554a2afe26225e27ed2622091c3afa9",
+        "mode": "UNSAT-DRAT",
+        "output_tail": "deletion of (pseudo) unit clause [0] -41071 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41077 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41082 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41093 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41057 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41072 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41078 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41083 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41094 0\nc finished parsing, read 10792 bytes from proof file\nc UNSAT via unit propagation on the input instance\nc 48 of 512308 clauses in core                            \nc 1 of 2180 lemmas in core using 48 resolution steps\nc 0 RAT lemmas in core; 0 redundant literals in core lemmas\ns VERIFIED\nc verification time: 0.182 seconds\n",
+        "proof_bytes": 10792,
+        "proof_sha256": "70bd0df2785bf4d9353ff15984edb0efcdc410c82d2b3b993717b34a48b4a635",
+        "source_to_valuation_trust_gap": "certificate proves only this exact CNF; it does not prove the geometric-to-labelled source/blocker valuation adapter",
+        "verified": true
+      },
+      "manifest_sha256": "ea3f3a8c76ef494180f55793b990a84c4554a2afe26225e27ed2622091c3afa9",
+      "proof_bytes": 10792,
+      "proof_sha256": "70bd0df2785bf4d9353ff15984edb0efcdc410c82d2b3b993717b34a48b4a635",
+      "returncode": 20,
+      "schema": "card11_exact5_common_fullradius.v1",
+      "variables": 41510,
+      "verdict": "UNSAT",
+      "wall_seconds": 0.09303404204547405
+    },
+    {
+      "case": {
+        "o": 0,
+        "s": 3
+      },
+      "clauses": 512308,
+      "cnf_sha256": "068c6d043b27829864548114fed2e9940edf0d77496a1dfd9f5072a295e19b71",
+      "command": [
+        "cadical",
+        "-q",
+        "-t",
+        "900",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s3_o0/input.cnf",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s3_o0/proof.drat"
+      ],
+      "independent_verification": {
+        "cnf_sha256": "068c6d043b27829864548114fed2e9940edf0d77496a1dfd9f5072a295e19b71",
+        "command": [
+          "drat-trim",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s3_o0/input.cnf",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s3_o0/proof.drat"
+        ],
+        "drat_exact_verified_line": true,
+        "drat_trim_returncode": 0,
+        "manifest_sha256": "9744813ea399b0b0b6f9921eb68676976eb909594ac1c6411b5d0175837b3d61",
+        "mode": "UNSAT-DRAT",
+        "output_tail": " deletion of (pseudo) unit clause [0] -41076 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41081 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41090 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41091 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41064 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41077 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41082 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41092 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41093 0\nc finished parsing, read 9487 bytes from proof file\nc UNSAT via unit propagation on the input instance\nc 48 of 512308 clauses in core                            \nc 1 of 2035 lemmas in core using 48 resolution steps\nc 0 RAT lemmas in core; 0 redundant literals in core lemmas\ns VERIFIED\nc verification time: 0.195 seconds\n",
+        "proof_bytes": 9487,
+        "proof_sha256": "b79346972a1a6ae0b991b77e3ed55b1126e22e4fde5860db0e364805d8888056",
+        "source_to_valuation_trust_gap": "certificate proves only this exact CNF; it does not prove the geometric-to-labelled source/blocker valuation adapter",
+        "verified": true
+      },
+      "manifest_sha256": "9744813ea399b0b0b6f9921eb68676976eb909594ac1c6411b5d0175837b3d61",
+      "proof_bytes": 9487,
+      "proof_sha256": "b79346972a1a6ae0b991b77e3ed55b1126e22e4fde5860db0e364805d8888056",
+      "returncode": 20,
+      "schema": "card11_exact5_common_fullradius.v1",
+      "variables": 41510,
+      "verdict": "UNSAT",
+      "wall_seconds": 0.0982331249397248
+    },
+    {
+      "case": {
+        "o": 9,
+        "s": 3
+      },
+      "clauses": 512308,
+      "cnf_sha256": "e89da4184eca6add21a27e1629e87d310fdb5434919039020cd6cd7d55a40cfe",
+      "command": [
+        "cadical",
+        "-q",
+        "-t",
+        "900",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s3_o9/input.cnf",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s3_o9/proof.drat"
+      ],
+      "independent_verification": {
+        "cnf_sha256": "e89da4184eca6add21a27e1629e87d310fdb5434919039020cd6cd7d55a40cfe",
+        "command": [
+          "drat-trim",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s3_o9/input.cnf",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius/runs/s3_o9/proof.drat"
+        ],
+        "drat_exact_verified_line": true,
+        "drat_trim_returncode": 0,
+        "manifest_sha256": "778bedd98ef98b8d1c9f549294cd73960e789390bdb2f8b123996aa73eaa0e1b",
+        "mode": "UNSAT-DRAT",
+        "output_tail": "deletion of (pseudo) unit clause [0] -41064 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41077 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41082 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41093 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41057 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41065 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41078 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41083 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41094 0\nc finished parsing, read 10075 bytes from proof file\nc UNSAT via unit propagation on the input instance\nc 48 of 512308 clauses in core                            \nc 1 of 2033 lemmas in core using 48 resolution steps\nc 0 RAT lemmas in core; 0 redundant literals in core lemmas\ns VERIFIED\nc verification time: 0.216 seconds\n",
+        "proof_bytes": 10075,
+        "proof_sha256": "c7499cc8ccf478b8c4b902111957675f660d1ffbb88f7e5328d6b6aa5bd04141",
+        "source_to_valuation_trust_gap": "certificate proves only this exact CNF; it does not prove the geometric-to-labelled source/blocker valuation adapter",
+        "verified": true
+      },
+      "manifest_sha256": "778bedd98ef98b8d1c9f549294cd73960e789390bdb2f8b123996aa73eaa0e1b",
+      "proof_bytes": 10075,
+      "proof_sha256": "c7499cc8ccf478b8c4b902111957675f660d1ffbb88f7e5328d6b6aa5bd04141",
+      "returncode": 20,
+      "schema": "card11_exact5_common_fullradius.v1",
+      "variables": 41510,
+      "verdict": "UNSAT",
+      "wall_seconds": 0.09589758305810392
+    }
+  ],
+  "schema": "card11_exact5_common_fullradius.v1",
+  "serial": true,
+  "terminal": true,
+  "timeout_per_case_seconds": 900,
+  "trust_boundary": "DRAT verifies each exact CNF only.  Translation from a geometric CriticalShellSystem/source map to this fixed labelled Census valuation still requires a theorem-backed source-to-valuation adapter."
+}

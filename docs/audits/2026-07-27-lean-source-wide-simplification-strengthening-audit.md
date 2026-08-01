@@ -835,21 +835,15 @@ not create a production dependency.
 
 ### Repair stale frontier comments
 
-Status: **IMPLEMENTED.**
+Status: **SUPERSEDED BY THE 2026-07-30 CAP-SOURCE CONSOLIDATION.**
 
-Two comments in `ATail/FrontierLiveClosure.lean` describe superseded frontier
-shapes:
-
-- “four load-bearing terminals” should distinguish four semantic collision
-  arms from the current three live collision declarations; and
-- the checked collision coordinator should no longer be described as having
-  one downstream `sorry`, because its current load-bearing frontier consists
-  of the three exact-two collision leaves.
-
-The source comments now distinguish four semantic collision arms from the
-three live collision declarations and describe the checked coordinator as
-exposing that three-declaration frontier.  These changes do not alter the
-mathematical closure route.
+The 2026-07-28 repair correctly described the then-current three-declaration
+frontier.  The current direct F-Γ frontier has two declarations:
+`false_of_crossBlockerCoincidence` and
+`false_of_capSourceThirdCanonicalRowSurface`.  The former fresh-third,
+one-sided-deletion, and aligned/nonbisector declarations are compatibility
+adapters, not independent live leaves.  References to “three live collision
+declarations” or a “three-declaration frontier” are therefore historical.
 
 ## Final requirement-by-requirement completion audit
 

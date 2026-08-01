@@ -1,0 +1,291 @@
+diff --git a/lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean b/lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean
+index 8fc751d2..b8d784bd 100644
+--- a/lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean
++++ b/lean/Erdos9796Proof/P97/ATail/SixPointEuclideanObstruction.lean
+@@ -14,5 +14,5 @@ import Erdos9796Proof.P97.U1CarrierInjection
+ # Six-point Euclidean row obstruction
+ 
+-This module kernel-checks two six-point nonlinear cuts emitted by the induced
++This module kernel-checks three six-point nonlinear cuts emitted by the induced
+ metric CEGAR checker.  The original cut uses the equalities
+ 
+@@ -31,4 +31,11 @@ E : {B,F}
+ ```
+ 
++The two-center arc cut uses
++
++```text
++B : {A,C,D}
++F : {A,D,E}
++```
++
+ Each pattern is incompatible with its stated strict cyclic-order signs.  The
+ low-level theorems state exactly the metric and orientation data used by the
+@@ -68,4 +75,13 @@ private lemma normSim_signedArea_pos
+   exact sq_pos_of_pos (dist_pos.mpr hab.symm)
+ 
++private lemma normSim_signedArea_neg
++    {a b x y z : ℝ²} (hab : a ≠ b) (h : signedArea2 x y z < 0) :
++    signedArea2 (normSim a b x) (normSim a b y) (normSim a b z) < 0 := by
++  rw [signedArea2_normSim a b hab]
++  apply mul_neg_of_pos_of_neg _ h
++  apply inv_pos.mpr
++  rw [← SurplusCOMPGBank.dist_sq_coord b a]
++  exact sq_pos_of_pos (dist_pos.mpr hab.symm)
++
+ /-- Division-free scalar form of the six-point obstruction. -/
+ private theorem normalized_six_point_incompatible
+@@ -879,4 +895,245 @@ theorem false_of_six_ccw_three_selected_rows
+         (CRow.support_eq_radius _ he_mem_CRow).symm
+ 
++private lemma circle_arc_fst_gt_one
++    {b x y : ℝ}
++    (hb : 0 < b)
++    (hy : 0 < y)
++    (hcircle :
++      (x - 1 / 2) ^ 2 + (y - b) ^ 2 =
++        (1 / 2) ^ 2 + b ^ 2)
++    (hleft : y / 2 - x * b < 0) :
++    1 < x := by
++  have hxb : 0 < x * b := by
++    linarith only [hy, hleft]
++  have hx : 0 < x := by
++    nlinarith only [hxb, hb]
++  by_contra hnot
++  have hxle : x ≤ 1 := le_of_not_gt hnot
++  have hxb_le : x * b ≤ 1 * b :=
++    mul_le_mul_of_nonneg_right hxle hb.le
++  have hylt : y < 2 * b := by
++    linarith only [hleft, hxb_le]
++  have hyprod : 0 < y * (2 * b - y) :=
++    mul_pos hy (sub_pos.mpr hylt)
++  have hxprod : x * (x - 1) ≤ 0 :=
++    mul_nonpos_of_nonneg_of_nonpos hx.le (sub_nonpos.mpr hxle)
++  nlinarith only [hcircle, hyprod, hxprod]
++
++/-- Two equal-distance rows centered on opposite sides of the chord `AD`
++cannot have their remaining points in the cyclic order `A,B,C,D,E,F`. -/
++theorem two_center_arc_metric_orientation_incompatibility
++    {A B C D E F : ℝ²}
++    (hAD : A ≠ D)
++    (hBA_BC : dist B A = dist B C)
++    (hBA_BD : dist B A = dist B D)
++    (hFA_FD : dist F A = dist F D)
++    (hFD_FE : dist F D = dist F E)
++    (hABD : signedArea2 A B D < 0)
++    (hACD : signedArea2 A C D < 0)
++    (hABC : signedArea2 A B C < 0)
++    (hADF : signedArea2 A D F < 0)
++    (hADE : signedArea2 A D E < 0)
++    (hAEF : signedArea2 A E F < 0)
++    (hCDE : signedArea2 C D E < 0) :
++    False := by
++  let T := normSim A D
++  let b := T B 1
++  let x := T C 0
++  let y := T C 1
++  let g := -(T F 1)
++  let u := T E 0
++  let w := -(T E 1)
++  have hTA : T A = pt 0 0 := by
++    simpa [T] using normSim_fst A D
++  have hTD : T D = pt 1 0 := by
++    simpa [T] using normSim_snd A D hAD
++  have map_dist_eq {X Y Z W : ℝ²} (heq : dist X Y = dist Z W) :
++      dist (T X) (T Y) = dist (T Z) (T W) := by
++    simp only [T, normSim_dist_image A D hAD]
++    rw [heq]
++  have hBfst : T B 0 = 1 / 2 := by
++    apply normSim_center_fst_eq_half_of_equidistant hAD
++    simpa [dist_comm] using hBA_BD
++  have hFfst : T F 0 = 1 / 2 := by
++    apply normSim_center_fst_eq_half_of_equidistant hAD
++    simpa [dist_comm] using hFA_FD
++  have hBCircleRaw :=
++    congrArg (fun r : ℝ => r ^ 2) (map_dist_eq hBA_BC)
++  change dist (T B) (T A) ^ 2 = dist (T B) (T C) ^ 2 at hBCircleRaw
++  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord, hTA]
++    at hBCircleRaw
++  simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero]
++    at hBCircleRaw
++  have hBCircle :
++      (x - 1 / 2) ^ 2 + (y - b) ^ 2 =
++        (1 / 2) ^ 2 + b ^ 2 := by
++    dsimp [x, y, b]
++    rw [hBfst] at hBCircleRaw
++    nlinarith only [hBCircleRaw]
++  have hECircleRaw :=
++    congrArg (fun r : ℝ => r ^ 2) (map_dist_eq hFD_FE)
++  change dist (T F) (T D) ^ 2 = dist (T F) (T E) ^ 2 at hECircleRaw
++  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord, hTD]
++    at hECircleRaw
++  simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero]
++    at hECircleRaw
++  have hECircle :
++      (u - 1 / 2) ^ 2 + (w - g) ^ 2 =
++        (1 / 2) ^ 2 + g ^ 2 := by
++    dsimp [u, w, g]
++    rw [hFfst] at hECircleRaw
++    nlinarith only [hECircleRaw]
++  have hABD' := normSim_signedArea_neg hAD hABD
++  change signedArea2 (T A) (T B) (T D) < 0 at hABD'
++  rw [hTA, hTD] at hABD'
++  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero]
++    at hABD'
++  have hb : 0 < b := by
++    dsimp [b]
++    linarith only [hABD']
++  have hACD' := normSim_signedArea_neg hAD hACD
++  change signedArea2 (T A) (T C) (T D) < 0 at hACD'
++  rw [hTA, hTD] at hACD'
++  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero]
++    at hACD'
++  have hy : 0 < y := by
++    dsimp [y]
++    linarith only [hACD']
++  have hABC' := normSim_signedArea_neg hAD hABC
++  change signedArea2 (T A) (T B) (T C) < 0 at hABC'
++  rw [hTA] at hABC'
++  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero]
++    at hABC'
++  have hleftC : y / 2 - x * b < 0 := by
++    dsimp [x, y, b]
++    rw [hBfst] at hABC'
++    nlinarith only [hABC']
++  have hADF' := normSim_signedArea_neg hAD hADF
++  change signedArea2 (T A) (T D) (T F) < 0 at hADF'
++  rw [hTA, hTD] at hADF'
++  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero]
++    at hADF'
++  have hg : 0 < g := by
++    dsimp [g]
++    linarith only [hADF']
++  have hADE' := normSim_signedArea_neg hAD hADE
++  change signedArea2 (T A) (T D) (T E) < 0 at hADE'
++  rw [hTA, hTD] at hADE'
++  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero]
++    at hADE'
++  have hw : 0 < w := by
++    dsimp [w]
++    linarith only [hADE']
++  have hAEF' := normSim_signedArea_neg hAD hAEF
++  change signedArea2 (T A) (T E) (T F) < 0 at hAEF'
++  rw [hTA] at hAEF'
++  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero]
++    at hAEF'
++  have hleftE : w / 2 - u * g < 0 := by
++    dsimp [w, u, g]
++    rw [hFfst] at hAEF'
++    nlinarith only [hAEF']
++  have hCDE' := normSim_signedArea_neg hAD hCDE
++  change signedArea2 (T C) (T D) (T E) < 0 at hCDE'
++  rw [hTD] at hCDE'
++  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one]
++    at hCDE'
++  have hCDEscalar :
++      (1 - x) * (-w - y) - (u - x) * (-y) < 0 := by
++    simpa [x, y, u, w] using hCDE'
++  have hx : 1 < x :=
++    circle_arc_fst_gt_one hb hy hBCircle hleftC
++  have hu : 1 < u :=
++    circle_arc_fst_gt_one hg hw hECircle hleftE
++  nlinarith only [hx, hu, hy, hw, hCDEscalar]
++
++/-- Boundary-order adapter for the two-center six-point cyclic obstruction. -/
++theorem false_of_six_ccw_two_center_arc_equalities
++    {n : ℕ}
++    {boundary : Fin n → ℝ²}
++    (hboundary_injective : Function.Injective boundary)
++    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
++    {ia ib ic id ie iff : Fin n}
++    (hiab : ia < ib)
++    (hibc : ib < ic)
++    (hicd : ic < id)
++    (hide : id < ie)
++    (hief : ie < iff)
++    (hBA_BC :
++      dist (boundary ib) (boundary ia) =
++        dist (boundary ib) (boundary ic))
++    (hBA_BD :
++      dist (boundary ib) (boundary ia) =
++        dist (boundary ib) (boundary id))
++    (hFA_FD :
++      dist (boundary iff) (boundary ia) =
++        dist (boundary iff) (boundary id))
++    (hFD_FE :
++      dist (boundary iff) (boundary id) =
++        dist (boundary iff) (boundary ie)) :
++    False := by
++  have hiad : ia < id := hiab.trans (hibc.trans hicd)
++  have hiaf : ia < iff := hiad.trans (hide.trans hief)
++  have hiae : ia < ie := hiad.trans hide
++  have hiac : ia < ic := hiab.trans hibc
++  have hABD :=
++    hneg_of_ccw hboundary_injective hboundary_ccw hiab
++      (hibc.trans hicd)
++  have hACD :=
++    hneg_of_ccw hboundary_injective hboundary_ccw hiac hicd
++  have hABC :=
++    hneg_of_ccw hboundary_injective hboundary_ccw hiab hibc
++  have hADF :=
++    hneg_of_ccw hboundary_injective hboundary_ccw hiad
++      (hide.trans hief)
++  have hADE :=
++    hneg_of_ccw hboundary_injective hboundary_ccw hiad hide
++  have hAEF :=
++    hneg_of_ccw hboundary_injective hboundary_ccw hiae hief
++  have hCDE :=
++    hneg_of_ccw hboundary_injective hboundary_ccw hicd hide
++  exact two_center_arc_metric_orientation_incompatibility
++    (A := boundary ia) (B := boundary ib) (C := boundary ic)
++    (D := boundary id) (E := boundary ie) (F := boundary iff)
++    (hboundary_injective.ne hiad.ne)
++    hBA_BC hBA_BD hFA_FD hFD_FE
++    hABD hACD hABC hADF hADE hAEF hCDE
++
++/-- Selected-row consumer for the two-center six-point cyclic obstruction. -/
++theorem false_of_six_ccw_two_selected_rows
++    {carrier : Finset ℝ²}
++    {boundary : Fin carrier.card → ℝ²}
++    (hboundary_injective : Function.Injective boundary)
++    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
++    {ia ib ic id ie iff : Fin carrier.card}
++    (hiab : ia < ib)
++    (hibc : ib < ic)
++    (hicd : ic < id)
++    (hide : id < ie)
++    (hief : ie < iff)
++    (BRow : SelectedFourClass carrier (boundary ib))
++    (FRow : SelectedFourClass carrier (boundary iff))
++    (ha_mem_BRow : boundary ia ∈ BRow.support)
++    (hc_mem_BRow : boundary ic ∈ BRow.support)
++    (hd_mem_BRow : boundary id ∈ BRow.support)
++    (ha_mem_FRow : boundary ia ∈ FRow.support)
++    (hd_mem_FRow : boundary id ∈ FRow.support)
++    (he_mem_FRow : boundary ie ∈ FRow.support) :
++    False := by
++  apply false_of_six_ccw_two_center_arc_equalities
++    hboundary_injective hboundary_ccw hiab hibc hicd hide hief
++  · exact
++      (BRow.support_eq_radius _ ha_mem_BRow).trans
++        (BRow.support_eq_radius _ hc_mem_BRow).symm
++  · exact
++      (BRow.support_eq_radius _ ha_mem_BRow).trans
++        (BRow.support_eq_radius _ hd_mem_BRow).symm
++  · exact
++      (FRow.support_eq_radius _ ha_mem_FRow).trans
++        (FRow.support_eq_radius _ hd_mem_FRow).symm
++  · exact
++      (FRow.support_eq_radius _ hd_mem_FRow).trans
++        (FRow.support_eq_radius _ he_mem_FRow).symm
++
+ #print axioms normalized_six_point_incompatible
+ #print axioms normalized_mirror_interleaving_incompatible
+@@ -888,4 +1145,7 @@ theorem false_of_six_ccw_three_selected_rows
+ #print axioms false_of_six_ccw_row_equalities
+ #print axioms false_of_six_ccw_three_selected_rows
++#print axioms two_center_arc_metric_orientation_incompatibility
++#print axioms false_of_six_ccw_two_center_arc_equalities
++#print axioms false_of_six_ccw_two_selected_rows
+ 
+ end SixPointEuclideanObstruction

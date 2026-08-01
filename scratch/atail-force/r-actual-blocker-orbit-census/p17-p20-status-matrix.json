@@ -1,0 +1,422 @@
+[
+  {
+    "period": 17,
+    "cells": [
+      {
+        "slack": 1,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          }
+        ]
+      },
+      {
+        "slack": 2,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          }
+        ]
+      },
+      {
+        "slack": 3,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "UNKNOWN"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "UNKNOWN"
+          }
+        ]
+      },
+      {
+        "slack": 4,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "period": 18,
+    "cells": [
+      {
+        "slack": 1,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          }
+        ]
+      },
+      {
+        "slack": 2,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          }
+        ]
+      },
+      {
+        "slack": 3,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "UNKNOWN"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "UNKNOWN"
+          }
+        ]
+      },
+      {
+        "slack": 4,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "period": 19,
+    "cells": [
+      {
+        "slack": 1,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          }
+        ]
+      },
+      {
+        "slack": 2,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          }
+        ]
+      },
+      {
+        "slack": 3,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "UNKNOWN"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "UNKNOWN"
+          }
+        ]
+      },
+      {
+        "slack": 4,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "period": 20,
+    "cells": [
+      {
+        "slack": 1,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          }
+        ]
+      },
+      {
+        "slack": 2,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "UNSAT_Z3_DISCOVERY_ONLY"
+          }
+        ]
+      },
+      {
+        "slack": 3,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "UNKNOWN"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "UNKNOWN"
+          }
+        ]
+      },
+      {
+        "slack": 4,
+        "statuses": [
+          {
+            "q": "all_omission",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": false,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "all_omission",
+            "fixed": true,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          },
+          {
+            "q": "some_hit",
+            "fixed": true,
+            "s": "SAT_INDEPENDENTLY_VERIFIED_EQUALITY_PATTERN_ONLY"
+          }
+        ]
+      }
+    ]
+  }
+]

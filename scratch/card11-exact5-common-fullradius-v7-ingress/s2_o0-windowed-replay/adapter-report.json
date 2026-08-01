@@ -1,0 +1,27 @@
+{
+  "checkpointed_package_sha256": "86a40ec2597f370b1893cdb363e24e0d30f509b1ccc255fe5cff61e4643d5390",
+  "compact_replay_package_sha256": "fd167ff56ab559ab35b0a24a1677d3b95d54a32857a743ab3aecd86778136465",
+  "counts": {
+    "actions": 11650,
+    "additions": 6611,
+    "compact_ascii85_bytes": 2294132,
+    "compact_binary_bytes": 1835304,
+    "consumed_checkpoints": 4,
+    "deleted_ids": 87619,
+    "deletions": 5039,
+    "hints": 301200,
+    "lean_sources": 12,
+    "n": 49358,
+    "objects": 8,
+    "payloads": 8,
+    "shard_1_windows": 2,
+    "shard_2_windows": 2,
+    "source_bytes": 4275493,
+    "variable_count": 49357,
+    "windows": 4
+  },
+  "schema": "card11-exact5-common-fullradius-v7-s2-o0-windowed-adapter-v1",
+  "second_shard_first_addition": 84559,
+  "status": "STRUCTURALLY_MATERIALIZED_LEAN_REPLAY_PENDING",
+  "windowed_package_sha256": "23592f2ba08287735e1106683d9753986069d925068a54de0590cf0b88cc66ce"
+}

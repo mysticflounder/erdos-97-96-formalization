@@ -1,0 +1,35 @@
+{
+  "checker_padded_core": {
+    "byte_count": 1409703,
+    "path": "padded-core.cnf",
+    "sha256": "5532c0d37af4265e29a4fd585a319478d728373d737966c88dd648c01cea29cd"
+  },
+  "claim_scope": "Hash-bound adaptation of the fixed s2_o0 core only; this is not the exact-eleven closure theorem or its source semantic bridge.",
+  "counts": {
+    "additions": 43744,
+    "checker_base_clauses": 81254,
+    "checker_variables": 85275,
+    "first_addition": 81255,
+    "last_addition": 124998,
+    "source_clauses": 81253,
+    "source_variables": 49357,
+    "terminal_empty_addition": 124998
+  },
+  "epistemic_status": "EXTERNALLY VERIFIED PURE-RUP CORE; LEAN REPLAY AND SOURCE-VALUATION BRIDGE NOT YET COMPLETE",
+  "normalized_dense_lrat": {
+    "byte_count": 14671520,
+    "path": "../s2_o0-ingress/core.normalized.lrat",
+    "sha256": "92cab4742d021bf584458f28f5ab6ad26bd5f5329eec553dfa9fee438b5fad1d"
+  },
+  "schema": "card11-exact5-common-fullradius-v7-s2-o0-windowed-source-v1",
+  "source_core": {
+    "byte_count": 1409695,
+    "path": "../s2_o0-ingress/core.cnf",
+    "sha256": "ee65de56f8b1f733957bd17b939efae63dbc9afbab21c0837af35f3cdae8b24c"
+  },
+  "source_ingress_report": {
+    "byte_count": 6575,
+    "path": "../s2_o0-ingress/ingress-report.json",
+    "sha256": "f6bda5d013f44dda5c26e8abbdf938822e39f35397841cec1f322f6b28e3394b"
+  }
+}

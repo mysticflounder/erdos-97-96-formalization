@@ -1,0 +1,308 @@
+{
+  "all_independently_verified": true,
+  "maximum_concurrent_cadical_processes": 1,
+  "results": [
+    {
+      "case": {
+        "o": 0,
+        "s": 2
+      },
+      "clauses": 1370778,
+      "cnf_sha256": "94bc1ddb59166cc86e146c036ab7229a7eea878c28579e2df0520eec1b2a892d",
+      "command": [
+        "cadical",
+        "-q",
+        "-t",
+        "1800",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s2_o0/input.cnf",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s2_o0/proof.drat"
+      ],
+      "independent_verification": {
+        "cnf_sha256": "94bc1ddb59166cc86e146c036ab7229a7eea878c28579e2df0520eec1b2a892d",
+        "command": [
+          "drat-trim",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s2_o0/input.cnf",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s2_o0/proof.drat"
+        ],
+        "drat_exact_verified_line": true,
+        "drat_trim_returncode": 0,
+        "manifest_sha256": "1520d535b2be6a09632c46597e330a75756904abd333091b3c26fbb05639f8c2",
+        "mode": "UNSAT-DRAT",
+        "output_tail": "-41082 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41092 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41093 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42101 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42102 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42103 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42268 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42269 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42308 0\nc finished parsing, read 29451925 bytes from proof file\nc detected empty clause; start verification via backward checking\nc 81253 of 1370778 clauses in core                            \nc 56184 of 734681 lemmas in core using 3078796 resolution steps\nc 15910 RAT lemmas in core; 11393 redundant literals in core lemmas\ns VERIFIED\nc verification time: 508.755 seconds\n",
+        "proof_bytes": 29451925,
+        "proof_sha256": "0735adbd23bd5e3240018b946e2e2cdf74ce6b6caa9c10acfa4f560f5d0064df",
+        "source_to_valuation_trust_gap": "certificate proves only this exact CNF; it does not prove the geometric-to-labelled source/blocker valuation adapter",
+        "v7_structural_audit": {
+          "v6_prefix": {
+            "boundary_order_orientation_counts": {
+              "direct": 72,
+              "mirror": 72
+            },
+            "boundary_order_selector_count_exact": 144,
+            "convex_five_point_core_deduplicated_clauses_exact": 332640,
+            "convex_five_point_core_naive_clauses_exact": 332640,
+            "convex_five_point_core_safe_dedup_removed": 0,
+            "duplicate_center_core_clauses_exact": 4620,
+            "exact_five_global_seed_clauses_exact": 10,
+            "global_equality_variables": 1485,
+            "global_transitivity_clauses_exact": 78705,
+            "perpendicular_bisector_core_clauses_exact": 4620,
+            "selected_row_global_seed_clauses_exact": 11694,
+            "v3_clause_prefix_ends_at": 589878,
+            "v4_clause_prefix_ends_at": 594498,
+            "v4_zero_variable_clause_suffix_begins_at": 589879,
+            "v5_clause_prefix_ends_at": 927138,
+            "v5_zero_variable_clause_suffix_begins_at": 594499,
+            "v6_clause_suffix_begins_at": 927139,
+            "v6_family_a_compact_clauses_exact": 117900,
+            "v6_family_a_literal_clauses_exact": 51993900,
+            "v6_family_b_clauses_exact": 39300,
+            "v6_local_four_class_variables_exact": 2310,
+            "v6_local_four_definition_clauses_exact": 9240,
+            "v6_qdeleted_pair_definition_clauses_exact": 87120,
+            "v6_qdeleted_pair_variables_exact": 3960
+          },
+          "v7_clause_count_exact": 190080
+        },
+        "verified": true
+      },
+      "manifest_sha256": "1520d535b2be6a09632c46597e330a75756904abd333091b3c26fbb05639f8c2",
+      "model_sha256": null,
+      "proof_bytes": 29451925,
+      "proof_sha256": "0735adbd23bd5e3240018b946e2e2cdf74ce6b6caa9c10acfa4f560f5d0064df",
+      "returncode": 20,
+      "schema": "card11_exact5_common_fullradius.v7",
+      "variables": 49357,
+      "verdict": "UNSAT",
+      "wall_seconds": 12.30513674998656
+    },
+    {
+      "case": {
+        "o": 9,
+        "s": 2
+      },
+      "clauses": 1370778,
+      "cnf_sha256": "bdd863e9d146cd64693d9c201f770b64b43082d34598d554434abcfd1bc50b57",
+      "command": [
+        "cadical",
+        "-q",
+        "-t",
+        "1800",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s2_o9/input.cnf",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s2_o9/proof.drat"
+      ],
+      "independent_verification": {
+        "cnf_sha256": "bdd863e9d146cd64693d9c201f770b64b43082d34598d554434abcfd1bc50b57",
+        "command": [
+          "drat-trim",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s2_o9/input.cnf",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s2_o9/proof.drat"
+        ],
+        "drat_exact_verified_line": true,
+        "drat_trim_returncode": 0,
+        "manifest_sha256": "8df756f6cfb1af5e1137f149b97dd371f061da44c1b332bafaece57de2237a02",
+        "mode": "UNSAT-DRAT",
+        "output_tail": "1078 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41083 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41094 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42268 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42269 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42270 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42308 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42309 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42347 0\nc finished parsing, read 35174655 bytes from proof file\nc detected empty clause; start verification via backward checking\nc 110920 of 1370778 clauses in core                            \nc 90540 of 821487 lemmas in core using 6478940 resolution steps\nc 23253 RAT lemmas in core; 27624 redundant literals in core lemmas\ns VERIFIED\nc verification time: 1038.252 seconds\n",
+        "proof_bytes": 35174655,
+        "proof_sha256": "25ae966a5c3ec7a3f84b7514d67a50f4805ab4f13c27278baa1d61845a1d84b8",
+        "source_to_valuation_trust_gap": "certificate proves only this exact CNF; it does not prove the geometric-to-labelled source/blocker valuation adapter",
+        "v7_structural_audit": {
+          "v6_prefix": {
+            "boundary_order_orientation_counts": {
+              "direct": 72,
+              "mirror": 72
+            },
+            "boundary_order_selector_count_exact": 144,
+            "convex_five_point_core_deduplicated_clauses_exact": 332640,
+            "convex_five_point_core_naive_clauses_exact": 332640,
+            "convex_five_point_core_safe_dedup_removed": 0,
+            "duplicate_center_core_clauses_exact": 4620,
+            "exact_five_global_seed_clauses_exact": 10,
+            "global_equality_variables": 1485,
+            "global_transitivity_clauses_exact": 78705,
+            "perpendicular_bisector_core_clauses_exact": 4620,
+            "selected_row_global_seed_clauses_exact": 11694,
+            "v3_clause_prefix_ends_at": 589878,
+            "v4_clause_prefix_ends_at": 594498,
+            "v4_zero_variable_clause_suffix_begins_at": 589879,
+            "v5_clause_prefix_ends_at": 927138,
+            "v5_zero_variable_clause_suffix_begins_at": 594499,
+            "v6_clause_suffix_begins_at": 927139,
+            "v6_family_a_compact_clauses_exact": 117900,
+            "v6_family_a_literal_clauses_exact": 51993900,
+            "v6_family_b_clauses_exact": 39300,
+            "v6_local_four_class_variables_exact": 2310,
+            "v6_local_four_definition_clauses_exact": 9240,
+            "v6_qdeleted_pair_definition_clauses_exact": 87120,
+            "v6_qdeleted_pair_variables_exact": 3960
+          },
+          "v7_clause_count_exact": 190080
+        },
+        "verified": true
+      },
+      "manifest_sha256": "8df756f6cfb1af5e1137f149b97dd371f061da44c1b332bafaece57de2237a02",
+      "model_sha256": null,
+      "proof_bytes": 35174655,
+      "proof_sha256": "25ae966a5c3ec7a3f84b7514d67a50f4805ab4f13c27278baa1d61845a1d84b8",
+      "returncode": 20,
+      "schema": "card11_exact5_common_fullradius.v7",
+      "variables": 49357,
+      "verdict": "UNSAT",
+      "wall_seconds": 17.262185083003715
+    },
+    {
+      "case": {
+        "o": 0,
+        "s": 3
+      },
+      "clauses": 1370778,
+      "cnf_sha256": "062a4dc3659894758daf047119207f4889d5372d5a11d06c99a5b0ed656561d8",
+      "command": [
+        "cadical",
+        "-q",
+        "-t",
+        "1800",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s3_o0/input.cnf",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s3_o0/proof.drat"
+      ],
+      "independent_verification": {
+        "cnf_sha256": "062a4dc3659894758daf047119207f4889d5372d5a11d06c99a5b0ed656561d8",
+        "command": [
+          "drat-trim",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s3_o0/input.cnf",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s3_o0/proof.drat"
+        ],
+        "drat_exact_verified_line": true,
+        "drat_trim_returncode": 0,
+        "manifest_sha256": "17dd33acbd0e6fba92daa5beb23649ae22bcd33e47a28b211338bf34acdaf357",
+        "mode": "UNSAT-DRAT",
+        "output_tail": " 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41092 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41093 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42144 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42145 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42146 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42268 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42269 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42308 0\nc finished parsing, read 59273854 bytes from proof file\nc detected empty clause; start verification via backward checking\nc 147827 of 1370778 clauses in core                            \nc 193146 of 1040637 lemmas in core using 26588406 resolution steps\nc 36456 RAT lemmas in core; 178037 redundant literals in core lemmas\ns VERIFIED\nc verification time: 1276.933 seconds\n",
+        "proof_bytes": 59273854,
+        "proof_sha256": "eb31f6d13e5910d0dc0eed9264535a858012e75d2d527a7c37b1667ee658af18",
+        "source_to_valuation_trust_gap": "certificate proves only this exact CNF; it does not prove the geometric-to-labelled source/blocker valuation adapter",
+        "v7_structural_audit": {
+          "v6_prefix": {
+            "boundary_order_orientation_counts": {
+              "direct": 72,
+              "mirror": 72
+            },
+            "boundary_order_selector_count_exact": 144,
+            "convex_five_point_core_deduplicated_clauses_exact": 332640,
+            "convex_five_point_core_naive_clauses_exact": 332640,
+            "convex_five_point_core_safe_dedup_removed": 0,
+            "duplicate_center_core_clauses_exact": 4620,
+            "exact_five_global_seed_clauses_exact": 10,
+            "global_equality_variables": 1485,
+            "global_transitivity_clauses_exact": 78705,
+            "perpendicular_bisector_core_clauses_exact": 4620,
+            "selected_row_global_seed_clauses_exact": 11694,
+            "v3_clause_prefix_ends_at": 589878,
+            "v4_clause_prefix_ends_at": 594498,
+            "v4_zero_variable_clause_suffix_begins_at": 589879,
+            "v5_clause_prefix_ends_at": 927138,
+            "v5_zero_variable_clause_suffix_begins_at": 594499,
+            "v6_clause_suffix_begins_at": 927139,
+            "v6_family_a_compact_clauses_exact": 117900,
+            "v6_family_a_literal_clauses_exact": 51993900,
+            "v6_family_b_clauses_exact": 39300,
+            "v6_local_four_class_variables_exact": 2310,
+            "v6_local_four_definition_clauses_exact": 9240,
+            "v6_qdeleted_pair_definition_clauses_exact": 87120,
+            "v6_qdeleted_pair_variables_exact": 3960
+          },
+          "v7_clause_count_exact": 190080
+        },
+        "verified": true
+      },
+      "manifest_sha256": "17dd33acbd0e6fba92daa5beb23649ae22bcd33e47a28b211338bf34acdaf357",
+      "model_sha256": null,
+      "proof_bytes": 59273854,
+      "proof_sha256": "eb31f6d13e5910d0dc0eed9264535a858012e75d2d527a7c37b1667ee658af18",
+      "returncode": 20,
+      "schema": "card11_exact5_common_fullradius.v7",
+      "variables": 49357,
+      "verdict": "UNSAT",
+      "wall_seconds": 69.19002529093996
+    },
+    {
+      "case": {
+        "o": 9,
+        "s": 3
+      },
+      "clauses": 1370778,
+      "cnf_sha256": "764ad8c855afde936150fd0bc422bc315b75311286fa15cfb3cb8dff23b739ee",
+      "command": [
+        "cadical",
+        "-q",
+        "-t",
+        "1800",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s3_o9/input.cnf",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s3_o9/proof.drat"
+      ],
+      "independent_verification": {
+        "cnf_sha256": "764ad8c855afde936150fd0bc422bc315b75311286fa15cfb3cb8dff23b739ee",
+        "command": [
+          "drat-trim",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s3_o9/input.cnf",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7/runs/s3_o9/proof.drat"
+        ],
+        "drat_exact_verified_line": true,
+        "drat_trim_returncode": 0,
+        "manifest_sha256": "56b0d079759c98c3ea0b4f97d514c36ebda1836564b525e498332663b32ad476",
+        "mode": "UNSAT-DRAT",
+        "output_tail": "0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41083 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] -41094 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42268 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42269 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42270 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42308 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42309 0\nc WARNING: backward mode ignores deletion of (pseudo) unit clause [0] 42347 0\nc finished parsing, read 131826852 bytes from proof file\nc detected empty clause; start verification via backward checking\nc 203437 of 1370778 clauses in core                            \nc 509038 of 1864691 lemmas in core using 83188616 resolution steps\nc 62113 RAT lemmas in core; 467006 redundant literals in core lemmas\ns VERIFIED\nc verification time: 1519.672 seconds\n",
+        "proof_bytes": 131826852,
+        "proof_sha256": "b45483f94deca4e66a8ea8c8208ba7200eb330d834df4aad605678db6761c2a3",
+        "source_to_valuation_trust_gap": "certificate proves only this exact CNF; it does not prove the geometric-to-labelled source/blocker valuation adapter",
+        "v7_structural_audit": {
+          "v6_prefix": {
+            "boundary_order_orientation_counts": {
+              "direct": 72,
+              "mirror": 72
+            },
+            "boundary_order_selector_count_exact": 144,
+            "convex_five_point_core_deduplicated_clauses_exact": 332640,
+            "convex_five_point_core_naive_clauses_exact": 332640,
+            "convex_five_point_core_safe_dedup_removed": 0,
+            "duplicate_center_core_clauses_exact": 4620,
+            "exact_five_global_seed_clauses_exact": 10,
+            "global_equality_variables": 1485,
+            "global_transitivity_clauses_exact": 78705,
+            "perpendicular_bisector_core_clauses_exact": 4620,
+            "selected_row_global_seed_clauses_exact": 11694,
+            "v3_clause_prefix_ends_at": 589878,
+            "v4_clause_prefix_ends_at": 594498,
+            "v4_zero_variable_clause_suffix_begins_at": 589879,
+            "v5_clause_prefix_ends_at": 927138,
+            "v5_zero_variable_clause_suffix_begins_at": 594499,
+            "v6_clause_suffix_begins_at": 927139,
+            "v6_family_a_compact_clauses_exact": 117900,
+            "v6_family_a_literal_clauses_exact": 51993900,
+            "v6_family_b_clauses_exact": 39300,
+            "v6_local_four_class_variables_exact": 2310,
+            "v6_local_four_definition_clauses_exact": 9240,
+            "v6_qdeleted_pair_definition_clauses_exact": 87120,
+            "v6_qdeleted_pair_variables_exact": 3960
+          },
+          "v7_clause_count_exact": 190080
+        },
+        "verified": true
+      },
+      "manifest_sha256": "56b0d079759c98c3ea0b4f97d514c36ebda1836564b525e498332663b32ad476",
+      "model_sha256": null,
+      "proof_bytes": 131826852,
+      "proof_sha256": "b45483f94deca4e66a8ea8c8208ba7200eb330d834df4aad605678db6761c2a3",
+      "returncode": 20,
+      "schema": "card11_exact5_common_fullradius.v7",
+      "variables": 49357,
+      "verdict": "UNSAT",
+      "wall_seconds": 138.31776095903479
+    }
+  ],
+  "resume_audit": "s2_o9 verification was resumed against its unchanged persisted CNF/DRAT; s3_o0 and s3_o9 were then selected explicitly, without rerunning either s2 case.",
+  "schema": "card11_exact5_common_fullradius.v7",
+  "serial": true,
+  "terminal": true,
+  "timeout_per_case_seconds": 1800,
+  "trust_boundary": "Each UNSAT result is independently replayed by drat-trim against the exact hashed CNF. The missing theorem-level bridge maps the geometric exact-five common-center residual and its cap labeling to every Boolean variable family and one of the four shell cases."
+}

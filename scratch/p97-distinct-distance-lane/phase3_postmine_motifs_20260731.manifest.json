@@ -1,0 +1,47 @@
+{
+  "counts": {
+    "angular_prefilter_records": 262,
+    "authentication_failures": 0,
+    "miquel_clifford_bundle_sound_candidates": 0,
+    "skew_candidate_records": {
+      "center_in_later": 0,
+      "support_in_later": 0
+    }
+  },
+  "input_summaries": [
+    {
+      "authentication_failures": 0,
+      "record_count": 100,
+      "skew_candidate_records": {
+        "center_in_later": 0,
+        "support_in_later": 0
+      },
+      "source_file": "scratch/p97-distinct-distance-lane/phase3_structural_cegar_10000_20260729/survivors.jsonl",
+      "source_file_sha256": "300309d12184482f0e9d8052f7740f55cb9303890f0fc6eea56984bd889b3ee6",
+      "source_schema_counts": {
+        "p97-phase3-structural-cegar-survivor-v1": 100
+      }
+    },
+    {
+      "authentication_failures": 0,
+      "record_count": 162,
+      "skew_candidate_records": {
+        "center_in_later": 0,
+        "support_in_later": 0
+      },
+      "source_file": "scratch/p97-distinct-distance-lane/paused_projected_current_source_survivors_162_20260729/survivors.jsonl",
+      "source_file_sha256": "294ca7357502e14e7664b746669d4ad0c0a5722b92715319be1b42a1cdbc4722",
+      "source_schema_counts": {
+        "p97-phase3-structural-cegar-survivor-v1": 162
+      }
+    }
+  ],
+  "manifest_sha256": "68189e0b316bd3a3a9271c6f9a5d9da4abe73957d1c59d3b9edaf32972036d87",
+  "output": "scratch/p97-distinct-distance-lane/phase3_postmine_motifs_20260731.jsonl",
+  "output_sha256": "84527daccaed8aa6cabd897f70c49edd63004f6d2be83e290e12e599d681f47a",
+  "record_count": 262,
+  "schema": "p97-phase3-postmine-manifest-v1",
+  "script": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-distinct-distance-lane/postmine_phase3_motifs_20260731.py",
+  "script_sha256": "968aa4665d1020e5d53160390640d171bdc624c3f4c99d9abecb892fb938c57c",
+  "trust_boundary": "read-only Python post-miner; hash/schema authentication and incidence checks only; metric rows are exact=false; no angular, Miquel, Clifford, bundle, SAT, Lean, or P97 closure claim"
+}

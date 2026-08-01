@@ -44,16 +44,10 @@ by the caller.  A shard can therefore construct them once and share them
 across all of its support masks. -/
 def erasedPlacementCheckAtWithBaseDomains
     (center support deleted : Nat) (baseDomains : List Domain) : Bool :=
-  let fixed : Row := { center := center, support := support }
-  if !localCandidateOK fixed.center deleted fixed.support then
+  if !localCandidateOK center deleted support then
     false
   else
-    let assigned := [fixed]
-    let domains := baseDomains.map (restrictDomain assigned)
-    if domains.any fun domain => domain.rows.isEmpty then
-      true
-    else
-      allKilledAt center (variableCentersAt center).length assigned domains
+    erasedPlacementSearchAtWithBaseDomains center support deleted baseDomains
 
 /-- Hoisting the P2 base domains does not change the placement verdict. -/
 theorem erasedPlacementCheckAtWithBaseDomains_p2BaseDomains
@@ -62,8 +56,7 @@ theorem erasedPlacementCheckAtWithBaseDomains_p2BaseDomains
         (p2BaseDomains center deleted) =
       erasedPlacementCheckAt center support deleted := by
   simp only [erasedPlacementCheckAtWithBaseDomains, p2BaseDomains,
-    erasedPlacementCheckAt, List.map_map]
-  rfl
+    erasedPlacementCheckAt]
 
 /-- P2 placement predicate for one deleted label and support-mask bin. -/
 def p2PlacementsAtDeletedChunkWithBaseDomains
@@ -71,7 +64,7 @@ def p2PlacementsAtDeletedChunkWithBaseDomains
   (p2SupportChunk chunk).all fun support =>
     if intSNats.any fun pin => has support pin then
       if localCandidateOK center deleted support then
-        erasedPlacementCheckAtWithBaseDomains center support deleted baseDomains
+        erasedPlacementSearchAtWithBaseDomains center support deleted baseDomains
       else
         true
     else
@@ -219,12 +212,24 @@ theorem p2PlacementsAtDeletedPair_eq_true_of_chunks
   rcases hchunk with ⟨hchunk₁, hchunk₂⟩
   have hdeleted₁ := List.all_eq_true.mp hchunk₁ support hsupportChunk
   have hdeleted₂ := List.all_eq_true.mp hchunk₂ support hsupportChunk
-  rw [erasedPlacementCheckAtWithBaseDomains_p2BaseDomains] at hdeleted₁
-  rw [erasedPlacementCheckAtWithBaseDomains_p2BaseDomains] at hdeleted₂
   by_cases hpin : intSNats.any (fun pin => has support pin) = true
   · simp only [hpin, if_true] at hdeleted₁ hdeleted₂ ⊢
+    have hdeleted₁' :
+        (if localCandidateOK center deleted₁ support then
+          erasedPlacementCheckAt center support deleted₁ else true) = true := by
+      by_cases hlocal : localCandidateOK center deleted₁ support = true
+      · simp only [hlocal, if_true] at hdeleted₁ ⊢
+        simpa [erasedPlacementCheckAt, p2BaseDomains, hlocal] using hdeleted₁
+      · simp [hlocal]
+    have hdeleted₂' :
+        (if localCandidateOK center deleted₂ support then
+          erasedPlacementCheckAt center support deleted₂ else true) = true := by
+      by_cases hlocal : localCandidateOK center deleted₂ support = true
+      · simp only [hlocal, if_true] at hdeleted₂ ⊢
+        simpa [erasedPlacementCheckAt, p2BaseDomains, hlocal] using hdeleted₂
+      · simp [hlocal]
     simp only [List.all_cons, List.all_nil, Bool.and_true]
-    simp [hdeleted₁, hdeleted₂]
+    simp [hdeleted₁', hdeleted₂']
   · have hpinFalse : intSNats.any (fun pin => has support pin) = false :=
       Bool.eq_false_iff.mpr hpin
     simp [hpinFalse]

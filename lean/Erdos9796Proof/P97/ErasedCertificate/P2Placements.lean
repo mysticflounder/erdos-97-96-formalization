@@ -109,13 +109,15 @@ theorem erasedPlacementCheckAt_rowMaskOf_p2
   have hcard : (countPoints (rowMaskOf P c₀) labels == 4) = true := by
     have hlocalParts := hlocal
     simp only [localCandidateOK, Bool.and_eq_true] at hlocalParts
-    rcases hlocalParts with
-      ⟨⟨⟨⟨⟨hcard, _hself⟩, _hmoser⟩, _hnonMoser⟩, _hcap⟩,
-        _hdeleted⟩
-    exact hcard
+    exact hlocalParts.1
   have hsupport : rowMaskOf P c₀ ∈ fourPointMasks :=
-    List.mem_filter.mpr
-      ⟨List.mem_range.mpr (maskOfFinset_lt_2048 (row P c₀)), hcard⟩
+    by
+      change rowMaskOf P c₀ ∈
+        Census554.CapSelectedNativeClassifier.fourPointMasks
+      rw [Census554.CapSelectedNativeClassifier.fourPointMasks_eq_reference,
+        Census554.CapSelectedNativeClassifier.fourPointMasksReference]
+      exact List.mem_filter.mpr
+        ⟨List.mem_range.mpr (maskOfFinset_lt_2048 (row P c₀)), hcard⟩
   have hpinNat : pin.val ∈ intSNats :=
     val_mem_intSNats_of_mem_intS hshell.1.2.1
   have hhas : has (rowMaskOf P c₀) pin.val = true := by

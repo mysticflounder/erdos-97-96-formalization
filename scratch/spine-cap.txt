@@ -1,0 +1,887 @@
+active anchors (16):
+  ⚓ 019fabe9  Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface  [open]  — fixed-row same-cap positive arm kernel-closed; prove the remaining concrete no-alignment producer
+  ⚓ 019f91c7  Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_mutualCrossMembership_distinctBlockers  [closed]  — common-omission branch after checked complementary terminal; agentic search for exact deletion/U5 consumer
+  ⚓ 019fab54  Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_mutualCrossMembership_distinctBlockers  [closed]  — read-only Or.inr complementary-membership audit; no edits
+  ⚓ 019f91c7  Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_mutualCrossMembership_distinctBlockers  [closed]  — F3 two-source split is checked. Anchored on mutual cross-membership with distinct blocker values; equal blocker reduces to the existing FreshThirdBlockerFiber leaf, while the sibling one-sided omission leaf retains the deletion-survival route.
+  ⚓ 019fa9eb  Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_collisionFiveCenterDeletion  [open]  — second-support deletion dichotomy; scratch-only unless exhaustive source-clean narrowing
+  ⚓ 019fa9cc  Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_collisionFiveCenterDeletion  [open]  — independent direct cap-geometry closure attempt; scratch only
+  ⚓ 019fa9c1  Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_collisionFiveCenterDeletion  [open]  — read-only two-fresh-cap-source consumer audit; no edits
+  ⚓ 019f9cb4  Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsBiApexRobustResidual  [open]
+  ⚓ 019fa4dc  Problem97.ATailFrontierLiveClosure.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows  [open]  — blocker-cycle Kalmanson occurrence-producer audit in scratch only
+  ⚓ 019fa379  Problem97.ATailFrontierLiveClosure.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows  [open]  — read-only blocker-fiber and notRobustCenters hard-branch audit
+  ⚓ 019fa1c7  Problem97.ATailFrontierLiveClosure.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows  [open]  — read-only scratch audit of blocker-cycle and Kalmanson bridge; no production edits
+  ⚓ 019fa1c2  Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch  [open]  — read-only common-deletion consumer audit requested by parent task
+  ⚓ 019fa07f  Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface  [open]  — Read-only audit of two-distinct-exact-four-radii terminal; no shared edits
+  ⚓ d4fa82b5  Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsBiApexRobustResidual  [open]  — all-large-caps terminal, profile (6,6,6), carrier card >= 15, general in n. Five-point-cap profiles (all of card 14) dispatched at 744e7b1b by cap redesignation. NOTE: proof-blueprint refs --refresh is mandatory after adding decls - without it spine mislabelled the parent [closed] while #print axioms showed sorryAx. Superseded: the card-14 (5,6,6) certificate surface in scratch/atail-force/lcap14-global-parent-surface (do not resume its decision runs); its 802 schemas + Farkas certificates remain valid as cardinality-free lemmas.
+  ⚓ c188f5d9  Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm  [open]  — p5 exact-two occurrence-map bridge: own scratch/atail-force/unique4-exact-two-source-bridge/OccurrenceBridge only; prove the 8,703 trimmed CNF clauses satisfied by the IndexedSource valuation (IndexedSource/ itself is landed and frozen at 024626d0)
+  ⚓ 019f9077  Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm  [open]  — p5 exact-two trimmed-certificate ingress under fixed-card-11 sub-bridge
+spine rooted at: Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface
+approved axioms: core + Lean.trustCompiler
+open: 1/36 node(s)
+spine source: 636 line(s) of lean across 36 decl(s)
+
+▲ collapsed path to proof root `Problem97.erdos97_rhs` (25 ancestor hop(s), single chain):
+    ▲   Problem97.erdos97_rhs   [proof root]
+    ▲   Problem97.UniversalProblem97
+    ▲   Problem97.universalReductionHypotheses
+    ▲   Problem97.descent_contradicts_minimality
+    ▲   Problem97.RemovableVertexOfLarge
+    ▲   Problem97.RemovableVertexOfLarge_from_pinnedSurplusCOMPGBank
+    ▲   Problem97.removableVertexOfLarge_of_nonIsM44
+    ▲   Problem97.ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap
+    ▲   Problem97.ATailFrontierLiveClosure.false_of_criticalPairFrontier
+    ▲   Problem97.ATailFrontierLiveClosure.false_of_frontierCommonDeletionPhysicalSecondApex
+    ▲   Problem97.ATailFrontierLiveClosure.false_of_frontierBiApexRobustResidual
+    ▲   Problem97.ATailFrontierLiveClosure.false_of_frontierLargeOppositeCapsBiApexRobustResidual
+    ▲   Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsBiApexRobustResidual
+    ▲   Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApexRobustResidual
+    ▲   Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApexUniformMetricResidual
+    ▲   Problem97.ATailFrontierLiveClosure.exists_criticalShell_oppositeCapClassInterior_card_ge_three_of_frontierAllLargeCapsTriApex
+    ▲   Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApex_all_low_hits
+    ▲   Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorBlockerCollision_and_all_low_hits
+    ▲   Problem97.ATailFrontierLiveClosure.false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits
+    ▲   Problem97.ATailFrontierLiveClosure.false_of_exactFourCollision_secondRadius_and_all_low_hits
+    ▲   Problem97.ATailFrontierLiveClosure.false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits
+    ▲   Problem97.ATailFrontierLiveClosure.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits
+    ▲   Problem97.ATailFrontierLiveClosure.exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions
+    ▲   Problem97.ATailFrontierLiveClosure.exists_three_hit_of_two_collisionRows_capCross_normalForm
+    ▲   Problem97.ATailFrontierLiveClosure.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows
+    ▸   Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface   [this spine root]
+
+open obligations (2):
+  💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface  [sorry]
+  ❌ sorryAx  [unapproved axiom]
+
+└── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface  [💧]
+    ├── Problem97.CounterexampleData  [🟢]
+    ├── Problem97.SurplusCapPacket  [🟢]
+    ├── Problem97.CriticalShellSystem  [🟢]
+    ├── Problem97.ATailCriticalPairFrontier.CriticalPairFrontier  [🟢]
+    │   ├── Problem97.CounterexampleData  [🟢]
+    │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   └── Problem97.CriticalShellSystem  [🟢]
+    ├── Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual  [🟢]
+    │   ├── Problem97.CounterexampleData  [🟢]
+    │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   ├── Problem97.CriticalShellSystem  [🟢]
+    │   └── Problem97.ATailCriticalPairFrontier.CriticalPairFrontier  [🟢] (seen)
+    ├── Problem97.ATailRetainedStrictInteriorPairSelector.RetainedInteriorBlockerCollision  [🟢]
+    │   ├── Problem97.CounterexampleData  [🟢]
+    │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   ├── Problem97.CriticalShellSystem  [🟢]
+    │   ├── Problem97.ATailCriticalPairFrontier.CriticalPairFrontier  [🟢] (seen)
+    │   └── Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual  [🟢] (seen)
+    ├── Problem97.SelectedClass  [🟢]
+    ├── Problem97.SurplusCapPacket.oppApex1  [🟢]
+    │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   └── Problem97.SurplusCapPacket.triangle  [🟢]
+    │       ├── Problem97.SurplusCapPacket  [🟢]
+    │       ├── Problem97.MoserTriangle  [🟢]
+    │       └── Problem97.MEC.MoserTriangle.toStructural  [🟢]
+    │           ├── Problem97.MEC.MoserTriangle  [🟢]
+    │           ├── Problem97.MEC.mec  [🟢]
+    │           │   ├── Problem97.MinEnclosingCircle  [🟢]
+    │           │   └── Problem97.MinEnclosingCircle.exists_mec  [🟢]
+    │           │       └── Problem97.MinEnclosingCircle  [🟢]
+    │           └── Problem97.MoserTriangle  [🟢]
+    ├── Problem97.SurplusCapPacket.capInteriorByIndex  [🟢]
+    │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   ├── Problem97.MEC.MoserTriangle.toStructural  [🟢] (seen)
+    │   └── Problem97.SurplusCapPacket.triangle  [🟢] (seen)
+    ├── Problem97.SurplusCapPacket.oppIndex1  [🟢]
+    │   └── Problem97.SurplusCapPacket  [🟢]
+    ├── Problem97.ATailPhysicalSecondApexCommonDeletion.FrontierBiApexRobustResidual  [🟢]
+    │   ├── Problem97.CounterexampleData  [🟢]
+    │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   ├── Problem97.CriticalShellSystem  [🟢]
+    │   ├── Problem97.ATailCriticalPairFrontier.CriticalPairFrontier  [🟢] (seen)
+    │   └── Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual  [🟢] (seen)
+    ├── Problem97.ATailLargeOppositeCapsBiApexSurface.FrontierLargeOppositeCapsBiApexRobustResidual  [🟢]
+    │   ├── Problem97.CounterexampleData  [🟢]
+    │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   ├── Problem97.CriticalShellSystem  [🟢]
+    │   ├── Problem97.ATailCriticalPairFrontier.CriticalPairFrontier  [🟢] (seen)
+    │   ├── Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual  [🟢] (seen)
+    │   └── Problem97.ATailPhysicalSecondApexCommonDeletion.FrontierBiApexRobustResidual  [🟢] (seen)
+    ├── Problem97.ATailFrontierLiveClosure.FrontierAllLargeCapsBiApexRobustResidual  [🟢]
+    │   ├── Problem97.CounterexampleData  [🟢]
+    │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   ├── Problem97.CriticalShellSystem  [🟢]
+    │   ├── Problem97.ATailCriticalPairFrontier.CriticalPairFrontier  [🟢] (seen)
+    │   ├── Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual  [🟢] (seen)
+    │   ├── Problem97.ATailPhysicalSecondApexCommonDeletion.FrontierBiApexRobustResidual  [🟢] (seen)
+    │   └── Problem97.ATailLargeOppositeCapsBiApexSurface.FrontierLargeOppositeCapsBiApexRobustResidual  [🟢] (seen)
+    ├── Problem97.ATailFrontierLiveClosure.FrontierAllLargeCapsTriApexRobustResidual  [🟢]
+    │   ├── Problem97.CounterexampleData  [🟢]
+    │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   ├── Problem97.CriticalShellSystem  [🟢]
+    │   ├── Problem97.ATailCriticalPairFrontier.CriticalPairFrontier  [🟢] (seen)
+    │   ├── Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual  [🟢] (seen)
+    │   ├── Problem97.ATailPhysicalSecondApexCommonDeletion.FrontierBiApexRobustResidual  [🟢] (seen)
+    │   ├── Problem97.ATailLargeOppositeCapsBiApexSurface.FrontierLargeOppositeCapsBiApexRobustResidual  [🟢] (seen)
+    │   └── Problem97.ATailFrontierLiveClosure.FrontierAllLargeCapsBiApexRobustResidual  [🟢] (seen)
+    ├── Problem97.CriticalShellSystem.centerAt  [🟢]
+    │   ├── Problem97.CriticalShellSystem  [🟢]
+    │   └── Problem97.CriticalSelectedFourClass  [🟢]
+    ├── Problem97.ATailRetainedStrictInteriorPairSelector.LocalizedCollisionCommonDeletion  [🟢]
+    │   ├── Problem97.CounterexampleData  [🟢]
+    │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   ├── Problem97.CriticalShellSystem  [🟢]
+    │   ├── Problem97.ATailCriticalPairFrontier.CriticalPairFrontier  [🟢] (seen)
+    │   ├── Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual  [🟢] (seen)
+    │   └── Problem97.ATailRetainedStrictInteriorPairSelector.RetainedInteriorBlockerCollision  [🟢] (seen)
+    ├── Problem97.ATailLocalizedCollisionMutualOmissionCycle.LocalizedCollisionMutualOmissionCycle  [🟢]
+    │   ├── Problem97.CounterexampleData  [🟢]
+    │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   ├── Problem97.CriticalShellSystem  [🟢]
+    │   ├── Problem97.ATailCriticalPairFrontier.CriticalPairFrontier  [🟢] (seen)
+    │   ├── Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual  [🟢] (seen)
+    │   ├── Problem97.ATailRetainedStrictInteriorPairSelector.RetainedInteriorBlockerCollision  [🟢] (seen)
+    │   └── Problem97.ATailRetainedStrictInteriorPairSelector.LocalizedCollisionCommonDeletion  [🟢] (seen)
+    ├── Problem97.ATailTwoCollisionGlobalProducer.CapSourceThirdCanonicalRowSurface  [🟢]
+    │   ├── Problem97.CounterexampleData  [🟢]
+    │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   ├── Problem97.CriticalShellSystem  [🟢]
+    │   ├── Problem97.ATailCriticalPairFrontier.CriticalPairFrontier  [🟢] (seen)
+    │   ├── Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual  [🟢] (seen)
+    │   ├── Problem97.ATailRetainedStrictInteriorPairSelector.RetainedInteriorBlockerCollision  [🟢] (seen)
+    │   ├── Problem97.SurplusCapPacket.capByIndex  [🟢]
+    │   │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   │   └── Problem97.MEC.MoserTriangle.toStructural  [🟢] (seen)
+    │   ├── Problem97.SurplusCapPacket.oppIndex1  [🟢] (seen)
+    │   ├── Problem97.CriticalShellSystem.CarrierVertex  [🟢]
+    │   ├── Problem97.SurplusCapPacket.capInteriorByIndex  [🟢] (seen)
+    │   ├── Problem97.CriticalShellSystem.centerAt  [🟢] (seen)
+    │   ├── Problem97.SurplusCapPacket.oppApex1  [🟢] (seen)
+    │   ├── Problem97.SurplusCapPacket.oppApex2  [🟢]
+    │   │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   │   └── Problem97.SurplusCapPacket.triangle  [🟢] (seen)
+    │   ├── Problem97.CriticalShellSystem.selectedAt  [🟢]
+    │   │   ├── Problem97.CriticalShellSystem  [🟢]
+    │   │   ├── Problem97.CriticalSelectedFourClass  [🟢]
+    │   │   └── Problem97.CriticalShellSystem.centerAt  [🟢] (seen)
+    │   └── Problem97.ATailTwoCollisionGlobalProducer.CrossPairDeletionView  [🟢]
+    │       ├── Problem97.CounterexampleData  [🟢]
+    │       ├── Problem97.CriticalShellSystem  [🟢]
+    │       └── Problem97.CriticalShellSystem.CarrierVertex  [🟢]
+    ├── Problem97.ATailBlockerMultiplicityGeometry.GeometricMultiplicityResidual  [🟢]
+    │   ├── Problem97.CounterexampleData  [🟢]
+    │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   ├── Problem97.CriticalShellSystem  [🟢]
+    │   ├── Problem97.ATailCriticalPairFrontier.CriticalPairFrontier  [🟢] (seen)
+    │   ├── Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual  [🟢] (seen)
+    │   ├── Problem97.ATailRetainedStrictInteriorPairSelector.RetainedInteriorBlockerCollision  [🟢] (seen)
+    │   ├── Problem97.ATailBlockerMultiplicityGeometry.FreshThirdBlockerFiber  [🟢]
+    │   │   ├── Problem97.CounterexampleData  [🟢]
+    │   │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   │   ├── Problem97.CriticalShellSystem  [🟢]
+    │   │   ├── Problem97.ATailCriticalPairFrontier.CriticalPairFrontier  [🟢] (seen)
+    │   │   ├── Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual  [🟢] (seen)
+    │   │   └── Problem97.ATailRetainedStrictInteriorPairSelector.RetainedInteriorBlockerCollision  [🟢] (seen)
+    │   ├── Problem97.ATailBlockerMultiplicityGeometry.FreshOutsideFirstBlockerFiber  [🟢]
+    │   │   ├── Problem97.CounterexampleData  [🟢]
+    │   │   ├── Problem97.SurplusCapPacket  [🟢]
+    │   │   ├── Problem97.CriticalShellSystem  [🟢]
+    │   │   ├── Problem97.ATailCriticalPairFrontier.CriticalPairFrontier  [🟢] (seen)
+    │   │   ├── Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual  [🟢] (seen)
+    │   │   └── Problem97.ATailRetainedStrictInteriorPairSelector.RetainedInteriorBlockerCollision  [🟢] (seen)
+    │   └── Problem97.ATailBlockerMultiplicityGeometry.FreshOutsideSecondBlockerFiber  [🟢]
+    │       ├── Problem97.CounterexampleData  [🟢]
+    │       ├── Problem97.SurplusCapPacket  [🟢]
+    │       ├── Problem97.CriticalShellSystem  [🟢]
+    │       ├── Problem97.ATailCriticalPairFrontier.CriticalPairFrontier  [🟢] (seen)
+    │       ├── Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual  [🟢] (seen)
+    │       └── Problem97.ATailRetainedStrictInteriorPairSelector.RetainedInteriorBlockerCollision  [🟢] (seen)
+    └── sorryAx  [💧 sorry]
+
+❌ NOT kernel-complete — spine of `Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface` has:
+  - reaches sorry via 1 symbol(s)
+  - unapproved axiom on spine: sorryAx
+
+unclosed on the target spine, off this root (17) — still-open frontier on other branches:
+    💧 Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:702]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1157]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1231]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_minimalCore  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2173]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2379]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2533]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2556]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2581]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3299]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5322]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_nonphysicalCollision  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5494]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5983]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6048]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6294]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6305]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6767]
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7452]
+
+unimported files (658 file(s), 3193 symbol(s), 3 sorry — never reached by any lake import chain):
+  Erdos9796Proof/P97/ATail/FrontierCommonDeletionEscape.lean  (25 symbol(s))
+  Erdos9796Proof/P97/ATail/FrontierCommonDeletionSurplusEscape.lean  (23 symbol(s))
+  Erdos9796Proof/P97/ATail/FrontierCoupledStrictInteriorNormalForm.lean  (3 symbol(s))
+  Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean  (16 symbol(s))
+  Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCrossIncidence.lean  (2 symbol(s))
+  Erdos9796Proof/P97/ATail/LargeCapUniqueFiveLowHit.lean  (6 symbol(s))
+  Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean  (34 symbol(s))
+  Erdos9796Proof/P97/ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean  (4 symbol(s))
+  Erdos9796Proof/P97/ATail/LargeCapUniqueFiveShortCapTerminal.lean  (2 symbol(s))
+  Erdos9796Proof/P97/ATail/MutualShellPairSharedMember.lean  (4 symbol(s))
+  Erdos9796Proof/P97/ATail/OrdinalKalmansonCycle.lean  (5 symbol(s))
+  Erdos9796Proof/P97/ATail/PhysicalOmissionCycleParentResidual.lean  (9 symbol(s))
+  Erdos9796Proof/P97/ATail/RetainedCollisionDifferentPairConsumer.lean  (7 symbol(s))
+  Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionCycle.lean  (19 symbol(s))
+  Erdos9796Proof/P97/ATail/RetainedMatchingCommonDeletionNormalization.lean  (5 symbol(s))
+  Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean  (9 symbol(s))
+  Erdos9796Proof/P97/ATail/RetainedMatchingSourceReturnRadiusSplit.lean  (15 symbol(s))
+  Erdos9796Proof/P97/ATail/RetainedStrictInteriorParentNormalForm.lean  (4 symbol(s))
+  Erdos9796Proof/P97/ATail/RobustLargeRadiusReduction.lean  (6 symbol(s))
+  Erdos9796Proof/P97/ATail/SecondApexClassOneHit.lean  (6 symbol(s))
+  Erdos9796Proof/P97/ATail/Sub2Certificate.lean  (7 symbol(s))
+  Erdos9796Proof/P97/ATail/SurvivalCoverParentBoundary.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ATail/TwoTripleRowSixPointEuclideanObstruction.lean  (5 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/EqualityCore.lean  (100 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat00084.lean  (10 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat00128.lean  (13 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat00134.lean  (13 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat00568.lean  (10 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat00573.lean  (10 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat00744.lean  (10 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat00966.lean  (10 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat01429.lean  (13 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat01535.lean  (10 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat01571.lean  (10 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat02175.lean  (10 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat02213.lean  (10 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat02369.lean  (10 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat02386.lean  (10 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat02474.lean  (28 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat02537.lean  (13 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat02682.lean  (13 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat03063.lean  (10 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat04970.lean  (96 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat05043.lean  (58 symbol(s))
+  Erdos9796Proof/P97/Census554/Bank/Pat05243.lean  (13 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuit.lean  (14 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Base.lean  (4 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common000.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common001.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common002.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common003.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common004.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common005.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common006.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common007.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common008.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common009.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common010.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common011.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common012.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common013.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common014.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common015.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common016.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common017.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common018.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common019.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common020.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common021.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common022.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common023.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common024.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common025.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common026.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common027.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common028.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common029.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common030.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common031.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common032.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common033.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common034.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common035.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common036.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common037.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common038.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common039.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common040.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common041.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common042.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common043.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common044.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Common045.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core000.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core001.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core002.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core003.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core004.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core005.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core006.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core007.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core008.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core009.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core010.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core011.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core012.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core013.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core014.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core015.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core016.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core017.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core018.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core019.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core020.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core021.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core022.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core023.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core024.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core025.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core026.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core027.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core028.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core029.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core030.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core031.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core032.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core033.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core034.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core035.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core036.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core037.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core038.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core039.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core040.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVCircuitChunks/Core041.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVExperiment.lean  (55 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVPlacements/P3D4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVPlacements/P3D5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVPlacements/P3D6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVPlacements/P4D3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVPlacements/P4D5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVPlacements/P4D6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVPlacements/P5D3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVPlacements/P5D4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVPlacements/P5D6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVPlacements/P6D3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVPlacements/P6D4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVPlacements/P6D5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedBVReducibleTest.lean  (2 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedClosureColor.lean  (19 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean  (41 symbol(s))
+  Erdos9796Proof/P97/Census554/CapSelectedNogoodClassifier.lean  (6 symbol(s))
+  Erdos9796Proof/P97/Census554/CardHeadProfiles.lean  (3 symbol(s))
+  Erdos9796Proof/P97/Census554/CertCheck.lean  (20 symbol(s))
+  Erdos9796Proof/P97/Census554/CirclePowerMatrix.lean  (21 symbol(s))
+  Erdos9796Proof/P97/Census554/CoverRelations.lean  (12 symbol(s))
+  Erdos9796Proof/P97/Census554/EquilateralApexOrientation.lean  (7 symbol(s))
+  Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean  (18 symbol(s))
+  Erdos9796Proof/P97/Census554/EquilateralShellBranchCertificates.lean  (66 symbol(s))
+  Erdos9796Proof/P97/Census554/ExactShellBridge.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/FiveDuplicateCenterCertificates.lean  (32 symbol(s))
+  Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderBridge.lean  (14 symbol(s))
+  Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderCore.lean  (4 symbol(s))
+  Erdos9796Proof/P97/Census554/FourRowPerpBisector.lean  (7 symbol(s))
+  Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean  (12 symbol(s))
+  Erdos9796Proof/P97/Census554/NestedEqualChordCore.lean  (7 symbol(s))
+  Erdos9796Proof/P97/Census554/PolyCheck.lean  (34 symbol(s))
+  Erdos9796Proof/P97/Census554/SeparationBridge.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean  (7 symbol(s))
+  Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean  (7 symbol(s))
+  Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeCarrierBridge.lean  (13 symbol(s))
+  Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean  (9 symbol(s))
+  Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean  (7 symbol(s))
+  Erdos9796Proof/P97/Certificate/CheckpointedRupCompactSelfTest.lean  (4 symbol(s))
+  Erdos9796Proof/P97/EndpointCertificate/EpQ2000.lean  (4 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/ErasedNativeEvalGate.lean  (13 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10A0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10A1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10A2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10A3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10A4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10A5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10A6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10A7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10B0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10B1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10B2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10B3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10B4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10B5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10B6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10B7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D3C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D3C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D3C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D3C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D3C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D3C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D3C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D3C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D4C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D4C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D4C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D4C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D4C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D4C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D4C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D4C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D5C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D5C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D5C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D5C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D5C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D5C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D5C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D5C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D6C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D6C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D6C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D6C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D6C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D6C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D6C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement10D6C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7A0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7A1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7A2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7A3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7A4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7A5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7A6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7A7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7B0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7B1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7B2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7B3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7B4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7B5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7B6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7B7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D3C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D3C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D3C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D3C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D3C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D3C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D3C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D3C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D4C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D4C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D4C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D4C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D4C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D4C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D4C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D4C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D5C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D5C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D5C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D5C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D5C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D5C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D5C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D5C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D6C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D6C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D6C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D6C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D6C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D6C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D6C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement7D6C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8A0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8A1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8A2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8A3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8A4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8A5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8A6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8A7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8B0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8B1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8B2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8B3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8B4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8B5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8B6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8B7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D3C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D3C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D3C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D3C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D3C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D3C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D3C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D3C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D4C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D4C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D4C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D4C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D4C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D4C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D4C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D4C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D5C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D5C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D5C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D5C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D5C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D5C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D5C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D5C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D6C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D6C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D6C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D6C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D6C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D6C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D6C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement8D6C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9A0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9A1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9A2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9A3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9A4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9A5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9A6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9A7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9B0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9B1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9B2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9B3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9B4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9B5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9B6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9B7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D3C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D3C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D3C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D3C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D3C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D3C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D3C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D3C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D4C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D4C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D4C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D4C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D4C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D4C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D4C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D4C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D5C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D5C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D5C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D5C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D5C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D5C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D5C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D5C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D6C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D6C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D6C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D6C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D6C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D6C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D6C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P2Placement9D6C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3A0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3A1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3A2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3A3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3A4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3A5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3A6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3A7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3B0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3B1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3B2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3B3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3B4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3B5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3B6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3B7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D3C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D3C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D3C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D3C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D3C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D3C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D3C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D3C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D4C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D4C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D4C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D4C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D4C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D4C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D4C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D4C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D5C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D5C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D5C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D5C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D5C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D5C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D5C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D5C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D6C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D6C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D6C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D6C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D6C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D6C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D6C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement3D6C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4A0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4A1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4A2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4A3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4A4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4A5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4A6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4A7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4B0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4B1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4B2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4B3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4B4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4B5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4B6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4B7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D3C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D3C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D3C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D3C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D3C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D3C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D3C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D3C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D4C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D4C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D4C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D4C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D4C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D4C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D4C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D4C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D5C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D5C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D5C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D5C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D5C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D5C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D5C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D5C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D6C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D6C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D6C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D6C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D6C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D6C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D6C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement4D6C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5A0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5A1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5A2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5A3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5A4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5A5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5A6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5A7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5B0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5B1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5B2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5B3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5B4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5B5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5B6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5B7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D3C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D3C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D3C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D3C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D3C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D3C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D3C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D3C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D4C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D4C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D4C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D4C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D4C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D4C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D4C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D4C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D5C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D5C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D5C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D5C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D5C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D5C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D5C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D5C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D6C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D6C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D6C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D6C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D6C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D6C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D6C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement5D6C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6A0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6A1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6A2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6A3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6A4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6A5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6A6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6A7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6B0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6B1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6B2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6B3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6B4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6B5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6B6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6B7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D3C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D3C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D3C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D3C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D3C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D3C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D3C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D3C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D4C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D4C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D4C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D4C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D4C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D4C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D4C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D4C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D5C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D5C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D5C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D5C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D5C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D5C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D5C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D5C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D6C0.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D6C1.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D6C2.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D6C3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D6C4.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D6C5.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D6C6.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedCertificate/P4SPlacement6D6C7.lean  (1 symbol(s))
+  Erdos9796Proof/P97/ErasedPinCountRows.lean  (19 symbol(s))
+  Erdos9796Proof/P97/ErasedPinOrderedProducer.lean  (221 symbol(s))
+  Erdos9796Proof/P97/ExactTenSelectedShellMincut.lean  (2 symbol(s))
+  Erdos9796Proof/P97/FiniteN10.lean  (11 symbol(s))
+  Erdos9796Proof/P97/FiniteN11.lean  (2 symbol(s))
+  Erdos9796Proof/P97/K4WindowBank.lean  (43 symbol(s))
+  Erdos9796Proof/P97/K4WitnessDeletion.lean  (3 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/ClassInventory.lean  (35 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/ClassPermutationBridge.lean  (4 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/ClassPermutationTable.lean  (12 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/Completion.lean  (23 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/LocalClassEncoding.lean  (21 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/LocalEnumerator.lean  (120 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/LocalEnumeratorCertificate.lean  (10 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/ProfileClassBridge.lean  (14 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/ProfileClassCompletion.lean  (3 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/ProfileClassCoverageCertificate.lean  (8 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/ProfileClassIncidence.lean  (55 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/ProfileInventory.lean  (20 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/ProfileSymmetry.lean  (18 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/Sweep.lean  (20 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/TrustedSweep.lean  (16 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/TypedClass.lean  (12 symbol(s))
+  Erdos9796Proof/P97/MultiCenter/Certificate/TypedClassBank.lean  (33 symbol(s))
+  Erdos9796Proof/P97/Phase3Bounded100DuplicateCenterData.lean  (15 symbol(s))
+  Erdos9796Proof/P97/Phase3DuplicateCenterA2B5P0Q1R6.lean  (7 symbol(s))
+  Erdos9796Proof/P97/Phase3DuplicateCenterCertificate.lean  (16 symbol(s))
+  Erdos9796Proof/P97/Phase3SharedPairSeparation.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Phase3StructuralConstraintBank.lean  (1 symbol(s))
+  Erdos9796Proof/P97/Phase3TwoHitCapLocalization.lean  (1 symbol(s))
+  Erdos9796Proof/P97/SurplusCertificate/GeometryBridge.lean  (10 symbol(s))
+  Erdos9796Proof/P97/U1CardTenCapProfile.lean  (1 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotQT1Record001.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3000.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3002.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3003.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3004.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3006.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3007.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3008.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3009.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1ExtraOmit3010.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2CoreSeedQT2.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2ProductPAReverse.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2ProductPAReverseManifest.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2ProductPBReverse.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2ProductPBReverseManifest.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SeedF1PAfterQT2.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SeedF1PAfterQT2Manifest.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SupportPToF1F3.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SupportPToF1F3Manifest.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SupportPToF1F4.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001F1T2SupportPToF1F4Manifest.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HSlotRecord001NonF1.lean  (36 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HrowRecord001PostAll8Independent.lean  (9 symbol(s))
+  Erdos9796Proof/P97/U1Depth5HrowRecord001PostAll8Manifest.lean  (2 symbol(s))
+  Erdos9796Proof/P97/U1Depth5QT3PilotRecord001.lean  (16 symbol(s))
+  Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1QOmit3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T1Omit3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T2Omit3.lean  (51 symbol(s))
+  Erdos9796Proof/P97/U1Depth5QT3PilotRecord001F1T3Omit3.lean  (1 symbol(s))
+  Erdos9796Proof/P97/U1Depth5Record001Branch0CollisionDirectExtraUnits.lean  (18 symbol(s))
+  Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionPF11.lean  (6 symbol(s))
+  Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionPF12.lean  (6 symbol(s))
+  Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionPT20.lean  (6 symbol(s))
+  Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionT20F11.lean  (6 symbol(s))
+  Erdos9796Proof/P97/U1Depth5Record001Branch0PairCollisionT20F12.lean  (6 symbol(s))
+  Erdos9796Proof/P97/U1Depth5SourceUnitQT3Ordinal001.lean  (19 symbol(s))
+  Erdos9796Proof/P97/U1Depth5SourceUnitQT3Ordinal001Manifest.lean  (16 symbol(s))
+  Erdos9796Proof/P97/U1LargeCapRouteBTail.lean  (92 symbol(s))
+  Erdos9796Proof/P97/U1Record001Cycle5CoreCollisionProductManifest.lean  (16 symbol(s))
+  scratch/b-family-bank/B2Arm3.lean  (15 symbol(s))
+  scratch/b-family-bank/BFamilyBank.lean  (14 symbol(s))
+  scratch/blocker-map-saturation/FiniteMapSaturationProbe.lean  (5 symbol(s))
+  scratch/c-package-bank/CPackageBank.lean  (18 symbol(s))
+  scratch/c-package-bank/FidelityCheck.lean  (2 symbol(s)  2 sorry)
+    💧 Problem97.CPackageBankFidelity.fidelity_c1
+    💧 Problem97.CPackageBankFidelity.fidelity_c2
+  scratch/canonical-row-override-rebase/FiniteSupport.lean  (1 symbol(s))
+  scratch/canonical-row-override-rebase/Main.lean  (8 symbol(s))
+  scratch/d-package-bank/D1GlobalSurvival.lean  (30 symbol(s))
+  scratch/d-package-bank/DPackageBank.lean  (65 symbol(s))
+  scratch/e-package-bank/EPackageBank.lean  (27 symbol(s))
+  scratch/e-package-bank/FidelityCheck.lean  (1 symbol(s)  1 sorry)
+    💧 Problem97.EPackageBankFidelity.fidelity_e1
+  scratch/f3-geometry-derivation/SecondBlockerNonbisectorRedundancy.lean  (2 symbol(s))
+  scratch/f3-minimality-instantiation/F3MinimalityInstantiation.lean  (1 symbol(s))
+  scratch/f3-mutual-geometry-audit/ExactIntersection.lean  (2 symbol(s))
+  scratch/f3c-redundancy-bank/F3cRedundancy.lean  (9 symbol(s))
+  scratch/first-fiber-global-terminal/CanonicalSingletonOutcome.lean  (1 symbol(s))
+  scratch/first-fiber-global-terminal/CanonicalSingletonWitness.lean  (1 symbol(s))
+  scratch/first-fiber-global-terminal/CoreClassification.lean  (2 symbol(s))
+  scratch/first-fiber-global-terminal/FirstFiberGlobalTerminal.lean  (11 symbol(s))
+  scratch/first-fiber-overlap-derivation/FiniteOverlapKernel.lean  (3 symbol(s))
+  scratch/first-fiber-overlap-derivation/FiveCenterBoundary.lean  (3 symbol(s))
+  scratch/first-fiber-positive-incidence/FirstFiberPositiveIncidence.lean  (7 symbol(s))
+  scratch/md-blocker-closed-bank/MDBlockerClosed.lean  (30 symbol(s))
+  scratch/prove-aligned-anchor/SecondBlockerConfinementConsumer.lean  (1 symbol(s))
+  scratch/prove-second-confinement/Sufficient.lean  (1 symbol(s))
+  scratch/trace-critical-row-pair-localizer/Main.lean  (3 symbol(s))
+  scratch/two-cap-sources/TwoFreshCapSources.lean  (11 symbol(s))
+
+name collisions: 1 fully-qualified name(s) declared in ≥2 files
+⚠  off-spine / identical-copy collisions (1):
+  ⚠ Problem97.ExactFiveCommonShellV7.evalClauseD_binary_implication  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/FullSourceChoiceSemantics.lean
+       Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3ClauseFamilySemantics.lean

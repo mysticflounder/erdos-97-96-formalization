@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "/opt/homebrew/bin/Singular",
+    "-q",
+    "scratch/singular-liftstd-x9-20260729/smoke/job.sing"
+  ],
+  "elapsed_seconds": 0.01142366579733789,
+  "returncode": 0,
+  "stdin": "DEVNULL"
+}

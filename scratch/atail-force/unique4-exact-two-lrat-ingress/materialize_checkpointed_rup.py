@@ -36,8 +36,15 @@ EXPECTED_SOURCE_SCHEMA = (
 P4_PLAIN_RUP_SOURCE_SCHEMA = (
     "p97-unique4-exact-two-p4-seed0-plain-rup-certificate-v1"
 )
+CARD11_S2_O0_PURE_RUP_SOURCE_SCHEMA = (
+    "card11-exact5-common-fullradius-v7-s2-o0-windowed-source-v2"
+)
 SUPPORTED_SOURCE_SCHEMAS = frozenset(
-    {EXPECTED_SOURCE_SCHEMA, P4_PLAIN_RUP_SOURCE_SCHEMA}
+    {
+        EXPECTED_SOURCE_SCHEMA,
+        P4_PLAIN_RUP_SOURCE_SCHEMA,
+        CARD11_S2_O0_PURE_RUP_SOURCE_SCHEMA,
+    }
 )
 HERE = Path(__file__).resolve().parent
 CHECKER = (
@@ -487,6 +494,9 @@ def source_artifact_records(
             )
         cnf_record = authentication.get("cnf")
         lrat_record = normalization.get("normalized_dense_lrat")
+    elif schema == CARD11_S2_O0_PURE_RUP_SOURCE_SCHEMA:
+        cnf_record = certificate.get("source_core")
+        lrat_record = certificate.get("normalized_dense_lrat")
     else:
         raise MaterializationError(
             f"unexpected source certificate schema: {schema!r}"

@@ -1,0 +1,45 @@
+{
+  "claim_scope": "Hash-bound adaptation of the fixed s2_o0 core only; this is not the exact-eleven closure theorem or its source semantic bridge.",
+  "counts": {
+    "additions": 6611,
+    "checker_base_clauses": 81253,
+    "checker_variables": 49357,
+    "first_addition": 81254,
+    "last_addition": 87864,
+    "source_clauses": 81253,
+    "source_variables": 49357,
+    "terminal_empty_addition": 87864
+  },
+  "drat_trim_verification_log": {
+    "byte_count": 445,
+    "path": "../s2_o0-pure-rup/drat-trim-verify.log",
+    "sha256": "74db18e164f9250d8d0a4dbbdd0c882a56723f17b022fb5e9aea2a4cbde2ce5a"
+  },
+  "epistemic_status": "EXTERNALLY VERIFIED PURE-RUP CORE; LEAN REPLAY AND SOURCE-VALUATION BRIDGE NOT YET COMPLETE",
+  "normalized_dense_lrat": {
+    "byte_count": 2868693,
+    "path": "../s2_o0-pure-rup/core.plain.dense.lrat",
+    "sha256": "9475c3f9923546a16bd5ebdc01cc538b77cbd6d4f9d1119ef01c93f5fe399350"
+  },
+  "plain_drat": {
+    "byte_count": 1203267,
+    "path": "../s2_o0-pure-rup/core.plain.drat",
+    "sha256": "8d4280e69918c269338ab4fd3280108f5d35d770fa0b7c56b483fbee79d4211f"
+  },
+  "plain_raw_lrat": {
+    "byte_count": 2888849,
+    "path": "../s2_o0-pure-rup/core.plain.lrat",
+    "sha256": "86965c1513a4879dcf16604d56328e2c6b86d9f2966169091d8b1f306bb6eafa"
+  },
+  "schema": "card11-exact5-common-fullradius-v7-s2-o0-windowed-source-v2",
+  "source_core": {
+    "byte_count": 1409695,
+    "path": "../s2_o0-ingress/core.cnf",
+    "sha256": "ee65de56f8b1f733957bd17b939efae63dbc9afbab21c0837af35f3cdae8b24c"
+  },
+  "source_ingress_report": {
+    "byte_count": 6575,
+    "path": "../s2_o0-ingress/ingress-report.json",
+    "sha256": "f6bda5d013f44dda5c26e8abbdf938822e39f35397841cec1f322f6b28e3394b"
+  }
+}

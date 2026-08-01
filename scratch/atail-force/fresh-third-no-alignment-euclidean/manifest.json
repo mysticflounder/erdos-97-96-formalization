@@ -1,0 +1,27 @@
+{
+  "classification": "diagnostic-only source-backed necessary-condition projection",
+  "logic": "QF_NRA",
+  "named_core": {
+    "strict_first_cap_sources": ["p1", "p2", "r1", "r2", "q1", "q2"],
+    "specialization": "q1 = cap-source source; q2 = second cap-source source'",
+    "centers": ["a1", "bp", "br", "bq"],
+    "additional_named_apex": ["a2"]
+  },
+  "order_policy": "120 cyclic cases, fixing p1 as start and retaining both orientations",
+  "encoded": [
+    "strict convex cyclic order of the six distinct same-cap source points",
+    "three pair equalities at a1, with the three positive squared radii pairwise distinct",
+    "p1/p2 equality at bp, r1/r2 equality at br, q1/q2 equality at bq",
+    "a1 and a2 distinct; bp, br, bq pairwise distinct; bq distinct from a1 and a2",
+    "one q-row endpoint omission from each of the p and r pairs"
+  ],
+  "not_encoded": [
+    "an assumed A..F six-point obstruction pattern",
+    "any extra consequence of no-alignment, which is automatic when source = q1",
+    "the source-backed first-cap placement and alias-aware relative cyclic order/convex-independence of blockers/apices",
+    "cap endpoints, unnamed points between the six sources, or quantitative cap half-planes",
+    "the two unnamed witnesses completing each selected exact-four row",
+    "carrier-wide K4, q-free, deletion-packet, minimality, and no-M44 constraints"
+  ],
+  "trust_boundary": "SAT is only a realization of this named necessary-condition projection. UNSAT would refute only the projection after a separate source audit; neither verdict closes the Lean theorem."
+}

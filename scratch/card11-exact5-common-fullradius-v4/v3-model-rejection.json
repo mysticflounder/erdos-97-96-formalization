@@ -1,0 +1,1119 @@
+{
+  "all_four_rejected": true,
+  "cases": [
+    {
+      "assigned_equivalence_witness_count": 6,
+      "case": "s2_o0",
+      "exact_v3_clause_prefix_preserved": true,
+      "exact_v3_clause_prefix_sha256": "a86fdc31a7bd9dad53fa9a307ea213ff57e07bc03e4d148ce0b46d7744cf7a2f",
+      "first_assigned_equivalence_witness": {
+        "focus_a": 1,
+        "focus_b": 9,
+        "global_equality_variables": [
+          {
+            "assigned_true": true,
+            "point": 2,
+            "variable": 42112
+          },
+          {
+            "assigned_true": true,
+            "point": 6,
+            "variable": 42300
+          },
+          {
+            "assigned_true": true,
+            "point": 10,
+            "variable": 42457
+          }
+        ],
+        "p": 2,
+        "q": 6,
+        "r": 10
+      },
+      "first_least_seeded_closure_witness": {
+        "closure_paths": [
+          {
+            "path": [
+              {
+                "from_edge": [
+                  1,
+                  2
+                ],
+                "seed": {
+                  "center": 1,
+                  "kind": "selected-row",
+                  "row_index": 0,
+                  "support": [
+                    0,
+                    2,
+                    6,
+                    7
+                  ]
+                },
+                "to_edge": [
+                  1,
+                  6
+                ]
+              },
+              {
+                "from_edge": [
+                  1,
+                  6
+                ],
+                "seed": {
+                  "center": 6,
+                  "kind": "selected-row",
+                  "row_index": 5,
+                  "support": [
+                    0,
+                    1,
+                    2,
+                    9
+                  ]
+                },
+                "to_edge": [
+                  2,
+                  6
+                ]
+              },
+              {
+                "from_edge": [
+                  2,
+                  6
+                ],
+                "seed": {
+                  "center": 2,
+                  "kind": "selected-row",
+                  "row_index": 10,
+                  "support": [
+                    4,
+                    6,
+                    9,
+                    10
+                  ]
+                },
+                "to_edge": [
+                  2,
+                  9
+                ]
+              }
+            ],
+            "point": 2
+          },
+          {
+            "path": [
+              {
+                "from_edge": [
+                  1,
+                  6
+                ],
+                "seed": {
+                  "center": 6,
+                  "kind": "selected-row",
+                  "row_index": 5,
+                  "support": [
+                    0,
+                    1,
+                    2,
+                    9
+                  ]
+                },
+                "to_edge": [
+                  6,
+                  9
+                ]
+              }
+            ],
+            "point": 6
+          },
+          {
+            "path": [
+              {
+                "from_edge": [
+                  1,
+                  10
+                ],
+                "seed": {
+                  "center": 10,
+                  "kind": "selected-row",
+                  "row_index": 113,
+                  "support": [
+                    1,
+                    3,
+                    5,
+                    9
+                  ]
+                },
+                "to_edge": [
+                  9,
+                  10
+                ]
+              }
+            ],
+            "point": 10
+          }
+        ],
+        "focus_a": 1,
+        "focus_b": 9,
+        "p": 2,
+        "q": 6,
+        "r": 10
+      },
+      "least_seeded_closure_witness_count": 3,
+      "manifest_sha256": "3afcb87823f1a84a0d4c7392fca7342d1e1f104b07bf2de92e28c5f26b53fe33",
+      "model_sha256": "a02ef2c5a8c18d96bdfa0c7f5d211263d4cae2a9b87ecdda39c1241edcfc8f86",
+      "rejected_by_v4_obstruction": true,
+      "selected_rows": [
+        {
+          "center": 0,
+          "row_index": 171,
+          "support": [
+            3,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 1,
+          "row_index": 0,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "row_index": 10,
+          "support": [
+            4,
+            6,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "row_index": 162,
+          "support": [
+            2,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 4,
+          "row_index": 126,
+          "support": [
+            1,
+            5,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "row_index": 84,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 6,
+          "row_index": 5,
+          "support": [
+            0,
+            1,
+            2,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "row_index": 76,
+          "support": [
+            0,
+            5,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "row_index": 179,
+          "support": [
+            3,
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "row_index": 66,
+          "support": [
+            0,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "row_index": 113,
+          "support": [
+            1,
+            3,
+            5,
+            9
+          ]
+        }
+      ],
+      "v3_cnf_counts": {
+        "clauses": 589878,
+        "variables": 43087
+      },
+      "v4_cnf_counts": {
+        "clauses": 594498,
+        "variables": 43087
+      }
+    },
+    {
+      "assigned_equivalence_witness_count": 10,
+      "case": "s2_o9",
+      "exact_v3_clause_prefix_preserved": true,
+      "exact_v3_clause_prefix_sha256": "ae060e42d8afe402b0a46063f207b7970b4263e6e73e92779fee263757064f4b",
+      "first_assigned_equivalence_witness": {
+        "focus_a": 0,
+        "focus_b": 4,
+        "global_equality_variables": [
+          {
+            "assigned_true": true,
+            "point": 3,
+            "variable": 41734
+          },
+          {
+            "assigned_true": true,
+            "point": 5,
+            "variable": 41842
+          },
+          {
+            "assigned_true": true,
+            "point": 9,
+            "variable": 42036
+          }
+        ],
+        "p": 3,
+        "q": 5,
+        "r": 9
+      },
+      "first_least_seeded_closure_witness": {
+        "closure_paths": [
+          {
+            "path": [
+              {
+                "from_edge": [
+                  0,
+                  4
+                ],
+                "seed": {
+                  "center": 4,
+                  "kind": "selected-row",
+                  "row_index": 49,
+                  "support": [
+                    0,
+                    3,
+                    5,
+                    6
+                  ]
+                },
+                "to_edge": [
+                  4,
+                  5
+                ]
+              }
+            ],
+            "point": 4
+          },
+          {
+            "path": [
+              {
+                "from_edge": [
+                  0,
+                  7
+                ],
+                "seed": {
+                  "center": 7,
+                  "kind": "selected-row",
+                  "row_index": 42,
+                  "support": [
+                    0,
+                    2,
+                    5,
+                    10
+                  ]
+                },
+                "to_edge": [
+                  5,
+                  7
+                ]
+              }
+            ],
+            "point": 7
+          },
+          {
+            "path": [
+              {
+                "from_edge": [
+                  0,
+                  8
+                ],
+                "seed": {
+                  "center": 0,
+                  "kind": "selected-row",
+                  "row_index": 142,
+                  "support": [
+                    3,
+                    4,
+                    5,
+                    8
+                  ]
+                },
+                "to_edge": [
+                  0,
+                  5
+                ]
+              },
+              {
+                "from_edge": [
+                  0,
+                  5
+                ],
+                "seed": {
+                  "center": 5,
+                  "kind": "selected-row",
+                  "row_index": 71,
+                  "support": [
+                    0,
+                    4,
+                    8,
+                    9
+                  ]
+                },
+                "to_edge": [
+                  5,
+                  8
+                ]
+              }
+            ],
+            "point": 8
+          }
+        ],
+        "focus_a": 0,
+        "focus_b": 5,
+        "p": 4,
+        "q": 7,
+        "r": 8
+      },
+      "least_seeded_closure_witness_count": 3,
+      "manifest_sha256": "d2a7729383992bb334515d2fb3ee0b5b8264e39bd4e5f7f31fa610e910d550f8",
+      "model_sha256": "8af30655900541b9e7d5d1c0b4a9f3d34cef09994db4a44352cf4e2400eda25a",
+      "rejected_by_v4_obstruction": true,
+      "selected_rows": [
+        {
+          "center": 0,
+          "row_index": 142,
+          "support": [
+            3,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 1,
+          "row_index": 13,
+          "support": [
+            2,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 2,
+          "row_index": 4,
+          "support": [
+            1,
+            6,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "row_index": 0,
+          "support": [
+            0,
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "center": 4,
+          "row_index": 49,
+          "support": [
+            0,
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 5,
+          "row_index": 71,
+          "support": [
+            0,
+            4,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "row_index": 87,
+          "support": [
+            1,
+            2,
+            3,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "row_index": 42,
+          "support": [
+            0,
+            2,
+            5,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "row_index": 124,
+          "support": [
+            1,
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "row_index": 62,
+          "support": [
+            0,
+            3,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "row_index": 134,
+          "support": [
+            1,
+            5,
+            7,
+            9
+          ]
+        }
+      ],
+      "v3_cnf_counts": {
+        "clauses": 589878,
+        "variables": 43087
+      },
+      "v4_cnf_counts": {
+        "clauses": 594498,
+        "variables": 43087
+      }
+    },
+    {
+      "assigned_equivalence_witness_count": 11,
+      "case": "s3_o0",
+      "exact_v3_clause_prefix_preserved": true,
+      "exact_v3_clause_prefix_sha256": "869cbd21a4ed0ef502d9b2952397c9b0a24035bf869b001899dd14a6dbf79f27",
+      "first_assigned_equivalence_witness": {
+        "focus_a": 0,
+        "focus_b": 5,
+        "global_equality_variables": [
+          {
+            "assigned_true": true,
+            "point": 3,
+            "variable": 41735
+          },
+          {
+            "assigned_true": true,
+            "point": 4,
+            "variable": 41792
+          },
+          {
+            "assigned_true": true,
+            "point": 9,
+            "variable": 42041
+          }
+        ],
+        "p": 3,
+        "q": 4,
+        "r": 9
+      },
+      "first_least_seeded_closure_witness": {
+        "closure_paths": [
+          {
+            "path": [
+              {
+                "from_edge": [
+                  1,
+                  6
+                ],
+                "seed": {
+                  "center": 1,
+                  "kind": "proved-exact-five-shell",
+                  "support": [
+                    0,
+                    3,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                "to_edge": [
+                  1,
+                  8
+                ]
+              },
+              {
+                "from_edge": [
+                  1,
+                  8
+                ],
+                "seed": {
+                  "center": 8,
+                  "kind": "selected-row",
+                  "row_index": 99,
+                  "support": [
+                    1,
+                    2,
+                    6,
+                    7
+                  ]
+                },
+                "to_edge": [
+                  6,
+                  8
+                ]
+              }
+            ],
+            "point": 6
+          },
+          {
+            "path": [
+              {
+                "from_edge": [
+                  1,
+                  7
+                ],
+                "seed": {
+                  "center": 1,
+                  "kind": "proved-exact-five-shell",
+                  "support": [
+                    0,
+                    3,
+                    6,
+                    7,
+                    8
+                  ]
+                },
+                "to_edge": [
+                  1,
+                  8
+                ]
+              },
+              {
+                "from_edge": [
+                  1,
+                  8
+                ],
+                "seed": {
+                  "center": 8,
+                  "kind": "selected-row",
+                  "row_index": 99,
+                  "support": [
+                    1,
+                    2,
+                    6,
+                    7
+                  ]
+                },
+                "to_edge": [
+                  7,
+                  8
+                ]
+              }
+            ],
+            "point": 7
+          },
+          {
+            "path": [
+              {
+                "from_edge": [
+                  1,
+                  10
+                ],
+                "seed": {
+                  "center": 10,
+                  "kind": "selected-row",
+                  "row_index": 119,
+                  "support": [
+                    1,
+                    3,
+                    8,
+                    9
+                  ]
+                },
+                "to_edge": [
+                  8,
+                  10
+                ]
+              }
+            ],
+            "point": 10
+          }
+        ],
+        "focus_a": 1,
+        "focus_b": 8,
+        "p": 6,
+        "q": 7,
+        "r": 10
+      },
+      "least_seeded_closure_witness_count": 3,
+      "manifest_sha256": "c039d3d7ac119ad63bd2f26ad25a1299832bec91ee9565820ed2932722923250",
+      "model_sha256": "f2fdf89b043e5819d164ac0ca1cf45c19d9ff2cdcecc7335635b81c4d82295df",
+      "rejected_by_v4_obstruction": true,
+      "selected_rows": [
+        {
+          "center": 0,
+          "row_index": 199,
+          "support": [
+            5,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 1,
+          "row_index": 3,
+          "support": [
+            0,
+            3,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "row_index": 0,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "row_index": 150,
+          "support": [
+            2,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 4,
+          "row_index": 36,
+          "support": [
+            0,
+            2,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 5,
+          "row_index": 178,
+          "support": [
+            3,
+            4,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "row_index": 202,
+          "support": [
+            4,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "row_index": 147,
+          "support": [
+            2,
+            3,
+            5,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "row_index": 99,
+          "support": [
+            1,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "row_index": 13,
+          "support": [
+            0,
+            1,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 10,
+          "row_index": 119,
+          "support": [
+            1,
+            3,
+            8,
+            9
+          ]
+        }
+      ],
+      "v3_cnf_counts": {
+        "clauses": 589878,
+        "variables": 43087
+      },
+      "v4_cnf_counts": {
+        "clauses": 594498,
+        "variables": 43087
+      }
+    },
+    {
+      "assigned_equivalence_witness_count": 5,
+      "case": "s3_o9",
+      "exact_v3_clause_prefix_preserved": true,
+      "exact_v3_clause_prefix_sha256": "ee23781325eb95c0c3a3efca06c927618742e33d0e425f807637fa90b673f22c",
+      "first_assigned_equivalence_witness": {
+        "focus_a": 0,
+        "focus_b": 2,
+        "global_equality_variables": [
+          {
+            "assigned_true": true,
+            "point": 1,
+            "variable": 41612
+          },
+          {
+            "assigned_true": true,
+            "point": 3,
+            "variable": 41726
+          },
+          {
+            "assigned_true": true,
+            "point": 7,
+            "variable": 41928
+          }
+        ],
+        "p": 1,
+        "q": 3,
+        "r": 7
+      },
+      "first_least_seeded_closure_witness": {
+        "closure_paths": [
+          {
+            "path": [
+              {
+                "from_edge": [
+                  0,
+                  3
+                ],
+                "seed": {
+                  "center": 3,
+                  "kind": "selected-row",
+                  "row_index": 29,
+                  "support": [
+                    0,
+                    2,
+                    4,
+                    6
+                  ]
+                },
+                "to_edge": [
+                  3,
+                  4
+                ]
+              },
+              {
+                "from_edge": [
+                  3,
+                  4
+                ],
+                "seed": {
+                  "center": 4,
+                  "kind": "selected-row",
+                  "row_index": 108,
+                  "support": [
+                    1,
+                    3,
+                    5,
+                    9
+                  ]
+                },
+                "to_edge": [
+                  4,
+                  9
+                ]
+              },
+              {
+                "from_edge": [
+                  4,
+                  9
+                ],
+                "seed": {
+                  "center": 9,
+                  "kind": "selected-row",
+                  "row_index": 53,
+                  "support": [
+                    0,
+                    3,
+                    4,
+                    10
+                  ]
+                },
+                "to_edge": [
+                  0,
+                  9
+                ]
+              }
+            ],
+            "point": 0
+          },
+          {
+            "path": [
+              {
+                "from_edge": [
+                  1,
+                  3
+                ],
+                "seed": {
+                  "center": 1,
+                  "kind": "proved-exact-five-shell",
+                  "support": [
+                    3,
+                    6,
+                    7,
+                    8,
+                    9
+                  ]
+                },
+                "to_edge": [
+                  1,
+                  9
+                ]
+              }
+            ],
+            "point": 1
+          },
+          {
+            "path": [
+              {
+                "from_edge": [
+                  3,
+                  4
+                ],
+                "seed": {
+                  "center": 4,
+                  "kind": "selected-row",
+                  "row_index": 108,
+                  "support": [
+                    1,
+                    3,
+                    5,
+                    9
+                  ]
+                },
+                "to_edge": [
+                  4,
+                  9
+                ]
+              }
+            ],
+            "point": 4
+          }
+        ],
+        "focus_a": 3,
+        "focus_b": 9,
+        "p": 0,
+        "q": 1,
+        "r": 4
+      },
+      "least_seeded_closure_witness_count": 1,
+      "manifest_sha256": "6bf249ee39471948e6cc0cb2a56d56b41992288c6e55a5fcd5867eccdfc97f0b",
+      "model_sha256": "cbef5bb1c57a1e6a2fca4009ecaa0d2aeeafd6577c37e22e37fa3d98f41835ca",
+      "rejected_by_v4_obstruction": true,
+      "selected_rows": [
+        {
+          "center": 0,
+          "row_index": 128,
+          "support": [
+            2,
+            5,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 1,
+          "row_index": 20,
+          "support": [
+            3,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 2,
+          "row_index": 12,
+          "support": [
+            4,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "row_index": 29,
+          "support": [
+            0,
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "center": 4,
+          "row_index": 108,
+          "support": [
+            1,
+            3,
+            5,
+            9
+          ]
+        },
+        {
+          "center": 5,
+          "row_index": 151,
+          "support": [
+            2,
+            3,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "row_index": 75,
+          "support": [
+            0,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "row_index": 0,
+          "support": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 8,
+          "row_index": 137,
+          "support": [
+            1,
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "row_index": 53,
+          "support": [
+            0,
+            3,
+            4,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "row_index": 120,
+          "support": [
+            1,
+            4,
+            5,
+            6
+          ]
+        }
+      ],
+      "v3_cnf_counts": {
+        "clauses": 589878,
+        "variables": 43087
+      },
+      "v4_cnf_counts": {
+        "clauses": 594498,
+        "variables": 43087
+      }
+    }
+  ],
+  "clause_schema": "for each focus pair a<b and point triple p<q<r outside the pair: not G(pa,pb) or not G(qa,qb) or not G(ra,rb)",
+  "schema": "card11_exact5_common_fullradius.v4.v3-model-rejection.v1",
+  "seed_semantics": "least unordered-edge equality closure generated only by the eleven selected-row internal equalities and the proved exact-five first-apex shell; assigned witnesses additionally audit the complete v3 equivalence extension"
+}

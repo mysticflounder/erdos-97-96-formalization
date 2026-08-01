@@ -1,0 +1,174 @@
+[
+  {
+    "memory": {
+      "id": "01KYP39EX2Y6XKX6N0ANKGHEQC",
+      "content": "2026-07-28 P97 FR P3 crossed row-case R2 is closed by an exact angle proof in scratch/p97-search-lane/p3-r2-compute/RESULTS.md, but remains UNAUDITED and must not be admitted yet. C2: angle decompositions force 2U<V, 2W<V, and 2V<U+W, contradiction. C1: acute bases give U+Y<pi/2 and W+Z<pi/2, while the convex quadrilateral A,D,H,K gives Y+Z>pi-(U+W)/2, contradiction. Fresh full-support probes independently reproduced the 300/400 restart zero-margin degeneracies; optimizer evidence is not load-bearing.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "/Users/adam/projects/math-projects/erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [
+        "p97",
+        "fishburn-reeds",
+        "p3",
+        "r2",
+        "angle-proof",
+        "unaudited"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-29T04:49:24.774401Z",
+      "updated_at": "2026-07-29T04:49:24.774401Z",
+      "accessed_at": "2026-07-29T12:27:21.520256Z",
+      "access_count": 9,
+      "expires_at": null
+    },
+    "score": 1.7926421404682276
+  },
+  {
+    "memory": {
+      "id": "01KYP3MWB7PR109DA2GKHB1DB9",
+      "content": "2026-07-28 P97 compute lane: Fishburn-Reeds P3 crossed row case R2 is now independently CERTIFIED. Exact angle contradictions cover distinct and merged middle-column subcases under the pinned opposed traversal; transpose covers the second orientation. Author proof: scratch/p97-search-lane/p3-r2-compute/RESULTS.md. Adversarial audit: SKEPTIC-2026-07-28.md. This closes the mathematical P3 family; production admission still requires scanner/control integration.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-29T04:55:38.984800Z",
+      "updated_at": "2026-07-29T04:55:38.984800Z",
+      "accessed_at": "2026-07-29T12:27:21.520599Z",
+      "access_count": 9,
+      "expires_at": null
+    },
+    "score": 1.7914438502673797
+  },
+  {
+    "memory": {
+      "id": "01KYP4HDYX84RQWHVZNT2QQK93",
+      "content": "P3/R2 was fully proved, independently CERTIFIED, and integrated on 2026-07-28 in erdos-97-96-formalization. The merged-inner case uses cyclic order A,C,B,D,E,P,F and exact inequalities 2U<V, 2W<V, 2V<U+W. The distinct-inner case uses A,C,B,D,E,H,K,F plus the restricted quadrilateral A,D,H,K and incompatible angle-sum bounds. Lemma R-prime restriction inheritance and traversal convention C2 are load-bearing; numerics are non-load-bearing. R-P3 now scans six source row/inner-column templates plus transpose closure, deduplicated to 8 shapes. G-CUTPAT passes 8 exact positives, 48 one-cell-deletion spares, and source-name noncollision. Full controls.py and controls2.py pass; logs: scratch/p97-search-lane/p3-r2-compute/controls.log and controls2.log. No Lean/kernel certificate is claimed.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-29T05:11:14.519516Z",
+      "updated_at": "2026-07-29T05:11:14.519516Z",
+      "accessed_at": "2026-07-29T12:27:21.520754Z",
+      "access_count": 11,
+      "expires_at": null
+    },
+    "score": 1.6894889103182258
+  },
+  {
+    "memory": {
+      "id": "01KYP3KSXE87PA77YX5W486GHA",
+      "content": "2026-07-28 P97 FR P3 crossed row-case R2 exact proof in scratch/p97-search-lane/p3-r2-compute/RESULTS.md is CERTIFIED by independent math-skeptic audit. R2 x merged-column C2: radial orders force 2U<V, 2W<V, 2V<U+W. R2 x distinct-column C1: inherited quadrilateral A,D,H,K and polygon-angle bounds force Y+Z both greater than pi-(U+W)/2 and less than pi-(U+W). Figure 4 transcription, C2 cyclic orders, delta scaling, and orientation-2 transposition were checked. No sector crossing or mathematical flaw. Report: scratch/p97-search-lane/p3-r2-compute/SKEPTIC-2026-07-28.md. Two nonblocking clarity suggestions: cite Lemma R-prime explicitly for restriction inheritance and avoid C1/C2 nomenclature overloading.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-29T04:55:03.727328Z",
+      "updated_at": "2026-07-29T04:55:03.727328Z",
+      "accessed_at": "2026-07-29T12:27:21.520916Z",
+      "access_count": 2,
+      "expires_at": null
+    },
+    "score": 1.679060665362035
+  },
+  {
+    "memory": {
+      "id": "01KYPVSCT0ZXZFKYDEEYQZY6QW",
+      "content": "P97 Phase3 new structural survivor metric_rows_sha256 a582e5a9556d8c665bb4025fa32227a5d9484cd32acf9c06adef673df5afa3: QQ equality ideal is NONUNIT, unordered exact Z3 returned UNKNOWN/canceled at 300s, but all 24 cap-compatible cyclic orders are immediately UNSAT at decisive stage equality-convex-five-point. Every order returns the same core {a=8,x=1,b=2,c=6,y=0}. This matches the existing kernel theorem Problem97.Census554.ConvexFivePointCore.false_of_core(_of_neg); the missing piece is invoking/replaying that order-sensitive detector in Phase3 CEGAR, not proving new geometry.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-29T11:57:32.730915Z",
+      "updated_at": "2026-07-29T11:57:32.730915Z",
+      "accessed_at": "2026-07-29T12:27:21.521380Z",
+      "access_count": 9,
+      "expires_at": null
+    },
+    "score": 1.6418466120625466
+  },
+  {
+    "memory": {
+      "id": "01KYP5FHSBGE0MDTD944H623WS",
+      "content": "2026-07-28 fr_theorem3_dense_small documentation audit: census/p97_search/PHASE2-SPEC.md lines 414-468 and RESULTS.md lines 405-463 are CERTIFIED. They do not claim Table 2 reproduction or Lean/kernel closure; they correctly identify the 56-case candidate-transcription P1-P4 Lemma-2 CNF/DRAT evidence, separate geometric hypotheses needed for FR Theorem 3, diagnostic-only zero-pruning integration, full source P3 including R2+transpose, and exclusion of auxiliary B_col from FR source evidence. Both recorded control logs end ALL_GATES_PASS=True.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "/Users/adam/projects/math-projects/erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [
+        "p97",
+        "fishburn-reeds",
+        "theorem3",
+        "docs-audit"
+      ],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-29T05:27:41.491237Z",
+      "updated_at": "2026-07-29T05:27:41.491237Z",
+      "accessed_at": "2026-07-29T12:27:21.521532Z",
+      "access_count": 5,
+      "expires_at": null
+    },
+    "score": 1.5752508361204014
+  },
+  {
+    "memory": {
+      "id": "01KYPP8D84JT766F33CXHEBJXW",
+      "content": "P97 Phase3 structural CEGAR result (2026-07-29): exact cap+blocker cell k=4,n=10,profile=(4,4,5), MetricRow.exact=false. A high-cap local run decoded 8,129 SAT assignments; 8,029 received independently replayed whole-row equality certificates across the 20 order-independent detector families, and 100 remained STRUCTURALLY_UNRESOLVED. Status SURVIVOR_LIMIT, no terminal DRAT, NOT_LANDED, not Euclidean/P97/completeness closure. Artifacts: scratch/p97-distinct-distance-lane/phase3_structural_cegar_10000_20260729/. Next step is faithful metric/convex realizability probing of the 100 survivors, not adding more of the same equality cuts.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": null,
+      "created_at": "2026-07-29T10:20:53.257379Z",
+      "updated_at": "2026-07-29T10:20:53.257379Z",
+      "accessed_at": "2026-07-29T12:27:21.521721Z",
+      "access_count": 21,
+      "expires_at": null
+    },
+    "score": 1.5672396359959557
+  },
+  {
+    "memory": {
+      "id": "01KYNTG474Z3HAA6GV125NEZ0Y",
+      "content": "P97/FR Lemma 1 orientation convention PINNED C2 (opposed): traversal listing cut-matrix rows ascending meets columns in DECREASING index order (full cycle a1..a_alpha, b_beta..b1). Load-bearing: P2 variant A is REALIZABLE under aligned C1 (exact hexagon witness). Evidence: (a) fr-certify C1b halfplane certificate pins the FR 20-gon hull order B1..B10,A10..A1 = C2; (b) FR's own cut matrix -- SYMMETRIC, 30 ones -- has ZERO P1/P2/P3/P4 occurrences in native C2 but 16 P2-B and 210-per-orientation P3 occurrences in the C1 misreading. Census rule bank (2026-07-28, all ADMITTED, cut-matrix-domain, PHASE2-SPEC 4.4/4.5): R-P1, R-P2 (both variants forbidden C2, general delta), R-P3 (row-cases R1/R3 only -- row-case R2 is CONJECTURED not proven and deliberately EXCLUDED from the rule; templates verified set-distinct from R2's own templates so admission cannot over-prune). Design pattern for future cut-matrix rules: derive relative-position templates directly from the proof's cell definitions, check them closed under transpose (self-transpose or transpose-pairs, mirroring how R-P2's variant B is variant A's transpose) so ONE scan covers both pattern orientations with no separate pass. P4 (both variants, all k>=3, both C1 AND C2) is PROVEN+AUDITED (math-skeptic, two citation-only findings patched, no error found) but NOT admitted as a rule -- blocked purely on transcription confidence (MODERATE-HIGH not HIGH, dashed-ellipsis Fig.4 reading), independent of the proof audit; the project's own gate requires BOTH transcription-settled AND proof-audited. Blocker-annotation existence {{NEEDS_PROOF}} item RESOLVED-BY-COMPOSITION: Theorem C (blocker-annotation-existence.md) replaces per-configuration existence with a minimal-counterexample deletion argument -- full [9,N] census coverage of B1-annotatable nodes implies unconditional non-existence for n<=N; per-cell claims stay annotation-conditional, only range closure composes.",
+      "memory_type": "fact",
+      "source": "manual",
+      "project": "erdos-97-96-formalization",
+      "directory": null,
+      "scope": "dir",
+      "tags": [],
+      "confidence": 1.0,
+      "supersedes": "01KYNQ84TD7PPE61431T1QW76N",
+      "created_at": "2026-07-29T02:15:46.001655Z",
+      "updated_at": "2026-07-29T02:15:46.001655Z",
+      "accessed_at": "2026-07-29T12:27:21.521870Z",
+      "access_count": 25,
+      "expires_at": null
+    },
+    "score": 1.5593561368209257
+  }
+]

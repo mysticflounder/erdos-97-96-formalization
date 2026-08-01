@@ -1,0 +1,76 @@
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:208:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean:52:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:75:private theorem dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:77:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean:81:  Problem97.dist_sq_coord u v
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:1457:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/SurplusCOMPGBankSep.lean:26:theorem dist_sq_coord (x c : ℝ²) :
+lean/Erdos9796Proof/P97/SurplusCOMPGBankSep.lean:28:  Problem97.dist_sq_coord x c
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:46:    Problem97.dist_sq_coord
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:217:    Problem97.dist_sq_coord
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:277:    Problem97.dist_sq_coord
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean:93:    Problem97.dist_sq_coord
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean:195:    Problem97.dist_sq_coord
+lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean:91:private theorem dist_sq_coord (u v : ℝ²) :
+lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean:93:  Problem97.dist_sq_coord u v
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:32:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:26:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:133:private theorem dist_sq_coords (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:135:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:33:  Problem97.dist_sq_coord x c
+lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean:40:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hSq
+lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean:52:  rw [← SurplusCOMPGBank.dist_sq_coord b a]
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:29:theorem dist_sq_coords (u v : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:31:  SurplusCOMPGBank.dist_sq_coord u v
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:26:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:45:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hSq
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:57:  rw [← SurplusCOMPGBank.dist_sq_coord a o]
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:284:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hDADE
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:292:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hEAEC
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:300:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hEAEY
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean:308:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hCDCY
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:72:private theorem dist_sq_coords_reflection (u v : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:74:  SurplusCOMPGBank.dist_sq_coord u v
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:27:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean:47:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hSq
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean:59:  rw [← SurplusCOMPGBank.dist_sq_coord a o]
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean:304:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hDADE
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean:312:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hDADF
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:27:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:27:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean:41:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hSq
+lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean:53:  rw [← SurplusCOMPGBank.dist_sq_coord a o]
+lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean:179:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hDADE
+lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean:187:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hDADX
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:25:private theorem dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:27:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:43:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hSq
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:56:  rw [← SurplusCOMPGBank.dist_sq_coord b a]
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:375:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hCDCP
+lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean:384:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hDADQ
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:26:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:121:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:27:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/NestedEqualChordCore.lean:39:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord] at hSq
+lean/Erdos9796Proof/P97/Census554/NestedEqualChordCore.lean:51:  rw [← SurplusCOMPGBank.dist_sq_coord a o]
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:28:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:26:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean:82:  rw [SurplusCOMPGBank.dist_sq_coord, SurplusCOMPGBank.dist_sq_coord]
+lean/Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean:105:    rw [← SurplusCOMPGBank.dist_sq_coord b a]
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:27:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:27:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/Foundation.lean:26:theorem dist_sq_coord (x y : ℝ²) :
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:815:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/N4d/TrackBPilotSupport.lean:38:  Problem97.dist_sq_coord X Y
+lean/Erdos9796Proof/P97/N4d/BisectorKill.lean:43:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean:39:private theorem dist_sq_coords (x y : ℝ²) :
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean:41:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean:21:private theorem dist_sq_coords (x y : ℝ²) :
+lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean:23:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:332:    Problem97.dist_sq_coord
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:541:private theorem dist_sq_coords (X Y : ℝ²) :
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:543:  Problem97.dist_sq_coord X Y
+lean/Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean:306:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean:1802:private theorem dist_sq_coord (a b : ℝ²) :
+lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean:578:  Problem97.dist_sq_coord x y
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:47:  Problem97.dist_sq_coord x y

@@ -1,0 +1,1230 @@
+[
+  {
+    "arm": "A=b1",
+    "residual": "third",
+    "status": "EXACT_RATIONAL_WITNESS",
+    "points": {
+      "A": [
+        6,
+        0
+      ],
+      "B": [
+        2,
+        2
+      ],
+      "C": [
+        20,
+        17
+      ],
+      "O": [
+        0,
+        0
+      ],
+      "a1": [
+        3,
+        4
+      ],
+      "a2": [
+        3,
+        -4
+      ],
+      "b1": [
+        6,
+        0
+      ],
+      "b2": [
+        0,
+        6
+      ],
+      "t1": [
+        23,
+        21
+      ],
+      "t2": [
+        16,
+        20
+      ]
+    },
+    "first_apex_radius_squared": {
+      "first_pair": 25,
+      "second_pair": 36
+    },
+    "row_radius_squared": {
+      "A": 25,
+      "B": 20,
+      "C": 25
+    },
+    "forced_rows": {
+      "A": [
+        "a1",
+        "a2"
+      ],
+      "B": [
+        "b1",
+        "b2"
+      ],
+      "C": [
+        "t1",
+        "t2"
+      ]
+    },
+    "named_points_on_rows": {
+      "A": [
+        "a2",
+        "a1"
+      ],
+      "B": [
+        "b2",
+        "A/b1"
+      ],
+      "C": [
+        "t2",
+        "t1"
+      ]
+    },
+    "named_points_on_first_apex_radii": {
+      "first_pair": [
+        "a2",
+        "a1"
+      ],
+      "second_pair": [
+        "b2",
+        "A/b1"
+      ]
+    },
+    "blocker_aliases": {
+      "center(a1)": "A",
+      "center(a2)": "A",
+      "center(b1)": "B",
+      "center(b2)": "B",
+      "center(t1)": "C",
+      "center(t2)": "C"
+    },
+    "cycle_choices": {
+      "MP\u03c1.collisionSource": "a1",
+      "MP.collisionSource": "b1"
+    },
+    "cross_alias": "A=b1",
+    "checks": 39,
+    "failures": []
+  },
+  {
+    "arm": "A=b1",
+    "residual": "outside-first",
+    "status": "EXACT_RATIONAL_WITNESS",
+    "points": {
+      "A": [
+        6,
+        0
+      ],
+      "B": [
+        2,
+        2
+      ],
+      "O": [
+        0,
+        0
+      ],
+      "a1": [
+        3,
+        4
+      ],
+      "a2": [
+        3,
+        -4
+      ],
+      "b1": [
+        6,
+        0
+      ],
+      "b2": [
+        0,
+        6
+      ],
+      "o": [
+        1,
+        0
+      ],
+      "x": [
+        11,
+        0
+      ]
+    },
+    "first_apex_radius_squared": {
+      "first_pair": 25,
+      "second_pair": 36
+    },
+    "row_radius_squared": {
+      "A": 25,
+      "B": 20
+    },
+    "forced_rows": {
+      "A": [
+        "a1",
+        "a2",
+        "x",
+        "o"
+      ],
+      "B": [
+        "b1",
+        "b2"
+      ]
+    },
+    "named_points_on_rows": {
+      "A": [
+        "o",
+        "a2",
+        "a1",
+        "x"
+      ],
+      "B": [
+        "b2",
+        "A/b1"
+      ]
+    },
+    "named_points_on_first_apex_radii": {
+      "first_pair": [
+        "a2",
+        "a1"
+      ],
+      "second_pair": [
+        "b2",
+        "A/b1"
+      ]
+    },
+    "blocker_aliases": {
+      "center(a1)": "A",
+      "center(a2)": "A",
+      "center(b1)": "B",
+      "center(b2)": "B",
+      "center(x)": "A"
+    },
+    "cycle_choices": {
+      "MP\u03c1.collisionSource": "a1",
+      "MP.collisionSource": "b1"
+    },
+    "cross_alias": "A=b1",
+    "checks": 35,
+    "failures": []
+  },
+  {
+    "arm": "A=b1",
+    "residual": "outside-second",
+    "status": "EXACT_RATIONAL_WITNESS",
+    "points": {
+      "A": [
+        6,
+        0
+      ],
+      "B": [
+        2,
+        2
+      ],
+      "O": [
+        0,
+        0
+      ],
+      "a1": [
+        3,
+        4
+      ],
+      "a2": [
+        3,
+        -4
+      ],
+      "b1": [
+        6,
+        0
+      ],
+      "b2": [
+        0,
+        6
+      ],
+      "o": [
+        -2,
+        0
+      ],
+      "x": [
+        4,
+        6
+      ]
+    },
+    "first_apex_radius_squared": {
+      "first_pair": 25,
+      "second_pair": 36
+    },
+    "row_radius_squared": {
+      "A": 25,
+      "B": 20
+    },
+    "forced_rows": {
+      "A": [
+        "a1",
+        "a2"
+      ],
+      "B": [
+        "b1",
+        "b2",
+        "x",
+        "o"
+      ]
+    },
+    "named_points_on_rows": {
+      "A": [
+        "a2",
+        "a1"
+      ],
+      "B": [
+        "o",
+        "b2",
+        "x",
+        "A/b1"
+      ]
+    },
+    "named_points_on_first_apex_radii": {
+      "first_pair": [
+        "a2",
+        "a1"
+      ],
+      "second_pair": [
+        "b2",
+        "A/b1"
+      ]
+    },
+    "blocker_aliases": {
+      "center(a1)": "A",
+      "center(a2)": "A",
+      "center(b1)": "B",
+      "center(b2)": "B",
+      "center(x)": "B"
+    },
+    "cycle_choices": {
+      "MP\u03c1.collisionSource": "a1",
+      "MP.collisionSource": "b1"
+    },
+    "cross_alias": "A=b1",
+    "checks": 35,
+    "failures": []
+  },
+  {
+    "arm": "A=b2",
+    "residual": "third",
+    "status": "EXACT_RATIONAL_WITNESS",
+    "points": {
+      "A": [
+        6,
+        0
+      ],
+      "B": [
+        2,
+        2
+      ],
+      "C": [
+        20,
+        17
+      ],
+      "O": [
+        0,
+        0
+      ],
+      "a1": [
+        3,
+        4
+      ],
+      "a2": [
+        3,
+        -4
+      ],
+      "b1": [
+        0,
+        6
+      ],
+      "b2": [
+        6,
+        0
+      ],
+      "t1": [
+        23,
+        21
+      ],
+      "t2": [
+        16,
+        20
+      ]
+    },
+    "first_apex_radius_squared": {
+      "first_pair": 25,
+      "second_pair": 36
+    },
+    "row_radius_squared": {
+      "A": 25,
+      "B": 20,
+      "C": 25
+    },
+    "forced_rows": {
+      "A": [
+        "a1",
+        "a2"
+      ],
+      "B": [
+        "b1",
+        "b2"
+      ],
+      "C": [
+        "t1",
+        "t2"
+      ]
+    },
+    "named_points_on_rows": {
+      "A": [
+        "a2",
+        "a1"
+      ],
+      "B": [
+        "b1",
+        "A/b2"
+      ],
+      "C": [
+        "t2",
+        "t1"
+      ]
+    },
+    "named_points_on_first_apex_radii": {
+      "first_pair": [
+        "a2",
+        "a1"
+      ],
+      "second_pair": [
+        "b1",
+        "A/b2"
+      ]
+    },
+    "blocker_aliases": {
+      "center(a1)": "A",
+      "center(a2)": "A",
+      "center(b1)": "B",
+      "center(b2)": "B",
+      "center(t1)": "C",
+      "center(t2)": "C"
+    },
+    "cycle_choices": {
+      "MP\u03c1.collisionSource": "a1",
+      "MP.collisionSource": "b1"
+    },
+    "cross_alias": "A=b2",
+    "checks": 39,
+    "failures": []
+  },
+  {
+    "arm": "A=b2",
+    "residual": "outside-first",
+    "status": "EXACT_RATIONAL_WITNESS",
+    "points": {
+      "A": [
+        6,
+        0
+      ],
+      "B": [
+        2,
+        2
+      ],
+      "O": [
+        0,
+        0
+      ],
+      "a1": [
+        3,
+        4
+      ],
+      "a2": [
+        3,
+        -4
+      ],
+      "b1": [
+        0,
+        6
+      ],
+      "b2": [
+        6,
+        0
+      ],
+      "o": [
+        1,
+        0
+      ],
+      "x": [
+        11,
+        0
+      ]
+    },
+    "first_apex_radius_squared": {
+      "first_pair": 25,
+      "second_pair": 36
+    },
+    "row_radius_squared": {
+      "A": 25,
+      "B": 20
+    },
+    "forced_rows": {
+      "A": [
+        "a1",
+        "a2",
+        "x",
+        "o"
+      ],
+      "B": [
+        "b1",
+        "b2"
+      ]
+    },
+    "named_points_on_rows": {
+      "A": [
+        "o",
+        "a2",
+        "a1",
+        "x"
+      ],
+      "B": [
+        "b1",
+        "A/b2"
+      ]
+    },
+    "named_points_on_first_apex_radii": {
+      "first_pair": [
+        "a2",
+        "a1"
+      ],
+      "second_pair": [
+        "b1",
+        "A/b2"
+      ]
+    },
+    "blocker_aliases": {
+      "center(a1)": "A",
+      "center(a2)": "A",
+      "center(b1)": "B",
+      "center(b2)": "B",
+      "center(x)": "A"
+    },
+    "cycle_choices": {
+      "MP\u03c1.collisionSource": "a1",
+      "MP.collisionSource": "b1"
+    },
+    "cross_alias": "A=b2",
+    "checks": 35,
+    "failures": []
+  },
+  {
+    "arm": "A=b2",
+    "residual": "outside-second",
+    "status": "EXACT_RATIONAL_WITNESS",
+    "points": {
+      "A": [
+        6,
+        0
+      ],
+      "B": [
+        2,
+        2
+      ],
+      "O": [
+        0,
+        0
+      ],
+      "a1": [
+        3,
+        4
+      ],
+      "a2": [
+        3,
+        -4
+      ],
+      "b1": [
+        0,
+        6
+      ],
+      "b2": [
+        6,
+        0
+      ],
+      "o": [
+        -2,
+        0
+      ],
+      "x": [
+        4,
+        6
+      ]
+    },
+    "first_apex_radius_squared": {
+      "first_pair": 25,
+      "second_pair": 36
+    },
+    "row_radius_squared": {
+      "A": 25,
+      "B": 20
+    },
+    "forced_rows": {
+      "A": [
+        "a1",
+        "a2"
+      ],
+      "B": [
+        "b1",
+        "b2",
+        "x",
+        "o"
+      ]
+    },
+    "named_points_on_rows": {
+      "A": [
+        "a2",
+        "a1"
+      ],
+      "B": [
+        "o",
+        "b1",
+        "x",
+        "A/b2"
+      ]
+    },
+    "named_points_on_first_apex_radii": {
+      "first_pair": [
+        "a2",
+        "a1"
+      ],
+      "second_pair": [
+        "b1",
+        "A/b2"
+      ]
+    },
+    "blocker_aliases": {
+      "center(a1)": "A",
+      "center(a2)": "A",
+      "center(b1)": "B",
+      "center(b2)": "B",
+      "center(x)": "B"
+    },
+    "cycle_choices": {
+      "MP\u03c1.collisionSource": "a1",
+      "MP.collisionSource": "b1"
+    },
+    "cross_alias": "A=b2",
+    "checks": 35,
+    "failures": []
+  },
+  {
+    "arm": "B=a1",
+    "residual": "third",
+    "status": "EXACT_RATIONAL_WITNESS",
+    "points": {
+      "A": [
+        0,
+        1
+      ],
+      "B": [
+        5,
+        0
+      ],
+      "C": [
+        20,
+        17
+      ],
+      "O": [
+        0,
+        0
+      ],
+      "a1": [
+        5,
+        0
+      ],
+      "a2": [
+        -5,
+        0
+      ],
+      "b1": [
+        5,
+        12
+      ],
+      "b2": [
+        5,
+        -12
+      ],
+      "t1": [
+        23,
+        21
+      ],
+      "t2": [
+        16,
+        20
+      ]
+    },
+    "first_apex_radius_squared": {
+      "first_pair": 25,
+      "second_pair": 169
+    },
+    "row_radius_squared": {
+      "A": 26,
+      "B": 144,
+      "C": 25
+    },
+    "forced_rows": {
+      "A": [
+        "a1",
+        "a2"
+      ],
+      "B": [
+        "b1",
+        "b2"
+      ],
+      "C": [
+        "t1",
+        "t2"
+      ]
+    },
+    "named_points_on_rows": {
+      "A": [
+        "a2",
+        "B/a1"
+      ],
+      "B": [
+        "b2",
+        "b1"
+      ],
+      "C": [
+        "t2",
+        "t1"
+      ]
+    },
+    "named_points_on_first_apex_radii": {
+      "first_pair": [
+        "a2",
+        "B/a1"
+      ],
+      "second_pair": [
+        "b2",
+        "b1"
+      ]
+    },
+    "blocker_aliases": {
+      "center(a1)": "A",
+      "center(a2)": "A",
+      "center(b1)": "B",
+      "center(b2)": "B",
+      "center(t1)": "C",
+      "center(t2)": "C"
+    },
+    "cycle_choices": {
+      "MP\u03c1.collisionSource": "a1",
+      "MP.collisionSource": "b1"
+    },
+    "cross_alias": "B=a1",
+    "checks": 39,
+    "failures": []
+  },
+  {
+    "arm": "B=a1",
+    "residual": "outside-first",
+    "status": "EXACT_RATIONAL_WITNESS",
+    "points": {
+      "A": [
+        0,
+        1
+      ],
+      "B": [
+        5,
+        0
+      ],
+      "O": [
+        0,
+        0
+      ],
+      "a1": [
+        5,
+        0
+      ],
+      "a2": [
+        -5,
+        0
+      ],
+      "b1": [
+        5,
+        12
+      ],
+      "b2": [
+        5,
+        -12
+      ],
+      "o": [
+        -1,
+        6
+      ],
+      "x": [
+        1,
+        6
+      ]
+    },
+    "first_apex_radius_squared": {
+      "first_pair": 25,
+      "second_pair": 169
+    },
+    "row_radius_squared": {
+      "A": 26,
+      "B": 144
+    },
+    "forced_rows": {
+      "A": [
+        "a1",
+        "a2",
+        "x",
+        "o"
+      ],
+      "B": [
+        "b1",
+        "b2"
+      ]
+    },
+    "named_points_on_rows": {
+      "A": [
+        "a2",
+        "o",
+        "x",
+        "B/a1"
+      ],
+      "B": [
+        "b2",
+        "b1"
+      ]
+    },
+    "named_points_on_first_apex_radii": {
+      "first_pair": [
+        "a2",
+        "B/a1"
+      ],
+      "second_pair": [
+        "b2",
+        "b1"
+      ]
+    },
+    "blocker_aliases": {
+      "center(a1)": "A",
+      "center(a2)": "A",
+      "center(b1)": "B",
+      "center(b2)": "B",
+      "center(x)": "A"
+    },
+    "cycle_choices": {
+      "MP\u03c1.collisionSource": "a1",
+      "MP.collisionSource": "b1"
+    },
+    "cross_alias": "B=a1",
+    "checks": 35,
+    "failures": []
+  },
+  {
+    "arm": "B=a1",
+    "residual": "outside-second",
+    "status": "EXACT_RATIONAL_WITNESS",
+    "points": {
+      "A": [
+        0,
+        1
+      ],
+      "B": [
+        5,
+        0
+      ],
+      "O": [
+        0,
+        0
+      ],
+      "a1": [
+        5,
+        0
+      ],
+      "a2": [
+        -5,
+        0
+      ],
+      "b1": [
+        5,
+        12
+      ],
+      "b2": [
+        5,
+        -12
+      ],
+      "o": [
+        -7,
+        0
+      ],
+      "x": [
+        17,
+        0
+      ]
+    },
+    "first_apex_radius_squared": {
+      "first_pair": 25,
+      "second_pair": 169
+    },
+    "row_radius_squared": {
+      "A": 26,
+      "B": 144
+    },
+    "forced_rows": {
+      "A": [
+        "a1",
+        "a2"
+      ],
+      "B": [
+        "b1",
+        "b2",
+        "x",
+        "o"
+      ]
+    },
+    "named_points_on_rows": {
+      "A": [
+        "a2",
+        "B/a1"
+      ],
+      "B": [
+        "o",
+        "b2",
+        "b1",
+        "x"
+      ]
+    },
+    "named_points_on_first_apex_radii": {
+      "first_pair": [
+        "a2",
+        "B/a1"
+      ],
+      "second_pair": [
+        "b2",
+        "b1"
+      ]
+    },
+    "blocker_aliases": {
+      "center(a1)": "A",
+      "center(a2)": "A",
+      "center(b1)": "B",
+      "center(b2)": "B",
+      "center(x)": "B"
+    },
+    "cycle_choices": {
+      "MP\u03c1.collisionSource": "a1",
+      "MP.collisionSource": "b1"
+    },
+    "cross_alias": "B=a1",
+    "checks": 35,
+    "failures": []
+  },
+  {
+    "arm": "B=a2",
+    "residual": "third",
+    "status": "EXACT_RATIONAL_WITNESS",
+    "points": {
+      "A": [
+        0,
+        1
+      ],
+      "B": [
+        5,
+        0
+      ],
+      "C": [
+        20,
+        17
+      ],
+      "O": [
+        0,
+        0
+      ],
+      "a1": [
+        -5,
+        0
+      ],
+      "a2": [
+        5,
+        0
+      ],
+      "b1": [
+        5,
+        12
+      ],
+      "b2": [
+        5,
+        -12
+      ],
+      "t1": [
+        23,
+        21
+      ],
+      "t2": [
+        16,
+        20
+      ]
+    },
+    "first_apex_radius_squared": {
+      "first_pair": 25,
+      "second_pair": 169
+    },
+    "row_radius_squared": {
+      "A": 26,
+      "B": 144,
+      "C": 25
+    },
+    "forced_rows": {
+      "A": [
+        "a1",
+        "a2"
+      ],
+      "B": [
+        "b1",
+        "b2"
+      ],
+      "C": [
+        "t1",
+        "t2"
+      ]
+    },
+    "named_points_on_rows": {
+      "A": [
+        "a1",
+        "B/a2"
+      ],
+      "B": [
+        "b2",
+        "b1"
+      ],
+      "C": [
+        "t2",
+        "t1"
+      ]
+    },
+    "named_points_on_first_apex_radii": {
+      "first_pair": [
+        "a1",
+        "B/a2"
+      ],
+      "second_pair": [
+        "b2",
+        "b1"
+      ]
+    },
+    "blocker_aliases": {
+      "center(a1)": "A",
+      "center(a2)": "A",
+      "center(b1)": "B",
+      "center(b2)": "B",
+      "center(t1)": "C",
+      "center(t2)": "C"
+    },
+    "cycle_choices": {
+      "MP\u03c1.collisionSource": "a1",
+      "MP.collisionSource": "b1"
+    },
+    "cross_alias": "B=a2",
+    "checks": 39,
+    "failures": []
+  },
+  {
+    "arm": "B=a2",
+    "residual": "outside-first",
+    "status": "EXACT_RATIONAL_WITNESS",
+    "points": {
+      "A": [
+        0,
+        1
+      ],
+      "B": [
+        5,
+        0
+      ],
+      "O": [
+        0,
+        0
+      ],
+      "a1": [
+        -5,
+        0
+      ],
+      "a2": [
+        5,
+        0
+      ],
+      "b1": [
+        5,
+        12
+      ],
+      "b2": [
+        5,
+        -12
+      ],
+      "o": [
+        -1,
+        6
+      ],
+      "x": [
+        1,
+        6
+      ]
+    },
+    "first_apex_radius_squared": {
+      "first_pair": 25,
+      "second_pair": 169
+    },
+    "row_radius_squared": {
+      "A": 26,
+      "B": 144
+    },
+    "forced_rows": {
+      "A": [
+        "a1",
+        "a2",
+        "x",
+        "o"
+      ],
+      "B": [
+        "b1",
+        "b2"
+      ]
+    },
+    "named_points_on_rows": {
+      "A": [
+        "a1",
+        "o",
+        "x",
+        "B/a2"
+      ],
+      "B": [
+        "b2",
+        "b1"
+      ]
+    },
+    "named_points_on_first_apex_radii": {
+      "first_pair": [
+        "a1",
+        "B/a2"
+      ],
+      "second_pair": [
+        "b2",
+        "b1"
+      ]
+    },
+    "blocker_aliases": {
+      "center(a1)": "A",
+      "center(a2)": "A",
+      "center(b1)": "B",
+      "center(b2)": "B",
+      "center(x)": "A"
+    },
+    "cycle_choices": {
+      "MP\u03c1.collisionSource": "a1",
+      "MP.collisionSource": "b1"
+    },
+    "cross_alias": "B=a2",
+    "checks": 35,
+    "failures": []
+  },
+  {
+    "arm": "B=a2",
+    "residual": "outside-second",
+    "status": "EXACT_RATIONAL_WITNESS",
+    "points": {
+      "A": [
+        0,
+        1
+      ],
+      "B": [
+        5,
+        0
+      ],
+      "O": [
+        0,
+        0
+      ],
+      "a1": [
+        -5,
+        0
+      ],
+      "a2": [
+        5,
+        0
+      ],
+      "b1": [
+        5,
+        12
+      ],
+      "b2": [
+        5,
+        -12
+      ],
+      "o": [
+        -7,
+        0
+      ],
+      "x": [
+        17,
+        0
+      ]
+    },
+    "first_apex_radius_squared": {
+      "first_pair": 25,
+      "second_pair": 169
+    },
+    "row_radius_squared": {
+      "A": 26,
+      "B": 144
+    },
+    "forced_rows": {
+      "A": [
+        "a1",
+        "a2"
+      ],
+      "B": [
+        "b1",
+        "b2",
+        "x",
+        "o"
+      ]
+    },
+    "named_points_on_rows": {
+      "A": [
+        "a1",
+        "B/a2"
+      ],
+      "B": [
+        "o",
+        "b2",
+        "b1",
+        "x"
+      ]
+    },
+    "named_points_on_first_apex_radii": {
+      "first_pair": [
+        "a1",
+        "B/a2"
+      ],
+      "second_pair": [
+        "b2",
+        "b1"
+      ]
+    },
+    "blocker_aliases": {
+      "center(a1)": "A",
+      "center(a2)": "A",
+      "center(b1)": "B",
+      "center(b2)": "B",
+      "center(x)": "B"
+    },
+    "cycle_choices": {
+      "MP\u03c1.collisionSource": "a1",
+      "MP.collisionSource": "b1"
+    },
+    "cross_alias": "B=a2",
+    "checks": 35,
+    "failures": []
+  }
+]

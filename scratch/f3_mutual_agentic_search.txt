@@ -1,0 +1,12 @@
+The closest match is the distinct-blocker low-hit tri-apex contradiction:
+
+`false_of_retainedInteriorDirectedOmission_and_all_low_hits` handles the concrete strict-interior source-pair setting, with distinct blockers, under the low-hit tri-apex residual pathway.
+
+For explicit retention of first-fiber witness data, the relevant theorem is `false_of_capSource_freshOutsideFirstBlockerFiber`; it exposes two distinct strict-cap source rows in the enlarged first-blocker fiber and descends to a joint terminal.
+
+For the exact-four branch with two sources (and branch-specific shell/blocker structure), the match is `false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits` (this one describes mutual omission of the two source shells, not containment).
+
+There is no single theorem in the read set that simultaneously states mutual shell containment, distinct blockers, and both retained `FreshOutsideFirstBlockerFiber` plus the tri-apex robust residual all at once.
+  handles: Y6P3GT NDKSQV 5XZX0S  (read with `nthdegree docs show <handle> --lean`)
+searched: cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show Y6P3GT --lean, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show NDKSQV --lean, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show 5XZX0S --lean, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show 8NXAYW --lean, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show YPKGN3 --lean, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show ZT8BRB --lean, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs search --lean "FreshOutsideFirstBlocke…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show ER11CT --lean, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show X7H5RV --lean, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs search --lean "exact-four selected sup…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs search --lean "mutual omission exact-f…
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.

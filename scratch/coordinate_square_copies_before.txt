@@ -1,0 +1,216 @@
+50-private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+51:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+52-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+53-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+54-
+55-private noncomputable def similarityTransportComp
+119-private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+120:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+121-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+122-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+123-
+124-/-- `envOf` reads the coordinate of label `p ≥ 2`, axis `ax`, at the flat
+72-private theorem dist_sq_coords_reflection (u v : ℝ²) :
+73:    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
+74-  SurplusCOMPGBank.dist_sq_coord u v
+75-
+76-/-- Axis reflection preserves Euclidean distance. -/
+77-theorem dist_reflectXAxis (p q : ℝ²) :
+25-private theorem dist_sq_coord (x y : ℝ²) :
+26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+27-  rw [EuclideanSpace.dist_sq_eq]
+28-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+29-
+30-/-- An orientation-free equilateral hinge over the normalized anchors has
+29-theorem dist_sq_coords (u v : ℝ²) :
+30:    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
+31-  SurplusCOMPGBank.dist_sq_coord u v
+32-
+33-set_option maxHeartbeats 2000000 in
+34--- The proof eliminates one planar Gram determinant and two sums of squares.
+133-private theorem dist_sq_coords (x y : ℝ²) :
+134:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+135-  rw [EuclideanSpace.dist_sq_eq]
+136-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+137-
+138-private theorem normSim_dist_sq_eq_one
+25-private theorem largeFiveCircle_dist_sq_coord (x y : ℝ²) :
+26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+27-  rw [EuclideanSpace.dist_sq_eq]
+28-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+29-
+30-set_option maxHeartbeats 6000000 in
+24-private theorem circleNetwork_dist_sq_coord (x y : ℝ²) :
+25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+26-  rw [EuclideanSpace.dist_sq_eq]
+27-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+28-
+29-/-- Coordinate dot product used by the normalized calculation. -/
+24-private theorem sevenPoint_dist_sq_coord (x y : ℝ²) :
+25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+26-  rw [EuclideanSpace.dist_sq_eq]
+27-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+28-
+29-set_option maxHeartbeats 2000000 in
+25-private theorem sevenPointSixCircle_dist_sq_coord (x y : ℝ²) :
+26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+27-  rw [EuclideanSpace.dist_sq_eq]
+28-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+29-
+30-set_option maxHeartbeats 12000000 in
+25-private theorem sevenPointSixCircleB_dist_sq_coord (x y : ℝ²) :
+26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+27-  rw [EuclideanSpace.dist_sq_eq]
+28-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+29-
+30--- The best normalization pair has an exact eleven-polynomial UNIT certificate.
+25-private theorem sevenPointTwinFourCircle_dist_sq_coord (x y : ℝ²) :
+26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+27-  rw [EuclideanSpace.dist_sq_eq]
+28-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+29-
+30-set_option maxHeartbeats 12000000 in
+25-private theorem sixPointCircleChain_dist_sq_coord (x y : ℝ²) :
+26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+27-  rw [EuclideanSpace.dist_sq_eq]
+28-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+29-
+30-set_option maxHeartbeats 8000000 in
+25-private theorem sixPointFiveCircle_dist_sq_coord (x y : ℝ²) :
+26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+27-  rw [EuclideanSpace.dist_sq_eq]
+28-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+29-
+30-set_option maxHeartbeats 4000000 in
+24-private theorem sixPointTwoPair_dist_sq_coord (x y : ℝ²) :
+25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+26-  rw [EuclideanSpace.dist_sq_eq]
+27-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+28-
+29-set_option maxHeartbeats 8000000 in
+24-private theorem sixRow_dist_sq_coord (x y : ℝ²) :
+25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+26-  rw [EuclideanSpace.dist_sq_eq]
+27-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+28-
+29-set_option maxHeartbeats 2000000 in
+26-private theorem surplusSource_dist_sq_coord (x y : ℝ²) :
+27:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+28-  rw [EuclideanSpace.dist_sq_eq]
+29-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+30-
+31-/-- The reflected scalar system left by the normalized seven-point
+30-private theorem threeTriad_dist_sq_coord (x y : ℝ²) :
+31:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+32-  rw [EuclideanSpace.dist_sq_eq]
+33-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+34-
+35-/-- The scalar system obtained after sending `A,D` to `(0,0),(1,0)` is
+41-private theorem bisectorKill_dist_sq_coords (x y : ℝ²) :
+42:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+43-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+44-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+45-
+46-/-- Scalar core of the boundary-anchored bisector kill.
+45-private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+46:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+47-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+48-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+49-
+50-private noncomputable def similarityTransportComp
+304-private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+305:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+306-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+307-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+308-
+309-private theorem signedArea2_baseChord_vec2 (p : ℝ²) :
+21-private theorem dist_sq_coords (x y : ℝ²) :
+22:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+23-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+24-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+25-
+26-private theorem vec2_c0 (a b : ℝ) : (Problem97.CGN.vec2 a b) 0 = a := by
+576-private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+577:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+578-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+579-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+580-
+581-private theorem signedArea2_baseChord_vec2 (p : ℝ²) :
+813-private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+814:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+815-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+816-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+817-
+818-private noncomputable def similarityTransportComp
+39-private theorem dist_sq_coords (x y : ℝ²) :
+40:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+41-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+42-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+43-
+44-private theorem vec2_c0 (a b : ℝ) : (Problem97.CGN.vec2 a b) 0 = a := by
+330-  -- squared-distance in coordinates
+331:  have sq : ∀ X Y : ℝ², dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
+332-    intro X Y
+333-    rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+334-    simp [Fin.sum_univ_two, PiLp.sub_apply, Real.norm_eq_abs, sq_abs]
+335-  have eA1 : (A 0 - P 0) ^ 2 + (A 1 - P 1) ^ 2 = (A 0 - Q 0) ^ 2 + (A 1 - Q 1) ^ 2 := by
+36-private theorem trackB_dist_sq_coords (X Y : ℝ²) :
+37:    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
+38-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+39-  simp [Fin.sum_univ_two, PiLp.sub_apply, Real.norm_eq_abs, sq_abs]
+40-
+41-/-- Shared scalar extraction for the Track-B pilot:
+44-    dist x v2 ^ 2 * signedArea2 o v2 v3 = dist v2 v3 ^ 2 * signedArea2 x v2 v3 := by
+45:  have dist_sq : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 := fun p q => by
+46-    simp only [EuclideanSpace.dist_eq, Fin.sum_univ_two]
+47-    rw [Real.sq_sqrt (by positivity)]
+48-    simp [Real.dist_eq]
+49-  have h1 : (x 0 - v2 0) ^ 2 + (x 1 - v2 1) ^ 2 =
+1455-private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+1456:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+1457-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+1458-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+1459-
+1460-/-- **(A) Affine identity** for the `q'=E` column.  When `qs` and `q` lie on a
+31-private theorem q3_dist_sq_coord (x c : ℝ²) :
+32:    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 := by
+33-  rw [EuclideanSpace.dist_sq_eq]
+34-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+35-
+36-private theorem normSim_base_sq_pos {p₁ p₂ : ℝ²} (hp : p₁ ≠ p₂) :
+26-theorem dist_sq_coord (x c : ℝ²) :
+27:    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 := by
+28-  rw [EuclideanSpace.dist_sq_eq]
+29-  simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
+30-
+31-/-- Chord separation of shared equidistant points.  If `x` and `y` are both
+75-private theorem dist_sq_coord (x y : ℝ²) :
+76:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+77-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+78-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+79-
+80-/-- Squared coordinate distance in the normalized plane. -/
+91-  have norm_sub_sq : ∀ (a b : ℝ²),
+92:      dist a b ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 := fun a b => by
+93-    rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+94-    simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+95-  rw [norm_sub_sq]
+96-  simp only [capU1, capU2, pt, Matrix.cons_val_zero, Matrix.cons_val_one]
+91-private theorem dist_sq_coord (u v : ℝ²) :
+92:    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 := by
+93-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+94-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+95-
+96-/-- Same-distance points in the MEC disk lie on the closed arc opposite the
+79-private theorem normSq_sub (u v : ℝ²) :
+80:    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 := by
+81-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+82-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+83-
+84-/-- The base-length square `ℓ² = (p₂₀−p₁₀)² + (p₂₁−p₁₁)²` is positive when `p₁ ≠ p₂`. -/
+206-private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
+207:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+208-  rw [dist_eq_norm, EuclideanSpace.norm_sq_eq]
+209-  simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
+210-
+211-private theorem dist_eq_of_sq_eq {a b c : ℝ²}

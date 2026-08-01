@@ -1,0 +1,25 @@
+[
+  {
+    "display_text": "theorem erdos_97.variants.three_unit_distance_cut_min :\n\nFishburn and Reeds [FiRe92] also proved that the smallest $n$ for which there exists\na convex $n$-gon and a cut $\\{A, B\\}$ of its vertices such that $|\\{b \\in B : d(a, b) = 1\\}| ≥ 3$\nfor all $a \\in A$, and $|\\{a \\in A : d(a, b) = 1\\}| ≥ 3$ for all $b \\in B$, is $n = 20$.",
+    "embed_text": "theorem erdos_97.variants.three_unit_distance_cut_min :\n\nFishburn and Reeds [FiRe92] also proved that the smallest $n$ for which there exists\na convex $n$-gon and a cut $\\{A, B\\}$ of its vertices such that $|\\{b \\in B : d(a, b) = 1\\}| ≥ 3$\nfor all $a \\in A$, and $|\\{a \\in A : d(a, b) = 1\\}| ≥ 3$ for all $b \\in B$, is $n = 20$.",
+    "handle": "7B2N2Q",
+    "id": "01KVPQ1MEDKMZM8ZJKFK7B2N2Q",
+    "label": null,
+    "paper_id": null,
+    "refs_internal": null,
+    "section": null,
+    "source_path": null,
+    "tags": [
+      "corpus:formal-conjectures-lean",
+      "module:FormalConjectures.ErdosProblems.97",
+      "commit:c3af9ce",
+      "kind:theorem",
+      "line:137",
+      "decl:erdos_97.variants.three_unit_distance_cut_min",
+      "project:formal-conjectures-lean",
+      "source:FormalConjectures/ErdosProblems/97.lean"
+    ],
+    "title": null,
+    "unit_type": null
+  }
+]

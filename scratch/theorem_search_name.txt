@@ -1,0 +1,8 @@
+no docs matching 'rank power matrix unit ideal replay exact five cover index two triple row' in corpus 'erdos-97-96-lean, p97-rvol-lean, formal-conjectures-lean, formal-conjectures-mathlib-lean, erdos-unit-distance-lean, erdos-97-96-formalization-lean, mathlib'
+corpus erdos-97-96-lean — indexed 2026-08-01 01:37 UTC, source @ 10b0c7a
+corpus p97-rvol-lean — indexed 2026-08-01 01:37 UTC, source @ 3380775
+corpus formal-conjectures-lean — indexed 2026-08-01 01:37 UTC, source @ c3af9ce
+corpus formal-conjectures-mathlib-lean — indexed 2026-08-01 01:37 UTC, source @ c3af9ce
+corpus erdos-unit-distance-lean — indexed 2026-08-01 01:37 UTC, source @ 5853480
+corpus erdos-97-96-formalization-lean — indexed 2026-08-01 01:37 UTC, source @ 1b867b3f
+corpus mathlib — indexed 2026-05-31 00:24 UTC, source @ d163059006

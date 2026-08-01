@@ -1,0 +1,139 @@
+ring r=0,(x2x,x2y,x3x,x3y,x4x,x4y,x5x,x5y,x6x,x6y,x7x,x7y,x8x,x8y,x9x,x9y),dp;
+ideal I=((0-x3x)^2+(0-x3y)^2)-((0-x4x)^2+(0-x4y)^2),
+  ((0-x3x)^2+(0-x3y)^2)-((0-x5x)^2+(0-x5y)^2),
+  ((0-x3x)^2+(0-x3y)^2)-((0-x9x)^2+(0-x9y)^2),
+  ((1-x2x)^2+(0-x2y)^2)-((1-x4x)^2+(0-x4y)^2),
+  ((1-x2x)^2+(0-x2y)^2)-((1-x7x)^2+(0-x7y)^2),
+  ((1-x2x)^2+(0-x2y)^2)-((1-x8x)^2+(0-x8y)^2),
+  ((x2x-0)^2+(x2y-0)^2)-((x2x-1)^2+(x2y-0)^2),
+  ((x2x-0)^2+(x2y-0)^2)-((x2x-x4x)^2+(x2y-x4y)^2),
+  ((x2x-0)^2+(x2y-0)^2)-((x2x-x9x)^2+(x2y-x9y)^2),
+  ((x3x-0)^2+(x3y-0)^2)-((x3x-x6x)^2+(x3y-x6y)^2),
+  ((x3x-0)^2+(x3y-0)^2)-((x3x-x7x)^2+(x3y-x7y)^2),
+  ((x3x-0)^2+(x3y-0)^2)-((x3x-x9x)^2+(x3y-x9y)^2),
+  ((x4x-0)^2+(x4y-0)^2)-((x4x-1)^2+(x4y-0)^2),
+  ((x4x-0)^2+(x4y-0)^2)-((x4x-x2x)^2+(x4y-x2y)^2),
+  ((x4x-0)^2+(x4y-0)^2)-((x4x-x7x)^2+(x4y-x7y)^2),
+  ((x5x-0)^2+(x5y-0)^2)-((x5x-x4x)^2+(x5y-x4y)^2),
+  ((x5x-0)^2+(x5y-0)^2)-((x5x-x6x)^2+(x5y-x6y)^2),
+  ((x5x-0)^2+(x5y-0)^2)-((x5x-x8x)^2+(x5y-x8y)^2),
+  ((x6x-x3x)^2+(x6y-x3y)^2)-((x6x-x5x)^2+(x6y-x5y)^2),
+  ((x6x-x3x)^2+(x6y-x3y)^2)-((x6x-x7x)^2+(x6y-x7y)^2),
+  ((x6x-x3x)^2+(x6y-x3y)^2)-((x6x-x8x)^2+(x6y-x8y)^2),
+  ((x7x-1)^2+(x7y-0)^2)-((x7x-x3x)^2+(x7y-x3y)^2),
+  ((x7x-1)^2+(x7y-0)^2)-((x7x-x4x)^2+(x7y-x4y)^2),
+  ((x7x-1)^2+(x7y-0)^2)-((x7x-x6x)^2+(x7y-x6y)^2),
+  ((x8x-1)^2+(x8y-0)^2)-((x8x-x5x)^2+(x8y-x5y)^2),
+  ((x8x-1)^2+(x8y-0)^2)-((x8x-x6x)^2+(x8y-x6y)^2),
+  ((x8x-1)^2+(x8y-0)^2)-((x8x-x9x)^2+(x8y-x9y)^2),
+  ((x9x-0)^2+(x9y-0)^2)-((x9x-x2x)^2+(x9y-x2y)^2),
+  ((x9x-0)^2+(x9y-0)^2)-((x9x-x3x)^2+(x9y-x3y)^2),
+  ((x9x-0)^2+(x9y-0)^2)-((x9x-x8x)^2+(x9y-x8y)^2);
+matrix T;
+ideal G=liftstd(I,T,"slimgb");
+poly target=x9x^2+x9y^2;
+poly nf=reduce(target,G);
+print("NORMAL_FORM_BEGIN");
+string(nf);
+print("NORMAL_FORM_END");
+if (nf!=0) { print("TARGET_NOT_IN_IDEAL"); quit; }
+ideal J=target;
+matrix U;
+matrix K=lift(G,J,U,"slimgb");
+matrix C=T*K;
+poly identity=0;
+for (int i=1;i<=size(I);i++) { identity=identity+I[i]*C[i,1]; }
+print("IDENTITY_BEGIN");
+string(identity);
+print("IDENTITY_END");
+print("COFACTOR_001_BEGIN");
+string(C[1,1]);
+print("COFACTOR_001_END");
+print("COFACTOR_002_BEGIN");
+string(C[2,1]);
+print("COFACTOR_002_END");
+print("COFACTOR_003_BEGIN");
+string(C[3,1]);
+print("COFACTOR_003_END");
+print("COFACTOR_004_BEGIN");
+string(C[4,1]);
+print("COFACTOR_004_END");
+print("COFACTOR_005_BEGIN");
+string(C[5,1]);
+print("COFACTOR_005_END");
+print("COFACTOR_006_BEGIN");
+string(C[6,1]);
+print("COFACTOR_006_END");
+print("COFACTOR_007_BEGIN");
+string(C[7,1]);
+print("COFACTOR_007_END");
+print("COFACTOR_008_BEGIN");
+string(C[8,1]);
+print("COFACTOR_008_END");
+print("COFACTOR_009_BEGIN");
+string(C[9,1]);
+print("COFACTOR_009_END");
+print("COFACTOR_010_BEGIN");
+string(C[10,1]);
+print("COFACTOR_010_END");
+print("COFACTOR_011_BEGIN");
+string(C[11,1]);
+print("COFACTOR_011_END");
+print("COFACTOR_012_BEGIN");
+string(C[12,1]);
+print("COFACTOR_012_END");
+print("COFACTOR_013_BEGIN");
+string(C[13,1]);
+print("COFACTOR_013_END");
+print("COFACTOR_014_BEGIN");
+string(C[14,1]);
+print("COFACTOR_014_END");
+print("COFACTOR_015_BEGIN");
+string(C[15,1]);
+print("COFACTOR_015_END");
+print("COFACTOR_016_BEGIN");
+string(C[16,1]);
+print("COFACTOR_016_END");
+print("COFACTOR_017_BEGIN");
+string(C[17,1]);
+print("COFACTOR_017_END");
+print("COFACTOR_018_BEGIN");
+string(C[18,1]);
+print("COFACTOR_018_END");
+print("COFACTOR_019_BEGIN");
+string(C[19,1]);
+print("COFACTOR_019_END");
+print("COFACTOR_020_BEGIN");
+string(C[20,1]);
+print("COFACTOR_020_END");
+print("COFACTOR_021_BEGIN");
+string(C[21,1]);
+print("COFACTOR_021_END");
+print("COFACTOR_022_BEGIN");
+string(C[22,1]);
+print("COFACTOR_022_END");
+print("COFACTOR_023_BEGIN");
+string(C[23,1]);
+print("COFACTOR_023_END");
+print("COFACTOR_024_BEGIN");
+string(C[24,1]);
+print("COFACTOR_024_END");
+print("COFACTOR_025_BEGIN");
+string(C[25,1]);
+print("COFACTOR_025_END");
+print("COFACTOR_026_BEGIN");
+string(C[26,1]);
+print("COFACTOR_026_END");
+print("COFACTOR_027_BEGIN");
+string(C[27,1]);
+print("COFACTOR_027_END");
+print("COFACTOR_028_BEGIN");
+string(C[28,1]);
+print("COFACTOR_028_END");
+print("COFACTOR_029_BEGIN");
+string(C[29,1]);
+print("COFACTOR_029_END");
+print("COFACTOR_030_BEGIN");
+string(C[30,1]);
+print("COFACTOR_030_END");
+quit;

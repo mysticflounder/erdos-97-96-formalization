@@ -189,7 +189,7 @@ Phase 2 (annotations, annotated canonicalization, R-FIBER4/R-CAPGE4
 promotions, cell iterator + jsonl bank, seeds S-K3-9/S-FR-20, 14 gates
 in `controls2.py`) are landed and orchestrator-validated
 (`census/p97_search/RESULTS.md`). Rule bank: R-CIRC2, R-FIBER4,
-R-CAPGE4, R-P1, R-P2, R-P3, all ADMITTED. Kernel gate SATISFIED
+R-CAPGE4, R-P1, R-P2, R-P3, R-P4, R-P4-B-COL, all ADMITTED. Kernel gate SATISFIED
 2026-07-28: the three cited Lean frame theorems
 (`nonempty_surplusCapPacket_of_K4`, `capTriple_caps_card_ge_four`,
 `SurplusCapPacket.capSum`) each kernel-check to core axioms only. P1
@@ -199,11 +199,12 @@ pinned C2 — load-bearing, see
 `scratch/p97-search-lane/fr-pattern-lemma1.md`) and admitted as
 cut-matrix-domain rules R-P1/R-P2 (PHASE2-SPEC §4.4: same-distance
 C2-read cut matrices only; consumer owns the semantics; NO
-shell-semantics generalization). P3's row-cases R1/R3 (both
-orientations, both column sub-cases) are PROVEN+AUDITED and admitted
-as R-P3 (PHASE2-SPEC §4.5); P3's row-case R2 is OPEN (CONJECTURED,
-empirical support only) and is deliberately excluded from R-P3 — see
-`scratch/p97-search-lane/fr-pattern-p3-proof-draft.md`. The
+shell-semantics generalization). The full source P3 family is
+PROVEN+AUDITED and admitted as R-P3 (PHASE2-SPEC §4.5): row-cases
+R1/R3 use the four-acute-angle argument, while R2's distinct- and
+merged-inner cases are closed by exact angle contradictions and
+independently certified in
+`scratch/p97-search-lane/p3-r2-compute/SKEPTIC-2026-07-28.md`. The
 blocker-annotation existence
 {{NEEDS_PROOF}} item is RESOLVED-BY-COMPOSITION: Theorem C
 (`scratch/p97-search-lane/blocker-annotation-existence.md`,
@@ -211,11 +212,46 @@ AUDITED-WITH-PATCHES 2026-07-28) replaces the per-configuration
 existence claim — full [9,N] census coverage of B1-annotatable nodes
 implies unconditional non-existence for n ≤ N, via minimality, not a
 per-cell existence hypothesis. Per-cell claims remain
-annotation-conditional; only range closure composes. P4's proof (both
-variants, all k≥3, both C1 and C2) is PROVEN + AUDITED 2026-07-28
-(`fr-pattern-p4-proof-draft.md`; two citation-only findings patched,
-no error found) but admission as R-P4 is BLOCKED on transcription
-confidence (MODERATE-HIGH, not HIGH) independent of the proof audit.
-Open before Phase 3: P3's R2 row-case (CONJECTURED, no proof), P4's
-transcription re-verification against Fig. 4, and Phase 3 per-cell
-coverage itself.
+annotation-conditional; only range closure composes. P4's two source
+patterns (the left staircase A and its simultaneous row-and-column
+reversal B), for all k≥3 and both C1/C2 readings, are PROVEN + AUDITED
+2026-07-28 (`fr-pattern-p4-proof-draft.md`). Two independent direct
+600-dpi audits of Figure 4 raised the source transcription to HIGH;
+R-P4 is admitted in PHASE2-SPEC §4.6. The earlier column-only reversal
+`B_col` is an auxiliary proved pattern, not the source pattern; it is
+admitted separately as R-P4-B-COL (PHASE2-SPEC §4.7). It adds no
+incremental pruning because every B_col occurrence contains an R-P2-A
+occurrence.
+
+Fishburn--Reeds Lemma 2 / Theorem 3 is independently
+certificate-backed without importing the paper's Table 2: all 56
+transpose-normalized cases with `alpha+beta <= 19` and minimum row and
+column degree three are UNSAT, and all 56 CaDiCaL DRATs pass
+`drat-trim` under the hardened fail-closed checker. Combined with the
+separate audited P1--P4 geometry, this establishes the Theorem-3
+conclusion for the standard C2-read same-distance cut-matrix contract.
+It is not a Lean-kernel proof. The printed Table-2 bank remains
+unverified because the independent source-pattern encoder certifies
+`g_candidate(6,8)=19` where the paper prints 18; the direct Lemma-2
+sweep consumes no Table-2 value. See
+`scratch/p97-search-lane/theorem3-table2/AUDIT.md`.
+The certified antecedent is exposed in `census/p97_search/rules.py` as
+the validated diagnostic `fr_theorem3_dense_small`; it is deliberately
+outside every rule registry, the bank hash, and the collect-all
+`prune_cut_matrix` path because it is logically subsumed by source
+R-P1--R-P4 and adds no incremental pruning.
+
+Phase 3 status 2026-07-28: `PHASE3-SPEC.md`, the fail-closed SAT enumerator,
+joint cap+blocker canonicalization, and 17 Phase-3 gates are landed.  The
+gate suite includes independent tiny exhaustive equality (81 raw assignments),
+terminal DRAT replay, resume/tamper rejection, and interruption recovery.
+The first bounded production probes are deliberately `PARTIAL`: exact
+FRAMELESS `(3,9)` reached 100 raw / 29 canonical OPEN survivors, while
+combined `(4,10,(4,4,5))` reached 100 raw / 100 canonical OPEN survivors.
+No R-P1--R-P4 clause is emitted because no live producer establishes their
+same-distance C2 cut-matrix semantics from these shell/cap variables.
+Consequently this phase currently supplies a structural survivor stream for
+the realization arm, not a finite-range non-existence result.  The current
+replay fixtures, subsequent structural checkpoint, and exact metric-screen
+totals are maintained in `census/p97_search/PHASE3-RESULTS.md`; use that ledger
+instead of the initial bounded counts above for current status.

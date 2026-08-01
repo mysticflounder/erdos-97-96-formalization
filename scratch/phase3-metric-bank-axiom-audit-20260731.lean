@@ -1,0 +1,13 @@
+import Erdos9796Proof.P97.Phase3MetricCertificateBank
+
+/-! Focused axiom audit for the Phase-3 metric bank ingress. -/
+
+#check Problem97.TwoTripleRowSixPointEuclideanObstruction.metric_orientation_incompatibility
+#check Problem97.TwoTripleRowSixPointEuclideanObstruction.false_of_six_ccw_two_triple_row_equalities
+#check Problem97.Phase3SurvivorSingularSystem00.false_of_facts_eval_zero
+#check Problem97.Phase3SurvivorSingularSystem01.false_of_facts_eval_zero
+
+#print axioms Problem97.TwoTripleRowSixPointEuclideanObstruction.metric_orientation_incompatibility
+#print axioms Problem97.TwoTripleRowSixPointEuclideanObstruction.false_of_six_ccw_two_triple_row_equalities
+#print axioms Problem97.Phase3SurvivorSingularSystem00.false_of_facts_eval_zero
+#print axioms Problem97.Phase3SurvivorSingularSystem01.false_of_facts_eval_zero

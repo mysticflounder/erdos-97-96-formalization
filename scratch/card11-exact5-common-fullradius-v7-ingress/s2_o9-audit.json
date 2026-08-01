@@ -1,0 +1,20 @@
+{
+  "case": {
+    "o": 9,
+    "s": 2
+  },
+  "clauses": 1370778,
+  "hashes": {
+    "input.cnf": "bdd863e9d146cd64693d9c201f770b64b43082d34598d554434abcfd1bc50b57",
+    "manifest.json": "8df756f6cfb1af5e1137f149b97dd371f061da44c1b332bafaece57de2237a02",
+    "proof.drat": "25ae966a5c3ec7a3f84b7514d67a50f4805ab4f13c27278baa1d61845a1d84b8"
+  },
+  "proof_bytes": 35174655,
+  "provenance_sha256": null,
+  "schema": "card11_exact5_common_fullradius.v7",
+  "source_provenance_current_matches": null,
+  "status": "UNVERIFIED_UNSAT_ARTIFACT",
+  "v7_theorem_backed_clauses": 190080,
+  "variables": 49357,
+  "verification_sha256": null
+}

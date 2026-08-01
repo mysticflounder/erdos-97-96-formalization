@@ -1,0 +1,5 @@
+import Erdos9796Proof.P97.Census554.CoverIndexBridge
+open Problem97 Census554
+#print axioms Problem97.Census554.CoverIndexBridge.classMask_mem_candMasks
+#print axioms Problem97.Census554.CoverIndexBridge.exists_coverIndex_of_cubeOk
+#print axioms Problem97.Census554.CoverIndexBridge.finalAssign_coverIndex_baseSat_of_cubeOk

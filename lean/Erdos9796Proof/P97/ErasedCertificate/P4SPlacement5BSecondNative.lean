@@ -16,7 +16,7 @@ set_option maxRecDepth 100000 in
 theorem p4sPlacementsAt_five_b_native_second_half_eq_true :
     p4sPlacementsAtDeletedPairChunkSet
       5 5 6 [0, 2, 5, 7] = true := by
-  exact p4sPlacementsAtDeletedPairChunkSet_append_eq_true
+  exact p4sPlacementsAtDeletedPairChunkSet_reordered_second_half_eq_true
     p4sPlacementsAt_five_b_native_second_part_one_eq_true
     p4sPlacementsAt_five_b_native_second_part_two_eq_true
 

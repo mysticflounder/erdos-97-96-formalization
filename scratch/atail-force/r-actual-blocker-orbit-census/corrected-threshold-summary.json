@@ -1,0 +1,377 @@
+[
+  {
+    "p": 2,
+    "cases": [
+      {
+        "fixed": false,
+        "q": "all_omission",
+        "seq": "UUUS"
+      },
+      {
+        "fixed": false,
+        "q": "some_hit",
+        "seq": "UUUS"
+      },
+      {
+        "fixed": true,
+        "q": "all_omission",
+        "seq": "UUUS"
+      },
+      {
+        "fixed": true,
+        "q": "some_hit",
+        "seq": "UUUS"
+      }
+    ]
+  },
+  {
+    "p": 3,
+    "cases": [
+      {
+        "fixed": false,
+        "q": "all_omission",
+        "seq": "UUUS"
+      },
+      {
+        "fixed": false,
+        "q": "some_hit",
+        "seq": "UUSS"
+      },
+      {
+        "fixed": true,
+        "q": "all_omission",
+        "seq": "UUUS"
+      },
+      {
+        "fixed": true,
+        "q": "some_hit",
+        "seq": "UUUS"
+      }
+    ]
+  },
+  {
+    "p": 4,
+    "cases": [
+      {
+        "fixed": false,
+        "q": "all_omission",
+        "seq": "UUSS"
+      },
+      {
+        "fixed": false,
+        "q": "some_hit",
+        "seq": "UUSS"
+      },
+      {
+        "fixed": true,
+        "q": "all_omission",
+        "seq": "UUSS"
+      },
+      {
+        "fixed": true,
+        "q": "some_hit",
+        "seq": "UUSS"
+      }
+    ]
+  },
+  {
+    "p": 5,
+    "cases": [
+      {
+        "fixed": false,
+        "q": "all_omission",
+        "seq": "USSS"
+      },
+      {
+        "fixed": false,
+        "q": "some_hit",
+        "seq": "USSS"
+      },
+      {
+        "fixed": true,
+        "q": "all_omission",
+        "seq": "UUSS"
+      },
+      {
+        "fixed": true,
+        "q": "some_hit",
+        "seq": "UUSS"
+      }
+    ]
+  },
+  {
+    "p": 6,
+    "cases": [
+      {
+        "fixed": false,
+        "q": "all_omission",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": false,
+        "q": "some_hit",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": true,
+        "q": "all_omission",
+        "seq": "UUSS"
+      },
+      {
+        "fixed": true,
+        "q": "some_hit",
+        "seq": "UUSS"
+      }
+    ]
+  },
+  {
+    "p": 7,
+    "cases": [
+      {
+        "fixed": false,
+        "q": "all_omission",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": false,
+        "q": "some_hit",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": true,
+        "q": "all_omission",
+        "seq": "UUSS"
+      },
+      {
+        "fixed": true,
+        "q": "some_hit",
+        "seq": "UUSS"
+      }
+    ]
+  },
+  {
+    "p": 8,
+    "cases": [
+      {
+        "fixed": false,
+        "q": "all_omission",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": false,
+        "q": "some_hit",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": true,
+        "q": "all_omission",
+        "seq": "UUSS"
+      },
+      {
+        "fixed": true,
+        "q": "some_hit",
+        "seq": "UUSS"
+      }
+    ]
+  },
+  {
+    "p": 9,
+    "cases": [
+      {
+        "fixed": false,
+        "q": "all_omission",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": false,
+        "q": "some_hit",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": true,
+        "q": "all_omission",
+        "seq": "UUUS"
+      },
+      {
+        "fixed": true,
+        "q": "some_hit",
+        "seq": "UUUS"
+      }
+    ]
+  },
+  {
+    "p": 10,
+    "cases": [
+      {
+        "fixed": false,
+        "q": "all_omission",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": false,
+        "q": "some_hit",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": true,
+        "q": "all_omission",
+        "seq": "UUUS"
+      },
+      {
+        "fixed": true,
+        "q": "some_hit",
+        "seq": "UUUS"
+      }
+    ]
+  },
+  {
+    "p": 11,
+    "cases": [
+      {
+        "fixed": false,
+        "q": "all_omission",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": false,
+        "q": "some_hit",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": true,
+        "q": "all_omission",
+        "seq": "UUUS"
+      },
+      {
+        "fixed": true,
+        "q": "some_hit",
+        "seq": "UUUS"
+      }
+    ]
+  },
+  {
+    "p": 12,
+    "cases": [
+      {
+        "fixed": false,
+        "q": "all_omission",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": false,
+        "q": "some_hit",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": true,
+        "q": "all_omission",
+        "seq": "UUUS"
+      },
+      {
+        "fixed": true,
+        "q": "some_hit",
+        "seq": "UUUS"
+      }
+    ]
+  },
+  {
+    "p": 13,
+    "cases": [
+      {
+        "fixed": false,
+        "q": "all_omission",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": false,
+        "q": "some_hit",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": true,
+        "q": "all_omission",
+        "seq": "UUUS"
+      },
+      {
+        "fixed": true,
+        "q": "some_hit",
+        "seq": "UUUS"
+      }
+    ]
+  },
+  {
+    "p": 14,
+    "cases": [
+      {
+        "fixed": false,
+        "q": "all_omission",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": false,
+        "q": "some_hit",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": true,
+        "q": "all_omission",
+        "seq": "UUUS"
+      },
+      {
+        "fixed": true,
+        "q": "some_hit",
+        "seq": "UUUS"
+      }
+    ]
+  },
+  {
+    "p": 15,
+    "cases": [
+      {
+        "fixed": false,
+        "q": "all_omission",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": false,
+        "q": "some_hit",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": true,
+        "q": "all_omission",
+        "seq": "UUUS"
+      },
+      {
+        "fixed": true,
+        "q": "some_hit",
+        "seq": "UUUS"
+      }
+    ]
+  },
+  {
+    "p": 16,
+    "cases": [
+      {
+        "fixed": false,
+        "q": "all_omission",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": false,
+        "q": "some_hit",
+        "seq": "SSSS"
+      },
+      {
+        "fixed": true,
+        "q": "all_omission",
+        "seq": "UUUS"
+      },
+      {
+        "fixed": true,
+        "q": "some_hit",
+        "seq": "UUUS"
+      }
+    ]
+  }
+]

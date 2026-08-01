@@ -39,6 +39,33 @@ deriving Repr
 
 def labels : List Nat := List.range 11
 
+/-! The support search only admits four-point masks.  Keep this finite table
+explicit so every candidate domain starts from 330 masks instead of scanning
+all 2048 eleven-bit masks and recounting each one.  The ordering is the
+ascending order produced by the old range/filter definition. -/
+def fourPointMasks : List RowMask :=
+  [15, 23, 27, 29, 30, 39, 43, 45, 46, 51, 53, 54, 57, 58, 60, 71,
+   75, 77, 78, 83, 85, 86, 89, 90, 92, 99, 101, 102, 105, 106, 108, 113,
+   114, 116, 120, 135, 139, 141, 142, 147, 149, 150, 153, 154, 156, 163, 165, 166,
+   169, 170, 172, 177, 178, 180, 184, 195, 197, 198, 201, 202, 204, 209, 210, 212,
+   216, 225, 226, 228, 232, 240, 263, 267, 269, 270, 275, 277, 278, 281, 282, 284,
+   291, 293, 294, 297, 298, 300, 305, 306, 308, 312, 323, 325, 326, 329, 330, 332,
+   337, 338, 340, 344, 353, 354, 356, 360, 368, 387, 389, 390, 393, 394, 396, 401,
+   402, 404, 408, 417, 418, 420, 424, 432, 449, 450, 452, 456, 464, 480, 519, 523,
+   525, 526, 531, 533, 534, 537, 538, 540, 547, 549, 550, 553, 554, 556, 561, 562,
+   564, 568, 579, 581, 582, 585, 586, 588, 593, 594, 596, 600, 609, 610, 612, 616,
+   624, 643, 645, 646, 649, 650, 652, 657, 658, 660, 664, 673, 674, 676, 680, 688,
+   705, 706, 708, 712, 720, 736, 771, 773, 774, 777, 778, 780, 785, 786, 788, 792,
+   801, 802, 804, 808, 816, 833, 834, 836, 840, 848, 864, 897, 898, 900, 904, 912,
+   928, 960, 1031, 1035, 1037, 1038, 1043, 1045, 1046, 1049, 1050, 1052, 1059, 1061, 1062, 1065,
+   1066, 1068, 1073, 1074, 1076, 1080, 1091, 1093, 1094, 1097, 1098, 1100, 1105, 1106, 1108, 1112,
+   1121, 1122, 1124, 1128, 1136, 1155, 1157, 1158, 1161, 1162, 1164, 1169, 1170, 1172, 1176, 1185,
+   1186, 1188, 1192, 1200, 1217, 1218, 1220, 1224, 1232, 1248, 1283, 1285, 1286, 1289, 1290, 1292,
+   1297, 1298, 1300, 1304, 1313, 1314, 1316, 1320, 1328, 1345, 1346, 1348, 1352, 1360, 1376, 1409,
+   1410, 1412, 1416, 1424, 1440, 1472, 1539, 1541, 1542, 1545, 1546, 1548, 1553, 1554, 1556, 1560,
+   1569, 1570, 1572, 1576, 1584, 1601, 1602, 1604, 1608, 1616, 1632, 1665, 1666, 1668, 1672, 1680,
+   1696, 1728, 1793, 1794, 1796, 1800, 1808, 1824, 1856, 1920]
+
 def has (mask point : Nat) : Bool := mask.testBit point
 
 def countPoints (mask : RowMask) (points : List Nat) : Nat :=
@@ -46,6 +73,31 @@ def countPoints (mask : RowMask) (points : List Nat) : Nat :=
 
 def supportPoints (mask : RowMask) : List Nat :=
   labels.filter fun point => has mask point
+
+/-! Kernel-checked regression for the generated table. -/
+def fourPointMasksReference : List RowMask :=
+  (List.range 2048).filter fun support => countPoints support labels == 4
+
+set_option maxHeartbeats 0 in
+-- The generated 330-entry table is checked against the executable reference.
+set_option linter.style.maxHeartbeats false in
+set_option linter.style.nativeDecide false in
+set_option maxRecDepth 100000 in
+theorem fourPointMasks_eq_reference :
+    fourPointMasks = fourPointMasksReference := by
+  native_decide
+
+theorem countPoints_eq_four_of_mem_fourPointMasks
+    {support : RowMask} (hsupport : support ∈ fourPointMasks) :
+    (countPoints support labels == 4) = true := by
+  rw [fourPointMasks_eq_reference, fourPointMasksReference] at hsupport
+  exact (List.mem_filter.mp hsupport).2
+
+theorem fourPointMasks_mem_lt_2048
+    {support : RowMask} (hsupport : support ∈ fourPointMasks) :
+    support < 2048 := by
+  rw [fourPointMasks_eq_reference, fourPointMasksReference] at hsupport
+  exact List.mem_range.mp (List.mem_filter.mp hsupport).1
 
 def commonPoints (left right : RowMask) : List Nat :=
   labels.filter fun point => has left point && has right point
@@ -105,17 +157,31 @@ def capSelectedCountOK (center : Nat) (support : RowMask) : Bool :=
   else
     true
 
-def localCandidateOK (center deleted : Nat) (support : RowMask) : Bool :=
-  countPoints support labels == 4 &&
+/-! The four-point count is supplied by `fourPointMasks`.  Keeping the
+remaining local filters separate lets candidate-domain construction avoid
+recounting all eleven labels for every table entry. -/
+def localCandidateOKFourPoint (center deleted : Nat) (support : RowMask) : Bool :=
     !has support center &&
     moserOneHitOK center support &&
     (if 3 <= center then countPoints support [0, 1, 2] <= 2 else true) &&
     capSelectedCountOK center support &&
     (if center == 0 then has support deleted else true)
 
+def localCandidateOK (center deleted : Nat) (support : RowMask) : Bool :=
+  countPoints support labels == 4 &&
+    localCandidateOKFourPoint center deleted support
+
+theorem localCandidateOK_eq_localCandidateOKFourPoint_of_mem
+    {center deleted : Nat} {support : RowMask}
+    (hsupport : support ∈ fourPointMasks) :
+    localCandidateOK center deleted support =
+      localCandidateOKFourPoint center deleted support := by
+  simp [localCandidateOK,
+    countPoints_eq_four_of_mem_fourPointMasks hsupport]
+
 def candidateRows (center deleted : Nat) : List Row :=
-  (List.range 2048).filterMap fun support =>
-    if localCandidateOK center deleted support then
+  fourPointMasks.filterMap fun support =>
+    if localCandidateOKFourPoint center deleted support then
       some { center, support }
     else
       none
@@ -158,6 +224,37 @@ def pairBoundOK (assigned : List Row) (row : Row) : Bool :=
   pairCodes.all fun code =>
     !containsPair row code ||
       (assigned.countP fun previous => containsPair previous code) < 2
+
+/-! PARKED-SPEC: incremental pair-capacity state for a future fast DFS.  Pair codes are already
+unique and below 110, so their values can be used directly as Nat bit
+positions.  `once` records pairs seen at least once and `twice` records pairs
+seen at least twice; higher multiplicities do not matter to the classifier.
+The evaluator below remains unwired until its equivalence with `pairBoundOK`
+is proved. -/
+structure PairUse where
+  once : Nat
+  twice : Nat
+
+def rowPairMask (row : Row) : Nat :=
+  pairCodes.foldl
+    (fun mask code =>
+      if containsPair row code then mask ||| ((1 : Nat) <<< code) else mask)
+    0
+
+def addPairUse (use : PairUse) (row : Row) : PairUse :=
+  let mask := rowPairMask row
+  { once := use.once ||| mask
+    twice := use.twice ||| (use.once &&& mask) }
+
+def pairUseOfRows (rows : List Row) : PairUse :=
+  rows.foldl addPairUse { once := 0, twice := 0 }
+
+def pairBoundOKWithUse (use : PairUse) (row : Row) : Bool :=
+  (use.twice &&& rowPairMask row) == 0
+
+def compatibleWithPairUse
+    (assigned : List Row) (use : PairUse) (row : Row) : Bool :=
+  pairBoundOKWithUse use row && assigned.all fun previous => rowsCompatible row previous
 
 def compatibleWith (assigned : List Row) (row : Row) : Bool :=
   pairBoundOK assigned row && assigned.all fun previous => rowsCompatible row previous
@@ -281,6 +378,84 @@ def sortDomains (domains : List Domain) : List Domain :=
 def restrictDomain (assigned : List Row) (domain : Domain) : Domain :=
   { domain with rows := domain.rows.filter fun row => compatibleWith assigned row }
 
+/-- Restrict a domain list while stopping as soon as one restricted domain is empty.
+
+This returns the same mapped list as `List.map (restrictDomain assigned)` when no
+empty domain occurs, and `none` exactly when the old `map`/`any` pair would detect
+an empty domain.  Keeping the list in the successful case lets the evaluator
+avoid doing the restriction work twice. -/
+def restrictDomainsChecked (assigned : List Row) : List Domain → Option (List Domain)
+  | [] => some []
+  | domain :: rest =>
+      let restricted := restrictDomain assigned domain
+      if restricted.rows.isEmpty then
+        none
+      else
+        match restrictDomainsChecked assigned rest with
+        | none => none
+        | some remaining => some (restricted :: remaining)
+
+theorem restrictDomainsChecked_none_iff (assigned : List Row) (domains : List Domain) :
+    restrictDomainsChecked assigned domains = none ↔
+      (domains.map (restrictDomain assigned)).any (fun domain => domain.rows.isEmpty) := by
+  induction domains with
+  | nil => simp [restrictDomainsChecked]
+  | cons domain rest ih =>
+      by_cases hdomain : (restrictDomain assigned domain).rows = []
+      · simp [restrictDomainsChecked, hdomain]
+      · cases hrest : restrictDomainsChecked assigned rest with
+        | none =>
+            have htail := ih.mp hrest
+            simp [restrictDomainsChecked, hdomain, hrest, htail]
+        | some remaining =>
+            have hnone : restrictDomainsChecked assigned rest ≠ none := by
+              intro hnone
+              rw [hnone] at hrest
+              cases hrest
+            have hnotany :
+                ¬ ((List.map (restrictDomain assigned) rest).any
+                    (fun domain => domain.rows.isEmpty) = true) := by
+              intro hany
+              exact hnone (ih.mpr hany)
+            simp [restrictDomainsChecked, hdomain, hrest, hnotany]
+
+theorem restrictDomainsChecked_some_map_iff (assigned : List Row) (domains : List Domain) :
+    restrictDomainsChecked assigned domains =
+        some (domains.map (restrictDomain assigned)) ↔
+      ¬ (domains.map (restrictDomain assigned)).any (fun domain => domain.rows.isEmpty) := by
+  induction domains with
+  | nil => simp [restrictDomainsChecked]
+  | cons domain rest ih =>
+      by_cases hdomain : (restrictDomain assigned domain).rows = []
+      · simp [restrictDomainsChecked, hdomain]
+      · cases hrest : restrictDomainsChecked assigned rest with
+        | none =>
+            have htail :=
+              (restrictDomainsChecked_none_iff assigned rest).mp hrest
+            simp [restrictDomainsChecked, hdomain, hrest, htail]
+        | some remaining =>
+            have hnone : restrictDomainsChecked assigned rest ≠ none := by
+              intro hnone
+              rw [hnone] at hrest
+              cases hrest
+            have hnotany :
+                ¬ ((List.map (restrictDomain assigned) rest).any
+                    (fun domain => domain.rows.isEmpty) = true) := by
+              intro hany
+              exact hnone
+                ((restrictDomainsChecked_none_iff assigned rest).mpr hany)
+            have hmap := ih.mpr hnotany
+            have hremaining :
+                remaining = List.map (restrictDomain assigned) rest :=
+              Option.some.inj (hrest.symm.trans hmap)
+            simp [restrictDomainsChecked, hdomain, hrest, hremaining,
+              hnotany]
+
+def restrictDomainPairUse
+    (assigned : List Row) (use : PairUse) (domain : Domain) : Domain :=
+  { domain with
+    rows := domain.rows.filter fun row => compatibleWithPairUse assigned use row }
+
 def allKilled : Nat -> List Row -> List Domain -> Bool
   | 0, assigned, _ => hasPrefixCore assigned
   | fuel + 1, assigned, domains =>
@@ -293,11 +468,33 @@ def allKilled : Nat -> List Row -> List Domain -> Bool
             domain.rows.all fun row =>
               if compatibleWith assigned row then
                 let nextAssigned := row :: assigned
-                let nextDomains := rest.map (restrictDomain nextAssigned)
+                match restrictDomainsChecked nextAssigned rest with
+                | none => true
+                | some nextDomains => allKilled fuel nextAssigned nextDomains
+              else
+                true
+
+/-! PARKED-SPEC side-by-side evaluator.  It preserves the old closure calculation and
+domain ordering while replacing repeated pair-count scans with `PairUse`. -/
+def allKilledPairUse : Nat -> List Row -> PairUse -> List Domain -> Bool
+  | 0, assigned, _, _ => hasPrefixCore assigned
+  | fuel + 1, assigned, use, domains =>
+      if hasPrefixCore assigned then
+        true
+      else
+        match sortDomains domains with
+        | [] => false
+        | domain :: rest =>
+            domain.rows.all fun row =>
+              if compatibleWithPairUse assigned use row then
+                let nextAssigned := row :: assigned
+                let nextUse := addPairUse use row
+                let nextDomains :=
+                  rest.map (restrictDomainPairUse nextAssigned nextUse)
                 if nextDomains.any fun next => next.rows.isEmpty then
                   true
                 else
-                  allKilled fuel nextAssigned nextDomains
+                  allKilledPairUse fuel nextAssigned nextUse nextDomains
               else
                 true
 
@@ -313,12 +510,25 @@ def placementCheck (pinSource deleted : Nat) : Bool :=
     false
   else
     let assigned := [fixed]
+    let baseDomains := variableCenters.map fun center =>
+      { center, rows := candidateRows center deleted }
+    match restrictDomainsChecked assigned baseDomains with
+    | none => true
+    | some domains => allKilled variableCenters.length assigned domains
+
+def placementCheckPairUse (pinSource deleted : Nat) : Bool :=
+  let fixed := fixedPinnedRow pinSource
+  if !localCandidateOK fixed.center deleted fixed.support then
+    false
+  else
+    let assigned := [fixed]
+    let use := pairUseOfRows assigned
     let domains := variableCenters.map fun center =>
-      restrictDomain assigned { center, rows := candidateRows center deleted }
+      restrictDomainPairUse assigned use { center, rows := candidateRows center deleted }
     if domains.any fun domain => domain.rows.isEmpty then
       true
     else
-      allKilled variableCenters.length assigned domains
+      allKilledPairUse variableCenters.length assigned use domains
 
 set_option maxHeartbeats 0 in
 -- Native replay traverses the complete finite placement search tree.

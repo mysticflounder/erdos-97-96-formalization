@@ -1,0 +1,111 @@
+
+def _active_counts(bank: Any) -> Counter[str]:
+    return Counter(
+        str(certificate["stage"]) for certificate in bank.active.values()
+    )
+
+
+def _artifact_hashes(out: Path) -> dict[str, str]:
+    names = (
+        "base.cnf",
+        "smoke.json",
+        "bootstrap.json",
+        "learned-certificates.jsonl",
+        "survivors.jsonl",
+        "solver-logs.jsonl",
+        "cube-batches.jsonl",
+        "failure.json",
+        "terminal.cnf",
+        "terminal.drat",
+        "terminal.drat.check",
+    )
+    return {
+        name: _sha256_file(out / name)
+        for name in names
+        if (out / name).is_file()
+    }
+
+
+def _manifest(
+    out: Path,
+    *,
+    configuration: Mapping[str, Any],
+    status: str,
+    diagnostic: str | None,
+    learned: Sequence[Mapping[str, Any]],
+    survivors: Sequence[Mapping[str, Any]],
+    logs: Sequence[Mapping[str, Any]],
+    cube_batches: Sequence[Mapping[str, Any]],
+    bank: Any,
+    bootstrap_summary: Mapping[str, Any],
+    terminal_clause_count: int | None,
+    unsat_verified: bool,
+) -> dict[str, Any]:
+    bootstrap_count = sum(
+        record["origin"]
+        in {
+            "bootstrap-structural-prefix",
+            BOOTSTRAP_STRUCTURAL_PATH_ORIGIN,
+            BOOTSTRAP_CAP_ORDER_ORIGIN,
+            BOOTSTRAP_RHOMBUS_CAP_ORDER_ORIGIN,
+            BOOTSTRAP_KALMANSON_CAP_ORDER_ORIGIN,
+        }
+        for record in learned
+    )
+    bootstrap_five_point_cap_order_count = sum(
+        record["origin"] == BOOTSTRAP_CAP_ORDER_ORIGIN for record in learned
+    )
+    bootstrap_rhombus_cap_order_count = sum(
+        record["origin"] == BOOTSTRAP_RHOMBUS_CAP_ORDER_ORIGIN
+        for record in learned
+    )
+    bootstrap_kalmanson_cap_order_count = sum(
+        record["origin"] == BOOTSTRAP_KALMANSON_CAP_ORDER_ORIGIN
+        for record in learned
+    )
+    bootstrap_cap_order_count = (
+        bootstrap_five_point_cap_order_count
+        + bootstrap_rhombus_cap_order_count
+        + bootstrap_kalmanson_cap_order_count
+    )
+    row_dynamic = [
+        record
+        for record in learned
+        if record["origin"] in {"solver", STRUCTURAL_PATH_ORIGIN}
+    ]
+    five_point_cap_order_dynamic = [
+        record for record in learned if record["origin"] == CAP_ORDER_ORIGIN
+    ]
+    rhombus_cap_order_dynamic = [
+        record
+        for record in learned
+        if record["origin"] == RHOMBUS_CAP_ORDER_ORIGIN
+    ]
+    kalmanson_cap_order_dynamic = [
+        record
+        for record in learned
+        if record["origin"] == KALMANSON_CAP_ORDER_ORIGIN
+    ]
+    cap_order_dynamic = [
+        *five_point_cap_order_dynamic,
+        *rhombus_cap_order_dynamic,
+        *kalmanson_cap_order_dynamic,
+    ]
+    dynamic = [*row_dynamic, *cap_order_dynamic]
+    algebraic_dynamic = [
+        record for record in learned if record["origin"] == ALGEBRAIC_ORIGIN
+    ]
+    real_distinctness_dynamic = [
+        record
+        for record in learned
+        if record["origin"]
+        in {REAL_DISTINCTNESS_ORIGIN, EQUILATERAL_SHELL_ORIGIN}
+    ]
+    equilateral_shell_dynamic = [
+        record
+        for record in learned
+        if record["origin"] == EQUILATERAL_SHELL_ORIGIN
+    ]
+    classified_learned = [
+        *dynamic,
+        *algebraic_dynamic,

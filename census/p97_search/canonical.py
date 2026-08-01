@@ -213,14 +213,13 @@ def canonical_annotated(anode: Any) -> tuple[Any, ...]:
     section 3):
 
       - Node part: ``canonical(anode.node)`` as today.
-      - Blocker part (if present): ``min`` over sigma in
-        ``canonical_perms`` of the tuple
-        ``(sigma(c(sigma^-1(0))), ..., sigma(c(sigma^-1(n-1))))``.
-      - Cap part (if present): ``min`` over sigma in ``canonical_perms``
-        AND tau in S3 (cap-index permutations) of the tuple over
-        canonical positions i of ``("M", tau(j))`` if
-        ``sigma^-1(i)`` is the Moser vertex ``m_j``, else
-        ``("f", tau(f(sigma^-1(i))))``.
+      - Under one common ``sigma`` in ``canonical_perms``, transport the
+        blocker part (if present) and the cap part (if present).
+      - Minimize the PAIR of transported annotation parts jointly over
+        ``sigma`` and cap-index permutations ``tau in S3``.  The common
+        ``sigma`` is load-bearing when both annotations are present:
+        minimizing them independently would forget their relative alignment
+        and could over-merge non-isomorphic combined annotations.
 
     ``anode`` is duck-typed (``node``, ``blocker``, ``caps`` attributes)
     to avoid a hard import-time dependency from ``canonical.py`` on
@@ -232,30 +231,31 @@ def canonical_annotated(anode: Any) -> tuple[Any, ...]:
     n = node.n
     perms = canonical_perms(node)
 
-    if anode.blocker is not None:
-        c = anode.blocker.c
-        best_blocker: tuple[int, ...] | None = None
-        for sigma in perms:
-            order = [0] * n
-            for p in range(n):
-                order[sigma[p]] = p
-            transported = tuple(sigma[c[order[i]]] for i in range(n))
-            if best_blocker is None or transported < best_blocker:
-                best_blocker = transported
-        blocker_part: tuple[str, Any] = ("blocker", best_blocker)
-    else:
-        blocker_part = ("blocker", None)
-
+    c = anode.blocker.c if anode.blocker is not None else None
     if anode.caps is not None:
         moser = anode.caps.sorted_moser()
         m_index = {m: j for j, m in enumerate(moser)}
         f = anode.caps.f
-        best_caps: tuple[tuple[str, int], ...] | None = None
-        for sigma in perms:
-            order = [0] * n
-            for p in range(n):
-                order[sigma[p]] = p
-            for tau in _S3:
+        taus: tuple[tuple[int, int, int], ...] = _S3
+    else:
+        m_index = {}
+        f = {}
+        taus = ((0, 1, 2),)
+
+    best: tuple[Any, Any] | None = None
+    for sigma in perms:
+        order = [0] * n
+        for p in range(n):
+            order[sigma[p]] = p
+
+        transported_blocker = (
+            tuple(sigma[c[order[i]]] for i in range(n)) if c is not None else None
+        )
+        for tau in taus:
+            transported_caps: tuple[tuple[str, int], ...] | None
+            if anode.caps is None:
+                transported_caps = None
+            else:
                 entry = []
                 for i in range(n):
                     p = order[i]
@@ -263,11 +263,13 @@ def canonical_annotated(anode: Any) -> tuple[Any, ...]:
                         entry.append(("M", tau[m_index[p]]))
                     else:
                         entry.append(("f", tau[f[p]]))
-                entry_t = tuple(entry)
-                if best_caps is None or entry_t < best_caps:
-                    best_caps = entry_t
-        caps_part: tuple[str, Any] = ("caps", best_caps)
-    else:
-        caps_part = ("caps", None)
+                transported_caps = tuple(entry)
+            candidate = (transported_blocker, transported_caps)
+            if best is None or candidate < best:
+                best = candidate
+
+    assert best is not None
+    blocker_part: tuple[str, Any] = ("blocker", best[0])
+    caps_part: tuple[str, Any] = ("caps", best[1])
 
     return (node_part, blocker_part, caps_part)

@@ -1,0 +1,447 @@
+{
+  "compact_replay_package_sha256": "fd167ff56ab559ab35b0a24a1677d3b95d54a32857a743ab3aecd86778136465",
+  "counts": {
+    "actions": 11650,
+    "additions": 6611,
+    "compact_ascii85_bytes": 2294132,
+    "compact_binary_bytes": 1835304,
+    "consumed_checkpoints": 4,
+    "deleted_ids": 87619,
+    "deletions": 5039,
+    "hints": 301200,
+    "lean_sources": 12,
+    "n": 49358,
+    "objects": 8,
+    "payloads": 8,
+    "shard_1_windows": 2,
+    "shard_2_windows": 2,
+    "source_bytes": 4275493,
+    "variable_count": 49357,
+    "windows": 4
+  },
+  "encoding": {
+    "actions_magic": "CPA1",
+    "ascii85_character_range": "!..u",
+    "dense_addition_ids_omitted": true,
+    "envelope": "strict-canonical-raw-ascii85",
+    "formula_magic": "CPF1",
+    "integer": "canonical-u64-leb128",
+    "signed_literal": "zigzag"
+  },
+  "epistemic_status": "STRUCTURALLY VERIFIED COMPACT REPLAY PACKAGE; LEAN BUILD AND AXIOM AUDIT REQUIRED",
+  "generator": {
+    "byte_count": 51788,
+    "path": "emit_compact_windowed_rup_replay_package.py",
+    "sha256": "76f0f5b14c65f863bf93470ba06ee02a669a1b3295e39dbb84251bcf66017bfd"
+  },
+  "lean_sources": [
+    {
+      "byte_count": 360,
+      "path": "CompactWindowedRupReplay/Common.lean",
+      "sha256": "98560cd514ff6a6b61e2dbc4cd992a61778155dcb7131623852349bc14062f57"
+    },
+    {
+      "byte_count": 466,
+      "path": "CompactWindowedRupReplay/Checkpoint/C0000.lean",
+      "sha256": "497347c20e333a4cc0d2aafb67a29f1463cfa52b1b7b094d7443d7525c4981dd"
+    },
+    {
+      "byte_count": 466,
+      "path": "CompactWindowedRupReplay/Checkpoint/C0001.lean",
+      "sha256": "26f3b54906254e5ae97d4a6cbb298d236057694d0ea86f97be8a142e3c2e48e5"
+    },
+    {
+      "byte_count": 466,
+      "path": "CompactWindowedRupReplay/Checkpoint/C0002.lean",
+      "sha256": "5c8df82fc27a1c985e2d2199059b4be94816df0a41a42ebf9dd975d74d9056b6"
+    },
+    {
+      "byte_count": 466,
+      "path": "CompactWindowedRupReplay/Checkpoint/C0003.lean",
+      "sha256": "a3c22f4afd2c0f915ac832ca69590ce232c097b801d7742190723fff22286733"
+    },
+    {
+      "byte_count": 1196,
+      "path": "CompactWindowedRupReplay/Shard1/W0001.lean",
+      "sha256": "63b2e158e153542ecdf52d8b0e9098429ebdd2796636cc3929ab2574bc408378"
+    },
+    {
+      "byte_count": 1196,
+      "path": "CompactWindowedRupReplay/Shard1/W0002.lean",
+      "sha256": "e06406f282c62022b17e1590556fca0ba84d9ba05ce1a5a93bad97252f05a2a8"
+    },
+    {
+      "byte_count": 980,
+      "path": "CompactWindowedRupReplay/Shard1.lean",
+      "sha256": "0b9ddccd917b7d778f5b49078c735178b598f8b1e072fe740e605d7580877807"
+    },
+    {
+      "byte_count": 1196,
+      "path": "CompactWindowedRupReplay/Shard2/W0001.lean",
+      "sha256": "293088662aca3a39bfea49bb5bdccd131522235ef252c3904178aae765770937"
+    },
+    {
+      "byte_count": 1050,
+      "path": "CompactWindowedRupReplay/Shard2/W0002.lean",
+      "sha256": "601f9ba9058c8a8e25be553ef23ff1139d287acc2cd869a42039c4233f22924e"
+    },
+    {
+      "byte_count": 749,
+      "path": "CompactWindowedRupReplay/Shard2.lean",
+      "sha256": "24327f4e65ee3d131e3ac0bfae4893917a752a4548c1e228162c695dcfec8345"
+    },
+    {
+      "byte_count": 560,
+      "path": "CompactWindowedRupReplay/Compose.lean",
+      "sha256": "a4aba6aa929f66f28765d7c0ac63c56f2387c35f1b4cad0a113cd40de1935153"
+    }
+  ],
+  "objects": [
+    {
+      "counts": {
+        "clauses": 81253,
+        "literals": 198718,
+        "variable_count": 49357
+      },
+      "emitted": {
+        "binary_byte_count": 596356,
+        "binary_sha256": "72c3dac9e69257c9c80b13c43dd612360c0a94ac456ad48c48f3e0af448ad4f4",
+        "byte_count": 745445,
+        "kind": "formula",
+        "path": "data/formulas/b70b8623950f0eb1655a74ced8eba170addcf3afaf90416e49cea43642b55e21.cpf85",
+        "semantic_sha256": "a2ac37997c164884851fa834340b0b4a0296ddf18deeeaa3241709fe5831d3f3",
+        "sha256": "b70b8623950f0eb1655a74ced8eba170addcf3afaf90416e49cea43642b55e21"
+      },
+      "identity": "checkpoint-0000",
+      "kind": "formula",
+      "semantic_sha256": "a2ac37997c164884851fa834340b0b4a0296ddf18deeeaa3241709fe5831d3f3",
+      "source": {
+        "byte_count": 1409695,
+        "path": "checkpoints/checkpoint-0000.cnf",
+        "sha256": "ee65de56f8b1f733957bd17b939efae63dbc9afbab21c0837af35f3cdae8b24c"
+      }
+    },
+    {
+      "counts": {
+        "clauses": 8922,
+        "literals": 24191,
+        "variable_count": 49357
+      },
+      "emitted": {
+        "binary_byte_count": 77035,
+        "binary_sha256": "7379a3dd0a0d50f246f2259664af0c6ef184dfceeecaefaba3e344f3290b8b92",
+        "byte_count": 96294,
+        "kind": "formula",
+        "path": "data/formulas/33869360c679181a7674bd4ee2f27f8ea8f0172624dbed691c25c29ed012ff0d.cpf85",
+        "semantic_sha256": "1aeb1a40351573e6f35109a72f82f1797a6086c1946d102bfa90f9b75c10f30b",
+        "sha256": "33869360c679181a7674bd4ee2f27f8ea8f0172624dbed691c25c29ed012ff0d"
+      },
+      "identity": "checkpoint-0001",
+      "kind": "formula",
+      "semantic_sha256": "1aeb1a40351573e6f35109a72f82f1797a6086c1946d102bfa90f9b75c10f30b",
+      "source": {
+        "byte_count": 175764,
+        "path": "checkpoints/checkpoint-0001.cnf",
+        "sha256": "62f2f81639c5c5d6291a75a3b6b1bb94bf98832da4ab3edcaeea665e5900d0e9"
+      }
+    },
+    {
+      "counts": {
+        "clauses": 6547,
+        "literals": 19290,
+        "variable_count": 49357
+      },
+      "emitted": {
+        "binary_byte_count": 59872,
+        "binary_sha256": "0035a5208aa309215f2d58982d6540b12aa60e7638db22a760338d5c82ec80cd",
+        "byte_count": 74840,
+        "kind": "formula",
+        "path": "data/formulas/25a73f4b4820d8dddde8722254e1d6667a07e77d6e936d3321eb2b0429252302.cpf85",
+        "semantic_sha256": "b48d494de97db98b9848b16d11421b1c9c9a5381e7d173b0d7e48eacab2f3935",
+        "sha256": "25a73f4b4820d8dddde8722254e1d6667a07e77d6e936d3321eb2b0429252302"
+      },
+      "identity": "checkpoint-0002",
+      "kind": "formula",
+      "semantic_sha256": "b48d494de97db98b9848b16d11421b1c9c9a5381e7d173b0d7e48eacab2f3935",
+      "source": {
+        "byte_count": 137110,
+        "path": "checkpoints/checkpoint-0002.cnf",
+        "sha256": "7be869d4069e10c3d825c36c9a5b29ada74c92fcf26a98539caef5b8893d5f16"
+      }
+    },
+    {
+      "counts": {
+        "clauses": 2651,
+        "literals": 9929,
+        "variable_count": 49357
+      },
+      "emitted": {
+        "binary_byte_count": 29332,
+        "binary_sha256": "3574fb6ea012254a36c0104fe4924774c4cd88566b5f201444aa4903ecadd6ae",
+        "byte_count": 36665,
+        "kind": "formula",
+        "path": "data/formulas/fbe7980f0e0232b2a158c3df92fd7a2c6d06f52614afd6c786eb83ea018b5f78.cpf85",
+        "semantic_sha256": "0a10fabc956fd4a57cc3ab33e88b1a8d2093bb69d21bd2ce90b6d6b58e295a46",
+        "sha256": "fbe7980f0e0232b2a158c3df92fd7a2c6d06f52614afd6c786eb83ea018b5f78"
+      },
+      "identity": "checkpoint-0003",
+      "kind": "formula",
+      "semantic_sha256": "0a10fabc956fd4a57cc3ab33e88b1a8d2093bb69d21bd2ce90b6d6b58e295a46",
+      "source": {
+        "byte_count": 65631,
+        "path": "checkpoints/checkpoint-0003.cnf",
+        "sha256": "e8b31e9c01f324223ad78b17a7e91a42d915661ab2d5708fec6f564750309979"
+      }
+    },
+    {
+      "counts": {
+        "actions": 4000,
+        "additions": 2000,
+        "deleted_ids": 74331,
+        "deletions": 2000,
+        "first_addition_id": 81254,
+        "hints": 4002,
+        "next_addition_id": 83254
+      },
+      "emitted": {
+        "binary_byte_count": 240745,
+        "binary_sha256": "fbc7bc50cc5c85ca9e31f4a70802bf9125e7bea95c74c887a61085fa02197162",
+        "byte_count": 300932,
+        "kind": "actions",
+        "path": "data/actions/1fff63ce9b86309e17906e445e25620b655ff02be359bd53abfb16ff89d82571.cpa85",
+        "semantic_sha256": "acc7f469cd0368589a2b6a59fc94115c182ea1665962779442f9cade65932fe0",
+        "sha256": "1fff63ce9b86309e17906e445e25620b655ff02be359bd53abfb16ff89d82571"
+      },
+      "identity": "shard-1-window-0001",
+      "kind": "actions",
+      "semantic_sha256": "acc7f469cd0368589a2b6a59fc94115c182ea1665962779442f9cade65932fe0",
+      "source": {
+        "byte_count": 519097,
+        "path": "shard-1/window-0001/actions.lrat",
+        "sha256": "9b11595709318bed658e748d6c4b18990d15a23e0d699148237d1df8d2b96450"
+      }
+    },
+    {
+      "counts": {
+        "actions": 2362,
+        "additions": 1305,
+        "deleted_ids": 3680,
+        "deletions": 1057,
+        "first_addition_id": 8923,
+        "hints": 27318,
+        "next_addition_id": 10228
+      },
+      "emitted": {
+        "binary_byte_count": 88969,
+        "binary_sha256": "1440d3ecd72f1f21ede8b29dc1c10a229882b97e2bcf5683da9daa4fda3beadd",
+        "byte_count": 111212,
+        "kind": "actions",
+        "path": "data/actions/9951808c22aae528c9b457b20149ccde64a11ac912b8f823cad7e9e55c0c30e6.cpa85",
+        "semantic_sha256": "e4427860f20d0ab475437006d24bbe8ef00dc2388c6b198176bb7661fc491780",
+        "sha256": "9951808c22aae528c9b457b20149ccde64a11ac912b8f823cad7e9e55c0c30e6"
+      },
+      "identity": "shard-1-window-0002",
+      "kind": "actions",
+      "semantic_sha256": "e4427860f20d0ab475437006d24bbe8ef00dc2388c6b198176bb7661fc491780",
+      "source": {
+        "byte_count": 219677,
+        "path": "shard-1/window-0002/actions.lrat",
+        "sha256": "4454bc346630f9220ee6297be438a49bfea8b32b980df355b3980be1846368bf"
+      }
+    },
+    {
+      "counts": {
+        "actions": 4000,
+        "additions": 2589,
+        "deleted_ids": 6485,
+        "deletions": 1411,
+        "first_addition_id": 6548,
+        "hints": 215058,
+        "next_addition_id": 9137
+      },
+      "emitted": {
+        "binary_byte_count": 588603,
+        "binary_sha256": "0a69b803b0b8bd13269a3521959ed00bfd57b9be0c7850b07ba2b8050cf3caf1",
+        "byte_count": 735754,
+        "kind": "actions",
+        "path": "data/actions/cf5ef05517e8445eb03b924310b8c74172b4490db099718a398cf0a064b4d4a7.cpa85",
+        "semantic_sha256": "96c33ee18aee812b86d74b864d26515cad102363f28872494e1138f0eab66a70",
+        "sha256": "cf5ef05517e8445eb03b924310b8c74172b4490db099718a398cf0a064b4d4a7"
+      },
+      "identity": "shard-2-window-0001",
+      "kind": "actions",
+      "semantic_sha256": "96c33ee18aee812b86d74b864d26515cad102363f28872494e1138f0eab66a70",
+      "source": {
+        "byte_count": 1406119,
+        "path": "shard-2/window-0001/actions.lrat",
+        "sha256": "b9f628acf727e4aa7fb6d6f530b0dcb23c1e09f9944be30212d7064e58aa9038"
+      }
+    },
+    {
+      "counts": {
+        "actions": 1288,
+        "additions": 717,
+        "deleted_ids": 3123,
+        "deletions": 571,
+        "first_addition_id": 2652,
+        "hints": 54822,
+        "next_addition_id": 3369
+      },
+      "emitted": {
+        "binary_byte_count": 154392,
+        "binary_sha256": "ed2c6fd3da6a10ee018969abda4c31547cbcfd76e615f4c2a77d8337d97de9b5",
+        "byte_count": 192990,
+        "kind": "actions",
+        "path": "data/actions/8346041f99bc1915c7767faf4061c4504442576edf7289ef9d05d6682cd4ce08.cpa85",
+        "semantic_sha256": "167a7774442737d1d7eed93f48a1766ec3a16b5c78b07c4242978a34d7d1dbfa",
+        "sha256": "8346041f99bc1915c7767faf4061c4504442576edf7289ef9d05d6682cd4ce08"
+      },
+      "identity": "shard-2-window-0002",
+      "kind": "actions",
+      "semantic_sha256": "167a7774442737d1d7eed93f48a1766ec3a16b5c78b07c4242978a34d7d1dbfa",
+      "source": {
+        "byte_count": 342400,
+        "path": "shard-2/window-0002/actions.lrat",
+        "sha256": "5e347161ec0c2301ed8ff2c8c0a8223988f24d19f7ae3a87bf0425e9f95936ea"
+      }
+    }
+  ],
+  "payloads": [
+    {
+      "binary_byte_count": 240745,
+      "binary_sha256": "fbc7bc50cc5c85ca9e31f4a70802bf9125e7bea95c74c887a61085fa02197162",
+      "byte_count": 300932,
+      "kind": "actions",
+      "path": "data/actions/1fff63ce9b86309e17906e445e25620b655ff02be359bd53abfb16ff89d82571.cpa85",
+      "semantic_sha256": "acc7f469cd0368589a2b6a59fc94115c182ea1665962779442f9cade65932fe0",
+      "sha256": "1fff63ce9b86309e17906e445e25620b655ff02be359bd53abfb16ff89d82571"
+    },
+    {
+      "binary_byte_count": 154392,
+      "binary_sha256": "ed2c6fd3da6a10ee018969abda4c31547cbcfd76e615f4c2a77d8337d97de9b5",
+      "byte_count": 192990,
+      "kind": "actions",
+      "path": "data/actions/8346041f99bc1915c7767faf4061c4504442576edf7289ef9d05d6682cd4ce08.cpa85",
+      "semantic_sha256": "167a7774442737d1d7eed93f48a1766ec3a16b5c78b07c4242978a34d7d1dbfa",
+      "sha256": "8346041f99bc1915c7767faf4061c4504442576edf7289ef9d05d6682cd4ce08"
+    },
+    {
+      "binary_byte_count": 88969,
+      "binary_sha256": "1440d3ecd72f1f21ede8b29dc1c10a229882b97e2bcf5683da9daa4fda3beadd",
+      "byte_count": 111212,
+      "kind": "actions",
+      "path": "data/actions/9951808c22aae528c9b457b20149ccde64a11ac912b8f823cad7e9e55c0c30e6.cpa85",
+      "semantic_sha256": "e4427860f20d0ab475437006d24bbe8ef00dc2388c6b198176bb7661fc491780",
+      "sha256": "9951808c22aae528c9b457b20149ccde64a11ac912b8f823cad7e9e55c0c30e6"
+    },
+    {
+      "binary_byte_count": 588603,
+      "binary_sha256": "0a69b803b0b8bd13269a3521959ed00bfd57b9be0c7850b07ba2b8050cf3caf1",
+      "byte_count": 735754,
+      "kind": "actions",
+      "path": "data/actions/cf5ef05517e8445eb03b924310b8c74172b4490db099718a398cf0a064b4d4a7.cpa85",
+      "semantic_sha256": "96c33ee18aee812b86d74b864d26515cad102363f28872494e1138f0eab66a70",
+      "sha256": "cf5ef05517e8445eb03b924310b8c74172b4490db099718a398cf0a064b4d4a7"
+    },
+    {
+      "binary_byte_count": 59872,
+      "binary_sha256": "0035a5208aa309215f2d58982d6540b12aa60e7638db22a760338d5c82ec80cd",
+      "byte_count": 74840,
+      "kind": "formula",
+      "path": "data/formulas/25a73f4b4820d8dddde8722254e1d6667a07e77d6e936d3321eb2b0429252302.cpf85",
+      "semantic_sha256": "b48d494de97db98b9848b16d11421b1c9c9a5381e7d173b0d7e48eacab2f3935",
+      "sha256": "25a73f4b4820d8dddde8722254e1d6667a07e77d6e936d3321eb2b0429252302"
+    },
+    {
+      "binary_byte_count": 77035,
+      "binary_sha256": "7379a3dd0a0d50f246f2259664af0c6ef184dfceeecaefaba3e344f3290b8b92",
+      "byte_count": 96294,
+      "kind": "formula",
+      "path": "data/formulas/33869360c679181a7674bd4ee2f27f8ea8f0172624dbed691c25c29ed012ff0d.cpf85",
+      "semantic_sha256": "1aeb1a40351573e6f35109a72f82f1797a6086c1946d102bfa90f9b75c10f30b",
+      "sha256": "33869360c679181a7674bd4ee2f27f8ea8f0172624dbed691c25c29ed012ff0d"
+    },
+    {
+      "binary_byte_count": 596356,
+      "binary_sha256": "72c3dac9e69257c9c80b13c43dd612360c0a94ac456ad48c48f3e0af448ad4f4",
+      "byte_count": 745445,
+      "kind": "formula",
+      "path": "data/formulas/b70b8623950f0eb1655a74ced8eba170addcf3afaf90416e49cea43642b55e21.cpf85",
+      "semantic_sha256": "a2ac37997c164884851fa834340b0b4a0296ddf18deeeaa3241709fe5831d3f3",
+      "sha256": "b70b8623950f0eb1655a74ced8eba170addcf3afaf90416e49cea43642b55e21"
+    },
+    {
+      "binary_byte_count": 29332,
+      "binary_sha256": "3574fb6ea012254a36c0104fe4924774c4cd88566b5f201444aa4903ecadd6ae",
+      "byte_count": 36665,
+      "kind": "formula",
+      "path": "data/formulas/fbe7980f0e0232b2a158c3df92fd7a2c6d06f52614afd6c786eb83ea018b5f78.cpf85",
+      "semantic_sha256": "0a10fabc956fd4a57cc3ab33e88b1a8d2093bb69d21bd2ce90b6d6b58e295a46",
+      "sha256": "fbe7980f0e0232b2a158c3df92fd7a2c6d06f52614afd6c786eb83ea018b5f78"
+    }
+  ],
+  "schema": "p97-windowed-rup-compact-lean-replay-v2",
+  "source": {
+    "epistemic_status": "STRUCTURALLY VALIDATED WINDOWED PURE-RUP SHARDS; LEAN REPLAY REQUIRED",
+    "package_sha256": "23592f2ba08287735e1106683d9753986069d925068a54de0590cf0b88cc66ce",
+    "schema": "p97-windowed-pure-rup-package-v1",
+    "tools": {
+      "lean_checker": {
+        "byte_count": 32211,
+        "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/Certificate/CheckpointedRup.lean",
+        "sha256": "6c670c24b989f8024f43f6362ffc031c040eba77e68293060aa65cb9cb25a8e8"
+      },
+      "parent_materializer": {
+        "byte_count": 41618,
+        "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-lrat-ingress/materialize_checkpointed_rup.py",
+        "sha256": "e3c28ae5fe05679973022b08266ec1d6c7a6bd097a9753aeb8ace5fc0a1a9939"
+      },
+      "windowed_materializer": {
+        "byte_count": 56631,
+        "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/unique4-exact-two-lrat-ingress/materialize_windowed_rup.py",
+        "sha256": "d9a0fa22001f8ade5f91a877d00371449f77a71e67a4dd55bce589f254311531"
+      }
+    }
+  },
+  "source_counts": {
+    "checkpoints": 5,
+    "max_checkpoint_bytes": 1409695,
+    "max_checkpoint_clauses": 81253,
+    "shard_1": {
+      "additions": 3305,
+      "deleted_ids": 78011,
+      "deletions": 3057,
+      "hints": 31320,
+      "lines": 6362,
+      "max_window_lines": 4000,
+      "max_window_lrat_bytes": 519097,
+      "peak_active_clause_count": 81253,
+      "windows": 2
+    },
+    "shard_2": {
+      "additions": 3306,
+      "deleted_ids": 9608,
+      "deletions": 1982,
+      "hints": 269880,
+      "lines": 5288,
+      "max_window_lines": 4000,
+      "max_window_lrat_bytes": 1406119,
+      "peak_active_clause_count": 6563,
+      "windows": 2
+    },
+    "terminal_window": "shard-2/window-0002",
+    "variable_count": 49357,
+    "windows": 4
+  },
+  "trust_profile": {
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound",
+      "Lean.ofReduceBool",
+      "Lean.trustCompiler"
+    ],
+    "audit_status": "NOT_AUDITED",
+    "claim": "Generated window proofs use native_decide and therefore explicitly include Lean.trustCompiler; no compiler-independent trust is claimed."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "classification": "source-audited diagnostic-only necessary-condition projection",
+  "logic": "exact rational-coefficient QF_NRA",
+  "carrier_scope": "local named roles only; no n is fixed and unnamed carrier points are not materialized",
+  "named_roles": {
+    "apices": ["a1", "a2", "a3"],
+    "sources": ["p1", "p2", "r1", "r2", "q1", "q2"],
+    "blockers": ["bp", "br", "bq"],
+    "caller_specialization": "source = q1; q2 is the second same-first-radius cap source"
+  },
+  "alias_policy": {
+    "maps": 95,
+    "bp": ["fresh", "r1", "r2", "q1", "q2"],
+    "br": ["fresh", "p1", "p2", "q1", "q2"],
+    "bq": ["fresh", "p1", "p2", "r1", "r2"],
+    "restriction": "the three blocker values are pairwise distinct"
+  },
+  "order_policy": {
+    "branches": 1268640,
+    "description": "all distinct named representatives in one strict cyclic convex order; all six sources and fresh bp/br lie strictly on the a2-to-a3 first-cap arc; fresh bq is inserted on every structural arc"
+  },
+  "encoded": [
+    "three pairwise-distinct positive first-apex radii for the p, r, and q source pairs",
+    "positive equal-blocker distances for p at bp, r at br, and q at bq",
+    "q1-row endpoint-omission disjunctions for the p and r pairs",
+    "all source-backed distinctness and blocker/source alias possibilities",
+    "strict convex independence of every distinct named carrier representative",
+    "strict first-cap placement of all six sources and the proved retained blockers bp/br",
+    "three pairwise-distinct non-obtuse Moser apices",
+    "one positive MEC radius, all three apices on its boundary, and all named carrier representatives in its closed disk"
+  ],
+  "not_encoded_first": "the unnamed carrier points needed for the live rolewise closed-cap profile (6,8,6), equivalently strict interiors (4,6,4), at n = 17",
+  "not_encoded_further": [
+    "the two unnamed points completing each exact-four selected row",
+    "carrier-wide K4-free, q-free, deletion-packet, minimality, no-M44, and tri-apex robust predicates",
+    "any guessed A..F six-point obstruction"
+  ],
+  "trust_boundary": "UNKNOWN is only a bounded external Z3 diagnostic. The formula is a local necessary-condition projection, not a full n=17 carrier model, and it is neither Lean-kernel checked nor theorem closure."
+}

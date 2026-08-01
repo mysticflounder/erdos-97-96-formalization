@@ -1,0 +1,5 @@
+import Erdos9796Proof.P97.Census554.ConvexFivePointCore
+
+#print axioms Problem97.Census554.ConvexFivePointCore.metric_orientation_incompatibility
+#print axioms Problem97.Census554.ConvexFivePointCore.false_of_core
+#print axioms Problem97.Census554.ConvexFivePointCore.false_of_core_of_neg

@@ -1,0 +1,3 @@
+import Erdos9796Proof.P97.FiniteN11
+#print axioms Problem97.FiniteN11Closure
+#print axioms Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual_of_card_eq_eleven

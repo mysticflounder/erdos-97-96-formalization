@@ -1,0 +1,113 @@
+{
+  "status": "ABSTRACT-INCIDENCE-COUNTERMODEL-NOT-EUCLIDEAN",
+  "vertices": 15,
+  "cyclic_order": [0, 3, 4, 5, 6, 1, 7, 8, 9, 10, 2, 11, 12, 13, 14],
+  "apices": [0, 1, 2],
+  "caps": [
+    [0, 3, 4, 5, 6, 1],
+    [1, 7, 8, 9, 10, 2],
+    [2, 11, 12, 13, 14, 0]
+  ],
+  "not_robust_centers": [3, 4, 5, 6],
+  "rows": [
+    {
+      "name": "rich_0_a",
+      "kind": "rich",
+      "center": 0,
+      "radius": "rho_0_a",
+      "neighbors": [4, 5, 7, 8]
+    },
+    {
+      "name": "rich_0_b",
+      "kind": "rich",
+      "center": 0,
+      "radius": "rho_0_b",
+      "neighbors": [9, 10, 11, 13]
+    },
+    {
+      "name": "rich_1_a",
+      "kind": "rich",
+      "center": 1,
+      "radius": "rho_1_a",
+      "neighbors": [4, 6, 7, 10]
+    },
+    {
+      "name": "rich_1_b",
+      "kind": "rich",
+      "center": 1,
+      "radius": "rho_1_b",
+      "neighbors": [5, 8, 11, 13]
+    },
+    {
+      "name": "rich_2_a",
+      "kind": "rich",
+      "center": 2,
+      "radius": "rho_2_a",
+      "neighbors": [3, 6, 8, 12]
+    },
+    {
+      "name": "rich_2_b",
+      "kind": "rich",
+      "center": 2,
+      "radius": "rho_2_b",
+      "neighbors": [5, 7, 9, 14]
+    },
+    {
+      "name": "critical_3",
+      "kind": "critical",
+      "center": 3,
+      "radius": "sigma_3",
+      "neighbors": [0, 1, 4, 7]
+    },
+    {
+      "name": "critical_4",
+      "kind": "critical",
+      "center": 4,
+      "radius": "sigma_4",
+      "neighbors": [2, 5, 8, 9]
+    },
+    {
+      "name": "critical_5",
+      "kind": "critical",
+      "center": 5,
+      "radius": "sigma_5",
+      "neighbors": [6, 10, 11, 12]
+    },
+    {
+      "name": "critical_6",
+      "kind": "critical",
+      "center": 6,
+      "radius": "sigma_6",
+      "neighbors": [0, 3, 13, 14]
+    }
+  ],
+  "blocker_of": {
+    "0": 3,
+    "1": 3,
+    "2": 4,
+    "3": 6,
+    "4": 3,
+    "5": 4,
+    "6": 5,
+    "7": 3,
+    "8": 4,
+    "9": 4,
+    "10": 5,
+    "11": 5,
+    "12": 5,
+    "13": 6,
+    "14": 6
+  },
+  "common_deletion_packets": [
+    {
+      "deleted": 14,
+      "centers": [0, 3],
+      "rows": ["rich_0_a", "critical_3"]
+    },
+    {
+      "deleted": 12,
+      "centers": [0, 4],
+      "rows": ["rich_0_b", "critical_4"]
+    }
+  ]
+}

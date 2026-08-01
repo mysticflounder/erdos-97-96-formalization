@@ -1,0 +1,68 @@
+{
+  "arms": [
+    {
+      "arm": "delete_interior_w_survives_at_q_blocker",
+      "clauses": 55200,
+      "cnf": "scratch/card11-exact5-distinct/artifacts/delete-w.cnf",
+      "cnf_sha256": "58c4dcecb7514b8a5b10ded2238e96f827db1304b2d6cf335d3d802584ae218b",
+      "result": "scratch/card11-exact5-distinct/artifacts/delete-w.result.json",
+      "variables": 935,
+      "verification": {
+        "arm": "delete_interior_w_survives_at_q_blocker",
+        "clauses": 55200,
+        "cnf_sha256": "58c4dcecb7514b8a5b10ded2238e96f827db1304b2d6cf335d3d802584ae218b",
+        "independent_checks": [
+          "block_counts",
+          "clause_multiset",
+          "downstream_separate",
+          "header",
+          "orbit",
+          "result_counts",
+          "schema",
+          "sha256",
+          "solver_not_run",
+          "stage",
+          "variables"
+        ],
+        "status": "VERIFIED_ENCODE_ONLY",
+        "variables": 935
+      }
+    },
+    {
+      "arm": "delete_interior_q_survives_at_w_blocker",
+      "clauses": 55200,
+      "cnf": "scratch/card11-exact5-distinct/artifacts/delete-q.cnf",
+      "cnf_sha256": "5bfdc77134961c5a23a18bfe4c57ad7ef40e88f06a583c9964b784d7319ee3ad",
+      "result": "scratch/card11-exact5-distinct/artifacts/delete-q.result.json",
+      "variables": 935,
+      "verification": {
+        "arm": "delete_interior_q_survives_at_w_blocker",
+        "clauses": 55200,
+        "cnf_sha256": "5bfdc77134961c5a23a18bfe4c57ad7ef40e88f06a583c9964b784d7319ee3ad",
+        "independent_checks": [
+          "block_counts",
+          "clause_multiset",
+          "downstream_separate",
+          "header",
+          "orbit",
+          "result_counts",
+          "schema",
+          "sha256",
+          "solver_not_run",
+          "stage",
+          "variables"
+        ],
+        "status": "VERIFIED_ENCODE_ONLY",
+        "variables": 935
+      }
+    }
+  ],
+  "created_utc": "2026-07-30T12:47:03.879705+00:00",
+  "epistemic_status": "validated finite projection; no source-to-model theorem and no Lean closure",
+  "milestone": "ENCODE_ONLY_INITIAL_CNFS_INDEPENDENTLY_VERIFIED",
+  "provenance": "scratch/card11-exact5-distinct/artifacts/provenance.json",
+  "provenance_sha256": "54ab24598639b56a398645c1fd8770783c94a09c69ae2b5011b0d89eec9679e4",
+  "schema": "p97-card11-exact5-distinct-encode-checkpoint-v1",
+  "solver_run_count": 0,
+  "solver_status": "NOT_RUN_ENCODE_ONLY"
+}

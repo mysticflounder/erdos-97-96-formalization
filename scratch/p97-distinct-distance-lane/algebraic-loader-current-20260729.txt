@@ -1,0 +1,556 @@
+    if assignment is not None:
+        missing = [
+            abs(literal) for literal in clause if abs(literal) not in assignment
+        ]
+        if missing:
+            raise StructuralCegarError(
+                "Kalmanson cap-order clause assignment is incomplete"
+            )
+        if any(not assignment[abs(literal)] for literal in clause):
+            raise StructuralCegarError(
+                "Kalmanson cap-order antecedent is not selected in the "
+                "current assignment"
+            )
+        _clause_false(clause, assignment)
+    return clause
+
+
+def _clause_for_memberships(
+    encoding: Any,
+    memberships: Sequence[tuple[int, int]],
+    assignment: Mapping[int, bool] | None = None,
+) -> tuple[int, ...]:
+    """Negate a sorted, duplicate-free set of shell facts.
+
+    For an algebraic certificate term attached to the equality
+    ``d(center,pivot)^2 = d(center,target)^2``, the SAT/P97 semantics needs
+    only ``s(center,pivot)`` and ``s(center,target)``.  Same-row membership
+    makes that equality true in every Euclidean realization.  A checked
+    duplicate-center closure path has the same local membership semantics.
+    """
+
+    normalized = tuple(sorted(set(memberships)))
+    if (
+        not normalized
+        or len(normalized) != len(memberships)
+        or any(
+            type(center) is not int
+            or type(point) is not int
+            or center == point
+            or not 0 <= center < CELL.n
+            or not 0 <= point < CELL.n
+            for center, point in normalized
+        )
+    ):
+        raise StructuralCegarError(
+            "algebraic antecedent memberships are invalid, duplicate, or unsorted"
+        )
+    clause = tuple(-encoding.var("s", center, point) for center, point in normalized)
+    if len(set(clause)) != len(clause):
+        raise StructuralCegarError("algebraic clause has duplicate literals")
+    if assignment is not None:
+        missing = [abs(literal) for literal in clause if abs(literal) not in assignment]
+        if missing:
+            raise StructuralCegarError("algebraic clause assignment is incomplete")
+        if any(not assignment[abs(literal)] for literal in clause):
+            raise StructuralCegarError(
+                "algebraic antecedent is not selected in the current assignment"
+            )
+        _clause_false(clause, assignment)
+    return clause
+
+
+def _rows_from_algebraic_system(system: Mapping[str, Any]) -> tuple[Any, ...]:
+    expected_flags = {
+        "schema": ALGEBRAIC_SYSTEM_SCHEMA,
+        "n": CELL.n,
+        "equation_count": 30,
+        "blockers_used": False,
+        "exact_flags_used": False,
+        "full_distance_classes_used": False,
+        "inequalities_used": False,
+        "coordinate_gauge": GAUGE,
+        "free_variables": list(equality_probe.variable_names(CELL.n)),
+    }
+    for field, expected in expected_flags.items():
+        if system.get(field) != expected:
+            raise StructuralCegarError(
+                f"algebraic source system has invalid {field!r}"
+            )
+    raw_rows = system.get("rows")
+    if not isinstance(raw_rows, list) or len(raw_rows) != CELL.n:
+        raise StructuralCegarError("algebraic source system must contain ten rows")
+    rows: list[Any] = []
+    for center, raw in enumerate(raw_rows):
+        if not isinstance(raw, dict) or set(raw) != {"center", "support", "exact"}:
+            raise StructuralCegarError("algebraic source row has invalid shape")
+        try:
+            row = metric.MetricRow(
+                raw["center"], tuple(raw["support"]), raw["exact"]
+            )
+        except Exception as exc:
+            raise StructuralCegarError(
+                f"could not decode algebraic source row {center}: {exc}"
+            ) from exc
+        _validate_phase3_row(row, expected_center=center)
+        rows.append(row)
+    rows_json = [
+        {"center": row.center, "support": list(row.support), "exact": row.exact}
+        for row in rows
+    ]
+    if system.get("metric_rows_sha256") != _sha256_value(rows_json):
+        raise StructuralCegarError("algebraic source metric-row hash mismatch")
+    polynomials = list(equality_probe.system_polynomials(rows))
+    if system.get("polynomials") != polynomials:
+        raise StructuralCegarError(
+            "algebraic source polynomial stream does not match its rows"
+        )
+    return tuple(rows)
+
+
+def _expected_generator_entries(rows: Sequence[Any]) -> list[dict[str, Any]]:
+    expected: list[dict[str, Any]] = []
+    index = 0
+    for row_index, row in enumerate(rows):
+        pivot = row.support[0]
+        row_polynomials = equality_probe.row_equalities(row)
+        for support_position, (target, polynomial) in enumerate(
+            zip(row.support[1:], row_polynomials, strict=True), start=1
+        ):
+            expected.append(
+                {
+                    "index": index,
+                    "singular_index": index + 1,
+                    "name": (
+                        f"f{index:02d}_r{row_index:02d}_c{row.center}_"
+                        f"p{pivot}_q{target}"
+                    ),
+                    "row_index": row_index,
+                    "support_position": support_position,
+                    "center": row.center,
+                    "pivot": pivot,
+                    "target": target,
+                    "polynomial": polynomial,
+                }
+            )
+            index += 1
+    if index != 30:
+        raise StructuralCegarError("algebraic row mapping did not yield 30 generators")
+    return expected
+
+
+def _parse_qq_poly(
+    expression: Any,
+    *,
+    symbols: Sequence[Any],
+    symbol_table: Mapping[str, Any],
+    where: str,
+) -> Any:
+    if not isinstance(expression, str):
+        raise StructuralCegarError(f"{where} is not a polynomial string")
+    try:
+        parsed = sp.sympify(expression.replace("^", "**"), locals=dict(symbol_table))
+        if parsed.free_symbols - set(symbols):
+            raise ValueError("expression contains an undeclared symbol")
+        return sp.Poly(parsed, *symbols, domain=sp.QQ)
+    except Exception as exc:
+        raise StructuralCegarError(f"{where} is not an exact QQ polynomial: {exc}") from exc
+
+
+def _replay_algebraic_certificate(
+    certificate: Mapping[str, Any],
+    system: Mapping[str, Any],
+) -> tuple[tuple[Any, ...], tuple[tuple[int, int], ...], dict[str, Any]]:
+    """Replay one saved identity and derive its sparse P97 antecedent."""
+
+    rows = _rows_from_algebraic_system(system)
+    fixed = {
+        "schema": ALGEBRAIC_CERTIFICATE_SCHEMA,
+        "source_system_sha256": _sha256_bytes(
+            _canonical_bytes(system) + b"\n"
+        ),
+        "source_metric_rows_sha256": system.get("metric_rows_sha256"),
+        "scope": (
+            "one gauge-fixed equality-only finite polynomial system; "
+            "no inequalities, blockers, exact off-support classes, "
+            "Phase3 coverage, Lean, or P97 closure"
+        ),
+        "coefficient_field": "QQ",
+        "variables": list(equality_probe.variable_names(CELL.n)),
+        "coordinate_gauge": GAUGE,
+        "identity": "1 = sum_i cofactor_i * generator_i",
+        "generator_order": "row index, then support positions 1,2,3",
+    }
+    for field, expected in fixed.items():
+        if certificate.get(field) != expected:
+            raise StructuralCegarError(
+                f"algebraic certificate has invalid {field!r}"
+            )
+    if certificate.get("source_metric_rows_sha256") != system.get(
+        "metric_rows_sha256"
+    ):
+        raise StructuralCegarError(
+            "algebraic certificate/source row hash mapping mismatch"
+        )
+    payload = dict(certificate)
+    claimed_payload_hash = payload.pop("certificate_payload_sha256", None)
+    if claimed_payload_hash != _sha256_bytes(_canonical_bytes(payload) + b"\n"):
+        raise StructuralCegarError("algebraic certificate payload hash mismatch")
+
+    entries = certificate.get("entries")
+    expected_entries = _expected_generator_entries(rows)
+    if not isinstance(entries, list) or len(entries) != len(expected_entries):
+        raise StructuralCegarError("algebraic certificate must contain 30 entries")
+    cofactors: list[str] = []
+    for index, (entry, expected) in enumerate(
+        zip(entries, expected_entries, strict=True)
+    ):
+        if not isinstance(entry, dict) or set(entry) != {*expected, "cofactor"}:
+            raise StructuralCegarError(
+                f"algebraic certificate entry {index} has invalid shape"
+            )
+        if any(entry[field] != value for field, value in expected.items()):
+            raise StructuralCegarError(
+                f"algebraic certificate entry {index} row/generator mapping mismatch"
+            )
+        if not isinstance(entry["cofactor"], str):
+            raise StructuralCegarError(
+                f"algebraic certificate entry {index} cofactor is not text"
+            )
+        cofactors.append(entry["cofactor"])
+    if certificate.get("cofactor_stream_sha256") != _sha256_bytes(
+        _canonical_bytes(cofactors) + b"\n"
+    ):
+        raise StructuralCegarError("algebraic cofactor stream hash mismatch")
+
+    variable_names = list(equality_probe.variable_names(CELL.n))
+    symbols = sp.symbols(" ".join(variable_names))
+    symbol_table = dict(zip(variable_names, symbols, strict=True))
+    total = sp.Poly(0, *symbols, domain=sp.QQ)
+    memberships: set[tuple[int, int]] = set()
+    used_rows: set[int] = set()
+    nonzero_count = 0
+    for index, entry in enumerate(entries):
+        generator = _parse_qq_poly(
+            entry["polynomial"],
+            symbols=symbols,
+            symbol_table=symbol_table,
+            where=f"generator {index}",
+        )
+        cofactor = _parse_qq_poly(
+            entry["cofactor"],
+            symbols=symbols,
+            symbol_table=symbol_table,
+            where=f"cofactor {index}",
+        )
+        textual_nonzero = entry["cofactor"] != "0"
+        if textual_nonzero == cofactor.is_zero:
+            raise StructuralCegarError(
+                f"cofactor {index} has noncanonical zero/nonzero spelling"
+            )
+        if not cofactor.is_zero:
+            nonzero_count += 1
+            used_rows.add(entry["row_index"])
+            memberships.add((entry["center"], entry["pivot"]))
+            memberships.add((entry["center"], entry["target"]))
+        total += cofactor * generator
+    if total != sp.Poly(1, *symbols, domain=sp.QQ):
+        raise StructuralCegarError(
+            "independent exact QQ replay did not obtain the unit identity"
+        )
+    antecedent = tuple(sorted(memberships))
+    if not antecedent:
+        raise StructuralCegarError("algebraic certificate has no used antecedent")
+    return rows, antecedent, {
+        "identity_replayed": True,
+        "generator_count": len(entries),
+        "nonzero_cofactor_count": nonzero_count,
+        "antecedent_literal_count": len(antecedent),
+        "used_row_indices": sorted(used_rows),
+        "coordinate_gauge": GAUGE,
+        "gauge_precondition": "P0 != P1 from P97 distinct points",
+    }
+
+
+def _saved_artifact_path(
+    directory: Path, declared: Any, artifact_prefix: str
+) -> Path:
+    if not isinstance(declared, str):
+        raise StructuralCegarError("saved artifact path is not text")
+    prefix = artifact_prefix + "/"
+    if not declared.startswith(prefix):
+        raise StructuralCegarError(f"saved artifact path leaves pinned prefix: {declared}")
+    relative = Path(declared[len(prefix) :])
+    if not relative.parts or relative.is_absolute() or ".." in relative.parts:
+        raise StructuralCegarError(f"unsafe saved artifact path: {declared}")
+    return directory / relative
+
+
+def _verify_saved_hashes(
+    directory: Path, artifact_prefix: str
+) -> dict[str, str]:
+    checksum_path = directory / "SHA256SUMS"
+    if not checksum_path.is_file():
+        raise StructuralCegarError("algebraic bootstrap lacks SHA256SUMS")
+    hashes: dict[str, str] = {}
+    for line_number, raw in enumerate(
+        checksum_path.read_text().splitlines(), start=1
+    ):
+        if len(raw) < 67 or raw[64:66] != "  ":
+            raise StructuralCegarError(
+                f"SHA256SUMS:{line_number}: invalid checksum line"
+            )
+        digest, declared = raw[:64], raw[66:]
+        if (
+            any(character not in "0123456789abcdef" for character in digest)
+            or declared in hashes
+        ):
+            raise StructuralCegarError(
+                f"SHA256SUMS:{line_number}: invalid or duplicate entry"
+            )
+        path = _saved_artifact_path(directory, declared, artifact_prefix)
+        if not path.is_file() or _sha256_file(path) != digest:
+            raise StructuralCegarError(f"saved artifact hash mismatch: {declared}")
+        hashes[declared] = digest
+    manifest_name = f"{artifact_prefix}/manifest.json"
+    if manifest_name not in hashes:
+        raise StructuralCegarError("SHA256SUMS does not cover manifest.json")
+    return hashes
+
+
+def _load_algebraic_template_bank(
+    directory: Path,
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    manifest = _strict_json(directory / "manifest.json")
+    if manifest.get("schema") != ALGEBRAIC_MANIFEST_SCHEMA:
+        raise StructuralCegarError("algebraic bootstrap manifest schema mismatch")
+    declared_audit = manifest.get("source_unit_audit")
+    spec = next(
+        (
+            candidate
+            for candidate in ALGEBRAIC_BANK_SPECS
+            if declared_audit == candidate["audit"]
+        ),
+        None,
+    )
+    if spec is None:
+        raise StructuralCegarError("algebraic bootstrap source audit is not pinned")
+    artifact_prefix = str(spec["artifact_prefix"])
+    hashes = _verify_saved_hashes(directory, artifact_prefix)
+    scope_count = int(spec["scope_count"])
+    if manifest.get("scope") != {
+        "blockers_used": False,
+        "equality_only": True,
+        "finite_system_count": scope_count,
+        "inequalities_used": False,
+        "lean_kernel_checked": False,
+        "off_support_exactness_used": False,
+        "p97_closure_claimed": False,
+        "phase3_completeness_claimed": False,
+    }:
+        raise StructuralCegarError("algebraic bootstrap manifest scope mismatch")
+    if manifest.get("summary") != spec["certificate_summary"]:
+        raise StructuralCegarError("algebraic bootstrap manifest summary mismatch")
+
+    audit = spec["audit"]
+    audit_path = ROOT / str(audit["path"])
+    if (
+        not audit_path.is_file()
+        or _sha256_file(audit_path) != audit.get("sha256")
+    ):
+        raise StructuralCegarError("algebraic bootstrap source audit hash mismatch")
+    audit_manifest = _strict_json(audit_path)
+    if (
+        audit_manifest.get("schema")
+        != "p97-phase3-survivor-singular-equality-run-v1"
+        or audit_manifest.get("summary") != spec["audit_summary"]
+    ):
+        raise StructuralCegarError(
+            "algebraic bootstrap source audit composition mismatch"
+        )
+    audit_systems = audit_manifest.get("systems")
+    expected_audit_systems = spec["audit_systems"]
+    if (
+        not isinstance(audit_systems, list)
+        or len(audit_systems) != len(expected_audit_systems)
+    ):
+        raise StructuralCegarError("source unit audit system set mismatch")
+    for actual, expected in zip(audit_systems, expected_audit_systems, strict=True):
+        if not isinstance(actual, dict) or (
+            actual.get("name"),
+            actual.get("classification"),
+            actual.get("system_artifact_sha256"),
+            actual.get("metric_rows_sha256"),
+            actual.get("survivor_count"),
+        ) != expected:
+            raise StructuralCegarError(
+                "algebraic bootstrap source audit system mismatch"
+            )
+    audit_by_name = {
+        item.get("name"): item for item in audit_systems if isinstance(item, dict)
+    }
+
+    targets = manifest.get("targets")
+    expected_targets = spec["targets"]
+    if not isinstance(targets, list) or len(targets) != len(expected_targets):
+        raise StructuralCegarError("algebraic bootstrap target count mismatch")
+    if [target.get("name") for target in targets if isinstance(target, dict)] != list(
+        expected_targets
+    ):
+        raise StructuralCegarError("algebraic bootstrap target order mismatch")
+    templates: list[dict[str, Any]] = []
+    summaries: list[dict[str, Any]] = []
+    seen_names: set[str] = set()
+    for target in targets:
+        if not isinstance(target, dict) or target.get("status") != "CERTIFIED_UNIT":
+            raise StructuralCegarError("algebraic bootstrap target is not certified")
+        name = target.get("name")
+        if not isinstance(name, str) or name in seen_names:
+            raise StructuralCegarError("algebraic bootstrap target name mismatch")
+        seen_names.add(name)
+        source_audit = audit_by_name.get(name)
+        if (
+            not isinstance(source_audit, dict)
+            or source_audit.get("classification") != "UNIT"
+        ):
+            raise StructuralCegarError("target is absent from source unit audit")
+        expected_system_hash, expected_rows_hash, _expected_projection = (
+            expected_targets[name]
+        )
+        if (
+            target.get("source_system_sha256") != expected_system_hash
+            or target.get("source_metric_rows_sha256") != expected_rows_hash
+        ):
+            raise StructuralCegarError(
+                f"algebraic pinned source invariant mismatch for {name}"
+            )
+        for target_field, audit_field in (
+            ("source_system", "system_artifact"),
+            ("source_system_sha256", "system_artifact_sha256"),
+            ("source_metric_rows_sha256", "metric_rows_sha256"),
+            ("survivor_count", "survivor_count"),
+        ):
+            if target.get(target_field) != source_audit.get(audit_field):
+                raise StructuralCegarError(
+                    f"target/source-audit {target_field} mapping mismatch"
+                )
+        source_path = ROOT / str(target.get("source_system"))
+        if (
+            not source_path.is_file()
+            or _sha256_file(source_path) != target.get("source_system_sha256")
+        ):
+            raise StructuralCegarError("algebraic source system hash mismatch")
+        system = _strict_json(source_path)
+        if system.get("metric_rows_sha256") != target.get(
+            "source_metric_rows_sha256"
+        ):
+            raise StructuralCegarError("target/source-system row hash mismatch")
+
+        certificate_meta = target.get("certificate")
+        replay_meta = target.get("replay")
+        if not isinstance(certificate_meta, dict) or not isinstance(replay_meta, dict):
+            raise StructuralCegarError("target certificate/replay metadata missing")
+        certificate_path = _saved_artifact_path(
+            directory, certificate_meta.get("path"), artifact_prefix
+        )
+        declared_certificate_path = certificate_meta.get("path")
+        if hashes.get(declared_certificate_path) != certificate_meta.get(
+            "file_sha256"
+        ) or _sha256_file(certificate_path) != certificate_meta.get("file_sha256"):
+            raise StructuralCegarError("target certificate saved hash mismatch")
+        certificate = _strict_json(certificate_path)
+        if certificate.get("source_system") != target.get("source_system"):
+            raise StructuralCegarError("certificate/source-system path mismatch")
+        if certificate.get("source_system_sha256") != target.get(
+            "source_system_sha256"
+        ):
+            raise StructuralCegarError("certificate/source-system hash mismatch")
+        if certificate.get("certificate_payload_sha256") != certificate_meta.get(
+            "payload_sha256"
+        ):
+            raise StructuralCegarError("certificate payload metadata mismatch")
+        if (
+            replay_meta.get("status") != "PASS"
+            or replay_meta.get("producer_preflight_status") != "PASS"
+            or replay_meta.get("result", {}).get("status") != "PASS"
+        ):
+            raise StructuralCegarError("saved independent replay was not PASS")
+        for path_field, hash_field in (
+            ("checker", "checker_sha256"),
+            ("command_path", "command_sha256"),
+            ("producer_preflight_path", "producer_preflight_sha256"),
+            ("stdout", "stdout_sha256"),
+            ("stderr", "stderr_sha256"),
+        ):
+            declared = replay_meta.get(path_field)
+            if hashes.get(declared) != replay_meta.get(hash_field):
+                raise StructuralCegarError(
+                    f"saved replay {path_field} hash mapping mismatch"
+                )
+
+        _rows, antecedent, replay = _replay_algebraic_certificate(
+            certificate, system
+        )
+        expected_projection = expected_targets[name][2]
+        if (
+            replay["nonzero_cofactor_count"],
+            replay["antecedent_literal_count"],
+            replay["used_row_indices"],
+        ) != expected_projection:
+            raise StructuralCegarError(
+                f"algebraic sparse projection invariant mismatch for {name}"
+            )
+        template_unsigned = {
+            "name": name,
+            "algebraic_certificate": certificate,
+            "algebraic_system": system,
+            "algebraic_replay": replay,
+            "antecedent_memberships": [list(pair) for pair in antecedent],
+        }
+        templates.append(
+            {
+                **template_unsigned,
+                "template_sha256": _sha256_value(template_unsigned),
+            }
+        )
+        summaries.append(
+            {
+                "name": name,
+                "source_system_sha256": target["source_system_sha256"],
+                "source_metric_rows_sha256": target[
+                    "source_metric_rows_sha256"
+                ],
+                "certificate_file_sha256": certificate_meta["file_sha256"],
+                "certificate_payload_sha256": certificate_meta["payload_sha256"],
+                **replay,
+            }
+        )
+    if seen_names != set(expected_targets):
+        raise StructuralCegarError("algebraic bootstrap target set mismatch")
+    summary = {
+        "schema": ALGEBRAIC_MANIFEST_SCHEMA,
+        "manifest_sha256": hashes[
+            f"{artifact_prefix}/manifest.json"
+        ],
+        "sha256s_sha256": _sha256_file(directory / "SHA256SUMS"),
+        "certificate_count": len(templates),
+        "systems": summaries,
+        "semantics": (
+            "P97 Euclidean/distinct-point nogoods conditional on P0 != P1; "
+            "similarity-normalized to P0=(0,0), P1=(1,0)"
+        ),
+        "lean_kernel_checked": False,
+        "artifact_prefix": artifact_prefix,
+        "source_audit": audit,
+    }
+    return templates, {
+        **summary,
+        "template_sha256": [
+            template["template_sha256"] for template in templates
+        ],
+    }
+
+
+def _algebraic_directories(
+    value: str | Path | Sequence[str | Path] | None,
+) -> tuple[Path, ...]:

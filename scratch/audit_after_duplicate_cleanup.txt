@@ -1,0 +1,9 @@
+claiming (target_symbol): 2 targets: Problem97.erdos97_rhs, Problem96.erdos96_rhs
+sanctioned axioms (1) — accepted on the spine:
+  🪶 Lean.trustCompiler
+
+  ❌ target `Problem97.erdos97_rhs`: unsanctioned axiom(s) on spine: sorryAx
+  ❌ target `Problem96.erdos96_rhs`: unsanctioned axiom(s) on spine: sorryAx
+  ⚠  160282 symbol(s) mined against an older build (`refs --refresh`)
+
+❌ audit found 2 error(s), 1 warning(s)

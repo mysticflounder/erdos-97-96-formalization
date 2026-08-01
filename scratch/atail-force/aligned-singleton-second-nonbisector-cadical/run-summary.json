@@ -1,0 +1,82 @@
+{
+  "schema": "p97-n17-cadical-port-v1",
+  "terminal_status": "UNKNOWN_FAIL_CLOSED_NO_MATHEMATICAL_RESULT",
+  "source": {
+    "path": "scratch/atail-force/aligned-singleton-second-nonbisector-cegar/qf_bool_model.py",
+    "sha256": "4e7cca7b8fb097387b42aec35358534fee57465b4e6f4d5035acd0295b292219",
+    "n": 17,
+    "named_constraint_count": 689038,
+    "solver_assertions_after_qffd_and_flattening": 689067,
+    "variables": 5695,
+    "construction_seconds": 79.08245149999857,
+    "ground_formula_gate": "GROUND_BOOL_OK nodes=1385965"
+  },
+  "export": {
+    "z3_version": "Z3 4.16.0.0",
+    "pipeline": [
+      "pb2bv",
+      "bit-blast",
+      "tseitin-cnf"
+    ],
+    "tactic_seconds": 9.335645583923906,
+    "export_total_seconds": 9.837429916951805,
+    "cnf_bytes": 31364923,
+    "cnf_sha256": "e9bffb192dab42825992339780930d70b4ac6efc666f768b3518142030e247c9",
+    "num_variables": 116393,
+    "num_original_variables": 5695,
+    "num_auxiliary_variables": 110698,
+    "num_clauses": 1435449,
+    "missing_source_variables": [],
+    "mapping": "All DIMACS ids have c-line labels; all 5695 source labels are present. The generated label at-least repeats on 4080 auxiliary ids, so the integer id is the canonical auxiliary identity."
+  },
+  "smoke": {
+    "sat": {
+      "verdict": "SAT",
+      "projection_truth_table_checks": 8
+    },
+    "unsat": {
+      "verdict": "UNSAT",
+      "projection_truth_table_checks": 8,
+      "drat_status": "VERIFIED"
+    }
+  },
+  "cadical_default": {
+    "version": "3.0.0",
+    "timeout_seconds": 600,
+    "process_seconds": 597.35,
+    "wrapper_seconds": 600,
+    "returncode": 0,
+    "verdict": "UNKNOWN",
+    "log": "n17-initial.cadical.log",
+    "incomplete_drat": "n17-initial.drat",
+    "incomplete_drat_bytes": 567456704,
+    "incomplete_drat_status": "NOT_A_PROOF_NOT_CHECKED"
+  },
+  "cadical_sat_profile": {
+    "version": "3.0.0",
+    "flags": [
+      "--sat",
+      "-n"
+    ],
+    "timeout_seconds": 300,
+    "process_seconds": 299.54,
+    "wrapper_seconds": 300,
+    "returncode": 0,
+    "verdict": "UNKNOWN",
+    "log": "n17-initial.cadical-sat-profile.log"
+  },
+  "comparison": {
+    "prior_qffd_outer_timeout_seconds": 780,
+    "prior_qffd_elapsed_seconds": 845.4991373328958,
+    "prior_qffd_verdict": "UNKNOWN",
+    "conclusion": "The PB-to-CNF transformation is fast, but bounded CaDiCaL runs also return UNKNOWN. No material outer-solve improvement or mathematical result was demonstrated."
+  },
+  "trust_boundary": [
+    "The smoke tests validate only small representative PB formulas.",
+    "Z3 4.16 tactic translation from the hash-pinned source formula is not independently certified.",
+    "A verified DRAT would certify only the emitted DIMACS CNF; the timed-out DRAT stream is incomplete and is not a proof.",
+    "No SAT assignment was produced, so source-formula readback did not run.",
+    "The source model is bounded to n=17 and omits Euclidean realizability constraints.",
+    "The live Lean obligation has n>=17, so even fixed-n UNSAT would not close it."
+  ]
+}

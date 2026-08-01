@@ -4,6 +4,14 @@ Date: 2026-07-27.
 Round: 2 (successor to `docs/solve-prompts/2026-07-27-exact-collision-terminals.md`,
 "the F doc"; round-1 response at
 `docs/solve-prompts/2026-07-27-f-round1-response.md`).
+
+> **Historical-status notice (2026-07-30):** This round-2 prompt preserves a
+> consumed 2026-07-27 frontier snapshot. Its statement that Bridge 2 closes
+> F3/F4 is a prompt-time claim, not a current closure claim. The live direct
+> frontier now consists of `false_of_crossBlockerCoincidence` and
+> `false_of_capSourceThirdCanonicalRowSurface`. Use the closure matrix,
+> computational closure plan, and generated blueprint for current status.
+
 Scope: **one** global bridge — Bridge 2 of the four identified in round 1.
 Closing it closes the `sorry` leaves F3 and F4 of
 `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean`

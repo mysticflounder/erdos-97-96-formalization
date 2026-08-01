@@ -1,0 +1,18 @@
+{
+  "sat": {
+    "clauses": 10,
+    "drat_status": null,
+    "elapsed_seconds": 0.0065032499842345715,
+    "projection_truth_table_checks": 8,
+    "variables": 5,
+    "verdict": "SAT"
+  },
+  "unsat": {
+    "clauses": 8,
+    "drat_status": "VERIFIED",
+    "elapsed_seconds": 0.005270666908472776,
+    "projection_truth_table_checks": 8,
+    "variables": 4,
+    "verdict": "UNSAT"
+  }
+}

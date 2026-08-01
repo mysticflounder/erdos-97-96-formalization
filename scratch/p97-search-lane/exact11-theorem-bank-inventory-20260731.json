@@ -1,0 +1,93 @@
+{
+  "snapshot": {
+    "date": "2026-07-31",
+    "head": "1b867b3f",
+    "audit_kind": "static-read-only",
+    "build_run": false,
+    "axiom_audit_run": false,
+    "worktree_note": "exact-11 sources were untracked and concurrently changing"
+  },
+  "answer": {
+    "all_exact11_ingress_banked": false,
+    "all_reusable_discoveries_inventoried": false,
+    "summary": "Most exact-11 rule semantics are in Lean, but s2_o0 was not root-imported and the post-exact-11 reusable theorem inventory has not been run."
+  },
+  "census": {
+    "certificate_subtree": {
+      "files": 2441,
+      "reachable_from_FiniteN11": 2437,
+      "theorem_or_lemma_declarations": 10751
+    },
+    "exact_five_common_shell_v7": {
+      "files": 45,
+      "reachable_from_FiniteN11": 41,
+      "theorem_or_lemma_declarations": 338
+    },
+    "g3_retained": {
+      "clauses": 273017,
+      "literal_shapes": 42,
+      "semantic_families": 22,
+      "shapes_existing_coverage_at_round2": 28,
+      "shapes_reusable_lemma_targets_at_round2": 7,
+      "shapes_exact11_glue_at_round2": 7
+    }
+  },
+  "unreachable_files": [
+    "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0SpecialFamilySemantics.lean",
+    "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0RetainedCoreSemantics.lean",
+    "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0RetainedCoreClauseBank.lean",
+    "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/S2O0TextIngress.lean"
+  ],
+  "reusable_candidates": [
+    {
+      "family": "two-center-cyclic-alternation",
+      "representative": "Problem97.P5IndexedSourceScratch.false_of_nonalternating_equidistant",
+      "classification": "lean-theorem-liftable",
+      "action": "abstract or re-export the four ordered roles away from Label = Fin 11"
+    },
+    {
+      "family": "kalmanson-selected-row-cores",
+      "representative": "Problem97.UniqueFourKalmansonOccurrenceScratch.false_of_two_k2_three_row_triangle",
+      "classification": "lean-theorem-general-n",
+      "action": "add to the general-n registry and match against other row-incidence lanes"
+    },
+    {
+      "family": "card-five-cap-and-bisector-localization",
+      "representative": "Problem97.ATailUniqueRowProducerScratch.exists_cardFiveInteriorSurvivorPair",
+      "classification": "lean-theorem-liftable",
+      "action": "inventory by hypotheses rather than exact-11 support path"
+    },
+    {
+      "family": "local-four-to-u5-adapters",
+      "representative": "Problem97.ExactFiveCommonShellV7.CanonicalPacket.localFourHolds_to_u5QDeletedK4Class",
+      "classification": "exact11-scoped-semantic-adapter",
+      "action": "factor the mathematical deletion/class conversion from encoder decoding"
+    }
+  ],
+  "already_promoted_generic_semantics": [
+    "Problem97.Census554.Realizes.exactRowSemantic",
+    "Problem97.Census554.evalClauseD_transitivityClause",
+    "Problem97.u5_nontriple_equilateral_on_p_circle_incompatibility",
+    "Problem97.u5_common_bisector_triple_incompatibility"
+  ],
+  "empirical_not_theorems": [
+    "v6 survivor row-intersection histograms",
+    "v6 per-case cyclic-parity violation counts",
+    "absence of q-critical adjacent or third-common witnesses in four v6 assignments",
+    "v1-v6 SAT and mutation-control observations"
+  ],
+  "inventory_method": {
+    "base_script": "scripts/general-n-bank-miner.py",
+    "required_dimensions": [
+      "normalized declaration shape",
+      "import reachability",
+      "public/private visibility",
+      "source sorry and transitive axioms",
+      "fixed-cardinality and fixed-label dependencies",
+      "semantic category",
+      "rule-family to semantic-theorem to decoder to replay linkage",
+      "cross-registry shape match",
+      "live-lane consumers"
+    ]
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "audit_date": "2026-07-30",
+  "publish_target": "Problem97.erdos97_rhs",
+  "source_file": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean",
+  "build_fingerprint": "723a29e47f69",
+  "role_order": [
+    "surplusCap",
+    "oppCap1",
+    "oppCap2"
+  ],
+  "cap_sum_identity": "surplusCap.card + oppCap1.card + oppCap2.card = A.card + 3",
+  "named_sorry_backed_leaves": 19,
+  "proof_blueprint_open_obligations": 20,
+  "count_discrepancy": "The twentieth proof-blueprint obligation is the unapproved axiom sorryAx, not a named theorem leaf.",
+  "off_spine_sorries": [
+    "Problem97.ATailFiniteN11Frontier.false_of_frontierCommonDeletionPhysicalSecondApex_of_card_eq_eleven"
+  ],
+  "profile_semantics": "Profiles list the arithmetically possible cap triples at minimum n under the recorded interface bounds. They are not claims that every profile is geometrically realizable.",
+  "families": {
+    "exact-five": {
+      "count": 2,
+      "minimum_n": 10
+    },
+    "exact-four": {
+      "count": 13,
+      "minimum_n": 12
+    },
+    "all-large": {
+      "count": 2,
+      "minimum_n": 15
+    },
+    "cap-eight": {
+      "count": 2,
+      "minimum_n": 17
+    }
+  },
+  "leaves": [
+    {
+      "id": 1,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision",
+      "line": 702,
+      "family": "exact-four/generic-surface",
+      "cap_lower_bounds_role_order": [5, 4, 5],
+      "minimum_n": 12,
+      "minimum_profiles_role_order": [[6, 4, 5], [5, 5, 5], [5, 4, 6]],
+      "support": "At this leaf: explicit _hcard : 12 <= A.card and ExactFourPostCardElevenRobustSurface. The surface capGrowth split supplies the extra unit over the base (5,4,5) bounds."
+    },
+    {
+      "id": 2,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence",
+      "line": 1157,
+      "family": "exact-four/generic-surface",
+      "cap_lower_bounds_role_order": [5, 4, 5],
+      "minimum_n": 12,
+      "minimum_profiles_role_order": [[6, 4, 5], [5, 5, 5], [5, 4, 6]],
+      "support": "At this leaf: explicit _hcard : 12 <= A.card and ExactFourPostCardElevenRobustSurface; capGrowth supplies the extra unit."
+    },
+    {
+      "id": 3,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare",
+      "line": 1231,
+      "family": "exact-four/generic-surface",
+      "cap_lower_bounds_role_order": [5, 4, 5],
+      "minimum_n": 12,
+      "minimum_profiles_role_order": [[6, 4, 5], [5, 5, 5], [5, 4, 6]],
+      "support": "At this leaf: explicit _hcard : 12 <= A.card and ExactFourPostCardElevenRobustSurface; capGrowth supplies the extra unit."
+    },
+    {
+      "id": 4,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_minimalCore",
+      "line": 2173,
+      "family": "exact-four/generic-surface",
+      "cap_lower_bounds_role_order": [5, 4, 5],
+      "minimum_n": 12,
+      "minimum_profiles_role_order": [[6, 4, 5], [5, 5, 5], [5, 4, 6]],
+      "support": "At this leaf: explicit _hcard : 12 <= A.card and ExactFourPostCardElevenRobustSurface; capGrowth supplies the extra unit."
+    },
+    {
+      "id": 5,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted",
+      "line": 2379,
+      "family": "exact-four/generic-surface",
+      "cap_lower_bounds_role_order": [5, 4, 5],
+      "minimum_n": 12,
+      "minimum_profiles_role_order": [[6, 4, 5], [5, 5, 5], [5, 4, 6]],
+      "support": "At this leaf through ExactFourRigid221PhysicalApexSourceEqUContext, which stores hcard and surface; this is not merely a narrower-descendant bound."
+    },
+    {
+      "id": 6,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy",
+      "line": 2533,
+      "family": "exact-four/generic-surface",
+      "cap_lower_bounds_role_order": [5, 4, 5],
+      "minimum_n": 12,
+      "minimum_profiles_role_order": [[6, 4, 5], [5, 5, 5], [5, 4, 6]],
+      "support": "At this leaf through ExactFourRigid221PhysicalApexSourceEqUContext, which stores hcard and surface."
+    },
+    {
+      "id": 7,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy",
+      "line": 2556,
+      "family": "exact-four/generic-surface",
+      "cap_lower_bounds_role_order": [5, 4, 5],
+      "minimum_n": 12,
+      "minimum_profiles_role_order": [[6, 4, 5], [5, 5, 5], [5, 4, 6]],
+      "support": "At this leaf through ExactFourRigid221PhysicalApexSourceEqUContext, which stores hcard and surface."
+    },
+    {
+      "id": 8,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows",
+      "line": 2581,
+      "family": "exact-four/generic-surface",
+      "cap_lower_bounds_role_order": [5, 4, 5],
+      "minimum_n": 12,
+      "minimum_profiles_role_order": [[6, 4, 5], [5, 5, 5], [5, 4, 6]],
+      "support": "At this leaf through ExactFourRigid221PhysicalApexSourceEqUContext, which stores hcard and surface."
+    },
+    {
+      "id": 9,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge",
+      "line": 3299,
+      "family": "exact-four/second-opposite-large",
+      "cap_lower_bounds_role_order": [5, 4, 6],
+      "minimum_n": 12,
+      "minimum_profiles_role_order": [[5, 4, 6]],
+      "support": "At this leaf: surface plus explicit _hsecond : 6 <= oppCap2.card. The cap sum directly gives n >= 12."
+    },
+    {
+      "id": 10,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU",
+      "line": 5322,
+      "family": "exact-four/generic-surface",
+      "cap_lower_bounds_role_order": [5, 4, 5],
+      "minimum_n": 12,
+      "minimum_profiles_role_order": [[6, 4, 5], [5, 5, 5], [5, 4, 6]],
+      "support": "At this leaf: explicit _hcard and ExactFourPostCardElevenRobustSurface; capGrowth supplies the extra unit."
+    },
+    {
+      "id": 11,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_nonphysicalCollision",
+      "line": 5494,
+      "family": "exact-four/generic-surface",
+      "cap_lower_bounds_role_order": [5, 4, 5],
+      "minimum_n": 12,
+      "minimum_profiles_role_order": [[6, 4, 5], [5, 5, 5], [5, 4, 6]],
+      "support": "At this leaf: explicit _hcard and ExactFourPostCardElevenRobustSurface; capGrowth supplies the extra unit."
+    },
+    {
+      "id": 12,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch",
+      "line": 5983,
+      "family": "exact-four/two-radius",
+      "cap_lower_bounds_role_order": [5, 4, 6],
+      "minimum_n": 12,
+      "minimum_profiles_role_order": [[5, 4, 6]],
+      "support": "At this leaf: two disjoint selected four-classes at oppApex2 force oppCap2 >= 6 (the opposite-vertex distinct-K4-radii cap bound); cap sum gives n >= 12."
+    },
+    {
+      "id": 13,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome",
+      "line": 6048,
+      "family": "exact-four/swapped-unique-four",
+      "cap_lower_bounds_role_order": [5, 4, 4],
+      "minimum_n": 12,
+      "minimum_profiles_role_order": [[6, 5, 4], [6, 4, 5], [5, 6, 4], [5, 5, 5], [5, 4, 6]],
+      "support": "At this leaf: explicit _hcard : 12 <= A.card. Original and swapped exact-four data give oppCap1,oppCap2 >= 4; noM44 removes the arithmetic (7,4,4) profile. Cap bounds alone do not yield n >= 12."
+    },
+    {
+      "id": 14,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual",
+      "line": 6294,
+      "family": "exact-five",
+      "cap_lower_bounds_role_order": [5, 5, 2],
+      "minimum_n": 10,
+      "minimum_profiles_role_order": [[6, 5, 2], [5, 6, 2], [5, 5, 3]],
+      "support": "At this leaf: the residual stores carrier_card_gt_nine. Its exact-five class forces three strict interior points and hence oppCap1 >= 5; the cap-sum lower bounds alone give only n >= 9."
+    },
+    {
+      "id": 15,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual",
+      "line": 6305,
+      "family": "exact-five",
+      "cap_lower_bounds_role_order": [5, 5, 2],
+      "minimum_n": 10,
+      "minimum_profiles_role_order": [[6, 5, 2], [5, 6, 2], [5, 5, 3]],
+      "support": "At this leaf: the residual stores carrier_card_gt_nine. Its exact-five class forces three strict interior points and hence oppCap1 >= 5; the cap-sum lower bounds alone give only n >= 9."
+    },
+    {
+      "id": 16,
+      "theorem": "Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits",
+      "line": 6767,
+      "family": "all-large/directed-omission",
+      "cap_lower_bounds_role_order": [6, 6, 6],
+      "minimum_n": 15,
+      "minimum_profiles_role_order": [[6, 6, 6]],
+      "support": "At this leaf through FrontierLargeOppositeCapsBiApexRobustResidual and FrontierAllLargeCapsBiApexRobustResidual. Cap sum gives n >= 15. No cap-eight witness is present here."
+    },
+    {
+      "id": 17,
+      "theorem": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence",
+      "line": 7450,
+      "family": "all-large/cross-blocker",
+      "cap_lower_bounds_role_order": [6, 6, 6],
+      "minimum_n": 15,
+      "minimum_profiles_role_order": [[6, 6, 6]],
+      "support": "At this leaf through the surrounding all-large T/N/L interface. Cap sum gives n >= 15. The n >= 17 cap-eight bound exists only in the narrower cap-source descendants, not at this leaf."
+    },
+    {
+      "id": 18,
+      "theorem": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow",
+      "line": 7556,
+      "family": "cap-eight/one-source",
+      "cap_lower_bounds_role_order": [6, 8, 6],
+      "minimum_n": 17,
+      "minimum_profiles_role_order": [[6, 8, 6]],
+      "minimum_profiles_cap_eight_first": [[8, 6, 6]],
+      "support": "At this leaf: all-large T/N/L plus hsource : CapSourceThirdCanonicalRowWitness, whose designated oppCap1 has card >= 8. Cap sum gives n >= 17."
+    },
+    {
+      "id": 19,
+      "theorem": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_oneSidedDeletionSurvival",
+      "line": 8850,
+      "family": "cap-eight/two-source",
+      "cap_lower_bounds_role_order": [6, 8, 6],
+      "minimum_n": 17,
+      "minimum_profiles_role_order": [[6, 8, 6]],
+      "minimum_profiles_cap_eight_first": [[8, 6, 6]],
+      "support": "At this leaf: all-large T/N/L plus two FirstFiberCapSourceWitness values. Both concern the same designated oppCap1, so they imply one cap >= 8, not two distinct cap-eight caps. Cap sum gives n >= 17."
+    }
+  ],
+  "trust_and_scope": {
+    "leaf_status": "All 19 named leaves have source bodies containing sorry and are on the publish spine.",
+    "off_spine_status": "One additional named sorry exists off the publish spine in ATail/FiniteN11Frontier.lean; it is not counted as a live production publish leaf.",
+    "axioms": "Problem97.erdos97_rhs has six transitive axioms in the snapshot. The sole unapproved custom axiom is sorryAx; Lean.trustCompiler is approved and the other four are core axioms.",
+    "scope": "This matrix records necessary cardinality support at leaf interfaces. It proves no leaf contradiction and does not turn a fixed-n certificate into arbitrary-n closure.",
+    "snapshot_caveat": "proof-blueprint was refreshed without a full Lake build. The worktree was concurrently changing, the latest recorded full build had failed, and some indexed modules lacked importable oleans; the reported graph is the clean current importable-olean snapshot for build 723a29e47f69."
+  }
+}

@@ -61,13 +61,22 @@ def allKilledAt (c₀ : Nat) : Nat → List Row → List Domain → Bool
             domain.rows.all fun row =>
               if compatibleWith assigned row then
                 let nextAssigned := row :: assigned
-                let nextDomains := rest.map (restrictDomain nextAssigned)
-                if nextDomains.any fun next => next.rows.isEmpty then
-                  true
-                else
-                  allKilledAt c₀ fuel nextAssigned nextDomains
+                match restrictDomainsChecked nextAssigned rest with
+                | none => true
+                | some nextDomains => allKilledAt c₀ fuel nextAssigned nextDomains
               else
                 true
+
+/-! Search after the fixed row has passed `localCandidateOK`.  The public
+placement check keeps that guard, while chunked certificates can call this
+kernel directly after testing the same guard once. -/
+def erasedPlacementSearchAtWithBaseDomains
+    (c₀ support deleted : Nat) (baseDomains : List Domain) : Bool :=
+  let fixed : Row := { center := c₀, support := support }
+  let assigned := [fixed]
+  match restrictDomainsChecked assigned baseDomains with
+  | none => true
+  | some domains => allKilledAt c₀ (variableCentersAt c₀).length assigned domains
 
 /-- One-row ERASE placement check, used by P2 and P4-S. -/
 def erasedPlacementCheckAt (c₀ support deleted : Nat) : Bool :=
@@ -75,13 +84,9 @@ def erasedPlacementCheckAt (c₀ support deleted : Nat) : Bool :=
   if !localCandidateOK fixed.center deleted fixed.support then
     false
   else
-    let assigned := [fixed]
-    let domains := (variableCentersAt c₀).map fun center =>
-      restrictDomain assigned { center, rows := candidateRows center deleted }
-    if domains.any fun domain => domain.rows.isEmpty then
-      true
-    else
-      allKilledAt c₀ (variableCentersAt c₀).length assigned domains
+    erasedPlacementSearchAtWithBaseDomains c₀ support deleted
+      ((variableCentersAt c₀).map fun center =>
+        { center, rows := candidateRows center deleted })
 
 /-- Canonical exact first short-cap row `{0,2,7,8}`. -/
 def firstOppExactCapRow : Row :=
@@ -111,19 +116,18 @@ def erasedP4UPlacementCheck (support deleted : Nat) : Bool :=
     true
   else
     let assigned := [secondOppExactCapRow, firstOppExactCapRow, seed]
-    let domains := p4uVariableCenters.map fun center =>
-      restrictDomain assigned { center, rows := candidateRows center deleted }
-    if domains.any fun domain => domain.rows.isEmpty then
-      true
-    else
-      allKilledAt 0 p4uVariableCenters.length assigned domains
+    let baseDomains := p4uVariableCenters.map fun center =>
+      { center, rows := candidateRows center deleted }
+    match restrictDomainsChecked assigned baseDomains with
+    | none => true
+    | some domains => allKilledAt 0 p4uVariableCenters.length assigned domains
 
 /-- Native values of the surplus-interior labels. -/
 def intSNats : List Nat := [3, 4, 5, 6]
 
 /-- All eleven-label four-point masks. -/
 def fourPointMasks : List RowMask :=
-  (List.range 2048).filter fun support => countPoints support labels == 4
+  Census554.CapSelectedNativeClassifier.fourPointMasks
 
 /-- Complete containment-compatible P4-U support domain. -/
 def p4uSupports : List RowMask :=

@@ -1,0 +1,41 @@
+{
+  "boolean_differential_assignments": 1152,
+  "clauses": 1370778,
+  "mutation_rejected": true,
+  "schema": "card11_exact5_common_fullradius.v7.self_test.v1",
+  "structural_audit": {
+    "v6_prefix": {
+      "boundary_order_orientation_counts": {
+        "direct": 72,
+        "mirror": 72
+      },
+      "boundary_order_selector_count_exact": 144,
+      "convex_five_point_core_deduplicated_clauses_exact": 332640,
+      "convex_five_point_core_naive_clauses_exact": 332640,
+      "convex_five_point_core_safe_dedup_removed": 0,
+      "duplicate_center_core_clauses_exact": 4620,
+      "exact_five_global_seed_clauses_exact": 10,
+      "global_equality_variables": 1485,
+      "global_transitivity_clauses_exact": 78705,
+      "perpendicular_bisector_core_clauses_exact": 4620,
+      "selected_row_global_seed_clauses_exact": 11694,
+      "v3_clause_prefix_ends_at": 589878,
+      "v4_clause_prefix_ends_at": 594498,
+      "v4_zero_variable_clause_suffix_begins_at": 589879,
+      "v5_clause_prefix_ends_at": 927138,
+      "v5_zero_variable_clause_suffix_begins_at": 594499,
+      "v6_clause_suffix_begins_at": 927139,
+      "v6_family_a_compact_clauses_exact": 117900,
+      "v6_family_a_literal_clauses_exact": 51993900,
+      "v6_family_b_clauses_exact": 39300,
+      "v6_local_four_class_variables_exact": 2310,
+      "v6_local_four_definition_clauses_exact": 9240,
+      "v6_qdeleted_pair_definition_clauses_exact": 87120,
+      "v6_qdeleted_pair_variables_exact": 3960
+    },
+    "v7_clause_count_exact": 190080
+  },
+  "v6_prefix_exact": true,
+  "v7_clause_count": 190080,
+  "variables": 49357
+}

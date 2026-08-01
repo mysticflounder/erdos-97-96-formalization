@@ -1,0 +1,178 @@
+80:theorem false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven
+452:private theorem exists_exactFourMutualOmissionJointDeletion_of_prescribed
+594:theorem exists_two_exactFourMutualOmissionJointDeletions
+702:theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision
+739:theorem false_of_exactFour_twoDeletion_blockerTwoCycle
+1157:theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+1231:theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+1330:theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion
+1457:theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
+1551:theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters
+1630:theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions
+2173:theorem false_of_exactFourMutualOmissionRigid221_minimalCore
+2379:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted
+2533:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy
+2556:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy
+2581:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows
+2600:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV
+3299:theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge
+4472:theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_uXvMutualOmission
+4516:theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_xuXvMutualOmission
+4719:theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_directedCycle
+4950:theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_packet
+5096:theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFiveFirstGrowth
+5127:theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFiveSurplusGrowth
+5160:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy
+5206:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther
+5236:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU
+5322:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU
+5377:theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass
+5435:theorem false_of_exactFourMutualOmissionRigid221_physicalApex
+5494:theorem false_of_exactFourMutualOmissionRigid221_nonphysicalCollision
+5543:theorem false_of_exactFourMutualOmissionRigid221_globalDeletion
+5600:theorem false_of_exactFourMutualOmissionRigid221
+5657:theorem false_of_exactFourMutualOmissionJointDeletion
+5722:theorem false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch
+5828:theorem false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch
+5908:theorem false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch
+5949:theorem false_of_exactFourPostCardElevenInteriorDeletionBranch
+5983:theorem false_of_exactFourPostCardElevenTwoRadiusBranch
+6005:theorem false_of_exactFourPostCardElevenRobustSurface
+6031:theorem false_of_exactFourPhysicalConsumerRobustOutcome
+6048:theorem false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome
+6085:theorem false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve
+6108:theorem false_of_firstApexUniqueRadiusExactFourResidual
+6190:private theorem false_of_exactFiveDistinct_swapped_of_card_eq_eleven
+6231:private theorem false_of_exactFiveDistinct_commonDeletion_of_card_eq_eleven
+6294:theorem false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+6305:theorem false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+6315:theorem false_of_originalFrontierUniqueRadiusArm
+6377:theorem false_of_frontierBiApexRobustExactFiveSecondCapResidual
+6490:theorem false_of_physicalSecondApexCriticalResidual
+6767:theorem false_of_retainedInteriorDirectedOmission_and_all_low_hits
+7188:theorem exists_secondRadiusInterior_localizedCycle
+7261:theorem exists_distinctRadius_commonDeletionParent
+7452:theorem false_of_crossBlockerCoincidence
+7491:theorem false_of_capSourceThirdCanonicalRowSurface
+7521:theorem false_of_freshThird_sameCapCrossRowAlignment
+7578:theorem false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow
+7598:theorem false_of_capSource_freshThirdBlockerFiber
+7617:    (Q : FreshOutsideFirstBlockerFiber P Pρ) :
+7626:abbrev FirstFiberCapSourceWitness
+7638:    FirstFiberCapSourceWitness P Pρ source := by
+7659:private theorem exists_two_firstFiberCapSourceWitness
+7663:        FirstFiberCapSourceWitness P Pρ source ∧
+7664:        FirstFiberCapSourceWitness P Pρ source' := by
+7704:private theorem exists_two_firstFiberCapSourceWitness_of_commonRadius
+7717:        FirstFiberCapSourceWitness P Pρ source ∧
+7718:        FirstFiberCapSourceWitness P Pρ source' := by
+7738:abbrev FirstCapMultiPointRadiiRetained : Prop :=
+7752:    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+7790:abbrev TwoCapSourcesMutualCrossMembership
+7836:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+7837:    (hsource' : FirstFiberCapSourceWitness P Pρ source') :
+7903:theorem false_of_equalBlockers_complementaryMembership
+7910:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+7911:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+7913:      TwoCapSourcesMutualCrossMembership (H := H) source source')
+8066:abbrev TwoCapSourcesOneSidedDeletionSurvival
+8081:    TwoCapSourcesMutualCrossMembership (H := H) source source' ∨
+8082:      TwoCapSourcesOneSidedDeletionSurvival (H := H) source source' := by
+8104:    (hsource : FirstFiberCapSourceWitness P Pρ source) :
+8116:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+8117:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+8120:      TwoCapSourcesMutualCrossMembership (H := H) source source') :
+8208:      TwoCapSourcesMutualCrossMembership (H := H) source source')
+8249:      TwoCapSourcesMutualCrossMembership (H := H) source source')
+8348:      TwoCapSourcesMutualCrossMembership (H := H) source source')
+8380:theorem exists_blockerCenter_mem_capInteriorByIndex
+8437:theorem exists_mutualBlockerCapIndices_same_only_first
+8440:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+8441:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+8443:      TwoCapSourcesMutualCrossMembership (H := H) source source')
+8505:private theorem false_of_three_firstCap_hits_at_firstCap_blocker
+8568:theorem false_of_firstPair_complementaryMembership_of_blocker_mem_firstCap
+8571:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+8572:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+8574:      TwoCapSourcesMutualCrossMembership (H := H) source source')
+8653:theorem exists_mutualBlockerCapIndices_distinct_otherCaps
+8656:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+8657:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+8659:      TwoCapSourcesMutualCrossMembership (H := H) source source')
+8712:private theorem false_of_two_offCap_bisectors
+8742:private theorem false_of_twoCapSources_of_blockers_off_firstCap
+8750:      TwoCapSourcesMutualCrossMembership (H := H) source source')
+8867:theorem false_of_twoCapSources_complementaryMembership
+8870:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+8871:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+8873:      TwoCapSourcesMutualCrossMembership (H := H) source source')
+9007:theorem false_of_twoCapSources_mutualCrossMembership_distinctBlockers
+9016:      TwoCapSourcesMutualCrossMembership (H := H) source source')
+9044:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+9045:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+9047:      TwoCapSourcesOneSidedDeletionSurvival (H := H) source source') :
+9193:theorem false_of_twoCapSources_oneSidedDeletionSurvival
+9194:    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+9202:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+9203:    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+9205:      TwoCapSourcesOneSidedDeletionSurvival (H := H) source source') :
+9220:theorem false_of_twoCapSources_firstFiber
+9221:    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+9229:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+9230:    (hsource' : FirstFiberCapSourceWitness P Pρ source') :
+9270:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+9272:      FirstCapMultiPointRadiiRetained
+9341:      FirstCapMultiPointRadiiRetained
+9363:      FirstCapMultiPointRadiiRetained
+9408:private theorem exists_crossRetainedEndpoints_sourceSurvives_doubleDeletion
+9410:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+9412:      FirstCapMultiPointRadiiRetained
+9497:      FirstCapMultiPointRadiiRetained
+9569:private theorem exists_secondRowOutsidePoint_ne_firstOutsidePair
+9570:    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+9738:    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+9928:theorem exists_selectedRow_escape_criticalTripleShellSeed
+10003:theorem exists_criticalRow_escape_or_fullyDeletionRobust_criticalTripleShellSeed
+10097:theorem exists_globalK4Row_and_sourceFaithfulCriticalCover
+10154:    (Q : FreshOutsideFirstBlockerFiber P Pρ) :
+10199:    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+10228:    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+10252:theorem exists_two_firstFiber_globalRow_points_outside_firstShell
+10253:    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+10272:private theorem exists_second_outside_two_pairs
+10497:theorem false_of_freshCanonicalRowOverride
+10499:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+11047:theorem false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
+11048:    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+11050:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+11056:      FirstCapMultiPointRadiiRetained
+11076:theorem false_of_capSource_freshOutsideFirstBlockerFiber_alignedSingletonRadius
+11078:    (hsource : FirstFiberCapSourceWitness P Pρ source)
+11083:    (hfirst : Nonempty (FreshOutsideFirstBlockerFiber P Pρ))
+11085:      FirstCapMultiPointRadiiRetained
+11102:theorem false_of_capSource_freshOutsideFirstBlockerFiber_alignedRadii
+11104:    (hfirst : Nonempty (FreshOutsideFirstBlockerFiber P Pρ))
+11106:      FirstCapMultiPointRadiiRetained
+11114:  have hsource : FirstFiberCapSourceWitness P Pρ source :=
+11132:theorem false_of_capSource_freshOutsideFirstBlockerFiber
+11134:    (hfirst : Nonempty (FreshOutsideFirstBlockerFiber P Pρ)) :
+11138:      FirstCapMultiPointRadiiRetained
+11166:theorem false_of_capSource_freshOutsideSecondBlockerFiber
+11207:theorem exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows
+11391:theorem exists_three_hit_of_two_collisionRows_capCross_normalForm
+11521:theorem exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions
+11729:theorem false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits
+11801:theorem false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits
+12163:theorem false_of_exactFourCollision_secondRadius_and_all_low_hits
+12230:theorem false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits
+12276:theorem false_of_retainedInteriorBlockerCollision_and_all_low_hits
+12298:theorem false_of_frontierAllLargeCapsTriApex_all_low_hits
+12337:theorem exists_criticalShell_oppositeCapClassInterior_card_ge_three_of_frontierAllLargeCapsTriApex
+12358:theorem false_of_frontierAllLargeCapsTriApexUniformMetricResidual
+12379:theorem false_of_frontierAllLargeCapsTriApexRobustResidual
+12399:theorem false_of_frontierAllLargeCapsBiApexRobustResidual
+12458:theorem false_of_frontierLargeOppositeCapsBiApexRobustResidual
+12472:theorem false_of_frontierBiApexRobustResidual
+12486:theorem false_of_frontierCommonDeletionPhysicalSecondApex
+12498:theorem false_of_criticalPairFrontier
+12516:theorem false_of_twoLargeCaps_commonCriticalMap

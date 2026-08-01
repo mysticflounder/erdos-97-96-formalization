@@ -46,10 +46,16 @@ theorem mem_p4uSupports_of_localCandidateOK
     (hpair : (has support 1 == has support 2) = true) :
     support ∈ p4uSupports := by
   simp only [localCandidateOK, Bool.and_eq_true] at hlocal
-  rcases hlocal with
-    ⟨⟨⟨⟨⟨hcard, hself⟩, hmoser⟩, _hnonMoser⟩, _hcap⟩, _hdeleted⟩
+  have hcard := hlocal.1
+  have hlocalFourPoint := hlocal.2
+  simp only [localCandidateOKFourPoint, Bool.and_eq_true] at hlocalFourPoint
+  rcases hlocalFourPoint with
+    ⟨⟨⟨⟨hself, hmoser⟩, _hnonMoser⟩, _hcap⟩, _hdeleted⟩
   refine List.mem_filter.mpr ⟨?_, ?_⟩
-  · exact List.mem_filter.mpr ⟨List.mem_range.mpr hlt, hcard⟩
+  · change support ∈ Census554.CapSelectedNativeClassifier.fourPointMasks
+    rw [Census554.CapSelectedNativeClassifier.fourPointMasks_eq_reference,
+      Census554.CapSelectedNativeClassifier.fourPointMasksReference]
+    exact List.mem_filter.mpr ⟨List.mem_range.mpr hlt, hcard⟩
   · simpa only [Bool.and_eq_true] using
       (show (((!has support 0) = true ∧ moserOneHitOK 0 support = true) ∧
           (has support 1 == has support 2) = true) from

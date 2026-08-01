@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/python3",
+    "scratch/singular-liftstd-x9-20260729/replay_certificate.py",
+    "scratch/singular-liftstd-x9-20260729/certificate.json",
+    "scratch/p97-distinct-distance-lane/phase3_new_survivors_realization_20260729/system-01-d6db6d91d18e/system.json"
+  ],
+  "stdin": "DEVNULL"
+}

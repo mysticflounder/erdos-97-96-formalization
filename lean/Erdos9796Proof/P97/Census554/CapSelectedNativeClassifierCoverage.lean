@@ -156,6 +156,13 @@ theorem allKilled_eq_false_of_semanticTrace
               (show next.rows.isEmpty = false from
                 List.isEmpty_eq_false_iff_exists_mem.mpr
                   ⟨rowOfPattern P nextCenter, hnextRow⟩)
+          have hchecked :
+              restrictDomainsChecked nextAssigned rest = some nextDomains := by
+            apply (restrictDomainsChecked_some_map_iff nextAssigned rest).2
+            have hnoEmpty :
+                ¬ nextDomains.any (fun next => next.rows.isEmpty) := by
+              simpa using hnoneEmpty
+            simpa [nextDomains] using hnoEmpty
           have hbranch :
               (if compatibleWith
                     (assignedCenters.map (rowOfPattern P))
@@ -163,15 +170,12 @@ theorem allKilled_eq_false_of_semanticTrace
                 let assigned :=
                   rowOfPattern P center ::
                     assignedCenters.map (rowOfPattern P)
-                let remaining :=
-                  rest.map (restrictDomain assigned)
-                if remaining.any fun next => next.rows.isEmpty then
-                  true
-                else
-                  allKilled fuel assigned remaining
+                match restrictDomainsChecked assigned rest with
+                | none => true
+                | some remaining => allKilled fuel assigned remaining
               else
                 true) = false := by
-            simpa [hcompatible, nextAssigned, nextDomains, hnoneEmpty] using
+            simpa [hcompatible, nextAssigned, nextDomains, hchecked] using
               hrecursive
           have hallFalse :
               domain.rows.all (fun row =>
@@ -179,12 +183,9 @@ theorem allKilled_eq_false_of_semanticTrace
                     (assignedCenters.map (rowOfPattern P)) row then
                   let assigned :=
                     row :: assignedCenters.map (rowOfPattern P)
-                  let remaining :=
-                    rest.map (restrictDomain assigned)
-                  if remaining.any fun next => next.rows.isEmpty then
-                    true
-                  else
-                    allKilled fuel assigned remaining
+                  match restrictDomainsChecked assigned rest with
+                  | none => true
+                  | some remaining => allKilled fuel assigned remaining
                 else
                   true) = false := by
             rw [List.all_eq_false]
@@ -291,8 +292,17 @@ theorem placementCheck_eq_false_of_no_semanticPrefixCore
   have hsearchFixed :
       allKilled variableCenters.length [fixed] initialDomains = false := by
     simpa [fixed, hfixed] using hsearch
+  have hchecked :
+      restrictDomainsChecked [fixed]
+          (variableCenters.map fun center =>
+            { center, rows := candidateRows center deleted }) =
+        some initialDomains := by
+    apply (restrictDomainsChecked_some_map_iff [fixed] _).2
+    have hnoEmpty : ¬ initialDomains.any (fun domain => domain.rows.isEmpty) := by
+      simpa using hnoneEmpty
+    simpa [initialDomains] using hnoEmpty
   simp [placementCheck, hfixedLocal, initialDomains, fixed,
-    hnoneEmpty, hsearchFixed]
+    hchecked, hsearchFixed]
 
 /-- A successful native placement replay produces an executable core on some
 duplicate-free prefix of the proof-facing pattern. -/

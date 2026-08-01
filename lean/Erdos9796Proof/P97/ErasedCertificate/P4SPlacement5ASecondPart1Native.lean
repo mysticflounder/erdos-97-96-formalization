@@ -7,7 +7,7 @@ Authors: Adam McKenna
 import Erdos9796Proof.P97.ErasedCertificate.P4SPlacementDefs
 
 /-! Native P4-S placement certificate for center 5, deleted labels
-3-4, and support chunks 0, 2. -/
+3-4, and support chunks 0, 5. -/
 
 namespace Problem97.ErasedCertificate.ErasedNativeClassifier
 
@@ -16,7 +16,7 @@ set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
 theorem p4sPlacementsAt_five_a_native_second_part_one_eq_true :
     p4sPlacementsAtDeletedPairChunkSet
-      5 3 4 [0, 2] = true := by
+      5 3 4 [0, 5] = true := by
   rw [← p4sPlacementsAtDeletedPairChunkSetHoisted_eq]
   native_decide
 

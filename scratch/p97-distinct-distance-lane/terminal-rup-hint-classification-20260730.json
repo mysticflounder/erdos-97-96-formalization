@@ -1,0 +1,2103 @@
+{
+  "hard_clause_count": 8624,
+  "hint_origin_histogram": {
+    "hard+prefix+prefix": 41,
+    "hard+prefix+prefix+prefix": 14
+  },
+  "record_count": 55,
+  "records": [
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9104,
+      "hints": [
+        {
+          "clause": [
+            -91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            91,
+            92,
+            93
+          ],
+          "clause_id": 8173,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave1_20260729/shard-00",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "357f7d173c7129d28760542e7f481ee50b9c59787fce80ff74a0af38c2a40ad0",
+      "terminal_drat_sha256": "132a1992ab616a3a9a7e2dd475a2eba691c39ad24c56c91d788ea0ea4bc6e4f2",
+      "trimmed_lrat_sha256": "184f2fdcff3516ca7999ec5f8deb056cea8922547d98b32b7039195e6778b69a",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9104,
+      "hints": [
+        {
+          "clause": [
+            -91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            91,
+            92,
+            93
+          ],
+          "clause_id": 8173,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave1_20260729/shard-01",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "7836c75940b6a74d0c1138f353e672374abbd35732950b229a353b09924002f2",
+      "terminal_drat_sha256": "f07a171030dd2185512a3f2e46a5d766304e3923117357124c7303ecd7e54638",
+      "trimmed_lrat_sha256": "184f2fdcff3516ca7999ec5f8deb056cea8922547d98b32b7039195e6778b69a",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9104,
+      "hints": [
+        {
+          "clause": [
+            -91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            91,
+            92,
+            93
+          ],
+          "clause_id": 8173,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave1_20260729/shard-02",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "aa00e9b2ab9a1a371e99d5f063b2f0d5ad1b5085604951434d9534441f3cabd0",
+      "terminal_drat_sha256": "64dcc543d4c5df35eda80cc3c147e960519748e2a0ca8140d8a4c33af052b7a0",
+      "trimmed_lrat_sha256": "184f2fdcff3516ca7999ec5f8deb056cea8922547d98b32b7039195e6778b69a",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9104,
+      "hints": [
+        {
+          "clause": [
+            -91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            91,
+            92,
+            93
+          ],
+          "clause_id": 8173,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave1_20260729/shard-03",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "a7e4d1c0264fde2a203701f1809815db6df3b21fe2c65aa39f9166afe6b2038b",
+      "terminal_drat_sha256": "fd0be86d46ee4304960097f95cd6d63b1e4a16aad6a6415f51d54c1df9a369fb",
+      "trimmed_lrat_sha256": "184f2fdcff3516ca7999ec5f8deb056cea8922547d98b32b7039195e6778b69a",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9106,
+      "hints": [
+        {
+          "clause": [
+            94
+          ],
+          "clause_id": 8628,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            95
+          ],
+          "clause_id": 8629,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -94,
+            -95
+          ],
+          "clause_id": 8178,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave1_20260729/shard-07",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "fcf9a1a361b24766aae46896212d38ab77569723f8bcd04b1350687e0ccd51d7",
+      "terminal_drat_sha256": "768a56115f1a685ff21ac715031e60cddef48d9b50cec443841648829e7e6e36",
+      "trimmed_lrat_sha256": "84441a9ee9d57ef1935afe979d4477a4da15460698e572d9efe999679cd804c7",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9106,
+      "hints": [
+        {
+          "clause": [
+            94
+          ],
+          "clause_id": 8628,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            95
+          ],
+          "clause_id": 8629,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -94,
+            -95
+          ],
+          "clause_id": 8178,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave1_20260729/shard-11",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "0607ec77b5f942db819a66ce4c0e9572770bc0c50b7a43897b8be23632066241",
+      "terminal_drat_sha256": "68576a9939e38c6974e3583d099f768b261a5e5a4540bf6d37b259ed494a8be2",
+      "trimmed_lrat_sha256": "84441a9ee9d57ef1935afe979d4477a4da15460698e572d9efe999679cd804c7",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9104,
+      "hints": [
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92,
+            -93
+          ],
+          "clause_id": 8176,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave1_20260729/shard-12",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "cdc1a4bfb9437ab88be58ffe9df81ed8a03bb6dbb83f81aba6ead892b1a6f208",
+      "terminal_drat_sha256": "4e8d8e59c69b40bfc513fd1c41f79c19bf0f2e0ad7605f02c5d3c6804fcc0b40",
+      "trimmed_lrat_sha256": "e3746e9b40a66a033b6089fc7e25d14c09e44b72f7ccc338a7dc204d6c14232a",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9104,
+      "hints": [
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92,
+            -93
+          ],
+          "clause_id": 8176,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave1_20260729/shard-13",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "bebd1c8f03f2f643f854c39ce0d320f198fa0c5935b8dbe2865eac07c2746c73",
+      "terminal_drat_sha256": "8ccc7ca1c7bda5234e76d6230dc4db0d1112b1dcdafa7a81f730192b7444896d",
+      "trimmed_lrat_sha256": "e3746e9b40a66a033b6089fc7e25d14c09e44b72f7ccc338a7dc204d6c14232a",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9104,
+      "hints": [
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92,
+            -93
+          ],
+          "clause_id": 8176,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave1_20260729/shard-14",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "3b5fce5ecc4ded7a1ff1149ba1dd8397326c46bbd5f7ffbcd57ec34a4832bf1d",
+      "terminal_drat_sha256": "f7e70ca675fd7f12a1365cc0de40cf367654404126422b9d8c9f0d9d9070ec36",
+      "trimmed_lrat_sha256": "e3746e9b40a66a033b6089fc7e25d14c09e44b72f7ccc338a7dc204d6c14232a",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9104,
+      "hints": [
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92,
+            -93
+          ],
+          "clause_id": 8176,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave1_20260729/shard-15",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "6395bc35e13b85501111af738640300cc8af8ab535e22a3c4eba7efff0ccf33e",
+      "terminal_drat_sha256": "95b171cc670ca20caf6ef2fd7adff73b7d586692a77878907d7f3407ddfcb64b",
+      "trimmed_lrat_sha256": "e3746e9b40a66a033b6089fc7e25d14c09e44b72f7ccc338a7dc204d6c14232a",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9107,
+      "hints": [
+        {
+          "clause": [
+            94
+          ],
+          "clause_id": 8628,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            95
+          ],
+          "clause_id": 8629,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -94,
+            -95
+          ],
+          "clause_id": 8178,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave1_20260729/shard-19",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "d9b4dddaf7b75867f1f3d4172510344aa4aaabb1bb9dffc1f23fea382ed4e6a0",
+      "terminal_drat_sha256": "9fba797d5363cc7e496feb38d7327eba419850f3312cd40717afa9e636b5f2fc",
+      "trimmed_lrat_sha256": "c23c4428b4585479b49abbfcb652eeb528fba43667fe174e502ac209bfcecb35",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9105,
+      "hints": [
+        {
+          "clause": [
+            91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -91,
+            -93
+          ],
+          "clause_id": 8175,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave1_20260729/shard-20",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "164032b65859238e67bc3fecdaae372020c4842f111c61584bf02a4d1bb7c328",
+      "terminal_drat_sha256": "a3631f177da8acb03959bebe06734301aea00fbb900116fa1f72c53866f0c904",
+      "trimmed_lrat_sha256": "806400d7055b3f34a7735ca64b6c078877428d6d05d8c624bdedcced991a924f",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9105,
+      "hints": [
+        {
+          "clause": [
+            91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -91,
+            -93
+          ],
+          "clause_id": 8175,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave1_20260729/shard-21",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "d9e1a7338376e0ce1512b30a5e49c17250cf83d70c058c75f6e0b61e0758fa05",
+      "terminal_drat_sha256": "fefe432c1e5e23a68f6766e64c5d3f48c97656c9a5702d7aebdbb529d9175ac1",
+      "trimmed_lrat_sha256": "806400d7055b3f34a7735ca64b6c078877428d6d05d8c624bdedcced991a924f",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9105,
+      "hints": [
+        {
+          "clause": [
+            91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -91,
+            -93
+          ],
+          "clause_id": 8175,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave1_20260729/shard-22",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "88c80a755919f7e9b30af8af35e7172c0602dffcc7cbfefa0b5ed70ecbf8156b",
+      "terminal_drat_sha256": "32d43073404436b1a78980302a33c82bc76f3b1168e4738bf9a5bb1c57dfac4f",
+      "trimmed_lrat_sha256": "806400d7055b3f34a7735ca64b6c078877428d6d05d8c624bdedcced991a924f",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9105,
+      "hints": [
+        {
+          "clause": [
+            91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -91,
+            -93
+          ],
+          "clause_id": 8175,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave1_20260729/shard-23",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "44d609f769350b63f3495023a95e50774ec2fd3b268a00bc13d3468b83350c82",
+      "terminal_drat_sha256": "d5381488a9c0707e21fa83fd1e9d02a82128ccc6c992e80c4f604d9b330c6831",
+      "trimmed_lrat_sha256": "806400d7055b3f34a7735ca64b6c078877428d6d05d8c624bdedcced991a924f",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9105,
+      "hints": [
+        {
+          "clause": [
+            91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -91,
+            -92
+          ],
+          "clause_id": 8174,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave2_20260729/shard-24",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "6ce107bb76f1c20a3e23327a11776f6b73929c4c9152e852530ad09ce1639e39",
+      "terminal_drat_sha256": "98a454378a8d74be384dd07638c853e7117bbb4e2da6ff5d510586c292db8e55",
+      "trimmed_lrat_sha256": "b9f390ab825ffeb8e5d391d2132dac68d8d3516fac1b262dfc4aebede1cbd354",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9105,
+      "hints": [
+        {
+          "clause": [
+            91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -91,
+            -92
+          ],
+          "clause_id": 8174,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave2_20260729/shard-25",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "b1d5d6bd0dadebb67838851191889a8da4b26eff8d06a7648363dbab0c17a49e",
+      "terminal_drat_sha256": "222af29ad202105f3e6919a97154677bc10aa387e452ed04f78360891b9d3e6d",
+      "trimmed_lrat_sha256": "b9f390ab825ffeb8e5d391d2132dac68d8d3516fac1b262dfc4aebede1cbd354",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9105,
+      "hints": [
+        {
+          "clause": [
+            91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -91,
+            -92
+          ],
+          "clause_id": 8174,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave2_20260729/shard-26",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "584f25e9c8459731f8547010dd10d5393f4d5c0e6ac512caccf7549739b3b996",
+      "terminal_drat_sha256": "c1676dbb3770e53e9c6acbd50c39363078f9cc463972dc03dc23577370f9e006",
+      "trimmed_lrat_sha256": "b9f390ab825ffeb8e5d391d2132dac68d8d3516fac1b262dfc4aebede1cbd354",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9105,
+      "hints": [
+        {
+          "clause": [
+            91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -91,
+            -92
+          ],
+          "clause_id": 8174,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave2_20260729/shard-27",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "a3e29c05669f97827e6980a176d792895e06fb8c7229e1ae734fed5076e5afa2",
+      "terminal_drat_sha256": "cf9554211d6618085228963aeb1b160e1417ad8a7a055405ebedfe6fb137c712",
+      "trimmed_lrat_sha256": "b9f390ab825ffeb8e5d391d2132dac68d8d3516fac1b262dfc4aebede1cbd354",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9105,
+      "hints": [
+        {
+          "clause": [
+            91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -91,
+            -92
+          ],
+          "clause_id": 8174,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave2_20260729/shard-28",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "1de679915d1d8c4d2671195e169f2ba945ac4f3fedf125386b9cbcd07d2aa837",
+      "terminal_drat_sha256": "48bc3428c9e01d1c0a132800620f856c6508e9fe51459d98919ad162b268480a",
+      "trimmed_lrat_sha256": "b9f390ab825ffeb8e5d391d2132dac68d8d3516fac1b262dfc4aebede1cbd354",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9105,
+      "hints": [
+        {
+          "clause": [
+            91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -91,
+            -92
+          ],
+          "clause_id": 8174,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave2_20260729/shard-29",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "bf2f20dd65cf0a930c7f4a620fc6b1fcbc0ffe83f59d8331773baad4df323f6f",
+      "terminal_drat_sha256": "1d2bff9c90962ce6b97490bb9e852026670e2a938a342116af289868aca910ae",
+      "trimmed_lrat_sha256": "b9f390ab825ffeb8e5d391d2132dac68d8d3516fac1b262dfc4aebede1cbd354",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9105,
+      "hints": [
+        {
+          "clause": [
+            91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -91,
+            -92
+          ],
+          "clause_id": 8174,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave2_20260729/shard-30",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "a46c189fbe49c980b7088c23efea0ca91edf41972da6b3e1794b4e7f53897640",
+      "terminal_drat_sha256": "6850a088be43dbea9fa64601e3c8cf7ed3f7d35dc5914297946ecc7639f7a093",
+      "trimmed_lrat_sha256": "b9f390ab825ffeb8e5d391d2132dac68d8d3516fac1b262dfc4aebede1cbd354",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9105,
+      "hints": [
+        {
+          "clause": [
+            91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -91,
+            -92
+          ],
+          "clause_id": 8174,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth5_wave2_20260729/shard-31",
+      "learned_clause_count": 472,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9101,
+      "terminal_cnf_sha256": "a38b1a47e85c3129979dd0f17ba1d99e6279bb87b58df2c6144531e67177a2a5",
+      "terminal_drat_sha256": "3770b74924187f6fdef0e7775b308018e68836025ade1e0bb17fff7a9467b690",
+      "trimmed_lrat_sha256": "b9f390ab825ffeb8e5d391d2132dac68d8d3516fac1b262dfc4aebede1cbd354",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8630,
+      "empty_addition_original_id": 9106,
+      "hints": [
+        {
+          "clause": [
+            -94
+          ],
+          "clause_id": 8628,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -95
+          ],
+          "clause_id": 8629,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -96
+          ],
+          "clause_id": 8630,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            94,
+            95,
+            96
+          ],
+          "clause_id": 8177,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth6_hard_children_wave1_20260729/shard-08",
+      "learned_clause_count": 472,
+      "prefix_depth": 6,
+      "terminal_clause_count": 9102,
+      "terminal_cnf_sha256": "d9f26fe62022e67ed4bff6cf510c1d3c48845d61d36ff86498a872b7c24fb6ad",
+      "terminal_drat_sha256": "602ba60c020b4ebdd72def6e5e655f2f45159a77b4b53e80780b95b671e932b6",
+      "trimmed_lrat_sha256": "5d682c36a0075ac05b7cc0a2e51eb0042c312b4a34d3e7273ee13488eeaccf1a",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8630,
+      "empty_addition_original_id": 9106,
+      "hints": [
+        {
+          "clause": [
+            95
+          ],
+          "clause_id": 8629,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            96
+          ],
+          "clause_id": 8630,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -95,
+            -96
+          ],
+          "clause_id": 8180,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth6_hard_children_wave1_20260729/shard-11",
+      "learned_clause_count": 472,
+      "prefix_depth": 6,
+      "terminal_clause_count": 9102,
+      "terminal_cnf_sha256": "d19f20ca171b936d081cb9da39e3a81ab26a89225ed44b1bec0dda3d84750205",
+      "terminal_drat_sha256": "f35bfdc6dfd98afff4d3972a098767b13b36832abc4f5bbcc90895da8d2dee7e",
+      "trimmed_lrat_sha256": "5ef0cb3a90038f128e3c4a07e9837cddf9f5545af074fdba0116744c793f5666",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8630,
+      "empty_addition_original_id": 9107,
+      "hints": [
+        {
+          "clause": [
+            94
+          ],
+          "clause_id": 8628,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            96
+          ],
+          "clause_id": 8630,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -94,
+            -96
+          ],
+          "clause_id": 8179,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth6_hard_children_wave1_20260729/shard-13",
+      "learned_clause_count": 472,
+      "prefix_depth": 6,
+      "terminal_clause_count": 9102,
+      "terminal_cnf_sha256": "1cf652cb5c7c11443ba8593b6be683301138c5f9864ecda9737b2a816da11cbe",
+      "terminal_drat_sha256": "df6323b79a7370edaf68ede4e0c6ac38974927bd8082291c10a8505418d30e50",
+      "trimmed_lrat_sha256": "e59aae661820d74d3b05e96f40c8dccc698d254718f2e8c6e487c7cf6e073992",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8630,
+      "empty_addition_original_id": 9106,
+      "hints": [
+        {
+          "clause": [
+            -94
+          ],
+          "clause_id": 8628,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -95
+          ],
+          "clause_id": 8629,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -96
+          ],
+          "clause_id": 8630,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            94,
+            95,
+            96
+          ],
+          "clause_id": 8177,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth6_hard_children_wave1_20260729/shard-16",
+      "learned_clause_count": 472,
+      "prefix_depth": 6,
+      "terminal_clause_count": 9102,
+      "terminal_cnf_sha256": "3e2591f742b5db935954a088a02948138e4026bd9986741d14b183950b0b3c91",
+      "terminal_drat_sha256": "0d013889b6c5e2832c50bd1fe4438c984cb6f1f9385a4f9b441d2ed3f32f28c4",
+      "trimmed_lrat_sha256": "5d682c36a0075ac05b7cc0a2e51eb0042c312b4a34d3e7273ee13488eeaccf1a",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8630,
+      "empty_addition_original_id": 9106,
+      "hints": [
+        {
+          "clause": [
+            95
+          ],
+          "clause_id": 8629,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            96
+          ],
+          "clause_id": 8630,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -95,
+            -96
+          ],
+          "clause_id": 8180,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth6_hard_children_wave1_20260729/shard-19",
+      "learned_clause_count": 472,
+      "prefix_depth": 6,
+      "terminal_clause_count": 9102,
+      "terminal_cnf_sha256": "3f7ec0924f306172ca79a012482a2c3a45a0dc87137d0fec3923504e0cd7a9e3",
+      "terminal_drat_sha256": "aee1f69ba264d65b636fa1e041fd52531cbd6cfbc4491728d0642929d66cb3fe",
+      "trimmed_lrat_sha256": "5ef0cb3a90038f128e3c4a07e9837cddf9f5545af074fdba0116744c793f5666",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8630,
+      "empty_addition_original_id": 9107,
+      "hints": [
+        {
+          "clause": [
+            94
+          ],
+          "clause_id": 8628,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            96
+          ],
+          "clause_id": 8630,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -94,
+            -96
+          ],
+          "clause_id": 8179,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth6_hard_children_wave1_20260729/shard-21",
+      "learned_clause_count": 472,
+      "prefix_depth": 6,
+      "terminal_clause_count": 9102,
+      "terminal_cnf_sha256": "2c8538c09ba5edbe9f4b129e91c9548827f6dfafac5c7940623b189b5e4d742f",
+      "terminal_drat_sha256": "fc980cf7c324b780a07f7e99e27ea8c4655c4991a09e660fb8f03bddaccb63a8",
+      "trimmed_lrat_sha256": "e59aae661820d74d3b05e96f40c8dccc698d254718f2e8c6e487c7cf6e073992",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8630,
+      "empty_addition_original_id": 9107,
+      "hints": [
+        {
+          "clause": [
+            -94
+          ],
+          "clause_id": 8628,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -95
+          ],
+          "clause_id": 8629,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -96
+          ],
+          "clause_id": 8630,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            94,
+            95,
+            96
+          ],
+          "clause_id": 8177,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth6_hard_children_wave1_20260729/shard-32",
+      "learned_clause_count": 472,
+      "prefix_depth": 6,
+      "terminal_clause_count": 9102,
+      "terminal_cnf_sha256": "6acd31b15e19c9e248e86257484d1b942d41afa2177c73052fb35a81ebafd1c7",
+      "terminal_drat_sha256": "eb91161167e3fd9338b4e59993969ced84d0375e06ab8e780283bc1e0ffd9a02",
+      "trimmed_lrat_sha256": "a718ae66f7c50ab3f7d99b7473cb198280a5287634ddb27d3b41d2ce5dec8eac",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8630,
+      "empty_addition_original_id": 9107,
+      "hints": [
+        {
+          "clause": [
+            95
+          ],
+          "clause_id": 8629,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            96
+          ],
+          "clause_id": 8630,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -95,
+            -96
+          ],
+          "clause_id": 8180,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth6_hard_children_wave2_20260729/shard-35",
+      "learned_clause_count": 472,
+      "prefix_depth": 6,
+      "terminal_clause_count": 9102,
+      "terminal_cnf_sha256": "f7533b32486cd289ea3d8f19e37941c5eabc52741289e478264fd0d8889debe6",
+      "terminal_drat_sha256": "ec62d42a3cce6583711ab3d0e18c7259dab5ad123c8bd6043475666cbd16184c",
+      "trimmed_lrat_sha256": "9c4d1f23c096a4f3ee0ba816e4df939848e2843a10a60abf8a8d923e419514a3",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8630,
+      "empty_addition_original_id": 9108,
+      "hints": [
+        {
+          "clause": [
+            94
+          ],
+          "clause_id": 8628,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            96
+          ],
+          "clause_id": 8630,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -94,
+            -96
+          ],
+          "clause_id": 8179,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth6_hard_children_wave2_20260729/shard-37",
+      "learned_clause_count": 472,
+      "prefix_depth": 6,
+      "terminal_clause_count": 9102,
+      "terminal_cnf_sha256": "427cacc8d72d5bce0f0116a3c43b8938b4fe84327599b3dfcf376a0f0d8a2f48",
+      "terminal_drat_sha256": "b2f75b7f0c296c7722f280214fdb291daa46a80d54950373727f32693bd2bbc8",
+      "trimmed_lrat_sha256": "75cc6e8f737f569dd51d5210406b03df1f01afc4fd4f6ae9aa0861ac15d981ea",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8632,
+      "empty_addition_original_id": 9110,
+      "hints": [
+        {
+          "clause": [
+            97
+          ],
+          "clause_id": 8631,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            98
+          ],
+          "clause_id": 8632,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -97,
+            -98
+          ],
+          "clause_id": 8182,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth8_hard_greatgrandchildren_wave1_20260730/shard-039",
+      "learned_clause_count": 472,
+      "prefix_depth": 8,
+      "terminal_clause_count": 9104,
+      "terminal_cnf_sha256": "c9047a0e987ccd634ea271769b0e8555bd865a8108931e069d9d1fbf8dd4f122",
+      "terminal_drat_sha256": "722f37b354e32359287ab8adaa8e18447f5bbe136911c30f93d0d28db716db0f",
+      "trimmed_lrat_sha256": "f1266fd6ecadb5c72e5b1b7e2b813eb0fa3edefd5dc36586916379ff57c6f6d3",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8632,
+      "empty_addition_original_id": 9110,
+      "hints": [
+        {
+          "clause": [
+            97
+          ],
+          "clause_id": 8631,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            98
+          ],
+          "clause_id": 8632,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -97,
+            -98
+          ],
+          "clause_id": 8182,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth8_hard_greatgrandchildren_wave1_20260730/shard-043",
+      "learned_clause_count": 472,
+      "prefix_depth": 8,
+      "terminal_clause_count": 9104,
+      "terminal_cnf_sha256": "12b24da1feb8d3923872caa47512e24127f2152dfb066397f5b07af3713b53bb",
+      "terminal_drat_sha256": "6db8d3566ab68f41d943150903154895de56192e1c11574a988faf76542c12a5",
+      "trimmed_lrat_sha256": "f1266fd6ecadb5c72e5b1b7e2b813eb0fa3edefd5dc36586916379ff57c6f6d3",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8632,
+      "empty_addition_original_id": 9111,
+      "hints": [
+        {
+          "clause": [
+            97
+          ],
+          "clause_id": 8631,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            98
+          ],
+          "clause_id": 8632,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -97,
+            -98
+          ],
+          "clause_id": 8182,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth8_hard_greatgrandchildren_wave1_20260730/shard-051",
+      "learned_clause_count": 472,
+      "prefix_depth": 8,
+      "terminal_clause_count": 9104,
+      "terminal_cnf_sha256": "5978c2a7a0f38503bbdaf3d9408eb3f24cf455984b86bb828aedc5fb7b926e71",
+      "terminal_drat_sha256": "f2d94e6ea812f8a7b8bbb0a2789f220491ee86c6b65741b749d71e56f759c42c",
+      "trimmed_lrat_sha256": "66bca9a4dbeb8d336c940b5b67a73ce33f586e3685b7a00caa94fd18ba3c4656",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8633,
+      "empty_addition_original_id": 9117,
+      "hints": [
+        {
+          "clause": [
+            -97
+          ],
+          "clause_id": 8631,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -98
+          ],
+          "clause_id": 8632,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -99
+          ],
+          "clause_id": 8633,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            97,
+            98,
+            99
+          ],
+          "clause_id": 8181,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth9_hard_descendants_wave1_20260730/shard-072",
+      "learned_clause_count": 472,
+      "prefix_depth": 9,
+      "terminal_clause_count": 9105,
+      "terminal_cnf_sha256": "56b1e06d88fe4e71cb0ae17926b02fb5cc3818a39525b7d91f781d8697381d16",
+      "terminal_drat_sha256": "ddd85c5875965aea8bba5006d78cedd4ccc1864dcb739393289f61db61d369bd",
+      "trimmed_lrat_sha256": "8da1aec4d2891043d54989f9825eb6df984edb05251620569b0239af1adac594",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8633,
+      "empty_addition_original_id": 9110,
+      "hints": [
+        {
+          "clause": [
+            98
+          ],
+          "clause_id": 8632,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            99
+          ],
+          "clause_id": 8633,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -98,
+            -99
+          ],
+          "clause_id": 8184,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth9_hard_descendants_wave1_20260730/shard-075",
+      "learned_clause_count": 472,
+      "prefix_depth": 9,
+      "terminal_clause_count": 9105,
+      "terminal_cnf_sha256": "0c65d86a302563f5de31fbd30592df6bd31f1b9efd225582d541b939d4e6a313",
+      "terminal_drat_sha256": "3c5a35a48861376dbb6c8df0fc3e4d8d9d765e3f6623944b9b7186d66ccc1144",
+      "trimmed_lrat_sha256": "c2032f8fff11d439a37e5d5fc26b25e3c5578d58a7ad33c52557bb59ec4cccdf",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8633,
+      "empty_addition_original_id": 9111,
+      "hints": [
+        {
+          "clause": [
+            97
+          ],
+          "clause_id": 8631,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            99
+          ],
+          "clause_id": 8633,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -97,
+            -99
+          ],
+          "clause_id": 8183,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth9_hard_descendants_wave1_20260730/shard-077",
+      "learned_clause_count": 472,
+      "prefix_depth": 9,
+      "terminal_clause_count": 9105,
+      "terminal_cnf_sha256": "5cc49eb2a9cdb41a3b8c0ad7d2d27984a54da932668e3c5a01bd042be98c3edd",
+      "terminal_drat_sha256": "b509512de06cd6b4281a8cd0416e5424d93ef4a5e40059f4ade38faf41c400d0",
+      "trimmed_lrat_sha256": "34eb0448f23c69e74a724525fdb5a7ca488b98f9e8cb40ba8a09b8adec62cede",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8633,
+      "empty_addition_original_id": 9110,
+      "hints": [
+        {
+          "clause": [
+            -97
+          ],
+          "clause_id": 8631,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -98
+          ],
+          "clause_id": 8632,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -99
+          ],
+          "clause_id": 8633,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            97,
+            98,
+            99
+          ],
+          "clause_id": 8181,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth9_hard_descendants_wave1_20260730/shard-080",
+      "learned_clause_count": 472,
+      "prefix_depth": 9,
+      "terminal_clause_count": 9105,
+      "terminal_cnf_sha256": "3eddd9f9e0ce31c054136ea83320c6a1295ea0809c32c87c3f6ae19719f1811e",
+      "terminal_drat_sha256": "dbf57ba611cdde6a7d6d3af73cfef5ff4aceb0231350f8204c0574b4d9aff381",
+      "trimmed_lrat_sha256": "88210f9c9706df268fb917e161fef257fc05a1bfec0f1b73e74bf0775e3f0fd7",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8633,
+      "empty_addition_original_id": 9110,
+      "hints": [
+        {
+          "clause": [
+            98
+          ],
+          "clause_id": 8632,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            99
+          ],
+          "clause_id": 8633,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -98,
+            -99
+          ],
+          "clause_id": 8184,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth9_hard_descendants_wave1_20260730/shard-083",
+      "learned_clause_count": 472,
+      "prefix_depth": 9,
+      "terminal_clause_count": 9105,
+      "terminal_cnf_sha256": "209ab40897eaf8d333ded444c56d7f2f5cab73c94957ec984a310a62cde2aada",
+      "terminal_drat_sha256": "6877e35c8cce5b161b2aaa29625807f0ec9af23a66e0ac99e32b8f50a13260be",
+      "trimmed_lrat_sha256": "c2032f8fff11d439a37e5d5fc26b25e3c5578d58a7ad33c52557bb59ec4cccdf",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8633,
+      "empty_addition_original_id": 9111,
+      "hints": [
+        {
+          "clause": [
+            97
+          ],
+          "clause_id": 8631,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            99
+          ],
+          "clause_id": 8633,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -97,
+            -99
+          ],
+          "clause_id": 8183,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth9_hard_descendants_wave1_20260730/shard-085",
+      "learned_clause_count": 472,
+      "prefix_depth": 9,
+      "terminal_clause_count": 9105,
+      "terminal_cnf_sha256": "59db8cd58aab4f5d2376ef9553722a5108a2710a715dad08123774ca9bf42a78",
+      "terminal_drat_sha256": "503808966b2037a541fcb353ca32c4ddee424114a0ad214af8c8a0a97dfcc193",
+      "trimmed_lrat_sha256": "34eb0448f23c69e74a724525fdb5a7ca488b98f9e8cb40ba8a09b8adec62cede",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8633,
+      "empty_addition_original_id": 9111,
+      "hints": [
+        {
+          "clause": [
+            -97
+          ],
+          "clause_id": 8631,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -98
+          ],
+          "clause_id": 8632,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -99
+          ],
+          "clause_id": 8633,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            97,
+            98,
+            99
+          ],
+          "clause_id": 8181,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth9_hard_descendants_wave1_20260730/shard-096",
+      "learned_clause_count": 472,
+      "prefix_depth": 9,
+      "terminal_clause_count": 9105,
+      "terminal_cnf_sha256": "6579f13f75a2442e9f9f2095796a9730053d56a47dbeff8bc0c0db92cd9394d5",
+      "terminal_drat_sha256": "de5e8120aa6093380afb06fbcd7037c893080ec93437dff4938bffa1c784af51",
+      "trimmed_lrat_sha256": "95416f589029d5b4cfd1ad7358b87c2a09f9dca148ed36be098a230edbd4952b",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8633,
+      "empty_addition_original_id": 9111,
+      "hints": [
+        {
+          "clause": [
+            98
+          ],
+          "clause_id": 8632,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            99
+          ],
+          "clause_id": 8633,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -98,
+            -99
+          ],
+          "clause_id": 8184,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth9_hard_descendants_wave1_20260730/shard-099",
+      "learned_clause_count": 472,
+      "prefix_depth": 9,
+      "terminal_clause_count": 9105,
+      "terminal_cnf_sha256": "a21b09a018ff77cfd0d20eb139c60837f60b34436e593a742d9b06a8a30f3bbb",
+      "terminal_drat_sha256": "41e87b641dcf94871f7ebd80374b7bd9cdf52d79b947151bdce1850a0c4d9544",
+      "trimmed_lrat_sha256": "ea4f609f9af839c99a85f5e9695b6899b30b7fa6539a95c75c1dfc962dd38b7c",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8633,
+      "empty_addition_original_id": 9112,
+      "hints": [
+        {
+          "clause": [
+            97
+          ],
+          "clause_id": 8631,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            99
+          ],
+          "clause_id": 8633,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -97,
+            -99
+          ],
+          "clause_id": 8183,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shared_pair_depth9_hard_descendants_wave1_20260730/shard-101",
+      "learned_clause_count": 472,
+      "prefix_depth": 9,
+      "terminal_clause_count": 9105,
+      "terminal_cnf_sha256": "2994bf0cdc1587fe4fa209439e359660a60cbe12710b7f25513315ea90678a94",
+      "terminal_drat_sha256": "efdff01ec70a599720a13eeb0bd8227e871036847657a4e19ec9adbac4018c11",
+      "trimmed_lrat_sha256": "b8f82e5f7dade481ddbbd52e5a6faebc3bdd3dc085b05044797bec8bbe740e7e",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9149,
+      "hints": [
+        {
+          "clause": [
+            -91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            91,
+            92,
+            93
+          ],
+          "clause_id": 8173,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shell_exact_depth5_v1e_20260729/shard-00",
+      "learned_clause_count": 517,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9146,
+      "terminal_cnf_sha256": "2fc7b5a4aea9296e6c4435efa9fe7f407bdc4dce4ce5d6e9daaaba02803dbda7",
+      "terminal_drat_sha256": "c51b2397b79a3d905a28f09a5d9b6c49568df66227c7278f6188a9135d4a3c19",
+      "trimmed_lrat_sha256": "86cd517ec609327c37c82c44c7984ef641712a3721c0d10d41fd1b00b93073c9",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9149,
+      "hints": [
+        {
+          "clause": [
+            -91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            91,
+            92,
+            93
+          ],
+          "clause_id": 8173,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shell_exact_depth5_v1e_20260729/shard-01",
+      "learned_clause_count": 517,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9146,
+      "terminal_cnf_sha256": "b81243bfa93fc3edf381d48091583578b6056b08a405df80e5d4981c8f860166",
+      "terminal_drat_sha256": "18256a0b90b0daa70587ec5a152f87986f5aed529ae8b3ea1c5922beb5b71492",
+      "trimmed_lrat_sha256": "86cd517ec609327c37c82c44c7984ef641712a3721c0d10d41fd1b00b93073c9",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9149,
+      "hints": [
+        {
+          "clause": [
+            -91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            91,
+            92,
+            93
+          ],
+          "clause_id": 8173,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shell_exact_depth5_v1e_20260729/shard-02",
+      "learned_clause_count": 517,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9146,
+      "terminal_cnf_sha256": "3b73af507f9996dc14763b3b4b27ec365ea4b62034862d61fa4b48bd5fbe682c",
+      "terminal_drat_sha256": "edcfd569883f2a98f816485b6ff088a6e4b6afbc28595a3e127338cca854781c",
+      "trimmed_lrat_sha256": "86cd517ec609327c37c82c44c7984ef641712a3721c0d10d41fd1b00b93073c9",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9149,
+      "hints": [
+        {
+          "clause": [
+            -91
+          ],
+          "clause_id": 8625,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            91,
+            92,
+            93
+          ],
+          "clause_id": 8173,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shell_exact_depth5_v1e_20260729/shard-03",
+      "learned_clause_count": 517,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9146,
+      "terminal_cnf_sha256": "433c2b6af8aea5b3831087571e1c46ce62a6be5f07f019ca7f3a5886adf01196",
+      "terminal_drat_sha256": "99c81e0b0a8133cee7da6d77c89e2930801ff4c480d18a289fa35f05416097c6",
+      "trimmed_lrat_sha256": "86cd517ec609327c37c82c44c7984ef641712a3721c0d10d41fd1b00b93073c9",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9151,
+      "hints": [
+        {
+          "clause": [
+            94
+          ],
+          "clause_id": 8628,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            95
+          ],
+          "clause_id": 8629,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -94,
+            -95
+          ],
+          "clause_id": 8178,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shell_exact_depth5_v1e_20260729/shard-07",
+      "learned_clause_count": 517,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9146,
+      "terminal_cnf_sha256": "04a421072fce4eb5d53bd411a5d745709cce94596b3697f6da85cca0d3331112",
+      "terminal_drat_sha256": "e102382974d6f6a70b8791b25e06cc96a0f7e175727a71e99153e2ddbf731c87",
+      "trimmed_lrat_sha256": "4c34d167893925bdbbdd7bce7c3fb20945d7ee57201b5c33406d8b25b0d55cbe",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9151,
+      "hints": [
+        {
+          "clause": [
+            94
+          ],
+          "clause_id": 8628,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            95
+          ],
+          "clause_id": 8629,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -94,
+            -95
+          ],
+          "clause_id": 8178,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shell_exact_depth5_v1e_20260729/shard-11",
+      "learned_clause_count": 517,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9146,
+      "terminal_cnf_sha256": "9ddd9d87bec5d562d70aa0fb8536a6d6aa3494ae366cfcccdd5cad74cdd75ac2",
+      "terminal_drat_sha256": "33545bfff5e85578b851a952b9cede86137d3dee874370377accbb5d0350ae63",
+      "trimmed_lrat_sha256": "4c34d167893925bdbbdd7bce7c3fb20945d7ee57201b5c33406d8b25b0d55cbe",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9149,
+      "hints": [
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92,
+            -93
+          ],
+          "clause_id": 8176,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shell_exact_depth5_v1e_20260729/shard-12",
+      "learned_clause_count": 517,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9146,
+      "terminal_cnf_sha256": "fb42dfcb9d9f8e5349012483fd89bb321e6e0039972afadeeedf593a8d6d48d5",
+      "terminal_drat_sha256": "91b14a50591c5d1b4a08cffb1498f1de236d38493fadc4484b977a4305203631",
+      "trimmed_lrat_sha256": "6ae2b2f8f3c78c42a8ff1e21f09fb8401c81acf4ead2870c9f1ac548fa251e66",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9149,
+      "hints": [
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92,
+            -93
+          ],
+          "clause_id": 8176,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shell_exact_depth5_v1e_20260729/shard-13",
+      "learned_clause_count": 517,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9146,
+      "terminal_cnf_sha256": "cc2e7e2f4fb8803f851800097cf8441b5b946f28e955e72811a17ececcb0d483",
+      "terminal_drat_sha256": "a33cbb8095bcb89e85b18dff1eeab18edc582cc5e215156d3388df8b73319e44",
+      "trimmed_lrat_sha256": "6ae2b2f8f3c78c42a8ff1e21f09fb8401c81acf4ead2870c9f1ac548fa251e66",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9149,
+      "hints": [
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92,
+            -93
+          ],
+          "clause_id": 8176,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shell_exact_depth5_v1e_20260729/shard-14",
+      "learned_clause_count": 517,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9146,
+      "terminal_cnf_sha256": "c651c543ae7a46dd764f91938e2351f360a0c26ad611cc495a3ab16a5a7f8ce4",
+      "terminal_drat_sha256": "ab9e18e07734d41c3eaf05911b4f39a2634526372906aa684c6b30c14002404c",
+      "trimmed_lrat_sha256": "6ae2b2f8f3c78c42a8ff1e21f09fb8401c81acf4ead2870c9f1ac548fa251e66",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9149,
+      "hints": [
+        {
+          "clause": [
+            92
+          ],
+          "clause_id": 8626,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            93
+          ],
+          "clause_id": 8627,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -92,
+            -93
+          ],
+          "clause_id": 8176,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shell_exact_depth5_v1e_20260729/shard-15",
+      "learned_clause_count": 517,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9146,
+      "terminal_cnf_sha256": "1f7b5a14622bd6bea7be7ba395192184c88d262e0540ee91037ff2cf3e81503e",
+      "terminal_drat_sha256": "62931edc82029398d29c1659e3b13b6c7be3fd29b0b820d526e3af515977fe11",
+      "trimmed_lrat_sha256": "6ae2b2f8f3c78c42a8ff1e21f09fb8401c81acf4ead2870c9f1ac548fa251e66",
+      "variables": 114
+    },
+    {
+      "base_clause_count": 8629,
+      "empty_addition_original_id": 9152,
+      "hints": [
+        {
+          "clause": [
+            94
+          ],
+          "clause_id": 8628,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            95
+          ],
+          "clause_id": 8629,
+          "origin": "prefix"
+        },
+        {
+          "clause": [
+            -94,
+            -95
+          ],
+          "clause_id": 8178,
+          "origin": "hard"
+        }
+      ],
+      "leaf": "scratch/p97-distinct-distance-lane/phase3_projected_static_v2_shell_exact_depth5_v1e_20260729/shard-19",
+      "learned_clause_count": 517,
+      "prefix_depth": 5,
+      "terminal_clause_count": 9146,
+      "terminal_cnf_sha256": "c8d326858f4e3c57a63fa99148a67e36aedc60a077bdc84abce85c252387d7c2",
+      "terminal_drat_sha256": "7bcaebc7f668371467f8697c17114e3943bc39a0a571c7d69ff704903144511c",
+      "trimmed_lrat_sha256": "f18677b78a4b6ccab08b128eb6c0bd31db52387e1653deb007edd7c2008fbf4c",
+      "variables": 114
+    }
+  ],
+  "schema": "p97-phase3-terminal-rup-hint-classification-v1"
+}

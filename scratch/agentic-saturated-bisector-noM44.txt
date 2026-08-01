@@ -1,0 +1,13 @@
+The checked statement matching this configuration is:
+
+- `false_of_two_cap_centers_equidistant_outside_pair` (Problem97 ATail variants).  
+  It states: two distinct centers in one indexed ordered cap cannot both bisect the same distinct carrier pair outside that cap.
+
+Also checked and closely related is:
+
+- `outsidePair_unique_capCenter`, which gives the same kind of exclusion for two distinct centers of one ordered cap being equidistant to the same two outside points.
+
+I did not find a single checked theorem with the exact branch-form conclusion `IsM44 ∨ contradiction-with-noM44 ∨ force third-cap/source incidence` in a single statement; the corpus hit is the direct contradiction form above, which is the one to apply in that branch.
+  handles: CXYF0Z MGJ5MP 6J7GWT DVJ7EK H1BW29  (read with `nthdegree docs show <handle> --lean`)
+searched: nthdegree docs show CXYF0Z --lean, nthdegree docs show MGJ5MP --lean, nthdegree docs show 6J7GWT --lean, nthdegree docs search --lean "false_of_two_cap_centers", nthdegree docs search --lean "two distinct centers equidistant same carrier pair third cap", nthdegree docs search --lean "convex-independent finite planar set K4 IsM44 SurplusCapPacket", nthdegree docs show DVJ7EK --lean, nthdegree docs show QA3DZE --lean, nthdegree docs show H1BW29 --lean, nthdegree docs search --lean "carrier centers equidistant from the same carrier pair", nthdegree docs search --lean "surplus cap packet", nthdegree docs search --lean "equidistant outside pair IsM44 SurplusCapPacket", nthdegree docs search --lean "one indexed cap cannot both", nthdegree docs search --lean --kind theorem --sig "IsM44" "outside", nthdegree docs search --lean --name false_of_two_cap_centers_equidistant_outside_pair "outside pair", nthdegree docs search --lean --name outsidePair* "distinct centers", nthdegree docs search --lean "bisect the chord joining two distinct source-cap points", nthdegree docs search --lean "two distinct centers" "equidistant from" "third" "SurplusCapPacket", nthdegree docs search --lean "two distinct centers equidistant from same distinct carrier pair outside indexed cap", nthdegree docs show MGJ5MP --lean, nthdegree docs search --lean "noM44" "outside pair", nthdegree docs search --lean "noM44 SurplusCapPacket", nthdegree docs search --lean "carrier pair"
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.

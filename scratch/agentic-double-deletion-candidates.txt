@@ -1,0 +1,113 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:9
+/-!
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:271
+    intro y hy
+    have hy_center : y ∈ (D.skeleton q).erase center := K.subset hy
+    have hy_skeleton_q : y ∈ D.skeleton q := (Finset.mem_erase.mp hy_center).2
+    have hy_A : y ∈ D.A := (Finset.mem_erase.mp hy_skeleton_q).2
+    have hy_ne_center : y ≠ center := (Finset.mem_erase.mp hy_center).1
+    exact Finset.mem_erase.mpr ⟨hy_ne_center, hy_A⟩
+  card_four := K.card_four
+  radius := K.radius
+  radius_pos := K.radius_pos
+  same_radius := K.same_radius
+nthdegree docs show --source: reading /Users/adam/projects/math-projects/erdos-97-96-formalization/lean/RVOL/P97/U5GlobalIncidenceBasic.lean: No such file or directory (os error 2); showing stored chunk
+theorem U5QDeletedK4Class.exists_card_four_or_qCritical_of_globalK4
+
+Global `K4` at a q-deleted center either already gives an exact q-free
+four-point class, or the center is in the q-critical 4A triple-circle case.
+
+This is the first producer-side reduction for audited support payloads: after
+the row proves that the q-critical alternative is forbidden for a selected
+center, this theorem supplies the exact q-deleted class needed by
+`U5BoundedAuditSupport.selected_classes`.
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/U5GlobalIncidenceSupport.lean:305
+      _ = dist p q := htriple.T_same_radius mid hmidT
+      _ = dist p right := (htriple.T_same_radius right hrightT).symm
+      _ = dist right p := dist_comm p right
+      _ = dist right q := Kright.same_q_radius p hpBright
+  have hmid_ne_p : mid ≠ p := (Finset.mem_erase.mp (htriple.T_subset hmidT)).1
+  have hmid_ne_q : mid ≠ q := by
+    have hmid_skeleton : mid ∈ D.skeleton q :=
+      (Finset.mem_erase.mp (htriple.T_subset hmidT)).2
+    have hmid_erase_q : mid ∈ D.A.erase q := by
+      change mid ∈ D.A.erase q at hmid_skeleton
+      exact hmid_skeleton
+    exact (Finset.mem_erase.mp hmid_erase_q).1
+  rcases two_circle_common_point_eq_endpoint
+      hsne htriple.p_ne_q hpsleft hqsleft hpsright hqsright
+      hmidsleft hmidsright with hmidp | hmidq
+  · exact hmid_ne_p hmidp
+  · exact hmid_ne_q hmidq
+nthdegree docs show --source: reading /Users/adam/projects/math-projects/erdos-97-96-formalization/lean/RVOL/P97/U1LargeCapRouteBTail.lean: No such file or directory (os error 2); showing stored chunk
+theorem false_of_f2CriticalRow_center_p_q_not_named
+
+If the extra `f2` critical row is centered at the U3 apex `p`, then the
+only way it avoids the localized no-q-free contradiction is by using the
+deleted point `q` as one of its four selected labels.
+
+When `q` is not selected, the full four-point critical shell survives in
+`(D.skeleton q).erase p` and is a `p`-centered four-point same-distance class,
+contradicting `U3LocalizedNoQFreePacket.no_qfree`.
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6132
+theorem false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (_R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F) :
+    False := by
+  sorry
+/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean:184
+structure FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (F : CriticalPairFrontier D S radius H) where
+  minimal : D.Minimal
+  noM44 : ¬ ∃ T : SurplusCapPacket D.A, T.IsM44
+  carrier_card_gt_nine : 9 < D.A.card
+  class_card_eq_five :
+    (SelectedClass D.A S.oppApex1 radius).card = 5
+  unique_fourClass_radius : ∀ rho : ℝ, 0 < rho →
+    4 ≤ (SelectedClass D.A S.oppApex1 rho).card → rho = radius
+  firstApex_fullyDeletionRobust : FullyDeletionRobustAt D S.oppApex1
+  originalPair_doubleDeletion_obstructs :
+    ¬ HasNEquidistantPointsAt 4
+      ((D.A.erase F.pair.q).erase F.pair.w) S.oppApex1
+  interior : ExactFiveInteriorCriticalPairFrontier D S radius H
+  interiorPair_doubleDeletion_obstructs :
+    ¬ HasNEquidistantPointsAt 4
+      ((D.A.erase interior.frontier.pair.q).erase
+        interior.frontier.pair.w) S.oppApex1
+  obstructionCenters_eq :
+    H.centerAt interior.frontier.pair.q interior.frontier.pair.q_mem_A =
+      H.centerAt interior.frontier.pair.w interior.frontier.pair.w_mem_A
+  mutual_cross_membership :
+    interior.frontier.pair.w ∈
+        (H.selectedAt interior.frontier.pair.q
+          interior.frontier.pair.q_mem_A).toCriticalFourShell.support ∧
+      interior.frontier.pair.q ∈
+        (H.selectedAt interior.frontier.pair.w
+          interior.frontier.pair.w_mem_A).toCriticalFourShell.support
+  commonObstructionCenter_mem_interior :
+    H.centerAt interior.frontier.pair.q interior.frontier.pair.q_mem_A ∈
+      S.capInteriorByIndex S.oppIndex1
+  commonObstructionCenter_not_mem_surplus :
+    H.centerAt interior.frontier.pair.q interior.frontier.pair.q_mem_A ∉
+      S.surplusCap
+  no_third_carrier_bisector : ∀ x : ℝ², x ∈ D.A →
+    x ≠ S.oppApex1 →
+    x ≠ H.centerAt interior.frontier.pair.q
+        interior.frontier.pair.q_mem_A →
+    dist x interior.frontier.pair.q ≠
+      dist x interior.frontier.pair.w
+nthdegree docs show --source: reading /Users/adam/projects/math-projects/erdos-97-96-formalization/lean/RVOL/P97/U5GlobalIncidenceKernels.lean: No such file or directory (os error 2); showing stored chunk
+theorem u5_common_bisector_triple_incompatibility
+
+Metric lemma behind the bounded-pattern prefilter
+`common_bisector_triple`.
+
+If one non-triple selected center `x` has a q-deleted class containing `p` and
+all three dangerous triple points, then those three triple points are common
+points of two distinct circles: the dangerous `p`-circle and the selected
+`x`-circle through `p`.  Two distinct planar circles cannot share three
+non-collinear points.

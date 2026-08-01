@@ -1,0 +1,221 @@
+      firstFiber_shell_eq_explicitFour P Pρ Q] using hinter
+  have hsum :
+      (({P.source₁, P.source₂, Q.source.1,
+          Q.otherOutsidePoint} : Finset ℝ²) \
+        (H.selectedAt source.1
+          source.2).toCriticalFourShell.support).card +
+        (({P.source₁, P.source₂, Q.source.1,
+            Q.otherOutsidePoint} : Finset ℝ²) ∩
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support).card =
+      ({P.source₁, P.source₂, Q.source.1,
+        Q.otherOutsidePoint} : Finset ℝ²).card :=
+    Finset.card_sdiff_add_card_inter _ _
+  have hinterExplicit' :
+      (({P.source₁, P.source₂, Q.source.1,
+          Q.otherOutsidePoint} : Finset ℝ²) ∩
+        (H.selectedAt source.1
+          source.2).toCriticalFourShell.support).card ≤ 2 := by
+    simpa [Finset.inter_comm] using hinterExplicit
+  have htwo :
+      1 <
+        (({P.source₁, P.source₂, Q.source.1,
+            Q.otherOutsidePoint} : Finset ℝ²) \
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support).card := by
+    omega
+  rcases Finset.one_lt_card.mp htwo with
+    ⟨y, hy, z, hz, hyz⟩
+  exact
+    ⟨y, (Finset.mem_sdiff.mp hy).1,
+      z, (Finset.mem_sdiff.mp hz).1,
+      hyz, (Finset.mem_sdiff.mp hy).2,
+      (Finset.mem_sdiff.mp hz).2⟩
+
+/-- The two omitted first-fiber points give two distinct deletions under
+which the cap-source canonical K4 survives. -/
+theorem exists_two_firstFiber_deletions_surviving_at_rowCenter
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius ρ : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hcenters :
+      H.centerAt source.1 source.2 ≠
+        H.centerAt P.source₁ P.source₁_mem_A) :
+    ∃ y ∈
+        ({P.source₁, P.source₂, Q.source.1,
+          Q.otherOutsidePoint} : Finset ℝ²),
+      ∃ z ∈
+        ({P.source₁, P.source₂, Q.source.1,
+          Q.otherOutsidePoint} : Finset ℝ²),
+        y ≠ z ∧
+          HasNEquidistantPointsAt 4 (D.A.erase y)
+            (H.centerAt source.1 source.2) ∧
+          HasNEquidistantPointsAt 4 (D.A.erase z)
+            (H.centerAt source.1 source.2) := by
+  rcases exists_two_firstFiber_points_omitted_by_row
+      P Pρ Q source hcenters with
+    ⟨y, hyExplicit, z, hzExplicit, hyz, hyOmit, hzOmit⟩
+  exact
+    ⟨y, hyExplicit, z, hzExplicit, hyz,
+      (cross_deletion_survives_iff_not_mem_selected_support
+        H source.2).2 hyOmit,
+      (cross_deletion_survives_iff_not_mem_selected_support
+        H source.2).2 hzOmit⟩
+
+/-- If three fixed centers are deletion-robust, the same two omitted
+first-fiber points yield a two-deletion by four-center survival grid. -/
+theorem exists_two_firstFiber_deletions_fourCenters_survive
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius ρ : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hcenters :
+      H.centerAt source.1 source.2 ≠
+        H.centerAt P.source₁ P.source₁_mem_A)
+    {a₁ a₂ a₃ : ℝ²}
+    (R₁ : FullyDeletionRobustAt D a₁)
+    (R₂ : FullyDeletionRobustAt D a₂)
+    (R₃ : FullyDeletionRobustAt D a₃) :
+    ∃ y ∈
+        ({P.source₁, P.source₂, Q.source.1,
+          Q.otherOutsidePoint} : Finset ℝ²),
+      ∃ z ∈
+        ({P.source₁, P.source₂, Q.source.1,
+          Q.otherOutsidePoint} : Finset ℝ²),
+        y ≠ z ∧
+          (HasNEquidistantPointsAt 4 (D.A.erase y)
+              (H.centerAt source.1 source.2) ∧
+            HasNEquidistantPointsAt 4 (D.A.erase y) a₁ ∧
+            HasNEquidistantPointsAt 4 (D.A.erase y) a₂ ∧
+            HasNEquidistantPointsAt 4 (D.A.erase y) a₃) ∧
+          (HasNEquidistantPointsAt 4 (D.A.erase z)
+              (H.centerAt source.1 source.2) ∧
+            HasNEquidistantPointsAt 4 (D.A.erase z) a₁ ∧
+            HasNEquidistantPointsAt 4 (D.A.erase z) a₂ ∧
+            HasNEquidistantPointsAt 4 (D.A.erase z) a₃) := by
+  rcases exists_two_firstFiber_points_omitted_by_row
+      P Pρ Q source hcenters with
+    ⟨y, hyExplicit, z, hzExplicit, hyz, hyOmit, hzOmit⟩
+  have hyShell :
+      y ∈
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support := by
+    rw [firstFiber_shell_eq_explicitFour P Pρ Q]
+    exact hyExplicit
+  have hzShell :
+      z ∈
+        (H.selectedAt P.source₁
+          P.source₁_mem_A).toCriticalFourShell.support := by
+    rw [firstFiber_shell_eq_explicitFour P Pρ Q]
+    exact hzExplicit
+  have hyA : y ∈ D.A :=
+    (H.selectedAt P.source₁
+      P.source₁_mem_A).toCriticalFourShell.support_subset_A hyShell
+  have hzA : z ∈ D.A :=
+    (H.selectedAt P.source₁
+      P.source₁_mem_A).toCriticalFourShell.support_subset_A hzShell
+  exact
+    ⟨y, hyExplicit, z, hzExplicit, hyz,
+      ⟨(cross_deletion_survives_iff_not_mem_selected_support
+          H source.2).2 hyOmit,
+        R₁.survives y hyA, R₂.survives y hyA, R₃.survives y hyA⟩,
+      ⟨(cross_deletion_survives_iff_not_mem_selected_support
+          H source.2).2 hzOmit,
+        R₁.survives z hzA, R₂.survives z hzA, R₃.survives z hzA⟩⟩
+
+/-- Retaining the localized common-deletion packet sharpens the generic
+two-omission conclusion.  Either the cap-source row hits `P.source₁`; then
+it must omit `P.source₂` and at least one named off-cap point.  Or deleting
+`P.source₁` preserves K4 simultaneously at the cap-source blocker, the
+first apex, the second collision blocker, and any two robust centers.
+
+This is a genuine disjunction forced by the current live hypotheses.  It
+does not assume any new positive incidence. -/
+theorem firstFiber_firstSourceHit_or_fiveCenterDeletion
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius ρ : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hcenters :
+      H.centerAt source.1 source.2 ≠
+        H.centerAt P.source₁ P.source₁_mem_A)
+    (homitPair :
+      P.source₁ ∉
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support ∨
+        P.source₂ ∉
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support)
+    (LP : LocalizedCollisionCommonDeletion Pρ)
+    (hLP : LP.fresh = P.source₁)
+    {a₂ a₃ : ℝ²}
+    (R₂ : FullyDeletionRobustAt D a₂)
+    (R₃ : FullyDeletionRobustAt D a₃) :
+    (P.source₁ ∈
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support ∧
+        P.source₂ ∉
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support ∧
+        (Q.source.1 ∉
+              (H.selectedAt source.1
+                source.2).toCriticalFourShell.support ∨
+          Q.otherOutsidePoint ∉
+              (H.selectedAt source.1
+                source.2).toCriticalFourShell.support)) ∨
+      (HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+            (H.centerAt source.1 source.2) ∧
+        HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+            S.oppApex1 ∧
+        HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+            (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) ∧
+        HasNEquidistantPointsAt 4 (D.A.erase P.source₁) a₂ ∧
+        HasNEquidistantPointsAt 4 (D.A.erase P.source₁) a₃) := by
+  by_cases hfirstHit :
+      P.source₁ ∈
+        (H.selectedAt source.1
+          source.2).toCriticalFourShell.support
+  · left
+    have hsecondOmit :
+        P.source₂ ∉
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support :=
+      homitPair.resolve_left (not_not_intro hfirstHit)
+    have hoffcapOmit :
+        Q.source.1 ∉
+            (H.selectedAt source.1
+              source.2).toCriticalFourShell.support ∨
+          Q.otherOutsidePoint ∉
+            (H.selectedAt source.1
+              source.2).toCriticalFourShell.support := by
+      by_contra hbothHit
+      push_neg at hbothHit
+      have hsourceNeFirst₁ : Q.source.1 ≠ P.source₁ := by
+        intro h
+        apply Q.source_ne_first₁
+        apply Subtype.ext
+        exact h
+      have hotherNeFirst₁ : Q.otherOutsidePoint ≠ P.source₁ := by
+        intro h
+        apply Q.otherOutsidePoint_not_mem_firstCap
+        rw [h]
+        exact S.capInteriorByIndex_subset_capByIndex S.oppIndex1

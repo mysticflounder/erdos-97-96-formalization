@@ -75,16 +75,19 @@ so its proof is unaffected.
   {(r₁,c₁),(r₁,c₂),(r₂,c₁),(r₂,c₃),(r₃,c₂),(r₃,c₃)} — a 6-cycle in
   the bipartite incidence graph.
 
-- **P4 (2k cells, k ≥ 3, two mirror variants)** — MODERATE-HIGH
-  confidence (10-dot k = 5 instance drawn, dashed segment = arbitrary
-  intermediate steps; closure edges verified in the 600 dpi crop):
+- **P4 (2k cells, k ≥ 3, two mirror variants)** — HIGH confidence
+  (two independent 600 dpi inspections of the original PDF, page 8 /
+  printed p. 88; the printed inequality is `k ≥ 3`):
   cyclic monotone staircase: rows ρ₁ < ... < ρ_k, cols c₁ < ... < c_k;
   variant A cells: row ρᵢ has 1's at c_{k−i} and c_{k−i+1} for
   i = 1..k−1, and the wrap row ρ_k has 1's at c₁ and c_k. (As a
   bipartite graph: a 2k-cycle; rows descend while columns descend,
-  closed by the wrap row.) Variant B = mirror image. Note P1 is
-  exactly the k = 2 case of this cycle shape, consistent with the
-  k ≥ 3 restriction.
+  closed by the wrap row.) Variant B is the simultaneous row-and-column
+  reversal: wrap row ρ₁ has c₁,c_k, and for i = 2..k row ρᵢ has
+  c_{k+1−i},c_{k+2−i}. Note P1 is exactly the k = 2 case of this cycle
+  shape, consistent with the k ≥ 3 restriction. The column-only reversal
+  previously called B is not the source diagram; its separate audited
+  proof is retained as auxiliary `B_col` in the P4 draft.
 
 ## Table 2 (max 1's g(α,β) in pattern-feasible matrices, α ≤ 6)
 
@@ -167,19 +170,32 @@ same-distance-cut setting.
 |---|---|---|
 | P1 | HIGH confidence | PROVEN + AUDITED: math-skeptic audit 2026-07-28 returned NEEDS WORK with four exact patches (F2 adjacent-vertex case, F3 half-plane containment proof, F4 different-arcs derivation + two implicit clauses); patches applied verbatim same day; the audit report states the patched text survives all its attacks |
 | P2 | HIGH confidence; convention pinned C2 | PROVEN + AUDITED (`fr-pattern-p2-proof-draft.md`): both variants forbidden under C2, general δ; math-skeptic audit 2026-07-28 returned NEEDS WORK with one blocking gap (F1: Lemma R's restriction-order bracket cited L2 where adjacency can fail; patch L1-for-adjacent / L2(iii)-for-non-adjacent) + clarifications F2–F5; all patches applied verbatim same day; the audit independently reverified every computation (L2–L5, Theorem 1 Steps 1–5, Corollary, Proposition 2) and supplied an exact rational-interval witness certificate (`p2_exact_witness_certificate.py`); orchestrator separately verified key steps line-by-line + exact C1 witness + FR-matrix consistency scan |
-| P3 | HIGH (lettered family); instance-subsumption is my inference | PARTIAL: row-cases R1/R3 (`rb≤rc`), both orientations, both column sub-cases — PROVEN + AUDITED (`fr-pattern-p3-proof-draft.md`, Theorem 2): a new mechanism (Prop 3, no strictly convex n-gon has 4 acute angles, applied via a coincidental-apex transfer, L6) — math-skeptic audit 2026-07-28 returned NEEDS WORK with one low-severity finding (F4: Proposition 3's n=4 case used a vacuous empty-sum step; Theorem 2 never instantiates n=4, so no propagation); patched same day; all other claims (Lemma R′, the Claim, L6, Lemma 4, Theorem 2, Prop 5, orientation-2 corollary) confirmed by independent re-derivation. Row-case R2 (`rb>rc`) — OPEN obligation, CONJECTURED with empirical support only (supremum-margin ≈0 in degenerate limits, 300-400 restart probes, no proof) |
-| P4 | MODERATE-HIGH (dashed-ellipsis reading) | CERTIFIED, both variants, all k≥3, both C1 AND C2 (`fr-pattern-p4-proof-draft.md`): new toolkit (Lemma M quadrilateral inequality, Lemma X uncrossing, Lemma U totally-crossing-matching uniqueness, Lemma E antipodal extremality, Proposition C chain-induction) — math-skeptic audit 2026-07-28 returned NEEDS WORK with two citation-only findings (F1: restriction-order bracket reused on non-arc-union subsets without a stated general lemma, patched by adding Lemma R″; F2: the C1/C2 corollary's general-k algebra was asserted from a k=3..6 script only, patched by writing out the general substitution) — no mathematical error found anywhere; every core lemma independently confirmed "PROVEN, survives intact." Bonus: P4 is forbidden under BOTH conventions (unlike P2), explaining rather than merely matching the zero-occurrence FR-20 scan under either reading |
+| P3 | HIGH (lettered family); instance-subsumption is my inference | PROVEN + independently CERTIFIED for the full source family (`fr-pattern-p3-proof-draft.md`, Theorem 6): R1/R3 use the four-acute-angle mechanism of Theorem 2; the first audit's sole low-severity n=4 empty-sum defect was patched. R2, in both distinct- and merged-inner-column cases, is closed by the exact angle contradictions of Proposition 4 (`p3-r2-compute/RESULTS.md` §§3–4) and independently certified in `p3-r2-compute/SKEPTIC-2026-07-28.md`. Lemma R′ supplies restriction inheritance from the ambient polygon, Proposition 5 supplies the transposed orientation, and all row and inner-column cases are covered. |
+| P4 | HIGH; original PDF checked independently twice at 600 dpi; source B corrected to simultaneous row+column reversal | CERTIFIED, both source variants, all k≥3, both C1 AND C2 (`fr-pattern-p4-proof-draft.md`): A by antipodal extremality; source B by simultaneous-reversal symmetry; auxiliary column-only `B_col` also certified by Proposition C chain-induction. Math-skeptic audit 2026-07-28 returned NEEDS WORK with two citation-only findings (F1: restriction-order bracket reused on non-arc-union subsets without a stated general lemma, patched by adding Lemma R″; F2: the C1/C2 corollary's general-k algebra was asserted from a k=3..6 script only, patched by writing out the general substitution) — no mathematical error found; every core lemma independently confirmed "PROVEN, survives intact." |
 
 No P-pattern may be ADMITTED as a census rule until its transcription
-is settled AND its proof is written and adversarially audited. P1 and
-P2 satisfy the gate and are ADMITTED 2026-07-28 as cut-matrix-domain
-rules R-P1/R-P2 (`census/p97_search/rules.py`, PHASE2-SPEC §4.4):
-same-distance C2-read cut matrices only, consumer owns the matrix
-semantics, no shell-semantics (per-point radius) generalization. P3's
-R1/R3 sub-family is likewise ADMITTED as R-P3 (PHASE2-SPEC §4.5; R2
-must NOT be folded into any admitted rule until it closes). P4's proof
-is CERTIFIED but admission is BLOCKED on transcription confidence only
-(MODERATE-HIGH, not HIGH — the gate's other half is independent of the
-proof audit and requires re-reading the original Fig. 4). Table 2
-g-values are FR's computed claims over pattern-feasibility; any use
-beyond citation requires recomputation from admitted patterns.
+is settled AND its proof is written and adversarially audited. P1,
+P2, and the full source P3 family satisfy the gate and are ADMITTED
+2026-07-28 as cut-matrix-domain rules R-P1/R-P2/R-P3
+(`census/p97_search/rules.py`, PHASE2-SPEC §§4.4–4.5): same-distance
+C2-read cut matrices only, consumer owns the matrix semantics, no
+shell-semantics (per-point radius) generalization. P4 now
+satisfies both gates and is ADMITTED 2026-07-28 as R-P4
+(PHASE2-SPEC §4.6), for the actual source variants only. Table 2
+g-values are FR's computed claims over pattern-feasibility and are not a
+verified exact bank: the independent source-pattern encoder certifies
+`g_candidate(6,8)=19`, while the printed table says 18.  Do not import those
+values as facts.
+
+The direct replacement for the Table-2 argument is now
+**CERTIFIED (finite combinatorial, not Lean-kernel)**.  The independent CNF
+lane checked every one of the 56 transpose-normalized pairs
+`3 ≤ alpha ≤ beta`, `alpha+beta ≤ 19` with all row and column degrees at least
+three; all 56 were UNSAT and every DRAT replayed successfully under the
+hardened fail-closed checker.  This consumes no Table-2 value or recurrence.
+Because the full P1--P4 geometric family, including P3 R2, is now separately
+proved, independently audited, and admitted, the result supplies the
+Fishburn--Reeds Theorem-3 conclusion for P97 C2-read same-distance cut
+matrices.  Exact artifacts and trust boundaries are in
+`theorem3-table2/AUDIT.md` and
+`theorem3-table2/LEMMA2-SKEPTIC-2026-07-28.md`.

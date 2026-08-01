@@ -1,0 +1,63 @@
+project:       erdos-97-96-formalization (erdos-97-96-formalization)
+root:          /Users/adam/projects/math-projects/erdos-97-96-formalization
+lean_lib:      /Users/adam/projects/math-projects/erdos-97-96-formalization/lean
+target_symbol: 2 targets: Problem97.erdos97_rhs, Problem96.erdos96_rhs
+
+last build:    ✓ passed · cached · 3s · 16m ago
+recent builds  (when · took · result · target):
+    5h ago      0s  ✗ exit 1     ../scratch/cap-collision-global-deletion-live/CapCollisionGlobalDeletion.lean
+    4h ago   1h49m  ✗ exit 1     Erdos9796Proof.P97.ATail.FrontierLiveClosure
+    4h ago      0s  ✗ exit 1     scratch/first-fiber-overlap-derivation/FiveCenterBoundary.lean
+    4h ago     27s  ✗ exit 1     Erdos9796Proof.P97.ATail.FirstFiberOverlapDescent
+   16m ago      3s  cached       full
+
+lean_files:    4214
+lean_symbols:  52083
+  axioms:      0 (0 sanctioned)
+  with-sorry:  21
+  closures:    0 cached
+
+index:         in sync with source
+uncommitted:   none (lean tree matches git HEAD)
+
+kernel spine (mined call graph — the only structure):
+  build:        4835b83cc3a0
+  mined fresh:  44048/44088 symbol(s)
+  graph mined:  65s ago
+  trusted:      7880 🔒 (certs excluded by [mining].skip)
+  `Problem97.erdos97_rhs` is OPEN:
+    - reaches sorry via 20 symbol(s)
+    - unapproved axiom on spine: sorryAx
+  `Problem96.erdos96_rhs` is OPEN:
+    - reaches sorry via 20 symbol(s)
+    - unapproved axiom on spine: sorryAx
+
+
+live sorries (fresh @ build 4835b83cc3a0, 2026-07-28T03:04:28+00:00):
+  on-spine (open frontier) (20):
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_collisionFiveCenterDeletion  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7620]
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_freshOutsideSecondBlockerFiber  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7648]
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_freshThirdBlockerFiber  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7486]
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7476]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_minimalCore  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2253]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_nonphysicalCollision  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5602]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2459]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_oppositeRowHeavy  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5272]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sparseRows  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5293]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_neitherRowHeavy  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2651]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_oppositeRowHeavy  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2628]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2613]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5430]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6167]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6090]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3353]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6258]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6247]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6752]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:693]
+  off-spine (placeholder — wire into the spine or remove) (1):
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1165]
+
+session anchors: 10 total · 10 open · 0 closed
+
+your anchor: ⚓ Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsBiApexRobustResidual  (subtree still open)

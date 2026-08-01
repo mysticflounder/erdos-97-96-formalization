@@ -1,0 +1,211 @@
+            hcenters
+      omega
+    exact ⟨hfirstHit, hsecondOmit, hoffcapOmit⟩
+  · right
+    have hsourceSurvives :
+        HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+          (H.centerAt source.1 source.2) :=
+      (cross_deletion_survives_iff_not_mem_selected_support
+        H source.2).2 hfirstHit
+    have hapex1Survives :
+        HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+          S.oppApex1 := by
+      simpa only [hLP] using LP.packet.survives₁
+    have hsecondBlockerSurvives :
+        HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+          (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) := by
+      simpa only [hLP] using LP.packet.survives₂
+    exact
+      ⟨hsourceSurvives, hapex1Survives, hsecondBlockerSurvives,
+        R₂.survives P.source₁ P.source₁_mem_A,
+        R₃.survives P.source₁ P.source₁_mem_A⟩
+
+/-- Applying the preceding descent to both collision pairs gives the exact
+positive residual left when neither anchored common deletion is available.
+Either the cap-source row hits both anchored sources `P.source₁` and
+`Pρ.source₁` while omitting their partners and at least one named off-cap
+point, or one of those two anchored deletions preserves K4 at five named
+centers. -/
+theorem firstFiber_twoAnchorHits_or_anchoredFiveCenterDeletion
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius ρ : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hcenters :
+      H.centerAt source.1 source.2 ≠
+        H.centerAt P.source₁ P.source₁_mem_A)
+    (homitP :
+      P.source₁ ∉
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support ∨
+        P.source₂ ∉
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support)
+    (homitPρ :
+      Pρ.source₁ ∉
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support ∨
+        Pρ.source₂ ∉
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support)
+    (LPρ : LocalizedCollisionCommonDeletion P)
+    (hLPρ : LPρ.fresh = Pρ.source₁)
+    (LP : LocalizedCollisionCommonDeletion Pρ)
+    (hLP : LP.fresh = P.source₁)
+    {a₂ a₃ : ℝ²}
+    (R₂ : FullyDeletionRobustAt D a₂)
+    (R₃ : FullyDeletionRobustAt D a₃) :
+    (P.source₁ ∈
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support ∧
+        P.source₂ ∉
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support ∧
+        Pρ.source₁ ∈
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support ∧
+        Pρ.source₂ ∉
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support ∧
+        (Q.source.1 ∉
+              (H.selectedAt source.1
+                source.2).toCriticalFourShell.support ∨
+          Q.otherOutsidePoint ∉
+              (H.selectedAt source.1
+                source.2).toCriticalFourShell.support)) ∨
+      (HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+            (H.centerAt source.1 source.2) ∧
+        HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+            S.oppApex1 ∧
+        HasNEquidistantPointsAt 4 (D.A.erase P.source₁)
+            (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) ∧
+        HasNEquidistantPointsAt 4 (D.A.erase P.source₁) a₂ ∧
+        HasNEquidistantPointsAt 4 (D.A.erase P.source₁) a₃) ∨
+      (HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
+            (H.centerAt source.1 source.2) ∧
+        HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
+            S.oppApex1 ∧
+        HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
+            (H.centerAt P.source₁ P.source₁_mem_A) ∧
+        HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁) a₂ ∧
+        HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁) a₃) := by
+  rcases firstFiber_firstSourceHit_or_fiveCenterDeletion
+      P Pρ Q source hcenters homitP LP hLP R₂ R₃ with
+    hfirstResidual | hfirstDeletion
+  · rcases hfirstResidual with
+      ⟨hfirstHit, hsecondOmit, hoffcapOmit⟩
+    by_cases hρfirstHit :
+        Pρ.source₁ ∈
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support
+    · have hρsecondOmit :
+          Pρ.source₂ ∉
+            (H.selectedAt source.1
+              source.2).toCriticalFourShell.support :=
+        homitPρ.resolve_left (not_not_intro hρfirstHit)
+      exact Or.inl
+        ⟨hfirstHit, hsecondOmit, hρfirstHit, hρsecondOmit,
+          hoffcapOmit⟩
+    · right
+      right
+      have hsourceSurvives :
+          HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
+            (H.centerAt source.1 source.2) :=
+        (cross_deletion_survives_iff_not_mem_selected_support
+          H source.2).2 hρfirstHit
+      have hapex1Survives :
+          HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
+            S.oppApex1 := by
+        simpa only [hLPρ] using LPρ.packet.survives₁
+      have hfirstBlockerSurvives :
+          HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₁)
+            (H.centerAt P.source₁ P.source₁_mem_A) := by
+        simpa only [hLPρ] using LPρ.packet.survives₂
+      exact
+        ⟨hsourceSurvives, hapex1Survives, hfirstBlockerSurvives,
+          R₂.survives Pρ.source₁ Pρ.source₁_mem_A,
+          R₃.survives Pρ.source₁ Pρ.source₁_mem_A⟩
+  · exact Or.inr (Or.inl hfirstDeletion)
+
+/-- The mutual-omission cycles sharpen the preceding residual once more.
+Unless one of the four collision sources supplies a five-center surviving
+deletion, both cycle-selected collision sources are forced to be precisely
+the two cap-row hits.  This is the fully retained, source-exact residual
+available from the current fields. -/
+theorem firstFiber_cycleAlignedHits_or_collisionFiveCenterDeletion
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius ρ : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hcenters :
+      H.centerAt source.1 source.2 ≠
+        H.centerAt P.source₁ P.source₁_mem_A)
+    (homitP :
+      P.source₁ ∉
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support ∨
+        P.source₂ ∉
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support)
+    (homitPρ :
+      Pρ.source₁ ∉
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support ∨
+        Pρ.source₂ ∉
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support)
+    (LPρ : LocalizedCollisionCommonDeletion P)
+    (hLPρ : LPρ.fresh = Pρ.source₁)
+    (MPρ : LocalizedCollisionMutualOmissionCycle P LPρ)
+    (LP : LocalizedCollisionCommonDeletion Pρ)
+    (hLP : LP.fresh = P.source₁)
+    (MP : LocalizedCollisionMutualOmissionCycle Pρ LP)
+    {a₂ a₃ : ℝ²}
+    (R₂ : FullyDeletionRobustAt D a₂)
+    (R₃ : FullyDeletionRobustAt D a₃) :
+    FirstFiberCycleAlignedResidual P Pρ Q source LPρ MPρ LP MP ∨
+      FirstFiberCollisionFiveCenterDeletionResidual
+        P Pρ source a₂ a₃ := by
+  rcases firstFiber_twoAnchorHits_or_anchoredFiveCenterDeletion
+      P Pρ Q source hcenters homitP homitPρ
+      LPρ hLPρ LP hLP R₂ R₃ with
+    hresidual | hdeleteP₁ | hdeletePρ₁
+  · rcases hresidual with
+      ⟨hP₁hit, hP₂omit, hPρ₁hit, hPρ₂omit, hoffcapOmit⟩
+    rcases MPρ.collisionSource_eq with hMPρ₁ | hMPρ₂
+    · rcases MP.collisionSource_eq with hMP₁ | hMP₂
+      · exact Or.inl
+          ⟨hP₁hit, hP₂omit, hPρ₁hit, hPρ₂omit, hoffcapOmit,
+            hMPρ₁, hMP₁⟩
+      · right
+        right
+        right
+        right
+        have hsourceSurvives :
+            HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₂)
+              (H.centerAt source.1 source.2) :=
+          (cross_deletion_survives_iff_not_mem_selected_support
+            H source.2).2 hPρ₂omit
+        have hapex1Survives :
+            HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₂)
+              S.oppApex1 := by
+          simpa only [hMP₂] using MP.collisionSourcePacket.survives₁
+        have hfirstBlockerSurvives :
+            HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₂)
+              (H.centerAt P.source₁ P.source₁_mem_A) := by
+          simpa only [hMP₂, hLP] using
+            MP.collisionSourcePacket.survives₂
+        exact
+          ⟨hsourceSurvives, hapex1Survives, hfirstBlockerSurvives,

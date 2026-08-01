@@ -1,0 +1,136 @@
+{
+  "active_stage_histogram": {
+    "equality-duplicate-center": 5406,
+    "equality-equal-k4": 10,
+    "equality-equilateral-bisector-collision": 126,
+    "equality-perpendicular-bisector-convex": 32,
+    "equality-seven-point-five-circle-collision": 4,
+    "equality-six-point-five-circle-collision-a": 2,
+    "equality-six-point-five-circle-collision-b": 1,
+    "equality-six-point-five-circle-collision-c": 4,
+    "equality-six-point-two-pair-collision": 1,
+    "equality-three-triad-collision": 45
+  },
+  "artifact_hashes": {
+    "survivors.jsonl": "300309d12184482f0e9d8052f7740f55cb9303890f0fc6eea56984bd889b3ee6"
+  },
+  "bootstrap": {
+    "covered_certificate_count": 23,
+    "kept_antichain_count": 21,
+    "source": {
+      "path": "census/p97_search/out/phase3-realization/k4-n10-profile-445-bounded100-structural-current/results.jsonl",
+      "sha256": "e79e150701a2e59ea64b7a8a4609cddbcf9cbab9f11a3a6f28a8d71456af888b"
+    },
+    "source_record_count": 100,
+    "source_stage_histogram": {
+      "equality-duplicate-center": 100
+    },
+    "source_unique_certificate_count": 23
+  },
+  "configuration": {
+    "bootstrap_results": {
+      "path": "census/p97_search/out/phase3-realization/k4-n10-profile-445-bounded100-structural-current/results.jsonl",
+      "sha256": "e79e150701a2e59ea64b7a8a4609cddbcf9cbab9f11a3a6f28a8d71456af888b"
+    },
+    "cell": {
+      "exact": true,
+      "k": 4,
+      "n": 10,
+      "profile": [
+        4,
+        4,
+        5
+      ]
+    },
+    "dependency_sha256": {
+      "census/atail_force/producer_bank.py": "484510cafb79a1256a0dcd030958e57145229654cabd245aa29030543b1cf8cb",
+      "census/global_confinement/cap_selected_nogood_certificate_probe.py": "ab1ad8c4f3a7ec77e5c35f0232094e23cf9a8f8ea56a73d369b752f204da41c5",
+      "census/global_confinement/equality_ideal_probe.py": "bf2721022dd1523c15a1b33592d572013848e2e6a2f81970ce63fbcb667d53b7",
+      "census/global_confinement/metric_realizability_probe.py": "e44f1452b240b8bbe39f2389311312ac02ef9bef8ddbb5b08dc4ffa06adea396",
+      "census/p97_search/phase3_ordered_metric_rules.py": "8eba2b66ed984f1123ea242b569d0a92b5acc3872fbc6e4ca67d17bd72e2e893",
+      "census/p97_search/phase3_shared_pair_separation.py": "84b4ed57ffa2ad4d9c8f13c6c15c7ad4882411b7813e2096318500b54513a56f",
+      "census/p97_search/phase3_structural_cegar.py": "8d09e3fb72522a7e9ed111cab8a33b56afcf739434fe54e79619c00290358e9d",
+      "census/p97_search/realize.py": "fd92ccd22911de389bc1310e0c862c8199f1c34c0a92b1b2381cba66414cb41a",
+      "census/p97_search/sat_generate.py": "5a32d21476ca47945cf5be41cbf07fe4fe831fd91a88be7326bb3138df38d817",
+      "lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean": "e0bf9cf10cdbee39e5034575ea6fb80685cc265c1b8ffa5930e7f819f6481b4f",
+      "lean/Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean": "c48c09543f96ca1fbef4c4e1bcb1869151aa726b43e9cacd71f462606ba9580c",
+      "lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean": "eb31b3cf6b7294aff42f4a56cb16ae70b765e5bff2a883ef2ac37e41aec91047",
+      "lean/Erdos9796Proof/P97/EndpointCertificate/OrderedCoreSigns.lean": "e404f50f1e1ddc13a5c4b6e8b3e2fbd1848b5a40ddcef24387eaeca544ecfbcd",
+      "lean/Erdos9796Proof/P97/Phase3SharedPairSeparation.lean": "cd6af40c90ce6aff789caf7dca08ac6467f00be7112f31540d3c992dad9a9537"
+    },
+    "detector": "_formalized_metric_core(rows,10,(),include_extended=True,include_ordered=False)",
+    "dynamic_learned_core_limit": 10000,
+    "metric_row_exact": false,
+    "mode": "cap+blocker-annotated",
+    "survivor_limit": 100,
+    "timeout_seconds": 300,
+    "workers": 24
+  },
+  "counts": {
+    "active_antichain_count": 5631,
+    "bootstrap_learned_core_count": 21,
+    "classified_raw_sat_count": 8129,
+    "dynamic_learned_core_count": 8029,
+    "learned_core_count": 8050,
+    "raw_sat_count": 8129,
+    "solver_attempt_count": 8129,
+    "structural_survivor_count": 100,
+    "unclassified_raw_sat_count": 0
+  },
+  "diagnostic": "100 structurally unresolved survivors reached",
+  "dynamic_stage_histogram": {
+    "equality-duplicate-center": 7803,
+    "equality-equal-k4": 10,
+    "equality-equilateral-bisector-collision": 126,
+    "equality-perpendicular-bisector-convex": 32,
+    "equality-seven-point-five-circle-collision": 4,
+    "equality-six-point-five-circle-collision-a": 2,
+    "equality-six-point-five-circle-collision-b": 1,
+    "equality-six-point-five-circle-collision-c": 5,
+    "equality-six-point-two-pair-collision": 1,
+    "equality-three-triad-collision": 45
+  },
+  "failure": null,
+  "fixture_replay": {
+    "scope": "survivor records only",
+    "source_manifest_sha256": "13adef2b18f166b1cf4f7fb5d92acd0e4d88a7d6a6e5910690f2f085928f74cc",
+    "validation": "each record hash chain, SAT decoding, metric-row reconstruction, and current structural no-hit replay"
+  },
+  "manifest_sha256": "c5b8041dbc76e008adf95a6c062723f0d3fae3700163766729b8c98aa39b44ec",
+  "observed_detector_stage_histogram": {
+    "equality-duplicate-center": 7803,
+    "equality-equal-k4": 10,
+    "equality-equilateral-bisector-collision": 126,
+    "equality-perpendicular-bisector-convex": 32,
+    "equality-seven-point-five-circle-collision": 4,
+    "equality-six-point-five-circle-collision-a": 2,
+    "equality-six-point-five-circle-collision-b": 1,
+    "equality-six-point-five-circle-collision-c": 5,
+    "equality-six-point-two-pair-collision": 1,
+    "equality-three-triad-collision": 45
+  },
+  "result_claim": "current-code replay fixture of exactly 100 saved structurally unresolved survivors; no enumeration-completeness, Euclidean, P97, or kernel-closure claim",
+  "schema": "p97-phase3-structural-cegar-v1",
+  "stage_histogram": {
+    "equality-duplicate-center": 7824,
+    "equality-equal-k4": 10,
+    "equality-equilateral-bisector-collision": 126,
+    "equality-perpendicular-bisector-convex": 32,
+    "equality-seven-point-five-circle-collision": 4,
+    "equality-six-point-five-circle-collision-a": 2,
+    "equality-six-point-five-circle-collision-b": 1,
+    "equality-six-point-five-circle-collision-c": 5,
+    "equality-six-point-two-pair-collision": 1,
+    "equality-three-triad-collision": 45
+  },
+  "status": "SURVIVOR_LIMIT",
+  "terminal_clause_count": null,
+  "terminal_drat_verified": false,
+  "trust_boundary": {
+    "lean": "status NOT_LANDED: Phase-3 certificates are not kernel-landed; the existing card-11 (6,4,4) Lean nogood ingress does not directly apply to this n=10 (4,4,5) cell",
+    "sat": "CaDiCaL assignment decoded and revalidated by SatEncoding",
+    "structural": "current order-independent Python formalized-core detector plus minimum whole-row certificate and independent Python replay",
+    "survivor": "detector returned none; this is structurally unresolved only, not Euclidean or P97-realizable",
+    "terminal": "UNSAT is terminal only after drat-trim prints exact s VERIFIED"
+  }
+}

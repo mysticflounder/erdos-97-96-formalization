@@ -1,0 +1,553 @@
+{
+  "antecedent_membership_rows": [
+    {
+      "center": 0,
+      "exact": false,
+      "row_index": 0,
+      "support": [
+        3,
+        4,
+        5,
+        9
+      ]
+    },
+    {
+      "center": 2,
+      "exact": false,
+      "row_index": 2,
+      "support": [
+        0,
+        1,
+        4,
+        9
+      ]
+    },
+    {
+      "center": 3,
+      "exact": false,
+      "row_index": 3,
+      "support": [
+        0,
+        6,
+        7,
+        9
+      ]
+    },
+    {
+      "center": 4,
+      "exact": false,
+      "row_index": 4,
+      "support": [
+        0,
+        1,
+        2,
+        7
+      ]
+    },
+    {
+      "center": 5,
+      "exact": false,
+      "row_index": 5,
+      "support": [
+        0,
+        4,
+        6,
+        8
+      ]
+    },
+    {
+      "center": 7,
+      "exact": false,
+      "row_index": 7,
+      "support": [
+        1,
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "center": 8,
+      "exact": false,
+      "row_index": 8,
+      "support": [
+        1,
+        5,
+        6,
+        9
+      ]
+    },
+    {
+      "center": 9,
+      "exact": false,
+      "row_index": 9,
+      "support": [
+        0,
+        2,
+        3,
+        8
+      ]
+    }
+  ],
+  "coefficient_field": "QQ",
+  "entries": [
+    {
+      "cofactor": "-48*x2y*x4x*x4y*x8y*x9x*x9y+96*x2y*x4x*x5y*x8y*x9x*x9y+48*x4x*x4y*x5y*x8y*x9x*x9y-48*x4x*x4y*x7y*x8y*x9x*x9y+144*x2y*x4x^2*x4y*x9y^2-192*x2y*x4x^2*x5y*x9y^2-96*x4x^2*x4y*x5y*x9y^2-96*x2y*x4x^2*x7y*x9y^2+96*x4x^2*x4y*x7y*x9y^2-96*x4x^2*x4y*x8y*x9y^2+192*x4x^2*x5y*x8y*x9y^2+72*x2y*x4x*x4y*x9x*x9y^2-192*x2y*x4x*x5y*x9x*x9y^2-96*x4x*x4y*x5y*x9x*x9y^2+48*x2y*x4x*x7y*x9x*x9y^2+96*x4x*x4y*x7y*x9x*x9y^2-96*x4x^2*x4y*x9y^3+192*x4x^2*x7y*x9y^3+48*x4x*x4y*x9x*x9y^3-96*x4x*x7y*x9x*x9y^3+12*x2y^2*x4x*x8x^2+20*x2y*x4x*x4y*x8x^2-40*x2y*x4x*x5y*x8x^2-8*x4x*x4y*x5y*x8x^2-24*x4x*x5y^2*x8x^2+20*x4x*x4y*x7y*x8x^2+24*x4x*x5x*x5y*x8x*x8y+12*x4x*x4y*x7x*x8x*x8y-24*x4x*x5y*x7x*x8x*x8y-24*x4x*x5x*x7y*x8x*x8y-8*x2y^2*x4x*x8x*x9x-240*x2y*x4x*x4y*x8x*x9x+480*x2y*x4x*x5y*x8x*x9x+96*x4x*x4y*x5y*x8x*x9x+288*x4x*x5y^2*x8x*x9x-240*x4x*x4y*x7y*x8x*x9x-288*x4x*x5x*x5y*x8y*x9x-144*x4x*x4y*x7x*x8y*x9x+288*x4x*x5y*x7x*x8y*x9x+288*x4x*x5x*x7y*x8y*x9x+8*x2y*x4x*x8x*x8y*x9x-48*x2y*x4x^2*x8x*x9y-96*x4x^2*x4y*x8x*x9y-288*x2y*x4x*x5x*x8x*x9y+192*x4x^2*x5y*x8x*x9y-96*x4x*x5x*x5y*x8x*x9y-48*x4x*x4y*x7x*x8x*x9y+96*x4x*x5y*x7x*x8x*x9y+96*x4x*x5x*x7y*x8x*x9y-16*x4x*x4y*x8x^2*x9y+32*x4x*x5y*x8x^2*x9y+60*x2y*x4x*x4y*x8y*x9y-8*x2y*x4x*x5y*x8y*x9y-4*x4x*x4y*x5y*x8y*x9y-112*x2y*x4x*x7y*x8y*x9y+4*x4x*x4y*x7y*x8y*x9y+72*x4x*x5x*x8x*x8y*x9y+32*x4x*x4y*x8y^2*x9y+8*x4x*x5y*x8y^2*x9y-24*x2y*x4x^2*x9x*x9y+120*x4x^2*x4y*x9x*x9y+192*x2y*x4x*x5x*x9x*x9y-288*x4x^2*x5y*x9x*x9y+48*x4x^2*x7y*x9x*x9y-24*x2y*x4x*x8x*x9x*x9y+168*x4x*x4y*x8x*x9x*x9y-336*x4x*x5y*x8x*x9x*x9y+144*x4x^2*x8y*x9x*x9y-168*x4x*x5x*x8y*x9x*x9y+24*x4x*x7x*x8y*x9x*x9y-72*x4x*x8x*x8y*x9x*x9y-36*x2y*x4x*x9x^2*x9y+108*x4x*x4y*x9x^2*x9y-192*x4x*x5y*x9x^2*x9y-24*x4x*x7y*x9x^2*x9y+96*x4x*x8y*x9x^2*x9y+654*x2y*x4x*x4y*x9y^2-48*x4x^2*x5x*x9y^2-96*x2y*x4x*x5y*x9y^2-48*x4x*x4y*x5y*x9y^2-48*x4x^2*x7x*x9y^2-1356*x2y*x4x*x7y*x9y^2+48*x4x*x4y*x7y*x9y^2+48*x2y*x4x*x8y*x9y^2-112*x4x*x4y*x8y*x9y^2+224*x4x*x7y*x8y*x9y^2-72*x4x*x8y^2*x9y^2+48*x4x^2*x9x*x9y^2-48*x4x*x5x*x9x*x9y^2-48*x4x*x7x*x9x*x9y^2-24*x4x*x9x^2*x9y^2-1356*x4x*x4y*x9y^3+2712*x4x*x7y*x9y^3-4*x2y^2*x4x*x8x-4*x2y*x4x*x4y*x8x-232*x2y*x4x*x5y*x8x+28*x4x*x4y*x5y*x8x-48*x4x*x5y^2*x8x-4*x4x*x4y*x7y*x8x-10*x4x*x5x*x8x^2-10*x4x*x7x*x8x^2+96*x4x*x5x*x5y*x8y+48*x4x*x4y*x7x*x8y-96*x4x*x5y*x7x*x8y-96*x4x*x5x*x7y*x8y+6*x2y*x4x*x8x*x8y+14*x4x*x4y*x8x*x8y+2*x4x*x5y*x8x*x8y+6*x4x*x7y*x8x*x8y-36*x4x*x5x*x8y^2+48*x2y*x4x*x4y*x9x-48*x4x*x4y*x5y*x9x+48*x4x*x4y*x7y*x9x+120*x4x*x5x*x8x*x9x+120*x4x*x7x*x8x*x9x-40*x4x*x8x^2*x9x-280*x2y*x4x*x8y*x9x+176*x4x*x4y*x8y*x9x-432*x4x*x5y*x8y*x9x-16*x4x*x7y*x8y*x9x-36*x4x*x8y^2*x9x+480*x4x*x8x*x9x^2+96*x2y*x4x^2*x9y+24*x4x^2*x4y*x9y+96*x2y*x4x*x5x*x9y-48*x4x^2*x7y*x9y+40*x2y*x4x*x8x*x9y+150*x4x*x4y*x8x*x9y-324*x4x*x5y*x8x*x9y-24*x4x*x7y*x8x*x9y-120*x4x^2*x8y*x9y-26*x4x*x5x*x8y*x9y-2*x4x*x7x*x8y*x9y+120*x4x*x8x*x8y*x9y-627*x2y*x4x*x9x*x9y-519*x4x*x4y*x9x*x9y+264*x4x*x5y*x9x*x9y+702*x4x*x7y*x9x*x9y+236*x4x*x8y*x9x*x9y+36*x4x^2*x9y^2-24*x4x*x5x*x9y^2-24*x4x*x7x*x9y^2-144*x4x*x8x*x9y^2+972*x4x*x9x*x9y^2+28*x2y*x4x*x4y-28*x4x*x4y*x5y+28*x4x*x4y*x7y+14*x4x*x5x*x8x+2*x4x*x7x*x8x+29*x4x*x8x^2+48*x2y*x4x*x8y-56*x4x*x4y*x8y+168*x4x*x5y*x8y-32*x4x*x7y*x8y+x4x*x8y^2-24*x4x*x5x*x9x-24*x4x*x7x*x9x-391*x4x*x8x*x9x-204*x4x*x9x^2+409*x2y*x4x*x9y+285*x4x*x4y*x9y+180*x4x*x5y*x9y-678*x4x*x7y*x9y+81*x4x*x8y*x9y-363/2*x4x*x9y^2-14*x4x*x5x-14*x4x*x7x-115*x4x*x8x+152*x4x*x9x+74*x4x",
+      "cofactor_metrics": {
+        "nonzero": true,
+        "term_count": 170,
+        "total_degree": 6
+      },
+      "generator": "((0-x3x)^2+(0-x3y)^2)-((0-x4x)^2+(0-x4y)^2)",
+      "index": 0,
+      "row_equation_index": 0,
+      "row_index": 0,
+      "singular_index": 1
+    },
+    {
+      "cofactor": "144*x4x^2*x8x*x8y*x9y-144*x4x*x4y*x8y^2*x9y+288*x4x*x4y*x8x*x9x*x9y+288*x4x*x4y*x8y*x9y^2-12*x4x^2*x8x^2-24*x2y*x4x*x8x*x8y-60*x4x*x4y*x8x*x8y+240*x4x^2*x8x*x9x+288*x2y*x4x*x8y*x9x-144*x4x*x4y*x8y*x9x+96*x2y*x4x*x8x*x9y-192*x4x*x4y*x8x*x9y-144*x4x*x8x*x8y*x9y-48*x4x^2*x8x+24*x4x*x8x^2-96*x2y*x4x*x8y+48*x4x*x4y*x8y+36*x4x*x8y^2-48*x2y*x4x*x9y+120*x4x*x8y*x9y-60*x4x*x8x-24*x4x*x9x+24*x4x",
+      "cofactor_metrics": {
+        "nonzero": true,
+        "term_count": 23,
+        "total_degree": 5
+      },
+      "generator": "((0-x3x)^2+(0-x3y)^2)-((0-x5x)^2+(0-x5y)^2)",
+      "index": 1,
+      "row_equation_index": 1,
+      "row_index": 0,
+      "singular_index": 2
+    },
+    {
+      "cofactor": "48*x2y*x4x*x4y*x8y*x9x*x9y-96*x2y*x4x*x5y*x8y*x9x*x9y-48*x4x*x4y*x5y*x8y*x9x*x9y+48*x4x*x4y*x7y*x8y*x9x*x9y-144*x2y*x4x^2*x4y*x9y^2+192*x2y*x4x^2*x5y*x9y^2+96*x4x^2*x4y*x5y*x9y^2+96*x2y*x4x^2*x7y*x9y^2-96*x4x^2*x4y*x7y*x9y^2+96*x4x^2*x4y*x8y*x9y^2-192*x4x^2*x5y*x8y*x9y^2-72*x2y*x4x*x4y*x9x*x9y^2+192*x2y*x4x*x5y*x9x*x9y^2+96*x4x*x4y*x5y*x9x*x9y^2-48*x2y*x4x*x7y*x9x*x9y^2-96*x4x*x4y*x7y*x9x*x9y^2+96*x4x^2*x4y*x9y^3-192*x4x^2*x7y*x9y^3-48*x4x*x4y*x9x*x9y^3+96*x4x*x7y*x9x*x9y^3-12*x2y^2*x4x*x8x^2-20*x2y*x4x*x4y*x8x^2+40*x2y*x4x*x5y*x8x^2+8*x4x*x4y*x5y*x8x^2+24*x4x*x5y^2*x8x^2-20*x4x*x4y*x7y*x8x^2-24*x4x*x5x*x5y*x8x*x8y-12*x4x*x4y*x7x*x8x*x8y+24*x4x*x5y*x7x*x8x*x8y+24*x4x*x5x*x7y*x8x*x8y+8*x2y^2*x4x*x8x*x9x+240*x2y*x4x*x4y*x8x*x9x-480*x2y*x4x*x5y*x8x*x9x-96*x4x*x4y*x5y*x8x*x9x-288*x4x*x5y^2*x8x*x9x+240*x4x*x4y*x7y*x8x*x9x+288*x4x*x5x*x5y*x8y*x9x+144*x4x*x4y*x7x*x8y*x9x-288*x4x*x5y*x7x*x8y*x9x-288*x4x*x5x*x7y*x8y*x9x-8*x2y*x4x*x8x*x8y*x9x+48*x2y*x4x^2*x8x*x9y+96*x4x^2*x4y*x8x*x9y+288*x2y*x4x*x5x*x8x*x9y-192*x4x^2*x5y*x8x*x9y+96*x4x*x5x*x5y*x8x*x9y+48*x4x*x4y*x7x*x8x*x9y-96*x4x*x5y*x7x*x8x*x9y-96*x4x*x5x*x7y*x8x*x9y+16*x4x*x4y*x8x^2*x9y-32*x4x*x5y*x8x^2*x9y-60*x2y*x4x*x4y*x8y*x9y+8*x2y*x4x*x5y*x8y*x9y+4*x4x*x4y*x5y*x8y*x9y+112*x2y*x4x*x7y*x8y*x9y-4*x4x*x4y*x7y*x8y*x9y-144*x4x^2*x8x*x8y*x9y-72*x4x*x5x*x8x*x8y*x9y+112*x4x*x4y*x8y^2*x9y-8*x4x*x5y*x8y^2*x9y+24*x2y*x4x^2*x9x*x9y-120*x4x^2*x4y*x9x*x9y-192*x2y*x4x*x5x*x9x*x9y+288*x4x^2*x5y*x9x*x9y-48*x4x^2*x7y*x9x*x9y+24*x2y*x4x*x8x*x9x*x9y-456*x4x*x4y*x8x*x9x*x9y+336*x4x*x5y*x8x*x9x*x9y-144*x4x^2*x8y*x9x*x9y+168*x4x*x5x*x8y*x9x*x9y-24*x4x*x7x*x8y*x9x*x9y+72*x4x*x8x*x8y*x9x*x9y+36*x2y*x4x*x9x^2*x9y-108*x4x*x4y*x9x^2*x9y+192*x4x*x5y*x9x^2*x9y+24*x4x*x7y*x9x^2*x9y-96*x4x*x8y*x9x^2*x9y-654*x2y*x4x*x4y*x9y^2+48*x4x^2*x5x*x9y^2+96*x2y*x4x*x5y*x9y^2+48*x4x*x4y*x5y*x9y^2+48*x4x^2*x7x*x9y^2+1356*x2y*x4x*x7y*x9y^2-48*x4x*x4y*x7y*x9y^2-48*x2y*x4x*x8y*x9y^2-176*x4x*x4y*x8y*x9y^2-224*x4x*x7y*x8y*x9y^2+72*x4x*x8y^2*x9y^2-48*x4x^2*x9x*x9y^2+48*x4x*x5x*x9x*x9y^2+48*x4x*x7x*x9x*x9y^2+24*x4x*x9x^2*x9y^2+1356*x4x*x4y*x9y^3-2712*x4x*x7y*x9y^3+4*x2y^2*x4x*x8x+4*x2y*x4x*x4y*x8x+232*x2y*x4x*x5y*x8x-28*x4x*x4y*x5y*x8x+48*x4x*x5y^2*x8x+4*x4x*x4y*x7y*x8x+12*x4x^2*x8x^2+10*x4x*x5x*x8x^2+10*x4x*x7x*x8x^2-96*x4x*x5x*x5y*x8y-48*x4x*x4y*x7x*x8y+96*x4x*x5y*x7x*x8y+96*x4x*x5x*x7y*x8y+18*x2y*x4x*x8x*x8y+46*x4x*x4y*x8x*x8y-2*x4x*x5y*x8x*x8y-6*x4x*x7y*x8x*x8y+36*x4x*x5x*x8y^2-48*x2y*x4x*x4y*x9x+48*x4x*x4y*x5y*x9x-48*x4x*x4y*x7y*x9x-240*x4x^2*x8x*x9x-120*x4x*x5x*x8x*x9x-120*x4x*x7x*x8x*x9x+40*x4x*x8x^2*x9x-8*x2y*x4x*x8y*x9x-32*x4x*x4y*x8y*x9x+432*x4x*x5y*x8y*x9x+16*x4x*x7y*x8y*x9x+36*x4x*x8y^2*x9x-480*x4x*x8x*x9x^2-96*x2y*x4x^2*x9y-24*x4x^2*x4y*x9y-96*x2y*x4x*x5x*x9y+48*x4x^2*x7y*x9y-136*x2y*x4x*x8x*x9y+42*x4x*x4y*x8x*x9y+324*x4x*x5y*x8x*x9y+24*x4x*x7y*x8x*x9y+120*x4x^2*x8y*x9y+26*x4x*x5x*x8y*x9y+2*x4x*x7x*x8y*x9y+24*x4x*x8x*x8y*x9y+627*x2y*x4x*x9x*x9y+519*x4x*x4y*x9x*x9y-264*x4x*x5y*x9x*x9y-702*x4x*x7y*x9x*x9y-236*x4x*x8y*x9x*x9y-36*x4x^2*x9y^2+24*x4x*x5x*x9y^2+24*x4x*x7x*x9y^2+144*x4x*x8x*x9y^2-972*x4x*x9x*x9y^2-28*x2y*x4x*x4y+28*x4x*x4y*x5y-28*x4x*x4y*x7y+48*x4x^2*x8x-14*x4x*x5x*x8x-2*x4x*x7x*x8x-53*x4x*x8x^2+48*x2y*x4x*x8y+8*x4x*x4y*x8y-168*x4x*x5y*x8y+32*x4x*x7y*x8y-37*x4x*x8y^2+24*x4x*x5x*x9x+24*x4x*x7x*x9x+391*x4x*x8x*x9x+204*x4x*x9x^2-361*x2y*x4x*x9y-285*x4x*x4y*x9y-180*x4x*x5y*x9y+678*x4x*x7y*x9y-201*x4x*x8y*x9y+363/2*x4x*x9y^2+14*x4x*x5x+14*x4x*x7x+175*x4x*x8x-128*x4x*x9x-98*x4x",
+      "cofactor_metrics": {
+        "nonzero": true,
+        "term_count": 174,
+        "total_degree": 6
+      },
+      "generator": "((0-x3x)^2+(0-x3y)^2)-((0-x9x)^2+(0-x9y)^2)",
+      "index": 2,
+      "row_equation_index": 2,
+      "row_index": 0,
+      "singular_index": 3
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((1-x2x)^2+(0-x2y)^2)-((1-x4x)^2+(0-x4y)^2)",
+      "index": 3,
+      "row_equation_index": 0,
+      "row_index": 1,
+      "singular_index": 4
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((1-x2x)^2+(0-x2y)^2)-((1-x7x)^2+(0-x7y)^2)",
+      "index": 4,
+      "row_equation_index": 1,
+      "row_index": 1,
+      "singular_index": 5
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((1-x2x)^2+(0-x2y)^2)-((1-x8x)^2+(0-x8y)^2)",
+      "index": 5,
+      "row_equation_index": 2,
+      "row_index": 1,
+      "singular_index": 6
+    },
+    {
+      "cofactor": "-16*x2y*x4x^3*x4y^2*x8x*x8y-48*x2y*x4x^3*x4y*x8x^2*x9x+8*x2y^2*x4x^2*x4y*x8x*x8y*x9x-16*x2y*x4x^2*x4y^2*x8x*x8y*x9x+64*x2y*x4x^3*x4y*x8y^2*x9x-96*x2y*x4x^3*x4y*x8x*x9x^2+24*x2y^2*x4x^2*x8x^2*x9x^2-48*x2y*x4x^2*x4y*x8x^2*x9x^2-32*x2y^2*x4x^2*x8y^2*x9x^2+64*x2y*x4x^2*x4y*x8y^2*x9x^2+48*x2y^2*x4x^2*x8x*x9x^3-96*x2y*x4x^2*x4y*x8x*x9x^3+384*x4x^4*x4y*x5x*x8x*x9y+384*x4x^3*x4y^2*x5x*x8y*x9y-96*x2y*x4x^3*x4y*x8x*x8y*x9y+192*x4x^4*x4y*x7x*x9x*x9y-576*x4x^4*x4y*x8x*x9x*x9y-192*x2y*x4x^3*x5x*x8x*x9x*x9y+1536*x4x^3*x4y*x5x*x8x*x9x*x9y+48*x2y*x4x^3*x8x^2*x9x*x9y-192*x4x^3*x4y^2*x8y*x9x*x9y-192*x2y*x4x^2*x4y*x5x*x8y*x9x*x9y+384*x4x^2*x4y^2*x5x*x8y*x9x*x9y-384*x4x^3*x4y*x5y*x8y*x9x*x9y+384*x4x^3*x4y*x7y*x8y*x9x*x9y+56*x2y^2*x4x^2*x8x*x8y*x9x*x9y-112*x2y*x4x^2*x4y*x8x*x8y*x9x*x9y-64*x2y*x4x^3*x8y^2*x9x*x9y-3456*x4x^4*x4y*x9x^2*x9y+2304*x4x^3*x4y*x5x*x9x^2*x9y-96*x2y*x4x^3*x7x*x9x^2*x9y+96*x4x^3*x4y*x7x*x9x^2*x9y+384*x2y*x4x^3*x8x*x9x^2*x9y-864*x4x^3*x4y*x8x*x9x^2*x9y-576*x2y*x4x^2*x5x*x8x*x9x^2*x9y+1152*x4x^2*x4y*x5x*x8x*x9x^2*x9y-192*x4x^2*x4y^2*x8y*x9x^2*x9y+192*x2y*x4x^2*x5y*x8y*x9x^2*x9y-288*x4x^2*x4y*x5y*x8y*x9x^2*x9y+288*x4x^2*x4y*x7y*x8y*x9x^2*x9y+1728*x2y*x4x^3*x9x^3*x9y-5760*x4x^3*x4y*x9x^3*x9y-1152*x2y*x4x^2*x5x*x9x^3*x9y+2304*x4x^2*x4y*x5x*x9x^3*x9y+48*x2y*x4x^2*x7x*x9x^3*x9y-96*x4x^2*x4y*x7x*x9x^3*x9y+144*x2y*x4x^2*x8x*x9x^3*x9y-288*x4x^2*x4y*x8x*x9x^3*x9y+1152*x2y*x4x^2*x9x^4*x9y-2304*x4x^2*x4y*x9x^4*x9y+768*x4x^4*x4y*x5y*x9y^2-960*x4x^4*x4y*x7y*x9y^2-96*x2y*x4x^3*x4y*x8x*x9y^2-384*x4x^4*x5x*x8x*x9y^2-576*x4x^4*x4y*x8y*x9y^2+768*x4x^3*x4y*x5x*x8y*x9y^2+112*x2y*x4x^3*x8x*x8y*x9y^2+288*x2y*x4x^3*x4y*x9x*x9y^2-384*x2y*x4x^3*x5y*x9x*x9y^2+1344*x4x^3*x4y*x5y*x9x*x9y^2-192*x4x^4*x7x*x9x*x9y^2-96*x2y*x4x^3*x7y*x9x*x9y^2-1440*x4x^3*x4y*x7y*x9x*x9y^2+48*x2y^2*x4x^2*x8x*x9x*x9y^2+576*x4x^4*x8x*x9x*x9y^2-96*x2y*x4x^2*x4y*x8x*x9x*x9y^2-1152*x4x^3*x5x*x8x*x9x*x9y^2+288*x2y*x4x^3*x8y*x9x*x9y^2-864*x4x^3*x4y*x8y*x9x*x9y^2-576*x2y*x4x^2*x5x*x8y*x9x*x9y^2+1152*x4x^2*x4y*x5x*x8y*x9x*x9y^2+384*x4x^3*x5y*x8y*x9x*x9y^2+3456*x4x^4*x9x^2*x9y^2+144*x2y*x4x^2*x4y*x9x^2*x9y^2-2304*x4x^3*x5x*x9x^2*x9y^2-384*x2y*x4x^2*x5y*x9x^2*x9y^2+576*x4x^2*x4y*x5y*x9x^2*x9y^2+96*x4x^3*x7x*x9x^2*x9y^2+48*x2y*x4x^2*x7y*x9x^2*x9y^2-480*x4x^2*x4y*x7y*x9x^2*x9y^2+288*x4x^3*x8x*x9x^2*x9y^2+144*x2y*x4x^2*x8y*x9x^2*x9y^2-288*x4x^2*x4y*x8y*x9x^2*x9y^2+2304*x4x^3*x9x^3*x9y^2-3456*x4x^4*x4y*x9y^3+2304*x4x^3*x4y*x5x*x9y^3+192*x4x^4*x7y*x9y^3+96*x2y*x4x^3*x8x*x9y^3+576*x4x^4*x8y*x9y^3-1152*x4x^3*x5x*x8y*x9y^3+1728*x2y*x4x^3*x9x*x9y^3-5952*x4x^3*x4y*x9x*x9y^3-1152*x2y*x4x^2*x5x*x9x*x9y^3+2304*x4x^2*x4y*x5x*x9x*x9y^3+288*x4x^3*x7y*x9x*x9y^3+288*x4x^3*x8y*x9x*x9y^3+1152*x2y*x4x^2*x9x^2*x9y^3-2208*x4x^2*x4y*x9x^2*x9y^3-192*x4x^2*x7y*x9x^2*x9y^3+3456*x4x^4*x9y^4-2304*x4x^3*x5x*x9y^4+2304*x4x^3*x9x*x9y^4+8*x2y*x4x^3*x4y*x8x^2+80*x4x^3*x4y^2*x8x^2+96*x4x^3*x4y*x5y*x8x^2-160*x4x^3*x4y*x7y*x8x^2+192*x4x^3*x4y^2*x5y*x8y-4*x2y^2*x4x^2*x4y*x8x*x8y+4*x2x*x2y*x4x*x4y^2*x8x*x8y+12*x2y*x4x^2*x4y^2*x8x*x8y-128*x4x^3*x4y*x5x*x8x*x8y-32*x2y*x4x^3*x4y*x8y^2-24*x4x^3*x4y^2*x8y^2+128*x2y*x4x^3*x4y*x8x*x9x-960*x4x^3*x4y^2*x8x*x9x-1152*x4x^3*x4y*x5y*x8x*x9x+1920*x4x^3*x4y*x7y*x8x*x9x-16*x2y^2*x4x^2*x8x^2*x9x+12*x2x*x2y*x4x*x4y*x8x^2*x9x+56*x2y*x4x^2*x4y*x8x^2*x9x+80*x4x^2*x4y^2*x8x^2*x9x-48*x2y*x4x^2*x5y*x8x^2*x9x+80*x4x^2*x4y*x5y*x8x^2*x9x-48*x4x^2*x5y^2*x8x^2*x9x-120*x4x^2*x4y*x7y*x8x^2*x9x-96*x2y*x4x^2*x4y*x5y*x8y*x9x+192*x4x^2*x4y^2*x5y*x8y*x9x+224*x4x^3*x4y*x7x*x8y*x9x+280*x4x^3*x4y*x8x*x8y*x9x+64*x2y*x4x^2*x5x*x8x*x8y*x9x-128*x4x^2*x4y*x5x*x8x*x8y*x9x+48*x4x^2*x5x*x5y*x8x*x8y*x9x+24*x4x^2*x4y*x7x*x8x*x8y*x9x-48*x4x^2*x5y*x7x*x8x*x8y*x9x-48*x4x^2*x5x*x7y*x8x*x8y*x9x+32*x2y^2*x4x^2*x8y^2*x9x-16*x2x*x2y*x4x*x4y*x8y^2*x9x-68*x2y*x4x^2*x4y*x8y^2*x9x-24*x4x^2*x4y^2*x8y^2*x9x+1152*x4x^3*x4y*x5y*x9x^2-88*x2y^2*x4x^2*x8x*x9x^2+24*x2x*x2y*x4x*x4y*x8x*x9x^2+192*x2y*x4x^2*x4y*x8x*x9x^2-960*x4x^2*x4y^2*x8x*x9x^2+576*x2y*x4x^2*x5y*x8x*x9x^2-960*x4x^2*x4y*x5y*x8x*x9x^2+576*x4x^2*x5y^2*x8x*x9x^2+1440*x4x^2*x4y*x7y*x8x*x9x^2+1008*x4x^3*x4y*x8y*x9x^2-576*x4x^2*x5x*x5y*x8y*x9x^2-112*x2y*x4x^2*x7x*x8y*x9x^2-64*x4x^2*x4y*x7x*x8y*x9x^2+576*x4x^2*x5y*x7x*x8y*x9x^2+576*x4x^2*x5x*x7y*x8y*x9x^2-136*x2y*x4x^2*x8x*x8y*x9x^2+280*x4x^2*x4y*x8x*x8y*x9x^2-576*x2y*x4x^2*x5y*x9x^3+1152*x4x^2*x4y*x5y*x9x^3-504*x2y*x4x^2*x8y*x9x^3+1008*x4x^2*x4y*x8y*x9x^3-192*x4x^4*x4y*x5x*x9y-192*x4x^4*x4y*x7x*x9y+96*x2y*x4x^3*x5x*x8x*x9y-96*x2x*x4x^2*x4y*x5x*x8x*x9y-2400*x4x^3*x4y*x5x*x8x*x9y-8*x2y*x4x^3*x8x^2*x9y-96*x4x^3*x4y*x8x^2*x9y+64*x4x^3*x5y*x8x^2*x9y+32*x2y*x4x^3*x4y*x8y*x9y-336*x4x^3*x4y^2*x8y*x9y+96*x2y*x4x^2*x4y*x5x*x8y*x9y-96*x2x*x4x*x4y^2*x5x*x8y*x9y-288*x4x^2*x4y^2*x5x*x8y*x9y+416*x4x^3*x4y*x5y*x8y*x9y-256*x4x^3*x4y*x7y*x8y*x9y-28*x2y^2*x4x^2*x8x*x8y*x9y+24*x2x*x2y*x4x*x4y*x8x*x8y*x9y+80*x2y*x4x^2*x4y*x8x*x8y*x9y+128*x4x^3*x5x*x8x*x8y*x9y-32*x2y*x4x^3*x8y^2*x9y+288*x4x^3*x4y*x8y^2*x9y+3648*x4x^4*x4y*x9x*x9y+96*x2y*x4x^3*x5x*x9x*x9y-3456*x4x^3*x4y*x5x*x9x*x9y+144*x2y*x4x^3*x7x*x9x*x9y-48*x2x*x4x^2*x4y*x7x*x9x*x9y+2472*x4x^3*x4y*x7x*x9x*x9y+288*x2y*x3x*x4x^2*x8x*x9x*x9y-144*x2y*x4x^3*x8x*x9x*x9y-144*x2y*x3y*x4x*x4y*x8x*x9x*x9y+144*x2x*x4x^2*x4y*x8x*x9x*x9y+1944*x4x^3*x4y*x8x*x9x*x9y+1344*x2y*x4x^2*x5x*x8x*x9x*x9y-288*x2x*x4x*x4y*x5x*x8x*x9x*x9y-3264*x4x^2*x4y*x5x*x8x*x9x*x9y-672*x4x^3*x5y*x8x*x9x*x9y-192*x4x^2*x5x*x5y*x8x*x9x*x9y-96*x4x^2*x4y*x7x*x8x*x9x*x9y+192*x4x^2*x5y*x7x*x8x*x9x*x9y+192*x4x^2*x5x*x7y*x8x*x9x*x9y-12*x2x*x2y*x4x*x8x^2*x9x*x9y+8*x2y*x4x^2*x8x^2*x9x*x9y-48*x4x^2*x4y*x8x^2*x9x*x9y+64*x4x^2*x5y*x8x^2*x9x*x9y-16*x2y^2*x4x^2*x8y*x9x*x9y+144*x2y*x3x*x4x*x4y*x8y*x9x*x9y+320*x2y*x4x^2*x4y*x8y*x9x*x9y+48*x2x*x4x*x4y^2*x8y*x9x*x9y-192*x4x^2*x4y^2*x8y*x9x*x9y-400*x2y*x4x^2*x5y*x8y*x9x*x9y+96*x2x*x4x*x4y*x5y*x8y*x9x*x9y+840*x4x^2*x4y*x5y*x8y*x9x*x9y-416*x4x^3*x7x*x8y*x9x*x9y-112*x2y*x4x^2*x7y*x8y*x9x*x9y-96*x2x*x4x*x4y*x7y*x8y*x9x*x9y-488*x4x^2*x4y*x7y*x8y*x9x*x9y-280*x4x^3*x8x*x8y*x9x*x9y+16*x2x*x2y*x4x*x8y^2*x9x*x9y-116*x2y*x4x^2*x8y^2*x9x*x9y+328*x4x^2*x4y*x8y^2*x9x*x9y-128*x4x^2*x5y*x8y^2*x9x*x9y-2688*x2y*x4x^3*x9x^2*x9y+72*x2y*x3y*x4x*x4y*x9x^2*x9y+864*x2x*x4x^2*x4y*x9x^2*x9y+9456*x4x^3*x4y*x9x^2*x9y+2208*x2y*x4x^2*x5x*x9x^2*x9y-576*x2x*x4x*x4y*x5x*x9x^2*x9y-4800*x4x^2*x4y*x5x*x9x^2*x9y-1152*x4x^3*x5y*x9x^2*x9y-1428*x2y*x4x^2*x7x*x9x^2*x9y+24*x2x*x4x*x4y*x7x*x9x^2*x9y+2880*x4x^2*x4y*x7x*x9x^2*x9y+48*x4x^3*x7y*x9x^2*x9y-24*x2x*x2y*x4x*x8x*x9x^2*x9y-420*x2y*x4x^2*x8x*x9x^2*x9y+72*x2x*x4x*x4y*x8x*x9x^2*x9y+1248*x4x^2*x4y*x8x*x9x^2*x9y-816*x4x^2*x5y*x8x*x9x^2*x9y-1008*x4x^3*x8y*x9x^2*x9y-24*x2y*x4x*x4y*x8y*x9x^2*x9y-96*x4x^2*x5x*x8y*x9x^2*x9y-96*x2y*x4x*x5y*x8y*x9x^2*x9y-48*x4x*x4y*x5y*x8y*x9x^2*x9y-144*x4x^2*x7x*x8y*x9x^2*x9y+48*x4x*x4y*x7y*x8y*x9x^2*x9y-2208*x2y*x4x^2*x9x^3*x9y+576*x2x*x4x*x4y*x9x^3*x9y+5016*x4x^2*x4y*x9x^3*x9y-96*x4x^2*x5y*x9x^3*x9y-24*x4x^2*x7y*x9x^3*x9y+48*x4x^2*x8y*x9x^3*x9y-432*x2y*x4x^3*x4y*x9y^2+192*x2y*x4x^3*x5y*x9y^2-192*x2x*x4x^2*x4y*x5y*x9y^2-480*x4x^3*x4y*x5y*x9y^2+576*x4x^4*x7x*x9y^2+48*x2y*x4x^3*x7y*x9y^2+240*x2x*x4x^2*x4y*x7y*x9y^2-1896*x4x^3*x4y*x7y*x9y^2-24*x2y^2*x4x^2*x8x*x9y^2+192*x4x^4*x8x*x9y^2+24*x2x*x2y*x4x*x4y*x8x*x9y^2+72*x2y*x4x^2*x4y*x8x*x9y^2+96*x2x*x4x^2*x5x*x8x*x9y^2+2208*x4x^3*x5x*x8x*x9y^2+16*x4x^3*x8x^2*x9y^2-144*x2y*x4x^3*x8y*x9y^2+144*x2x*x4x^2*x4y*x8y*x9y^2+2040*x4x^3*x4y*x8y*x9y^2+288*x2y*x4x^2*x5x*x8y*x9y^2-192*x2x*x4x*x4y*x5x*x8y*x9y^2-768*x4x^2*x4y*x5x*x8y*x9y^2-768*x4x^3*x5y*x8y*x9y^2+224*x4x^3*x7y*x8y*x9y^2-28*x2x*x2y*x4x*x8x*x8y*x9y^2-28*x2y*x4x^2*x8x*x8y*x9y^2-840*x4x^3*x8y^2*x9y^2+144*x2y*x3y*x4x^2*x9x*x9y^2+192*x4x^4*x9x*x9y^2-72*x2y*x3x*x4x*x4y*x9x*x9y^2+1092*x2y*x4x^2*x4y*x9x*x9y^2-96*x4x^3*x5x*x9x*x9y^2-192*x2y*x4x^2*x5y*x9x*x9y^2-192*x2x*x4x*x4y*x5y*x9x*x9y^2-480*x4x^2*x4y*x5y*x9x*x9y^2+48*x2x*x4x^2*x7x*x9x*x9y^2-1944*x4x^3*x7x*x9x*x9y^2-1284*x2y*x4x^2*x7y*x9x*x9y^2+168*x2x*x4x*x4y*x7y*x9x*x9y^2-2112*x4x^2*x4y*x7y*x9x*x9y^2-144*x2x*x4x^2*x8x*x9x*x9y^2-144*x3x*x4x^2*x8x*x9x*x9y^2+744*x4x^3*x8x*x9x*x9y^2+72*x2y*x4x*x4y*x8x*x9x*x9y^2+288*x2x*x4x*x5x*x8x*x9x*x9y^2-516*x2y*x4x^2*x8y*x9x*x9y^2-144*x3y*x4x^2*x8y*x9x*x9y^2+24*x2x*x4x*x4y*x8y*x9x*x9y^2+1120*x4x^2*x4y*x8y*x9x*x9y^2-192*x4x^2*x5y*x8y*x9x*x9y^2+448*x4x^2*x7y*x8y*x9x*x9y^2-864*x2x*x4x^2*x9x^2*x9y^2-1440*x4x^3*x9x^2*x9y^2-72*x2y*x4x*x4y*x9x^2*x9y^2+576*x2x*x4x*x5x*x9x^2*x9y^2+576*x4x^2*x5x*x9x^2*x9y^2+192*x2y*x4x*x5y*x9x^2*x9y^2+96*x4x*x4y*x5y*x9x^2*x9y^2-24*x2x*x4x*x7x*x9x^2*x9y^2+192*x4x^2*x7x*x9x^2*x9y^2-48*x2y*x4x*x7y*x9x^2*x9y^2-96*x4x*x4y*x7y*x9x^2*x9y^2-72*x2x*x4x*x8x*x9x^2*x9y^2+72*x4x^2*x8x*x9x^2*x9y^2-576*x2x*x4x*x9x^3*x9y^2-624*x4x^2*x9x^3*x9y^2-864*x2y*x4x^3*x9y^3+864*x2x*x4x^2*x4y*x9y^3+3264*x4x^3*x4y*x9y^3+576*x2y*x4x^2*x5x*x9y^3-576*x2x*x4x*x4y*x5x*x9y^3-1728*x4x^2*x4y*x5x*x9y^3-768*x4x^3*x5y*x9y^3-48*x2x*x4x^2*x7y*x9y^3+2472*x4x^3*x7y*x9y^3-24*x2x*x2y*x4x*x8x*x9y^3-24*x2y*x4x^2*x8x*x9y^3-144*x2x*x4x^2*x8y*x9y^3+216*x4x^3*x8y*x9y^3+288*x2x*x4x*x5x*x8y*x9y^3+288*x4x^2*x5x*x8y*x9y^3-576*x2y*x4x^2*x9x*x9y^3+576*x2x*x4x*x4y*x9x*x9y^3-648*x4x^2*x4y*x9x*x9y^3+24*x2x*x4x*x7y*x9x*x9y^3+5352*x4x^2*x7y*x9x*x9y^3-72*x2x*x4x*x8y*x9x*x9y^3-72*x4x^2*x8y*x9x*x9y^3-48*x4x*x4y*x9x^2*x9y^3+96*x4x*x7y*x9x^2*x9y^3-864*x2x*x4x^2*x9y^4-1440*x4x^3*x9y^4+576*x2x*x4x*x5x*x9y^4+576*x4x^2*x5x*x9y^4-576*x2x*x4x*x9x*x9y^4-576*x4x^2*x9x*x9y^4+8*x4x^3*x4y^2*x8x+816*x4x^3*x4y*x5y*x8x+32*x4x^3*x4y*x7y*x8x+2*x2y^2*x4x^2*x8x^2-2*x2x*x2y*x4x*x4y*x8x^2-12*x2y*x4x^2*x4y*x8x^2-20*x2x*x4x*x4y^2*x8x^2-60*x4x^2*x4y^2*x8x^2+24*x2y*x4x^2*x5y*x8x^2-24*x2x*x4x*x4y*x5y*x8x^2-64*x4x^2*x4y*x5y*x8x^2+24*x4x^2*x5y^2*x8x^2+80*x4x^3*x7x*x8x^2+40*x2x*x4x*x4y*x7y*x8x^2+100*x4x^2*x4y*x7y*x8x^2+64*x4x^3*x4y*x5x*x8y+48*x2y*x4x^2*x4y*x5y*x8y-48*x2x*x4x*x4y^2*x5y*x8y-144*x4x^2*x4y^2*x5y*x8y-224*x4x^3*x4y*x7x*x8y-148*x4x^3*x4y*x8x*x8y-32*x2y*x4x^2*x5x*x8x*x8y+32*x2x*x4x*x4y*x5x*x8x*x8y+96*x4x^2*x4y*x5x*x8x*x8y-24*x4x^2*x5x*x5y*x8x*x8y-12*x4x^2*x4y*x7x*x8x*x8y+24*x4x^2*x5y*x7x*x8x*x8y+24*x4x^2*x5x*x7y*x8x*x8y-8*x2y^2*x4x^2*x8y^2+8*x2x*x2y*x4x*x4y*x8y^2+18*x2y*x4x^2*x4y*x8y^2+6*x2x*x4x*x4y^2*x8y^2+18*x4x^2*x4y^2*x8y^2+192*x4x^3*x4y^2*x9x-864*x4x^3*x4y*x5y*x9x-384*x4x^3*x4y*x7y*x9x+32*x2y^2*x4x^2*x8x*x9x-32*x2x*x2y*x4x*x4y*x8x*x9x-108*x2y*x4x^2*x4y*x8x*x9x+240*x2x*x4x*x4y^2*x8x*x9x+728*x4x^2*x4y^2*x8x*x9x-696*x2y*x4x^2*x5y*x8x*x9x+288*x2x*x4x*x4y*x5y*x8x*x9x+1448*x4x^2*x4y*x5y*x8x*x9x-480*x4x^2*x5y^2*x8x*x9x-960*x4x^3*x7x*x8x*x9x-480*x2x*x4x*x4y*x7y*x8x*x9x-1176*x4x^2*x4y*x7y*x8x*x9x-20*x2y*x4x*x4y*x8x^2*x9x+40*x2y*x4x*x5y*x8x^2*x9x+8*x4x*x4y*x5y*x8x^2*x9x+24*x4x*x5y^2*x8x^2*x9x+60*x4x^2*x7x*x8x^2*x9x-20*x4x*x4y*x7y*x8x^2*x9x-1264*x4x^3*x4y*x8y*x9x-32*x2y*x4x^2*x5x*x8y*x9x+64*x4x^2*x4y*x5x*x8y*x9x+480*x4x^2*x5x*x5y*x8y*x9x+168*x2y*x4x^2*x7x*x8y*x9x-56*x2x*x4x*x4y*x7x*x8y*x9x-152*x4x^2*x4y*x7x*x8y*x9x-480*x4x^2*x5y*x7x*x8y*x9x-480*x4x^2*x5x*x7y*x8y*x9x+140*x2y*x4x^2*x8x*x8y*x9x-70*x2x*x4x*x4y*x8x*x8y*x9x-364*x4x^2*x4y*x8x*x8y*x9x+16*x4x^2*x5y*x8x*x8y*x9x-24*x4x*x5x*x5y*x8x*x8y*x9x-12*x4x*x4y*x7x*x8x*x8y*x9x+24*x4x*x5y*x7x*x8x*x8y*x9x+12*x4x^2*x7y*x8x*x8y*x9x+24*x4x*x5x*x7y*x8x*x8y*x9x-16*x2y^2*x4x*x8y^2*x9x+32*x2y*x4x*x4y*x8y^2*x9x+192*x4x^2*x4y^2*x9x^2+720*x2y*x4x^2*x5y*x9x^2-288*x2x*x4x*x4y*x5y*x9x^2-1728*x4x^2*x4y*x5y*x9x^2-288*x4x^2*x4y*x7y*x9x^2+32*x2y^2*x4x*x8x*x9x^2+180*x2y*x4x*x4y*x8x*x9x^2-480*x2y*x4x*x5y*x8x*x9x^2-96*x4x*x4y*x5y*x8x*x9x^2-288*x4x*x5y^2*x8x*x9x^2-720*x4x^2*x7x*x8x*x9x^2+240*x4x*x4y*x7y*x8x*x9x^2-20*x4x^2*x8x^2*x9x^2+884*x2y*x4x^2*x8y*x9x^2-252*x2x*x4x*x4y*x8y*x9x^2-1968*x4x^2*x4y*x8y*x9x^2-624*x4x^2*x5y*x8y*x9x^2+288*x4x*x5x*x5y*x8y*x9x^2+144*x4x*x4y*x7x*x8y*x9x^2-288*x4x*x5y*x7x*x8y*x9x^2-88*x4x^2*x7y*x8y*x9x^2-288*x4x*x5x*x7y*x8y*x9x^2-8*x2y*x4x*x8x*x8y*x9x^2+6*x4x^2*x8y^2*x9x^2+240*x4x^2*x8x*x9x^3-48*x2y*x4x^3*x5x*x9y+48*x2x*x4x^2*x4y*x5x*x9y+1152*x4x^3*x4y*x5x*x9y-48*x2y*x4x^3*x7x*x9y+48*x2x*x4x^2*x4y*x7x*x9y-2568*x4x^3*x4y*x7x*x9y-144*x2y*x3x*x4x^2*x8x*x9y-48*x2y*x4x^3*x8x*x9y+264*x4x^3*x4y*x8x*x9y-528*x2y*x4x^2*x5x*x8x*x9y+528*x2x*x4x*x4y*x5x*x8x*x9y+1728*x4x^2*x4y*x5x*x8x*x9y+48*x4x^3*x5y*x8x*x9y+96*x4x^2*x5x*x5y*x8x*x9y+48*x4x^2*x4y*x7x*x8x*x9y-96*x4x^2*x5y*x7x*x8x*x9y-96*x4x^2*x5x*x7y*x8x*x9y+2*x2x*x2y*x4x*x8x^2*x9y-8*x2y*x4x^2*x8x^2*x9y+24*x2x*x4x*x4y*x8x^2*x9y+48*x4x^2*x4y*x8x^2*x9y-16*x2x*x4x*x5y*x8x^2*x9y-48*x4x^2*x5y*x8x^2*x9y+8*x2y^2*x4x^2*x8y*x9y-8*x2x*x2y*x4x*x4y*x8y*x9y-168*x2y*x4x^2*x4y*x8y*x9y+84*x2x*x4x*x4y^2*x8y*x9y+252*x4x^2*x4y^2*x8y*x9y+152*x2y*x4x^2*x5y*x8y*x9y-104*x2x*x4x*x4y*x5y*x8y*x9y-404*x4x^2*x4y*x5y*x8y*x9y+240*x4x^3*x7x*x8y*x9y+56*x2y*x4x^2*x7y*x8y*x9y+64*x2x*x4x*x4y*x7y*x8y*x9y+188*x4x^2*x4y*x7y*x8y*x9y-20*x4x^3*x8x*x8y*x9y-32*x2x*x4x*x5x*x8x*x8y*x9y-32*x4x^2*x5x*x8x*x8y*x9y+8*x2x*x2y*x4x*x8y^2*x9y+74*x2y*x4x^2*x8y^2*x9y-72*x2x*x4x*x4y*x8y^2*x9y-236*x4x^2*x4y*x8y^2*x9y+64*x4x^2*x5y*x8y^2*x9y-144*x2y*x3x*x4x^2*x9x*x9y+912*x2y*x4x^3*x9x*x9y-72*x2y^2*x4x*x4y*x9x*x9y+72*x2y*x3y*x4x*x4y*x9x*x9y-912*x2x*x4x^2*x4y*x9x*x9y-4824*x4x^3*x4y*x9x*x9y-1368*x2y*x4x^2*x5x*x9x*x9y+816*x2x*x4x*x4y*x5x*x9x*x9y+3408*x4x^2*x4y*x5x*x9x*x9y-144*x4x^3*x5y*x9x*x9y+144*x4x*x4y*x5y^2*x9x*x9y+2010*x2y*x4x^2*x7x*x9x*x9y-702*x2x*x4x*x4y*x7x*x9x*x9y-4722*x4x^2*x4y*x7x*x9x*x9y-72*x4x^3*x7y*x9x*x9y-144*x2y*x3x*x4x*x8x*x9x*x9y-90*x2y*x4x^2*x8x*x9x*x9y-402*x2x*x4x*x4y*x8x*x9x*x9y-222*x4x^2*x4y*x8x*x9x*x9y+144*x4x*x4y*x5x*x8x*x9x*x9y+192*x2x*x4x*x5y*x8x*x9x*x9y+84*x4x^2*x5y*x8x*x9x*x9y+96*x4x*x5x*x5y*x8x*x9x*x9y+48*x4x*x4y*x7x*x8x*x9x*x9y-96*x4x*x5y*x7x*x8x*x9x*x9y-48*x4x^2*x7y*x8x*x9x*x9y-96*x4x*x5x*x7y*x8x*x9x*x9y+144*x2y*x4x*x8x^2*x9x*x9y+16*x4x*x4y*x8x^2*x9x*x9y-32*x4x*x5y*x8x^2*x9x*x9y+8*x2y^2*x4x*x8y*x9x*x9y+344*x4x^3*x8y*x9x*x9y-76*x2y*x4x*x4y*x8y*x9x*x9y-24*x4x^2*x5x*x8y*x9x*x9y+8*x2y*x4x*x5y*x8y*x9x*x9y+4*x4x*x4y*x5y*x8y*x9x*x9y+104*x2x*x4x*x7x*x8y*x9x*x9y+356*x4x^2*x7x*x8y*x9x*x9y+112*x2y*x4x*x7y*x8y*x9x*x9y-4*x4x*x4y*x7y*x8y*x9x*x9y+70*x2x*x4x*x8x*x8y*x9x*x9y+4*x4x^2*x8x*x8y*x9x*x9y-72*x4x*x5x*x8x*x8y*x9x*x9y+256*x4x*x4y*x8y^2*x9x*x9y-8*x4x*x5y*x8y^2*x9x*x9y+2824*x2y*x4x^2*x9x^2*x9y-816*x2x*x4x*x4y*x9x^2*x9y-7218*x4x^2*x4y*x9x^2*x9y-768*x2y*x4x*x5x*x9x^2*x9y+1440*x4x*x4y*x5x*x9x^2*x9y+288*x2x*x4x*x5y*x9x^2*x9y+504*x4x^2*x5y*x9x^2*x9y+24*x2y*x4x*x7x*x9x^2*x9y-48*x4x*x4y*x7x*x9x^2*x9y+666*x4x^2*x7y*x9x^2*x9y+24*x2y*x4x*x8x*x9x^2*x9y-744*x4x*x4y*x8x*x9x^2*x9y+408*x4x*x5y*x8x*x9x^2*x9y+252*x2x*x4x*x8y*x9x^2*x9y+376*x4x^2*x8y*x9x^2*x9y+96*x4x*x5x*x8y*x9x^2*x9y-24*x4x*x7x*x8y*x9x^2*x9y+72*x4x*x8x*x8y*x9x^2*x9y+648*x2y*x4x*x9x^3*x9y-1332*x4x*x4y*x9x^3*x9y+48*x4x*x5y*x9x^3*x9y+24*x4x*x7y*x9x^3*x9y-24*x4x*x8y*x9x^3*x9y-72*x2y*x3y*x4x^2*x9y^2-2112*x4x^4*x9y^2+72*x2x*x2y*x4x*x4y*x9y^2-582*x2y*x4x^2*x4y*x9y^2+672*x4x^3*x5x*x9y^2+288*x2y*x4x^2*x5y*x9y^2+48*x4x^2*x4y*x5y*x9y^2-144*x2x*x4x^2*x7x*x9y^2+2256*x4x^3*x7x*x9y^2+678*x2y*x4x^2*x7y*x9y^2+630*x2x*x4x*x4y*x7y*x9y^2+1842*x4x^2*x4y*x7y*x9y^2-48*x2x*x4x^2*x8x*x9y^2+72*x3x*x4x^2*x8x*x9y^2-2040*x4x^3*x8x*x9y^2-528*x2x*x4x*x5x*x8x*x9y^2-384*x4x^2*x5x*x8x*x9y^2-4*x2x*x4x*x8x^2*x9y^2-4*x4x^2*x8x^2*x9y^2+222*x2y*x4x^2*x8y*x9y^2+72*x3y*x4x^2*x8y*x9y^2-378*x2x*x4x*x4y*x8y*x9y^2-806*x4x^2*x4y*x8y*x9y^2+144*x2x*x4x*x5y*x8y*x9y^2+144*x4x^2*x5y*x8y*x9y^2-56*x2x*x4x*x7y*x8y*x9y^2-280*x4x^2*x7y*x8y*x9y^2+210*x2x*x4x*x8y^2*x9y^2+210*x4x^2*x8y^2*x9y^2-72*x2y*x3y*x4x*x9x*x9y^2-48*x2x*x4x^2*x9x*x9y^2+72*x3x*x4x^2*x9x*x9y^2+408*x4x^3*x9x*x9y^2-510*x2y*x4x*x4y*x9x*x9y^2-48*x2x*x4x*x5x*x9x*x9y^2+936*x4x^2*x5x*x9x*x9y^2+96*x2y*x4x*x5y*x9x*x9y^2+48*x4x*x4y*x5y*x9x*x9y^2+606*x2x*x4x*x7x*x9x*x9y^2+2436*x4x^2*x7x*x9x*x9y^2+1356*x2y*x4x*x7y*x9x*x9y^2-48*x4x*x4y*x7y*x9x*x9y^2-150*x2x*x4x*x8x*x9x*x9y^2-618*x4x^2*x8x*x9x*x9y^2+24*x2y*x4x*x8y*x9x*x9y^2-608*x4x*x4y*x8y*x9x*x9y^2-224*x4x*x7y*x8y*x9x*x9y^2+72*x4x*x8y^2*x9x*x9y^2+168*x2x*x4x*x9x^2*x9y^2+1140*x4x^2*x9x^2*x9y^2+192*x4x*x5x*x9x^2*x9y^2+48*x4x*x7x*x9x^2*x9y^2-72*x4x*x8x*x9x^2*x9y^2+24*x4x*x9x^3*x9y^2-144*x2x*x4x*x4y*x9y^3+1068*x4x^2*x4y*x9y^3+192*x2x*x4x*x5y*x9y^3+192*x4x^2*x5y*x9y^3-678*x2x*x4x*x7y*x9y^3-3390*x4x^2*x7y*x9y^3-90*x2x*x4x*x8y*x9y^3-90*x4x^2*x8y*x9y^3-144*x2y*x4x*x9x*x9y^3+1500*x4x*x4y*x9x*x9y^3-2712*x4x*x7y*x9x*x9y^3+144*x2x*x4x*x9y^4+144*x4x^2*x9y^4+104*x4x^3*x4y^2-288*x4x^3*x4y*x5y-224*x4x^3*x4y*x7y+8*x2y*x4x^2*x4y*x8x-2*x2x*x4x*x4y^2*x8x-6*x4x^2*x4y^2*x8x+204*x2y*x4x^2*x5y*x8x-204*x2x*x4x*x4y*x5y*x8x-544*x4x^2*x4y*x5y*x8x+96*x4x^2*x5y^2*x8x-16*x4x^3*x7x*x8x-8*x2x*x4x*x4y*x7y*x8x-20*x4x^2*x4y*x7y*x8x-60*x4x^3*x8x^2-20*x2x*x4x*x7x*x8x^2-50*x4x^2*x7x*x8x^2+192*x4x^3*x4y*x8y+16*x2y*x4x^2*x5x*x8y-16*x2x*x4x*x4y*x5x*x8y-48*x4x^2*x4y*x5x*x8y-96*x4x^2*x5x*x5y*x8y-56*x2y*x4x^2*x7x*x8y+56*x2x*x4x*x4y*x7x*x8y+120*x4x^2*x4y*x7x*x8y+96*x4x^2*x5y*x7x*x8y+96*x4x^2*x5x*x7y*x8y-36*x2y*x4x^2*x8x*x8y+37*x2x*x4x*x4y*x8x*x8y+114*x4x^2*x4y*x8x*x8y-8*x4x^2*x5y*x8x*x8y-6*x4x^2*x7y*x8x*x8y+4*x2y*x4x^2*x4y*x9x-48*x2x*x4x*x4y^2*x9x-40*x4x^2*x4y^2*x9x-72*x2y*x4x^2*x5y*x9x+216*x2x*x4x*x4y*x5y*x9x+360*x4x^2*x4y*x5y*x9x+192*x4x^3*x7x*x9x+96*x2x*x4x*x4y*x7y*x9x+72*x4x^2*x4y*x7y*x9x-12*x2y^2*x4x*x8x*x9x+708*x4x^3*x8x*x9x+8*x2y*x4x*x4y*x8x*x9x+228*x2y*x4x*x5y*x8x*x9x-326*x4x*x4y*x5y*x8x*x9x+48*x4x*x5y^2*x8x*x9x+240*x2x*x4x*x7x*x8x*x9x+588*x4x^2*x7x*x8x*x9x+4*x4x*x4y*x7y*x8x*x9x-30*x4x^2*x8x^2*x9x+10*x4x*x5x*x8x^2*x9x+10*x4x*x7x*x8x^2*x9x-412*x2y*x4x^2*x8y*x9x+316*x2x*x4x*x4y*x8y*x9x+1062*x4x^2*x4y*x8y*x9x+16*x2y*x4x*x5x*x8y*x9x-20*x4x*x4y*x5x*x8y*x9x+544*x4x^2*x5y*x8y*x9x-96*x4x*x5x*x5y*x8y*x9x-56*x2y*x4x*x7x*x8y*x9x+64*x4x*x4y*x7x*x8y*x9x+96*x4x*x5y*x7x*x8y*x9x+36*x4x^2*x7y*x8y*x9x+96*x4x*x5x*x7y*x8y*x9x-46*x2y*x4x*x8x*x8y*x9x+54*x4x*x4y*x8x*x8y*x9x-14*x4x*x5y*x8x*x8y*x9x-6*x4x*x7y*x8x*x8y*x9x+18*x4x^2*x8y^2*x9x+48*x4x*x5x*x8y^2*x9x-40*x2y*x4x*x4y*x9x^2-240*x2y*x4x*x5y*x9x^2+888*x4x*x4y*x5y*x9x^2+144*x4x^2*x7x*x9x^2-48*x4x*x4y*x7y*x9x^2+358*x4x^2*x8x*x9x^2-120*x4x*x5x*x8x*x9x^2-120*x4x*x7x*x8x*x9x^2+40*x4x*x8x^2*x9x^2-266*x2y*x4x*x8y*x9x^2+490*x4x*x4y*x8y*x9x^2+456*x4x*x5y*x8y*x9x^2+16*x4x*x7y*x8y*x9x^2+24*x4x*x8y^2*x9x^2-48*x4x^2*x9x^3-480*x4x*x8x*x9x^3+72*x2y*x3x*x4x^2*x9y+912*x4x^3*x4y*x9y+252*x2y*x4x^2*x5x*x9y-252*x2x*x4x*x4y*x5x*x9y-804*x4x^2*x4y*x5x*x9y+648*x4x^3*x5y*x9y-678*x2y*x4x^2*x7x*x9y+678*x2x*x4x*x4y*x7x*x9y+2034*x4x^2*x4y*x7x*x9y+24*x4x^3*x7y*x9y+12*x2x*x2y*x4x*x8x*x9y+162*x2y*x4x^2*x8x*x9y-54*x2x*x4x*x4y*x8x*x9y-354*x4x^2*x4y*x8x*x9y-24*x2x*x4x*x5y*x8x*x9y+210*x4x^2*x5y*x8x*x9y+24*x4x^2*x7y*x8x*x9y+528*x4x^3*x8y*x9y-36*x4x^2*x5x*x8y*x9y-60*x2x*x4x*x7x*x8y*x9y-150*x4x^2*x7x*x8y*x9y+5*x2x*x4x*x8x*x8y*x9y+38*x4x^2*x8x*x8y*x9y+72*x2y*x3x*x4x*x9x*x9y-1436*x2y*x4x^2*x9x*x9y+564*x2x*x4x*x4y*x9x*x9y+3993*x4x^2*x4y*x9x*x9y+528*x2y*x4x*x5x*x9x*x9y-492*x4x*x4y*x5x*x9x*x9y+24*x2x*x4x*x5y*x9x*x9y+528*x4x^2*x5y*x9x*x9y+72*x4x*x5x*x5y*x9x*x9y-678*x2y*x4x*x7x*x9x*x9y+1320*x4x*x4y*x7x*x9x*x9y+72*x4x*x5y*x7x*x9x*x9y-1005*x4x^2*x7y*x9x*x9y+72*x4x*x5x*x7y*x9x*x9y-312*x2y*x4x*x8x*x9x*x9y+36*x3y*x4x*x8x*x9x*x9y+318*x4x*x4y*x8x*x9x*x9y+234*x4x*x5y*x8x*x9x*x9y+24*x4x*x7y*x8x*x9x*x9y-86*x2x*x4x*x8y*x9x*x9y+36*x3x*x4x*x8y*x9x*x9y+142*x4x^2*x8y*x9x*x9y+164*x4x*x5x*x8y*x9x*x9y+2*x4x*x7x*x8y*x9x*x9y-36*x4x*x8x*x8y*x9x*x9y-20*x2y*x4x*x9x^2*x9y-18*x3y*x4x*x9x^2*x9y+963*x4x*x4y*x9x^2*x9y-156*x4x*x5y*x9x^2*x9y-690*x4x*x7y*x9x^2*x9y-308*x4x*x8y*x9x^2*x9y+528*x2x*x4x^2*x9y^2-36*x3x*x4x^2*x9y^2+36*x4x^3*x9y^2-132*x2x*x4x*x5x*x9y^2-456*x4x^2*x5x*x9y^2-654*x2x*x4x*x7x*x9y^2-1599*x4x^2*x7x*x9y^2+462*x2x*x4x*x8x*x9y^2+588*x4x^2*x8x*x9y^2-450*x2x*x4x*x9x*x9y^2-18*x3x*x4x*x9x*x9y^2-1910*x4x^2*x9x*x9y^2-516*x4x*x5x*x9x*x9y^2+24*x4x*x7x*x9x*x9y^2+180*x4x*x8x*x9x*x9y^2-666*x4x*x9x^2*x9y^2-2*x2y*x4x^2*x4y-26*x2x*x4x*x4y^2-78*x4x^2*x4y^2-72*x2y*x4x^2*x5y+72*x2x*x4x*x4y*x5y+216*x4x^2*x4y*x5y+112*x4x^3*x7x+56*x2x*x4x*x4y*x7y+140*x4x^2*x4y*x7y+18*x4x^3*x8x+4*x2x*x4x*x7x*x8x+10*x4x^2*x7x*x8x+15*x2x*x4x*x8x^2+35*x4x^2*x8x^2+48*x2y*x4x^2*x8y-48*x2x*x4x*x4y*x8y-118*x4x^2*x4y*x8y-116*x4x^2*x5y*x8y+4*x4x^2*x7y*x8y-21/2*x4x^2*x8y^2-144*x4x^3*x9x-38*x2y*x4x*x4y*x9x+24*x4x*x5x^2*x9x+84*x2y*x4x*x5y*x9x+76*x4x*x4y*x5y*x9x+24*x4x*x5y^2*x9x-48*x2x*x4x*x7x*x9x-36*x4x^2*x7x*x9x-28*x4x*x4y*x7y*x9x-177*x2x*x4x*x8x*x9x-426*x4x^2*x8x*x9x-17*x4x*x5x*x8x*x9x-2*x4x*x7x*x8x*x9x-x4x*x8x^2*x9x+231*x2y*x4x*x8y*x9x-241*x4x*x4y*x8y*x9x-90*x4x*x5y*x8y*x9x+4*x4x*x7y*x8y*x9x+14*x4x*x8y^2*x9x-116*x4x^2*x9x^2+204*x4x*x5x*x9x^2+24*x4x*x7x*x9x^2+296*x4x*x8x*x9x^2+24*x4x*x9x^3+246*x2y*x4x^2*x9y-246*x2x*x4x*x4y*x9y-1083*x4x^2*x4y*x9y-156*x2x*x4x*x5y*x9y-450*x4x^2*x5y*x9y+339*x4x^2*x7y*x9y-132*x2x*x4x*x8y*x9y-223*x4x^2*x8y*x9y+831/2*x2y*x4x*x9x*x9y-18*x3y*x4x*x9x*x9y-2007/2*x4x*x4y*x9x*x9y-366*x4x*x5y*x9x*x9y+321*x4x*x7y*x9x*x9y-327*x4x*x8y*x9x*x9y+285*x2x*x4x*x9y^2+970*x4x^2*x9y^2+115*x4x*x9x*x9y^2-84*x4x^3-28*x2x*x4x*x7x-70*x4x^2*x7x-9/2*x2x*x4x*x8x+1/2*x4x^2*x8x+36*x2x*x4x*x9x+67*x4x^2*x9x+68*x4x*x5x*x9x+14*x4x*x7x*x9x+27*x4x*x8x*x9x-130*x4x*x9x^2+21*x2x*x4x+81/2*x4x^2-77/2*x4x*x9x+x9x",
+      "cofactor_metrics": {
+        "nonzero": true,
+        "term_count": 855,
+        "total_degree": 8
+      },
+      "generator": "((x2x-0)^2+(x2y-0)^2)-((x2x-1)^2+(x2y-0)^2)",
+      "index": 6,
+      "row_equation_index": 0,
+      "row_index": 2,
+      "singular_index": 7
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((x2x-0)^2+(x2y-0)^2)-((x2x-x4x)^2+(x2y-x4y)^2)",
+      "index": 7,
+      "row_equation_index": 1,
+      "row_index": 2,
+      "singular_index": 8
+    },
+    {
+      "cofactor": "144*x2y*x3y*x4x*x4y*x8x*x9y-144*x2y*x3x*x4x*x4y*x8y*x9y-72*x2y*x3y*x4x*x4y*x9x*x9y+24*x2y*x4x*x4y*x8y*x9x*x9y+96*x2y*x4x*x5y*x8y*x9x*x9y+48*x4x*x4y*x5y*x8y*x9x*x9y-48*x4x*x4y*x7y*x8y*x9x*x9y+72*x2y*x3x*x4x*x4y*x9y^2+144*x2y*x4x^2*x4y*x9y^2-192*x2y*x4x^2*x5y*x9y^2-96*x4x^2*x4y*x5y*x9y^2-96*x2y*x4x^2*x7y*x9y^2+96*x4x^2*x4y*x7y*x9y^2-72*x2y*x4x*x4y*x8x*x9y^2-96*x4x^2*x4y*x8y*x9y^2+192*x4x^2*x5y*x8y*x9y^2+72*x2y*x4x*x4y*x9x*x9y^2-192*x2y*x4x*x5y*x9x*x9y^2-96*x4x*x4y*x5y*x9x*x9y^2+48*x2y*x4x*x7y*x9x*x9y^2+96*x4x*x4y*x7y*x9x*x9y^2-96*x4x^2*x4y*x9y^3+192*x4x^2*x7y*x9y^3+48*x4x*x4y*x9x*x9y^3-96*x4x*x7y*x9x*x9y^3+20*x2y*x4x*x4y*x8x^2-40*x2y*x4x*x5y*x8x^2-8*x4x*x4y*x5y*x8x^2-24*x4x*x5y^2*x8x^2+20*x4x*x4y*x7y*x8x^2+24*x4x*x5x*x5y*x8x*x8y+12*x4x*x4y*x7x*x8x*x8y-24*x4x*x5y*x7x*x8x*x8y-24*x4x*x5x*x7y*x8x*x8y+16*x2y^2*x4x*x8y^2-32*x2y*x4x*x4y*x8y^2-32*x2y^2*x4x*x8x*x9x-180*x2y*x4x*x4y*x8x*x9x+480*x2y*x4x*x5y*x8x*x9x+96*x4x*x4y*x5y*x8x*x9x+288*x4x*x5y^2*x8x*x9x-240*x4x*x4y*x7y*x8x*x9x-288*x4x*x5x*x5y*x8y*x9x-144*x4x*x4y*x7x*x8y*x9x+288*x4x*x5y*x7x*x8y*x9x+288*x4x*x5x*x7y*x8y*x9x+8*x2y*x4x*x8x*x8y*x9x+72*x2y^2*x4x*x4y*x9y-72*x2y*x3y*x4x*x4y*x9y+48*x2y*x4x^2*x5x*x9y+48*x4x^2*x4y*x5x*x9y-144*x4x*x4y*x5y^2*x9y+48*x2y*x4x^2*x7x*x9y-96*x4x^2*x4y*x7x*x9y+144*x2y*x3x*x4x*x8x*x9y-48*x2y*x4x^2*x8x*x9y-96*x4x^2*x4y*x8x*x9y-144*x4x*x4y*x5x*x8x*x9y+48*x4x^2*x5y*x8x*x9y-96*x4x*x5x*x5y*x8x*x9y-48*x4x*x4y*x7x*x8x*x9y+96*x4x*x5y*x7x*x8x*x9y+96*x4x*x5x*x7y*x8x*x9y-144*x2y*x4x*x8x^2*x9y-16*x4x*x4y*x8x^2*x9y+32*x4x*x5y*x8x^2*x9y-8*x2y^2*x4x*x8y*x9y+76*x2y*x4x*x4y*x8y*x9y+144*x4x^2*x5x*x8y*x9y-8*x2y*x4x*x5y*x8y*x9y-4*x4x*x4y*x5y*x8y*x9y-112*x2y*x4x*x7y*x8y*x9y+4*x4x*x4y*x7y*x8y*x9y+72*x4x*x5x*x8x*x8y*x9y-256*x4x*x4y*x8y^2*x9y+8*x4x*x5y*x8y^2*x9y-960*x2y*x4x^2*x9x*x9y+1848*x4x^2*x4y*x9x*x9y+768*x2y*x4x*x5x*x9x*x9y-1440*x4x*x4y*x5x*x9x*x9y-24*x2y*x4x*x7x*x9x*x9y+48*x4x*x4y*x7x*x9x*x9y+48*x4x^2*x7y*x9x*x9y-24*x2y*x4x*x8x*x9x*x9y+744*x4x*x4y*x8x*x9x*x9y-408*x4x*x5y*x8x*x9x*x9y-96*x4x*x5x*x8y*x9x*x9y+24*x4x*x7x*x8y*x9x*x9y-72*x4x*x8x*x8y*x9x*x9y-648*x2y*x4x*x9x^2*x9y+1332*x4x*x4y*x9x^2*x9y-48*x4x*x5y*x9x^2*x9y-24*x4x*x7y*x9x^2*x9y+24*x4x*x8y*x9x^2*x9y+72*x2y*x3y*x4x*x9y^2+510*x2y*x4x*x4y*x9y^2-336*x4x^2*x5x*x9y^2-96*x2y*x4x*x5y*x9y^2-48*x4x*x4y*x5y*x9y^2-48*x4x^2*x7x*x9y^2-1356*x2y*x4x*x7y*x9y^2+48*x4x*x4y*x7y*x9y^2+144*x4x^2*x8x*x9y^2-24*x2y*x4x*x8y*x9y^2+608*x4x*x4y*x8y*x9y^2+224*x4x*x7y*x8y*x9y^2-72*x4x*x8y^2*x9y^2+48*x4x^2*x9x*x9y^2-192*x4x*x5x*x9x*x9y^2-48*x4x*x7x*x9x*x9y^2+72*x4x*x8x*x9x*x9y^2-24*x4x*x9x^2*x9y^2+144*x2y*x4x*x9y^3-1500*x4x*x4y*x9y^3+2712*x4x*x7y*x9y^3+12*x2y^2*x4x*x8x-8*x2y*x4x*x4y*x8x-228*x2y*x4x*x5y*x8x+326*x4x*x4y*x5y*x8x-48*x4x*x5y^2*x8x-4*x4x*x4y*x7y*x8x-10*x4x*x5x*x8x^2-10*x4x*x7x*x8x^2-16*x2y*x4x*x5x*x8y+20*x4x*x4y*x5x*x8y+96*x4x*x5x*x5y*x8y+56*x2y*x4x*x7x*x8y-64*x4x*x4y*x7x*x8y-96*x4x*x5y*x7x*x8y-96*x4x*x5x*x7y*x8y+46*x2y*x4x*x8x*x8y-54*x4x*x4y*x8x*x8y+14*x4x*x5y*x8x*x8y+6*x4x*x7y*x8x*x8y-48*x4x*x5x*x8y^2+40*x2y*x4x*x4y*x9x+240*x2y*x4x*x5y*x9x-888*x4x*x4y*x5y*x9x+48*x4x*x4y*x7y*x9x+120*x4x*x5x*x8x*x9x+120*x4x*x7x*x8x*x9x-40*x4x*x8x^2*x9x+266*x2y*x4x*x8y*x9x-490*x4x*x4y*x8y*x9x-456*x4x*x5y*x8y*x9x-16*x4x*x7y*x8y*x9x-24*x4x*x8y^2*x9x+480*x4x*x8x*x9x^2-72*x2y*x3x*x4x*x9y+420*x2y*x4x^2*x9y-300*x4x^2*x4y*x9y-528*x2y*x4x*x5x*x9y+492*x4x*x4y*x5x*x9y-72*x4x*x5x*x5y*x9y+678*x2y*x4x*x7x*x9y-1320*x4x*x4y*x7x*x9y-72*x4x*x5y*x7x*x9y-24*x4x^2*x7y*x9y-72*x4x*x5x*x7y*x9y+312*x2y*x4x*x8x*x9y-36*x3y*x4x*x8x*x9y-318*x4x*x4y*x8x*x9y-234*x4x*x5y*x8x*x9y-24*x4x*x7y*x8x*x9y-36*x3x*x4x*x8y*x9y-120*x4x^2*x8y*x9y-164*x4x*x5x*x8y*x9y-2*x4x*x7x*x8y*x9y+36*x4x*x8x*x8y*x9y+20*x2y*x4x*x9x*x9y+18*x3y*x4x*x9x*x9y-963*x4x*x4y*x9x*x9y+156*x4x*x5y*x9x*x9y+690*x4x*x7y*x9x*x9y+308*x4x*x8y*x9x*x9y+18*x3x*x4x*x9y^2-408*x4x^2*x9y^2+516*x4x*x5x*x9y^2-24*x4x*x7x*x9y^2-180*x4x*x8x*x9y^2+666*x4x*x9x*x9y^2+38*x2y*x4x*x4y-24*x4x*x5x^2-84*x2y*x4x*x5y-76*x4x*x4y*x5y-24*x4x*x5y^2+28*x4x*x4y*x7y+17*x4x*x5x*x8x+2*x4x*x7x*x8x+x4x*x8x^2-231*x2y*x4x*x8y+241*x4x*x4y*x8y+90*x4x*x5y*x8y-4*x4x*x7y*x8y-14*x4x*x8y^2-204*x4x*x5x*x9x-24*x4x*x7x*x9x-296*x4x*x8x*x9x-24*x4x*x9x^2-831/2*x2y*x4x*x9y+18*x3y*x4x*x9y+2007/2*x4x*x4y*x9y+366*x4x*x5y*x9y-321*x4x*x7y*x9y+327*x4x*x8y*x9y-115*x4x*x9y^2-68*x4x*x5x-14*x4x*x7x-27*x4x*x8x+130*x4x*x9x+77/2*x4x-1",
+      "cofactor_metrics": {
+        "nonzero": true,
+        "term_count": 212,
+        "total_degree": 6
+      },
+      "generator": "((x2x-0)^2+(x2y-0)^2)-((x2x-x9x)^2+(x2y-x9y)^2)",
+      "index": 8,
+      "row_equation_index": 2,
+      "row_index": 2,
+      "singular_index": 9
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((x3x-0)^2+(x3y-0)^2)-((x3x-x6x)^2+(x3y-x6y)^2)",
+      "index": 9,
+      "row_equation_index": 0,
+      "row_index": 3,
+      "singular_index": 10
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((x3x-0)^2+(x3y-0)^2)-((x3x-x7x)^2+(x3y-x7y)^2)",
+      "index": 10,
+      "row_equation_index": 1,
+      "row_index": 3,
+      "singular_index": 11
+    },
+    {
+      "cofactor": "-144*x2y^2*x4x*x4y*x8x*x9y+72*x2y^2*x4x*x4y*x9x*x9y-72*x2y*x4x*x4y*x8y*x9x*x9y+72*x2y*x4x*x4y*x8x*x9y^2+72*x2y*x4x*x4y*x8y*x9y+72*x2y*x4x*x8x*x9x*x9y-36*x2y*x4x*x4y*x9y^2-36*x2y*x4x*x8x*x9y-18*x2y*x4x*x9x*x9y-18*x4x*x8y*x9x*x9y-18*x4x*x8x*x9y^2+18*x4x*x8y*x9y+9*x4x*x9y^2",
+      "cofactor_metrics": {
+        "nonzero": true,
+        "term_count": 13,
+        "total_degree": 6
+      },
+      "generator": "((x3x-0)^2+(x3y-0)^2)-((x3x-x9x)^2+(x3y-x9y)^2)",
+      "index": 11,
+      "row_equation_index": 2,
+      "row_index": 3,
+      "singular_index": 12
+    },
+    {
+      "cofactor": "16*x2x*x2y*x4x^2*x4y^2*x8x*x8y+48*x2x*x2y*x4x^2*x4y*x8x^2*x9x-8*x2x*x2y^2*x4x*x4y*x8x*x8y*x9x+16*x2x*x2y*x4x*x4y^2*x8x*x8y*x9x-64*x2x*x2y*x4x^2*x4y*x8y^2*x9x+96*x2x*x2y*x4x^2*x4y*x8x*x9x^2-24*x2x*x2y^2*x4x*x8x^2*x9x^2+48*x2x*x2y*x4x*x4y*x8x^2*x9x^2+32*x2x*x2y^2*x4x*x8y^2*x9x^2-64*x2x*x2y*x4x*x4y*x8y^2*x9x^2-48*x2x*x2y^2*x4x*x8x*x9x^3+96*x2x*x2y*x4x*x4y*x8x*x9x^3-384*x2x*x4x^3*x4y*x5x*x8x*x9y-384*x2x*x4x^2*x4y^2*x5x*x8y*x9y+96*x2x*x2y*x4x^2*x4y*x8x*x8y*x9y-192*x2x*x4x^3*x4y*x7x*x9x*x9y+576*x2x*x4x^3*x4y*x8x*x9x*x9y+192*x2x*x2y*x4x^2*x5x*x8x*x9x*x9y-1536*x2x*x4x^2*x4y*x5x*x8x*x9x*x9y-48*x2x*x2y*x4x^2*x8x^2*x9x*x9y+192*x2x*x4x^2*x4y^2*x8y*x9x*x9y+192*x2x*x2y*x4x*x4y*x5x*x8y*x9x*x9y-384*x2x*x4x*x4y^2*x5x*x8y*x9x*x9y+384*x2x*x4x^2*x4y*x5y*x8y*x9x*x9y-384*x2x*x4x^2*x4y*x7y*x8y*x9x*x9y-56*x2x*x2y^2*x4x*x8x*x8y*x9x*x9y+112*x2x*x2y*x4x*x4y*x8x*x8y*x9x*x9y+64*x2x*x2y*x4x^2*x8y^2*x9x*x9y+3456*x2x*x4x^3*x4y*x9x^2*x9y-2304*x2x*x4x^2*x4y*x5x*x9x^2*x9y+96*x2x*x2y*x4x^2*x7x*x9x^2*x9y-96*x2x*x4x^2*x4y*x7x*x9x^2*x9y-384*x2x*x2y*x4x^2*x8x*x9x^2*x9y+864*x2x*x4x^2*x4y*x8x*x9x^2*x9y+576*x2x*x2y*x4x*x5x*x8x*x9x^2*x9y-1152*x2x*x4x*x4y*x5x*x8x*x9x^2*x9y+192*x2x*x4x*x4y^2*x8y*x9x^2*x9y-192*x2x*x2y*x4x*x5y*x8y*x9x^2*x9y+288*x2x*x4x*x4y*x5y*x8y*x9x^2*x9y-288*x2x*x4x*x4y*x7y*x8y*x9x^2*x9y-1728*x2x*x2y*x4x^2*x9x^3*x9y+5760*x2x*x4x^2*x4y*x9x^3*x9y+1152*x2x*x2y*x4x*x5x*x9x^3*x9y-2304*x2x*x4x*x4y*x5x*x9x^3*x9y-48*x2x*x2y*x4x*x7x*x9x^3*x9y+96*x2x*x4x*x4y*x7x*x9x^3*x9y-144*x2x*x2y*x4x*x8x*x9x^3*x9y+288*x2x*x4x*x4y*x8x*x9x^3*x9y-1152*x2x*x2y*x4x*x9x^4*x9y+2304*x2x*x4x*x4y*x9x^4*x9y-768*x2x*x4x^3*x4y*x5y*x9y^2+960*x2x*x4x^3*x4y*x7y*x9y^2+96*x2x*x2y*x4x^2*x4y*x8x*x9y^2+384*x2x*x4x^3*x5x*x8x*x9y^2+576*x2x*x4x^3*x4y*x8y*x9y^2-768*x2x*x4x^2*x4y*x5x*x8y*x9y^2-112*x2x*x2y*x4x^2*x8x*x8y*x9y^2-288*x2x*x2y*x4x^2*x4y*x9x*x9y^2+384*x2x*x2y*x4x^2*x5y*x9x*x9y^2-1344*x2x*x4x^2*x4y*x5y*x9x*x9y^2+192*x2x*x4x^3*x7x*x9x*x9y^2+96*x2x*x2y*x4x^2*x7y*x9x*x9y^2+1440*x2x*x4x^2*x4y*x7y*x9x*x9y^2-48*x2x*x2y^2*x4x*x8x*x9x*x9y^2-576*x2x*x4x^3*x8x*x9x*x9y^2+96*x2x*x2y*x4x*x4y*x8x*x9x*x9y^2+1152*x2x*x4x^2*x5x*x8x*x9x*x9y^2-288*x2x*x2y*x4x^2*x8y*x9x*x9y^2+864*x2x*x4x^2*x4y*x8y*x9x*x9y^2+576*x2x*x2y*x4x*x5x*x8y*x9x*x9y^2-1152*x2x*x4x*x4y*x5x*x8y*x9x*x9y^2-384*x2x*x4x^2*x5y*x8y*x9x*x9y^2-3456*x2x*x4x^3*x9x^2*x9y^2-144*x2x*x2y*x4x*x4y*x9x^2*x9y^2+2304*x2x*x4x^2*x5x*x9x^2*x9y^2+384*x2x*x2y*x4x*x5y*x9x^2*x9y^2-576*x2x*x4x*x4y*x5y*x9x^2*x9y^2-96*x2x*x4x^2*x7x*x9x^2*x9y^2-48*x2x*x2y*x4x*x7y*x9x^2*x9y^2+480*x2x*x4x*x4y*x7y*x9x^2*x9y^2-288*x2x*x4x^2*x8x*x9x^2*x9y^2-144*x2x*x2y*x4x*x8y*x9x^2*x9y^2+288*x2x*x4x*x4y*x8y*x9x^2*x9y^2-2304*x2x*x4x^2*x9x^3*x9y^2+3456*x2x*x4x^3*x4y*x9y^3-2304*x2x*x4x^2*x4y*x5x*x9y^3-192*x2x*x4x^3*x7y*x9y^3-96*x2x*x2y*x4x^2*x8x*x9y^3-576*x2x*x4x^3*x8y*x9y^3+1152*x2x*x4x^2*x5x*x8y*x9y^3-1728*x2x*x2y*x4x^2*x9x*x9y^3+5952*x2x*x4x^2*x4y*x9x*x9y^3+1152*x2x*x2y*x4x*x5x*x9x*x9y^3-2304*x2x*x4x*x4y*x5x*x9x*x9y^3-288*x2x*x4x^2*x7y*x9x*x9y^3-288*x2x*x4x^2*x8y*x9x*x9y^3-1152*x2x*x2y*x4x*x9x^2*x9y^3+2208*x2x*x4x*x4y*x9x^2*x9y^3+192*x2x*x4x*x7y*x9x^2*x9y^3-3456*x2x*x4x^3*x9y^4+2304*x2x*x4x^2*x5x*x9y^4-2304*x2x*x4x^2*x9x*x9y^4-8*x2x*x2y*x4x^2*x4y*x8x^2-80*x2x*x4x^2*x4y^2*x8x^2-96*x2x*x4x^2*x4y*x5y*x8x^2+160*x2x*x4x^2*x4y*x7y*x8x^2-192*x2x*x4x^2*x4y^2*x5y*x8y-4*x2x*x2y*x4x*x4y^2*x8x*x8y-8*x2y*x4x^2*x4y^2*x8x*x8y+128*x2x*x4x^2*x4y*x5x*x8x*x8y+32*x2x*x2y*x4x^2*x4y*x8y^2+24*x2x*x4x^2*x4y^2*x8y^2-128*x2x*x2y*x4x^2*x4y*x8x*x9x+960*x2x*x4x^2*x4y^2*x8x*x9x+1152*x2x*x4x^2*x4y*x5y*x8x*x9x-1920*x2x*x4x^2*x4y*x7y*x8x*x9x+4*x2x*x2y^2*x4x*x8x^2*x9x-32*x2x*x2y*x4x*x4y*x8x^2*x9x-24*x2y*x4x^2*x4y*x8x^2*x9x-80*x2x*x4x*x4y^2*x8x^2*x9x+48*x2x*x2y*x4x*x5y*x8x^2*x9x-80*x2x*x4x*x4y*x5y*x8x^2*x9x+48*x2x*x4x*x5y^2*x8x^2*x9x+120*x2x*x4x*x4y*x7y*x8x^2*x9x+96*x2x*x2y*x4x*x4y*x5y*x8y*x9x-192*x2x*x4x*x4y^2*x5y*x8y*x9x-224*x2x*x4x^2*x4y*x7x*x8y*x9x+4*x2y^2*x4x*x4y*x8x*x8y*x9x-280*x2x*x4x^2*x4y*x8x*x8y*x9x-8*x2y*x4x*x4y^2*x8x*x8y*x9x-64*x2x*x2y*x4x*x5x*x8x*x8y*x9x+128*x2x*x4x*x4y*x5x*x8x*x8y*x9x-48*x2x*x4x*x5x*x5y*x8x*x8y*x9x-24*x2x*x4x*x4y*x7x*x8x*x8y*x9x+48*x2x*x4x*x5y*x7x*x8x*x8y*x9x+48*x2x*x4x*x5x*x7y*x8x*x8y*x9x-16*x2x*x2y^2*x4x*x8y^2*x9x+36*x2x*x2y*x4x*x4y*x8y^2*x9x+32*x2y*x4x^2*x4y*x8y^2*x9x+24*x2x*x4x*x4y^2*x8y^2*x9x-1152*x2x*x4x^2*x4y*x5y*x9x^2+64*x2x*x2y^2*x4x*x8x*x9x^2-144*x2x*x2y*x4x*x4y*x8x*x9x^2-48*x2y*x4x^2*x4y*x8x*x9x^2+960*x2x*x4x*x4y^2*x8x*x9x^2-576*x2x*x2y*x4x*x5y*x8x*x9x^2+960*x2x*x4x*x4y*x5y*x8x*x9x^2-576*x2x*x4x*x5y^2*x8x*x9x^2-1440*x2x*x4x*x4y*x7y*x8x*x9x^2+12*x2y^2*x4x*x8x^2*x9x^2-24*x2y*x4x*x4y*x8x^2*x9x^2-1008*x2x*x4x^2*x4y*x8y*x9x^2+576*x2x*x4x*x5x*x5y*x8y*x9x^2+112*x2x*x2y*x4x*x7x*x8y*x9x^2+64*x2x*x4x*x4y*x7x*x8y*x9x^2-576*x2x*x4x*x5y*x7x*x8y*x9x^2-576*x2x*x4x*x5x*x7y*x8y*x9x^2+136*x2x*x2y*x4x*x8x*x8y*x9x^2-280*x2x*x4x*x4y*x8x*x8y*x9x^2-16*x2y^2*x4x*x8y^2*x9x^2+32*x2y*x4x*x4y*x8y^2*x9x^2+576*x2x*x2y*x4x*x5y*x9x^3-1152*x2x*x4x*x4y*x5y*x9x^3+24*x2y^2*x4x*x8x*x9x^3-48*x2y*x4x*x4y*x8x*x9x^3+504*x2x*x2y*x4x*x8y*x9x^3-1008*x2x*x4x*x4y*x8y*x9x^3+192*x2x*x4x^3*x4y*x5x*x9y+192*x2x*x4x^3*x4y*x7x*x9y+2208*x2x*x4x^2*x4y*x5x*x8x*x9y+192*x4x^3*x4y*x5x*x8x*x9y+8*x2x*x2y*x4x^2*x8x^2*x9y+96*x2x*x4x^2*x4y*x8x^2*x9y-64*x2x*x4x^2*x5y*x8x^2*x9y-32*x2x*x2y*x4x^2*x4y*x8y*x9y+336*x2x*x4x^2*x4y^2*x8y*x9y+96*x2x*x4x*x4y^2*x5x*x8y*x9y+192*x4x^2*x4y^2*x5x*x8y*x9y-416*x2x*x4x^2*x4y*x5y*x8y*x9y+256*x2x*x4x^2*x4y*x7y*x8y*x9y-24*x2x*x2y*x4x*x4y*x8x*x8y*x9y-48*x2y*x4x^2*x4y*x8x*x8y*x9y-128*x2x*x4x^2*x5x*x8x*x8y*x9y+32*x2x*x2y*x4x^2*x8y^2*x9y-288*x2x*x4x^2*x4y*x8y^2*x9y-3648*x2x*x4x^3*x4y*x9x*x9y-96*x2x*x2y*x4x^2*x5x*x9x*x9y+3456*x2x*x4x^2*x4y*x5x*x9x*x9y-96*x2x*x2y*x4x^2*x7x*x9x*x9y-2568*x2x*x4x^2*x4y*x7x*x9x*x9y+96*x4x^3*x4y*x7x*x9x*x9y-288*x2x*x2y*x3x*x4x*x8x*x9x*x9y-1656*x2x*x4x^2*x4y*x8x*x9x*x9y-288*x4x^3*x4y*x8x*x9x*x9y-1056*x2x*x2y*x4x*x5x*x8x*x9x*x9y-96*x2y*x4x^2*x5x*x8x*x9x*x9y+2688*x2x*x4x*x4y*x5x*x8x*x9x*x9y+768*x4x^2*x4y*x5x*x8x*x9x*x9y+672*x2x*x4x^2*x5y*x8x*x9x*x9y+192*x2x*x4x*x5x*x5y*x8x*x9x*x9y+96*x2x*x4x*x4y*x7x*x8x*x9x*x9y-192*x2x*x4x*x5y*x7x*x8x*x9x*x9y-192*x2x*x4x*x5x*x7y*x8x*x9x*x9y-8*x2x*x2y*x4x*x8x^2*x9x*x9y+24*x2y*x4x^2*x8x^2*x9x*x9y+48*x2x*x4x*x4y*x8x^2*x9x*x9y-64*x2x*x4x*x5y*x8x^2*x9x*x9y+16*x2x*x2y^2*x4x*x8y*x9x*x9y-48*x2y^2*x4x^2*x8y*x9x*x9y-320*x2x*x2y*x4x*x4y*x8y*x9x*x9y+288*x2x*x4x*x4y^2*x8y*x9x*x9y-96*x4x^2*x4y^2*x8y*x9x*x9y-96*x2y*x4x*x4y*x5x*x8y*x9x*x9y+192*x4x*x4y^2*x5x*x8y*x9x*x9y+304*x2x*x2y*x4x*x5y*x8y*x9x*x9y+48*x2y*x4x^2*x5y*x8y*x9x*x9y-696*x2x*x4x*x4y*x5y*x8y*x9x*x9y-192*x4x^2*x4y*x5y*x8y*x9x*x9y+96*x2y^2*x4x*x7x*x8y*x9x*x9y+416*x2x*x4x^2*x7x*x8y*x9x*x9y-48*x2y*x4x*x4y*x7x*x8y*x9x*x9y+48*x4x*x4y*x5y*x7x*x8y*x9x*x9y+112*x2x*x2y*x4x*x7y*x8y*x9x*x9y+344*x2x*x4x*x4y*x7y*x8y*x9x*x9y+192*x4x^2*x4y*x7y*x8y*x9x*x9y-48*x4x*x4y*x5x*x7y*x8y*x9x*x9y+28*x2y^2*x4x*x8x*x8y*x9x*x9y+280*x2x*x4x^2*x8x*x8y*x9x*x9y-56*x2y*x4x*x4y*x8x*x8y*x9x*x9y+116*x2x*x2y*x4x*x8y^2*x9x*x9y-32*x2y*x4x^2*x8y^2*x9x*x9y-328*x2x*x4x*x4y*x8y^2*x9x*x9y+128*x2x*x4x*x5y*x8y^2*x9x*x9y+1824*x2x*x2y*x4x^2*x9x^2*x9y-7728*x2x*x4x^2*x4y*x9x^2*x9y-1728*x4x^3*x4y*x9x^2*x9y-1632*x2x*x2y*x4x*x5x*x9x^2*x9y+3648*x2x*x4x*x4y*x5x*x9x^2*x9y+1152*x4x^2*x4y*x5x*x9x^2*x9y+1152*x2x*x4x^2*x5y*x9x^2*x9y+1404*x2x*x2y*x4x*x7x*x9x^2*x9y-48*x2y*x4x^2*x7x*x9x^2*x9y-2832*x2x*x4x*x4y*x7x*x9x^2*x9y+48*x4x^2*x4y*x7x*x9x^2*x9y-48*x2x*x4x^2*x7y*x9x^2*x9y+348*x2x*x2y*x4x*x8x*x9x^2*x9y+192*x2y*x4x^2*x8x*x9x^2*x9y-1104*x2x*x4x*x4y*x8x*x9x^2*x9y-432*x4x^2*x4y*x8x*x9x^2*x9y-288*x2y*x4x*x5x*x8x*x9x^2*x9y+576*x4x*x4y*x5x*x8x*x9x^2*x9y+816*x2x*x4x*x5y*x8x*x9x^2*x9y+1008*x2x*x4x^2*x8y*x9x^2*x9y-96*x4x*x4y^2*x8y*x9x^2*x9y+96*x2x*x4x*x5x*x8y*x9x^2*x9y+96*x2y*x4x*x5y*x8y*x9x^2*x9y-144*x4x*x4y*x5y*x8y*x9x^2*x9y+144*x2x*x4x*x7x*x8y*x9x^2*x9y+144*x4x*x4y*x7y*x8y*x9x^2*x9y+1632*x2x*x2y*x4x*x9x^3*x9y+864*x2y*x4x^2*x9x^3*x9y-3864*x2x*x4x*x4y*x9x^3*x9y-2880*x4x^2*x4y*x9x^3*x9y-576*x2y*x4x*x5x*x9x^3*x9y+1152*x4x*x4y*x5x*x9x^3*x9y+96*x2x*x4x*x5y*x9x^3*x9y+24*x2y*x4x*x7x*x9x^3*x9y-48*x4x*x4y*x7x*x9x^3*x9y+24*x2x*x4x*x7y*x9x^3*x9y+72*x2y*x4x*x8x*x9x^3*x9y-144*x4x*x4y*x8x*x9x^3*x9y-48*x2x*x4x*x8y*x9x^3*x9y+576*x2y*x4x*x9x^4*x9y-1152*x4x*x4y*x9x^4*x9y+144*x2y^2*x4x^3*x9y^2+288*x2x*x2y*x4x^2*x4y*x9y^2-96*x2y*x4x^3*x5y*x9y^2+192*x2x*x4x^2*x4y*x5y*x9y^2+384*x4x^3*x4y*x5y*x9y^2-288*x2y^2*x4x^2*x7x*x9y^2-576*x2x*x4x^3*x7x*x9y^2+144*x2y*x4x^2*x4y*x7x*x9y^2-96*x4x^2*x4y*x5y*x7x*x9y^2-48*x2y*x4x^3*x7y*x9y^2+2280*x2x*x4x^2*x4y*x7y*x9y^2-480*x4x^3*x4y*x7y*x9y^2+96*x4x^2*x4y*x5x*x7y*x9y^2-192*x2x*x4x^3*x8x*x9y^2-24*x2x*x2y*x4x*x4y*x8x*x9y^2-48*x2y*x4x^2*x4y*x8x*x9y^2-2208*x2x*x4x^2*x5x*x8x*x9y^2-192*x4x^3*x5x*x8x*x9y^2-16*x2x*x4x^2*x8x^2*x9y^2-96*x2y*x4x^3*x8y*x9y^2-1656*x2x*x4x^2*x4y*x8y*x9y^2-288*x4x^3*x4y*x8y*x9y^2+192*x2y*x4x^2*x5x*x8y*x9y^2+192*x2x*x4x*x4y*x5x*x8y*x9y^2+288*x4x^2*x4y*x5x*x8y*x9y^2+576*x2x*x4x^2*x5y*x8y*x9y^2+96*x4x^3*x5y*x8y*x9y^2-224*x2x*x4x^2*x7y*x8y*x9y^2+28*x2x*x2y*x4x*x8x*x8y*x9y^2+56*x2y*x4x^2*x8x*x8y*x9y^2+840*x2x*x4x^2*x8y^2*x9y^2-144*x2x*x2y*x3y*x4x*x9x*x9y^2+72*x2y^2*x4x^2*x9x*x9y^2-192*x2x*x4x^3*x9x*x9y^2-1308*x2x*x2y*x4x*x4y*x9x*x9y^2+144*x2y*x4x^2*x4y*x9x*x9y^2+96*x2x*x4x^2*x5x*x9x*x9y^2+576*x2x*x2y*x4x*x5y*x9x*x9y^2-288*x2y*x4x^2*x5y*x9x*x9y^2+288*x2x*x4x*x4y*x5y*x9x*x9y^2+672*x4x^2*x4y*x5y*x9x*x9y^2-144*x2y^2*x4x*x7x*x9x*x9y^2+1944*x2x*x4x^2*x7x*x9x*x9y^2-96*x4x^3*x7x*x9x*x9y^2+72*x2y*x4x*x4y*x7x*x9x*x9y^2-96*x4x*x4y*x5y*x7x*x9x*x9y^2+1356*x2x*x2y*x4x*x7y*x9x*x9y^2-24*x2y*x4x^2*x7y*x9x*x9y^2+2256*x2x*x4x*x4y*x7y*x9x*x9y^2-720*x4x^2*x4y*x7y*x9x*x9y^2+96*x4x*x4y*x5x*x7y*x9x*x9y^2+24*x2y^2*x4x*x8x*x9x*x9y^2+144*x2x*x3x*x4x*x8x*x9x*x9y^2-744*x2x*x4x^2*x8x*x9x*x9y^2+288*x4x^3*x8x*x9x*x9y^2-48*x2y*x4x*x4y*x8x*x9x*x9y^2-576*x4x^2*x5x*x8x*x9x*x9y^2+444*x2x*x2y*x4x*x8y*x9x*x9y^2+144*x2x*x3y*x4x*x8y*x9x*x9y^2+144*x2y*x4x^2*x8y*x9x*x9y^2-880*x2x*x4x*x4y*x8y*x9x*x9y^2-432*x4x^2*x4y*x8y*x9x*x9y^2-96*x2y*x4x*x5x*x8y*x9x*x9y^2+576*x4x*x4y*x5x*x8y*x9x*x9y^2+192*x4x^2*x5y*x8y*x9x*x9y^2-192*x2y*x4x*x7x*x8y*x9x*x9y^2-448*x2x*x4x*x7y*x8y*x9x*x9y^2+1440*x2x*x4x^2*x9x^2*x9y^2+1728*x4x^3*x9x^2*x9y^2+72*x2y*x4x*x4y*x9x^2*x9y^2-576*x2x*x4x*x5x*x9x^2*x9y^2-1152*x4x^2*x5x*x9x^2*x9y^2-192*x2y*x4x*x5y*x9x^2*x9y^2+288*x4x*x4y*x5y*x9x^2*x9y^2-192*x2x*x4x*x7x*x9x^2*x9y^2+48*x4x^2*x7x*x9x^2*x9y^2+24*x2y*x4x*x7y*x9x^2*x9y^2-240*x4x*x4y*x7y*x9x^2*x9y^2-72*x2x*x4x*x8x*x9x^2*x9y^2+144*x4x^2*x8x*x9x^2*x9y^2+72*x2y*x4x*x8y*x9x^2*x9y^2-144*x4x*x4y*x8y*x9x^2*x9y^2+624*x2x*x4x*x9x^3*x9y^2+1152*x4x^2*x9x^3*x9y^2-96*x2y*x4x^3*x9y^3-1440*x2x*x4x^2*x4y*x9y^3-1728*x4x^3*x4y*x9y^3-384*x2y*x4x^2*x5x*x9y^3+576*x2x*x4x*x4y*x5x*x9y^3+1152*x4x^2*x4y*x5x*x9y^3+768*x2x*x4x^2*x5y*x9y^3+576*x2y*x4x^2*x7x*x9y^3-96*x4x^2*x4y*x7x*x9y^3-2664*x2x*x4x^2*x7y*x9y^3+192*x4x^3*x7y*x9y^3+24*x2x*x2y*x4x*x8x*x9y^3+48*x2y*x4x^2*x8x*x9y^3-216*x2x*x4x^2*x8y*x9y^3+288*x4x^3*x8y*x9y^3-288*x2x*x4x*x5x*x8y*x9y^3-576*x4x^2*x5x*x8y*x9y^3+912*x2y*x4x^2*x9x*x9y^3+1848*x2x*x4x*x4y*x9x*x9y^3-2976*x4x^2*x4y*x9x*x9y^3-960*x2y*x4x*x5x*x9x*x9y^3+1152*x4x*x4y*x5x*x9x*x9y^3+288*x2y*x4x*x7x*x9x*x9y^3+48*x4x*x4y*x7x*x9x*x9y^3-5448*x2x*x4x*x7y*x9x*x9y^3+96*x4x^2*x7y*x9x*x9y^3+72*x2x*x4x*x8y*x9x*x9y^3+144*x4x^2*x8y*x9x*x9y^3+576*x2y*x4x*x9x^2*x9y^3-1104*x4x*x4y*x9x^2*x9y^3-96*x4x*x7y*x9x^2*x9y^3+1440*x2x*x4x^2*x9y^4+1728*x4x^3*x9y^4-576*x2x*x4x*x5x*x9y^4-1152*x4x^2*x5x*x9y^4+576*x2x*x4x*x9x*x9y^4+1152*x4x^2*x9x*x9y^4-8*x2x*x4x^2*x4y^2*x8x-816*x2x*x4x^2*x4y*x5y*x8x-32*x2x*x4x^2*x4y*x7y*x8x+26*x2y^2*x4x^2*x8x^2+2*x2x*x2y*x4x*x4y*x8x^2+4*x2y*x4x^2*x4y*x8x^2+20*x2x*x4x*x4y^2*x8x^2+40*x4x^2*x4y^2*x8x^2-8*x2y*x4x^2*x5y*x8x^2+24*x2x*x4x*x4y*x5y*x8x^2+48*x4x^2*x4y*x5y*x8x^2-24*x2y*x4x*x5x*x5y*x8x^2+12*x4x*x4y*x5x*x5y*x8x^2-12*x4x^2*x5y^2*x8x^2-40*x2y^2*x4x*x7x*x8x^2-80*x2x*x4x^2*x7x*x8x^2+20*x2y*x4x*x4y*x7x*x8x^2-20*x4x*x4y*x5y*x7x*x8x^2-40*x2x*x4x*x4y*x7y*x8x^2-80*x4x^2*x4y*x7y*x8x^2+20*x4x*x4y*x5x*x7y*x8x^2-64*x2x*x4x^2*x4y*x5x*x8y+48*x2x*x4x*x4y^2*x5y*x8y+96*x4x^2*x4y^2*x5y*x8y+224*x2x*x4x^2*x4y*x7x*x8y-2*x2y^2*x4x*x4y*x8x*x8y+148*x2x*x4x^2*x4y*x8x*x8y+2*x2y*x4x*x4y^2*x8x*x8y-32*x2x*x4x*x4y*x5x*x8x*x8y-64*x4x^2*x4y*x5x*x8x*x8y+24*x2y*x4x*x5x^2*x8x*x8y+60*x4x*x4y*x5x^2*x8x*x8y-60*x4x^2*x5x*x5y*x8x*x8y+12*x2y*x4x^2*x7x*x8x*x8y-48*x2y*x4x*x5x*x7x*x8x*x8y-48*x4x*x4y*x5x*x7x*x8x*x8y-12*x4x^2*x5y*x7x*x8x*x8y+144*x4x*x5x*x5y*x7x*x8x*x8y+60*x4x^2*x5x*x7y*x8x*x8y-144*x4x*x5x^2*x7y*x8x*x8y-8*x2x*x2y*x4x*x4y*x8y^2-16*x2y*x4x^2*x4y*x8y^2-6*x2x*x4x*x4y^2*x8y^2-12*x4x^2*x4y^2*x8y^2+72*x4x*x4y*x5x*x5y*x8y^2-72*x4x^2*x5y^2*x8y^2-72*x4x*x4y*x5y*x7x*x8y^2+144*x4x*x5y^2*x7x*x8y^2+72*x4x^2*x5y*x7y*x8y^2-144*x4x*x5x*x5y*x7y*x8y^2-192*x2x*x4x^2*x4y^2*x9x+864*x2x*x4x^2*x4y*x5y*x9x+384*x2x*x4x^2*x4y*x7y*x9x-244*x2y^2*x4x^2*x8x*x9x+48*x2x*x2y*x4x*x4y*x8x*x9x+64*x2y*x4x^2*x4y*x8x*x9x-248*x2x*x4x*x4y^2*x8x*x9x-480*x4x^2*x4y^2*x8x*x9x+408*x2x*x2y*x4x*x5y*x8x*x9x+96*x2y*x4x^2*x5y*x8x*x9x-968*x2x*x4x*x4y*x5y*x8x*x9x-576*x4x^2*x4y*x5y*x8x*x9x+288*x2y*x4x*x5x*x5y*x8x*x9x-144*x4x*x4y*x5x*x5y*x8x*x9x+192*x2x*x4x*x5y^2*x8x*x9x+144*x4x^2*x5y^2*x8x*x9x+480*x2y^2*x4x*x7x*x8x*x9x+960*x2x*x4x^2*x7x*x8x*x9x-240*x2y*x4x*x4y*x7x*x8x*x9x+240*x4x*x4y*x5y*x7x*x8x*x9x+456*x2x*x4x*x4y*x7y*x8x*x9x+960*x4x^2*x4y*x7y*x8x*x9x-240*x4x*x4y*x5x*x7y*x8x*x9x-8*x2y^2*x4x*x8x^2*x9x+16*x2y*x4x*x4y*x8x^2*x9x+40*x4x*x4y^2*x8x^2*x9x-24*x2y*x4x*x5y*x8x^2*x9x+40*x4x*x4y*x5y*x8x^2*x9x-24*x4x*x5y^2*x8x^2*x9x-60*x2x*x4x*x7x*x8x^2*x9x-60*x4x*x4y*x7y*x8x^2*x9x+1264*x2x*x4x^2*x4y*x8y*x9x+32*x2x*x2y*x4x*x5x*x8y*x9x-64*x2x*x4x*x4y*x5x*x8y*x9x-288*x2y*x4x*x5x^2*x8y*x9x+144*x4x*x4y*x5x^2*x8y*x9x-48*x2y*x4x*x4y*x5y*x8y*x9x+96*x4x*x4y^2*x5y*x8y*x9x-192*x2x*x4x*x5x*x5y*x8y*x9x-144*x4x^2*x5x*x5y*x8y*x9x-112*x2x*x2y*x4x*x7x*x8y*x9x-144*x2y*x4x^2*x7x*x8y*x9x+184*x2x*x4x*x4y*x7x*x8y*x9x+112*x4x^2*x4y*x7x*x8y*x9x+576*x2y*x4x*x5x*x7x*x8y*x9x-288*x4x*x4y*x5x*x7x*x8y*x9x+192*x2x*x4x*x5y*x7x*x8y*x9x+144*x4x^2*x5y*x7x*x8y*x9x+192*x2x*x4x*x5x*x7y*x8y*x9x+144*x4x^2*x5x*x7y*x8y*x9x-72*x2x*x2y*x4x*x8x*x8y*x9x+4*x2y*x4x^2*x8x*x8y*x9x+224*x2x*x4x*x4y*x8x*x8y*x9x+140*x4x^2*x4y*x8x*x8y*x9x+32*x2y*x4x*x5x*x8x*x8y*x9x-136*x4x*x4y*x5x*x8x*x8y*x9x-16*x2x*x4x*x5y*x8x*x8y*x9x+72*x4x^2*x5y*x8x*x8y*x9x+24*x4x*x5x*x5y*x8x*x8y*x9x+84*x4x*x4y*x7x*x8x*x8y*x9x-168*x4x*x5y*x7x*x8x*x8y*x9x-12*x2x*x4x*x7y*x8x*x8y*x9x-72*x4x^2*x7y*x8x*x8y*x9x+120*x4x*x5x*x7y*x8x*x8y*x9x+16*x2y^2*x4x*x8y^2*x9x-18*x2y*x4x*x4y*x8y^2*x9x-12*x4x*x4y^2*x8y^2*x9x-192*x2x*x4x*x4y^2*x9x^2-432*x2x*x2y*x4x*x5y*x9x^2+1152*x2x*x4x*x4y*x5y*x9x^2+576*x4x^2*x4y*x5y*x9x^2+288*x2x*x4x*x4y*x7y*x9x^2-44*x2y^2*x4x*x8x*x9x^2+72*x2y*x4x*x4y*x8x*x9x^2-480*x4x*x4y^2*x8x*x9x^2+288*x2y*x4x*x5y*x8x*x9x^2-480*x4x*x4y*x5y*x8x*x9x^2+288*x4x*x5y^2*x8x*x9x^2+720*x2x*x4x*x7x*x8x*x9x^2+720*x4x*x4y*x7y*x8x*x9x^2+20*x2x*x4x*x8x^2*x9x^2-632*x2x*x2y*x4x*x8y*x9x^2+1464*x2x*x4x*x4y*x8y*x9x^2+504*x4x^2*x4y*x8y*x9x^2+624*x2x*x4x*x5y*x8y*x9x^2-288*x4x*x5x*x5y*x8y*x9x^2-56*x2y*x4x*x7x*x8y*x9x^2-32*x4x*x4y*x7x*x8y*x9x^2+288*x4x*x5y*x7x*x8y*x9x^2+88*x2x*x4x*x7y*x8y*x9x^2+288*x4x*x5x*x7y*x8y*x9x^2-68*x2y*x4x*x8x*x8y*x9x^2+140*x4x*x4y*x8x*x8y*x9x^2-6*x2x*x4x*x8y^2*x9x^2-288*x2y*x4x*x5y*x9x^3+576*x4x*x4y*x5y*x9x^3-240*x2x*x4x*x8x*x9x^3-252*x2y*x4x*x8y*x9x^3+504*x4x*x4y*x8y*x9x^3-1056*x2x*x4x^2*x4y*x5x*x9y-96*x4x^3*x4y*x5x*x9y+2664*x2x*x4x^2*x4y*x7x*x9y-96*x4x^3*x4y*x7x*x9y+48*x2x*x2y*x4x^2*x8x*x9y-48*x2y*x4x^3*x8x*x9y-216*x2x*x4x^2*x4y*x8x*x9y-48*x2y*x4x^2*x5x*x8x*x9y-528*x2x*x4x*x4y*x5x*x8x*x9y-1200*x4x^2*x4y*x5x*x8x*x9y-96*x2y*x4x*x5x^2*x8x*x9y+192*x4x*x4y*x5x^2*x8x*x9y-96*x2x*x4x^2*x5y*x8x*x9y+96*x4x^3*x5y*x8x*x9y-192*x4x^2*x5x*x5y*x8x*x9y-48*x2y*x4x^2*x7x*x8x*x9y+192*x2y*x4x*x5x*x7x*x8x*x9y-240*x4x*x4y*x5x*x7x*x8x*x9y+48*x4x^2*x5y*x7x*x8x*x9y+288*x4x*x5x*x5y*x7x*x8x*x9y+192*x4x^2*x5x*x7y*x8x*x9y-288*x4x*x5x^2*x7y*x8x*x9y-2*x2x*x2y*x4x*x8x^2*x9y-20*x2y*x4x^2*x8x^2*x9y-24*x2x*x4x*x4y*x8x^2*x9y-48*x4x^2*x4y*x8x^2*x9y-48*x2y*x4x*x5x*x8x^2*x9y-16*x4x*x4y*x5x*x8x^2*x9y+16*x2x*x4x*x5y*x8x^2*x9y+48*x4x^2*x5y*x8x^2*x9y+80*x2y*x4x*x7x*x8x^2*x9y+60*x2y^2*x4x^2*x8y*x9y+8*x2x*x2y*x4x*x4y*x8y*x9y+16*x2y*x4x^2*x4y*x8y*x9y-84*x2x*x4x*x4y^2*x8y*x9y-168*x4x^2*x4y^2*x8y*x9y+48*x2y*x4x*x4y*x5x*x8y*x9y-48*x4x*x4y^2*x5x*x8y*x9y-4*x2y*x4x^2*x5y*x8y*x9y+104*x2x*x4x*x4y*x5y*x8y*x9y+208*x4x^2*x4y*x5y*x8y*x9y+144*x4x*x4y*x5x*x5y*x8y*x9y-144*x4x^2*x5y^2*x8y*x9y-120*x2y^2*x4x*x7x*x8y*x9y-240*x2x*x4x^2*x7x*x8y*x9y+60*x2y*x4x*x4y*x7x*x8y*x9y-148*x4x*x4y*x5y*x7x*x8y*x9y+288*x4x*x5y^2*x7x*x8y*x9y-56*x2y*x4x^2*x7y*x8y*x9y-64*x2x*x4x*x4y*x7y*x8y*x9y-128*x4x^2*x4y*x7y*x8y*x9y+4*x4x*x4y*x5x*x7y*x8y*x9y+144*x4x^2*x5y*x7y*x8y*x9y-288*x4x*x5x*x5y*x7y*x8y*x9y-14*x2y^2*x4x*x8x*x8y*x9y+20*x2x*x4x^2*x8x*x8y*x9y+16*x2y*x4x*x4y*x8x*x8y*x9y+32*x2x*x4x*x5x*x8x*x8y*x9y+64*x4x^2*x5x*x8x*x8y*x9y+72*x4x*x5x^2*x8x*x8y*x9y+72*x4x*x5y^2*x8x*x8y*x9y-8*x2x*x2y*x4x*x8y^2*x9y+16*x2y*x4x^2*x8y^2*x9y+72*x2x*x4x*x4y*x8y^2*x9y+144*x4x^2*x4y*x8y^2*x9y-64*x2y*x4x*x5x*x8y^2*x9y-40*x4x*x4y*x5x*x8y^2*x9y+40*x4x^2*x5y*x8y^2*x9y+72*x4x*x4y*x7x*x8y^2*x9y-144*x4x*x5y*x7x*x8y^2*x9y-72*x4x^2*x7y*x8y^2*x9y+144*x4x*x5x*x7y*x8y^2*x9y+144*x2x*x2y*x3x*x4x*x9x*x9y-24*x2y*x4x^3*x9x*x9y+3024*x2x*x4x^2*x4y*x9x*x9y+1824*x4x^3*x4y*x9x*x9y+504*x2x*x2y*x4x*x5x*x9x*x9y+144*x2y*x4x^2*x5x*x9x*x9y-1920*x2x*x4x*x4y*x5x*x9x*x9y-1584*x4x^2*x4y*x5x*x9x*x9y+144*x2x*x4x^2*x5y*x9x*x9y-144*x4x^3*x5y*x9x*x9y-1356*x2x*x2y*x4x*x7x*x9x*x9y+96*x2y*x4x^2*x7x*x9x*x9y+3414*x2x*x4x*x4y*x7x*x9x*x9y+1260*x4x^2*x4y*x7x*x9x*x9y+48*x2x*x4x^2*x7y*x9x*x9y+24*x4x^3*x7y*x9x*x9y+300*x2x*x2y*x4x*x8x*x9x*x9y+144*x2y*x3x*x4x*x8x*x9x*x9y+120*x2y*x4x^2*x8x*x9x*x9y-198*x2x*x4x*x4y*x8x*x9x*x9y+828*x4x^2*x4y*x8x*x9x*x9y+1224*x2y*x4x*x5x*x8x*x9x*x9y-1392*x4x*x4y*x5x*x8x*x9x*x9y+276*x2x*x4x*x5y*x8x*x9x*x9y-288*x4x^2*x5y*x8x*x9x*x9y-96*x4x*x5x*x5y*x8x*x9x*x9y-960*x2y*x4x*x7x*x8x*x9x*x9y+168*x4x*x4y*x7x*x8x*x9x*x9y-336*x4x*x5y*x7x*x8x*x9x*x9y+48*x2x*x4x*x7y*x8x*x9x*x9y-216*x4x^2*x7y*x8x*x9x*x9y+528*x4x*x5x*x7y*x8x*x9x*x9y+16*x2y*x4x*x8x^2*x9x*x9y-24*x4x*x4y*x8x^2*x9x*x9y+32*x4x*x5y*x8x^2*x9x*x9y-32*x2y^2*x4x*x8y*x9x*x9y-344*x2x*x4x^2*x8y*x9x*x9y+160*x2y*x4x*x4y*x8y*x9x*x9y-144*x4x*x4y^2*x8y*x9x*x9y-72*x2x*x4x*x5x*x8y*x9x*x9y+48*x4x^2*x5x*x8y*x9x*x9y-176*x2y*x4x*x5y*x8y*x9x*x9y+324*x4x*x4y*x5y*x8y*x9x*x9y-284*x2x*x4x*x7x*x8y*x9x*x9y-208*x4x^2*x7x*x8y*x9x*x9y+48*x4x*x5x*x7x*x8y*x9x*x9y-56*x2y*x4x*x7y*x8y*x9x*x9y-148*x4x*x4y*x7y*x8y*x9x*x9y-4*x2x*x4x*x8x*x8y*x9x*x9y-140*x4x^2*x8x*x8y*x9x*x9y-74*x2y*x4x*x8y^2*x9x*x9y+164*x4x*x4y*x8y^2*x9x*x9y-64*x4x*x5y*x8y^2*x9x*x9y-1048*x2x*x2y*x4x*x9x^2*x9y-1332*x2y*x4x^2*x9x^2*x9y+3726*x2x*x4x*x4y*x9x^2*x9y+3864*x4x^2*x4y*x9x^2*x9y+1056*x2y*x4x*x5x*x9x^2*x9y-1728*x4x*x4y*x5x*x9x^2*x9y-456*x2x*x4x*x5y*x9x^2*x9y-672*x4x^2*x5y*x9x^2*x9y-726*x2y*x4x*x7x*x9x^2*x9y+1428*x4x*x4y*x7x*x9x^2*x9y-702*x2x*x4x*x7y*x9x^2*x9y+12*x4x^2*x7y*x9x^2*x9y-186*x2y*x4x*x8x*x9x^2*x9y+552*x4x*x4y*x8x*x9x^2*x9y-408*x4x*x5y*x8x*x9x^2*x9y-400*x2x*x4x*x8y*x9x^2*x9y-456*x4x^2*x8y*x9x^2*x9y+48*x4x*x5x*x8y*x9x^2*x9y-168*x4x*x7x*x8y*x9x^2*x9y-72*x4x*x8x*x8y*x9x^2*x9y-1104*x2y*x4x*x9x^3*x9y+1932*x4x*x4y*x9x^3*x9y-48*x4x*x5y*x9x^3*x9y-12*x4x*x7y*x9x^3*x9y+24*x4x*x8y*x9x^3*x9y+870*x2y^2*x4x^2*x9y^2+2112*x2x*x4x^3*x9y^2-72*x2x*x2y*x4x*x4y*x9y^2-216*x2y*x4x^2*x4y*x9y^2-288*x2y^2*x4x*x5x*x9y^2-528*x2x*x4x^2*x5x*x9y^2-48*x4x^2*x4y*x5y*x9y^2-144*x2y*x4x*x5x*x5y*x9y^2-1308*x2y^2*x4x*x7x*x9y^2-2472*x2x*x4x^2*x7x*x9y^2+288*x4x^3*x7x*x9y^2+654*x2y*x4x*x4y*x7x*x9y^2-96*x4x^2*x5x*x7x*x9y^2+144*x2y*x4x*x5y*x7x*x9y^2-48*x4x*x4y*x5y*x7x*x9y^2-606*x2y*x4x^2*x7y*x9y^2-630*x2x*x4x*x4y*x7y*x9y^2-1188*x4x^2*x4y*x7y*x9y^2-144*x2y*x4x*x5x*x7y*x9y^2+48*x4x*x4y*x5x*x7y*x9y^2-12*x2y^2*x4x*x8x*x9y^2+1896*x2x*x4x^2*x8x*x9y^2+96*x4x^3*x8x*x9y^2+12*x2y*x4x*x4y*x8x*x9y^2+528*x2x*x4x*x5x*x8x*x9y^2+1008*x4x^2*x5x*x8x*x9y^2+4*x2x*x4x*x8x^2*x9y^2+8*x4x^2*x8x^2*x9y^2-280*x2y*x4x^2*x8y*x9y^2+378*x2x*x4x*x4y*x8y*x9y^2+876*x4x^2*x4y*x8y*x9y^2+272*x2y*x4x*x5x*x8y*x9y^2-408*x4x*x4y*x5x*x8y*x9y^2-144*x2x*x4x*x5y*x8y*x9y^2-120*x4x^2*x5y*x8y*x9y^2+240*x2y*x4x*x7x*x8y*x9y^2+104*x4x*x4y*x7x*x8y*x9y^2-432*x4x*x5y*x7x*x8y*x9y^2+56*x2x*x4x*x7y*x8y*x9y^2+8*x4x^2*x7y*x8y*x9y^2+432*x4x*x5x*x7y*x8y*x9y^2+14*x2y*x4x*x8x*x8y*x9y^2-210*x2x*x4x*x8y^2*x9y^2-420*x4x^2*x8y^2*x9y^2+36*x2y^2*x4x*x9x*x9y^2-72*x2x*x3x*x4x*x9x*x9y^2+72*x2y*x3y*x4x*x9x*x9y^2-456*x2x*x4x^2*x9x*x9y^2+96*x4x^3*x9x*x9y^2+618*x2y*x4x*x4y*x9x*x9y^2-600*x2x*x4x*x5x*x9x*x9y^2-240*x4x^2*x5x*x9x*x9y^2-240*x2y*x4x*x5y*x9x*x9y^2-96*x4x*x4y*x5y*x9x*x9y^2-2496*x2x*x4x*x7x*x9x*x9y^2-780*x4x^2*x7x*x9x*x9y^2-96*x4x*x5x*x7x*x9x*x9y^2-678*x2y*x4x*x7y*x9x*x9y^2-1176*x4x*x4y*x7y*x9x*x9y^2+402*x2x*x4x*x8x*x9x*x9y^2-72*x3x*x4x*x8x*x9x*x9y^2+516*x4x^2*x8x*x9x*x9y^2-288*x4x*x5x*x8x*x9x*x9y^2-258*x2y*x4x*x8y*x9x*x9y^2-72*x3y*x4x*x8y*x9x*x9y^2+488*x4x*x4y*x8y*x9x*x9y^2+224*x4x*x7y*x8y*x9x*x9y^2-1164*x2x*x4x*x9x^2*x9y^2+144*x4x^2*x9x^2*x9y^2-480*x4x*x5x*x9x^2*x9y^2+288*x4x*x7x*x9x^2*x9y^2+108*x4x*x8x*x9x^2*x9y^2+264*x4x*x9x^3*x9y^2-1980*x2y*x4x^2*x9y^3+144*x2x*x4x*x4y*x9y^3+768*x4x^2*x4y*x9y^3+672*x2y*x4x*x5x*x9y^3-288*x4x*x4y*x5x*x9y^3-192*x2x*x4x*x5y*x9y^3-384*x4x^2*x5y*x9y^3+2616*x2y*x4x*x7x*x9y^3-1356*x4x*x4y*x7x*x9y^3+678*x2x*x4x*x7y*x9y^3+2688*x4x^2*x7y*x9y^3+12*x2y*x4x*x8x*x9y^3+90*x2x*x4x*x8y*x9y^3+252*x4x^2*x8y*x9y^3-144*x4x*x5x*x8y*x9y^3-72*x4x*x8x*x8y*x9y^3-264*x2y*x4x*x9x*x9y^3-948*x4x*x4y*x9x*x9y^3+2724*x4x*x7y*x9x*x9y^3+36*x4x*x8y*x9x*x9y^3-144*x2x*x4x*x9y^4+144*x4x^2*x9y^4-288*x4x*x5x*x9y^4+288*x4x*x9x*x9y^4-104*x2x*x4x^2*x4y^2+288*x2x*x4x^2*x4y*x5y+224*x2x*x4x^2*x4y*x7y-6*x2y^2*x4x^2*x8x+2*x2x*x4x*x4y^2*x8x+4*x4x^2*x4y^2*x8x-68*x2y*x4x^2*x5y*x8x+204*x2x*x4x*x4y*x5y*x8x+408*x4x^2*x4y*x5y*x8x-96*x2y*x4x*x5x*x5y*x8x+24*x4x*x4y*x5x*x5y*x8x-24*x4x^2*x5y^2*x8x+8*x2y^2*x4x*x7x*x8x+16*x2x*x4x^2*x7x*x8x-4*x2y*x4x*x4y*x7x*x8x+4*x4x*x4y*x5y*x7x*x8x+8*x2x*x4x*x4y*x7y*x8x+16*x4x^2*x4y*x7y*x8x-4*x4x*x4y*x5x*x7y*x8x+14*x2y^2*x4x*x8x^2+60*x2x*x4x^2*x8x^2-4*x2y*x4x*x4y*x8x^2-10*x4x*x4y^2*x8x^2+8*x2y*x4x*x5y*x8x^2-8*x4x*x4y*x5y*x8x^2+20*x2x*x4x*x7x*x8x^2+40*x4x^2*x7x*x8x^2-20*x4x*x5x*x7x*x8x^2+10*x4x*x4y*x7y*x8x^2-192*x2x*x4x^2*x4y*x8y+16*x2x*x4x*x4y*x5x*x8y+32*x4x^2*x4y*x5x*x8y+96*x2y*x4x*x5x^2*x8y-48*x4x*x4y*x5x^2*x8y+24*x2y*x4x*x4y*x5y*x8y-24*x4x*x4y^2*x5y*x8y+48*x4x^2*x5x*x5y*x8y+48*x2y*x4x^2*x7x*x8y-56*x2x*x4x*x4y*x7x*x8y-112*x4x^2*x4y*x7x*x8y-192*x2y*x4x*x5x*x7x*x8y+96*x4x*x4y*x5x*x7x*x8y-48*x4x^2*x5y*x7x*x8y-48*x4x^2*x5x*x7y*x8y-4*x2y*x4x^2*x8x*x8y-37*x2x*x4x*x4y*x8x*x8y-74*x4x^2*x4y*x8x*x8y-8*x2y*x4x*x5x*x8x*x8y+36*x4x*x4y*x5x*x8x*x8y-20*x4x^2*x5y*x8x*x8y+12*x2y*x4x*x7x*x8x*x8y-12*x4x*x4y*x7x*x8x*x8y+12*x4x*x5y*x7x*x8x*x8y+6*x4x^2*x7y*x8x*x8y+36*x4x*x5x*x7y*x8x*x8y-4*x2y^2*x4x*x8y^2+x2y*x4x*x4y*x8y^2+3*x4x*x4y^2*x8y^2-36*x4x*x5x^2*x8y^2-36*x4x*x5y^2*x8y^2+36*x4x*x5y*x7y*x8y^2+48*x2y^2*x4x^2*x9x-4*x2x*x2y*x4x*x4y*x9x-56*x2x*x4x*x4y^2*x9x+96*x4x^2*x4y^2*x9x-144*x2x*x2y*x4x*x5y*x9x+72*x2x*x4x*x4y*x5y*x9x-432*x4x^2*x4y*x5y*x9x-96*x2y^2*x4x*x7x*x9x-192*x2x*x4x^2*x7x*x9x+48*x2y*x4x*x4y*x7x*x9x-48*x4x*x4y*x5y*x7x*x9x+72*x2x*x4x*x4y*x7y*x9x-192*x4x^2*x4y*x7y*x9x+48*x4x*x4y*x5x*x7y*x9x-106*x2y^2*x4x*x8x*x9x-708*x2x*x4x^2*x8x*x9x-22*x2y*x4x*x4y*x8x*x9x+124*x4x*x4y^2*x8x*x9x-300*x2y*x4x*x5y*x8x*x9x+436*x4x*x4y*x5y*x8x*x9x-48*x4x*x5y^2*x8x*x9x-228*x2x*x4x*x7x*x8x*x9x-480*x4x^2*x7x*x8x*x9x+240*x4x*x5x*x7x*x8x*x9x-108*x4x*x4y*x7y*x8x*x9x+40*x2x*x4x*x8x^2*x9x-20*x4x^2*x8x^2*x9x-46*x4x*x5x*x8x^2*x9x+70*x4x*x7x*x8x^2*x9x+96*x2x*x2y*x4x*x8y*x9x+26*x2y*x4x^2*x8y*x9x-456*x2x*x4x*x4y*x8y*x9x-632*x4x^2*x4y*x8y*x9x-304*x2y*x4x*x5x*x8y*x9x+164*x4x*x4y*x5x*x8y*x9x-232*x2x*x4x*x5y*x8y*x9x-180*x4x^2*x5y*x8y*x9x+48*x4x*x5x*x5y*x8y*x9x-32*x2y*x4x*x7x*x8y*x9x+24*x4x*x4y*x7x*x8y*x9x-240*x4x*x5y*x7x*x8y*x9x+8*x2x*x4x*x7y*x8y*x9x-44*x4x^2*x7y*x8y*x9x-96*x4x*x5x*x7y*x8y*x9x+72*x2y*x4x*x8x*x8y*x9x-112*x4x*x4y*x8x*x8y*x9x+44*x4x*x5y*x8x*x8y*x9x-30*x4x*x7y*x8x*x8y*x9x-21*x2x*x4x*x8y^2*x9x+6*x4x^2*x8y^2*x9x-48*x4x*x5x*x8y^2*x9x+96*x4x*x4y^2*x9x^2+360*x2y*x4x*x5y*x9x^2-576*x4x*x4y*x5y*x9x^2-144*x2x*x4x*x7x*x9x^2-144*x4x*x4y*x7y*x9x^2-478*x2x*x4x*x8x*x9x^2+240*x4x^2*x8x*x9x^2+600*x4x*x5x*x8x*x9x^2-840*x4x*x7x*x8x*x9x^2-4*x4x*x8x^2*x9x^2+442*x2y*x4x*x8y*x9x^2-732*x4x*x4y*x8y*x9x^2-312*x4x*x5y*x8y*x9x^2-44*x4x*x7y*x8y*x9x^2+3*x4x*x8y^2*x9x^2+48*x2x*x4x*x9x^3+72*x2y*x4x^3*x9y-984*x2x*x4x^2*x4y*x9y+252*x2x*x4x*x4y*x5x*x9y+456*x4x^2*x4y*x5x*x9y-624*x2x*x4x^2*x5y*x9y+72*x4x^3*x5y*x9y-48*x2y*x4x^2*x7x*x9y-678*x2x*x4x*x4y*x7x*x9y-1236*x4x^2*x4y*x7x*x9y-144*x4x^2*x5y*x7x*x9y-96*x4x^3*x7y*x9y+144*x4x^2*x5x*x7y*x9y-12*x2x*x2y*x4x*x8x*x9y-72*x2y*x3x*x4x*x8x*x9y+140*x2y*x4x^2*x8x*x9y+54*x2x*x4x*x4y*x8x*x9y+132*x4x^2*x4y*x8x*x9y-632*x2y*x4x*x5x*x8x*x9y+534*x4x*x4y*x5x*x8x*x9y+24*x2x*x4x*x5y*x8x*x9y-126*x4x^2*x5y*x8x*x9y-96*x4x*x5x*x5y*x8x*x9y-64*x2y*x4x*x7x*x8x*x9y-24*x4x*x4y*x7x*x8x*x9y+96*x4x*x5y*x7x*x8x*x9y+48*x4x^2*x7y*x8x*x9y-72*x4x*x5x*x7y*x8x*x9y-14*x2y*x4x*x8x^2*x9y+34*x2y^2*x4x*x8y*x9y-528*x2x*x4x^2*x8y*x9y-76*x2y*x4x*x4y*x8y*x9y+42*x4x*x4y^2*x8y*x9y-96*x4x^2*x5x*x8y*x9y-72*x4x*x5x^2*x8y*x9y+74*x2y*x4x*x5y*x8y*x9y-98*x4x*x4y*x5y*x8y*x9y-72*x4x*x5y^2*x8y*x9y+60*x2x*x4x*x7x*x8y*x9y+120*x4x^2*x7x*x8y*x9y-4*x4x*x5x*x7x*x8y*x9y+30*x4x*x4y*x7y*x8y*x9y+72*x4x*x5y*x7y*x8y*x9y-5*x2x*x4x*x8x*x8y*x9y-10*x4x^2*x8x*x8y*x9y+130*x4x*x5x*x8x*x8y*x9y+45*x2y*x4x*x8y^2*x9y-46*x4x*x4y*x8y^2*x9y+52*x4x*x5y*x8y^2*x9y-36*x4x*x7y*x8y^2*x9y+492*x2x*x2y*x4x*x9x*x9y-72*x2y*x3x*x4x*x9x*x9y+21*x2y*x4x^2*x9x*x9y-2238*x2x*x4x*x4y*x9x*x9y-1500*x4x^2*x4y*x9x*x9y-936*x2y*x4x*x5x*x9x*x9y+780*x4x*x4y*x5x*x9x*x9y-612*x2x*x4x*x5y*x9x*x9y-12*x4x^2*x5y*x9x*x9y-72*x4x*x5x*x5y*x9x*x9y+1572*x2y*x4x*x7x*x9x*x9y-2094*x4x*x4y*x7x*x9x*x9y+72*x4x*x5y*x7x*x9x*x9y+678*x2x*x4x*x7y*x9x*x9y+363*x4x^2*x7y*x9x*x9y-72*x4x*x5x*x7y*x9x*x9y+27*x2y*x4x*x8x*x9x*x9y+243*x4x*x4y*x8x*x9x*x9y-102*x4x*x5y*x8x*x9x*x9y-132*x4x*x7y*x8x*x9x*x9y-96*x2x*x4x*x8y*x9x*x9y+244*x4x^2*x8y*x9x*x9y+148*x4x*x5x*x8y*x9x*x9y+150*x4x*x7x*x8y*x9x*x9y-68*x4x*x8x*x8y*x9x*x9y+938*x2y*x4x*x9x^2*x9y-1869*x4x*x4y*x9x^2*x9y-84*x4x*x5y*x9x^2*x9y+351*x4x*x7y*x9x^2*x9y-40*x4x*x8y*x9x^2*x9y+399*x2y^2*x4x*x9y^2-36*x2y*x3y*x4x*x9y^2+612*x2x*x4x^2*x9y^2-1056*x4x^3*x9y^2-363*x2y*x4x*x4y*x9y^2+132*x2x*x4x*x5x*x9y^2+408*x4x^2*x5x*x9y^2+120*x2y*x4x*x5y*x9y^2+24*x4x*x4y*x5y*x9y^2+654*x2x*x4x*x7x*x9y^2+1236*x4x^2*x7x*x9y^2-48*x4x*x5x*x7x*x9y^2+36*x2y*x4x*x7y*x9y^2+291*x4x*x4y*x7y*x9y^2-462*x2x*x4x*x8x*x9y^2+36*x3x*x4x*x8x*x9y^2-972*x4x^2*x8x*x9y^2+192*x4x*x5x*x8x*x9y^2+8*x4x*x8x^2*x9y^2+31*x2y*x4x*x8y*x9y^2+36*x3y*x4x*x8y*x9y^2-25*x4x*x4y*x8y*x9y^2+36*x4x*x5y*x8y*x9y^2-136*x4x*x7y*x8y*x9y^2-105*x4x*x8y^2*x9y^2+1820*x2x*x4x*x9x*x9y^2+36*x3x*x4x*x9x*x9y^2+252*x4x^2*x9x*x9y^2+708*x4x*x5x*x9x*x9y^2+1200*x4x*x7x*x9x*x9y^2-207*x4x*x8x*x9x*x9y^2+426*x4x*x9x^2*x9y^2-750*x2y*x4x*x9y^3+678*x4x*x4y*x9y^3-96*x4x*x5y*x9y^3-339*x4x*x7y*x9y^3+45*x4x*x8y*x9y^3-72*x4x*x9y^4+28*x2y^2*x4x^2+26*x2x*x4x*x4y^2+52*x4x^2*x4y^2-72*x2x*x4x*x4y*x5y-144*x4x^2*x4y*x5y-56*x2y^2*x4x*x7x-112*x2x*x4x^2*x7x+28*x2y*x4x*x4y*x7x-28*x4x*x4y*x5y*x7x-56*x2x*x4x*x4y*x7y-112*x4x^2*x4y*x7y+28*x4x*x4y*x5x*x7y-3*x2y^2*x4x*x8x-18*x2x*x4x^2*x8x+4*x2y*x4x*x4y*x8x-x4x*x4y^2*x8x+12*x4x*x5x^2*x8x+68*x2y*x4x*x5y*x8x-68*x4x*x4y*x5y*x8x+12*x4x*x5y^2*x8x-4*x2x*x4x*x7x*x8x-8*x4x^2*x7x*x8x+4*x4x*x5x*x7x*x8x-2*x4x*x4y*x7y*x8x-15*x2x*x4x*x8x^2-25*x4x^2*x8x^2+24*x4x*x5x*x8x^2-10*x4x*x7x*x8x^2-26*x2y*x4x^2*x8y+48*x2x*x4x*x4y*x8y+96*x4x^2*x4y*x8y+112*x2y*x4x*x5x*x8y-68*x4x*x4y*x5x*x8y+72*x4x^2*x5y*x8y-8*x2y*x4x*x7x*x8y+8*x4x*x4y*x7x*x8y+48*x4x*x5y*x7x*x8y-4*x4x^2*x7y*x8y-20*x2y*x4x*x8x*x8y+20*x4x*x4y*x8x*x8y-14*x4x*x5y*x8x*x8y-3/2*x4x^2*x8y^2+4*x4x*x5x*x8y^2+24*x2y^2*x4x*x9x+144*x2x*x4x^2*x9x+2*x2y*x4x*x4y*x9x+28*x4x*x4y^2*x9x-36*x2y*x4x*x5y*x9x-36*x4x*x4y*x5y*x9x-36*x2x*x4x*x7x*x9x+96*x4x^2*x7x*x9x-48*x4x*x5x*x7x*x9x-60*x4x*x4y*x7y*x9x+187*x2x*x4x*x8x*x9x+292*x4x^2*x8x*x9x-343*x4x*x5x*x8x*x9x+106*x4x*x7x*x8x*x9x-25*x4x*x8x^2*x9x-193*x2y*x4x*x8y*x9x+215*x4x*x4y*x8y*x9x+182*x4x*x5y*x8y*x9x-4*x4x*x7y*x8y*x9x+12*x4x*x8y^2*x9x+140*x2x*x4x*x9x^2-48*x4x^2*x9x^2-204*x4x*x5x*x9x^2+168*x4x*x7x*x9x^2+323*x4x*x8x*x9x^2-24*x4x*x9x^3+36*x2y*x3x*x4x*x9y+329*x2y*x4x^2*x9y+246*x2x*x4x*x4y*x9y+456*x4x^2*x4y*x9y+200*x2y*x4x*x5x*x9y-204*x4x*x4y*x5x*x9y+156*x2x*x4x*x5y*x9y+414*x4x^2*x5y*x9y+72*x4x*x5x*x5y*x9y-566*x2y*x4x*x7x*x9y+642*x4x*x4y*x7x*x9y+72*x4x*x5y*x7x*x9y-375*x4x^2*x7y*x9y+72*x4x*x5x*x7y*x9y+211*x2y*x4x*x8x*x9y-171*x4x*x4y*x8x*x9y-30*x4x*x5y*x8x*x9y+36*x4x*x7y*x8x*x9y+132*x2x*x4x*x8y*x9y+243*x4x^2*x8y*x9y+120*x4x*x5x*x8y*x9y-30*x4x*x7x*x8y*x9y+14*x4x*x8x*x8y*x9y-1463/2*x2y*x4x*x9x*x9y+2469/2*x4x*x4y*x9x*x9y+402*x4x*x5y*x9x*x9y-321*x4x*x7y*x9x*x9y+121*x4x*x8y*x9x*x9y-285*x2x*x4x*x9y^2-18*x3x*x4x*x9y^2-510*x4x^2*x9y^2-228*x4x*x5x*x9y^2-291*x4x*x7x*x9y^2-84*x4x*x8x*x9y^2-709*x4x*x9x*x9y^2+14*x2y^2*x4x+84*x2x*x4x^2-x2y*x4x*x4y-13*x4x*x4y^2-36*x2y*x4x*x5y+36*x4x*x4y*x5y+28*x2x*x4x*x7x+56*x4x^2*x7x-28*x4x*x5x*x7x+14*x4x*x4y*x7y+9/2*x2x*x4x*x8x+19/2*x4x^2*x8x-117*x4x*x5x*x8x+2*x4x*x7x*x8x+5*x4x*x8x^2+11*x2y*x4x*x8y-11*x4x*x4y*x8y-22*x4x*x5y*x8y-6*x4x*x8y^2+3*x2x*x4x*x9x-86*x4x^2*x9x+136*x4x*x5x*x9x+74*x4x*x7x*x9x-67*x4x*x8x*x9x-82*x4x*x9x^2+491/2*x2y*x4x*x9y-471/2*x4x*x4y*x9y-90*x4x*x5y*x9y-18*x4x*x7y*x9y+10*x4x*x8y*x9y+206*x4x*x9y^2-21*x2x*x4x-71/2*x4x^2+68*x4x*x5x-14*x4x*x7x+5*x4x*x8x-19/2*x4x*x9x-2*x2y*x9y+5/2*x4x-x9x",
+      "cofactor_metrics": {
+        "nonzero": true,
+        "term_count": 1180,
+        "total_degree": 8
+      },
+      "generator": "((x4x-0)^2+(x4y-0)^2)-((x4x-1)^2+(x4y-0)^2)",
+      "index": 12,
+      "row_equation_index": 0,
+      "row_index": 4,
+      "singular_index": 13
+    },
+    {
+      "cofactor": "4*x2y^2*x4x*x4y*x8x*x8y+12*x2y^2*x4x*x8x^2*x9x-16*x2y^2*x4x*x8y^2*x9x+24*x2y^2*x4x*x8x*x9x^2-96*x2y*x4x^2*x5x*x8x*x9y-96*x2y*x4x*x4y*x5x*x8y*x9y+28*x2y^2*x4x*x8x*x8y*x9y-8*x2y*x4x*x4y*x8x*x8y*x9y-48*x2y*x4x^2*x7x*x9x*x9y+144*x2y*x4x^2*x8x*x9x*x9y-288*x2y*x4x*x5x*x8x*x9x*x9y-24*x2y*x4x*x8x^2*x9x*x9y+96*x2y*x4x*x5y*x8y*x9x*x9y+48*x4x*x4y*x5y*x8y*x9x*x9y-48*x4x*x4y*x7y*x8y*x9x*x9y+32*x2y*x4x*x8y^2*x9x*x9y+864*x2y*x4x^2*x9x^2*x9y-576*x2y*x4x*x5x*x9x^2*x9y+24*x2y*x4x*x7x*x9x^2*x9y+24*x2y*x4x*x8x*x9x^2*x9y+576*x2y*x4x*x9x^3*x9y+144*x2y*x4x^2*x4y*x9y^2-192*x2y*x4x^2*x5y*x9y^2-96*x4x^2*x4y*x5y*x9y^2-48*x2y*x4x^2*x7y*x9y^2+96*x4x^2*x4y*x7y*x9y^2+24*x2y^2*x4x*x8x*x9y^2+192*x4x^2*x5x*x8x*x9y^2+144*x2y*x4x^2*x8y*x9y^2-96*x4x^2*x4y*x8y*x9y^2-288*x2y*x4x*x5x*x8y*x9y^2+192*x4x*x4y*x5x*x8y*x9y^2+192*x4x^2*x5y*x8y*x9y^2-56*x2y*x4x*x8x*x8y*x9y^2+72*x2y*x4x*x4y*x9x*x9y^2-192*x2y*x4x*x5y*x9x*x9y^2-96*x4x*x4y*x5y*x9x*x9y^2+96*x4x^2*x7x*x9x*x9y^2+24*x2y*x4x*x7y*x9x*x9y^2+96*x4x*x4y*x7y*x9x*x9y^2-288*x4x^2*x8x*x9x*x9y^2+576*x4x*x5x*x8x*x9x*x9y^2+72*x2y*x4x*x8y*x9x*x9y^2-96*x4x*x4y*x8y*x9x*x9y^2-1728*x4x^2*x9x^2*x9y^2+1152*x4x*x5x*x9x^2*x9y^2-48*x4x*x7x*x9x^2*x9y^2-144*x4x*x8x*x9x^2*x9y^2-1152*x4x*x9x^3*x9y^2+864*x2y*x4x^2*x9y^3-96*x4x^2*x4y*x9y^3-576*x2y*x4x*x5x*x9y^3+96*x4x^2*x7y*x9y^3-48*x2y*x4x*x8x*x9y^3-288*x4x^2*x8y*x9y^3+576*x4x*x5x*x8y*x9y^3+576*x2y*x4x*x9x*x9y^3+48*x4x*x4y*x9x*x9y^3-48*x4x*x7y*x9x*x9y^3-144*x4x*x8y*x9x*x9y^3-1728*x4x^2*x9y^4+1152*x4x*x5x*x9y^4-1152*x4x*x9x*x9y^4-2*x2y^2*x4x*x8x^2+6*x2y*x4x*x4y*x8x^2-24*x2y*x4x*x5y*x8x^2-8*x4x*x4y*x5y*x8x^2-24*x4x*x5y^2*x8x^2+20*x4x*x4y*x7y*x8x^2-48*x2y*x4x*x4y*x5y*x8y+32*x2y*x4x*x5x*x8x*x8y+24*x4x*x5x*x5y*x8x*x8y+12*x4x*x4y*x7x*x8x*x8y-24*x4x*x5y*x7x*x8x*x8y-24*x4x*x5x*x7y*x8x*x8y+8*x2y^2*x4x*x8y^2+6*x2y*x4x*x4y*x8y^2-32*x2y^2*x4x*x8x*x9x-4*x2y*x4x*x4y*x8x*x9x+288*x2y*x4x*x5y*x8x*x9x+96*x4x*x4y*x5y*x8x*x9x+288*x4x*x5y^2*x8x*x9x-240*x4x*x4y*x7y*x8x*x9x-288*x4x*x5x*x5y*x8y*x9x-56*x2y*x4x*x7x*x8y*x9x-144*x4x*x4y*x7x*x8y*x9x+288*x4x*x5y*x7x*x8y*x9x+288*x4x*x5x*x7y*x8y*x9x-68*x2y*x4x*x8x*x8y*x9x-288*x2y*x4x*x5y*x9x^2-252*x2y*x4x*x8y*x9x^2+48*x2y*x4x^2*x5x*x9y+48*x2y*x4x^2*x7x*x9y+144*x2y*x3x*x4x*x8x*x9y-48*x4x^2*x4y*x8x*x9y+528*x2y*x4x*x5x*x8x*x9y-144*x4x*x4y*x5x*x8x*x9y+48*x4x^2*x5y*x8x*x9y-96*x4x*x5x*x5y*x8x*x9y-48*x4x*x4y*x7x*x8x*x9y+96*x4x*x5y*x7x*x8x*x9y+96*x4x*x5x*x7y*x8x*x9y+14*x2y*x4x*x8x^2*x9y+24*x4x*x4y*x8x^2*x9y-8*x2y^2*x4x*x8y*x9y+144*x2y*x4x*x4y*x8y*x9y-152*x2y*x4x*x5y*x8y*x9y+92*x4x*x4y*x5y*x8y*x9y-56*x2y*x4x*x7y*x8y*x9y+4*x4x*x4y*x7y*x8y*x9y-64*x4x*x5x*x8x*x8y*x9y-50*x2y*x4x*x8y^2*x9y+20*x4x*x4y*x8y^2*x9y-64*x4x*x5y*x8y^2*x9y-912*x2y*x4x^2*x9x*x9y-24*x4x^2*x4y*x9x*x9y+816*x2y*x4x*x5x*x9x*x9y+96*x4x*x4y*x5x*x9x*x9y-702*x2y*x4x*x7x*x9x*x9y+24*x4x^2*x7y*x9x*x9y-162*x2y*x4x*x8x*x9x*x9y-288*x4x*x4y*x8x*x9x*x9y-24*x4x*x5y*x8x*x9x*x9y-48*x4x*x5x*x8y*x9x*x9y+136*x4x*x7x*x8y*x9x*x9y+140*x4x*x8x*x8y*x9x*x9y-816*x2y*x4x*x9x^2*x9y+12*x4x*x4y*x9x^2*x9y+528*x4x*x5y*x9x^2*x9y-12*x4x*x7y*x9x^2*x9y+528*x4x*x8y*x9x^2*x9y+72*x2y*x3y*x4x*x9y^2+798*x2y*x4x*x4y*x9y^2-144*x4x^2*x5x*x9y^2-288*x2y*x4x*x5y*x9y^2-48*x4x*x4y*x5y*x9y^2-72*x4x^2*x7x*x9y^2-678*x2y*x4x*x7y*x9y^2+48*x4x*x4y*x7y*x9y^2-72*x3x*x4x*x8x*x9y^2+48*x4x^2*x8x*x9y^2-1200*x4x*x5x*x8x*x9y^2-8*x4x*x8x^2*x9y^2-222*x2y*x4x*x8y*x9y^2-72*x3y*x4x*x8y*x9y^2-328*x4x*x4y*x8y*x9y^2+288*x4x*x5y*x8y*x9y^2+112*x4x*x7y*x8y*x9y^2+420*x4x*x8y^2*x9y^2-48*x4x^2*x9x*x9y^2-96*x4x*x5x*x9x*x9y^2+1320*x4x*x7x*x9x*x9y^2-228*x4x*x8x*x9x*x9y^2+312*x4x*x9x^2*x9y^2-1500*x4x*x4y*x9y^3+384*x4x*x5y*x9y^3+1356*x4x*x7y*x9y^3-180*x4x*x8y*x9y^3+288*x4x*x9y^4-8*x2y*x4x*x4y*x8x-204*x2y*x4x*x5y*x8x-68*x4x*x4y*x5y*x8x-96*x4x*x5y^2*x8x-4*x4x*x4y*x7y*x8x-10*x4x*x7x*x8x^2-16*x2y*x4x*x5x*x8y+96*x4x*x5x*x5y*x8y+56*x2y*x4x*x7x*x8y+48*x4x*x4y*x7x*x8y-96*x4x*x5y*x7x*x8y-96*x4x*x5x*x7y*x8y+36*x2y*x4x*x8x*x8y-3*x4x*x4y*x8x*x8y+8*x4x*x5y*x8x*x8y+6*x4x*x7y*x8x*x8y+216*x2y*x4x*x5y*x9x+48*x4x*x4y*x7y*x9x+120*x4x*x7x*x8x*x9x-10*x4x*x8x^2*x9x+316*x2y*x4x*x8y*x9x+26*x4x*x4y*x8y*x9x-312*x4x*x5y*x8y*x9x-44*x4x*x7y*x8y*x9x+3*x4x*x8y^2*x9x+120*x4x*x8x*x9x^2-72*x2y*x3x*x4x*x9y+72*x4x^2*x4y*x9y-252*x2y*x4x*x5x*x9y+48*x4x*x4y*x5x*x9y-24*x4x^2*x5y*x9y+678*x2y*x4x*x7x*x9y-24*x4x^2*x7y*x9y-126*x2y*x4x*x8x*x9y+192*x4x*x4y*x8x*x9y-282*x4x*x5y*x8x*x9y-24*x4x*x7y*x8x*x9y+36*x4x*x5x*x8y*x9y-30*x4x*x7x*x8y*x9y-23*x4x*x8x*x8y*x9y+524*x2y*x4x*x9x*x9y-327*x4x*x4y*x9x*x9y+132*x4x*x5y*x9x*x9y+351*x4x*x7y*x9x*x9y-98*x4x*x8y*x9x*x9y+36*x3x*x4x*x9y^2+408*x4x^2*x9y^2+60*x4x*x5x*x9y^2-363*x4x*x7x*x9y^2+798*x4x*x8x*x9y^2-402*x4x*x9x*x9y^2+2*x2y*x4x*x4y+72*x2y*x4x*x5y+28*x4x*x4y*x7y+2*x4x*x7x*x8x+10*x4x*x8x^2-48*x2y*x4x*x8y-26*x4x*x4y*x8y+116*x4x*x5y*x8y-4*x4x*x7y*x8y+21/2*x4x*x8y^2-24*x4x*x7x*x9x-115*x4x*x8x*x9x-24*x4x*x9x^2-246*x2y*x4x*x9y+345*x4x*x4y*x9y-18*x4x*x5y*x9y-339*x4x*x7y*x9y-173*x4x*x8y*x9y-115*x4x*x9y^2-14*x4x*x7x-14*x4x*x8x+2*x4x*x9x+45/2*x4x",
+      "cofactor_metrics": {
+        "nonzero": true,
+        "term_count": 233,
+        "total_degree": 6
+      },
+      "generator": "((x4x-0)^2+(x4y-0)^2)-((x4x-x2x)^2+(x4y-x2y)^2)",
+      "index": 13,
+      "row_equation_index": 1,
+      "row_index": 4,
+      "singular_index": 14
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((x4x-0)^2+(x4y-0)^2)-((x4x-x7x)^2+(x4y-x7y)^2)",
+      "index": 14,
+      "row_equation_index": 2,
+      "row_index": 4,
+      "singular_index": 15
+    },
+    {
+      "cofactor": "48*x4x*x4y*x7y*x8y*x9x*x9y-96*x4x^2*x4y*x7y*x9y^2-192*x2y*x4x^2*x8y*x9y^2+96*x4x^2*x4y*x8y*x9y^2-96*x4x*x4y*x7y*x9x*x9y^2-192*x2y*x4x*x8y*x9x*x9y^2+384*x2y*x4x^2*x9y^3+384*x2y*x4x*x9x*x9y^3+24*x2y*x4x*x5y*x8x^2-12*x4x*x4y*x5y*x8x^2-20*x4x*x4y*x7y*x8x^2-24*x2y*x4x*x5x*x8x*x8y-60*x4x*x4y*x5x*x8x*x8y+24*x2y*x4x*x7x*x8x*x8y-12*x4x*x4y*x7x*x8x*x8y+144*x4x*x5x*x7y*x8x*x8y-72*x4x*x4y*x5y*x8y^2+144*x4x*x5y*x7y*x8y^2-288*x2y*x4x*x5y*x8x*x9x+144*x4x*x4y*x5y*x8x*x9x+240*x4x*x4y*x7y*x8x*x9x+288*x2y*x4x*x5x*x8y*x9x-144*x4x*x4y*x5x*x8y*x9x-288*x2y*x4x*x7x*x8y*x9x+144*x4x*x4y*x7x*x8y*x9x+72*x4x*x4y*x8x*x8y*x9x-144*x4x*x7y*x8x*x8y*x9x-48*x2y*x4x^2*x8x*x9y+96*x4x^2*x4y*x8x*x9y+96*x2y*x4x*x5x*x8x*x9y-192*x4x*x4y*x5x*x8x*x9y-96*x2y*x4x*x7x*x8x*x9y+48*x4x*x4y*x7x*x8x*x9y+288*x4x*x5x*x7y*x8x*x9y+48*x2y*x4x*x8x^2*x9y+16*x4x*x4y*x8x^2*x9y-144*x4x*x4y*x5y*x8y*x9y-4*x4x*x4y*x7y*x8y*x9y+288*x4x*x5y*x7y*x8y*x9y-72*x4x*x5x*x8x*x8y*x9y+64*x2y*x4x*x8y^2*x9y+40*x4x*x4y*x8y^2*x9y-72*x4x*x5y*x8y^2*x9y-144*x4x*x7y*x8y^2*x9y-144*x4x^2*x4y*x9x*x9y-552*x2y*x4x*x8x*x9x*x9y+48*x4x*x4y*x8x*x9x*x9y-432*x4x*x7y*x8x*x9x*x9y-144*x4x^2*x8y*x9x*x9y-24*x4x*x7x*x8y*x9x*x9y+72*x4x*x8x*x8y*x9x*x9y+48*x2y*x4x*x9x^2*x9y-96*x4x*x4y*x9x^2*x9y-96*x4x*x8y*x9x^2*x9y+288*x2y^2*x4x*x9y^2+144*x2y*x4x*x5y*x9y^2+48*x4x^2*x7x*x9y^2+144*x2y*x4x*x7y*x9y^2-48*x4x*x4y*x7y*x9y^2-128*x2y*x4x*x8y*x9y^2+216*x4x*x4y*x8y*x9y^2-432*x4x*x7y*x8y*x9y^2+72*x4x*x8y^2*x9y^2+192*x4x^2*x9x*x9y^2+48*x4x*x7x*x9x*x9y^2+192*x4x*x9x^2*x9y^2-384*x2y*x4x*x9y^3+96*x2y*x4x*x5y*x8x-24*x4x*x4y*x5y*x8x+4*x4x*x4y*x7y*x8x+10*x4x*x7x*x8x^2-96*x2y*x4x*x5x*x8y+48*x4x*x4y*x5x*x8y+96*x2y*x4x*x7x*x8y-48*x4x*x4y*x7x*x8y-8*x2y*x4x*x8x*x8y-20*x4x*x4y*x8x*x8y-36*x4x*x5y*x8x*x8y+6*x4x*x7y*x8x*x8y+36*x4x*x5x*x8y^2-48*x4x*x4y*x7y*x9x-120*x4x*x7x*x8x*x9x+40*x4x*x8x^2*x9x+288*x2y*x4x*x8y*x9x-132*x4x*x4y*x8y*x9x-72*x4x*x7y*x8y*x9x+48*x4x*x8y^2*x9x-480*x4x*x8x*x9x^2+24*x2y*x4x^2*x9y+72*x4x^2*x4y*x9y-144*x4x^2*x7y*x9y+296*x2y*x4x*x8x*x9y-198*x4x*x4y*x8x*x9y+48*x4x*x5y*x8x*x9y+120*x4x*x7y*x8x*x9y+120*x4x^2*x8y*x9y+72*x4x*x5x*x8y*x9y+2*x4x*x7x*x8y*x9y-120*x4x*x8x*x8y*x9y+324*x2y*x4x*x9x*x9y+132*x4x*x4y*x9x*x9y+72*x4x*x5y*x9x*x9y+72*x4x*x7y*x9x*x9y-16*x4x*x8y*x9x*x9y-72*x4x^2*x9y^2+24*x4x*x7x*x9y^2+144*x4x*x8x*x9y^2-360*x4x*x9x*x9y^2-28*x4x*x4y*x7y-12*x4x*x5x*x8x-2*x4x*x7x*x8x-24*x4x*x8x^2-104*x2y*x4x*x8y+60*x4x*x4y*x8y+24*x4x*x7y*x8y-4*x4x*x8y^2+24*x4x*x7x*x9x+319*x4x*x8x*x9x+204*x4x*x9x^2-50*x2y*x4x*x9y+54*x4x*x4y*x9y-72*x4x*x5y*x9y-138*x4x*x8y*x9y+36*x4x*x9y^2+14*x4x*x7x+117*x4x*x8x-136*x4x*x9x-68*x4x",
+      "cofactor_metrics": {
+        "nonzero": true,
+        "term_count": 128,
+        "total_degree": 6
+      },
+      "generator": "((x5x-0)^2+(x5y-0)^2)-((x5x-x4x)^2+(x5y-x4y)^2)",
+      "index": 15,
+      "row_equation_index": 0,
+      "row_index": 5,
+      "singular_index": 16
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((x5x-0)^2+(x5y-0)^2)-((x5x-x6x)^2+(x5y-x6y)^2)",
+      "index": 16,
+      "row_equation_index": 1,
+      "row_index": 5,
+      "singular_index": 17
+    },
+    {
+      "cofactor": "72*x4x*x4y*x5x*x8x*x9y+72*x4x^2*x5x*x8y*x9y+144*x4x^2*x4y*x9x*x9y-72*x4x*x4y*x8x*x9x*x9y+144*x4x^2*x8y*x9x*x9y+72*x4x*x8y*x9x^2*x9y+144*x2y*x4x*x4y*x9y^2-144*x4x^2*x8x*x9y^2-72*x2y*x4x*x8y*x9y^2-72*x4x*x4y*x8y*x9y^2-72*x4x*x8x*x9x*x9y^2-6*x4x^2*x5x*x8x-12*x2y*x4x*x5y*x8x+6*x4x*x4y*x5y*x8x+36*x4x*x4y*x7x*x8y-72*x4x*x5y*x7x*x8y-72*x4x*x5x*x7y*x8y+120*x4x^2*x5x*x9x+144*x2y*x4x*x5y*x9x-72*x4x*x4y*x5y*x9x-48*x4x*x4y*x8y*x9x-12*x4x*x8y^2*x9x-120*x4x^2*x4y*x9y+72*x4x*x4y*x7x*x9y-144*x4x*x5y*x7x*x9y-144*x4x*x5x*x7y*x9y-14*x2y*x4x*x8x*x9y+136*x4x*x4y*x8x*x9y-36*x4x*x5y*x8x*x9y-144*x4x^2*x8y*x9y-36*x4x*x5x*x8y*x9y+12*x4x*x8x*x8y*x9y+156*x2y*x4x*x9x*x9y-132*x4x*x4y*x9x*x9y-162*x4x*x8y*x9x*x9y+264*x4x^2*x9y^2+54*x4x*x8x*x9y^2+144*x4x*x9x*x9y^2-24*x4x^2*x5x-48*x2y*x4x*x5y+24*x4x*x4y*x5y+12*x4x*x5x*x8x-32*x4x*x4y*x8y+60*x4x*x5y*x8y+18*x4x*x7y*x8y+12*x4x*x8y^2-24*x4x*x5x*x9x-3*x4x*x8x*x9x+36*x4x*x9x^2+51*x2y*x4x*x9y-105*x4x*x4y*x9y+168*x4x*x5y*x9y+36*x4x*x7y*x9y+74*x4x*x8y*x9y-156*x4x*x9y^2+8*x4x*x8x-2*x4x*x9x-2*x4x",
+      "cofactor_metrics": {
+        "nonzero": true,
+        "term_count": 58,
+        "total_degree": 5
+      },
+      "generator": "((x5x-0)^2+(x5y-0)^2)-((x5x-x8x)^2+(x5y-x8y)^2)",
+      "index": 17,
+      "row_equation_index": 2,
+      "row_index": 5,
+      "singular_index": 18
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((x6x-x3x)^2+(x6y-x3y)^2)-((x6x-x5x)^2+(x6y-x5y)^2)",
+      "index": 18,
+      "row_equation_index": 0,
+      "row_index": 6,
+      "singular_index": 19
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((x6x-x3x)^2+(x6y-x3y)^2)-((x6x-x7x)^2+(x6y-x7y)^2)",
+      "index": 19,
+      "row_equation_index": 1,
+      "row_index": 6,
+      "singular_index": 20
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((x6x-x3x)^2+(x6y-x3y)^2)-((x6x-x8x)^2+(x6y-x8y)^2)",
+      "index": 20,
+      "row_equation_index": 2,
+      "row_index": 6,
+      "singular_index": 21
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((x7x-1)^2+(x7y-0)^2)-((x7x-x3x)^2+(x7y-x3y)^2)",
+      "index": 21,
+      "row_equation_index": 0,
+      "row_index": 7,
+      "singular_index": 22
+    },
+    {
+      "cofactor": "-96*x2y^2*x4x*x8y*x9x*x9y+48*x2y*x4x*x4y*x8y*x9x*x9y-48*x4x*x4y*x5y*x8y*x9x*x9y+288*x2y^2*x4x^2*x9y^2-144*x2y*x4x^2*x4y*x9y^2+96*x4x^2*x4y*x5y*x9y^2+144*x2y^2*x4x*x9x*x9y^2-72*x2y*x4x*x4y*x9x*x9y^2+96*x4x*x4y*x5y*x9x*x9y^2+192*x2y*x4x*x8y*x9x*x9y^2-576*x2y*x4x^2*x9y^3+96*x4x^2*x4y*x9y^3-288*x2y*x4x*x9x*x9y^3-48*x4x*x4y*x9x*x9y^3+40*x2y^2*x4x*x8x^2-20*x2y*x4x*x4y*x8x^2+20*x4x*x4y*x5y*x8x^2+24*x2y*x4x*x5x*x8x*x8y+60*x4x*x4y*x5x*x8x*x8y-144*x4x*x5x*x5y*x8x*x8y+72*x4x*x4y*x5y*x8y^2-144*x4x*x5y^2*x8y^2-480*x2y^2*x4x*x8x*x9x+240*x2y*x4x*x4y*x8x*x9x-240*x4x*x4y*x5y*x8x*x9x-288*x2y*x4x*x5x*x8y*x9x+144*x4x*x4y*x5x*x8y*x9x-72*x4x*x4y*x8x*x8y*x9x+144*x4x*x5y*x8x*x8y*x9x-96*x2y*x4x*x5x*x8x*x9y+192*x4x*x4y*x5x*x8x*x9y-288*x4x*x5x*x5y*x8x*x9y-80*x2y*x4x*x8x^2*x9y+120*x2y^2*x4x*x8y*x9y-60*x2y*x4x*x4y*x8y*x9y+148*x4x*x4y*x5y*x8y*x9y-288*x4x*x5y^2*x8y*x9y-72*x4x*x4y*x8y^2*x9y+144*x4x*x5y*x8y^2*x9y-24*x2y*x4x^2*x9x*x9y+24*x4x^2*x4y*x9x*x9y+960*x2y*x4x*x8x*x9x*x9y-216*x4x*x4y*x8x*x9x*x9y+432*x4x*x5y*x8x*x9x*x9y-24*x4x*x5x*x8y*x9x*x9y+12*x2y*x4x*x9x^2*x9y-12*x4x*x4y*x9x^2*x9y+96*x4x*x8y*x9x^2*x9y+1308*x2y^2*x4x*x9y^2-654*x2y*x4x*x4y*x9y^2+48*x4x^2*x5x*x9y^2-144*x2y*x4x*x5y*x9y^2+48*x4x*x4y*x5y*x9y^2-240*x2y*x4x*x8y*x9y^2-104*x4x*x4y*x8y*x9y^2+432*x4x*x5y*x8y*x9y^2-240*x4x^2*x9x*x9y^2+48*x4x*x5x*x9x*x9y^2-168*x4x*x9x^2*x9y^2-2616*x2y*x4x*x9y^3+1356*x4x*x4y*x9y^3-8*x2y^2*x4x*x8x+4*x2y*x4x*x4y*x8x-4*x4x*x4y*x5y*x8x+10*x4x*x5x*x8x^2+96*x2y*x4x*x5x*x8y-48*x4x*x4y*x5x*x8y-6*x2y*x4x*x8x*x8y+6*x4x*x4y*x8x*x8y-6*x4x*x5y*x8x*x8y+96*x2y^2*x4x*x9x-48*x2y*x4x*x4y*x9x+48*x4x*x4y*x5y*x9x-120*x4x*x5x*x8x*x9x-40*x4x*x8x^2*x9x+44*x2y*x4x*x8y*x9x-44*x4x*x4y*x8y*x9x+72*x4x*x5y*x8y*x9x+480*x4x*x8x*x9x^2+24*x2y*x4x^2*x9y-96*x4x^2*x4y*x9y+144*x4x^2*x5y*x9y+40*x2y*x4x*x8x*x9y+48*x4x*x4y*x8x*x9y-120*x4x*x5y*x8x*x9y+2*x4x*x5x*x8y*x9y-543*x2y*x4x*x9x*x9y+387*x4x*x4y*x9x*x9y-72*x4x*x5y*x9x*x9y-76*x4x*x8y*x9x*x9y+36*x4x^2*x9y^2+24*x4x*x5x*x9y^2-612*x4x*x9x*x9y^2+56*x2y^2*x4x-28*x2y*x4x*x4y+28*x4x*x4y*x5y-2*x4x*x5x*x8x+5*x4x*x8x^2+4*x2y*x4x*x8y-4*x4x*x4y*x8y-24*x4x*x5y*x8y+24*x4x*x5x*x9x-52*x4x*x8x*x9x-96*x4x*x9x^2+227*x2y*x4x*x9y-339*x4x*x4y*x9y+15*x4x*x8y*x9y+291/2*x4x*x9y^2+14*x4x*x5x-x4x*x8x-44*x4x*x9x+7*x4x",
+      "cofactor_metrics": {
+        "nonzero": true,
+        "term_count": 112,
+        "total_degree": 6
+      },
+      "generator": "((x7x-1)^2+(x7y-0)^2)-((x7x-x4x)^2+(x7y-x4y)^2)",
+      "index": 22,
+      "row_equation_index": 1,
+      "row_index": 7,
+      "singular_index": 23
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((x7x-1)^2+(x7y-0)^2)-((x7x-x6x)^2+(x7y-x6y)^2)",
+      "index": 23,
+      "row_equation_index": 2,
+      "row_index": 7,
+      "singular_index": 24
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((x8x-1)^2+(x8y-0)^2)-((x8x-x5x)^2+(x8y-x5y)^2)",
+      "index": 24,
+      "row_equation_index": 0,
+      "row_index": 8,
+      "singular_index": 25
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((x8x-1)^2+(x8y-0)^2)-((x8x-x6x)^2+(x8y-x6y)^2)",
+      "index": 25,
+      "row_equation_index": 1,
+      "row_index": 8,
+      "singular_index": 26
+    },
+    {
+      "cofactor": "144*x2y^2*x3x*x4x*x4y*x9y-72*x2y^2*x4x*x4y*x9x*x9y+72*x2y*x3y*x4x*x4y*x9x*x9y-72*x2y*x3x*x4x*x4y*x9y^2-12*x2y*x4x*x4y*x8x*x9x-72*x2y^2*x4x*x4y*x9y-48*x2y*x4x^2*x5x*x9y-48*x4x^2*x4y*x5x*x9y+144*x4x*x4y*x5y^2*x9y+144*x4x*x4y*x5x*x8x*x9y+144*x4x^2*x5y*x8x*x9y+8*x2y^2*x4x*x8y*x9y-16*x2y*x4x*x4y*x8y*x9y-144*x4x^2*x5x*x8y*x9y+72*x2y*x4x^2*x9x*x9y+288*x4x*x4y*x5x*x9x*x9y-288*x4x^2*x5y*x9x*x9y-72*x2y*x4x*x8x*x9x*x9y+72*x4x*x5y*x8x*x9x*x9y+144*x4x^2*x8y*x9x*x9y-72*x4x*x5x*x8y*x9x*x9y+36*x2y*x4x*x9x^2*x9y-72*x4x*x4y*x9x^2*x9y-144*x4x*x5y*x9x^2*x9y+72*x4x*x8y*x9x^2*x9y-72*x2y*x3y*x4x*x9y^2+180*x2y*x4x*x4y*x9y^2+288*x4x^2*x5x*x9y^2-144*x4x^2*x8x*x9y^2+72*x2y*x4x*x8y*x9y^2-144*x4x*x4y*x8y*x9y^2+144*x4x*x5x*x9x*x9y^2-72*x4x*x8x*x9x*x9y^2-144*x2y*x4x*x9y^3+144*x4x*x4y*x9y^3-4*x2y^2*x4x*x8x-8*x2y*x4x*x4y*x8x-4*x2y*x4x*x5y*x8x-10*x4x*x4y*x5y*x8x+16*x2y*x4x*x5x*x8y-20*x4x*x4y*x5x*x8y-12*x4x*x5y*x8x*x8y+12*x4x*x5x*x8y^2+8*x2y*x4x*x4y*x9x+48*x2y*x4x*x5y*x9x+264*x4x*x4y*x5y*x9x-6*x2y*x4x*x8y*x9x+18*x4x*x4y*x8y*x9x+24*x4x*x5y*x8y*x9x-12*x4x*x8y^2*x9x+36*x2y*x3x*x4x*x9y+60*x2y*x4x^2*x9y-60*x4x^2*x4y*x9y+336*x2y*x4x*x5x*x9y-204*x4x*x4y*x5x*x9y+72*x4x*x5x*x5y*x9y-36*x4x*x4y*x7x*x9y+72*x4x*x5y*x7x*x9y+72*x4x*x5x*x7y*x9y+28*x2y*x4x*x8x*x9y-12*x4x*x4y*x8x*x9y-90*x4x*x5y*x8x*x9y-6*x4x*x5x*x8y*x9y+12*x4x*x8x*x8y*x9y-173*x2y*x4x*x9x*x9y-18*x3y*x4x*x9x*x9y-156*x4x*x4y*x9x*x9y+108*x4x*x5y*x9x*x9y-54*x4x*x8y*x9x*x9y-18*x3x*x4x*x9y^2+12*x4x^2*x9y^2-252*x4x*x5x*x9y^2+54*x4x*x8x*x9y^2+18*x4x*x9x*x9y^2-18*x2y*x4x*x4y+24*x4x*x5x^2-36*x2y*x4x*x5y+144*x4x*x4y*x5y+24*x4x*x5y^2-3*x4x*x5x*x8x+7*x2y*x4x*x8y-7*x4x*x4y*x8y+6*x4x*x5y*x8y+180*x4x*x5x*x9x+x4x*x8x*x9x-180*x4x*x9x^2-187/2*x2y*x4x*x9y+207/2*x4x*x4y*x9y-90*x4x*x5y*x9y-18*x4x*x7y*x9y-12*x4x*x8y*x9y-7/2*x4x*x9y^2+54*x4x*x5x-3*x4x*x8x-2*x4x*x9x-9/2*x4x",
+      "cofactor_metrics": {
+        "nonzero": true,
+        "term_count": 96,
+        "total_degree": 6
+      },
+      "generator": "((x8x-1)^2+(x8y-0)^2)-((x8x-x9x)^2+(x8y-x9y)^2)",
+      "index": 26,
+      "row_equation_index": 2,
+      "row_index": 8,
+      "singular_index": 27
+    },
+    {
+      "cofactor": "-4*x2y^2*x4x*x4y*x8x*x8y+8*x2y*x4x*x4y^2*x8x*x8y-12*x2y^2*x4x*x8x^2*x9x+24*x2y*x4x*x4y*x8x^2*x9x+16*x2y^2*x4x*x8y^2*x9x-32*x2y*x4x*x4y*x8y^2*x9x-24*x2y^2*x4x*x8x*x9x^2+48*x2y*x4x*x4y*x8x*x9x^2+96*x2y*x4x^2*x5x*x8x*x9y-192*x4x^2*x4y*x5x*x8x*x9y+96*x2y*x4x*x4y*x5x*x8y*x9y-192*x4x*x4y^2*x5x*x8y*x9y-28*x2y^2*x4x*x8x*x8y*x9y+56*x2y*x4x*x4y*x8x*x8y*x9y+48*x2y*x4x^2*x7x*x9x*x9y-96*x4x^2*x4y*x7x*x9x*x9y-144*x2y*x4x^2*x8x*x9x*x9y+288*x4x^2*x4y*x8x*x9x*x9y+288*x2y*x4x*x5x*x8x*x9x*x9y-576*x4x*x4y*x5x*x8x*x9x*x9y+96*x4x*x4y^2*x8y*x9x*x9y-96*x2y*x4x*x5y*x8y*x9x*x9y+144*x4x*x4y*x5y*x8y*x9x*x9y-144*x4x*x4y*x7y*x8y*x9x*x9y-864*x2y*x4x^2*x9x^2*x9y+1728*x4x^2*x4y*x9x^2*x9y+576*x2y*x4x*x5x*x9x^2*x9y-1152*x4x*x4y*x5x*x9x^2*x9y-24*x2y*x4x*x7x*x9x^2*x9y+48*x4x*x4y*x7x*x9x^2*x9y-72*x2y*x4x*x8x*x9x^2*x9y+144*x4x*x4y*x8x*x9x^2*x9y-576*x2y*x4x*x9x^3*x9y+1152*x4x*x4y*x9x^3*x9y-144*x2y*x4x^2*x4y*x9y^2+192*x2y*x4x^2*x5y*x9y^2-288*x4x^2*x4y*x5y*x9y^2+48*x2y*x4x^2*x7y*x9y^2+384*x4x^2*x4y*x7y*x9y^2-24*x2y^2*x4x*x8x*x9y^2+48*x2y*x4x*x4y*x8x*x9y^2-144*x2y*x4x^2*x8y*x9y^2+384*x4x^2*x4y*x8y*x9y^2+288*x2y*x4x*x5x*x8y*x9y^2-576*x4x*x4y*x5x*x8y*x9y^2-192*x4x^2*x5y*x8y*x9y^2-72*x2y*x4x*x4y*x9x*x9y^2+192*x2y*x4x*x5y*x9x*x9y^2-288*x4x*x4y*x5y*x9x*x9y^2-24*x2y*x4x*x7y*x9x*x9y^2+240*x4x*x4y*x7y*x9x*x9y^2-72*x2y*x4x*x8y*x9x*x9y^2+144*x4x*x4y*x8y*x9x*x9y^2-864*x2y*x4x^2*x9y^3+1824*x4x^2*x4y*x9y^3+576*x2y*x4x*x5x*x9y^3-1152*x4x*x4y*x5x*x9y^3-192*x4x^2*x7y*x9y^3-576*x2y*x4x*x9x*x9y^3+1104*x4x*x4y*x9x*x9y^3+96*x4x*x7y*x9x*x9y^3+2*x2y^2*x4x*x8x^2-10*x2y*x4x*x4y*x8x^2-40*x4x*x4y^2*x8x^2+24*x2y*x4x*x5y*x8x^2-40*x4x*x4y*x5y*x8x^2+24*x4x*x5y^2*x8x^2+60*x4x*x4y*x7y*x8x^2+48*x2y*x4x*x4y*x5y*x8y-96*x4x*x4y^2*x5y*x8y-32*x2y*x4x*x5x*x8x*x8y+64*x4x*x4y*x5x*x8x*x8y-24*x4x*x5x*x5y*x8x*x8y-12*x4x*x4y*x7x*x8x*x8y+24*x4x*x5y*x7x*x8x*x8y+24*x4x*x5x*x7y*x8x*x8y-8*x2y^2*x4x*x8y^2+10*x2y*x4x*x4y*x8y^2+12*x4x*x4y^2*x8y^2+32*x2y^2*x4x*x8x*x9x-60*x2y*x4x*x4y*x8x*x9x+480*x4x*x4y^2*x8x*x9x-288*x2y*x4x*x5y*x8x*x9x+480*x4x*x4y*x5y*x8x*x9x-288*x4x*x5y^2*x8x*x9x-720*x4x*x4y*x7y*x8x*x9x+288*x4x*x5x*x5y*x8y*x9x+56*x2y*x4x*x7x*x8y*x9x+32*x4x*x4y*x7x*x8y*x9x-288*x4x*x5y*x7x*x8y*x9x-288*x4x*x5x*x7y*x8y*x9x+68*x2y*x4x*x8x*x8y*x9x-140*x4x*x4y*x8x*x8y*x9x+288*x2y*x4x*x5y*x9x^2-576*x4x*x4y*x5y*x9x^2+252*x2y*x4x*x8y*x9x^2-504*x4x*x4y*x8y*x9x^2-48*x2y*x4x^2*x5x*x9y+96*x4x^2*x4y*x5x*x9y-48*x2y*x4x^2*x7x*x9y+96*x4x^2*x4y*x7x*x9y-144*x2y*x3x*x4x*x8x*x9y+48*x4x^2*x4y*x8x*x9y-528*x2y*x4x*x5x*x8x*x9y+1200*x4x*x4y*x5x*x8x*x9y-48*x4x^2*x5y*x8x*x9y+96*x4x*x5x*x5y*x8x*x9y+48*x4x*x4y*x7x*x8x*x9y-96*x4x*x5y*x7x*x8x*x9y-96*x4x*x5x*x7y*x8x*x9y-10*x2y*x4x*x8x^2*x9y+24*x4x*x4y*x8x^2*x9y-32*x4x*x5y*x8x^2*x9y+8*x2y^2*x4x*x8y*x9y-160*x2y*x4x*x4y*x8y*x9y+168*x4x*x4y^2*x8y*x9y+152*x2y*x4x*x5y*x8y*x9y-300*x4x*x4y*x5y*x8y*x9y+56*x2y*x4x*x7y*x8y*x9y+124*x4x*x4y*x7y*x8y*x9y+66*x2y*x4x*x8y^2*x9y-164*x4x*x4y*x8y^2*x9y+64*x4x*x5y*x8y^2*x9y+912*x2y*x4x^2*x9x*x9y-1800*x4x^2*x4y*x9x*x9y-816*x2y*x4x*x5x*x9x*x9y+1536*x4x*x4y*x5x*x9x*x9y+702*x2y*x4x*x7x*x9x*x9y-1404*x4x*x4y*x7x*x9x*x9y-24*x4x^2*x7y*x9x*x9y+162*x2y*x4x*x8x*x9x*x9y-516*x4x*x4y*x8x*x9x*x9y+408*x4x*x5y*x8x*x9x*x9y+48*x4x*x5x*x8y*x9x*x9y+72*x4x*x7x*x8y*x9x*x9y+816*x2y*x4x*x9x^2*x9y-1644*x4x*x4y*x9x^2*x9y+48*x4x*x5y*x9x^2*x9y+12*x4x*x7y*x9x^2*x9y-24*x4x*x8y*x9x^2*x9y-72*x2y*x3y*x4x*x9y^2-654*x2y*x4x*x4y*x9y^2+144*x4x^2*x5x*x9y^2+288*x2y*x4x*x5y*x9y^2+48*x4x*x4y*x5y*x9y^2-216*x4x^2*x7x*x9y^2+678*x2y*x4x*x7y*x9y^2+1212*x4x*x4y*x7y*x9y^2+72*x3x*x4x*x8x*x9y^2-144*x4x^2*x8x*x9y^2+144*x4x*x5x*x8x*x9y^2+222*x2y*x4x*x8y*x9y^2+72*x3y*x4x*x8y*x9y^2-428*x4x*x4y*x8y*x9y^2-224*x4x*x7y*x8y*x9y^2-48*x4x^2*x9x*x9y^2-108*x4x*x7x*x9x*x9y^2-72*x4x*x8x*x9x*x9y^2+24*x4x*x9x^2*x9y^2+1212*x4x*x4y*x9y^3-2712*x4x*x7y*x9y^3+8*x2y*x4x*x4y*x8x-4*x4x*x4y^2*x8x+204*x2y*x4x*x5y*x8x-340*x4x*x4y*x5y*x8x+96*x4x*x5y^2*x8x-12*x4x*x4y*x7y*x8x-30*x4x*x7x*x8x^2+16*x2y*x4x*x5x*x8y-32*x4x*x4y*x5x*x8y-96*x4x*x5x*x5y*x8y-56*x2y*x4x*x7x*x8y+64*x4x*x4y*x7x*x8y+96*x4x*x5y*x7x*x8y+96*x4x*x5x*x7y*x8y-36*x2y*x4x*x8x*x8y+77*x4x*x4y*x8x*x8y-8*x4x*x5y*x8x*x8y-6*x4x*x7y*x8x*x8y-96*x4x*x4y^2*x9x-216*x2y*x4x*x5y*x9x+432*x4x*x4y*x5y*x9x+144*x4x*x4y*x7y*x9x+360*x4x*x7x*x8x*x9x+10*x4x*x8x^2*x9x-316*x2y*x4x*x8y*x9x+606*x4x*x4y*x8y*x9x+312*x4x*x5y*x8y*x9x+44*x4x*x7y*x8y*x9x-3*x4x*x8y^2*x9x-120*x4x*x8x*x9x^2+72*x2y*x3x*x4x*x9y-72*x4x^2*x4y*x9y+252*x2y*x4x*x5x*x9y-552*x4x*x4y*x5x*x9y+24*x4x^2*x5y*x9y-678*x2y*x4x*x7x*x9y+1356*x4x*x4y*x7x*x9y+24*x4x^2*x7y*x9y+150*x2y*x4x*x8x*x9y-300*x4x*x4y*x8x*x9y+234*x4x*x5y*x8x*x9y+24*x4x*x7y*x8x*x9y-36*x4x*x5x*x8y*x9y-90*x4x*x7x*x8y*x9y+33*x4x*x8x*x8y*x9y-524*x2y*x4x*x9x*x9y+1455*x4x*x4y*x9x*x9y-84*x4x*x5y*x9x*x9y-351*x4x*x7y*x9x*x9y-74*x4x*x8y*x9x*x9y-36*x3x*x4x*x9y^2+648*x4x^2*x9y^2-324*x4x*x5x*x9y^2-945*x4x*x7x*x9y^2+126*x4x*x8x*x9y^2-498*x4x*x9x*x9y^2-2*x2y*x4x*x4y-52*x4x*x4y^2-72*x2y*x4x*x5y+144*x4x*x4y*x5y+84*x4x*x4y*x7y+6*x4x*x7x*x8x+20*x4x*x8x^2+48*x2y*x4x*x8y-70*x4x*x4y*x8y-116*x4x*x5y*x8y+4*x4x*x7y*x8y-21/2*x4x*x8y^2-72*x4x*x7x*x9x-239*x4x*x8x*x9x+24*x4x*x9x^2+246*x2y*x4x*x9y-837*x4x*x4y*x9y-294*x4x*x5y*x9y+339*x4x*x7y*x9y-91*x4x*x8y*x9y+685*x4x*x9y^2-42*x4x*x7x+5*x4x*x8x+70*x4x*x9x+39/2*x4x",
+      "cofactor_metrics": {
+        "nonzero": true,
+        "term_count": 242,
+        "total_degree": 6
+      },
+      "generator": "((x9x-0)^2+(x9y-0)^2)-((x9x-x2x)^2+(x9y-x2y)^2)",
+      "index": 27,
+      "row_equation_index": 0,
+      "row_index": 9,
+      "singular_index": 28
+    },
+    {
+      "cofactor": "0",
+      "cofactor_metrics": {
+        "nonzero": false,
+        "term_count": 0,
+        "total_degree": 0
+      },
+      "generator": "((x9x-0)^2+(x9y-0)^2)-((x9x-x3x)^2+(x9y-x3y)^2)",
+      "index": 28,
+      "row_equation_index": 1,
+      "row_index": 9,
+      "singular_index": 29
+    },
+    {
+      "cofactor": "144*x4x*x4y*x5x^2*x9y-72*x4x*x4y*x5x*x8x*x9y-72*x4x^2*x5x*x8y*x9y-144*x4x^2*x4y*x9x*x9y+288*x4x^2*x5y*x9x*x9y+72*x4x*x4y*x8x*x9x*x9y-144*x4x^2*x8y*x9x*x9y+144*x4x*x4y*x9x^2*x9y+144*x4x*x5y*x9x^2*x9y-72*x4x*x8y*x9x^2*x9y-288*x2y^2*x4x*x9y^2-144*x2y*x4x*x4y*x9y^2-288*x4x^2*x5x*x9y^2+144*x4x^2*x8x*x9y^2+72*x2y*x4x*x8y*x9y^2+72*x4x*x4y*x8y*x9y^2-144*x4x*x5x*x9x*x9y^2+72*x4x*x8x*x9x*x9y^2+144*x2y*x4x*x9y^3+6*x4x^2*x5x*x8x+12*x2y*x4x*x5y*x8x-6*x4x*x4y*x5y*x8x-36*x4x*x4y*x7x*x8y+72*x4x*x5y*x7x*x8y+72*x4x*x5x*x7y*x8y-8*x2y*x4x*x4y*x9x-120*x4x^2*x5x*x9x-144*x2y*x4x*x5y*x9x+72*x4x*x4y*x5y*x9x+48*x4x*x4y*x8y*x9x-24*x4x*x5y*x8y*x9x+12*x4x*x8y^2*x9x+120*x4x^2*x4y*x9y-288*x4x^2*x5y*x9y-72*x4x*x5x*x5y*x9y-72*x4x*x4y*x7x*x9y+144*x4x*x5y*x7x*x9y+144*x4x*x5x*x7y*x9y+14*x2y*x4x*x8x*x9y-136*x4x*x4y*x8x*x9y+36*x4x*x5y*x8x*x9y+144*x4x^2*x8y*x9y+60*x4x*x5x*x8y*x9y-12*x4x*x8x*x8y*x9y-148*x2y*x4x*x9x*x9y-156*x4x*x4y*x9x*x9y-252*x4x*x5y*x9x*x9y+162*x4x*x8y*x9x*x9y+24*x4x^2*x9y^2+108*x4x*x5x*x9y^2-54*x4x*x8x*x9y^2+4*x2y^2*x4x+20*x2y*x4x*x4y+24*x4x^2*x5x+48*x2y*x4x*x5y-24*x4x*x4y*x5y-24*x4x*x5y^2-12*x4x*x5x*x8x+32*x4x*x4y*x8y-36*x4x*x5y*x8y-18*x4x*x7y*x8y-12*x4x*x8y^2+24*x4x*x5x*x9x+3*x4x*x8x*x9x-12*x4x*x9x^2-131*x2y*x4x*x9y+129*x4x*x4y*x9y+12*x4x*x5y*x9y-36*x4x*x7y*x9y-98*x4x*x8y*x9y+92*x4x*x9y^2+8*x4x*x5x-8*x4x*x8x-36*x4x*x9x+8*x4x",
+      "cofactor_metrics": {
+        "nonzero": true,
+        "term_count": 75,
+        "total_degree": 5
+      },
+      "generator": "((x9x-0)^2+(x9y-0)^2)-((x9x-x8x)^2+(x9y-x8y)^2)",
+      "index": 29,
+      "row_equation_index": 2,
+      "row_index": 9,
+      "singular_index": 30
+    }
+  ],
+  "exact_identity": "x9x^2+x9y^2 = sum_{i=0}^{29} cofactor_i * generator_i",
+  "generator_count": 30,
+  "nonzero_cofactor_indices": [
+    0,
+    1,
+    2,
+    6,
+    8,
+    11,
+    12,
+    13,
+    15,
+    17,
+    22,
+    26,
+    27,
+    29
+  ],
+  "order_hashes": {
+    "generators_canonical_json_sha256": "04f4de1e1e4662341058ecfb9c96d310a99d5ce596717525068082058678cd70",
+    "rows_canonical_json_sha256": "2bf4bf0dc3b5126e03ffe1a79d7ba86182a1f4aa572b14ad82c1af63ff29f5e2",
+    "variables_canonical_json_sha256": "b20275025c8cc94e60b137ca1467efbde3520ae2fa189d28d0ccb8f24c860000"
+  },
+  "schema": "p97-singular-liftstd-target-membership-certificate-v1",
+  "singular_extraction": {
+    "algorithm": "G=liftstd(I,T,\"slimgb\"); K=lift(G,ideal(target),U,\"slimgb\"); C=T*K",
+    "binary": "/opt/homebrew/bin/Singular",
+    "monomial_order": "dp",
+    "normal_form": "0",
+    "printed_identity": "x9x^2+x9y^2",
+    "ring": "QQ[x2x,x2y,...,x9x,x9y]",
+    "version": "Singular for arm64-Darwin version 4.4.1 (44105, 64 bit) Nov 11 2025 16:12:34\nwith\n\tGMP(6.3.0),NTL(11.6.0),FLINT(3.6.0),\n\tomalloc,static readline(8),Plural,DBM,\n\tdynamic modules,OM_NDEBUG,SING_NDEBUG,\n\tCC:OPTIMIZE,CC:OPTIMIZE_SIZE,AvoidBranching,GenericMult,invTable,\n\teigenvalues,Gauss-Manin system,random=1785355661\nbuilt-in modules: {}\nAC_CONFIGURE_ARGS =  '--disable-silent-rules' '--with-python=/opt/homebrew/opt/python@3.14/bin/python3.14' 'CXXFLAGS=-std=c++11' '--disable-debug' '--disable-dependency-tracking' '--prefix=/opt/homebrew/Cellar/singular/4.4.1p5_3' '--libdir=/opt/homebrew/Cellar/singular/4.4.1p5_3/lib' 'CC=clang' 'CXX=clang++' --enable-omalloc  OMALLOC_LIBS='/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1/omalloc/libomalloc.la' OMALLOC_INCLUDES='-I/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1' --htmldir=${prefix}/share/doc/singular --with-Singular RESOURCES_LIBS='/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1/resources/libsingular_resources.la' RESOURCES_INCLUDES='-I/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1 ' FACTORY_LIBS='/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1/factory/libfactory.la' FACTORY_INCLUDES='-I/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1 -I/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1/factory -I/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1/factory/include',\nCC = clang,FLAGS :  -g  -pipe -fno-common -g0 -O3 -Wno-unused-function -Wno-trigraphs -Wno-unused-parameter -Wunknown-pragmas -Wno-unused-variable -fomit-frame-pointer -fwrapv -fvisibility=default -finline-functions -fno-exceptions -fno-threadsafe-statics -funroll-loops -Qunused-arguments -pthread -pthread,\nCXX = clang++,FLAGS :  -std=c++11 -pipe -fno-common -g0 -O3 -Wno-unused-function -Wno-trigraphs -Wno-unused-parameter -Wunknown-pragmas -Wno-unused-variable -fomit-frame-pointer -fwrapv -fvisibility=default -finline-functions -fno-exceptions -fno-threadsafe-statics -funroll-loops -fno-rtti -Qunused-arguments -fno-delete-null-pointer-checks -pthread,\nDEFS : ,CPPFLAGS : ,\nLDFLAGS :  -pipe -fno-common -g0 -O3 -Wno-unused-function -Wno-trigraphs -Wno-unused-parameter -Wunknown-pragmas -Wno-unused-variable -fomit-frame-pointer -fwrapv -fvisibility=default -finline-functions -fno-exceptions -fno-threadsafe-statics -funroll-loops -Qunused-arguments  -rdynamic -flat_namespace -Wl,-bind_at_load -Wl,-undefined,dynamic_lookup,LIBS : -lreadline -lncurses  -lgmp   (ver: Apple LLVM 21.0.0 (clang-2100.0.123.102))\nargv[0]   :\t/opt/homebrew/bin/Singular\nSearchPath:\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/singular/LIB:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/factory:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../LIB:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../lib/singular/MOD:/opt/homebrew/Cellar/singular/4.4.1p5_3/lib/singular/MOD:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/..\nSingular  :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/Singular\nBinDir    :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin\nProcDir   :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/..:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../lib/singular/MOD:/opt/homebrew/Cellar/singular/4.4.1p5_3/lib/singular/MOD\nRootDir   :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/..\nDataDir   :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share\nDefaultDir:\t/opt/homebrew/Cellar/singular/4.4.1p5_3\nInfoFile  :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/info/singular.info\nIdxFile   :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/singular/singular.idx\nHtmlDir   :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/doc/singular\nManualUrl :\thttps://www.singular.uni-kl.de/Manual/\nExDir     :\t\nPath      :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/..:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../lib/singular/MOD:/opt/homebrew/Cellar/singular/4.4.1p5_3/lib/singular/MOD:/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin:/opt/homebrew/lib/node_modules/@openai/codex/node_modules/@openai/codex-darwin-arm64/vendor/aarch64-apple-darwin/codex-path:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/adam/.nvm/versions/node/v24.15.0/bin:/Users/adam/bin:/Users/adam/.local/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/Users/adam/.codex/tmp/arg0/codex-arg0kii1f3:/Users/adam/.cargo/bin\nemacs     :\t\nxemacs    :\t\nSingularEmacs:\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/Singular\nEmacsLoad :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/singular/emacs/.emacs-singular\nEmacsDir  :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/singular/emacs\nSingularXterm:\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/Singular\nxterm     :\t\nEmacsDir  :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/singular/emacs\nAvailable HelpBrowsers: safari, safari-www-idx, safari-www, builtin, dummy, emacs, \nCurrent HelpBrowser: safari \n                     SINGULAR                                 /  Development\n A Computer Algebra System for Polynomial Computations       /   version 4.4.1\n                                                           0<\n by: W. Decker, G.-M. Greuel, G. Pfister, H. Schoenemann     \\   Jan 2025\nFB Mathematik der Universitaet, D-67653 Kaiserslautern        \\\nAuf Wiedersehen."
+  },
+  "source_system": {
+    "coordinate_gauge": {
+      "0": [
+        "0",
+        "0"
+      ],
+      "1": [
+        "1",
+        "0"
+      ]
+    },
+    "metric_rows_sha256": "d6db6d91d18e0e8ca9efe6941711375be4f3849d21adc4bcfc6c6806afd5ed5e",
+    "raw_sha256": "66fcf278cc2141220951219180d43c95f1ea063d46fcb7fc0156c690fdd5c929",
+    "relative_path": "scratch/p97-distinct-distance-lane/phase3_new_survivors_realization_20260729/system-01-d6db6d91d18e/system.json",
+    "schema": "p97-phase3-survivor-singular-equality-system-v1"
+  },
+  "target": "x9x^2+x9y^2",
+  "variables": [
+    "x2x",
+    "x2y",
+    "x3x",
+    "x3y",
+    "x4x",
+    "x4y",
+    "x5x",
+    "x5y",
+    "x6x",
+    "x6y",
+    "x7x",
+    "x7y",
+    "x8x",
+    "x8y",
+    "x9x",
+    "x9y"
+  ]
+}

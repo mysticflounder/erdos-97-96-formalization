@@ -1,0 +1,57 @@
++  Problem97.dist_sq_coord x y
++    Problem97.dist_sq_coord (vec2 x1 y1) (vec2 x2 y2)
++  Problem97.dist_sq_coord x y
+-  rw [EuclideanSpace.dist_sq_eq]
+-  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x y
+-  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x y
+-  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x y
+-  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x y
+-  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x y
+-  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x y
+-  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x y
+-  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x y
+-  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x y
+-  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x y
+-  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x y
+-  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x y
+-  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x y
++  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x y
++  Problem97.dist_sq_coord x y
+-  rw [EuclideanSpace.dist_eq, Real.sq_sqrt (by positivity)]
++  Problem97.dist_sq_coord x y
++  Problem97.dist_sq_coord x y
++  Problem97.dist_sq_coord x y
++  Problem97.dist_sq_coord x y
++  Problem97.dist_sq_coord x y
++    Problem97.dist_sq_coord
++  Problem97.dist_sq_coord X Y
++  Problem97.dist_sq_coord X Y
+-    simp only [EuclideanSpace.dist_eq, Fin.sum_univ_two]
++    Problem97.dist_sq_coord
+-    simp only [EuclideanSpace.dist_eq, Fin.sum_univ_two]
++    Problem97.dist_sq_coord
+-    simp only [EuclideanSpace.dist_eq, Fin.sum_univ_two]
++    Problem97.dist_sq_coord
++  Problem97.dist_sq_coord x y
+-  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x c
+-  rw [EuclideanSpace.dist_sq_eq]
++  Problem97.dist_sq_coord x c
++    Problem97.dist_sq_coord
++    Problem97.dist_sq_coord
++  Problem97.dist_sq_coord u v
++  Problem97.dist_sq_coord x y

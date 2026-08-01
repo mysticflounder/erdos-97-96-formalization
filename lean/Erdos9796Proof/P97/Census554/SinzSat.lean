@@ -34,6 +34,24 @@ def evalLitD (σ : Nat → Bool) (l : Int) : Bool := σ l.natAbs == decide (0 < 
 /-- Evaluate a DIMACS clause (disjunction of signed literals). -/
 def evalClauseD (σ : Nat → Bool) (c : List Int) : Bool := c.any (evalLitD σ)
 
+/-- A Boolean valuation satisfying transitivity on three positive variables
+satisfies the corresponding signed DIMACS transitivity clause. -/
+theorem evalClauseD_transitivityClause
+    (σ : Nat → Bool) {left middle right : Nat}
+    (hright : 0 < right)
+    (htrans :
+      σ left = true → σ middle = true → σ right = true) :
+    evalClauseD σ
+      [-Int.ofNat left, -Int.ofNat middle, Int.ofNat right] = true := by
+  by_cases hl : σ left = true
+  · by_cases hm : σ middle = true
+    · have hr := htrans hl hm
+      simp [evalClauseD, evalLitD, hright, hl, hm, hr]
+    · have hm' : σ middle = false := Bool.eq_false_of_not_eq_true hm
+      simp [evalClauseD, evalLitD, hright, hl, hm']
+  · have hl' : σ left = false := Bool.eq_false_of_not_eq_true hl
+    simp [evalClauseD, evalLitD, hright, hl']
+
 /-- Number of true inputs among the first `i` variables of `xs` under `σ`. -/
 def prefCount (σ : Nat → Bool) (xs : List Nat) (i : Nat) : Nat :=
   ((xs.take i).filter σ).length

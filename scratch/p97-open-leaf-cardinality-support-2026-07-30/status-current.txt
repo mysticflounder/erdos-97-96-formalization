@@ -1,0 +1,76 @@
+project:       erdos-97-96-formalization (erdos-97-96-formalization)
+root:          /Users/adam/projects/math-projects/erdos-97-96-formalization
+lean_lib:      /Users/adam/projects/math-projects/erdos-97-96-formalization/lean
+target_symbol: Problem97.erdos97_rhs
+
+last build:    ✗ FAILED (exit 130) · 3h38m · 43m ago  ⚠ over 10m target
+recent builds  (when · took · result · target):
+    5h ago      2s  cached       Erdos9796Proof.P97.ATail.FrontierLiveClosure
+    4h ago  15m45s  built 372    full
+    4h ago      4s  cached       full
+    4h ago     25s  built 3      Erdos9796Proof.P97.FiniteN11
+   43m ago   3h38m  ✗ exit 130   full
+
+lean_files:    4283
+lean_symbols:  52734
+  axioms:      0 (0 sanctioned)
+  with-sorry:  23
+  closures:    0 cached
+
+index:         ⚠ stale (1 changed vs source) — run `index --refresh` (or `sync`); spine state below may mis-render
+uncommitted:   ⚠ 38 lean file(s) not committed — mined state may not be reproducible from git
+     M lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean
+     M lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean
+     M lean/Erdos9796Proof/P97/Foundation.lean
+     M lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean
+     M lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusBank.lean
+     M lean/Erdos9796Proof/P97/UniversalLocal.lean
+    ?? lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean
+    ?? lean/Erdos9796Proof/P97/ATail/FiniteN11Frontier.lean
+    ?? lean/Erdos9796Proof/P97/Census554/AlgebraicRowCollisionBank.lean
+    ?? lean/Erdos9796Proof/P97/Census554/CoverIndexBridge.lean
+    ?? lean/Erdos9796Proof/P97/Census554/EquilateralApexOrientation.lean
+    ?? lean/Erdos9796Proof/P97/Census554/EquilateralShellBranchCertificates.lean
+    ?? lean/Erdos9796Proof/P97/Census554/FiniteRowAlgebraicCollisions.lean
+    ?? lean/Erdos9796Proof/P97/Census554/FiveDuplicateCenterCertificates.lean
+    ?? lean/Erdos9796Proof/P97/Census554/NineCenterEighteenEqualityCertificate.lean
+    ?? lean/Erdos9796Proof/P97/Census554/SixPointAlgebraicRowCollisions.lean
+    ?? lean/Erdos9796Proof/P97/Census554/SixPointFifteenIncidenceCertificate.lean
+    ?? lean/Erdos9796Proof/P97/Census554/SixPointSixteenIncidenceCertificate.lean
+    ?? lean/Erdos9796Proof/P97/Census554/TenPointRowCollision.lean
+    ?? lean/Erdos9796Proof/P97/Census554/TenPointRowCollisionCertificate.lean
+    … and 18 more
+
+kernel spine (mined call graph — the only structure):
+  build:        723a29e47f69
+  mined fresh:  0/44858 symbol(s)  (44442 stale)
+  graph mined:  5m ago
+  trusted:      7765 🔒 (certs excluded by [mining].skip)
+  (run `refs --refresh` to mine the graph)
+
+live sorries (cached @ build dd63ca9fb780, 2026-07-30T23:11:11+00:00):
+  on-spine (open frontier) (19):
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7556]
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7450]
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_oneSidedDeletionSurvival  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8850]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_minimalCore  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2173]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_nonphysicalCollision  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5494]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2379]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2556]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2581]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:2533]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5322]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1157]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:1231]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6048]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:5983]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:3299]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6305]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6294]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:6767]
+    💧 Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision  [Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:702]
+  off-spine (placeholder — wire into the spine or remove) (0)
+
+session anchors: 16 total (graph unavailable — states unknown)
+
+your anchor: none set — `proof-blueprint anchor set <symbol>` to claim the open frontier

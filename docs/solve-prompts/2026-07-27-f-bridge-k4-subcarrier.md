@@ -2,6 +2,13 @@
 
 Date: 2026-07-27.  Round: 2.
 
+> **Historical-status notice (2026-07-30):** This round-2 prompt preserves a
+> consumed 2026-07-27 frontier snapshot. Its four F1–F4 leaves and source line
+> numbers are historical, not current obligations. The live direct frontier
+> now consists of `false_of_crossBlockerCoincidence` and
+> `false_of_capSourceThirdCanonicalRowSurface`. Use the closure matrix,
+> computational closure plan, and generated blueprint for current status.
+
 Scope.  Round 1 of the Family-F harness (prompt:
 `docs/solve-prompts/2026-07-27-exact-collision-terminals.md`, "the F doc";
 response: `docs/solve-prompts/2026-07-27-f-round1-response.md`) returned neither

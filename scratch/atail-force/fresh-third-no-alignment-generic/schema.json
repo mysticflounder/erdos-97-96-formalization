@@ -1,0 +1,214 @@
+{
+  "schema_version": "p97-fresh-third-no-alignment-generic-v4",
+  "epistemic_status": "NAMED_NECESSARY_CONDITION_PROJECTION_ONLY",
+  "target": {
+    "declaration": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow",
+    "source": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:7556"
+  },
+  "parameters": {
+    "surplus_index": [0, 1, 2],
+    "opp_index1": "(surplus_index + 1) mod 3",
+    "opp_index2": "(surplus_index + 2) mod 3",
+    "rich_pattern": "free or three letters in oppApex1/oppApex2/surplusApex order, with S=six-point arm and K=two-K4 arm; a selected arm does not negate the other"
+  },
+  "roles": {
+    "apices": ["v1", "v2", "v3"],
+    "retained_sources": ["p1", "p2", "r1", "r2"],
+    "retained_blockers": ["bp", "br"],
+    "localized_collision_sources": ["mpr_source", "mp_source"],
+    "cap_source": ["source", "bs"],
+    "fresh_third_fiber": ["q1", "q2", "bq"],
+    "frontier_row_extras": ["pf3", "pf4", "rf3", "rf4"],
+    "critical_row_extras": ["pc3", "pc4", "rc3", "rc4"],
+    "cap_source_row_extras": ["s2", "s3", "s4"],
+    "q_row_extras": ["q1e3", "q1e4", "q2e3", "q2e4"],
+    "apex_rich_class_witnesses": "eight roles for each of oppApex1, oppApex2, and surplusApex; the six-point arm uses roles 1-6 and the two-K4 arm uses roles 1-4 and 5-8",
+    "common_deletion_row_witnesses": "eight roles per packet: four for the robust-apex row and four for the blocker-center row",
+    "cardinality_witnesses": "six distinct named witnesses per cap; eight for opp_index1"
+  },
+  "rows": {
+    "frontier_radius": {
+      "center": "opp_apex1",
+      "support": ["p1", "p2", "pf3", "pf4"],
+      "semantics": "named exact selected distance class",
+      "cardinality": 4
+    },
+    "rho_radius": {
+      "center": "opp_apex1",
+      "support": ["r1", "r2", "rf3", "rf4"],
+      "semantics": "named exact selected distance class",
+      "cardinality": 4
+    },
+    "p_critical": {
+      "center": "bp",
+      "support": ["p1", "p2", "pc3", "pc4"],
+      "semantics": "named exact selected distance class",
+      "cardinality": 4
+    },
+    "rho_critical": {
+      "center": "br",
+      "support": ["r1", "r2", "rc3", "rc4"],
+      "semantics": "named exact selected distance class",
+      "cardinality": 4
+    },
+    "cap_source_critical": {
+      "center": "bs",
+      "support": ["source", "s2", "s3", "s4"],
+      "semantics": "named exact selected distance class",
+      "cardinality": 4
+    },
+    "q1_critical": {
+      "center": "bq",
+      "support": ["q1", "q2", "q1e3", "q1e4"],
+      "semantics": "named exact selected distance class",
+      "cardinality": 4
+    },
+    "q2_critical": {
+      "center": "bq",
+      "support": ["q2", "q1", "q2e3", "q2e4"],
+      "semantics": "named exact selected distance class",
+      "cardinality": 4
+    }
+  },
+  "apex_rich_class_structure_projection": {
+    "source": "ApexRichClassStructure, lean/Erdos9796Proof/P97/ATail/ApexRichClassStructure.lean:50-53",
+    "fields": {
+      "oppApex1": "T.oppApex1_rich",
+      "oppApex2": "T.oppApex2_rich",
+      "surplusApex": "T.surplusApex_rich"
+    },
+    "six_point_arm": "one nonzero distance class with six distinct named carrier witnesses at that class about the apex",
+    "two_K4_arm": "two distinct nonzero distance classes with four distinct named carrier witnesses at each class about the apex",
+    "logic": "the literal OR of the two arms is asserted independently at all three rich apices",
+    "support_semantics": "chosen lower-bound witnesses only; neither arm says that its selected classes are exhaustive or have exact cardinality",
+    "positivity_projection": "real radii are Euclidean distances, so 0 < r is projected as distance_class != zero_distance"
+  },
+  "tri_apex_residual_projection": {
+    "blocker_vertex_ne": "for every represented carrier source x and every Moser apex v, blocker_of(x) != v",
+    "no_center_covers_all_apices": "for every represented center p, the three apex distances are not one common positive distance",
+    "scope": "represented occurrences only; no carrier-completeness claim"
+  },
+  "localized_cycles": {
+    "LPrho": {
+      "fresh": "r1",
+      "predecessor_sources": ["p1", "p2"],
+      "fields": ["strict-cap interior", "fresh from both sources", "fresh omitted from P critical row"],
+      "packet_witness": "mpr_fresh"
+    },
+    "MPrho": {
+      "collision_source": "mpr_source",
+      "source_choice": ["p1", "p2"],
+      "common_blocker": "bp",
+      "fresh": "r1",
+      "fresh_blocker": "br",
+      "directed_omissions": ["r1 omitted from P critical row", "mpr_source omitted from Prho critical row"],
+      "packets": ["mpr_fresh", "mpr_collision"]
+    },
+    "LP": {
+      "fresh": "p1",
+      "predecessor_sources": ["r1", "r2"],
+      "fields": ["strict-cap interior", "fresh from both sources", "fresh omitted from Prho critical row"],
+      "packet_witness": "mp_fresh"
+    },
+    "MP": {
+      "collision_source": "mp_source",
+      "source_choice": ["r1", "r2"],
+      "common_blocker": "br",
+      "fresh": "p1",
+      "fresh_blocker": "bp",
+      "directed_omissions": ["p1 omitted from Prho critical row", "mp_source omitted from P critical row"],
+      "packets": ["mp_fresh", "mp_collision"]
+    }
+  },
+  "common_deletion_packets": {
+    "mpr_fresh": {
+      "q": "r1",
+      "center1": "opp_apex1",
+      "center2": "bp"
+    },
+    "mpr_collision": {
+      "q": "mpr_source",
+      "center1": "opp_apex1",
+      "center2": "br"
+    },
+    "mp_fresh": {
+      "q": "p1",
+      "center1": "opp_apex1",
+      "center2": "br"
+    },
+    "mp_collision": {
+      "q": "mp_source",
+      "center1": "opp_apex1",
+      "center2": "bp"
+    },
+    "fields_per_packet": [
+      "q and both centers are represented carrier roles",
+      "the centers are distinct",
+      "the actual blocker of q differs from both centers",
+      "two HasN deletion-survival facts",
+      "two chosen U5QDeletedK4Class supports of cardinality exactly four",
+      "each chosen support excludes q and its center and has one positive common radius",
+      "the quotient intersection of the two chosen supports has cardinality at most two"
+    ],
+    "row_semantics": "chosen four-point witnesses only; U5QDeletedK4Class does not say that every point at the radius belongs to B",
+    "LP_packet_reuse": "mpr_fresh and mp_fresh also witness the proposition-level LP packet existences after the encoded blocker identities"
+  },
+  "cross_pair_deletion_views": {
+    "P": "p1 is omitted from the cap-source row OR p2 is omitted",
+    "Prho": "r1 is omitted from the cap-source row OR r2 is omitted"
+  },
+  "critical_no_qfree_projection": {
+    "sources": "every represented carrier role",
+    "center": "the alias-aware functional term blocker_of(source), whether or not that blocker has a separate named occurrence",
+    "deletion": "the entire named quotient alias class of the represented source",
+    "scope": "every positive actual-blocker distance class represented by named occurrences, for every represented source",
+    "bound": 3,
+    "encoding": "three existential CarrierPoint-valued slots keyed by (source, radius); every surviving named occurrence at that radius equals one slot",
+    "metric_support": "for each actual blocker term, diagonal zero and outgoing nonzero-on-inequality are projected against every represented occurrence; symmetry is retained on pairs of named roles but deliberately omitted when an actual blocker has no named occurrence"
+  },
+  "alignment": {
+    "quantifier": "NOT EXISTS cap in Fin 3",
+    "cap_cases": [0, 1, 2],
+    "conjuncts": [
+      "q_blocker_in_cap",
+      "source_blocker_in_cap",
+      "blockers_distinct",
+      "q1_off_cap",
+      "q2_off_cap",
+      "q1_in_source_row",
+      "q2_in_source_row"
+    ],
+    "encoding": "AND over cap cases of NOT(AND of all seven conjuncts)",
+    "unsupported_inequality_deliberately_absent": "bq != bs"
+  },
+  "encoded_metric_projection": [
+    "point quotient congruence",
+    "functional blocker_of map",
+    "symmetric uninterpreted distance classes with distinguished zero exactly on named aliases",
+    "equal Moser-triangle side distance classes",
+    "equal-radius incidence and named exact-four exclusion for selected critical rows",
+    "chosen cardinality-four equal-radius witnesses for q-deleted packet rows, without an exhaustive-row claim",
+    "all three literal ApexRichClassStructure disjunctions via chosen six-point or two-four-point selected-class witnesses",
+    "the named at-most-three anti-survival consequence of CriticalShellSystem.no_qfree_at at every represented source and its actual blocker"
+  ],
+  "opaque_or_unencoded": [
+    "the unnamed remainder of D.A",
+    "Euclidean coordinates and realizability",
+    "triangle inequalities, strict convexity, circular order, Kalmanson inequalities, and OnArcOpposite",
+    "carrier-wide CounterexampleData.K4 facts beyond the all-source named anti-survival projection",
+    "CriticalShellSystem.no_qfree consequences involving unnamed carrier points",
+    "carrier-wide cap cardinality and partition claims beyond explicit witnesses and named membership",
+    "minimality, noM44, and the full FrontierCommonDeletionParentResidual",
+    "T.notRobustCover_card",
+    "T.no_center_covers_all_apices outside represented centers",
+    "geometric consequences derived from ApexRichClassStructure, including opposite-cap interior patterns and two-circle critical-shell intersection bounds",
+    "the survival side of CrossPairDeletionView; only its proved selected-support omission consequence is encoded",
+    "identity of independently stored Lean packet values; only their existential mathematical fields are projected"
+  ],
+  "first_still_unencoded_T_field": "T.notRobustCover_card, deliberately omitted because it is carrier-global and requires the unnamed carrier and notRobustCenters",
+  "claim_policy": {
+    "sat": "surviving named relaxation only",
+    "unsat": "refutation of this encoding only, pending source-fidelity audit",
+    "lean_closure": false
+  }
+}

@@ -1,0 +1,196 @@
+    cap_order_covered_count = sum(
+        len(cover) for cover in cap_order_cover.values()
+    )
+    source_unique_count = len(structural_by_key) + cap_order_source_count
+    kept_count = len(structural_clause_kept) + cap_order_kept_count
+    summary = {
+        "source_record_count": len(raw),
+        "source_unique_certificate_count": source_unique_count,
+        "source_stage_histogram": dict(sorted(stages.items())),
+        "source_certificate_schema_histogram": dict(sorted(schemas.items())),
+        "source_structural_unique_certificate_count": len(structural_by_key),
+        "source_cap_order_unique_certificate_count": cap_order_source_count,
+        "source_five_point_cap_order_unique_certificate_count": (
+            five_point_source_count
+        ),
+        "source_rhombus_cap_order_unique_certificate_count": (
+            rhombus_source_count
+        ),
+        "source_kalmanson_cap_order_unique_certificate_count": (
+            kalmanson_source_count
+        ),
+        "kept_antichain_count": kept_count,
+        "kept_structural_antichain_count": len(structural_clause_kept),
+        "kept_structural_row_antichain_count": len(structural_row_kept),
+        "structural_projected_unique_clause_count": len(structural_by_clause),
+        "structural_projected_duplicate_clause_count": (
+            len(structural_row_kept) - len(structural_by_clause)
+        ),
+        "structural_projected_subsumed_clause_count": (
+            len(structural_by_clause) - len(structural_clause_kept)
+        ),
+        "kept_cap_order_antichain_count": cap_order_kept_count,
+        "kept_five_point_cap_order_antichain_count": five_point_kept_count,
+        "kept_rhombus_cap_order_antichain_count": rhombus_kept_count,
+        "kept_kalmanson_cap_order_antichain_count": kalmanson_kept_count,
+        "covered_certificate_count": (
+            len(structural_row_cover) + cap_order_covered_count
+        ),
+        "subsumed_certificate_count": source_unique_count - kept_count,
+    }
+    return learned, summary
+
+
+def _load_learned(
+    path: Path,
+    encoding: Any,
+    algebraic_templates: Sequence[Mapping[str, Any]] = (),
+    shard_literals: Sequence[int] = (),
+) -> tuple[list[dict[str, Any]], Any, list[tuple[int, ...]]]:
+    records = _strict_json_lines(path)
+    bank = certificates._NogoodBank()
+    clauses: list[tuple[int, ...]] = []
+    cap_order_clauses: dict[str, set[tuple[int, ...]]] = {
+        CAP_ORDER_CERTIFICATE_SCHEMA: set(),
+        RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA: set(),
+        KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA: set(),
+    }
+    previous: str | None = None
+    for index, record in enumerate(records):
+        where = f"{path}:{index + 1}"
+        _validate_record_hash(record, previous, where=where)
+        previous = record["record_sha256"]
+        if (
+            record.get("schema") != _learned_schema(encoding)
+            or record.get("index") != index
+        ):
+            raise StructuralCegarError(f"{where}: learned record identity mismatch")
+        if record.get("origin") in {
+            CAP_ORDER_ORIGIN,
+            BOOTSTRAP_CAP_ORDER_ORIGIN,
+            RHOMBUS_CAP_ORDER_ORIGIN,
+            BOOTSTRAP_RHOMBUS_CAP_ORDER_ORIGIN,
+            KALMANSON_CAP_ORDER_ORIGIN,
+            BOOTSTRAP_KALMANSON_CAP_ORDER_ORIGIN,
+        }:
+            is_rhombus = record["origin"] in {
+                RHOMBUS_CAP_ORDER_ORIGIN,
+                BOOTSTRAP_RHOMBUS_CAP_ORDER_ORIGIN,
+            }
+            is_kalmanson = record["origin"] in {
+                KALMANSON_CAP_ORDER_ORIGIN,
+                BOOTSTRAP_KALMANSON_CAP_ORDER_ORIGIN,
+            }
+            is_bootstrap = record["origin"] in {
+                BOOTSTRAP_CAP_ORDER_ORIGIN,
+                BOOTSTRAP_RHOMBUS_CAP_ORDER_ORIGIN,
+                BOOTSTRAP_KALMANSON_CAP_ORDER_ORIGIN,
+            }
+            if is_kalmanson:
+                schema = KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA
+                stage = KALMANSON_CAP_ORDER_STAGE
+                certificate, _selected, _facts = (
+                    _replay_kalmanson_cap_order_certificate(
+                        record.get("certificate")
+                    )
+                )
+                clause = _clause_for_kalmanson_cap_order_certificate(
+                    encoding, certificate
+                )
+            elif is_rhombus:
+                schema = RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA
+                stage = RHOMBUS_CAP_ORDER_STAGE
+                certificate, _selected, _facts = (
+                    _replay_rhombus_cap_order_certificate(
+                        record.get("certificate")
+                    )
+                )
+                clause = _clause_for_rhombus_cap_order_certificate(
+                    encoding, certificate
+                )
+            else:
+                schema = CAP_ORDER_CERTIFICATE_SCHEMA
+                stage = CAP_ORDER_STAGE
+                certificate, _selected, _facts = (
+                    _replay_cap_order_certificate(record.get("certificate"))
+                )
+                clause = _clause_for_cap_order_certificate(
+                    encoding, certificate
+                )
+            if clause in cap_order_clauses[schema]:
+                raise StructuralCegarError(
+                    f"{where}: duplicate cap-order learned clause"
+                )
+            if (
+                record.get("stage") != stage
+                or record.get("clause") != list(clause)
+                or record.get("clause_sha256") != _sha256_value(list(clause))
+                or record.get("superseded_nogood_sha256") != []
+            ):
+                raise StructuralCegarError(
+                    f"{where}: cap-order learned metadata mismatch"
+                )
+            if is_bootstrap:
+                if (
+                    record.get("raw_sat_index") is not None
+                    or record.get("semantic_assignment") is not None
+                    or record.get("assignment_sha256") is not None
+                ):
+                    raise StructuralCegarError(
+                        f"{where}: bootstrapped cap-order assignment mismatch"
+                    )
+                cap_order_clauses[schema].add(clause)
+                clauses.append(clause)
+                continue
+            assignment = encoding.assignment_from_record(record)
+            _validate_shard_assignment(
+                assignment, shard_literals, where=where
+            )
+            obj = encoding.decode(assignment)
+            encoding.validate(obj, assignment)
+            rows = _metric_rows(obj)
+            if is_kalmanson:
+                regenerated = _kalmanson_cap_order_certificate(obj, rows)
+            elif is_rhombus:
+                regenerated = _rhombus_cap_order_certificate(obj, rows)
+            else:
+                regenerated = _cap_order_certificate(obj, rows)
+            if regenerated is None or regenerated[0] != certificate:
+                raise StructuralCegarError(
+                    f"{where}: cap-order certificate replay drift"
+                )
+            if is_kalmanson:
+                _clause_for_kalmanson_cap_order_certificate(
+                    encoding, certificate, assignment
+                )
+            elif is_rhombus:
+                _clause_for_rhombus_cap_order_certificate(
+                    encoding, certificate, assignment
+                )
+            else:
+                _clause_for_cap_order_certificate(
+                    encoding, certificate, assignment
+                )
+            if record.get("assignment_sha256") != _assignment_hash(
+                encoding, assignment
+            ):
+                raise StructuralCegarError(
+                    f"{where}: cap-order assignment hash mismatch"
+                )
+            cap_order_clauses[schema].add(clause)
+            clauses.append(clause)
+            continue
+        if record.get("origin") in {
+            ALGEBRAIC_ORIGIN,
+            REAL_DISTINCTNESS_ORIGIN,
+            EQUILATERAL_SHELL_ORIGIN,
+        }:
+            by_hash = {
+                template.get("template_sha256"): template
+                for template in algebraic_templates
+            }
+            template = by_hash.get(record.get("algebraic_template_sha256"))
+            if template is None or len(by_hash) != len(algebraic_templates):
+                raise StructuralCegarError(
+                    f"{where}: algebraic template hash is absent or ambiguous"
+                )

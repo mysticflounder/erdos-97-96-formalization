@@ -1,0 +1,241 @@
+  3325	def _load_learned(
+  3326	    path: Path,
+  3327	    encoding: Any,
+  3328	    algebraic_templates: Sequence[Mapping[str, Any]] = (),
+  3329	) -> tuple[list[dict[str, Any]], Any, list[tuple[int, ...]]]:
+  3330	    records = _strict_json_lines(path)
+  3331	    bank = certificates._NogoodBank()
+  3332	    clauses: list[tuple[int, ...]] = []
+  3333	    cap_order_clauses: dict[str, set[tuple[int, ...]]] = {
+  3334	        CAP_ORDER_CERTIFICATE_SCHEMA: set(),
+  3335	        RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA: set(),
+  3336	        KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA: set(),
+  3337	    }
+  3338	    previous: str | None = None
+  3339	    for index, record in enumerate(records):
+  3340	        where = f"{path}:{index + 1}"
+  3341	        _validate_record_hash(record, previous, where=where)
+  3342	        previous = record["record_sha256"]
+  3343	        if record.get("schema") != LEARNED_SCHEMA or record.get("index") != index:
+  3344	            raise StructuralCegarError(f"{where}: learned record identity mismatch")
+  3345	        if record.get("origin") in {
+  3346	            CAP_ORDER_ORIGIN,
+  3347	            BOOTSTRAP_CAP_ORDER_ORIGIN,
+  3348	            RHOMBUS_CAP_ORDER_ORIGIN,
+  3349	            BOOTSTRAP_RHOMBUS_CAP_ORDER_ORIGIN,
+  3350	            KALMANSON_CAP_ORDER_ORIGIN,
+  3351	            BOOTSTRAP_KALMANSON_CAP_ORDER_ORIGIN,
+  3352	        }:
+  3353	            is_rhombus = record["origin"] in {
+  3354	                RHOMBUS_CAP_ORDER_ORIGIN,
+  3355	                BOOTSTRAP_RHOMBUS_CAP_ORDER_ORIGIN,
+  3356	            }
+  3357	            is_kalmanson = record["origin"] in {
+  3358	                KALMANSON_CAP_ORDER_ORIGIN,
+  3359	                BOOTSTRAP_KALMANSON_CAP_ORDER_ORIGIN,
+  3360	            }
+  3361	            is_bootstrap = record["origin"] in {
+  3362	                BOOTSTRAP_CAP_ORDER_ORIGIN,
+  3363	                BOOTSTRAP_RHOMBUS_CAP_ORDER_ORIGIN,
+  3364	                BOOTSTRAP_KALMANSON_CAP_ORDER_ORIGIN,
+  3365	            }
+  3366	            if is_kalmanson:
+  3367	                schema = KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA
+  3368	                stage = KALMANSON_CAP_ORDER_STAGE
+  3369	                certificate, _selected, _facts = (
+  3370	                    _replay_kalmanson_cap_order_certificate(
+  3371	                        record.get("certificate")
+  3372	                    )
+  3373	                )
+  3374	                clause = _clause_for_kalmanson_cap_order_certificate(
+  3375	                    encoding, certificate
+  3376	                )
+  3377	            elif is_rhombus:
+  3378	                schema = RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA
+  3379	                stage = RHOMBUS_CAP_ORDER_STAGE
+  3380	                certificate, _selected, _facts = (
+  3381	                    _replay_rhombus_cap_order_certificate(
+  3382	                        record.get("certificate")
+  3383	                    )
+  3384	                )
+  3385	                clause = _clause_for_rhombus_cap_order_certificate(
+  3386	                    encoding, certificate
+  3387	                )
+  3388	            else:
+  3389	                schema = CAP_ORDER_CERTIFICATE_SCHEMA
+  3390	                stage = CAP_ORDER_STAGE
+  3391	                certificate, _selected, _facts = (
+  3392	                    _replay_cap_order_certificate(record.get("certificate"))
+  3393	                )
+  3394	                clause = _clause_for_cap_order_certificate(
+  3395	                    encoding, certificate
+  3396	                )
+  3397	            if clause in cap_order_clauses[schema]:
+  3398	                raise StructuralCegarError(
+  3399	                    f"{where}: duplicate cap-order learned clause"
+  3400	                )
+  3401	            if (
+  3402	                record.get("stage") != stage
+  3403	                or record.get("clause") != list(clause)
+  3404	                or record.get("clause_sha256") != _sha256_value(list(clause))
+  3405	                or record.get("superseded_nogood_sha256") != []
+  3406	            ):
+  3407	                raise StructuralCegarError(
+  3408	                    f"{where}: cap-order learned metadata mismatch"
+  3409	                )
+  3410	            if is_bootstrap:
+  3411	                if (
+  3412	                    record.get("raw_sat_index") is not None
+  3413	                    or record.get("semantic_assignment") is not None
+  3414	                    or record.get("assignment_sha256") is not None
+  3415	                ):
+  3416	                    raise StructuralCegarError(
+  3417	                        f"{where}: bootstrapped cap-order assignment mismatch"
+  3418	                    )
+  3419	                cap_order_clauses[schema].add(clause)
+  3420	                clauses.append(clause)
+  3421	                continue
+  3422	            assignment = encoding.assignment_from_record(record)
+  3423	            obj = encoding.decode(assignment)
+  3424	            encoding.validate(obj, assignment)
+  3425	            rows = _metric_rows(obj)
+  3426	            if is_kalmanson:
+  3427	                regenerated = _kalmanson_cap_order_certificate(obj, rows)
+  3428	            elif is_rhombus:
+  3429	                regenerated = _rhombus_cap_order_certificate(obj, rows)
+  3430	            else:
+  3431	                regenerated = _cap_order_certificate(obj, rows)
+  3432	            if regenerated is None or regenerated[0] != certificate:
+  3433	                raise StructuralCegarError(
+  3434	                    f"{where}: cap-order certificate replay drift"
+  3435	                )
+  3436	            if is_kalmanson:
+  3437	                _clause_for_kalmanson_cap_order_certificate(
+  3438	                    encoding, certificate, assignment
+  3439	                )
+  3440	            elif is_rhombus:
+  3441	                _clause_for_rhombus_cap_order_certificate(
+  3442	                    encoding, certificate, assignment
+  3443	                )
+  3444	            else:
+  3445	                _clause_for_cap_order_certificate(
+  3446	                    encoding, certificate, assignment
+  3447	                )
+  3448	            if record.get("assignment_sha256") != _assignment_hash(
+  3449	                encoding, assignment
+  3450	            ):
+  3451	                raise StructuralCegarError(
+  3452	                    f"{where}: cap-order assignment hash mismatch"
+  3453	                )
+  3454	            cap_order_clauses[schema].add(clause)
+  3455	            clauses.append(clause)
+  3456	            continue
+  3457	        if record.get("origin") == ALGEBRAIC_ORIGIN:
+  3458	            by_hash = {
+  3459	                template.get("template_sha256"): template
+  3460	                for template in algebraic_templates
+  3461	            }
+  3462	            template = by_hash.get(record.get("algebraic_template_sha256"))
+  3463	            if template is None or len(by_hash) != len(algebraic_templates):
+  3464	                raise StructuralCegarError(
+  3465	                    f"{where}: algebraic template hash is absent or ambiguous"
+  3466	                )
+  3467	            if (
+  3468	                record.get("stage") != ALGEBRAIC_STAGE
+  3469	                or record.get("certificate") is not None
+  3470	                or record.get("algebraic_template_name") != template.get("name")
+  3471	                or record.get("superseded_nogood_sha256") != []
+  3472	            ):
+  3473	                raise StructuralCegarError(
+  3474	                    f"{where}: algebraic learned metadata mismatch"
+  3475	                )
+  3476	            permutation = _validate_permutation(record.get("permutation"))
+  3477	            mapped = _mapped_memberships(template, permutation)
+  3478	            if record.get("antecedent_memberships") != [
+  3479	                list(pair) for pair in mapped
+  3480	            ]:
+  3481	                raise StructuralCegarError(
+  3482	                    f"{where}: algebraic mapped antecedent mismatch"
+  3483	                )
+  3484	            clause = _clause_for_memberships(encoding, mapped)
+  3485	            if (
+  3486	                record.get("clause") != list(clause)
+  3487	                or record.get("clause_sha256") != _sha256_value(list(clause))
+  3488	            ):
+  3489	                raise StructuralCegarError(
+  3490	                    f"{where}: algebraic learned clause mismatch"
+  3491	                )
+  3492	            assignment = encoding.assignment_from_record(record)
+  3493	            obj = encoding.decode(assignment)
+  3494	            encoding.validate(obj, assignment)
+  3495	            replayed_match = _find_algebraic_match(
+  3496	                encoding, assignment, algebraic_templates
+  3497	            )
+  3498	            if replayed_match is None:
+  3499	                raise StructuralCegarError(
+  3500	                    f"{where}: algebraic template no longer matches"
+  3501	                )
+  3502	            replayed_template, replayed_permutation, replayed_mapped = replayed_match
+  3503	            if (
+  3504	                replayed_template.get("template_sha256")
+  3505	                != template.get("template_sha256")
+  3506	                or replayed_permutation != permutation
+  3507	                or replayed_mapped != mapped
+  3508	            ):
+  3509	                raise StructuralCegarError(
+  3510	                    f"{where}: deterministic algebraic match replay drift"
+  3511	                )
+  3512	            _clause_for_memberships(encoding, mapped, assignment)
+  3513	            if record.get("assignment_sha256") != _assignment_hash(
+  3514	                encoding, assignment
+  3515	            ):
+  3516	                raise StructuralCegarError(
+  3517	                    f"{where}: algebraic assignment hash mismatch"
+  3518	                )
+  3519	            clauses.append(clause)
+  3520	            continue
+  3521	        certificate, selected = _replay_certificate_json(
+  3522	            record.get("certificate")
+  3523	        )
+  3524	        origin = record.get("origin")
+  3525	        if origin in {"solver", "bootstrap-structural-prefix"}:
+  3526	            clause = _clause_for_rows(encoding, selected)
+  3527	        elif origin in {
+  3528	            STRUCTURAL_PATH_ORIGIN,
+  3529	            BOOTSTRAP_STRUCTURAL_PATH_ORIGIN,
+  3530	        }:
+  3531	            clause = _clause_for_structural_certificate(
+  3532	                encoding, certificate, selected
+  3533	            )
+  3534	        else:
+  3535	            raise StructuralCegarError(f"{where}: invalid learned origin")
+  3536	        if (
+  3537	            record.get("stage") != certificate["stage"]
+  3538	            or record.get("clause") != list(clause)
+  3539	            or record.get("clause_sha256")
+  3540	            != _sha256_value(list(clause))
+  3541	        ):
+  3542	            raise StructuralCegarError(f"{where}: learned clause mismatch")
+  3543	        if origin in {"solver", STRUCTURAL_PATH_ORIGIN}:
+  3544	            assignment = encoding.assignment_from_record(record)
+  3545	            obj = encoding.decode(assignment)
+  3546	            encoding.validate(obj, assignment)
+  3547	            rows = _metric_rows(obj)
+  3548	            found = _detection(rows)
+  3549	            if found is None:
+  3550	                raise StructuralCegarError(f"{where}: replay became non-detected")
+  3551	            replayed, replayed_rows = _certificate(rows, found)
+  3552	            if replayed != certificate or replayed_rows != selected:
+  3553	                raise StructuralCegarError(f"{where}: solver certificate replay drift")
+  3554	            _clause_for_structural_certificate(
+  3555	                encoding, certificate, selected, assignment
+  3556	            )
+  3557	            _clause_false(clause, assignment)
+  3558	            if record.get("assignment_sha256") != _assignment_hash(
+  3559	                encoding, assignment
+  3560	            ):
+  3561	                raise StructuralCegarError(f"{where}: assignment hash mismatch")
+  3562	        elif (
+  3563	            origin
+  3564	            not in {
+  3565	                "bootstrap-structural-prefix",

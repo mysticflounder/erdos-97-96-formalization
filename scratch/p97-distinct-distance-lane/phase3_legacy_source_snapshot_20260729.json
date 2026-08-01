@@ -1,0 +1,14 @@
+{
+  "schema": "p97-phase3-source-provenance-v1",
+  "captured_at": "2026-07-29",
+  "purpose": "Pin the exact Python sources used by legacy Phase-3 artifacts before the projected-static-v2 encoder was introduced.",
+  "sources": {
+    "census/p97_search/phase3_structural_cegar.py": {
+      "sha256": "af87693d1ff05f556c967237704edd447d3800486bdb530e4b1ebefd5897e33a"
+    },
+    "census/p97_search/sat_generate.py": {
+      "sha256": "df18dcebc77577826803fdfb60951d0812b3935587569be8c7ae443bcca851d3"
+    }
+  },
+  "compatibility": "Legacy manifests, raw semantic assignments, learned banks, survivor banks, terminal CNFs, and DRAT claims remain tied to these hashes and must not be treated as projected-static-v2 artifacts."
+}

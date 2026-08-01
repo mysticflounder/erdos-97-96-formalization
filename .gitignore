@@ -21,6 +21,8 @@ data/
 !lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P4Seed0CompactWindowedReplay/data/**
 !lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P5LargestWindowedReplay/data/
 !lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P5LargestWindowedReplay/data/**
+!lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/ExactFiveCommonShellV7G3Replay/data/
+!lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/ExactFiveCommonShellV7G3Replay/data/**
 
 # tooling junk
 .nthdegree/
@@ -204,7 +206,66 @@ scratch/atail-force/exact7-role-coverage-gate/probe_l2u_stageb_results.json
 /scratch/**/*.stdout
 /scratch/**/*.time
 /scratch/**/*.lock
+/lean/scratch/**/*.log
+/=
+/scratch-five-*.log
+/scratch/phase3-audit.*/
+/scratch/card11-exact5-common*/runs/
+/scratch/card11-exact5-common*/self-test-artifacts/
+/scratch/p97-search-lane/theorem3-table2/runs/
+/scratch/p97-search-lane/theorem3-table2/lemma2-runs/
+/scratch/card11-exact5-common-fullradius-v7-g3-windowed/g3-windowed-replay-package/
+/scratch/card11-exact5-common-fullradius-v7-g3-windowed/g3-windowed-oleans/
+/scratch/card11-exact5-common-fullradius-v7-g3-windowed/production-g3-ingress-git-status.txt
+/scratch/card11-exact5-common-fullradius-v7-semantic-bridge/retained-v3-v6.json
 /scratch/atail-force/unique4-exact-two-core-map/p4.input-core-map.json
 /scratch/atail-force/unique4-exact-two-core-map/p5.input-core-map.json
+
+# Checkpoint/build inventories and source slices are local diagnostics, not
+# durable research artifacts.
+/scratch/udcp-checkpoint/
+/scratch/**/*git-status*.txt
+/scratch/**/*-slice.txt
+/scratch/**/*_slice.txt
+/scratch/qledger-head.txt
+/scratch/n11-v7-tail-manifest-extract.json
+/scratch/aligned-radii-spine.txt
+/scratch/card11-route-targeted-rg.txt
+/scratch/g3-checkpoint-signatures.txt
+/scratch/refactor_audit_*.txt
+/scratch/registry_mine_*.txt
+/scratch/status/
+/scratch/p97-distinct-distance-lane/phase3_perf_sample_*.txt
+/scratch/card11-exact5-common-fullradius-v7-ingress/s2_o0-ingress/lean-replay.sample.txt
+/scratch/singular-liftstd-x9-20260729/run.stdout.json
+/scratch/singular-liftstd-x9-20260729/run.stderr.txt
+
+# Replayable census journals and solver stdout/stderr remain local. Their
+# drivers, manifests, and curated result summaries stay visible.
+/scratch/atail-force/r-actual-blocker-orbit-census/out*/
+/scratch/atail-force/r-actual-blocker-orbit-census/aborted-*/
+/scratch/atail-force/r-actual-blocker-orbit-census/semantic-*-local/
+/scratch/singular-liftstd-x9-20260729/**/stdout*
+/scratch/singular-liftstd-x9-20260729/**/stderr*
+
+# Phase-3 search run directories are large, replayable solver journals. Keep the
+# lane's top-level drivers and summaries visible, but never stage its run trees.
+/scratch/p97-distinct-distance-lane/*/
+/census/p97_search/out/
+
+# Regenerated retained-semantics payload; the builders and summary are durable.
+/scratch/card11-exact5-common-fullradius-v7-semantic-bridge/g3-retained-semantics.json
+/scratch/card11-exact5-common-fullradius-v7-semantic-bridge/s2-g3-reuse-map.json
+
+# Solver ingress intermediates. Each lane's core.cnf/core.drat/core.*.lrat are
+# already ignored above; these two derived payloads are the same class of
+# regenerable output (multi-MB, rebuilt by the lane's ingress run) and are
+# sha256-pinned in the sibling ingress-report.json. The promoted, load-bearing
+# form of each core lives under lean/ — the S2O0 text ingress data and the
+# ExactFiveCommonShellV7G3Replay data tree — so nothing here is proof-carrying.
+/scratch/card11-exact5-common-fullradius-v7-g3-ingress/g3-ingress/Card11Exact5CommonFullradiusV7G3Core.lean
+/scratch/card11-exact5-common-fullradius-v7-g3-ingress/g3-ingress/core-to-input-clause-id.json
+/scratch/card11-exact5-common-fullradius-v7-ingress/s2_o0-ingress/Card11Exact5CommonFullradiusV7S2O0Core.lean
+/scratch/card11-exact5-common-fullradius-v7-ingress/s2_o0-ingress/core-to-input-clause-id.json
 
 docs/live-blueprint.md.tmp

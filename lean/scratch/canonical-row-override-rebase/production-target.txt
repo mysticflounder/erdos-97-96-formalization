@@ -1,0 +1,536 @@
+  9250	    otherOutsidePoint := y
+  9251	    otherOutsidePoint_mem_A := hyA
+  9252	    otherOutsidePoint_ne_source := hyz
+  9253	    otherOutsidePoint_ne_first₁ := hyNeP₁
+  9254	    otherOutsidePoint_ne_first₂ := hyNeP₂
+  9255	    otherOutsidePoint_mem_shell := hyShell
+  9256	    otherOutsidePoint_not_mem_firstCap := hyOutside
+  9257	    outside_eq_pair := houtsideEq
+  9258	  }⟩
+  9259	
+  9260	/-- The carrier portion already exposed by the two collision rows and the
+  9261	named cap-source row.  Each constituent is a critical four-shell, so this
+  9262	seed has cardinality at most twelve. -/
+  9263	private noncomputable def criticalTripleShellSeed
+  9264	    (source : CriticalShellSystem.CarrierVertex D.A) : Finset ℝ² :=
+  9265	  ((H.selectedAt P.source₁
+  9266	      P.source₁_mem_A).toCriticalFourShell.support ∪
+  9267	    (H.selectedAt Pρ.source₁
+  9268	      Pρ.source₁_mem_A).toCriticalFourShell.support) ∪
+  9269	    (H.selectedAt source.1
+  9270	      source.2).toCriticalFourShell.support
+  9271	
+  9272	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  9273	  T hpairsDisjoint hblockersNe
+  9274	  LPρ hLPρ MPρ LP hLP MP in
+  9275	/-- Minimality turns the three known critical shells into a strict
+  9276	continuation: some selected K4 row centered in their union contains a new
+  9277	carrier point outside all three shells.
+  9278	
+  9279	This is the all-center step absent from the purely local blocker split.  Its
+  9280	strict measure is support growth beyond a seed of cardinality at most twelve,
+  9281	using the live branch's carrier lower bound `14 ≤ |A|`. -/
+  9282	theorem exists_selectedRow_escape_criticalTripleShellSeed
+  9283	    (hlarge : FrontierLargeOppositeCapsBiApexRobustResidual B)
+  9284	    (source : CriticalShellSystem.CarrierVertex D.A) :
+  9285	    ∃ center : ℝ²,
+  9286	      ∃ hcenter : center ∈ criticalTripleShellSeed P Pρ source,
+  9287	        ∃ K : SelectedFourClass D.A center,
+  9288	          ∃ z : ℝ²,
+  9289	            z ∈ K.support ∧
+  9290	              z ∉ criticalTripleShellSeed P Pρ source := by
+  9291	  let K₁ :=
+  9292	    (H.selectedAt P.source₁
+  9293	      P.source₁_mem_A).toCriticalFourShell
+  9294	  let K₂ :=
+  9295	    (H.selectedAt Pρ.source₁
+  9296	      Pρ.source₁_mem_A).toCriticalFourShell
+  9297	  let K₃ :=
+  9298	    (H.selectedAt source.1
+  9299	      source.2).toCriticalFourShell
+  9300	  have hseedSub :
+  9301	      criticalTripleShellSeed P Pρ source ⊆ D.A := by
+  9302	    intro z hz
+  9303	    simp only [criticalTripleShellSeed, Finset.mem_union] at hz
+  9304	    rcases hz with (hz | hz) | hz
+  9305	    · exact K₁.support_subset_A hz
+  9306	    · exact K₂.support_subset_A hz
+  9307	    · exact K₃.support_subset_A hz
+  9308	  have hseedNonempty :
+  9309	      (criticalTripleShellSeed P Pρ source).Nonempty := by
+  9310	    refine ⟨source.1, ?_⟩
+  9311	    exact Finset.mem_union_right _
+  9312	      (K₃.q_mem_support)
+  9313	  have hseedCard :
+  9314	      (criticalTripleShellSeed P Pρ source).card ≤ 12 := by
+  9315	    calc
+  9316	      (criticalTripleShellSeed P Pρ source).card
+  9317	          ≤ (K₁.support ∪ K₂.support).card + K₃.support.card := by
+  9318	            exact
+  9319	              Finset.card_union_le (K₁.support ∪ K₂.support) K₃.support
+  9320	      _ ≤ (K₁.support.card + K₂.support.card) + K₃.support.card := by
+  9321	            exact
+  9322	              Nat.add_le_add_right
+  9323	                (Finset.card_union_le K₁.support K₂.support)
+  9324	                K₃.support.card
+  9325	      _ = 12 := by
+  9326	            rw [K₁.support_card, K₂.support_card, K₃.support_card]
+  9327	  have hseedProper :
+  9328	      criticalTripleShellSeed P Pρ source ≠ D.A := by
+  9329	    intro hseedEq
+  9330	    have hAcard : D.A.card ≤ 12 := by
+  9331	      simpa [hseedEq] using hseedCard
+  9332	    have hAge : 14 ≤ D.A.card :=
+  9333	      FrontierLargeOppositeCapsBiApexRobustResidual.carrier_card_ge_fourteen hlarge
+  9334	    omega
+  9335	  rcases
+  9336	      exists_faithfulCarrierPattern_of_globalK4
+  9337	        D.K4 source.2 with ⟨G⟩
+  9338	  rcases
+  9339	      G.exists_row_escape_of_proper_subset
+  9340	        R.minimal hseedNonempty hseedSub hseedProper with
+  9341	    ⟨center, hcenter, z, hzRow, hzOutside⟩
+  9342	  exact
+  9343	    ⟨center, hcenter, G.classAt center (hseedSub hcenter),
+  9344	      z, hzRow, hzOutside⟩
+  9345	
+  9346	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  9347	  T hpairsDisjoint hblockersNe
+  9348	  LPρ hLPρ MPρ LP hLP MP in
+  9349	/-- The anonymous all-center escape can be made source-faithful unless its
+  9350	center is fully deletion robust.
+  9351	
+  9352	In the non-robust branch, the escaping point itself is a critical deletion
+  9353	source.  Indeed, non-robustness makes the center a unique-four center; since
+  9354	the escaping point lies in a selected four-row there, deleting that point
+  9355	destroys the center's only K4 radius.  Thus the continuation retains both the
+  9356	new point and the exact critical row that it deletes. -/
+  9357	theorem exists_criticalRow_escape_or_fullyDeletionRobust_criticalTripleShellSeed
+  9358	    (hlarge : FrontierLargeOppositeCapsBiApexRobustResidual B)
+  9359	    (source : CriticalShellSystem.CarrierVertex D.A) :
+  9360	    ∃ center : ℝ²,
+  9361	      ∃ hcenter : center ∈ criticalTripleShellSeed P Pρ source,
+  9362	        ∃ K : SelectedFourClass D.A center,
+  9363	          ∃ z : ℝ²,
+  9364	            z ∈ K.support ∧
+  9365	              z ∉ criticalTripleShellSeed P Pρ source ∧
+  9366	                (FullyDeletionRobustAt D center ∨
+  9367	                  ∃ C : CriticalSelectedFourClass D.A z center,
+  9368	                    ¬ HasNEquidistantPointsAt 4 (D.A.erase z) center) := by
+  9369	  rcases
+  9370	      exists_selectedRow_escape_criticalTripleShellSeed
+  9371	        P Pρ hlarge source with
+  9372	    ⟨center, hcenter, K, z, hzK, hzOutside⟩
+  9373	  refine ⟨center, hcenter, K, z, hzK, hzOutside, ?_⟩
+  9374	  by_cases hrobust : FullyDeletionRobustAt D center
+  9375	  · exact Or.inl hrobust
+  9376	  · right
+  9377	    have hcenterA : center ∈ D.A := by
+  9378	      simp only [criticalTripleShellSeed, Finset.mem_union] at hcenter
+  9379	      rcases hcenter with (hcenter | hcenter) | hcenter
+  9380	      · exact
+  9381	          (H.selectedAt P.source₁
+  9382	            P.source₁_mem_A).toCriticalFourShell.support_subset_A hcenter
+  9383	      · exact
+  9384	          (H.selectedAt Pρ.source₁
+  9385	            Pρ.source₁_mem_A).toCriticalFourShell.support_subset_A hcenter
+  9386	      · exact
+  9387	          (H.selectedAt source.1
+  9388	            source.2).toCriticalFourShell.support_subset_A hcenter
+  9389	    have hunique : IsUniqueFourCenter D.A center :=
+  9390	      isUniqueFourCenter_of_not_fullyDeletionRobust hcenterA hrobust
+  9391	    have hzA : z ∈ D.A := K.support_subset_A hzK
+  9392	    have hcenterNeZ : center ≠ z := by
+  9393	      intro hcenterZ
+  9394	      exact K.center_not_mem (hcenterZ ▸ hzK)
+  9395	    have hblocked :
+  9396	        ¬ HasNEquidistantPointsAt 4 (D.A.erase z) center := by
+  9397	      intro hsurvives
+  9398	      rcases hunique with
+  9399	        ⟨_, radius₀, hradius₀, hcard₀, hradiusUnique⟩
+  9400	      rcases hsurvives with ⟨radius₁, hradius₁, hcard₁⟩
+  9401	      have hselectedErase :
+  9402	          SelectedClass (D.A.erase z) center radius₁ =
+  9403	            (SelectedClass D.A center radius₁).erase z :=
+  9404	        selectedClass_erase_eq D.A z center radius₁
+  9405	      have hcardErase :
+  9406	          4 ≤ ((SelectedClass D.A center radius₁).erase z).card := by
+  9407	        rw [← hselectedErase]
+  9408	        simpa [SelectedClass] using hcard₁
+  9409	      have hcardFull :
+  9410	          4 ≤ (SelectedClass D.A center radius₁).card :=
+  9411	        hcardErase.trans Finset.card_erase_le
+  9412	      have hradius₁Eq :
+  9413	          radius₁ = radius₀ :=
+  9414	        hradiusUnique radius₁ hradius₁ hcardFull
+  9415	      have hKcard :
+  9416	          4 ≤ (SelectedClass D.A center K.radius).card := by
+  9417	        calc
+  9418	          4 = K.support.card := K.support_card.symm
+  9419	          _ ≤ (SelectedClass D.A center K.radius).card := by
+  9420	            apply Finset.card_le_card
+  9421	            intro w hw
+  9422	            exact mem_selectedClass.mpr
+  9423	              ⟨K.support_subset_A hw, K.support_eq_radius w hw⟩
+  9424	      have hKRadiusEq :
+  9425	          K.radius = radius₀ :=
+  9426	        hradiusUnique K.radius K.radius_pos hKcard
+  9427	      have hzRadius₀ :
+  9428	          z ∈ SelectedClass D.A center radius₀ := by
+  9429	        apply mem_selectedClass.mpr
+  9430	        refine ⟨hzA, ?_⟩
+  9431	        rw [← hKRadiusEq]
+  9432	        exact K.support_eq_radius z hzK
+  9433	      rw [hradius₁Eq, Finset.card_erase_of_mem hzRadius₀, hcard₀] at hcardErase
+  9434	      omega
+  9435	    rcases
+  9436	      ATAILStageOnePrescribedApexDichotomy.criticalSelectedFourClass_at_of_no_qfree
+  9437	        D.K4 hcenterA hcenterNeZ hblocked with
+  9438	      ⟨C⟩
+  9439	    exact ⟨C, hblocked⟩
+  9440	
+  9441	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  9442	  hpairsDisjoint hblockersNe
+  9443	  LPρ hLPρ MPρ LP hLP MP in
+  9444	/-- Source-faithful ingress for the finite `q`-projection.
+  9445	
+  9446	At every named carrier point `q`, global K4 supplies an arbitrary selected
+  9447	four-row centered at `q`.  Independently, the critical-shell system supplies
+  9448	the exact unique-four cover row through `q`, together with its deletion
+  9449	obstruction.  Tri-apex deletion robustness excludes each rich apex as that
+  9450	cover row's center, and localizes the center to a strict indexed cap. -/
+  9451	theorem exists_globalK4Row_and_sourceFaithfulCriticalCover
+  9452	    (q : CriticalShellSystem.CarrierVertex D.A) :
+  9453	    Nonempty (SelectedFourClass D.A q.1) ∧
+  9454	      Nonempty (CriticalSelectedFourClass D.A q.1
+  9455	        (H.centerAt q.1 q.2)) ∧
+  9456	      IsUniqueFourCenter D.A (H.centerAt q.1 q.2) ∧
+  9457	      ¬ HasNEquidistantPointsAt 4
+  9458	        (D.A.erase q.1) (H.centerAt q.1 q.2) ∧
+  9459	      H.centerAt q.1 q.2 ≠ S.oppApex1 ∧
+  9460	      H.centerAt q.1 q.2 ≠ S.oppApex2 ∧
+  9461	      H.centerAt q.1 q.2 ≠ S.surplusApex ∧
+  9462	      ∃ i : Fin 3,
+  9463	        H.centerAt q.1 q.2 ∈ S.capInteriorByIndex i := by
+  9464	  rcases exists_selectedFourClass_of_globalK4 D.K4 q.2 with ⟨Kq⟩
+  9465	  have hcoverUnique :
+  9466	      IsUniqueFourCenter D.A (H.centerAt q.1 q.2) :=
+  9467	    isUniqueFourCenter_centerAt H q.1 q.2
+  9468	  have hcoverNe₁ :
+  9469	      H.centerAt q.1 q.2 ≠ S.oppApex1 := by
+  9470	    intro hcenter
+  9471	    exact
+  9472	      not_isUniqueFourCenter_of_fullyDeletionRobust
+  9473	          (fullyDeletionRobustAt_of_apexRichClassStructure
+  9474	            T.oppApex1_rich)
+  9475	        (hcenter ▸ hcoverUnique)
+  9476	  have hcoverNe₂ :
+  9477	      H.centerAt q.1 q.2 ≠ S.oppApex2 := by
+  9478	    intro hcenter
+  9479	    exact
+  9480	      not_isUniqueFourCenter_of_fullyDeletionRobust
+  9481	          (fullyDeletionRobustAt_of_apexRichClassStructure
+  9482	            T.oppApex2_rich)
+  9483	        (hcenter ▸ hcoverUnique)
+  9484	  have hcoverNe₃ :
+  9485	      H.centerAt q.1 q.2 ≠ S.surplusApex := by
+  9486	    intro hcenter
+  9487	    exact
+  9488	      not_isUniqueFourCenter_of_fullyDeletionRobust
+  9489	          (fullyDeletionRobustAt_of_apexRichClassStructure
+  9490	            T.surplusApex_rich)
+  9491	        (hcenter ▸ hcoverUnique)
+  9492	  exact
+  9493	    ⟨⟨Kq⟩, ⟨H.selectedAt q.1 q.2⟩, hcoverUnique,
+  9494	      H.no_qfree_at q.1 q.2, hcoverNe₁, hcoverNe₂, hcoverNe₃,
+  9495	      exists_blockerCenter_mem_capInteriorByIndex (T := T) q⟩
+  9496	
+  9497	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  9498	  hpairsDisjoint hblockersNe
+  9499	  LPρ hLPρ MPρ LP hLP MP in
+  9500	/-- The source-faithful critical cover at the enlarged first-fiber point is
+  9501	not a new anonymous row: its center is the first collision row's actual
+  9502	blocker, and its support is exactly the already exposed first shell.
+  9503	
+  9504	This is the source equality hidden by a finite projection that gives the
+  9505	`q`-cover center a fresh role.  It also transports indexed-cap localization
+  9506	from the `q` cover to the named first blocker. -/
+  9507	theorem firstFiber_sourceFaithfulCriticalCover_eq_firstShell
+  9508	    (Q : FreshOutsideFirstBlockerFiber P Pρ) :
+  9509	    H.centerAt Q.source.1 Q.source.2 =
+  9510	        H.centerAt P.source₁ P.source₁_mem_A ∧
+  9511	      (H.selectedAt Q.source.1
+  9512	          Q.source.2).toCriticalFourShell.support =
+  9513	        (H.selectedAt P.source₁
+  9514	          P.source₁_mem_A).toCriticalFourShell.support ∧
+  9515	      (H.selectedAt Q.source.1
+  9516	          Q.source.2).toCriticalFourShell.support =
+  9517	        {P.source₁, P.source₂, Q.source.1, Q.otherOutsidePoint} ∧
+  9518	      ∃ i : Fin 3,
+  9519	        H.centerAt P.source₁ P.source₁_mem_A ∈
+  9520	          S.capInteriorByIndex i := by
+  9521	  have hcenter :
+  9522	      H.centerAt Q.source.1 Q.source.2 =
+  9523	        H.centerAt P.source₁ P.source₁_mem_A := by
+  9524	    simpa [CriticalShellSystem.blockerVertex] using
+  9525	      congrArg Subtype.val Q.blockers_eq
+  9526	  have hsupport :
+  9527	      (H.selectedAt Q.source.1
+  9528	          Q.source.2).toCriticalFourShell.support =
+  9529	        (H.selectedAt P.source₁
+  9530	          P.source₁_mem_A).toCriticalFourShell.support :=
+  9531	    ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+  9532	      H Q.source.2 P.source₁_mem_A hcenter
+  9533	  rcases
+  9534	      exists_blockerCenter_mem_capInteriorByIndex
+  9535	        (T := T) Q.source with
+  9536	    ⟨i, hi⟩
+  9537	  exact
+  9538	    ⟨hcenter, hsupport,
+  9539	      hsupport.trans (firstFiber_shell_eq_explicitFour P Pρ Q),
+  9540	      i, hcenter ▸ hi⟩
+  9541	
+  9542	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  9543	  T hpairsDisjoint hblockersNe
+  9544	  LPρ hLPρ MPρ LP hLP MP in
+  9545	/-- The global K4 row centered at an enlarged-fiber source meets the
+  9546	source-faithful first-blocker shell in at most two points.
+  9547	
+  9548	The two circle centers are distinct: the enlarged-fiber source lies on the
+  9549	blocker shell, while that shell cannot contain its own center.  This is the
+  9550	first genuinely global incidence constraint missing from the local
+  9551	two-selected-row order model. -/
+  9552	theorem firstFiber_globalRow_inter_firstShell_card_le_two
+  9553	    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+  9554	    (Kq : SelectedFourClass D.A Q.source.1) :
+  9555	    (Kq.support ∩
+  9556	      (H.selectedAt P.source₁
+  9557	        P.source₁_mem_A).toCriticalFourShell.support).card ≤ 2 := by
+  9558	  have hcentersNe :
+  9559	      Q.source.1 ≠ H.centerAt P.source₁ P.source₁_mem_A := by
+  9560	    intro hcenters
+  9561	    apply
+  9562	      (H.selectedAt P.source₁
+  9563	          P.source₁_mem_A).toCriticalFourShell.toSelectedFourClass.center_not_mem
+  9564	    simpa [hcenters] using Q.source_mem_shell
+  9565	  exact
+  9566	    SelectedFourClass.inter_card_le_two Kq
+  9567	      (H.selectedAt P.source₁
+  9568	        P.source₁_mem_A).toCriticalFourShell.toSelectedFourClass
+  9569	      hcentersNe
+  9570	
+  9571	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  9572	  T hpairsDisjoint hblockersNe
+  9573	  LPρ hLPρ MPρ LP hLP MP in
+  9574	/-- At least two points of the global K4 row centered at an enlarged-fiber
+  9575	source lie outside the source-faithful first-blocker shell.
+  9576	
+  9577	This is the positive form of
+  9578	`firstFiber_globalRow_inter_firstShell_card_le_two`: the global row has
+  9579	exactly four points, while distinct circle centers permit at most two common
+  9580	points. -/
+  9581	theorem firstFiber_globalRow_sdiff_firstShell_card_ge_two
+  9582	    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+  9583	    (Kq : SelectedFourClass D.A Q.source.1) :
+  9584	    2 ≤
+  9585	      (Kq.support \
+  9586	        (H.selectedAt P.source₁
+  9587	          P.source₁_mem_A).toCriticalFourShell.support).card := by
+  9588	  have hinter :
+  9589	      (Kq.support ∩
+  9590	        (H.selectedAt P.source₁
+  9591	          P.source₁_mem_A).toCriticalFourShell.support).card ≤ 2 :=
+  9592	    firstFiber_globalRow_inter_firstShell_card_le_two
+  9593	      P Pρ Q Kq
+  9594	  have hdecomp :=
+  9595	    Finset.card_sdiff_add_card_inter Kq.support
+  9596	      (H.selectedAt P.source₁
+  9597	        P.source₁_mem_A).toCriticalFourShell.support
+  9598	  rw [Kq.support_card] at hdecomp
+  9599	  omega
+  9600	
+  9601	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  9602	  T hpairsDisjoint hblockersNe
+  9603	  LPρ hLPρ MPρ LP hLP MP in
+  9604	/-- Two distinct named points of the global K4 row lie outside the
+  9605	source-faithful first-blocker shell. -/
+  9606	theorem exists_two_firstFiber_globalRow_points_outside_firstShell
+  9607	    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+  9608	    (Kq : SelectedFourClass D.A Q.source.1) :
+  9609	    ∃ u ∈
+  9610	        Kq.support \
+  9611	          (H.selectedAt P.source₁
+  9612	            P.source₁_mem_A).toCriticalFourShell.support,
+  9613	      ∃ v ∈
+  9614	          Kq.support \
+  9615	            (H.selectedAt P.source₁
+  9616	              P.source₁_mem_A).toCriticalFourShell.support,
+  9617	        u ≠ v := by
+  9618	  apply Finset.one_lt_card.mp
+  9619	  have htwo :=
+  9620	    firstFiber_globalRow_sdiff_firstShell_card_ge_two
+  9621	      P Pρ Q Kq
+  9622	  omega
+  9623	
+  9624	/-- The exact positive-incidence residual after ordered-cap geometry has
+  9625	excluded a second bisection of the first blocker's two outside points.
+  9626	
+  9627	Narrowing measure: compared with the singleton-radius parent, this leaf
+  9628	exposes the actual enlarged-fiber witness and assumes the strict
+  9629	second-blocker non-bisection that the parent proves from ordered-cap
+  9630	uniqueness.  Thus the remaining proof must use the retained global
+  9631	geometry/minimality packet to contradict one concrete distance inequality;
+  9632	it cannot discharge the branch by another finite omission split. -/
+  9633	theorem false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
+  9634	    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+  9635	    (source : CriticalShellSystem.CarrierVertex D.A)
+  9636	    (hsource : FirstFiberCapSourceWitness P Pρ source)
+  9637	    (hsingleton :
+  9638	      SelectedClass D.A S.oppApex1 (dist S.oppApex1 source.1) ∩
+  9639	          S.capInteriorByIndex S.oppIndex1 =
+  9640	        {source.1})
+  9641	    (haligned :
+  9642	      FirstCapMultiPointRadiiRetained
+  9643	        (S := S) (radius := radius) (ρ := ρ))
+  9644	    (hsecondNe :
+  9645	      dist (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) Q.source.1 ≠
+  9646	        dist (H.centerAt Pρ.source₁ Pρ.source₁_mem_A)
+  9647	          Q.otherOutsidePoint) :
+  9648	    False := by
+  9649	  rcases
+  9650	      exists_secondRowOutsidePoint_ne_firstOutsidePair
+  9651	        P Pρ hpairsDisjoint Q hsecondNe with
+  9652	    ⟨z, hzSecondRow, hzOutside, hzNeSource, hzNeOther⟩
+  9653	  rcases
+  9654	      exists_crossRetainedEndpoints_sourceSurvives_doubleDeletion
+  9655	        P Pρ hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  9656	        source hsource haligned with
+  9657	    ⟨x, y, hxPair, hyPair, hxSourceOmitted, hySourceOmitted,
+  9658	      hsourceSurvives, hfirstApexBlocked⟩
+  9659	  have hfirstApexCore :=
+  9660	    firstApex_minimalDeletionCore_of_crossRetainedEndpoints
+  9661	      P Pρ hρne hfrontierInteriorEq hρInteriorEq T
+  9662	      hxPair hyPair hfirstApexBlocked
+  9663	  have hzBlockerNeFirst :=
+  9664	    secondRowOutsidePoint_blocker_ne_first P Pρ Q hzSecondRow
+  9665	      hzOutside hzNeSource hzNeOther
+  9666	  have hzContinuation :
+  9667	      Nonempty (FreshOutsideSecondBlockerFiber P Pρ) ∨
+  9668	        (H.blockerVertex
+  9669	              ⟨z,
+  9670	                (H.selectedAt Pρ.source₁
+  9671	                  Pρ.source₁_mem_A).toCriticalFourShell.support_subset_A
+  9672	                    hzSecondRow⟩ ≠
+  9673	            H.blockerVertex ⟨P.source₁, P.source₁_mem_A⟩ ∧
+  9674	          H.blockerVertex
+  9675	              ⟨z,
+  9676	                (H.selectedAt Pρ.source₁
+  9677	                  Pρ.source₁_mem_A).toCriticalFourShell.support_subset_A
+  9678	                    hzSecondRow⟩ ≠
+  9679	            H.blockerVertex ⟨Pρ.source₁, Pρ.source₁_mem_A⟩) := by
+  9680	    by_cases hzBlockerEqSecond :
+  9681	        H.blockerVertex
+  9682	            ⟨z,
+  9683	              (H.selectedAt Pρ.source₁
+  9684	                Pρ.source₁_mem_A).toCriticalFourShell.support_subset_A
+  9685	                  hzSecondRow⟩ =
+  9686	          H.blockerVertex ⟨Pρ.source₁, Pρ.source₁_mem_A⟩
+  9687	    · exact Or.inl
+  9688	        (freshOutsideSecondBlockerFiber_of_secondRowOutsidePoint
+  9689	          P Pρ hzSecondRow hzOutside hzBlockerEqSecond)
+  9690	    · exact Or.inr ⟨hzBlockerNeFirst, hzBlockerEqSecond⟩
+  9691	  rcases
+  9692	      exists_criticalRow_escape_or_fullyDeletionRobust_criticalTripleShellSeed
+  9693	        P Pρ L source with
+  9694	    ⟨escapeCenter, hescapeCenter, escapeRow, escapePoint,
+  9695	      hescapePointInRow, hescapePointOutside, hescapeContinuation⟩
+  9696	  rcases
+  9697	      exists_globalK4Row_and_sourceFaithfulCriticalCover
+  9698	        (T := T) Q.source with
+  9699	    ⟨⟨qGlobalRow⟩, ⟨qCoverRow⟩, hqCoverUnique, hqCoverBlocked,
+  9700	      hqCoverNeFirstApex, hqCoverNeSecondApex, hqCoverNeSurplusApex,
+  9701	      qCoverCapIndex, hqCoverCap⟩
+  9702	  rcases
+  9703	      firstFiber_sourceFaithfulCriticalCover_eq_firstShell
+  9704	        (T := T) P Pρ Q with
+  9705	    ⟨hqCoverCenterEqFirst, hqCoverSupportEqFirst,
+  9706	      hqCoverSupportEqExplicit, firstBlockerCapIndex,
+  9707	      hfirstBlockerCap⟩
+  9708	  rcases
+  9709	      exists_two_firstFiber_globalRow_points_outside_firstShell
+  9710	        P Pρ Q qGlobalRow with
+  9711	    ⟨qOutside₁, hqOutside₁, qOutside₂, hqOutside₂,
+  9712	      hqOutsideNe⟩
+  9713	  have hescapeCenterNeFirstBlocker :
+  9714	      escapeCenter ≠
+  9715	        H.centerAt P.source₁ P.source₁_mem_A := by
+  9716	    intro hcenter
+  9717	    subst escapeCenter
+  9718	    have hsupportEq :=
+  9719	      H.selectedFourClass_support_eq_shell
+  9720	        P.source₁ P.source₁_mem_A escapeRow
+  9721	    apply hescapePointOutside
+  9722	    simp only [criticalTripleShellSeed, Finset.mem_union]
+  9723	    exact Or.inl (Or.inl (hsupportEq ▸ hescapePointInRow))
+  9724	  have hescapeCenterNeSecondBlocker :
+  9725	      escapeCenter ≠
+  9726	        H.centerAt Pρ.source₁ Pρ.source₁_mem_A := by
+  9727	    intro hcenter
+  9728	    subst escapeCenter
+  9729	    have hsupportEq :=
+  9730	      H.selectedFourClass_support_eq_shell
+  9731	        Pρ.source₁ Pρ.source₁_mem_A escapeRow
+  9732	    apply hescapePointOutside
+  9733	    simp only [criticalTripleShellSeed, Finset.mem_union]
+  9734	    exact Or.inl (Or.inr (hsupportEq ▸ hescapePointInRow))
+  9735	  have hescapeCenterNeSourceBlocker :
+  9736	      escapeCenter ≠ H.centerAt source.1 source.2 := by
+  9737	    intro hcenter
+  9738	    subst escapeCenter
+  9739	    have hsupportEq :=
+  9740	      H.selectedFourClass_support_eq_shell
+  9741	        source.1 source.2 escapeRow
+  9742	    apply hescapePointOutside
+  9743	    simp only [criticalTripleShellSeed, Finset.mem_union]
+  9744	    exact Or.inr (hsupportEq ▸ hescapePointInRow)
+  9745	  have hfirstBlockerNeEscape :
+  9746	      H.centerAt P.source₁ P.source₁_mem_A ≠ escapeCenter :=
+  9747	    Ne.symm hescapeCenterNeFirstBlocker
+  9748	  have hqCoverNeEscape :
+  9749	      H.centerAt Q.source.1 Q.source.2 ≠ escapeCenter := by
+  9750	    rw [hqCoverCenterEqFirst]
+  9751	    exact hfirstBlockerNeEscape
+  9752	  sorry
+  9753	
+  9754	/-- The singleton-radius normal form for the exact aligned residual.
+  9755	
+  9756	Narrowing measure: in addition to the universal two-retained-radii alignment,
+  9757	this leaf exposes the cap-eight producer's actual named source, its complete
+  9758	cross-pair deletion-survival witness, and the exact singleton equation for
+  9759	that source's first-apex radius inside the strict cap. -/
+  9760	theorem false_of_capSource_freshOutsideFirstBlockerFiber_alignedSingletonRadius
+  9761	    (source : CriticalShellSystem.CarrierVertex D.A)
+  9762	    (hsource : FirstFiberCapSourceWitness P Pρ source)
+  9763	    (hsingleton :
+  9764	      SelectedClass D.A S.oppApex1 (dist S.oppApex1 source.1) ∩
+  9765	          S.capInteriorByIndex S.oppIndex1 =
+  9766	        {source.1})
+  9767	    (hfirst : Nonempty (FreshOutsideFirstBlockerFiber P Pρ))
+  9768	    (haligned :
+  9769	      FirstCapMultiPointRadiiRetained
+  9770	        (S := S) (radius := radius) (ρ := ρ)) :
+  9771	    False := by
+  9772	  rcases hfirst with ⟨Q⟩
+  9773	  exact
+  9774	    false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector
+  9775	      P Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  9776	      T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP
+  9777	      Q source hsource hsingleton haligned
+  9778	      (secondBlocker_dist_ne_of_freshOutsideFirstBlockerFiber
+  9779	        P Pρ hblockersNe Q)
+  9780	
+  9781	/-- The exact aligned residual after retaining first-apex radius provenance.
+  9782	Every strict-cap radius with two points is already one of the two retained
+  9783	collision radii, so the fresh co-radial blocker-rigidity terminal is
+  9784	unavailable.
+  9785	

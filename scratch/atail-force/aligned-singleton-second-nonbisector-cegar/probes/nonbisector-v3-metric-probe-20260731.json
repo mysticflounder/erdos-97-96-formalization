@@ -1,0 +1,62 @@
+{
+  "disequality_constraint_count": 1894,
+  "elapsed_seconds": 0.30726508400402963,
+  "epistemic_status": "BOUNDED_RATIONAL_KALMANSON_CHECK_NOT_EUCLIDEAN_NOT_LEAN",
+  "equality_constraint_count": 146,
+  "input": "scratch/atail-force/aligned-singleton-second-nonbisector-cegar/nonbisector-v3.json",
+  "n": 17,
+  "schema": "p97-aligned-singleton-second-nonbisector-metric-gate-v1",
+  "status": "UNSAT",
+  "strict_kalmanson_count": 4760,
+  "strict_triangle_count": 2040,
+  "unsat_core": [
+    {
+      "center": 0,
+      "equal": true,
+      "left": 1,
+      "right": 8
+    },
+    {
+      "center": 0,
+      "equal": true,
+      "left": 2,
+      "right": 9
+    },
+    {
+      "center": 0,
+      "equal": true,
+      "left": 3,
+      "right": 10
+    },
+    {
+      "center": 1,
+      "equal": true,
+      "left": 0,
+      "right": 2
+    },
+    {
+      "center": 1,
+      "equal": true,
+      "left": 0,
+      "right": 10
+    },
+    {
+      "center": 2,
+      "equal": true,
+      "left": 1,
+      "right": 3
+    },
+    {
+      "center": 2,
+      "equal": true,
+      "left": 1,
+      "right": 8
+    },
+    {
+      "center": 2,
+      "equal": true,
+      "left": 1,
+      "right": 9
+    }
+  ]
+}

@@ -296,8 +296,7 @@ superseded.
 
 ## v19 source-faithful projection checkpoint
 
-The source correction is now implemented in `cegar.py`, without starting a
-new CEGAR round:
+The source correction was implemented in `cegar.py` before the v19 resume:
 
 - whenever the projection materializes the minimal critical cover through
   `q`, it asserts `cover_q = b1`;
@@ -312,15 +311,39 @@ The checkpoint schema is now
 so a v18 checkpoint cannot be resumed silently under the stronger
 projection.  The bounded `--self-test` checks the equality, the induced
 support identification, all three nonaliases, and the schema invalidation; it
-passes.  The replay-metadata unit tests also pass under the v19 schema.  This
-is a fidelity checkpoint only: no new survivor or UNSAT result has been
-claimed, no CEGAR loop was started, and no `sorry` was closed.
+passes.  The replay-metadata unit tests also pass under the v19 schema.  The
+resumed result
+`cegar-v19-custom-q-cover-q-critical-reuse-second.json` is `ALIVE`, with
+epistemic status `INDUCED_NECESSARY_CONDITION_ONLY`: after 20 outer calls it
+records 14,740 resumed cuts, 2,434 newly banked cuts, and 17,174 total cuts.
+Its survivor has an exact strict-Kalmanson metric on the induced quotient.  It
+is not a Euclidean countermodel, an UNSAT result, a certificate, or Lean
+closure.
 
-This checkpoint closes no `sorry`.
+The source-faithful exact-coordinate follow-up is also inconclusive.  Replaying
+the frozen survivor through `euclidean_survivor_probe.py` produced 22 quotient
+classes, 37 positive quotient-distance equations, 440 strict-convexity support
+assertions, and four gauge assertions.  Z3 reached the hard timeout and the
+probe returned `UNKNOWN_FAIL_CLOSED`.  The generated instance and fail-closed
+result are recorded as
+`euclidean-survivor-probe-v19-custom-q-cover-q-critical-reuse-second.*`.
+A separate scan of all 62 recorded true row equalities found no direct
+`DuplicateCenterCore` motif.  These are diagnostic results only: they neither
+realize the survivor in Euclidean space nor refute it.
+
+Production source extraction subsequently made
 `false_of_capSource_alignedSingletonRadius_of_secondBlocker_nonbisector`
-remains the one load-bearing leaf.  Its coordinator frontier is unchanged:
-one direct leaf, with the same two-way second-row continuation and two-way
-robust-versus-critical escape continuation (constructor fan-out `2 × 2`).
+source-clean.  It now reduces through
+`false_of_freshCanonicalRowOverride` to the fresh-third coordinator, whose
+negative same-cap-alignment residual remains load-bearing.  This scratch lane
+therefore records a necessary fixed-finite shadow, not the current
+coordinator interface.
+The generic actual-blocker cap classifier does not close that residual: it
+classifies the two blocker centers independently, while the residual omits the
+fresh-center distinction, off-cap facts for the fresh sources, and their
+membership in the cap-source row.  A useful next producer therefore has to
+couple cap localization with those cross-row incidence facts; merely proving
+that the two centers share a cap is insufficient.
 The former local-order route through
 `SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows` is now
 classified as a no-go for this leaf.  The deterministic order audit
@@ -344,9 +367,8 @@ the missing contradiction; another local cyclic-order kernel would be false.
 The theorem-bank audit likewise found no existing imported consumer that
 eliminates these five words.
 
-The live route must therefore use data absent from that local model.  The new
-checked extraction supplies two named global-row points outside the explicit
-first shell.  The nearest existing clean terminal for the escape row is
+Before the production override/rebase was landed, the nearest existing clean
+terminal for the escape row was
 `false_of_centerAt_selectedFourClass_inter_card_ge_three`; after rewriting the
 source-faithful `q` cover, its missing positive producer is
 
@@ -356,13 +378,16 @@ source-faithful `q` cover, its missing positive producer is
     escapeRow.support).card.
 ```
 
-The new global row is not the escape row, so its two fresh points do not prove
+The global row is not the escape row, so its two fresh points do not prove
 this inequality by themselves.  The remaining bridge must couple the global
 row's two outside-shell points with the escape continuation, minimal deletion
 core, cap localization, or full deletion filters strongly enough either to
-identify the rows or force a three-point overlap.  No new CEGAR process was
-started at this checkpoint.  Any future finite `UNSAT` still needs independent
-certificate validation and a checked source-to-certificate adapter.
+identify the rows or force a three-point overlap.  The production rebase took
+a different route: it installs the canonical row with
+`CriticalShellSystem.overrideAt`, transports the whole dependent packet, and
+delegates to the fresh-third terminal.  Any future finite `UNSAT` still needs
+independent certificate validation and a checked source-to-certificate
+adapter.
 
 Two tempting follow-ons have also been audited and are not closure routes:
 
@@ -393,5 +418,6 @@ boundary:
   `H.centerAt u huA = escapeCenter` for either fresh point: the prescribed
   critical row and the arbitrary canonical system `H` are independent
   choices.  `overrideAt` can enforce those identities only after changing
-  `H`, and there is no current whole-coordinator rebase for the dependent
-  frontier/collision/cycle packet.
+  `H`; the production theorem
+  `false_of_freshCanonicalRowOverride` now supplies the required
+  whole-coordinator rebase for the dependent frontier/collision/cycle packet.

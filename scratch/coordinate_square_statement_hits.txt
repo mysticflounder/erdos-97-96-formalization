@@ -1,0 +1,42 @@
+lean/Erdos9796Proof/P97/A1B2FrameNormalization.lean:51:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/CertCheck.lean:120:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/EqualityCore.lean:73:    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean:30:    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
+lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean:134:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean:25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean:25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean:26:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean:25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean:25:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean:27:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean:31:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/BisectorKill.lean:42:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FaithfulFrame.lean:46:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCPEqCProducer.lean:305:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCQeqEb3PinClash.lean:22:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean:577:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/FormCcB1UpperArc.lean:814:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/QeqEb2PinClash.lean:40:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:331:  have sq : ∀ X Y : ℝ², dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean:544:    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N4d/TrackBPilotSupport.lean:37:    dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:218:  have ds : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 := fun p q => by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:279:  have ds : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 := fun p q => by
+lean/Erdos9796Proof/P97/N8/N8kDistribution.lean:45:  have dist_sq : ∀ p q : ℝ², dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 := fun p q => by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:1456:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean:2086:      dist c p ^ 2 = (c 0 - p 0) ^ 2 + (c 1 - p 1) ^ 2 := by
+lean/Erdos9796Proof/P97/Q3SharedInterior.lean:32:    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 := by
+lean/Erdos9796Proof/P97/SurplusCOMPGBankSep.lean:27:    dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 := by
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:194:    dist A B ^ 2 = (A 0 - B 0) ^ 2 + (A 1 - B 1) ^ 2 := by
+lean/Erdos9796Proof/P97/U1CarrierInjection.lean:76:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean:195:      dist a b ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 := fun a b => by
+lean/Erdos9796Proof/P97/U2/OneHitMonotone.lean:92:      dist a b ^ 2 = (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 := fun a b => by
+lean/Erdos9796Proof/P97/U2/SameDistanceArcContainment.lean:92:    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 := by
+lean/Erdos9796Proof/P97/U2/SimilarityNormalization.lean:80:    dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 := by
+lean/Erdos9796Proof/P97/U5GlobalIncidenceKernels.lean:207:    dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by

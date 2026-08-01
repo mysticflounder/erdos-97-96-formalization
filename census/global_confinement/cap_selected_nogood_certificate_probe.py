@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (c) 2026 Adam McKenna. All rights reserved.
 # Released under Apache 2.0 license as described in the file LICENSE.
 # Author: Adam McKenna <adam@mysticflounder.ai>
@@ -29,15 +28,14 @@ import json
 import os
 import time
 from collections import Counter, defaultdict, deque
+from collections.abc import Iterable, Mapping, Sequence
 from concurrent.futures import ProcessPoolExecutor, as_completed
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from itertools import combinations
 from pathlib import Path
-from typing import Any, Iterable, Mapping, Sequence
+from typing import Any
 
-from census.global_confinement import (
-    direct_cap_selected_metric_core_probe as direct,
-)
+from census.global_confinement import direct_cap_selected_metric_core_probe as direct
 from census.global_confinement import metric_realizability_probe as metric
 from census.global_confinement.probe import PIN_CENTER, packet_labels
 from census.global_confinement.shadow import ClassRow, hull_order, solve_rows
@@ -45,7 +43,6 @@ from census.global_confinement.surplus_source_metric_core_probe import (
     _cap_selected_rows_ok,
 )
 from census.multi_center import multi_center_census as mc
-
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -206,6 +203,168 @@ def _core_obligations(
             ("CV_CA", edge(c, v), edge(c, a)),
             ("VB_VA", edge(v, b), edge(v, a)),
             ("VC_VA", edge(v, c), edge(v, a)),
+        )
+    if stage == "equality-six-point-two-pair-collision":
+        a, b, c, d, e, f = (
+            core[name] for name in ("a", "b", "c", "d", "e", "f")
+        )
+        return (
+            ("AB_AC", edge(a, b), edge(a, c)),
+            ("AB_AE", edge(a, b), edge(a, e)),
+            ("FA_FC", edge(f, a), edge(f, c)),
+            ("FA_FD", edge(f, a), edge(f, d)),
+            ("FA_FE", edge(f, a), edge(f, e)),
+            ("BD_BF", edge(b, d), edge(b, f)),
+            ("CB_CD", edge(c, b), edge(c, d)),
+            ("EB_EC", edge(e, b), edge(e, c)),
+            ("EB_ED", edge(e, b), edge(e, d)),
+        )
+    if stage == "equality-six-point-five-circle-collision-a":
+        o, a, b, c, e, f = (
+            core[name] for name in ("o", "a", "b", "c", "e", "f")
+        )
+        return (
+            ("OA_OB", edge(o, a), edge(o, b)),
+            ("AO_AB", edge(a, o), edge(a, b)),
+            ("AO_AC", edge(a, o), edge(a, c)),
+            ("AO_AE", edge(a, o), edge(a, e)),
+            ("CB_CE", edge(c, b), edge(c, e)),
+            ("CB_CF", edge(c, b), edge(c, f)),
+            ("EO_EC", edge(e, o), edge(e, c)),
+            ("EO_EF", edge(e, o), edge(e, f)),
+            ("FO_FA", edge(f, o), edge(f, a)),
+        )
+    if stage == "equality-six-point-five-circle-collision-b":
+        o, a, b, c, e, f = (
+            core[name] for name in ("o", "a", "b", "c", "e", "f")
+        )
+        return (
+            ("AO_AB", edge(a, o), edge(a, b)),
+            ("AO_AE", edge(a, o), edge(a, e)),
+            ("BO_BA", edge(b, o), edge(b, a)),
+            ("BO_BC", edge(b, o), edge(b, c)),
+            ("BO_BF", edge(b, o), edge(b, f)),
+            ("EO_EB", edge(e, o), edge(e, b)),
+            ("CO_CF", edge(c, o), edge(c, f)),
+            ("FA_FE", edge(f, a), edge(f, e)),
+            ("FA_FC", edge(f, a), edge(f, c)),
+        )
+    if stage == "equality-six-point-five-circle-collision-c":
+        o, a, b, c, e, f = (
+            core[name] for name in ("o", "a", "b", "c", "e", "f")
+        )
+        return (
+            ("AO_AB", edge(a, o), edge(a, b)),
+            ("AO_AE", edge(a, o), edge(a, e)),
+            ("AO_AC", edge(a, o), edge(a, c)),
+            ("BO_BA", edge(b, o), edge(b, a)),
+            ("BO_BF", edge(b, o), edge(b, f)),
+            ("EB_EC", edge(e, b), edge(e, c)),
+            ("EB_EF", edge(e, b), edge(e, f)),
+            ("CO_CE", edge(c, o), edge(c, e)),
+            ("FA_FE", edge(f, a), edge(f, e)),
+        )
+    if stage == "equality-seven-point-five-circle-collision":
+        a, b, c, d, e, f, g = (
+            core[name] for name in ("a", "b", "c", "d", "e", "f", "g")
+        )
+        return (
+            ("AB_AC", edge(a, b), edge(a, c)),
+            ("AB_AD", edge(a, b), edge(a, d)),
+            ("BA_BC", edge(b, a), edge(b, c)),
+            ("BA_BF", edge(b, a), edge(b, f)),
+            ("BA_BE", edge(b, a), edge(b, e)),
+            ("FC_FE", edge(f, c), edge(f, e)),
+            ("FC_FG", edge(f, c), edge(f, g)),
+            ("EA_ED", edge(e, a), edge(e, d)),
+            ("EA_EF", edge(e, a), edge(e, f)),
+            ("EA_EG", edge(e, a), edge(e, g)),
+            ("GA_GD", edge(g, a), edge(g, d)),
+        )
+    if stage == "equality-eight-point-five-circle-collision":
+        o, a, b, c, d, e, f, g = (
+            core[name]
+            for name in ("o", "a", "b", "c", "d", "e", "f", "g")
+        )
+        return (
+            ("AO_AB", edge(a, o), edge(a, b)),
+            ("AO_AE", edge(a, o), edge(a, e)),
+            ("AO_AD", edge(a, o), edge(a, d)),
+            ("BO_BA", edge(b, o), edge(b, a)),
+            ("BO_BF", edge(b, o), edge(b, f)),
+            ("BO_BG", edge(b, o), edge(b, g)),
+            ("EB_ED", edge(e, b), edge(e, d)),
+            ("EB_EF", edge(e, b), edge(e, f)),
+            ("FC_FD", edge(f, c), edge(f, d)),
+            ("FC_FG", edge(f, c), edge(f, g)),
+            ("GA_GE", edge(g, a), edge(g, e)),
+            ("GA_GF", edge(g, a), edge(g, f)),
+        )
+    if stage == "equality-six-point-circle-chain-collision":
+        a, b, c, d, e, f = (
+            core[name] for name in ("a", "b", "c", "d", "e", "f")
+        )
+        return (
+            ("BA_BC", edge(b, a), edge(b, c)),
+            ("BA_BD", edge(b, a), edge(b, d)),
+            ("CA_CB", edge(c, a), edge(c, b)),
+            ("CA_CE", edge(c, a), edge(c, e)),
+            ("CA_CF", edge(c, a), edge(c, f)),
+            ("DC_DE", edge(d, c), edge(d, e)),
+            ("EA_EF", edge(e, a), edge(e, f)),
+            ("FB_FD", edge(f, b), edge(f, d)),
+            ("FB_FE", edge(f, b), edge(f, e)),
+        )
+    if stage == "equality-seven-point-six-circle-collision":
+        o, a, b, c, d, e, f = (
+            core[name] for name in ("o", "a", "b", "c", "d", "e", "f")
+        )
+        return (
+            ("OA_OB", edge(o, a), edge(o, b)),
+            ("BO_BA", edge(b, o), edge(b, a)),
+            ("BO_BD", edge(b, o), edge(b, d)),
+            ("BO_BE", edge(b, o), edge(b, e)),
+            ("CO_CB", edge(c, o), edge(c, b)),
+            ("CO_CF", edge(c, o), edge(c, f)),
+            ("DB_DC", edge(d, b), edge(d, c)),
+            ("DB_DE", edge(d, b), edge(d, e)),
+            ("EO_EA", edge(e, o), edge(e, a)),
+            ("FA_FC", edge(f, a), edge(f, c)),
+            ("FA_FE", edge(f, a), edge(f, e)),
+        )
+    if stage == "equality-seven-point-six-circle-collision-b":
+        a, b, c, d, e, f, g = (
+            core[name] for name in ("a", "b", "c", "d", "e", "f", "g")
+        )
+        return (
+            ("AE_AB", edge(a, e), edge(a, b)),
+            ("EA_EC", edge(e, a), edge(e, c)),
+            ("CA_CB", edge(c, a), edge(c, b)),
+            ("CA_CD", edge(c, a), edge(c, d)),
+            ("FE_FC", edge(f, e), edge(f, c)),
+            ("FE_FG", edge(f, e), edge(f, g)),
+            ("FE_FD", edge(f, e), edge(f, d)),
+            ("GA_GE", edge(g, a), edge(g, e)),
+            ("GA_GF", edge(g, a), edge(g, f)),
+            ("DA_DB", edge(d, a), edge(d, b)),
+            ("DA_DG", edge(d, a), edge(d, g)),
+        )
+    if stage == "equality-seven-point-twin-four-circle-collision":
+        o, a, b, c, d, e, f = (
+            core[name] for name in ("o", "a", "b", "c", "d", "e", "f")
+        )
+        return (
+            ("OA_OB", edge(o, a), edge(o, b)),
+            ("AO_AC", edge(a, o), edge(a, c)),
+            ("BA_BC", edge(b, a), edge(b, c)),
+            ("BA_BE", edge(b, a), edge(b, e)),
+            ("DO_DB", edge(d, o), edge(d, b)),
+            ("DO_DE", edge(d, o), edge(d, e)),
+            ("DO_DF", edge(d, o), edge(d, f)),
+            ("EA_EC", edge(e, a), edge(e, c)),
+            ("EA_ED", edge(e, a), edge(e, d)),
+            ("EA_EF", edge(e, a), edge(e, f)),
+            ("FO_FA", edge(f, o), edge(f, a)),
         )
     if stage == "equality-seven-point-orbit-collision":
         o, a, b, c, u, v, w = (
@@ -395,8 +554,8 @@ def _closure_graph(
                 continue
             step = {"kind": "flip", "first": first, "second": second}
             graph[(first, second)].append(((second, first), step))
-    for node in graph:
-        graph[node].sort(
+    for successors in graph.values():
+        successors.sort(
             key=lambda item: (item[0], _canonical_json(item[1]))
         )
     return graph
@@ -1077,7 +1236,7 @@ def run(
     }
     artifact = {
         "schema": SCHEMA,
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": datetime.now(UTC).isoformat(),
         "source": os.path.relpath(source, ROOT),
         "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
         "dependency_sha256": {

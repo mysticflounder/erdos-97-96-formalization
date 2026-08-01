@@ -1,0 +1,129 @@
+{
+  "artifacts": {
+    "Card11Exact5CommonFullradiusV7G3Core.lean": {
+      "bytes": 6230071,
+      "sha256": "0497900d1064a3c565f28ce78f3c4b44cde52c4fc4887163fbe0a4dd44a62218"
+    },
+    "core-to-input-clause-id.json": {
+      "bytes": 2719028,
+      "sha256": "dc3cdc485465e203165361eeb99b792072a98fafebee73795fb15774132e9004"
+    },
+    "core.cnf": {
+      "bytes": 4983482,
+      "sha256": "310b30d0b9ad2787599ee9b0edce999edfb333934901ca578734182076771683"
+    },
+    "core.drat": {
+      "bytes": 137757653,
+      "sha256": "f8d27a646040b5f004b1875a6525bc4b2cfa0cebd0672949d5f1951bb5ea68a7"
+    },
+    "core.normalized.lrat": {
+      "bytes": 807222738,
+      "sha256": "433bb5ed869235107c6e3ffef0c4330aba6c7fff487b879c454a7b1dbd9ba74a"
+    },
+    "core.raw.lrat": {
+      "bytes": 808646438,
+      "sha256": "02f52721abfd1f77df99cadda9f7838b4af2e322d5d2c1205478115db604f36b"
+    }
+  },
+  "claim_scope": "Frozen G3 trimmed-core CNF UNSAT only; source valuation and shell-case selector coverage are not supplied.",
+  "core_clause_count_by_g3_kind": {
+    "all_four_common_position": 272902,
+    "selector_guarded_s2_o9": 36,
+    "selector_guarded_s3_o0": 37,
+    "selector_guarded_s3_o9": 41,
+    "selector_totality": 1
+  },
+  "core_to_input_policy": "first available exact signed-literal-multiset occurrence; each input occurrence is consumed at most once",
+  "counts": {
+    "certificate_padding_variable": 96418,
+    "checker_base_clauses": 273018,
+    "core_clauses": 273017,
+    "core_variables": 49360,
+    "input_clauses": 1370871,
+    "input_variables": 49360,
+    "max_certificate_variable": 96417
+  },
+  "expected_native_axioms": [
+    "Lean.ofReduceBool",
+    "Lean.trustCompiler"
+  ],
+  "input_audit": {
+    "clauses": 1370871,
+    "hashes": {
+      "input.cnf": "17569ab86af1d72db6c66ec385176cc020bd62711cfb2e61953dd3e4d36b4ce8",
+      "manifest.json": "68cd8b809b8662dd9dcdf1522d35777db1c625ddd4dbbf81420ce8feeb57973c",
+      "proof.drat": "22d0677b97a023b080008d196ff1362e408091fd69a2384a9e501d3e9504a4fb"
+    },
+    "independent_verification": {
+      "bytes": 467,
+      "exact_verified_line": true,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-g3/drat-trim.log",
+      "sha256": "aa7b06a3d38c85f536a8a81503ee22dd5ac3c57e8711393d830e4e76a8b09ea4"
+    },
+    "schema": "card11_exact5_common_fullradius.v7.g3.v1",
+    "variables": 49360
+  },
+  "lean_replay_command": [
+    "cd",
+    "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean",
+    "&&",
+    "lake",
+    "env",
+    "lean",
+    "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-g3-ingress/g3-ingress/Card11Exact5CommonFullradiusV7G3Core.lean"
+  ],
+  "runs": {
+    "extract_core_and_core_relative_drat": {
+      "command": [
+        "/Users/adam/.local/bin/drat-trim",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-g3/input.cnf",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-g3/proof.drat",
+        "-c",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-g3-ingress/.g3-ingress.stage-42212-1785452421202043000/core.cnf",
+        "-l",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-g3-ingress/.g3-ingress.stage-42212-1785452421202043000/core.drat"
+      ],
+      "elapsed_seconds": 1693.5303156250156,
+      "exit_code": 0,
+      "log_sha256": "f2288430d9109f76f6a1c2bd328008e6b1be7ba1758c9cbdab40951f130de8e6"
+    },
+    "normalize_lrat": {
+      "command": [
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/python3",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-ingress/normalize_lrat_for_padded_core.py",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-g3-ingress/.g3-ingress.stage-42212-1785452421202043000/core.raw.lrat",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-g3-ingress/.g3-ingress.stage-42212-1785452421202043000/core.normalized.lrat",
+        "--source-base-clauses",
+        "273017",
+        "--checker-base-clauses",
+        "273018"
+      ],
+      "elapsed_seconds": 30.64545216690749,
+      "exit_code": 0,
+      "log_sha256": "5acadb6d7b905220ba419c3bff8221944590e6fad3ec682727811ad4fb3f2088"
+    },
+    "verify_core_relative_drat_and_emit_lrat": {
+      "command": [
+        "/Users/adam/.local/bin/drat-trim",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-g3-ingress/.g3-ingress.stage-42212-1785452421202043000/core.cnf",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-g3-ingress/.g3-ingress.stage-42212-1785452421202043000/core.drat",
+        "-L",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-g3-ingress/.g3-ingress.stage-42212-1785452421202043000/core.raw.lrat"
+      ],
+      "elapsed_seconds": 183.02492341701873,
+      "exit_code": 0,
+      "log_sha256": "cdab3d1617c8f23bfa691bcc242fec7eb85b4c03295dff52d1f2a0a032d673c1"
+    }
+  },
+  "status": "LRAT_MATERIALIZED_LEAN_REPLAY_PENDING",
+  "tools": {
+    "drat_trim": {
+      "path": "/Users/adam/.local/bin/drat-trim",
+      "sha256": "eb781b99f2aaf5c9102eb6efd07c2d0aa71b44a0e8002a74e3dda1030be96a92"
+    },
+    "normalizer": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/card11-exact5-common-fullradius-v7-ingress/normalize_lrat_for_padded_core.py",
+      "sha256": "f2f45f633f5202f6f3fdf9324f9e9ecd34246a7d713ec18fc538143b82013a5b"
+    }
+  }
+}

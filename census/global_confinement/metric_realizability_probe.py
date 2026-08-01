@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import os
 import tempfile
 import time
@@ -43,6 +44,10 @@ DEFAULT_INPUTS = (
     HERE / "shell_audit_results_all_frames_n11_12.json",
 )
 SCHEMA = "p97-global-confinement-metric-realizability-v1"
+DIRECT_ROWS_SCHEMA = "p97-direct-metric-rows-realizability-v1"
+DIRECT_ROWS_TRUST_CLASS = (
+    "TRUSTED_PYTHON_OR_Z3_COMPUTATION_NOT_KERNEL_CHECKED"
+)
 CONTEXT_FIELDS = (
     "n",
     "profile",
@@ -1801,6 +1806,58 @@ def _normalize_assignment(
     )
 
 
+def _validate_direct_rows(
+    n: int,
+    order: Sequence[int],
+    rows: Sequence[MetricRow],
+) -> tuple[tuple[int, ...], tuple[MetricRow, ...]]:
+    """Validate and canonically order support labels for the direct-row API."""
+
+    if type(n) is not int or n < 2:
+        raise ValueError("direct metric probe n must be an integer at least 2")
+    normalized_order = tuple(order)
+    if (
+        len(normalized_order) != n
+        or any(type(label) is not int for label in normalized_order)
+        or sorted(normalized_order) != list(range(n))
+    ):
+        raise ValueError(
+            f"direct metric probe order must be a permutation of 0..{n - 1}"
+        )
+
+    normalized_rows = []
+    for index, row in enumerate(rows):
+        if not isinstance(row, MetricRow):
+            raise TypeError(f"direct metric row {index} is not a MetricRow")
+        if type(row.center) is not int or not 0 <= row.center < n:
+            raise ValueError(
+                f"direct metric row {index} center is outside 0..{n - 1}"
+            )
+        if type(row.exact) is not bool:
+            raise ValueError(f"direct metric row {index} exact flag is not boolean")
+        support = tuple(row.support)
+        if not support:
+            raise ValueError(f"direct metric row {index} has empty support")
+        if any(type(label) is not int for label in support):
+            raise ValueError(
+                f"direct metric row {index} support labels must be integers"
+            )
+        if len(set(support)) != len(support):
+            raise ValueError(
+                f"direct metric row {index} support labels are not distinct"
+            )
+        if any(not 0 <= label < n for label in support):
+            raise ValueError(
+                f"direct metric row {index} has a label outside 0..{n - 1}"
+            )
+        if row.center in support:
+            raise ValueError(f"direct metric row {index} contains its center")
+        normalized_rows.append(
+            MetricRow(row.center, tuple(sorted(support)), row.exact)
+        )
+    return normalized_order, tuple(normalized_rows)
+
+
 def _system_key(
     n: int, profile: Sequence[int], order: Sequence[int], rows: Sequence[MetricRow]
 ) -> str:
@@ -2282,6 +2339,121 @@ def _probe_system(system: Mapping[str, Any], timeout_s: float) -> dict[str, Any]
     if bad_assertions:
         result["status"] = "ERROR"
         result["decisive_stage"] = None
+    return result
+
+
+def probe_metric_rows(
+    n: int,
+    rows: Sequence[MetricRow],
+    *,
+    order: Sequence[int],
+    timeout_s: float = 2.0,
+) -> dict[str, Any]:
+    """Run the existing Euclidean backend on caller-supplied metric rows.
+
+    Unlike :func:`_normalize_assignment`, this entry point does not impose a
+    four-label support convention.  It accepts any nonempty, distinct support
+    not containing its center, including exact five-point radius classes.
+
+    The result is fail-closed.  ``confirmed_realization`` requires both a
+    backend ``SAT`` status and successful replay of every Z3 assertion.
+    ``UNKNOWN``, ``ERROR``, malformed statuses, missing SAT replay evidence,
+    and backend exceptions never set either confirmation flag.  These are
+    trusted Python/Z3 computations, not kernel-checked certificates.
+    """
+
+    if (
+        isinstance(timeout_s, bool)
+        or not isinstance(timeout_s, (int, float))
+        or not math.isfinite(float(timeout_s))
+        or timeout_s <= 0
+    ):
+        raise ValueError("direct metric probe timeout_s must be finite and positive")
+    normalized_order, normalized_rows = _validate_direct_rows(n, order, rows)
+    rows_json = [row.as_dict() for row in normalized_rows]
+    identity = json.dumps(
+        {
+            "n": n,
+            "order": list(normalized_order),
+            "rows": rows_json,
+        },
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+    normalized_system_id = (
+        f"direct-metric-rows-{hashlib.sha256(identity.encode()).hexdigest()[:20]}"
+    )
+
+    system = {
+        "system_id": normalized_system_id,
+        "n": n,
+        "order": list(normalized_order),
+        "rows": rows_json,
+    }
+    try:
+        raw_result: Mapping[str, Any] = _probe_system(system, float(timeout_s))
+        backend_result = dict(raw_result)
+    except Exception as error:  # noqa: BLE001 - public boundary fails closed.
+        backend_result = {
+            "system_id": normalized_system_id,
+            "status": "ERROR",
+            "decisive_stage": None,
+            "stages": [],
+            "constraint_counts": _constraint_counts(n, normalized_rows),
+            "diagnostic": f"{type(error).__name__}: {error}",
+        }
+
+    backend_status = backend_result.get("status")
+    diagnostic = backend_result.get("diagnostic")
+    if backend_status not in {"SAT", "UNSAT", "UNKNOWN", "ERROR"}:
+        diagnostic = f"unsupported backend status {backend_status!r}"
+        public_status = "ERROR"
+    elif backend_status == "SAT" and (
+        backend_result.get("verification", {}).get("all_z3_assertions_true")
+        is not True
+    ):
+        diagnostic = "SAT result lacks successful Z3 assertion replay"
+        public_status = "ERROR"
+    else:
+        public_status = backend_status
+
+    confirmed_realization = public_status == "SAT"
+    confirmed_exclusion = public_status == "UNSAT"
+    result = dict(backend_result)
+    result.update(
+        {
+            "schema": DIRECT_ROWS_SCHEMA,
+            "system_id": normalized_system_id,
+            "input_kind": "caller-supplied-metric-rows",
+            "n": n,
+            "order": list(normalized_order),
+            "rows": rows_json,
+            "row_count": len(normalized_rows),
+            "exact_row_count": sum(row.exact for row in normalized_rows),
+            "backend_status": backend_status,
+            "status": public_status,
+            "resolved": confirmed_realization or confirmed_exclusion,
+            "confirmed_realization": confirmed_realization,
+            "confirmed_exclusion": confirmed_exclusion,
+            "fail_closed": not (confirmed_realization or confirmed_exclusion),
+            "trust_class": DIRECT_ROWS_TRUST_CLASS,
+            "scope": (
+                "distinct strictly-convex ordered points satisfying only the "
+                "supplied row equalities and exact-row exclusions"
+            ),
+            "limitations": [
+                (
+                    "SAT is row-level Euclidean realizability, not a "
+                    "Problem 97 configuration"
+                ),
+                "UNSAT excludes only the encoded direct-row system",
+                "UNKNOWN and ERROR are no verdict",
+                "no result is a Lean or kernel-checked certificate",
+            ],
+        }
+    )
+    if diagnostic is not None:
+        result["diagnostic"] = str(diagnostic)
     return result
 
 

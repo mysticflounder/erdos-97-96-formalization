@@ -6,19 +6,17 @@ prove the P4 forbidden-pattern family (2k cells, k ≥ 3, both mirror
 variants, subset semantics, general common distance δ > 0), under
 convention C2 only. Author: math-prover agent.
 
-**Summary.** Both variants, all k ≥ 3, are PROVEN forbidden under C2 by
-two different coordinate-free arguments: variant A via a new extremality
-fact (the antipodal matching uniquely maximizes total length among
-perfect matchings of points in strictly convex position, Lemma E, §6);
-variant B via a new chain-induction (Proposition C, §9) after Lemma E
-was checked and found NOT to transfer directly (§13). A bonus corollary
-(§10) shows P4, unlike P2, is forbidden under BOTH orientation
-conventions — explaining the task's orchestrator-supplied finding that
-P4 does not discriminate C1 from C2 on the certified FR 20-gon. General
+**Summary.** Both Figure 4 variants, all k ≥ 3, are PROVEN forbidden
+under C2. Variant A follows from a new extremality fact (the antipodal
+matching uniquely maximizes total length among perfect matchings of
+points in strictly convex position, Lemma E, §6). The source's actual
+right-hand variant is the simultaneous row-and-column reversal of A, so
+it follows from A by orientation-reversing symmetry (§7A). The original
+draft had instead called the column-only reversal "variant B"; that
+auxiliary pattern, here renamed B_col, is independently forbidden by a
+chain-induction (Proposition C, §§8–10). The resulting corollary (§10)
+shows source P4 is forbidden under BOTH orientation conventions. General
 δ requires no scaling step (every contradiction is literally kδ<kδ).
-Main risk: the P4 transcription itself is MODERATE-HIGH confidence, not
-HIGH (§13) — this draft proves the pattern exactly as transcribed, not
-independently re-verified against the original figure.
 
 Status: AUDITED 2026-07-28 (math-skeptic, sonnet). Verdict NEEDS WORK
 on citation grounds only — every geometric/algebraic step traced was
@@ -30,35 +28,39 @@ stated general lemma; patched by adding Lemma R″, §3, and citing it at
 each such use) and F2 (the C1/C2 corollary's general-k relabeling
 algebra was asserted "by the same algebra" citing only a k=3..6
 script; patched by writing out the general-k substitution directly,
-§10). Transcription-confidence honesty (MODERATE-HIGH, not HIGH) was
-independently confirmed OK — never silently upgraded anywhere in the
-proof. No error, only under-citation, was found anywhere in the draft.
-**Still NOT admittable as a census rule**: the transcription confidence
-gate (project rule: settled AND audited) is independent of this proof
-audit and remains MODERATE-HIGH — see §13.
+§10). At audit time, transcription-confidence honesty
+(MODERATE-HIGH, not HIGH) was independently confirmed OK — it was not
+silently upgraded before direct source inspection. No mathematical
+error, only under-citation, was found in the proof.
+The transcription gate was closed on 2026-07-28 by two independent
+600 dpi inspections of the original PDF (page 8 / printed p. 88); both
+agree on the formulas in §1 and on the printed label k ≥ 3. The source
+transcription is therefore HIGH confidence. See §13 for the correction
+audit and the separation between source variant B and auxiliary B_col.
 
 ---
 
 ## 1. What was investigated
 
 P4 (2k cells, k ≥ 3, two mirror variants), from Fig. 4 of Fishburn–Reeds
-1992, transcribed in `fr-pattern-lemma1.md` (MODERATE-HIGH confidence,
-dashed-ellipsis reading):
+1992, transcribed in `fr-pattern-lemma1.md` (HIGH confidence after direct
+600 dpi inspection of the original PDF, page 8 / printed p. 88):
 
 - rows ρ₁ < ... < ρ_k, columns c₁ < ... < c_k (as a submatrix of the cut
   matrix), k ≥ 3;
 - **variant A** cells: row ρᵢ has 1's at c_{k−i} and c_{k−i+1} for
   i = 1..k−1, and the wrap row ρ_k has 1's at c₁ and c_k;
-- **variant B** cells (mirror image, columns reversed per task pin): row
-  ρᵢ has 1's at c_i and c_{i+1} for i = 1..k−1, and the wrap row ρ_k has
-  1's at c₁ and c_k.
+- **source variant B** cells: the wrap row ρ₁ has 1's at c₁ and c_k;
+  for i = 2..k, row ρᵢ has 1's at c_{k+1−i} and c_{k+2−i}. This is the
+  simultaneous row-and-column reversal of variant A, exactly as drawn
+  in the right-hand diagram.
+- **auxiliary pattern B_col** (the original draft's mistaken
+  transcription): row ρᵢ has 1's at c_i and c_{i+1} for i = 1..k−1,
+  and the wrap row ρ_k has 1's at c₁ and c_k. This is only the
+  column-index reversal of A. It is not attributed to Figure 4, but
+  §§8–10 retain its independently audited proof as an extra result.
 
-(Variant B's cell formula is derived from variant A's by the substitution
-c_j ↦ c_{k+1−j} throughout, i.e. literal column-index reversal — see §2
-for the derivation and why this is NOT the same operation as P2's
-variant-B relabeling, which reversed both axes.)
-
-Claim to prove (subset semantics): for every k ≥ 3 and each variant,
+Claim to prove (subset semantics): for every k ≥ 3 and each source variant,
 there is no strictly convex polygon with cut {A, B}, rows ρ₁ < ... < ρ_k
 in A-order and columns c₁ < ... < c_k in B-order, under the C2 hull-order
 convention, such that all 2k listed cells are simultaneously equal to one
@@ -303,10 +305,37 @@ P1** — a consistency check on the toolkit, not a replacement of the
 admitted P1 proof (out of scope here; P1 remains admitted on its own
 proof per the ledger).
 
-## 8. Variant B: cell structure and the two matchings (PROVEN, index algebra)
+## 7A. Source variant B forbidden by simultaneous-reversal symmetry (PROVEN)
 
-By Lemma R (§3), it suffices to rule out (H_B): 2k points in strictly
-convex position, hull order (ρ₁,...,ρ_k,c_k,...,c₁), with variant B's 2k
+Suppose the source right-hand pattern is realized under C2, with hull
+order
+
+  **(ρ₁,...,ρ_k,c_k,...,c₁).**
+
+Reverse the traversal orientation and start at ρ_k. The same cyclically
+ordered point set is then listed
+
+  **(ρ_k,...,ρ₁,c₁,...,c_k).**
+
+Put ρ′ᵢ := ρ_{k+1−i} and c′ⱼ := c_{k+1−j}. The last display is exactly
+
+  **(ρ′₁,...,ρ′_k,c′_k,...,c′₁),**
+
+so C2 is preserved. Under this simultaneous relabeling, the source
+variant-B cell set becomes variant A's cell set: its wrap pair
+`(ρ₁,c₁),(ρ₁,c_k)` becomes `(ρ′_k,c′_k),(ρ′_k,c′₁)`, and for
+`2 ≤ i ≤ k`, writing `i′=k+1−i` (so `1 ≤ i′ ≤ k−1`), the pair
+`c_{k+1−i},c_{k+2−i}` becomes `c′_{k−i′},c′_{k−i′+1}` on row ρ′ᵢ′.
+Distances and strict convexity are unchanged. This would therefore give
+a variant-A realization under C2, contradicting §7.
+
+Thus the actual right-hand Figure 4 pattern is forbidden for every
+k ≥ 3 and common δ > 0.
+
+## 8. Auxiliary B_col: cell structure and the two matchings (PROVEN, index algebra)
+
+By Lemma R (§3), it suffices to rule out (H_B_col): 2k points in strictly
+convex position, hull order (ρ₁,...,ρ_k,c_k,...,c₁), with B_col's 2k
 cell-pairs — row ρᵢ (i=1..k−1) paired with c_i, c_{i+1}; wrap row ρ_k
 paired with c₁, c_k — all equal to δ.
 
@@ -408,7 +437,7 @@ pure fact about strictly convex position, exactly parallel in role to
 Lemma E for variant A, established here by induction instead of a single
 extremal characterization.
 
-## 10. Variant B forbidden for all k ≥ 3 (PROVEN, general δ)
+## 10. Auxiliary B_col forbidden for all k ≥ 3 (PROVEN, general δ)
 
 By §8, M1 = {(ρᵢ,cᵢ)} has total(M1) = N_k and M2 = {(ρᵢ,c_{i+1})} has
 total(M2) = F_k, in Proposition C's notation (k in place of m). Since the
@@ -416,20 +445,20 @@ hull order of the given 2k points is exactly Proposition C's hypothesis
 (Lemma R, §3), Proposition C gives F_k > N_k strictly, i.e.
 total(M2) > total(M1). But §8 gives total(M1) = kδ = total(M2). So
 kδ < kδ — contradiction, for any δ. Hence **no strictly convex 2k-gon in
-hull order (ρ₁,...,ρ_k,c_k,...,c₁) realizes variant B's 2k unit cells
+hull order (ρ₁,...,ρ_k,c_k,...,c₁) realizes B_col's 2k unit cells
 simultaneously at one common distance**, for any k ≥ 2 (Proposition C's
 base case is k=2, so this holds already there; in particular for every
 k ≥ 3) and any δ > 0.
 
 **Remark (k=2 consistency).** As with variant A, the k=2 case reduces to
 a single Lemma M application (Proposition C's base case IS this
-application), consistent with variant B's own k=2 cell list also being
-all 4 cells of K₂,₂ = P1 (variant B's formula at k=2: row ρ₁ has cells
+application), consistent with B_col's own k=2 cell list also being
+all 4 cells of K₂,₂ = P1 (B_col's formula at k=2: row ρ₁ has cells
 c₁,c₂; wrap row ρ₂ has cells c₁,c₂ — identical to variant A's k=2 list).
 
-**Corollary (C1/C2 convention-independence of P4, PROVEN — new finding,
-report prominently per the task).** Both variants of P4 are forbidden
-under EITHER hull-order convention, not just C2. *Proof.* Relabel
+**Corollary (C1/C2 convention-independence, PROVEN).** Variant A,
+source variant B, and auxiliary B_col are forbidden under EITHER
+hull-order convention, not just C2. *Proof.* First relabel
 c′ⱼ := c_{k+1−j} (j=1,...,k) — a bijective renaming of the k
 column-points, no geometric content; equivalently c_j = c′_{k+1−j}.
 
@@ -446,7 +475,7 @@ wrap row ρ_k, variant A has cells c₁, c_k; substituting:
 
   c₁ = c′_{k+1−1} = c′_k,    c_k = c′_{k+1−k} = c′_1.
 
-So the wrap row's cells become {c′_1, c′_k} — exactly variant B's own
+So the wrap row's cells become {c′_1, c′_k} — exactly B_col's own
 wrap-row cells. This is the general-k algebra for every i and every
 k ≥ 3 (the k=3,...,6 script, `p4_c1_corollary_check.py`, checks these
 same four substitutions numerically as a redundant sanity check, not
@@ -457,13 +486,15 @@ both indices ascending — rewritten via c_j = c′_{k+1−j} lists the
 column block as c′_k, c′_{k−1},...,c′_1 (j ascending 1→k gives
 k+1−j descending k→1), i.e. (ρ₁,...,ρ_k,c′_k,...,c′_1) — exactly C2.
 
-So **"variant A under C1" and "variant B under C2" are the identical
+So **"variant A under C1" and "B_col under C2" are the identical
 abstract realizability question**, just under different names for the
 column points; §10 proves the latter forbidden, hence the former is
 forbidden too. By the symmetric relabeling (swap the roles of A, B),
-**"variant B under C1" = "variant A under C2"**, proven forbidden in
-§7. So all four combinations (variant ∈ {A,B}) × (convention ∈
-{C1,C2}) are forbidden. ∎
+**"B_col under C1" = "variant A under C2"**, proven forbidden in §7.
+Thus A and B_col are forbidden under both conventions. Finally, the
+simultaneous-reversal argument of §7A preserves either convention and
+maps source variant B to A. Hence both actual Figure 4 variants are
+forbidden under both C1 and C2. ∎
 
 This explains, rather than merely being consistent with, the
 orchestrator's finding that the certified FR 20-gon shows zero P4
@@ -492,12 +523,13 @@ or F_m vs N_m) — they do not construct any δ-equidistant configuration
 (none exists, per §7/§10), only test the auxiliary geometric inequality
 that the proofs rely on.
 
-1. **Main comparison, both variants, k=3,...,8,10,12** (`p4_matching_probe2.py`,
+1. **Main comparison, A and auxiliary B_col, k=3,...,8,10,12**
+   (`p4_matching_probe2.py`,
    Valtr construction, 250 independent random strictly-convex 2k-gons per
    (k, variant), 4000 trials total): **total(M2) > total(M1) in every
    single trial, zero exceptions, zero ties**, at every tested k for both
-   variants. Minimum observed margin across all runs ≈ 0.023 (k=3,
-   variant B); no trend toward zero as k grows (min margins stay in the
+   patterns. Minimum observed margin across all runs ≈ 0.023 (k=3,
+   B_col); no trend toward zero as k grows (min margins stay in the
    0.03–0.4 range through k=12, consistent with §6/§9's inequalities
    being strict with no degenerate limit forced by the combinatorics
    alone — unlike the P2 precedent where the analogous margin infimum
@@ -518,13 +550,13 @@ that the proofs rely on.
    perturbation generator, two runs at k up to 6 and 5 respectively
    before generator slowness at larger k motivated the switch to Valtr):
    consistent with the above, M2>M1 in all 2,480 successful trials across
-   both variants, zero exceptions, before the script was superseded.
+   both tested patterns, zero exceptions, before the script was superseded.
 
 No configuration in any of the ~4,800 trials of the two final scripts
 (`p4_matching_probe2.py` + `p4_induction_check.py`), nor in the 2,480
 exploratory trials, violated total(M2)>total(M1) or Proposition C's
 chain — consistent with, but not a substitute for, the pen-and-paper
-proofs of §6/§7 (variant A, exact) and §9/§10 (variant B, exact).
+proofs of §6/§7 (variant A, exact) and §9/§10 (B_col, exact).
 
 ## 12. Structural assumptions used (stated explicitly)
 
@@ -561,40 +593,20 @@ proofs of §6/§7 (variant A, exact) and §9/§10 (variant B, exact).
 
 ## 13. Honest gap list
 
-- **Transcription confidence is MODERATE-HIGH, not HIGH** (per
-  `fr-pattern-lemma1.md`: "dashed-ellipsis reading" of the k=5 instance
-  in Fig. 4). This draft proves the pattern EXACTLY as transcribed there
-  and restated in §1; if a future re-read of the original figure revises
-  the cell formula, §4–§10 must be revisited. This is the single largest
-  source of risk in this draft, larger than any step in the proofs
-  themselves. AUDITED 2026-07-28 (math-skeptic, finding F3): this
-  section's honesty was independently confirmed — the MODERATE-HIGH
-  rating is never silently upgraded to HIGH anywhere in §3–§10. This
-  gate is UNCHANGED by the proof audit and remains the sole blocker on
-  R-P4 census-rule admission (project rule: transcription settled AND
-  proof audited, both required).
-- **Variant B's precise definition is taken as given, not independently
-  re-derived from the figure.** The task pins "mirror image (columns
-  reversed)" explicitly; §1 already flags that this is a DIFFERENT
-  operation from how P2's variant B related to its variant A (P2's
-  variant B = variant A with BOTH axes reversed, not one — verified by
-  direct index algebra against the P2 draft's own cell lists). Both
-  readings are internally consistent ways to formalize "mirror image";
-  this draft did not have the original Fig. 4 image in hand to
-  disambiguate further and defers to the task's explicit pin. Should the
-  intended variant B instead be variant A with both axes reversed
-  (matching P2's pattern), the relevant statement would be exactly
-  "variant A under C1" (since double-reversal is a genuine C2 symmetry —
-  plane reflection — mapping variant A back onto a variant-A-shaped
-  pattern under the REVERSED row order, which is a separate case not
-  covered verbatim above); note this is ALREADY proven as a corollary in
-  §10 regardless (the C1/C2 corollary covers exactly this), so this
-  ambiguity does not threaten the final verdict, only the internal
-  labeling of "which section proves which named variant."
-- **The route to variant B's proof was not a direct generalization of
+- **Source transcription correction (closed, HIGH confidence).** Two
+  independent 600 dpi inspections of
+  `/opt/nfs/1-s2.0-092577219290026O-main.pdf`, PDF page 8 / printed
+  p. 88, agree that Figure 4 says `k ≥ 3`, that the left diagram is A,
+  and that the right diagram is the simultaneous row-and-column
+  reversal stated in §1. The original column-only formula was therefore
+  mislabeled. It is retained only as auxiliary B_col because its audited
+  proof is valid; §7A supplies the short symmetry proof for the actual
+  source variant B. This closes the former transcription gate without
+  transferring B_col's source attribution.
+- **The route to B_col's proof was not a direct generalization of
   variant A's (documented for future provers, dead-end-file style).**
   Lemma E (antipodal matching = unique max) does NOT apply to either of
-  variant B's two matchings — neither is totally crossing (§8, checked
+  B_col's two matchings — neither is totally crossing (§8, checked
   directly: M1 is fully NON-crossing, M2 is a mix of k−1 mutually-nested
   chords plus one chord crossing all of them). An attempt to force the
   comparison via a single telescoping sum of quadrilateral inequalities
@@ -620,11 +632,9 @@ proofs of §6/§7 (variant A, exact) and §9/§10 (variant B, exact).
   not explained; no claim is made about it beyond the empirical
   observation in §11 item 1.
 - **Lemma M, X, U, E, and Proposition C are new to this draft** (not
-  inherited from P1/P2) and have not been independently audited. They
-  are elementary, but every step should be checked line-by-line — in
-  particular Lemma U's arc-balancing argument and Proposition C's
-  induction (§9), which is the least precedented piece of machinery in
-  this draft relative to the P1/P2 toolkit it was asked to reuse.
+  inherited from P1/P2). They were independently audited line-by-line
+  on 2026-07-28; the audit found only the two citation gaps recorded in
+  the header, both patched the same day.
 
 ## 14. What next (ranked)
 
@@ -632,11 +642,10 @@ proofs of §6/§7 (variant A, exact) and §9/§10 (variant B, exact).
    NEEDS WORK on citation grounds only (F1, F2); no error found in any
    of (a)-(d); both findings patched same day. See the file-header
    status block.
-2. **Re-verify the P4 transcription against the original Fig. 4 image**
-   (600 dpi crop, as was done for P1's adjacency-slope check) before this
-   draft's results are admitted as a census pruning rule — now the SOLE
-   remaining blocker on R-P4 admission (§13; the proof itself is
-   CERTIFIED).
+2. ~~**Re-verify the P4 transcription against the original Fig. 4
+   image**~~ — DONE 2026-07-28, independently twice at 600 dpi. The
+   corrected formulas are in §1 and the source-pattern symmetry proof
+   is §7A. The transcription gate is closed at HIGH confidence.
 3. **P3's R2 row-case** — the remaining open item on the lane's other
    pattern (`fr-pattern-lemma1.md` ledger; P3's R1/R3 sub-family is
    already PROVEN+AUDITED and admitted as R-P3). The chain-induction
@@ -654,12 +663,11 @@ proofs of §6/§7 (variant A, exact) and §9/§10 (variant B, exact).
 
 ---
 
-**Status: main theorems (variant A and variant B, all k ≥ 3, general δ,
-plus the C1/C2 corollary) PROVEN + AUDITED 2026-07-28** (math-skeptic;
+**Status: the actual Figure 4 variants A and B, all k ≥ 3 and general δ,
+plus auxiliary B_col and the C1/C2 corollary, are PROVEN + AUDITED
+2026-07-28** (math-skeptic;
 findings F1/F2, both citation gaps not errors, patched same day —
 Lemma R″ added §3, general-k algebra written out §10). Self-contained
 modulo the cited P2-draft toolkit (L1, L2) and the task's
-transcription/convention pins. **Proof is CERTIFIED; census-rule
-admission is separately BLOCKED on the transcription-confidence gate
-(§13: MODERATE-HIGH, not HIGH) until the pattern is re-verified against
-the original Fig. 4.**
+transcription/convention pins. **Proof and HIGH-confidence source
+transcription now satisfy the R-P4 admission gate.**

@@ -358,7 +358,8 @@ GENERATORS: tuple[Generator, ...] = (explicit_seeds, tiny_exhaustive, mutation_p
 
 def _classify_object(obj: Any) -> tuple[str, Node]:
     """Determine ``(mode, underlying_node)`` for one produced object.
-    mode in {"bare", "cap-annotated", "blocker-annotated"}."""
+    mode in {"bare", "cap-annotated", "blocker-annotated",
+    "cap+blocker-annotated"}."""
 
     if isinstance(obj, Node):
         return "bare", obj
@@ -369,11 +370,7 @@ def _classify_object(obj: Any) -> tuple[str, Node]:
             return "cap-annotated", obj.node
         if obj.blocker is None and obj.caps is None:
             return "bare", obj.node
-        raise ValueError(
-            "iterate_cell: an AnnotatedNode with BOTH blocker and caps set "
-            "is not a supported Phase-2 cell mode (spec section 5 names "
-            "bare | cap-annotated | blocker-annotated as the three modes)"
-        )
+        return "cap+blocker-annotated", obj.node
     raise TypeError(f"iterate_cell: unsupported produced object type {type(obj)!r}")
 
 
@@ -409,24 +406,10 @@ def iterate_cell(cell: Cell, generator: Generator, bank: CanonicalBank) -> dict[
         counts["produced"] += 1
         obj_mode, node = _classify_object(obj)
 
-        # --- admission checks (spec section 5) ---
-        if node.n != cell.n or node.k != cell.k:
-            counts["rejected_admission"] += 1
-            continue
-        if cell.exact and any(len(node.shell(p)) != cell.k for p in range(node.n)):
-            counts["rejected_admission"] += 1
-            continue
-        if cell.profile is not None:
-            if obj_mode != "cap-annotated" or obj.caps.closed_profile() != cell.profile:
-                counts["rejected_admission"] += 1
-                continue
-        elif obj_mode == "cap-annotated":
-            # a profileless (FRAMELESS) cell does not admit cap-annotated
-            # objects -- those belong to a profiled cell matching their
-            # own closed_profile().
-            counts["rejected_admission"] += 1
-            continue
-
+        # Mode consistency is a generator-level contract, so check every
+        # produced object, including objects later rejected by admission.
+        # Otherwise a rejected object in one mode could be silently followed
+        # by an admitted object in another mode.
         if mode is None:
             mode = obj_mode
         elif mode != obj_mode:
@@ -434,7 +417,28 @@ def iterate_cell(cell: Cell, generator: Generator, bank: CanonicalBank) -> dict[
                 f"iterate_cell: generator {generator.name!r} produced mixed "
                 f"object modes ({mode!r} then {obj_mode!r}) within one cell run"
             )
-        if obj_mode == "blocker-annotated":
+
+        # --- admission checks (spec section 5) ---
+        if node.n != cell.n or node.k != cell.k:
+            counts["rejected_admission"] += 1
+            continue
+        if cell.exact and any(len(node.shell(p)) != cell.k for p in range(node.n)):
+            counts["rejected_admission"] += 1
+            continue
+        has_caps = isinstance(obj, AnnotatedNode) and obj.caps is not None
+        has_blocker = isinstance(obj, AnnotatedNode) and obj.blocker is not None
+        if cell.profile is not None:
+            if not has_caps or obj.caps.closed_profile() != cell.profile:
+                counts["rejected_admission"] += 1
+                continue
+        elif has_caps:
+            # a profileless (FRAMELESS) cell does not admit cap-annotated
+            # objects -- those belong to a profiled cell matching their
+            # own closed_profile().
+            counts["rejected_admission"] += 1
+            continue
+
+        if has_blocker:
             used_blocker_mode = True
 
         counts["admitted"] += 1
@@ -456,7 +460,7 @@ def iterate_cell(cell: Cell, generator: Generator, bank: CanonicalBank) -> dict[
         fired.extend(node_result.fired)
         hyps.update(node_result.hypotheses)
 
-        if obj_mode == "blocker-annotated":
+        if has_blocker:
             ann_result = prune_annotated_node(obj)  # raises on defensive fire
             fired.extend(ann_result.fired)
             hyps.update(ann_result.hypotheses)

@@ -34,16 +34,10 @@ def p4sBaseDomains (center deleted : Nat) : List Domain :=
 by the caller. -/
 def p4sPlacementCheckAtWithBaseDomains
     (center support deleted : Nat) (baseDomains : List Domain) : Bool :=
-  let fixed : Row := { center := center, support := support }
-  if !localCandidateOK fixed.center deleted fixed.support then
+  if !localCandidateOK center deleted support then
     false
   else
-    let assigned := [fixed]
-    let domains := baseDomains.map (restrictDomain assigned)
-    if domains.any fun domain => domain.rows.isEmpty then
-      true
-    else
-      allKilledAt center (variableCentersAt center).length assigned domains
+    erasedPlacementSearchAtWithBaseDomains center support deleted baseDomains
 
 /-- Hoisting the P4-S base domains does not change the placement verdict. -/
 theorem p4sPlacementCheckAtWithBaseDomains_p4sBaseDomains
@@ -52,8 +46,7 @@ theorem p4sPlacementCheckAtWithBaseDomains_p4sBaseDomains
         (p4sBaseDomains center deleted) =
       erasedPlacementCheckAt center support deleted := by
   simp only [p4sPlacementCheckAtWithBaseDomains, p4sBaseDomains,
-    erasedPlacementCheckAt, List.map_map]
-  rfl
+    erasedPlacementCheckAt]
 
 /-- P4-S placement predicate for one deleted label and support-mask bin, with
 the support-independent domains supplied by the caller. -/
@@ -62,7 +55,7 @@ def p4sPlacementsAtDeletedChunkWithBaseDomains
   (p4sSupportChunk chunk).all fun support =>
     if intSNats.any fun pin => pin != center && has support pin then
       if localCandidateOK center deleted support then
-        p4sPlacementCheckAtWithBaseDomains center support deleted baseDomains
+        erasedPlacementSearchAtWithBaseDomains center support deleted baseDomains
       else
         true
     else
@@ -127,6 +120,33 @@ theorem p4sPlacementsAtDeletedPairChunkSet_append_eq_true
       center deleted₁ deleted₂ (first ++ second) = true := by
   simpa only [p4sPlacementsAtDeletedPairChunkSet, List.all_append,
     Bool.and_eq_true] using And.intro hfirst hsecond
+
+/-- The balanced second-half split can be reassembled in canonical chunk order.
+
+The native leaves use `[0, 5]` and `[2, 7]` so that the two restartable units
+have more comparable support-mask work.  This bridge keeps the consumer's
+canonical `[0, 2, 5, 7]` order without assuming an order-invariance theorem
+for the recursive evaluator itself. -/
+theorem p4sPlacementsAtDeletedPairChunkSet_reordered_second_half_eq_true
+    {center deleted₁ deleted₂ : Nat}
+    (hfirst :
+      p4sPlacementsAtDeletedPairChunkSet center deleted₁ deleted₂
+        [0, 5] = true)
+    (hsecond :
+      p4sPlacementsAtDeletedPairChunkSet center deleted₁ deleted₂
+        [2, 7] = true) :
+    p4sPlacementsAtDeletedPairChunkSet center deleted₁ deleted₂
+      [0, 2, 5, 7] = true := by
+  simp only [p4sPlacementsAtDeletedPairChunkSet] at hfirst hsecond ⊢
+  apply List.all_eq_true.mpr
+  intro chunk hchunk
+  have hcases : chunk = 0 ∨ chunk = 2 ∨ chunk = 5 ∨ chunk = 7 := by
+    simpa [List.mem_cons] using hchunk
+  rcases hcases with rfl | rfl | rfl | rfl
+  · exact List.all_eq_true.mp hfirst 0 (by simp)
+  · exact List.all_eq_true.mp hsecond 2 (by simp)
+  · exact List.all_eq_true.mp hfirst 5 (by simp)
+  · exact List.all_eq_true.mp hsecond 7 (by simp)
 
 /-- All eight P4-S support chunks, with each deleted-label domain list built
 once for the whole pair certificate. -/
@@ -201,7 +221,7 @@ theorem p4sPlacementsAtDeletedPair_eq_true_of_chunks
   apply List.all_eq_true.mpr
   intro support hsupport
   have hsupportLt : support < 2048 :=
-    List.mem_range.mp (List.mem_filter.mp hsupport).1
+    Census554.CapSelectedNativeClassifier.fourPointMasks_mem_lt_2048 hsupport
   have hchunkLt : support / 256 < 8 := by
     simpa using
       ((Nat.div_lt_iff_lt_mul (by norm_num : 0 < 256)).2 hsupportLt)
@@ -213,13 +233,25 @@ theorem p4sPlacementsAtDeletedPair_eq_true_of_chunks
   rcases hchunk with ⟨hchunk₁, hchunk₂⟩
   have hdeleted₁ := List.all_eq_true.mp hchunk₁ support hsupportChunk
   have hdeleted₂ := List.all_eq_true.mp hchunk₂ support hsupportChunk
-  rw [p4sPlacementCheckAtWithBaseDomains_p4sBaseDomains] at hdeleted₁
-  rw [p4sPlacementCheckAtWithBaseDomains_p4sBaseDomains] at hdeleted₂
   by_cases hpin :
       intSNats.any (fun pin => pin != center && has support pin) = true
   · simp only [hpin, if_true] at hdeleted₁ hdeleted₂ ⊢
+    have hdeleted₁' :
+        (if localCandidateOK center deleted₁ support then
+          erasedPlacementCheckAt center support deleted₁ else true) = true := by
+      by_cases hlocal : localCandidateOK center deleted₁ support = true
+      · simp only [hlocal, if_true] at hdeleted₁ ⊢
+        simpa [erasedPlacementCheckAt, p4sBaseDomains, hlocal] using hdeleted₁
+      · simp [hlocal]
+    have hdeleted₂' :
+        (if localCandidateOK center deleted₂ support then
+          erasedPlacementCheckAt center support deleted₂ else true) = true := by
+      by_cases hlocal : localCandidateOK center deleted₂ support = true
+      · simp only [hlocal, if_true] at hdeleted₂ ⊢
+        simpa [erasedPlacementCheckAt, p4sBaseDomains, hlocal] using hdeleted₂
+      · simp [hlocal]
     simp only [List.all_cons, List.all_nil, Bool.and_true]
-    simp [hdeleted₁, hdeleted₂]
+    simp [hdeleted₁', hdeleted₂']
   · have hpinFalse :
         intSNats.any (fun pin => pin != center && has support pin) = false :=
       Bool.eq_false_iff.mpr hpin

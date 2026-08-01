@@ -14,6 +14,10 @@ and the CANDIDATE engine-refusal path is retested via a synthetic
 changes.  This file must still exit 0 standalone (gate G-P1-REGRESS in
 ``controls2.py``).
 
+The later full-source semantic expansion of R-P3 retains the same public
+rule ID and registry cardinality.  Its eight-template cut-matrix gate is
+owned by ``controls2.py``.
+
 Run from the repo root:
     uv run python census/p97_search/controls.py
 
@@ -390,11 +394,22 @@ def gate_rules() -> str:
         raise GateFailure(
             f"G-RULES: CANDIDATE_RULES must be empty after Phase-2 promotion, got {CANDIDATE_RULES}"
         )
-    # Registry shape: 3 promoted Phase-2 rules + the 3 cut-matrix rules
-    # (R-P1/R-P2/R-P3, PHASE2-SPEC.md sections 4.4/4.5 amendments; the
+    # Registry shape: 3 promoted Phase-2 rules + the 5 cut-matrix rules.
+    # R-P3 is now full-source, but its semantic expansion retains this ID/count.
+    # (R-P1/R-P2/R-P3/R-P4/R-P4-B-COL, PHASE2-SPEC.md sections 4.4--4.7;
+    # the
     # amendments authorize exactly this check's update).
-    expected_ids = {"R-CIRC2", "R-FIBER4", "R-CAPGE4", "R-P1", "R-P2", "R-P3"}
-    if len(ALL_RULES) != 6 or {r.id for r in ALL_RULES} != expected_ids:
+    expected_ids = {
+        "R-CIRC2",
+        "R-FIBER4",
+        "R-CAPGE4",
+        "R-P1",
+        "R-P2",
+        "R-P3",
+        "R-P4",
+        "R-P4-B-COL",
+    }
+    if len(ALL_RULES) != 8 or {r.id for r in ALL_RULES} != expected_ids:
         raise GateFailure(
             f"G-RULES: ALL_RULES must be exactly {sorted(expected_ids)}, got {ALL_RULES}"
         )
