@@ -1,0 +1,278 @@
+{
+  "blockers": {
+    "a1": "a2",
+    "a2": "p2",
+    "a3": "t3",
+    "p1": "q1",
+    "p2": "q1",
+    "q1": "r1",
+    "q2": "r1",
+    "r1": "p1",
+    "r2": "p1",
+    "s1": "a2",
+    "s2": "q1",
+    "s3": "s2",
+    "s4": "t3",
+    "t1": "s2",
+    "t2": "p1",
+    "t3": "t1",
+    "t4": "p2"
+  },
+  "cap_block_position_replay": {
+    "position_count": 17,
+    "status": "PASS"
+  },
+  "cap_crossing_kalmanson_replay": {
+    "shared_late_pair_cases": 60,
+    "status": "PASS"
+  },
+  "crossed_arm_replay": {
+    "all_three_cyclic_families_replayed": true,
+    "five_point_family_active_match_counts": {
+      "direct": 0,
+      "forward-second": 0,
+      "reversed-second": 0
+    },
+    "forced_memberships_replayed": true,
+    "ordered_pair_unique": true,
+    "outside_eq_pair_replayed": true,
+    "source_same_actual_blocker_as_P_source1": true,
+    "status": "PASS"
+  },
+  "existential_cyclic_order": [
+    "a1",
+    "t1",
+    "t3",
+    "t4",
+    "t2",
+    "a2",
+    "p2",
+    "p1",
+    "r2",
+    "q2",
+    "q1",
+    "r1",
+    "a3",
+    "s1",
+    "s3",
+    "s4",
+    "s2"
+  ],
+  "five_center_deletion_residual": {
+    "centers": {
+      "oppApex1": "a1",
+      "oppApex2": "a2",
+      "opposite_collision_blocker": "p1",
+      "q_common_blocker": "r1",
+      "surplusApex": "a3"
+    },
+    "deleted": "p2",
+    "selected_arm": "delete-P.source2",
+    "selected_rows_avoid_deleted": true,
+    "surviving_selected_rows": {
+      "oppApex1": [
+        "t2",
+        "t3",
+        "a2",
+        "s3"
+      ],
+      "oppApex2": [
+        "a1",
+        "p1",
+        "q2",
+        "s1"
+      ],
+      "opposite_collision_blocker": [
+        "t2",
+        "r1",
+        "r2",
+        "s1"
+      ],
+      "q_common_blocker": [
+        "q1",
+        "q2",
+        "s2",
+        "s3"
+      ],
+      "surplusApex": [
+        "a2",
+        "q1",
+        "s1",
+        "s4"
+      ]
+    }
+  },
+  "full_shared_pair_separation_replay": {
+    "active_shared_pair_cases": 10,
+    "candidate_cases": 14280,
+    "status": "PASS"
+  },
+  "geometric_incidence_replay": {
+    "common_bisector_triple_cases": 61880,
+    "status": "PASS",
+    "two_circle_overlap_cases": 61880
+  },
+  "live_Lean_mapping": {
+    "P.source1": "p1",
+    "P.source2": "p2",
+    "P_rho.source1": "r1",
+    "P_rho.source2": "r2",
+    "Q.otherOutsidePoint": "t2",
+    "Q.source": "s2",
+    "common_source_row_center_bq": "r1",
+    "first_collision_blocker_row_center_bp": "q1",
+    "forced_common_row_point": "s2",
+    "forced_crossed_arm": "source-at-common",
+    "forced_opposite_row_point": "t2",
+    "opposite_collision_blocker_row_center_br": "p1",
+    "source_prime_representative": "q2",
+    "source_representative": "q1"
+  },
+  "packet": {
+    "Q.otherOutsidePoint": "t2",
+    "Q.source": "s2",
+    "all_four_endpoint_omissions": true,
+    "bp": "q1",
+    "bq": "r1",
+    "br": "p1",
+    "p_first_apex_class": [
+      "p1",
+      "p2",
+      "a3",
+      "s1"
+    ],
+    "p_support": [
+      "t2",
+      "p1",
+      "p2",
+      "s2"
+    ],
+    "q_common_support": [
+      "q1",
+      "q2",
+      "s2",
+      "s3"
+    ],
+    "q_first_apex_class": [
+      "t1",
+      "t4",
+      "q1",
+      "q2"
+    ],
+    "q_shell_cap_intersection": [
+      "q1",
+      "q2"
+    ],
+    "r_first_apex_class": [
+      "r1",
+      "r2",
+      "s2",
+      "s4"
+    ]
+  },
+  "rows": {
+    "a1": [
+      "t2",
+      "t3",
+      "a2",
+      "s3"
+    ],
+    "a2": [
+      "a1",
+      "p1",
+      "q2",
+      "s1"
+    ],
+    "a3": [
+      "a2",
+      "q1",
+      "s1",
+      "s4"
+    ],
+    "p1": [
+      "t2",
+      "r1",
+      "r2",
+      "s1"
+    ],
+    "p2": [
+      "t4",
+      "a2",
+      "q2",
+      "s3"
+    ],
+    "q1": [
+      "t2",
+      "p1",
+      "p2",
+      "s2"
+    ],
+    "q2": [
+      "a1",
+      "p1",
+      "q1",
+      "a3"
+    ],
+    "r1": [
+      "q1",
+      "q2",
+      "s2",
+      "s3"
+    ],
+    "r2": [
+      "t3",
+      "p1",
+      "s3",
+      "s4"
+    ],
+    "s1": [
+      "a1",
+      "t4",
+      "r1",
+      "a3"
+    ],
+    "s2": [
+      "t1",
+      "p2",
+      "s1",
+      "s3"
+    ],
+    "s3": [
+      "t1",
+      "t2",
+      "r1",
+      "q2"
+    ],
+    "s4": [
+      "a1",
+      "p2",
+      "r2",
+      "q2"
+    ],
+    "t1": [
+      "t3",
+      "t4",
+      "r2",
+      "q1"
+    ],
+    "t2": [
+      "t1",
+      "t4",
+      "s1",
+      "s2"
+    ],
+    "t3": [
+      "t1",
+      "p2",
+      "a3",
+      "s4"
+    ],
+    "t4": [
+      "t3",
+      "p2",
+      "r1",
+      "s2"
+    ]
+  },
+  "semantic_replay": "PASS"
+}

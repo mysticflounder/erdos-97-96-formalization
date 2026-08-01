@@ -1,0 +1,153 @@
+{
+  "arm": "source-at-common",
+  "base_constraint_count": 73,
+  "batch_size": 12,
+  "classification": "bounded external QF_NRA diagnostic; not Lean closure",
+  "core": {
+    "algebraic_independence_claimed": false,
+    "arm": "source-at-common",
+    "centers": {
+      "bp": "q1",
+      "bq": "r1",
+      "br": "p1"
+    },
+    "coordinate_variables": 20,
+    "full_order": [
+      "a1",
+      "t1",
+      "t3",
+      "t4",
+      "t2",
+      "a2",
+      "p2",
+      "p1",
+      "r2",
+      "q2",
+      "q1",
+      "r1",
+      "a3",
+      "s1",
+      "s3",
+      "s4",
+      "s2"
+    ],
+    "gauge": {
+      "origin": "q1",
+      "unit": "p1"
+    },
+    "gauge_equations": 4,
+    "mapping": {
+      "P.source1": "p1",
+      "P.source2": "p2",
+      "P_rho.source1": "r1",
+      "P_rho.source2": "r2",
+      "Q.otherOutsidePoint": "t2",
+      "Q.source": "s2",
+      "common_source_row_center_bq": "r1",
+      "first_collision_blocker_row_center_bp": "q1",
+      "forced_common_row_point": "s2",
+      "forced_crossed_arm": "source-at-common",
+      "forced_opposite_row_point": "t2",
+      "opposite_collision_blocker_row_center_br": "p1",
+      "source_prime_representative": "q2",
+      "source_representative": "q1"
+    },
+    "nominal_post_metric_dimension": 7,
+    "point_count": 10,
+    "post_gauge_dof": 16,
+    "retained_order": [
+      "t2",
+      "p2",
+      "p1",
+      "r2",
+      "q2",
+      "q1",
+      "r1",
+      "s1",
+      "s3",
+      "s2"
+    ],
+    "row_equalities": 9,
+    "rows": {
+      "bp": [
+        "t2",
+        "p1",
+        "p2",
+        "s2"
+      ],
+      "bq": [
+        "q1",
+        "q2",
+        "s2",
+        "s3"
+      ],
+      "br": [
+        "t2",
+        "r1",
+        "r2",
+        "s1"
+      ]
+    },
+    "source_witness": "atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common/witness.json",
+    "source_witness_sha256": "0c210af3f9476c66a677c7377f9efdb3a163d38273766f64cd5b299d3ab81987"
+  },
+  "final_active_edge_count": 22,
+  "iterations": [
+    {
+      "active_edge_count": 10,
+      "added_edge_atoms": [
+        "edge_order_0_6_t2_p2_r1",
+        "edge_order_1_6_p2_p1_r1",
+        "edge_order_1_7_p2_p1_s1",
+        "edge_order_1_8_p2_p1_s3",
+        "edge_order_2_6_p1_r2_r1",
+        "edge_order_2_7_p1_r2_s1",
+        "edge_order_2_8_p1_r2_s3",
+        "edge_order_5_9_q1_r1_s2",
+        "edge_order_5_0_q1_r1_t2",
+        "edge_order_5_1_q1_r1_p2",
+        "edge_order_8_3_s3_s2_r2",
+        "edge_order_8_4_s3_s2_q2"
+      ],
+      "check": 0,
+      "constraint_total": 83,
+      "elapsed_ms": 18163,
+      "status": "SAT",
+      "violated_full_edge_count": 13
+    },
+    {
+      "active_edge_count": 22,
+      "check": 1,
+      "constraint_total": 95,
+      "cvc5_crosscheck": {
+        "elapsed_ms": 30017,
+        "returncode": -6,
+        "solver": "cvc5 1.3.3 --nl-cov",
+        "status": "TIMEOUT",
+        "stderr_head": "cvc5 interrupted by timeout.\n",
+        "stdout_head": "",
+        "timeout_ms": 30000
+      },
+      "elapsed_ms": 30292,
+      "reason_unknown": "timeout",
+      "status": "UNKNOWN"
+    }
+  ],
+  "last_unknown_cvc5_crosscheck": {
+    "elapsed_ms": 30017,
+    "returncode": -6,
+    "solver": "cvc5 1.3.3 --nl-cov",
+    "status": "TIMEOUT",
+    "stderr_head": "cvc5 interrupted by timeout.\n",
+    "stdout_head": "",
+    "timeout_ms": 30000
+  },
+  "max_checks": 4,
+  "schema": "crossed-arm-edge-cegar-v1",
+  "solver": "Z3 4.16.0 nlsat",
+  "status": "UNKNOWN",
+  "target": "all 80 exact strict-convex supporting-edge inequalities",
+  "target_edge_count": 80,
+  "timeout_ms_per_check": 30000,
+  "trust_boundary": "SAT only after exact replay of all target atoms; UNKNOWN/incomplete is no evidence"
+}

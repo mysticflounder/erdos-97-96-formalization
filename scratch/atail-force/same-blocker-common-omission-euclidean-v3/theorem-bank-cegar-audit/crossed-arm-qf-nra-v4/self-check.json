@@ -1,0 +1,75 @@
+{
+  "ENCODED": [
+    "one shared real-coordinate assignment for all 17 named points",
+    "orientation-preserving similarity gauge on the first two cyclic-order points",
+    "all 136 pairwise point-distinctness inequalities",
+    "the full serialized radius partition at every center: every within-class target pair is equal and every cross-class target pair is unequal",
+    "a1 uses its serialized radius_classes verbatim; its selected row is not promoted to a new disjoint class"
+  ],
+  "OMITTED": [
+    "MEC and nonobtuse-apex hypotheses",
+    "CounterexampleData.noM44 and the arbitrary-n reduction",
+    "re-execution of the source Boolean CEGAR/theorem-bank search",
+    "Lean proof objects, transitive axiom audit, and kernel verification",
+    "all cyclic-order and convexity inequalities"
+  ],
+  "common_bisector_core_count": 8,
+  "constraint_counts": {
+    "gauge": 4,
+    "pairwise-distinctness": 136,
+    "radius-cross-class-disequality": 1913,
+    "radius-within-class-equality": 127
+  },
+  "constraint_total": 2180,
+  "input_witness": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common-full-metric-bank-v4-cross-omissions-import-v3/witness.json",
+  "schema": "crossed-arm-full-radius-qf-nra-v4",
+  "source_validation": {
+    "a1_selected_row_role": "one existing serialized radius class; no synthetic class added",
+    "a1_serialized_class_count": 7,
+    "carrier_cardinality": 17,
+    "radius_class_counts": {
+      "a1": 7,
+      "a2": 12,
+      "a3": 13,
+      "p1": 12,
+      "p2": 13,
+      "q1": 12,
+      "q2": 13,
+      "r1": 12,
+      "r2": 13,
+      "s1": 11,
+      "s2": 12,
+      "s3": 12,
+      "s4": 11,
+      "t1": 13,
+      "t2": 11,
+      "t3": 12,
+      "t4": 13
+    },
+    "radius_partition_center_count": 17,
+    "radius_partition_target_count_per_center": 16,
+    "replay_fields_checked": [
+      "semantic_replay",
+      "cap_block_position_replay",
+      "cap_crossing_kalmanson_replay",
+      "crossed_arm_replay",
+      "full_shared_pair_separation_replay",
+      "geometric_incidence_replay"
+    ],
+    "source_arm": "source-at-common",
+    "source_result_sha256": "cf74670311548665a9c4154dc5a2e58241c3cbf279a2f7415b0f6c930573eb4b",
+    "source_schema": "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v4",
+    "source_status": "SAT",
+    "status": "SELF_CHECK_OK",
+    "witness_sha256": "ff1f5c03231d9dc3a1e5c0e45aba27a162632fa512f214765a58932d372352e1"
+  },
+  "stage": "metric",
+  "status": "SELF_CHECK_OK",
+  "target_solver_invoked": false,
+  "trust_boundary": {
+    "solver": "Z3 QF_NRA is trusted external computation; SAT is accepted only after exact model replay of every encoded atom and the full radius partition",
+    "source": "v4 JSON replay markers and structural checks are artifact evidence, not a rerun of the CEGAR producer",
+    "unknown": "UNKNOWN or timeout is no evidence for SAT or UNSAT",
+    "unsat": "a Z3 UNSAT has no independently checkable certificate and is not Lean/kernel closure"
+  }
+}

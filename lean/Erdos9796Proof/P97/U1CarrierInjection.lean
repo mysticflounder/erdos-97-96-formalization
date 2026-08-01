@@ -603,6 +603,16 @@ theorem off_row_named_label_forbidden {A : Finset ℝ²} {q center z : ℝ²}
   rw [K.support_eq]
   exact Finset.mem_filter.mpr ⟨hzA, hzdist⟩
 
+/-- An ambient point omitted from an exact critical shell is genuinely off
+that shell's radius. -/
+theorem dist_ne_radius_of_mem_A_not_mem_support
+    {A : Finset ℝ²} {q center z : ℝ²}
+    (K : CriticalFourShell A q center)
+    (hzA : z ∈ A) (hzNot : z ∉ K.support) :
+    dist center z ≠ K.radius := by
+  intro hzdist
+  exact hzNot (K.off_row_named_label_forbidden hzA hzdist)
+
 /-- A critical full shell can be consumed by the existing selected-row API. -/
 def toSelectedFourClass {A : Finset ℝ²} {q center : ℝ²}
     (K : CriticalFourShell A q center) :

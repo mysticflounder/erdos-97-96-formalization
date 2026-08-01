@@ -1,0 +1,60 @@
+{
+  "schema": "crossed-arm-qf-nra-summary-v1",
+  "date": "2026-08-01",
+  "classification": "bounded external computation; not Lean closure",
+  "overall_status": "EXACT_ORDER_UNKNOWN",
+  "shared_counts": {
+    "points": 10,
+    "coordinate_variables": 20,
+    "gauge_equations": 4,
+    "post_gauge_dof": 16,
+    "row_equalities": 9,
+    "nominal_post_metric_dimension": 7,
+    "pairwise_distinctness_inequalities": 45,
+    "retained_row_exactness_disequalities": 15,
+    "local_turn_inequalities": 10,
+    "exact_edge_order_inequalities": 80,
+    "redundant_full_order_inequalities": 120
+  },
+  "source-at-common": {
+    "metric": {"status": "SAT", "elapsed_ms": 5, "replay": "PASS"},
+    "local-turn": {"status": "SAT", "elapsed_ms": 18209, "replay": "PASS"},
+    "edge-convex": {"z3": "UNKNOWN_TIMEOUT", "cvc5_nl_cov": "TIMEOUT"},
+    "full-convex": {"z3": "UNKNOWN_TIMEOUT", "cvc5_nl_cov": "TIMEOUT"},
+    "batch1_cegar": {
+      "status": "UNKNOWN",
+      "sat_active_edge_counts": [10, 11],
+      "first_added_edges": [
+        "orient(t2,p2,r1) > 0",
+        "orient(t2,p2,s1) > 0"
+      ],
+      "unknown_at_active_edge_count": 12
+    },
+    "numerical_probe": "NO_SEED_FOUND; heuristic only"
+  },
+  "other-at-common": {
+    "metric": {"status": "SAT", "elapsed_ms": 6, "replay": "PASS"},
+    "local-turn": {"status": "SAT", "elapsed_ms": 26, "replay": "PASS"},
+    "edge-convex": {"z3": "UNKNOWN_TIMEOUT", "cvc5_nl_cov": "TIMEOUT"},
+    "full-convex": {"z3": "UNKNOWN_TIMEOUT", "cvc5_nl_cov": "TIMEOUT"},
+    "batch1_cegar": {
+      "status": "UNKNOWN",
+      "sat_active_edge_counts": [10, 11],
+      "first_added_edges": [
+        "orient(a1,t1,q1) > 0",
+        "orient(t1,t3,r2) > 0"
+      ],
+      "unknown_at_active_edge_count": 12
+    },
+    "numerical_probe": "NO_SEED_FOUND; heuristic only"
+  },
+  "conclusion": {
+    "bank_exclusion": "not established",
+    "coordinate_realizability": "not established or refuted",
+    "unsat_core": null,
+    "first_unresolved_condition": "exact nonlocal strict-convex cyclic order on the ten retained points",
+    "first_omitted_live_condition_if_exact_core_is_sat": "coordinates and row exactness for the seven removed carrier points, followed by the remaining selected rows and terminal MEC/nonobtuse/noM44 surface",
+    "universal_lean_theorem_candidate": null
+  },
+  "trust_boundary": "SAT stages replay exactly; UNKNOWN and numerical failure are no evidence; no certificate or Lean proof"
+}

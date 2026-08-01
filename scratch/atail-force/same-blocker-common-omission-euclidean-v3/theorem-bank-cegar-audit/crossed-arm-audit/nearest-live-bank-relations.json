@@ -1,0 +1,1911 @@
+{
+  "other-at-common": {
+    "arm": "other-at-common",
+    "best_using_at_least_one_forced": [
+      {
+        "cyclic_positions": [
+          0,
+          1,
+          2,
+          6,
+          7
+        ],
+        "family": "forward-second",
+        "missing": [
+          [
+            "q1",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "a1",
+          "t1",
+          "t3",
+          "r1",
+          "q1"
+        ],
+        "row_centers": [
+          "q1",
+          "r1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          1,
+          4,
+          6,
+          9,
+          0
+        ],
+        "family": "forward-second",
+        "missing": [
+          [
+            "p1",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t1",
+          "t4",
+          "r1",
+          "p1",
+          "a1"
+        ],
+        "row_centers": [
+          "a1",
+          "p1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          1,
+          4,
+          8,
+          9,
+          0
+        ],
+        "family": "forward-second",
+        "missing": [
+          [
+            "p1",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t1",
+          "t4",
+          "r2",
+          "p1",
+          "a1"
+        ],
+        "row_centers": [
+          "a1",
+          "p1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          1,
+          5,
+          6,
+          9,
+          0
+        ],
+        "family": "forward-second",
+        "missing": [
+          [
+            "p1",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t1",
+          "a2",
+          "r1",
+          "p1",
+          "a1"
+        ],
+        "row_centers": [
+          "a1",
+          "p1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          1,
+          5,
+          8,
+          9,
+          0
+        ],
+        "family": "forward-second",
+        "missing": [
+          [
+            "p1",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t1",
+          "a2",
+          "r2",
+          "p1",
+          "a1"
+        ],
+        "row_centers": [
+          "a1",
+          "p1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          1,
+          6,
+          9,
+          12,
+          0
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "r1",
+            "t1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t1",
+          "r1",
+          "p1",
+          "a3",
+          "a1"
+        ],
+        "row_centers": [
+          "p1",
+          "r1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          6,
+          9,
+          12,
+          0,
+          1
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "r1",
+            "t1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "r1",
+          "p1",
+          "a3",
+          "a1",
+          "t1"
+        ],
+        "row_centers": [
+          "p1",
+          "r1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          6,
+          9,
+          13,
+          0,
+          1
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "s3",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "r1",
+          "p1",
+          "s3",
+          "a1",
+          "t1"
+        ],
+        "row_centers": [
+          "p1",
+          "s3"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          9,
+          13,
+          0,
+          1,
+          6
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "s3",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "p1",
+          "s3",
+          "a1",
+          "t1",
+          "r1"
+        ],
+        "row_centers": [
+          "p1",
+          "s3"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          1,
+          8,
+          9,
+          12,
+          0
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "r2",
+            "t1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t1",
+          "r2",
+          "p1",
+          "a3",
+          "a1"
+        ],
+        "row_centers": [
+          "p1",
+          "r2"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          8,
+          9,
+          12,
+          0,
+          1
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "r2",
+            "t1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "r2",
+          "p1",
+          "a3",
+          "a1",
+          "t1"
+        ],
+        "row_centers": [
+          "p1",
+          "r2"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          0,
+          1,
+          9,
+          12,
+          13
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "p1",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "a1",
+          "t1",
+          "p1",
+          "a3",
+          "s3"
+        ],
+        "row_centers": [
+          "p1",
+          "t1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          1,
+          9,
+          12,
+          13,
+          0
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "p1",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t1",
+          "p1",
+          "a3",
+          "s3",
+          "a1"
+        ],
+        "row_centers": [
+          "p1",
+          "t1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          0,
+          2,
+          6,
+          7,
+          9
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "t3",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "a1",
+          "t3",
+          "r1",
+          "q1",
+          "p1"
+        ],
+        "row_centers": [
+          "r1",
+          "t3"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          2,
+          6,
+          7,
+          9,
+          0
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "q1",
+            "r1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t3",
+          "r1",
+          "q1",
+          "p1",
+          "a1"
+        ],
+        "row_centers": [
+          "q1",
+          "r1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          2,
+          6,
+          7,
+          9,
+          0
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "t3",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t3",
+          "r1",
+          "q1",
+          "p1",
+          "a1"
+        ],
+        "row_centers": [
+          "r1",
+          "t3"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          6,
+          7,
+          9,
+          0,
+          2
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "q1",
+            "r1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "r1",
+          "q1",
+          "p1",
+          "a1",
+          "t3"
+        ],
+        "row_centers": [
+          "q1",
+          "r1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          2,
+          6,
+          7,
+          10,
+          0
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "q1",
+            "r1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t3",
+          "r1",
+          "q1",
+          "p2",
+          "a1"
+        ],
+        "row_centers": [
+          "q1",
+          "r1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          6,
+          7,
+          10,
+          0,
+          2
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "q1",
+            "r1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "r1",
+          "q1",
+          "p2",
+          "a1",
+          "t3"
+        ],
+        "row_centers": [
+          "q1",
+          "r1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          0,
+          2,
+          6,
+          7,
+          12
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "t3",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "a1",
+          "t3",
+          "r1",
+          "q1",
+          "a3"
+        ],
+        "row_centers": [
+          "r1",
+          "t3"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      }
+    ],
+    "best_using_at_least_one_forced_count": 86,
+    "best_using_both_forced": [
+      {
+        "cyclic_positions": [
+          0,
+          1,
+          2,
+          6,
+          9
+        ],
+        "family": "forward-second",
+        "missing": [
+          [
+            "p1",
+            "a1"
+          ],
+          [
+            "r1",
+            "p1"
+          ]
+        ],
+        "missing_count": 2,
+        "points": [
+          "a1",
+          "t1",
+          "t3",
+          "r1",
+          "p1"
+        ],
+        "row_centers": [
+          "p1",
+          "r1"
+        ],
+        "uses_both_forced": true,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ],
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          3,
+          6,
+          9,
+          1,
+          2
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "p1",
+            "t2"
+          ],
+          [
+            "r1",
+            "t2"
+          ]
+        ],
+        "missing_count": 2,
+        "points": [
+          "t2",
+          "r1",
+          "p1",
+          "t1",
+          "t3"
+        ],
+        "row_centers": [
+          "p1",
+          "r1"
+        ],
+        "uses_both_forced": true,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ],
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          6,
+          9,
+          1,
+          2,
+          3
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "p1",
+            "t2"
+          ],
+          [
+            "r1",
+            "t2"
+          ]
+        ],
+        "missing_count": 2,
+        "points": [
+          "r1",
+          "p1",
+          "t1",
+          "t3",
+          "t2"
+        ],
+        "row_centers": [
+          "p1",
+          "r1"
+        ],
+        "uses_both_forced": true,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ],
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          4,
+          6,
+          9,
+          1,
+          2
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "p1",
+            "t4"
+          ],
+          [
+            "r1",
+            "t4"
+          ]
+        ],
+        "missing_count": 2,
+        "points": [
+          "t4",
+          "r1",
+          "p1",
+          "t1",
+          "t3"
+        ],
+        "row_centers": [
+          "p1",
+          "r1"
+        ],
+        "uses_both_forced": true,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ],
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          6,
+          9,
+          1,
+          2,
+          4
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "p1",
+            "t4"
+          ],
+          [
+            "r1",
+            "t4"
+          ]
+        ],
+        "missing_count": 2,
+        "points": [
+          "r1",
+          "p1",
+          "t1",
+          "t3",
+          "t4"
+        ],
+        "row_centers": [
+          "p1",
+          "r1"
+        ],
+        "uses_both_forced": true,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ],
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          5,
+          6,
+          9,
+          1,
+          2
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "p1",
+            "a2"
+          ],
+          [
+            "r1",
+            "a2"
+          ]
+        ],
+        "missing_count": 2,
+        "points": [
+          "a2",
+          "r1",
+          "p1",
+          "t1",
+          "t3"
+        ],
+        "row_centers": [
+          "p1",
+          "r1"
+        ],
+        "uses_both_forced": true,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ],
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          6,
+          9,
+          1,
+          2,
+          5
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "p1",
+            "a2"
+          ],
+          [
+            "r1",
+            "a2"
+          ]
+        ],
+        "missing_count": 2,
+        "points": [
+          "r1",
+          "p1",
+          "t1",
+          "t3",
+          "a2"
+        ],
+        "row_centers": [
+          "p1",
+          "r1"
+        ],
+        "uses_both_forced": true,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ],
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          11,
+          1,
+          2,
+          6,
+          9
+        ],
+        "family": "forward-second",
+        "missing": [
+          [
+            "p1",
+            "q2"
+          ],
+          [
+            "r1",
+            "p1"
+          ]
+        ],
+        "missing_count": 2,
+        "points": [
+          "q2",
+          "t1",
+          "t3",
+          "r1",
+          "p1"
+        ],
+        "row_centers": [
+          "p1",
+          "r1"
+        ],
+        "uses_both_forced": true,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ],
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          12,
+          1,
+          2,
+          6,
+          9
+        ],
+        "family": "forward-second",
+        "missing": [
+          [
+            "r1",
+            "a3"
+          ],
+          [
+            "r1",
+            "p1"
+          ]
+        ],
+        "missing_count": 2,
+        "points": [
+          "a3",
+          "t1",
+          "t3",
+          "r1",
+          "p1"
+        ],
+        "row_centers": [
+          "p1",
+          "r1"
+        ],
+        "uses_both_forced": true,
+        "uses_forced": [
+          [
+            "p1",
+            "t1"
+          ],
+          [
+            "r1",
+            "t3"
+          ]
+        ]
+      }
+    ],
+    "best_using_both_forced_count": 9,
+    "forced_literals": [
+      [
+        "p1",
+        "t1"
+      ],
+      [
+        "r1",
+        "t3"
+      ]
+    ],
+    "minimum_missing_using_at_least_one_forced": 1,
+    "minimum_missing_using_both_forced": 2,
+    "note": "Missing row memberships are candidate positive metric equalities only; the bounded model shows they are not consequences of the encoded bank."
+  },
+  "source-at-common": {
+    "arm": "source-at-common",
+    "best_using_at_least_one_forced": [
+      {
+        "cyclic_positions": [
+          16,
+          0,
+          2,
+          3,
+          11
+        ],
+        "family": "forward-second",
+        "missing": [
+          [
+            "r1",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "s2",
+          "a1",
+          "t3",
+          "t4",
+          "r1"
+        ],
+        "row_centers": [
+          "r1",
+          "t4"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "r1",
+            "s2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          0,
+          3,
+          4,
+          7,
+          13
+        ],
+        "family": "forward-second",
+        "missing": [
+          [
+            "p1",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "a1",
+          "t4",
+          "t2",
+          "p1",
+          "s1"
+        ],
+        "row_centers": [
+          "p1",
+          "s1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          4,
+          7,
+          10,
+          16,
+          0
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "p1",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t2",
+          "p1",
+          "q1",
+          "s2",
+          "a1"
+        ],
+        "row_centers": [
+          "p1",
+          "q1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          7,
+          10,
+          16,
+          0,
+          4
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "p1",
+            "a1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "p1",
+          "q1",
+          "s2",
+          "a1",
+          "t2"
+        ],
+        "row_centers": [
+          "p1",
+          "q1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          7,
+          9,
+          11,
+          16,
+          0
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "r1",
+            "p1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "p1",
+          "q2",
+          "r1",
+          "s2",
+          "a1"
+        ],
+        "row_centers": [
+          "q2",
+          "r1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "r1",
+            "s2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          9,
+          11,
+          16,
+          0,
+          7
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "r1",
+            "p1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "q2",
+          "r1",
+          "s2",
+          "a1",
+          "p1"
+        ],
+        "row_centers": [
+          "q2",
+          "r1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "r1",
+            "s2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          16,
+          1,
+          2,
+          3,
+          11
+        ],
+        "family": "forward-second",
+        "missing": [
+          [
+            "r1",
+            "t1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "s2",
+          "t1",
+          "t3",
+          "t4",
+          "r1"
+        ],
+        "row_centers": [
+          "r1",
+          "t4"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "r1",
+            "s2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          3,
+          4,
+          7,
+          8,
+          1
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "p1",
+            "t4"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t4",
+          "t2",
+          "p1",
+          "r2",
+          "t1"
+        ],
+        "row_centers": [
+          "p1",
+          "t2"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          4,
+          7,
+          8,
+          1,
+          3
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "p1",
+            "t4"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t2",
+          "p1",
+          "r2",
+          "t1",
+          "t4"
+        ],
+        "row_centers": [
+          "p1",
+          "t2"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          3,
+          4,
+          7,
+          11,
+          1
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "p1",
+            "t4"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t4",
+          "t2",
+          "p1",
+          "r1",
+          "t1"
+        ],
+        "row_centers": [
+          "p1",
+          "t2"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          4,
+          7,
+          11,
+          1,
+          3
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "p1",
+            "t4"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t2",
+          "p1",
+          "r1",
+          "t1",
+          "t4"
+        ],
+        "row_centers": [
+          "p1",
+          "t2"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          3,
+          4,
+          7,
+          13,
+          1
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "p1",
+            "t4"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t4",
+          "t2",
+          "p1",
+          "s1",
+          "t1"
+        ],
+        "row_centers": [
+          "p1",
+          "t2"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          4,
+          7,
+          13,
+          1,
+          3
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "p1",
+            "t4"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t2",
+          "p1",
+          "s1",
+          "t1",
+          "t4"
+        ],
+        "row_centers": [
+          "p1",
+          "t2"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          1,
+          4,
+          7,
+          8,
+          13
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "p1",
+            "t1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t1",
+          "t2",
+          "p1",
+          "r2",
+          "s1"
+        ],
+        "row_centers": [
+          "p1",
+          "t2"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          4,
+          7,
+          8,
+          13,
+          1
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "p1",
+            "t1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t2",
+          "p1",
+          "r2",
+          "s1",
+          "t1"
+        ],
+        "row_centers": [
+          "p1",
+          "t2"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          1,
+          4,
+          7,
+          8,
+          16
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "p1",
+            "t1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t1",
+          "t2",
+          "p1",
+          "r2",
+          "s2"
+        ],
+        "row_centers": [
+          "p1",
+          "t2"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          4,
+          7,
+          8,
+          16,
+          1
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "p1",
+            "t1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t2",
+          "p1",
+          "r2",
+          "s2",
+          "t1"
+        ],
+        "row_centers": [
+          "p1",
+          "t2"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          4,
+          7,
+          10,
+          16,
+          1
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "p1",
+            "t1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t2",
+          "p1",
+          "q1",
+          "s2",
+          "t1"
+        ],
+        "row_centers": [
+          "p1",
+          "q1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          7,
+          10,
+          16,
+          1,
+          4
+        ],
+        "family": "reversed-second",
+        "missing": [
+          [
+            "p1",
+            "t1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "p1",
+          "q1",
+          "s2",
+          "t1",
+          "t2"
+        ],
+        "row_centers": [
+          "p1",
+          "q1"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          1,
+          4,
+          7,
+          11,
+          13
+        ],
+        "family": "direct",
+        "missing": [
+          [
+            "p1",
+            "t1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "t1",
+          "t2",
+          "p1",
+          "r1",
+          "s1"
+        ],
+        "row_centers": [
+          "p1",
+          "t2"
+        ],
+        "uses_both_forced": false,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ]
+        ]
+      }
+    ],
+    "best_using_at_least_one_forced_count": 112,
+    "best_using_both_forced": [
+      {
+        "cyclic_positions": [
+          13,
+          16,
+          4,
+          7,
+          11
+        ],
+        "family": "forward-second",
+        "missing": [
+          [
+            "r1",
+            "s1"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "s1",
+          "s2",
+          "t2",
+          "p1",
+          "r1"
+        ],
+        "row_centers": [
+          "p1",
+          "r1"
+        ],
+        "uses_both_forced": true,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ],
+          [
+            "r1",
+            "s2"
+          ]
+        ]
+      },
+      {
+        "cyclic_positions": [
+          14,
+          16,
+          4,
+          7,
+          11
+        ],
+        "family": "forward-second",
+        "missing": [
+          [
+            "p1",
+            "s3"
+          ]
+        ],
+        "missing_count": 1,
+        "points": [
+          "s3",
+          "s2",
+          "t2",
+          "p1",
+          "r1"
+        ],
+        "row_centers": [
+          "p1",
+          "r1"
+        ],
+        "uses_both_forced": true,
+        "uses_forced": [
+          [
+            "p1",
+            "t2"
+          ],
+          [
+            "r1",
+            "s2"
+          ]
+        ]
+      }
+    ],
+    "best_using_both_forced_count": 2,
+    "forced_literals": [
+      [
+        "p1",
+        "t2"
+      ],
+      [
+        "r1",
+        "s2"
+      ]
+    ],
+    "minimum_missing_using_at_least_one_forced": 1,
+    "minimum_missing_using_both_forced": 1,
+    "note": "Missing row memberships are candidate positive metric equalities only; the bounded model shows they are not consequences of the encoded bank."
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "other-at-common": {
+    "algebraic_independence_claimed": false,
+    "arm": "other-at-common",
+    "centers": {
+      "bp": "q1",
+      "bq": "r1",
+      "br": "p1"
+    },
+    "coordinate_variables": 20,
+    "full_order": [
+      "a1",
+      "t1",
+      "t3",
+      "t2",
+      "t4",
+      "a2",
+      "r1",
+      "q1",
+      "r2",
+      "p1",
+      "p2",
+      "q2",
+      "a3",
+      "s3",
+      "s4",
+      "s1",
+      "s2"
+    ],
+    "gauge": {
+      "origin": "q1",
+      "unit": "p1"
+    },
+    "gauge_equations": 4,
+    "mapping": {
+      "P.source1": "p1",
+      "P.source2": "p2",
+      "P_rho.source1": "r1",
+      "P_rho.source2": "r2",
+      "Q.otherOutsidePoint": "t3",
+      "Q.source": "t1",
+      "common_source_row_center_bq": "r1",
+      "first_collision_blocker_row_center_bp": "q1",
+      "forced_common_row_point": "t3",
+      "forced_crossed_arm": "other-at-common",
+      "forced_opposite_row_point": "t1",
+      "opposite_collision_blocker_row_center_br": "p1",
+      "source_prime_representative": "q2",
+      "source_representative": "q1"
+    },
+    "nominal_post_metric_dimension": 7,
+    "point_count": 10,
+    "post_gauge_dof": 16,
+    "retained_order": [
+      "a1",
+      "t1",
+      "t3",
+      "r1",
+      "q1",
+      "r2",
+      "p1",
+      "p2",
+      "q2",
+      "a3"
+    ],
+    "row_equalities": 9,
+    "rows": {
+      "bp": [
+        "t1",
+        "t3",
+        "p1",
+        "p2"
+      ],
+      "bq": [
+        "a1",
+        "t3",
+        "q1",
+        "q2"
+      ],
+      "br": [
+        "t1",
+        "r1",
+        "r2",
+        "a3"
+      ]
+    },
+    "source_witness": "atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/other-at-common/witness.json",
+    "source_witness_sha256": "e9ab9262ade5cf88b35d5e2606afd9bc902f2b78ddfa25305bf83d82e32f966c"
+  },
+  "source-at-common": {
+    "algebraic_independence_claimed": false,
+    "arm": "source-at-common",
+    "centers": {
+      "bp": "q1",
+      "bq": "r1",
+      "br": "p1"
+    },
+    "coordinate_variables": 20,
+    "full_order": [
+      "a1",
+      "t1",
+      "t3",
+      "t4",
+      "t2",
+      "a2",
+      "p2",
+      "p1",
+      "r2",
+      "q2",
+      "q1",
+      "r1",
+      "a3",
+      "s1",
+      "s3",
+      "s4",
+      "s2"
+    ],
+    "gauge": {
+      "origin": "q1",
+      "unit": "p1"
+    },
+    "gauge_equations": 4,
+    "mapping": {
+      "P.source1": "p1",
+      "P.source2": "p2",
+      "P_rho.source1": "r1",
+      "P_rho.source2": "r2",
+      "Q.otherOutsidePoint": "t2",
+      "Q.source": "s2",
+      "common_source_row_center_bq": "r1",
+      "first_collision_blocker_row_center_bp": "q1",
+      "forced_common_row_point": "s2",
+      "forced_crossed_arm": "source-at-common",
+      "forced_opposite_row_point": "t2",
+      "opposite_collision_blocker_row_center_br": "p1",
+      "source_prime_representative": "q2",
+      "source_representative": "q1"
+    },
+    "nominal_post_metric_dimension": 7,
+    "point_count": 10,
+    "post_gauge_dof": 16,
+    "retained_order": [
+      "t2",
+      "p2",
+      "p1",
+      "r2",
+      "q2",
+      "q1",
+      "r1",
+      "s1",
+      "s3",
+      "s2"
+    ],
+    "row_equalities": 9,
+    "rows": {
+      "bp": [
+        "t2",
+        "p1",
+        "p2",
+        "s2"
+      ],
+      "bq": [
+        "q1",
+        "q2",
+        "s2",
+        "s3"
+      ],
+      "br": [
+        "t2",
+        "r1",
+        "r2",
+        "s1"
+      ]
+    },
+    "source_witness": "atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common/witness.json",
+    "source_witness_sha256": "0c210af3f9476c66a677c7377f9efdb3a163d38273766f64cd5b299d3ab81987"
+  },
+  "status": "SELF_CHECK_PASS"
+}

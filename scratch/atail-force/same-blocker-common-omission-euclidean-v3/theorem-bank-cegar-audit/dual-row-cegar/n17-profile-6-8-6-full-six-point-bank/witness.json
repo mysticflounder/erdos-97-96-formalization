@@ -1,0 +1,375 @@
+{
+  "base_semantic_replay": {
+    "blockers": {
+      "a1": "q1",
+      "a2": "t4",
+      "a3": "s4",
+      "p1": "q1",
+      "p2": "q1",
+      "q1": "p2",
+      "q2": "p2",
+      "r1": "q2",
+      "r2": "q2",
+      "s1": "t1",
+      "s2": "t1",
+      "s3": "r2",
+      "s4": "q2",
+      "t1": "s3",
+      "t2": "r1",
+      "t3": "r2",
+      "t4": "s3"
+    },
+    "cap_block_position_replay": {
+      "position_count": 17,
+      "status": "PASS"
+    },
+    "cap_crossing_kalmanson_replay": {
+      "status": "NOT_REQUESTED"
+    },
+    "existential_cyclic_order": [
+      "a1",
+      "t3",
+      "t2",
+      "t4",
+      "t1",
+      "a2",
+      "r1",
+      "q2",
+      "p1",
+      "p2",
+      "q1",
+      "r2",
+      "a3",
+      "s1",
+      "s3",
+      "s2",
+      "s4"
+    ],
+    "five_center_deletion_residual": {
+      "centers": {
+        "oppApex1": "a1",
+        "oppApex2": "a2",
+        "opposite_collision_blocker": "q2",
+        "q_common_blocker": "p2",
+        "surplusApex": "a3"
+      },
+      "deleted": "p1",
+      "selected_arm": "delete-P.source1",
+      "selected_rows_avoid_deleted": true,
+      "surviving_selected_rows": {
+        "oppApex1": [
+          "t2",
+          "q1",
+          "q2",
+          "s3"
+        ],
+        "oppApex2": [
+          "r2",
+          "q1",
+          "a3",
+          "s1"
+        ],
+        "opposite_collision_blocker": [
+          "t2",
+          "r1",
+          "r2",
+          "s4"
+        ],
+        "q_common_blocker": [
+          "t1",
+          "q1",
+          "q2",
+          "s2"
+        ],
+        "surplusApex": [
+          "t3",
+          "t4",
+          "p2",
+          "r2"
+        ]
+      }
+    },
+    "full_shared_pair_separation_replay": {
+      "active_shared_pair_cases": 10,
+      "candidate_cases": 14280,
+      "status": "PASS"
+    },
+    "geometric_incidence_replay": {
+      "common_bisector_triple_cases": 61880,
+      "status": "PASS",
+      "two_circle_overlap_cases": 61880
+    },
+    "packet": {
+      "Q.otherOutsidePoint": "t2",
+      "Q.source": "a1",
+      "all_four_endpoint_omissions": true,
+      "bp": "q1",
+      "bq": "p2",
+      "br": "q2",
+      "p_first_apex_class": [
+        "t4",
+        "p1",
+        "p2",
+        "a3"
+      ],
+      "p_support": [
+        "a1",
+        "t2",
+        "p1",
+        "p2"
+      ],
+      "q_common_support": [
+        "t1",
+        "q1",
+        "q2",
+        "s2"
+      ],
+      "q_first_apex_class": [
+        "t2",
+        "q1",
+        "q2",
+        "s3"
+      ],
+      "q_shell_cap_intersection": [
+        "q1",
+        "q2"
+      ],
+      "r_first_apex_class": [
+        "t1",
+        "r1",
+        "r2",
+        "s2"
+      ]
+    },
+    "rows": {
+      "a1": [
+        "t2",
+        "q1",
+        "q2",
+        "s3"
+      ],
+      "a2": [
+        "r2",
+        "q1",
+        "a3",
+        "s1"
+      ],
+      "a3": [
+        "t3",
+        "t4",
+        "p2",
+        "r2"
+      ],
+      "p1": [
+        "a1",
+        "t3",
+        "a2",
+        "s1"
+      ],
+      "p2": [
+        "t1",
+        "q1",
+        "q2",
+        "s2"
+      ],
+      "q1": [
+        "a1",
+        "t2",
+        "p1",
+        "p2"
+      ],
+      "q2": [
+        "t2",
+        "r1",
+        "r2",
+        "s4"
+      ],
+      "r1": [
+        "t1",
+        "t2",
+        "t3",
+        "a3"
+      ],
+      "r2": [
+        "t3",
+        "p1",
+        "q1",
+        "s3"
+      ],
+      "s1": [
+        "p1",
+        "r2",
+        "s2",
+        "s4"
+      ],
+      "s2": [
+        "a1",
+        "r1",
+        "q2",
+        "s1"
+      ],
+      "s3": [
+        "t1",
+        "t4",
+        "p1",
+        "r1"
+      ],
+      "s4": [
+        "a2",
+        "p2",
+        "a3",
+        "s3"
+      ],
+      "t1": [
+        "t2",
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "t2": [
+        "t1",
+        "t3",
+        "p2",
+        "s4"
+      ],
+      "t3": [
+        "a1",
+        "t2",
+        "t4",
+        "s4"
+      ],
+      "t4": [
+        "a2",
+        "p1",
+        "q2",
+        "s4"
+      ]
+    },
+    "semantic_replay": "PASS"
+  },
+  "cyclic_order": [
+    "a1",
+    "t3",
+    "t2",
+    "t4",
+    "t1",
+    "a2",
+    "r1",
+    "q2",
+    "p1",
+    "p2",
+    "q1",
+    "r2",
+    "a3",
+    "s1",
+    "s3",
+    "s2",
+    "s4"
+  ],
+  "five_subsets_replayed": 6188,
+  "kalmanson_theorem_families_replayed": [
+    "kalmanson_013_412_523",
+    "kalmanson_012_325_415",
+    "kalmanson_012_124_314",
+    "kalmanson_013_235_415"
+  ],
+  "outside_choice": {
+    "Q.otherOutsidePoint": "t2",
+    "Q.source": "a1",
+    "deleted": "a1"
+  },
+  "packet_cuts_replayed": 81,
+  "positive_cyclic_orders_replayed": 30940,
+  "row_centers": {
+    "collision.apex1": "a1",
+    "collision.apex2": "a2",
+    "collision.apex3": "a3",
+    "collision.common": "p2",
+    "collision.opposite": "q2",
+    "outside.apex1": "a1",
+    "outside.apex2": "a2",
+    "outside.apex3": "a3",
+    "outside.common": "p2",
+    "outside.opposite": "q2"
+  },
+  "row_supports": {
+    "collision.apex1": [
+      "t2",
+      "q1",
+      "q2",
+      "s3"
+    ],
+    "collision.apex2": [
+      "r2",
+      "q1",
+      "a3",
+      "s1"
+    ],
+    "collision.apex3": [
+      "t3",
+      "t4",
+      "p2",
+      "r2"
+    ],
+    "collision.common": [
+      "t1",
+      "q1",
+      "q2",
+      "s2"
+    ],
+    "collision.opposite": [
+      "t2",
+      "r1",
+      "r2",
+      "s4"
+    ],
+    "outside.apex1": [
+      "t1",
+      "r1",
+      "r2",
+      "s2"
+    ],
+    "outside.apex2": [
+      "p2",
+      "r1",
+      "q2",
+      "s4"
+    ],
+    "outside.apex3": [
+      "t3",
+      "t4",
+      "p2",
+      "s1"
+    ],
+    "outside.common": [
+      "t1",
+      "q1",
+      "q2",
+      "s2"
+    ],
+    "outside.opposite": [
+      "t2",
+      "r1",
+      "r2",
+      "s4"
+    ]
+  },
+  "six_point_equality_theorem_families_replayed": [
+    "six_sparse_row_equalities",
+    "six_main_row_equalities",
+    "six_mirror_interleaving_equalities",
+    "six_two_triple_row_equalities"
+  ],
+  "six_point_row_theorem_families_replayed": [
+    "six_sparse_two_selected_rows"
+  ],
+  "solver_assertions_replayed": 581402,
+  "status": "PASS",
+  "structural_pairings_replayed": 45,
+  "structural_triples_replayed": 120,
+  "theorem_families_replayed": [
+    "first",
+    "second",
+    "reversed_second"
+  ]
+}

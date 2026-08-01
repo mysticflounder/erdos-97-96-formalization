@@ -1,0 +1,1013 @@
+{
+  "blockers": {
+    "a1": "t1",
+    "a2": "s3",
+    "a3": "r2",
+    "p1": "q2",
+    "p2": "q2",
+    "q1": "r1",
+    "q2": "r1",
+    "r1": "p1",
+    "r2": "p1",
+    "s1": "s2",
+    "s2": "p1",
+    "s3": "q1",
+    "s4": "p2",
+    "t1": "t4",
+    "t2": "q2",
+    "t3": "a3",
+    "t4": "s1"
+  },
+  "cap_block_position_replay": {
+    "position_count": 17,
+    "status": "PASS"
+  },
+  "cap_crossing_kalmanson_replay": {
+    "shared_late_pair_cases": 60,
+    "status": "PASS"
+  },
+  "crossed_arm_replay": {
+    "all_registered_selected_row_and_raw_equality_theorem_families_replayed": true,
+    "forced_memberships_and_complementary_omissions_replayed": true,
+    "full_theorem_bank_active_match_counts": {
+      "first": 0,
+      "five_circle_isosceles_two_selected_rows": 0,
+      "five_direct_three_row_equalities": 0,
+      "five_kalmanson_three_selected_rows": 0,
+      "five_kalmanson_three_shell_equalities": 0,
+      "five_second_three_row_equalities": 0,
+      "four_endpoint_centers_bisect_middle_pair": 0,
+      "four_middle_centers_bisect_endpoint_pair": 0,
+      "kalmanson_012_124_314": 0,
+      "kalmanson_012_325_415": 0,
+      "kalmanson_013_235_415": 0,
+      "kalmanson_013_412_523": 0,
+      "reversed_second": 0,
+      "second": 0,
+      "six_main_row_equalities": 0,
+      "six_mirror_interleaving_equalities": 0,
+      "six_sparse_row_equalities": 0,
+      "six_sparse_two_selected_rows": 0,
+      "six_two_triple_row_equalities": 0
+    },
+    "ordered_pair_unique": true,
+    "outside_eq_pair_replayed": true,
+    "source_same_actual_blocker_as_P_source1": true,
+    "status": "PASS",
+    "structural_bank_active_match_count": 0
+  },
+  "existential_cyclic_order": [
+    "a1",
+    "t4",
+    "t3",
+    "t1",
+    "t2",
+    "a2",
+    "p1",
+    "r1",
+    "q2",
+    "r2",
+    "p2",
+    "q1",
+    "a3",
+    "s3",
+    "s2",
+    "s1",
+    "s4"
+  ],
+  "five_center_deletion_residual": {
+    "centers": {
+      "oppApex1": "a1",
+      "oppApex2": "a2",
+      "opposite_collision_blocker": "q2",
+      "q_common_blocker": "r1",
+      "surplusApex": "a3"
+    },
+    "deleted": "r1",
+    "selected_arm": "delete-Prho.source1",
+    "selected_rows_avoid_deleted": true,
+    "surviving_selected_rows": {
+      "oppApex1": [
+        "t1",
+        "p1",
+        "p2",
+        "s3"
+      ],
+      "oppApex2": [
+        "t1",
+        "t3",
+        "p2",
+        "r2"
+      ],
+      "opposite_collision_blocker": [
+        "t2",
+        "p1",
+        "p2",
+        "s2"
+      ],
+      "q_common_blocker": [
+        "t2",
+        "t4",
+        "q1",
+        "q2"
+      ],
+      "surplusApex": [
+        "a1",
+        "t3",
+        "a2",
+        "p1"
+      ]
+    }
+  },
+  "full_shared_pair_separation_replay": {
+    "active_shared_pair_cases": 13,
+    "candidate_cases": 14280,
+    "status": "PASS"
+  },
+  "geometric_incidence_replay": {
+    "common_bisector_triple_cases": 61880,
+    "status": "PASS",
+    "two_circle_overlap_cases": 61880
+  },
+  "live_Lean_mapping": {
+    "P.source1": "p1",
+    "P.source2": "p2",
+    "P_rho.source1": "r1",
+    "P_rho.source2": "r2",
+    "Q.otherOutsidePoint": "s2",
+    "Q.source": "t2",
+    "common_source_row_center_bq": "r1",
+    "first_collision_blocker_row_center_bp": "q2",
+    "forced_common_row_omitted_point": "s2",
+    "forced_common_row_point": "t2",
+    "forced_crossed_arm": "source-at-common",
+    "forced_opposite_row_omitted_point": "t2",
+    "forced_opposite_row_point": "s2",
+    "opposite_collision_blocker_row_center_br": "p1",
+    "source_prime_representative": "q2",
+    "source_representative": "q1"
+  },
+  "packet": {
+    "Q.otherOutsidePoint": "s2",
+    "Q.source": "t2",
+    "all_four_endpoint_omissions": true,
+    "bp": "q2",
+    "bq": "r1",
+    "br": "p1",
+    "p_first_apex_class": [
+      "t1",
+      "p1",
+      "p2",
+      "s3"
+    ],
+    "p_support": [
+      "t2",
+      "p1",
+      "p2",
+      "s2"
+    ],
+    "q_common_support": [
+      "t2",
+      "t4",
+      "q1",
+      "q2"
+    ],
+    "q_first_apex_class": [
+      "q1",
+      "q2",
+      "s1",
+      "s2"
+    ],
+    "q_shell_cap_intersection": [
+      "q1",
+      "q2"
+    ],
+    "r_first_apex_class": [
+      "t4",
+      "r1",
+      "r2",
+      "s4"
+    ]
+  },
+  "radius_classes": {
+    "a1": [
+      [
+        "t1",
+        "p1",
+        "p2",
+        "s3"
+      ],
+      [
+        "t2"
+      ],
+      [
+        "t3"
+      ],
+      [
+        "t4",
+        "r1",
+        "r2",
+        "s4"
+      ],
+      [
+        "a2"
+      ],
+      [
+        "q1",
+        "q2",
+        "s1",
+        "s2"
+      ],
+      [
+        "a3"
+      ]
+    ],
+    "a2": [
+      [
+        "a1"
+      ],
+      [
+        "t1",
+        "t3",
+        "p2",
+        "r2",
+        "s1"
+      ],
+      [
+        "t2"
+      ],
+      [
+        "t4"
+      ],
+      [
+        "p1"
+      ],
+      [
+        "r1"
+      ],
+      [
+        "q1"
+      ],
+      [
+        "q2"
+      ],
+      [
+        "a3"
+      ],
+      [
+        "s2"
+      ],
+      [
+        "s3"
+      ],
+      [
+        "s4"
+      ]
+    ],
+    "a3": [
+      [
+        "a1",
+        "t3",
+        "a2",
+        "p1"
+      ],
+      [
+        "t1"
+      ],
+      [
+        "t2"
+      ],
+      [
+        "t4"
+      ],
+      [
+        "p2",
+        "s1"
+      ],
+      [
+        "r1"
+      ],
+      [
+        "r2"
+      ],
+      [
+        "q1"
+      ],
+      [
+        "q2"
+      ],
+      [
+        "s2"
+      ],
+      [
+        "s3"
+      ],
+      [
+        "s4"
+      ]
+    ],
+    "p1": [
+      [
+        "a1"
+      ],
+      [
+        "t1"
+      ],
+      [
+        "t2"
+      ],
+      [
+        "t3",
+        "a3"
+      ],
+      [
+        "t4"
+      ],
+      [
+        "a2",
+        "r1",
+        "r2",
+        "s2"
+      ],
+      [
+        "p2"
+      ],
+      [
+        "q1"
+      ],
+      [
+        "q2"
+      ],
+      [
+        "s1"
+      ],
+      [
+        "s3"
+      ],
+      [
+        "s4"
+      ]
+    ],
+    "p2": [
+      [
+        "a1"
+      ],
+      [
+        "t1"
+      ],
+      [
+        "t2"
+      ],
+      [
+        "t3",
+        "q2"
+      ],
+      [
+        "t4"
+      ],
+      [
+        "a2"
+      ],
+      [
+        "p1",
+        "a3",
+        "s1",
+        "s4"
+      ],
+      [
+        "r1"
+      ],
+      [
+        "r2"
+      ],
+      [
+        "q1"
+      ],
+      [
+        "s2"
+      ],
+      [
+        "s3"
+      ]
+    ],
+    "q1": [
+      [
+        "a1"
+      ],
+      [
+        "t1"
+      ],
+      [
+        "t2"
+      ],
+      [
+        "t3",
+        "p1"
+      ],
+      [
+        "t4"
+      ],
+      [
+        "a2"
+      ],
+      [
+        "p2",
+        "q2",
+        "s2",
+        "s3"
+      ],
+      [
+        "r1"
+      ],
+      [
+        "r2"
+      ],
+      [
+        "a3"
+      ],
+      [
+        "s1"
+      ],
+      [
+        "s4"
+      ]
+    ],
+    "q2": [
+      [
+        "a1"
+      ],
+      [
+        "t1"
+      ],
+      [
+        "t2",
+        "p1",
+        "p2",
+        "s2"
+      ],
+      [
+        "t3"
+      ],
+      [
+        "t4"
+      ],
+      [
+        "a2"
+      ],
+      [
+        "r1"
+      ],
+      [
+        "r2"
+      ],
+      [
+        "q1"
+      ],
+      [
+        "a3"
+      ],
+      [
+        "s1"
+      ],
+      [
+        "s3",
+        "s4"
+      ]
+    ],
+    "r1": [
+      [
+        "a1"
+      ],
+      [
+        "t1"
+      ],
+      [
+        "t2",
+        "t4",
+        "q1",
+        "q2"
+      ],
+      [
+        "t3"
+      ],
+      [
+        "a2"
+      ],
+      [
+        "p1"
+      ],
+      [
+        "p2"
+      ],
+      [
+        "r2"
+      ],
+      [
+        "a3"
+      ],
+      [
+        "s1"
+      ],
+      [
+        "s2"
+      ],
+      [
+        "s3"
+      ],
+      [
+        "s4"
+      ]
+    ],
+    "r2": [
+      [
+        "a1",
+        "p2"
+      ],
+      [
+        "t1",
+        "q2"
+      ],
+      [
+        "t2",
+        "a2",
+        "a3",
+        "s3"
+      ],
+      [
+        "t3"
+      ],
+      [
+        "t4"
+      ],
+      [
+        "p1"
+      ],
+      [
+        "r1"
+      ],
+      [
+        "q1"
+      ],
+      [
+        "s1"
+      ],
+      [
+        "s2"
+      ],
+      [
+        "s4"
+      ]
+    ],
+    "s1": [
+      [
+        "a1",
+        "t4",
+        "p2",
+        "a3"
+      ],
+      [
+        "t1"
+      ],
+      [
+        "t2"
+      ],
+      [
+        "t3"
+      ],
+      [
+        "a2"
+      ],
+      [
+        "p1"
+      ],
+      [
+        "r1"
+      ],
+      [
+        "r2"
+      ],
+      [
+        "q1"
+      ],
+      [
+        "q2"
+      ],
+      [
+        "s2"
+      ],
+      [
+        "s3"
+      ],
+      [
+        "s4"
+      ]
+    ],
+    "s2": [
+      [
+        "a1",
+        "t1"
+      ],
+      [
+        "t2"
+      ],
+      [
+        "t3"
+      ],
+      [
+        "t4"
+      ],
+      [
+        "a2",
+        "r1",
+        "q1",
+        "s1"
+      ],
+      [
+        "p1"
+      ],
+      [
+        "p2"
+      ],
+      [
+        "r2"
+      ],
+      [
+        "q2"
+      ],
+      [
+        "a3"
+      ],
+      [
+        "s3"
+      ],
+      [
+        "s4"
+      ]
+    ],
+    "s3": [
+      [
+        "a1"
+      ],
+      [
+        "t1",
+        "a2",
+        "q2",
+        "a3"
+      ],
+      [
+        "t2"
+      ],
+      [
+        "t3"
+      ],
+      [
+        "t4"
+      ],
+      [
+        "p1"
+      ],
+      [
+        "p2"
+      ],
+      [
+        "r1"
+      ],
+      [
+        "r2"
+      ],
+      [
+        "q1"
+      ],
+      [
+        "s1"
+      ],
+      [
+        "s2"
+      ],
+      [
+        "s4"
+      ]
+    ],
+    "s4": [
+      [
+        "a1"
+      ],
+      [
+        "t1"
+      ],
+      [
+        "t2",
+        "t3",
+        "r1",
+        "q2"
+      ],
+      [
+        "t4"
+      ],
+      [
+        "a2"
+      ],
+      [
+        "p1"
+      ],
+      [
+        "p2"
+      ],
+      [
+        "r2"
+      ],
+      [
+        "q1"
+      ],
+      [
+        "a3"
+      ],
+      [
+        "s1"
+      ],
+      [
+        "s2"
+      ],
+      [
+        "s3"
+      ]
+    ],
+    "t1": [
+      [
+        "a1",
+        "q1",
+        "s2",
+        "s4"
+      ],
+      [
+        "t2"
+      ],
+      [
+        "t3"
+      ],
+      [
+        "t4",
+        "p2"
+      ],
+      [
+        "a2"
+      ],
+      [
+        "p1"
+      ],
+      [
+        "r1"
+      ],
+      [
+        "r2"
+      ],
+      [
+        "q2"
+      ],
+      [
+        "a3"
+      ],
+      [
+        "s1"
+      ],
+      [
+        "s3"
+      ]
+    ],
+    "t2": [
+      [
+        "a1"
+      ],
+      [
+        "t1"
+      ],
+      [
+        "t3",
+        "a2",
+        "s3",
+        "s4"
+      ],
+      [
+        "t4"
+      ],
+      [
+        "p1"
+      ],
+      [
+        "p2"
+      ],
+      [
+        "r1"
+      ],
+      [
+        "r2"
+      ],
+      [
+        "q1"
+      ],
+      [
+        "q2"
+      ],
+      [
+        "a3"
+      ],
+      [
+        "s1"
+      ],
+      [
+        "s2"
+      ]
+    ],
+    "t3": [
+      [
+        "a1"
+      ],
+      [
+        "t1"
+      ],
+      [
+        "t2",
+        "s4"
+      ],
+      [
+        "t4",
+        "p1",
+        "a3",
+        "s2"
+      ],
+      [
+        "a2"
+      ],
+      [
+        "p2"
+      ],
+      [
+        "r1"
+      ],
+      [
+        "r2"
+      ],
+      [
+        "q1"
+      ],
+      [
+        "q2"
+      ],
+      [
+        "s1"
+      ],
+      [
+        "s3"
+      ]
+    ],
+    "t4": [
+      [
+        "a1",
+        "t1",
+        "t2",
+        "r2"
+      ],
+      [
+        "t3"
+      ],
+      [
+        "a2"
+      ],
+      [
+        "p1"
+      ],
+      [
+        "p2"
+      ],
+      [
+        "r1"
+      ],
+      [
+        "q1"
+      ],
+      [
+        "q2"
+      ],
+      [
+        "a3"
+      ],
+      [
+        "s1"
+      ],
+      [
+        "s2"
+      ],
+      [
+        "s3"
+      ],
+      [
+        "s4"
+      ]
+    ]
+  },
+  "rows": {
+    "a1": [
+      "t1",
+      "p1",
+      "p2",
+      "s3"
+    ],
+    "a2": [
+      "t1",
+      "t3",
+      "p2",
+      "r2"
+    ],
+    "a3": [
+      "a1",
+      "t3",
+      "a2",
+      "p1"
+    ],
+    "p1": [
+      "a2",
+      "r1",
+      "r2",
+      "s2"
+    ],
+    "p2": [
+      "p1",
+      "a3",
+      "s1",
+      "s4"
+    ],
+    "q1": [
+      "p2",
+      "q2",
+      "s2",
+      "s3"
+    ],
+    "q2": [
+      "t2",
+      "p1",
+      "p2",
+      "s2"
+    ],
+    "r1": [
+      "t2",
+      "t4",
+      "q1",
+      "q2"
+    ],
+    "r2": [
+      "t2",
+      "a2",
+      "a3",
+      "s3"
+    ],
+    "s1": [
+      "a1",
+      "t4",
+      "p2",
+      "a3"
+    ],
+    "s2": [
+      "a2",
+      "r1",
+      "q1",
+      "s1"
+    ],
+    "s3": [
+      "t1",
+      "a2",
+      "q2",
+      "a3"
+    ],
+    "s4": [
+      "t2",
+      "t3",
+      "r1",
+      "q2"
+    ],
+    "t1": [
+      "a1",
+      "q1",
+      "s2",
+      "s4"
+    ],
+    "t2": [
+      "t3",
+      "a2",
+      "s3",
+      "s4"
+    ],
+    "t3": [
+      "t4",
+      "p1",
+      "a3",
+      "s2"
+    ],
+    "t4": [
+      "a1",
+      "t1",
+      "t2",
+      "r2"
+    ]
+  },
+  "semantic_replay": "PASS"
+}

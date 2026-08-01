@@ -1,0 +1,14 @@
+{
+  "known_sat": {
+    "cvc5_nl_cov": "SAT",
+    "formula": "x^2+y^2=1, x=0, y>0",
+    "z3": "SAT"
+  },
+  "known_unsat": {
+    "cvc5_nl_cov": "UNSAT",
+    "formula": "x^2+y^2=0, x>0",
+    "z3": "UNSAT"
+  },
+  "status": "SMOKE_PASS",
+  "timeout_ms_per_call": 2000
+}

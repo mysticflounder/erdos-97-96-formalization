@@ -1,0 +1,344 @@
+{
+  "branch_scope": "collision exact rows AND outside-pair deletion exact rows; crossed outside constructors excluded",
+  "candidate_count": 7,
+  "closed_cap_profile": [
+    6,
+    8,
+    6
+  ],
+  "connectivity_cut_count": 0,
+  "constraint_blocks": {
+    "Q_first_shell_exact_cap_intersection": 36,
+    "Q_fresh_outside_source_same_blocker": 6,
+    "all_four_endpoint_omissions": 24,
+    "blockers_in_indexed_strict_cap": 33,
+    "collision_actual_blocker_distinct": 148,
+    "collision_blockers_distinct": 17,
+    "critical_blocker_nonself": 17,
+    "critical_blocker_total": 17,
+    "critical_no_K4_after_source_deletion": 371280,
+    "critical_support_exact": 4624,
+    "cyclic_position_block_bounds": 28,
+    "cyclic_position_block_permutation": 3,
+    "cyclic_position_fixed_apices": 3,
+    "distinct_first_apex_radii": 3,
+    "dual_cut_shared_pair": 8,
+    "dual_cut_theorem": 73,
+    "equal_pair_has_at_most_two_carrier_centers": 61880,
+    "five_center_deletion_arm_selector": 1,
+    "five_center_deletion_blocker_survival": 136,
+    "five_center_deletion_fixed_apex_survival": 12,
+    "fresh_q_blocker": 34,
+    "full_selected_row_shared_pair_separation": 14280,
+    "global_K4": 2074,
+    "mutual_triangle_transport": 4080,
+    "outside_actual_blocker_distinct": 12240,
+    "outside_blocker_row_canonical": 578,
+    "outside_choice_exact": 1,
+    "outside_choice_pair_in_first_shell": 4896,
+    "outside_choice_source_blocker": 2448,
+    "outside_deleted_omission": 720,
+    "outside_incidental_blocker_canonical": 867,
+    "outside_row_coradial": 10200,
+    "outside_row_exact_four": 5,
+    "outside_row_excludes_center": 85,
+    "p_blocker_collision": 17,
+    "p_first_apex_exact_class": 6,
+    "q_equal_blocker": 17,
+    "q_first_apex_exact_class": 6,
+    "q_shell_exact_cap_intersection": 36,
+    "r_blocker_collision": 17,
+    "r_first_apex_exact_class": 6,
+    "radius_partition": 28560,
+    "two_complete_circles_intersect_at_most_two": 61880
+  },
+  "elapsed_ms": 23314,
+  "guard_self_checks": {
+    "first": {
+      "direction_preserving_rotations_rejected": 5,
+      "linear_orders_checked": 120,
+      "positive_membership_arities": [
+        2,
+        3
+      ],
+      "reflected_orders_admitted_by_guard": 0,
+      "row_centers": [
+        1,
+        2
+      ],
+      "theorem": "false_of_five_ccw_two_selected_rows_cyclicShift"
+    },
+    "kalmanson_012_124_314": {
+      "cyclic_recut": false,
+      "equality_count": 3,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 120,
+      "theorem": "false_of_five_ccw_three_shell_equalities_012_124_314"
+    },
+    "kalmanson_012_325_415": {
+      "cyclic_recut": false,
+      "equality_count": 3,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "theorem": "false_of_six_ccw_three_shell_equalities_012_325_415"
+    },
+    "kalmanson_013_235_415": {
+      "cyclic_recut": false,
+      "equality_count": 3,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "theorem": "false_of_six_ccw_three_shell_equalities_013_235_415"
+    },
+    "kalmanson_013_412_523": {
+      "cyclic_recut": false,
+      "equality_count": 3,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "theorem": "false_of_six_ccw_three_shell_equalities_013_412_523"
+    },
+    "reversed_second": {
+      "direction_preserving_rotations_rejected": 5,
+      "linear_orders_checked": 120,
+      "positive_membership_arities": [
+        3,
+        2
+      ],
+      "reflected_orders_admitted_by_guard": 0,
+      "row_centers": [
+        1,
+        0
+      ],
+      "theorem": "false_of_five_ccw_reversed_second_two_selected_rows_cyclicShift"
+    },
+    "second": {
+      "direction_preserving_rotations_rejected": 5,
+      "linear_orders_checked": 120,
+      "positive_membership_arities": [
+        3,
+        2
+      ],
+      "reflected_orders_admitted_by_guard": 0,
+      "row_centers": [
+        3,
+        4
+      ],
+      "theorem": "false_of_five_ccw_second_two_selected_rows_cyclicShift"
+    },
+    "six_main_row_equalities": {
+      "cyclic_recut": false,
+      "equality_count": 5,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "theorem": "Problem97.SixPointEuclideanObstruction.false_of_six_ccw_row_equalities"
+    },
+    "six_mirror_interleaving_equalities": {
+      "cyclic_recut": false,
+      "equality_count": 5,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "theorem": "Problem97.SixPointEuclideanObstruction.false_of_six_ccw_mirror_interleaving_row_equalities"
+    },
+    "six_sparse_row_equalities": {
+      "cyclic_recut": false,
+      "equality_count": 4,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "theorem": "Problem97.SixPointSparseEuclideanObstruction.false_of_six_ccw_row_equalities"
+    },
+    "six_sparse_two_selected_rows": {
+      "cyclic_recut": false,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "positive_membership_arities": [
+        3,
+        3
+      ],
+      "theorem": "false_of_six_ccw_two_selected_rows"
+    },
+    "six_two_triple_row_equalities": {
+      "cyclic_recut": false,
+      "equality_count": 4,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "theorem": "Problem97.TwoTripleRowSixPointEuclideanObstruction.false_of_six_ccw_two_triple_row_equalities"
+    }
+  },
+  "iterations": [
+    {
+      "check_ms": 3199,
+      "fresh_structural_cuts": 1,
+      "fresh_theorem_cuts": {
+        "first": 13,
+        "kalmanson_012_124_314": 0,
+        "kalmanson_012_325_415": 0,
+        "kalmanson_013_235_415": 0,
+        "kalmanson_013_412_523": 0,
+        "reversed_second": 13,
+        "second": 1,
+        "six_main_row_equalities": 0,
+        "six_mirror_interleaving_equalities": 0,
+        "six_sparse_row_equalities": 0,
+        "six_sparse_two_selected_rows": 0,
+        "six_two_triple_row_equalities": 0
+      },
+      "iteration": 0,
+      "kind": "dual-row-cuts",
+      "result": "sat",
+      "structural_violations": 1,
+      "theorem_matches": 27
+    },
+    {
+      "check_ms": 1473,
+      "fresh_structural_cuts": 6,
+      "fresh_theorem_cuts": {
+        "first": 2,
+        "kalmanson_012_124_314": 0,
+        "kalmanson_012_325_415": 0,
+        "kalmanson_013_235_415": 2,
+        "kalmanson_013_412_523": 0,
+        "reversed_second": 2,
+        "second": 6,
+        "six_main_row_equalities": 0,
+        "six_mirror_interleaving_equalities": 0,
+        "six_sparse_row_equalities": 0,
+        "six_sparse_two_selected_rows": 0,
+        "six_two_triple_row_equalities": 0
+      },
+      "iteration": 1,
+      "kind": "dual-row-cuts",
+      "result": "sat",
+      "structural_violations": 6,
+      "theorem_matches": 12
+    },
+    {
+      "check_ms": 69,
+      "fresh_structural_cuts": 0,
+      "fresh_theorem_cuts": {
+        "first": 2,
+        "kalmanson_012_124_314": 0,
+        "kalmanson_012_325_415": 0,
+        "kalmanson_013_235_415": 0,
+        "kalmanson_013_412_523": 0,
+        "reversed_second": 2,
+        "second": 2,
+        "six_main_row_equalities": 0,
+        "six_mirror_interleaving_equalities": 0,
+        "six_sparse_row_equalities": 4,
+        "six_sparse_two_selected_rows": 2,
+        "six_two_triple_row_equalities": 0
+      },
+      "iteration": 2,
+      "kind": "dual-row-cuts",
+      "result": "sat",
+      "structural_violations": 0,
+      "theorem_matches": 12
+    },
+    {
+      "check_ms": 71,
+      "fresh_structural_cuts": 1,
+      "fresh_theorem_cuts": {
+        "first": 0,
+        "kalmanson_012_124_314": 0,
+        "kalmanson_012_325_415": 0,
+        "kalmanson_013_235_415": 2,
+        "kalmanson_013_412_523": 0,
+        "reversed_second": 0,
+        "second": 2,
+        "six_main_row_equalities": 0,
+        "six_mirror_interleaving_equalities": 0,
+        "six_sparse_row_equalities": 4,
+        "six_sparse_two_selected_rows": 2,
+        "six_two_triple_row_equalities": 0
+      },
+      "iteration": 3,
+      "kind": "dual-row-cuts",
+      "result": "sat",
+      "structural_violations": 1,
+      "theorem_matches": 10
+    },
+    {
+      "check_ms": 72,
+      "fresh_structural_cuts": 0,
+      "fresh_theorem_cuts": {
+        "first": 0,
+        "kalmanson_012_124_314": 0,
+        "kalmanson_012_325_415": 0,
+        "kalmanson_013_235_415": 0,
+        "kalmanson_013_412_523": 0,
+        "reversed_second": 0,
+        "second": 0,
+        "six_main_row_equalities": 0,
+        "six_mirror_interleaving_equalities": 0,
+        "six_sparse_row_equalities": 4,
+        "six_sparse_two_selected_rows": 2,
+        "six_two_triple_row_equalities": 0
+      },
+      "iteration": 4,
+      "kind": "dual-row-cuts",
+      "result": "sat",
+      "structural_violations": 0,
+      "theorem_matches": 6
+    },
+    {
+      "check_ms": 76,
+      "fresh_structural_cuts": 0,
+      "fresh_theorem_cuts": {
+        "first": 0,
+        "kalmanson_012_124_314": 0,
+        "kalmanson_012_325_415": 0,
+        "kalmanson_013_235_415": 0,
+        "kalmanson_013_412_523": 0,
+        "reversed_second": 0,
+        "second": 0,
+        "six_main_row_equalities": 0,
+        "six_mirror_interleaving_equalities": 0,
+        "six_sparse_row_equalities": 4,
+        "six_sparse_two_selected_rows": 2,
+        "six_two_triple_row_equalities": 0
+      },
+      "iteration": 5,
+      "kind": "dual-row-cuts",
+      "result": "sat",
+      "structural_violations": 0,
+      "theorem_matches": 6
+    },
+    {
+      "check_ms": 59,
+      "independent_replay": "PASS",
+      "iteration": 6,
+      "kind": "surviving-candidate",
+      "result": "sat"
+    }
+  ],
+  "n": 17,
+  "schema": "dual-positive-exact-row-packets-cyclic-cegar-v1",
+  "status": "SAT",
+  "structural_cut_count": 8,
+  "structural_cut_counts": {
+    "bisector": 0,
+    "circle": 0,
+    "shared_pair": 8
+  },
+  "theorem_cut_counts": {
+    "first": 17,
+    "kalmanson_012_124_314": 0,
+    "kalmanson_012_325_415": 0,
+    "kalmanson_013_235_415": 4,
+    "kalmanson_013_412_523": 0,
+    "reversed_second": 17,
+    "second": 11,
+    "six_main_row_equalities": 0,
+    "six_mirror_interleaving_equalities": 0,
+    "six_sparse_row_equalities": 16,
+    "six_sparse_two_selected_rows": 8,
+    "six_two_triple_row_equalities": 0
+  },
+  "trust_boundary": [
+    "finite external Z3 Boolean/incidence evidence",
+    "UNSAT has no DRAT/LRAT certificate",
+    "no coordinates or QF_NRA realization",
+    "no full CounterexampleData/MEC/nonobtuse geometry",
+    "no arbitrary-n conclusion",
+    "no Lean kernel closure; the live leaf remains sorry"
+  ]
+}

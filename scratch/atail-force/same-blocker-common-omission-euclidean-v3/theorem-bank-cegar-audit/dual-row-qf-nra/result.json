@@ -1,0 +1,175 @@
+{
+  "classification": "source-level production Kalmanson theorem match",
+  "counts": {
+    "context_source_shell_equality_occurrences": 3,
+    "coordinate_variables": 34,
+    "gauge_equalities": 4,
+    "named_point_disequalities": 136,
+    "packet_row_equality_occurrences": 30,
+    "post_gauge_variable_count": 30,
+    "strict_convex_order_inequalities": 680,
+    "unique_packet_row_equalities": 22,
+    "unique_row_equalities_with_source_shell": 25
+  },
+  "direct_hits": [
+    {
+      "equalities": [
+        {
+          "center": "a1",
+          "equal_distance_targets": [
+            "t3",
+            "r2"
+          ],
+          "row": "outside.apex1"
+        },
+        {
+          "center": "a2",
+          "equal_distance_targets": [
+            "r2",
+            "s1"
+          ],
+          "row": "collision.apex2"
+        },
+        {
+          "center": "a3",
+          "equal_distance_targets": [
+            "t3",
+            "s1"
+          ],
+          "row": "collision.apex3"
+        }
+      ],
+      "points_in_increasing_order": [
+        "a1",
+        "t3",
+        "a2",
+        "r2",
+        "a3",
+        "s1"
+      ],
+      "schema": [
+        "d(0,1)=d(0,3)",
+        "d(2,3)=d(2,5)",
+        "d(4,1)=d(4,5)"
+      ]
+    },
+    {
+      "equalities": [
+        {
+          "center": "a1",
+          "equal_distance_targets": [
+            "t1",
+            "r1"
+          ],
+          "row": "outside.apex1"
+        },
+        {
+          "center": "a2",
+          "equal_distance_targets": [
+            "r1",
+            "s4"
+          ],
+          "row": "outside.apex2"
+        },
+        {
+          "center": "p2",
+          "equal_distance_targets": [
+            "t1",
+            "s4"
+          ],
+          "row": "collision.common"
+        }
+      ],
+      "points_in_increasing_order": [
+        "a1",
+        "t1",
+        "a2",
+        "r1",
+        "p2",
+        "s4"
+      ],
+      "schema": [
+        "d(0,1)=d(0,3)",
+        "d(2,3)=d(2,5)",
+        "d(4,1)=d(4,5)"
+      ]
+    }
+  ],
+  "encoded_ledger": "ENCODING-LEDGER.md",
+  "input": {
+    "cyclic_order": [
+      "a1",
+      "t3",
+      "t2",
+      "t4",
+      "t1",
+      "a2",
+      "r1",
+      "p1",
+      "q2",
+      "p2",
+      "q1",
+      "r2",
+      "a3",
+      "s3",
+      "s1",
+      "s4",
+      "s2"
+    ],
+    "sha256": "f5194fa1b5a0f021b073c03459b5aa7ece87e6dd17635223850493fb39b1eed9",
+    "witness": "dual-row-cegar/n17-profile-6-8-6/witness.json"
+  },
+  "opposite_blocker_distance_test": {
+    "Q.otherOutsidePoint": "t2",
+    "Q.source": "a1",
+    "center": "q2",
+    "classification": "NOT_TESTED_WITNESS_ALREADY_INVALID"
+  },
+  "qf_nra": "NOT_RUN_AFTER_PREFLIGHT_REJECTION",
+  "smallest_decisive_core": {
+    "equalities": [
+      {
+        "center": "a1",
+        "equal_distance_targets": [
+          "t3",
+          "r2"
+        ],
+        "row": "outside.apex1"
+      },
+      {
+        "center": "a2",
+        "equal_distance_targets": [
+          "r2",
+          "s1"
+        ],
+        "row": "collision.apex2"
+      },
+      {
+        "center": "a3",
+        "equal_distance_targets": [
+          "t3",
+          "s1"
+        ],
+        "row": "collision.apex3"
+      }
+    ],
+    "metric_equality_count": 3,
+    "order": [
+      "a1",
+      "t3",
+      "a2",
+      "r2",
+      "a3",
+      "s1"
+    ],
+    "point_count": 6
+  },
+  "status": "REJECTED_BEFORE_QF_NRA",
+  "theorem": "false_of_six_ccw_three_shell_equalities_013_235_415",
+  "theorem_source": "lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean:143",
+  "trust_boundary": [
+    "direct theorem match was source-replayed but no Lean/Lake or transitive axiom audit was run",
+    "no final QF_NRA solver verdict was requested after the stronger preflight rejection",
+    "the saved incidence witness must not be promoted as a Euclidean survivor"
+  ]
+}

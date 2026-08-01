@@ -1,0 +1,31 @@
+{
+  "active_shared_point_pairs_checked": 8,
+  "circle_overlap_active_triples": 0,
+  "collision_deleted": "p1",
+  "common_pairs_at_three_centers": 0,
+  "distinct_center_row_pairs_checked": 40,
+  "distinct_center_row_triples_checked": 80,
+  "exact_rows_checked": 10,
+  "five_subsets_checked": 6188,
+  "kalmanson_subsets_checked": 43316,
+  "kalmanson_theorem_active_matches": {
+    "kalmanson_012_124_314": 0,
+    "kalmanson_012_325_415": 0,
+    "kalmanson_013_235_415": 0,
+    "kalmanson_013_412_523": 0
+  },
+  "method": "artifact-only Python replay; no Z3 or CEGAR import",
+  "outside_deleted": "a1",
+  "positive_cyclic_orders_checked": 30940,
+  "reflection_generated": false,
+  "six_point_row_theorem_active_matches": {
+    "six_sparse_two_selected_rows": 0
+  },
+  "six_point_subsets_checked": 12376,
+  "status": "PASS",
+  "theorem_family_active_matches": {
+    "first": 0,
+    "reversed_second": 0,
+    "second": 0
+  }
+}

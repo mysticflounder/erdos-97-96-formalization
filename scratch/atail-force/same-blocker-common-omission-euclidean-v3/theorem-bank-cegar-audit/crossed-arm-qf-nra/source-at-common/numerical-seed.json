@@ -1,0 +1,75 @@
+{
+  "arm": "source-at-common",
+  "best": {
+    "diagnostics": {
+      "max_abs_row_equality": 0.00013358120455420064,
+      "min_edge_orientation": 7.753327704862478e-08,
+      "min_pair_squared_distance": 2.0776028563496238e-11,
+      "min_retained_exactness_gap": 9.978155842915726e-06
+    },
+    "nfev": 500,
+    "score": 19.117169899848058,
+    "seed": 0
+  },
+  "classification": "floating-point heuristic; not SAT/UNSAT evidence",
+  "coordinates": {
+    "p1": [
+      1.0,
+      0.0
+    ],
+    "p2": [
+      0.9568975094192067,
+      -0.2904236944511651
+    ],
+    "q1": [
+      0.0,
+      0.0
+    ],
+    "q2": [
+      3.0683971188582006e-05,
+      5.089254197731505e-05
+    ],
+    "r1": [
+      0.259533341528607,
+      -0.4273656579136392
+    ],
+    "r2": [
+      0.26105662952853104,
+      0.42983848097959554
+    ],
+    "s1": [
+      0.26431469995107,
+      -0.43523867662724647
+    ],
+    "s2": [
+      0.5190842336226423,
+      -0.8547219346092003
+    ],
+    "s3": [
+      0.5190816692297953,
+      -0.854718166331359
+    ],
+    "t2": [
+      0.6346001023379401,
+      -0.7728399649705948
+    ]
+  },
+  "max_nfev": 500,
+  "restarts_requested": 1,
+  "runs": [
+    {
+      "diagnostics": {
+        "max_abs_row_equality": 0.00013358120455420064,
+        "min_edge_orientation": 7.753327704862478e-08,
+        "min_pair_squared_distance": 2.0776028563496238e-11,
+        "min_retained_exactness_gap": 9.978155842915726e-06
+      },
+      "nfev": 500,
+      "score": 19.117169899848058,
+      "seed": 0
+    }
+  ],
+  "runs_completed": 1,
+  "status": "NO_SEED_FOUND",
+  "trust_boundary": "all diagnostics are floating point; failure is not infeasibility"
+}

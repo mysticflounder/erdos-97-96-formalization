@@ -708,23 +708,127 @@ and a checked producer. The remaining proof should match these two positive
 interfaces against a universal Euclidean occurrence theorem, rather than split
 the four endpoint arms mechanically again.
 
-The next computational model must preserve that two-interface semantics. The
-current incidence CEGAR has one selected-row variable per center, which is
-adequate for one chosen five-center deletion arm but cannot faithfully encode
-both exact-row packets at once: the collision-deletion row and the
-outside-point-deletion row at a common center need not be the same row. Reusing
-one variable would silently add an equality absent from the Lean hypotheses.
-The next sound tranche therefore introduces two independent exact size-four,
-co-radial row layers at every named survivor center. At an actual blocker,
-`qDeletedK4Class_support_eq_selectedShell` may identify a deleted-row support
-with the canonical selected shell only when its hypotheses are proved for that
-specific deletion. At rich apices the two deleted rows remain independent.
-Shared-pair, circle-overlap, perpendicular-bisector, and cyclic five-point
-cuts must then be generated across every relevant within-layer and cross-layer
-pair, followed by an independent replay. This bounded model is an occurrence-
-lemma miner: `SAT` will expose the next missing geometric relation, while
-`UNSAT` still requires extraction of a universal Lean theorem and cannot close
-the unbounded terminal by itself.
+The first two-interface incidence replay was incomplete and its reported SAT
+witness is retired as evidence for this branch. It searched only the ten
+packet-row aliases, although the live theorem also supplies all seventeen
+canonical K4 rows. Composing those rows gives immediate production-theorem
+hits: two shared-late-pair instances, one shared-endpoint-pair instance, a
+two-triple six-point instance, and
+`FivePointCircleIsoscelesOrderBridge.false_of_two_selected_rows_of_ccw`.
+The corrected CEGAR now searches the full canonical-plus-packet row universe
+and deduplicates realized selected classes. Its first full-row pass
+learned more than twelve thousand sound guarded theorem cuts over 321
+candidates before the 300-second total budget expired. This is
+`UNKNOWN_TIMEOUT`, not SAT or UNSAT. A second pass generalized each cut over
+all row providers with the same realized center/support requirement. It also
+expired fail-closed after 600 seconds: 271 candidates, 730 shared-pair cuts,
+and 11,378 theorem cuts. Those cuts are sound, but the two runs did not inspect
+equality-only theorem antecedents in the complete radius partition: they
+looked for those antecedents only through selected-row providers and also
+omitted `CapCrossingKalmanson.false_of_selected_rows_in_five_ccw_order`.
+Consequently the timeouts are not exhaustive theorem-bank passes. Provider
+aggregation is a sound speedup, but it did not settle the dual-deletion
+constructor at this budget; no SAT witness or UNSAT conclusion may be inferred
+from either timeout.
+
+The crossed-constructor audit found one source-fidelity loss before the next
+bounded run. The raw producer already proved all four polarities: each outside
+point belongs to its designated common/opposite row and is omitted from the
+other row. An intermediate residual retained only the two positive memberships.
+The live residual, normalizer, and fixed-role support packet now preserve both
+complementary omissions. The source-clean shell lemma
+`CriticalFourShell.dist_ne_radius_of_mem_A_not_mem_support` converts exact-row
+omission into a strict distance non-equality, and the packet exposes the two
+specializations as `commonRow_cross_dist_ne` and
+`oppositeRow_cross_dist_ne`. A direct Lean 4.27 source check of both the shell
+module and `FrontierLiveClosure.lean` passes. This strengthens the on-spine
+interface without adding an obligation.
+
+The refreshed incidence encoder exposes all seventeen canonical rows, uses
+selected rows only for selected-row consumers, and matches equality-only
+consumers against the complete raw radius-equivalence relation. Its artifact
+format serializes that full relation, and its self-check covers all nineteen
+registered theorem families plus both crossed-arm polarity maps. Imported
+learned cuts are accepted only after reconstructing and validating every
+formula; serialized formulas are never trusted.
+
+The first bank-complete schema-v3 run reached its 1,000-candidate limit after
+446,760 ms and 48,978 sound theorem cuts. It is retired as a branch verdict
+because it predated the source-fidelity repair and did not encode the two
+complementary omissions, although its theorem cuts remain universal and may be
+reconstructed in a stricter run. The corrected schema-v4 source-at-common run
+encoded and replayed all four polarities and returned a replay-PASS finite SAT
+shadow after 889 connected candidates, 404,496 ms, and 43,556 theorem cuts. A
+second schema-v4 run reconstructed the 48,978 legacy universal cuts, learned
+additional cuts, and still returned a replay-PASS finite SAT shadow after 905
+connected candidates, 458,029 ms, and 85,003 total theorem cuts. Thus the
+registered nineteen-family incidence/order bank does not eliminate this
+particular `n = 17`, closed-cap-profile `(6,8,6)`, source-at-common shadow.
+This is not a Euclidean coordinate model, a universal counterexample, or Lean
+closure.
+
+The later crossed-arm QF_NRA artifacts are the incomplete ones: their
+three-row metric cores omitted the anchor's unconditional four-way
+`hexactRows` hypothesis. They remain useful diagnostics for those encoded
+cores, but they are not coordinate models of either full crossed branch.
+
+The fixed-role QF_NRA lane validates the stronger SAT artifact and encodes the
+complete radius partition at all seventeen centers: every within-class
+distance equality, every cross-class distance disequality, a similarity gauge,
+and all named-point distinctness constraints. Its first metric-only target is
+`UNSAT` after 50,143 ms on 2,180 atoms, before any cyclic-order constraint is
+added. Z3 supplies no independently checked certificate here, so this is an
+external discovery result, not Lean closure. It has not yet been reduced to a
+certificate or a universal metric lemma, and the cyclic observation below is
+not claimed to explain that metric-only `UNSAT` result.
+
+A separate sound replay found that the schema-v4 SAT shadow already violates
+the generic cyclic separation theorem `SurplusCOMPGBank.btw_sep`. In the live
+instance the endpoints are the two cap sources and the equidistant centers are
+the first apex and their common blocker. Both equalities are forced by the two
+common-radius memberships and mutual source-row membership. The witness puts
+the two centers on the same cyclic side of the sources, whereas `btw_sep`
+forces them onto opposite sides. This invalidates that finite shadow; it is not
+a direct contradiction in the live theorem, because another cyclic order may
+place the common blocker between the two sources.
+
+Production Lean now states this exact consequence as
+`firstFiber_capSources_alternate_between_firstApex_and_commonBlocker`. The
+schema-v5 crossed-arm encoder adds the corresponding recut- and
+reversal-invariant raw-equality cut for every endpoint pair and pair of
+nonendpoint centers. Its exhaustive self-check covers all 24 four-point orders
+and all 120 five-point orders, including equality valuations, recuts, reversal,
+and role swaps. Solver-free replay finds eight violations in the previous
+witness, including the live source/source/apex/blocker instance.
+
+The corrected schema-v5 `raw_btw_sep` source-at-common run, importing and
+reconstructing the schema-v4 universal cuts, nevertheless returned finite
+`SAT` after 435,815 ms: 767 candidates, 3,149 structural raw-betweenness cuts,
+and 112,601 theorem cuts. Its witness cyclic order is
+`a1,t2,t3,t4,t1,a2,q1,r1,p2,r2,p1,q2,a3,s1,s4,s3,s2`. That witness is not a
+valid shadow of the existing production Lean metric consequences. It has
+`E(a1,p2,p1)` and `E(p1,p2,a1)`, so
+`Problem97.dist_eq_dist_of_mutual_bisector` gives `E(p2,a1,p1)`; together with
+`E(t3,a1,p1)` and `a1 < t3 < p2 < p1`, this contradicts
+`Problem97.false_of_two_centers_equidistant_pair_enclosed`. Declaration-level
+axiom reports for those two theorems contain only `propext`,
+`Classical.choice`, and `Quot.sound`, with no `sorryAx` or custom axiom. This is
+not a global import-closure audit.
+
+The schema-v6 encoder therefore adds the sound canonical Horn family
+`mutual_bisector_transport`,
+`not E(c1,q,c2) or not E(c2,q,c1) or E(q,c1,c2)`, with exactly 2,040 canonical
+`(q,{c1,c2})` instances at `n = 17`, and imports the validated v5 result. No v6
+survivor was produced in the first 900-second tranche: it ended
+`UNKNOWN_FAIL_CLOSED` after eliminating 1,443 candidates and learning 6,382
+structural cuts (5,411 raw-`btw_sep` and 971 mutual-bisector transports) plus
+153,894 theorem cuts.  The final solver call was canceled by the exhausted
+total budget, so this is neither `SAT` nor `UNSAT`; the validated v6 cut
+checkpoint is the input to the next resume tranche. The full-radius
+and lazy-v5 QF_NRA attempts both returned `UNKNOWN` at about 123 seconds;
+the earlier schema-v4 metric-only `UNSAT` is historical and belongs to a
+different shadow. Even eliminating the v5 witness would settle only this
+finite abstraction, not the universal Lean anchor.
 
 # Convert the conjunction packets into structures
 
@@ -828,8 +932,18 @@ terminal leaves remain `sorry`-backed. The subsequent source-clean five-center
 bridge, production exact-row boundary, and narrowed terminal wiring pass their
 respective guarded boundary-target build and direct Lean 4.27 coordinator
 source check. The latest direct coordinator check also covers the compact
-outside-pair exact-row normalization and passed on 2026-08-01. The coordinator
-has not yet been followed by a guarded target rebuild because the project build
-lock is owned by another running build; nor has the terminal passed a
-transitive proof-blueprint and axiom audit. Those gates must be rerun after the
-terminal is proved before any closure claim.
+outside-pair exact-row normalization and passed on 2026-08-01. The crossed
+constructors are now further normalized on spine to a fixed-role three-row
+packet: the first collision support is fully named, and the common-source and
+opposite-collision supports expose their anonymous fourth members together
+with carrier membership and first-cap exclusion. The packet also retains the
+two complementary cross-row omissions that the raw producer already proved.
+The exact-shell API turns those omissions into strict distance
+non-equalities. This preserves the same four constructor arms while giving the
+metric extraction/QF_NRA stage an exact support signature; direct Lean 4.27
+source checks of the strengthened shell module and coordinator passed after
+rebuilding the dependency. A previous guarded Lean 4.27 build of both
+`FivePointEuclideanObstruction` and `FrontierLiveClosure` also passed. This is
+only a source/build checkpoint: the terminal remains `sorry`-backed and has
+not passed a closing transitive proof-blueprint and axiom audit. Those gates
+must be rerun after the terminal is proved before any closure claim.

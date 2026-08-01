@@ -1,0 +1,20 @@
+{
+  "arm": "source-at-common",
+  "candidate_count": 1,
+  "context_build_ms": 14.923,
+  "equivalent_structural_and_match_sets": true,
+  "match_group_counts": [
+    36,
+    35,
+    7,
+    61,
+    7
+  ],
+  "optimized_scan_ms": 275.266,
+  "optimized_total_ms": 290.189,
+  "raw_e_atoms_cached": 2040,
+  "reference_ms": 337.54,
+  "solve_ms": 3243.448,
+  "speedup_including_context_build": 1.16,
+  "structural_match_count": 0
+}

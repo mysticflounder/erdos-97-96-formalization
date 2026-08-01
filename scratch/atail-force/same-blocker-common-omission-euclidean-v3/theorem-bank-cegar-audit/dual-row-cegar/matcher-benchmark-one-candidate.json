@@ -1,0 +1,16 @@
+{
+  "candidate_count": 1,
+  "context_build_ms": 86.153,
+  "equivalent_match_sets": true,
+  "match_counts": {
+    "kalmanson": 38,
+    "raw": 46,
+    "six": 11
+  },
+  "optimized_scan_ms": 88.938,
+  "optimized_total_ms": 175.091,
+  "raw_e_atoms_cached": 2040,
+  "reference_ms": 845.63,
+  "solve_ms": 3390.827,
+  "speedup_including_context_build": 4.83
+}

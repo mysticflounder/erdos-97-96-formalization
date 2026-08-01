@@ -1,0 +1,629 @@
+{
+  "ENCODED": [
+    "one shared real-coordinate assignment for all 17 named points",
+    "orientation-preserving similarity gauge on the first two cyclic-order points",
+    "all 136 pairwise point-distinctness inequalities",
+    "the full serialized radius partition at every center: every within-class target pair is equal and every cross-class target pair is unequal",
+    "a1 uses its serialized radius_classes verbatim; its selected row is not promoted to a new disjoint class"
+  ],
+  "OMITTED": [
+    "MEC and nonobtuse-apex hypotheses",
+    "CounterexampleData.noM44 and the arbitrary-n reduction",
+    "re-execution of the source Boolean CEGAR/theorem-bank search",
+    "Lean proof objects, transitive axiom audit, and kernel verification",
+    "all cyclic-order and convexity inequalities"
+  ],
+  "action": "COMMON_BISECTOR_CORE_REPLAY",
+  "constraint_counts": {
+    "gauge": 4,
+    "pairwise-distinctness": 136,
+    "radius-cross-class-disequality": 1913,
+    "radius-within-class-equality": 127
+  },
+  "constraint_total": 2180,
+  "core_replay": {
+    "all_cores": [
+      {
+        "btw_values": {
+          "s2": false,
+          "s4": false
+        },
+        "centers": [
+          "s4",
+          "s2"
+        ],
+        "cyclic_role_word": [
+          "endpoint",
+          "endpoint",
+          "center",
+          "center"
+        ],
+        "endpoints": [
+          "t1",
+          "a2"
+        ],
+        "linear_cut_indices": [
+          1,
+          5,
+          15,
+          16
+        ],
+        "linear_cut_order": [
+          "t1",
+          "a2",
+          "s4",
+          "s2"
+        ],
+        "original_named_atoms": [
+          {
+            "center": "s4",
+            "name": "radius_eq_s4_t1_a2",
+            "point_pair": [
+              "t1",
+              "a2"
+            ],
+            "relation": "eq"
+          },
+          {
+            "center": "s2",
+            "name": "radius_eq_s2_t1_a2",
+            "point_pair": [
+              "t1",
+              "a2"
+            ],
+            "relation": "eq"
+          }
+        ],
+        "theorem_instance": {
+          "a": "s4",
+          "b": "s2",
+          "declaration": "Problem97.SurplusCOMPGBank.btw_sep",
+          "i": "t1",
+          "j": "a2",
+          "violated_conclusion": "btw i j a iff not (btw i j b)"
+        }
+      },
+      {
+        "btw_values": {
+          "s1": false,
+          "s3": false
+        },
+        "centers": [
+          "s1",
+          "s3"
+        ],
+        "cyclic_role_word": [
+          "endpoint",
+          "endpoint",
+          "center",
+          "center"
+        ],
+        "endpoints": [
+          "a2",
+          "q2"
+        ],
+        "linear_cut_indices": [
+          5,
+          9,
+          13,
+          14
+        ],
+        "linear_cut_order": [
+          "a2",
+          "q2",
+          "s1",
+          "s3"
+        ],
+        "original_named_atoms": [
+          {
+            "center": "s1",
+            "name": "radius_eq_s1_a2_q2",
+            "point_pair": [
+              "a2",
+              "q2"
+            ],
+            "relation": "eq"
+          },
+          {
+            "center": "s3",
+            "name": "radius_eq_s3_a2_q2",
+            "point_pair": [
+              "a2",
+              "q2"
+            ],
+            "relation": "eq"
+          }
+        ],
+        "theorem_instance": {
+          "a": "s1",
+          "b": "s3",
+          "declaration": "Problem97.SurplusCOMPGBank.btw_sep",
+          "i": "a2",
+          "j": "q2",
+          "violated_conclusion": "btw i j a iff not (btw i j b)"
+        }
+      },
+      {
+        "btw_values": {
+          "a1": false,
+          "p2": false
+        },
+        "centers": [
+          "a1",
+          "p2"
+        ],
+        "cyclic_role_word": [
+          "center",
+          "center",
+          "endpoint",
+          "endpoint"
+        ],
+        "endpoints": [
+          "q1",
+          "q2"
+        ],
+        "linear_cut_indices": [
+          0,
+          6,
+          7,
+          9
+        ],
+        "linear_cut_order": [
+          "a1",
+          "p2",
+          "q1",
+          "q2"
+        ],
+        "original_named_atoms": [
+          {
+            "center": "a1",
+            "name": "radius_eq_a1_q1_q2",
+            "point_pair": [
+              "q1",
+              "q2"
+            ],
+            "relation": "eq"
+          },
+          {
+            "center": "p2",
+            "name": "radius_eq_p2_q1_q2",
+            "point_pair": [
+              "q1",
+              "q2"
+            ],
+            "relation": "eq"
+          }
+        ],
+        "theorem_instance": {
+          "a": "a1",
+          "b": "p2",
+          "declaration": "Problem97.SurplusCOMPGBank.btw_sep",
+          "i": "q1",
+          "j": "q2",
+          "violated_conclusion": "btw i j a iff not (btw i j b)"
+        }
+      },
+      {
+        "btw_values": {
+          "a1": false,
+          "q1": false
+        },
+        "centers": [
+          "a1",
+          "q1"
+        ],
+        "cyclic_role_word": [
+          "center",
+          "center",
+          "endpoint",
+          "endpoint"
+        ],
+        "endpoints": [
+          "r2",
+          "r1"
+        ],
+        "linear_cut_indices": [
+          0,
+          7,
+          8,
+          10
+        ],
+        "linear_cut_order": [
+          "a1",
+          "q1",
+          "r2",
+          "r1"
+        ],
+        "original_named_atoms": [
+          {
+            "center": "a1",
+            "name": "radius_eq_a1_r2_r1",
+            "point_pair": [
+              "r2",
+              "r1"
+            ],
+            "relation": "eq"
+          },
+          {
+            "center": "q1",
+            "name": "radius_eq_q1_r2_r1",
+            "point_pair": [
+              "r2",
+              "r1"
+            ],
+            "relation": "eq"
+          }
+        ],
+        "theorem_instance": {
+          "a": "a1",
+          "b": "q1",
+          "declaration": "Problem97.SurplusCOMPGBank.btw_sep",
+          "i": "r2",
+          "j": "r1",
+          "violated_conclusion": "btw i j a iff not (btw i j b)"
+        }
+      },
+      {
+        "btw_values": {
+          "a1": false,
+          "t2": false
+        },
+        "centers": [
+          "a1",
+          "t2"
+        ],
+        "cyclic_role_word": [
+          "center",
+          "center",
+          "endpoint",
+          "endpoint"
+        ],
+        "endpoints": [
+          "r2",
+          "s4"
+        ],
+        "linear_cut_indices": [
+          0,
+          2,
+          8,
+          15
+        ],
+        "linear_cut_order": [
+          "a1",
+          "t2",
+          "r2",
+          "s4"
+        ],
+        "original_named_atoms": [
+          {
+            "center": "a1",
+            "name": "radius_eq_a1_r2_s4",
+            "point_pair": [
+              "r2",
+              "s4"
+            ],
+            "relation": "eq"
+          },
+          {
+            "center": "t2",
+            "name": "radius_eq_t2_r2_s4",
+            "point_pair": [
+              "r2",
+              "s4"
+            ],
+            "relation": "eq"
+          }
+        ],
+        "theorem_instance": {
+          "a": "a1",
+          "b": "t2",
+          "declaration": "Problem97.SurplusCOMPGBank.btw_sep",
+          "i": "r2",
+          "j": "s4",
+          "violated_conclusion": "btw i j a iff not (btw i j b)"
+        }
+      },
+      {
+        "btw_values": {
+          "a1": false,
+          "t2": false
+        },
+        "centers": [
+          "a1",
+          "t2"
+        ],
+        "cyclic_role_word": [
+          "center",
+          "center",
+          "endpoint",
+          "endpoint"
+        ],
+        "endpoints": [
+          "q2",
+          "s3"
+        ],
+        "linear_cut_indices": [
+          0,
+          2,
+          9,
+          14
+        ],
+        "linear_cut_order": [
+          "a1",
+          "t2",
+          "q2",
+          "s3"
+        ],
+        "original_named_atoms": [
+          {
+            "center": "a1",
+            "name": "radius_eq_a1_q2_s3",
+            "point_pair": [
+              "q2",
+              "s3"
+            ],
+            "relation": "eq"
+          },
+          {
+            "center": "t2",
+            "name": "radius_eq_t2_q2_s3",
+            "point_pair": [
+              "q2",
+              "s3"
+            ],
+            "relation": "eq"
+          }
+        ],
+        "theorem_instance": {
+          "a": "a1",
+          "b": "t2",
+          "declaration": "Problem97.SurplusCOMPGBank.btw_sep",
+          "i": "q2",
+          "j": "s3",
+          "violated_conclusion": "btw i j a iff not (btw i j b)"
+        }
+      },
+      {
+        "btw_values": {
+          "a1": false,
+          "t3": false
+        },
+        "centers": [
+          "a1",
+          "t3"
+        ],
+        "cyclic_role_word": [
+          "center",
+          "center",
+          "endpoint",
+          "endpoint"
+        ],
+        "endpoints": [
+          "r1",
+          "s2"
+        ],
+        "linear_cut_indices": [
+          0,
+          4,
+          10,
+          16
+        ],
+        "linear_cut_order": [
+          "a1",
+          "t3",
+          "r1",
+          "s2"
+        ],
+        "original_named_atoms": [
+          {
+            "center": "a1",
+            "name": "radius_eq_a1_r1_s2",
+            "point_pair": [
+              "r1",
+              "s2"
+            ],
+            "relation": "eq"
+          },
+          {
+            "center": "t3",
+            "name": "radius_eq_t3_r1_s2",
+            "point_pair": [
+              "r1",
+              "s2"
+            ],
+            "relation": "eq"
+          }
+        ],
+        "theorem_instance": {
+          "a": "a1",
+          "b": "t3",
+          "declaration": "Problem97.SurplusCOMPGBank.btw_sep",
+          "i": "r1",
+          "j": "s2",
+          "violated_conclusion": "btw i j a iff not (btw i j b)"
+        }
+      },
+      {
+        "btw_values": {
+          "a1": false,
+          "q1": false
+        },
+        "centers": [
+          "a1",
+          "q1"
+        ],
+        "cyclic_role_word": [
+          "center",
+          "center",
+          "endpoint",
+          "endpoint"
+        ],
+        "endpoints": [
+          "p1",
+          "s1"
+        ],
+        "linear_cut_indices": [
+          0,
+          7,
+          11,
+          13
+        ],
+        "linear_cut_order": [
+          "a1",
+          "q1",
+          "p1",
+          "s1"
+        ],
+        "original_named_atoms": [
+          {
+            "center": "a1",
+            "name": "radius_eq_a1_p1_s1",
+            "point_pair": [
+              "p1",
+              "s1"
+            ],
+            "relation": "eq"
+          },
+          {
+            "center": "q1",
+            "name": "radius_eq_q1_p1_s1",
+            "point_pair": [
+              "p1",
+              "s1"
+            ],
+            "relation": "eq"
+          }
+        ],
+        "theorem_instance": {
+          "a": "a1",
+          "b": "q1",
+          "declaration": "Problem97.SurplusCOMPGBank.btw_sep",
+          "i": "p1",
+          "j": "s1",
+          "violated_conclusion": "btw i j a iff not (btw i j b)"
+        }
+      }
+    ],
+    "ambient_hypotheses_not_metric_atoms": [
+      "strict convex CCW enumeration",
+      "injectivity/pairwise distinctness"
+    ],
+    "core_count": 8,
+    "kind": "two-center-common-bisector-cyclic-separation",
+    "minimality_claim": "NONE; this is theorem-pattern replay, not SMT core minimization",
+    "preferred_actionable_core": {
+      "btw_values": {
+        "a1": false,
+        "q1": false
+      },
+      "centers": [
+        "a1",
+        "q1"
+      ],
+      "cyclic_role_word": [
+        "center",
+        "center",
+        "endpoint",
+        "endpoint"
+      ],
+      "endpoints": [
+        "r2",
+        "r1"
+      ],
+      "linear_cut_indices": [
+        0,
+        7,
+        8,
+        10
+      ],
+      "linear_cut_order": [
+        "a1",
+        "q1",
+        "r2",
+        "r1"
+      ],
+      "original_named_atoms": [
+        {
+          "center": "a1",
+          "name": "radius_eq_a1_r2_r1",
+          "point_pair": [
+            "r2",
+            "r1"
+          ],
+          "relation": "eq"
+        },
+        {
+          "center": "q1",
+          "name": "radius_eq_q1_r2_r1",
+          "point_pair": [
+            "r2",
+            "r1"
+          ],
+          "relation": "eq"
+        }
+      ],
+      "theorem_instance": {
+        "a": "a1",
+        "b": "q1",
+        "declaration": "Problem97.SurplusCOMPGBank.btw_sep",
+        "i": "r2",
+        "j": "r1",
+        "violated_conclusion": "btw i j a iff not (btw i j b)"
+      }
+    },
+    "radius_equality_atom_count_per_core": 2,
+    "scope": "fixed serialized n=17 witness instances of a universal Lean theorem",
+    "soundness_note": "The two equality atoms alone are not QF_NRA-UNSAT.  Contradiction uses the ambient strict-convex cyclic order through btw_sep.",
+    "status": "REPLAY_PASS",
+    "target_solver_invoked": false
+  },
+  "input_witness": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common-full-metric-bank-v4-cross-omissions-import-v3/witness.json",
+  "schema": "crossed-arm-full-radius-qf-nra-v4",
+  "source_validation": {
+    "a1_selected_row_role": "one existing serialized radius class; no synthetic class added",
+    "a1_serialized_class_count": 7,
+    "carrier_cardinality": 17,
+    "radius_class_counts": {
+      "a1": 7,
+      "a2": 12,
+      "a3": 13,
+      "p1": 12,
+      "p2": 13,
+      "q1": 12,
+      "q2": 13,
+      "r1": 12,
+      "r2": 13,
+      "s1": 11,
+      "s2": 12,
+      "s3": 12,
+      "s4": 11,
+      "t1": 13,
+      "t2": 11,
+      "t3": 12,
+      "t4": 13
+    },
+    "radius_partition_center_count": 17,
+    "radius_partition_target_count_per_center": 16,
+    "replay_fields_checked": [
+      "semantic_replay",
+      "cap_block_position_replay",
+      "cap_crossing_kalmanson_replay",
+      "crossed_arm_replay",
+      "full_shared_pair_separation_replay",
+      "geometric_incidence_replay"
+    ],
+    "source_arm": "source-at-common",
+    "source_result_sha256": "cf74670311548665a9c4154dc5a2e58241c3cbf279a2f7415b0f6c930573eb4b",
+    "source_schema": "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v4",
+    "source_status": "SAT",
+    "status": "SELF_CHECK_OK",
+    "witness_sha256": "ff1f5c03231d9dc3a1e5c0e45aba27a162632fa512f214765a58932d372352e1"
+  },
+  "stage": "metric",
+  "trust_boundary": {
+    "solver": "Z3 QF_NRA is trusted external computation; SAT is accepted only after exact model replay of every encoded atom and the full radius partition",
+    "source": "v4 JSON replay markers and structural checks are artifact evidence, not a rerun of the CEGAR producer",
+    "unknown": "UNKNOWN or timeout is no evidence for SAT or UNSAT",
+    "unsat": "a Z3 UNSAT has no independently checkable certificate and is not Lean/kernel closure"
+  }
+}
