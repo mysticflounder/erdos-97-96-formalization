@@ -1,0 +1,112 @@
+{
+  "classification": "externally exact QF_LRA; not a Lean kernel proof",
+  "constraint_counts": {
+    "positive_distance_unit_margin": 136,
+    "strict_kalmanson_complementary_unit_margin": 2380,
+    "strict_kalmanson_main_unit_margin": 2380,
+    "within_radius_class_equality": 125
+  },
+  "input": {
+    "cyclic_order": [
+      "a1",
+      "t4",
+      "t2",
+      "t1",
+      "t3",
+      "a2",
+      "p2",
+      "q2",
+      "r2",
+      "p1",
+      "q1",
+      "r1",
+      "a3",
+      "s4",
+      "s2",
+      "s3",
+      "s1"
+    ],
+    "production_lean_source": "lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean",
+    "production_lean_source_sha256": "0c82bf6d9b30b4d6db0b705f998128277a94a78bb16a873a15599f87f28b8497",
+    "witness_path": "scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common-full-metric-bank-v8-convex-five-point-import-v7-shared-fourth-600s/witness.json",
+    "witness_sha256": "76875cf2585b9bb8cf288a1ad85e94505ab3cc8f941117e9536cf0bf12e3c027"
+  },
+  "minimal_core": {
+    "constraint_names": [
+      "radius.a1.c0.t1.p1",
+      "radius.a1.c0.t1.p2",
+      "radius.a1.c2.t3.q2",
+      "radius.a1.c3.t4.s2",
+      "radius.a1.c5.r1.r2",
+      "radius.a1.c5.r1.s4",
+      "radius.t4.c0.a1.t2",
+      "radius.t4.c0.a1.r1",
+      "radius.t4.c0.a1.s2",
+      "radius.t2.c2.t3.a2",
+      "radius.t2.c2.t3.p1",
+      "radius.t1.c3.t4.s4",
+      "radius.t3.c2.t2.a2",
+      "radius.p2.c4.t4.q2",
+      "radius.q2.c0.a1.p2",
+      "radius.s4.c1.t1.r2",
+      "kalmanson.main.0.1.2.3",
+      "kalmanson.main.0.1.6.7",
+      "kalmanson.main.0.1.7.8",
+      "kalmanson.main.0.1.8.9",
+      "kalmanson.complementary.0.1.8.13",
+      "kalmanson.main.0.1.9.10",
+      "kalmanson.main.0.1.10.11",
+      "kalmanson.main.0.1.13.14",
+      "kalmanson.complementary.0.2.4.5",
+      "kalmanson.main.0.2.4.9"
+    ],
+    "cvc5_status": "unsat",
+    "deletion_minimal_core_size": 26,
+    "farkas_combined_rhs": 15,
+    "initial_z3_core_size": 26,
+    "kind_counts": {
+      "strict_kalmanson_complementary_unit_margin": 2,
+      "strict_kalmanson_main_unit_margin": 8,
+      "within_radius_class_equality": 16
+    }
+  },
+  "normalization": {
+    "Euclidean_PSD_or_coordinate_constraints_added": false,
+    "encoding": "all positive distances and strict Kalmanson slacks are at least 1",
+    "justification": "finite homogeneous strict feasibility iff one common positive rescaling has unit minimum strict slack",
+    "triangle_inequalities_added": false
+  },
+  "route_conclusion": "the global equality plus strict-Kalmanson LRA route closes this fixed v8 witness",
+  "self_checks": {
+    "cyclic_order_unique": true,
+    "edge_variable_count": 136,
+    "equivalent_spanning_radius_equality_count": 68,
+    "full_pairwise_radius_equality_count": 125,
+    "full_theorem_bank_active_matches_are_zero": true,
+    "known_equality_closed_complementary_sum_unsat": "unsat",
+    "known_kalmanson_sat": "sat",
+    "point_count": 17,
+    "radius_class_size_histogram": {
+      "1": 174,
+      "2": 11,
+      "4": 19
+    },
+    "radius_classes_partition_every_other_point": true,
+    "registered_rows_are_radius_classes": true,
+    "sat_model_replayed": true,
+    "structural_bank_active_match_count_is_zero": true
+  },
+  "solver_checks": {
+    "cvc5_full_system": {
+      "returncode": 0,
+      "status": "unsat",
+      "stderr": ""
+    },
+    "z3_logic": "QF_LRA",
+    "z3_status": "unsat",
+    "z3_timeout_ms": 60000,
+    "z3_version": "4.16.0"
+  },
+  "status": "UNSAT",
+  "total_constraint_count": 5021
+}

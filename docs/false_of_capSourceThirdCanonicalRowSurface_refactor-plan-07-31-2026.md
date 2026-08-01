@@ -392,10 +392,18 @@ This conditional refinement is the minimum honest interface. Adding
 generic producer; omitting the global split would discard information needed
 by the checked distinct-blocker branch.
 
-The exact-11 theorem bank does not currently close either leaf. Its relevant
-554/profile theorems require `D.A.card = 11` and additional endpoint or cap
+The exact-11 theorem bank does not currently close either leaf. Its fixed-card
+554/profile consumers require `D.A.card = 11` and additional endpoint or cap
 profile hypotheses that are absent here; the live cap-source branch instead
-has a cap of size at least eight. Likewise, the imported six-point Euclidean
+has a cap of size at least eight. The general-`n` pieces were audited
+separately: `U5DangerousTriple.exact_radius_class_eq` is already represented by
+the encoder's exact critical-support partition, while the lower bounds
+`iCountAt_ge_sum_choose_two...` and `iCountAt_ge_seven...` need an independent
+upper incidence budget before they can eliminate a model. The fixed A1
+infrastructure and M44 packet theorem have the wrong interface, and
+`U5BoundedAuditSupport` would require a support-confinement producer that this
+branch does not have. Therefore no additional pinned-multiplicity constraint
+is justified at this checkpoint. Likewise, the imported six-point Euclidean
 and sparse Euclidean contradiction theorems require a concrete injective CCW
 boundary order plus two or three selected-row incidence patterns. Neither the
 two-source packet nor the fresh-third packet presently produces that
@@ -772,15 +780,19 @@ three-row metric cores omitted the anchor's unconditional four-way
 `hexactRows` hypothesis. They remain useful diagnostics for those encoded
 cores, but they are not coordinate models of either full crossed branch.
 
-The fixed-role QF_NRA lane validates the stronger SAT artifact and encodes the
-complete radius partition at all seventeen centers: every within-class
-distance equality, every cross-class distance disequality, a similarity gauge,
-and all named-point distinctness constraints. Its first metric-only target is
-`UNSAT` after 50,143 ms on 2,180 atoms, before any cyclic-order constraint is
-added. Z3 supplies no independently checked certificate here, so this is an
-external discovery result, not Lean closure. It has not yet been reduced to a
-certificate or a universal metric lemma, and the cyclic observation below is
-not claimed to explain that metric-only `UNSAT` result.
+The completed schema-v7 `source-at-common` run returned finite Boolean `SAT`
+after 853,449 ms and 725 connected candidates, with 7,777 structural cuts and
+183,331 theorem cuts. Its serialized witness passes semantic replay. For this
+witness, the global quotient of the 136 undirected distance variables has 58
+spanning-forest equality generators and 78 equality classes. The compact
+basis retains 77 positivity representatives, one for each non-gauge class,
+and 1,001 representatives for quotient-class pairs actually separated by the
+original radius disequalities; these are not all `78.choose 2` class pairs.
+The gauged lazy Z3 QF_NRA run timed out `UNKNOWN` at 24 active
+radius-equality atoms. Thus there is neither a Euclidean realization nor a
+metric impossibility result, certificate, universal claim, or Lean closure.
+The earlier schema-v4 metric-only `UNSAT` remains historical evidence about a
+different finite shadow and is not the current branch verdict.
 
 A separate sound replay found that the schema-v4 SAT shadow already violates
 the generic cyclic separation theorem `SurplusCOMPGBank.btw_sep`. In the live
@@ -829,6 +841,112 @@ and lazy-v5 QF_NRA attempts both returned `UNKNOWN` at about 123 seconds;
 the earlier schema-v4 metric-only `UNSAT` is historical and belongs to a
 different shadow. Even eliminating the v5 witness would settle only this
 finite abstraction, not the universal Lean anchor.
+
+A strict v6 resume subsequently returned replay-PASS finite `SAT` after
+396,042 ms and 438 additional candidates. Solver-free v7 equality-quotient
+replay rejects that particular v6 witness, but the completed schema-v7 run
+itself returned the different replay-PASS finite Boolean `SAT` witness
+described above. Consequently the global-edge quotient eliminates one
+serialized survivor, not the bounded branch. The current metric follow-up is
+QF_NRA `UNKNOWN` at 24 active equality atoms under the 120-second cap;
+`UNKNOWN` is evidence for neither realizability nor impossibility.
+
+## 2026-08-01 formalized metric-core replay
+
+The next useful constraint is metric, not a new pinned-multiplicity bound.
+Replaying each complete serialized radius partition through the
+production-aligned formalized metric-core detector rejects both schema-v7
+survivors at `equality-convex-five-point`:
+
+* the unforced survivor expands to 208 exact radius rows and contains the
+  cyclic core `(a,x,b,c,y) = (q2,r2,q1,s3,a1)`;
+* the forced-shared-fourth survivor expands to 210 exact radius rows and
+  contains `(a,x,b,c,y) = (a2,p2,a3,s1,t1)`.
+
+In each case the four equalities are exactly
+`xa = xb`, `ya = yb`, `cb = cx`, and `cb = cy`.  The universal production
+declarations are `Census554.ConvexFivePointCore.false_of_core` and its
+negative-orientation wrapper `false_of_core_of_neg`; they are import-reachable
+from `FrontierLiveClosure` through `Census554.GeneralCarrierBridge`.  The finite
+replay artifacts are the two
+`formalized-metric-core-replay.json` files beside the corresponding v7
+witnesses.  They are Python replays of complete serialized partitions, not
+Lean proofs of the live arbitrary-cardinality terminal.
+Focused `proof-blueprint axioms` reports for both declarations contain only
+`propext`, `Classical.choice`, and `Quot.sound`; this is not yet the terminal's
+transitive publish-spine audit.
+
+Schema v8 therefore registers `convex_five_point_core` as the twenty-first
+guarded theorem family.  Its equality matcher uses the global undirected-edge
+closure, and its cyclic guard admits both orientations.  The exhaustive guard
+check covers all 120 linear orders and rejects exactly five rotations in each
+orientation; the v8/v6 checkpoint migration and all 21 theorem-cut families
+pass the round-trip self-check.
+
+That resume is now complete.  The forced-shared-fourth v8 run returned finite
+Boolean `SAT` after 188 replay-PASS candidates and 280,163 ms, despite learning
+513 `convex_five_point_core` cuts.  Its complete partition expands to 204 exact
+radius rows and survives all 21 production-aligned metric-core detectors.  A
+separate exhaustive matcher also finds no embedding in any of the six
+`AlgebraicRowCollisionAlternative` branches.  In particular, the smallest
+previously unregistered fallback, the five-label equilateral-bisector core,
+does not occur in this survivor.  Thus there is no currently import-reachable
+production theorem to wire for it.
+
+The survivor's fixed crossed shell is
+`bp = q2 : {a1,t2,p1,p2}`,
+`bq = r2 : {a1,q1,q2,s1}`, and
+`br = p1 : {t2,r1,r2,s1}`, with common and opposite fourth both `s1`.
+The provenance-checked v8 QF_NRA adapter encodes all 2,180 full-radius metric
+atoms.  Both the direct metric solve and an equisatisfiable compact-basis lazy
+solve returned `UNKNOWN` at the 300-second bound; this is evidence in neither
+direction.  The lazy run localizes the solver hardness to a 16-equality active
+prefix, before any disequality or convex-order atom is added.  That prefix is
+now the algebraic/numerical extraction target.  Any resulting contradiction
+still needs a general-cardinality Lean statement and proof before it can close
+the crossed leaf; an external finite `UNSAT` alone would not do so.
+
+The first exact extraction from that survivor is now available.  A bounded
+algebraic miner found a deletion-minimal six-point, nine-squared-distance
+equality core on `a1,a2,p2,q1,r1,t1`; after the valid similarity gauge
+`a1 = (0,0)`, `r1 = (1,0)`, Singular proves that its characteristic-zero ideal
+is the unit ideal, independently corroborated by msolve.  More directly useful
+for Lean, the complete witness is inconsistent already in linear distance
+arithmetic: sixteen radius equalities together with eight main and two
+complementary Kalmanson inequalities have an exact integer Farkas certificate
+whose distance coefficients cancel and whose strict margins sum to the
+contradiction `0 ≥ 15`.  Z3 and cvc5 independently report `UNSAT`, and a
+solver-free rational replay verifies the certificate.  These are exact
+external results for one fixed CEGAR witness, not a proof of the live leaf.
+
+The first two production steps are now complete.  The source-clean theorem
+`CapCrossingKalmansonBridge.false_of_fourteen_ccw_sixteen_shell_equalities_global_core`
+in `ATail/KalmansonSixteenEqualitySchema.lean` formalizes the fourteen-role core
+with the exact sixteen equalities, eight main Kalmanson inequalities, and two
+complementary inequalities.  Its public interface now accepts either the
+direct increasing boundary chain or the reflected decreasing chain after a
+cyclic recut; separate source-clean helpers prove both orientations, preventing
+the guarded Python matcher's reflection symmetry from outrunning the Lean
+consumer.  The proof closes with `linarith`, contains no `sorry`, and passes a
+focused Lean 4.27 check.  Its transitive axiom set is the standard
+`propext`, `Classical.choice`, and `Quot.sound`, with no `sorryAx`.
+`crossed_arm_cegar.py` registers the matching guarded family
+`global_kalmanson_14role_16eq` in schema v9/v7.  Its smoke,
+roundtrip, rotation/reflection, noncyclic-transposition, and missing-equality
+guards pass, and serialized replay confirms that it kills the v8 witness.
+`FrontierLiveClosure.lean` imports the new theorem module, so the declaration
+is production-import-reachable.  It is not yet a transitive dependency of a
+publish theorem; that happens only when the exhausted-run materializer consumes
+it.  A focused check of the coordinator succeeds; the ordinary Lake target
+build is presently blocked before this module by the independent
+`WitnessPacketInterface`/`PinnedMultiplicity` import cycle.
+
+The immediate route is now to resume exhaustive CEGAR from the v8 checkpoint.
+Each killed witness must still be covered by a source-faithful generic theorem
+family; only an exhausted enumeration plus its checked materializer can feed
+the live crossed terminal.  The smaller order-free algebraic core remains a
+second candidate family once an explicit Lean-suitable polynomial certificate
+has been extracted.
 
 # Convert the conjunction packets into structures
 
@@ -917,10 +1035,18 @@ The theorem-bank audit fixes the first missing bridge for each leaf:
    omissions.  No current or registered theorem unconditionally produces a
    shared fourth occurrence.  The smallest incidence bridge is
    `crossedRows.commonFourth ∈ oppositeRow.support` (equivalently, but more
-   weakly than, equality of the two anonymous fourth points).  After that
-   bridge, the remaining distinct obligation is a cyclic recut/order adapter
-   for the generic six-role Kalmanson triangle.  The generic consumer itself
-   is cardinality-independent and source-clean; the card-11 decoder adapter is
+   weakly than, equality of the two anonymous fourth points).  A shared
+   occurrence does not by itself leave only a generic cyclic-recut adapter.
+   Coarse center/support block separation (`CCC|SSS`) plus the three row
+   equalities admits the strict-convex cyclic configuration
+   `C=(-2,-1), A=(0,-2), B=(2,-1), V=(1,1), X=(0,2), U=(-1,1)`, with
+   `|A-U|²=|A-V|²=10`, `|B-U|²=|B-X|²=13`, and
+   `|C-V|²=|C-X|²=13`.  Its consecutive turn determinants are
+   `4,5,1,2,1,5`.  The remaining producer must therefore consume additional
+   five-center exact-row geometry to eliminate the realizable cyclic phase
+   and prove the exact direct or reflected six-role order, or derive a direct
+   crossed-row metric contradiction.  The generic consumers themselves are
+   cardinality-independent and source-clean; the card-11 decoder adapter is
    not reusable because it assumes `D.A.card = 11`.
 
 The first source-clean blocker-map extraction for the crossed leaf is now in
@@ -957,7 +1083,8 @@ checked four-way outside-pair producer
      -> crossed leaf:
           cross-blocker equality / saturation classifier
           -> shared occurrence (or a stronger direct crossed-row consumer)
-          -> cyclic-role adapter
+          -> five-center phase elimination
+          -> exact direct-or-reflected six-role order
           -> generic Kalmanson incompatibility
   -> former anchor coordinator
   -> existing cap-source and publish coordinators

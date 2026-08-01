@@ -14,6 +14,7 @@ import Erdos9796Proof.P97.ATail.ExactFourRobustCapExpansion
 import Erdos9796Proof.P97.ATail.FirstApexUniqueRadiusResidual
 import Erdos9796Proof.P97.ATail.FiveCenterDeletionBoundary
 import Erdos9796Proof.P97.ATail.KalmansonThreeEqualitySchemas
+import Erdos9796Proof.P97.ATail.KalmansonSixteenEqualitySchema
 import Erdos9796Proof.P97.ATail.LocalizedCollisionMutualOmissionCycle
 import Erdos9796Proof.P97.ATail.PhysicalSecondApexSwap
 import Erdos9796Proof.P97.ATail.RetainedStrictInteriorPairSelector
@@ -9940,6 +9941,8 @@ private theorem offCapPoint_blocker_ne_first_of_ne_outsidePair
   · exact hzNeSource hz
   · exact hzNeOther hz
 
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- The unnamed point of the common crossed row is not in the first actual
 blocker fiber. -/
 theorem FirstFiberCrossedThreeRowExactSupports.commonFourth_blocker_ne_first
@@ -9977,6 +9980,8 @@ theorem FirstFiberCrossedThreeRowExactSupports.commonFourth_blocker_ne_first
       (P := P) (Pρ := Pρ) Q E.commonFourth_mem_A
       E.commonFourth_not_mem_firstCap hneOpposite hneCommon
 
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- The unnamed point of the opposite crossed row is not in the first actual
 blocker fiber. -/
 theorem FirstFiberCrossedThreeRowExactSupports.oppositeFourth_blocker_ne_first
@@ -10015,6 +10020,8 @@ theorem FirstFiberCrossedThreeRowExactSupports.oppositeFourth_blocker_ne_first
       (P := P) (Pρ := Pρ) Q E.oppositeFourth_mem_A
       E.oppositeFourth_not_mem_firstCap hneOpposite hneCommon
 
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- If the unnamed point of the opposite row has the common source blocker,
 support locking forces it to be the unnamed point of the common row.  Thus
 the only common-blocker arm is exactly the shared-fourth occurrence needed by
@@ -10066,6 +10073,8 @@ theorem FirstFiberCrossedThreeRowExactSupports.oppositeFourth_eq_commonFourth_of
     exact hmemOpposite
   · exact hfourth
 
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- Symmetrically, if the unnamed point of the common row has the opposite
 collision blocker, support locking forces the same shared-fourth occurrence. -/
 theorem FirstFiberCrossedThreeRowExactSupports.commonFourth_eq_oppositeFourth_of_blocker_eq
@@ -10113,6 +10122,116 @@ theorem FirstFiberCrossedThreeRowExactSupports.commonFourth_eq_oppositeFourth_of
     rw [← houtside]
     exact hmemCommon
   · exact hfourth
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The opposite unnamed point either supplies the shared fourth occurrence,
+or its actual blocker is genuinely new relative to the common crossed row.
+This isolates the exact complement that a blocker-map saturation argument must
+eliminate. -/
+theorem FirstFiberCrossedThreeRowExactSupports.sharedFourth_or_oppositeFourth_blocker_ne_common
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (source source' : CriticalShellSystem.CarrierVertex D.A)
+    (source_witness : FirstFiberCapSourceWitness P Pρ source)
+    (source'_witness : FirstFiberCapSourceWitness P Pρ source')
+    (commonOutside oppositeOutside : ℝ²)
+    (E : FirstFiberCrossedThreeRowExactSupports
+      P Pρ Q source source' commonOutside oppositeOutside) :
+    E.oppositeFourth = E.commonFourth ∨
+      H.blockerVertex ⟨E.oppositeFourth, E.oppositeFourth_mem_A⟩ ≠
+        H.blockerVertex source := by
+  by_cases hblocker :
+      H.blockerVertex ⟨E.oppositeFourth, E.oppositeFourth_mem_A⟩ =
+        H.blockerVertex source
+  · exact Or.inl
+      (FirstFiberCrossedThreeRowExactSupports.oppositeFourth_eq_commonFourth_of_blocker_eq
+        (P := P) (Pρ := Pρ) (H := H) (Q := Q) (source := source)
+        (source' := source') (source_witness := source_witness)
+        (source'_witness := source'_witness) (commonOutside := commonOutside)
+        (oppositeOutside := oppositeOutside) (E := E) hblocker)
+  · exact Or.inr hblocker
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Symmetrically, the common unnamed point either supplies the shared fourth
+occurrence, or its actual blocker is genuinely new relative to the opposite
+collision row. -/
+theorem FirstFiberCrossedThreeRowExactSupports.sharedFourth_or_commonFourth_blocker_ne_opposite
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (source source' : CriticalShellSystem.CarrierVertex D.A)
+    (commonOutside oppositeOutside : ℝ²)
+    (E : FirstFiberCrossedThreeRowExactSupports
+      P Pρ Q source source' commonOutside oppositeOutside) :
+    E.commonFourth = E.oppositeFourth ∨
+      H.blockerVertex ⟨E.commonFourth, E.commonFourth_mem_A⟩ ≠
+        H.blockerVertex ⟨Pρ.source₁, Pρ.source₁_mem_A⟩ := by
+  by_cases hblocker :
+      H.blockerVertex ⟨E.commonFourth, E.commonFourth_mem_A⟩ =
+        H.blockerVertex ⟨Pρ.source₁, Pρ.source₁_mem_A⟩
+  · exact Or.inl
+      (FirstFiberCrossedThreeRowExactSupports.commonFourth_eq_oppositeFourth_of_blocker_eq
+        (P := P) (Pρ := Pρ) (H := H) (Q := Q) (source := source)
+        (source' := source') (commonOutside := commonOutside)
+        (oppositeOutside := oppositeOutside) (E := E) hblocker)
+  · exact Or.inr hblocker
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Canonical blocker-map frontier for a crossed exact-support packet.  Either
+the two unnamed support points coincide, or each of their actual blockers
+avoids the two already named row blockers that support locking can exclude.
+The latter conjunction is the finite saturation residual still requiring a
+positive producer. -/
+theorem FirstFiberCrossedThreeRowExactSupports.sharedFourth_or_crossBlockers_avoid_namedRows
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (source source' : CriticalShellSystem.CarrierVertex D.A)
+    (source_witness : FirstFiberCapSourceWitness P Pρ source)
+    (source'_witness : FirstFiberCapSourceWitness P Pρ source')
+    (commonOutside oppositeOutside : ℝ²)
+    (outside_orientation :
+      (commonOutside = Q.source.1 ∧
+          oppositeOutside = Q.otherOutsidePoint) ∨
+        (commonOutside = Q.otherOutsidePoint ∧
+          oppositeOutside = Q.source.1))
+    (E : FirstFiberCrossedThreeRowExactSupports
+      P Pρ Q source source' commonOutside oppositeOutside) :
+    E.commonFourth = E.oppositeFourth ∨
+      ((H.blockerVertex ⟨E.oppositeFourth, E.oppositeFourth_mem_A⟩ ≠
+            H.blockerVertex ⟨P.source₁, P.source₁_mem_A⟩ ∧
+          H.blockerVertex ⟨E.oppositeFourth, E.oppositeFourth_mem_A⟩ ≠
+            H.blockerVertex source) ∧
+        (H.blockerVertex ⟨E.commonFourth, E.commonFourth_mem_A⟩ ≠
+            H.blockerVertex ⟨P.source₁, P.source₁_mem_A⟩ ∧
+          H.blockerVertex ⟨E.commonFourth, E.commonFourth_mem_A⟩ ≠
+            H.blockerVertex ⟨Pρ.source₁, Pρ.source₁_mem_A⟩)) := by
+  rcases
+      FirstFiberCrossedThreeRowExactSupports.sharedFourth_or_oppositeFourth_blocker_ne_common
+        (P := P) (Pρ := Pρ) (H := H) (Q := Q) (source := source)
+        (source' := source') (source_witness := source_witness)
+        (source'_witness := source'_witness) (commonOutside := commonOutside)
+        (oppositeOutside := oppositeOutside) (E := E) with
+    hshared | hoppositeCommon
+  · exact Or.inl hshared.symm
+  rcases
+      FirstFiberCrossedThreeRowExactSupports.sharedFourth_or_commonFourth_blocker_ne_opposite
+        (P := P) (Pρ := Pρ) (H := H) (Q := Q) (source := source)
+        (source' := source') (commonOutside := commonOutside)
+        (oppositeOutside := oppositeOutside) (E := E) with
+    hshared | hcommonOpposite
+  · exact Or.inl hshared
+  · exact Or.inr
+      ⟨⟨FirstFiberCrossedThreeRowExactSupports.oppositeFourth_blocker_ne_first
+          (P := P) (Pρ := Pρ) (H := H) (Q := Q) (source := source)
+          (source' := source') (commonOutside := commonOutside)
+          (oppositeOutside := oppositeOutside)
+          (outside_orientation := outside_orientation) (E := E),
+        hoppositeCommon⟩,
+       ⟨FirstFiberCrossedThreeRowExactSupports.commonFourth_blocker_ne_first
+          (P := P) (Pρ := Pρ) (H := H) (Q := Q) (source := source)
+          (source' := source') (commonOutside := commonOutside)
+          (oppositeOutside := oppositeOutside)
+          (outside_orientation := outside_orientation) (E := E),
+        hcommonOpposite⟩⟩
 
 /-- The complementary omission in the common row is a strict metric
 non-equality, not merely absence from a selected four-subset. -/

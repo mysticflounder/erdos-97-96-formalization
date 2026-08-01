@@ -1,0 +1,10 @@
+{
+  "combined_nonzero_variable_coefficients": {},
+  "combined_rhs": 15,
+  "contradiction": "0 >= 15",
+  "farkas_integer_combination_replayed": true,
+  "kalmanson_indices_and_orientations_replayed": true,
+  "radius_core_atoms_replayed_against_exact_classes": true,
+  "status": "PASS",
+  "witness_hash_replayed": true
+}

@@ -1,0 +1,548 @@
+{
+  "canonical_row_adapter_count": 17,
+  "checkpoint_roundtrip": {
+    "connectivity_cut_kinds_checked": 1,
+    "pre_family_v8_resume": {
+      "connectivity_cut_count": 1,
+      "structural_cut_count": 5,
+      "theorem_cut_count": 21
+    },
+    "pre_family_v8_universal_import": {
+      "connectivity_cut_count": 1,
+      "structural_cut_count": 5,
+      "theorem_cut_count": 21
+    },
+    "prior_universal_imports": [
+      {
+        "connectivity_cut_count": 1,
+        "mode": "universal-cut-import",
+        "source_arm": "other-at-common",
+        "source_cut_schema": "n17-crossed-arm-learned-cuts-v6",
+        "source_result_schema": "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v8",
+        "structural_cut_count": 5,
+        "theorem_cut_count": 21
+      },
+      {
+        "connectivity_cut_count": 1,
+        "mode": "universal-cut-import",
+        "source_arm": "other-at-common",
+        "source_cut_schema": "n17-crossed-arm-learned-cuts-v5",
+        "source_result_schema": "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v7",
+        "structural_cut_count": 5,
+        "theorem_cut_count": 20
+      },
+      {
+        "connectivity_cut_count": 1,
+        "mode": "universal-cut-import",
+        "source_arm": "other-at-common",
+        "source_cut_schema": "n17-crossed-arm-learned-cuts-v4",
+        "source_result_schema": "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v6",
+        "structural_cut_count": 5,
+        "theorem_cut_count": 19
+      },
+      {
+        "connectivity_cut_count": 1,
+        "mode": "universal-cut-import",
+        "source_arm": "other-at-common",
+        "source_cut_schema": "n17-crossed-arm-learned-cuts-v3",
+        "source_result_schema": "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v5",
+        "structural_cut_count": 4,
+        "theorem_cut_count": 19
+      },
+      {
+        "connectivity_cut_count": 1,
+        "mode": "universal-cut-import",
+        "source_arm": "other-at-common",
+        "source_cut_schema": "n17-crossed-arm-learned-cuts-v2",
+        "source_result_schema": "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v4",
+        "structural_cut_count": 3,
+        "theorem_cut_count": 19
+      },
+      {
+        "connectivity_cut_count": 1,
+        "mode": "universal-cut-import",
+        "source_arm": "other-at-common",
+        "source_cut_schema": "n17-crossed-arm-learned-cuts-v1",
+        "source_result_schema": "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v3",
+        "structural_cut_count": 3,
+        "theorem_cut_count": 19
+      }
+    ],
+    "restored_cut_counts": {
+      "connectivity_cut_count": 1,
+      "structural_cut_count": 5,
+      "theorem_cut_count": 22
+    },
+    "status": "ROUNDTRIP_OK",
+    "structural_cut_kinds_checked": [
+      "shared_pair",
+      "circle",
+      "bisector",
+      "raw_btw_sep",
+      "mutual_bisector_transport"
+    ],
+    "theorem_families_checked": [
+      "first",
+      "second",
+      "reversed_second",
+      "kalmanson_013_412_523",
+      "kalmanson_012_325_415",
+      "kalmanson_012_124_314",
+      "kalmanson_013_235_415",
+      "five_kalmanson_three_selected_rows",
+      "five_circle_isosceles_two_selected_rows",
+      "six_sparse_two_selected_rows",
+      "six_k2_three_row_triangle",
+      "five_kalmanson_three_shell_equalities",
+      "four_endpoint_centers_bisect_middle_pair",
+      "four_middle_centers_bisect_endpoint_pair",
+      "five_second_three_row_equalities",
+      "five_direct_three_row_equalities",
+      "six_sparse_row_equalities",
+      "six_main_row_equalities",
+      "six_mirror_interleaving_equalities",
+      "six_two_triple_row_equalities",
+      "convex_five_point_core",
+      "global_kalmanson_14role_16eq"
+    ]
+  },
+  "convex_five_point_core": {
+    "linear_orders_checked": 120,
+    "positive_rotations_rejected": 5,
+    "raw_equality_count": 4,
+    "reversed_rotations_rejected": 5,
+    "theorem": "Problem97.Census554.ConvexFivePointCore.false_of_core"
+  },
+  "crossed_arm_polarity": {
+    "arms": {
+      "other-at-common": {
+        "active_implications_checked": 4,
+        "common_blocker_false_assignments_checked": 4,
+        "common_point": "Q.otherOutsidePoint",
+        "guard_false_assignments_checked": 16,
+        "opposite_blocker_false_assignments_checked": 4,
+        "opposite_point": "Q.source"
+      },
+      "source-at-common": {
+        "active_implications_checked": 4,
+        "common_blocker_false_assignments_checked": 4,
+        "common_point": "Q.source",
+        "guard_false_assignments_checked": 16,
+        "opposite_blocker_false_assignments_checked": 4,
+        "opposite_point": "Q.otherOutsidePoint"
+      }
+    },
+    "status": "POLARITY_OK"
+  },
+  "full_bank_guard_checks": {
+    "first": {
+      "direction_preserving_rotations_rejected": 5,
+      "linear_orders_checked": 120,
+      "positive_membership_arities": [
+        2,
+        3
+      ],
+      "reflected_orders_admitted_by_guard": 0,
+      "row_centers": [
+        1,
+        2
+      ],
+      "theorem": "false_of_five_ccw_two_selected_rows_cyclicShift"
+    },
+    "five_circle_isosceles_two_selected_rows": {
+      "cyclic_recut": false,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 120,
+      "positive_membership_arities": [
+        3,
+        2
+      ],
+      "theorem": "Problem97.Census554.FivePointCircleIsoscelesOrderBridge.false_of_two_selected_rows_of_ccw"
+    },
+    "five_direct_three_row_equalities": {
+      "cyclic_recut": false,
+      "equality_count": 3,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 120,
+      "theorem": "Problem97.FivePointEuclideanObstruction.false_of_five_ccw_three_row_equalities"
+    },
+    "five_kalmanson_three_selected_rows": {
+      "cyclic_recut": false,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 120,
+      "positive_membership_arities": [
+        2,
+        2,
+        2
+      ],
+      "theorem": "Problem97.CapCrossingKalmanson.false_of_selected_rows_in_five_ccw_order"
+    },
+    "five_kalmanson_three_shell_equalities": {
+      "cyclic_recut": false,
+      "equality_count": 3,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 120,
+      "theorem": "Problem97.CapCrossingKalmanson.false_of_five_ccw_three_shell_equalities"
+    },
+    "five_second_three_row_equalities": {
+      "cyclic_recut": false,
+      "equality_count": 3,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 120,
+      "theorem": "Problem97.FivePointEuclideanObstruction.false_of_five_ccw_second_three_row_equalities"
+    },
+    "four_endpoint_centers_bisect_middle_pair": {
+      "cyclic_recut": false,
+      "equality_count": 2,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 24,
+      "theorem": "Problem97.CapCrossingKalmanson.false_of_four_ccw_endpoint_centers_bisect_middle_pair"
+    },
+    "four_middle_centers_bisect_endpoint_pair": {
+      "cyclic_recut": false,
+      "equality_count": 2,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 24,
+      "theorem": "Problem97.CapCrossingKalmanson.false_of_four_ccw_middle_centers_bisect_endpoint_pair"
+    },
+    "kalmanson_012_124_314": {
+      "cyclic_recut": false,
+      "equality_count": 3,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 120,
+      "theorem": "false_of_five_ccw_three_shell_equalities_012_124_314"
+    },
+    "kalmanson_012_325_415": {
+      "cyclic_recut": false,
+      "equality_count": 3,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "theorem": "false_of_six_ccw_three_shell_equalities_012_325_415"
+    },
+    "kalmanson_013_235_415": {
+      "cyclic_recut": false,
+      "equality_count": 3,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "theorem": "false_of_six_ccw_three_shell_equalities_013_235_415"
+    },
+    "kalmanson_013_412_523": {
+      "cyclic_recut": false,
+      "equality_count": 3,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "theorem": "false_of_six_ccw_three_shell_equalities_013_412_523"
+    },
+    "reversed_second": {
+      "direction_preserving_rotations_rejected": 5,
+      "linear_orders_checked": 120,
+      "positive_membership_arities": [
+        3,
+        2
+      ],
+      "reflected_orders_admitted_by_guard": 0,
+      "row_centers": [
+        1,
+        0
+      ],
+      "theorem": "false_of_five_ccw_reversed_second_two_selected_rows_cyclicShift"
+    },
+    "second": {
+      "direction_preserving_rotations_rejected": 5,
+      "linear_orders_checked": 120,
+      "positive_membership_arities": [
+        3,
+        2
+      ],
+      "reflected_orders_admitted_by_guard": 0,
+      "row_centers": [
+        3,
+        4
+      ],
+      "theorem": "false_of_five_ccw_second_two_selected_rows_cyclicShift"
+    },
+    "six_k2_three_row_triangle": {
+      "cyclic_recut": false,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "matcher_cyclic_recut_rejected": true,
+      "matcher_exact_positive_count": 1,
+      "matcher_missing_membership_negatives": 6,
+      "matcher_reversal_rejected": true,
+      "matcher_support_superset_positive_count": 1,
+      "positive_membership_arities": [
+        2,
+        2,
+        2
+      ],
+      "theorem": "Problem97.UniqueFourKalmansonOccurrenceScratch.false_of_two_k2_three_row_triangle"
+    },
+    "six_main_row_equalities": {
+      "cyclic_recut": false,
+      "equality_count": 5,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "theorem": "Problem97.SixPointEuclideanObstruction.false_of_six_ccw_row_equalities"
+    },
+    "six_mirror_interleaving_equalities": {
+      "cyclic_recut": false,
+      "equality_count": 5,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "theorem": "Problem97.SixPointEuclideanObstruction.false_of_six_ccw_mirror_interleaving_row_equalities"
+    },
+    "six_sparse_row_equalities": {
+      "cyclic_recut": false,
+      "equality_count": 4,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "theorem": "Problem97.SixPointSparseEuclideanObstruction.false_of_six_ccw_row_equalities"
+    },
+    "six_sparse_two_selected_rows": {
+      "cyclic_recut": false,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "positive_membership_arities": [
+        3,
+        3
+      ],
+      "theorem": "false_of_six_ccw_two_selected_rows"
+    },
+    "six_two_triple_row_equalities": {
+      "cyclic_recut": false,
+      "equality_count": 4,
+      "linear_orders_admitted_by_guard": 1,
+      "linear_orders_checked": 720,
+      "theorem": "Problem97.TwoTripleRowSixPointEuclideanObstruction.false_of_six_ccw_two_triple_row_equalities"
+    }
+  },
+  "global_edge_equality": {
+    "cross_center_transitive_chain_checked": true,
+    "degenerate_E_branches_checked": true,
+    "lean_soundness_reference": "Problem97.Census554.EqualityCore.EdgeClosure.sound",
+    "mutual_triangle_transport_entailed": true,
+    "n17_E_biconditional_count": 2040,
+    "n17_undirected_edge_count": 136,
+    "probe_E_biconditional_count": 60,
+    "probe_undirected_edge_count": 15,
+    "probe_vertex_count": 6,
+    "radius_partition_entailed": true,
+    "status": "GLOBAL_EDGE_EQUALITY_OK",
+    "unrelated_comparison_remains_free": true
+  },
+  "global_kalmanson_14role_16eq": {
+    "minimal_core": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-qf-nra-v4/global-kalmanson-lp-v8/minimal-core.json",
+    "noncyclic_transpositions_accepted": 91,
+    "positive_rotations_rejected": 14,
+    "raw_equality_count": 16,
+    "reversed_rotations_rejected": 14,
+    "role_count": 14,
+    "single_missing_equality_valuations_accepted": 16,
+    "strict_kalmanson_constraint_count": 10,
+    "theorem": "Problem97.CapCrossingKalmansonBridge.false_of_fourteen_ccw_sixteen_shell_equalities_global_core",
+    "v8_witness_replay": {
+      "all_equalities_hold": true,
+      "arity": 14,
+      "cut_guard_true": true,
+      "cyclic_order_up_to_rotation_reflection": true,
+      "equality_requirement_count": 16,
+      "equality_requirements": [
+        {
+          "center": "a1",
+          "holds": true,
+          "left": "t1",
+          "right": "p1"
+        },
+        {
+          "center": "a1",
+          "holds": true,
+          "left": "t1",
+          "right": "p2"
+        },
+        {
+          "center": "a1",
+          "holds": true,
+          "left": "t3",
+          "right": "q2"
+        },
+        {
+          "center": "a1",
+          "holds": true,
+          "left": "t4",
+          "right": "s2"
+        },
+        {
+          "center": "a1",
+          "holds": true,
+          "left": "r1",
+          "right": "r2"
+        },
+        {
+          "center": "a1",
+          "holds": true,
+          "left": "r1",
+          "right": "s4"
+        },
+        {
+          "center": "t4",
+          "holds": true,
+          "left": "a1",
+          "right": "t2"
+        },
+        {
+          "center": "t4",
+          "holds": true,
+          "left": "a1",
+          "right": "r1"
+        },
+        {
+          "center": "t4",
+          "holds": true,
+          "left": "a1",
+          "right": "s2"
+        },
+        {
+          "center": "t2",
+          "holds": true,
+          "left": "t3",
+          "right": "a2"
+        },
+        {
+          "center": "t2",
+          "holds": true,
+          "left": "t3",
+          "right": "p1"
+        },
+        {
+          "center": "t1",
+          "holds": true,
+          "left": "t4",
+          "right": "s4"
+        },
+        {
+          "center": "t3",
+          "holds": true,
+          "left": "t2",
+          "right": "a2"
+        },
+        {
+          "center": "p2",
+          "holds": true,
+          "left": "t4",
+          "right": "q2"
+        },
+        {
+          "center": "q2",
+          "holds": true,
+          "left": "a1",
+          "right": "p2"
+        },
+        {
+          "center": "s4",
+          "holds": true,
+          "left": "t1",
+          "right": "r2"
+        }
+      ],
+      "family": "global_kalmanson_14role_16eq",
+      "input_witness": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common-full-metric-bank-v8-convex-five-point-import-v7-shared-fourth-600s/witness.json",
+      "killed_by_guarded_cut": true,
+      "lean_declaration": "Problem97.CapCrossingKalmansonBridge.false_of_fourteen_ccw_sixteen_shell_equalities_global_core",
+      "match_count_for_named_core_instantiation": 1,
+      "role_order": [
+        "a1",
+        "t4",
+        "t2",
+        "t1",
+        "t3",
+        "a2",
+        "p2",
+        "q2",
+        "r2",
+        "p1",
+        "q1",
+        "r1",
+        "s4",
+        "s2"
+      ],
+      "schema": "crossed-arm-global-kalmanson-14role-replay-v1",
+      "solver_invoked": false,
+      "status": "GLOBAL_KALMANSON_14ROLE_MATCH_KILLS",
+      "trust_boundary": "finite solver-free replay of one serialized radius partition; the Lean declaration is the proof consumer and was not built by this replay"
+    }
+  },
+  "legacy_three_family_checks": {
+    "direct": {
+      "linear_orders_checked": 120,
+      "positive_rotations_rejected": 5,
+      "reversed_rotations_rejected": 0
+    },
+    "forward-second": {
+      "linear_orders_checked": 120,
+      "positive_rotations_rejected": 5,
+      "reversed_rotations_rejected": 0
+    },
+    "reversed-second": {
+      "linear_orders_checked": 120,
+      "positive_rotations_rejected": 5,
+      "reversed_rotations_rejected": 0
+    }
+  },
+  "mutual_bisector_transport": {
+    "canonical_violation_instances_checked": 1,
+    "center_swap_equivalence_checked": true,
+    "forbidden_valuations": 1,
+    "lean_declaration": "Problem97.dist_eq_dist_of_mutual_bisector",
+    "n17_unique_canonical_key_count": 2040,
+    "status": "MUTUAL_BISECTOR_TRANSPORT_OK",
+    "truth_table_valuations_checked": 8
+  },
+  "raw_btw_sep": {
+    "five_point_alternating_orders_accepted": 40,
+    "five_point_equality_valuations_checked": 480,
+    "five_point_linear_orders_checked": 120,
+    "five_point_reversals_checked": 120,
+    "five_point_rotation_recuts_checked": 600,
+    "five_point_same-side_orders_rejected": 80,
+    "four_point_alternating_orders_accepted": 8,
+    "four_point_center_endpoint_swaps_checked": 24,
+    "four_point_equality_valuations_checked": 96,
+    "four_point_linear_orders_checked": 24,
+    "four_point_reversals_checked": 24,
+    "four_point_rotation_recuts_checked": 96,
+    "four_point_same-side_orders_rejected": 16,
+    "status": "RAW_BTW_SEP_OK",
+    "transposed_btw_equivalences_checked": 144
+  },
+  "status": "SMOKE_OK",
+  "v5_mutual_bisector_witness_replay": {
+    "input_witness": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common-full-metric-bank-v5-raw-btw-sep-import-v4/witness.json",
+    "linear_order": [
+      "a1",
+      "t3",
+      "p2",
+      "p1"
+    ],
+    "parity_declaration": "Problem97.false_of_two_centers_equidistant_pair_enclosed",
+    "parity_violation": [
+      "raw_btw_sep",
+      "p2",
+      "t3",
+      "a1",
+      "p1"
+    ],
+    "schema": "crossed-arm-mutual-bisector-replay-v1",
+    "solver_invoked": false,
+    "status": "REPLAY_PASS",
+    "transport_declaration": "Problem97.dist_eq_dist_of_mutual_bisector",
+    "transport_violation": [
+      "mutual_bisector_transport",
+      "p2",
+      "a1",
+      "p1"
+    ],
+    "transport_violation_count": 1,
+    "transported_equality": "E(p2,a1,p1)",
+    "trust_boundary": "finite solver-free replay of serialized order/radius partitions; both universal implications are existing Lean declarations"
+  }
+}

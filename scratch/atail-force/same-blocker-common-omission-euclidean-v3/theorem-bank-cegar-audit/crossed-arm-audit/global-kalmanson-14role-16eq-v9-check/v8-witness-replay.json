@@ -1,0 +1,130 @@
+{
+  "all_equalities_hold": true,
+  "arity": 14,
+  "cut_guard_true": true,
+  "cyclic_order_up_to_rotation_reflection": true,
+  "equality_requirement_count": 16,
+  "equality_requirements": [
+    {
+      "center": "a1",
+      "holds": true,
+      "left": "t1",
+      "right": "p1"
+    },
+    {
+      "center": "a1",
+      "holds": true,
+      "left": "t1",
+      "right": "p2"
+    },
+    {
+      "center": "a1",
+      "holds": true,
+      "left": "t3",
+      "right": "q2"
+    },
+    {
+      "center": "a1",
+      "holds": true,
+      "left": "t4",
+      "right": "s2"
+    },
+    {
+      "center": "a1",
+      "holds": true,
+      "left": "r1",
+      "right": "r2"
+    },
+    {
+      "center": "a1",
+      "holds": true,
+      "left": "r1",
+      "right": "s4"
+    },
+    {
+      "center": "t4",
+      "holds": true,
+      "left": "a1",
+      "right": "t2"
+    },
+    {
+      "center": "t4",
+      "holds": true,
+      "left": "a1",
+      "right": "r1"
+    },
+    {
+      "center": "t4",
+      "holds": true,
+      "left": "a1",
+      "right": "s2"
+    },
+    {
+      "center": "t2",
+      "holds": true,
+      "left": "t3",
+      "right": "a2"
+    },
+    {
+      "center": "t2",
+      "holds": true,
+      "left": "t3",
+      "right": "p1"
+    },
+    {
+      "center": "t1",
+      "holds": true,
+      "left": "t4",
+      "right": "s4"
+    },
+    {
+      "center": "t3",
+      "holds": true,
+      "left": "t2",
+      "right": "a2"
+    },
+    {
+      "center": "p2",
+      "holds": true,
+      "left": "t4",
+      "right": "q2"
+    },
+    {
+      "center": "q2",
+      "holds": true,
+      "left": "a1",
+      "right": "p2"
+    },
+    {
+      "center": "s4",
+      "holds": true,
+      "left": "t1",
+      "right": "r2"
+    }
+  ],
+  "family": "global_kalmanson_14role_16eq",
+  "input_witness": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-audit/source-at-common-full-metric-bank-v8-convex-five-point-import-v7-shared-fourth-600s/witness.json",
+  "killed_by_guarded_cut": true,
+  "lean_declaration": "Problem97.CapCrossingKalmansonBridge.false_of_fourteen_ccw_sixteen_shell_equalities_global_core",
+  "match_count_for_named_core_instantiation": 1,
+  "role_order": [
+    "a1",
+    "t4",
+    "t2",
+    "t1",
+    "t3",
+    "a2",
+    "p2",
+    "q2",
+    "r2",
+    "p1",
+    "q1",
+    "r1",
+    "s4",
+    "s2"
+  ],
+  "schema": "crossed-arm-global-kalmanson-14role-replay-v1",
+  "solver_invoked": false,
+  "status": "GLOBAL_KALMANSON_14ROLE_MATCH_KILLS",
+  "trust_boundary": "finite solver-free replay of one serialized radius partition; the Lean declaration is the proof consumer and was not built by this replay"
+}

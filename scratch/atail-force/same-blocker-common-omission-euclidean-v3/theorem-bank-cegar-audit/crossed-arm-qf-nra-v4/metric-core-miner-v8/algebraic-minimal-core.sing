@@ -1,0 +1,5 @@
+ring R=0,(x_a2,x_p2,x_q1,x_t1,y_a2,y_p2,y_q1,y_t1),dp;
+ideal I=-x_a2^2 + 2*x_a2*x_p2 - x_p2^2 + x_q1^2 - y_a2^2 + 2*y_a2*y_p2 - y_p2^2 + y_q1^2,-x_p2^2 + 2*x_p2 + x_q1^2 - y_p2^2 + y_q1^2 - 1,x_p2^2 - x_t1^2 + y_p2^2 - y_t1^2,-x_a2^2 + 2*x_a2*x_q1 - x_q1^2 - y_a2^2 + 2*y_a2*y_q1 - y_q1^2 + 1,-x_a2^2 + 2*x_a2 - y_a2^2,-x_p2^2 + 2*x_p2*x_q1 - x_q1^2 - y_p2^2 + 2*y_p2*y_q1 - y_q1^2 + 1,-x_t1^2 + 2*x_t1 - y_t1^2,x_a2^2 - 2*x_a2*x_t1 - x_q1^2 + 2*x_q1 + x_t1^2 + y_a2^2 - 2*y_a2*y_t1 - y_q1^2 + y_t1^2 - 1,x_a2^2 - 2*x_a2*x_t1 - x_q1^2 + 2*x_q1*x_t1 + y_a2^2 - 2*y_a2*y_t1 - y_q1^2 + 2*y_q1*y_t1;
+ideal G=std(I);
+if(size(G)==1 and G[1]==1){print("UNIT");}else{print("NONUNIT");}
+quit;

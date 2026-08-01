@@ -1,0 +1,34 @@
+{
+  "checks": {
+    "cyclic_order_unique": true,
+    "edge_variable_count": 136,
+    "equivalent_spanning_radius_equality_count": 68,
+    "full_pairwise_radius_equality_count": 125,
+    "full_theorem_bank_active_matches_are_zero": true,
+    "known_equality_closed_complementary_sum_unsat": "unsat",
+    "known_kalmanson_sat": "sat",
+    "point_count": 17,
+    "radius_class_size_histogram": {
+      "1": 174,
+      "2": 11,
+      "4": 19
+    },
+    "radius_classes_partition_every_other_point": true,
+    "registered_rows_are_radius_classes": true,
+    "sat_model_replayed": true,
+    "structural_bank_active_match_count_is_zero": true
+  },
+  "result_status": "UNSAT",
+  "solver_checks": {
+    "cvc5_full_system": {
+      "returncode": 0,
+      "status": "unsat",
+      "stderr": ""
+    },
+    "z3_logic": "QF_LRA",
+    "z3_status": "unsat",
+    "z3_timeout_ms": 60000,
+    "z3_version": "4.16.0"
+  },
+  "status": "PASS"
+}
