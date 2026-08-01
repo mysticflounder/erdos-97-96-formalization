@@ -1,0 +1,88 @@
+{
+  "assertion_block_counts": {
+    "Q_first_shell_exact_cap_intersection": 36,
+    "Q_fresh_outside_source_same_blocker": 6,
+    "all_four_endpoint_omissions": 24,
+    "blockers_in_indexed_strict_cap": 33,
+    "collision_blockers_distinct": 17,
+    "critical_blocker_nonself": 17,
+    "critical_blocker_total": 17,
+    "critical_no_K4_after_source_deletion": 371280,
+    "critical_support_exact": 4624,
+    "cyclic_position_block_bounds": 28,
+    "cyclic_position_block_permutation": 3,
+    "cyclic_position_fixed_apices": 3,
+    "distinct_first_apex_radii": 3,
+    "equal_pair_has_at_most_two_carrier_centers": 61880,
+    "five_center_deletion_arm_selector": 1,
+    "five_center_deletion_blocker_survival": 136,
+    "five_center_deletion_fixed_apex_survival": 12,
+    "fresh_q_blocker": 34,
+    "full_selected_row_shared_pair_separation": 14280,
+    "global_K4": 2074,
+    "mutual_triangle_transport": 4080,
+    "p_blocker_collision": 17,
+    "p_first_apex_exact_class": 6,
+    "q_equal_blocker": 17,
+    "q_first_apex_exact_class": 6,
+    "q_shell_exact_cap_intersection": 36,
+    "r_blocker_collision": 17,
+    "r_first_apex_exact_class": 6,
+    "radius_partition": 28560,
+    "two_complete_circles_intersect_at_most_two": 61880
+  },
+  "cegar_cut_count": 0,
+  "closed_cap_profile": [
+    6,
+    8,
+    6
+  ],
+  "cyclic_order_projection": "existential permutations within the three fixed cap-interior blocks",
+  "elapsed_ms": 4102,
+  "iterations": [
+    {
+      "check_ms": 3173,
+      "iteration": 0,
+      "result": "sat",
+      "semantic_replay": "PASS"
+    }
+  ],
+  "n": 17,
+  "omitted": [
+    "coordinates and QF_NRA geometry",
+    "MEC and nonobtuse-triangle inequalities",
+    "full CounterexampleData noM44 geometry",
+    "Lean kernel closure"
+  ],
+  "schema": "same-blocker-all-endpoint-omission-incidence-cegar-v4",
+  "solver": "Z3 finite Boolean SAT layer with existential integer cyclic positions",
+  "source_projection": [
+    "complete radius equivalence relations",
+    "global chosen K4 row at every center",
+    "CriticalShellSystem exact source row and q-free deletion",
+    "selected-row strong connectivity via replay-checked CEGAR cuts",
+    "p/r retained blocker collisions and distinct blockers",
+    "two equal-blocker q sources with all four endpoint omissions",
+    "exact q-shell indexed-cap intersection",
+    "FreshOutsideFirstBlockerFiber exact p-shell cap split",
+    "FirstFiberCollisionFiveCenterDeletionResidual exact four-arm selected-row witness",
+    "selectedFourClass_shared_pair_separated with existential cap-block order",
+    "SelectedFourClass.inter_card_le_two (two complete circles share at most two carrier points)",
+    "false_of_convexIndep_of_perpBisectorCore (one pair has at most two carrier bisector centers)"
+  ],
+  "stage": "global-K4-critical-shell-minimality-five-center-deletion-euclidean-incidence-full-shared-pair-separation",
+  "status": "SAT",
+  "strict_interior_profile": [
+    4,
+    6,
+    4
+  ],
+  "timeout_ms": 300000,
+  "trust_boundary": {
+    "lean_kernel_proof": false,
+    "qf_nra_run": false,
+    "sat_witness_semantically_replayed": true,
+    "universal_n_claim": false,
+    "unsat_certificate_checked": false
+  }
+}

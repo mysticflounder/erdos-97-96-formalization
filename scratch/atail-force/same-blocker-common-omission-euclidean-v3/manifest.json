@@ -1,7 +1,7 @@
 {
   "lane": "same-blocker-common-omission-euclidean-v3",
-  "status": "STRUCTURAL_SELF_CHECK_ONLY",
-  "target": "FreshThirdTwoCapSourceObstruction.sameBlockerCommonOmission",
+  "status": "FULL_SHARED_PAIR_AND_GEOMETRIC_INCIDENCE_SAT",
+  "target": "FreshThirdTwoCapSourceObstruction.sameBlockerAllEndpointOmission",
   "specialization": {
     "carrier_card": 17,
     "closed_cap_profile": [6, 8, 6],
@@ -59,6 +59,16 @@
       "path": "lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean",
       "lines": "25-46",
       "role": "strong common-deletion packet omitted from this necessary-condition model"
+    },
+    {
+      "path": "lean/Erdos9796Proof/P97/Phase3SharedPairSeparation.lean",
+      "lines": "31-55",
+      "role": "two selected rows sharing two points force cyclic separation"
+    },
+    {
+      "path": "lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean",
+      "lines": "427-454",
+      "role": "increasing-quadruple shared-late-pair contradiction used by the finite strengthening"
     }
   ],
   "encoded": [
@@ -92,6 +102,104 @@
     "source_view_witness_labels_per_geometric_branch": 16,
     "common_omission_witness_labels_per_geometric_branch": 4,
     "provenance_labeled_branches": 38220595200
+  },
+  "five_center_deletion_incidence_audit": {
+    "schema": "same-blocker-all-endpoint-omission-incidence-cegar-v2",
+    "lean_target": "FirstFiberCollisionFiveCenterDeletionResidual",
+    "arm_mapping": [
+      {"arm": "delete-P.source1", "deleted": "p1", "opposite_blocker_source": "r1"},
+      {"arm": "delete-Prho.source1", "deleted": "r1", "opposite_blocker_source": "p1"},
+      {"arm": "delete-P.source2", "deleted": "p2", "opposite_blocker_source": "r1"},
+      {"arm": "delete-Prho.source2", "deleted": "r2", "opposite_blocker_source": "p1"}
+    ],
+    "center_mapping": {
+      "cap_source_blocker": "actual blocker of q1/q2",
+      "oppApex1": "a1",
+      "opposite_collision_blocker": "actual blocker of the opposite p/r pair",
+      "oppApex2": "a2",
+      "surplusApex": "a3"
+    },
+    "selected_row_semantics": "the chosen co-radial four-row at each of the five centers omits the deleted endpoint",
+    "self_check_command": "uv run --offline python scratch/atail-force/same-blocker-common-omission-euclidean-v3/incidence_cegar.py --self-check",
+    "run_command": "uv run --offline python scratch/atail-force/same-blocker-common-omission-euclidean-v3/incidence_cegar.py --n 17 --timeout-ms 180000 --max-cuts 200",
+    "result": "incidence-audit/n17-profile-6-8-6-incidence-five-center-deletion/result.json",
+    "witness": "incidence-audit/n17-profile-6-8-6-incidence-five-center-deletion/witness.json",
+    "verdict": "SAT",
+    "semantic_replay": "PASS",
+    "selected_arm": "delete-P.source1",
+    "deleted": "p1",
+    "trust_boundary": [
+      "finite external Z3 Boolean model",
+      "no coordinates or QF_NRA realization",
+      "no full CounterexampleData noM44 geometry",
+      "no universal-n claim",
+      "no Lean kernel proof"
+    ]
+  },
+  "cap_crossing_kalmanson_incidence_audit": {
+    "schema": "same-blocker-all-endpoint-omission-incidence-cegar-v3",
+    "lean_target": "Problem97.CapCrossingKalmanson.false_of_two_selected_rows_shared_late_pair",
+    "specialization": "for each third-interior center t and distinct first-interior x,y, rows at a1 and t cannot both contain x,y",
+    "within_block_order_dependency": false,
+    "encoded_clause_count": 60,
+    "self_check_command": "uv run --offline python scratch/atail-force/same-blocker-common-omission-euclidean-v3/incidence_cegar.py --self-check",
+    "run_command": "uv run --offline python scratch/atail-force/same-blocker-common-omission-euclidean-v3/incidence_cegar.py --n 17 --cap-crossing-kalmanson --timeout-ms 180000 --max-cuts 200",
+    "log": "incidence_cegar-n17-cap-crossing-kalmanson.log",
+    "result": "incidence-audit/n17-profile-6-8-6-incidence-five-center-deletion-cap-crossing-kalmanson/result.json",
+    "witness": "incidence-audit/n17-profile-6-8-6-incidence-five-center-deletion-cap-crossing-kalmanson/witness.json",
+    "summary": "incidence-audit/summary-incidence-five-center-deletion-cap-crossing-kalmanson.json",
+    "verdict": "SAT",
+    "iteration": 0,
+    "semantic_replay": "PASS",
+    "replayed_cases": 60,
+    "trust_boundary": [
+      "finite external Z3 Boolean model",
+      "the cap-block order implication is source-proved but the JSON-to-Lean adapter is absent",
+      "no coordinates or QF_NRA realization",
+      "no full CounterexampleData noM44 geometry",
+      "no universal-n claim",
+      "no Lean build, transitive axiom audit, or kernel proof"
+    ],
+    "next_missing_data": "existential within-block cyclic positions or an equivalent betweenness adapter for full selectedFourClass_shared_pair_separated replay"
+  },
+  "full_shared_pair_geometric_incidence_audit": {
+    "schema": "same-blocker-all-endpoint-omission-incidence-cegar-v4",
+    "lean_targets": [
+      "Problem97.selectedFourClass_shared_pair_separated",
+      "SelectedFourClass.inter_card_le_two",
+      "false_of_convexIndep_of_perpBisectorCore"
+    ],
+    "cyclic_position_semantics": "existential independent permutations of the three strict-cap interior blocks with fixed apex positions",
+    "full_shared_pair_candidate_count": 14280,
+    "full_shared_pair_active_count": 13,
+    "two_circle_overlap_candidate_count": 61880,
+    "bisector_center_candidate_count": 61880,
+    "self_check_command": "uv run --offline python scratch/atail-force/same-blocker-common-omission-euclidean-v3/incidence_cegar.py --self-check",
+    "run_command": "uv run --offline python scratch/atail-force/same-blocker-common-omission-euclidean-v3/incidence_cegar.py --n 17 --geometric-incidence --full-shared-pair-separation --timeout-ms 300000 --max-cuts 200",
+    "log": "incidence_cegar-n17-geometric-full-shared-pair-separation.log",
+    "result": "incidence-audit/n17-profile-6-8-6-incidence-five-center-deletion-geometric-incidence-full-shared-pair-separation/result.json",
+    "witness": "incidence-audit/n17-profile-6-8-6-incidence-five-center-deletion-geometric-incidence-full-shared-pair-separation/witness.json",
+    "summary": "incidence-audit/summary-incidence-five-center-deletion-geometric-incidence-full-shared-pair-separation.json",
+    "verdict": "SAT",
+    "iteration": 0,
+    "solver_check_ms": 3173,
+    "cegar_cut_count": 0,
+    "semantic_replay": "PASS",
+    "selected_arm": "delete-P.source1",
+    "deleted": "p1",
+    "existential_cyclic_order": [
+      "a1", "t3", "t2", "t4", "t1", "a2", "r1", "q2", "r2",
+      "p2", "q1", "p1", "a3", "s4", "s3", "s1", "s2"
+    ],
+    "trust_boundary": [
+      "finite external Z3 Boolean and integer-position model",
+      "independent semantic replay of cyclic blocks, full shared-pair separation, and geometric incidence projections",
+      "no common coordinate or squared-distance realization",
+      "no strict-convexity, CCW-boundary, or full CounterexampleData noM44 proof objects",
+      "no universal-n claim",
+      "no Lean build, transitive axiom audit, or kernel proof"
+    ],
+    "next_missing_data": "a common Euclidean coordinate and squared-distance realization whose equality classes match every Boolean radius class and whose boundary order matches the existential cyclic positions"
   },
   "bounded_gate": {
     "command": "uv run python scratch/atail-force/same-blocker-common-omission-euclidean-v3/model.py --self-check --branch-count-only",

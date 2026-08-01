@@ -1,0 +1,116 @@
+{
+  "classification": "external QF_NRA diagnostic; not Lean or kernel closure",
+  "constraint_counts": {
+    "a1_exact_class_disequalities": 6,
+    "a1_exact_class_equalities": 9,
+    "critical_complete_class_disequalities": 108,
+    "selected_row_equalities": 51,
+    "similarity_gauge": 4,
+    "strict_convex_general_position": 680
+  },
+  "constraint_total": 858,
+  "elapsed_ms": 340620,
+  "encoded": [
+    "one shared pair of real coordinates for all 17 named carrier points",
+    "orientation-preserving gauge a1=(0,0), a2=(1,0)",
+    "positive orientation for every increasing triple in the reported cyclic order",
+    "squared-distance equalities for all 17 selected four-point rows",
+    "complementary disequalities for selected rows at every reported critical-blocker center",
+    "the exact four-class squared-distance partition at a1"
+  ],
+  "input_witness": "incidence-audit/n17-profile-6-8-6-incidence-five-center-deletion-geometric-incidence-full-shared-pair-separation/witness.json",
+  "logic": "QF_NRA",
+  "omitted": [
+    "unreported Boolean radius-equivalence classes away from the selected rows",
+    "the no-other-K4-after-source-deletion property for unreported distance classes",
+    "MEC and non-obtuse-apex assumptions (not present in the fixed incidence witness)",
+    "the full CounterexampleData.noM44 surface and arbitrary-n reduction",
+    "Lean proof objects, Lean build, axiom audit, and kernel verification"
+  ],
+  "reason_unknown": "timeout",
+  "solver": "Z3 4.16.0 nlsat",
+  "solver_smoke_test": {
+    "known_sat": "sat",
+    "known_unsat": "unsat",
+    "status": "SMOKE_PASS"
+  },
+  "structural_self_check": {
+    "a1_complete_class_partition": {
+      "p_first_apex_class": [
+        "t3",
+        "p1",
+        "p2",
+        "s4"
+      ],
+      "q_first_apex_class": [
+        "q1",
+        "q2",
+        "a3",
+        "s3"
+      ],
+      "r_first_apex_class": [
+        "t1",
+        "r1",
+        "r2",
+        "s2"
+      ],
+      "selected_row": [
+        "t2",
+        "t4",
+        "a2",
+        "s1"
+      ]
+    },
+    "carrier_cardinality": 17,
+    "critical_center_count": 9,
+    "critical_centers_with_complete_selected_class": [
+      "a2",
+      "p1",
+      "p2",
+      "q1",
+      "q2",
+      "r1",
+      "s1",
+      "s2",
+      "t3"
+    ],
+    "critical_source_counts": {
+      "a2": 2,
+      "p1": 1,
+      "p2": 1,
+      "q1": 4,
+      "q2": 4,
+      "r1": 2,
+      "s1": 1,
+      "s2": 1,
+      "t3": 1
+    },
+    "cyclic_order": [
+      "a1",
+      "t3",
+      "t2",
+      "t4",
+      "t1",
+      "a2",
+      "r1",
+      "q2",
+      "r2",
+      "p2",
+      "q1",
+      "p1",
+      "a3",
+      "s4",
+      "s3",
+      "s1",
+      "s2"
+    ],
+    "selected_row_count": 17,
+    "selected_row_size": 4,
+    "semantic_replay": "PASS",
+    "status": "SELF_CHECK_OK",
+    "witness_sha256": "412e9cb06936661e5e9d59ff436e4de16684f240a43359a135ec3d85727dfe60"
+  },
+  "timeout_ms": 300000,
+  "trust_boundary": "solver verdict is trusted external computation over the emitted formula",
+  "verdict": "UNKNOWN"
+}

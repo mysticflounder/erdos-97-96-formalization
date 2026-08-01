@@ -1,0 +1,13 @@
+{
+  "core": [
+    "closed_cap_card_sum = n + 3",
+    "left_closed_cap_card >= 6",
+    "indexed_closed_cap_card >= 8",
+    "right_closed_cap_card >= 6"
+  ],
+  "derivation": "n+3=19 < 6+8+6=20",
+  "kind": "source-arithmetic-core",
+  "n": 16,
+  "solver_invoked": false,
+  "status": "UNSAT"
+}

@@ -1,0 +1,246 @@
+{
+  "blockers": {
+    "a1": "q1",
+    "a2": "q1",
+    "a3": "s1",
+    "p1": "r2",
+    "p2": "r2",
+    "q1": "r1",
+    "q2": "r1",
+    "r1": "p2",
+    "r2": "p2",
+    "s1": "r2",
+    "s2": "a3",
+    "s3": "a2",
+    "s4": "s1",
+    "t1": "a3",
+    "t2": "r2",
+    "t3": "a2",
+    "t4": "s4"
+  },
+  "cap_block_position_replay": {
+    "position_count": 17,
+    "status": "PASS"
+  },
+  "cap_crossing_kalmanson_replay": {
+    "status": "NOT_REQUESTED"
+  },
+  "existential_cyclic_order": [
+    "a1",
+    "t4",
+    "t3",
+    "t2",
+    "t1",
+    "a2",
+    "p2",
+    "q2",
+    "q1",
+    "r2",
+    "r1",
+    "p1",
+    "a3",
+    "s4",
+    "s1",
+    "s2",
+    "s3"
+  ],
+  "five_center_deletion_residual": {
+    "centers": {
+      "oppApex1": "a1",
+      "oppApex2": "a2",
+      "opposite_collision_blocker": "r2",
+      "q_common_blocker": "r1",
+      "surplusApex": "a3"
+    },
+    "deleted": "r1",
+    "selected_arm": "delete-Prho.source1",
+    "selected_rows_avoid_deleted": true,
+    "surviving_selected_rows": {
+      "oppApex1": [
+        "a2",
+        "p1",
+        "p2",
+        "a3"
+      ],
+      "oppApex2": [
+        "t3",
+        "p2",
+        "r2",
+        "s3"
+      ],
+      "opposite_collision_blocker": [
+        "t2",
+        "p1",
+        "p2",
+        "s1"
+      ],
+      "q_common_blocker": [
+        "a1",
+        "t2",
+        "q1",
+        "q2"
+      ],
+      "surplusApex": [
+        "t1",
+        "p2",
+        "q2",
+        "s2"
+      ]
+    }
+  },
+  "full_shared_pair_separation_replay": {
+    "active_shared_pair_cases": 19,
+    "candidate_cases": 14280,
+    "status": "PASS"
+  },
+  "geometric_incidence_replay": {
+    "status": "NOT_REQUESTED"
+  },
+  "packet": {
+    "Q.otherOutsidePoint": "s1",
+    "Q.source": "t2",
+    "all_four_endpoint_omissions": true,
+    "bp": "r2",
+    "bq": "r1",
+    "br": "p2",
+    "p_first_apex_class": [
+      "a2",
+      "p1",
+      "p2",
+      "a3"
+    ],
+    "p_support": [
+      "t2",
+      "p1",
+      "p2",
+      "s1"
+    ],
+    "q_common_support": [
+      "a1",
+      "t2",
+      "q1",
+      "q2"
+    ],
+    "q_first_apex_class": [
+      "t2",
+      "t3",
+      "q1",
+      "q2"
+    ],
+    "q_shell_cap_intersection": [
+      "q1",
+      "q2"
+    ],
+    "r_first_apex_class": [
+      "t1",
+      "r1",
+      "r2",
+      "s1"
+    ]
+  },
+  "rows": {
+    "a1": [
+      "a2",
+      "p1",
+      "p2",
+      "a3"
+    ],
+    "a2": [
+      "t3",
+      "p2",
+      "r2",
+      "s3"
+    ],
+    "a3": [
+      "t1",
+      "p2",
+      "q2",
+      "s2"
+    ],
+    "p1": [
+      "p2",
+      "q1",
+      "s3",
+      "s4"
+    ],
+    "p2": [
+      "a1",
+      "r1",
+      "r2",
+      "q2"
+    ],
+    "q1": [
+      "a1",
+      "t3",
+      "t4",
+      "a2"
+    ],
+    "q2": [
+      "t4",
+      "q1",
+      "s1",
+      "s3"
+    ],
+    "r1": [
+      "a1",
+      "t2",
+      "q1",
+      "q2"
+    ],
+    "r2": [
+      "t2",
+      "p1",
+      "p2",
+      "s1"
+    ],
+    "s1": [
+      "q1",
+      "a3",
+      "s2",
+      "s4"
+    ],
+    "s2": [
+      "a1",
+      "r2",
+      "a3",
+      "s3"
+    ],
+    "s3": [
+      "t2",
+      "r1",
+      "s1",
+      "s2"
+    ],
+    "s4": [
+      "t4",
+      "p1",
+      "r1",
+      "s2"
+    ],
+    "t1": [
+      "t2",
+      "a2",
+      "r1",
+      "q1"
+    ],
+    "t2": [
+      "a1",
+      "t1",
+      "a3",
+      "s2"
+    ],
+    "t3": [
+      "p1",
+      "q2",
+      "s2",
+      "s3"
+    ],
+    "t4": [
+      "a1",
+      "t2",
+      "a2",
+      "s4"
+    ]
+  },
+  "semantic_replay": "PASS"
+}

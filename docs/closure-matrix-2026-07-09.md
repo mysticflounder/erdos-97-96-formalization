@@ -170,7 +170,7 @@ inapplicable because it required the cap-six `L` branch.
 | K-A-P3-RANK2 | ARCHIVED DIAGNOSTIC FOR RETIRED ROUTE; BOUNDED QF_NRA UNKNOWN | `period-three-rank2-coordinate-probe/`; `period-three-rank2-encoding-audit/` | None. | Z3 and cvc5 timed out on the fixed projection and its prefixes. `unknown` remains unresolved evidence, not infeasibility or closure. |
 | K-A-P3-NUM | ARCHIVED DIAGNOSTIC FOR RETIRED ROUTE; 480 BOUNDED STARTS, NO VERIFIED HIT | `period-three-rank2-numerical-seed/`; `period-three-exact-seed-lift/`; `period-three-seed-compatible-cell/`; `period-three-rank2-interior-point/` | None. | The campaigns produced no substitution-verified hit. This is bounded numerical no-hit evidence, not infeasibility, and closed no `sorry`. |
 | K-A-P3-PROSE | ARCHIVED NONTERMINAL DOMAIN REFINEMENT FOR RETIRED ROUTE | `prose-backup-period3-match/REPORT.md` | None. | The prose candidates lacked required positive source fields and closed no source obligation. |
-| K-A-LIVE | CARD-11 EXACT-FOUR CLOSED; PARENT COORDINATORS SOURCE-CLEAN; TRI-APEX FRONTIER SOURCE-CONSOLIDATED TO THREE LEAVES | `Problem97.u1_largeCap_routeB_tail_liveData_false`; `ATail/FrontierLiveClosure.lean` | `u1_largeCap_routeB_tail_false` | The live caller extracts one concrete `CriticalShellSystem` and dispatches through `CriticalPairFrontier`. The source-clean unique-radius parent closes exact four at card 11; its card-at-least-12 exact-four arm is narrowed by checked physical ingress into robust post-card-eleven and swapped protected-exact-four leaves, followed by exact-five leaves with distinct or common obstruction centers. The 2026-07-30 source frontier for the all-large tri-apex parent has three sorry-bearing leaves: one distinct-blocker directed-omission leaf and two exact-collision terminals, `false_of_crossBlockerCoincidence` and `false_of_capSourceThirdCanonicalRowSurface`. The former fresh-third, one-sided-deletion, aligned/nonbisector, enlarged-fiber, and second-to-first interfaces are compatibility-only. `docs/live-blueprint.md` remains authoritative after the next successful generated refresh. |
+| K-A-LIVE | CARD-11 EXACT-FOUR CLOSED; PARENT AND CAP-SOURCE COORDINATORS SOURCE-CLEAN; FIVE TRANSITIVE TERMINALS OPEN | `Problem97.u1_largeCap_routeB_tail_liveData_false`; `ATail/FrontierLiveClosure.lean` | `u1_largeCap_routeB_tail_false` | The live caller extracts one concrete `CriticalShellSystem` and dispatches through `CriticalPairFrontier`. The source-clean unique-radius parent closes exact four at card 11; its card-at-least-12 exact-four arm is narrowed by checked physical ingress into robust post-card-eleven and swapped protected-exact-four leaves, followed by exact-five leaves with distinct or common obstruction centers. In the all-large tri-apex subtree, `false_of_retainedOmission_triApexAllLarge_core` remains the directed-omission terminal. On the exact-collision side, `false_of_crossBlockerCoincidence` is one independent sibling and `false_of_capSourceThirdCanonicalRowSurface` is now a source-clean exhaustive coordinator whose three sorry-bearing descendants are `false_of_twoCapSources_freshOutsideFirstBlockerFiber`, `false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual`, and `false_of_capSource_firstFiber_collisionFiveCenterDeletion`. The current anchor consumes both `FirstFiberCollisionFiveCenterExactRowsResidual` and `FirstFiberOutsidePairFiveCenterExactRowsOrCrossedResidual`, each supplied by checked producers. No terminal was closed by this refactor. Compatibility-only adapters receive no closure credit. `docs/live-blueprint.md` becomes authoritative for this latest source state after the next successful generated refresh. |
 | K-B-PIN | DONE (2026-07-12, spine-verified post build refresh) | `Problem97.isM44PinnedSurplusGeneralMResidualsExcluded` in `PinnedSurplusGeneralM.lean` | `isM44PinnedSurplusResidualsExcluded` | The open `5 < m` branch is forced to `m = 6`, `A.card = 11`, with exact `(6,4,4)` cap-selected hit counts; all six incidence fields and native placement soundness are proved. `CapSelectedPinnedShellBridge` consumes every right aligned residual packet through all twelve certified core cases. The new `U2NonSurplusSqueeze.NonSurplusSwap.pinnedLeft_to_right` field proves the left-to-right reflection for all three surplus-index cases, preserving minimality, `(m,4,4)`, and surplus-cap cardinality; the terminal relabels the swapped packet and reuses the right producer and closure contradiction. `PinnedSurplusGeneralM.lean` has no source `sorry`, and direct Lean elaboration passed. Build refreshed 2026-07-12 after the U1 owner landed P1b (86149679) + the ERASE-P2 redraft (3d27977c): full library green, 9308 jobs; `PinnedSurplusGeneralM.lean` built clean with zero sorry warnings. `proof-blueprint axioms` on the declaration: core + `Lean.ofReduceBool` + approved `Lean.trustCompiler`, no `sorryAx`; the declaration left the `proof-blueprint spine` open-obligations list (anchor [closed]). |
 | K-B-END-LABEL | DONE (2026-07-11) | `Problem97.isM44EndpointResidualsExcluded` (`Base.lean`; both former `hshadow` holes proved) | `removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit` | Route (b) implemented (136ebb9b) and the m=5 branch fully proved: `EndpointCertificate/GeometryProducer.lean` (sorry-free) supplies `endpointLeft/Right_residual_false_of_card_five`, each covering both ambient CCW apex orientations (direct + reflected kernels `SurplusCOMPGBankGeometry.lean:1498/:1621`; apex orientation SYMMETRIC not forced per the 2026-07-11 prover verdict; the mirror residual flips the kernel pairing). Gate passed: full library green. Its former general-m dependency later closed under K-B-END-GENERAL; the endpoint cluster is absent from the current open inventory. Commits: 858b7e39, 8a7e6d1b, b2183714, 35bc63aa, f67e7818, e7ee31a2, plus the right-residual closure. |
 | K-B-END-GENERAL | DONE (2026-07-12, commit 3114fb1f) | `Problem97.isM44EndpointGeneralMResidualsExcluded` (`Base.lean:9511`, hole `:9513`; stated strictly `5 < S.surplusCap.card`) | `isM44EndpointResidualsExcluded` (`m ≠ 5` branch) | General-m endpoint leaf, routed to the forced `m = 6` / `A.card = 11` machinery (K-B-PIN). Cannot consume K-B-PIN unchanged: endpoint escape forces the Moser apex OUT of the escaped row, failing `PinnedShellOK`. Scoped extension required (see `docs/audits/2026-07-11-endpoint-generalm-representability.md`): `EndpointLeft/RightShellOK` seed predicates, classifier extension to the seed union, one (4,2,2) bridge seed-production case, endpoint source consumers. Finite gate PASSED 2026-07-11 — EXACT WITHIN MODEL, not PROVEN: 64-placement sweep (both families, twelve formalized metric cores, enumerate-residuals, complete=true) returned zero residuals (`census/endpoint_confinement/endpoint_direct_metric_core_residuals_n11.json`); no new metric cores needed. STAGING LANDED (5c44d1fc, 6fbde4a8): `EndpointCertificate/GeneralMCardEleven.lean` (sorry-free, no Base import) — card-11 forcing transport, full left+right escape row-shape families (selected classes card-4 interior-pinned, escapee strict-interior + surplus-cap disjointness), and the `EndpointLeft/RightShellOK` seed predicates over the `Fin 11` vocabulary matching the probe encoding. Next: endpoint placement checks against the committed native classifier (gate: `#eval` all 64 before proving — the Lean `hasPrefixCore` core set is not identical to the probe's core granularity), then the soundness transport mirroring `CapSelectedNativeClosureSound` (committed c5fcf286). BRIDGE LANE 2026-07-11 late: transport map `docs/audits/2026-07-11-endpoint-classifier-transport-map.md` (58f93ae2 - left family reuses the committed search code verbatim; right family needs a center-2 detector fork with fresh native runs); bridge design `docs/endpoint-generalm-bridge-design-2026-07-11.md` (a57c7e71, lemmas L1-L13; L9/L10/L10b done upstream at 9e6b5722 `incidenceOK_patternCode`); `EndpointCertificate/BridgeStaging.lean` landed 41d704f3 (L1a-L5: minimality glue, `labelOf`, Moser-cap class forcing + k4Radius uniqueness, endpoint no-qfree, T1 decomposition, row-0 two-intS-slots chooser - obstruction E1 discharged). ASSEMBLY INPUTS ALL LANDED 2026-07-11: `BridgeCarrier.lean` 9bac7853 (L6 public prescription constructor, L7 `endpointBlocker` + transports, L8 row-1 equation, right L3/L4 mirrors); `OrderedCoreSigns.lean` 2c32e3a1 (L12 branches 11-12, core axioms only); `EndpointClassifierSound.lean` + `EndpointClosureSound.lean` fffff751 (transport items 4-7; finals `closureCoreAlternative_of_incidenceOK_endpointLeft/RightShellOK`, axioms core + ofReduceBool/trustCompiler). Pinned lane 8ebadfa2 supplies `false_of_duplicateCenterCore_patternCode` + `false_of_perpBisectorCore_patternCode` for the branch dispatch. CLOSED 3114fb1f: `EndpointCertificate/BridgeAssembly.lean` (L11 `exactAt_endpointBlocker`, right L7/L8 mirrors, system-exposing blocker assemblies, L12b `false_of_closureCoreAlternative_of_canonical`, L13 `false_of_endpointEscapeLeft/Right_cardEleven`) + minimal Base.lean wiring at `:9513`. Leaf axioms: propext/Classical.choice/Quot.sound + Lean.ofReduceBool/Lean.trustCompiler (allowed set, no sorryAx); full library green (9307 jobs); spine open inventory 5 → 4 declarations. |
@@ -1016,17 +1016,25 @@ consolidation; kernel-complete status requires those fresh checks.
 #### K-A-LIVE all-endpoint to five-center bridge checkpoint (2026-08-01)
 
 The later two-source refactor replaces the former opaque common cap-source
-leaf by a checked constructor-level residual split. Its live immediate
-frontier is now
+leaf by a checked constructor-level residual split. The cap-source subtree is
+now
 
 ```text
-FreshThirdTwoCapSourceObstruction.ResidualCase
-  +-- normalized
-  |     -> false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
-  |        [sorry]
-  `-- sameBlockerAllEndpointOmission Q ...
-        -> false_of_twoCapSources_sameBlockerAllEndpointOmission
-           [sorry]
+GeometricMultiplicityResidual + TwoCapSourceThirdCanonicalRowSurface
+  +-- FreshOutsideFirstBlockerFiber
+  |     -> false_of_twoCapSources_freshOutsideFirstBlockerFiber [sorry]
+  +-- FreshOutsideSecondBlockerFiber
+  |     -> source-clean swap to the first-fiber leaf
+  `-- FreshThirdBlockerFiber
+        -> source-clean fresh-third/core/residual coordinators
+        +-- FreshThirdNormalizedResidualCase
+        |     -> false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
+        |        [sorry]
+        `-- sameBlockerAllEndpointOmission
+              + FirstFiberOutsidePairFiveCenterExactRowsOrCrossedResidual
+              + FirstFiberCollisionFiveCenterExactRowsResidual
+              -> false_of_capSource_firstFiber_collisionFiveCenterDeletion
+                 [sorry]
 ```
 
 The equal-blocker constructor retains `Q`, two complete cap-source witnesses,
@@ -1037,15 +1045,21 @@ intersection. The new source-clean theorem
 packet to the existing `FirstFiberCollisionFiveCenterDeletionResidual`: the
 checked first-fiber descent either returns the deletion residual or its
 cycle-aligned arm asserts the forbidden hit at `P.source₁`. Thus the
-remaining equal-blocker work is the independently owned positive-incidence
-contradiction for that five-center residual and its acyclic wiring into the
-terminal. The normalized leaf remains independent.
+checked `collisionFiveCenterExactRows_of_deletionResidual` producer exposes
+`FirstFiberCollisionFiveCenterExactRowsResidual`. Independently,
+`firstFiberOutsidePair_fiveCenter_or_crossed` and
+`firstFiberOutsidePair_exactRows_or_crossed` expose either a common outside-
+point deletion at five named centers or one of two crossed positive-incidence
+patterns as `FirstFiberOutsidePairFiveCenterExactRowsOrCrossedResidual`.
+`false_of_twoCapSources_sameBlockerAllEndpointOmission` is now source-clean and
+wires both positive packets into the single remaining equal-blocker terminal.
+The normalized leaf remains independent.
 
 This bridge adds no `sorry` and closes no terminal. A direct Lean 4.27 source
-check of `FrontierLiveClosure.lean` passed on 2026-08-01. The earlier guarded
-target build and blueprint refresh cover the constructor/Q rewire, not this
-new bridge; a fresh guarded target build and transitive axiom audit remain
-required after the terminal is wired.
+check of `FrontierLiveClosure.lean`, including the exact-row normalizations and
+parent wiring, passed on 2026-08-01. A fresh guarded target build is pending
+behind another running build's project lock. The transitive blueprint and
+axiom audit remain required after the terminal is proved.
 
 ### K-A-UNIQUE-PHYSICAL-SPLIT radius-normal-form checkpoint (2026-07-26)
 

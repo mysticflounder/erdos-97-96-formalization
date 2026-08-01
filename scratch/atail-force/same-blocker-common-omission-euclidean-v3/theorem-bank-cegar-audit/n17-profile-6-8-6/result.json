@@ -1,0 +1,135 @@
+{
+  "assertion_block_counts": {
+    "Q_first_shell_exact_cap_intersection": 36,
+    "Q_fresh_outside_source_same_blocker": 6,
+    "all_four_endpoint_omissions": 24,
+    "blockers_in_indexed_strict_cap": 33,
+    "collision_blockers_distinct": 17,
+    "critical_blocker_nonself": 17,
+    "critical_blocker_total": 17,
+    "critical_no_K4_after_source_deletion": 371280,
+    "critical_support_exact": 4624,
+    "cyclic_position_block_bounds": 28,
+    "cyclic_position_block_permutation": 3,
+    "cyclic_position_fixed_apices": 3,
+    "distinct_first_apex_radii": 3,
+    "equal_pair_has_at_most_two_carrier_centers": 61880,
+    "five_ccw_second_two_selected_rows": 5,
+    "five_center_deletion_arm_selector": 1,
+    "five_center_deletion_blocker_survival": 136,
+    "five_center_deletion_fixed_apex_survival": 12,
+    "fresh_q_blocker": 34,
+    "full_selected_row_shared_pair_separation": 14280,
+    "global_K4": 2074,
+    "mutual_triangle_transport": 4080,
+    "p_blocker_collision": 17,
+    "p_first_apex_exact_class": 6,
+    "q_equal_blocker": 17,
+    "q_first_apex_exact_class": 6,
+    "q_shell_exact_cap_intersection": 36,
+    "r_blocker_collision": 17,
+    "r_first_apex_exact_class": 6,
+    "radius_partition": 28560,
+    "two_complete_circles_intersect_at_most_two": 61880
+  },
+  "candidate_count": 3,
+  "closed_cap_profile": [
+    6,
+    8,
+    6
+  ],
+  "connected_candidate_count": 3,
+  "connectivity_cut_count": 0,
+  "core": null,
+  "core_note": "Z3 unsat-core extraction and DRAT/LRAT certification were not requested",
+  "cyclic_order_scope": "only the a1-anchored linear order chosen by the existing cap-block position model; no cyclic rotations or reversal adapters",
+  "elapsed_ms": 5432,
+  "iterations": [
+    {
+      "check_ms": 2955,
+      "fresh_cut_count": 1,
+      "iteration": 0,
+      "kind": "theorem-bank-cuts",
+      "match_count": 1,
+      "matches": [
+        [
+          "p2",
+          "a3",
+          "s2",
+          "s1",
+          "s4"
+        ]
+      ],
+      "result": "sat"
+    },
+    {
+      "check_ms": 1483,
+      "fresh_cut_count": 4,
+      "iteration": 1,
+      "kind": "theorem-bank-cuts",
+      "match_count": 4,
+      "matches": [
+        [
+          "a1",
+          "t1",
+          "t2",
+          "r2",
+          "p1"
+        ],
+        [
+          "t1",
+          "q1",
+          "r2",
+          "r1",
+          "p1"
+        ],
+        [
+          "t1",
+          "q2",
+          "r2",
+          "r1",
+          "p1"
+        ],
+        [
+          "q1",
+          "p2",
+          "p1",
+          "s2",
+          "s1"
+        ]
+      ],
+      "result": "sat"
+    },
+    {
+      "check_ms": 42,
+      "iteration": 2,
+      "kind": "surviving-candidate",
+      "result": "sat",
+      "semantic_replay": "PASS"
+    }
+  ],
+  "n": 17,
+  "omitted": [
+    "Euclidean coordinates and direct strict-CCW/injectivity proof objects",
+    "QF_NRA realizability",
+    "MEC and nonobtuse-triangle inequalities",
+    "full CounterexampleData noM44 geometry",
+    "cyclic rotation and reversal adapters",
+    "Lean kernel closure and transitive axiom audit"
+  ],
+  "schema": "five-ccw-second-two-selected-rows-theorem-bank-cegar-v1",
+  "solver": "Z3 finite Boolean SAT plus existential integer cap-block positions",
+  "status": "SAT",
+  "theorem": "Problem97.FivePointEuclideanObstruction.false_of_five_ccw_second_two_selected_rows",
+  "theorem_cut_count": 5,
+  "theorem_match_count_seen": 5,
+  "timeout_ms": 300000,
+  "trust_boundary": {
+    "encoding_to_source_theorem_manually_audited": true,
+    "lean_kernel_proof": false,
+    "sat_witness_semantically_replayed": true,
+    "source_theorem_cut_conditional_on_common_injective_strict_ccw_realization": true,
+    "universal_n_claim": false,
+    "unsat_certificate_checked": false
+  }
+}

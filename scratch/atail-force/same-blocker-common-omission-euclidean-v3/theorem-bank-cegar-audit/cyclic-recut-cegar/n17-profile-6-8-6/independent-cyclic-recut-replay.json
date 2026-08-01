@@ -1,0 +1,75 @@
+{
+  "all_five_point_schema_inventory": {
+    "any_positive_match_forced_by_common_deletion": false,
+    "non_target_cyclic_match_count": 21,
+    "schemas": [
+      {
+        "anchored_match_count": 2,
+        "cyclic_match_count": 10,
+        "cyclic_matches_using_deleted_positive_at_live_split": 0,
+        "cyclic_matches_using_live_split_rows": 5,
+        "positive_match_forced_by_common_deletion": false,
+        "theorem": "FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows"
+      },
+      {
+        "anchored_match_count": 0,
+        "cyclic_match_count": 0,
+        "cyclic_matches_using_deleted_positive_at_live_split": 0,
+        "cyclic_matches_using_live_split_rows": 0,
+        "positive_match_forced_by_common_deletion": false,
+        "theorem": "FivePointEuclideanObstruction.false_of_five_ccw_second_two_selected_rows"
+      },
+      {
+        "anchored_match_count": 2,
+        "cyclic_match_count": 10,
+        "cyclic_matches_using_deleted_positive_at_live_split": 0,
+        "cyclic_matches_using_live_split_rows": 5,
+        "positive_match_forced_by_common_deletion": false,
+        "theorem": "FivePointEuclideanObstruction.false_of_five_ccw_reversed_second_two_selected_rows"
+      },
+      {
+        "anchored_match_count": 0,
+        "cyclic_match_count": 1,
+        "cyclic_matches_using_deleted_positive_at_live_split": 0,
+        "cyclic_matches_using_live_split_rows": 0,
+        "positive_match_forced_by_common_deletion": false,
+        "theorem": "CapCrossingKalmanson.false_of_selected_rows_in_five_ccw_order"
+      },
+      {
+        "anchored_match_count": 0,
+        "cyclic_match_count": 0,
+        "cyclic_matches_using_deleted_positive_at_live_split": 0,
+        "cyclic_matches_using_live_split_rows": 0,
+        "positive_match_forced_by_common_deletion": false,
+        "theorem": "KalmansonThreeEqualitySchemas.false_of_five_ccw_three_shell_equalities_012_124_314"
+      }
+    ],
+    "target_cyclic_match_count": 0,
+    "total_cyclic_five_point_matches": 21
+  },
+  "anchored_match_count": 0,
+  "any_surviving_match_forced_by_live_common_deletion": false,
+  "carrier_size": 17,
+  "cyclic_match_count": 0,
+  "cyclic_matches": [],
+  "forcing_note": "The live common-deletion arm contributes two negative omissions at bq/br; the theorem antecedent consists only of five positive row memberships.",
+  "increasing_quintuples_checked": 6188,
+  "kind": "independent solver-free cyclic-recut theorem replay",
+  "live_outside_pair": {
+    "Q.otherOutsidePoint": "t3",
+    "Q.source": "s3",
+    "arm_truth": {
+      "common_delete_Q.otherOutsidePoint": true,
+      "common_delete_Q.source": true,
+      "crossed_other_in_bq_source_in_br": false,
+      "crossed_source_in_bq_other_in_br": false
+    },
+    "cap_source_row_center_bq": "r2",
+    "opposite_blocker_row_center_br": "q1",
+    "uniquely_selected_arm": null
+  },
+  "positive_cyclic_orders_checked": 30940,
+  "reversal_checked_or_generated": false,
+  "status": "PASS",
+  "witness": "scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/cyclic-recut-cegar/n17-profile-6-8-6/witness.json"
+}

@@ -50,14 +50,18 @@ yet a transitive closure:
   closure still depends on the two independent leaves and the checked
   second-side swap transport.
 
-The compatibility adapters no longer recurse into the root. The remaining
-work is the mathematical proof of two independent narrowed obligations,
-`false_of_twoCapSources_freshOutsideFirstBlockerFiber` and
-`false_of_twoCapSources_freshThirdBlockerFiber_residual`, followed by a Lake
-build and proof-blueprint/axiom audit. The current refreshed spine confirms
-exactly those two theorem obligations plus their transitive `sorryAx`; no
-additional child of this coordinator is open. A clean source compile is not a
-claim that the publish target is `sorry`-free.
+The compatibility adapters no longer recurse into the root. There are two
+independent packet-level branches, but the checked fresh-third router exposes
+two constructor-specific terminals. Thus the current coordinator-interface
+frontier has three actual theorem obligations:
+
+* `false_of_twoCapSources_freshOutsideFirstBlockerFiber`;
+* `false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual`; and
+* `false_of_capSource_firstFiber_collisionFiveCenterDeletion`.
+
+After those are proved, the remaining gates are a Lake build and refreshed
+proof-blueprint/transitive-axiom audit. A clean source compile is not a claim
+that the publish target is `sorry`-free.
 
 The swap-preserving packet helper is now also source-checked: the two
 canonical-row witnesses can be exchanged while preserving the full support
@@ -68,7 +72,7 @@ equal-blocker branch has been strengthened to retain its originating
 collision endpoints. The direct check exposed a parser break in the new
 all-endpoint lemma, which was repaired. A subsequent guarded Lean 4.27 target
 build completed successfully and refreshed the proof-blueprint, validating
-the full Q-retaining rewire. This structural check does not discharge the two
+the full Q-retaining rewire. This structural check does not discharge the three
 load-bearing terminal obligations. The packet-level
 fresh-third theorem now checks the positive same-cap terminal against both
 cap-eight sources. If neither source aligns, it passes both independently
@@ -452,7 +456,7 @@ false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
     (secondInteraction : FreshThirdCapSourceInteraction ... C.secondSource Q)
     (hresidual : FreshThirdNormalizedResidualCase P Pρ C Q) : False
 
-false_of_twoCapSources_sameBlockerAllEndpointOmission
+false_of_capSource_firstFiber_collisionFiveCenterDeletion
     {commonRadius : ℝ}
     (Q : FreshOutsideFirstBlockerFiber P Pρ)
     (source source' : CarrierVertex D.A)
@@ -460,15 +464,31 @@ false_of_twoCapSources_sameBlockerAllEndpointOmission
     (all_endpoint_omission :
       AllCollisionEndpointsOmitted P Pρ source source')
     (blocker_mem_capInterior : ...)
-    (shell_inter_cap_eq : ... = {source.1, source'.1}) : False
+    (shell_inter_cap_eq : ... = {source.1, source'.1})
+    (houtsidePair :
+      FirstFiberOutsidePairFiveCenterExactRowsOrCrossedResidual
+        P Pρ Q source)
+    (hexactRows :
+      FirstFiberCollisionFiveCenterExactRowsResidual
+        P Pρ source S.oppApex2 S.surplusApex) : False
 ```
 
 Before this split, the coordinator-interface frontier was one mixed residual
 carrying an indexed sum. After it, the coordinator itself is source-clean and
 the frontier is two strictly constructor-specific leaves: the normalized
 interaction product and the stronger first-fiber/common-blocker all-endpoint
-omission packet. This changes the local raw `sorry` count from one to two but
-narrows
+omission packet, now narrowed one further step to the positive four-way
+five-center exact-row residual and the independent outside-pair exact-row-or-
+crossed residual. The old all-endpoint theorem is checked wiring:
+`collisionFiveCenterDeletion_of_allCollisionEndpointsOmitted` supplies
+`hdeletion`; `collisionFiveCenterExactRows_of_deletionResidual` then trims all
+five surviving witnesses in the selected arm to exact q-free cardinal-four
+rows and exposes the deleted source's actual blocker as a distinct blocked
+center. The outside-pair producer simultaneously gives two further five-row
+deletion packets or one of two crossed positive-incidence patterns. The
+terminal consumes both theorem-bank-ready interfaces. This changes the
+local raw `sorry`
+count from one to two but narrows
 each branch by a checked constructor split, preserves every positive field,
 and prevents the strong packet from being erased into the generic normal
 form. Both leaves are immediately wired through the old residual coordinator
@@ -519,35 +539,192 @@ omission. The separate
 `sameBlockerAllEndpointOmission` constructor also remains live: by definition
 it does not satisfy `HasDistinctCrossRows`, so it enters the residual with its
 stronger first-fiber, common-radius, and all-endpoint-omission data intact.
-Its concrete closure route is to produce the existing F3c five-center deletion
-residual from `Q` and the cap-source witness, then apply an independently
-proved source-clean
-`false_of_capSource_firstFiber_collisionFiveCenterDeletion`. The terminal is
-not yet present in the live source and must be checked for import reachability
-and acyclicity before wiring. The normalized complement still needs a
+Its concrete closure route now produces the existing F3c five-center deletion
+residual from `Q` and the cap-source witness, then applies the live
+`false_of_capSource_firstFiber_collisionFiveCenterDeletion` terminal. The
+terminal now consumes the exact-row form rather than the opaque K4-survival
+conjunction. It is on-spine, and a direct Lean 4.27 compile checks the acyclic wiring;
+it remains `sorry`-backed. The normalized complement still needs a
 source-clean occurrence/embedding or direct incidence terminal. The cells
 should become separate live obligations only when constructor-specific
 interfaces expose such a route. A fixed-cardinality SAT/QF_NRA result alone
 is not a universal proof of this unbounded packet.
 
-A bounded fixed-`n = 17` model under
+A bounded fixed-`n = 15..18` incidence model under
 `scratch/atail-force/same-blocker-common-omission-euclidean-v3/` validates the
-new interface-level implication and confirms that the existential common
-omission is redundant under the exact intersection assumptions. It does not
-encode global K4 and is neither a universal proof nor a Lean closure. A
-separate fixed-`n = 15..18` incidence/K4 audit is pending and will be reported
-only as computational evidence.
+packet plumbing but does not contradict it. The profile gate rejects `n = 15`
+and `n = 16`; the complete radius-equivalence, chosen-K4-row, critical-shell,
+minimality-connectivity, blocker, cap-intersection, and omission abstraction is
+replay-checked `SAT` at `n = 17` and all three `n = 18` profiles. This rules out
+the original abstract incidence package as a closure route. The audit now also
+models the newly exposed four-arm five-center deletion residual exactly: it
+chooses one Lean-order arm, extracts one selected K4 row at each of its five
+named centers after the specified deletion, and independently replays that
+every row avoids the deleted endpoint. The smallest feasible `n = 17`, cap
+profile `(6, 8, 6)` instance remains replay-checked `SAT` (the witness chooses
+the `P.source₁` deletion arm). Thus the five-center packet is a sound strict
+narrowing and certificate interface, but it is not a contradiction in the
+current incidence abstraction. The first missing bridge is now after exact-row
+extraction: a metric or ordered-cap theorem must either confine the five row
+supports incompatibly or force one survivor center to be the deleted source's
+actual blocker. These external Z3 models are neither Euclidean realizations,
+universal proofs, certificates, nor Lean closure.
+
+The first source-proved ordered-cap strengthening has also been replayed. It
+adds the block-order specialization of
+`CapCrossingKalmanson.false_of_two_selected_rows_shared_late_pair`, forbidding
+the first apex and a preceding-cap interior center from sharing two points of
+the indexed cap interior. This eliminates the first replay witness's shared
+`{q₁,q₂}` pattern, but the bounded `n = 17`, profile `(6,8,6)` model is
+still replay-checked `SAT` at iteration zero. The stronger audit now includes
+existential cyclic positions, geometric-incidence constraints, and the full
+selected-row shared-pair separation family. It is still replay-checked `SAT`
+at `n = 17`, profile `(6,8,6)`, at iteration zero: all 14,280 shared-pair
+candidates were generated, 13 were active in the witness, and the 61,880
+circle-overlap plus 61,880 perpendicular-bisector candidates replayed
+successfully. The selected deletion arm is `P.source₁`. The result and witness
+are recorded under
+`scratch/atail-force/same-blocker-common-omission-euclidean-v3/incidence-audit/n17-profile-6-8-6-incidence-five-center-deletion-geometric-incidence-full-shared-pair-separation/`.
+Thus no further incidence-only refinement is presently a credible closer. A
+faithful fixed-witness Euclidean coordinate check was attempted next. The
+audited QF_NRA formula uses one coordinate pair for each of the 17 points, all
+680 strict-convex/general-position orientation inequalities, 51 selected-row
+squared-distance equalities, 108 critical-blocker completeness disequalities,
+and the exact class partition at the first apex (858 assertions total). Z3
+4.16 returned `UNKNOWN` after its 300-second timeout. This is neither SAT nor
+UNSAT, and the monolithic query should not simply be rerun. It is recorded in
+`scratch/atail-force/same-blocker-common-omission-euclidean-v3/euclidean-realization-audit/`.
+The next computational boundary is therefore decomposed theorem-bank CEGAR
+and, only where needed, small coordinate cores. Any bounded result will guide
+the universal Lean lemma; it will not itself close the unbounded branch.
+
+The first theorem-bank cut instantiates
+`FivePointEuclideanObstruction.false_of_five_ccw_second_two_selected_rows` on
+every increasing quintuple in the solver's common strict-CCW enumeration. The
+original witness contains exactly two such antecedents. Guarded CEGAR removes
+them, but remains replay-checked `SAT` at `n = 17`, profile `(6,8,6)`, after
+three candidates and five theorem cuts. The survivor has zero anchored
+antecedents among all 6,188 increasing quintuples. An independent replay finds
+eight cyclic-rotation-only instances. Production Lean now supplies
+`false_of_five_ccw_second_two_selected_rows_cyclicShift`, which transports the
+same exact obstruction through any cyclic cut using
+`injective_cyclicShift` and `isCcwConvexPolygon_cyclicShift`; its source check
+is clean and `lean_verify` reports only `propext`, `Classical.choice`, and
+`Quot.sound`. A guarded target build remains pending behind the current project
+build lock. The exact cyclic-recut CEGAR run is now complete. It remains
+replay-checked `SAT` at `n = 17`, profile `(6,8,6)`, after four connected
+candidates and 32 cyclic cuts. Independent replay checks all 6,188 quintuples
+and 30,940 direction-preserving rotations; the survivor has zero anchored or
+cyclic target matches. The guard self-check exhausts all 120 orders and rejects
+exactly the five rotations, while no reversal is generated. Thus the cyclic
+adapter is sound and useful, but this particular five-point bank theorem is
+not a universal closer for the live packet. The implementation, self-check,
+iterations, survivor, and independent replay are under
+`scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/`.
+This rejects the particular first witness but does not yet prove that the
+theorem antecedent is forced by the live terminal packet.
+
+The bank also already contained the genuinely reversed-row consumer
+`false_of_five_ccw_reversed_second_two_selected_rows`. Production Lean now
+adds the corresponding source-clean
+`false_of_five_ccw_reversed_second_two_selected_rows_cyclicShift` transport.
+Its direct Lean 4.27 source check reports only `propext`, `Classical.choice`,
+and `Quot.sound`. This does not retroactively make the preceding forward-only
+run exhaustive: both proved direction-preserving cyclic families must be
+included in the next dual-row CEGAR pass and replayed separately.
+The same checkpoint also adds the source-clean cyclic transport
+`false_of_five_ccw_two_selected_rows_cyclicShift` for the bank's other
+nonlinear two-row obstruction. The next pass must therefore test all three
+proved cyclic pattern families, not extrapolate from the one already run.
+
+The pre-cyclic-cut surviving witness was also mapped back to the new outside-pair
+interface. It takes `Q.source = a1`, `Q.otherOutsidePoint = t2`, the cap-source
+row `p1 = {a1,t1,q1,q2}`, and the opposite-blocker row
+`p2 = {t3,r1,r2,s2}`. Hence it selects common deletion of
+`Q.otherOutsidePoint`; neither crossed arm holds. Across all five anchored and
+49 cyclic-rotation-only five-point matches in the audit, every positive row
+membership is arbitrary relative to that live deletion arm. In particular,
+none is a universal occurrence consequence of the current packet. The full
+source/artifact-only mapping is recorded in
+`theorem-bank-cegar-audit/live-split-witness-audit.md`; it is not a Lean,
+solver, kernel, or closure result.
+
+The post-cyclic-cut survivor takes `Q.source = s3`,
+`Q.otherOutsidePoint = t3`, with actual blockers `bq = r2` and `br = q1`.
+Both outside points are omitted from both relevant rows, so both common-
+deletion propositions hold; the constructor truth table is deliberately not
+exclusive. It has 21 non-target cyclic five-point matches, ten involving a
+split row, but none positively uses either deleted outside point in that row.
+This is the concrete reason to stop extending the same single-row theorem cut
+and model the two independently selected deleted-row layers instead.
 
 The first half of that route is now production Lean. The source-clean theorem
 `collisionFiveCenterDeletion_of_allCollisionEndpointsOmitted` applies
 `firstFiber_cycleAlignedHits_or_collisionFiveCenterDeletion` with the two
 robust remaining apices. Its non-deletion arm contains `P.source₁` in the
 cap-source row, contradicting the retained all-four omission; the other arm is
-exactly `FirstFiberCollisionFiveCenterDeletionResidual`. A direct Lean 4.27
-source check of `FrontierLiveClosure.lean` passed on 2026-08-01. This
-introduces no new obligation and closes no terminal by itself: the
-independently owned positive-incidence contradiction is still the next call
-to wire.
+exactly `FirstFiberCollisionFiveCenterDeletionResidual`. Production module
+`ATail/FiveCenterDeletionBoundary.lean` now performs the exact-row extraction;
+its guarded Lean 4.27 target build passed on 2026-08-01. The live coordinator
+converts the four deletion arms to
+`FirstFiberCollisionFiveCenterExactRowsResidual`, and a direct Lean 4.27 source
+check of `FrontierLiveClosure.lean` passed after that rewire. The positive
+terminal is wired and the former all-endpoint theorem is source-clean. This
+replaces its `sorry` by one more explicit on-spine `sorry`; it closes no
+terminal by itself. The mathematical task is now a positive metric alignment
+or cyclic-order incompatibility among those extracted rows. In particular, an
+equality making the opposite collision blocker bisect the two named first-fiber
+outside points would close the branch immediately by
+`CapSelectedRowCounting.outsidePair_unique_capCenter`; the present incidence
+packet does not imply that equality. Merely splitting the four deletion arms
+again would not increase aggregate tractability.
+
+There is now an additional checked source-level positive consequence. Any
+canonical row whose center lies in the first ordered cap and differs from the
+first collision blocker must omit at least one of the two named off-cap points
+from the first blocker row. This is exposed by
+`capCenter_omits_firstFiber_outsidePair`; the opposite-blocker specialization
+is `oppositeBlocker_omits_firstFiber_outsidePair`, with positive deletion form
+`oppositeBlocker_outsideDeletionSurvival`. In each exact five-center deletion
+arm, `collisionFiveCenterExactRows_projects_to_omissions` also projects the
+deleted collision endpoint out of both the cap-source row and the opposite
+collision-blocker row.
+
+The proposed compact interface is also now installed, without a permanent
+`4 × 2` leaf explosion. `firstFiberOutsidePair_fiveCenter_or_crossed` proves
+`FirstFiberOutsidePairFiveCenterOrCrossedResidual`: either deleting one named
+outside point preserves K4 at the cap-source center, the opposite collision
+blocker, and all three rich apices, or the two cap-center rows realize one of
+the two crossed outside-point membership patterns.
+`firstFiberOutsidePair_exactRows_or_crossed` then trims either deletion arm to
+five exact q-free rows, yielding
+`FirstFiberOutsidePairFiveCenterExactRowsOrCrossedResidual`. The parent proves
+this exact packet and passes it explicitly to
+`false_of_capSource_firstFiber_collisionFiveCenterDeletion`; no new `sorry`
+was introduced. Before this strengthening, the terminal frontier exposed only
+the four collision-endpoint exact-row arms. After it, the same single terminal
+also exposes a two-deletion/two-crossed constructor with immediate fan-out four
+and a checked producer. The remaining proof should match these two positive
+interfaces against a universal Euclidean occurrence theorem, rather than split
+the four endpoint arms mechanically again.
+
+The next computational model must preserve that two-interface semantics. The
+current incidence CEGAR has one selected-row variable per center, which is
+adequate for one chosen five-center deletion arm but cannot faithfully encode
+both exact-row packets at once: the collision-deletion row and the
+outside-point-deletion row at a common center need not be the same row. Reusing
+one variable would silently add an equality absent from the Lean hypotheses.
+The next sound tranche therefore introduces two independent exact size-four,
+co-radial row layers at every named survivor center. At an actual blocker,
+`qDeletedK4Class_support_eq_selectedShell` may identify a deleted-row support
+with the canonical selected shell only when its hypotheses are proved for that
+specific deletion. At rich apices the two deleted rows remain independent.
+Shared-pair, circle-overlap, perpendicular-bisector, and cyclic five-point
+cuts must then be generated across every relevant within-layer and cross-layer
+pair, followed by an independent replay. This bounded model is an occurrence-
+lemma miner: `SAT` will expose the next missing geometric relation, while
+`UNSAT` still requires extraction of a universal Lean theorem and cannot close
+the unbounded terminal by itself.
 
 # Convert the conjunction packets into structures
 
@@ -613,7 +790,7 @@ The `CrossBlockerCoincidence` arm comes from the other constructor of `TwoCollis
 ## Bottom line and acceptance gate
 
 [
-\boxed{\text{The acyclic refactor is installed; prove its two independent leaves next.}}
+\boxed{\text{The acyclic refactor is installed; prove its three terminal leaves next.}}
 ]
 
 The main objective is not another finer case split. It is a staged, acyclic
@@ -633,7 +810,7 @@ refactor:
    transitive axioms and spine before claiming closure.
 
 Steps 3 and 6 are the active acceptance gates. The coordinator's literal
-`sorry` is gone, but the publish target remains open until the two independent
+`sorry` is gone, but the publish target remains open until all three terminal
 leaves are source-clean and the transitive audit passes. This does not close
 the sibling `CrossBlockerCoincidence` obligation or unrelated
 retained-omission cores.
@@ -648,7 +825,11 @@ source-clean residual coordinator to the two constructor-specific leaves.
 The root is not closed. The latest all-endpoint/Q rewire is covered by a
 successful guarded Lean 4.27 target build and refreshed proof-blueprint. The
 terminal leaves remain `sorry`-backed. The subsequent source-clean five-center
-bridge also passes a direct Lean 4.27 source check, but has not yet been
-followed by a guarded target rebuild or a transitive proof-blueprint and axiom
-audit. Those gates must be rerun after the terminal is proved before any
-closure claim.
+bridge, production exact-row boundary, and narrowed terminal wiring pass their
+respective guarded boundary-target build and direct Lean 4.27 coordinator
+source check. The latest direct coordinator check also covers the compact
+outside-pair exact-row normalization and passed on 2026-08-01. The coordinator
+has not yet been followed by a guarded target rebuild because the project build
+lock is owned by another running build; nor has the terminal passed a
+transitive proof-blueprint and axiom audit. Those gates must be rerun after the
+terminal is proved before any closure claim.

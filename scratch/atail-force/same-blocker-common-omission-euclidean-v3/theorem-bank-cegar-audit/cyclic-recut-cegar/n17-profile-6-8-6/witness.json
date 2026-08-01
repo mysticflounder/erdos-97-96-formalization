@@ -1,0 +1,255 @@
+{
+  "blockers": {
+    "a1": "r2",
+    "a2": "q1",
+    "a3": "a2",
+    "p1": "r1",
+    "p2": "r1",
+    "q1": "r2",
+    "q2": "r2",
+    "r1": "q1",
+    "r2": "q1",
+    "s1": "q2",
+    "s2": "t3",
+    "s3": "r1",
+    "s4": "t1",
+    "t1": "q1",
+    "t2": "t3",
+    "t3": "t1",
+    "t4": "t1"
+  },
+  "cap_block_position_replay": {
+    "position_count": 17,
+    "status": "PASS"
+  },
+  "cap_crossing_kalmanson_replay": {
+    "status": "NOT_REQUESTED"
+  },
+  "cyclic_recut_theorem_bank_replay": {
+    "active_antecedents": 0,
+    "increasing_quintuples_checked": 6188,
+    "positive_cyclic_orders_checked": 30940,
+    "reversal_generated": false,
+    "status": "PASS"
+  },
+  "existential_cyclic_order": [
+    "a1",
+    "t4",
+    "t2",
+    "t3",
+    "t1",
+    "a2",
+    "q2",
+    "q1",
+    "r2",
+    "p1",
+    "r1",
+    "p2",
+    "a3",
+    "s1",
+    "s2",
+    "s4",
+    "s3"
+  ],
+  "five_center_deletion_residual": {
+    "centers": {
+      "oppApex1": "a1",
+      "oppApex2": "a2",
+      "opposite_collision_blocker": "q1",
+      "q_common_blocker": "r2",
+      "surplusApex": "a3"
+    },
+    "deleted": "p1",
+    "selected_arm": "delete-P.source1",
+    "selected_rows_avoid_deleted": true,
+    "surviving_selected_rows": {
+      "oppApex1": [
+        "t2",
+        "t4",
+        "s3",
+        "s4"
+      ],
+      "oppApex2": [
+        "t1",
+        "t2",
+        "q2",
+        "a3"
+      ],
+      "opposite_collision_blocker": [
+        "t1",
+        "a2",
+        "r1",
+        "r2"
+      ],
+      "q_common_blocker": [
+        "a1",
+        "t2",
+        "q1",
+        "q2"
+      ],
+      "surplusApex": [
+        "a2",
+        "r1",
+        "q1",
+        "s3"
+      ]
+    }
+  },
+  "full_shared_pair_separation_replay": {
+    "active_shared_pair_cases": 11,
+    "candidate_cases": 14280,
+    "status": "PASS"
+  },
+  "geometric_incidence_replay": {
+    "common_bisector_triple_cases": 61880,
+    "status": "PASS",
+    "two_circle_overlap_cases": 61880
+  },
+  "packet": {
+    "Q.otherOutsidePoint": "t3",
+    "Q.source": "s3",
+    "all_four_endpoint_omissions": true,
+    "bp": "r1",
+    "bq": "r2",
+    "br": "q1",
+    "p_first_apex_class": [
+      "t1",
+      "a2",
+      "p1",
+      "p2"
+    ],
+    "p_support": [
+      "t3",
+      "p1",
+      "p2",
+      "s3"
+    ],
+    "q_common_support": [
+      "a1",
+      "t2",
+      "q1",
+      "q2"
+    ],
+    "q_first_apex_class": [
+      "t3",
+      "q1",
+      "q2",
+      "a3"
+    ],
+    "q_shell_cap_intersection": [
+      "q1",
+      "q2"
+    ],
+    "r_first_apex_class": [
+      "r1",
+      "r2",
+      "s1",
+      "s2"
+    ]
+  },
+  "rows": {
+    "a1": [
+      "t2",
+      "t4",
+      "s3",
+      "s4"
+    ],
+    "a2": [
+      "t1",
+      "t2",
+      "q2",
+      "a3"
+    ],
+    "a3": [
+      "a2",
+      "r1",
+      "q1",
+      "s3"
+    ],
+    "p1": [
+      "a1",
+      "t4",
+      "p2",
+      "a3"
+    ],
+    "p2": [
+      "t1",
+      "q1",
+      "s2",
+      "s4"
+    ],
+    "q1": [
+      "t1",
+      "a2",
+      "r1",
+      "r2"
+    ],
+    "q2": [
+      "a1",
+      "s1",
+      "s2",
+      "s3"
+    ],
+    "r1": [
+      "t3",
+      "p1",
+      "p2",
+      "s3"
+    ],
+    "r2": [
+      "a1",
+      "t2",
+      "q1",
+      "q2"
+    ],
+    "s1": [
+      "t4",
+      "p2",
+      "r2",
+      "s3"
+    ],
+    "s2": [
+      "t4",
+      "p1",
+      "q1",
+      "s1"
+    ],
+    "s3": [
+      "p2",
+      "r1",
+      "q2",
+      "s2"
+    ],
+    "s4": [
+      "a1",
+      "a2",
+      "p2",
+      "s1"
+    ],
+    "t1": [
+      "t3",
+      "t4",
+      "r2",
+      "s4"
+    ],
+    "t2": [
+      "a1",
+      "p1",
+      "r1",
+      "s4"
+    ],
+    "t3": [
+      "t2",
+      "p1",
+      "r2",
+      "s2"
+    ],
+    "t4": [
+      "t3",
+      "a2",
+      "r2",
+      "q2"
+    ]
+  },
+  "semantic_replay": "PASS"
+}

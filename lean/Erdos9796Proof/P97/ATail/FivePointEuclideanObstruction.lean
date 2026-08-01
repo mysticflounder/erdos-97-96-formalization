@@ -330,6 +330,32 @@ theorem false_of_five_ccw_second_two_selected_rows
       (ERow.support_eq_radius _ ha_mem_ERow).trans
         (ERow.support_eq_radius _ hb_mem_ERow).symm
 
+/-- Cyclic-recut form of `false_of_five_ccw_second_two_selected_rows`.
+
+The five indices are increasing in the coordinate system obtained by cutting
+the boundary at `cut`; no reversal of the cyclic order is performed. -/
+theorem false_of_five_ccw_second_two_selected_rows_cyclicShift
+    {carrier : Finset ℝ²}
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {ia ib ic id ie : Fin carrier.card}
+    (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id) (hide : id < ie)
+    (DRow : SelectedFourClass carrier (boundary (id + cut)))
+    (ERow : SelectedFourClass carrier (boundary (ie + cut)))
+    (ha_mem_DRow : boundary (ia + cut) ∈ DRow.support)
+    (hc_mem_DRow : boundary (ic + cut) ∈ DRow.support)
+    (he_mem_DRow : boundary (ie + cut) ∈ DRow.support)
+    (ha_mem_ERow : boundary (ia + cut) ∈ ERow.support)
+    (hb_mem_ERow : boundary (ib + cut) ∈ ERow.support) :
+    False := by
+  exact false_of_five_ccw_second_two_selected_rows
+    (injective_cyclicShift hboundary_injective cut)
+    (isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hiab hibc hicd hide DRow ERow ha_mem_DRow hc_mem_DRow he_mem_DRow
+    ha_mem_ERow hb_mem_ERow
+
 /-- Reversed-row selected consumer for the second five-point cut.
 
 For `a < b < c < d < e`, this rules out a selected row at `b` containing
@@ -381,6 +407,34 @@ theorem false_of_five_ccw_reversed_second_two_selected_rows
   · exact
       (ARow.support_eq_radius _ he_mem_ARow).trans
         (ARow.support_eq_radius _ hd_mem_ARow).symm
+
+/-- Cyclic-recut form of
+`false_of_five_ccw_reversed_second_two_selected_rows`.
+
+The five indices are increasing after cutting the boundary at `cut`; the
+underlying reversed-row obstruction is transported without reversing the
+ambient cyclic orientation. -/
+theorem false_of_five_ccw_reversed_second_two_selected_rows_cyclicShift
+    {carrier : Finset ℝ²}
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {ia ib ic id ie : Fin carrier.card}
+    (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id) (hide : id < ie)
+    (BRow : SelectedFourClass carrier (boundary (ib + cut)))
+    (ARow : SelectedFourClass carrier (boundary (ia + cut)))
+    (ha_mem_BRow : boundary (ia + cut) ∈ BRow.support)
+    (hc_mem_BRow : boundary (ic + cut) ∈ BRow.support)
+    (he_mem_BRow : boundary (ie + cut) ∈ BRow.support)
+    (hd_mem_ARow : boundary (id + cut) ∈ ARow.support)
+    (he_mem_ARow : boundary (ie + cut) ∈ ARow.support) :
+    False := by
+  exact false_of_five_ccw_reversed_second_two_selected_rows
+    (injective_cyclicShift hboundary_injective cut)
+    (isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hiab hibc hicd hide BRow ARow ha_mem_BRow hc_mem_BRow he_mem_BRow
+    hd_mem_ARow he_mem_ARow
 
 set_option maxHeartbeats 800000 in
 -- The coordinate polynomial normalization is larger than Lean's default
@@ -603,14 +657,40 @@ theorem false_of_five_ccw_two_selected_rows
       (CRow.support_eq_radius _ ha_mem_CRow).trans
         (CRow.support_eq_radius _ hd_mem_CRow).symm
 
+/-- Cyclic-recut form of `false_of_five_ccw_two_selected_rows`. -/
+theorem false_of_five_ccw_two_selected_rows_cyclicShift
+    {carrier : Finset ℝ²}
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {ia ib ic id ie : Fin carrier.card}
+    (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id) (hide : id < ie)
+    (BRow : SelectedFourClass carrier (boundary (ib + cut)))
+    (CRow : SelectedFourClass carrier (boundary (ic + cut)))
+    (ha_mem_BRow : boundary (ia + cut) ∈ BRow.support)
+    (he_mem_BRow : boundary (ie + cut) ∈ BRow.support)
+    (ha_mem_CRow : boundary (ia + cut) ∈ CRow.support)
+    (hb_mem_CRow : boundary (ib + cut) ∈ CRow.support)
+    (hd_mem_CRow : boundary (id + cut) ∈ CRow.support) :
+    False := by
+  exact false_of_five_ccw_two_selected_rows
+    (injective_cyclicShift hboundary_injective cut)
+    (isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hiab hibc hicd hide BRow CRow ha_mem_BRow he_mem_BRow ha_mem_CRow
+    hb_mem_CRow hd_mem_CRow
+
 #print axioms false_of_three_rows_of_four_orientations
 #print axioms false_of_five_ccw_three_row_equalities
 #print axioms false_of_five_ccw_two_selected_rows
+#print axioms false_of_five_ccw_two_selected_rows_cyclicShift
 #print axioms false_of_second_three_rows_of_four_orientations
 #print axioms false_of_second_three_rows_of_four_orientations_pos
 #print axioms false_of_five_ccw_second_three_row_equalities
 #print axioms false_of_five_ccw_second_two_selected_rows
+#print axioms false_of_five_ccw_second_two_selected_rows_cyclicShift
 #print axioms false_of_five_ccw_reversed_second_two_selected_rows
+#print axioms false_of_five_ccw_reversed_second_two_selected_rows_cyclicShift
 
 end FivePointEuclideanObstruction
 end Problem97

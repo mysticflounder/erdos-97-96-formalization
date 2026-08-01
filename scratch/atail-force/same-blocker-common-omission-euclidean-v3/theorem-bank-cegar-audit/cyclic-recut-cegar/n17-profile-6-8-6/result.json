@@ -1,0 +1,336 @@
+{
+  "assertion_block_counts": {
+    "Q_first_shell_exact_cap_intersection": 36,
+    "Q_fresh_outside_source_same_blocker": 6,
+    "all_four_endpoint_omissions": 24,
+    "blockers_in_indexed_strict_cap": 33,
+    "collision_blockers_distinct": 17,
+    "critical_blocker_nonself": 17,
+    "critical_blocker_total": 17,
+    "critical_no_K4_after_source_deletion": 371280,
+    "critical_support_exact": 4624,
+    "cyclic_position_block_bounds": 28,
+    "cyclic_position_block_permutation": 3,
+    "cyclic_position_fixed_apices": 3,
+    "distinct_first_apex_radii": 3,
+    "equal_pair_has_at_most_two_carrier_centers": 61880,
+    "five_ccw_second_two_selected_rows_cyclic_recut": 32,
+    "five_center_deletion_arm_selector": 1,
+    "five_center_deletion_blocker_survival": 136,
+    "five_center_deletion_fixed_apex_survival": 12,
+    "fresh_q_blocker": 34,
+    "full_selected_row_shared_pair_separation": 14280,
+    "global_K4": 2074,
+    "mutual_triangle_transport": 4080,
+    "p_blocker_collision": 17,
+    "p_first_apex_exact_class": 6,
+    "q_equal_blocker": 17,
+    "q_first_apex_exact_class": 6,
+    "q_shell_exact_cap_intersection": 36,
+    "r_blocker_collision": 17,
+    "r_first_apex_exact_class": 6,
+    "radius_partition": 28560,
+    "two_complete_circles_intersect_at_most_two": 61880
+  },
+  "candidate_count": 4,
+  "closed_cap_profile": [
+    6,
+    8,
+    6
+  ],
+  "connected_candidate_count": 4,
+  "connectivity_cut_count": 0,
+  "core": null,
+  "core_note": "SAT needs no UNSAT certificate; no DRAT/LRAT path was used",
+  "cyclic_order_scope": "all five rotations of every increasing quintuple in the existential strict-CCW order; direction preserved; no reversal",
+  "elapsed_ms": 5887,
+  "iterations": [
+    {
+      "check_ms": 3193,
+      "fresh_cut_count": 13,
+      "iteration": 0,
+      "kind": "cyclic-theorem-bank-cuts",
+      "match_count": 13,
+      "matches": [
+        [
+          "p2",
+          "a1",
+          "t1",
+          "a2",
+          "r1"
+        ],
+        [
+          "p2",
+          "a1",
+          "t3",
+          "a2",
+          "r1"
+        ],
+        [
+          "q1",
+          "a1",
+          "r1",
+          "p2",
+          "r2"
+        ],
+        [
+          "r1",
+          "t1",
+          "t2",
+          "t4",
+          "a2"
+        ],
+        [
+          "p2",
+          "p1",
+          "t1",
+          "a2",
+          "r1"
+        ],
+        [
+          "p2",
+          "s2",
+          "t1",
+          "a2",
+          "r1"
+        ],
+        [
+          "q1",
+          "t1",
+          "r1",
+          "p2",
+          "r2"
+        ],
+        [
+          "q2",
+          "q1",
+          "s3",
+          "t1",
+          "r2"
+        ],
+        [
+          "r1",
+          "p2",
+          "t2",
+          "t4",
+          "a2"
+        ],
+        [
+          "s2",
+          "t2",
+          "r1",
+          "p1",
+          "s1"
+        ],
+        [
+          "r1",
+          "p2",
+          "q1",
+          "t4",
+          "a2"
+        ],
+        [
+          "p2",
+          "p1",
+          "t3",
+          "a2",
+          "r1"
+        ],
+        [
+          "p2",
+          "s2",
+          "t3",
+          "a2",
+          "r1"
+        ]
+      ],
+      "result": "sat"
+    },
+    {
+      "check_ms": 1537,
+      "fresh_cut_count": 17,
+      "iteration": 1,
+      "kind": "cyclic-theorem-bank-cuts",
+      "match_count": 17,
+      "matches": [
+        [
+          "t4",
+          "t2",
+          "t1",
+          "p1",
+          "a1"
+        ],
+        [
+          "q2",
+          "a3",
+          "a1",
+          "t4",
+          "a2"
+        ],
+        [
+          "p2",
+          "a1",
+          "t3",
+          "r1",
+          "p1"
+        ],
+        [
+          "p1",
+          "p2",
+          "a1",
+          "t2",
+          "r1"
+        ],
+        [
+          "p1",
+          "s3",
+          "a1",
+          "t2",
+          "r1"
+        ],
+        [
+          "p2",
+          "t4",
+          "t3",
+          "r1",
+          "p1"
+        ],
+        [
+          "p1",
+          "s4",
+          "s2",
+          "t3",
+          "t2"
+        ],
+        [
+          "a3",
+          "s1",
+          "t2",
+          "a2",
+          "q2"
+        ],
+        [
+          "a3",
+          "s2",
+          "t2",
+          "a2",
+          "q2"
+        ],
+        [
+          "a3",
+          "s3",
+          "t2",
+          "a2",
+          "q2"
+        ],
+        [
+          "p1",
+          "p2",
+          "s4",
+          "t2",
+          "r1"
+        ],
+        [
+          "a3",
+          "s1",
+          "t1",
+          "a2",
+          "q2"
+        ],
+        [
+          "a3",
+          "s2",
+          "t1",
+          "a2",
+          "q2"
+        ],
+        [
+          "a3",
+          "s3",
+          "t1",
+          "a2",
+          "q2"
+        ],
+        [
+          "q2",
+          "r1",
+          "p1",
+          "s2",
+          "s3"
+        ],
+        [
+          "q2",
+          "r1",
+          "s1",
+          "s2",
+          "s3"
+        ],
+        [
+          "q2",
+          "p2",
+          "s1",
+          "s2",
+          "s3"
+        ]
+      ],
+      "result": "sat"
+    },
+    {
+      "check_ms": 52,
+      "fresh_cut_count": 2,
+      "iteration": 2,
+      "kind": "cyclic-theorem-bank-cuts",
+      "match_count": 2,
+      "matches": [
+        [
+          "s3",
+          "t4",
+          "t1",
+          "q2",
+          "s1"
+        ],
+        [
+          "p1",
+          "r1",
+          "s2",
+          "t3",
+          "t2"
+        ]
+      ],
+      "result": "sat"
+    },
+    {
+      "check_ms": 49,
+      "iteration": 3,
+      "kind": "surviving-candidate",
+      "result": "sat",
+      "semantic_replay": "PASS"
+    }
+  ],
+  "n": 17,
+  "omitted": [
+    "Euclidean coordinates and direct strict-CCW/injectivity proof objects",
+    "QF_NRA realizability",
+    "MEC and nonobtuse-triangle inequalities",
+    "full CounterexampleData noM44 geometry",
+    "reversal adapter",
+    "Lean build, kernel closure, and transitive axiom audit"
+  ],
+  "schema": "five-ccw-second-two-selected-rows-cyclic-recut-cegar-v1",
+  "solver": "Z3 finite Boolean SAT plus existential integer cap-block positions",
+  "status": "SAT",
+  "theorem": "Problem97.FivePointEuclideanObstruction.false_of_five_ccw_second_two_selected_rows_cyclicShift",
+  "theorem_cut_count": 32,
+  "theorem_match_count_seen": 32,
+  "timeout_ms": 300000,
+  "trust_boundary": {
+    "cyclic_guard_exhaustively_smoke_checked_on_five_vertices": true,
+    "encoding_to_source_theorem_source_audited": true,
+    "independent_target_replay_required": true,
+    "lean_kernel_proof": false,
+    "sat_witness_semantically_replayed": true,
+    "theorem_cut_conditional_on_common_injective_strict_ccw_realization": true,
+    "universal_n_claim": false,
+    "unsat_certificate_checked": false
+  }
+}

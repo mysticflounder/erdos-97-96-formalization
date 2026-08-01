@@ -1,0 +1,74 @@
+{
+  "assertion_block_counts": {
+    "Q_first_shell_exact_cap_intersection": 49,
+    "Q_fresh_outside_source_same_blocker": 7,
+    "all_four_endpoint_omissions": 28,
+    "blockers_in_indexed_strict_cap": 33,
+    "collision_blockers_distinct": 18,
+    "critical_blocker_nonself": 18,
+    "critical_blocker_total": 18,
+    "critical_no_K4_after_source_deletion": 556920,
+    "critical_support_exact": 5508,
+    "distinct_first_apex_radii": 3,
+    "fresh_q_blocker": 36,
+    "global_K4": 2484,
+    "mutual_triangle_transport": 4896,
+    "p_blocker_collision": 18,
+    "p_first_apex_exact_class": 7,
+    "q_equal_blocker": 18,
+    "q_first_apex_exact_class": 7,
+    "q_shell_exact_cap_intersection": 49,
+    "r_blocker_collision": 18,
+    "r_first_apex_exact_class": 7,
+    "radius_partition": 36720
+  },
+  "cegar_cut_count": 0,
+  "closed_cap_profile": [
+    6,
+    9,
+    6
+  ],
+  "elapsed_ms": 2948,
+  "iterations": [
+    {
+      "check_ms": 2636,
+      "iteration": 0,
+      "result": "sat",
+      "semantic_replay": "PASS"
+    }
+  ],
+  "n": 18,
+  "omitted": [
+    "coordinates and QF_NRA geometry",
+    "MEC and nonobtuse-triangle inequalities",
+    "full CounterexampleData noM44 geometry",
+    "Lean kernel closure"
+  ],
+  "schema": "same-blocker-all-endpoint-omission-incidence-cegar-v1",
+  "solver": "Z3 finite Boolean SAT layer",
+  "source_projection": [
+    "complete radius equivalence relations",
+    "global chosen K4 row at every center",
+    "CriticalShellSystem exact source row and q-free deletion",
+    "selected-row strong connectivity via replay-checked CEGAR cuts",
+    "p/r retained blocker collisions and distinct blockers",
+    "two equal-blocker q sources with all four endpoint omissions",
+    "exact q-shell indexed-cap intersection",
+    "FreshOutsideFirstBlockerFiber exact p-shell cap split"
+  ],
+  "stage": "global-K4-critical-shell-minimality",
+  "status": "SAT",
+  "strict_interior_profile": [
+    4,
+    7,
+    4
+  ],
+  "timeout_ms": 180000,
+  "trust_boundary": {
+    "lean_kernel_proof": false,
+    "qf_nra_run": false,
+    "sat_witness_semantically_replayed": true,
+    "universal_n_claim": false,
+    "unsat_certificate_checked": false
+  }
+}

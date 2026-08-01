@@ -1,0 +1,112 @@
+{
+  "anchored_source_match_count": 2,
+  "antecedent_literals": [
+    "m[d,a]",
+    "m[d,c]",
+    "m[d,e]",
+    "m[e,a]",
+    "m[e,b]"
+  ],
+  "cyclic_source_match_count": 13,
+  "cyclic_source_matches": [
+    [
+      "q2",
+      "s2",
+      "a1",
+      "t2",
+      "t1"
+    ],
+    [
+      "q2",
+      "q1",
+      "a1",
+      "t2",
+      "r1"
+    ],
+    [
+      "q2",
+      "s1",
+      "a1",
+      "t2",
+      "r1"
+    ],
+    [
+      "p1",
+      "s4",
+      "a1",
+      "t4",
+      "r2"
+    ],
+    [
+      "t3",
+      "a2",
+      "q1",
+      "a3",
+      "s1"
+    ],
+    [
+      "q2",
+      "r2",
+      "p2",
+      "s2",
+      "t3"
+    ],
+    [
+      "q2",
+      "r2",
+      "a3",
+      "s2",
+      "t3"
+    ],
+    [
+      "t2",
+      "r1",
+      "q2",
+      "r2",
+      "s4"
+    ],
+    [
+      "r1",
+      "q2",
+      "p2",
+      "s4",
+      "t2"
+    ],
+    [
+      "r1",
+      "q2",
+      "q1",
+      "s4",
+      "t2"
+    ],
+    [
+      "s4",
+      "s1",
+      "t4",
+      "a2",
+      "p2"
+    ],
+    [
+      "s4",
+      "s1",
+      "s2",
+      "a2",
+      "p2"
+    ],
+    [
+      "p2",
+      "p1",
+      "a3",
+      "s2",
+      "q2"
+    ]
+  ],
+  "five_vertex_orders_exhausted": 120,
+  "other_orders_permitted": 115,
+  "positive_rotation_orders_rejected": 5,
+  "reversal_generated": false,
+  "reverse_rotations_permitted": true,
+  "source_witness": "incidence-audit/n17-profile-6-8-6-incidence-five-center-deletion-geometric-incidence-full-shared-pair-separation/witness.json",
+  "status": "PASS",
+  "theorem": "Problem97.FivePointEuclideanObstruction.false_of_five_ccw_second_two_selected_rows_cyclicShift"
+}

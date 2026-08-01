@@ -1,14 +1,16 @@
 # Same-blocker common-omission Euclidean v3
 
-Status: **structural self-check only**. No SMT solver was imported or invoked,
-and this lane establishes no SAT/UNSAT result. The live Lean terminal remains
-unproved. A fixed `n = 17` experiment would not by itself close its arbitrary-
-carrier statement.
+Status: the Euclidean QF_NRA branch generator remains **structural self-check
+only**. A separate finite Boolean incidence audit, strengthened with the exact
+four-arm five-center deletion residual and the smallest block-order Kalmanson
+specialization, is replay-checked **SAT at `n = 17`**.
+The live Lean terminal remains unproved. A fixed `n = 17` experiment cannot by
+itself close its arbitrary-carrier statement.
 
 ## Scope
 
 This scratch model specializes the live
-`FreshThirdTwoCapSourceObstruction.sameBlockerCommonOmission` caller to the
+`FreshThirdTwoCapSourceObstruction.sameBlockerAllEndpointOmission` caller to the
 closed-cap profile `(6,8,6)`. The modeled first closed cap is the size-eight
 cap: its strict interior is exactly
 `{p1,p2,r1,r2,q1,q2}`. The other two strict interiors contain four named points
@@ -93,3 +95,114 @@ Its exact output is `result.json`; salient terminal fields are:
 
 The optional `--solve` path is deliberately guarded by a positive case bound
 and a per-case timeout. It was not exercised here.
+
+## Five-center deletion incidence audit
+
+`incidence_cegar.py` now includes the four arms of
+`FirstFiberCollisionFiveCenterDeletionResidual` in their Lean disjunct order:
+
+1. delete `p1`, using the r-pair blocker as the opposite collision blocker;
+2. delete `r1`, using the p-pair blocker;
+3. delete `p2`, using the r-pair blocker; or
+4. delete `r2`, using the p-pair blocker.
+
+For the selected arm, a chosen co-radial K4 row must avoid the deleted point at
+the q/common blocker, `a1` (`oppApex1`), the opposite collision blocker, `a2`
+(`oppApex2`), and `a3` (`surplusApex`). The arm selector is existential: it
+chooses one witness arm without asserting that the other arms fail. Replay
+independently recovers the chosen blockers and rows, checks that exactly one
+arm was selected, and checks deletion avoidance at all five named center roles.
+
+The strengthened self-check and smallest-profile audit were run as:
+
+```bash
+uv run --offline python scratch/atail-force/same-blocker-common-omission-euclidean-v3/incidence_cegar.py --self-check
+uv run --offline python scratch/atail-force/same-blocker-common-omission-euclidean-v3/incidence_cegar.py --n 17 --timeout-ms 180000 --max-cuts 200
+```
+
+The `(6,8,6)` case is `SAT` at iteration zero with semantic replay `PASS`. The
+witness selects `delete-P.source1`, deletes `p1`, and exhibits selected rows
+avoiding `p1` at all five centers. See
+`incidence-audit/n17-profile-6-8-6-incidence-five-center-deletion/` and
+`incidence-audit/summary-incidence-five-center-deletion.json`.
+
+This is finite external evidence only. It does not encode coordinates, QF_NRA
+geometry, MEC/nonobtuse inequalities, the full `CounterexampleData.noM44`
+surface, arbitrary carrier cardinality, or a Lean kernel proof.
+
+## Production-backed cap-crossing strengthening
+
+The smallest order-aware strengthening used here is a direct finite
+specialization of
+`Problem97.CapCrossingKalmanson.false_of_two_selected_rows_shared_late_pair`
+(`lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean`, theorem beginning
+at line 427). The general interface is
+`Problem97.selectedFourClass_shared_pair_separated`
+(`lean/Erdos9796Proof/P97/Phase3SharedPairSeparation.lean`, line 31).
+
+The lane's cap schema is
+`a1 -- third interior -- a2 -- first interior -- a3 -- second interior`.
+Consequently, for every third-interior center `t` and every distinct pair
+`x,y` in the first strict interior, the increasing order is
+`a1 < t < x,y`. The theorem forbids the selected rows at `a1` and `t` from
+both containing `x` and `y`. This statement is independent of the unknown
+orders within the two interior blocks and needs no coordinate variables.
+
+The implementation adds exactly these 60 clauses at `n = 17` and independently
+replays all 60 cases. The bounded run was:
+
+```bash
+uv run --offline python scratch/atail-force/same-blocker-common-omission-euclidean-v3/incidence_cegar.py --n 17 --cap-crossing-kalmanson --timeout-ms 180000 --max-cuts 200
+```
+
+It is still `SAT` at iteration zero, with semantic replay `PASS`. See
+`incidence-audit/n17-profile-6-8-6-incidence-five-center-deletion-cap-crossing-kalmanson/`
+and `incidence-audit/summary-incidence-five-center-deletion-cap-crossing-kalmanson.json`.
+Thus this exact theorem-backed strengthening eliminates the previously observed
+`a1`/`t2` shared `{q1,q2}` pattern but does not refute the finite abstraction.
+
+## Full shared-pair separation plus geometric incidence
+
+The next strengthening introduces existential integer positions for every
+within-block permutation while fixing the three apex positions. The bounds and
+`Distinct` constraints make the cyclic order exactly
+
+`a1 -- perm(third interior) -- a2 -- perm(first interior) -- a3 -- perm(second interior)`.
+
+For every center pair and every possible common point pair, the selected-row
+memberships imply the exact linear-cut betweenness XOR from
+`selectedFourClass_shared_pair_separated`. At `n = 17` this contributes 14,280
+candidate implications. Replay independently checks the block permutation and
+all 14,280 implications; 13 have both antecedent rows active in the combined
+witness.
+
+The single combined follow-up run also enables the already implemented
+source-proved Euclidean incidence consequences: two complete circles share at
+most two carrier points, and one equal point pair has at most two carrier
+bisector centers. It was run as:
+
+```bash
+uv run --offline python scratch/atail-force/same-blocker-common-omission-euclidean-v3/incidence_cegar.py --n 17 --geometric-incidence --full-shared-pair-separation --timeout-ms 300000 --max-cuts 200
+```
+
+The result is still `SAT` at iteration zero with semantic replay `PASS`, zero
+CEGAR cuts, and solver check time 3,173 ms. The geometric replay checks 61,880
+circle-overlap candidates and 61,880 bisector-center candidates. The selected
+deletion arm is `delete-P.source1` (deleting `p1`), and the existential cyclic
+order is
+
+`a1,t3,t2,t4,t1,a2,r1,q2,r2,p2,q1,p1,a3,s4,s3,s1,s2`.
+
+See
+`incidence-audit/n17-profile-6-8-6-incidence-five-center-deletion-geometric-incidence-full-shared-pair-separation/`,
+`incidence-audit/summary-incidence-five-center-deletion-geometric-incidence-full-shared-pair-separation.json`,
+and `incidence_cegar-n17-geometric-full-shared-pair-separation.log`.
+
+This is finite external evidence, not closure. The precise next missing datum
+is a common Euclidean realization adapter: one point configuration and squared-
+distance table whose equalities agree with every Boolean radius class while
+realizing the existential cyclic order. The current consequences are necessary
+projections of such geometry, but they do not supply coordinates, strict
+convexity/CCW boundary proof objects, the complete `CounterexampleData.noM44`
+surface, arbitrary carrier cardinality, or a Lean kernel proof. No Lean build or
+axiom gate was run.

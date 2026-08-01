@@ -1,0 +1,25 @@
+{
+  "cyclic_rotations_generated": false,
+  "matches": [
+    [
+      "t2",
+      "r1",
+      "q2",
+      "r2",
+      "s4"
+    ],
+    [
+      "t3",
+      "a2",
+      "q1",
+      "a3",
+      "s1"
+    ]
+  ],
+  "nonanchored_memberships_permitted": true,
+  "ordered_quintuples_checked": 6188,
+  "source_witness": "incidence-audit/n17-profile-6-8-6-incidence-five-center-deletion-geometric-incidence-full-shared-pair-separation/witness.json",
+  "status": "PASS",
+  "theorem": "Problem97.FivePointEuclideanObstruction.false_of_five_ccw_second_two_selected_rows",
+  "true_antecedent_rejected": true
+}

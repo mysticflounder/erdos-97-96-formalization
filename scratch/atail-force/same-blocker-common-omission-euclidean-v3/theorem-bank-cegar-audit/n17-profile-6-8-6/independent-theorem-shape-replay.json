@@ -1,0 +1,4103 @@
+{
+  "kind": "solver-free ordered incidence theorem-shape audit",
+  "witness": "scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/n17-profile-6-8-6/witness.json",
+  "cyclic_order": [
+    "a1",
+    "t3",
+    "t1",
+    "t4",
+    "t2",
+    "a2",
+    "q1",
+    "q2",
+    "p1",
+    "r2",
+    "r1",
+    "p2",
+    "a3",
+    "s2",
+    "s3",
+    "s4",
+    "s1"
+  ],
+  "schemas": [
+    {
+      "theorem": "CapCrossingKalmanson.false_of_two_selected_rows_shared_late_pair",
+      "arity": 4,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    },
+    {
+      "theorem": "CapCrossingKalmanson.false_of_four_ccw_endpoint_centers_bisect_middle_pair",
+      "arity": 4,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    },
+    {
+      "theorem": "CapCrossingKalmanson.false_of_two_selected_middle_rows_shared_endpoint_pair",
+      "arity": 4,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    },
+    {
+      "theorem": "FivePointEuclideanObstruction.false_of_five_ccw_two_selected_rows",
+      "arity": 5,
+      "anchored_match_count": 3,
+      "anchored_matches": [
+        {
+          "points": [
+            "a1",
+            "t4",
+            "a2",
+            "q1",
+            "q2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "t4",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "a1",
+                "q2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "a2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "a1",
+                "t4",
+                "q1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a1",
+            "t4",
+            "a2",
+            "q1",
+            "s1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "t4",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "a1",
+                "s1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "a2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "a1",
+                "t4",
+                "q1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a1",
+            "t4",
+            "a2",
+            "r2",
+            "s1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "t4",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "a1",
+                "s1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "a2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "a1",
+                "t4",
+                "r2"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ],
+      "cyclic_rotation_match_count": 18,
+      "cyclic_rotation_matches": [
+        {
+          "points": [
+            "a1",
+            "t4",
+            "a2",
+            "q1",
+            "q2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "t4",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "a1",
+                "q2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "a2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "a1",
+                "t4",
+                "q1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a1",
+            "t4",
+            "a2",
+            "q1",
+            "s1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "t4",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "a1",
+                "s1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "a2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "a1",
+                "t4",
+                "q1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a1",
+            "t4",
+            "a2",
+            "r2",
+            "s1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "t4",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "a1",
+                "s1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "a2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "a1",
+                "t4",
+                "r2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "q1",
+            "p1",
+            "s2",
+            "s1",
+            "a1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "p1",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "q1",
+                "a1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "s2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "q1",
+                "p1",
+                "s1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t1",
+            "q1",
+            "p1",
+            "a1",
+            "t3"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "q1",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "t1",
+                "t3"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "p1",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "t1",
+                "q1",
+                "a1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "p2",
+            "a3",
+            "s4",
+            "s1",
+            "t3"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "a3",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "p2",
+                "t3"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "s4",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "p2",
+                "a3",
+                "s1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "q1",
+            "p1",
+            "s2",
+            "s1",
+            "t1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "p1",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "q1",
+                "t1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "s2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "q1",
+                "p1",
+                "s1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "p1",
+            "r1",
+            "s2",
+            "s1",
+            "t1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "r1",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "p1",
+                "t1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "s2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "p1",
+                "r1",
+                "s1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r2",
+            "r1",
+            "p2",
+            "s2",
+            "t1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "r1",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "r2",
+                "t1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "p2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "r2",
+                "r1",
+                "s2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r2",
+            "r1",
+            "p2",
+            "t3",
+            "t1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "r1",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "r2",
+                "t1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "p2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "r2",
+                "r1",
+                "t3"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a2",
+            "a1",
+            "t3",
+            "t4",
+            "t2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "a1",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "a2",
+                "t2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "t3",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "a2",
+                "a1",
+                "t4"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "p1",
+            "r2",
+            "r1",
+            "t1",
+            "t2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "r2",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "p1",
+                "t2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "r1",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "p1",
+                "r2",
+                "t1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "p1",
+            "r1",
+            "s2",
+            "s1",
+            "a2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "r1",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "p1",
+                "a2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "s2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "p1",
+                "r1",
+                "s1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r2",
+            "r1",
+            "p2",
+            "s2",
+            "a2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "r1",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "r2",
+                "a2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "p2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "r2",
+                "r1",
+                "s2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r2",
+            "r1",
+            "p2",
+            "t3",
+            "a2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "r1",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "r2",
+                "a2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "p2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "r2",
+                "r1",
+                "t3"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "p2",
+            "a3",
+            "s4",
+            "s1",
+            "a2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "a3",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "p2",
+                "a2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "s4",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "p2",
+                "a3",
+                "s1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r2",
+            "r1",
+            "p2",
+            "s2",
+            "p1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "r1",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "r2",
+                "p1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "p2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "r2",
+                "r1",
+                "s2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r2",
+            "r1",
+            "p2",
+            "t3",
+            "p1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "r1",
+              "support_positions": [
+                0,
+                4
+              ],
+              "support": [
+                "r2",
+                "p1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "p2",
+              "support_positions": [
+                0,
+                1,
+                3
+              ],
+              "support": [
+                "r2",
+                "r1",
+                "t3"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theorem": "FivePointEuclideanObstruction.false_of_five_ccw_second_two_selected_rows",
+      "arity": 5,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 8,
+      "cyclic_rotation_matches": [
+        {
+          "points": [
+            "t2",
+            "a2",
+            "p1",
+            "r2",
+            "a1"
+          ],
+          "obligations": [
+            {
+              "center_position": 3,
+              "center": "r2",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "t2",
+                "p1",
+                "a1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "a1",
+              "support_positions": [
+                0,
+                1
+              ],
+              "support": [
+                "t2",
+                "a2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a2",
+            "q2",
+            "a3",
+            "a1",
+            "t2"
+          ],
+          "obligations": [
+            {
+              "center_position": 3,
+              "center": "a1",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "a2",
+                "a3",
+                "t2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "t2",
+              "support_positions": [
+                0,
+                1
+              ],
+              "support": [
+                "a2",
+                "q2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a2",
+            "q2",
+            "s2",
+            "a1",
+            "t2"
+          ],
+          "obligations": [
+            {
+              "center_position": 3,
+              "center": "a1",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "a2",
+                "s2",
+                "t2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "t2",
+              "support_positions": [
+                0,
+                1
+              ],
+              "support": [
+                "a2",
+                "q2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a2",
+            "r1",
+            "a3",
+            "a1",
+            "t2"
+          ],
+          "obligations": [
+            {
+              "center_position": 3,
+              "center": "a1",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "a2",
+                "a3",
+                "t2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "t2",
+              "support_positions": [
+                0,
+                1
+              ],
+              "support": [
+                "a2",
+                "r1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a2",
+            "r1",
+            "s2",
+            "a1",
+            "t2"
+          ],
+          "obligations": [
+            {
+              "center_position": 3,
+              "center": "a1",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "a2",
+                "s2",
+                "t2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "t2",
+              "support_positions": [
+                0,
+                1
+              ],
+              "support": [
+                "a2",
+                "r1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "q2",
+            "r1",
+            "s1",
+            "t4",
+            "t2"
+          ],
+          "obligations": [
+            {
+              "center_position": 3,
+              "center": "t4",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "q2",
+                "s1",
+                "t2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "t2",
+              "support_positions": [
+                0,
+                1
+              ],
+              "support": [
+                "q2",
+                "r1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "q2",
+            "r1",
+            "a1",
+            "t4",
+            "t2"
+          ],
+          "obligations": [
+            {
+              "center_position": 3,
+              "center": "t4",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "q2",
+                "a1",
+                "t2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "t2",
+              "support_positions": [
+                0,
+                1
+              ],
+              "support": [
+                "q2",
+                "r1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "p2",
+            "a1",
+            "t3",
+            "t1",
+            "r2"
+          ],
+          "obligations": [
+            {
+              "center_position": 3,
+              "center": "t1",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "p2",
+                "t3",
+                "r2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "r2",
+              "support_positions": [
+                0,
+                1
+              ],
+              "support": [
+                "p2",
+                "a1"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theorem": "FivePointEuclideanObstruction.false_of_five_ccw_reversed_second_two_selected_rows",
+      "arity": 5,
+      "anchored_match_count": 1,
+      "anchored_matches": [
+        {
+          "points": [
+            "a1",
+            "t3",
+            "t4",
+            "t2",
+            "a2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "t3",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "a1",
+                "t4",
+                "a2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "a1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "t2",
+                "a2"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ],
+      "cyclic_rotation_match_count": 18,
+      "cyclic_rotation_matches": [
+        {
+          "points": [
+            "a1",
+            "t3",
+            "t4",
+            "t2",
+            "a2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "t3",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "a1",
+                "t4",
+                "a2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "a1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "t2",
+                "a2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t4",
+            "a2",
+            "q1",
+            "q2",
+            "a1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "a2",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "t4",
+                "q1",
+                "a1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "t4",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "q2",
+                "a1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t4",
+            "a2",
+            "q1",
+            "s1",
+            "a1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "a2",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "t4",
+                "q1",
+                "a1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "t4",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "s1",
+                "a1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t4",
+            "a2",
+            "r2",
+            "s1",
+            "a1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "a2",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "t4",
+                "r2",
+                "a1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "t4",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "s1",
+                "a1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "q1",
+            "p1",
+            "a1",
+            "t3",
+            "t1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "p1",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "q1",
+                "a1",
+                "t1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "q1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "t3",
+                "t1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "p1",
+            "s2",
+            "s1",
+            "a1",
+            "q1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "s2",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "p1",
+                "s1",
+                "q1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "p1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "a1",
+                "q1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "p1",
+            "s2",
+            "s1",
+            "t1",
+            "q1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "s2",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "p1",
+                "s1",
+                "q1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "p1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "t1",
+                "q1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r2",
+            "r1",
+            "t1",
+            "t2",
+            "p1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "r1",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "r2",
+                "t1",
+                "p1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "r2",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "t2",
+                "p1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r1",
+            "s2",
+            "s1",
+            "t1",
+            "p1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "s2",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "r1",
+                "s1",
+                "p1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "r1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "t1",
+                "p1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r1",
+            "s2",
+            "s1",
+            "a2",
+            "p1"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "s2",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "r1",
+                "s1",
+                "p1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "r1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "a2",
+                "p1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r1",
+            "p2",
+            "s2",
+            "t1",
+            "r2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "p2",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "r1",
+                "s2",
+                "r2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "r1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "t1",
+                "r2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r1",
+            "p2",
+            "s2",
+            "a2",
+            "r2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "p2",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "r1",
+                "s2",
+                "r2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "r1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "a2",
+                "r2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r1",
+            "p2",
+            "s2",
+            "p1",
+            "r2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "p2",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "r1",
+                "s2",
+                "r2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "r1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "p1",
+                "r2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r1",
+            "p2",
+            "t3",
+            "t1",
+            "r2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "p2",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "r1",
+                "t3",
+                "r2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "r1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "t1",
+                "r2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r1",
+            "p2",
+            "t3",
+            "a2",
+            "r2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "p2",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "r1",
+                "t3",
+                "r2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "r1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "a2",
+                "r2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r1",
+            "p2",
+            "t3",
+            "p1",
+            "r2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "p2",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "r1",
+                "t3",
+                "r2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "r1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "p1",
+                "r2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a3",
+            "s4",
+            "s1",
+            "t3",
+            "p2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "s4",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "a3",
+                "s1",
+                "p2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "a3",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "t3",
+                "p2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a3",
+            "s4",
+            "s1",
+            "a2",
+            "p2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "s4",
+              "support_positions": [
+                0,
+                2,
+                4
+              ],
+              "support": [
+                "a3",
+                "s1",
+                "p2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "a3",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "a2",
+                "p2"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theorem": "CapCrossingKalmanson.false_of_selected_rows_in_five_ccw_order",
+      "arity": 5,
+      "anchored_match_count": 1,
+      "anchored_matches": [
+        {
+          "points": [
+            "a1",
+            "t3",
+            "t4",
+            "t2",
+            "a2"
+          ],
+          "obligations": [
+            {
+              "center_position": 2,
+              "center": "t4",
+              "support_positions": [
+                0,
+                3
+              ],
+              "support": [
+                "a1",
+                "t2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "a1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "t2",
+                "a2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 1,
+              "center": "t3",
+              "support_positions": [
+                4,
+                0
+              ],
+              "support": [
+                "a2",
+                "a1"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ],
+      "cyclic_rotation_match_count": 5,
+      "cyclic_rotation_matches": [
+        {
+          "points": [
+            "a1",
+            "t3",
+            "t4",
+            "t2",
+            "a2"
+          ],
+          "obligations": [
+            {
+              "center_position": 2,
+              "center": "t4",
+              "support_positions": [
+                0,
+                3
+              ],
+              "support": [
+                "a1",
+                "t2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "a1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "t2",
+                "a2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 1,
+              "center": "t3",
+              "support_positions": [
+                4,
+                0
+              ],
+              "support": [
+                "a2",
+                "a1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r1",
+            "s2",
+            "t2",
+            "a2",
+            "p1"
+          ],
+          "obligations": [
+            {
+              "center_position": 2,
+              "center": "t2",
+              "support_positions": [
+                0,
+                3
+              ],
+              "support": [
+                "r1",
+                "a2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "r1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "a2",
+                "p1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 1,
+              "center": "s2",
+              "support_positions": [
+                4,
+                0
+              ],
+              "support": [
+                "p1",
+                "r1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r1",
+            "p2",
+            "s2",
+            "p1",
+            "r2"
+          ],
+          "obligations": [
+            {
+              "center_position": 2,
+              "center": "s2",
+              "support_positions": [
+                0,
+                3
+              ],
+              "support": [
+                "r1",
+                "p1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "r1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "p1",
+                "r2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 1,
+              "center": "p2",
+              "support_positions": [
+                4,
+                0
+              ],
+              "support": [
+                "r2",
+                "r1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r1",
+            "p2",
+            "t2",
+            "a2",
+            "r2"
+          ],
+          "obligations": [
+            {
+              "center_position": 2,
+              "center": "t2",
+              "support_positions": [
+                0,
+                3
+              ],
+              "support": [
+                "r1",
+                "a2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "r1",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "a2",
+                "r2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 1,
+              "center": "p2",
+              "support_positions": [
+                4,
+                0
+              ],
+              "support": [
+                "r2",
+                "r1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a3",
+            "s4",
+            "a1",
+            "a2",
+            "p2"
+          ],
+          "obligations": [
+            {
+              "center_position": 2,
+              "center": "a1",
+              "support_positions": [
+                0,
+                3
+              ],
+              "support": [
+                "a3",
+                "a2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 0,
+              "center": "a3",
+              "support_positions": [
+                3,
+                4
+              ],
+              "support": [
+                "a2",
+                "p2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 1,
+              "center": "s4",
+              "support_positions": [
+                4,
+                0
+              ],
+              "support": [
+                "p2",
+                "a3"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theorem": "KalmansonThreeEqualitySchemas.false_of_five_ccw_three_shell_equalities_012_124_314",
+      "arity": 5,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    },
+    {
+      "theorem": "SixPointEuclideanObstruction.false_of_six_ccw_three_selected_rows",
+      "arity": 6,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    },
+    {
+      "theorem": "SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows",
+      "arity": 6,
+      "anchored_match_count": 2,
+      "anchored_matches": [
+        {
+          "points": [
+            "t3",
+            "t4",
+            "t2",
+            "a2",
+            "q2",
+            "s4"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "t3",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "s4"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "t2",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "q2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t3",
+            "t4",
+            "t2",
+            "a2",
+            "r1",
+            "s4"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "t3",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "s4"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "t2",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "r1"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ],
+      "cyclic_rotation_match_count": 9,
+      "cyclic_rotation_matches": [
+        {
+          "points": [
+            "t3",
+            "t4",
+            "t2",
+            "a2",
+            "q2",
+            "s4"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "t3",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "s4"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "t2",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "q2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t3",
+            "t4",
+            "t2",
+            "a2",
+            "r1",
+            "s4"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "t3",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "s4"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "t2",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "r1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t3",
+            "t4",
+            "t2",
+            "a2",
+            "q2",
+            "a1"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "t3",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "a1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "t2",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "q2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t3",
+            "t4",
+            "t2",
+            "a2",
+            "r1",
+            "a1"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "t3",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "a1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "t2",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "r1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a2",
+            "q1",
+            "p1",
+            "a1",
+            "t1",
+            "t4"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "a2",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "q1",
+                "a1",
+                "t4"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "p1",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "q1",
+                "a1",
+                "t1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r2",
+            "a1",
+            "t4",
+            "t2",
+            "q2",
+            "p1"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "r2",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "a1",
+                "t2",
+                "p1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "t4",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "a1",
+                "t2",
+                "q2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "s1",
+            "t4",
+            "a2",
+            "q1",
+            "r2",
+            "a3"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "s1",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "t4",
+                "q1",
+                "a3"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "a2",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "t4",
+                "q1",
+                "r2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "s3",
+            "t4",
+            "t2",
+            "q2",
+            "r1",
+            "s2"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "s3",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "t4",
+                "q2",
+                "s2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "t2",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "t4",
+                "q2",
+                "r1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "s1",
+            "t4",
+            "a2",
+            "q1",
+            "r2",
+            "s3"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "s1",
+              "support_positions": [
+                1,
+                3,
+                5
+              ],
+              "support": [
+                "t4",
+                "q1",
+                "s3"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 2,
+              "center": "a2",
+              "support_positions": [
+                1,
+                3,
+                4
+              ],
+              "support": [
+                "t4",
+                "q1",
+                "r2"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theorem": "SixPointEuclideanObstruction.false_of_six_ccw_mirror_interleaving_row_equalities",
+      "arity": 6,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    },
+    {
+      "theorem": "TwoTripleRowSixPointEuclideanObstruction.false_of_six_ccw_two_triple_row_equalities",
+      "arity": 6,
+      "anchored_match_count": 3,
+      "anchored_matches": [
+        {
+          "points": [
+            "t4",
+            "t2",
+            "a2",
+            "q2",
+            "r2",
+            "s3"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "t2",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "q2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "s3",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "t4",
+                "q2",
+                "r2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t4",
+            "t2",
+            "a2",
+            "q2",
+            "s2",
+            "s3"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "t2",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "q2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "s3",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "t4",
+                "q2",
+                "s2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t4",
+            "a2",
+            "q1",
+            "r2",
+            "s2",
+            "s3"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "a2",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "t4",
+                "q1",
+                "r2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "s3",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "t4",
+                "r2",
+                "s2"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ],
+      "cyclic_rotation_match_count": 8,
+      "cyclic_rotation_matches": [
+        {
+          "points": [
+            "t4",
+            "t2",
+            "a2",
+            "q2",
+            "r2",
+            "s3"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "t2",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "q2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "s3",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "t4",
+                "q2",
+                "r2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t4",
+            "t2",
+            "a2",
+            "q2",
+            "s2",
+            "s3"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "t2",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "t4",
+                "a2",
+                "q2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "s3",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "t4",
+                "q2",
+                "s2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t4",
+            "a2",
+            "q1",
+            "r2",
+            "s2",
+            "s3"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "a2",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "t4",
+                "q1",
+                "r2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "s3",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "t4",
+                "r2",
+                "s2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "s2",
+            "s3",
+            "t4",
+            "r2",
+            "r1",
+            "p2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "s3",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "s2",
+                "t4",
+                "r2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "p2",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "s2",
+                "r2",
+                "r1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "s2",
+            "s3",
+            "q2",
+            "r2",
+            "r1",
+            "p2"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "s3",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "s2",
+                "q2",
+                "r2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "p2",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "s2",
+                "r2",
+                "r1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "s1",
+            "t1",
+            "r2",
+            "p2",
+            "a3",
+            "s4"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "t1",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "s1",
+                "r2",
+                "p2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "s4",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "s1",
+                "p2",
+                "a3"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "s1",
+            "t4",
+            "t2",
+            "q2",
+            "p2",
+            "s4"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "t4",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "s1",
+                "t2",
+                "q2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "s4",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "s1",
+                "q2",
+                "p2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "s1",
+            "t4",
+            "t2",
+            "q2",
+            "a3",
+            "s4"
+          ],
+          "obligations": [
+            {
+              "center_position": 1,
+              "center": "t4",
+              "support_positions": [
+                0,
+                2,
+                3
+              ],
+              "support": [
+                "s1",
+                "t2",
+                "q2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "s4",
+              "support_positions": [
+                0,
+                3,
+                4
+              ],
+              "support": [
+                "s1",
+                "q2",
+                "a3"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theorem": "KalmansonThreeEqualitySchemas.false_of_six_ccw_three_shell_equalities_013_412_523",
+      "arity": 6,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 6,
+      "cyclic_rotation_matches": [
+        {
+          "points": [
+            "t3",
+            "t4",
+            "t2",
+            "a2",
+            "q1",
+            "a1"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "t3",
+              "support_positions": [
+                1,
+                3
+              ],
+              "support": [
+                "t4",
+                "a2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "q1",
+              "support_positions": [
+                1,
+                2
+              ],
+              "support": [
+                "t4",
+                "t2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "a1",
+              "support_positions": [
+                2,
+                3
+              ],
+              "support": [
+                "t2",
+                "a2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a2",
+            "r2",
+            "s1",
+            "a1",
+            "t1",
+            "t4"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "a2",
+              "support_positions": [
+                1,
+                3
+              ],
+              "support": [
+                "r2",
+                "a1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "t1",
+              "support_positions": [
+                1,
+                2
+              ],
+              "support": [
+                "r2",
+                "s1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "t4",
+              "support_positions": [
+                2,
+                3
+              ],
+              "support": [
+                "s1",
+                "a1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r2",
+            "p2",
+            "s1",
+            "a1",
+            "t1",
+            "t4"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "r2",
+              "support_positions": [
+                1,
+                3
+              ],
+              "support": [
+                "p2",
+                "a1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "t1",
+              "support_positions": [
+                1,
+                2
+              ],
+              "support": [
+                "p2",
+                "s1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "t4",
+              "support_positions": [
+                2,
+                3
+              ],
+              "support": [
+                "s1",
+                "a1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "r2",
+            "a1",
+            "t4",
+            "t2",
+            "a2",
+            "q1"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "r2",
+              "support_positions": [
+                1,
+                3
+              ],
+              "support": [
+                "a1",
+                "t2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "a2",
+              "support_positions": [
+                1,
+                2
+              ],
+              "support": [
+                "a1",
+                "t4"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "q1",
+              "support_positions": [
+                2,
+                3
+              ],
+              "support": [
+                "t4",
+                "t2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a3",
+            "t3",
+            "t1",
+            "a2",
+            "q1",
+            "r1"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "a3",
+              "support_positions": [
+                1,
+                3
+              ],
+              "support": [
+                "t3",
+                "a2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "q1",
+              "support_positions": [
+                1,
+                2
+              ],
+              "support": [
+                "t3",
+                "t1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "r1",
+              "support_positions": [
+                2,
+                3
+              ],
+              "support": [
+                "t1",
+                "a2"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "s1",
+            "t4",
+            "q2",
+            "a3",
+            "s3",
+            "s4"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "s1",
+              "support_positions": [
+                1,
+                3
+              ],
+              "support": [
+                "t4",
+                "a3"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "s3",
+              "support_positions": [
+                1,
+                2
+              ],
+              "support": [
+                "t4",
+                "q2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 5,
+              "center": "s4",
+              "support_positions": [
+                2,
+                3
+              ],
+              "support": [
+                "q2",
+                "a3"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theorem": "KalmansonThreeEqualitySchemas.false_of_six_ccw_three_shell_equalities_012_325_415",
+      "arity": 6,
+      "anchored_match_count": 1,
+      "anchored_matches": [
+        {
+          "points": [
+            "t2",
+            "q2",
+            "r1",
+            "s2",
+            "s4",
+            "s1"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "t2",
+              "support_positions": [
+                1,
+                2
+              ],
+              "support": [
+                "q2",
+                "r1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 3,
+              "center": "s2",
+              "support_positions": [
+                2,
+                5
+              ],
+              "support": [
+                "r1",
+                "s1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "s4",
+              "support_positions": [
+                1,
+                5
+              ],
+              "support": [
+                "q2",
+                "s1"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ],
+      "cyclic_rotation_match_count": 6,
+      "cyclic_rotation_matches": [
+        {
+          "points": [
+            "t2",
+            "q2",
+            "r1",
+            "s2",
+            "s4",
+            "s1"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "t2",
+              "support_positions": [
+                1,
+                2
+              ],
+              "support": [
+                "q2",
+                "r1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 3,
+              "center": "s2",
+              "support_positions": [
+                2,
+                5
+              ],
+              "support": [
+                "r1",
+                "s1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "s4",
+              "support_positions": [
+                1,
+                5
+              ],
+              "support": [
+                "q2",
+                "s1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t4",
+            "t2",
+            "q2",
+            "p1",
+            "r2",
+            "a1"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "t4",
+              "support_positions": [
+                1,
+                2
+              ],
+              "support": [
+                "t2",
+                "q2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 3,
+              "center": "p1",
+              "support_positions": [
+                2,
+                5
+              ],
+              "support": [
+                "q2",
+                "a1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "r2",
+              "support_positions": [
+                1,
+                5
+              ],
+              "support": [
+                "t2",
+                "a1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t2",
+            "a2",
+            "r1",
+            "p2",
+            "a3",
+            "t3"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "t2",
+              "support_positions": [
+                1,
+                2
+              ],
+              "support": [
+                "a2",
+                "r1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 3,
+              "center": "p2",
+              "support_positions": [
+                2,
+                5
+              ],
+              "support": [
+                "r1",
+                "t3"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "a3",
+              "support_positions": [
+                1,
+                5
+              ],
+              "support": [
+                "a2",
+                "t3"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t2",
+            "a2",
+            "q2",
+            "p1",
+            "r1",
+            "t1"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "t2",
+              "support_positions": [
+                1,
+                2
+              ],
+              "support": [
+                "a2",
+                "q2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 3,
+              "center": "p1",
+              "support_positions": [
+                2,
+                5
+              ],
+              "support": [
+                "q2",
+                "t1"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "r1",
+              "support_positions": [
+                1,
+                5
+              ],
+              "support": [
+                "a2",
+                "t1"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "t2",
+            "a2",
+            "q2",
+            "s3",
+            "t3",
+            "t4"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "t2",
+              "support_positions": [
+                1,
+                2
+              ],
+              "support": [
+                "a2",
+                "q2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 3,
+              "center": "s3",
+              "support_positions": [
+                2,
+                5
+              ],
+              "support": [
+                "q2",
+                "t4"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "t3",
+              "support_positions": [
+                1,
+                5
+              ],
+              "support": [
+                "a2",
+                "t4"
+              ],
+              "missing": []
+            }
+          ]
+        },
+        {
+          "points": [
+            "a2",
+            "q1",
+            "r2",
+            "s3",
+            "s1",
+            "t4"
+          ],
+          "obligations": [
+            {
+              "center_position": 0,
+              "center": "a2",
+              "support_positions": [
+                1,
+                2
+              ],
+              "support": [
+                "q1",
+                "r2"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 3,
+              "center": "s3",
+              "support_positions": [
+                2,
+                5
+              ],
+              "support": [
+                "r2",
+                "t4"
+              ],
+              "missing": []
+            },
+            {
+              "center_position": 4,
+              "center": "s1",
+              "support_positions": [
+                1,
+                5
+              ],
+              "support": [
+                "q1",
+                "t4"
+              ],
+              "missing": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "theorem": "KalmansonThreeEqualitySchemas.false_of_six_ccw_three_shell_equalities_013_235_415",
+      "arity": 6,
+      "anchored_match_count": 0,
+      "anchored_matches": [],
+      "cyclic_rotation_match_count": 0,
+      "cyclic_rotation_matches": []
+    }
+  ],
+  "total_anchored_matches_by_arity": {
+    "4": 0,
+    "5": 5,
+    "6": 6
+  },
+  "total_cyclic_rotation_matches_by_arity": {
+    "4": 0,
+    "5": 49,
+    "6": 29
+  },
+  "phase3_shared_pair_separation": {
+    "active_case_count": 13,
+    "all_separated": true,
+    "cases": [
+      {
+        "centers": [
+          "t3",
+          "t2"
+        ],
+        "points": [
+          "a2",
+          "t4"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "t3",
+          "a2"
+        ],
+        "points": [
+          "a1",
+          "t4"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "t1",
+          "p2"
+        ],
+        "points": [
+          "r2",
+          "t3"
+        ],
+        "first_between": true,
+        "second_between": false,
+        "separated": true
+      },
+      {
+        "centers": [
+          "t1",
+          "a3"
+        ],
+        "points": [
+          "p2",
+          "t3"
+        ],
+        "first_between": true,
+        "second_between": false,
+        "separated": true
+      },
+      {
+        "centers": [
+          "t1",
+          "s4"
+        ],
+        "points": [
+          "p2",
+          "s1"
+        ],
+        "first_between": true,
+        "second_between": false,
+        "separated": true
+      },
+      {
+        "centers": [
+          "t4",
+          "p1"
+        ],
+        "points": [
+          "a1",
+          "q2"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "t4",
+          "r2"
+        ],
+        "points": [
+          "a1",
+          "t2"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "t4",
+          "s4"
+        ],
+        "points": [
+          "q2",
+          "s1"
+        ],
+        "first_between": true,
+        "second_between": false,
+        "separated": true
+      },
+      {
+        "centers": [
+          "t2",
+          "s3"
+        ],
+        "points": [
+          "q2",
+          "t4"
+        ],
+        "first_between": true,
+        "second_between": false,
+        "separated": true
+      },
+      {
+        "centers": [
+          "a2",
+          "p1"
+        ],
+        "points": [
+          "a1",
+          "q1"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      },
+      {
+        "centers": [
+          "a2",
+          "s3"
+        ],
+        "points": [
+          "r2",
+          "t4"
+        ],
+        "first_between": true,
+        "second_between": false,
+        "separated": true
+      },
+      {
+        "centers": [
+          "a2",
+          "s1"
+        ],
+        "points": [
+          "q1",
+          "t4"
+        ],
+        "first_between": true,
+        "second_between": false,
+        "separated": true
+      },
+      {
+        "centers": [
+          "p2",
+          "s3"
+        ],
+        "points": [
+          "r2",
+          "s2"
+        ],
+        "first_between": false,
+        "second_between": true,
+        "separated": true
+      }
+    ]
+  }
+}
