@@ -13,11 +13,11 @@ exact-ten certificate bank with `native_decide`, under the project's
 `bv_decide` standard (see the repository README, `native_decide` policy). The
 core-tier manifest `config.json` / `axiom-audit.lean` forbids them.
 
-`Problem97.FiniteN11Closure` is deliberately absent: it still reaches `sorryAx`
-through the open card-eleven A-tail frontier residuals, so it is not gateable in
-this tier or any other. `counterexample_card_ge_eleven` is the strongest proved
-eleven-point statement — a lower bound on a counterexample's size, not its
-exclusion. See `comparator/README.md`, "The audit boundary".
+`Problem97.FiniteN11Closure` joined this tier on 2026-08-01 (commit 553206dc),
+when its card-eleven exact-five common-obstruction-center leaf closed; it has
+the same five axioms and no `sorryAx`. `counterexample_card_ge_twelve` is the
+resulting bound, and `erdos97_of_card_le_eleven` its contrapositive. See
+`comparator/README.md`, "The audit boundary", for what is still excluded.
 
 The theorems live in the shared `Headline` namespace in `Solution.lean`, so the
 comparator finds them under the same qualified names listed in
@@ -30,3 +30,6 @@ Run: lake env lean ../comparator/axiom-audit-native.lean   (from `lean/`)
 #print axioms Headline.finiteN10Closure
 #print axioms Headline.counterexample_card_ge_eleven
 #print axioms Headline.erdos97_of_card_le_ten
+#print axioms Headline.finiteN11Closure
+#print axioms Headline.counterexample_card_ge_twelve
+#print axioms Headline.erdos97_of_card_le_eleven

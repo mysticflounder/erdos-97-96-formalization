@@ -19,10 +19,11 @@ modules:
 | Tier | Manifest | Permitted axioms | Count |
 |---|---|---|---|
 | **core** | [`config.json`](config.json) | `propext`, `Classical.choice`, `Quot.sound` | 24 |
-| **native** | [`config-native.json`](config-native.json) | those three **+** `Lean.ofReduceBool`, `Lean.trustCompiler` | 3 |
+| **native** | [`config-native.json`](config-native.json) | those three **+** `Lean.ofReduceBool`, `Lean.trustCompiler` | 6 |
 
-The native tier exists because the exact-ten finite endpoint discharges its
-certificate bank with `native_decide`. Those proofs are sorry-free, but they
+The native tier exists because the exact-ten and exact-eleven finite endpoints
+discharge their certificate banks with `native_decide`. Those proofs are
+sorry-free, but they
 ask you to trust the Lean compiler as well as the kernel. Project policy permits
 that under the `bv_decide` standard (see the repository README), on the
 condition that the cost is **explicit and reported, never silent** — which is
@@ -96,15 +97,24 @@ Exit code 0, against this directory's `config.json` unmodified — that is, with
 `enable_nanoda: true`, so both independent kernels replayed the export.
 
 **Native-tier status: offline-verified, not yet run against the real
-comparator.** The tier was added 2026-07-30. What has been checked:
+comparator.** The tier was added 2026-07-30 with the three exact-ten results and
+extended 2026-08-01 with the three exact-eleven results. What has been checked:
 
-* `check-conformance.sh` passes — manifest cross-check, build, axiom-budget
-  audit, tier disjointness.
-* All three theorems' `#print axioms` closures measured directly as exactly
+* `check-conformance.sh` passes for the exact-ten three (2026-07-30) — manifest
+  cross-check, build, axiom-budget audit, tier disjointness. A full run covering
+  all six is pending.
+* All six theorems' `#print axioms` closures measured directly as exactly
   `{propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
-  Quot.sound}` — no `sorryAx`, no custom axioms.
-* Statement identity by the `pp.explicit` diff described below: all three agree
-  between `Challenge` and `Solution` with **0 differences** (455 lines each).
+  Quot.sound}` — no `sorryAx`, no custom axioms. The exact-eleven three were
+  measured on 2026-08-01 by elaborating their `Solution.lean` statements and
+  proof terms against the project.
+* `Challenge.lean` elaborates against mathlib alone with the six native-tier
+  stubs present (30 stubs total; 24 core + 6 native), and each tier's
+  `theorem_names` matches its audit file's `#print axioms` lines.
+* Statement identity by the `pp.explicit` diff described below: the exact-ten
+  three agree between `Challenge` and `Solution` with **0 differences**
+  (455 lines each, 2026-07-30). That diff has **not** been re-run for the
+  exact-eleven three.
 
 What has **not** been checked: the export-level identity and dual-kernel replay,
 i.e. a real [leanprover/comparator](https://github.com/leanprover/comparator) run
@@ -200,8 +210,10 @@ Statement identity between `Challenge` and `Solution` is checked by the
 comparator run above at the export level. It was independently cross-checked
 before that run succeeded: every gated theorem elaborated from each module
 separately under `set_option pp.explicit true`, and the two outputs diffed. All
-24 core-tier theorems agree with **0 differences**; the 3 native-tier theorems
-were checked the same way on 2026-07-30 and also agree with 0 differences. That
+24 core-tier theorems agree with **0 differences**; the first 3 native-tier
+theorems were checked the same way on 2026-07-30 and also agree with 0
+differences. The 3 exact-eleven theorems added 2026-08-01 have not had this
+diff run yet. That
 check is weaker than the comparator's — it compares pretty-printed terms rather
 than exported expressions — and is kept only because it needs no external
 toolchain.
@@ -301,11 +313,11 @@ mentions no project symbol:
 | `Problem97.UniversalReductionHypotheses` | its two fields, as hypotheses |
 | `Problem97.IsRemovableVertex` | its body |
 
-## What is in the native tier (3)
+## What is in the native tier (6)
 
-Sorry-free, but each descends into the exact-ten certificate bank, which is
-discharged by `native_decide`. Measured closure for all three is exactly
-`{propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
+Sorry-free, but each descends into the exact-ten or exact-eleven certificate
+bank, which is discharged by `native_decide`. Measured closure for all six is
+exactly `{propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
 Quot.sound}`.
 
 | Name (under `Headline`) | Project theorem | Claim |
@@ -313,45 +325,42 @@ Quot.sound}`.
 | `finiteN10Closure` | `Problem97.FiniteN10Closure` | no 10-point counterexample |
 | `counterexample_card_ge_eleven` | *(composed in `Solution.lean`)* | every counterexample has ≥ 11 points |
 | `erdos97_of_card_le_ten` | *(composed in `Solution.lean`)* | Erdős 97 holds for \|A\| ≤ 10 |
+| `finiteN11Closure` | `Problem97.FiniteN11Closure` | no 11-point counterexample |
+| `counterexample_card_ge_twelve` | *(composed in `Solution.lean`)* | every counterexample has ≥ 12 points |
+| `erdos97_of_card_le_eleven` | *(composed in `Solution.lean`)* | Erdős 97 holds for \|A\| ≤ 11 |
 
-The latter two have no single project namesake: `counterexample_card_ge_eleven`
-is `Problem97.counterexample_card_ge_ten` (which gives `10 ≤ |A|`) with equality
-ruled out by `Problem97.FiniteN10Closure` — the same composition
-`Problem97.counterexample_card_ge_ten` itself uses one level down, where
-`FiniteN9Closure` kills `|A| = 9`. `erdos97_of_card_le_ten` is its
-contrapositive.
+The four composed rows have no single project namesake, and each is the same
+one-step composition: `counterexample_card_ge_eleven` is
+`Problem97.counterexample_card_ge_ten` (which gives `10 ≤ |A|`) with equality
+ruled out by `Problem97.FiniteN10Closure`, and `counterexample_card_ge_twelve`
+is that bound with equality ruled out by `Problem97.FiniteN11Closure`. It is
+the same composition `Problem97.counterexample_card_ge_ten` itself uses one
+level down, where `FiniteN9Closure` kills `|A| = 9`. `erdos97_of_card_le_ten`
+and `erdos97_of_card_le_eleven` are the contrapositives.
 
-`Solution.lean` imports `Erdos9796Proof.P97.FiniteN10` explicitly: the project
+The endpoints stack rather than subsume: `FiniteN11Closure` states only the
+`|A| = 11` case, and its own proof consumes `FiniteN10Closure` and the
+core-axiom `not_hasNEquidistantProperty_four_of_card_le_nine` as the base of
+its descent.
+
+`Solution.lean` imports `Erdos9796Proof.P97.FiniteN10` and
+`Erdos9796Proof.P97.FiniteN11` explicitly: the project
 root imports only the two upstream-vocabulary bridges, and their descent route
-does not pass through the fixed-card exact-ten endpoint, so
-`Problem97.FiniteN10Closure` is not in the root's import closure.
+does not pass through the fixed-card exact-ten or exact-eleven endpoints, so
+neither `Problem97.FiniteN10Closure` nor `Problem97.FiniteN11Closure` is in the
+root's import closure.
 
 ## The audit boundary: what is NOT gated
 
 * **The two publish targets.** `Problem97.erdos97_rhs` and
   `Problem96.erdos96_rhs` are open and reach `sorryAx`. They are excluded on
   purpose: the gate certifies proved results only.
-* **`Problem97.FiniteN11Closure`** — the exact-eleven endpoint, "no 11-point
-  counterexample". It is fully wired and its build is green, but measured
-  2026-07-30 it still reaches `sorryAx`, so no tier can gate it. It descends
-  through `ATailFiniteN11Frontier.false_of_twoLargeCaps_commonCriticalMap_of_card_eq_eleven`,
-  which splits into two arms —
-  `false_of_originalFrontierUniqueRadiusArm_of_card_eq_eleven` (whose open leaf
-  is the exact-five common-obstruction-center residual,
-  `FiniteN11Frontier.lean:42`) and
-  `false_of_frontierCommonDeletionPhysicalSecondApex` (in `FrontierLiveClosure`,
-  which carries `sorryAx` of its own). The docstring at
-  `FiniteN11Frontier.lean:42` calling its leaf "the sole open" one is stale;
-  the live residual set is tracked by the exact-eleven owner, not here.
-
-  A conditional gate is not a workaround: the hypothesis would quantify over
-  `CounterexampleData`, `SurplusCapPacket`, and `CriticalShellSystem`, project
-  structures with no faithful mathlib-only restatement, so stating it would
-  defeat the point of `Challenge.lean`. The native tier's
-  `counterexample_card_ge_eleven` is the strongest proved eleven-point
-  statement: it bounds a counterexample's size from below, it does not exclude
-  one. When the residual set empties, `finiteN11Closure` joins the native tier
-  by the same three-line pattern as `finiteN10Closure`.
+* **The general A-tail residuals above card eleven.** The exact-eleven endpoint
+  is gated (native tier), but only as the fixed-`|A| = 11` statement. The
+  arbitrary-cardinality obligations it was carved out of — including
+  `ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual`
+  — are still open and still reach `sorryAx` on the publish spine. No `n ≥ 13`
+  statement is claimed anywhere.
 * **`Problem97.exists_isCcwConvexPolygon_of_convexIndep`.** Its conclusion uses
   `EuclideanGeometry.IsCcwConvexPolygon`, which needs
   `[Module.Oriented ℝ V (Fin 2)]` and `[Fact (Module.finrank ℝ V = 2)]`

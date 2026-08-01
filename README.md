@@ -168,26 +168,37 @@ including a non-obvious `lean4export` version pin needed at Lean v4.27.0.
 axiom audit, no external toolchain).
 
 A **second, compiler-trusted tier** (`comparator/config-native.json`, added
-2026-07-30) gates 3 further results whose proofs run the exact-ten certificate
-bank through `native_decide`: `Problem97.FiniteN10Closure` (no 10-point
-counterexample), the resulting bound *every counterexample has at least 11
-points*, and its contrapositive *Erdős 97 holds for |A| ≤ 10*. These are
-sorry-free but additionally depend on `Lean.ofReduceBool` and
-`Lean.trustCompiler`, so they are held in a separate manifest rather than
-diluting the three-axiom set above — the project's `native_decide` policy
-requires compiler trust to be explicit and reported. The native tier has passed
-the offline pre-flight and the `pp.explicit` statement-identity diff; it has not
-yet had a real comparator run.
+2026-07-30) gates 6 further results whose proofs run the finite certificate
+banks through `native_decide`. These are sorry-free but additionally depend on
+`Lean.ofReduceBool` and `Lean.trustCompiler`, so they are held in a separate
+manifest rather than diluting the three-axiom set above — the project's
+`native_decide` policy requires compiler trust to be explicit and reported.
 
-The next finite milestone is also closed in project source:
-`Problem97.FiniteN11Closure` proves that no 11-point counterexample exists.
-On 2026-08-01 its root target built successfully and its transitive axiom
-closure was measured as exactly
-`{propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
-Quot.sound}`, with no `sorryAx`.  Thus, under the project's explicit
-compiler-trusted tier, every counterexample has at least 12 points.  The
-mathlib-only wrapper and `config-native.json` comparator admission are tracked
-separately and are not claimed by this source-level gate.
+### Erdős 97 — compiler-trusted finite endpoints
+
+| Theorem | Statement |
+|---|---|
+| [`Problem97.FiniteN10Closure`](lean/Erdos9796Proof/P97/FiniteN10.lean#L182) | there is no 10-point counterexample |
+| `Headline.counterexample_card_ge_eleven` | every counterexample has at least 11 points |
+| `Headline.erdos97_of_card_le_ten` | Erdős 97 holds for every point set of at most 10 points |
+| [`Problem97.FiniteN11Closure`](lean/Erdos9796Proof/P97/FiniteN11.lean#L44) | **there is no 11-point counterexample** |
+| `Headline.counterexample_card_ge_twelve` | **every counterexample has at least 12 points** |
+| `Headline.erdos97_of_card_le_eleven` | **Erdős 97 holds for every point set of at most 11 points** |
+
+The three `Headline.` rows are composed in
+[`comparator/Solution.lean`](comparator/Solution.lean) from the endpoint below
+them and the bound above them; they have no single project namesake. The
+exact-eleven endpoint closed on 2026-08-01: its card-eleven exact-five
+common-obstruction-center leaf is discharged by the authenticated G3 and
+retained-`s2_o0` certificate banks, and `#print axioms
+Problem97.FiniteN11Closure` measures exactly `{propext, Classical.choice,
+Lean.ofReduceBool, Lean.trustCompiler, Quot.sound}` with no `sorryAx`.
+
+Each of the six has been measured directly at `{propext, Classical.choice,
+Lean.ofReduceBool, Lean.trustCompiler, Quot.sound}` with no `sorryAx`. The
+offline pre-flight (`comparator/check-conformance.sh`) and the `pp.explicit`
+statement-identity diff have been run for the three exact-ten results; a full
+pre-flight covering all six, and a real comparator run, are still outstanding.
 
 ### Erdős 97 — unconditional partial results
 
@@ -195,13 +206,13 @@ separately and are not claimed by this source-level gate.
 |---|---|
 | [`Problem97.counterexample_card_ge_nine`](lean/Erdos9796Proof/P97/Counting.lean#L95) | every counterexample has at least 9 points |
 | [`Problem97.FiniteN9Closure`](lean/Erdos9796Proof/P97/N9Endpoint/Closure.lean#L56) | there is no 9-point counterexample |
-| [`Problem97.counterexample_card_ge_ten`](lean/Erdos9796Proof/P97/UniversalLocal.lean#L63) | **every counterexample has at least 10 points** |
-| [`Problem97.not_hasNEquidistantProperty_four_of_card_le_nine`](lean/Erdos9796Proof/P97/UniversalLocal.lean#L75) | **Erdős 97 holds for every point set of at most 9 points** |
+| [`Problem97.counterexample_card_ge_ten`](lean/Erdos9796Proof/P97/SmallCardinality.lean#L31) | **every counterexample has at least 10 points** |
+| [`Problem97.not_hasNEquidistantProperty_four_of_card_le_nine`](lean/Erdos9796Proof/P97/SmallCardinality.lean#L43) | **Erdős 97 holds for every point set of at most 9 points** |
 | [`Problem97.UniversalProblem97_of_reduction`](lean/Erdos9796Proof/P97/UniversalProblem97.lean#L60) | a counting obstruction plus a descent step above 9 yield Erdős 97 in full |
 
-The three-core-axiom result in this table gives `n ≥ 10`; the separately
-reported compiler-trusted finite endpoints above strengthen the project bound
-to `n ≥ 12`.  As far as we are aware, even the former is the best published
+The three-core-axiom result in this table gives `n ≥ 10`; the compiler-trusted
+finite endpoints in the table above strengthen the project bound to `n ≥ 12`.
+As far as we are aware, even the former is the best published
 bound on the size of a hypothetical counterexample. {{UNVALIDATED}} — the
 literature check found only an unrefereed argument for `n ≥ 7` on the
 erdosproblems.com discussion page; treat the record claim as unconfirmed, not
@@ -387,7 +398,7 @@ comparator/                   -- mathlib-only auditability gate (see its README)
   Solution.lean               -- same statements, discharged from the project
   config.json                 -- core tier: 3 core axioms only (24 theorems)
   axiom-audit.lean            -- #print axioms for every core-tier theorem
-  config-native.json          -- native tier: + ofReduceBool/trustCompiler (3)
+  config-native.json          -- native tier: + ofReduceBool/trustCompiler (6)
   axiom-audit-native.lean     -- #print axioms for every native-tier theorem
   check-conformance.sh        -- offline pre-flight, both tiers
 certificates/                 -- JSON certificate banks (endpoint/, surplus/)

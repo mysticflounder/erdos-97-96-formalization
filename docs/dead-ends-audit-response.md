@@ -323,17 +323,17 @@ That is not a reason to classify it as dead. It means the construction route is 
 
 The dimension count and the tested small-pattern UNSAT results are useful heuristics, but they do not prove that no construction exists.
 
-There is also a definite stale numerical statement. The section says the first possible faithful witness is (n\ge10). The current checkout contains `Problem97.FiniteN10Closure` in `lean/Erdos9796Proof/P97/FiniteN10.lean`, and the README’s **compiler-trusted native tier** records the resulting exact-ten closure; hence the full-P97 floor is now
+There is also a definite stale numerical statement. The section says the first possible faithful witness is (n\ge10). The current checkout contains `Problem97.FiniteN10Closure` in `lean/Erdos9796Proof/P97/FiniteN10.lean` and, since 2026-08-01, `Problem97.FiniteN11Closure` in `lean/Erdos9796Proof/P97/FiniteN11.lean`; both are recorded under the README’s **compiler-trusted native trust boundary**, so the full-P97 floor is now
 
 \[
-\boxed{n\ge11}.
+\boxed{n\ge12}.
 \]
 
-`FiniteN11Closure` remains open and still reaches the card-eleven residual obligations (it is not a completed publish target). The N=10 result is not a three-core-axiom/kernel-only closure: its audited dependency set additionally contains `Lean.ofReduceBool` and `Lean.trustCompiler`, which is why the README keeps it in a separate native tier.
+`FiniteN11Closure` closed on 2026-08-01 (commit 553206dc): its measured axiom closure is exactly `{propext, Classical.choice, Quot.sound, Lean.ofReduceBool, Lean.trustCompiler}` with no `sorryAx`. Neither the N=10 nor the N=11 result is a three-core-axiom/kernel-only closure: both audited dependency sets additionally contain `Lean.ofReduceBool` and `Lean.trustCompiler`, which is why the README keeps them outside the three-axiom set. The kernel-only floor remains (n\ge10) via `not_hasNEquidistantProperty_four_of_card_le_nine`. Neither finite endpoint is on the `erdos97_rhs` publish spine, and neither is a completed publish target.
 
 ### Correct replacement
 
-> Faithful construction is equivalent to solving P97 negatively. It is high-cost and should not be presented as an easier way to settle a local producer, but it remains a valid project lane. The current compiler-trusted bound is (n\ge11); it is not a kernel-only closure.
+> Faithful construction is equivalent to solving P97 negatively. It is high-cost and should not be presented as an easier way to settle a local producer, but it remains a valid project lane. The current compiler-trusted bound is (n\ge12); it is not a kernel-only closure, which stands at (n\ge10).
 
 For a particular cap-eight descendant, of course, its own cap arithmetic may give a higher local minimum.
 
@@ -349,7 +349,7 @@ rather than a removable vertex fitting the RVoL spine.
 
 But such a firewall proves the full P97 conclusion directly. It may bypass the current proof architecture, but it is stronger than the intended local theorem.
 
-Likewise, finite-cardinality closures do not reduce the generic large-(n) spine, but they are genuine mathematical progress. The current README records `FiniteN10Closure`, the resulting compiler-trusted (n\ge11) bound, and the still-live `FiniteN11Closure`.
+Likewise, finite-cardinality closures do not reduce the generic large-(n) spine, but they are genuine mathematical progress. The current README records `FiniteN10Closure`, `FiniteN11Closure`, and the resulting compiler-trusted (n\ge12) bound.
 
 ### Correct classification
 

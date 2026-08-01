@@ -834,6 +834,14 @@ oleans, importing `Erdos9796Proof.P97.FiniteN11`):
 This confirms the earlier audit for `FiniteN10Closure` — five axioms, no
 `sorryAx` — and is no longer a citation inference.
 
+> **Addendum 2026-08-01.** The `FiniteN11Closure` row above is superseded.
+> Commit 553206dc closed the card-eleven exact-five common-obstruction-center
+> leaf through the G3 and retained-`s2_o0` clause banks; re-measuring the same
+> way now gives `{propext, Classical.choice, Lean.ofReduceBool,
+> Lean.trustCompiler, Quot.sound}` with **no `sorryAx`**, i.e. the same five
+> axioms as `FiniteN10Closure`. The rest of this document's dated analysis is
+> retained as written.
+
 **The tier.**  `comparator/` is now split by axiom budget over the same
 `Challenge`/`Solution` pair:
 
@@ -885,6 +893,16 @@ not permit.
    statement available — a lower bound on a counterexample's size, not its
    exclusion.  When the leaf closes, `finiteN11Closure` joins the native tier
    by the same three-line pattern as `finiteN10Closure`.
+
+   > **Addendum 2026-08-01.** That leaf closed in commit 553206dc, so the
+   > blocker described in this item no longer exists: `FiniteN11Closure` has no
+   > `sorryAx` and its closure is the same five axioms as `FiniteN10Closure`.
+   > Admitting `finiteN11Closure` to the native tier is now the mechanical
+   > three-line wiring step named above (a mathlib-only restatement in
+   > `Challenge.lean`/`Solution.lean` plus a `config-native.json` entry), not a
+   > mathematical obstruction.  It has **not** been done yet, so the tier still
+   > gates three theorems, and `counterexample_card_ge_eleven` is still the
+   > strongest *gated* eleven-point statement.
 
 **Verification.** `check-conformance.sh` passes both tiers.  Statement identity
 for the three new theorems was checked by the `pp.explicit` diff

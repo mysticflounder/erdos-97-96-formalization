@@ -12,6 +12,9 @@
   "theorem_names": [
     "Headline.finiteN10Closure",
     "Headline.counterexample_card_ge_eleven",
-    "Headline.erdos97_of_card_le_ten"
+    "Headline.erdos97_of_card_le_ten",
+    "Headline.finiteN11Closure",
+    "Headline.counterexample_card_ge_twelve",
+    "Headline.erdos97_of_card_le_eleven"
   ]
 }
