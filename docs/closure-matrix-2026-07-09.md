@@ -1013,6 +1013,40 @@ This paragraph records the consolidated source frontier only.  No focused Lean
 4.27 elaboration or generated-blueprint refresh is claimed for this
 consolidation; kernel-complete status requires those fresh checks.
 
+#### K-A-LIVE all-endpoint to five-center bridge checkpoint (2026-08-01)
+
+The later two-source refactor replaces the former opaque common cap-source
+leaf by a checked constructor-level residual split. Its live immediate
+frontier is now
+
+```text
+FreshThirdTwoCapSourceObstruction.ResidualCase
+  +-- normalized
+  |     -> false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
+  |        [sorry]
+  `-- sameBlockerAllEndpointOmission Q ...
+        -> false_of_twoCapSources_sameBlockerAllEndpointOmission
+           [sorry]
+```
+
+The equal-blocker constructor retains `Q`, two complete cap-source witnesses,
+mutual cross-membership, actual-blocker equality, simultaneous omission of
+all four collision endpoints by both rows, and the exact two-point shell/cap
+intersection. The new source-clean theorem
+`collisionFiveCenterDeletion_of_allCollisionEndpointsOmitted` maps that
+packet to the existing `FirstFiberCollisionFiveCenterDeletionResidual`: the
+checked first-fiber descent either returns the deletion residual or its
+cycle-aligned arm asserts the forbidden hit at `P.source₁`. Thus the
+remaining equal-blocker work is the independently owned positive-incidence
+contradiction for that five-center residual and its acyclic wiring into the
+terminal. The normalized leaf remains independent.
+
+This bridge adds no `sorry` and closes no terminal. A direct Lean 4.27 source
+check of `FrontierLiveClosure.lean` passed on 2026-08-01. The earlier guarded
+target build and blueprint refresh cover the constructor/Q rewire, not this
+new bridge; a fresh guarded target build and transitive axiom audit remain
+required after the terminal is wired.
+
 ### K-A-UNIQUE-PHYSICAL-SPLIT radius-normal-form checkpoint (2026-07-26)
 
 `ExactFourRobustCapExpansion.lean` now proves, under Lean 4.27, that all

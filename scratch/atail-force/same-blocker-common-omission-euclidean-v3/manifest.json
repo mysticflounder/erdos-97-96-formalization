@@ -1,0 +1,104 @@
+{
+  "lane": "same-blocker-common-omission-euclidean-v3",
+  "status": "STRUCTURAL_SELF_CHECK_ONLY",
+  "target": "FreshThirdTwoCapSourceObstruction.sameBlockerCommonOmission",
+  "specialization": {
+    "carrier_card": 17,
+    "closed_cap_profile": [6, 8, 6],
+    "strict_interior_profile": [4, 6, 4],
+    "modeled_first_closed_cap_card": 8,
+    "modeled_first_strict_interior_card": 6
+  },
+  "source_anchors": [
+    {
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean",
+      "lines": "7624-7644",
+      "role": "complete cap-source canonical-row witness surface"
+    },
+    {
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean",
+      "lines": "8082-8117",
+      "role": "common collision-endpoint omission and deletion-packet projection"
+    },
+    {
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean",
+      "lines": "9305-9336",
+      "role": "same-blocker obstruction constructor fields"
+    },
+    {
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean",
+      "lines": "9445-9472",
+      "role": "live terminal with unresolved proof"
+    },
+    {
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean",
+      "lines": "10495-10540",
+      "role": "live caller assembling same-blocker branch"
+    },
+    {
+      "path": "lean/Erdos9796Proof/P97/U1CarrierInjection.lean",
+      "lines": "536-556",
+      "role": "selected support is the full carrier-wide distance class of cardinality four"
+    },
+    {
+      "path": "lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean",
+      "lines": "494-543",
+      "role": "cross-deletion view is equivalent to selected-support endpoint omission"
+    },
+    {
+      "path": "lean/Erdos9796Proof/P97/ATail/CapApexRadiusRigidity.lean",
+      "lines": "27-44",
+      "role": "closed-cap cardinality eight gives strict-interior cardinality six"
+    },
+    {
+      "path": "lean/Erdos9796Proof/P97/ATail/RetainedStrictInteriorPairSelector.lean",
+      "lines": "69-89",
+      "role": "collision pair distinctness, first-cap membership, radius membership, and equal blockers"
+    },
+    {
+      "path": "lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean",
+      "lines": "25-46",
+      "role": "strong common-deletion packet omitted from this necessary-condition model"
+    }
+  ],
+  "encoded": [
+    "all 17 named carrier points and the (6,8,6) closed-cap partition",
+    "strictly convex cyclic carrier order, common enclosing circle, and non-obtuse Moser triangles",
+    "six named points exhausting the first strict interior",
+    "p, r, and q source-pair first-apex radius equalities with positive pairwise-distinct radii",
+    "bp, br, and bq aliases in the exhausted first strict interior, with bq one of p1,p2,r1,r2",
+    "q1 and q2 share bq and therefore share their first-apex radius",
+    "the carrier-wide common distance class is exactly {q1,q2,u,v}",
+    "u and v are distinct points outside the first closed cap",
+    "common support intersection first closed cap is exactly {q1,q2}",
+    "each q source row has source membership, support cardinality four, blocker/apex inequalities, and both cross-pair omission alternatives",
+    "all four collision endpoints are omitted by both common rows",
+    "one explicit common omitted collision endpoint witness, retained as redundant Lean-field provenance"
+  ],
+  "omitted_or_abstracted": [
+    "CounterexampleData global K4, minimum-distance, no-M44, tri-apex, and deletion-robust proof objects",
+    "CriticalShellSystem selected rows other than the specialized p, r, and common q rows",
+    "hfrontierFour and hρfour carrier-wide exact classes beyond their encoded source-pair radius equalities",
+    "Lean proof terms for CrossPairDeletionView; the model uses its proved support-omission characterization",
+    "the constructed CommonDeletionTwoCenterPacket and its downstream incidence contradiction",
+    "the arbitrary-n reduction; this lane is fixed at n=17",
+    "Lean kernel checking"
+  ],
+  "branch_counts": {
+    "blocker_alias_maps": 40,
+    "common_outside_support_pairs": 36,
+    "cap_compatible_cyclic_orders": 414720,
+    "geometric_qf_nra_branches": 597196800,
+    "source_view_witness_labels_per_geometric_branch": 16,
+    "common_omission_witness_labels_per_geometric_branch": 4,
+    "provenance_labeled_branches": 38220595200
+  },
+  "bounded_gate": {
+    "command": "uv run python scratch/atail-force/same-blocker-common-omission-euclidean-v3/model.py --self-check --branch-count-only",
+    "result": "result.json",
+    "solver_imported": false,
+    "solver_invoked": false,
+    "common_support_omits_all_collision_endpoints": true,
+    "common_omission_existential_redundant": true
+  }
+}

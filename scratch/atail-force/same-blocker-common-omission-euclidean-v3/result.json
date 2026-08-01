@@ -1,0 +1,47 @@
+{
+  "branch_factors": {
+    "blocker_alias_maps": 40,
+    "cap_compatible_cyclic_orders": 414720,
+    "common_omission_witness_labels_per_geometric_branch": 4,
+    "common_outside_support_pairs": 36,
+    "geometric_qf_nra_branches": 597196800,
+    "provenance_labeled_branches": 38220595200,
+    "source_view_witness_labels_per_geometric_branch": 16
+  },
+  "carrier_card": 17,
+  "common_omission_existential_redundant": true,
+  "common_support_omits_all_collision_endpoints": true,
+  "closed_cap_profile": [
+    6,
+    8,
+    6
+  ],
+  "first_strict_interior": [
+    "p1",
+    "p2",
+    "r1",
+    "r2",
+    "q1",
+    "q2"
+  ],
+  "mode": "branch-count-only",
+  "outside_first_closed_cap": [
+    "a1",
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "t1",
+    "t2",
+    "t3",
+    "t4"
+  ],
+  "solver_imported": false,
+  "solver_invoked": false,
+  "status": "SELF_CHECK_OK",
+  "strict_interior_profile": [
+    4,
+    6,
+    4
+  ]
+}
