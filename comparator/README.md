@@ -131,11 +131,12 @@ extended 2026-08-01 with the three exact-eleven results. What has been checked:
 * The library itself builds: `lake build Erdos9796Proof.P97.FiniteN11` completed
   2026-08-01 at `[11957/11957]`, exit 0, from a clean-vs-`HEAD` certificate tree.
 
-Queued as of 2026-08-01: `check-conformance.sh`'s build and axiom-audit steps
-over all six. These are blocked on an **import cycle in the working tree that
-does not exist at `HEAD`**. An unrelated lane added
+Queued as of 2026-08-02: `check-conformance.sh`'s build and axiom-audit steps
+over all six. The import cycle that blocked these on 2026-08-01 was **fixed in
+commit `b075da44`**; the run is in flight and its result is not recorded here
+yet. For the record, the blocker was: a concurrent lane added
 `import Erdos9796Proof.P97.PinnedMultiplicity` to `P97/WitnessPacketInterface.lean`
-(uncommitted), closing the loop
+to support a new `selectedClass_card_le_pinnedMultiplicity`, closing the loop
 
     WitnessPacketInterface → PinnedMultiplicity → UniversalProblem97
       → N9Endpoint.Closure → N8.N8kDistribution → N8.N8aArcTwoCircle
@@ -143,11 +144,21 @@ does not exist at `HEAD`**. An unrelated lane added
       → WitnessPacketInterface
 
 because `U2/OneHitBound.lean:1` already imports `WitnessPacketInterface`. Lake
-reports it as `build cycle detected` at `U2.OneHitBound`, and every module above
-it fails with cascading `bad import`, including `Solution`. `HEAD` has no such
-import and no cycle, which is why the `FiniteN11` build above succeeded before
-that edit landed. Nothing here is attributable to the exact-eleven work; re-run
-the gate once that lane commits or reverts.
+reported it as `build cycle detected` at `U2.OneHitBound`, and every module
+above it failed with cascading `bad import`, including `Solution`. Nothing in it
+was attributable to the exact-eleven work.
+
+The fix moved `selectedClass_card_le_pinnedMultiplicity` verbatim into
+`P97/PinnedMultiplicity.lean` and dropped the added import. It needs no new
+imports, because `PinnedMultiplicity` already reaches `WitnessPacketInterface`
+transitively — which is precisely what closed the loop — so `SelectedClass` is
+in scope there for free.
+
+The standing rule this exposed: **`U2.OneHitBound` sits underneath
+`WitnessPacketInterface` in the import graph**, so any import from
+`WitnessPacketInterface` into the `PinnedMultiplicity` / `UniversalProblem97` /
+`N8` / `U2` region is a cycle by construction. State such lemmas in the upper
+module, or factor the shared content into a new leaf.
 
 If you re-derive this, trust `lake`'s cycle listing — it names every edge on the
 loop. A hand-rolled DFS over `^import` lines got this wrong once.

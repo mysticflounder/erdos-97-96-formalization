@@ -202,10 +202,9 @@ For the three exact-eleven results the `pp.explicit` diff now also passes with 0
 differences, as do the pre-flight's manifest cross-check and tier-disjointness
 steps; `Challenge.lean` elaborates against mathlib alone with all 30 stubs, and
 all 30 source signatures match between `Challenge.lean` and `Solution.lean`.
-Outstanding: the pre-flight's build and axiom-audit steps — blocked on an import
-cycle present only in the working tree, from an unrelated lane's uncommitted
-edit, not at `HEAD` — and a real comparator run. See `comparator/README.md`,
-"Native-tier status", for the exact split.
+Outstanding: the pre-flight's build and axiom-audit steps, and a real comparator
+run. The import cycle that blocked the former was fixed in `b075da44`. See
+`comparator/README.md`, "Native-tier status", for the exact split.
 
 ### Erdős 97 — unconditional partial results
 
