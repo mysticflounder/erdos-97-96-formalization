@@ -197,6 +197,24 @@ theorem hasNEquidistantPointsAt_iff_le_pinnedMultiplicity
     exact ⟨r, (mem_pinnedRadii_iff.mp hrmem).2, by
       rw [pinnedMultiplicity, hreq] at h; exact h⟩
 
+/-- A positive-radius selected class is bounded by the canonical pinned
+multiplicity of its centre.
+
+Lives here rather than beside `SelectedClass` in `WitnessPacketInterface`:
+that module sits *below* `PinnedMultiplicity` in the import order — via
+`U2.OneHitBound`, which imports it — so stating this there would require
+`WitnessPacketInterface` to import `PinnedMultiplicity` and close an import
+cycle. `SelectedClass` is in scope here transitively through
+`UniversalProblem97`. -/
+theorem selectedClass_card_le_pinnedMultiplicity
+    {A : Finset ℝ²} {p : ℝ²} {r : ℝ} (hr : 0 < r) :
+    (SelectedClass A p r).card ≤ pinnedMultiplicity A p := by
+  by_cases hzero : (SelectedClass A p r).card = 0
+  · simp [hzero]
+  · have hpos : 0 < (SelectedClass A p r).card := Nat.pos_of_ne_zero hzero
+    apply (hasNEquidistantPointsAt_iff_le_pinnedMultiplicity hpos).mp
+    exact ⟨r, hr, by simp [SelectedClass]⟩
+
 /-- The `n`-equidistant property is exactly "every point has pinned
 multiplicity at least `n`". -/
 theorem hasNEquidistantProperty_iff_forall_le_pinnedMultiplicity
