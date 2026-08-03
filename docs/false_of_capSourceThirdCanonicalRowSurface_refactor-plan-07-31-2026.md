@@ -2348,3 +2348,48 @@ cross-row incidence, and (for the ordered route) a producer fixing the common
 `btw` side.  The bounded incidence probes remain diagnostic only.  This is a
 contract-frontier result, not closure: the normalized-remaining theorem stays
 the sole open load-bearing `sorry`, with no new obligation promoted.
+
+## 2026-08-03 v34 terminal hard-canary checkpoint
+
+The source-frozen v34 hard canary over the twelve remaining exact-15 `DDD`
+role tuples is terminal and authenticated. All twelve cases returned `UNKNOWN`
+from the five-minute wall-clock budget; none returned `SAT`, terminal `UNSAT`,
+or a contract error. The 225 checked Boolean assignments were each metrically
+inconsistent, but no case was exhausted. Of their blockers, 104 were compact
+raw-replay cores and 121 were complete 1,076-literal assignments; all 225
+projected cores were distinct. The Boolean prepass learned no cut.
+
+The phase telemetry also changes the engineering diagnosis. Normalization
+accounted for 1,831.73 of 1,905.38 measured normalized-check seconds, whereas
+solver checking accounted for only 26.04 seconds. Formula hashing dominated
+fresh reconstruction. These are genuine performance targets, but optimizing
+them alone would accelerate a blocker sequence that presently shows no finite
+cover or repeated-core convergence.
+
+Accordingly, v8--v34 is retired as an active timeout-, seed-, or
+normalization-tuning lineage. No v35 should run without a new source-entitled
+semantic theorem or a certificate-producing backend. The authenticated
+artifact and full timing audit are recorded in
+[`V34-HARD-CANARY-TERMINAL.md`](../scratch/retained-omission-e1/round5-general-cegar/V34-HARD-CANARY-TERMINAL.md).
+
+The mandatory post-round bank and compact-core audit found no directly
+applicable theorem, but it did isolate a repeated missing semantic consequence:
+for distinct nonapex centers `a`, `b`, and `c`, five directed memberships
+
+```text
+k4_a_b, k4_b_a, k4_b_c, k4_c_a, k4_c_b
+```
+
+force `k4_a_c` by distance symmetry, equality transitivity, and the full-shell
+semantics of the nonapex global-K4 class at `a`. The forbidden signed pattern
+occurred 14 times across six hard cases. The current static bank misses it
+because nonapex `k4` is admitted only as a supporting class, not as an exact
+target. Apex K4 supports are selected four-subsets and are deliberately
+excluded from this inference.
+
+The next approved computational gate is therefore narrow and theorem-first:
+bank this nonapex full-shell incompatibility in Lean, wire its six-literal
+static clause, freeze the changed contract, and rerun only the twelve hard
+cases. This is a prospective producer, not current closure. The coordinator
+frontier remains at eight terminal obligations; no new `sorry` or compatibility
+wrapper is introduced by this checkpoint.
