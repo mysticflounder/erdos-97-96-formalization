@@ -61,6 +61,13 @@ The sibling census is reported separately from the 12,922-file canonical/attic
 count below because `p97-rvol` is a second repository with a different import
 root and a partially stale extension layer.
 
+Live theorem-bank additions made after the frozen census are recorded in:
+
+- [`p97-seven-source-paley-fano-bank-2026-08-02.md`](p97-seven-source-paley-fano-bank-2026-08-02.md),
+  which banks the seven-source selector, Paley `T₇` residual classifier, and
+  normalized Fano determinant obstruction while recording the still-missing
+  full-circle geometric adapter.
+
 ## Census
 
 The scan covers 12,922 Lean files and 997,618 declarations. It finds 761
