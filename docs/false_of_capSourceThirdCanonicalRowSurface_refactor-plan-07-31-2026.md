@@ -2079,3 +2079,23 @@ missing invariants. An alias, wrapper, finite-search result, or conditional
 `Closers` package would be circular and receives no closure credit. The
 load-bearing leaf remains open and must stay explicit in the coordinator
 frontier. No new CEGAR round was run at this checkpoint.
+
+## 2026-08-03 shared-pair and agentic-search checkpoint
+
+The latest deep Lean search and a read-only audit of the generic shared-pair
+modules found no import-reachable consumer for the remaining leaf.  The
+nearest result, `selectedFourClass_shared_pair_separated`, requires an
+injective CCW convex boundary, a carrier-to-boundary index map, and two
+distinct centers; FreshThird supplies neither the boundary transport nor the
+distinct-center hypothesis in its residual arm.  `GeneralCarrierBridge` and
+the P4 family adapters likewise require a full faithful-carrier/core packet
+and produce alternative/SAT predicates rather than `False`.
+
+This confirms the current missing bridge precisely: either (a) a source-clean
+producer that adds the missing boundary/incidence or radius-class invariant to
+the FreshThird packet, or (b) a direct metric/incidence terminal consuming the
+existing exact-row and deletion data.  The non-hit and noncanonical
+equal-center constructors remain genuine load-bearing obligations.  No new
+`sorry`, alias, finite-search wrapper, or scratch theorem is promoted by this
+checkpoint; the closure matrix must continue to count
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` as open.
