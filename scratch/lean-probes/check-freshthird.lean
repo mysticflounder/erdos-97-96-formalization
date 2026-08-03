@@ -1,0 +1,4 @@
+/- PARKED-SPEC: declaration inspection only; not a live obligation. -/
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure
+#check Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+#print Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining

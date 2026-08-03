@@ -2408,3 +2408,19 @@ mixed-cap pair is closed; `firstNonHit`, `secondNonHit`, distinct-cap ×
 distinct-cap, and noncanonical same-cap × same-cap remain unclosed.  This is a
 documentation audit only: no SAT artifact, wrapper, downstream theorem, or
 conditional assumption changes the closure count.
+
+### FreshThird normalized-remaining branch-bridge checkpoint (2026-08-03)
+
+The production-namespace state probe now enumerates all constructors of
+`FreshThirdNormalizedResidualRemainingCase` without introducing a live
+obligation.  The focused source audit found no new consumer: the mixed-cap
+equal-center products remain the only additional source-clean reductions, while
+`firstNonHit`, `secondNonHit`, equal-center distinct-cap products, and
+noncanonical same-cap products remain open.  The generic two-cap terminal still
+needs common selected-class radius and reciprocal cross-row incidence; the
+ordered route additionally needs a producer fixing the common `btw` side.
+
+The normalized-remaining theorem therefore remains
+`OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`; the parked probes and bounded
+incidence searches provide diagnostic evidence only and do not change the
+closure count.

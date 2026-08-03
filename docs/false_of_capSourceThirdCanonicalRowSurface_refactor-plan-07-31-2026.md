@@ -2330,3 +2330,21 @@ or reciprocal-incidence producer.  No theorem-bank declaration, finite search,
 wrapper, or downstream core is a valid closure.  This audit adds no obligation
 and assigns no closure credit; the load-bearing normalized-remaining theorem
 remains open.
+
+## 2026-08-03 normalized-remaining branch-bridge checkpoint
+
+The parked state probe
+[`lean/scratch/freshthird_remaining_state_probe.lean`](../lean/scratch/freshthird_remaining_state_probe.lean)
+now resolves the production namespace and enumerates every constructor of
+`FreshThirdNormalizedResidualRemainingCase`.  The focused branch audit found
+no additional source-clean consumer.  The only newly verified reductions are
+the equal-center mixed-cap products already wired in the downstream residual
+dispatcher; `firstNonHit`, `secondNonHit`, equal-center distinct-cap products,
+and noncanonical same-cap products remain compatible with the current packet.
+
+In particular, the existing generic two-cap terminal still requires data not
+present in this interface: a common selected-class radius, reciprocal
+cross-row incidence, and (for the ordered route) a producer fixing the common
+`btw` side.  The bounded incidence probes remain diagnostic only.  This is a
+contract-frontier result, not closure: the normalized-remaining theorem stays
+the sole open load-bearing `sorry`, with no new obligation promoted.
