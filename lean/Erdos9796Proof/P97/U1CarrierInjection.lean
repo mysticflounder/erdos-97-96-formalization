@@ -1620,6 +1620,37 @@ theorem exists_faithfulCarrierPattern_with_two_classes
     gaugeWitness_mem := hqClass
   }, hclass₁, hclass₂⟩
 
+/-- Global `K4` supplies a faithful carrier pattern preserving a prescribed
+selected four-class at every center in a finite nonempty seed. -/
+theorem exists_faithfulCarrierPattern_with_classes_on
+    {A V : Finset ℝ²}
+    (hK4 : HasNEquidistantProperty 4 A) (hVA : V ⊆ A) (hVne : V.Nonempty)
+    (K : ∀ center : ℝ², center ∈ V → SelectedFourClass A center) :
+    ∃ F : FaithfulCarrierPattern A,
+      ∀ center : ℝ², ∀ hcenter : center ∈ V,
+        F.classAt center (hVA hcenter) = K center hcenter := by
+  classical
+  let classAt : ∀ center : ℝ², center ∈ A → SelectedFourClass A center :=
+    fun center hcenter =>
+      if h : center ∈ V then
+        K center h
+      else
+        Classical.choice (exists_selectedFourClass_of_globalK4 hK4 hcenter)
+  rcases hVne with ⟨gaugeCenter, hgaugeCenter⟩
+  rcases (K gaugeCenter hgaugeCenter).support_nonempty with ⟨gaugeWitness, hgaugeWitness⟩
+  have hgaugeWitnessClass : gaugeWitness ∈
+      (classAt gaugeCenter (hVA hgaugeCenter)).support := by
+    simpa [classAt, hgaugeCenter] using hgaugeWitness
+  refine ⟨{
+    gaugeCenter := gaugeCenter
+    gaugeCenter_mem := hVA hgaugeCenter
+    classAt := classAt
+    gaugeWitness := gaugeWitness
+    gaugeWitness_mem := hgaugeWitnessClass
+  }, ?_⟩
+  intro center hcenter
+  simp [classAt, hcenter]
+
 /-- Preserve both a prescribed exact selected class and a distinct named
 critical shell in one faithful carrier pattern. -/
 theorem exists_faithfulCarrierPattern_with_exact_and_critical

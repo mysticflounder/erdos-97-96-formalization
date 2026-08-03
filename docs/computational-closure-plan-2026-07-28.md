@@ -294,13 +294,45 @@ is therefore only an encoding canary, never a closure result.  Treating
 `Q.row` as a full exact-four shell would likewise create a spurious
 inconsistency and is forbidden.
 
-The quantifier polarity must also be explicit.  For a candidate predicate
-`Good(c, row)`, the finite counterexample query is the base model together with
-valid selected rows at all six seed centers, existence of an escaping chosen
-row, and `Esc(c) -> not Good(c, row_c)` for every seed center.  Authenticated
-UNSAT would then prove that every selected-row choice pattern has a good
-escaping row in the frozen exact-15 relaxation.  A single existentially chosen
-row does not establish that statement.
+The universal selected-row quantifier is now authenticated in Lean.
+`exists_faithfulCarrierPattern_with_classes_on` preserves an arbitrary
+prescribed selected four-class at every center of a finite nonempty seed, and
+`endpointFresh_exists_prescribedRow_escape_twoShellSeed_of_sharedBlocker`
+combines that adapter with global minimality and the exact-six theorem.  Thus
+**every** simultaneous choice of rows at the six seed centers has an escaping
+chosen row.  Focused `lean_verify` checks report only `propext`,
+`Classical.choice`, and `Quot.sound`; neither theorem adds an obligation.
+
+The 2026-08-03 checkpoint builds the complete
+`Erdos9796Proof.P97.ATail.FrontierLiveClosure` target and repairs the stale
+constructor arities in the already-committed normalized fresh-third adapter.
+The proof-blueprint refresh reports 31 declarations with `sorry` in the
+project, 28 on the `Problem97.erdos97_rhs` spine, and zero off-spine.  At the
+chosen coordinator granularity,
+`false_of_retainedOmission_triApexAllLarge_core` still reaches the same eight
+terminal leaves described above.  Thus the coordinator-interface frontier and
+its immediate fan-out are unchanged by this selected-row adapter: it is a
+banked producer and quantifier correction, not a leaf closure or a new split.
+
+The remaining query must be order-sensitive.  Merely producing an escaping
+row whose center lies in the adjacent cap containing `J` and whose support has
+two hits in `Q.row.support` is not contradictory: two distinct centers may
+share a pair, provided the pair alternates about the centers.  The first proved
+consumer is `selectedFourClass_shared_pair_separated`.  Therefore the useful
+predicate `Good(c, row)` additionally says that the two common points are
+**nonalternating** with the first apex and `c`; equivalently, their two
+`btw firstApex c` truth values agree.  A stronger cap-local alternative is to
+put both common points outside the chosen adjacent cap, which is consumed by
+`selectedFourClass_outside_overlap_card_le_one`.  Producing either predicate
+is still conjectural.
+
+The quantifier polarity remains load-bearing.  The finite counterexample query
+is the base model together with valid selected rows at all six seed centers,
+existence of an escaping chosen row, and `Esc(c) -> not Good(c, row_c)` for
+every seed center.  Authenticated UNSAT would then prove that every
+selected-row choice pattern has a good escaping row in the frozen exact-15
+relaxation.  A single existentially chosen row does not establish that
+statement.
 
 The negative arm now carries
 an explicit new common-deletion packet rather than an inert omission.  The
