@@ -1,4 +1,4 @@
-# Computational closure plan — remaining frontier (2026-07-28)
+# Computational closure plan — remaining frontier (updated 2026-08-02)
 
 Premise: no further deep-thinker input is assumed. Every remaining obligation
 is attacked with in-repo computational machinery (SAT, exact-rational
@@ -34,9 +34,14 @@ interfaces.  They are now compatibility adapters to the single common
 residual explicitly.  This reduces the direct total to 18 and the F-Γ frontier
 from three leaves to two without discarding the finite blocker-fiber data.
 
-This is not the current raw source count.  A 2026-08-02 scan found 21 explicit
-`sorry` bodies in FLC.  Refresh the proof-blueprint coordinator frontier before
-using a declaration count for publication; the active E1 execution target and
+This is not the current raw source count.  A 2026-08-02 live-source audit found
+28 explicit `sorry` bodies in FLC.  Relative to the preceding 21-body source,
+the retained-omission and normalized fresh-third refactors removed two broad
+placeholders and introduced nine directly consumed leaves, for a net increase
+of seven.  Both replacement coordinators elaborate, but still inherit
+`sorryAx` through those leaves; this is auditable decomposition, not kernel
+closure.  Refresh the proof-blueprint coordinator frontier before using a
+declaration count for publication; the active E1 execution target and
 four-workstream decomposition are recorded below.
 
 | Pkg | Leaves | Declarations |
@@ -45,7 +50,7 @@ four-workstream decomposition are recorded below.
 | C-core | 2 | `..._physicalApex_sourceNeU`, `..._nonphysicalCollision` |
 | D-R | 2 | `false_of_exactFourPostCardElevenTwoRadiusBranch`, `false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome` |
 | D-E | 2 | `false_of_firstApexUniqueRadiusExactFive{Distinct,Common}ObstructionCenter(s)Residual` |
-| E | 1 | `false_of_retainedInteriorDirectedOmission_and_all_low_hits` |
+| E (E1 core) | 4 | `false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core`, `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_triApexAllLarge_core`, `false_of_retainedOmission_reverseHitFresh_endpointCommonDeletion_triApexAllLarge_core`, `false_of_retainedOmission_reverseHitFresh_threeDistinctBlockers_triApexAllLarge_core` (proved dispatchers: `false_of_retainedOmission_reverseHitFresh_endpointCriticalFiber_triApexAllLarge_core`, `false_of_retainedOmission_reverseHitFresh_triApexAllLarge_core`, `false_of_retainedOmission_triApexAllLarge_core`; public adapter: `false_of_retainedInteriorDirectedOmission_and_all_low_hits`) |
 | F-Γ | 2 | `TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`, `...false_of_capSourceThirdCanonicalRowSurface` |
 | B | 3 | `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision`, `false_of_exactFourMutualOmission_fourCenterCommonDeletion_{blockerCoincidence,survivalSquare}` |
 
@@ -72,6 +77,36 @@ cardinality at least eight, giving floor `(8,6,6)` and `|A| ≥ 17`.  Thus the
 bound from 15, and a 15- or 16-point parent survivor need not instantiate the
 cap-source packet.
 
+### Post-card-11 route handoff (2026-08-01)
+
+`Problem97.FiniteN11Closure` is now a verified fixed-card regression endpoint:
+it closes the exact-cardinality-11 branch, but it does not reduce the 18
+universal `FrontierLiveClosure` obligations.  The production continuation
+dispatches every non-11 carrier directly to
+`ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap`.
+
+The production target is therefore the uniform all-large-cap E1 route in
+`ATail/FrontierLiveClosure.lean`.  Its normalized retained omission
+`Q : RetainedOmissionAllLargeNormalForm P` is now dispatched through two
+explicit constructor arms; each retains the flattened
+`G : TriApexAllLargeContext D S` and parent residual `R`.  The paired arm is a
+terminal, while the reverse-hit/fresh arm is a proved dispatcher to the
+endpoint-critical-fiber and three-distinct-blocker branches.  The endpoint
+branch is itself a proved dispatcher to cross-hit and fresh-common-deletion
+terminals.  At the public route boundary these four leaves are reached through
+the proved dispatchers, then
+`false_of_frontierLargeOppositeCapsBiApexRobustResidual`, then the all-large
+tri-apex wrappers, and finally
+`false_of_twoLargeCaps_commonCriticalMap`.
+
+Do not make an exact-card-12 or exact-card-13 census the next production
+milestone.  Cards 11–13 remain regression/fallback evidence only.  A landing
+on this route counts only when all four E1 terminal leaves are proved and the existing
+adapter/coordinator chain passes the focused Lake build plus refreshed
+proof-blueprint reference and transitive-axiom checks; a source-clean wrapper
+alone is not closure.  The D-R two-radius and D-E unique-arm residuals remain
+separate secondary obligations.
+
 ### E1 closure decomposition (2026-08-02)
 
 Broad exact-15 CEGAR is no longer the sole proof plan for the uniform E1 core.
@@ -94,12 +129,144 @@ output must be consumed through four separately auditable workstreams:
    descent preserving the E1 hypotheses.  This is the required bridge from the
    exact-15 certificate to arbitrary `15 ≤ D.A.card`.
 
-These are workstreams, not four new Lean obligations.  Keep
-`false_of_retainedOmission_triApexAllLarge_core` as the one load-bearing E1
-`sorry` until a kernel-checked exhaustive producer justifies a narrower child
-frontier.  A promotion must state the before/after coordinator interfaces,
-strict narrowing measure for every child, immediate constructor fan-out, and
-publish-spine consumers.
+These are workstreams, not four new Lean obligations.  The normalized sum type
+supplies the kernel-checked exhaustive producer needed for the first split.
+Before that split, the coordinator interface was one `sorry` taking
+`Q : RetainedOmissionAllLargeNormalForm P`.  The theorem
+`false_of_retainedOmission_triApexAllLarge_core` is now a proved fan-out-two
+dispatcher to the paired-common-deletion leaf and a reverse-hit/fresh
+coordinator.  The latter is itself proved by the nonreturn endpoint
+classification and fans out to two branches.  Its endpoint-critical-fiber
+  branch is now a third proved dispatcher, using the exact fresh-source
+  cross-hit/common-deletion continuation.  The positive cross-hit child is a
+  fourth checked dispatcher, splitting the only role coincidences not already
+  excluded by the inherited exact-row interfaces.  Its shared-blocker child is
+  now a fifth checked dispatcher, using collision localization and the global
+  cap cover.  The final live frontier is
+  therefore:
+
+- `false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core`,
+  narrowed by the first constructor's reverse omission and paired
+  common-deletion packet; and
+- three children of
+  `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_triApexAllLarge_core`:
+  `..._firstCenterEqFreshSource_...` (`A = J`),
+  `..._secondCenterEqFirstSource_...` (`X = C`), and
+  `..._genericRoles_...` (all three equalities fail), each retaining the
+  endpoint critical fiber, the fresh first-apex row source, and the positive
+  hit of the opposite fiber endpoint;
+- the two children of the `A = X` shared-blocker coordinator,
+  `..._sharedBlocker_JInLeftAdjacentCap_...` and
+  `..._sharedBlocker_JInRightAdjacentCap_...`, which additionally retain
+  exclusion of `J` from the strict first-cap interior and the corresponding
+  adjacent closed-cap membership;
+- `false_of_retainedOmission_reverseHitFresh_endpointCommonDeletion_triApexAllLarge_core`,
+  retaining the complementary nonmembership together with the source-exact
+  common-deletion packet it produces; and
+- `false_of_retainedOmission_reverseHitFresh_threeDistinctBlockers_triApexAllLarge_core`,
+  retaining the same constructor data plus a named nonreturning walk with
+  three pairwise-distinct consecutive actual blockers.
+
+All eight terminal leaves are consumed immediately by proved dispatchers and
+therefore by the same all-large publish route.  Across the three exhaustive
+splits and the shared-blocker cap-cover split, the raw load-bearing `sorry`
+count changes from one to eight; this is decomposition rather than closure.
+The tractability gain is that the unequal
+incidence and endpoint payloads now target separate stable mathematical
+statements instead of one sum-typed leaf.  This is a net increase of seven
+live leaves and must be counted as frontier bookkeeping, not proof progress.
+Do not fan this E1 frontier out again unless the same change proves at least
+one resulting child or records a compensating, measured tractability gain.
+
+The fresh branch now also has a source-proved continuation producer,
+`exists_reverseHitFresh_nonreturnEndpointClassification`.  It retains the two
+successive source-exact common deletions as a named walk and uses
+`fresh ≠ kept` to remove the source-return outcome.  The live branch therefore
+has only two endpoint shapes: an origin-tagged endpoint blocker collision with
+its critical fiber, or three pairwise-distinct consecutive actual blockers.
+This producer now proves the reverse-hit/fresh coordinator.  The endpoint
+collision has a second source-proved producer,
+`exists_reverseHitFresh_endpointCriticalFiber_continuation`, which chooses a
+fresh first-apex row source and splits on whether its actual critical row hits
+the opposite fiber endpoint.  In the positive arm,
+`false_of_endpointFreshCrossHit_of_orderedPlacement` is a proved adapter to
+`OrderedCrossRowCore.false`, but that adapter closes only the placement
+`O < A < X < J < C < K`; the current interfaces do not produce that placement.
+A source audit leaves exactly three unresolved role coincidences, `A = J`,
+`A = X`, and `X = C`.  They are now separate on-spine targets.  Once they are
+excluded, the generic child has six distinct roles and needs a global
+cyclic-order/full-row metric classifier, not merely a producer for one chosen
+order.  Existing Kalmanson equality schemas eliminate only a proper subset of
+the possible orders.  The source-clean module
+`EndpointFreshFiveRoleKalmanson` banks that proper subset explicitly:
+`false_of_firstCenterEqFreshSource_of_crossHit_of_placement` and
+`false_of_secondCenterEqFirstSource_of_crossHit_of_placement` each eliminate
+all eight direct-or-reflected oriented placements now covered by the bank.
+Their kernel audits use only `propext`, `Classical.choice`, and `Quot.sound`.
+Regular-pentagon witnesses show that the three shell equalities alone do not
+eliminate every remaining order.
+
+The shared-blocker branch `A = X` now has stronger exact incidence and order
+producers.  The two full exact-four rows meet in exactly `{C, J}`; the common
+shell is uniquely `{C, K, J, L}`, with `K` and `L` both outside the first-apex
+row.  Moreover `C` and `J` alternate across the chord joining the first apex
+to the common blocker in every compatible boundary indexing.  Collision
+localization now also proves that `J` lies outside the strict first-cap
+interior.  Since `J` remains on the positive retained first-apex radius, the
+global cap-cover theorem puts it in the left- or right-adjacent closed cap.
+The former single outside-first-interior obligation is therefore a proved
+coordinator with immediate constructor fan-out two, into the on-spine leaves
+`false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInLeftAdjacentCap_triApexAllLarge_core`
+and
+`false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInRightAdjacentCap_triApexAllLarge_core`.
+Each child retains the outside-first-interior hypothesis and adds its named
+adjacent-cap membership, so both are strictly stronger than the parent.  This
+is source-clean narrowing, not a contradiction.  The old six-role cyclic
+placement classifier and sparse Euclidean-bank dispatch remain a downstream
+fallback after the two cap-local branches have been exploited.
+
+#### A = X shared-blocker checkpoint (2026-08-02)
+
+The shared-blocker theorem bank has four further proved declarations in the
+current `ATail/FrontierLiveClosure.lean` block around lines 7736--7950:
+`endpointFresh_criticalShell_inter_frontierRadiusClass_eq_pair_of_sharedBlocker`,
+`endpointFresh_sharedBlocker_frontierRadius_fourth_packet`, and the left- and
+right-adjacent-cap singleton-intersection theorems.  Together they lift the
+chosen-row facts to the full retained frontier-radius class, name its fourth
+critical-shell point, and isolate its intersections with the two adjacent
+caps.  A focused `lean_verify` audit reports only `propext`,
+`Classical.choice`, and `Quot.sound`; these declarations introduce no new
+`sorry` and are producers, not a contradiction.
+
+Two exhaustive local checks delimit what these facts can prove by themselves.
+First, the strict five-point Kalmanson enumeration leaves four of the twelve
+dihedral cyclic orders feasible.  The other eight are precisely the
+nonalternating orders, so common-pair alternation is the complete linear
+five-point consequence of these shell equalities.  The auditable enumeration
+is in
+`scratch/retained-omission-e1/a-x-kalmanson-enumeration/report.md`.
+Second, an exact rational strictly convex eight-point witness realizes two
+full exact unit four-shells whose intersection is exactly `{C, J}`.  Its exact
+verification is in
+`scratch/retained-omission-e1/a-x-two-exact-circles/`.  This is an authenticated
+local no-go: convexity plus the two full circles cannot close the `A = X`
+branch, so the next producer must use global carrier data.
+
+That global producer is
+`endpointFresh_exists_selectedRow_escape_twoShellSeed`, now source- and
+axiom-verified.  A focused `lean_verify` audit reports only `propext`,
+`Classical.choice`, and `Quot.sound`.  It applies global K4/minimality to the union of the two named
+shell supports: the seed has cardinality at most eight, whereas the all-large
+cap hypotheses force carrier cardinality at least fifteen.  Hence a selected
+row centered in the seed escapes the seed.  This theorem adds no new
+obligation; the next closure step is to consume that escaping
+row in one of the two existing adjacent-cap leaves rather than split either
+leaf again.
+
+The negative arm now carries
+an explicit new common-deletion packet rather than an inert omission.  The
+three-distinct-blocker branch still lacks selected-row ordinal-comparison edges
+that turn the named blocker path into a strict comparison cycle.
 
 The dated v30 signal is positive for workstreams 1 and 2 but not a convergence
 certificate: roughly 6,950 authenticated UNSAT assignments yielded 437 short
@@ -107,6 +274,45 @@ projected cores across all 23 active cases, while closing zero cases near
 mid-budget.  The long v28 run has no completeness or termination bound.  Every
 round therefore ends with a global theorem-bank audit, and every odd round also
 gets an efficiency/observability review before more compute is launched.
+
+One exact-15/SDD cut family is now banked, but it does not change the uniform
+frontier.  Its soundness theorem is stronger than the original exact-15 form:
+for any single cap of cardinality exactly six, the selected rich apex class
+contains the entire strict cap interior; it is not equal to that four-point
+interior.  The source-clean, no-`sorryAx` consumer
+`ExactFifteenSProfileMutualClassPair.false_of_sProfile_interiorPair_of_cap_card_eq_six`
+closes a finite candidate only when checked coverage supplies strict-interior
+points `C, M` and radii `rC, rM` with the four required facts: the apex and `M`
+belong to `C`'s selected class, `C` belongs to `M`'s selected class, and the
+apex does not belong to `M`'s selected class.  In the authenticated v30 prefix,
+21 of 11,601 completed proposals violated 9 distinct ordered cuts, and all 21
+were already `UNSAT`.  This is useful theorem-backed exact-15 pruning, not a
+finite-coverage certificate or convergence claim.  Exact-15 all-large caps
+force the needed cap-six premise and remain a convenient corollary.  The
+universal E1 core has only cap-cardinality lower bounds, so this result neither
+narrows nor closes that core without a separate exact-six branch or coverage
+producer.
+
+The exact-15 profile dispatcher is now checked as a two-way theorem rather
+than eight role-labelled cases:
+`exists_exactSixClass_or_all_exactTwoFourClasses_of_card_eq_fifteen` gives
+either one exact six-class at an indexed apex, or exact `4+4` classes at every
+indexed apex.  This is exhaustive and `sorryAx`-free, but it is not itself a
+closure split: the S-bearing side still needs the full-shell `C,M` coverage
+producer above, while the all-D side receives none of the v32 clauses.
+
+A constructor-level coverage audit rules out treating v32 as a hidden packet
+consequence.  For the natural strict-interior pair in
+`pairedCommonDeletion`, the normal form supplies none of the four centered
+full-class literals used by the cut.  In `reverseHitFreshCommonDeletion`, the
+reverse critical shell supplies only the literal saying that the retained
+source lies in the reverse blocker's full class; apex membership, the reverse
+centered incidence, and apex nonmembership are still missing.  Moreover, the
+normal form names points only in the first cap, so it supplies no candidate
+pair for an `S` profile at either later cap.  Packet `B₁`/`B₂` omissions
+must not be promoted to full-shell nonmembership.  Consequently v32 remains a
+sound exact-15 finite-search cut until a separate coverage theorem or complete
+finite certificate is produced.
 
 ## 2. Ground rules (binding)
 
@@ -358,9 +564,65 @@ succeeds nor yields a finite-support obstruction — that residue is exactly
 the (Q)-flavoured content); the stall condition is itself reportable: it
 names the minimal open metric fact for that package.
 
+### Pinned-multiplicity boundary (2026-08-01)
+
+The pinned-multiplicity reformulation is now a checked semantic bridge, not a
+new generic CEGAR pruning rule. For a K4 configuration it gives
+`4 ≤ pinnedMultiplicity A p` at every center `p`, and the exact reformulation
+of the target is the existence of a center with multiplicity at most three.
+The current `(S-EXACT)` support rows already encode the usable K4 consequence
+by selecting four witnesses. They do not assert that the physical radius
+class has exactly four points.
+
+The only generic cardinality reduction admitted on the current Phase-3 spine
+is the existing `k = 4, n = 10` scope for the `counterexample_card_ge_ten`
+consequence and its already-audited `S-MINCUT` encoding. Do not add clauses
+for a fifth or sixth co-radial point, full-shell exactness, or
+`NoQFreeAfterDeletion`: no universal producer for those statements is
+available in the current schema, and no generic upper bound on pinned
+multiplicity has been proved.
+
+The other checked consequences are route-specific. Use
+`no_diameter_under_k4` only in an MEC-boundary search that supplies its
+noncollinearity and convex-independence hypotheses; use
+`six_mul_card_le_iCount_of_K4` only in a search that models `iCount` and has
+an independent producer for the corresponding upper bound. The
+blocker-fiber multiplicity disjunctions belong to the ATAIL
+`CriticalShellSystem` route and must not be copied into the generic Phase-3
+cell CNF.
+
+Full physical-radius partitions, named cap/deletion roles, off-support
+disequalities, and aligned-cap constraints are reserved for a separate
+pinned-multiplicity schema. The existing projected-static-v3 implementation
+does not satisfy that gate: it still treats the four selected witnesses as a
+support and keeps `MetricRow.exact = false`. That future schema requires its
+own semantics contract, decoder/validator, replay/blocking artifacts, and
+small-cell acceptance gate before any of its clauses can enter production.
+
+### ATAIL pinned-multiplicity ingress boundary (2026-08-01)
+
+The proved local result
+`CollisionCrossHit P Pρ ∨ GeometricMultiplicityResidual P Pρ` is an ATAIL
+source-level disjunction, not a generic Phase-3 learned clause. Preserve the
+actual `CriticalShellSystem` rows, vertices, cap/blocker provenance, and
+omission/membership fields in named ATAIL packet types. Dispatch through the
+checked acyclic ATAIL coordinator to branch-specific consumers; the
+coordinator is source-clean wiring, while only proved child contradictions
+count as closure.
+
+Generic Phase-3 CEGAR must not encode or learn ATAIL blocker-fiber
+disjunctions, cap/blocker identities, same-cap or omission provenance,
+negative-membership facts, or named-source finite completeness. It may consume
+a separately proved positive-row metric consequence only after an ATAIL
+branch produces the required positive antecedent. SAT, `UNKNOWN`, bounded
+shadows, and finite realization failures remain conditional evidence.
+
 ## 5. Package work orders and smoke gates
 
-Ordered by leverage (leaves closed or killed per verdict), with the shared
+The current production handoff is the E1 core specified above.  The matrix
+below is the secondary computational/fallback order for the remaining
+packages; it must not be read as a new exact-cardinality search order.  It is
+ordered by fallback leverage (leaves closed or killed per verdict), with the shared
 base encoder built once and instantiated per family — A and C share blocker
 semantics, D/E share the residual frame.
 
@@ -377,11 +639,11 @@ semantics, D/E share the residual frame.
 Validation status 2026-07-28: A, C, E, D-R, D-E, and B encoders pass their
 smoke gates. F-Γ has no sound fixed-slot encoder; its separate unbounded
 counting audit is the applicable gate result.
-Rationale for the order: A-core is the largest single lever (6 leaves close
-or die together on the package verdict before any leaf delta is touched);
-C amortizes A's encoder; E is the most counting-flavoured (best UNSAT
-odds per effort); F-Γ has the most pre-built structure; D and B are
-small and partly pre-constrained by banked facts.
+Rationale for the fallback order: A-core is the largest single package lever
+(6 leaves close or die together on the package verdict before any leaf delta
+is touched); C amortizes A's encoder; the remaining packages are smaller or
+partly pre-constrained by banked facts.  None of these package runs displaces
+the E1 core as the current uniform production target.
 
 ## 6. Lean ingress (landing verdicts on the spine)
 
@@ -424,6 +686,26 @@ Budget (Adam, 2026-07-28): all of flux plus 24 cores on this box.
 
 ## 8. Sequencing (sessions, not wall-clock)
 
+The earlier session bullets below preserve the completed computational
+triage.  The current execution handoff is the E1 core above, with the package
+matrix used only if that route needs a certified secondary consumer.
+
+- **Current handoff (2026-08-02)**: the broad
+  `false_of_retainedOmission_triApexAllLarge_core` obligation and its
+  reverse-hit/fresh and endpoint-critical-fiber children are checked
+  dispatchers.  Attack
+  `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_triApexAllLarge_core`
+  through its checked `A = J`, `A = X`, `X = C`, and generic-role split.  The
+  three coincidence children are five-role metric/full-shell problems; the
+  generic child requires global cyclic-order coverage across all surviving
+  placements.  Mine the complementary endpoint common-deletion branch, the
+  three-distinct-blocker ordinal-cycle branch, and the paired-common-deletion
+  branch separately.  Keep all seven
+  wired through the existing all-large-cap
+  coordinator.  A leaf counts as closed
+  only after the focused Lake, proof-blueprint reference/spine, and
+  transitive-axiom gates pass.  Do not open a new card-12/13 census as a
+  substitute.
 - **Session 1**: base incidence encoder + A-core instantiation + A smoke
   gate; A-core package verdict run. Deliverable: verdict or a concrete
   encoding blocker. DONE 2026-07-28: all gates pass; verdict = SAT on all
@@ -463,7 +745,7 @@ Budget (Adam, 2026-07-28): all of flux plus 24 cores on this box.
   corrected without changing its CNF. The live frontier is now 20 after the
   F3 split; see
   `census/frontier-packages/SESSION3-TRIAGE-2026-07-28.md`.
-- **Sessions 4+**: no package produced a live-leaf UNSAT core for replay.
+- **Sessions 4+ (secondary/fallback)**: no package produced a live-leaf UNSAT core for replay.
   Continue with the Phase-3 exact-shell census and independently certified
   realization/infeasibility work on survivors; add CEGAR clauses only after
   proving the corresponding metric/global consequence. Kernel spine
@@ -489,6 +771,10 @@ Budget (Adam, 2026-07-28): all of flux plus 24 cores on this box.
 
 ## 9. Honest limits
 
+- The exact-cardinality-11 `FiniteN11Closure` endpoint is a verified
+  regression closure, not a universal `FrontierLiveClosure` closure.  The
+  E1 core and the D-R, D-E, A/C, F-Γ, and B residuals remain live until their
+  own load-bearing consumers are proved.
 - A package-level incidence-SAT verdict does not kill the package — only an
   audited exact realization does, and even that is conditional on
   minimality/no-(m,4,4) (not finitely checkable). Both hypotheses are

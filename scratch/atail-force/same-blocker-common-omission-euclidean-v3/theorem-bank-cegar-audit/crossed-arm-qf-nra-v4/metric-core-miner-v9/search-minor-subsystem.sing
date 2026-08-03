@@ -1,0 +1,79 @@
+ring B=32003,(br,bs,bu,bv,bw,t),dp;
+matrix M[11][6]=
+br-bw,-bs+bw,0,0,-br+bs,0,
+br-bw,0,-bu+bw,0,-br+bu,0,
+0,-bs,0,0,0,1,
+0,0,0,0,-bw,1,
+0,-bs+bu,bs-bu,0,0,1,
+0,-bs+bv,0,bs-bv,0,1,
+br,0,0,-bv,0,0,
+0,0,0,bv-1,1-bw,-bv+bw,
+br-bv,0,0,1-br,0,bv-1,
+1-bu,0,-br+bu,0,0,br-1,
+0,0,1-bv,-bu+bv,0,bu-1;
+ideal K=minor(M,6);
+ideal L;
+ideal BSI=std(bs);
+ideal BWI=std(bw);
+poly p;
+int k;
+for(k=1;k<=size(K);k++)
+{
+  p=K[k];
+  while(p!=0 and reduce(p,BSI)==0){p=p/bs;}
+  while(p!=0 and reduce(p,BWI)==0){p=p/bw;}
+  if(p!=0){L[size(L)+1]=p;}
+}
+print("ALL="+string(size(K))+" NONZERO_REDUCED="+string(size(L)));
+int threshold;
+ideal J,H,G;
+int i;
+for(threshold=12;threshold<=120;threshold=threshold+4)
+{
+  J=ideal(0);
+  for(i=1;i<=size(L);i++){ if(size(L[i])<=threshold){J[size(J)+1]=L[i];} }
+  H=J,t*br*bs*bw*(bv-1)-1;
+  G=std(H);
+  print("threshold="+string(threshold)+" selected="+string(size(J))+" unit="+string(size(G)==1 and G[1]==1));
+  if(size(G)==1 and G[1]==1){break;}
+}
+ideal E;
+int j;
+for(j=1;j<=size(J);j++)
+{
+  E=ideal(0);
+  for(i=1;i<=size(J);i++){if(i!=j){E[size(E)+1]=J[i];}}
+  H=E,t*br*bs*bw*(bv-1)-1;
+  G=std(H);
+  print("omit_selected="+string(j)+" terms="+string(size(J[j]))+" still_unit="+string(size(G)==1 and G[1]==1));
+}
+print("AFTER_OMIT_3");
+for(j=1;j<=size(J);j++)
+{
+  if(j!=3)
+  {
+    E=ideal(0);
+    for(i=1;i<=size(J);i++){if(i!=3 and i!=j){E[size(E)+1]=J[i];}}
+    H=E,t*br*bs*bw*(bv-1)-1;
+    G=std(H);
+    print("also_omit="+string(j)+" still_unit="+string(size(G)==1 and G[1]==1));
+  }
+}
+E=J[1],J[2],J[5],J[7],J[8];
+H=E,t*br*bs*bw*(bv-1)-1;
+G=std(H);
+print("KEEP_1_2_5_7_8 unit="+string(size(G)==1 and G[1]==1));
+print("AFTER_OMIT_3_4");
+for(j=1;j<=size(J);j++)
+{
+  if(j!=3 and j!=4)
+  {
+    E=ideal(0);
+    for(i=1;i<=size(J);i++){if(i!=3 and i!=4 and i!=j){E[size(E)+1]=J[i];}}
+    H=E,t*br*bs*bw*(bv-1)-1;
+    G=std(H);
+    print("also_omit="+string(j)+" still_unit="+string(size(G)==1 and G[1]==1));
+  }
+}
+for(j=1;j<=size(J);j++){print("SELECTED["+string(j)+"]="+string(J[j]));}
+quit;

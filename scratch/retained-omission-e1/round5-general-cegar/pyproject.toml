@@ -1,0 +1,10 @@
+[project]
+name = "p97-retained-omission-round5-cegar"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+  "z3-solver==4.15.3.0",
+]
+
+[tool.uv]
+package = false

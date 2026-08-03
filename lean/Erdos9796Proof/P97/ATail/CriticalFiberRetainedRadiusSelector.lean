@@ -171,6 +171,55 @@ structure RetainedRadiusCollision
 
 namespace RetainedRadiusCollision
 
+/-- Package two prescribed retained-radius sources with the same actual
+blocker as a source-faithful retained-radius collision.  This is the public
+constructor for consumers that already know the colliding pair; using the
+global blocker-map dichotomy here would erase that provenance. -/
+def ofSources
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (source₁ source₂ : CriticalShellSystem.CarrierVertex D.A)
+    (hsource₁ : source₁.1 ∈ SelectedClass D.A S.oppApex1 radius)
+    (hsource₂ : source₂.1 ∈ SelectedClass D.A S.oppApex1 radius)
+    (hsources : source₁ ≠ source₂)
+    (hblockers : H.blockerVertex source₁ = H.blockerVertex source₂) :
+    RetainedRadiusCollision (R := R) :=
+  { fiber := criticalFiberOfBlockerCollision source₁ source₂ hsources hblockers
+    source₁_mem_radius := hsource₁
+    source₂_mem_radius := hsource₂ }
+
+@[simp] theorem ofSources_fiber_source₁
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (source₁ source₂ : CriticalShellSystem.CarrierVertex D.A)
+    (hsource₁ : source₁.1 ∈ SelectedClass D.A S.oppApex1 radius)
+    (hsource₂ : source₂.1 ∈ SelectedClass D.A S.oppApex1 radius)
+    (hsources : source₁ ≠ source₂)
+    (hblockers : H.blockerVertex source₁ = H.blockerVertex source₂) :
+    (ofSources (R := R) source₁ source₂ hsource₁ hsource₂ hsources
+      hblockers).fiber.source₁ =
+      source₁ := by
+  rfl
+
+@[simp] theorem ofSources_fiber_source₂
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (source₁ source₂ : CriticalShellSystem.CarrierVertex D.A)
+    (hsource₁ : source₁.1 ∈ SelectedClass D.A S.oppApex1 radius)
+    (hsource₂ : source₂.1 ∈ SelectedClass D.A S.oppApex1 radius)
+    (hsources : source₁ ≠ source₂)
+    (hblockers : H.blockerVertex source₁ = H.blockerVertex source₂) :
+    (ofSources (R := R) source₁ source₂ hsource₁ hsource₂ hsources
+      hblockers).fiber.source₂ =
+      source₂ := by
+  rfl
+
 /-- A retained-radius collision is automatically on the `rowHit` side of the
 first-apex source-faithful split: both collision sources lie in the retained
 class, so the `bothOff` constructor is impossible. -/

@@ -1,0 +1,10 @@
+ring B=0,(br,bs,bu,bv,bw,x,y),dp;
+poly q=bs^3-2*bs^2*bu-bs^2*bw+bs*bu^2+bs*bu*bw+bs*bw^2-bu^2*bw;
+poly e7=bs^3*bu-bs^3-bs^2*bu^2-bs^2*bu*bv+bs^2*bu+bs^2*bv+bs*bu^2*bv+bs*bu*bv-bs*bu-bs*bv^2-bu^2*bv+bu*bv;
+poly e8=bs^2*bv*bw-bs^2*bw^2+bs^2*bw-bs^2-bs*bv^2*bw+bs*bv*bw^2-bs*bv*bw+bs*bv+bv^2*bw-bv*bw;
+poly e9=br^2*bv+br*bs^2*bv-br*bs^2-br*bs*bv^2+br*bs*bv-br*bv^2-br*bv+bv^3;
+print("q_x="+string(factorize(subst(q,bu,bs+x))[1]));
+print("e7_x="+string(factorize(subst(e7,bu,bs+x))[1]));
+print("e8="+string(factorize(e8)[1]));
+print("e9_y="+string(factorize(subst(e9,br,bv+y))[1]));
+quit;

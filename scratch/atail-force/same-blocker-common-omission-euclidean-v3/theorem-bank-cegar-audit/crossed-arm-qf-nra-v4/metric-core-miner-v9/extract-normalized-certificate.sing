@@ -1,0 +1,32 @@
+ring R=0,(x_r2,x_s3,x_t1,x_t2,x_t4,y_r2,y_s3,y_t1,y_t2,y_t4),dp;
+int cleanup=system("sh","rm -f normalized-unit-certificate.singexpr");
+ideal I=
+  x_r2^2 - 2*x_r2*x_t4 - x_s3^2 + 2*x_s3*x_t4 + y_r2^2 - 2*y_r2*y_t4 - y_s3^2 + 2*y_s3*y_t4,
+  x_r2^2 - 2*x_r2*x_t4 - x_t1^2 + 2*x_t1*x_t4 + y_r2^2 - 2*y_r2*y_t4 - y_t1^2 + 2*y_t1*y_t4,
+  -x_s3^2 - y_s3^2 + 1,
+  -x_t4^2 - y_t4^2 + 1,
+  -x_s3^2 + 2*x_s3*x_t1 - x_t1^2 - y_s3^2 + 2*y_s3*y_t1 - y_t1^2 + 1,
+  -x_s3^2 + 2*x_s3*x_t2 - x_t2^2 - y_s3^2 + 2*y_s3*y_t2 - y_t2^2 + 1,
+  x_r2^2 - x_t2^2 + y_r2^2 - y_t2^2,
+  x_t2^2 - 2*x_t2 - x_t4^2 + 2*x_t4 + y_t2^2 - y_t4^2,
+  -x_r2^2 + 2*x_r2*x_t2 - 2*x_t2 - y_r2^2 + 2*y_r2*y_t2 + 1,
+  2*x_r2*x_t1 - 2*x_r2 - x_t1^2 + 2*y_r2*y_t1 - y_t1^2 + 1,
+  2*x_t1*x_t2 - 2*x_t1 - x_t2^2 + 2*y_t1*y_t2 - y_t2^2 + 1;
+
+matrix C=lift(I,ideal(1));
+poly check=0;
+int terms=0;
+int maxdeg=0;
+int i;
+for (i=1; i<=size(I); i=i+1) {
+  check=check+C[i,1]*I[i];
+  terms=terms+size(C[i,1]);
+  if (deg(C[i,1])>maxdeg) { maxdeg=deg(C[i,1]); }
+  print("ROW="+string(i)+" TERMS="+string(size(C[i,1]))+" DEGREE="+string(deg(C[i,1])));
+  write("normalized-unit-certificate.singexpr","C"+string(i)+"="+string(C[i,1])+";"+newline);
+}
+print("CERTIFICATE_ROWS="+string(nrows(C)));
+print("TOTAL_TERMS="+string(terms));
+print("MAX_MULTIPLIER_DEGREE="+string(maxdeg));
+print("CHECK_REMAINDER="+string(check-1));
+quit;

@@ -12,6 +12,7 @@ import collections
 import itertools
 import json
 import sys
+import tempfile
 import time
 from pathlib import Path
 
@@ -32,6 +33,52 @@ PROFILE = (6, 8, 6)
 N = 17
 ARMS = ("source-at-common", "other-at-common")
 FAMILIES = ("direct", "forward-second", "reversed-second")
+
+
+def critical_k4_artifact_suffix(critical_k4_representation: str) -> str:
+    """Keep artifacts from distinct base encodings in distinct paths."""
+    if critical_k4_representation not in incidence_cegar.CRITICAL_K4_REPRESENTATIONS:
+        raise ValueError((
+            "invalid-critical-k4-representation",
+            critical_k4_representation,
+        ))
+    if (
+        critical_k4_representation
+        == incidence_cegar.LEGACY_CRITICAL_K4_REPRESENTATION
+    ):
+        return ""
+    return f"-critical-k4-{critical_k4_representation}"
+
+
+def critical_k4_representation_self_check(
+    critical_k4_representation: str,
+) -> dict[str, object]:
+    suffix = critical_k4_artifact_suffix(critical_k4_representation)
+    legacy_representation = incidence_cegar.LEGACY_CRITICAL_K4_REPRESENTATION
+    legacy_suffix = critical_k4_artifact_suffix(legacy_representation)
+    default_suffix = critical_k4_artifact_suffix(
+        incidence_cegar.DEFAULT_CRITICAL_K4_REPRESENTATION
+    )
+    if legacy_suffix:
+        raise AssertionError("legacy critical-K4 representation changed artifact paths")
+    if (
+        incidence_cegar.DEFAULT_CRITICAL_K4_REPRESENTATION
+        != legacy_representation
+        and not default_suffix
+    ):
+        raise AssertionError("new critical-K4 default collides with legacy artifacts")
+    return {
+        "selected": critical_k4_representation,
+        "default": incidence_cegar.DEFAULT_CRITICAL_K4_REPRESENTATION,
+        "legacy": legacy_representation,
+        "choices": list(incidence_cegar.CRITICAL_K4_REPRESENTATIONS),
+        "artifact_suffix": suffix,
+        "default_artifact_suffix": default_suffix,
+        "legacy_artifact_suffix": legacy_suffix,
+        "legacy_default_preserves_artifact_paths": True,
+    }
+
+
 THEOREMS = {
     "direct": (
         "Problem97.FivePointEuclideanObstruction."
@@ -53,7 +100,10 @@ if NEW_THEOREM_FAMILY not in PRE_CONVEX_THEOREM_FAMILIES:
     raise AssertionError(("missing-new-theorem-family", NEW_THEOREM_FAMILY))
 CONVEX_FIVE_POINT_FAMILY = "convex_five_point_core"
 CONVEX_FIVE_POINT_SCHEMA = {
-    "theorem": "Problem97.Census554.ConvexFivePointCore.false_of_core",
+    "theorem": (
+        "Problem97.Census554.ConvexFivePointCore."
+        "false_of_core_of_common_orientation"
+    ),
     "arity": 5,
     # Roles are (a, x, b, c, y) in cyclic order up to orientation.
     "equalities": ((1, 0, 2), (4, 0, 2), (3, 2, 1), (3, 2, 4)),
@@ -78,11 +128,76 @@ GLOBAL_KALMANSON_SCHEMA = {
         (4, 2, 5), (6, 1, 7), (7, 0, 6), (12, 3, 8),
     ),
 }
+CROSSED_ARM_SEVEN_POINT_COLLISION_FAMILY = (
+    "crossed_arm_seven_point_collision_11eq"
+)
+CROSSED_ARM_SEVEN_POINT_COLLISION_THEOREM = (
+    "Problem97.CrossedArmSevenPointEuclideanObstruction."
+    "false_of_crossed_arm_seven_point_collision_of_injective"
+)
+CROSSED_ARM_SEVEN_POINT_COLLISION_SCHEMA = {
+    # This is deliberately the final injective contradiction adapter, rather
+    # than the intermediate metric lemma whose conclusion is merely A = P.
+    "theorem": CROSSED_ARM_SEVEN_POINT_COLLISION_THEOREM,
+    "arity": 7,
+    "role_order": ("A", "P", "R", "S", "U", "V", "W"),
+    # Direct E(center, left, right) atoms.  The first five-edge-length class is
+    # represented by a shared-center spanning tree, so every antecedent is a
+    # primitive global-equality-closure atom and no derived class comparison
+    # is needed by the matcher or cut builder.
+    "equalities": (
+        (0, 1, 3),
+        (0, 1, 6),
+        (3, 0, 4),
+        (3, 0, 5),
+        (6, 2, 3),
+        (6, 2, 4),
+        (1, 5, 6),
+        (5, 1, 2),
+        (0, 2, 5),
+        (2, 1, 4),
+        (4, 1, 5),
+    ),
+}
 PRE_GLOBAL_THEOREM_FAMILIES = (
     *PRE_CONVEX_THEOREM_FAMILIES,
     CONVEX_FIVE_POINT_FAMILY,
 )
-FULL_BANK_FAMILIES = (*PRE_GLOBAL_THEOREM_FAMILIES, GLOBAL_KALMANSON_FAMILY)
+PRE_SEVEN_POINT_THEOREM_FAMILIES = (
+    *PRE_GLOBAL_THEOREM_FAMILIES,
+    GLOBAL_KALMANSON_FAMILY,
+)
+FULL_BANK_FAMILIES = (
+    *PRE_SEVEN_POINT_THEOREM_FAMILIES,
+    CROSSED_ARM_SEVEN_POINT_COLLISION_FAMILY,
+)
+SUBSUMED_THEOREM_CUT_FAMILIES = {
+    # These pairs have the same arity, ordered point key, and linear-order
+    # guard.  Each selected-row antecedent entails every raw equality in its
+    # paired family via the selected row's common-radius constraints.
+    "five_kalmanson_three_selected_rows": (
+        "five_kalmanson_three_shell_equalities"
+    ),
+    "six_sparse_two_selected_rows": "six_sparse_row_equalities",
+}
+SUBSUMING_THEOREM_CUT_FAMILIES = {
+    raw_family: selected_family
+    for selected_family, raw_family in SUBSUMED_THEOREM_CUT_FAMILIES.items()
+}
+if len(SUBSUMING_THEOREM_CUT_FAMILIES) != len(
+    SUBSUMED_THEOREM_CUT_FAMILIES
+):
+    raise AssertionError("theorem-cut subsumption providers must be unique")
+EXACT_ORBIT_CANONICAL_THEOREM_FAMILIES = {
+    # With q = (q0,q1,q2,q3,q4), the reversed-second antecedent is exactly
+    # the first-family antecedent at the cyclic rotation
+    # (q4,q0,q1,q2,q3).  Keep the legacy family registered for checkpoint
+    # compatibility, but never install a second formula for this orbit.
+    "reversed_second": "first",
+}
+THEOREM_FAMILY_ORDER = {
+    family: index for index, family in enumerate(FULL_BANK_FAMILIES)
+}
 LEGACY_THEOREM_FAMILIES = (
     "first",
     "second",
@@ -112,20 +227,71 @@ if tuple(
     LEGACY_THEOREM_FAMILIES
 ):
     raise AssertionError("the theorem-bank manifest changed without a schema migration")
-RESULT_SCHEMA = "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v9"
-CUT_SCHEMA = "n17-crossed-arm-learned-cuts-v7"
-PREVIOUS_RESULT_SCHEMA = "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v8"
-PREVIOUS_CUT_SCHEMA = "n17-crossed-arm-learned-cuts-v6"
-LEGACY_RESULT_SCHEMA = "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v7"
-LEGACY_CUT_SCHEMA = "n17-crossed-arm-learned-cuts-v5"
-ANCIENT_RESULT_SCHEMA = "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v6"
-ANCIENT_CUT_SCHEMA = "n17-crossed-arm-learned-cuts-v4"
-OLDEST_RESULT_SCHEMA = "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v5"
-OLDEST_CUT_SCHEMA = "n17-crossed-arm-learned-cuts-v3"
-PREHISTORIC_RESULT_SCHEMA = "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v4"
-PREHISTORIC_CUT_SCHEMA = "n17-crossed-arm-learned-cuts-v2"
-ARCHAIC_RESULT_SCHEMA = "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v3"
-ARCHAIC_CUT_SCHEMA = "n17-crossed-arm-learned-cuts-v1"
+
+
+def validated_theorem_cut_subsumption_providers() -> dict[str, tuple[int, ...]]:
+    equality_families = {
+        **dual_row_cegar.RAW_EQUALITY_FAMILIES,
+        **dual_row_cegar.SIX_POINT_EQUALITY_FAMILIES,
+    }
+    providers = {}
+    for selected_family, raw_family in SUBSUMED_THEOREM_CUT_FAMILIES.items():
+        if selected_family not in dual_row_cegar.LINEAR_ROW_FAMILIES:
+            raise AssertionError(("missing-selected-row-family", selected_family))
+        if raw_family not in equality_families:
+            raise AssertionError(("missing-raw-equality-family", raw_family))
+        selected_schema = dual_row_cegar.LINEAR_ROW_FAMILIES[selected_family]
+        raw_schema = equality_families[raw_family]
+        if selected_schema["arity"] != raw_schema["arity"]:
+            raise AssertionError((
+                "subsumption-arity-mismatch",
+                selected_family,
+                raw_family,
+            ))
+        family_providers = []
+        for center, left, right in raw_schema["equalities"]:
+            candidates = tuple(
+                index
+                for index, (row_center, support) in enumerate(
+                    selected_schema["rows"]
+                )
+                if row_center == center and {left, right}.issubset(support)
+            )
+            if not candidates:
+                raise AssertionError((
+                    "raw-equality-not-implied-by-selected-row",
+                    selected_family,
+                    raw_family,
+                    (center, left, right),
+                ))
+            family_providers.append(candidates[0])
+        providers[selected_family] = tuple(family_providers)
+    return providers
+
+
+THEOREM_CUT_SUBSUMPTION_PROVIDERS = (
+    validated_theorem_cut_subsumption_providers()
+)
+RESULT_SCHEMA = "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v10"
+CUT_SCHEMA = "n17-crossed-arm-learned-cuts-v8"
+PREVIOUS_RESULT_SCHEMA = "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v9"
+PREVIOUS_CUT_SCHEMA = "n17-crossed-arm-learned-cuts-v7"
+LEGACY_RESULT_SCHEMA = "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v8"
+LEGACY_CUT_SCHEMA = "n17-crossed-arm-learned-cuts-v6"
+ANCIENT_RESULT_SCHEMA = "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v7"
+ANCIENT_CUT_SCHEMA = "n17-crossed-arm-learned-cuts-v5"
+OLDEST_RESULT_SCHEMA = "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v6"
+OLDEST_CUT_SCHEMA = "n17-crossed-arm-learned-cuts-v4"
+PREHISTORIC_RESULT_SCHEMA = "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v5"
+PREHISTORIC_CUT_SCHEMA = "n17-crossed-arm-learned-cuts-v3"
+ARCHAIC_RESULT_SCHEMA = "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v4"
+ARCHAIC_CUT_SCHEMA = "n17-crossed-arm-learned-cuts-v2"
+PRIMORDIAL_RESULT_SCHEMA = "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v3"
+PRIMORDIAL_CUT_SCHEMA = "n17-crossed-arm-learned-cuts-v1"
+ORDINARY_RESUME_SCHEMA_PAIRS = (
+    (RESULT_SCHEMA, CUT_SCHEMA),
+    (PREVIOUS_RESULT_SCHEMA, PREVIOUS_CUT_SCHEMA),
+)
 BASE_STRUCTURAL_FAMILIES = ("shared_pair", "circle", "bisector")
 RAW_BTW_SEP_FAMILY = "raw_btw_sep"
 PRE_TRANSPORT_STRUCTURAL_FAMILIES = (*BASE_STRUCTURAL_FAMILIES, RAW_BTW_SEP_FAMILY)
@@ -228,6 +394,136 @@ def add_global_kalmanson_match(audit, match):
     return audit.add_guarded_cut(("theorem", family, *points), atoms)
 
 
+def crossed_arm_seven_point_collision_requirements(points):
+    """Instantiate the exact eleven direct-E atoms at one role assignment."""
+    points = tuple(points)
+    if len(points) != CROSSED_ARM_SEVEN_POINT_COLLISION_SCHEMA["arity"]:
+        raise ValueError(("crossed-arm-seven-point-wrong-arity", points))
+    return tuple(
+        (points[center], (points[left], points[right]))
+        for center, left, right in CROSSED_ARM_SEVEN_POINT_COLLISION_SCHEMA[
+            "equalities"
+        ]
+    )
+
+
+def crossed_arm_seven_point_collision_points_match(context, points) -> bool:
+    """Check one injective `(A,P,R,S,U,V,W)` assignment exactly."""
+    points = tuple(points)
+    if (
+        len(points) != CROSSED_ARM_SEVEN_POINT_COLLISION_SCHEMA["arity"]
+        or len(set(points)) != len(points)
+    ):
+        return False
+    return all(
+        context.equality_holds(center, *endpoints)
+        for center, endpoints in crossed_arm_seven_point_collision_requirements(
+            points
+        )
+    )
+
+
+def direct_equality_neighbor_index(context, vertices):
+    """Index direct E-neighbors without assuming transitive closure semantics."""
+    vertices = tuple(vertices)
+    return {
+        (center, anchor): frozenset(
+            point
+            for point in vertices
+            if point != center
+            and context.equality_holds(center, anchor, point)
+        )
+        for center in vertices
+        for anchor in vertices
+        if anchor != center
+    }
+
+
+def crossed_arm_seven_point_collision_matches(audit, model, context=None):
+    """Find every injective seven-role collision by direct-E neighbor joins.
+
+    The join follows the eleven-atom dependency graph.  It intentionally
+    emits every ordered role tuple: the theorem has no cyclic, linear, or
+    dihedral guard, so quotienting by ambient order would be unsound.
+    """
+    if context is None:
+        context = dual_row_cegar.CandidateMatchContext.from_model(audit, model)
+    vertices = tuple(context.ordered)
+    equal_neighbors = direct_equality_neighbor_index(context, vertices)
+    matches = []
+    for A in vertices:
+        for P in vertices:
+            if P == A:
+                continue
+            AP_neighbors = equal_neighbors[A, P]
+            for S in vertices:
+                if S in {A, P} or S not in AP_neighbors:
+                    continue
+                for W in vertices:
+                    if W in {A, P, S} or W not in AP_neighbors:
+                        continue
+                    for U in vertices:
+                        if U in {A, P, S, W} or U not in equal_neighbors[S, A]:
+                            continue
+                        V_candidates = (
+                            equal_neighbors[S, A]
+                            & equal_neighbors[P, W]
+                            & equal_neighbors[U, P]
+                        )
+                        for V in vertices:
+                            if V in {A, P, S, U, W} or V not in V_candidates:
+                                continue
+                            R_candidates = (
+                                equal_neighbors[W, S]
+                                & equal_neighbors[W, U]
+                                & equal_neighbors[V, P]
+                                & equal_neighbors[A, V]
+                            )
+                            for R in vertices:
+                                if (
+                                    R in {A, P, S, U, V, W}
+                                    or R not in R_candidates
+                                    or not context.equality_holds(R, P, U)
+                                ):
+                                    continue
+                                points = (A, P, R, S, U, V, W)
+                                if not crossed_arm_seven_point_collision_points_match(
+                                    context, points
+                                ):
+                                    raise AssertionError((
+                                        "crossed-arm-seven-point-join-bug",
+                                        points,
+                                    ))
+                                matches.append((
+                                    CROSSED_ARM_SEVEN_POINT_COLLISION_FAMILY,
+                                    points,
+                                    crossed_arm_seven_point_collision_requirements(
+                                        points
+                                    ),
+                                ))
+    return matches
+
+
+def add_crossed_arm_seven_point_collision_match(audit, match):
+    family, points, requirements = match
+    if family != CROSSED_ARM_SEVEN_POINT_COLLISION_FAMILY:
+        raise ValueError(("unexpected-crossed-arm-seven-point-family", family))
+    points = tuple(points)
+    expected_requirements = crossed_arm_seven_point_collision_requirements(points)
+    if tuple(requirements) != expected_requirements:
+        raise ValueError((
+            "unexpected-crossed-arm-seven-point-requirements",
+            requirements,
+        ))
+    if len(set(points)) != len(points):
+        raise ValueError(("noninjective-crossed-arm-seven-point-match", points))
+    atoms = [
+        audit.E(center, endpoints[0], endpoints[1])
+        for center, endpoints in expected_requirements
+    ]
+    return audit.add_guarded_cut(("theorem", family, *points), atoms)
+
+
 def full_bank_match_groups(audit, model, context=None):
     return (
         (
@@ -258,17 +554,38 @@ def full_bank_match_groups(audit, model, context=None):
             global_kalmanson_matches(audit, model, context),
             add_global_kalmanson_match,
         ),
+        (
+            crossed_arm_seven_point_collision_matches(audit, model, context),
+            add_crossed_arm_seven_point_collision_match,
+        ),
     )
+
+
+def guarded_cut_formula(z3, atoms):
+    return z3.Or(*(z3.Not(atom) for atom in atoms))
 
 
 class CrossedAudit(incidence_cegar.Audit):
     """The crossed branch with every canonical selected row exposed to CEGAR."""
 
-    def __init__(self):
+    def __init__(
+        self,
+        critical_k4_representation: str = (
+            incidence_cegar.DEFAULT_CRITICAL_K4_REPRESENTATION
+        ),
+    ):
         # These switches encode every source-proved finite geometric
         # projection provided by the shared incidence encoder, plus the global
         # undirected-edge equality quotient used to close distance equalities.
-        super().__init__(N, PROFILE, True, True, True, global_edge_equality=True)
+        super().__init__(
+            N,
+            PROFILE,
+            True,
+            True,
+            True,
+            global_edge_equality=True,
+            critical_k4_representation=critical_k4_representation,
+        )
         self.row_objects = tuple(
             dual_row_cegar.RowObject(
                 f"base.{self.names[center]}", "base", self.names[center], center
@@ -303,9 +620,16 @@ class CrossedAudit(incidence_cegar.Audit):
         }
 
     def add_guarded_cut(self, key, atoms):
+        canonical_key = canonical_exact_orbit_theorem_cut_key(key)
+        if canonical_key is not None:
+            key = canonical_key
+            # Callers from the legacy dual-row module hand us atoms built from
+            # the serialized family name.  Rebuild after key normalization so
+            # every insertion path asserts the same canonical s-expression.
+            atoms = theorem_cut_atoms(self, canonical_key)
         if key in self.packet_cuts:
             return False
-        formula = self.z3.Or(*(self.z3.Not(atom) for atom in atoms))
+        formula = guarded_cut_formula(self.z3, atoms)
         self.add(f"crossed_full_bank_cut_{key[0]}", formula)
         self.packet_cuts[key] = formula
         return True
@@ -491,6 +815,8 @@ def theorem_cut(z3, positions, memberships, family: str, points: tuple[int, ...]
 
 
 def theorem_family_arity(family: str) -> int:
+    if family == CROSSED_ARM_SEVEN_POINT_COLLISION_FAMILY:
+        return CROSSED_ARM_SEVEN_POINT_COLLISION_SCHEMA["arity"]
     if family == CONVEX_FIVE_POINT_FAMILY:
         return CONVEX_FIVE_POINT_SCHEMA["arity"]
     if family == GLOBAL_KALMANSON_FAMILY:
@@ -519,19 +845,92 @@ def checked_vertex_tuple(values, *, label: str, size: int | None = None):
     return points
 
 
-def add_structural_cut_key(audit, key: tuple) -> bool:
+class RestoreExpressionCache:
+    """Intern immutable Z3 subexpressions during one checkpoint restore.
+
+    Keys retain the exact ordered point tuples used by the formula builders.
+    Guard kinds are tagged explicitly so cyclic, dihedral-cyclic, and linear
+    formulas can never alias even when their ordered points agree.
+    """
+
+    def __init__(self, audit):
+        self.audit = audit
+        self.row_exists: dict[tuple[int, tuple[int, ...]], object] = {}
+        self.guards: dict[tuple[str, tuple[int, ...]], object] = {}
+
+    @staticmethod
+    def _intern(cache, key, builder):
+        try:
+            return cache[key]
+        except KeyError:
+            formula = builder()
+            cache[key] = formula
+            return formula
+
+    def row_exists_expr(self, center: int, points):
+        ordered_points = tuple(points)
+        key = (center, ordered_points)
+        return self._intern(
+            self.row_exists,
+            key,
+            lambda: dual_row_cegar.row_exists_expr(
+                self.audit, center, ordered_points
+            ),
+        )
+
+    def cyclic_guard(self, kind: str, points):
+        ordered_points = tuple(points)
+        key = (kind, ordered_points)
+        try:
+            return self.guards[key]
+        except KeyError:
+            pass
+        if kind == "cyclic":
+            formula = dual_row_cegar.cyclic_guard(
+                self.audit.z3, self.audit.position, ordered_points
+            )
+        elif kind == "cyclic-up-to-orientation":
+            formula = cyclic_order_up_to_orientation_guard(
+                self.audit.z3, self.audit.position, ordered_points
+            )
+        else:
+            raise ValueError(("unknown-cyclic-guard-kind", kind))
+        self.guards[key] = formula
+        return formula
+
+    def linear_guard(self, points):
+        ordered_points = tuple(points)
+        key = ("linear", ordered_points)
+        return self._intern(
+            self.guards,
+            key,
+            lambda: dual_row_cegar.linear_guard(
+                self.audit.z3, self.audit.position, ordered_points
+            ),
+        )
+
+
+def restore_row_exists_expr(audit, cache, center, points):
+    if cache is None:
+        return dual_row_cegar.row_exists_expr(audit, center, points)
+    return cache.row_exists_expr(center, points)
+
+
+def add_structural_cut_key(
+    audit, key: tuple, *, expression_cache: RestoreExpressionCache | None = None
+) -> bool:
     kind = key[0]
     if kind == "circle":
         _, c, d, x, y, z = key
         atoms = [
-            dual_row_cegar.row_exists_expr(audit, c, (x, y, z)),
-            dual_row_cegar.row_exists_expr(audit, d, (x, y, z)),
+            restore_row_exists_expr(audit, expression_cache, c, (x, y, z)),
+            restore_row_exists_expr(audit, expression_cache, d, (x, y, z)),
         ]
     elif kind == "shared_pair":
         _, c, d, x, y = key
         atoms = [
-            dual_row_cegar.row_exists_expr(audit, c, (x, y)),
-            dual_row_cegar.row_exists_expr(audit, d, (x, y)),
+            restore_row_exists_expr(audit, expression_cache, c, (x, y)),
+            restore_row_exists_expr(audit, expression_cache, d, (x, y)),
             audit.z3.Not(
                 audit.z3.Xor(
                     dual_row_cegar.between_expr(
@@ -546,7 +945,7 @@ def add_structural_cut_key(audit, key: tuple) -> bool:
     elif kind == "bisector":
         _, c, d, e, x, y = key
         atoms = [
-            dual_row_cegar.row_exists_expr(audit, center, (x, y))
+            restore_row_exists_expr(audit, expression_cache, center, (x, y))
             for center in (c, d, e)
         ]
     elif kind == RAW_BTW_SEP_FAMILY:
@@ -587,12 +986,205 @@ def add_crossed_structural_violation(audit, violation) -> bool:
     return dual_row_cegar.add_structural_violation(audit, violation)
 
 
-def add_theorem_cut_key(audit, key: tuple) -> bool:
+def theorem_cut_key_from_match(match) -> tuple:
+    family, points = match[:2]
+    return ("theorem", family, *points)
+
+
+def theorem_cut_guard_kind(family: str) -> str | None:
+    """Return the guard semantics used by the theorem formula builder."""
+    if family == CROSSED_ARM_SEVEN_POINT_COLLISION_FAMILY:
+        return "unguarded"
+    if family in dual_row_cegar.FAMILIES:
+        return "cyclic"
+    if family in dual_row_cegar.LINEAR_ROW_FAMILIES:
+        return "linear"
+    if family in {
+        *dual_row_cegar.KALMANSON_FAMILIES,
+        *dual_row_cegar.RAW_EQUALITY_FAMILIES,
+        *dual_row_cegar.SIX_POINT_EQUALITY_FAMILIES,
+    }:
+        return "linear"
+    if family in {CONVEX_FIVE_POINT_FAMILY, GLOBAL_KALMANSON_FAMILY}:
+        return "cyclic-up-to-orientation"
+    return None
+
+
+def valid_theorem_point_tuple(points: tuple, *, arity: int) -> bool:
+    return (
+        len(points) == arity
+        and all(type(point) is int for point in points)
+        and len(set(points)) == len(points)
+        and all(0 <= point < N for point in points)
+    )
+
+
+def dual_row_pattern_signature(family: str, points: tuple) -> frozenset | None:
+    """Order-free signature of the two selected-row antecedents."""
+    try:
+        center1, support1, center2, support2 = dual_row_cegar.pattern_atoms(
+            family, points
+        )
+    except (AssertionError, TypeError, ValueError):
+        return None
+    rows = ((center1, tuple(support1)), (center2, tuple(support2)))
+    if any(
+        center not in points
+        or not support
+        or any(point not in points for point in support)
+        or len(set(support)) != len(support)
+        for center, support in rows
+    ):
+        return None
+    return frozenset((center, frozenset(support)) for center, support in rows)
+
+
+def canonical_exact_orbit_theorem_cut_key(key: tuple) -> tuple | None:
+    """Witness the one exact legacy-family alias, or fail closed with None."""
+    if (
+        not isinstance(key, tuple)
+        or len(key) < 2
+        or key[0] != "theorem"
+        or key[1] not in EXACT_ORBIT_CANONICAL_THEOREM_FAMILIES
+    ):
+        return None
+    source_family = key[1]
+    target_family = EXACT_ORBIT_CANONICAL_THEOREM_FAMILIES[source_family]
+    try:
+        source_arity = theorem_family_arity(source_family)
+        target_arity = theorem_family_arity(target_family)
+    except ValueError:
+        return None
+    points = tuple(key[2:])
+    if source_arity != target_arity or not valid_theorem_point_tuple(
+        points, arity=source_arity
+    ):
+        return None
+
+    target_points = (points[-1], *points[:-1])
+    source_signature = dual_row_pattern_signature(source_family, points)
+    target_signature = dual_row_pattern_signature(target_family, target_points)
+    if (
+        theorem_cut_guard_kind(source_family) != "cyclic"
+        or theorem_cut_guard_kind(target_family) != "cyclic"
+        or target_points not in rotations(points)
+        or source_signature is None
+        or source_signature != target_signature
+    ):
+        return None
+    return ("theorem", target_family, *target_points)
+
+
+def subsuming_theorem_cut_key(key: tuple) -> tuple | None:
+    if len(key) < 3 or key[0] != "theorem":
+        return None
+    raw_family = SUBSUMED_THEOREM_CUT_FAMILIES.get(key[1])
+    if raw_family is None:
+        return None
+    return ("theorem", raw_family, *key[2:])
+
+
+def subsumed_theorem_cut_key(key: tuple) -> tuple | None:
+    if len(key) < 3 or key[0] != "theorem":
+        return None
+    selected_family = SUBSUMING_THEOREM_CUT_FAMILIES.get(key[1])
+    if selected_family is None:
+        return None
+    return ("theorem", selected_family, *key[2:])
+
+
+def theorem_cut_order(key: tuple) -> tuple:
+    return THEOREM_FAMILY_ORDER[key[1]], key[2:]
+
+
+def canonical_theorem_cut_keys(
+    keys, *, already_installed=()
+) -> tuple[tuple[tuple, ...], tuple[tuple, ...]]:
+    """Normalize exact orbit aliases, then drop logically subsumed cuts.
+
+    All candidate keys are inspected before any formula is installed, so the
+    result is independent of manifest/matcher insertion order.  Family order
+    remains the registered theorem-bank order for stable solver construction.
+    """
+    unique_input_keys = tuple(dict.fromkeys(keys))
+    normalized_keys = []
+    suppressed = []
+    for key in unique_input_keys:
+        canonical_key = canonical_exact_orbit_theorem_cut_key(key)
+        if canonical_key is not None:
+            normalized_keys.append(canonical_key)
+            suppressed.append(key)
+        else:
+            normalized_keys.append(key)
+    unique_keys = tuple(dict.fromkeys(normalized_keys))
+    normalized_installed = tuple(
+        canonical_exact_orbit_theorem_cut_key(key) or key
+        for key in already_installed
+    )
+    available = set(unique_keys) | set(normalized_installed)
+    kept = []
+    for key in unique_keys:
+        subsuming_key = subsuming_theorem_cut_key(key)
+        destination = suppressed if subsuming_key in available else kept
+        destination.append(key)
+    return (
+        tuple(sorted(kept, key=theorem_cut_order)),
+        tuple(sorted(suppressed, key=theorem_cut_order)),
+    )
+
+
+def retire_exact_orbit_theorem_cut_keys(packet_cuts) -> tuple[tuple, ...]:
+    """Re-key any in-memory legacy formula without asserting a duplicate."""
+    retired = []
+    for key in tuple(packet_cuts):
+        canonical_key = canonical_exact_orbit_theorem_cut_key(key)
+        if canonical_key is None:
+            continue
+        formula = packet_cuts.pop(key)
+        packet_cuts.setdefault(canonical_key, formula)
+        retired.append(key)
+    return tuple(sorted(retired, key=theorem_cut_order))
+
+
+def retire_subsumed_theorem_cut_keys(packet_cuts) -> tuple[tuple, ...]:
+    """Canonicalize bookkeeping after a raw cut supersedes an older cut.
+
+    Solver assertions are monotone, so an already-installed selected-row
+    formula remains asserted for the current process.  Its exact raw
+    subsumer makes it logically redundant; removing only its packet key
+    ensures checkpoints and subsequent resumes do not reconstruct it.
+    """
+    retired = []
+    raw_keys = tuple(
+        key
+        for key in packet_cuts
+        if key[0] == "theorem" and key[1] in SUBSUMING_THEOREM_CUT_FAMILIES
+    )
+    for raw_key in raw_keys:
+        selected_key = subsumed_theorem_cut_key(raw_key)
+        if selected_key in packet_cuts:
+            packet_cuts.pop(selected_key)
+            retired.append(selected_key)
+    return tuple(sorted(retired, key=theorem_cut_order))
+
+
+def theorem_cut_atoms(
+    audit, key: tuple, *, expression_cache: RestoreExpressionCache | None = None
+) -> list:
     _, family, *points = key
     points = tuple(points)
-    if family == CONVEX_FIVE_POINT_FAMILY:
+    if family == CROSSED_ARM_SEVEN_POINT_COLLISION_FAMILY:
         atoms = [
-            cyclic_order_up_to_orientation_guard(
+            audit.E(points[center], points[left], points[right])
+            for center, left, right in CROSSED_ARM_SEVEN_POINT_COLLISION_SCHEMA[
+                "equalities"
+            ]
+        ]
+    elif family == CONVEX_FIVE_POINT_FAMILY:
+        atoms = [
+            expression_cache.cyclic_guard("cyclic-up-to-orientation", points)
+            if expression_cache is not None
+            else cyclic_order_up_to_orientation_guard(
                 audit.z3, audit.position, points
             )
         ]
@@ -602,7 +1194,9 @@ def add_theorem_cut_key(audit, key: tuple) -> bool:
         )
     elif family == GLOBAL_KALMANSON_FAMILY:
         atoms = [
-            cyclic_order_up_to_orientation_guard(
+            expression_cache.cyclic_guard("cyclic-up-to-orientation", points)
+            if expression_cache is not None
+            else cyclic_order_up_to_orientation_guard(
                 audit.z3, audit.position, points
             )
         ]
@@ -613,16 +1207,25 @@ def add_theorem_cut_key(audit, key: tuple) -> bool:
     elif family in dual_row_cegar.FAMILIES:
         c1, pts1, c2, pts2 = dual_row_cegar.pattern_atoms(family, points)
         atoms = [
-            dual_row_cegar.cyclic_guard(audit.z3, audit.position, points),
-            dual_row_cegar.row_exists_expr(audit, c1, pts1),
-            dual_row_cegar.row_exists_expr(audit, c2, pts2),
+            expression_cache.cyclic_guard("cyclic", points)
+            if expression_cache is not None
+            else dual_row_cegar.cyclic_guard(audit.z3, audit.position, points),
+            restore_row_exists_expr(audit, expression_cache, c1, pts1),
+            restore_row_exists_expr(audit, expression_cache, c2, pts2),
         ]
     elif family in dual_row_cegar.LINEAR_ROW_FAMILIES:
         schema = dual_row_cegar.LINEAR_ROW_FAMILIES[family]
-        atoms = [dual_row_cegar.linear_guard(audit.z3, audit.position, points)]
+        atoms = [
+            expression_cache.linear_guard(points)
+            if expression_cache is not None
+            else dual_row_cegar.linear_guard(audit.z3, audit.position, points)
+        ]
         atoms.extend(
-            dual_row_cegar.row_exists_expr(
-                audit, points[center], tuple(points[index] for index in support)
+            restore_row_exists_expr(
+                audit,
+                expression_cache,
+                points[center],
+                tuple(points[index] for index in support),
             )
             for center, support in schema["rows"]
         )
@@ -633,12 +1236,91 @@ def add_theorem_cut_key(audit, key: tuple) -> bool:
             dual_row_cegar.SIX_POINT_EQUALITY_FAMILIES,
         )
         schema = next(registry[family] for registry in equality_registries if family in registry)
-        atoms = [dual_row_cegar.linear_guard(audit.z3, audit.position, points)]
+        atoms = [
+            expression_cache.linear_guard(points)
+            if expression_cache is not None
+            else dual_row_cegar.linear_guard(audit.z3, audit.position, points)
+        ]
         atoms.extend(
             audit.E(points[center], points[left], points[right])
             for center, left, right in schema["equalities"]
         )
-    return audit.add_guarded_cut(key, atoms)
+    return atoms
+
+
+def theorem_cut_formula(
+    audit, key: tuple, *, expression_cache: RestoreExpressionCache | None = None
+):
+    """Build the exact formula asserted for a theorem key after normalization."""
+    canonical_key = canonical_exact_orbit_theorem_cut_key(key) or key
+    return guarded_cut_formula(
+        audit.z3,
+        theorem_cut_atoms(
+            audit, canonical_key, expression_cache=expression_cache
+        ),
+    )
+
+
+def add_theorem_cut_key(
+    audit, key: tuple, *, expression_cache: RestoreExpressionCache | None = None
+) -> bool:
+    canonical_key = canonical_exact_orbit_theorem_cut_key(key) or key
+    return audit.add_guarded_cut(
+        canonical_key,
+        theorem_cut_atoms(
+            audit, canonical_key, expression_cache=expression_cache
+        ),
+    )
+
+
+def install_theorem_cut_keys(
+    audit,
+    keys,
+    *,
+    expression_cache: RestoreExpressionCache | None = None,
+    require_fresh: bool = False,
+) -> dict[str, tuple[tuple, ...]]:
+    retired_orbit = retire_exact_orbit_theorem_cut_keys(audit.packet_cuts)
+    existing = tuple(key for key in audit.packet_cuts if key[0] == "theorem")
+    kept, suppressed = canonical_theorem_cut_keys(
+        keys, already_installed=existing
+    )
+    added = []
+    already_present = []
+    for key in kept:
+        if add_theorem_cut_key(
+            audit, key, expression_cache=expression_cache
+        ):
+            added.append(key)
+        else:
+            already_present.append(key)
+    if require_fresh and already_present:
+        raise AssertionError((
+            "duplicate-theorem-cut-during-install",
+            tuple(already_present),
+        ))
+    retired_subsumed = retire_subsumed_theorem_cut_keys(audit.packet_cuts)
+    retired = tuple(sorted(
+        (*retired_orbit, *retired_subsumed), key=theorem_cut_order
+    ))
+    return {
+        "added": tuple(added),
+        "already_present": tuple(already_present),
+        "retired": retired,
+        "suppressed": suppressed,
+        "retired_exact_orbit": retired_orbit,
+        "retired_subsumed": retired_subsumed,
+        "suppressed_exact_orbit": tuple(
+            key
+            for key in suppressed
+            if key[1] in EXACT_ORBIT_CANONICAL_THEOREM_FAMILIES
+        ),
+        "suppressed_subsumed": tuple(
+            key
+            for key in suppressed
+            if key[1] in SUBSUMED_THEOREM_CUT_FAMILIES
+        ),
+    }
 
 
 def learned_cut_manifest(audit) -> dict[str, object]:
@@ -646,14 +1328,18 @@ def learned_cut_manifest(audit) -> dict[str, object]:
     theorem = []
     for key in audit.packet_cuts:
         destination = theorem if key[0] == "theorem" else structural
-        destination.append(list(key))
+        destination.append(key)
+    theorem, suppressed = canonical_theorem_cut_keys(theorem)
+    if suppressed:
+        raise AssertionError(("subsumed-theorem-cuts-reached-manifest", suppressed))
     return {
         "schema": CUT_SCHEMA,
+        "critical_no_K4_representation": audit.critical_k4_representation,
         "structural_families": list(STRUCTURAL_FAMILIES),
         "theorem_families": list(FULL_BANK_FAMILIES),
         "connectivity": [sorted(cut) for cut in audit.cuts],
-        "structural": sorted(structural),
-        "theorem": sorted(theorem),
+        "structural": sorted(list(key) for key in structural),
+        "theorem": sorted(list(key) for key in theorem),
     }
 
 
@@ -699,7 +1385,13 @@ def restore_learned_cuts(audit, arm: str, result_path: Path) -> dict[str, object
         payload = json.loads(result_path.read_text())
     except (OSError, json.JSONDecodeError) as exc:
         raise ValueError(("unreadable-resume-result", str(result_path), str(exc))) from exc
-    return restore_learned_cuts_payload(audit, arm, payload, str(result_path.resolve()))
+    return restore_learned_cuts_payload(
+        audit,
+        arm,
+        payload,
+        str(result_path.resolve()),
+        allowed_schema_pairs=ORDINARY_RESUME_SCHEMA_PAIRS,
+    )
 
 
 def structural_families_for_schema_pair(schema_pair):
@@ -712,10 +1404,12 @@ def structural_families_for_schema_pair(schema_pair):
     if schema_pair == (ANCIENT_RESULT_SCHEMA, ANCIENT_CUT_SCHEMA):
         return STRUCTURAL_FAMILIES
     if schema_pair == (OLDEST_RESULT_SCHEMA, OLDEST_CUT_SCHEMA):
+        return STRUCTURAL_FAMILIES
+    if schema_pair == (PREHISTORIC_RESULT_SCHEMA, PREHISTORIC_CUT_SCHEMA):
         return PRE_TRANSPORT_STRUCTURAL_FAMILIES
     if schema_pair in {
-        (PREHISTORIC_RESULT_SCHEMA, PREHISTORIC_CUT_SCHEMA),
         (ARCHAIC_RESULT_SCHEMA, ARCHAIC_CUT_SCHEMA),
+        (PRIMORDIAL_RESULT_SCHEMA, PRIMORDIAL_CUT_SCHEMA),
     }:
         return BASE_STRUCTURAL_FAMILIES
     raise ValueError(("unknown-schema-pair", schema_pair))
@@ -725,21 +1419,23 @@ def theorem_families_for_schema_pair(schema_pair):
     if schema_pair == (RESULT_SCHEMA, CUT_SCHEMA):
         return FULL_BANK_FAMILIES
     if schema_pair == (PREVIOUS_RESULT_SCHEMA, PREVIOUS_CUT_SCHEMA):
-        return PRE_GLOBAL_THEOREM_FAMILIES
+        return PRE_SEVEN_POINT_THEOREM_FAMILIES
     if schema_pair == (LEGACY_RESULT_SCHEMA, LEGACY_CUT_SCHEMA):
+        return PRE_GLOBAL_THEOREM_FAMILIES
+    if schema_pair == (ANCIENT_RESULT_SCHEMA, ANCIENT_CUT_SCHEMA):
         return PRE_CONVEX_THEOREM_FAMILIES
     if schema_pair in {
-        (ANCIENT_RESULT_SCHEMA, ANCIENT_CUT_SCHEMA),
         (OLDEST_RESULT_SCHEMA, OLDEST_CUT_SCHEMA),
         (PREHISTORIC_RESULT_SCHEMA, PREHISTORIC_CUT_SCHEMA),
         (ARCHAIC_RESULT_SCHEMA, ARCHAIC_CUT_SCHEMA),
+        (PRIMORDIAL_RESULT_SCHEMA, PRIMORDIAL_CUT_SCHEMA),
     }:
         return LEGACY_THEOREM_FAMILIES
     raise ValueError(("unknown-schema-pair", schema_pair))
 
 
 def accepted_theorem_family_manifests(schema_pair):
-    if schema_pair == (LEGACY_RESULT_SCHEMA, LEGACY_CUT_SCHEMA):
+    if schema_pair == (ANCIENT_RESULT_SCHEMA, ANCIENT_CUT_SCHEMA):
         # v7/v5 existed briefly before the exact-11 six-role family was
         # registered.  Accept that frozen manifest as well as its final one.
         return (LEGACY_THEOREM_FAMILIES, PRE_CONVEX_THEOREM_FAMILIES)
@@ -761,6 +1457,28 @@ def restore_learned_cuts_payload(
     manifest = payload.get("learned_cuts")
     if not isinstance(manifest, dict):
         raise ValueError(("missing-cut-manifest", type(manifest).__name__))
+    representation_field = "critical_no_K4_representation"
+    result_has_representation = representation_field in payload
+    manifest_has_representation = representation_field in manifest
+    result_representation = payload.get(representation_field)
+    manifest_representation = manifest.get(representation_field)
+    if not result_has_representation and not manifest_has_representation:
+        source_critical_k4_representation = (
+            incidence_cegar.LEGACY_CRITICAL_K4_REPRESENTATION
+        )
+    elif not result_has_representation:
+        source_critical_k4_representation = manifest_representation
+    elif not manifest_has_representation:
+        source_critical_k4_representation = result_representation
+    elif result_representation != manifest_representation:
+        raise ValueError((
+            "incompatible-critical-k4-representation-records",
+            result_representation,
+            manifest_representation,
+        ))
+    else:
+        source_critical_k4_representation = result_representation
+    critical_k4_artifact_suffix(source_critical_k4_representation)
     schema_pair = (payload.get("schema"), manifest.get("schema"))
     if schema_pair not in allowed_schema_pairs:
         raise ValueError(("incompatible-result-schema", payload.get("schema") if isinstance(payload, dict) else None))
@@ -805,14 +1523,39 @@ def restore_learned_cuts_payload(
         if len(set(keys)) != len(keys):
             raise ValueError(("duplicate-resume-cut-key", label))
 
+    # Keep validation authoritative: build/cache formulas only after every key passes.
+    expression_cache = RestoreExpressionCache(audit)
     for cut in connectivity:
         audit.add_cut(frozenset(cut))
     for key in structural:
-        if not add_structural_cut_key(audit, key):
+        if not add_structural_cut_key(
+            audit, key, expression_cache=expression_cache
+        ):
             raise AssertionError(("duplicate-structural-cut-during-restore", key))
-    for key in theorem:
-        if not add_theorem_cut_key(audit, key):
-            raise AssertionError(("duplicate-theorem-cut-during-restore", key))
+    theorem_install = install_theorem_cut_keys(
+        audit,
+        theorem,
+        expression_cache=expression_cache,
+        require_fresh=True,
+    )
+    suppressed_counts = collections.Counter(
+        key[1] for key in theorem_install["suppressed"]
+    )
+    retired_counts = collections.Counter(
+        key[1] for key in theorem_install["retired"]
+    )
+    suppressed_subsumed_counts = collections.Counter(
+        key[1] for key in theorem_install["suppressed_subsumed"]
+    )
+    retired_subsumed_counts = collections.Counter(
+        key[1] for key in theorem_install["retired_subsumed"]
+    )
+    suppressed_orbit_counts = collections.Counter(
+        key[1] for key in theorem_install["suppressed_exact_orbit"]
+    )
+    retired_orbit_counts = collections.Counter(
+        key[1] for key in theorem_install["retired_exact_orbit"]
+    )
     return {
         "used": True,
         "mode": mode,
@@ -821,9 +1564,44 @@ def restore_learned_cuts_payload(
         "source_forced_shared_fourth": payload.get("forced_shared_fourth"),
         "source_result_schema": schema_pair[0],
         "source_cut_schema": schema_pair[1],
+        "source_critical_no_K4_representation": (
+            source_critical_k4_representation
+        ),
+        "target_critical_no_K4_representation": (
+            audit.critical_k4_representation
+        ),
         "connectivity_cut_count": len(connectivity),
         "structural_cut_count": len(structural),
-        "theorem_cut_count": len(theorem),
+        "theorem_cut_count": len(theorem_install["added"]),
+        "source_theorem_cut_count": len(theorem),
+        "suppressed_theorem_cut_count": len(theorem_install["suppressed"]),
+        "suppressed_theorem_cut_counts": dict(sorted(suppressed_counts.items())),
+        "retired_theorem_cut_count": len(theorem_install["retired"]),
+        "retired_theorem_cut_counts": dict(sorted(retired_counts.items())),
+        "suppressed_exact_orbit_theorem_cut_count": len(
+            theorem_install["suppressed_exact_orbit"]
+        ),
+        "suppressed_exact_orbit_theorem_cut_counts": dict(
+            sorted(suppressed_orbit_counts.items())
+        ),
+        "retired_exact_orbit_theorem_cut_count": len(
+            theorem_install["retired_exact_orbit"]
+        ),
+        "retired_exact_orbit_theorem_cut_counts": dict(
+            sorted(retired_orbit_counts.items())
+        ),
+        "suppressed_subsumed_theorem_cut_count": len(
+            theorem_install["suppressed_subsumed"]
+        ),
+        "suppressed_subsumed_theorem_cut_counts": dict(
+            sorted(suppressed_subsumed_counts.items())
+        ),
+        "retired_subsumed_theorem_cut_count": len(
+            theorem_install["retired_subsumed"]
+        ),
+        "retired_subsumed_theorem_cut_counts": dict(
+            sorted(retired_subsumed_counts.items())
+        ),
     }
 
 
@@ -851,6 +1629,7 @@ def import_universal_cuts(audit, arm: str, result_path: Path) -> dict[str, objec
             (OLDEST_RESULT_SCHEMA, OLDEST_CUT_SCHEMA),
             (PREHISTORIC_RESULT_SCHEMA, PREHISTORIC_CUT_SCHEMA),
             (ARCHAIC_RESULT_SCHEMA, ARCHAIC_CUT_SCHEMA),
+            (PRIMORDIAL_RESULT_SCHEMA, PRIMORDIAL_CUT_SCHEMA),
         ),
         require_same_arm=False,
         mode="universal-cut-import",
@@ -1195,8 +1974,256 @@ def replay_crossed_arm(
     return base
 
 
-def checkpoint_roundtrip_self_check() -> dict[str, object]:
-    source = CrossedAudit()
+def restore_expression_cache_self_check(
+    audit=None,
+    critical_k4_representation: str = (
+        incidence_cegar.DEFAULT_CRITICAL_K4_REPRESENTATION
+    ),
+) -> dict[str, object]:
+    """Check exact AST/sexpr fidelity and exact ordered cache keys."""
+    if audit is None:
+        audit = CrossedAudit(critical_k4_representation)
+    cache = RestoreExpressionCache(audit)
+
+    row_points = (1, 2, 3)
+    cached_row = cache.row_exists_expr(0, row_points)
+    if cache.row_exists_expr(0, row_points) is not cached_row:
+        raise AssertionError("row-exists expression was not interned")
+    if cached_row.sexpr() != dual_row_cegar.row_exists_expr(
+        audit, 0, row_points
+    ).sexpr():
+        raise AssertionError("cached row-exists expression changed")
+    reversed_row_points = tuple(reversed(row_points))
+    reversed_row = cache.row_exists_expr(0, reversed_row_points)
+    if reversed_row is cached_row:
+        raise AssertionError("ordered row-exists supports aliased")
+    if reversed_row.sexpr() != dual_row_cegar.row_exists_expr(
+        audit, 0, reversed_row_points
+    ).sexpr():
+        raise AssertionError("ordered cached row-exists expression changed")
+
+    cyclic_points = (0, 1, 2, 3, 4)
+    cached_cyclic = cache.cyclic_guard("cyclic", cyclic_points)
+    if cache.cyclic_guard("cyclic", cyclic_points) is not cached_cyclic:
+        raise AssertionError("cyclic guard was not interned")
+    if cached_cyclic.sexpr() != dual_row_cegar.cyclic_guard(
+        audit.z3, audit.position, cyclic_points
+    ).sexpr():
+        raise AssertionError("cached cyclic guard changed")
+    reordered_cyclic_points = (0, 2, 1, 3, 4)
+    reordered_cyclic = cache.cyclic_guard("cyclic", reordered_cyclic_points)
+    if reordered_cyclic is cached_cyclic:
+        raise AssertionError("ordered cyclic guard tuples aliased")
+    if reordered_cyclic.sexpr() != dual_row_cegar.cyclic_guard(
+        audit.z3, audit.position, reordered_cyclic_points
+    ).sexpr():
+        raise AssertionError("ordered cached cyclic guard changed")
+    cached_dihedral = cache.cyclic_guard(
+        "cyclic-up-to-orientation", cyclic_points
+    )
+    if cached_dihedral is cached_cyclic:
+        raise AssertionError("distinct cyclic guard kinds aliased")
+    if cached_dihedral.sexpr() != cyclic_order_up_to_orientation_guard(
+        audit.z3, audit.position, cyclic_points
+    ).sexpr():
+        raise AssertionError("cached dihedral cyclic guard changed")
+
+    linear_points = (0, 1, 2, 3, 4, 5)
+    cached_linear = cache.linear_guard(linear_points)
+    if cache.linear_guard(linear_points) is not cached_linear:
+        raise AssertionError("linear guard was not interned")
+    if cached_linear.sexpr() != dual_row_cegar.linear_guard(
+        audit.z3, audit.position, linear_points
+    ).sexpr():
+        raise AssertionError("cached linear guard changed")
+    reordered_linear_points = (0, 2, 1, 3, 4, 5)
+    if cache.linear_guard(reordered_linear_points) is cached_linear:
+        raise AssertionError("ordered linear guard tuples aliased")
+
+    return {
+        "status": "EXACT_CACHE_OK",
+        "row_exists_entries": len(cache.row_exists),
+        "typed_guard_entries": len(cache.guards),
+        "same_key_identity_checks": 3,
+        "cached_vs_uncached_sexpr_checks": 6,
+    }
+
+
+def theorem_cut_subsumption_self_check(
+    critical_k4_representation: str = (
+        incidence_cegar.DEFAULT_CRITICAL_K4_REPRESENTATION
+    ),
+) -> dict[str, object]:
+    """Prove the two exact guard/antecedent implications and cut filtering."""
+    import z3
+
+    formula_checks = {}
+    equality_registries = (
+        dual_row_cegar.RAW_EQUALITY_FAMILIES,
+        dual_row_cegar.SIX_POINT_EQUALITY_FAMILIES,
+    )
+    for selected_family, raw_family in SUBSUMED_THEOREM_CUT_FAMILIES.items():
+        selected_schema = dual_row_cegar.LINEAR_ROW_FAMILIES[selected_family]
+        raw_schema = next(
+            registry[raw_family]
+            for registry in equality_registries
+            if raw_family in registry
+        )
+        if selected_schema["arity"] != raw_schema["arity"]:
+            raise AssertionError((
+                "subsumption-arity-mismatch",
+                selected_family,
+                raw_family,
+            ))
+
+        providers = []
+        for center, left, right in raw_schema["equalities"]:
+            provider_indices = tuple(
+                index
+                for index, (row_center, support) in enumerate(
+                    selected_schema["rows"]
+                )
+                if row_center == center and {left, right}.issubset(support)
+            )
+            if not provider_indices:
+                raise AssertionError((
+                    "raw-equality-not-implied-by-selected-row",
+                    selected_family,
+                    raw_family,
+                    (center, left, right),
+                ))
+            providers.append(provider_indices[0])
+
+        arity = selected_schema["arity"]
+        points = tuple(range(arity))
+        selected_key = ("theorem", selected_family, *points)
+        raw_key = ("theorem", raw_family, *points)
+        if subsuming_theorem_cut_key(selected_key) != raw_key:
+            raise AssertionError(("subsumption-key-shape", selected_key, raw_key))
+
+        guard = z3.Bool(f"subsumption_guard_{selected_family}")
+        row_atoms = tuple(
+            z3.Bool(f"subsumption_row_{selected_family}_{index}")
+            for index in range(len(selected_schema["rows"]))
+        )
+        equality_atoms = tuple(
+            z3.Bool(f"subsumption_eq_{raw_family}_{index}")
+            for index in range(len(raw_schema["equalities"]))
+        )
+        row_implies_equalities = tuple(
+            z3.Implies(row_atoms[provider], equality_atom)
+            for provider, equality_atom in zip(providers, equality_atoms)
+        )
+        selected_cut = z3.Or(
+            z3.Not(guard), *(z3.Not(atom) for atom in row_atoms)
+        )
+        raw_cut = z3.Or(
+            z3.Not(guard), *(z3.Not(atom) for atom in equality_atoms)
+        )
+        implication = z3.Solver()
+        implication.add(
+            *row_implies_equalities,
+            raw_cut,
+            z3.Not(selected_cut),
+        )
+        if implication.check() != z3.unsat:
+            raise AssertionError((
+                "raw-cut-does-not-subsume-selected-cut",
+                raw_family,
+                selected_family,
+            ))
+        strictness = z3.Solver()
+        strictness.add(
+            *row_implies_equalities,
+            selected_cut,
+            z3.Not(raw_cut),
+        )
+        if strictness.check() != z3.sat:
+            raise AssertionError((
+                "selected-cut-unexpectedly-equivalent-to-raw-cut",
+                selected_family,
+                raw_family,
+            ))
+        formula_checks[selected_family] = {
+            "subsuming_family": raw_family,
+            "same_ordered_key_and_linear_guard": True,
+            "selected_row_count": len(row_atoms),
+            "raw_equality_count": len(equality_atoms),
+            "raw_cut_implies_selected_cut": True,
+            "implication_is_strict": True,
+        }
+
+    six_selected = (
+        "theorem", "six_sparse_two_selected_rows", 0, 1, 2, 3, 4, 5
+    )
+    six_raw = subsuming_theorem_cut_key(six_selected)
+    five_selected = (
+        "theorem", "five_kalmanson_three_selected_rows", 0, 1, 2, 3, 4
+    )
+    five_raw = subsuming_theorem_cut_key(five_selected)
+    non_subsumed = (
+        "theorem", "six_sparse_two_selected_rows", 1, 2, 3, 4, 5, 6
+    )
+    candidates = (
+        six_selected,
+        five_raw,
+        non_subsumed,
+        five_selected,
+        six_raw,
+    )
+    forward = canonical_theorem_cut_keys(candidates)
+    reverse = canonical_theorem_cut_keys(tuple(reversed(candidates)))
+    if forward != reverse:
+        raise AssertionError("subsumption depends on theorem-key insertion order")
+
+    audit = CrossedAudit(critical_k4_representation)
+    installation = install_theorem_cut_keys(audit, candidates, require_fresh=True)
+    expected_suppressed = {six_selected, five_selected}
+    expected_added = {six_raw, five_raw, non_subsumed}
+    if set(installation["suppressed"]) != expected_suppressed:
+        raise AssertionError((
+            "wrong-subsumed-theorem-cuts",
+            installation["suppressed"],
+        ))
+    if set(installation["added"]) != expected_added:
+        raise AssertionError(("wrong-canonical-theorem-cuts", installation["added"]))
+    if set(audit.packet_cuts) & expected_suppressed:
+        raise AssertionError("subsumed theorem cut reached the solver")
+    if non_subsumed not in audit.packet_cuts:
+        raise AssertionError("non-subsumed selected-row cut was omitted")
+    already_installed = install_theorem_cut_keys(audit, (six_selected,))
+    if already_installed["added"] or already_installed["suppressed"] != (
+        six_selected,
+    ):
+        raise AssertionError("existing raw cut did not suppress selected-row cut")
+
+    late_raw = subsuming_theorem_cut_key(non_subsumed)
+    late_installation = install_theorem_cut_keys(audit, (late_raw,))
+    if late_installation["added"] != (late_raw,):
+        raise AssertionError("late raw subsumer was not installed")
+    if late_installation["retired"] != (non_subsumed,):
+        raise AssertionError("older selected-row key was not retired")
+    if non_subsumed in audit.packet_cuts or late_raw not in audit.packet_cuts:
+        raise AssertionError("late subsumption left noncanonical packet keys")
+
+    return {
+        "status": "EXACT_SUBSUMPTION_OK",
+        "formula_checks": formula_checks,
+        "redundant_additions_omitted": len(expected_suppressed),
+        "non_subsumed_additions_preserved": 1,
+        "insertion_order_independent": True,
+        "already_installed_raw_suppression_checked": True,
+        "late_raw_subsumer_retirement_checked": True,
+    }
+
+
+def checkpoint_roundtrip_self_check(
+    critical_k4_representation: str = (
+        incidence_cegar.DEFAULT_CRITICAL_K4_REPRESENTATION
+    ),
+) -> dict[str, object]:
+    source = CrossedAudit(critical_k4_representation)
+    expression_cache_check = restore_expression_cache_self_check(source)
     expected_global_equalities = N * ((N - 1) * (N - 2) // 2)
     if source.blocks["global_edge_equality_closure"] != expected_global_equalities:
         raise AssertionError((
@@ -1235,9 +2262,26 @@ def checkpoint_roundtrip_self_check() -> dict[str, object]:
         dual_row_cegar.RAW_EQUALITY_FAMILIES,
         dual_row_cegar.SIX_POINT_EQUALITY_FAMILIES,
     )
+    paired_raw_keys = {
+        (
+            "theorem",
+            raw_family,
+            *range(theorem_family_arity(selected_family)),
+        )
+        for selected_family, raw_family in SUBSUMED_THEOREM_CUT_FAMILIES.items()
+    }
     for family in FULL_BANK_FAMILIES:
         points = tuple(range(theorem_family_arity(family)))
-        if family == GLOBAL_KALMANSON_FAMILY:
+        key = ("theorem", family, *points)
+        if subsuming_theorem_cut_key(key) in paired_raw_keys:
+            checked_families.append(family)
+            continue
+        if family == CROSSED_ARM_SEVEN_POINT_COLLISION_FAMILY:
+            requirements = crossed_arm_seven_point_collision_requirements(points)
+            added = add_crossed_arm_seven_point_collision_match(
+                source, (family, points, requirements)
+            )
+        elif family == GLOBAL_KALMANSON_FAMILY:
             requirements = tuple(
                 (points[center], (points[left], points[right]))
                 for center, left, right in GLOBAL_KALMANSON_SCHEMA["equalities"]
@@ -1287,9 +2331,10 @@ def checkpoint_roundtrip_self_check() -> dict[str, object]:
         "arm": ARMS[0],
         "n": N,
         "closed_cap_profile": list(PROFILE),
+        "critical_no_K4_representation": source.critical_k4_representation,
         "learned_cuts": learned_cut_manifest(source),
     }))
-    restored = CrossedAudit()
+    restored = CrossedAudit(critical_k4_representation)
     resume = restore_learned_cuts_payload(
         restored, ARMS[0], serialized, "<self-check-memory-roundtrip>"
     )
@@ -1300,85 +2345,125 @@ def checkpoint_roundtrip_self_check() -> dict[str, object]:
         key: formula.sexpr() for key, formula in restored.packet_cuts.items()
     }
     if restored_formulas != source_formulas:
-        raise AssertionError("checkpoint formulas did not reconstruct exactly")
+        raise AssertionError("cached checkpoint formulas did not reconstruct exactly")
 
-    previous_v8 = json.loads(json.dumps(serialized))
-    previous_v8["schema"] = PREVIOUS_RESULT_SCHEMA
-    previous_v8["learned_cuts"]["schema"] = PREVIOUS_CUT_SCHEMA
-    previous_v8["learned_cuts"]["theorem_families"] = list(
-        PRE_GLOBAL_THEOREM_FAMILIES
-    )
-    previous_v8["learned_cuts"]["theorem"] = [
-        key for key in previous_v8["learned_cuts"]["theorem"]
-        if key[1] in PRE_GLOBAL_THEOREM_FAMILIES
+    pre_optimization = json.loads(json.dumps(serialized))
+    pre_optimization_selected_keys = [
+        [
+            "theorem",
+            family,
+            *range(theorem_family_arity(family)),
+        ]
+        for family in SUBSUMED_THEOREM_CUT_FAMILIES
     ]
-    previous_v8_expected_manifest = json.loads(
-        json.dumps(previous_v8["learned_cuts"])
+    pre_optimization["learned_cuts"]["theorem"].extend(
+        pre_optimization_selected_keys
     )
-    previous_v8_expected_manifest["schema"] = CUT_SCHEMA
-    previous_v8_expected_manifest["theorem_families"] = list(FULL_BANK_FAMILIES)
-    previous_v8_expected_formulas = {
+    pre_optimization["learned_cuts"]["theorem"].reverse()
+    normalized = CrossedAudit(critical_k4_representation)
+    normalized_resume = restore_learned_cuts_payload(
+        normalized,
+        ARMS[0],
+        pre_optimization,
+        "<self-check-pre-optimization-checkpoint>",
+    )
+    if learned_cut_manifest(normalized) != serialized["learned_cuts"]:
+        raise AssertionError("pre-optimization checkpoint did not normalize")
+    normalized_formulas = {
+        key: formula.sexpr() for key, formula in normalized.packet_cuts.items()
+    }
+    if normalized_formulas != source_formulas:
+        raise AssertionError("pre-optimization checkpoint formulas changed")
+    if normalized_resume["suppressed_subsumed_theorem_cut_count"] != len(
+        SUBSUMED_THEOREM_CUT_FAMILIES
+    ):
+        raise AssertionError("pre-optimization checkpoint suppression count changed")
+
+    previous_v9 = json.loads(json.dumps(serialized))
+    previous_v9["schema"] = PREVIOUS_RESULT_SCHEMA
+    previous_v9["learned_cuts"]["schema"] = PREVIOUS_CUT_SCHEMA
+    previous_v9["learned_cuts"]["theorem_families"] = list(
+        PRE_SEVEN_POINT_THEOREM_FAMILIES
+    )
+    previous_v9["learned_cuts"]["theorem"] = [
+        key for key in previous_v9["learned_cuts"]["theorem"]
+        if key[1] in PRE_SEVEN_POINT_THEOREM_FAMILIES
+    ]
+    previous_v9_expected_manifest = json.loads(
+        json.dumps(previous_v9["learned_cuts"])
+    )
+    previous_v9_expected_manifest["schema"] = CUT_SCHEMA
+    previous_v9_expected_manifest["theorem_families"] = list(FULL_BANK_FAMILIES)
+    previous_v9_expected_formulas = {
         key: formula for key, formula in source_formulas.items()
-        if key[0] != "theorem" or key[1] in PRE_GLOBAL_THEOREM_FAMILIES
+        if key[0] != "theorem" or key[1] in PRE_SEVEN_POINT_THEOREM_FAMILIES
     }
 
-    previous_v8_resumed = CrossedAudit()
-    previous_v8_resume = restore_learned_cuts_payload(
-        previous_v8_resumed,
-        ARMS[0],
-        previous_v8,
-        "<self-check-pre-family-v8-resume>",
-        allowed_schema_pairs=((PREVIOUS_RESULT_SCHEMA, PREVIOUS_CUT_SCHEMA),),
-    )
-    if learned_cut_manifest(previous_v8_resumed) != previous_v8_expected_manifest:
-        raise AssertionError("pre-family v8 resume did not normalize")
+    previous_v9_resumed = CrossedAudit(critical_k4_representation)
+    with tempfile.TemporaryDirectory(
+        prefix="crossed-arm-v9-resume-self-check-", dir=HERE
+    ) as fixture_dir:
+        previous_v9_path = Path(fixture_dir) / "result.json"
+        previous_v9_path.write_text(
+            json.dumps(previous_v9, indent=2, sort_keys=True) + "\n"
+        )
+        previous_v9_resume = restore_learned_cuts(
+            previous_v9_resumed, ARMS[0], previous_v9_path
+        )
+    if (
+        previous_v9_resume["source_result_schema"],
+        previous_v9_resume["source_cut_schema"],
+    ) != (PREVIOUS_RESULT_SCHEMA, PREVIOUS_CUT_SCHEMA):
+        raise AssertionError("ordinary resume did not preserve the v9/v7 source pair")
+    if learned_cut_manifest(previous_v9_resumed) != previous_v9_expected_manifest:
+        raise AssertionError("pre-family v9 resume did not normalize")
     if {
-        key: formula.sexpr() for key, formula in previous_v8_resumed.packet_cuts.items()
-    } != previous_v8_expected_formulas:
-        raise AssertionError("pre-family v8 resume formulas changed")
+        key: formula.sexpr() for key, formula in previous_v9_resumed.packet_cuts.items()
+    } != previous_v9_expected_formulas:
+        raise AssertionError("pre-family v9 resume formulas changed")
 
-    previous_v8_import_payload = json.loads(json.dumps(previous_v8))
-    previous_v8_import_payload["arm"] = ARMS[1]
-    previous_v8_imported = CrossedAudit()
-    previous_v8_import = restore_learned_cuts_payload(
-        previous_v8_imported,
+    previous_v9_import_payload = json.loads(json.dumps(previous_v9))
+    previous_v9_import_payload["arm"] = ARMS[1]
+    previous_v9_imported = CrossedAudit(critical_k4_representation)
+    previous_v9_import = restore_learned_cuts_payload(
+        previous_v9_imported,
         ARMS[0],
-        previous_v8_import_payload,
-        "<self-check-pre-family-v8-universal-import>",
+        previous_v9_import_payload,
+        "<self-check-pre-family-v9-universal-import>",
         allowed_schema_pairs=((PREVIOUS_RESULT_SCHEMA, PREVIOUS_CUT_SCHEMA),),
         require_same_arm=False,
         mode="universal-cut-import",
     )
-    if learned_cut_manifest(previous_v8_imported) != previous_v8_expected_manifest:
-        raise AssertionError("pre-family v8 universal import did not normalize")
+    if learned_cut_manifest(previous_v9_imported) != previous_v9_expected_manifest:
+        raise AssertionError("pre-family v9 universal import did not normalize")
     if {
-        key: formula.sexpr() for key, formula in previous_v8_imported.packet_cuts.items()
-    } != previous_v8_expected_formulas:
-        raise AssertionError("pre-family v8 universal-import formulas changed")
+        key: formula.sexpr() for key, formula in previous_v9_imported.packet_cuts.items()
+    } != previous_v9_expected_formulas:
+        raise AssertionError("pre-family v9 universal-import formulas changed")
 
-    previous_v8_with_new_cut = json.loads(json.dumps(previous_v8))
+    previous_v9_with_new_cut = json.loads(json.dumps(previous_v9))
     new_family_cut = next(
         key for key in serialized["learned_cuts"]["theorem"]
-        if key[1] == GLOBAL_KALMANSON_FAMILY
+        if key[1] == CROSSED_ARM_SEVEN_POINT_COLLISION_FAMILY
     )
-    previous_v8_with_new_cut["learned_cuts"]["theorem"].append(new_family_cut)
+    previous_v9_with_new_cut["learned_cuts"]["theorem"].append(new_family_cut)
     try:
         restore_learned_cuts_payload(
-            CrossedAudit(),
+            CrossedAudit(critical_k4_representation),
             ARMS[0],
-            previous_v8_with_new_cut,
-            "<self-check-pre-family-v8-illegal-new-cut>",
+            previous_v9_with_new_cut,
+            "<self-check-pre-family-v9-illegal-new-cut>",
             allowed_schema_pairs=((PREVIOUS_RESULT_SCHEMA, PREVIOUS_CUT_SCHEMA),),
         )
     except ValueError as exc:
         if not exc.args or exc.args[0][0] != "incompatible-theorem-family":
             raise
     else:
-        raise AssertionError("pre-family v8 accepted a new-family theorem cut")
+        raise AssertionError("pre-family v9 accepted a new-family theorem cut")
 
     legacy_structural_with_new_cut = json.loads(json.dumps(serialized))
-    legacy_structural_with_new_cut["schema"] = OLDEST_RESULT_SCHEMA
-    legacy_structural_with_new_cut["learned_cuts"]["schema"] = OLDEST_CUT_SCHEMA
+    legacy_structural_with_new_cut["schema"] = PREHISTORIC_RESULT_SCHEMA
+    legacy_structural_with_new_cut["learned_cuts"]["schema"] = PREHISTORIC_CUT_SCHEMA
     legacy_structural_with_new_cut["learned_cuts"]["structural_families"] = list(
         PRE_TRANSPORT_STRUCTURAL_FAMILIES
     )
@@ -1391,11 +2476,14 @@ def checkpoint_roundtrip_self_check() -> dict[str, object]:
     ]
     try:
         restore_learned_cuts_payload(
-            CrossedAudit(),
+            CrossedAudit(critical_k4_representation),
             ARMS[0],
             legacy_structural_with_new_cut,
             "<self-check-legacy-illegal-structural-cut>",
-            allowed_schema_pairs=((OLDEST_RESULT_SCHEMA, OLDEST_CUT_SCHEMA),),
+            allowed_schema_pairs=((
+                PREHISTORIC_RESULT_SCHEMA,
+                PREHISTORIC_CUT_SCHEMA,
+            ),),
         )
     except ValueError as exc:
         if not exc.args or exc.args[0][0] != "invalid-structural-cut-key":
@@ -1411,6 +2499,7 @@ def checkpoint_roundtrip_self_check() -> dict[str, object]:
         (OLDEST_RESULT_SCHEMA, OLDEST_CUT_SCHEMA),
         (PREHISTORIC_RESULT_SCHEMA, PREHISTORIC_CUT_SCHEMA),
         (ARCHAIC_RESULT_SCHEMA, ARCHAIC_CUT_SCHEMA),
+        (PRIMORDIAL_RESULT_SCHEMA, PRIMORDIAL_CUT_SCHEMA),
     ):
         prior_schema_pair = (prior_result_schema, prior_cut_schema)
         prior_structural_families = structural_families_for_schema_pair(
@@ -1437,7 +2526,7 @@ def checkpoint_roundtrip_self_check() -> dict[str, object]:
             key for key in prior_serialized["learned_cuts"]["theorem"]
             if key[1] in prior_theorem_families
         ]
-        imported = CrossedAudit()
+        imported = CrossedAudit(critical_k4_representation)
         prior_import = restore_learned_cuts_payload(
             imported,
             ARMS[0],
@@ -1451,6 +2540,7 @@ def checkpoint_roundtrip_self_check() -> dict[str, object]:
                 (OLDEST_RESULT_SCHEMA, OLDEST_CUT_SCHEMA),
                 (PREHISTORIC_RESULT_SCHEMA, PREHISTORIC_CUT_SCHEMA),
                 (ARCHAIC_RESULT_SCHEMA, ARCHAIC_CUT_SCHEMA),
+                (PRIMORDIAL_RESULT_SCHEMA, PRIMORDIAL_CUT_SCHEMA),
             ),
             require_same_arm=False,
             mode="universal-cut-import",
@@ -1488,18 +2578,29 @@ def checkpoint_roundtrip_self_check() -> dict[str, object]:
         })
     return {
         "status": "ROUNDTRIP_OK",
+        "critical_no_K4_representation": source.critical_k4_representation,
+        "critical_no_K4_assertion_count": source.blocks[
+            "critical_no_K4_after_source_deletion"
+        ],
         "connectivity_cut_kinds_checked": 1,
         "structural_cut_kinds_checked": list(STRUCTURAL_FAMILIES),
         "theorem_families_checked": checked_families,
+        "restore_expression_cache": expression_cache_check,
+        "cached_vs_uncached_cut_sexprs_checked": len(restored_formulas),
         "restored_cut_counts": {
             key: value for key, value in resume.items() if key.endswith("_cut_count")
         },
-        "pre_family_v8_resume": {
-            key: value for key, value in previous_v8_resume.items()
-            if key.endswith("_cut_count")
+        "pre_optimization_checkpoint": {
+            key: value
+            for key, value in normalized_resume.items()
+            if key.endswith("_cut_count") or key.endswith("_cut_counts")
         },
-        "pre_family_v8_universal_import": {
-            key: value for key, value in previous_v8_import.items()
+        "pre_family_v9_resume": {
+            key: value for key, value in previous_v9_resume.items()
+            if key.endswith("_cut_count") or key.endswith("_schema")
+        },
+        "pre_family_v9_universal_import": {
+            key: value for key, value in previous_v9_import.items()
             if key.endswith("_cut_count")
         },
         "prior_universal_imports": prior_imports,
@@ -2323,6 +3424,79 @@ def global_kalmanson_guard_self_check() -> dict[str, object]:
     }
 
 
+def crossed_arm_seven_point_collision_self_check() -> dict[str, object]:
+    """Audit the unguarded, injective eleven-direct-E theorem cut."""
+    import z3
+
+    roles = CROSSED_ARM_SEVEN_POINT_COLLISION_SCHEMA["role_order"]
+    equalities = CROSSED_ARM_SEVEN_POINT_COLLISION_SCHEMA["equalities"]
+    if len(roles) != 7 or len(set(roles)) != 7 or len(equalities) != 11:
+        raise AssertionError(("crossed-arm-seven-point-schema-shape", roles, equalities))
+    if len(set(equalities)) != len(equalities):
+        raise AssertionError(("crossed-arm-seven-point-duplicate-atom", equalities))
+    if theorem_cut_guard_kind(CROSSED_ARM_SEVEN_POINT_COLLISION_FAMILY) != "unguarded":
+        raise AssertionError("crossed-arm seven-point cut unexpectedly has an order guard")
+
+    class EqualityProbe:
+        def __init__(self):
+            self.z3 = z3
+            self._atoms = {}
+
+        @property
+        def position(self):
+            raise AssertionError("unguarded theorem cut accessed cyclic positions")
+
+        def E(self, center, left, right):
+            key = (center, min(left, right), max(left, right))
+            return self._atoms.setdefault(
+                key, z3.Bool(f"crossed_arm_seven_point_eq_{len(self._atoms)}")
+            )
+
+    points = tuple(range(7))
+    key = ("theorem", CROSSED_ARM_SEVEN_POINT_COLLISION_FAMILY, *points)
+    probe = EqualityProbe()
+    atoms = theorem_cut_atoms(probe, key)
+    if len(atoms) != 11 or len({atom.sexpr() for atom in atoms}) != 11:
+        raise AssertionError(("crossed-arm-seven-point-cut-atoms", atoms))
+    cut = guarded_cut_formula(z3, atoms)
+    solver = z3.Solver()
+    solver.add(*atoms, cut)
+    if solver.check() != z3.unsat:
+        raise AssertionError("crossed-arm seven-point antecedent was not cut")
+    for omitted_index, omitted_atom in enumerate(atoms):
+        solver = z3.Solver()
+        solver.add(
+            *(atom for atom in atoms if atom is not omitted_atom),
+            z3.Not(omitted_atom),
+            cut,
+        )
+        if solver.check() != z3.sat:
+            raise AssertionError((
+                "crossed-arm-seven-point-equality-not-exact",
+                omitted_index,
+            ))
+    try:
+        validate_theorem_key([
+            "theorem",
+            CROSSED_ARM_SEVEN_POINT_COLLISION_FAMILY,
+            0, 1, 2, 3, 4, 5, 0,
+        ])
+    except ValueError as exc:
+        if not exc.args or exc.args[0][1] != "vertices-not-distinct-in-range":
+            raise
+    else:
+        raise AssertionError("crossed-arm seven-point checkpoint accepted role collision")
+    return {
+        "status": "CROSSED_ARM_SEVEN_POINT_COLLISION_OK",
+        "theorem": CROSSED_ARM_SEVEN_POINT_COLLISION_SCHEMA["theorem"],
+        "roles": list(roles),
+        "raw_equality_count": len(atoms),
+        "single_missing_equality_valuations_accepted": len(atoms),
+        "order_guard": None,
+        "injective_checkpoint_key_checked": True,
+    }
+
+
 def convex_five_point_guard_self_check() -> dict[str, object]:
     import z3
 
@@ -2363,7 +3537,11 @@ def convex_five_point_guard_self_check() -> dict[str, object]:
     }
 
 
-def self_check() -> dict[str, object]:
+def self_check(
+    critical_k4_representation: str = (
+        incidence_cegar.DEFAULT_CRITICAL_K4_REPRESENTATION
+    ),
+) -> dict[str, object]:
     import z3
 
     family_checks = {}
@@ -2393,6 +3571,12 @@ def self_check() -> dict[str, object]:
         }
     return {
         "status": "SMOKE_OK",
+        "critical_no_K4_representation": critical_k4_representation,
+        "critical_no_K4_representation_check": (
+            critical_k4_representation_self_check(
+                critical_k4_representation
+            )
+        ),
         "crossed_arm_polarity": crossed_arm_polarity_self_check(),
         "global_edge_equality": global_edge_equality_self_check(),
         "mutual_bisector_transport": mutual_bisector_transport_self_check(),
@@ -2405,15 +3589,29 @@ def self_check() -> dict[str, object]:
         "legacy_three_family_checks": family_checks,
         "convex_five_point_core": convex_five_point_guard_self_check(),
         GLOBAL_KALMANSON_FAMILY: global_kalmanson_guard_self_check(),
+        CROSSED_ARM_SEVEN_POINT_COLLISION_FAMILY: (
+            crossed_arm_seven_point_collision_self_check()
+        ),
         "full_bank_guard_checks": dual_row_cegar.guard_self_checks(),
-        "checkpoint_roundtrip": checkpoint_roundtrip_self_check(),
+        "theorem_cut_subsumption": theorem_cut_subsumption_self_check(
+            critical_k4_representation
+        ),
+        "checkpoint_roundtrip": checkpoint_roundtrip_self_check(
+            critical_k4_representation
+        ),
         "canonical_row_adapter_count": N,
     }
 
 
-def matcher_benchmark(timeout_ms: int, arm: str = ARMS[0]) -> dict[str, object]:
+def matcher_benchmark(
+    timeout_ms: int,
+    arm: str = ARMS[0],
+    critical_k4_representation: str = (
+        incidence_cegar.DEFAULT_CRITICAL_K4_REPRESENTATION
+    ),
+) -> dict[str, object]:
     """Compare repeated model decoding with one shared context on one model."""
-    audit = CrossedAudit()
+    audit = CrossedAudit(critical_k4_representation)
     add_explicit_q_pair_and_crossed_arm(audit, arm)
     audit.solver.set(timeout=timeout_ms)
     solve_started = time.perf_counter()
@@ -2451,6 +3649,7 @@ def matcher_benchmark(timeout_ms: int, arm: str = ARMS[0]) -> dict[str, object]:
     optimized_total_ms = context_ms + optimized_scan_ms
     return {
         "arm": arm,
+        "critical_no_K4_representation": audit.critical_k4_representation,
         "candidate_count": 1,
         "equivalent_structural_and_match_sets": True,
         "structural_match_count": len(reference_structural),
@@ -2467,6 +3666,22 @@ def matcher_benchmark(timeout_ms: int, arm: str = ARMS[0]) -> dict[str, object]:
     }
 
 
+def prepare_run_directory(
+    arm: str,
+    run_tag: str,
+    critical_k4_representation: str,
+    resume_result: Path | None,
+) -> Path:
+    """Create a fresh run directory, or reuse one only for explicit resume."""
+
+    representation_suffix = critical_k4_artifact_suffix(
+        critical_k4_representation
+    )
+    run_dir = HERE / f"{arm}-{run_tag}{representation_suffix}"
+    run_dir.mkdir(parents=True, exist_ok=resume_result is not None)
+    return run_dir
+
+
 def run_arm(
     arm: str,
     timeout_ms: int,
@@ -2475,13 +3690,20 @@ def run_arm(
     resume_result: Path | None = None,
     universal_cut_import: Path | None = None,
     force_shared_fourth: bool = False,
+    critical_k4_representation: str = (
+        incidence_cegar.DEFAULT_CRITICAL_K4_REPRESENTATION
+    ),
 ) -> dict[str, object]:
-    run_dir = HERE / f"{arm}-{run_tag}"
-    run_dir.mkdir(parents=True, exist_ok=True)
+    run_dir = prepare_run_directory(
+        arm,
+        run_tag,
+        critical_k4_representation,
+        resume_result,
+    )
     # Enable every source-proved finite geometric projection available in the
     # base encoder: two-circle/common-bisector incidence, cap-crossing
     # Kalmanson, and global selected-row shared-pair separation.
-    audit = CrossedAudit()
+    audit = CrossedAudit(critical_k4_representation)
     selectors = add_explicit_q_pair_and_crossed_arm(
         audit, arm, force_shared_fourth=force_shared_fourth
     )
@@ -2505,6 +3727,20 @@ def run_arm(
         for family in FULL_BANK_FAMILIES
     }
     theorem_matches_seen = {family: 0 for family in FULL_BANK_FAMILIES}
+    suppressed_theorem_cut_counts = {
+        family: 0
+        for family in (
+            *EXACT_ORBIT_CANONICAL_THEOREM_FAMILIES,
+            *SUBSUMED_THEOREM_CUT_FAMILIES,
+        )
+    }
+    retired_theorem_cut_counts = {
+        family: 0
+        for family in (
+            *EXACT_ORBIT_CANONICAL_THEOREM_FAMILIES,
+            *SUBSUMED_THEOREM_CUT_FAMILIES,
+        )
+    }
     witness = None
 
     for iteration in range(max_iterations):
@@ -2551,12 +3787,32 @@ def run_arm(
         )
         fresh_theorems = {family: 0 for family in FULL_BANK_FAMILIES}
         total_matches = 0
-        for matches, add_match in groups:
+        candidate_theorem_keys = []
+        for matches, _add_match in groups:
             total_matches += len(matches)
             for match in matches:
                 theorem_matches_seen[match[0]] += 1
-                if add_match(audit, match):
-                    fresh_theorems[match[0]] += 1
+                candidate_theorem_keys.append(theorem_cut_key_from_match(match))
+        theorem_install = install_theorem_cut_keys(audit, candidate_theorem_keys)
+        for key in theorem_install["added"]:
+            fresh_theorems[key[1]] += 1
+        fresh_suppressed = collections.Counter(
+            key[1] for key in theorem_install["suppressed"]
+        )
+        for family, count in fresh_suppressed.items():
+            suppressed_theorem_cut_counts[family] += count
+        fresh_retired = collections.Counter(
+            key[1] for key in theorem_install["retired"]
+        )
+        for family, count in fresh_retired.items():
+            theorem_cut_counts[family] -= count
+            if theorem_cut_counts[family] < 0:
+                raise AssertionError((
+                    "retired-theorem-cut-count-underflow",
+                    family,
+                    theorem_cut_counts[family],
+                ))
+            retired_theorem_cut_counts[family] += count
         fresh_theorem_count = sum(fresh_theorems.values())
         if fresh_structural or fresh_theorem_count:
             structural_cut_count += fresh_structural
@@ -2569,6 +3825,26 @@ def run_arm(
                     "fresh_structural_cuts": fresh_structural,
                     "theorem_matches": total_matches,
                     "fresh_theorem_cuts": fresh_theorems,
+                    "suppressed_theorem_cuts": dict(
+                        sorted(fresh_suppressed.items())
+                    ),
+                    "retired_theorem_cuts": dict(
+                        sorted(fresh_retired.items())
+                    ),
+                    "suppressed_subsumed_theorem_cuts": dict(
+                        sorted(
+                            (family, count)
+                            for family, count in fresh_suppressed.items()
+                            if family in SUBSUMED_THEOREM_CUT_FAMILIES
+                        )
+                    ),
+                    "retired_subsumed_theorem_cuts": dict(
+                        sorted(
+                            (family, count)
+                            for family, count in fresh_retired.items()
+                            if family in SUBSUMED_THEOREM_CUT_FAMILIES
+                        )
+                    ),
                 }
             )
             iterations.append(record)
@@ -2590,6 +3866,7 @@ def run_arm(
         "status": status,
         "arm": arm,
         "run_tag": run_tag,
+        "critical_no_K4_representation": audit.critical_k4_representation,
         "forced_shared_fourth": force_shared_fourth,
         "n": N,
         "closed_cap_profile": list(PROFILE),
@@ -2606,6 +3883,48 @@ def run_arm(
         "theorem_cut_count": sum(theorem_cut_counts.values()),
         "theorem_cut_counts": theorem_cut_counts,
         "theorem_matches_seen": theorem_matches_seen,
+        "suppressed_theorem_cut_count": sum(
+            suppressed_theorem_cut_counts.values()
+        ),
+        "suppressed_theorem_cut_counts": (
+            suppressed_theorem_cut_counts
+        ),
+        "retired_theorem_cut_count": sum(
+            retired_theorem_cut_counts.values()
+        ),
+        "retired_theorem_cut_counts": retired_theorem_cut_counts,
+        "suppressed_exact_orbit_theorem_cut_count": sum(
+            suppressed_theorem_cut_counts[family]
+            for family in EXACT_ORBIT_CANONICAL_THEOREM_FAMILIES
+        ),
+        "suppressed_exact_orbit_theorem_cut_counts": {
+            family: suppressed_theorem_cut_counts[family]
+            for family in EXACT_ORBIT_CANONICAL_THEOREM_FAMILIES
+        },
+        "retired_exact_orbit_theorem_cut_count": sum(
+            retired_theorem_cut_counts[family]
+            for family in EXACT_ORBIT_CANONICAL_THEOREM_FAMILIES
+        ),
+        "retired_exact_orbit_theorem_cut_counts": {
+            family: retired_theorem_cut_counts[family]
+            for family in EXACT_ORBIT_CANONICAL_THEOREM_FAMILIES
+        },
+        "suppressed_subsumed_theorem_cut_count": sum(
+            suppressed_theorem_cut_counts[family]
+            for family in SUBSUMED_THEOREM_CUT_FAMILIES
+        ),
+        "suppressed_subsumed_theorem_cut_counts": {
+            family: suppressed_theorem_cut_counts[family]
+            for family in SUBSUMED_THEOREM_CUT_FAMILIES
+        },
+        "retired_subsumed_theorem_cut_count": sum(
+            retired_theorem_cut_counts[family]
+            for family in SUBSUMED_THEOREM_CUT_FAMILIES
+        ),
+        "retired_subsumed_theorem_cut_counts": {
+            family: retired_theorem_cut_counts[family]
+            for family in SUBSUMED_THEOREM_CUT_FAMILIES
+        },
         "resume": resume,
         "learned_cuts": learned_cut_manifest(audit),
         "all_registered_selected_row_and_raw_equality_theorem_families_encoded": True,
@@ -2720,10 +4039,19 @@ def main() -> None:
             "opposite crossed rows to be the same"
         ),
     )
+    parser.add_argument(
+        "--critical-k4-representation",
+        choices=incidence_cegar.CRITICAL_K4_REPRESENTATIONS,
+        default=incidence_cegar.DEFAULT_CRITICAL_K4_REPRESENTATION,
+        help=(
+            "encoding for critical-source K4 exclusion in the base audit "
+            f"(default: {incidence_cegar.DEFAULT_CRITICAL_K4_REPRESENTATION})"
+        ),
+    )
     parser.add_argument("--timeout-ms", type=int, default=300_000)
     parser.add_argument("--max-iterations", type=int, default=500)
     parser.add_argument(
-        "--run-tag", default="full-metric-bank-v9-global-kalmanson"
+        "--run-tag", default="full-metric-bank-v10-seven-point-collision"
     )
     parser.add_argument(
         "--resume",
@@ -2736,7 +4064,7 @@ def main() -> None:
         type=Path,
         metavar="RESULT_JSON",
         help=(
-            "reconstruct arm-independent cuts from a validated v3-v9 result; "
+            "reconstruct arm-independent cuts from a validated v3-v10 result; "
             "ordinary --resume remains schema- and arm-strict"
         ),
     )
@@ -2771,9 +4099,14 @@ def main() -> None:
         )
     if args.self_check_output is not None and not args.self_check:
         parser.error("--self-check-output requires --self-check")
+    representation_suffix = critical_k4_artifact_suffix(
+        args.critical_k4_representation
+    )
     if args.self_check:
-        checked = self_check()
-        self_check_output = args.self_check_output or (HERE / "self-check.json")
+        checked = self_check(args.critical_k4_representation)
+        self_check_output = args.self_check_output or (
+            HERE / f"self-check{representation_suffix}.json"
+        )
         self_check_output.parent.mkdir(parents=True, exist_ok=True)
         self_check_output.write_text(
             json.dumps(checked, indent=2, sort_keys=True) + "\n"
@@ -2785,6 +4118,9 @@ def main() -> None:
                 "status": checked["status"],
                 "result_schema": RESULT_SCHEMA,
                 "cut_schema": CUT_SCHEMA,
+                "critical_no_K4_representation": (
+                    args.critical_k4_representation
+                ),
                 "theorem_family_count": len(FULL_BANK_FAMILIES),
                 "global_kalmanson_status": checked[GLOBAL_KALMANSON_FAMILY][
                     "v8_witness_replay"
@@ -2792,8 +4128,14 @@ def main() -> None:
                 "output": str(self_check_output.resolve()),
             }, sort_keys=True))
     if args.matcher_benchmark:
-        benchmark = matcher_benchmark(args.timeout_ms)
-        (HERE / "matcher-benchmark-one-candidate.json").write_text(
+        benchmark = matcher_benchmark(
+            args.timeout_ms,
+            critical_k4_representation=args.critical_k4_representation,
+        )
+        (
+            HERE
+            / f"matcher-benchmark-one-candidate{representation_suffix}.json"
+        ).write_text(
             json.dumps(benchmark, indent=2, sort_keys=True) + "\n"
         )
         print(json.dumps(benchmark, sort_keys=True))
@@ -2852,9 +4194,11 @@ def main() -> None:
                 args.resume,
                 args.import_universal_cuts,
                 args.force_shared_fourth,
+                critical_k4_representation=args.critical_k4_representation,
             )
             print(json.dumps({k: result[k] for k in (
-                "arm", "status", "forced_shared_fourth", "elapsed_ms", "candidate_count",
+                "arm", "status", "critical_no_K4_representation",
+                "forced_shared_fourth", "elapsed_ms", "candidate_count",
                 "structural_cut_count", "theorem_cut_count", "theorem_cut_counts"
             )}, sort_keys=True))
 

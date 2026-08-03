@@ -1,0 +1,46 @@
+ring B=0,(br,bs,bu,bv,bw),dp;
+matrix M[11][6]=
+br-bw,-bs+bw,0,0,-br+bs,0,
+br-bw,0,-bu+bw,0,-br+bu,0,
+0,-bs,0,0,0,1,
+0,0,0,0,-bw,1,
+0,-bs+bu,bs-bu,0,0,1,
+0,-bs+bv,0,bs-bv,0,1,
+br,0,0,-bv,0,0,
+0,0,0,bv-1,1-bw,-bv+bw,
+br-bv,0,0,1-br,0,bv-1,
+1-bu,0,-br+bu,0,0,br-1,
+0,0,1-bv,-bu+bv,0,bu-1;
+ideal K=minor(M,6); ideal L; ideal BSI=std(bs); ideal BWI=std(bw); poly p; int k;
+for(k=1;k<=size(K);k++)
+{
+ p=K[k]; while(p!=0 and reduce(p,BSI)==0){p=p/bs;} while(p!=0 and reduce(p,BWI)==0){p=p/bw;}
+ if(p!=0 and size(p)<=16){L[size(L)+1]=p;}
+}
+poly e2=L[2]; poly e5=L[5]; poly e7=L[7]/br; poly e8=L[8]/(br*(bv-1)); poly e9=L[9]/(bv-1);
+
+proc reduceCert(ideal J,poly target,string label,string filename)
+{
+  matrix C=lift(J,ideal(target));
+  module V=C;
+  module S=std(syz(J));
+  module R=reduce(V,S);
+  matrix D=R;
+  poly reconstructed=0; int total=0; int md=0; int j;
+  int cleanup=system("sh","rm -f "+filename);
+  for(j=1;j<=nrows(D);j++)
+  {
+    reconstructed=reconstructed+D[j,1]*J[j]; total=total+size(D[j,1]);
+    if(D[j,1]!=0 and deg(D[j,1])>md){md=deg(D[j,1]);}
+    write(filename,"C"+string(j)+"="+string(D[j,1])+";"+newline);
+    print(label+" C"+string(j)+" terms="+string(size(D[j,1]))+" degree="+string(deg(D[j,1])));
+  }
+  print(label+" IDENTITY="+string(reconstructed==target)+" terms="+string(total)+" maxdeg="+string(md)+" syz_size="+string(size(S)));
+}
+
+ideal J1=subst(e2,br,bw),subst(e5,br,bw),subst(e7,br,bw),subst(e8,br,bw),subst(e9,br,bw);
+reduceCert(J1,bs*(bv-bu)*(bw-1)*(bw-bv),"B3","br-bw-B3-syz-reduced.singexpr");
+reduceCert(J1,bs*bv*(bw^3-bv^2+2*bv*bw-3*bw^2+bw),"B17","br-bw-B17-syz-reduced.singexpr");
+ideal J2=subst(J1,bu,bv);
+reduceCert(J2,-bv^2*(bw-1)*(bw-bv^2),"B24","br-bw-B24-syz-reduced.singexpr");
+quit;

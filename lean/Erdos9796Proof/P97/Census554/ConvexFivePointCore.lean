@@ -189,6 +189,23 @@ theorem false_of_core_of_neg
     rw [signedArea2_reflectXAxis]
     linarith
 
+/-- Orientation-complete wrapper for a five-point core whose two relevant
+turns have the same strict orientation. -/
+theorem false_of_core_of_common_orientation
+    {α : Type*} {P : RowPattern α} {pointOf : α → ℝ²}
+    (hreal : Realizes P pointOf) (core : Core P)
+    (horientation :
+      (0 < signedArea2 (pointOf core.a) (pointOf core.x) (pointOf core.b) ∧
+        0 < signedArea2 (pointOf core.b) (pointOf core.c) (pointOf core.y)) ∨
+      (signedArea2 (pointOf core.a) (pointOf core.x) (pointOf core.b) < 0 ∧
+        signedArea2 (pointOf core.b) (pointOf core.c) (pointOf core.y) < 0)) :
+    False := by
+  rcases horientation with hpositive | hnegative
+  · exact false_of_core hreal core hpositive.1 hpositive.2
+  · exact false_of_core_of_neg hreal core hnegative.1 hnegative.2
+
+#print axioms false_of_core_of_common_orientation
+
 end ConvexFivePointCore
 end Census554
 end Problem97

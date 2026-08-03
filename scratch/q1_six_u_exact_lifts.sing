@@ -1,0 +1,31 @@
+ring B=0,(br,bs,bu,bv,bw),dp;
+matrix M[11][6]=
+br-bw,-bs+bw,0,0,-br+bs,0,
+br-bw,0,-bu+bw,0,-br+bu,0,
+0,-bs,0,0,0,1,
+0,0,0,0,-bw,1,
+0,-bs+bu,bs-bu,0,0,1,
+0,-bs+bv,0,bs-bv,0,1,
+br,0,0,-bv,0,0,
+0,0,0,bv-1,1-bw,-bv+bw,
+br-bv,0,0,1-br,0,bv-1,
+1-bu,0,-br+bu,0,0,br-1,
+0,0,1-bv,-bu+bv,0,bu-1;
+ideal K=minor(M,6); ideal L; ideal BSI=std(bs); ideal BWI=std(bw); poly p; int k;
+for(k=1;k<=size(K);k++){p=K[k]; while(p!=0 and reduce(p,BSI)==0){p=p/bs;} while(p!=0 and reduce(p,BWI)==0){p=p/bw;} if(p!=0 and size(p)<=16){L[size(L)+1]=p;}}
+poly e1=L[1]; poly e2=L[2]; poly e5=L[5]; poly e7=L[7]/br; poly e8=L[8]/(br*(bv-1)); poly e9=L[9]/(bv-1); poly q1=e1/(bv*(br-bw));
+ideal H=e2,e5,e7,e8,e9,q1; matrix T; ideal U=liftstd(H,T);
+intvec selected=8,24,30,32,34,37; int a; int j; int terms; poly check;
+for(a=1;a<=size(selected);a++)
+{
+  k=selected[a]; terms=0; check=0;
+  write("scratch/q1_six_u_exact_lifts.cert","BEGIN U"+string(k)+" P="+string(U[k])+";");
+  for(j=1;j<=6;j++)
+  {
+    terms=terms+size(T[j,k]); check=check+T[j,k]*H[j];
+    if(T[j,k]!=0){write("scratch/q1_six_u_exact_lifts.cert","H"+string(j)+"="+string(T[j,k])+";");}
+  }
+  write("scratch/q1_six_u_exact_lifts.cert","END U"+string(k)+" TERMS="+string(terms)+" IDENTITY="+string(check==U[k])+";");
+  print("U"+string(k)+" terms="+string(terms)+" identity="+string(check==U[k]));
+}
+quit;

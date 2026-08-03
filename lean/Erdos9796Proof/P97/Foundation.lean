@@ -28,6 +28,16 @@ theorem dist_sq_coord (x y : ℝ²) :
   rw [EuclideanSpace.dist_sq_eq]
   simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
 
+/-- The balanced four-point conditional-negative inequality for squared
+Euclidean distance. -/
+theorem four_point_balanced_sqdist_le_cross (a b c d : ℝ²) :
+    dist a b ^ 2 + dist c d ^ 2 ≤
+      dist a c ^ 2 + dist a d ^ 2 + dist b c ^ 2 + dist b d ^ 2 := by
+  rw [dist_sq_coord, dist_sq_coord, dist_sq_coord, dist_sq_coord,
+    dist_sq_coord, dist_sq_coord]
+  nlinarith [sq_nonneg (a 0 + b 0 - c 0 - d 0),
+    sq_nonneg (a 1 + b 1 - c 1 - d 1)]
+
 /-- Convex independence of a `Finset` of plane points: the extreme-point
 characterization on the coerced underlying set, matching upstream
 `EuclideanGeometry.ConvexIndep` and the predicate used by `Erdos97.erdos_97`. -/

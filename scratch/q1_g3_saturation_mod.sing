@@ -1,0 +1,28 @@
+LIB "elim.lib";
+ring B=32003,(br,bs,bu,bv,bw),dp;
+poly e2=br^2*bs^3-br^2*bs^2*bu-br^2*bs^2*bv+br^2*bs*bu*bv-br*bs^3*bu+br*bs^2*bu^2+br*bs^2*bu*bv-br*bs*bu^2*bv-br*bs*bu^2*bw+br*bs*bu*bw^2+br*bs*bv^2*bw+br*bu^2*bv*bw-br*bu*bv^2*bw-br*bu*bv*bw^2-bs*bv^2*bw^2+bu*bv^2*bw^2;
+poly e5=br^2*bs^3-br^2*bs^2*bu-br^2*bs^2*bv+br^2*bs*bu*bv+br^2*bs*bu-br^2*bu*bv-br*bs^3+br*bs^2*bu+br*bs^2*bv-br*bs*bu^2-br*bs*bu*bv+br*bu^2*bv+bs*bu*bv^2-bs*bv^2-bu^2*bv^2+bu*bv^2;
+poly e7=bs^3*bu-bs^3-bs^2*bu^2-bs^2*bu*bv+bs^2*bu+bs^2*bv+bs*bu^2*bv+bs*bu*bv-bs*bu-bs*bv^2-bu^2*bv+bu*bv;
+poly e8=bs^2*bv*bw-bs^2*bw^2+bs^2*bw-bs^2-bs*bv^2*bw+bs*bv*bw^2-bs*bv*bw+bs*bv+bv^2*bw-bv*bw;
+poly e9=br^2*bv+br*bs^2*bv-br*bs^2-br*bs*bv^2+br*bs*bv-br*bv^2-br*bv+bv^3;
+poly q1=bs^3-2*bs^2*bu-bs^2*bw+bs*bu^2+bs*bu*bw+bs*bw^2-bu^2*bw;
+ideal H=e2,e5,e7,e8,e9,q1;
+poly loc=(bu-bs)*bv*bw;
+ideal G=std(H);
+poly rr=reduce(loc,G);
+print("loc remainder="+string(rr));
+int n;
+for(n=2;n<=8;n++){rr=reduce(loc^n,G); print("power="+string(n)+" zero="+string(rr==0)+" terms="+string(size(rr)));}
+int a; int b; int c;
+for(a=1;a<=8;a++){for(b=1;b<=8;b++){for(c=1;c<=8;c++){
+ rr=reduce((bu-bs)^a*bv^b*bw^c,G);
+ if(rr==0 and a+b+c<=16){print("zero exponents="+string(a)+","+string(b)+","+string(c));}
+}}}
+for(a=1;a<=12;a++){for(b=1;b<=12;b++){
+ rr=reduce(bv^a*bw^b*(bv-1)^2,G);
+ if(rr==0){print("bv1 zero exponents="+string(a)+","+string(b));}
+}}
+ideal Sat=sat(H,loc)[1];
+print("size="+string(size(Sat)));
+Sat;
+quit;

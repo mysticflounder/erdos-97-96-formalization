@@ -1,0 +1,28 @@
+ring B=0,(br,bs,bu,bv,bw),dp;
+matrix M[11][6]=
+br-bw,-bs+bw,0,0,-br+bs,0,
+br-bw,0,-bu+bw,0,-br+bu,0,
+0,-bs,0,0,0,1,
+0,0,0,0,-bw,1,
+0,-bs+bu,bs-bu,0,0,1,
+0,-bs+bv,0,bs-bv,0,1,
+br,0,0,-bv,0,0,
+0,0,0,bv-1,1-bw,-bv+bw,
+br-bv,0,0,1-br,0,bv-1,
+1-bu,0,-br+bu,0,0,br-1,
+0,0,1-bv,-bu+bv,0,bu-1;
+ideal K=minor(M,6); ideal L; ideal BSI=std(bs); ideal BWI=std(bw); poly p; int k;
+for(k=1;k<=size(K);k++){p=K[k]; while(p!=0 and reduce(p,BSI)==0){p=p/bs;} while(p!=0 and reduce(p,BWI)==0){p=p/bw;} if(p!=0 and size(p)<=16){L[size(L)+1]=p;}}
+poly e1=L[1]; poly e2=L[2]; poly e5=L[5]; poly e7=L[7]/br; poly e8=L[8]/(br*(bv-1)); poly e9=L[9]/(bv-1); poly q1=e1/(bv*(br-bw));
+ideal H=e2,e5,e7,e8,e9,q1; matrix TH; ideal U=liftstd(H,TH);
+ideal S=H; S[7]=U[8]; S[8]=U[24]; S[9]=U[30]; S[10]=U[32]; S[11]=U[34]; S[12]=U[37];
+poly target=br*bs^2*bw^2*(bv-1)^2;
+matrix C=lift(S,ideal(target)); poly reconstructed=0; int j; int total=0; int md=0;
+for(j=1;j<=nrows(C);j++)
+{
+  reconstructed=reconstructed+C[j,1]*S[j]; total=total+size(C[j,1]);
+  if(C[j,1]!=0 and deg(C[j,1])>md){md=deg(C[j,1]);}
+  if(C[j,1]!=0){print("C"+string(j)+" TERMS="+string(size(C[j,1]))+" DEG="+string(deg(C[j,1])));}
+}
+print("ROWS="+string(nrows(C))+" TERMS="+string(total)+" MAXDEG="+string(md)+" IDENTITY="+string(reconstructed==target));
+quit;

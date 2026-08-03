@@ -1,0 +1,41 @@
+ring B=0,(br,bs,bu,bv,bw),dp;
+matrix M[11][6]=
+br-bw,-bs+bw,0,0,-br+bs,0,
+br-bw,0,-bu+bw,0,-br+bu,0,
+0,-bs,0,0,0,1,
+0,0,0,0,-bw,1,
+0,-bs+bu,bs-bu,0,0,1,
+0,-bs+bv,0,bs-bv,0,1,
+br,0,0,-bv,0,0,
+0,0,0,bv-1,1-bw,-bv+bw,
+br-bv,0,0,1-br,0,bv-1,
+1-bu,0,-br+bu,0,0,br-1,
+0,0,1-bv,-bu+bv,0,bu-1;
+ideal K=minor(M,6);
+ideal BSI=std(bs);
+ideal BWI=std(bw);
+poly gA=(bu-bs)*(br-bv)*bv*bw;
+poly gF=bs*bv*(br^2-br*bv+bv^2-br);
+poly gB=br*(br-1)*bw*(bs*bw-bu^2);
+ideal GA=std(gA); ideal GF=std(gF); ideal GB=std(gB);
+poly p,q;
+int k;
+for(k=1;k<=size(K);k++)
+{
+  p=K[k];
+  while(p!=0 and reduce(p,BSI)==0){p=p/bs;}
+  while(p!=0 and reduce(p,BWI)==0){p=p/bw;}
+  if(p!=0 and reduce(p,GA)==0)
+  {
+    q=p/gA; print("gA minor="+string(k)+" pterms="+string(size(p))+" qterms="+string(size(q))+" q="+string(q));
+  }
+  if(p!=0 and reduce(p,GF)==0)
+  {
+    q=p/gF; print("gF minor="+string(k)+" pterms="+string(size(p))+" qterms="+string(size(q))+" q="+string(q));
+  }
+  if(p!=0 and reduce(p,GB)==0)
+  {
+    q=p/gB; print("gB minor="+string(k)+" pterms="+string(size(p))+" qterms="+string(size(q))+" q="+string(q));
+  }
+}
+quit;

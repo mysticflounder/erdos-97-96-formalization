@@ -1,0 +1,7 @@
+ring R=0,(br,bs,bv,bw),dp;
+poly Q=br^2-br*bv+bv^2-br;
+poly A2=br*bs^2+br*bs*bv-br*bs*bw-br*bs-br*bv^2+br*bv*bw-bs^2*bv+bs*bv*bw+bv^3-bv^2*bw;
+poly A3=br^2*bs-2*br*bs^2+bs^3-br^2*bw+br*bs*bw-bs^2*bw+bs*bw^2;
+poly A4=-br*bs^2+3*br*bs*bv-2*br*bs*bw-br*bs-br*bv^2+br*bv*bw+bs^3-3*bs^2*bv-bs^2*bw+2*bs^2+bs*bv^2+bs*bv*bw^2+3*bs*bv*bw-2*bs*bv+bv^3-bv^2*bw^2-4*bv^2*bw+bv*bw^2+2*bv*bw;
+poly A5=-(br-bv)*(bs^2-bs*bv-bv*bw^2+bv*bw);
+ideal I=Q,A2,A3,A4,A5; ideal G=std(I); print("n="+string(size(G))); for(int i=1;i<=size(G);i++){if(deg(G[i])<=5){print("G"+string(i)+"="+string(G[i]));}}

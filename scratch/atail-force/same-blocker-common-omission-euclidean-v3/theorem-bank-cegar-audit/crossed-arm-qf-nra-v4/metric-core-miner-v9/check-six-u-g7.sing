@@ -1,0 +1,35 @@
+ring B=0,(br,bs,bu,bv,bw),dp;
+matrix M[11][6]=
+br-bw,-bs+bw,0,0,-br+bs,0,
+br-bw,0,-bu+bw,0,-br+bu,0,
+0,-bs,0,0,0,1,
+0,0,0,0,-bw,1,
+0,-bs+bu,bs-bu,0,0,1,
+0,-bs+bv,0,bs-bv,0,1,
+br,0,0,-bv,0,0,
+0,0,0,bv-1,1-bw,-bv+bw,
+br-bv,0,0,1-br,0,bv-1,
+1-bu,0,-br+bu,0,0,br-1,
+0,0,1-bv,-bu+bv,0,bu-1;
+ideal K=minor(M,6); ideal L; ideal BSI=std(bs); ideal BWI=std(bw); poly p; int k;
+for(k=1;k<=size(K);k++)
+{
+ p=K[k]; while(p!=0 and reduce(p,BSI)==0){p=p/bs;} while(p!=0 and reduce(p,BWI)==0){p=p/bw;}
+ if(p!=0 and size(p)<=16){L[size(L)+1]=p;}
+}
+poly e1=L[1]; poly e2=L[2]; poly e5=L[5]; poly e7=L[7]/br; poly e8=L[8]/(br*(bv-1)); poly e9=L[9]/(bv-1); poly q1=e1/(bv*(br-bw));
+ideal H=e2,e5,e7,e8,e9,q1;
+matrix T; ideal U=liftstd(H,T);
+ideal S=U[8],U[24],U[30],U[32],U[34],U[37];
+poly G7=br^2*bs*bv-br*bs*bv^2+bs*bv^3-br*bs*bv;
+ideal SS=std(S); poly r=reduce(G7,SS); print("G7_reduce="+string(r));
+print("S_generators="+string(size(S))+" S_std_size="+string(size(SS))+" G7_terms="+string(size(G7)));
+ if(r==0)
+ {
+  matrix C=lift(S,ideal(G7)); poly recon=0; int total=0; int md=0; int j;
+  for(j=1;j<=nrows(C);j++){recon=recon+C[j,1]*S[j]; total=total+size(C[j,1]); if(C[j,1]!=0 and deg(C[j,1])>md){md=deg(C[j,1]);}}
+  print("lift_rows="+string(nrows(C)+0)+" terms="+string(total)+" maxdeg="+string(md)+" identity="+string(recon==G7));
+  for(j=1;j<=nrows(C);j++){if(C[j,1]!=0){write("check-six-u-g7.cert",string(C[j,1]));}}
+ }
+ else { print("NONMEMBERSHIP=no exact lift; remainder is nonzero"); }
+quit;

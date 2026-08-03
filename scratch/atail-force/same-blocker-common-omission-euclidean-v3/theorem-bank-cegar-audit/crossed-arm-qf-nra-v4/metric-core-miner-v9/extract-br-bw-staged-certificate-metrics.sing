@@ -1,0 +1,59 @@
+ring B=0,(br,bs,bu,bv,bw),dp;
+matrix M[11][6]=
+br-bw,-bs+bw,0,0,-br+bs,0,
+br-bw,0,-bu+bw,0,-br+bu,0,
+0,-bs,0,0,0,1,
+0,0,0,0,-bw,1,
+0,-bs+bu,bs-bu,0,0,1,
+0,-bs+bv,0,bs-bv,0,1,
+br,0,0,-bv,0,0,
+0,0,0,bv-1,1-bw,-bv+bw,
+br-bv,0,0,1-br,0,bv-1,
+1-bu,0,-br+bu,0,0,br-1,
+0,0,1-bv,-bu+bv,0,bu-1;
+ideal K=minor(M,6);
+ideal L;
+ideal BSI=std(bs);
+ideal BWI=std(bw);
+poly p;
+int k;
+for(k=1;k<=size(K);k++)
+{
+  p=K[k];
+  while(p!=0 and reduce(p,BSI)==0){p=p/bs;}
+  while(p!=0 and reduce(p,BWI)==0){p=p/bw;}
+  if(p!=0 and size(p)<=16){L[size(L)+1]=p;}
+}
+poly e2=L[2];
+poly e5=L[5];
+poly e7=L[7]/br;
+poly e8=L[8]/(br*(bv-1));
+poly e9=L[9]/(bv-1);
+
+proc certMetrics(ideal J,poly target,string label,string filename)
+{
+  int cleanup=system("sh","rm -f "+filename);
+  matrix C=lift(J,ideal(target));
+  poly reconstructed=0;
+  int total=0; int md=0; int j;
+  for(j=1;j<=nrows(C);j++)
+  {
+    reconstructed=reconstructed+C[j,1]*J[j];
+    total=total+size(C[j,1]);
+    if(C[j,1]!=0 and deg(C[j,1])>md){md=deg(C[j,1]);}
+    write(filename,"C"+string(j)+"="+string(C[j,1])+";"+newline);
+    print(label+" C"+string(j)+" terms="+string(size(C[j,1]))+" degree="+string(deg(C[j,1])));
+  }
+  print(label+" IDENTITY="+string(reconstructed==target)+" terms="+string(total)+" maxdeg="+string(md));
+}
+
+ideal J1=subst(e2,br,bw),subst(e5,br,bw),subst(e7,br,bw),subst(e8,br,bw),subst(e9,br,bw);
+poly b3=bs*(bv-bu)*(bw-1)*(bw-bv);
+poly b17=bs*bv*(bw^3-bv^2+2*bv*bw-3*bw^2+bw);
+certMetrics(J1,b3,"B3_AFTER_BR_EQ_BW","br-bw-B3-certificate.singexpr");
+certMetrics(J1,b17,"B17_AFTER_BR_EQ_BW","br-bw-B17-certificate.singexpr");
+
+ideal J2=subst(J1,bu,bv);
+poly b24=-bv^2*(bw-1)*(bw-bv^2);
+certMetrics(J2,b24,"B24_AFTER_BR_EQ_BW_AND_BU_EQ_BV","br-bw-B24-certificate.singexpr");
+quit;

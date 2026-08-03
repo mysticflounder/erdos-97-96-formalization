@@ -125,14 +125,20 @@ theorem det_liftedFour_ne_zero_of_three_mem_one_not_mem
     (K.support_eq_radius b hb)
   have hpc := power_eq_zero_of_dist_eq center c K.radius
     (K.support_eq_radius c hc)
+  have hda : dist a center = K.radius := by
+    simpa only [dist_comm] using K.support_eq_radius a ha
+  have hdb : dist b center = K.radius := by
+    simpa only [dist_comm] using K.support_eq_radius b hb
+  have hdc : dist c center = K.radius := by
+    simpa only [dist_comm] using K.support_eq_radius c hc
+  have harea : signedArea2 a b c ≠ 0 :=
+    MEC.signedArea2_ne_zero_of_three_dist_eq
+      (p₁ := a) (p₂ := b) (p₃ := c) (c := center) (r := K.radius)
+      hda hdb hdc hab hbc hac
   rw [det_liftedFour_eq_neg_signedArea2_mul_power center a b c d
     (K.radius ^ 2) hpa hpb hpc]
   apply mul_ne_zero
-  · exact neg_ne_zero.mpr (MEC.signedArea2_ne_zero_of_three_dist_eq
-      (by simpa [dist_comm] using K.support_eq_radius a ha)
-      (by simpa [dist_comm] using K.support_eq_radius b hb)
-      (by simpa [dist_comm] using K.support_eq_radius c hc)
-      hab hbc hac)
+  · exact neg_ne_zero.mpr harea
   · exact power_ne_zero_of_dist_ne center d K.radius K.radius_pos
       (K.dist_ne_radius_of_mem_A_not_mem_support hdA hd)
 

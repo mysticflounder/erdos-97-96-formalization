@@ -1,0 +1,47 @@
+// Focused subset scan: base equalities E plus subsets of the six staged U's.
+ring r=32003,(br,bs,bu,bv,bw),dp;
+poly q1=bs^3-2*bs^2*bu-bs^2*bw+bs*bu^2+bs*bu*bw+bs*bw^2-bu^2*bw;
+poly e2=br^2*bs^3-br^2*bs^2*bu-br^2*bs^2*bv+br^2*bs*bu*bv-br*bs^3*bu+br*bs^2*bu^2+br*bs^2*bu*bv-br*bs*bu^2*bv-br*bs*bu^2*bw+br*bs*bu*bw^2+br*bs*bv^2*bw+br*bu^2*bv*bw-br*bu*bv^2*bw-br*bu*bv*bw^2-bs*bv^2*bw^2+bu*bv^2*bw^2;
+poly e5=br^2*bs^3-br^2*bs^2*bu-br^2*bs^2*bv+br^2*bs*bu*bv+br^2*bs*bu-br^2*bu*bv-br*bs^3+br*bs^2*bu+br*bs^2*bv-br*bs*bu^2-br*bs*bu*bv+br*bu^2*bv+bs*bu*bv^2-bs*bv^2-bu^2*bv^2+bu*bv^2;
+poly e7=bs^3*bu-bs^3-bs^2*bu^2-bs^2*bu*bv+bs^2*bu+bs^2*bv+bs*bu^2*bv+bs*bu*bv-bs*bu-bs*bv^2-bu^2*bv+bu*bv;
+poly e8=bs^2*bv*bw-bs^2*bw^2+bs^2*bw-bs^2-bs*bv^2*bw+bs*bv*bw^2-bs*bv*bw+bs*bv+bv^2*bw-bv*bw;
+poly e9=br^2*bv+br*bs^2*bv-br*bs^2-br*bs*bv^2+br*bs*bv-br*bv^2-br*bv+bv^3;
+poly U8=bs^2*bu^2-bs*bu^3-bs^2*bu*bv+bs*bu^2*bv+bs^2*bu*bw-bs*bu^2*bw+bu^3*bw-bs*bu*bw^2-bs^2*bu+bs*bu^2+bs^2*bv+bs*bu*bv-bu^2*bv-bs*bv^2-bs^2*bw+bs*bu*bw-bu^2*bw+bs*bw^2-bs*bu+bu*bv;
+poly U24=br*bs^2*bw^2-br*bs*bv*bw^2-2*br*bs^2*bw+br^2*bv*bw+2*br*bs*bv*bw-2*br*bv^2*bw+bv^3*bw+br*bs^2-br*bs*bv;
+poly U30=bs*bu*bv^2*bw-bs*bv^3*bw-2*bs*bu*bv*bw^2+bu^2*bv*bw^2+bs*bv^2*bw^2+2*bs*bu*bv*bw-2*bu^2*bv*bw+bs*bu*bw^2-bu*bv*bw^2-2*bs*bu*bv+bu^2*bv+bs*bv^2-bs*bu*bw-bs*bv*bw+2*bu*bv*bw+bs*bu-bu*bv;
+poly U32=br^2*bv^2*bw-2*br*bv^3*bw+bv^4*bw-br^2*bv*bw^2+br*bv^2*bw^2-bv^3*bw^2+br^2*bv*bw+bv^3*bw+br*bv*bw^2-br^2*bv+br*bv^2-bv^3-2*br*bv*bw+br*bv;
+poly U34=bs*bu^2*bv*bw-2*bs*bu*bv^2*bw+bs*bv^3*bw-bs*bu^2*bw^2+3*bs*bu*bv*bw^2-bu^2*bv*bw^2-2*bs*bv^2*bw^2-bs*bu*bw^3+bu^2*bw^3+2*bs*bv*bw^3-bs*bw^4+bs*bu^2*bw-2*bs*bu*bv*bw+2*bu*bv^2*bw-bv^3*bw+bs*bu*bw^2-bu^2*bw^2-bs*bv*bw^2+bv^2*bw^2+bs*bw^3-bs*bu^2+2*bs*bu*bv-bs*bv^2-bs*bu*bw+bu^2*bw+2*bs*bv*bw-2*bu*bv*bw+bv^2*bw-bs*bw^2-bv*bw^2;
+poly U37=bs*bu^3*bw-bu^3*bv*bw-bs^2*bu*bw^2+bs*bu*bv*bw^2+2*bs^2*bu*bv-3*bs*bu^2*bv+bu^3*bv-bs^2*bv^2+bs*bu*bv^2-bs*bu^2*bw-2*bs*bu*bv*bw+2*bu^2*bv*bw+bs*bv^2*bw+bs^2*bw^2-bs*bv*bw^2-bs^2*bu+bs*bu^2+bs*bu*bv-bu^2*bv+bs*bu*bw-bu*bv*bw;
+poly G3=(bu-bs)*(br-bv)*bv*bw;
+ideal Z=0;
+print("U8combo="+string(reduce(U8-(e7+(1-bu)*q1),Z)));
+print("U24combo="+string(reduce(U24-((-br)*e8+bw*e9),Z)));
+print("U30combo="+string(reduce(U30-((bv*bw-bw^2+bw-1)*e7-(bs*bu-bu^2-bs+bu)*e8),Z)));
+print("U32combo="+string(reduce(U32-((-(br*bv-br))*e8+(bv*bw-bw^2+bw-1)*e9),Z)));
+print("U34combo="+string(reduce(U34-((-(bs-2*bu+bv-bw))*e8+(bv*bw-bw^2+bw-1)*q1),Z)));
+print("U37combo="+string(reduce(U37-((bs-bu-bw)*e7+(-bs*bu+bu*bv+bs-bv)*q1),Z)));
+ideal E=e2,e5,e7,e8,e9,q1;
+ideal U=U8,U24,U30,U32,U34,U37;
+int mask; int i; int hits=0; ideal A; ideal B;
+for(mask=0;mask<64;mask++) {
+  // Fixed reduced base E mask35={e2,e5,q1}; enumerate U subsets.
+  A=e2,e5,q1;
+  for(i=1;i<=6;i++) { if((mask div (2^(i-1))) mod 2) { A=A,U[i]; } }
+  B=std(A);
+  if(reduce(G3,B)==0) {
+    print("HIT mask="+string(mask)+" generators="+string(size(A))+" gb="+string(size(B)));
+    hits++;
+  }
+}
+print("TOTAL_HITS="+string(hits));
+ideal A35=U,e2,e5,q1;
+matrix T35; ideal B35=liftstd(A35,T35); matrix C35=lift(B35,ideal(G3)); matrix D35=T35*C35;
+int terms35=0; int md35=0;
+for(i=1;i<=nrows(D35);i++) { terms35=terms35+size(D35[i,1]); if(D35[i,1]!=0 and deg(D35[i,1])>md35) {md35=deg(D35[i,1]);} }
+print("LIFT mask35 terms="+string(terms35)+" maxdeg="+string(md35)+" gb="+string(size(B35)));
+ideal A27=e2,e5,q1,U8,U24,U32,U34;
+matrix T27; ideal B27=liftstd(A27,T27); matrix C27=lift(B27,ideal(G3)); matrix D27=T27*C27;
+int terms27=0; int md27=0;
+for(i=1;i<=nrows(D27);i++) { terms27=terms27+size(D27[i,1]); if(D27[i,1]!=0 and deg(D27[i,1])>md27) {md27=deg(D27[i,1]);} }
+print("LIFT U-mask27 terms="+string(terms27)+" maxdeg="+string(md27)+" gb="+string(size(B27)));
+quit;

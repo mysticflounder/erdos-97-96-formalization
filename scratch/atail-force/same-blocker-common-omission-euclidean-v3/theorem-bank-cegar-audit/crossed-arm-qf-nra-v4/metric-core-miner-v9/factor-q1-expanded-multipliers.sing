@@ -1,0 +1,5 @@
+ring B=0,(br,bs,bu,bv,bw),dp;
+execute(read("q1-gA-certificate.singexpr"));
+print("G3_C1 terms="+string(size(C1))+" degree="+string(deg(C1)));
+print(factorize(C1));
+quit;

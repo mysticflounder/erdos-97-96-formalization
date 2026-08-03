@@ -1,0 +1,27 @@
+ring C=0,(zr,zs,zu,zv,zw,br,bs,bu,bv,bw,t),dp;
+poly f1=(zr-zw)*(br-bw)-(zs-zw)*(bs-bw);
+poly f2=(zr-zw)*(br-bw)-(zu-zw)*(bu-bw);
+poly f3=1-zs*bs;
+poly f4=1-zw*bw;
+poly f5=1-(zs-zu)*(bs-bu);
+poly f6=1-(zs-zv)*(bs-bv);
+poly f7=zr*br-zv*bv;
+poly f8=(zv-1)*(bv-1)-(zw-1)*(bw-1);
+poly f9=(zv-zr)*(bv-br)-(zv-1)*(bv-1);
+poly f10=(zr-zu)*(br-bu)-(zr-1)*(br-1);
+poly f11=(zu-zv)*(bu-bv)-(zu-1)*(bu-1);
+ideal I=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11;
+proc metrics(ideal J,string label)
+{
+  matrix T;
+  ideal G=liftstd(J,T);
+  int total=0; int md=0; int j;
+  for(j=1;j<=nrows(T);j++){ total=total+size(T[j,1]); if(deg(T[j,1])>md){md=deg(T[j,1]);} }
+  print(label+" gb="+string(size(G))+" total="+string(total)+" maxdeg="+string(md));
+}
+ideal J1=I,br; metrics(J1,"br=0");
+ideal J2=I,bs; metrics(J2,"bs=0");
+ideal J3=I,bw; metrics(J3,"bw=0");
+ideal J4=I,bv-1; metrics(J4,"bv=1");
+ideal J5=I,t*br*bs*bw*(bv-1)-1; metrics(J5,"generic");
+quit;

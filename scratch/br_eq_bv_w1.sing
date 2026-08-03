@@ -1,0 +1,11 @@
+ring B=0,(b,s,u),dp;
+poly k=s2-b*s+b;
+poly q=s3-2*s2*u+ s*u2 - s2 + s*u-u2+s;
+poly e=-s3+s2*u-b2+b*u-s*u;
+poly Q=reduce(q,std(k));
+poly E=reduce(e,std(k));
+print("Q="+string(Q)); print("E="+string(E));
+print("factor Q="+string(factorize(Q)[1])); print("factor E="+string(factorize(E)[1]));
+ideal H=k,q,e;
+ideal G=std(H); print("size="+string(size(G))); G[1];
+quit;

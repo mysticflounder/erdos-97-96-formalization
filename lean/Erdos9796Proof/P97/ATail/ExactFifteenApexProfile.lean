@@ -106,6 +106,52 @@ theorem capInteriorByIndex_card_eq_four_of_card_eq_fifteen
   have hinter := capInteriorByIndex_card_add_two S i
   omega
 
+/-- If a strict cap interior has four points, then two distinct K4 radius
+classes at its opposite apex partition it into two disjoint two-point slices. -/
+theorem twoRichClassSlices_partition_of_capInterior_card_eq_four
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3) {r₁ r₂ : ℝ}
+    (hr₁ : 0 < r₁) (hr₂ : 0 < r₂) (hne : r₁ ≠ r₂)
+    (hfour₁ : 4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r₁).card)
+    (hfour₂ : 4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r₂).card)
+    (hinterior : (S.capInteriorByIndex i).card = 4) :
+    let I₁ := SelectedClass A (S.oppositeVertexByIndex i) r₁ ∩
+      S.capInteriorByIndex i
+    let I₂ := SelectedClass A (S.oppositeVertexByIndex i) r₂ ∩
+      S.capInteriorByIndex i
+    I₁.card = 2 ∧ I₂.card = 2 ∧ Disjoint I₁ I₂ ∧
+      S.capInteriorByIndex i = I₁ ∪ I₂ := by
+  classical
+  let I₁ := SelectedClass A (S.oppositeVertexByIndex i) r₁ ∩
+    S.capInteriorByIndex i
+  let I₂ := SelectedClass A (S.oppositeVertexByIndex i) r₂ ∩
+    S.capInteriorByIndex i
+  have hI₁ : 2 ≤ I₁.card := by
+    simpa [I₁] using
+      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₁ hfour₁
+  have hI₂ : 2 ≤ I₂.card := by
+    simpa [I₂] using
+      S.selectedClass_capInteriorByIndex_card_ge_two hconv i hr₂ hfour₂
+  have hdisjoint : Disjoint I₁ I₂ := by
+    rw [Finset.disjoint_left]
+    intro x hx₁ hx₂
+    have hxr₁ := (mem_selectedClass.mp (Finset.mem_inter.mp hx₁).1).2
+    have hxr₂ := (mem_selectedClass.mp (Finset.mem_inter.mp hx₂).1).2
+    exact hne (hxr₁.symm.trans hxr₂)
+  have hsub : I₁ ∪ I₂ ⊆ S.capInteriorByIndex i := by
+    intro x hx
+    rcases Finset.mem_union.mp hx with hx₁ | hx₂
+    · exact (Finset.mem_inter.mp hx₁).2
+    · exact (Finset.mem_inter.mp hx₂).2
+  have hunion : (I₁ ∪ I₂).card = I₁.card + I₂.card :=
+    Finset.card_union_of_disjoint hdisjoint
+  have hunion_le := Finset.card_le_card hsub
+  have hI₁eq : I₁.card = 2 := by omega
+  have hI₂eq : I₂.card = 2 := by omega
+  have heq : S.capInteriorByIndex i = I₁ ∪ I₂ := by
+    exact (Finset.eq_of_subset_of_card_le hsub (by omega)).symm
+  exact ⟨hI₁eq, hI₂eq, hdisjoint, heq⟩
+
 /-- Exact cap occupancy at all three indices, packaged for downstream finite
 encoders. -/
 theorem exactCapProfile_of_card_eq_fifteen
@@ -342,6 +388,61 @@ theorem exists_selectedFourClass_exactApexProfile_of_globalK4
   let K := Classical.choice (exists_selectedFourClass_of_globalK4 hK4 hapex)
   exact ⟨K, selectedFourClass_exactApexProfile_of_card_eq_fifteen
     S hconv hcard hlarge i K hrich⟩
+
+/-- Exhaustive tri-apex rich-profile split: either at least one indexed apex
+has an `S6` witness, or every indexed apex has a `D44` witness.  This is the
+smallest checked split needed by the S-profile CEGAR family; it avoids eight
+role-labelled cases until a consumer genuinely needs them. -/
+theorem exists_sixClass_or_all_twoRichClasses
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hrich : ∀ i : Fin 3,
+      ApexRichClassStructure A (S.oppositeVertexByIndex i)) :
+    (∃ i : Fin 3, ∃ r : ℝ, 0 < r ∧
+      6 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r).card) ∨
+    (∀ i : Fin 3, ∃ r₁ r₂ : ℝ,
+      0 < r₁ ∧ 0 < r₂ ∧ r₁ ≠ r₂ ∧
+      4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r₁).card ∧
+      4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r₂).card) := by
+  classical
+  by_cases hs : ∃ i : Fin 3, ∃ r : ℝ, 0 < r ∧
+      6 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r).card
+  · exact Or.inl hs
+  · right
+    intro i
+    rcases hrich i with hsix | hd44
+    · exact False.elim (hs ⟨i, hsix⟩)
+    · exact hd44
+
+/-- At carrier cardinality fifteen with all three caps large, the exhaustive
+tri-apex split has exact sizes: some apex has an exact six-class, or every
+apex has two distinct exact four-classes. -/
+theorem exists_exactSixClass_or_all_exactTwoFourClasses_of_card_eq_fifteen
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A)
+    (hcard : A.card = 15)
+    (hlarge : ∀ i : Fin 3, 6 ≤ (S.capByIndex i).card)
+    (hrich : ∀ i : Fin 3,
+      ApexRichClassStructure A (S.oppositeVertexByIndex i)) :
+    (∃ i : Fin 3, ∃ r : ℝ, 0 < r ∧
+      (SelectedClass A (S.oppositeVertexByIndex i) r).card = 6) ∨
+    (∀ i : Fin 3, ∃ r₁ r₂ : ℝ,
+      0 < r₁ ∧ 0 < r₂ ∧ r₁ ≠ r₂ ∧
+      (SelectedClass A (S.oppositeVertexByIndex i) r₁).card = 4 ∧
+      (SelectedClass A (S.oppositeVertexByIndex i) r₂).card = 4) := by
+  rcases exists_sixClass_or_all_twoRichClasses S hrich with hs | hd
+  · left
+    rcases hs with ⟨i, r, hr, hsix⟩
+    refine ⟨i, r, hr, ?_⟩
+    exact selectedClass_card_eq_six_of_cap_card_eq_six
+      S hconv i hr hsix
+        (capByIndex_card_eq_six_of_card_eq_fifteen S hcard hlarge i)
+  · right
+    intro i
+    rcases hd i with ⟨r₁, r₂, hr₁, hr₂, hne, hfour₁, hfour₂⟩
+    have hcards := twoRichClasses_card_eq_four_of_cap_card_eq_six
+      S hconv i hr₁ hr₂ hne hfour₁ hfour₂
+        (capByIndex_card_eq_six_of_card_eq_fifteen S hcard hlarge i)
+    exact ⟨r₁, r₂, hr₁, hr₂, hne, hcards.1, hcards.2⟩
 
 end ATailExactFifteenApexProfile
 end Problem97

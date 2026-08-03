@@ -1,0 +1,14 @@
+ring r = 0,(bw,bv,bu,bs),lp;
+poly p2 = bw^2*bs^3-bw^2*bs^2*bu-bw^2*bs^2*bv+bw^2*bs*bu*bv-bw*bs^3*bu+bw*bs^2*bu^2+bw*bs^2*bu*bv-bw*bs*bu^2*bv-bw*bs*bu^2*bw+bw*bs*bu*bw^2+bw*bs*bv^2*bw+bw*bu^2*bv*bw-bw*bu*bv^2*bw-bw*bu*bv*bw^2-bs*bv^2*bw^2+bu*bv^2*bw^2;
+poly p5 = bw^2*bs^3-bw^2*bs^2*bu-bw^2*bs^2*bv+bw^2*bs*bu*bv+bw^2*bs*bu-bw^2*bu*bv-bw*bs^3+bw*bs^2*bu+bw*bs^2*bv-bw*bs*bu^2-bw*bs*bu*bv+bw*bu^2*bv+bs*bu*bv^2-bs*bv^2-bu^2*bv^2+bu*bv^2;
+poly p7 = bw*(bs^3*bu-bs^3-bs^2*bu^2-bs^2*bu*bv+bs^2*bu+bs^2*bv+bs*bu^2*bv+bs*bu*bv-bs*bu-bs*bv^2-bu^2*bv+bu*bv);
+poly p8 = -bw*(bv-1)*(bs^2*bv*bw-bs^2*bw^2+bs^2*bw-bs^2-bs*bv^2*bw+bs*bv*bw^2-bs*bv*bw+bs*bv+bv^2*bw-bv*bw);
+poly p9 = (bv-1)*(bw^2*bv+bw*bs^2*bv-bw*bs^2-bw*bs*bv^2+bw*bs*bv-bw*bv^2-bw*bv+bv^3);
+poly q7=p7/bw;
+poly q8=p8/(-bw*(bv-1));
+poly q9=p9/(bv-1);
+ideal I = p2,p5,q7,q8,q9;
+poly B3=bs*(bv-bu)*(bw-1)*(bw-bv);
+proc chk(ideal J, string n) { ideal H=std(J); poly z=reduce(B3,H); if (z==0) { print(n); } }
+module L=lift(I,ideal(B3));
+L;

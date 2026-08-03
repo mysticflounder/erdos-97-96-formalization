@@ -1,0 +1,34 @@
+ring B=0,(br,bs,bu,bv,bw),dp;
+matrix M[11][6]=
+br-bw,-bs+bw,0,0,-br+bs,0,
+br-bw,0,-bu+bw,0,-br+bu,0,
+0,-bs,0,0,0,1,
+0,0,0,0,-bw,1,
+0,-bs+bu,bs-bu,0,0,1,
+0,-bs+bv,0,bs-bv,0,1,
+br,0,0,-bv,0,0,
+0,0,0,bv-1,1-bw,-bv+bw,
+br-bv,0,0,1-br,0,bv-1,
+1-bu,0,-br+bu,0,0,br-1,
+0,0,1-bv,-bu+bv,0,bu-1;
+ideal K=minor(M,6); ideal L; ideal BSI=std(bs); ideal BWI=std(bw); poly p; int k;
+for(k=1;k<=size(K);k++){p=K[k]; while(p!=0 and reduce(p,BSI)==0){p=p/bs;} while(p!=0 and reduce(p,BWI)==0){p=p/bw;} if(p!=0 and size(p)<=16){L[size(L)+1]=p;}}
+poly e1=L[1]; poly e2=L[2]; poly e5=L[5]; poly e7=L[7]/br; poly e8=L[8]/(br*(bv-1)); poly e9=L[9]/(bv-1); poly q1=e1/(bv*(br-bw));
+ideal H=e2,e5,e7,e8,e9,q1; matrix T; ideal U=liftstd(H,T);
+// Six low-complexity staged nodes identified by prior metric audit.
+ideal V=U[8],U[24],U[30],U[32],U[34],U[37];
+poly G7=br^2*bs*bv-br*bs*bv^2+bs*bv^3-br*bs*bv;
+int mask; ideal S; ideal GS; poly rem; matrix C; poly recon; int j,total,md;
+for(mask=0;mask<64;mask++)
+{
+  S=H;
+  for(j=1;j<=6;j++){if((mask div (2^(j-1))) mod 2==1){S[size(S)+1]=V[j];}}
+  GS=std(S); rem=reduce(G7,GS);
+  if(rem==0)
+  {
+    C=lift(S,ideal(G7)); recon=0; total=0; md=0;
+    for(j=1;j<=nrows(C);j++){recon=recon+C[j,1]*S[j]; total=total+size(C[j,1]); if(C[j,1]!=0 and deg(C[j,1])>md){md=deg(C[j,1]);}}
+    print("mask="+string(mask)+" size="+string(size(S))+" terms="+string(total)+" maxdeg="+string(md)+" identity="+string(recon==G7));
+  }
+}
+quit;

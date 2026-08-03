@@ -26,11 +26,11 @@ diagonals.  The proof reuses the current signed-side line-intersection theorem
 and the current extreme-pair hull-line theorem. -/
 theorem exists_mem_openSegment_diagonals_of_ccw
     {A : Finset ℝ²} (hA : ConvexIndep A)
-    {phi : Fin A.card → ℝ²}
+    {n : ℕ} {phi : Fin n → ℝ²}
     (hphi_inj : Function.Injective phi)
     (hphi_image : Finset.univ.image phi = A)
     (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
-    {ia ib ic id : Fin A.card}
+    {ia ib ic id : Fin n}
     (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id) :
     ∃ z : ℝ²,
       z ∈ openSegment ℝ (phi ia) (phi ic) ∧
@@ -239,11 +239,11 @@ theorem complementary_dist_add_dist_lt_diagonal_sum_of_openSegment_diagonals
 strictly convex CCW boundary enumeration. -/
 theorem dist_add_dist_lt_diagonal_sum_of_ccw
     {A : Finset ℝ²} (hA : ConvexIndep A)
-    {phi : Fin A.card → ℝ²}
+    {n : ℕ} {phi : Fin n → ℝ²}
     (hphi_inj : Function.Injective phi)
     (hphi_image : Finset.univ.image phi = A)
     (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
-    {ia ib ic id : Fin A.card}
+    {ia ib ic id : Fin n}
     (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id) :
     dist (phi ib) (phi ic) + dist (phi ia) (phi id) <
       dist (phi ia) (phi ic) + dist (phi ib) (phi id) := by
@@ -272,11 +272,11 @@ theorem dist_add_dist_lt_diagonal_sum_of_ccw
 strictly convex CCW boundary enumeration. -/
 theorem complementary_dist_add_dist_lt_diagonal_sum_of_ccw
     {A : Finset ℝ²} (hA : ConvexIndep A)
-    {phi : Fin A.card → ℝ²}
+    {n : ℕ} {phi : Fin n → ℝ²}
     (hphi_inj : Function.Injective phi)
     (hphi_image : Finset.univ.image phi = A)
     (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
-    {ia ib ic id : Fin A.card}
+    {ia ib ic id : Fin n}
     (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id) :
     dist (phi ia) (phi ib) + dist (phi ic) (phi id) <
       dist (phi ia) (phi ic) + dist (phi ib) (phi id) := by
@@ -545,6 +545,52 @@ theorem false_of_two_selected_middle_rows_shared_endpoint_pair
       (CRow.support_eq_radius _ hia_mem_CRow).trans
         (CRow.support_eq_radius _ hid_mem_CRow).symm
 
+/-- Three selected rows centered at the first three vertices of an increasing
+six-vertex boundary chain cannot have pairwise supports forming the displayed
+triangle on the last three vertices.  This is the cardinality-generic
+production form of the two-`K2` obstruction used by the finite theorem bank. -/
+theorem false_of_six_ccw_two_k2_three_selected_rows
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundaryInjective : Function.Injective boundary)
+    (hboundaryImage : Finset.univ.image boundary = carrier)
+    (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {i0 i1 i2 i3 i4 i5 : Fin n}
+    (h01 : i0 < i1) (h12 : i1 < i2) (h23 : i2 < i3)
+    (h34 : i3 < i4) (h45 : i4 < i5)
+    (Row0 : SelectedFourClass carrier (boundary i0))
+    (Row1 : SelectedFourClass carrier (boundary i1))
+    (Row2 : SelectedFourClass carrier (boundary i2))
+    (hi3_mem_Row0 : boundary i3 ∈ Row0.support)
+    (hi5_mem_Row0 : boundary i5 ∈ Row0.support)
+    (hi4_mem_Row1 : boundary i4 ∈ Row1.support)
+    (hi5_mem_Row1 : boundary i5 ∈ Row1.support)
+    (hi3_mem_Row2 : boundary i3 ∈ Row2.support)
+    (hi4_mem_Row2 : boundary i4 ∈ Row2.support) :
+    False := by
+  have hrow0 :
+      dist (boundary i0) (boundary i3) =
+        dist (boundary i0) (boundary i5) :=
+    (Row0.support_eq_radius _ hi3_mem_Row0).trans
+      (Row0.support_eq_radius _ hi5_mem_Row0).symm
+  have hrow1 :
+      dist (boundary i1) (boundary i4) =
+        dist (boundary i1) (boundary i5) :=
+    (Row1.support_eq_radius _ hi4_mem_Row1).trans
+      (Row1.support_eq_radius _ hi5_mem_Row1).symm
+  have hrow2 :
+      dist (boundary i2) (boundary i3) =
+        dist (boundary i2) (boundary i4) :=
+    (Row2.support_eq_radius _ hi3_mem_Row2).trans
+      (Row2.support_eq_radius _ hi4_mem_Row2).symm
+  have hkal0135 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+      hboundaryImage hboundaryCcw h01 (h12.trans h23) (h34.trans h45)
+  have hkal1234 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+      hboundaryImage hboundaryCcw h12 h23 h34
+  linarith
+
 #print axioms exists_mem_openSegment_diagonals_of_ccw
 #print axioms dist_add_dist_lt_diagonal_sum_of_openSegment_diagonals
 #print axioms complementary_dist_add_dist_lt_diagonal_sum_of_openSegment_diagonals
@@ -558,6 +604,7 @@ theorem false_of_two_selected_middle_rows_shared_endpoint_pair
 #print axioms false_of_four_ccw_endpoint_centers_bisect_middle_pair
 #print axioms false_of_four_ccw_middle_centers_bisect_endpoint_pair
 #print axioms false_of_two_selected_middle_rows_shared_endpoint_pair
+#print axioms false_of_six_ccw_two_k2_three_selected_rows
 
 end CapCrossingKalmansonBridge
 end Problem97

@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.Cap.ArcInteriorPoints
 import Erdos9796Proof.P97.Census554.EqualityCore
+import Erdos9796Proof.Geometry.FivePointCircleIsosceles
 
 /-!
 # Five-point circle-isosceles order core
@@ -59,66 +60,11 @@ theorem metric_order_incompatibility
     (hcross : ∃ q : ℝ²,
       q ∈ openSegment ℝ F X ∧ q ∈ openSegment ℝ P Z) :
     False := by
-  have hFW_XW : ‖F - W‖ = ‖X - W‖ := by
-    simpa only [dist_eq_norm, norm_sub_rev] using hWF_WX
-  have hZW_XW : ‖Z - W‖ = ‖X - W‖ := by
-    simpa only [dist_eq_norm, norm_sub_rev] using hWF_WZ.symm.trans hWF_WX
-  have hFW_ZW_sq : ‖F - W‖ ^ 2 = ‖Z - W‖ ^ 2 := by
-    rw [hFW_XW, hZW_XW]
-  have hZF_sq_pos : 0 < ‖Z - F‖ ^ 2 := by
-    exact sq_pos_of_pos (norm_pos_iff.mpr (sub_ne_zero.mpr hFZ.symm))
-  have hmidpoint_neg :
-      ⟪midpoint ℝ F Z - W, midpoint ℝ F Z - X⟫_ℝ < 0 := by
-    have hbridge :=
-      inner_midpoint_eq_signedArea_prod_of_chord_sphere F Z X W hFW_ZW_sq
-    have hproduct_neg :
-        ⟪midpoint ℝ F Z - X, midpoint ℝ F Z - W⟫_ℝ * ‖Z - F‖ ^ 2 < 0 := by
-      rw [hbridge]
-      exact hside
-    have hinner_neg :
-        ⟪midpoint ℝ F Z - X, midpoint ℝ F Z - W⟫_ℝ < 0 := by
-      nlinarith
-    simpa only [real_inner_comm] using hinner_neg
-  have hFXZ_neg : ⟪F - X, Z - X⟫_ℝ < 0 := by
-    rw [inner_chord_eq_two_mul_inner_midpoint hFW_XW hZW_XW]
-    nlinarith
-  have hPXZ_pos : 0 < ⟪P - X, Z - X⟫_ℝ := by
-    have hdist_sq := congrArg (fun r : ℝ => r ^ 2) hPZ_XZ
-    change dist P Z ^ 2 = dist X Z ^ 2 at hdist_sq
-    have hrewrite_left : P - Z = (P - X) - (Z - X) := by abel
-    have hrewrite_right : X - Z = -(Z - X) := by abel
-    rw [dist_eq_norm, dist_eq_norm, hrewrite_left, hrewrite_right, norm_neg,
-      norm_sub_pow_two_real] at hdist_sq
-    have hPX_sq_pos : 0 < ‖P - X‖ ^ 2 := by
-      exact sq_pos_of_pos (norm_pos_iff.mpr (sub_ne_zero.mpr hPX))
-    nlinarith
-  obtain ⟨q, hqFX, hqPZ⟩ := hcross
-  rw [openSegment_eq_image_lineMap] at hqFX hqPZ
-  rcases hqFX with ⟨t, ht, rfl⟩
-  rcases hqPZ with ⟨s, hs, hline⟩
-  have hqX_from_FX :
-      AffineMap.lineMap F X t - X = (1 - t) • (F - X) := by
-    simp [AffineMap.lineMap_apply_module']
-    module
-  have hinner_q_neg :
-      ⟪AffineMap.lineMap F X t - X, Z - X⟫_ℝ < 0 := by
-    rw [hqX_from_FX, real_inner_smul_left]
-    exact mul_neg_of_pos_of_neg (sub_pos.mpr ht.2) hFXZ_neg
-  have hqX_from_PZ :
-      AffineMap.lineMap F X t - X =
-        (1 - s) • (P - X) + s • (Z - X) := by
-    rw [← hline]
-    simp [AffineMap.lineMap_apply_module']
-    module
-  have hZX_sq_pos : 0 < ‖Z - X‖ ^ 2 := by
-    exact sq_pos_of_pos (norm_pos_iff.mpr (sub_ne_zero.mpr hXZ.symm))
-  rw [hqX_from_PZ, inner_add_left, real_inner_smul_left,
-    real_inner_smul_left, real_inner_self_eq_norm_sq] at hinner_q_neg
-  have hfirst_pos : 0 < (1 - s) * ⟪P - X, Z - X⟫_ℝ :=
-    mul_pos (sub_pos.mpr hs.2) hPXZ_pos
-  have hsecond_pos : 0 < s * ‖Z - X‖ ^ 2 :=
-    mul_pos hs.1 hZX_sq_pos
-  linarith
+  apply Erdos9796Proof.Geometry.fivePointCircleIsoscelesOrder
+    hFZ hPX hXZ hWF_WX hWF_WZ hPZ_XZ
+  · simpa only [Erdos9796Proof.Geometry.signedArea2, Problem97.signedArea2]
+      using hside
+  · exact hcross
 
 /-- A realized equality-closure core is contradictory under the geometric
 order hypotheses. -/

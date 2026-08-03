@@ -120,7 +120,11 @@ inductive Outcome
   | bothOff (off : BothOff P)
   | rowHit (hit : RowHit P)
 
-private theorem nonempty_rowHit
+/-- Construct a row hit at a specified fiber source while retaining the exact
+source choice.  The equality is deliberately part of the result: callers that
+already know which source lies on the retained radius must not widen that fact
+back to the unordered `hitSource_is_fiber_source` disjunction. -/
+theorem exists_rowHit_at_source
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -130,7 +134,7 @@ private theorem nonempty_rowHit
     (hitIsSource :
       hitSource = P.source₁.1 ∨ hitSource = P.source₂.1)
     (hitMem : hitSource ∈ SelectedClass D.A S.oppApex1 radius) :
-    Nonempty (RowHit P) := by
+    ∃ hit : RowHit P, hit.hitSource = hitSource := by
   rcases nonempty_selectedFourClass_preserving_point
       F.radius_pos hitMem
       R.frontierRadius_class_card_ge_four with
@@ -144,7 +148,7 @@ private theorem nonempty_rowHit
     hitSource_mem_row := hhitRow
     other := other
     other_mem_row := hotherRow
-    other_ne_hitSource := hotherNe }⟩
+    other_ne_hitSource := hotherNe }, rfl⟩
 
 /-- The fixed production critical fiber either has both sources off the
 retained first-apex class or supplies a selected first-apex row hit. -/
@@ -157,12 +161,14 @@ theorem nonempty_outcome
     Nonempty (Outcome P) := by
   by_cases hsource₁ :
       P.source₁.1 ∈ SelectedClass D.A S.oppApex1 radius
-  · exact ⟨Outcome.rowHit
-      (nonempty_rowHit P P.source₁.1 (Or.inl rfl) hsource₁).some⟩
+  · rcases exists_rowHit_at_source
+        P P.source₁.1 (Or.inl rfl) hsource₁ with ⟨hit, _⟩
+    exact ⟨Outcome.rowHit hit⟩
   · by_cases hsource₂ :
         P.source₂.1 ∈ SelectedClass D.A S.oppApex1 radius
-    · exact ⟨Outcome.rowHit
-        (nonempty_rowHit P P.source₂.1 (Or.inr rfl) hsource₂).some⟩
+    · rcases exists_rowHit_at_source
+          P P.source₂.1 (Or.inr rfl) hsource₂ with ⟨hit, _⟩
+      exact ⟨Outcome.rowHit hit⟩
     · exact ⟨Outcome.bothOff ⟨hsource₁, hsource₂⟩⟩
 
 /-- Every actual critical row is centered away from the robust first apex, so

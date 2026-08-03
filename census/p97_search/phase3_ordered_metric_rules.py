@@ -11,7 +11,8 @@ from __future__ import annotations
 
 import hashlib
 import json
-from collections.abc import Mapping, Sequence
+from collections.abc import Callable, Mapping, Sequence
+from dataclasses import dataclass
 from itertools import combinations
 from typing import Any
 
@@ -166,17 +167,24 @@ def build_convex_rhombus_order_record(
     rows: Sequence[metric.MetricRow],
     n: int,
     compatible_orders: Sequence[tuple[str, Sequence[int]]],
+    *,
+    closure_certificate_builder: Callable[..., dict[str, Any]] | None = None,
 ) -> dict[str, Any] | None:
     """Build a deterministic record only when every compatible order is covered."""
 
     orders = _normalize_orders(compatible_orders, n)
+    build_closure = (
+        certificates._certificate_for_detection
+        if closure_certificate_builder is None
+        else closure_certificate_builder
+    )
     closure_by_hash: dict[str, dict[str, Any]] = {}
     coverage: list[dict[str, Any]] = []
     for order_id, order in orders:
         detection = _first_detection(rows, n, order)
         if detection is None:
             return None
-        closure = certificates._certificate_for_detection(
+        closure = build_closure(
             rows,
             n,
             {"stage": detection["stage"], "core": detection["core"]},
@@ -411,6 +419,114 @@ def _normalize_kalmanson_rows(
     return normalized
 
 
+def _kalmanson_pair_bit(left: int, right: int, n: int) -> int:
+    if left == right:
+        raise OrderedMetricRuleError("Kalmanson support pair has equal endpoints")
+    first, second = sorted((left, right))
+    return 1 << (first * n + second)
+
+
+@dataclass(frozen=True, slots=True)
+class KalmansonOrderPositionIndex:
+    """Compile fixed row supports for repeated selected-row detection."""
+
+    n: int
+    centers: tuple[int, ...]
+    support_pair_masks: tuple[int, ...]
+    position_quads: tuple[tuple[int, ...], ...]
+
+    @classmethod
+    def from_rows(
+        cls, rows: Sequence[metric.MetricRow], n: int
+    ) -> KalmansonOrderPositionIndex:
+        normalized = _normalize_kalmanson_rows(rows, n)
+        support_pair_masks = []
+        for row in normalized:
+            support_pair_masks.append(
+                sum(
+                    _kalmanson_pair_bit(left, right, n)
+                    for left, right in combinations(row.support, 2)
+                )
+            )
+        return cls(
+            n=n,
+            centers=tuple(row.center for row in normalized),
+            support_pair_masks=tuple(support_pair_masks),
+            position_quads=tuple(combinations(range(1, n), 4)),
+        )
+
+    def detect(
+        self, row_mask: int, order: Sequence[int]
+    ) -> dict[str, Any] | None:
+        all_rows = (1 << len(self.centers)) - 1
+        if (
+            type(row_mask) is not int
+            or row_mask <= 0
+            or row_mask & ~all_rows
+        ):
+            raise OrderedMetricRuleError("Kalmanson row mask is malformed")
+        normalized_order = _normalize_orders(
+            [("order", order)],
+            self.n,
+            minimum_size=len(KALMANSON_CORE_ROLES),
+            core_label="five-point selected-row Kalmanson",
+        )[0][1]
+        supports_by_center = [0] * self.n
+        for index, center in enumerate(self.centers):
+            if row_mask & (1 << index):
+                supports_by_center[center] |= self.support_pair_masks[index]
+
+        def contains_pair(center: int, left: int, right: int) -> bool:
+            return bool(
+                supports_by_center[center]
+                & _kalmanson_pair_bit(left, right, self.n)
+            )
+
+        for start in range(self.n):
+            rotated = normalized_order[start:] + normalized_order[:start]
+            point_o = rotated[0]
+            for positions in self.position_quads:
+                point_a, point_y, point_e, point_c = (
+                    rotated[position] for position in positions
+                )
+                if not contains_pair(point_y, point_o, point_e):
+                    continue
+                if not contains_pair(point_o, point_e, point_c):
+                    continue
+                if not contains_pair(point_a, point_c, point_o):
+                    continue
+                core = {
+                    "O": point_o,
+                    "A": point_a,
+                    "Y": point_y,
+                    "E": point_e,
+                    "C": point_c,
+                }
+                direct_pairs: dict[str, list[int]] = {}
+                row_centers: dict[str, int] = {}
+                for row_role, pair_roles in KALMANSON_DIRECT_SUPPORT_ROLES.items():
+                    center = core[row_role]
+                    pair = [core[role] for role in pair_roles]
+                    if not contains_pair(center, pair[0], pair[1]):
+                        raise OrderedMetricRuleError(
+                            "direct selected-row Kalmanson support replay failed"
+                        )
+                    row_centers[row_role] = center
+                    direct_pairs[row_role] = pair
+                return {
+                    "orientation": "forward",
+                    "stage": KALMANSON_STAGE,
+                    "lean_theorem": KALMANSON_LEAN_THEOREM,
+                    "core": core,
+                    "core_role_order": list(KALMANSON_CORE_ROLES),
+                    "boundary_rotation_start": start,
+                    "requires_rotated_ccw_enumeration": start != 0,
+                    "row_centers": row_centers,
+                    "direct_support_pairs": direct_pairs,
+                }
+        return None
+
+
 def detect_selected_row_kalmanson(
     rows: Sequence[metric.MetricRow],
     n: int,
@@ -484,6 +600,10 @@ def minimize_selected_row_kalmanson_rows(
     rows: Sequence[metric.MetricRow],
     n: int,
     compatible_orders: Sequence[tuple[str, Sequence[int]]],
+    *,
+    detector: Callable[
+        [Sequence[metric.MetricRow], int, Sequence[int]], dict[str, Any] | None
+    ] | None = None,
 ) -> tuple[tuple[metric.MetricRow, ...], dict[str, Any]] | None:
     """Find the first exact-cardinality row subset covering every order."""
 
@@ -494,10 +614,11 @@ def minimize_selected_row_kalmanson_rows(
         minimum_size=len(KALMANSON_CORE_ROLES),
         core_label="five-point selected-row Kalmanson",
     )
+    detect = detect_selected_row_kalmanson if detector is None else detector
     for size in range(3, len(normalized_rows) + 1):
         for candidate in combinations(normalized_rows, size):
             detections = [
-                detect_selected_row_kalmanson(candidate, n, order)
+                detect(candidate, n, order)
                 for _order_id, order in orders
             ]
             if all(detection is not None for detection in detections):
@@ -531,6 +652,10 @@ def build_selected_row_kalmanson_order_record(
     rows: Sequence[metric.MetricRow],
     n: int,
     compatible_orders: Sequence[tuple[str, Sequence[int]]],
+    *,
+    detector: Callable[
+        [Sequence[metric.MetricRow], int, Sequence[int]], dict[str, Any] | None
+    ] | None = None,
 ) -> dict[str, Any] | None:
     """Build a direct-row record iff the bound rows cover every order."""
 
@@ -541,9 +666,10 @@ def build_selected_row_kalmanson_order_record(
         minimum_size=len(KALMANSON_CORE_ROLES),
         core_label="five-point selected-row Kalmanson",
     )
+    detect = detect_selected_row_kalmanson if detector is None else detector
     coverage: list[dict[str, Any]] = []
     for order_id, order in orders:
-        detected = detect_selected_row_kalmanson(normalized_rows, n, order)
+        detected = detect(normalized_rows, n, order)
         if detected is None:
             return None
         coverage.append(

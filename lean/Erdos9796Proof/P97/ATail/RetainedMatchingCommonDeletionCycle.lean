@@ -253,6 +253,9 @@ structure RetainedMatchingEndpointCriticalFiber
   fiber_source₁_eq_first : fiber.source₁.1 = W.first
   fiber_source₂_eq_next : fiber.source₂.1 = W.next
   rowHit : RowHit fiber
+  /-- The endpoint producer knows that the retained first endpoint, rather
+  than the fresh second endpoint, is the selected first-apex row hit. -/
+  rowHit_source_eq_first : rowHit.hitSource = fiber.source₁.1
 
 /-- The noncollision endpoint has three pairwise-distinct consecutive actual
 blockers. -/
@@ -284,19 +287,6 @@ inductive RetainedMatchingTwoStepEndpointOutcome
   | endpointCriticalFiber (fiber : RetainedMatchingEndpointCriticalFiber W)
   | threeDistinctBlockers (path : RetainedMatchingThreeDistinctBlockerPath W)
 
-private theorem nonempty_rowHit_of_first_mem_radius
-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
-    {H : CriticalShellSystem D.A}
-    {F : CriticalPairFrontier D S radius H}
-    {R : FrontierCommonDeletionParentResidual F}
-    (P : FrontierCommonDeletionCriticalFiber R)
-    (hfirst : P.source₁.1 ∈ SelectedClass D.A S.oppApex1 radius) :
-    Nonempty (RowHit P) := by
-  rcases nonempty_outcome P with ⟨outcome⟩
-  cases outcome with
-  | bothOff off => exact False.elim (off.source₁_off hfirst)
-  | rowHit hit => exact ⟨hit⟩
-
 /-- The two-step endpoint is either the explicit source return, an
 origin-tagged blocker-collision fiber, or a three-distinct-blocker path. -/
 theorem nonempty_twoStepEndpointOutcome
@@ -326,14 +316,16 @@ theorem nonempty_twoStepEndpointOutcome
         criticalFiberOfBlockerCollision source₁ source₂ hsources hblockers
       have hPfirst : P.source₁.1 ∈ SelectedClass D.A S.oppApex1 radius := by
         simpa [P, criticalFiberOfBlockerCollision, source₁] using W.first_mem_radius
-      rcases nonempty_rowHit_of_first_mem_radius P hPfirst with ⟨hit⟩
+      rcases exists_rowHit_at_source
+          P P.source₁.1 (Or.inl rfl) hPfirst with ⟨hit, hhit⟩
       exact ⟨RetainedMatchingTwoStepEndpointOutcome.endpointCriticalFiber {
         next_ne_first := hreturn
         endpoint_blockers_eq := hcollision
         fiber := P
         fiber_source₁_eq_first := by rfl
         fiber_source₂_eq_next := by rfl
-        rowHit := hit }⟩
+        rowHit := hit
+        rowHit_source_eq_first := hhit }⟩
     · exact ⟨RetainedMatchingTwoStepEndpointOutcome.threeDistinctBlockers {
         next_ne_first := hreturn
         firstBlocker_ne_secondBlocker :=

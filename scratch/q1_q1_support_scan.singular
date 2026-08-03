@@ -1,0 +1,12 @@
+ring R=32003,(br,bs,bu,bv,bw),dp;
+poly q1=bs^3-2*bs^2*bu-bs^2*bw+bs*bu^2+bs*bu*bw+bs*bw^2-bu^2*bw;
+poly e2=br^2*bs^3-br^2*bs^2*bu-br^2*bs^2*bv+br^2*bs*bu*bv-br*bs^3*bu+br*bs^2*bu^2+br*bs^2*bu*bv-br*bs*bu^2*bv-br*bs*bu^2*bw+br*bs*bu*bw^2+br*bs*bv^2*bw+br*bu^2*bv*bw-br*bu*bv^2*bw-br*bu*bv*bw^2-bs*bv^2*bw^2+bu*bv^2*bw^2;
+poly e5=br^2*bs^3-br^2*bs^2*bu-br^2*bs^2*bv+br^2*bs*bu*bv+br^2*bs*bu-br^2*bu*bv-br*bs^3+br*bs^2*bu+br*bs^2*bv-br*bs*bu^2-br*bs*bu*bv+br*bu^2*bv+bs*bu*bv^2-bs*bv^2-bu^2*bv^2+bu*bv^2;
+poly e7=bs^3*bu-bs^3-bs^2*bu^2-bs^2*bu*bv+bs^2*bu+bs^2*bv+bs*bu^2*bv+bs*bu*bv-bs*bu-bs*bv^2-bu^2*bv+bu*bv;
+poly e8=bs^2*bv*bw-bs^2*bw^2+bs^2*bw-bs^2-bs*bv^2*bw+bs*bv*bw^2-bs*bv*bw+bs*bv+bv^2*bw-bv*bw;
+poly e9=br^2*bv+br*bs^2*bv-br*bs^2-br*bs*bv^2+br*bs*bv-br*bv^2-br*bv+bv^3;
+ideal H=e2,e5,e7,e8,e9,q1; ideal Q=std(quotient(H,ideal(bw))); poly T=br*bs^2*bw*(bv-1)^2;
+int idx[14]; idx[1]=1; idx[2]=3; idx[3]=4; idx[4]=7; idx[5]=8; idx[6]=9; idx[7]=11; idx[8]=15; idx[9]=17; idx[10]=28; idx[11]=31; idx[12]=33; idx[13]=35; idx[14]=38;
+int mask; int i; ideal A; ideal G;
+for(mask=1;mask<=16383;mask++){A=ideal(); for(i=1;i<=14;i++){if((mask div (2^(i-1))) mod 2==1){A=A,Q[idx[i]];}} G=std(A); if(reduce(T,G)==0){print("MASK="+string(mask)+" SZ="+string(size(G)));}}
+quit;

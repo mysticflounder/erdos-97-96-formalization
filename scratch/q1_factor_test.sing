@@ -1,0 +1,18 @@
+ring B=0,(br,bs,bu,bv,bw),dp;
+poly u1=bs^3-2*bs^2*bu+bs*bu^2-bs^2*bw+bs*bu*bw-bu^2*bw+bs*bw^2;
+poly u2=bs^2*bv*bw-bs*bv^2*bw-bs^2*bw^2+bs*bv*bw^2+bs^2*bw-bs*bv*bw+bv^2*bw-bs^2+bs*bv-bv*bw;
+poly u6=br*bs^2*bv-br*bs*bv^2-br*bs^2+br^2*bv+br*bs*bv-br*bv^2+bv^3-br*bv;
+poly u8=bs^2*bu^2-bs*bu^3-bs^2*bu*bv+bs*bu^2*bv+bs^2*bu*bw-bs*bu^2*bw+bu^3*bw-bs*bu*bw^2-bs^2*bu+bs*bu^2+bs^2*bv+bs*bu*bv-bu^2*bv-bs*bv^2-bs^2*bw+bs*bu*bw-bu^2*bw+bs*bw^2-bs*bu+bu*bv;
+poly u24=br*bs^2*bw^2-br*bs*bv*bw^2-2*br*bs^2*bw+br^2*bv*bw+2*br*bs*bv*bw-2*br*bv^2*bw+bv^3*bw+br*bs^2-br*bs*bv;
+poly u32=br^2*bv^2*bw-2*br*bv^3*bw+bv^4*bw-br^2*bv*bw^2+br*bv^2*bw^2-bv^3*bw^2+br^2*bv*bw+bv^3*bw+br*bv*bw^2-br^2*bv+br*bv^2-bv^3-2*br*bv*bw+br*bv;
+poly u34=bs*bu^2*bv*bw-2*bs*bu*bv^2*bw+bs*bv^3*bw-bs*bu^2*bw^2+3*bs*bu*bv*bw^2-bu^2*bv*bw^2-2*bs*bv^2*bw^2-bs*bu*bw^3+bu^2*bw^3+2*bs*bv*bw^3-bs*bw^4+bs*bu^2*bw-2*bs*bu*bv*bw+2*bu*bv^2*bw-bv^3*bw+bs*bu*bw^2-bu^2*bw^2-bs*bv*bw^2+bv^2*bw^2+bs*bw^3-bs*bu^2+2*bs*bu*bv-bs*bv^2-bs*bu*bw+bu^2*bw+2*bs*bv*bw-2*bu*bv*bw+bv^2*bw-bs*bw^2-bv*bw^2;
+poly u37=bs*bu^3*bw-bu^3*bv*bw-bs^2*bu*bw^2+bs*bu*bv*bw^2+2*bs^2*bu*bv-3*bs*bu^2*bv+bu^3*bv-bs^2*bv^2+bs*bu*bv^2-bs*bu^2*bw-2*bs*bu*bv*bw+2*bu^2*bv*bw+bs*bv^2*bw+bs^2*bw^2-bs*bv*bw^2-bs^2*bu+bs*bu^2+bs*bu*bv-bu^2*bv+bs*bu*bw-bu*bv*bw;
+print("u1="+string(factorize(u1)[1]));
+print("u2="+string(factorize(u2)[1]));
+print("u6="+string(factorize(u6)[1]));
+print("u8="+string(factorize(u8)[1]));
+print("u24="+string(factorize(u24)[1]));
+print("u32="+string(factorize(u32)[1]));
+print("u34="+string(factorize(u34)[1]));
+print("u37="+string(factorize(u37)[1]));
+quit;

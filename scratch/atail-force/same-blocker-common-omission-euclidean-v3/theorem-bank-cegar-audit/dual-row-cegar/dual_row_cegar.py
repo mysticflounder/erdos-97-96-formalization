@@ -54,11 +54,19 @@ SIX_POINT_ROW_FAMILIES = {
         "arity": 6,
         "rows": ((0, (1, 3, 5)), (2, (1, 3, 4))),
     },
+    "six_k2_three_row_triangle": {
+        "theorem": (
+            "Problem97.CapCrossingKalmansonBridge."
+            "false_of_six_ccw_two_k2_three_selected_rows"
+        ),
+        "arity": 6,
+        "rows": ((0, (3, 5)), (1, (4, 5)), (2, (3, 4))),
+    },
 }
 
 LINEAR_ROW_FAMILIES = {
     "five_kalmanson_three_selected_rows": {
-        "theorem": "Problem97.CapCrossingKalmanson.false_of_selected_rows_in_five_ccw_order",
+        "theorem": "Problem97.CapCrossingKalmansonBridge.false_of_selected_rows_in_five_ccw_order",
         "arity": 5,
         "rows": ((2, (0, 3)), (0, (3, 4)), (1, (4, 0))),
     },
@@ -72,17 +80,17 @@ LINEAR_ROW_FAMILIES = {
 
 RAW_EQUALITY_FAMILIES = {
     "five_kalmanson_three_shell_equalities": {
-        "theorem": "Problem97.CapCrossingKalmanson.false_of_five_ccw_three_shell_equalities",
+        "theorem": "Problem97.CapCrossingKalmansonBridge.false_of_five_ccw_three_shell_equalities",
         "arity": 5,
         "equalities": ((2, 0, 3), (0, 3, 4), (1, 4, 0)),
     },
     "four_endpoint_centers_bisect_middle_pair": {
-        "theorem": "Problem97.CapCrossingKalmanson.false_of_four_ccw_endpoint_centers_bisect_middle_pair",
+        "theorem": "Problem97.CapCrossingKalmansonBridge.false_of_four_ccw_endpoint_centers_bisect_middle_pair",
         "arity": 4,
         "equalities": ((0, 1, 2), (3, 1, 2)),
     },
     "four_middle_centers_bisect_endpoint_pair": {
-        "theorem": "Problem97.CapCrossingKalmanson.false_of_four_ccw_middle_centers_bisect_endpoint_pair",
+        "theorem": "Problem97.CapCrossingKalmansonBridge.false_of_four_ccw_middle_centers_bisect_endpoint_pair",
         "arity": 4,
         "equalities": ((1, 0, 3), (2, 0, 3)),
     },
@@ -640,6 +648,56 @@ def guard_self_checks():
             "cyclic_recut": False,
             "positive_membership_arities": [len(support) for _, support in schema["rows"]],
         }
+
+    family = "six_k2_three_row_triangle"
+    rows = tuple(RowObject(f"six_role_probe_{index}", "probe", "probe") for index in range(3))
+    centers = {row: index for index, row in enumerate(rows)}
+    base_supports = {
+        rows[0]: {3, 5},
+        rows[1]: {4, 5},
+        rows[2]: {3, 4},
+    }
+
+    def family_match_count(supports, ordered=tuple(range(6))):
+        context = CandidateMatchContext(
+            rows=rows,
+            centers=centers,
+            supports=supports,
+            positions={point: index for index, point in enumerate(ordered)},
+            ordered=ordered,
+            equality_truth={},
+        )
+        return sum(
+            match[0] == family for match in linear_row_matches(None, None, context)
+        )
+
+    if family_match_count(base_supports) != 1:
+        raise AssertionError((family, "exact-positive"))
+    required_memberships = (
+        (rows[0], 3), (rows[0], 5),
+        (rows[1], 4), (rows[1], 5),
+        (rows[2], 3), (rows[2], 4),
+    )
+    for row, point in required_memberships:
+        missing = {probe_row: set(support) for probe_row, support in base_supports.items()}
+        missing[row].remove(point)
+        if family_match_count(missing) != 0:
+            raise AssertionError((family, "missing-membership", row.name, point))
+    superset = {row: set(support) for row, support in base_supports.items()}
+    superset[rows[0]].add(4)
+    if family_match_count(superset) != 1:
+        raise AssertionError((family, "support-superset"))
+    if family_match_count(base_supports, tuple(reversed(range(6)))) != 0:
+        raise AssertionError((family, "reversal-admitted"))
+    if family_match_count(base_supports, (1, 2, 3, 4, 5, 0)) != 0:
+        raise AssertionError((family, "cyclic-recut-admitted"))
+    checks[family].update({
+        "matcher_exact_positive_count": 1,
+        "matcher_missing_membership_negatives": len(required_memberships),
+        "matcher_support_superset_positive_count": 1,
+        "matcher_reversal_rejected": True,
+        "matcher_cyclic_recut_rejected": True,
+    })
     return checks
 
 

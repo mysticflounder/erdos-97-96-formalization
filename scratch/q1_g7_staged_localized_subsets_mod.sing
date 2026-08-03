@@ -1,0 +1,23 @@
+ring r=32003,(t,br,bs,bu,bv,bw),dp;
+poly e2=br^2*bs^3-br^2*bs^2*bu-br^2*bs^2*bv+br^2*bs*bu*bv-br*bs^3*bu+br*bs^2*bu^2+br*bs^2*bu*bv-br*bs*bu^2*bv-br*bs*bu^2*bw+br*bs*bu*bw^2+br*bs*bv^2*bw+br*bu^2*bv*bw-br*bu*bv^2*bw-br*bu*bv*bw^2-bs*bv^2*bw^2+bu*bv^2*bw^2;
+poly e5=br^2*bs^3-br^2*bs^2*bu-br^2*bs^2*bv+br^2*bs*bu*bv+br^2*bs*bu-br^2*bu*bv-br*bs^3+br*bs^2*bu+br*bs^2*bv-br*bs*bu^2-br*bs*bu*bv+br*bu^2*bv+bs*bu*bv^2-bs*bv^2-bu^2*bv^2+bu*bv^2;
+poly e7=bs^3*bu-bs^3-bs^2*bu^2-bs^2*bu*bv+bs^2*bu+bs^2*bv+bs*bu^2*bv+bs*bu*bv-bs*bu-bs*bv^2-bu^2*bv+bu*bv;
+poly e8=bs^2*bv*bw-bs^2*bw^2+bs^2*bw-bs^2-bs*bv^2*bw+bs*bv*bw^2-bs*bv*bw+bs*bv+bv^2*bw-bv*bw;
+poly e9=br^2*bv+br*bs^2*bv-br*bs^2-br*bs*bv^2+br*bs*bv-br*bv^2-br*bv+bv^3;
+poly q1=bs^3-2*bs^2*bu-bs^2*bw+bs*bu^2+bs*bu*bw+bs*bw^2-bu^2*bw;
+poly u8=e7+(1-bu)*q1;
+poly u24=br*e8+bw*q1;
+poly u30=(bv*bw-bw^2+bw-1)*e7+(bs*bu-bu^2-bs+bu)*e8;
+poly u32=(br*bv-br)*e8+(bv*bw-bw^2+bw-1)*e9;
+poly u34=(bs-2*bu+bv-bw)*e8+(bv*bw-bw^2+bw-1)*q1;
+poly u37=(bs-bu-bw)*e7+(-bs*bu+bu*bv+bs-bv)*q1;
+poly unit=t*br*bs*bv-1;
+poly K=br^2-br*bv+bv^2-br;
+ideal J=u8,u24,u30,u32,u34,u37,unit;
+ideal E=e2,e5,e7,e8,e9,q1;
+int i; int j; ideal G;
+G=std(J); print("J="+string(reduce(K,G)==0)+" size="+string(size(G)));
+for(i=1;i<=6;i++){ideal A=J,E[i];G=std(A);print("J+H"+string(i)+"="+string(reduce(K,G)==0)+" size="+string(size(G)));}
+for(i=1;i<=6;i++){for(j=i+1;j<=6;j++){ideal B=J,E[i],E[j];G=std(B);print("J+H"+string(i)+"+H"+string(j)+"="+string(reduce(K,G)==0)+" size="+string(size(G)));}}
+for(i=3;i<=6;i++){ideal C=J,E[1],E[2],E[i];G=std(C);print("J+H1+H2+H"+string(i)+"="+string(reduce(K,G)==0)+" size="+string(size(G)));}
+quit;

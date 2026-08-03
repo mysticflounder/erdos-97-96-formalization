@@ -84,9 +84,81 @@ private theorem false_of_OAYEC
     (by simpa only [P.boundary_p0, P.boundary_p3, P.boundary_p4] using hOE_OC)
     (by simpa only [P.boundary_p0, P.boundary_p1, P.boundary_p4] using hAC_AO)
 
-/-- Direct five-point CCW placements when the common endpoint blocker is the
-fresh first-apex row source (`A = J`).  Up to cyclic recutting, the constructors
-cover `O,A,C,X,K`, `O,C,X,A,K`, `O,X,K,C,A`, and `O,C,K,A,X`. -/
+/-- Reflected companion of the `012_124_314` five-point schema. -/
+theorem false_of_five_ccw_three_shell_equalities_043_431_241
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {p0 p1 p2 p3 p4 : ℝ²}
+    (P : CcwFivePointPlacement (A := A) p0 p1 p2 p3 p4)
+    (h043 : dist p0 p4 = dist p0 p3)
+    (h431 : dist p4 p3 = dist p4 p1)
+    (h241 : dist p2 p4 = dist p2 p1) :
+    False := by
+  have hK2_0124 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hA P.boundary_injective
+      P.boundary_image P.boundary_ccw P.h01 P.h12 (P.h23.trans P.h34)
+  have hK1_0234 :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA P.boundary_injective
+      P.boundary_image P.boundary_ccw (P.h01.trans P.h12) P.h23 P.h34
+  have h043' :
+      dist (P.boundary P.i0) (P.boundary P.i4) =
+        dist (P.boundary P.i0) (P.boundary P.i3) := by
+    simpa only [P.boundary_p0, P.boundary_p3, P.boundary_p4] using h043
+  have h431' :
+      dist (P.boundary P.i3) (P.boundary P.i4) =
+        dist (P.boundary P.i1) (P.boundary P.i4) := by
+    have h431symm : dist p3 p4 = dist p1 p4 := by
+      rw [dist_comm p3 p4, dist_comm p1 p4]
+      exact h431
+    simpa only [P.boundary_p1, P.boundary_p3, P.boundary_p4] using h431symm
+  have h241' :
+      dist (P.boundary P.i2) (P.boundary P.i4) =
+        dist (P.boundary P.i1) (P.boundary P.i2) := by
+    have h241symm : dist p2 p4 = dist p1 p2 := by
+      rw [dist_comm p1 p2]
+      exact h241
+    simpa only [P.boundary_p1, P.boundary_p2, P.boundary_p4] using h241symm
+  linarith
+
+/-- Reflected companion of the `O < A < Y < E < C` five-point schema. -/
+theorem false_of_five_ccw_three_shell_equalities_302_021_410
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {p0 p1 p2 p3 p4 : ℝ²}
+    (P : CcwFivePointPlacement (A := A) p0 p1 p2 p3 p4)
+    (h302 : dist p3 p0 = dist p3 p2)
+    (h021 : dist p0 p2 = dist p0 p1)
+    (h410 : dist p4 p1 = dist p4 p0) :
+    False := by
+  have hK1_0123 :=
+    complementary_dist_add_dist_lt_diagonal_sum_of_ccw hA P.boundary_injective
+      P.boundary_image P.boundary_ccw P.h01 P.h12 P.h23
+  have hK2_0134 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hA P.boundary_injective
+      P.boundary_image P.boundary_ccw P.h01 (P.h12.trans P.h23) P.h34
+  have h302' :
+      dist (P.boundary P.i0) (P.boundary P.i3) =
+        dist (P.boundary P.i2) (P.boundary P.i3) := by
+    have h302symm : dist p0 p3 = dist p2 p3 := by
+      rw [dist_comm p0 p3, dist_comm p2 p3]
+      exact h302
+    simpa only [P.boundary_p0, P.boundary_p2, P.boundary_p3] using h302symm
+  have h021' :
+      dist (P.boundary P.i0) (P.boundary P.i2) =
+        dist (P.boundary P.i0) (P.boundary P.i1) := by
+    simpa only [P.boundary_p0, P.boundary_p1, P.boundary_p2] using h021
+  have h410' :
+      dist (P.boundary P.i1) (P.boundary P.i4) =
+        dist (P.boundary P.i0) (P.boundary P.i4) := by
+    have h410symm : dist p1 p4 = dist p0 p4 := by
+      rw [dist_comm p1 p4, dist_comm p0 p4]
+      exact h410
+    simpa only [P.boundary_p0, P.boundary_p1, P.boundary_p4] using h410symm
+  linarith
+
+/-- Five-point CCW placements when the common endpoint blocker is the fresh
+first-apex row source (`A = J`).  Up to cyclic recutting, the constructors cover
+the four direct orders `O,A,C,X,K`, `O,C,X,A,K`, `O,X,K,C,A`, `O,C,K,A,X`
+and their four reflections `O,K,X,C,A`, `O,K,A,X,C`, `O,A,C,K,X`,
+`O,X,A,K,C`. -/
 inductive FirstCenterEqFreshSourcePlacement
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -113,10 +185,28 @@ inductive FirstCenterEqFreshSourcePlacement
       (placement : CcwFivePointPlacement (A := D.A)
         (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2)
         (H.centerAt Q.J Q.J_mem_A) S.oppApex1 Q.C Q.K)
+  | orderOKXCA
+      (placement : CcwFivePointPlacement (A := D.A)
+        S.oppApex1 Q.K (H.centerAt Q.J Q.J_mem_A) Q.C
+        (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2))
+  | orderXCOKA
+      (placement : CcwFivePointPlacement (A := D.A)
+        (H.centerAt Q.J Q.J_mem_A) Q.C S.oppApex1 Q.K
+        (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2))
+  | orderACKXO
+      (placement : CcwFivePointPlacement (A := D.A)
+        (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2)
+        Q.C Q.K (H.centerAt Q.J Q.J_mem_A) S.oppApex1)
+  | orderAKCOX
+      (placement : CcwFivePointPlacement (A := D.A)
+        (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2)
+        Q.K Q.C S.oppApex1 (H.centerAt Q.J Q.J_mem_A))
 
-/-- Direct five-point CCW placements when the blocker selected at the fresh
-source is the first fiber source (`X = C`).  Up to cyclic recutting, the
-constructors cover `O,C,J,A,K`, `O,J,A,C,K`, `O,A,K,J,C`, and `O,J,K,C,A`. -/
+/-- Five-point CCW placements when the blocker selected at the fresh source is
+the first fiber source (`X = C`).  Up to cyclic recutting, the constructors
+cover the four direct orders `O,C,J,A,K`, `O,J,A,C,K`, `O,A,K,J,C`,
+`O,J,K,C,A` and their four reflections `O,K,A,J,C`, `O,K,C,A,J`,
+`O,C,J,K,A`, `O,A,C,K,J`. -/
 inductive SecondCenterEqFirstSourcePlacement
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -139,9 +229,25 @@ inductive SecondCenterEqFirstSourcePlacement
       (placement : CcwFivePointPlacement (A := D.A) Q.C
         (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2)
         S.oppApex1 Q.J Q.K)
+  | orderOKAJC
+      (placement : CcwFivePointPlacement (A := D.A)
+        S.oppApex1 Q.K
+        (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2) Q.J Q.C)
+  | orderAJOKC
+      (placement : CcwFivePointPlacement (A := D.A)
+        (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2)
+        Q.J S.oppApex1 Q.K Q.C)
+  | orderCJKAO
+      (placement : CcwFivePointPlacement (A := D.A)
+        Q.C Q.J Q.K
+        (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2) S.oppApex1)
+  | orderCKJOA
+      (placement : CcwFivePointPlacement (A := D.A)
+        Q.C Q.K Q.J S.oppApex1
+        (H.centerAt E.fiber.source₁.1 E.fiber.source₁.2))
 
-/-- The `A = J` endpoint cross-hit case is contradictory in each directly
-supported five-point CCW placement. -/
+/-- The `A = J` endpoint cross-hit case is contradictory in each direct or
+reflected five-point CCW placement. -/
 theorem false_of_firstCenterEqFreshSource_of_crossHit_of_placement
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -188,9 +294,21 @@ theorem false_of_firstCenterEqFreshSource_of_crossHit_of_placement
       exact false_of_OAYEC D.convex P hXA_XK hAC_AK.symm hOA_OC.symm
   | orderAXOCK P =>
       exact false_of_OAYEC D.convex P hOA_OC hAC_AK hXA_XK.symm
+  | orderOKXCA P =>
+      exact false_of_five_ccw_three_shell_equalities_043_431_241
+        D.convex P hOA_OC hAC_AK hXA_XK
+  | orderXCOKA P =>
+      exact false_of_five_ccw_three_shell_equalities_043_431_241
+        D.convex P hXA_XK hAC_AK.symm hOA_OC
+  | orderACKXO P =>
+      exact false_of_five_ccw_three_shell_equalities_302_021_410
+        D.convex P hXA_XK hAC_AK.symm hOA_OC.symm
+  | orderAKCOX P =>
+      exact false_of_five_ccw_three_shell_equalities_302_021_410
+        D.convex P hOA_OC hAC_AK hXA_XK.symm
 
-/-- The `X = C` endpoint cross-hit case is contradictory in each directly
-supported five-point CCW placement. -/
+/-- The `X = C` endpoint cross-hit case is contradictory in each direct or
+reflected five-point CCW placement. -/
 theorem false_of_secondCenterEqFirstSource_of_crossHit_of_placement
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -229,6 +347,18 @@ theorem false_of_secondCenterEqFirstSource_of_crossHit_of_placement
       exact false_of_OAYEC D.convex P hAC_AK hCJ_CK.symm hOJ_OC
   | orderCAOJK P =>
       exact false_of_OAYEC D.convex P hOJ_OC.symm hCJ_CK hAC_AK.symm
+  | orderOKAJC P =>
+      exact false_of_five_ccw_three_shell_equalities_043_431_241
+        D.convex P hOJ_OC.symm hCJ_CK hAC_AK
+  | orderAJOKC P =>
+      exact false_of_five_ccw_three_shell_equalities_043_431_241
+        D.convex P hAC_AK hCJ_CK.symm hOJ_OC.symm
+  | orderCJKAO P =>
+      exact false_of_five_ccw_three_shell_equalities_302_021_410
+        D.convex P hAC_AK hCJ_CK.symm hOJ_OC
+  | orderCKJOA P =>
+      exact false_of_five_ccw_three_shell_equalities_302_021_410
+        D.convex P hOJ_OC.symm hCJ_CK hAC_AK.symm
 
 end EndpointFreshFiveRoleKalmanson
 end Problem97

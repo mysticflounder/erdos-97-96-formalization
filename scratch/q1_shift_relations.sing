@@ -1,0 +1,15 @@
+ring B=0,(br,bs,bu,bv,bw,x,y),dp;
+poly q=bs^3-2*bs^2*bu-bs^2*bw+bs*bu^2+bs*bu*bw+bs*bw^2-bu^2*bw;
+poly e7=bs^3*bu-bs^3-bs^2*bu^2-bs^2*bu*bv+bs^2*bu+bs^2*bv+bs*bu^2*bv+bs*bu*bv-bs*bu-bs*bv^2-bu^2*bv+bu*bv;
+poly e8=bs^2*bv*bw-bs^2*bw^2+bs^2*bw-bs^2-bs*bv^2*bw+bs*bv*bw^2-bs*bv*bw+bs*bv+bv^2*bw-bv*bw;
+poly e9=br^2*bv+br*bs^2*bv-br*bs^2-br*bs*bv^2+br*bs*bv-br*bv^2-br*bv+bv^3;
+poly u8=e7+(1-bu)*q;
+poly u24=-br*e8+bw*e9;
+poly u32=-(br*bv-br)*e8+(bv*bw-bw^2+bw-1)*e9;
+poly u34=-(bs-2*bu+bv-bw)*e8+(bv*bw-bw^2+bw-1)*q;
+print("q_shift="+string(subst(q,bu,bs+x)));
+print("u8_shift="+string(factorize(subst(u8,bu,bs+x))[1]));
+print("u24_y="+string(factorize(subst(u24,br,bv+y))[1]));
+print("u32_y="+string(factorize(subst(u32,br,bv+y))[1]));
+print("u34_shift="+string(factorize(subst(u34,bu,bs+x))[1]));
+quit;

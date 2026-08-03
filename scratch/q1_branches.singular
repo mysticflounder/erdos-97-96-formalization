@@ -1,0 +1,11 @@
+ring R=0,(br,bs,bu,bv,bw),dp;
+poly q1 = bs^3 - 2*bs^2*bu - bs^2*bw + bs*bu^2 + bs*bu*bw + bs*bw^2 - bu^2*bw;
+poly e2 = br^2*bs^3 - br^2*bs^2*bu - br^2*bs^2*bv + br^2*bs*bu*bv - br*bs^3*bu + br*bs^2*bu^2 + br*bs^2*bu*bv - br*bs*bu^2*bv - br*bs*bu^2*bw + br*bs*bu*bw^2 + br*bs*bv^2*bw + br*bu^2*bv*bw - br*bu*bv^2*bw - br*bu*bv*bw^2 - bs*bv^2*bw^2 + bu*bv^2*bw^2;
+poly e5 = br^2*bs^3 - br^2*bs^2*bu - br^2*bs^2*bv + br^2*bs*bu*bv + br^2*bs*bu - br^2*bu*bv - br*bs^3 + br*bs^2*bu + br*bs^2*bv - br*bs*bu^2 - br*bs*bu*bv + br*bu^2*bv + bs*bu*bv^2 - bs*bv^2 - bu^2*bv^2 + bu*bv^2;
+poly e7 = bs^3*bu - bs^3 - bs^2*bu^2 - bs^2*bu*bv + bs^2*bu + bs^2*bv + bs*bu^2*bv + bs*bu*bv - bs*bu - bs*bv^2 - bu^2*bv + bu*bv;
+poly e8 = bs^2*bv*bw - bs^2*bw^2 + bs^2*bw - bs^2 - bs*bv^2*bw + bs*bv*bw^2 - bs*bv*bw + bs*bv + bv^2*bw - bv*bw;
+poly e9 = br^2*bv + br*bs^2*bv - br*bs^2 - br*bs*bv^2 + br*bs*bv - br*bv^2 - br*bv + bv^3;
+ideal I=q1,e2,e5,e7,e8,e9;
+ideal A=subst(I,bu,br); ideal GA=std(A); print("A n="+string(size(GA))); for(int i=1;i<=size(GA);i++){ if(deg(GA[i])<=4) { print("A"+string(i)+"="+string(GA[i])); } }
+ideal B=subst(I,bs,bv); ideal GB=std(B); print("B n="+string(size(GB))); for(int i=1;i<=size(GB);i++){ if(deg(GB[i])<=4) { print("B"+string(i)+"="+string(GB[i])); } }
+poly DA=br*bs*bv*bw*(bv-1); LIB "elim.lib"; ideal SA=sat(A,DA)[1]; ideal GSA=std(SA); print("SA n="+string(size(GSA))); for(int j=1;j<=size(GSA);j++){ if(deg(GSA[j])<=4) { print("SA"+string(j)+"="+string(GSA[j])); } }

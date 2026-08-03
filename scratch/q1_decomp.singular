@@ -1,0 +1,10 @@
+// Include definitions by copying probe script's prelude up to G.
+<"scratch/q1_qbranch_probe.singular";
+LIB "primdec.lib";
+list L=primdecGTZ(I);
+print("DECOMP_SIZE"); print(size(L));
+for(int i=1;i<=size(L);i++){
+  ideal C=L[i][1];
+  print("COMP"); print(i); print("SIZE"); print(size(C));
+  for(int j=1;j<=size(C);j++){write("scratch/q1_comp_"+string(i)+"_"+string(j)+".txt",C[j]); print("DEG"); print(deg(C[j]));}
+}

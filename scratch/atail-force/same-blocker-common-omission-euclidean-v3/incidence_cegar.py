@@ -20,7 +20,7 @@ import json
 import time
 from collections import defaultdict
 from pathlib import Path
-from typing import Iterable
+from typing import Final, Iterable
 
 
 LANE = Path(__file__).resolve().parent
@@ -35,6 +35,30 @@ DELETION_ARM_SPECS = (
     ("delete-P.source2", "p2", "r1"),
     ("delete-Prho.source2", "r2", "p1"),
 )
+
+CRITICAL_K4_TRIPLE_CLAUSES = "triple-clauses"
+CRITICAL_K4_COMPACT_PB = "compact-pb"
+CRITICAL_K4_REPRESENTATIONS = (
+    CRITICAL_K4_TRIPLE_CLAUSES,
+    CRITICAL_K4_COMPACT_PB,
+)
+# Historical artifacts written before this field existed used the triple-CNF
+# encoding.  This constant is intentionally independent of the mutable policy
+# choice for new runs below.
+LEGACY_CRITICAL_K4_REPRESENTATION: Final = CRITICAL_K4_TRIPLE_CLAUSES
+DEFAULT_CRITICAL_K4_REPRESENTATION = CRITICAL_K4_COMPACT_PB
+
+
+def critical_k4_artifact_suffix(critical_k4_representation: str) -> str:
+    """Preserve legacy paths while keeping newer encodings noncolliding."""
+    if critical_k4_representation not in CRITICAL_K4_REPRESENTATIONS:
+        raise ValueError((
+            "invalid-critical-k4-representation",
+            critical_k4_representation,
+        ))
+    if critical_k4_representation == LEGACY_CRITICAL_K4_REPRESENTATION:
+        return ""
+    return f"-critical-k4-{critical_k4_representation}"
 
 
 def replay_geometric_incidence(vertices: Iterable[int], equal_at) -> dict[str, object]:
@@ -178,6 +202,29 @@ def structural_core(n: int) -> dict[str, object] | None:
     }
 
 
+def global_edge_equality_encoding(z3, vertices, equality, prefix: str):
+    """Encode one global equality relation on all undirected edge lengths."""
+    vertices = tuple(vertices)
+    edge_sort = z3.DeclareSort(f"{prefix}_length_class")
+    edge_classes = {
+        (left, right): z3.Const(f"{prefix}_edge_{left}_{right}", edge_sort)
+        for left, right in itertools.combinations(vertices, 2)
+    }
+
+    def edge_class(left, right):
+        return edge_classes[min(left, right), max(left, right)]
+
+    formulas = tuple(
+        equality(center, left, right)
+        == (edge_class(center, left) == edge_class(center, right))
+        for center in vertices
+        for left, right in itertools.combinations(
+            (point for point in vertices if point != center), 2
+        )
+    )
+    return edge_sort, edge_classes, formulas
+
+
 class Audit:
     def __init__(
         self,
@@ -186,15 +233,24 @@ class Audit:
         geometric: bool,
         cap_crossing_kalmanson: bool,
         full_shared_pair_separation: bool,
+        global_edge_equality: bool = False,
+        critical_k4_representation: str = DEFAULT_CRITICAL_K4_REPRESENTATION,
     ) -> None:
         import z3
 
+        if critical_k4_representation not in CRITICAL_K4_REPRESENTATIONS:
+            raise ValueError(
+                "critical_k4_representation must be one of "
+                f"{CRITICAL_K4_REPRESENTATIONS}, got {critical_k4_representation!r}"
+            )
         self.z3 = z3
         self.n = n
         self.profile = profile
         self.geometric = geometric
         self.cap_crossing_kalmanson = cap_crossing_kalmanson
         self.full_shared_pair_separation = full_shared_pair_separation
+        self.global_edge_equality = global_edge_equality
+        self.critical_k4_representation = critical_k4_representation
         left, indexed, right = profile
         first_count = indexed - 2
         left_count = left - 2
@@ -240,9 +296,21 @@ class Audit:
             for c in self.vs
             for x, y in itertools.combinations((v for v in self.vs if v != c), 2)
         }
+        if self.global_edge_equality:
+            (
+                self.edge_length_sort,
+                self.edge_length_class,
+                global_edge_equalities,
+            ) = global_edge_equality_encoding(
+                z3, self.vs, self.E, "global_incidence"
+            )
+        else:
+            self.edge_length_sort = None
+            self.edge_length_class = {}
+            global_edge_equalities = ()
         self.blocks: defaultdict[str, int] = defaultdict(int)
         self.cuts: list[frozenset[int]] = []
-        self._encode()
+        self._encode(global_edge_equalities)
 
     def add(self, block: str, *args) -> None:
         self.solver.add(*args)
@@ -275,16 +343,53 @@ class Audit:
         for p in self.first_interior - {x, y}:
             self.add(block, self.z3.Not(self.E(self.a1, x, p)))
 
-    def _encode(self) -> None:
+    def _encode_critical_no_k4_after_source_deletion(
+        self, source: int, center: int, remaining: list[int]
+    ) -> None:
+        """Guard against a four-point class after deleting ``source``."""
         z3 = self.z3
-        # Full radius partitions.  Symmetry is represented by unordered pairs.
-        for c in self.vs:
-            targets = [v for v in self.vs if v != c]
-            for x, y, z in itertools.combinations(targets, 3):
-                xy, xz, yz = self.E(c, x, y), self.E(c, x, z), self.E(c, y, z)
-                self.add("radius_partition", z3.Or(z3.Not(xy), z3.Not(yz), xz))
-                self.add("radius_partition", z3.Or(z3.Not(xy), z3.Not(xz), yz))
-                self.add("radius_partition", z3.Or(z3.Not(xz), z3.Not(yz), xy))
+        guard = self.b[source, center]
+        block = "critical_no_K4_after_source_deletion"
+        if self.critical_k4_representation == CRITICAL_K4_TRIPLE_CLAUSES:
+            for x, y, z, w in itertools.combinations(remaining, 4):
+                self.add(
+                    block,
+                    z3.Or(
+                        z3.Not(guard),
+                        z3.Not(self.E(center, x, y)),
+                        z3.Not(self.E(center, x, z)),
+                        z3.Not(self.E(center, x, w)),
+                    ),
+                )
+            return
+
+        # Every old clause chooses an anchor x and three later points.  Their
+        # conjunction is therefore exactly the unit-weight at-most-two
+        # constraint on all points later than x in this same order.
+        for index, x in enumerate(remaining[:-3]):
+            tail = remaining[index + 1:]
+            self.add(
+                block,
+                z3.Or(
+                    z3.Not(guard),
+                    z3.PbLe([(self.E(center, x, point), 1) for point in tail], 2),
+                ),
+            )
+
+    def _encode(self, global_edge_equalities=()) -> None:
+        z3 = self.z3
+        if self.global_edge_equality:
+            self.add("global_edge_equality_closure", *global_edge_equalities)
+        else:
+            # Full center-local radius partitions.  Symmetry is represented by
+            # unordered endpoint pairs.
+            for c in self.vs:
+                targets = [v for v in self.vs if v != c]
+                for x, y, z in itertools.combinations(targets, 3):
+                    xy, xz, yz = self.E(c, x, y), self.E(c, x, z), self.E(c, y, z)
+                    self.add("radius_partition", z3.Or(z3.Not(xy), z3.Not(yz), xz))
+                    self.add("radius_partition", z3.Or(z3.Not(xy), z3.Not(xz), yz))
+                    self.add("radius_partition", z3.Or(z3.Not(xz), z3.Not(yz), xy))
 
         # Global K4: one selected co-radial four-row at every carrier center.
         for c in self.vs:
@@ -309,22 +414,18 @@ class Audit:
                     rhs = z3.BoolVal(True) if p == s else self.E(c, s, p)
                     self.add("critical_support_exact", z3.Or(z3.Not(self.b[s, c]), self.m[c, p] == rhs))
                 remaining = [p for p in self.vs if p not in {c, s}]
-                for four in itertools.combinations(remaining, 4):
-                    x, y, z, w = four
-                    self.add(
-                        "critical_no_K4_after_source_deletion",
-                        z3.Or(z3.Not(self.b[s, c]), z3.Not(self.E(c, x, y)),
-                              z3.Not(self.E(c, x, z)), z3.Not(self.E(c, x, w))),
-                    )
+                self._encode_critical_no_k4_after_source_deletion(s, c, remaining)
 
-        # Equality transport across a mutual two-step selected-row triangle.
-        for anchor, middle, center in itertools.permutations(self.vs, 3):
-            self.add(
-                "mutual_triangle_transport",
-                z3.Or(z3.Not(self.m[anchor, middle]), z3.Not(self.m[anchor, center]),
-                      z3.Not(self.m[middle, anchor]), z3.Not(self.m[middle, center]),
-                      self.E(center, anchor, middle)),
-            )
+        if not self.global_edge_equality:
+            # Equality transport across a mutual two-step selected-row triangle.
+            # The global edge-equality encoding entails this clause directly.
+            for anchor, middle, center in itertools.permutations(self.vs, 3):
+                self.add(
+                    "mutual_triangle_transport",
+                    z3.Or(z3.Not(self.m[anchor, middle]), z3.Not(self.m[anchor, center]),
+                          z3.Not(self.m[middle, anchor]), z3.Not(self.m[middle, center]),
+                          self.E(center, anchor, middle)),
+                )
 
         p1, p2 = self.pair_p
         r1, r2 = self.pair_r
@@ -709,6 +810,7 @@ class Audit:
             "cegar_cut_count": len(self.cuts),
             "iterations": iterations,
             "assertion_block_counts": dict(sorted(self.blocks.items())),
+            "critical_no_K4_representation": self.critical_k4_representation,
             "trust_boundary": {
                 "lean_kernel_proof": False,
                 "qf_nra_run": False,
@@ -871,6 +973,15 @@ def main() -> None:
     parser.add_argument("--geometric-incidence", action="store_true")
     parser.add_argument("--cap-crossing-kalmanson", action="store_true")
     parser.add_argument("--full-shared-pair-separation", action="store_true")
+    parser.add_argument(
+        "--critical-k4-representation",
+        choices=CRITICAL_K4_REPRESENTATIONS,
+        default=DEFAULT_CRITICAL_K4_REPRESENTATION,
+        help=(
+            "encoding for critical no-K4-after-source-deletion constraints "
+            f"(default: {DEFAULT_CRITICAL_K4_REPRESENTATION})"
+        ),
+    )
     parser.add_argument("--timeout-ms", type=int, default=180_000)
     parser.add_argument("--max-cuts", type=int, default=200)
     args = parser.parse_args()
@@ -882,6 +993,9 @@ def main() -> None:
         return
 
     OUT.mkdir(parents=True, exist_ok=True)
+    representation_suffix = critical_k4_artifact_suffix(
+        args.critical_k4_representation
+    )
     ns = range(15, 19) if args.run_all else [args.n]
     summary = []
     for n in ns:
@@ -900,6 +1014,7 @@ def main() -> None:
                 + ("-geometric-incidence" if args.geometric_incidence else "")
                 + ("-cap-crossing-kalmanson" if args.cap_crossing_kalmanson else "")
                 + ("-full-shared-pair-separation" if args.full_shared_pair_separation else "")
+                + representation_suffix
             )
             run_dir = OUT / f"n{n}-profile-{tag}-{stage}"
             audit = Audit(
@@ -908,6 +1023,7 @@ def main() -> None:
                 args.geometric_incidence,
                 args.cap_crossing_kalmanson,
                 args.full_shared_pair_separation,
+                critical_k4_representation=args.critical_k4_representation,
             )
             result = audit.run(args.timeout_ms, args.max_cuts, run_dir)
             summary.append(result)
@@ -919,6 +1035,7 @@ def main() -> None:
         summary_stage += "-cap-crossing-kalmanson"
     if args.full_shared_pair_separation:
         summary_stage += "-full-shared-pair-separation"
+    summary_stage += representation_suffix
     summary_path = OUT / f"summary-{summary_stage}.json"
     summary_path.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n")
     print(json.dumps({"summary": str(summary_path), "case_count": len(summary)}))

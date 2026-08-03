@@ -43,6 +43,9 @@ from census.global_confinement.surplus_source_metric_core_probe import (
     _cap_selected_rows_ok,
 )
 from census.multi_center import multi_center_census as mc
+from census.p97_search.phase3_classification_context import (
+    ClassificationContext,
+)
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -451,8 +454,14 @@ def _obligations_hold(
     rows: Sequence[metric.MetricRow],
     n: int,
     obligations: Sequence[Obligation],
+    *,
+    context: ClassificationContext | None = None,
 ) -> bool:
-    closure = metric._row_equality_closure(n, rows)
+    closure = (
+        metric._row_equality_closure(n, rows)
+        if context is None
+        else context.closure_for_rows(rows)
+    )
     for _field, first, last in obligations:
         if first == last:
             continue
@@ -488,12 +497,16 @@ def _minimum_core_rows(
     n: int,
     stage: str,
     core: Mapping[str, Any],
+    *,
+    context: ClassificationContext | None = None,
 ) -> tuple[tuple[metric.MetricRow, ...], dict[str, Any]]:
     """Find an exact minimum-cardinality set of whole row choices."""
 
     ordered = tuple(sorted(rows, key=_row_key))
+    if context is None:
+        context = ClassificationContext.from_rows(ordered, n)
     obligations = _core_obligations(stage, core)
-    if not _obligations_hold(ordered, n, obligations):
+    if not _obligations_hold(ordered, n, obligations, context=context):
         raise AssertionError("detector core obligations do not hold in its prefix")
     required = _required_rows(ordered, stage, core)
     required_indices = {
@@ -509,7 +522,7 @@ def _minimum_core_rows(
             indices = tuple(sorted((*required_indices, *optional)))
             tested += 1
             candidate = tuple(ordered[index] for index in indices)
-            if _obligations_hold(candidate, n, obligations):
+            if _obligations_hold(candidate, n, obligations, context=context):
                 solutions.append(indices)
         if solutions:
             break
@@ -562,7 +575,12 @@ def _closure_graph(
 
 
 def _closure_path(
-    rows: Sequence[metric.MetricRow], n: int, first: Edge, last: Edge
+    rows: Sequence[metric.MetricRow],
+    n: int,
+    first: Edge,
+    last: Edge,
+    *,
+    graph: dict[Edge, list[tuple[Edge, dict[str, Any]]]] | None = None,
 ) -> dict[str, Any]:
     if first == last:
         return {
@@ -572,7 +590,8 @@ def _closure_path(
             "length": 0,
             "row_equality_steps": 0,
         }
-    graph = _closure_graph(rows, n)
+    if graph is None:
+        graph = _closure_graph(rows, n)
     queue = deque((first,))
     visited = {first}
     previous: dict[Edge, tuple[Edge, dict[str, Any]]] = {}
@@ -655,14 +674,21 @@ def _certificate_for_detection(
     rows: Sequence[metric.MetricRow],
     n: int,
     detection: Mapping[str, Any],
+    *,
+    context: ClassificationContext | None = None,
 ) -> dict[str, Any]:
     stage = str(detection["stage"])
     core = dict(detection["core"])
-    selected, minimum = _minimum_core_rows(rows, n, stage, core)
+    if context is None:
+        context = ClassificationContext.from_rows(rows, n)
+    selected, minimum = _minimum_core_rows(
+        rows, n, stage, core, context=context
+    )
     obligations = _core_obligations(stage, core)
+    graph = context.graph_for_rows(selected)
     paths = []
     for field, first, last in obligations:
-        path = _closure_path(selected, n, first, last)
+        path = _closure_path(selected, n, first, last, graph=graph)
         if not _validate_closure_path(selected, path):
             raise AssertionError("generated closure path failed direct replay")
         paths.append({"field": field, **path})

@@ -1,0 +1,50 @@
+ring R=0,(x_r2,x_s3,x_t1,x_t2,x_t4,y_r2,y_s3,y_t1,y_t2,y_t4,u),dp;
+option(redSB);
+int cleanup=system("sh","rm -f axis-u8-certificate.singexpr");
+ideal I=
+  x_r2^2 - 2*x_r2*x_t4 - x_s3^2 + 2*x_s3*x_t4 + y_r2^2 - 2*y_r2*y_t4 - y_s3^2 + 2*y_s3*y_t4,
+  x_r2^2 - 2*x_r2*x_t4 - x_t1^2 + 2*x_t1*x_t4 + y_r2^2 - 2*y_r2*y_t4 - y_t1^2 + 2*y_t1*y_t4,
+  u^2-x_s3^2-y_s3^2,
+  u^2-x_t4^2-y_t4^2,
+  u^2-x_s3^2+2*x_s3*x_t1-x_t1^2-y_s3^2+2*y_s3*y_t1-y_t1^2,
+  u^2-x_s3^2+2*x_s3*x_t2-x_t2^2-y_s3^2+2*y_s3*y_t2-y_t2^2,
+  x_r2^2-x_t2^2+y_r2^2-y_t2^2,
+  x_t2^2-x_t4^2+y_t2^2-y_t4^2-2*u*x_t2+2*u*x_t4,
+  u^2-x_r2^2-y_r2^2-2*u*x_t2+2*x_r2*x_t2+2*y_r2*y_t2,
+  u^2-2*u*x_r2+2*x_r2*x_t1+2*y_r2*y_t1-x_t1^2-y_t1^2,
+  u^2-2*u*x_t1+2*x_t1*x_t2+2*y_t1*y_t2-x_t2^2-y_t2^2;
+
+matrix T;
+ideal G=liftstd(I,T);
+int hit=0;
+int j;
+for (j=1; j<=size(G); j=j+1) {
+  if (G[j]==u^8) { hit=j; break; }
+  if (G[j]==-u^8) { hit=-j; break; }
+  if (reduce(u^8,ideal(G[j]))==0) { print("PURE_POWER_GENERATOR="+string(G[j])); hit=j; break; }
+}
+print("GB_SIZE="+string(size(G))+" HIT="+string(hit));
+if (hit!=0) {
+  int col=hit;
+  number sign=1;
+  if (hit<0) { col=-hit; }
+  sign=1/leadcoef(G[col]);
+  poly check=0;
+  int terms=0;
+  int maxdeg=0;
+  int i;
+  matrix C[11][1];
+  for (i=1; i<=11; i=i+1) {
+    C[i,1]=sign*T[i,col];
+    check=check+C[i,1]*I[i];
+    terms=terms+size(C[i,1]);
+    if (deg(C[i,1])>maxdeg) { maxdeg=deg(C[i,1]); }
+    print("ROW="+string(i)+" TERMS="+string(size(C[i,1]))+" DEGREE="+string(deg(C[i,1])));
+    write("axis-u8-certificate.singexpr","C"+string(i)+"="+string(C[i,1])+";"+newline);
+  }
+  print("TOTAL_TERMS="+string(terms));
+  print("MAX_MULTIPLIER_DEGREE="+string(maxdeg));
+  print("CHECK_REMAINDER="+string(check-u^8));
+}
+
+quit;

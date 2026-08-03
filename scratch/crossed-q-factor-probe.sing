@@ -1,0 +1,36 @@
+ring B=0,(br,bs,bu,bv,bw),lp;
+matrix M[11][6]=
+br-bw,-bs+bw,0,0,-br+bs,0,
+br-bw,0,-bu+bw,0,-br+bu,0,
+0,-bs,0,0,0,1,
+0,0,0,0,-bw,1,
+0,-bs+bu,bs-bu,0,0,1,
+0,-bs+bv,0,bs-bv,0,1,
+br,0,0,-bv,0,0,
+0,0,0,bv-1,1-bw,-bv+bw,
+br-bv,0,0,1-br,0,bv-1,
+1-bu,0,-br+bu,0,0,br-1,
+0,0,1-bv,-bu+bv,0,bu-1;
+ideal K=minor(M,6); ideal L; ideal BSI=std(bs); ideal BWI=std(bw); poly p; int k;
+for(k=1;k<=size(K);k++)
+{
+  p=K[k];
+  while(p!=0 and reduce(p,BSI)==0){p=p/bs;}
+  while(p!=0 and reduce(p,BWI)==0){p=p/bw;}
+  if(p!=0 and size(p)<=16){L[size(L)+1]=p;}
+}
+poly e1=L[1]; poly e2=L[2]; poly e5=L[5]; poly e7=L[7]/br;
+poly e8=L[8]/(br*(bv-1)); poly e9=L[9]/(bv-1); poly q1=e1/(bv*(br-bw));
+ideal H=e2,e5,e7,e8,e9,q1;
+poly target=-(bu-bs)*(br-bv)*bv*bw;
+matrix C=lift(H,ideal(target));
+poly reconstructed=0; int total=0; int maxdeg=0; int j;
+for(j=1;j<=nrows(C);j++)
+{
+  reconstructed=reconstructed+C[j,1]*H[j];
+  total=total+size(C[j,1]);
+  if(C[j,1]!=0 and deg(C[j,1])>maxdeg){maxdeg=deg(C[j,1]);}
+  print("C"+string(j)+" terms="+string(size(C[j,1]))+" degree="+string(deg(C[j,1])));
+}
+print("IDENTITY="+string(reconstructed==target)+" TOTAL="+string(total)+" MAXDEG="+string(maxdeg));
+quit;

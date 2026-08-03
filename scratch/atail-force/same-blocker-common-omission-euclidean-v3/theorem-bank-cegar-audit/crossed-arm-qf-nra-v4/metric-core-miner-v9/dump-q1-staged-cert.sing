@@ -1,0 +1,40 @@
+ring B=0,(br,bs,bu,bv,bw),dp;
+LIB "modstd.lib";
+matrix M[11][6]=
+br-bw,-bs+bw,0,0,-br+bs,0,
+br-bw,0,-bu+bw,0,-br+bu,0,
+0,-bs,0,0,0,1,
+0,0,0,0,-bw,1,
+0,-bs+bu,bs-bu,0,0,1,
+0,-bs+bv,0,bs-bv,0,1,
+br,0,0,-bv,0,0,
+0,0,0,bv-1,1-bw,-bv+bw,
+br-bv,0,0,1-br,0,bv-1,
+1-bu,0,-br+bu,0,0,br-1,
+0,0,1-bv,-bu+bv,0,bu-1;
+ideal K=minor(M,6); ideal L;
+ideal BSI=std(bs); ideal BWI=std(bw); poly p; int k;
+for(k=1;k<=size(K);k++)
+{
+  p=K[k];
+  while(p!=0 and reduce(p,BSI)==0){p=p/bs;}
+  while(p!=0 and reduce(p,BWI)==0){p=p/bw;}
+  if(p!=0 and size(p)<=16){L[size(L)+1]=p;}
+}
+poly e1=L[1]; poly e2=L[2]; poly e5=L[5]; poly e7=L[7]/br;
+poly e8=L[8]/(br*(bv-1)); poly e9=L[9]/(bv-1);
+poly q1=e1/(bv*(br-bw));
+ideal H=e2,e5,e7,e8,e9,q1;
+matrix T; ideal U=liftstd(H,T);
+int idx; int j; string out;
+for(idx=8;idx<=37;idx++)
+{
+  if(idx==8 or idx==24 or idx==30 or idx==32 or idx==34 or idx==37)
+  {
+    out="q1-U"+string(idx)+"-cert.txt";
+    system("sh","rm -f "+out);
+    for(j=1;j<=nrows(T);j++){write(out,string(T[j,idx]));}
+    print("U"+string(idx)+" poly="+string(U[idx])+" file="+out);
+  }
+}
+quit;

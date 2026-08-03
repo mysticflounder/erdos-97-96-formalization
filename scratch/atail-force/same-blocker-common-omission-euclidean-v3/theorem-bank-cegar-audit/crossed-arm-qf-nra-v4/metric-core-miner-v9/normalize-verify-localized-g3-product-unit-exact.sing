@@ -1,0 +1,34 @@
+ring R=0,(t,bv,bs,bw,x,y),dp;
+poly e2=-bs^3*bv*bw + bs^3*bv*x - bs^3*bw*y + bs^3*x*y + bs^2*bv^2*bw - 2*bs^2*bv^2*x + bs^2*bv*bw^2 - 2*bs^2*bv*bw*x + bs^2*bv*bw*y + bs^2*bv*x^2 - 3*bs^2*bv*x*y + bs^2*bw^2*y - 2*bs^2*bw*x*y + bs^2*x^2*y - bs^2*x*y^2 + bs*bv^3*x - bs*bv^2*bw^2 + 2*bs*bv^2*bw*x - bs*bv^2*x^2 + 2*bs*bv^2*x*y + bs*bv*bw^2*x - bs*bv*bw^2*y - bs*bv*bw*x^2 + 2*bs*bv*bw*x*y - bs*bv*x^2*y + bs*bv*x*y^2 + bs*bw^2*x*y - bs*bw*x^2*y - bv^3*bw*x + bv^2*bw*x^2 - bv^2*bw*x*y - bv*bw^2*x*y + bv*bw*x^2*y;
+poly e5=-bs^3*bv - bs^3*y - bs^2*bv^2*x + 2*bs^2*bv^2 - 2*bs^2*bv*x*y - bs^2*bv*x + 3*bs^2*bv*y - bs^2*x*y^2 - bs^2*x*y + bs^2*y^2 + bs*bv^3*x - bs*bv^3 + 2*bs*bv^2*x*y + bs*bv^2*x - 2*bs*bv^2*y - bs*bv*x^2 + bs*bv*x*y^2 + 3*bs*bv*x*y - bs*bv*y^2 - bs*x^2*y + bs*x*y^2 - bv^3*x - 2*bv^2*x*y + bv^2*x + bv*x^2*y - bv*x*y^2;
+poly e7=-bs^3*x + bs^2*bv*x + bs^2*bv - bs^2*x^2 + bs^2*x - bs^2 - bs*bv^2 + bs*bv*x^2 - bs*bv*x + bs*bv - bs*x - bv*x^2 + bv*x;
+poly e8=-bs^2*bv*bw + bs^2*bw^2 - bs^2*bw + bs^2 + bs*bv^2*bw - bs*bv*bw^2 + bs*bv*bw - bs*bv - bv^2*bw + bv*bw;
+poly e9=bs^2*bv^2 + bs^2*bv*y - bs^2*bv - bs^2*y - bs*bv^3 - bs*bv^2*y + bs*bv^2 + bs*bv*y + bv^3 + bv^2*y - bv^2 + bv*y^2 - bv*y;
+poly q1=-bs^2*bw + bs*bw^2 - bs*bw*x + bs*x^2 - bw*x^2;
+poly P=x*y*bv*bw;
+poly unit=P*t-1;
+ideal H=e2,e5,e7,e8,e9,q1,unit;
+poly C1,C2,C3,C4,C5,C6,C7;
+execute(read("localized-g3-product-unit-certificate.singexpr"));
+poly raw=C1*H[1]+C2*H[2]+C3*H[3]+C4*H[4]+C5*H[5]+C6*H[6]+C7*H[7];
+print("RAW_TERMS="+string(size(raw))+" RAW_DEG="+string(deg(raw)));
+number scale=leadcoef(raw);
+C1=C1/scale; C2=C2/scale; C3=C3/scale; C4=C4/scale;
+C5=C5/scale; C6=C6/scale; C7=C7/scale;
+ideal CC=C1,C2,C3,C4,C5,C6,C7;
+poly check=C1*H[1]+C2*H[2]+C3*H[3]+C4*H[4]+C5*H[5]+C6*H[6]+C7*H[7];
+print("NORMALIZED_IDENTITY="+string(check==1));
+print("C7_CANONICAL="+string(C7==(-P*t-1)));
+int i; int terms=0; ideal D;
+for(i=1;i<=6;i++){
+  poly qq=CC[i]/t^2;
+  print("C"+string(i)+"_DIVISIBLE_T2="+string(CC[i]==qq*t^2));
+  D[i]=qq;
+  terms=terms+size(qq);
+}
+poly squareCheck=D[1]*H[1]+D[2]*H[2]+D[3]*H[3]+D[4]*H[4]+D[5]*H[5]+D[6]*H[6];
+print("SQUARE_IDENTITY="+string(squareCheck==P^2));
+print("SQUARE_TERMS="+string(terms));
+write("localized-g3-product-square-certificate-exact-v1.singexpr","");
+for(i=1;i<=6;i++){write("localized-g3-product-square-certificate-exact-v1.singexpr","D"+string(i)+"="+string(D[i])+";"+newline);}
+quit;

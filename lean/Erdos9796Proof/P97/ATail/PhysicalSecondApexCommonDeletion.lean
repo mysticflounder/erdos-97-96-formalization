@@ -76,6 +76,37 @@ def secondRowSelectedFourClass
     intro hz
     exact (Finset.mem_erase.mp (C.row₂.subset hz)).1 rfl
 
+/-- A deleted-carrier first row centered at a named critical blocker is the
+canonical full ambient shell, even though the packet initially stores the row
+as a chosen four-subset. -/
+theorem firstRow_support_eq_criticalShell_of_center_eq
+    {D : CounterexampleData} {H : CriticalShellSystem D.A}
+    {deleted center₁ center₂ source : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted center₁ center₂)
+    (hsource : source ∈ D.A)
+    (hcenter : center₁ = H.centerAt source hsource) :
+    C.B₁ =
+      (H.selectedAt source hsource).toCriticalFourShell.support := by
+  subst center₁
+  simpa [firstRowSelectedFourClass] using
+    H.selectedFourClass_support_eq_shell source hsource
+      (firstRowSelectedFourClass C)
+
+/-- A deleted-carrier second row centered at a named critical blocker is the
+canonical full ambient shell. -/
+theorem secondRow_support_eq_criticalShell_of_center_eq
+    {D : CounterexampleData} {H : CriticalShellSystem D.A}
+    {deleted center₁ center₂ source : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted center₁ center₂)
+    (hsource : source ∈ D.A)
+    (hcenter : center₂ = H.centerAt source hsource) :
+    C.B₂ =
+      (H.selectedAt source hsource).toCriticalFourShell.support := by
+  subst center₂
+  simpa [secondRowSelectedFourClass] using
+    H.selectedFourClass_support_eq_shell source hsource
+      (secondRowSelectedFourClass C)
+
 private theorem selectedRows_sameCenter_radius_eq_or_disjoint
     {A : Finset ℝ²} {center : ℝ²}
     (K L : SelectedFourClass A center) :

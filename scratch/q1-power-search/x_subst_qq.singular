@@ -1,0 +1,28 @@
+option(redSB);
+// Shift bu = bs + x; target is x^8*bv^2*bw.
+ring R=0,(br,bs,x,bv,bw),dp;
+poly q1=bs^3-2*bs^2*(bs+x)-bs^2*bw+bs*(bs+x)^2+bs*(bs+x)*bw+bs*bw^2-(bs+x)^2*bw;
+poly e2=br^2*bs^3-br^2*bs^2*(bs+x)-br^2*bs^2*bv+br^2*bs*(bs+x)*bv-br*bs^3*(bs+x)+br*bs^2*(bs+x)^2+br*bs^2*(bs+x)*bv-br*bs*(bs+x)^2*bv-br*bs*(bs+x)^2*bw+br*bs*(bs+x)*bw^2+br*bs*bv^2*bw+br*(bs+x)^2*bv*bw-br*(bs+x)*bv^2*bw-br*(bs+x)*bv*bw^2-bs*bv^2*bw^2+(bs+x)*bv^2*bw^2;
+poly e5=br^2*bs^3-br^2*bs^2*(bs+x)-br^2*bs^2*bv+br^2*bs*(bs+x)*bv+br^2*bs*(bs+x)-br^2*(bs+x)*bv-br*bs^3+br*bs^2*(bs+x)+br*bs^2*bv-br*bs*(bs+x)^2-br*bs*(bs+x)*bv+br*(bs+x)^2*bv+bs*(bs+x)*bv^2-bs*bv^2-(bs+x)^2*bv^2+(bs+x)*bv^2;
+poly e7=bs^3*(bs+x)-bs^3-bs^2*(bs+x)^2-bs^2*(bs+x)*bv+bs^2*(bs+x)+bs^2*bv+bs*(bs+x)^2*bv+bs*(bs+x)*bv-bs*(bs+x)-bs*bv^2-(bs+x)^2*bv+(bs+x)*bv;
+poly e8=bs^2*bv*bw-bs^2*bw^2+bs^2*bw-bs^2-bs*bv^2*bw+bs*bv*bw^2-bs*bv*bw+bs*bv+bv^2*bw-bv*bw;
+poly e9=br^2*bv+br*bs^2*bv-br*bs^2-br*bs*bv^2+br*bs*bv-br*bv^2-br*bv+bv^3;
+ideal H=e2,e5,e7,e8,e9,q1;
+matrix Tmat;
+ideal G=liftstd(H,Tmat);
+poly target=x^8*bv^2*bw;
+poly rem=reduce(target,G);
+print("SHIFT_BASIS_SIZE="+string(size(G)));
+print("SHIFT_TARGET_REMAINDER="+string(rem));
+print("SHIFT_TARGET_ZERO="+string(rem==0));
+matrix C=lift(G,ideal(target));
+int i; int nz=0; int total=0; int maxterms=0; int maxdeg=0; int maxchars=0;
+for(i=1;i<=nrows(C);i++){if(C[i,1]!=0){int t=size(C[i,1]); int cc=size(string(C[i,1])); nz=nz+1; total=total+t; if(t>maxterms){maxterms=t;} if(deg(C[i,1])>maxdeg){maxdeg=deg(C[i,1]);} if(cc>maxchars){maxchars=cc;}}}
+print("SHIFT_LIFT_ROWS="+string(nrows(C))+" SHIFT_LIFT_NZ="+string(nz)+" SHIFT_LIFT_TERMS="+string(total)+" SHIFT_LIFT_MAXTERMS="+string(maxterms)+" SHIFT_LIFT_MAXDEG="+string(maxdeg)+" SHIFT_LIFT_MAXCOEFFCHARS="+string(maxchars));
+// Compose lift through G to input H via the liftstd transformation matrix.
+matrix D=Tmat*C;
+poly recon=0; int dtotal=0; int dnz=0; int dmax=0;
+for(i=1;i<=nrows(D);i++){recon=recon+D[i,1]*H[i]; if(D[i,1]!=0){dnz=dnz+1; dtotal=dtotal+size(D[i,1]); if(size(D[i,1])>dmax){dmax=size(D[i,1]);}}}
+print("SHIFT_RECON_ZERO="+string(recon==target)+" SHIFT_D_NZ="+string(dnz)+" SHIFT_D_TERMS="+string(dtotal)+" SHIFT_D_MAXTERMS="+string(dmax));
+for(i=1;i<=nrows(D);i++){if(D[i,1]!=0){print("DROW "+string(i)+" TERMS="+string(size(D[i,1]))+" POLY="+string(D[i,1]));}}
+quit;

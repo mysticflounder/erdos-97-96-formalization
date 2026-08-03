@@ -1,0 +1,4 @@
+ring R=0,(br,bs,x,bv,bw),dp;
+poly q1=bs^3-2*bs^2*(bs+x)-bs^2*bw+bs*(bs+x)^2+bs*(bs+x)*bw+bs*bw^2-(bs+x)^2*bw;
+poly e2=br^2*bs^3-br^2*bs^2*(bs+x)-br^2*bs^2*bv+br^2*bs*(bs+x)*bv-br*bs^3*(bs+x)+br*bs^2*(bs+x)^2+br*bs^2*(bs+x)*bv-br*bs*(bs+x)^2*bv-br*bs*(bs+x)^2*bw+br*bs*(bs+x)*bw^2+br*bs*bv^2*bw+br*(bs+x)^2*bv*bw-br*bs*bv^2*bw-br*bs*bv*bw^2-bs*bv^2*bw^2+(bs+x)*bv^2*bw^2;
+print(q1); factorize(q1); quit;

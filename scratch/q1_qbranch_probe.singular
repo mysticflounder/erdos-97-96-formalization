@@ -1,0 +1,31 @@
+// q1/e2/e5/e7/e8/e9 exact producer probes over QQ.
+option(redSB);
+ring R=0,(br,bs,bu,bv,bw),dp;
+poly q1 = bs^3 - 2*bs^2*bu - bs^2*bw + bs*bu^2 + bs*bu*bw + bs*bw^2 - bu^2*bw;
+poly e2 = br^2*bs^3 - br^2*bs^2*bu - br^2*bs^2*bv + br^2*bs*bu*bv - br*bs^3*bu + br*bs^2*bu^2 + br*bs^2*bu*bv - br*bs*bu^2*bv - br*bs*bu^2*bw + br*bs*bu*bw^2 + br*bs*bv^2*bw + br*bu^2*bv*bw - br*bu*bv^2*bw - br*bu*bv*bw^2 - bs*bv^2*bw^2 + bu*bv^2*bw^2;
+poly e5 = br^2*bs^3 - br^2*bs^2*bu - br^2*bs^2*bv + br^2*bs*bu*bv + br^2*bs*bu - br^2*bu*bv - br*bs^3 + br*bs^2*bu + br*bs^2*bv - br*bs*bu^2 - br*bs*bu*bv + br*bu^2*bv + bs*bu*bv^2 - bs*bv^2 - bu^2*bv^2 + bu*bv^2;
+poly e7 = bs^3*bu - bs^3 - bs^2*bu^2 - bs^2*bu*bv + bs^2*bu + bs^2*bv + bs*bu^2*bv + bs*bu*bv - bs*bu - bs*bv^2 - bu^2*bv + bu*bv;
+poly e8 = bs^2*bv*bw - bs^2*bw^2 + bs^2*bw - bs^2 - bs*bv^2*bw + bs*bv*bw^2 - bs*bv*bw + bs*bv + bv^2*bw - bv*bw;
+poly e9 = br^2*bv + br*bs^2*bv - br*bs^2 - br*bs*bv^2 + br*bs*bv - br*bv^2 - br*bv + bv^3;
+ideal I=q1,e2,e5,e7,e8,e9;
+ideal G=std(I);
+print("GBASIS_SIZE_DEGREES"); print(size(G));
+for(int j=1;j<=size(G);j++){print(j); print(degree(G[j]));}
+poly P=br*bs^2*bw^2*(bv-1)^2;
+print("P_REMAINDER"); print(reduce(P,G));
+print("P_IN_IDEAL"); print(reduce(P,G)==0);
+// probe related q-branch products
+poly P0=br*bs^2*bw^2;
+poly P1=br*bs^2*bw^2*(bv-1);
+poly P2=br*bs^2*bw^2*(bv-1)^2;
+poly P3=br*bs*bw*(bv-1);
+print("P0_P1_P3"); print(reduce(P0,G)); print(reduce(P1,G)); print(reduce(P3,G));
+ideal J1=q1,e7,e8,e9;
+ideal G1=std(J1);
+print("SUBSET_q1e7e8e9_P"); print(reduce(P,G1));
+ideal J2=q1,e2,e5,e7,e8;
+ideal G2=std(J2);
+print("SUBSET_noe9_P"); print(reduce(P,G2));
+ideal J3=q1,e2,e5,e7,e9;
+ideal G3=std(J3);
+print("SUBSET_noe8_P"); print(reduce(P,G3));

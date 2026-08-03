@@ -1,0 +1,3 @@
+// char-0 confirmation generated from q1_g3_subset_u_scan.sing
+ ring r=0,(br,bs,bu,bv,bw),dp;
+ read("scratch/q1_g3_subset_u_scan.sing");

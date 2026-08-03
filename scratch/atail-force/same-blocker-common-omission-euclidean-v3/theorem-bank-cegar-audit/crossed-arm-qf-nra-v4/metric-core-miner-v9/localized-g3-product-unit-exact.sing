@@ -1,0 +1,17 @@
+ring R=0,(bs,bv,bw,x,y,t),dp;
+poly e2=-bs^3*bv*bw + bs^3*bv*x - bs^3*bw*y + bs^3*x*y + bs^2*bv^2*bw - 2*bs^2*bv^2*x + bs^2*bv*bw^2 - 2*bs^2*bv*bw*x + bs^2*bv*bw*y + bs^2*bv*x^2 - 3*bs^2*bv*x*y + bs^2*bw^2*y - 2*bs^2*bw*x*y + bs^2*x^2*y - bs^2*x*y^2 + bs*bv^3*x - bs*bv^2*bw^2 + 2*bs*bv^2*bw*x - bs*bv^2*x^2 + 2*bs*bv^2*x*y + bs*bv*bw^2*x - bs*bv*bw^2*y - bs*bv*bw*x^2 + 2*bs*bv*bw*x*y - bs*bv*x^2*y + bs*bv*x*y^2 + bs*bw^2*x*y - bs*bw*x^2*y - bv^3*bw*x + bv^2*bw*x^2 - bv^2*bw*x*y - bv*bw^2*x*y + bv*bw*x^2*y;
+poly e5=-bs^3*bv - bs^3*y - bs^2*bv^2*x + 2*bs^2*bv^2 - 2*bs^2*bv*x*y - bs^2*bv*x + 3*bs^2*bv*y - bs^2*x*y^2 - bs^2*x*y + bs^2*y^2 + bs*bv^3*x - bs*bv^3 + 2*bs*bv^2*x*y + bs*bv^2*x - 2*bs*bv^2*y - bs*bv*x^2 + bs*bv*x*y^2 + 3*bs*bv*x*y - bs*bv*y^2 - bs*x^2*y + bs*x*y^2 - bv^3*x - 2*bv^2*x*y + bv^2*x + bv*x^2*y - bv*x*y^2;
+poly e7=-bs^3*x + bs^2*bv*x + bs^2*bv - bs^2*x^2 + bs^2*x - bs^2 - bs*bv^2 + bs*bv*x^2 - bs*bv*x + bs*bv - bs*x - bv*x^2 + bv*x;
+poly e8=-bs^2*bv*bw + bs^2*bw^2 - bs^2*bw + bs^2 + bs*bv^2*bw - bs*bv*bw^2 + bs*bv*bw - bs*bv - bv^2*bw + bv*bw;
+poly e9=bs^2*bv^2 + bs^2*bv*y - bs^2*bv - bs^2*y - bs*bv^3 - bs*bv^2*y + bs*bv^2 + bs*bv*y + bv^3 + bv^2*y - bv^2 + bv*y^2 - bv*y;
+poly q1=-bs^2*bw + bs*bw^2 - bs*bw*x + bs*x^2 - bw*x^2;
+poly unit=x*y*bv*bw*t-1; ideal H=e2,e5,e7,e8,e9,q1,unit;
+option(redSB); matrix C; ideal G=liftstd(H,C);
+print("GB_SIZE="+string(size(G))+" CONTAINS_ONE="+string(reduce(1,G)==0));
+poly check=0; int terms=0; int md=0; int i;
+for(i=1;i<=7;i++){check=check+C[i,1]*H[i]; terms=terms+size(C[i,1]); if(C[i,1]!=0 and deg(C[i,1])>md){md=deg(C[i,1]);}}
+print("IDENTITY="+string(check==1)+" TERMS="+string(terms)+" MAXDEG="+string(md));
+for(i=1;i<=7;i++){print("C"+string(i)+" TERMS="+string(size(C[i,1]))+" DEG="+string(deg(C[i,1])));}
+write("localized-g3-product-unit-certificate.singexpr","");
+for(i=1;i<=7;i++){write("localized-g3-product-unit-certificate.singexpr","C"+string(i)+"="+string(C[i,1])+";"+newline);}
+quit;

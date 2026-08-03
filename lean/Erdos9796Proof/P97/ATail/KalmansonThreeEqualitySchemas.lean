@@ -175,5 +175,185 @@ theorem false_of_six_ccw_three_shell_equalities_013_235_415
     simpa only [dist_comm (phi i4) (phi i1)] using h415
   linarith
 
+/-
+The next four consumers are cardinality-independent.  The six selected
+boundary vertices are in consecutive blocks, and the three selected-row
+equalities form a triangle in either incidence orientation.
+-/
+
+/-- A center-first three-row triangle in the original incidence orientation. -/
+theorem false_of_center_first_two_k2_three_selected_rows_triangle
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundaryInjective : Function.Injective boundary)
+    (hboundaryImage : Finset.univ.image boundary = carrier)
+    (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {i0 i1 i2 i3 i4 i5 : Fin n}
+    (h01 : i0 < i1) (h12 : i1 < i2) (h23 : i2 < i3)
+    (h34 : i3 < i4) (h45 : i4 < i5)
+    (Row0 : SelectedFourClass carrier (boundary i0))
+    (Row1 : SelectedFourClass carrier (boundary i1))
+    (Row2 : SelectedFourClass carrier (boundary i2))
+    (hi3_mem_Row0 : boundary i3 ∈ Row0.support)
+    (hi5_mem_Row0 : boundary i5 ∈ Row0.support)
+    (hi4_mem_Row1 : boundary i4 ∈ Row1.support)
+    (hi5_mem_Row1 : boundary i5 ∈ Row1.support)
+    (hi3_mem_Row2 : boundary i3 ∈ Row2.support)
+    (hi4_mem_Row2 : boundary i4 ∈ Row2.support) :
+    False := by
+  have hrow0 :
+      dist (boundary i0) (boundary i3) = dist (boundary i0) (boundary i5) :=
+    (Row0.support_eq_radius _ hi3_mem_Row0).trans
+      (Row0.support_eq_radius _ hi5_mem_Row0).symm
+  have hrow1 :
+      dist (boundary i1) (boundary i4) = dist (boundary i1) (boundary i5) :=
+    (Row1.support_eq_radius _ hi4_mem_Row1).trans
+      (Row1.support_eq_radius _ hi5_mem_Row1).symm
+  have hrow2 :
+      dist (boundary i2) (boundary i3) = dist (boundary i2) (boundary i4) :=
+    (Row2.support_eq_radius _ hi3_mem_Row2).trans
+      (Row2.support_eq_radius _ hi4_mem_Row2).symm
+  have hkal0135 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw (phi := boundary)
+      (ia := i0) (ib := i1) (ic := i3) (id := i5) hcarrier hboundaryInjective
+      hboundaryImage hboundaryCcw h01 (h12.trans h23) (h34.trans h45)
+  have hkal1234 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw (phi := boundary)
+      (ia := i1) (ib := i2) (ic := i3) (id := i4) hcarrier hboundaryInjective
+      hboundaryImage hboundaryCcw h12 h23 h34
+  linarith
+
+/-- A center-first three-row triangle in the reflected incidence orientation. -/
+theorem false_of_center_first_two_k2_three_selected_rows_triangle_reflected
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundaryInjective : Function.Injective boundary)
+    (hboundaryImage : Finset.univ.image boundary = carrier)
+    (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {i0 i1 i2 i3 i4 i5 : Fin n}
+    (h01 : i0 < i1) (h12 : i1 < i2) (h23 : i2 < i3)
+    (h34 : i3 < i4) (h45 : i4 < i5)
+    (Row0 : SelectedFourClass carrier (boundary i0))
+    (Row1 : SelectedFourClass carrier (boundary i1))
+    (Row2 : SelectedFourClass carrier (boundary i2))
+    (hi4_mem_Row0 : boundary i4 ∈ Row0.support)
+    (hi5_mem_Row0 : boundary i5 ∈ Row0.support)
+    (hi3_mem_Row1 : boundary i3 ∈ Row1.support)
+    (hi4_mem_Row1 : boundary i4 ∈ Row1.support)
+    (hi3_mem_Row2 : boundary i3 ∈ Row2.support)
+    (hi5_mem_Row2 : boundary i5 ∈ Row2.support) :
+    False := by
+  have hrow0 :
+      dist (boundary i0) (boundary i4) = dist (boundary i0) (boundary i5) :=
+    (Row0.support_eq_radius _ hi4_mem_Row0).trans
+      (Row0.support_eq_radius _ hi5_mem_Row0).symm
+  have hrow1 :
+      dist (boundary i1) (boundary i3) = dist (boundary i1) (boundary i4) :=
+    (Row1.support_eq_radius _ hi3_mem_Row1).trans
+      (Row1.support_eq_radius _ hi4_mem_Row1).symm
+  have hrow2 :
+      dist (boundary i2) (boundary i3) = dist (boundary i2) (boundary i5) :=
+    (Row2.support_eq_radius _ hi3_mem_Row2).trans
+      (Row2.support_eq_radius _ hi5_mem_Row2).symm
+  have hkal0145 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw (phi := boundary)
+      (ia := i0) (ib := i1) (ic := i4) (id := i5) hcarrier hboundaryInjective
+      hboundaryImage hboundaryCcw h01 (h12.trans (h23.trans h34)) h45
+  have hkal1235 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw (phi := boundary)
+      (ia := i1) (ib := i2) (ic := i3) (id := i5) hcarrier hboundaryInjective
+      hboundaryImage hboundaryCcw h12 h23 (h34.trans h45)
+  linarith
+
+/-- A support-first three-row triangle in the original incidence orientation. -/
+theorem false_of_support_first_two_k2_three_selected_rows_triangle
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundaryInjective : Function.Injective boundary)
+    (hboundaryImage : Finset.univ.image boundary = carrier)
+    (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {i0 i1 i2 i3 i4 i5 : Fin n}
+    (h01 : i0 < i1) (h12 : i1 < i2) (h23 : i2 < i3)
+    (h34 : i3 < i4) (h45 : i4 < i5)
+    (Row3 : SelectedFourClass carrier (boundary i3))
+    (Row4 : SelectedFourClass carrier (boundary i4))
+    (Row5 : SelectedFourClass carrier (boundary i5))
+    (hi0_mem_Row3 : boundary i0 ∈ Row3.support)
+    (hi2_mem_Row3 : boundary i2 ∈ Row3.support)
+    (hi1_mem_Row4 : boundary i1 ∈ Row4.support)
+    (hi2_mem_Row4 : boundary i2 ∈ Row4.support)
+    (hi0_mem_Row5 : boundary i0 ∈ Row5.support)
+    (hi1_mem_Row5 : boundary i1 ∈ Row5.support) :
+    False := by
+  have hrow3 :
+      dist (boundary i0) (boundary i3) = dist (boundary i2) (boundary i3) := by
+    rw [dist_comm (boundary i0), dist_comm (boundary i2)]
+    exact (Row3.support_eq_radius _ hi0_mem_Row3).trans
+      (Row3.support_eq_radius _ hi2_mem_Row3).symm
+  have hrow4 :
+      dist (boundary i1) (boundary i4) = dist (boundary i2) (boundary i4) := by
+    rw [dist_comm (boundary i1), dist_comm (boundary i2)]
+    exact (Row4.support_eq_radius _ hi1_mem_Row4).trans
+      (Row4.support_eq_radius _ hi2_mem_Row4).symm
+  have hrow5 :
+      dist (boundary i0) (boundary i5) = dist (boundary i1) (boundary i5) := by
+    rw [dist_comm (boundary i0), dist_comm (boundary i1)]
+    exact (Row5.support_eq_radius _ hi0_mem_Row5).trans
+      (Row5.support_eq_radius _ hi1_mem_Row5).symm
+  have hkal0135 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw (phi := boundary)
+      (ia := i0) (ib := i1) (ic := i3) (id := i5) hcarrier hboundaryInjective
+      hboundaryImage hboundaryCcw h01 (h12.trans h23) (h34.trans h45)
+  have hkal1234 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw (phi := boundary)
+      (ia := i1) (ib := i2) (ic := i3) (id := i4) hcarrier hboundaryInjective
+      hboundaryImage hboundaryCcw h12 h23 h34
+  linarith
+
+/-- A support-first three-row triangle in the reflected incidence orientation. -/
+theorem false_of_support_first_two_k2_three_selected_rows_triangle_reflected
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundaryInjective : Function.Injective boundary)
+    (hboundaryImage : Finset.univ.image boundary = carrier)
+    (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {i0 i1 i2 i3 i4 i5 : Fin n}
+    (h01 : i0 < i1) (h12 : i1 < i2) (h23 : i2 < i3)
+    (h34 : i3 < i4) (h45 : i4 < i5)
+    (Row3 : SelectedFourClass carrier (boundary i3))
+    (Row4 : SelectedFourClass carrier (boundary i4))
+    (Row5 : SelectedFourClass carrier (boundary i5))
+    (hi1_mem_Row3 : boundary i1 ∈ Row3.support)
+    (hi2_mem_Row3 : boundary i2 ∈ Row3.support)
+    (hi0_mem_Row4 : boundary i0 ∈ Row4.support)
+    (hi1_mem_Row4 : boundary i1 ∈ Row4.support)
+    (hi0_mem_Row5 : boundary i0 ∈ Row5.support)
+    (hi2_mem_Row5 : boundary i2 ∈ Row5.support) :
+    False := by
+  have hrow3 :
+      dist (boundary i1) (boundary i3) = dist (boundary i2) (boundary i3) := by
+    rw [dist_comm (boundary i1), dist_comm (boundary i2)]
+    exact (Row3.support_eq_radius _ hi1_mem_Row3).trans
+      (Row3.support_eq_radius _ hi2_mem_Row3).symm
+  have hrow4 :
+      dist (boundary i0) (boundary i4) = dist (boundary i1) (boundary i4) := by
+    rw [dist_comm (boundary i0), dist_comm (boundary i1)]
+    exact (Row4.support_eq_radius _ hi0_mem_Row4).trans
+      (Row4.support_eq_radius _ hi1_mem_Row4).symm
+  have hrow5 :
+      dist (boundary i0) (boundary i5) = dist (boundary i2) (boundary i5) := by
+    rw [dist_comm (boundary i0), dist_comm (boundary i2)]
+    exact (Row5.support_eq_radius _ hi0_mem_Row5).trans
+      (Row5.support_eq_radius _ hi2_mem_Row5).symm
+  have hkal0245 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw (phi := boundary)
+      (ia := i0) (ib := i2) (ic := i4) (id := i5) hcarrier hboundaryInjective
+      hboundaryImage hboundaryCcw (h01.trans h12) (h23.trans h34) h45
+  have hkal1234 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw (phi := boundary)
+      (ia := i1) (ib := i2) (ic := i3) (id := i4) hcarrier hboundaryInjective
+      hboundaryImage hboundaryCcw h12 h23 h34
+  linarith
+
 end CapCrossingKalmansonBridge
 end Problem97

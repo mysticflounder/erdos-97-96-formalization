@@ -46,6 +46,27 @@ theorem oneSidedDistanceInjective_of_mecCapPacket
     apply hnormalized.2 hrs hsj
     simpa using (tau.dist_eq_iff (L.points j) (L.points r) (L.points s)).2 heq
 
+/-- If a carrier point on an ordered minor cap is equidistant from two other
+cap points, then its cap index lies strictly between their indices. -/
+theorem index_strictly_between_of_equidistant
+    {A : Finset ℝ²} {m : ℕ} {L : OrderedCap m}
+    (Packet : MecCapPacket A L)
+    (Hside : MinorCapSideHypotheses Packet)
+    (Hord : StrictCapOrder A L)
+    {j r s : Fin m}
+    (hrs : r < s) (hjr : j ≠ r) (hjs : j ≠ s)
+    (heq : dist (L.points j) (L.points r) =
+      dist (L.points j) (L.points s)) :
+    r < j ∧ j < s := by
+  have hinj := oneSidedDistanceInjective_of_mecCapPacket Packet Hside Hord
+  constructor
+  · by_contra hrj
+    have hjr' : j < r := by omega
+    exact (hinj.1 hjr' hrs) heq
+  · by_contra hjs'
+    have hsj : s < j := by omega
+    exact (hinj.2 hrs hsj) heq
+
 end CGN
 
 namespace CapSelectedRowCounting

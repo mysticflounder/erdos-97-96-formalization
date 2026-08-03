@@ -1,0 +1,4 @@
+ring B=0,(bs,bu,bw),dp;
+poly q=bs^3-2*bs^2*bu-bs^2*bw+bs*bu^2+bs*bu*bw+bs*bw^2-bu^2*bw;
+print(factorize(q));
+quit;

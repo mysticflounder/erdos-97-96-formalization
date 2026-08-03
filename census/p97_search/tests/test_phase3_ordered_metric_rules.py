@@ -128,6 +128,20 @@ def test_kalmanson_record_replays_order_specific_roles_under_one_row_union() -> 
     )
 
 
+def test_kalmanson_order_position_index_matches_direct_detector() -> None:
+    index = ordered.KalmansonOrderPositionIndex.from_rows(
+        KALMANSON_ROWS, 10
+    )
+    for row_mask, rows in (
+        ((1 << len(KALMANSON_ROWS)) - 1, KALMANSON_ROWS),
+        ((1 << (len(KALMANSON_ROWS) - 1)) - 1, KALMANSON_ROWS[:-1]),
+    ):
+        for _order_id, order in KALMANSON_ORDERS:
+            assert index.detect(row_mask, order) == (
+                ordered.detect_selected_row_kalmanson(rows, 10, order)
+            )
+
+
 def test_kalmanson_record_fails_if_union_omits_an_order_specific_row() -> None:
     assert (
         ordered.build_selected_row_kalmanson_order_record(

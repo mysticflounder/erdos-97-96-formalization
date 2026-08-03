@@ -18,6 +18,9 @@ for directory in (ROOT, HERE):
         sys.path.insert(0, str(directory))
 
 cegar = importlib.import_module("census.p97_search.phase3_structural_cegar")
+successor = importlib.import_module(
+    "census.p97_search.phase3_structural_cegar_projected_static_v3"
+)
 
 CURRENT_MODELS = (
     HERE
@@ -495,9 +498,24 @@ def test_kalmanson_certificate_binds_role_changing_union_for_all_orders() -> Non
     result = cegar._kalmanson_cap_order_certificate(
         obj, cegar._metric_rows(obj)
     )
+    context = successor.classification_context.ClassificationContext.from_rows(
+        successor._metric_rows(obj), successor.CELL.n
+    )
+    context_result = successor._kalmanson_cap_order_certificate(
+        obj, successor._metric_rows(obj), context=context
+    )
 
     assert result is not None
+    assert context_result == result
     certificate, selected, cap_facts = result
+    compatible_order_mask = context.order_universe.compatible_order_mask(
+        cap_facts
+    )
+    first_compatible_order = compatible_order_mask & -compatible_order_mask
+    assert first_compatible_order
+    assert context.kalmanson_compatible_orders_are_covered(
+        selected, successor.CELL.n, first_compatible_order
+    )
     replayed, replayed_rows, replayed_facts = (
         cegar._replay_kalmanson_cap_order_certificate(certificate)
     )
@@ -580,6 +598,7 @@ def test_shared_pair_separation_certificate_is_minimized_and_replayed(
     with pytest.raises(cegar.StructuralCegarError, match="antecedent mismatch"):
         cegar._replay_shared_pair_separation_certificate(tampered)
 
+
     learned: list[dict[str, object]] = []
     learned_clauses: list[tuple[int, ...]] = []
     survivors: list[dict[str, object]] = []
@@ -641,6 +660,50 @@ def test_shared_pair_separation_certificate_is_minimized_and_replayed(
     assert manifest["dynamic_stage_histogram"] == {
         cegar.SHARED_PAIR_SEPARATION_STAGE: 1
     }
+
+
+def test_classification_context_preserves_shared_pair_and_closure_witnesses() -> None:
+    encoding = successor.sat.SatEncoding(
+        successor.CELL, blocker=True, cap=True
+    )
+    assignment = _first_assignment()
+    obj = encoding.decode(assignment)
+    rows = successor._metric_rows(obj)
+    context = successor.classification_context.ClassificationContext.from_rows(
+        rows, successor.CELL.n
+    )
+
+    detection = successor._detection(rows)
+    assert detection is not None
+    legacy_certificate, selected = successor._certificate(rows, detection)
+    context_certificate, context_selected = successor._certificate(
+        rows, detection, context=context
+    )
+    assert context_certificate == legacy_certificate
+    assert context_selected == selected
+    obligations = successor.certificates._core_obligations(
+        detection["stage"], detection["core"]
+    )
+    legacy_paths = [
+        successor.certificates._closure_path(
+            selected, successor.CELL.n, first, last
+        )
+        for _field, first, last in obligations
+    ]
+    assert legacy_paths == [
+        {key: path[key] for key in path if key != "field"}
+        for path in context_certificate["closure_paths"]
+    ]
+
+    facts = successor._cap_facts(obj)
+    cores = successor.shared_pair_separation.shared_pair_cores(
+        [row.as_dict() for row in rows]
+    )
+    legacy_coverage = successor._shared_pair_coverage(facts, cores)
+    context_coverage = successor._shared_pair_coverage(
+        facts, cores, context=context
+    )
+    assert context_coverage == legacy_coverage
 
 
 def test_kalmanson_pinned_bounded100_unique_fixed_order_miss() -> None:

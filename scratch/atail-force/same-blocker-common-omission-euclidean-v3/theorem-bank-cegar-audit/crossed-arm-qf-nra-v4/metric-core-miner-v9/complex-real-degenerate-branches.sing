@@ -1,0 +1,47 @@
+ring C=0,(zr,zs,zu,zv,zw,br,bs,bu,bv,bw),dp;
+poly f1=(zr-zw)*(br-bw)-(zs-zw)*(bs-bw);
+poly f2=(zr-zw)*(br-bw)-(zu-zw)*(bu-bw);
+poly f3=1-zs*bs;
+poly f4=1-zw*bw;
+poly f5=1-(zs-zu)*(bs-bu);
+poly f6=1-(zs-zv)*(bs-bv);
+poly f7=zr*br-zv*bv;
+poly f8=(zv-1)*(bv-1)-(zw-1)*(bw-1);
+poly f9=(zv-zr)*(bv-br)-(zv-1)*(bv-1);
+poly f10=(zr-zu)*(br-bu)-(zr-1)*(br-1);
+poly f11=(zu-zv)*(bu-bv)-(zu-1)*(bu-1);
+ideal I=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11;
+proc metrics(ideal J,string label)
+{
+  matrix T;
+  ideal G=liftstd(J,T);
+  int total=0; int md=0; int j;
+  for(j=1;j<=nrows(T);j++){total=total+size(T[j,1]);if(deg(T[j,1])>md){md=deg(T[j,1]);}}
+  print(label+" UNIT="+string(size(G)==1 and G[1]!=0)+" terms="+string(total)+" maxdeg="+string(md));
+}
+ideal J1=I,br,zr; metrics(J1,"R=0");
+ideal J2=I,bv-1,zv-1; metrics(J2,"V=P");
+proc unitonly(ideal J,string label){ideal G=std(J);print(label+" "+string(size(G)==1 and G[1]!=0));}
+ideal R1=f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,br,zr;unitonly(R1,"R omit1");
+ideal R2=f1,f3,f4,f5,f6,f7,f8,f9,f10,f11,br,zr;unitonly(R2,"R omit2");
+ideal R3=f1,f2,f4,f5,f6,f7,f8,f9,f10,f11,br,zr;unitonly(R3,"R omit3");
+ideal R4=f1,f2,f3,f5,f6,f7,f8,f9,f10,f11,br,zr;unitonly(R4,"R omit4");
+ideal R5=f1,f2,f3,f4,f6,f7,f8,f9,f10,f11,br,zr;unitonly(R5,"R omit5");
+ideal R6=f1,f2,f3,f4,f5,f7,f8,f9,f10,f11,br,zr;unitonly(R6,"R omit6");
+ideal R7=f1,f2,f3,f4,f5,f6,f8,f9,f10,f11,br,zr;unitonly(R7,"R omit7");
+ideal R8=f1,f2,f3,f4,f5,f6,f7,f9,f10,f11,br,zr;unitonly(R8,"R omit8");
+ideal R9=f1,f2,f3,f4,f5,f6,f7,f8,f10,f11,br,zr;unitonly(R9,"R omit9");
+ideal R10=f1,f2,f3,f4,f5,f6,f7,f8,f9,f11,br,zr;unitonly(R10,"R omit10");
+ideal R11=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,br,zr;unitonly(R11,"R omit11");
+ideal V1=f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,bv-1,zv-1;unitonly(V1,"V omit1");
+ideal V2=f1,f3,f4,f5,f6,f7,f8,f9,f10,f11,bv-1,zv-1;unitonly(V2,"V omit2");
+ideal V3=f1,f2,f4,f5,f6,f7,f8,f9,f10,f11,bv-1,zv-1;unitonly(V3,"V omit3");
+ideal V4=f1,f2,f3,f5,f6,f7,f8,f9,f10,f11,bv-1,zv-1;unitonly(V4,"V omit4");
+ideal V5=f1,f2,f3,f4,f6,f7,f8,f9,f10,f11,bv-1,zv-1;unitonly(V5,"V omit5");
+ideal V6=f1,f2,f3,f4,f5,f7,f8,f9,f10,f11,bv-1,zv-1;unitonly(V6,"V omit6");
+ideal V7=f1,f2,f3,f4,f5,f6,f8,f9,f10,f11,bv-1,zv-1;unitonly(V7,"V omit7");
+ideal V8=f1,f2,f3,f4,f5,f6,f7,f9,f10,f11,bv-1,zv-1;unitonly(V8,"V omit8");
+ideal V9=f1,f2,f3,f4,f5,f6,f7,f8,f10,f11,bv-1,zv-1;unitonly(V9,"V omit9");
+ideal V10=f1,f2,f3,f4,f5,f6,f7,f8,f9,f11,bv-1,zv-1;unitonly(V10,"V omit10");
+ideal V11=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,bv-1,zv-1;unitonly(V11,"V omit11");
+quit;

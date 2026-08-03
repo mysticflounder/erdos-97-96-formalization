@@ -1,0 +1,30 @@
+ring C=0,(zr,zs,zu,zv,zw,br,bs,bu,bv,bw),dp;
+poly f1=(zr-zw)*(br-bw)-(zs-zw)*(bs-bw);
+poly f3=1-zs*bs;
+poly f4=1-zw*bw;
+poly f6=1-(zs-zv)*(bs-bv);
+poly f7=zr*br-zv*bv;
+poly f8=(zv-1)*(bv-1)-(zw-1)*(bw-1);
+poly f9=(zv-zr)*(bv-br)-(zv-1)*(bv-1);
+
+proc metrics(ideal J,string label)
+{
+  matrix T;
+  ideal G=liftstd(J,T);
+  int total=0; int md=0; int j;
+  for(j=1;j<=nrows(T);j++)
+  {
+    total=total+size(T[j,1]);
+    if(deg(T[j,1])>md){md=deg(T[j,1]);}
+  }
+  poly reconstructed=0;
+  for(j=1;j<=nrows(T);j++){reconstructed=reconstructed+T[j,1]*J[j];}
+  print(label+" UNIT="+string(size(G)==1 and G[1]!=0)+" IDENTITY="+string(reconstructed==G[1])+" terms="+string(total)+" maxdeg="+string(md));
+}
+
+// Exhaustive subset search found these minimum-cardinality supports.
+ideal JR=f3,f6,f7,f9,br,zr;
+ideal JV=f1,f4,f6,f8,f9,bv-1,zv-1;
+metrics(JR,"R=0 support f3,f6,f7,f9");
+metrics(JV,"V=P support f1,f4,f6,f8,f9");
+quit;

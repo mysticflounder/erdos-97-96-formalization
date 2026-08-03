@@ -109,6 +109,19 @@ def main() -> None:
     assert all(not APICES <= shell for shell in SHELLS)
 
     colors = install_equal_distance_classes()
+    actual_shells = []
+    for center, prescribed in enumerate(SHELLS):
+        witness = next(iter(prescribed))
+        radius_color = colors[tuple(sorted((center, witness)))]
+        actual = frozenset(
+            point
+            for point in POINTS
+            if point != center
+            and colors[tuple(sorted((center, point)))] == radius_color
+        )
+        assert actual == prescribed
+        actual_shells.append(actual)
+
     actual_rich_classes = []
     for apex, prescribed in zip(sorted(APICES), RICH_CLASSES, strict=True):
         witness = next(iter(prescribed))
@@ -121,6 +134,26 @@ def main() -> None:
         )
         assert actual == prescribed
         actual_rich_classes.append(actual)
+
+    profiles = {}
+    for center in POINTS:
+        classes = Counter(
+            colors[tuple(sorted((center, point)))]
+            for point in POINTS
+            if point != center
+        )
+        profile = sorted(classes.values(), reverse=True)
+        profiles[center] = profile
+        assert not any(
+            all(
+                colors[tuple(sorted((center, apex)))] == color
+                for apex in APICES
+                if apex != center
+            ) and center not in APICES
+            for color in classes
+        )
+    assert all(profiles[center] == [4] + [1] * 10 for center in NONAPICES)
+    assert all(profiles[center] == [6] + [1] * 8 for center in APICES)
     assert (
         max(
             len(shell & rich)
@@ -139,6 +172,9 @@ def main() -> None:
     assert not proper_k4
 
     print("vertices=15 shells=12 rich_classes=3")
+    print("all_critical_shells_exact=true all_apex_rich_classes_exact=true")
+    print("nonapex_profiles=4+10x1 apex_profiles=6+8x1")
+    print("no_nonapex_distance_class_contains_all_three_apices=true")
     print(f"blocker_fiber_max={max(fibers.values())} doubled_fibers=3")
     print("max_shell_shell_intersection=2")
     print("max_shell_rich_class_intersection=2")

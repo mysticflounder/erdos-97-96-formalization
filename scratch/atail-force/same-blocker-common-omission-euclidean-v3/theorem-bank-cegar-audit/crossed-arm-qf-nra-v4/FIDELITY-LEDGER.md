@@ -1,13 +1,16 @@
-# Crossed-arm v4 QF_NRA fidelity ledger
+# Crossed-arm QF_NRA fidelity ledger
 
 The default input is the final universal-cut-import witness at
-`crossed-arm-audit/source-at-common-full-metric-bank-v4-cross-omissions-import-v3/witness.json`.
-This lane consumes a `witness.json` only when its sibling `result.json` has
-schema `n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v4`, status
-`SAT`, and the crossed-complementary-omission and theorem-bank markers.  It also
-requires every recorded semantic/geometric/crossed replay marker to be `PASS`
-and structurally rechecks the carrier, selected rows, blockers, crossed polarity,
-and every serialized radius partition.
+`crossed-arm-audit/source-at-common-full-metric-bank-v8-convex-five-point-import-v7-shared-fourth-600s/witness.json`.
+This lane accepts the supported v4/v5/v7/v8 source schemas only when the sibling
+`result.json` has status `SAT` and every schema-applicable provenance marker.
+For v8 this includes raw cyclic cuts, global undirected edge-equality closure,
+collision deletion, mutual-bisector transport, forced shared fourth, and a full
+theorem-bank manifest/counting surface containing `convex_five_point_core`.
+The v8 witness replay must independently carry the full-bank/convex-family and
+shared-fourth markers.  Every recorded semantic/geometric/crossed replay marker
+must be `PASS`; the driver also structurally rechecks the carrier, selected rows,
+blockers, crossed polarity, and every serialized radius partition.
 
 ## ENCODED at every stage
 
@@ -20,8 +23,8 @@ and every serialized radius partition.
   exactly when the two points occupy the same serialized class and a
   disequality otherwise.  This is 2,040 radius-relation atoms, not a selected-row
   subset.
-- The `a1` partition is used verbatim.  In the current v4 witness it has seven
-  classes; `rows[a1]` is one of those seven.  The driver does **not** assume or
+- The `a1` partition is used verbatim.  In the current default v8 witness it has six
+  classes; `rows[a1]` is one of those six.  The driver does **not** assume or
   manufacture a fourth disjoint class from packet data.
 
 ## Stages

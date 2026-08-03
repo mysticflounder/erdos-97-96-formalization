@@ -28,11 +28,11 @@ The first endpoint inequality forces `dist i1 i5 < dist i1 i3`; the second force
 strict inequality.  The result is independent of the ambient carrier cardinality. -/
 theorem false_of_two_k2_three_row_triangle
     {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
-    {boundary : Fin carrier.card → ℝ²}
+    {n : ℕ} {boundary : Fin n → ℝ²}
     (hboundaryInjective : Function.Injective boundary)
     (hboundaryImage : Finset.univ.image boundary = carrier)
     (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
-    {i0 i1 i2 i3 i4 i5 : Fin carrier.card}
+    {i0 i1 i2 i3 i4 i5 : Fin n}
     (h01 : i0 < i1) (h12 : i1 < i2) (h23 : i2 < i3)
     (h34 : i3 < i4) (h45 : i4 < i5)
     (Row0 : SelectedFourClass carrier (boundary i0))
@@ -66,6 +66,58 @@ theorem false_of_two_k2_three_row_triangle
   linarith
 
 #print axioms false_of_two_k2_three_row_triangle
+
+/-- Reflected orientation of `false_of_two_k2_three_row_triangle`.
+
+The three row centers still precede the three shared support vertices, but
+the support-triangle orientation is reversed.  The same two strict
+Kalmanson inequalities cancel after substituting the three row equalities.
+This is cardinality-generic; the original proof appeared only behind the
+`Fin 11` p5 triangle-B adapter. -/
+theorem false_of_two_k2_three_row_triangle_reflected
+    {carrier : Finset ℝ²} (hcarrier : ConvexIndep carrier)
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundaryInjective : Function.Injective boundary)
+    (hboundaryImage : Finset.univ.image boundary = carrier)
+    (hboundaryCcw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {i0 i1 i2 i3 i4 i5 : Fin n}
+    (h01 : i0 < i1) (h12 : i1 < i2) (h23 : i2 < i3)
+    (h34 : i3 < i4) (h45 : i4 < i5)
+    (Row0 : SelectedFourClass carrier (boundary i0))
+    (Row1 : SelectedFourClass carrier (boundary i1))
+    (Row2 : SelectedFourClass carrier (boundary i2))
+    (hi4_mem_Row0 : boundary i4 ∈ Row0.support)
+    (hi5_mem_Row0 : boundary i5 ∈ Row0.support)
+    (hi3_mem_Row1 : boundary i3 ∈ Row1.support)
+    (hi4_mem_Row1 : boundary i4 ∈ Row1.support)
+    (hi3_mem_Row2 : boundary i3 ∈ Row2.support)
+    (hi5_mem_Row2 : boundary i5 ∈ Row2.support) :
+    False := by
+  have hrow0 :
+      dist (boundary i0) (boundary i4) =
+        dist (boundary i0) (boundary i5) :=
+    (Row0.support_eq_radius _ hi4_mem_Row0).trans
+      (Row0.support_eq_radius _ hi5_mem_Row0).symm
+  have hrow1 :
+      dist (boundary i1) (boundary i3) =
+        dist (boundary i1) (boundary i4) :=
+    (Row1.support_eq_radius _ hi3_mem_Row1).trans
+      (Row1.support_eq_radius _ hi4_mem_Row1).symm
+  have hrow2 :
+      dist (boundary i2) (boundary i3) =
+        dist (boundary i2) (boundary i5) :=
+    (Row2.support_eq_radius _ hi3_mem_Row2).trans
+      (Row2.support_eq_radius _ hi5_mem_Row2).symm
+  have hkal0145 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+      hboundaryImage hboundaryCcw h01
+      (h12.trans (h23.trans h34)) h45
+  have hkal1235 :=
+    dist_add_dist_lt_diagonal_sum_of_ccw hcarrier hboundaryInjective
+      hboundaryImage hboundaryCcw h12 h23 (h34.trans h45)
+  linarith
+
+#print axioms false_of_two_k2_three_row_triangle_reflected
 
 end UniqueFourKalmansonOccurrenceScratch
 end Problem97

@@ -1,0 +1,63 @@
+ring B=0,(br,bs,bu,bv,bw),dp;
+matrix M[11][6]=
+br-bw,-bs+bw,0,0,-br+bs,0,
+br-bw,0,-bu+bw,0,-br+bu,0,
+0,-bs,0,0,0,1,
+0,0,0,0,-bw,1,
+0,-bs+bu,bs-bu,0,0,1,
+0,-bs+bv,0,bs-bv,0,1,
+br,0,0,-bv,0,0,
+0,0,0,bv-1,1-bw,-bv+bw,
+br-bv,0,0,1-br,0,bv-1,
+1-bu,0,-br+bu,0,0,br-1,
+0,0,1-bv,-bu+bv,0,bu-1;
+ideal K=minor(M,6);
+ideal L;
+ideal BSI=std(bs);
+ideal BWI=std(bw);
+poly p;
+int k;
+for(k=1;k<=size(K);k++)
+{
+  p=K[k];
+  while(p!=0 and reduce(p,BSI)==0){p=p/bs;}
+  while(p!=0 and reduce(p,BWI)==0){p=p/bw;}
+  if(p!=0 and size(p)<=16){L[size(L)+1]=p;}
+}
+poly e1=L[1];
+poly e2=L[2];
+poly e5=L[5];
+poly e7=L[7]/br;
+poly e8=L[8]/(br*(bv-1));
+poly e9=L[9]/(bv-1);
+poly q1=e1/(bv*(br-bw));
+ideal H=e2,e5,e7,e8,e9,q1;
+int factorCleanup=system("sh","rm -f q1-gA-multiplier-factorizations.out");
+
+proc extract(poly target,string label,string filename)
+{
+  int cleanup=system("sh","rm -f "+filename);
+  matrix C=lift(H,ideal(target));
+  poly reconstructed=0;
+  int total=0; int md=0; int j;
+  for(j=1;j<=nrows(C);j++)
+  {
+    reconstructed=reconstructed+C[j,1]*H[j];
+    total=total+size(C[j,1]);
+    if(deg(C[j,1])>md){md=deg(C[j,1]);}
+    write(filename,"C"+string(j)+"="+string(C[j,1])+";"+newline);
+    if(label=="gA")
+    {
+      write("q1-gA-multiplier-factorizations.out","C"+string(j)+newline+string(factorize(C[j,1]))+newline);
+    }
+  }
+  print(label+" IDENTITY="+string(reconstructed==target)+" terms="+string(total)+" maxdeg="+string(md));
+}
+
+poly gA=(bu-bs)*(br-bv)*bv*bw;
+poly gF=bs*bv*(br^2-br*bv+bv^2-br);
+poly gB=br*(br-1)*bw*(bs*bw-bu^2);
+extract(gA,"gA","q1-gA-certificate.singexpr");
+extract(gF,"gF","q1-gF-certificate.singexpr");
+extract(gB,"gB","q1-gB-certificate.singexpr");
+quit;

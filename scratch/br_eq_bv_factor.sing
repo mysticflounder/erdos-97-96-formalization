@@ -1,0 +1,10 @@
+ring B=0,(b,s,u,w),lp;
+poly q1=s^3-2*s^2*u-s^2*w+s*u^2+s*u*w+s*w^2-u^2*w;
+poly e7=s^3*u-s^3-s^2*u^2-s^2*u*b+s^2*u+s^2*b+s*u^2*b+s*u*b-s*u-s*b^2-u^2*b+u*b;
+poly e8=s^2*b*w-s^2*w^2+s^2*w-s^2-s*b^2*w+s*b*w^2-s*b*w+s*b+b^2*w-b*w;
+poly e9=b^3+b*s^2*b-b*s^2-b*s*b^2+b*s*b-b*b^2-b*b+b^3;
+print("e9="+string(factorize(e9)[1]));
+print("q1mod="+string(factorize(q1)[1]));
+ideal H=q1,e7,e8,e9;
+print("std H"); ideal G=std(H); G;
+quit;

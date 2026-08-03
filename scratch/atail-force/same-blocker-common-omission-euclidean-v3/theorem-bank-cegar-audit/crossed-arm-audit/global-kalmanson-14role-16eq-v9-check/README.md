@@ -29,6 +29,17 @@ Results:
 - guard sharpness: 91 noncyclic transpositions and all 16 single-missing-equality valuations accepted
 - current v8 witness: `GLOBAL_KALMANSON_14ROLE_MATCH_KILLS`
 
+Follow-up ordinary-resume regression:
+
+- the original synthetic v8/v6 check called the payload helper with an
+  explicit allowed pair and therefore did not exercise the production wrapper;
+- ordinary resume now accepts only the current v9/v7 pair and its immediate
+  v8/v6 predecessor;
+- the wrapper/file regression reports `ROUNDTRIP_OK` with the v8/v6 source pair;
+- loading the actual v8/v6 `result.json` reports
+  `ACTUAL_ORDINARY_RESUME_OK` and reconstructs 203,687 packet cuts (8,313
+  structural and 195,374 theorem cuts; zero connectivity cuts).
+
 Trust boundary: these checks validate the matcher, guarded-cut reconstruction,
 schema migration, and one serialized witness replay. They invoke no CEGAR
 enumeration and do not establish or rebuild the Lean theorem.

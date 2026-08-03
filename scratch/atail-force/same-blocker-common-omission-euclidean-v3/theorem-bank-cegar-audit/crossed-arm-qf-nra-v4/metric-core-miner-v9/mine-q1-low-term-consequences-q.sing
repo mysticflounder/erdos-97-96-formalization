@@ -1,0 +1,124 @@
+ring B=0,(br,bs,bu,bv,bw),dp;
+LIB "modstd.lib";
+matrix M[11][6]=
+br-bw,-bs+bw,0,0,-br+bs,0,
+br-bw,0,-bu+bw,0,-br+bu,0,
+0,-bs,0,0,0,1,
+0,0,0,0,-bw,1,
+0,-bs+bu,bs-bu,0,0,1,
+0,-bs+bv,0,bs-bv,0,1,
+br,0,0,-bv,0,0,
+0,0,0,bv-1,1-bw,-bv+bw,
+br-bv,0,0,1-br,0,bv-1,
+1-bu,0,-br+bu,0,0,br-1,
+0,0,1-bv,-bu+bv,0,bu-1;
+ideal K=minor(M,6);
+ideal L;
+ideal BSI=std(bs);
+ideal BWI=std(bw);
+poly p;
+int k;
+for(k=1;k<=size(K);k++)
+{
+  p=K[k];
+  while(p!=0 and reduce(p,BSI)==0){p=p/bs;}
+  while(p!=0 and reduce(p,BWI)==0){p=p/bw;}
+  if(p!=0 and size(p)<=16){L[size(L)+1]=p;}
+}
+poly e1=L[1];
+poly e2=L[2];
+poly e5=L[5];
+poly e7=L[7]/br;
+poly e8=L[8]/(br*(bv-1));
+poly e9=L[9]/(bv-1);
+poly q1=e1/(bv*(br-bw));
+ideal H=e2,e5,e7,e8,e9,q1;
+print("Q1_GENERATOR_FACTORIZATIONS");
+for(k=1;k<=size(H);k++){print("H"+string(k)); print(factorize(H[k]));}
+ideal HBW=e2,e5,e7,e8,e9,br-bw;
+ideal GBW=modStd(HBW,1);
+print("BR_EQ_BW_GB_SIZE="+string(size(GBW)));
+for(k=1;k<=size(GBW);k++)
+{
+  if(size(GBW[k])<=8)
+  {
+    print("B"+string(k)+" terms="+string(size(GBW[k]))+" degree="+string(deg(GBW[k]))+" poly="+string(GBW[k]));
+    print(factorize(GBW[k]));
+  }
+}
+print("BR_EQ_BW_SUBSTITUTION bu=bv");
+for(k=1;k<=size(HBW);k++)
+{
+  p=subst(subst(HBW[k],br,bw),bu,bv);
+  print("HBW"+string(k)+" poly="+string(p));
+  print(factorize(p));
+}
+for(k=1;k<=size(GBW);k++)
+{
+  p=subst(subst(GBW[k],br,bw),bu,bv);
+  if(p!=0 and size(p)<=8)
+  {
+    print("B"+string(k)+" terms="+string(size(p))+" degree="+string(deg(p))+" poly="+string(p));
+    print(factorize(p));
+  }
+}
+print("BR_EQ_BW_SUBSTITUTION bu=bv,bw=bv^2,br=bv^2");
+for(k=1;k<=size(HBW);k++)
+{
+  p=subst(subst(subst(HBW[k],br,bv^2),bu,bv),bw,bv^2);
+  if(p!=0)
+  {
+    print("HBW"+string(k)+" poly="+string(p));
+    print(factorize(p));
+  }
+}
+print("BR_EQ_BW_SUBSTITUTION bv=-2,bu=-2,bw=4,br=4");
+for(k=1;k<=size(HBW);k++)
+{
+  p=subst(subst(subst(subst(HBW[k],br,4),bu,-2),bw,4),bv,-2);
+  if(p!=0)
+  {
+    print("HBW"+string(k)+" poly="+string(p));
+    print(factorize(p));
+  }
+}
+print("Q1_BRANCH");
+ideal G=modStd(H,1);
+print("GB_SIZE="+string(size(G)));
+print("RAW_G2="+string(G[2]));
+print("RAW_G8="+string(G[8]));
+for(k=1;k<=size(G);k++)
+{
+  if(size(G[k])<=8)
+  {
+    print("G"+string(k)+" terms="+string(size(G[k]))+" degree="+string(deg(G[k]))+" poly="+string(G[k]));
+    print(factorize(G[k]));
+  }
+}
+print("SUBSTITUTION bu=bs,bw=bs");
+for(k=1;k<=size(H);k++)
+{
+  p=subst(subst(H[k],bu,bs),bw,bs);
+  print("H"+string(k)+" poly="+string(p));
+  print(factorize(p));
+}
+for(k=1;k<=size(G);k++)
+{
+  p=subst(subst(G[k],bu,bs),bw,bs);
+  if(p!=0 and size(p)<=8)
+  {
+    print("G"+string(k)+" terms="+string(size(p))+" degree="+string(deg(p))+" poly="+string(p));
+    print(factorize(p));
+  }
+}
+print("SUBSTITUTION bu=bs,bw=bs,bv=bs");
+for(k=1;k<=size(G);k++)
+{
+  p=subst(subst(subst(G[k],bu,bs),bw,bs),bv,bs);
+  if(p!=0 and size(p)<=8)
+  {
+    print("G"+string(k)+" terms="+string(size(p))+" degree="+string(deg(p))+" poly="+string(p));
+    print(factorize(p));
+  }
+}
+quit;

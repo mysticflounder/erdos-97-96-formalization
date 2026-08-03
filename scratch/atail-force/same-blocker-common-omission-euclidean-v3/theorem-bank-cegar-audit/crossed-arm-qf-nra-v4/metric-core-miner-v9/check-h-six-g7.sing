@@ -1,0 +1,24 @@
+ring B=0,(br,bs,bu,bv,bw),dp;
+matrix M[11][6]=
+br-bw,-bs+bw,0,0,-br+bs,0,
+br-bw,0,-bu+bw,0,-br+bu,0,
+0,-bs,0,0,0,1,
+0,0,0,0,-bw,1,
+0,-bs+bu,bs-bu,0,0,1,
+0,-bs+bv,0,bs-bv,0,1,
+br,0,0,-bv,0,0,
+0,0,0,bv-1,1-bw,-bv+bw,
+br-bv,0,0,1-br,0,bv-1,
+1-bu,0,-br+bu,0,0,br-1,
+0,0,1-bv,-bu+bv,0,bu-1;
+ideal K=minor(M,6); ideal L; ideal BSI=std(bs); ideal BWI=std(bw); poly p; int k;
+for(k=1;k<=size(K);k++){p=K[k]; while(p!=0 and reduce(p,BSI)==0){p=p/bs;} while(p!=0 and reduce(p,BWI)==0){p=p/bw;} if(p!=0 and size(p)<=16){L[size(L)+1]=p;}}
+poly e1=L[1]; poly e2=L[2]; poly e5=L[5]; poly e7=L[7]/br; poly e8=L[8]/(br*(bv-1)); poly e9=L[9]/(bv-1); poly q1=e1/(bv*(br-bw));
+ideal H=e2,e5,e7,e8,e9,q1; matrix T; ideal U=liftstd(H,T);
+ideal S=H; S[7]=U[8]; S[8]=U[24]; S[9]=U[30]; S[10]=U[32]; S[11]=U[34]; S[12]=U[37];
+ideal GS=std(S); poly G7=br^2*bs*bv-br*bs*bv^2+bs*bv^3-br*bs*bv;
+print("REDUCE="+string(reduce(G7,GS)==0)+" rem="+string(reduce(G7,GS)));
+matrix C=lift(S,ideal(G7)); poly reconstructed=0; int total=0; int md=0; int j;
+for(j=1;j<=nrows(C);j++){reconstructed=reconstructed+C[j,1]*S[j]; total=total+size(C[j,1]); if(C[j,1]!=0 and deg(C[j,1])>md){md=deg(C[j,1]);} if(C[j,1]!=0){write("check-h-six-g7.cert","C"+string(j)+"="+string(C[j,1])+";");}}
+print("ROWS="+string(nrows(C)+0)+" TERMS="+string(total)+" MAXDEG="+string(md)+" IDENTITY="+string(reconstructed==G7));
+quit;

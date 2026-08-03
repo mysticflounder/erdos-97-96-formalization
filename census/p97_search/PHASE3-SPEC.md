@@ -1,8 +1,12 @@
 # P97 counterexample search -- Phase 3 specification
 
-Version 0.1, 2026-07-28.  This is the soundness contract for SAT-backed
+Version 0.2, 2026-08-01.  This is the soundness contract for SAT-backed
 per-cell generation over the Phase-1/2 census core.  It implements the
 Phase-3 item in `scratch/p97-search-lane/HANDOFF-2026-07-28.md`.
+
+Revision 0.2 records the pinned-multiplicity boundary. It changes no
+existing CNF clause: selected support remains distinct from a complete
+physical distance class.
 
 The immediate deliverable is a fail-closed SAT generator with gate-scale
 enumeration and a combined cap+blocker iterator mode.  A production
@@ -65,6 +69,36 @@ Cap annotations are a complete frame for convex K4 configurations at `n > 9`
 by the already audited frame theorem.  The annotation data by itself does not
 encode convex geometry or any relationship between caps and shells beyond
 the clauses of an explicitly admitted rule.
+
+### Pinned-multiplicity scope
+
+The kernel-checked pinned-multiplicity equivalence supplies the generic
+K4 consequence `4 ≤ pinnedMultiplicity A p` for each center. In this
+encoding that consequence is exactly the selected four-witness support in
+`(S-EXACT)`. It must not be strengthened to physical-shell exactness: the
+remaining points at the same radius are not represented, and
+`MetricRow.exact = false` remains intentional in the realization layer.
+
+The current generic profile is restricted to the already justified
+`k = 4, n > 9` range; the `n = 10` `counterexample_card_ge_ten`/
+`S-MINCUT` scope is the only pinned-multiplicity-side cardinality reduction
+admitted here. No clause may forbid a fifth or sixth co-radial point or
+encode `NoQFreeAfterDeletion` without a new producer and a revised contract.
+
+The MEC-boundary, `iCount`, and ATAIL blocker-fiber consequences are
+consumer-specific and are not generic cell clauses. A future
+pinned-multiplicity schema may add full radius partitions, named cap/deletion
+roles, and off-support disequalities only after it separately specifies and
+passes producer, decoding, replay/blocking, and tiny-cell acceptance gates.
+The projected-static-v3 name does not waive this requirement; that
+implementation still uses selected supports and `MetricRow.exact = false`.
+
+In particular, the ATAIL disjunction
+`CollisionCrossHit P Pρ ∨ GeometricMultiplicityResidual P Pρ` must remain in
+named `CriticalShellSystem` packets with its row, vertex, blocker/cap, and
+omission provenance. It is not a generic learned clause. A source-clean
+coordinator is not closure, and generic Phase 3 must not infer its negative
+membership or named-source finite-completeness consequences.
 
 ## 3. Combined annotations and exact canonicalization
 
@@ -192,6 +226,162 @@ Each run directory contains:
 
 Artifacts are written atomically.  A resumed run must verify the manifest,
 CNF hash, and every prior model/blocking clause before continuing.
+
+The successor projected-static-v3 runtime may maintain an in-memory
+prospective manifest state, but this is an explicitly gated publication mode,
+not a change to the mathematical acceptance boundary.  Enabling
+`manifest_fast_path` requires a positive `manifest_audit_every` value.  The
+runtime performs a complete recount at startup/resume, checkpoint, terminal,
+failure, and clean-shutdown boundaries, and at every configured number of
+RUNNING publications.  Before each hot projection it checks the prospective
+state against the authenticated stream ledgers; disagreement is fail-closed
+to `UNKNOWN` and a full recount.
+
+### Projected-static-v3 discovery and terminal proof protocol
+
+The projected-static-v3 successor separates proof-free discovery from terminal
+proof production. Sequential and cube-local discovery solver calls receive no
+DRAT destination. A cube-local UNSAT is a scheduling result only and is not a
+terminal claim.
+
+For a sequential discovery UNSAT, the coordinator freezes the exact terminal
+CNF, writes `terminal.cnf`, rereads it and rejects any byte drift, then runs a
+fresh proof-producing solver on that exact path. The rerun must return UNSAT
+and produce a nonempty `terminal.drat`; only then does the existing
+`drat-trim` checker run. A proof-rerun SAT/UNKNOWN/exception, missing/empty
+DRAT, terminal CNF drift, or checker disagreement publishes `UNKNOWN` and an
+authenticated failure record. This successor contract does not alter the
+frozen v2 driver or the mathematical meaning of `COMPLETE`.
+
+Manifest generations are published in this order: durable generation file,
+directory sync, atomic pointer replacement, directory sync.  A failure before
+pointer replacement leaves the prior pointer selected.  A failure after
+pointer replacement is treated as an indeterminate publication by the caller;
+restart accepts only a pointer whose generation and bytes pass the normal
+manifest-generation validation.  The 40k accounting benchmark and filesystem
+fault matrix are diagnostic gates only; neither is a solver, DRAT, exhaustion,
+or Lean-closure result.  The benchmark harness also provides a bounded
+`runtime-ab` command that runs the same fake SAT/UNSAT transcript through full
+and prospective-manifest modes in fresh worker processes, checks
+semantic-manifest and non-manifest artifact identity, and records end-to-end
+wall p95 and peak RSS.  Its 2026-08-02 measurement preserved
+semantic/artifact identity and RSS (fast/full `0.9887x`) but measured wall p95
+at `1.2499x`, above the provisional `1.10x` limit.  This leaves the fast path
+opt-in and blocks a production canary; the result remains diagnostic and does
+not authorize a solver or proof claim.
+
+An expanded diagnostic at
+`scratch/p97-distinct-distance-lane/phase3-cegar-runtime-ab-multipub-20260802-final/report.json`
+used four distinct SAT records (`0,8,11,18`), three fresh workers, one warm
+replay, and manifest audit cadence two.  It again preserved semantic and
+non-manifest artifact identity, with RSS ratio `1.0259x`; wall p95 was
+`1.1238x` while the median was `0.9953x`.  Fresh stage timing showed no
+sustained manifest/hash regression; the failed p95 gate is attributable to a
+single fresh-process outlier in this bounded sample.  The fast path therefore
+remains opt-in and the production canary remains closed.  This is diagnostic
+runtime evidence only, not a solver, DRAT, finite-exhaustion, or Lean-closure
+claim.
+
+### Projected-static-v3 fixed-shard local simplification
+
+The successor's `--shard-local-simplification` flag is an opt-in optimization
+for a top-level fixed shard in sequential mode.  Let `F` be the authenticated
+source clause sequence for the current iteration and let `C` be the fixed
+shard's unit-literal assignment.  The simplifier emits a residual CNF `R`
+such that `F ∧ C` and `R` have the same satisfying assignments: clauses
+satisfied by `C` are dropped, literals falsified by `C` are removed,
+tautologies and duplicate residuals are removed, and strict supersets are
+subsumed deterministically.  The literals in `C` are retained explicitly as
+unit clauses in `R`, so the downstream plain-DIMACS solver does not rely on
+an unrecorded assumption interface.  An empty residual clause is retained
+and reported explicitly.
+
+Each base snapshot and solver attempt records the source and residual clause
+counts and hashes, the retained-source-index hash, the transform hash, and
+the simplification counters under schema
+`p97-phase3-shard-local-simplification-v1`.  The manifest authenticates these
+attempt records and the terminal artifact hash.  The source clause sequence
+and transform metadata remain replay authorities; this optimization supplies
+no new mathematical cuts and cannot promote an unchecked solver verdict.
+
+The terminal proof boundary is unchanged: a discovery UNSAT freezes the exact
+residual `terminal.cnf`, then a fresh proof-producing solver and the existing
+checker validate that exact file.  The current cube-batch path does not accept
+this option.  Fixed cube partitioning remains deterministic and exhaustive;
+adaptive pilot splitting is implemented only as a separate authenticated plan
+contract.  The fixed `run_driver` cube-batch path remains unchanged until a
+later wave wires that contract into an epoch-bound scheduler.
+
+### P6b authenticated adaptive cube plans
+
+`census/p97_search/phase3_adaptive_cubing.py` defines the successor-only P6b
+plan boundary.  It binds a deterministic false-before-true prefix tree to one
+authenticated immutable bank epoch and a bounded pilot budget.  SAT and UNSAT
+pilot outcomes retain a leaf as discovery work; UNKNOWN, interruption,
+exception, budget exhaustion, and a reached pilot cap are recorded explicitly
+and either split canonically or become an explicit unresolved leaf at the
+maximum depth.  No result is inferred for an absent node.
+
+`verify_plan` independently checks the plan hash, semantic-variable/literal
+identity, parent/child links, pilot budget accounting, bank-epoch hash, and
+the expansion of variable-length leaves to the complete root assignment set.
+Thus leaf pairwise disjointness and exact parent coverage are replayed from
+the published artifact rather than assumed from the scheduler.  `write_plan`
+publishes the authenticated JSON atomically.  Pilot SAT/UNSAT is discovery
+evidence only; terminal acceptance still requires a fresh exact-CNF proof
+rerun and the existing checker.  `build_adaptive_cube_plan` is the thin live
+encoding adapter, but `run_driver` does not consume adaptive plans yet.
+
+### P6c epoch-bound adaptive wave consumption
+
+The successor-only `run_plan_wave` consumer now consumes one published P6b
+plan in its authenticated canonical leaf order.  `write_wave_state`,
+`load_wave_state`, and `verify_wave_state` define the durable wave-state
+boundary under `p97-phase3-adaptive-cube-wave-v1`; the live encoding adapter
+is `run_adaptive_cube_wave` in projected-static-v3.
+
+The consumer writes an authenticated RUNNING checkpoint before the first
+leaf and atomically checkpoints after every completed leaf.  Each state is
+bound to both the plan hash and the exact immutable bank-epoch hash.  A stale
+plan or bank epoch is rejected before leaf consumption.  A bounded
+`max_leaves` call records BUDGET and resumes from `next_leaf_index`; an
+ordinary runner exception is recorded as an explicit EXCEPTION result and
+leaves the completed wave UNKNOWN.  A process crash before the post-leaf
+checkpoint leaves the prior checkpoint authoritative, so resume reruns only
+the uncommitted leaf.  Terminal statuses are COMPLETE only when all leaves
+are explicit EASY SAT/UNSAT outcomes; UNKNOWN, interruption, and exception
+outcomes remain unresolved discovery evidence.
+
+This is a scheduling and durability contract, not a solver or proof claim.
+`run_driver` and its fixed cube-batch path remain unchanged.  The successor
+test suite differentially checks that the wave's canonical leaf literals and
+order agree with the existing fixed partition when adaptive execution is
+disabled.  Fresh exact-CNF terminal replay and the existing DRAT checker
+remain the only terminal proof authority.
+
+### P7 persistent incremental discovery oracle
+
+The successor-only `--persistent-discovery` option retains one incremental
+IPASIR solver across monotone sequential discovery iterations.  The first
+call loads the complete DIMACS clause stream; later calls must have the same
+variable count and an identical prior clause prefix, and only the appended
+suffix is added to the live solver.  Non-append-only changes fail closed.
+The option is currently restricted to sequential, unsimplified discovery so
+that the authenticated source CNF remains the append-only authority.
+
+The live solver is disposable state.  Resume or restart creates a new adapter
+and rebuilds from the complete authenticated CNF and journals; no opaque
+solver snapshot is accepted.  Discovery calls are proof-free.  A proof call
+never uses the incremental object: it delegates to the existing fresh
+proof-producing solver, and the exact terminal CNF still must pass the normal
+DRAT checker before any verified terminal status is published.
+
+The optional native backend is loaded only from the explicit
+`P97_CADICAL_IPASIR_LIB` path and records its IPASIR signature, library hash,
+solve/rebuild counts, clause-frontier hash, and trust-boundary policies in the
+manifest.  The adapter and restart/proof-boundary tests are contract evidence
+only; no P97 closure or throughput-promotion claim follows until a
+production-shaped hard-shard canary meets the P7 benchmark gate.
 
 ## 7. Mandatory gates
 

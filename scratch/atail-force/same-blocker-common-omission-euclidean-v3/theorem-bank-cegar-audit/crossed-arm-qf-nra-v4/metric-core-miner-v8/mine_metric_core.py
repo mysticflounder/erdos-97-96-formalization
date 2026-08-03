@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed QF_NRA miner for induced subsets of the v8 metric witness.
+"""Fail-closed QF_NRA miner for induced subsets of replayed v8/v9 witnesses.
 
 The only geometric assumptions sent to Z3 are:
 
@@ -40,7 +40,18 @@ DEFAULT_WITNESS = (
     / "witness.json"
 )
 PRODUCTION_MATCHER = ROOT / "census/global_confinement/metric_realizability_probe.py"
-SCHEMA = "crossed-arm-v8-global-edge-closure-metric-core-miner-v1"
+SCHEMA = "crossed-arm-global-edge-closure-metric-core-miner-v2"
+SOURCE_SCHEMAS = {
+    "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v8",
+    "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v9",
+}
+REPLAY_FIELDS = (
+    "cap_block_position_replay",
+    "cap_crossing_kalmanson_replay",
+    "crossed_arm_replay",
+    "full_shared_pair_separation_replay",
+    "geometric_incidence_replay",
+)
 
 Edge = tuple[str, str]
 Atom = tuple[Edge, Edge]
@@ -556,7 +567,24 @@ def main() -> None:
     parser.add_argument("--algebra-timeout-s", type=float, default=10.0)
     parser.add_argument("--algebra-candidate-count", type=int, default=12)
     args = parser.parse_args()
+    args.witness = args.witness.resolve()
+    source_result_path = args.witness.with_name("result.json")
+    if not source_result_path.is_file():
+        raise ValueError(f"missing sibling CEGAR result: {source_result_path}")
     witness = json.loads(args.witness.read_text())
+    source_result = json.loads(source_result_path.read_text())
+    if source_result.get("schema") not in SOURCE_SCHEMAS:
+        raise ValueError("source result is not an accepted replayed v8/v9 schema")
+    if source_result.get("status") != "SAT":
+        raise ValueError("source result is not SAT")
+    if witness.get("semantic_replay") != "PASS":
+        raise ValueError("witness semantic replay is not PASS")
+    for field in REPLAY_FIELDS:
+        if witness.get(field, {}).get("status") != "PASS":
+            raise ValueError(f"witness replay field is not PASS: {field}")
+    source_arm = source_result.get("arm")
+    if witness.get("live_Lean_mapping", {}).get("forced_crossed_arm") != source_arm:
+        raise ValueError("source result and witness crossed arms differ")
     points, closure_groups, generators = build_closure(witness)
     started = time.monotonic()
     smoke = smoke_tests(min(args.seed_timeout_ms, 5_000))
@@ -599,7 +627,7 @@ def main() -> None:
             **final,
             "atoms": [{**atom_record(atom), "text": atom_text(atom)} for atom in atom_core.atoms],
             "atom_sha256": sha256_json([atom_record(atom) for atom in atom_core.atoms]),
-            "smt2": str(smt2_path.relative_to(ROOT)),
+            "smt2": str(smt2_path.resolve().relative_to(ROOT)),
             "smt2_sha256": hashlib.sha256(smt2.encode()).hexdigest(),
             "numerical_filter": numerical_rank(atom_core),
             "production_signature_check": production_signature_match(atom_core),
@@ -639,14 +667,14 @@ def main() -> None:
             "atoms": [{**atom_record(atom), "text": atom_text(atom)} for atom in core.atoms],
             "atom_sha256": sha256_json([atom_record(atom) for atom in core.atoms]),
             "singular": singular_final,
-            "singular_script": str(sing_path.relative_to(ROOT)),
+            "singular_script": str(sing_path.resolve().relative_to(ROOT)),
             "singular_script_sha256": hashlib.sha256(sing_text.encode()).hexdigest(),
             "polynomial_variable_count": variable_count,
             "polynomial_count": polynomial_count,
             "msolve_crosscheck": msolve_crosscheck(core, args.algebra_timeout_s),
             "z3_replay": {k: v for k, v in final_z3.items() if k != "model"},
             "cvc5_replay": cvc5_crosscheck(smt2, args.final_z3_timeout_ms),
-            "smt2": str(smt2_path.relative_to(ROOT)),
+            "smt2": str(smt2_path.resolve().relative_to(ROOT)),
             "smt2_sha256": hashlib.sha256(smt2.encode()).hexdigest(),
             "production_signature_check": production_signature_match(core),
             "numerical_filter": numerical_rank(core),
@@ -678,6 +706,13 @@ def main() -> None:
         "source": {
             "witness": str(args.witness.resolve().relative_to(ROOT)),
             "witness_sha256": hashlib.sha256(args.witness.read_bytes()).hexdigest(),
+            "source_result": str(source_result_path.resolve().relative_to(ROOT)),
+            "source_result_sha256": hashlib.sha256(source_result_path.read_bytes()).hexdigest(),
+            "source_result_schema": source_result["schema"],
+            "source_result_status": source_result["status"],
+            "source_arm": source_arm,
+            "semantic_replay": witness["semantic_replay"],
+            "replay_fields_checked": list(REPLAY_FIELDS),
             "points": list(points),
             "point_count": len(points),
             "radius_equality_generator_count": len(generators),

@@ -1,0 +1,27 @@
+ring R=0,(x_r2,x_s3,x_t1,x_t2,x_t4,y_r2,y_s3,y_t1,y_t2,y_t4,u),dp;
+ideal I=
+  x_r2^2 - 2*x_r2*x_t4 - x_s3^2 + 2*x_s3*x_t4 + y_r2^2 - 2*y_r2*y_t4 - y_s3^2 + 2*y_s3*y_t4,
+  x_r2^2 - 2*x_r2*x_t4 - x_t1^2 + 2*x_t1*x_t4 + y_r2^2 - 2*y_r2*y_t4 - y_t1^2 + 2*y_t1*y_t4,
+  u^2-x_s3^2-y_s3^2,
+  u^2-x_t4^2-y_t4^2,
+  u^2-x_s3^2+2*x_s3*x_t1-x_t1^2-y_s3^2+2*y_s3*y_t1-y_t1^2,
+  u^2-x_s3^2+2*x_s3*x_t2-x_t2^2-y_s3^2+2*y_s3*y_t2-y_t2^2,
+  x_r2^2-x_t2^2+y_r2^2-y_t2^2,
+  x_t2^2-x_t4^2+y_t2^2-y_t4^2-2*u*x_t2+2*u*x_t4,
+  u^2-x_r2^2-y_r2^2-2*u*x_t2+2*x_r2*x_t2+2*y_r2*y_t2,
+  u^2-2*u*x_r2+2*x_r2*x_t1+2*y_r2*y_t1-x_t1^2-y_t1^2,
+  u^2-2*u*x_t1+2*x_t1*x_t2+2*y_t1*y_t2-x_t2^2-y_t2^2;
+
+ideal G=std(I);
+print("GB_SIZE="+string(size(G)));
+int k;
+for (k=1; k<=12; k=k+1) {
+  poly r=reduce(u^k,G);
+  print("POWER="+string(k)+" REMAINDER_IS_ZERO="+string(r==0));
+  if (r==0) { break; }
+}
+int j;
+for (j=1; j<=size(G); j=j+1) {
+  if (size(G[j])<=3 and deg(G[j])>=6) { print("SMALL_G_"+string(j)+"="+string(G[j])); }
+}
+quit;

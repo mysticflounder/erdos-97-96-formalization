@@ -10,13 +10,10 @@ import Erdos9796Proof.P97.ATail.RetainedMatchingCommonDeletionCycle
 /-!
 # Retained-matching endpoint continuation
 
-Status: `COMPAT-ONLY/BANK`. The module is source-proved and builds, but its
-only import consumers are off-spine siblings of the same retained
-strict-interior component, rooted at `FrontierCoupledStrictInteriorNormalForm`.
-It is therefore not on either current publish spine, and `lake build` does not
-reach it from the library roots. It remains a reusable normal-form bank; it
-receives no live-frontier closure credit unless a consumer is promoted through
-the standard preflight.
+Status: `ON-SPINE SUPPORT`.  `FrontierLiveClosure` imports this module and uses
+its endpoint source packet in the retained-omission live frontier.  The packet
+keeps the producer's canonical source orientation: the retained first endpoint
+is the row hit and the fresh second endpoint is the opposite fiber source.
 
 The endpoint collision already carries a source-faithful critical fiber and a
 first-apex row hit.  This file chooses a genuinely fourth source from that row:
@@ -88,6 +85,10 @@ structure EndpointFreshFirstApexRowSource
   C : ℝ²
   K : ℝ²
   fiber_orientation : IsFiberOrientation E.fiber C K
+  /-- The retained endpoint is the canonical row-hit role. -/
+  C_eq_fiber_source₁ : C = E.fiber.source₁.1
+  /-- The fresh endpoint is the opposite fiber role. -/
+  K_eq_fiber_source₂ : K = E.fiber.source₂.1
   row : SelectedFourClass D.A S.oppApex1
   C_mem_row : C ∈ row.support
   J : ℝ²
@@ -96,6 +97,54 @@ structure EndpointFreshFirstApexRowSource
   J_ne_K : J ≠ K
   J_ne_middle : J ≠ W.second
   J_mem_A : J ∈ D.A
+
+namespace EndpointFreshFirstApexRowSource
+
+/-- The canonical row-hit role remains on the retained first-apex radius. -/
+theorem C_mem_radius
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    {E : RetainedMatchingEndpointCriticalFiber W}
+    (Q : EndpointFreshFirstApexRowSource E) :
+    Q.C ∈ SelectedClass D.A S.oppApex1 radius := by
+  rw [Q.C_eq_fiber_source₁, E.fiber_source₁_eq_first]
+  exact W.first_mem_radius
+
+/-- The selected first-apex row hit by the retained endpoint has exactly the
+retained radius. -/
+theorem row_radius_eq
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    {E : RetainedMatchingEndpointCriticalFiber W}
+    (Q : EndpointFreshFirstApexRowSource E) :
+    Q.row.radius = radius := by
+  have hrow := Q.row.support_eq_radius Q.C Q.C_mem_row
+  have hretained := (mem_selectedClass.mp Q.C_mem_radius).2
+  exact hrow.symm.trans hretained
+
+/-- Every other selected support point of the canonical row, in particular
+`J`, lies on the retained first-apex radius as well. -/
+theorem J_mem_radius
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    {E : RetainedMatchingEndpointCriticalFiber W}
+    (Q : EndpointFreshFirstApexRowSource E) :
+    Q.J ∈ SelectedClass D.A S.oppApex1 radius := by
+  rw [mem_selectedClass]
+  refine ⟨Q.J_mem_A, ?_⟩
+  simpa only [Q.row_radius_eq] using
+    Q.row.support_eq_radius Q.J Q.J_mem_row
+
+end EndpointFreshFirstApexRowSource
 
 /-- The endpoint collision always supplies a fourth, source-valid row source.
 The construction uses the already-forced `RowHit`; no new incidence is
@@ -118,31 +167,21 @@ theorem nonempty_endpointFreshFirstApexRowSource
       (a := E.fiber.source₁.1) (b := E.fiber.source₂.1)
       (c := W.second) E.rowHit.row with
     ⟨J, hJ, hJSource₁, hJSource₂, hJMiddle⟩
-  rcases E.rowHit.hitSource_is_fiber_source with hhit | hhit
-  · exact ⟨{
-      C := E.fiber.source₁.1
-      K := E.fiber.source₂.1
-      fiber_orientation := Or.inl ⟨rfl, rfl⟩
-      row := E.rowHit.row
-      C_mem_row := by simpa only [← hhit] using E.rowHit.hitSource_mem_row
-      J := J
-      J_mem_row := hJ
-      J_ne_C := hJSource₁
-      J_ne_K := hJSource₂
-      J_ne_middle := hJMiddle
-      J_mem_A := E.rowHit.row.support_subset_A hJ }⟩
-  · exact ⟨{
-      C := E.fiber.source₂.1
-      K := E.fiber.source₁.1
-      fiber_orientation := Or.inr ⟨rfl, rfl⟩
-      row := E.rowHit.row
-      C_mem_row := by simpa only [← hhit] using E.rowHit.hitSource_mem_row
-      J := J
-      J_mem_row := hJ
-      J_ne_C := hJSource₂
-      J_ne_K := hJSource₁
-      J_ne_middle := hJMiddle
-      J_mem_A := E.rowHit.row.support_subset_A hJ }⟩
+  exact ⟨{
+    C := E.fiber.source₁.1
+    K := E.fiber.source₂.1
+    fiber_orientation := Or.inl ⟨rfl, rfl⟩
+    C_eq_fiber_source₁ := rfl
+    K_eq_fiber_source₂ := rfl
+    row := E.rowHit.row
+    C_mem_row := by
+      simpa only [E.rowHit_source_eq_first] using E.rowHit.hitSource_mem_row
+    J := J
+    J_mem_row := hJ
+    J_ne_C := hJSource₁
+    J_ne_K := hJSource₂
+    J_ne_middle := hJMiddle
+    J_mem_A := E.rowHit.row.support_subset_A hJ }⟩
 
 /-- Exact continuation after choosing the fresh endpoint-row source.  The
 positive arm is precisely the actual cross incidence needed by a
@@ -269,4 +308,3 @@ theorem nonempty_threeDistinctEndpointCrossOrCycle
 
 end ATailRetainedMatchingEndpointContinuation
 end Problem97
-

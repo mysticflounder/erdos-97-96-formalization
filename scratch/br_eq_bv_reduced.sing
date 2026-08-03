@@ -1,0 +1,18 @@
+ring B=0,(b,s,u,w),dp;
+poly k=s2-b*s+b;
+poly q1=s3-2*s2*u-s2*w+s*u2+s*u*w+s*w2-u2*w;
+poly e7=s3*u-s3-s2*u2-s2*u*b+s2*u+s2*b+s*u2*b+s*u*b-s*u-s*b2-u2*b+u*b;
+poly e8=s2*b*w-s2*w2+s2*w-s2-s*b2*w+s*b*w2-s*b*w+s*b+b2*w-b*w;
+ideal K=k;
+print("q1red="+string(reduce(q1,K)));
+print("e7red="+string(reduce(e7,K)));
+print("e8red="+string(reduce(e8,K)));
+poly q1r=reduce(q1,K); poly e7r=reduce(e7,K); poly e8r=reduce(e8,K);
+print("factor q1red="+string(factorize(q1r)[1]));
+print("factor e7red="+string(factorize(e7r)[1]));
+print("factor e8red="+string(factorize(e8r)[1]));
+ideal H=k,q1,e7,e8;
+ideal G=std(H);
+print("basis-size="+string(size(G)));
+G[1];
+quit;

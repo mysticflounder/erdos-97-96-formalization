@@ -260,8 +260,9 @@ argument: the endpoints are extreme in the hull, the line intersection is
 collinear, and any point outside the endpoint segment forces one endpoint into
 an open segment, contradicting extremality. -/
 theorem convexHull_line_inter_eq_segment_of_extreme_pair {A : Finset ℝ²} {c : ℝ²}
-    {phi : Fin A.card → ℝ²} (hA : Problem97.ConvexIndep A) (hphi_inj : Function.Injective phi)
-    (hphi_image : Finset.univ.image phi = A) {i k : Fin A.card} (hik : i < k) :
+    {n : ℕ} {phi : Fin n → ℝ²} (hA : Problem97.ConvexIndep A)
+    (hphi_inj : Function.Injective phi) (hphi_image : Finset.univ.image phi = A)
+    {i k : Fin n} (hik : i < k) :
     convexHull ℝ (A : Set ℝ²) ∩ line[ℝ, phi i, phi k] = segment ℝ (phi i) (phi k) := by
   classical
   -- The center is retained in the API to match the documented radial-chord stack.

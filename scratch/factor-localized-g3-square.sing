@@ -1,0 +1,15 @@
+ring R=32003,(bv,bs,bw,x,y),dp;
+poly D1,D2,D3,D4,D5,D6;
+execute(read("atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-qf-nra-v4/metric-core-miner-v9/localized-g3-product-square-certificate-exact-v1.singexpr"));
+list D=D1,D2,D3,D4,D5,D6;
+list fs;
+for (int i=1; i<=6; i++) {
+  fs = factorize(D[i]);
+  print("D"+string(i)+" FACTORS="+string(size(fs[1])));
+  print(fs[1]);
+  print(fs[2]);
+  for (int j=1; j<=size(fs[1]); j++) {
+    print("  F"+string(j)+" TERMS="+string(size(fs[1][j]))+" DEG="+string(deg(fs[1][j])));
+  }
+}
+quit;

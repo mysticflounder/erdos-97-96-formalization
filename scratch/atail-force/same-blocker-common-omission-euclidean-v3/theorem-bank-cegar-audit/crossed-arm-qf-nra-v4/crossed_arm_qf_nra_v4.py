@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Staged QF_NRA encoder for a replay-PASS crossed-arm v4/v5 witness.
+"""Staged QF_NRA encoder for a replay-PASS crossed-arm v4/v5/v7/v8/v9 witness.
 
 Self-check and smoke modes never solve the 17-point target.  Target solving is
 available only through the explicit ``--solve`` action.
@@ -22,14 +22,18 @@ HERE = Path(__file__).resolve().parent
 AUDIT_ROOT = HERE.parent / "crossed-arm-audit"
 DEFAULT_WITNESS = (
     AUDIT_ROOT
-    / "source-at-common-full-metric-bank-v5-raw-btw-sep-import-v4"
+    / "source-at-common-full-metric-bank-v8-convex-five-point-import-v7-shared-fourth-600s"
     / "witness.json"
 )
 SOURCE_SCHEMAS = {
     "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v4",
     "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v5",
+    "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v7",
+    "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v8",
+    "n17-crossed-outside-pair-full-metric-theorem-bank-cegar-v9",
 }
-RESULT_SCHEMA = "crossed-arm-full-radius-qf-nra-v5"
+RESULT_SCHEMA = "crossed-arm-full-radius-qf-nra-v7"
+CONVEX_FIVE_POINT_FAMILY = "convex_five_point_core"
 STAGES = ("metric", "adjacent-turns", "supporting-edges", "all-triples")
 REPLAY_FIELDS = (
     "cap_block_position_replay",
@@ -57,7 +61,7 @@ def sha256(path: Path) -> str:
 
 
 def load_witness(path: Path) -> tuple[dict[str, Any], dict[str, Any]]:
-    """Validate v4/v5 provenance, replay markers, and full radius partitions."""
+    """Validate supported provenance, replay markers, and full radius partitions."""
     path = path.resolve()
     require(path.is_file(), f"witness does not exist: {path}")
     result_path = path.with_name("result.json")
@@ -66,7 +70,11 @@ def load_witness(path: Path) -> tuple[dict[str, Any], dict[str, Any]]:
     source_result = json.loads(result_path.read_text())
 
     source_schema = source_result.get("schema")
-    require(source_schema in SOURCE_SCHEMAS, "source result schema is not supported v4/v5")
+    require(
+        source_schema in SOURCE_SCHEMAS,
+        "source result schema is not supported v4/v5/v7/v8/v9",
+    )
+    full_bank_schema = source_schema.endswith(("-v8", "-v9"))
     require(source_result.get("status") == "SAT", "source result is not SAT")
     require(source_result.get("n") == 17, "source result is not n=17")
     require(
@@ -78,14 +86,82 @@ def load_witness(path: Path) -> tuple[dict[str, Any], dict[str, Any]]:
         is True,
         "source result lacks the registered theorem-bank marker",
     )
-    if source_schema.endswith("-v5"):
+    if source_schema.endswith(("-v5", "-v7", "-v8", "-v9")):
         require(
             source_result.get("all_raw_btw_sep_cyclic_cuts_encoded") is True,
-            "v5 source result lacks the raw btw_sep cyclic-cut marker",
+            f"{source_schema.rsplit('-', 1)[-1]} source result lacks the raw btw_sep cyclic-cut marker",
         )
+    if source_schema.endswith(("-v7", "-v8", "-v9")):
+        require(
+            source_result.get("global_undirected_edge_equality_closure_encoded") is True,
+            f"{source_schema.rsplit('-', 1)[-1]} source result lacks the global edge-equality marker",
+        )
+    if full_bank_schema:
+        schema_version = source_schema.rsplit("-", 1)[-1]
+        require(
+            source_result.get("collision_deletion_packet_encoded") is True,
+            f"{schema_version} source result lacks the collision-deletion marker",
+        )
+        require(
+            source_result.get("mutual_bisector_transport_cegar_enabled") is True,
+            f"{schema_version} source result lacks the mutual-bisector-transport marker",
+        )
+        if source_schema.endswith("-v8"):
+            require(
+                source_result.get("forced_shared_fourth") is True,
+                "v8 source result lacks the forced-shared-fourth marker",
+            )
+        else:
+            require(
+                isinstance(source_result.get("forced_shared_fourth"), bool),
+                "v9 source result lacks an explicit forced-shared-fourth flag",
+            )
+        learned_cuts = source_result.get("learned_cuts")
+        require(
+            isinstance(learned_cuts, dict),
+            f"{schema_version} source result lacks a learned-cut manifest",
+        )
+        theorem_families = learned_cuts.get("theorem_families")
+        require(
+            isinstance(theorem_families, list)
+            and len(theorem_families) == len(set(theorem_families))
+            and CONVEX_FIVE_POINT_FAMILY in theorem_families,
+            f"{schema_version} source result lacks the full theorem-bank/convex-family manifest",
+        )
+        theorem_family_set = set(theorem_families)
+        for field in ("theorem_cut_counts", "theorem_matches_seen"):
+            counts = source_result.get(field)
+            require(
+                isinstance(counts, dict) and set(counts) == theorem_family_set,
+                f"{schema_version} source result {field} does not cover the full theorem bank",
+            )
     require(data.get("semantic_replay") == "PASS", "semantic replay is not PASS")
     for field in REPLAY_FIELDS:
         require(data.get(field, {}).get("status") == "PASS", f"{field} is not PASS")
+    if full_bank_schema:
+        schema_version = source_schema.rsplit("-", 1)[-1]
+        crossed_replay = data.get("crossed_arm_replay")
+        require(
+            isinstance(crossed_replay, dict),
+            f"{schema_version} witness lacks crossed-arm replay",
+        )
+        require(
+            crossed_replay.get(
+                "all_registered_selected_row_and_raw_equality_theorem_families_replayed"
+            ) is True,
+            f"{schema_version} witness lacks the full theorem-bank replay marker",
+        )
+        if source_result.get("forced_shared_fourth") is True:
+            require(
+                crossed_replay.get("forced_shared_fourth") is True
+                and crossed_replay.get("shared_fourth_replayed") is True,
+                f"{schema_version} witness lacks the shared-fourth replay markers",
+            )
+        active_counts = crossed_replay.get("full_theorem_bank_active_match_counts")
+        require(
+            isinstance(active_counts, dict) and set(active_counts) == theorem_family_set,
+            f"{schema_version} witness replay does not cover the full theorem bank/convex family",
+        )
 
     order = data.get("existential_cyclic_order")
     require(isinstance(order, list), "cyclic order is not a list")
@@ -173,6 +249,22 @@ def sqdist(coords: dict[str, tuple[Any, Any]], left: str, right: str):
     return (lx - rx) ** 2 + (ly - ry) ** 2
 
 
+def sqdist_difference(coords: dict[str, tuple[Any, Any]], center: str,
+                      left: str, right: str):
+    """Expanded ``d(center,left)^2 - d(center,right)^2``.
+
+    Cancelling the center-square monomials before handing the polynomial to an
+    NRA solver is exact and materially reduces the generated expression.
+    """
+    cx, cy = coords[center]
+    lx, ly = coords[left]
+    rx, ry = coords[right]
+    return (
+        lx * lx + ly * ly - rx * rx - ry * ry
+        - 2 * cx * (lx - rx) - 2 * cy * (ly - ry)
+    )
+
+
 def orient(coords: dict[str, tuple[Any, Any]], a: str, b: str, c: str):
     ax, ay = coords[a]
     bx, by = coords[b]
@@ -180,7 +272,7 @@ def orient(coords: dict[str, tuple[Any, Any]], a: str, b: str, c: str):
     return (bx - ax) * (cy - ay) - (by - ay) * (cx - ax)
 
 
-def build_atoms(data: dict[str, Any], stage: str):
+def build_atoms(data: dict[str, Any], stage: str, *, substitute_gauge: bool = False):
     import z3
 
     require(stage in STAGES, f"unknown stage: {stage}")
@@ -194,6 +286,9 @@ def build_atoms(data: dict[str, Any], stage: str):
 
     # Orientation-preserving similarity gauge, justified by global distinctness.
     origin, unit = order[0], order[1]
+    if substitute_gauge:
+        coords[origin] = (z3.RealVal(0), z3.RealVal(0))
+        coords[unit] = (z3.RealVal(1), z3.RealVal(0))
     add(f"gauge_{origin}_x", "gauge", coords[origin][0] == 0)
     add(f"gauge_{origin}_y", "gauge", coords[origin][1] == 0)
     add(f"gauge_{unit}_x", "gauge", coords[unit][0] == 1)
@@ -213,14 +308,13 @@ def build_atoms(data: dict[str, Any], stage: str):
             for point in members
         }
         for left, right in itertools.combinations(targets, 2):
-            left_radius = sqdist(coords, center, left)
-            right_radius = sqdist(coords, center, right)
+            radius_difference = sqdist_difference(coords, center, left, right)
             if class_index[left] == class_index[right]:
                 add(f"radius_eq_{center}_{left}_{right}", "radius-within-class-equality",
-                    left_radius == right_radius)
+                    radius_difference == 0)
             else:
                 add(f"radius_ne_{center}_{left}_{right}", "radius-cross-class-disequality",
-                    left_radius != right_radius)
+                    radius_difference != 0)
 
     if stage == "adjacent-turns":
         for index in range(len(order)):
@@ -271,7 +365,7 @@ def fidelity(stage: str) -> dict[str, Any]:
         "ENCODED": encoded,
         "OMITTED": omitted,
         "trust_boundary": {
-            "source": "v4/v5 JSON replay markers and structural checks are artifact evidence, not a rerun of the CEGAR producer",
+            "source": "v4/v5/v7/v8/v9 JSON replay markers and structural checks are artifact evidence, not a rerun of the CEGAR producer",
             "solver": "Z3 QF_NRA is trusted external computation; SAT is accepted only after exact model replay of every encoded atom and the full radius partition",
             "unsat": "a Z3 UNSAT has no independently checkable certificate and is not Lean/kernel closure",
             "unknown": "UNKNOWN or timeout is no evidence for SAT or UNSAT",
@@ -503,25 +597,144 @@ def solve_target(path: Path, data: dict[str, Any], check: dict[str, Any], stage:
 def solve_metric_lazy(path: Path, data: dict[str, Any], check: dict[str, Any],
                       timeout_ms: int, max_iterations: int,
                       batch_size: int) -> dict[str, Any]:
-    """Solve the full metric formula by lazily asserting violated disequalities.
+    """Solve the full metric formula by lazily asserting violated relations.
 
-    The hard core retains the gauge, every point-distinctness atom, and every
-    within-class radius equality.  A SAT verdict is returned only after the
-    exact model satisfies every serialized cross-class disequality, so this is
-    equisatisfiable with ``solve_target(..., stage="metric")``.
+    The hard core retains only the gauge.  Three monotone lazy phases use the
+    global quotient of undirected squared-distance variables: a spanning
+    forest for all radius equalities, one positivity atom per quotient class
+    except the gauge class, and one representative disequality per unordered
+    pair of quotient classes.  These bases imply all omitted pairwise metric
+    relations.  A SAT verdict is still returned only after exact replay of
+    every original atom, so this is equisatisfiable with
+    ``solve_target(..., stage="metric")``.
     """
-    z3, coords, atoms = build_atoms(data, "metric")
-    hard_families = {
-        "gauge",
-        "pairwise-distinctness",
-        "radius-within-class-equality",
-    }
-    hard = [atom for atom in atoms if atom.family in hard_families]
-    lazy = [atom for atom in atoms if atom.family == "radius-cross-class-disequality"]
-    require(len(hard) + len(lazy) == len(atoms), "unexpected metric atom family")
+    z3, coords, atoms = build_atoms(data, "metric", substitute_gauge=True)
+    atom_by_name = {atom.name: atom for atom in atoms}
+    require(len(atom_by_name) == len(atoms), "duplicate metric atom name")
+    order = data["existential_cyclic_order"]
+    position = {point: index for index, point in enumerate(order)}
 
-    solver = z3.SolverFor("QF_NRA")
-    solver.add(*(atom.term for atom in hard))
+    def radius_name(prefix: str, center: str, left: str, right: str) -> str:
+        if position[left] > position[right]:
+            left, right = right, left
+        return f"radius_{prefix}_{center}_{left}_{right}"
+
+    def edge(left: str, right: str) -> tuple[str, str]:
+        if position[left] > position[right]:
+            left, right = right, left
+        return left, right
+
+    edges = [edge(left, right) for left, right in itertools.combinations(order, 2)]
+    parent = {item: item for item in edges}
+
+    def find(item: tuple[str, str]) -> tuple[str, str]:
+        while parent[item] != item:
+            parent[item] = parent[parent[item]]
+            item = parent[item]
+        return item
+
+    def union(left: tuple[str, str], right: tuple[str, str]) -> bool:
+        left_root, right_root = find(left), find(right)
+        if left_root == right_root:
+            return False
+        parent[right_root] = left_root
+        return True
+
+    equality_basis_names: set[str] = set()
+    for center in order:
+        classes = [sorted(members, key=position.__getitem__)
+                   for members in data["radius_classes"][center]]
+        for members in classes:
+            for left, right in itertools.combinations(members, 2):
+                name = radius_name("eq", center, left, right)
+                if union(edge(center, left), edge(center, right)):
+                    equality_basis_names.add(name)
+
+    edge_rank = {item: index for index, item in enumerate(edges)}
+    quotient_classes: dict[tuple[str, str], list[tuple[str, str]]] = {}
+    for item in edges:
+        quotient_classes.setdefault(find(item), []).append(item)
+    ordered_classes = sorted(
+        quotient_classes.values(),
+        key=lambda members: min(edge_rank[item] for item in members),
+    )
+    class_id = {
+        item: index
+        for index, members in enumerate(ordered_classes)
+        for item in members
+    }
+    require(
+        len(equality_basis_names) == len(edges) - len(ordered_classes),
+        "global equality basis is not a spanning forest",
+    )
+
+    gauge_class = class_id[edge(order[0], order[1])]
+    positivity_basis_names: set[str] = set()
+    seen_positive_classes: set[int] = {gauge_class}
+    for left, right in edges:
+        quotient_class = class_id[(left, right)]
+        if quotient_class not in seen_positive_classes:
+            positivity_basis_names.add(f"distinct_{left}_{right}")
+            seen_positive_classes.add(quotient_class)
+    require(
+        seen_positive_classes == set(range(len(ordered_classes))),
+        "positivity basis does not cover every distance quotient class",
+    )
+    require(
+        len(positivity_basis_names) == len(ordered_classes) - 1,
+        "positivity basis must omit exactly the gauge distance class",
+    )
+
+    disequality_by_class_pair: dict[tuple[int, int], str] = {}
+    for center in order:
+        targets = [point for point in order if point != center]
+        radius_class = {
+            point: index
+            for index, members in enumerate(data["radius_classes"][center])
+            for point in members
+        }
+        for left, right in itertools.combinations(targets, 2):
+            if radius_class[left] == radius_class[right]:
+                continue
+            left_class = class_id[edge(center, left)]
+            right_class = class_id[edge(center, right)]
+            class_pair = tuple(sorted((left_class, right_class)))
+            disequality_by_class_pair.setdefault(
+                class_pair, radius_name("ne", center, left, right))
+    disequality_basis_names = set(disequality_by_class_pair.values())
+    require(
+        len(disequality_basis_names) == len(disequality_by_class_pair),
+        "one radius disequality atom was reused for distinct quotient pairs",
+    )
+    quotient_internal_disequalities = sum(
+        left == right for left, right in disequality_by_class_pair
+    )
+    if check["source_schema"].endswith("-v7"):
+        require(
+            quotient_internal_disequalities == 0,
+            "v7 global-edge-closed witness has an internal quotient disequality",
+        )
+
+    missing_basis = (equality_basis_names | positivity_basis_names |
+                     disequality_basis_names) - atom_by_name.keys()
+    require(not missing_basis, f"missing compact radius atoms: {sorted(missing_basis)[:8]}")
+    declared_gauge = [atom for atom in atoms if atom.family == "gauge"]
+    hard = [atom for atom in declared_gauge
+            if not z3.is_true(z3.simplify(atom.term))]
+    lazy_groups = {
+        "radius-equality": [atom_by_name[name]
+                            for name in sorted(equality_basis_names)],
+        "point-distinctness": [atom_by_name[name]
+                               for name in sorted(positivity_basis_names)],
+        "radius-disequality": [atom_by_name[name]
+                               for name in sorted(disequality_basis_names)],
+    }
+    lazy = [atom for group in lazy_groups.values() for atom in group]
+    phase_batch_sizes = {
+        "radius-equality": min(batch_size, 8),
+        "point-distinctness": min(batch_size, 16),
+        "radius-disequality": min(batch_size, 32),
+    }
     active: set[str] = set()
     iterations: list[dict[str, Any]] = []
     started = time.monotonic()
@@ -531,12 +744,30 @@ def solve_metric_lazy(path: Path, data: dict[str, Any], check: dict[str, Any],
         "timeout_ms": timeout_ms,
         "max_iterations": max_iterations,
         "batch_size": batch_size,
-        "action": "LAZY_METRIC_DISEQUALITY_CEGAR",
+        "action": "STAGED_COMPACT_BASIS_LAZY_METRIC_RELATION_CEGAR",
+        "gauge_substituted": True,
         "hard_constraint_count": len(hard),
+        "declared_gauge_atom_count": len(declared_gauge),
         "lazy_constraint_count": len(lazy),
+        "full_within_class_equality_count": sum(
+            atom.family == "radius-within-class-equality" for atom in atoms),
+        "basis_within_class_equality_count": len(equality_basis_names),
+        "global_distance_class_count": len(ordered_classes),
+        "gauge_distance_class": gauge_class,
+        "full_cross_class_disequality_count": sum(
+            atom.family == "radius-cross-class-disequality" for atom in atoms),
+        "basis_cross_class_disequality_count": len(disequality_basis_names),
+        "quotient_internal_disequality_count": quotient_internal_disequalities,
+        "lazy_point_distinctness_count": sum(
+            atom.family == "pairwise-distinctness" for atom in lazy),
+        "phase_batch_sizes": phase_batch_sizes,
         "fidelity_note": (
-            "SAT is accepted only after exact replay of all hard and lazy atoms; "
-            "UNSAT from any asserted subset implies UNSAT of the full metric formula"
+            "a global undirected-distance spanning forest, one positivity atom "
+            "per non-gauge quotient class, and one representative disequality "
+            "per quotient-class pair observed in an original cross-radius atom "
+            "imply the full metric partition; every "
+            "basis atom remains in a monotone lazy phase; SAT is accepted only "
+            "after exact replay of every original atom"
         ),
     })
 
@@ -552,6 +783,9 @@ def solve_metric_lazy(path: Path, data: dict[str, Any], check: dict[str, Any],
                 "active_lazy_constraint_count": len(active),
             })
             return result
+        solver = z3.SolverFor("QF_NRA")
+        solver.add(*(atom.term for atom in hard))
+        solver.add(*(atom_by_name[name].term for name in sorted(active)))
         solver.set(timeout=remaining_ms)
         check_started = time.monotonic()
         status = solver.check()
@@ -586,13 +820,21 @@ def solve_metric_lazy(path: Path, data: dict[str, Any], check: dict[str, Any],
             return result
 
         model = solver.model()
-        violated = [
-            atom for atom in lazy
-            if atom.name not in active
-            and not z3.is_true(model.eval(atom.term, model_completion=True))
-        ]
-        entry["fresh_violated_lazy_constraint_count"] = len(violated)
-        if not violated:
+        violated_by_phase = {
+            phase: [
+                atom for atom in group
+                if atom.name not in active
+                and not z3.is_true(model.eval(atom.term, model_completion=True))
+            ]
+            for phase, group in lazy_groups.items()
+        }
+        entry["fresh_violated_lazy_constraint_counts"] = {
+            phase: len(violated)
+            for phase, violated in violated_by_phase.items()
+        }
+        chosen_phase = next(
+            (phase for phase in lazy_groups if violated_by_phase[phase]), None)
+        if chosen_phase is None:
             iterations.append(entry)
             result.update({
                 "elapsed_ms": int((time.monotonic() - started) * 1_000),
@@ -610,9 +852,9 @@ def solve_metric_lazy(path: Path, data: dict[str, Any], check: dict[str, Any],
             })
             return result
 
-        chosen = violated[:batch_size]
-        solver.add(*(atom.term for atom in chosen))
+        chosen = violated_by_phase[chosen_phase][:phase_batch_sizes[chosen_phase]]
         active.update(atom.name for atom in chosen)
+        entry["added_lazy_phase"] = chosen_phase
         entry["added_lazy_constraint_count"] = len(chosen)
         entry["added_lazy_constraints"] = [atom.name for atom in chosen]
         iterations.append(entry)
@@ -638,6 +880,9 @@ def main() -> int:
     actions.add_argument("--solve", action="store_true")
     actions.add_argument("--lazy-metric-cegar", action="store_true")
     actions.add_argument("--emit-smt2", type=Path)
+    actions.add_argument("--emit-active-prefix-smt2", type=Path)
+    actions.add_argument("--emit-active-prefix-singular", type=Path)
+    parser.add_argument("--prefix-result", type=Path)
     parser.add_argument("--timeout-ms", type=int, default=30_000)
     parser.add_argument("--max-iterations", type=int, default=64)
     parser.add_argument("--batch-size", type=int, default=64)
@@ -683,6 +928,92 @@ def main() -> int:
         result.update({
             "status": "SMT2_WRITTEN",
             "smt2": str(args.emit_smt2.resolve()),
+            "target_solver_invoked": False,
+        })
+    elif args.emit_active_prefix_smt2 is not None:
+        require(args.stage == "metric", "active-prefix emission requires metric stage")
+        require(args.prefix_result is not None, "active-prefix emission requires --prefix-result")
+        prefix = json.loads(args.prefix_result.read_text())
+        active_names = {
+            name
+            for iteration in prefix.get("iterations", [])
+            for name in iteration.get("added_lazy_constraints", [])
+        }
+        atom_by_name = {atom.name: atom for atom in atoms}
+        missing = active_names - atom_by_name.keys()
+        require(not missing, f"prefix names absent from current encoding: {sorted(missing)[:8]}")
+        prefix_atoms = [atom for atom in atoms if atom.family == "gauge"] + [
+            atom_by_name[name] for name in sorted(active_names)
+        ]
+        solver = z3.SolverFor("QF_NRA")
+        solver.add(*(atom.term for atom in prefix_atoms))
+        args.emit_active_prefix_smt2.write_text(
+            "(set-logic QF_NRA)\n" + solver.sexpr() + "\n(check-sat)\n"
+        )
+        result = base_result(args.witness, data, check, args.stage, atoms)
+        result.update({
+            "status": "ACTIVE_PREFIX_SMT2_WRITTEN",
+            "smt2": str(args.emit_active_prefix_smt2.resolve()),
+            "prefix_result": str(args.prefix_result.resolve()),
+            "active_constraint_count": len(active_names),
+            "prefix_constraint_count": len(prefix_atoms),
+            "target_solver_invoked": False,
+        })
+    elif args.emit_active_prefix_singular is not None:
+        require(args.stage == "metric", "active-prefix emission requires metric stage")
+        require(args.prefix_result is not None, "active-prefix emission requires --prefix-result")
+        prefix = json.loads(args.prefix_result.read_text())
+        active_names = {
+            name
+            for iteration in prefix.get("iterations", [])
+            for name in iteration.get("added_lazy_constraints", [])
+        }
+        require(all(name.startswith("radius_eq_") for name in active_names),
+                "Singular prefix emission currently supports equality-only prefixes")
+        order = data["existential_cyclic_order"]
+        origin, unit = order[0], order[1]
+        variables = [
+            f"{point}_{axis}"
+            for point in order if point not in {origin, unit}
+            for axis in ("x", "y")
+        ]
+
+        def coordinate(point: str, axis: str) -> str:
+            if point == origin:
+                return "0"
+            if point == unit:
+                return "1" if axis == "x" else "0"
+            return f"{point}_{axis}"
+
+        def radius_polynomial(name: str) -> str:
+            _, _, center, left, right = name.split("_")
+            cx, cy = coordinate(center, "x"), coordinate(center, "y")
+            lx, ly = coordinate(left, "x"), coordinate(left, "y")
+            rx, ry = coordinate(right, "x"), coordinate(right, "y")
+            return (
+                f"(({lx})^2+({ly})^2-({rx})^2-({ry})^2"
+                f"-2*({cx})*(({lx})-({rx}))-2*({cy})*(({ly})-({ry})))"
+            )
+
+        polynomials = [radius_polynomial(name) for name in sorted(active_names)]
+        require(polynomials, "active prefix has no equality polynomials")
+        args.emit_active_prefix_singular.write_text(
+            "ring r = 0,(" + ",".join(variables) + "),dp;\n"
+            "ideal I =\n  " + ",\n  ".join(polynomials) + ";\n"
+            "option(redSB);\n"
+            "ideal G = std(I);\n"
+            "if (reduce(1,G) == 0) { print(\"UNIT_IDEAL\"); } "
+            "else { print(\"NON_UNIT_IDEAL\"); }\n"
+            "print(\"GROEBNER_BASIS_SIZE\");\n"
+            "size(G);\n"
+        )
+        result = base_result(args.witness, data, check, args.stage, atoms)
+        result.update({
+            "status": "ACTIVE_PREFIX_SINGULAR_WRITTEN",
+            "singular": str(args.emit_active_prefix_singular.resolve()),
+            "prefix_result": str(args.prefix_result.resolve()),
+            "active_equality_count": len(active_names),
+            "coordinate_variable_count_after_gauge_substitution": len(variables),
             "target_solver_invoked": False,
         })
     else:

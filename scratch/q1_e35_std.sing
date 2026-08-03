@@ -1,0 +1,12 @@
+ring B=0,(br,bs,bu,bv,bw),dp;
+poly e2=br^2*bs^3-br^2*bs^2*bu-br^2*bs^2*bv+br^2*bs*bu*bv-br*bs^3*bu+br*bs^2*bu^2+br*bs^2*bu*bv-br*bs*bu^2*bv-br*bs*bu^2*bw+br*bs*bu*bw^2+br*bs*bv^2*bw+br*bu^2*bv*bw-br*bu*bv^2*bw-br*bu*bv*bw^2-bs*bv^2*bw^2+bu*bv^2*bw^2;
+poly e5=br^2*bs^3-br^2*bs^2*bu-br^2*bs^2*bv+br^2*bs*bu*bv+br^2*bs*bu-br^2*bu*bv-br*bs^3+br*bs^2*bu+br*bs^2*bv-br*bs*bu^2-br*bs*bu*bv+br*bu^2*bv+bs*bu*bv^2-bs*bv^2-bu^2*bv^2+bu*bv^2;
+poly q1=bs^3-2*bs^2*bu-bs^2*bw+bs*bu^2+bs*bu*bw+bs*bw^2-bu^2*bw;
+poly u8=bs^2*bu^2-bs*bu^3-bs^2*bu*bv+bs*bu^2*bv+bs^2*bu*bw-bs*bu^2*bw+bu^3*bw-bs*bu*bw^2-bs^2*bu+bs*bu^2+bs^2*bv+bs*bu*bv-bu^2*bv-bs*bv^2-bs^2*bw+bs*bu*bw-bu^2*bw+bs*bw^2-bs*bu+bu*bv;
+poly u24=br*bs^2*bw^2-br*bs*bv*bw^2-2*br*bs^2*bw+br^2*bv*bw+2*br*bs*bv*bw-2*br*bv^2*bw+bv^3*bw+br*bs^2-br*bs*bv;
+poly u32=br^2*bv^2*bw-2*br*bv^3*bw+bv^4*bw-br^2*bv*bw^2+br*bv^2*bw^2-bv^3*bw^2+br^2*bv*bw+bv^3*bw+br*bv*bw^2-br^2*bv+br*bv^2-bv^3-2*br*bv*bw+br*bv;
+poly u34=bs*bu^2*bv*bw-2*bs*bu*bv^2*bw+bs*bv^3*bw-bs*bu^2*bw^2+3*bs*bu*bv*bw^2-bu^2*bv*bw^2-2*bs*bv^2*bw^2-bs*bu*bw^3+bu^2*bw^3+2*bs*bv*bw^3-bs*bw^4+bs*bu^2*bw-2*bs*bu*bv*bw+2*bu*bv^2*bw-bv^3*bw+bs*bu*bw^2-bu^2*bw^2-bs*bv*bw^2+bv^2*bw^2+bs*bw^3-bs*bu^2+2*bs*bu*bv-bs*bv^2-bs*bu*bw+bu^2*bw+2*bs*bv*bw-2*bu*bv*bw+bv^2*bw-bs*bw^2-bv*bw^2;
+ideal I=e2,e5,q1,u8,u24,u32,u34; ideal G=std(I); int i;
+print("GB_SIZE="+string(size(G)));
+for(i=1;i<=size(G);i++){if(size(G[i])<=25){print("i="+string(i)+" terms="+string(size(G[i]))+" deg="+string(deg(G[i]))+" p="+string(G[i]));}}
+quit;
