@@ -1,0 +1,3 @@
+import Erdos9796Proof.P97.ATail.SevenSourceTournament
+
+#check Problem97.SevenSourceTournament.exact_support_surface_of_card_le_four_and_pairCovered
