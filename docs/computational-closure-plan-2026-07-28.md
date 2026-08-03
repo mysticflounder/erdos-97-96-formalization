@@ -1,4 +1,4 @@
-# Computational closure plan — remaining frontier (updated 2026-08-02)
+# Computational closure plan — remaining frontier (updated 2026-08-03)
 
 Premise: no further deep-thinker input is assumed. Every remaining obligation
 is attacked with in-repo computational machinery (SAT, exact-rational
@@ -207,10 +207,13 @@ Regular-pentagon witnesses show that the three shell equalities alone do not
 eliminate every remaining order.
 
 The shared-blocker branch `A = X` now has stronger exact incidence and order
-producers.  The two full exact-four rows meet in exactly `{C, J}`; the common
-shell is uniquely `{C, K, J, L}`, with `K` and `L` both outside the first-apex
-row.  Moreover `C` and `J` alternate across the chord joining the first apex
-to the common blocker in every compatible boundary indexing.  Collision
+producers.  The common blocker contributes one full exact-four critical shell.
+Its support meets the selected first-apex four-support exactly in `{C, J}`;
+the latter is a chosen four-subset of a physical apex radius class that may
+have multiplicity four or six.  The common shell is uniquely `{C, K, J, L}`,
+with `K` and `L` both outside that selected first-apex support.  Moreover `C`
+and `J` alternate across the chord joining the first apex to the common blocker
+in every compatible boundary indexing.  Collision
 localization now also proves that `J` lies outside the strict first-cap
 interior.  Since `J` remains on the positive retained first-apex radius, the
 global cap-cover theorem puts it in the left- or right-adjacent closed cap.
@@ -245,8 +248,9 @@ nonalternating orders, so common-pair alternation is the complete linear
 five-point consequence of these shell equalities.  The auditable enumeration
 is in
 `scratch/retained-omission-e1/a-x-kalmanson-enumeration/report.md`.
-Second, an exact rational strictly convex eight-point witness realizes two
-full exact unit four-shells whose intersection is exactly `{C, J}`.  Its exact
+Second, an exact rational strictly convex eight-point witness realizes the
+stronger local specialization of two full exact unit four-shells whose
+intersection is exactly `{C, J}`.  Its exact
 verification is in
 `scratch/retained-omission-e1/a-x-two-exact-circles/`.  This is an authenticated
 local no-go: convexity plus the two full circles cannot close the `A = X`
@@ -262,6 +266,27 @@ row centered in the seed escapes the seed.  This theorem adds no new
 obligation; the next closure step is to consume that escaping
 row in one of the two existing adjacent-cap leaves rather than split either
 leaf again.
+
+#### Exact-six selected-support seed checkpoint (2026-08-03)
+
+`endpointFresh_twoShellSeed_card_eq_six_of_sharedBlocker` sharpens the local
+search universe from the generic upper bound eight to exactly six points in
+the shared-blocker branch.  It combines the two four-element selected supports
+with their proved exact intersection `{C, J}`.  A focused `lean_verify` audit
+reports only `propext`, `Classical.choice`, and `Quot.sound`; the theorem adds
+no obligation and is a quantitative producer, not a contradiction.
+
+This checkpoint also fixes a load-bearing modeling boundary.  The first-apex
+row is a `SelectedFourClass`, not necessarily the full physical radius class:
+in the six-point apex profile it is one of several equidistant four-subsets.
+Consequently the current v29/v30 encoding, which stores one physical shell per
+nonapex center and reuses the old paired/fresh case universe, does not directly
+encode this shared-blocker continuation.  A sound successor must explicitly
+quantify over every equidistant selected four-subset at the relevant seed
+centers (or prove an equivalent universal reduction).  The intended query is
+whether every escaping selected row avoids a second hit of `Q.row.support` in
+the adjacent cap containing `J`.  Treating `Q.row` as a full exact-four shell
+would create a spurious inconsistency and is forbidden.
 
 The negative arm now carries
 an explicit new common-deletion packet rather than an inert omission.  The

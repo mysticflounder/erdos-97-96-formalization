@@ -8035,6 +8035,40 @@ private noncomputable def endpointFreshTwoShellSeed
       E.fiber.source₁.2).toCriticalFourShell.support ∪
     Q.row.support
 
+/-- In the shared-blocker branch, the critical four-shell support and the
+selected first-apex four-support form an exact six-point seed: their
+intersection is precisely the pair `C, J`.
+
+The first-apex physical radius class may contain six points; this theorem is
+about the selected four-support `Q.row.support`, not exact physical
+multiplicity at that apex. -/
+theorem endpointFresh_twoShellSeed_card_eq_six_of_sharedBlocker
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    {E : RetainedMatchingEndpointCriticalFiber W}
+    (Q : EndpointFreshFirstApexRowSource E)
+    (K_mem_J_shell :
+      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+    (hAX :
+      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+        H.centerAt Q.J Q.J_mem_A) :
+    (endpointFreshTwoShellSeed E Q).card = 6 := by
+  classical
+  let KA :=
+    (H.selectedAt E.fiber.source₁.1
+      E.fiber.source₁.2).toCriticalFourShell
+  change (KA.support ∪ Q.row.support).card = 6
+  have hinter : KA.support ∩ Q.row.support = {Q.C, Q.J} :=
+    endpointFresh_commonSupport_inter_firstApexRow_eq_pair_of_sharedBlocker
+      Q K_mem_J_shell hAX
+  have hpairCard : ({Q.C, Q.J} : Finset ℝ²).card = 2 := by
+    simpa using Finset.card_pair Q.J_ne_C.symm
+  rw [Finset.card_union, KA.support_card, Q.row.support_card, hinter]
+  omega
+
 /-- Minimality and the all-large cap floor force a global K4 row to escape
 the two supports already exposed by an endpoint collision.
 
