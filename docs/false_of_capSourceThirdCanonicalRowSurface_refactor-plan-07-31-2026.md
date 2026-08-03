@@ -2289,3 +2289,16 @@ vertices—not those centers—in `oppIndex1`.  No source-clean theorem supplies
 the missing second cap-interior membership or eliminates the distinct-cap,
 noncanonical same-cap, or non-hit constructors.  The coordinator frontier
 and closure status are therefore unchanged.
+
+## 2026-08-03 mixed-cap branch wiring checkpoint
+
+The equal-center products
+`distinctBlockersDifferentCaps × sameCapWithInternalFiberSource` and its
+reverse are now discharged source-cleanly in
+`FrontierLiveClosure.lean`. Each branch uses
+`SurplusCapPacket.capInteriorByIndex_ne_of_mem_of_mem_ne` to identify the two
+indexed cap interiors containing the same center, then contradicts the
+declared distinct cap indices. A direct Lean 4.27 check passed. This is a
+branch reduction only: the non-hit arms and the noncanonical same-cap ×
+same-cap arm remain open, so the load-bearing residual theorem receives no
+closure credit.

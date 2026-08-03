@@ -2378,3 +2378,14 @@ generic two-cap terminal. This is a frontier clarification only: the
 load-bearing declaration
 `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
 open, on spine, and receives no closure credit.
+
+### Mixed-cap FreshThird branch wiring (2026-08-03)
+
+The two equal-center mixed-cap products
+`distinctBlockersDifferentCaps × sameCapWithInternalFiberSource` and its
+reverse now close source-cleanly via indexed-cap uniqueness and the declared
+cap-index inequality. The Lean 4.27 direct check passed. This narrows the
+coordinator frontier but does not close
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining`:
+both non-hit constructors and the noncanonical same-cap × same-cap product
+remain open and on spine.

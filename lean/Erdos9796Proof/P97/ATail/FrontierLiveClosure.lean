@@ -11448,24 +11448,17 @@ theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
                   simpa [hcenters] using sourceCenter_mem'
                 exact closeCanonicalFirst sourceCenter_mem_first
                   fiberSource_mem_cap' hcapIndex'
-              · exact
-                  false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
-                    (P := P) (Pρ := Pρ)
-                    (hρne := hρne) (hfrontierFour := hfrontierFour)
-                    (hρfour := hρfour)
-                    (hfrontierInteriorEq := hfrontierInteriorEq)
-                    (hρInteriorEq := hρInteriorEq)
-                    (T := T) (hpairsDisjoint := hpairsDisjoint)
-                    (hblockersNe := hblockersNe)
-                    (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
-                    (LP := LP) (hLP := hLP) (MP := MP)
-                    C Q
-                    (.equalCrossRowCenters hfirst hsecond hcenters
-                      firstNonCanonical
-                      (FreshThirdNonCanonicalInteraction.sameCapWithInternalFiberSource
-                        centers_ne' source₁_mem' source₂_mem' overlap_eq'
-                        capIndex' sourceCenter_mem' freshCenter_mem'
-                        fiberSource_mem_cap' hcapIndex'))
+              · have hsrc : sourceCap = capIndex' := by
+                  by_contra hne
+                  exact
+                    (S.capInteriorByIndex_ne_of_mem_of_mem_ne sourceCenter_mem
+                      (by simpa [hcenters] using sourceCenter_mem') hne) rfl
+                have hfr : freshCap = capIndex' := by
+                  by_contra hne
+                  exact
+                    (S.capInteriorByIndex_ne_of_mem_of_mem_ne freshCenter_mem
+                      freshCenter_mem' hne) rfl
+                exact caps_ne (hsrc.trans hfr.symm)
       | sameCapWithInternalFiberSource centers_ne source₁_mem source₂_mem
           overlap_eq capIndex sourceCenter_mem freshCenter_mem fiberSource_mem_cap =>
           by_cases hcapIndex : capIndex = S.oppIndex1
@@ -11483,24 +11476,17 @@ theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
             | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
                 overlap_eq' sourceCap' freshCap' sourceCenter_mem' freshCenter_mem'
                 caps_ne' =>
-                exact
-                  false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
-                    (P := P) (Pρ := Pρ)
-                    (hρne := hρne) (hfrontierFour := hfrontierFour)
-                    (hρfour := hρfour)
-                    (hfrontierInteriorEq := hfrontierInteriorEq)
-                    (hρInteriorEq := hρInteriorEq)
-                    (T := T) (hpairsDisjoint := hpairsDisjoint)
-                    (hblockersNe := hblockersNe)
-                    (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
-                    (LP := LP) (hLP := hLP) (MP := MP)
-                    C Q
-                    (.equalCrossRowCenters hfirst hsecond hcenters
-                      firstNonCanonical
-                      (FreshThirdNonCanonicalInteraction.distinctBlockersDifferentCaps
-                        centers_ne' source₁_mem' source₂_mem' overlap_eq'
-                        sourceCap' freshCap' sourceCenter_mem' freshCenter_mem'
-                        caps_ne'))
+                have hsrc : capIndex = sourceCap' := by
+                  by_contra hne
+                  exact
+                    (S.capInteriorByIndex_ne_of_mem_of_mem_ne sourceCenter_mem
+                      (by simpa [hcenters] using sourceCenter_mem') hne) rfl
+                have hfr : capIndex = freshCap' := by
+                  by_contra hne
+                  exact
+                    (S.capInteriorByIndex_ne_of_mem_of_mem_ne freshCenter_mem
+                      freshCenter_mem' hne) rfl
+                exact caps_ne' (hsrc.symm.trans hfr)
             | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
                 overlap_eq' capIndex' sourceCenter_mem' freshCenter_mem'
                 fiberSource_mem_cap' =>
