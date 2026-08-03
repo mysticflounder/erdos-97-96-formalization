@@ -2177,3 +2177,35 @@ This is an audit and implementation-direction checkpoint only.  No new
 obligation was introduced, no wrapper or SAT artifact was promoted, and
 `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
 the explicit open load-bearing leaf.
+
+## 2026-08-03 retained-opposite-interaction and round-7 provenance checkpoint
+
+The normalized residual packet was strengthened without adding an obligation:
+`FreshThirdNormalizedResidualRemainingCase.firstNonHit` now retains the
+opposite source-row interaction, and `secondNonHit` retains the first-row
+interaction.  The coordinator and residual dispatcher pass these values
+through explicitly.  This preserves the cross-row information that the old
+packet erased before the load-bearing leaf, and is a genuine narrowing of the
+interface rather than a wrapper or a recursive assumption.  The targeted
+`FrontierLiveClosure` source check succeeds under Lean 4.27.0.
+
+The round-7 triple-center smoke was rerun after repairing its worker
+provenance: the v6 globals are now overridden at wrapper import time, so both
+worker `result.json` and run `summary.json` report schema 7 and the v7 script
+hash.  Case `fresh_DDD_k0_d1_f2` is `unsat` in the bounded external Z3 model.
+The artifact still targets the all-large retained-omission coordinator, not
+the FreshThird normalized leaf; it has no Lean certificate, no Euclidean
+realization, and no universal claim.  It is therefore diagnostic evidence
+only and receives no closure credit.  Fresh artifacts are under
+`scratch/retained-omission-e1/round7-triple-center-multiplicity/artifacts-v7-provenance-fixed/`.
+
+The mandatory post-round global theorem-bank pass found no FreshThird or
+normalized-residual declaration.  `Problem97.eq_of_equidistant_three_noncollinear`
+is import-reachable, but needs two centers sharing a non-collinear triple;
+the RVOL triple-center incompatibility kernels are source-clean but not
+imported here and their U5 interfaces do not adapt directly.  Consequently
+the next source-faithful target remains a producer/consumer that retains a
+third common incidence, common-radius/fiber witness, or boundary transport
+for the non-hit and noncanonical equal-center branches.  The explicit
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` leaf is
+still open.

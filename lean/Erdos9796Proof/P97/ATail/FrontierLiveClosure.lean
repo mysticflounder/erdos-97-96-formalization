@@ -10531,11 +10531,13 @@ theorem freshThirdNormalizedResidualCase_of_crossRowResidual
       · exact (hsecond' hsecond).elim
       · exact .equalCrossRowCenters hfirst hsecond hcenters
     · exact .secondNonHit
+        firstInteraction
         (FreshThirdCapSourceInteraction.nonHit_of_not_crossRowHit
           (P := P) (Pρ := Pρ) C.secondSource Q secondInteraction hsecond)
   · exact .firstNonHit
       (FreshThirdCapSourceInteraction.nonHit_of_not_crossRowHit
         (P := P) (Pρ := Pρ) C.firstSource Q firstInteraction hfirst)
+      secondInteraction
 
 /-- The rigid positive packet in the equal-center residual: both cap-source
 rows are the same exact four-point row, containing precisely the two cap
@@ -11213,7 +11215,11 @@ inductive FreshThirdNormalizedResidualRemainingCase
     (Q : FreshThirdBlockerFiber P Pρ) : Prop where
   | firstNonHit
       (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+      (secondInteraction :
+        FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
   | secondNonHit
+      (firstInteraction :
+        FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
       (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q)
   | equalCrossRowCenters
       (firstHit : FreshThirdCrossRowHit P Pρ C.firstSource Q)
@@ -11284,7 +11290,7 @@ theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
     · exact deleted_not_mem h.2.1
     · exact deleted_not_mem h.2.2
   cases hresidual with
-  | firstNonHit data =>
+  | firstNonHit data secondInteraction' =>
       exact
         false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
           (P := P) (Pρ := Pρ)
@@ -11297,8 +11303,8 @@ theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
           (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
           (LP := LP) (hLP := hLP) (MP := MP)
           C Q
-          (.firstNonHit data)
-  | secondNonHit data =>
+          (.firstNonHit data secondInteraction')
+  | secondNonHit firstInteraction' data =>
       exact
         false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
           (P := P) (Pρ := Pρ)
@@ -11311,7 +11317,7 @@ theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
           (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
           (LP := LP) (hLP := hLP) (MP := MP)
           C Q
-          (.secondNonHit data)
+          (.secondNonHit firstInteraction' data)
   | equalCrossRowCenters hfirst hsecond hcenters =>
       have closeCanonicalFirst :
           ∀ {capIndex : Fin 3},

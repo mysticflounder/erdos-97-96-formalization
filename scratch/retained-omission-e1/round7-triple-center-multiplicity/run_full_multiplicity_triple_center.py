@@ -52,6 +52,15 @@ class FullMultiplicityTripleCenterEncoding(
             )
 
 
+# The v6 runner executes cases in ProcessPoolExecutor workers.  These
+# overrides must therefore be installed at module import time, not only in
+# ``main``: workers otherwise retain v6's provenance and encoding class.
+v6.HERE = HERE
+v6.SCRIPT_PATH = SCRIPT_PATH
+v6.SCHEMA_VERSION = SCHEMA_VERSION
+v6.FullMultiplicityCapLocalizationEncoding = FullMultiplicityTripleCenterEncoding
+
+
 def main() -> int:
     """Reuse the audited v6 runner with v7 provenance and encoding class."""
     v6.HERE = HERE
