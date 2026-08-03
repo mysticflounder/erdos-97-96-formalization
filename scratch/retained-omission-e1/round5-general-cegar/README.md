@@ -9,6 +9,21 @@ at `|A| = 15`.  It covers both constructors of
 It is not a proof of the Lean theorem and it is not a universal `n = 15`
 counterexample search.
 
+## Current source-frozen successor: schema v33
+
+Schema v33 isolates the ordinary fresh-arm endpoint-collision/shared-blocker
+continuation.  It encodes the exact six-point union of the common critical row
+and `Q.row`, universally chooses one selected four-subset at every seed center,
+and requires one of those chosen rows to escape the seed.  The selected rows
+remain four-subsets rather than full physical circle classes.
+
+The focused contract suite passes, and one spawned SSS smoke case is externally
+`UNSAT` with valid child provenance and no enumerated assignments.  This is an
+infrastructure and single-slice milestone, not closure of the 192-case matrix
+or of the Lean anchor.  See
+[`V33-ENDPOINT-SHARED-BLOCKER-SEED.md`](V33-ENDPOINT-SHARED-BLOCKER-SEED.md)
+for the exact scope, counts, hashes, and trust boundary.
+
 ## Trust boundary
 
 The program emits one of `sat`, `unsat`, `unknown`, or `error` for each finite

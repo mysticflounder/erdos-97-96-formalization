@@ -1,0 +1,75 @@
+{
+  "schema_version": 33,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "composition": {
+    "encoding": "round5_cegar_v33.Encoding subclasses round5_cegar_v32.Encoding",
+    "engine": "v32-composed authenticated v30/v19 Boolean-master and replay runtime",
+    "scope": "exact n=15, ordinary first-interior fresh arm, endpoint cross-hit plus shared blocker",
+    "semantic_bool_count": "780 + 15 * profiles.count('D') + 251"
+  },
+  "role_map": {
+    "kept": "Q.C and the first endpoint common-shell source",
+    "deleted": "the middle point in the ordinary v8 fresh walk",
+    "fresh": "Q.K and the endpoint-collision source, still in the first strict cap interior",
+    "J": "one-hot over carrier labels outside the first strict cap interior",
+    "common": "the dynamic critical row selected by blocker(kept)",
+    "qrow": "Q.row, an exact selected four-subset of rich[0,0]",
+    "seed": "common union qrow, exactly six points",
+    "qsel": "one simultaneous selected four-class choice at every active seed center"
+  },
+  "endpoint_shared_blocker_constraints": {
+    "blocker_collision": "block[fresh,*] = block[kept,*]",
+    "j_domain": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+    "j_cross_hit": "J[j] implies fresh belongs to dynamicRow(j)",
+    "j_shared_blocker": "J[j] implies block[j,*] = block[kept,*]",
+    "frontier_intersection": "common intersect rich[0,0] is exactly {kept,J}",
+    "qrow": "exactly four, subset rich[0,0], contains kept and J",
+    "seed": "common union qrow has cardinality six",
+    "selected_rows": "qsel[c] is an exact four-subset of k4[c] exactly when c is in seed",
+    "escape": "some active qsel[c] contains a point outside seed"
+  },
+  "semantic_boolean_delta": {
+    "j": 11,
+    "qrow": 15,
+    "qsel": 225,
+    "total": 251,
+    "seed": 0
+  },
+  "selected_support_guard": {
+    "qrow_full_circle": false,
+    "qsel_full_circle": false,
+    "power_pattern_registration": false,
+    "reason": "selected four-subsets need not be full physical radius classes"
+  },
+  "runtime_binding": {
+    "base": "round5_cegar_v32._bound_v32_runtime",
+    "v12_v16": "schema paths, Encoding, source contract, and provenance rebound to v33",
+    "v19": "schema paths, source contract, provenance, and frozen-provenance verifier rebound to v33",
+    "v30": "profile-specific semantic Boolean counter rebound to the v33 formula",
+    "tracker_allowlist": "inherits v32 and adds every v33 endpoint-seed constraint family",
+    "restoration": "all mutable module globals restored after normal or exceptional exit"
+  },
+  "spawn_contract": {
+    "start_method": "spawn",
+    "workers": "closed interval 1 through 24",
+    "child_attestation": "exact v33 provenance, encoding identity, engine identity, PID, and spawn method",
+    "parent_gate": "case identity, frozen provenance, exact Boolean count, family counts, journal, terminal policy, and durable bytes"
+  },
+  "artifact_contract": {
+    "default_directory": "artifacts-v33-endpoint-shared-blocker-seed",
+    "names": {
+      "assignment_journal": "assignment-journal-v33",
+      "boolean_master": "boolean_master_v33.smt2.gz",
+      "boolean_prepass": "boolean_prepass_v33.json",
+      "cegar_trace": "cegar_trace_v33.json",
+      "full_frozen": "full_frozen_v33.smt2.gz",
+      "witness": "witness_v33.json"
+    }
+  },
+  "terminal_status": {
+    "complete": ["sat", "unsat"],
+    "incomplete": ["unknown", "budget", "error"],
+    "unknown_policy": "fail closed; no blocker is admitted without replay-authenticated UNSAT"
+  },
+  "trust_boundary": "external exact-n15 shared-blocker-slice evidence; not finite coverage, Lean closure, or a universal E1 proof"
+}

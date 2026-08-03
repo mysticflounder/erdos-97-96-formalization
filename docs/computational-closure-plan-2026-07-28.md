@@ -303,6 +303,32 @@ combines that adapter with global minimality and the exact-six theorem.  Thus
 chosen row.  Focused `lean_verify` checks report only `propext`,
 `Classical.choice`, and `Quot.sound`; neither theorem adds an obligation.
 
+#### V33 endpoint shared-blocker selected-seed slice (2026-08-03)
+
+Schema v33 is the first finite model in this lane to encode the theorem's
+universal selected-row polarity directly.  It is restricted to exact `n = 15`,
+the ordinary fresh arm, endpoint collision, and the shared-blocker outcome.
+For each labelled case it selects `J`, reconstructs the common critical row
+and `Q.row`, proves their encoded union has exactly six points, chooses one
+exact four-subset of the encoded K4 class at every active seed center, and
+requires at least one chosen row to escape the seed.
+
+The selected `Q.row` and seed rows are deliberately not registered as full
+physical circles.  V33 therefore does not infer nonmembership from exclusion
+from a selected subset and cannot use those exclusions as power-pattern
+nonzeros.  The new layer has 251 Boolean variables and 702 tracked constraints;
+the complete semantic count is `1031 + 15 * profiles.count("D")`.
+
+Ruff, Python compilation, eight focused tests, and three profile subtests pass.
+A spawned-child smoke has valid provenance and closes only
+`fresh_SSS_k0_d1_f2` externally at the Boolean prepass, with zero assignment
+records.  This is evidence that the narrowed encoding is active, not a
+coverage result.  The parent remains open with the same eight terminal leaves
+and no ninth obligation.  The next computation is the frozen 192-case matrix;
+its terminal review must include both the global theorem-bank audit and, since
+v33 is odd-numbered, the CEGAR efficiency audit.  Exact scope and hashes are in
+`scratch/retained-omission-e1/round5-general-cegar/V33-ENDPOINT-SHARED-BLOCKER-SEED.md`.
+
 The 2026-08-03 checkpoint builds the complete
 `Erdos9796Proof.P97.ATail.FrontierLiveClosure` target and repairs the stale
 constructor arities in the already-committed normalized fresh-third adapter.
