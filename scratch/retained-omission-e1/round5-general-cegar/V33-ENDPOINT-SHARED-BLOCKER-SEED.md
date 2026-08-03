@@ -84,8 +84,10 @@ Focused verification is green:
 - pytest: 9 tests and 3 profile subtests passed; and
 - spawned-child smoke: `child_contract_valid = true`.
 
-The source-current smoke artifact is
-`artifacts-v33-smoke-checkpoint2/20260803T132004.472447Z-smoke-pid9399`.
+The clean-checkout smoke from detached commit `643f30fe` is
+`artifacts-v33-smoke-clean-checkout/20260803T133829.616026Z-smoke-pid81530`;
+its `summary.json` SHA-256 is
+`f77e1508a5e5381f89db7f91d3ffc9fc0de41f9fae61f82b02cc826c8936ed9a`.
 Its single case, `fresh_SSS_k0_d1_f2`, is externally `UNSAT`, complete, and
 produced zero assignment records.  This establishes that the v33 clauses can
 close at least one labelled SSS slice in the Boolean prepass.  It does not say
@@ -93,7 +95,10 @@ anything yet about the other 191 cases.
 
 ## Next action
 
-Run the frozen 192-case matrix without changing its sources.  On termination,
+The frozen 192-case matrix is running from detached commit `643f30fe` with 23
+nice-15 workers under
+`artifacts-v33-production2-clean-643f30fe/20260803T133955.191739Z-matrix-pid89083`;
+the separate v28 miner retains the twenty-fourth local core.  On termination,
 authenticate every child and durable artifact before aggregating results.
 Because v33 is odd-numbered, pair its mandatory global theorem-bank audit with
 an efficiency/observability audit before designing any successor round.

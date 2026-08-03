@@ -328,9 +328,13 @@ A spawned-child smoke has valid provenance and closes only
 `fresh_SSS_k0_d1_f2` externally at the Boolean prepass, with zero assignment
 records.  This is evidence that the narrowed encoding is active, not a
 coverage result.  The parent remains open with the same eight terminal leaves
-and no ninth obligation.  The next computation is the frozen 192-case matrix;
-its terminal review must include both the global theorem-bank audit and, since
-v33 is odd-numbered, the CEGAR efficiency audit.  Exact scope and hashes are in
+and no ninth obligation.  The frozen 192-case matrix was launched from
+detached commit `643f30fe` with 23 nice-15 workers under
+`artifacts-v33-production2-clean-643f30fe/20260803T133955.191739Z-matrix-pid89083`;
+v28 retains the twenty-fourth local core.  Its terminal review must include
+both the global theorem-bank audit and,
+since v33 is odd-numbered, the CEGAR efficiency audit.  Exact scope and hashes
+are in
 `scratch/retained-omission-e1/round5-general-cegar/V33-ENDPOINT-SHARED-BLOCKER-SEED.md`.
 
 The 2026-08-03 checkpoint builds the complete
