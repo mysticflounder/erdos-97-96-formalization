@@ -2302,3 +2302,31 @@ declared distinct cap indices. A direct Lean 4.27 check passed. This is a
 branch reduction only: the non-hit arms and the noncanonical same-cap ×
 same-cap arm remain open, so the load-bearing residual theorem receives no
 closure credit.
+
+## 2026-08-03 cap-eight theorem-bank audit
+
+The cap-eight search was checked against source rather than promoted from the
+agentic summary.  `exists_capSource_thirdCanonicalRow_omits_each_collisionPair`
+is the producer already used to build `C`; its only useful consequence here is
+the exact-four canonical row plus cross-pair deletion survival.  The apparent
+consumer `false_of_twoCapSources_freshThirdBlockerFiber_core` is downstream of
+the normalized residual and therefore cannot be used to prove
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` without a
+cycle.
+
+The generic cap-count bank does not fill the gap.  The available
+`oppositeVertex_selectedClass_card_le_cap_card` and distinct-radius lower
+bounds are compatible with a cap of size at least eight; the M44 theorem that
+would force the canonical cap to size four is not available in this residual.
+`commonPhysicalPair_center_mem_capInteriorByIndex` additionally needs two
+strict-cap points at a common physical radius, which neither non-hit packet nor
+the noncanonical equal-center interactions retain.  The cap-index uniqueness
+primitive therefore closes only the two mixed-cap products already wired.
+
+The remaining source-faithful frontier is unchanged: `firstNonHit`,
+`secondNonHit`, and the noncanonical equal-center products (including
+distinct-cap × distinct-cap and same-cap × same-cap) still need a metric/order
+or reciprocal-incidence producer.  No theorem-bank declaration, finite search,
+wrapper, or downstream core is a valid closure.  This audit adds no obligation
+and assigns no closure credit; the load-bearing normalized-remaining theorem
+remains open.

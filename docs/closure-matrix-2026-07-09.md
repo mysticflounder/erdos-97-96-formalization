@@ -2389,3 +2389,22 @@ coordinator frontier but does not close
 `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining`:
 both non-hit constructors and the noncanonical same-cap × same-cap product
 remain open and on spine.
+
+### FreshThird cap-eight bank audit (2026-08-03)
+
+The indexed cap-eight search was verified against the imported source.  The
+producer `exists_capSource_thirdCanonicalRow_omits_each_collisionPair` is
+already upstream of the live `C` packet; the apparent terminal
+`false_of_twoCapSources_freshThirdBlockerFiber_core` is downstream of the
+normalized-remaining leaf and is therefore cyclic as a proof route.  The
+generic cap-count results permit the cap-cardinality hypothesis, while the M44
+size-four result is not in the residual hypotheses.  The common-physical-pair
+localization theorem also needs strict-cap/common-radius data that the
+remaining packet does not retain.
+
+Status remains `OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER` for
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining`.  The
+mixed-cap pair is closed; `firstNonHit`, `secondNonHit`, distinct-cap ×
+distinct-cap, and noncanonical same-cap × same-cap remain unclosed.  This is a
+documentation audit only: no SAT artifact, wrapper, downstream theorem, or
+conditional assumption changes the closure count.
