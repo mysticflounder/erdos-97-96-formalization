@@ -948,6 +948,324 @@ the live crossed terminal.  The smaller order-free algebraic core remains a
 second candidate family once an explicit Lean-suitable polynomial certificate
 has been extracted.
 
+The first schema-v9 resume tranche is complete but not exhausted.  An initial
+production-wrapper bug rejected the genuine v8/v6 checkpoint even though the
+low-level migration self-check passed; `restore_learned_cuts` now admits the
+current v9/v7 pair and its immediate v8/v6 predecessor, and a regression calls
+that real file-based wrapper rather than only the lower-level helper.  Replay
+of the actual checkpoint reconstructed all 203,687 guarded cuts (8,313
+structural and 195,374 theorem cuts).  The subsequent 600-second solver tranche
+processed 378 connected candidates, banked 285 further structural cuts and
+10,054 further theorem cuts, and ended `UNKNOWN_TIMEOUT` with no uncaught
+witness.  This is monotone search progress, not `UNSAT` and not Lean closure.
+Check times did not grow across the tranche (the final fifty averaged less than
+the first fifty); the dominant avoidable cost is the roughly four-minute
+checkpoint reconstruction.  Restore-local exact-expression memoization now
+preserves cached/uncached Z3 `sexpr`s and all fixture roundtrips.  On the real
+second-v9 checkpoint it reconstructed 9,082 structural and 228,898 theorem
+cuts in 79.027 seconds after base-audit construction, reducing that learned-cut
+phase by roughly a factor of three without changing formulas.  Later resumes
+should still use longer solver windows to amortize this exact load.
+
+The second source-at-common tranche resumed the first v9 result for an
+1,800-second solver window.  It processed 947 further connected candidates,
+added 484 `raw_btw_sep` structural cuts and 23,470 theorem cuts, and found no
+uncaught witness.  Z3 returned `unknown` with reason `canceled` at the exact
+deadline, so the runner correctly recorded `UNKNOWN_FAIL_CLOSED`; this is still
+neither `UNSAT` nor Lean closure.  The accumulated source-at-common checkpoint
+now contains 9,082 structural and 228,898 theorem cuts.
+
+Every completed CEGAR wave now has a mandatory universal-theorem review before
+another wave begins.  Launch a bounded subagent for a global indexed-Lean and
+theorem-bank pass, in addition to comparing the result checkpoint with its resume input,
+cluster fresh witnesses and learned keys up to the encoder's proved symmetries,
+and ask whether any recurring exact incidence/metric core can be stated without
+the finite-search bound.  Classify each candidate as a genuinely new
+general-cardinality theorem, an instance of an existing theorem-bank family, or
+fixed-witness evidence only.  Search the indexed Lean corpus once with an
+agentic natural-language query for each plausible new statement; after one
+substantive miss, write the lemma instead of continuing broad theorem search.
+Record a short report even when the result is “no new universal candidate.”
+This review does not turn an `UNKNOWN`, external `UNSAT`, or fixed-witness core
+into Lean closure.
+
+The required global pass for the second v9 tranche is recorded in
+`crossed-arm-audit/V9_WAVE_UNIVERSAL_CANDIDATES.md`.  It found no credible new
+general-cardinality theorem: all 23,470 fresh theorem keys instantiate the 21
+already registered families, all 484 fresh structural keys instantiate
+`raw_btw_sep`, and the new fourteen-role Kalmanson family matched zero times.
+The pass did identify 712 exactly subsumed selected-row cuts: 495
+`six_sparse_two_selected_rows` keys are redundant when the corresponding
+`six_sparse_row_equalities` cut is present, and 217
+`five_kalmanson_three_selected_rows` keys are redundant under the corresponding
+`five_kalmanson_three_shell_equalities` cut.  Suppressing those exact pairs is
+a fidelity-preserving encoder optimization, not a new theorem or closure.  The
+same exact normalization removes 6,195 keys from the complete checkpoint,
+reducing its theorem formulas from 228,898 to 222,703.  It preserves the v9/v7
+schemas and serialized key format, rejects mismatched guards or point tuples,
+and retains non-subsumed selected-row keys.  The focused self-check reports
+`SMOKE_OK` and `EXACT_SUBSUMPTION_OK`, including strict implication, insertion
+order independence, and the legacy selected-first/raw-later retirement case.
+
+The much larger assertion count has a second exact representation-level
+compression.  The 371,280 clauses in
+`critical_no_K4_after_source_deletion` are precisely the negative-triple CNF
+expansion of one guarded at-most-two constraint for each eligible
+`(source, center, anchor)`.  The compact unit-weight `PbLe` representation has
+3,264 assertions at `n = 17`.  An exhaustive Boolean check over all 32,760
+assignments for tail sizes 3 through 14 proves equivalence to the legacy
+triple clauses; constructing the two complete `n = 17` base encodings took
+31.326 seconds and 2.631 seconds respectively.  Both representations remain
+selectable.  After the live compact-arm benchmark below, `compact-pb` became
+the new-run default.  A separate immutable legacy constant ensures that v9/v7
+checkpoints omitting both metadata fields still mean `triple-clauses`;
+explicit top-level/manifest conflicts reject, and restore records both source
+and target representations.  This is an exact encoding optimization, not a
+stronger mathematical constraint or closure progress.
+
+That live benchmark has now passed on the source arm.  Restoring the complete
+legacy checkpoint into the compact model normalized 38,707 exact-orbit keys
+and 6,195 selected-row/raw-equality keys, leaving 183,996 theorem formulas.
+The resulting model had 352,325 total assertions rather than the previously
+recorded roughly 765,214.  Its first solver check returned `sat` in 8.220
+seconds; the candidate was processed normally and added three structural and
+26 non-suppressed existing-family theorem cuts (27 matches before one exact
+selected-row suppression).  The runner then stopped at the requested one-
+iteration limit with `UNKNOWN_ITERATION_LIMIT`.  This validates live
+restore/check/matcher compatibility of the compact representation; it remains
+non-exhaustive and supplies no closure evidence.
+
+The subsequent full compact source continuation did reach a matcher fixed
+point, but not exhaustion.  It processed 1,197 connected candidates and ended
+with a replay-validated `SAT` survivor, 9,488 structural keys, and 205,225
+canonical theorem keys.  No registered family matched the survivor, so simply
+extending the timeout under the same 22-family schema cannot make progress.
+The mandatory global pass in
+`crossed-arm-audit/COMPACT_SOURCE_V9_SAT_WAVE_UNIVERSAL_AUDIT.md` confirms that
+all fresh keys are existing-family instances and that no banked theorem closes
+the survivor.
+
+The next route is therefore a new universal equality theorem, not another
+bulk cut tranche.  The full 17-point QF_NRA replay contains 2,180 metric atoms
+and timed out `UNKNOWN` after 300 seconds.  Exact induced-core mining found a
+seven-point subsystem with eleven squared-distance equalities and closure-
+class sizes `5,3,3,2,2,2`.  Singular over characteristic zero proves the
+gauge-fixed ideal is the unit ideal, and msolve agrees in both variable
+orders; Z3 and cvc5 remain `UNKNOWN`.  The existing production signature
+matcher and one exact indexed-Lean search find no match.  The universal
+strengthening to prove is that these eleven equalities force the two gauge
+anchors to coincide.  Only after that Lean theorem and a sound generic
+`EdgeClosure` occurrence matcher are installed should the source CEGAR arm be
+resumed.  A fixed witness match or external algebraic `UNIT` result alone does
+not license a production cut or close the terminal.
+
+The production implementation has since narrowed the kernel frontier further.
+`CrossedArmSevenPointEuclideanObstruction.lean` now contains the normalized
+metric theorem, the exact eleven-atom injective adapter named by the matcher,
+and the `EqualityCore` realization bridge.  The independent matcher oracle,
+all eleven single-atom mutation checks, and the declaration gate pass (six
+focused tests).  The geometric terminal no longer needs the auxiliary `G7`
+and `G39` elimination consequences: retaining the conjugacy of the normalized
+point `V` lets the single `G3` consequence force `R = V`, after which the
+original distance equation gives the forbidden normalized endpoint.  Thus the
+only deliberate non-compiling term in this new theorem is the producer for
+`G3`.
+
+The exact global Buchberger ancestry for `G3` is checkpointed but is about 178
+MB and therefore fails the aggregate-tractability gate.  Direct reflection is
+also rejected: the available exact coefficients retain multi-megabyte entropy,
+and the `MvPolynomial` carrier is not executable for `native_decide`.  The
+current extraction route is instead the stronger localized contradiction that
+matches the Lean branch exactly, under the already proved nonzero hypotheses
+`bu - bs != 0`, `br - bv != 0`, `bv != 0`, and `bw != 0`.  No new CEGAR round
+may start until that localized certificate is kernel checked.  Completing the
+seven-point theorem will unlock, but will not by itself close, the live
+terminal: the source arm must then be rerun, globally theorem-audited, replayed,
+and wired through the Lean 4.27 spine and transitive axiom gate.
+
+The localized search has now produced an exact characteristic-zero
+product-unit identity in the best variable order `(t,bv,bs,bw,x,y)`:
+`x*y*bv*bw*t - 1` together with the six branch polynomials reduces to `1`.
+The Singular audit reports 3,355 multiplier terms (the prior order reported
+10,731), with an independently checked identity.  This is a certificate
+candidate, not yet a Lean artifact: the emitted rational multipliers are still
+too large for an unstructured one-shot `linear_combination`, so the next
+promotion step is a factored or staged kernel-checkable translation.  The
+exact staged DAG remains live as a second extraction route.
+
+The preferred exact artifact is now the localization-free square certificate
+`scratch/atail-force/same-blocker-common-omission-euclidean-v3/theorem-bank-cegar-audit/crossed-arm-qf-nra-v4/metric-core-miner-v9/localized-g3-product-square-certificate-exact-v1.singexpr`.
+With `x = bu - bs` and `y = br - bv`, its six exact rational multipliers satisfy
+`D1*e2 + D2*e5 + D3*e7 + D4*e8 + D5*e9 + D6*q1 =
+(x*y*bv*bw)^2`; the independent Singular replay has zero residual terms.
+The artifact is externally exact (SHA-256
+`36d337d0235e2a5d00c03a1a6ea433b1f3a8d58222c160a1b545a834e3bae64a`) but is
+not yet kernel evidence.  It still has 3,353 multiplier terms, so promotion
+must use a factored/staged Lean helper rather than silently importing the
+multi-megabyte expression.  Until that helper compiles under Lean 4.27, the
+`G3` producer remains the sole deliberate blocker in the seven-point shard.
+
+The q-branch has since yielded a smaller exact target.  The existing
+`verify-generic-factor-branches-q.sing` audit proves, over characteristic zero,
+that `e2,e5,e7,e8,e9,q1` imply
+`br * bs^2 * bw^2 * (bv - 1)^2 = 0`.  This target contradicts the already
+available nonzero hypotheses directly and is now preferred to the `G3`
+square route.  A direct Lean automation attempt did not close the implication
+within the configured matching/ring limits, so an exact Singular lift is being
+staged for a small kernel-checkable helper.  Until that lift and its Lean 4.27
+consumer compile, neither the q-branch nor the seven-point producer is closed;
+the square certificate above remains a recorded, externally checked fallback,
+not a promoted proof artifact.
+
+There is also an exact cyclic-orbit duplication among learned theorem cuts:
+`reversed_second(q0,q1,q2,q3,q4)` is the same guarded formula as
+`first(q4,q0,q1,q2,q3)`.  All 38,707 live-v9 keys in each family pair under
+that rotation, with no unmatched keys.  The encoder now canonicalizes that
+orbit only after checking arity, distinct in-range points, cyclic guard and
+orientation, and row signature; unproved or malformed matches are retained
+fail-closed.  Restore, import, live insertion, and both insertion orders now
+assert one canonical `first` formula.  This removes 38,707 assertions from the
+source checkpoint (and all 41,640 from the accumulated other-arm checkpoint),
+about 5.1 percent of the pre-compression total, without changing the accepted
+schema/family manifest.
+
+The first `other-at-common` tranche imported the normalized source checkpoint
+(9,082 structural and 222,703 theorem cuts after suppressing 6,195 exact
+redundancies) and ran for 1,800 seconds.  It processed 871 connected
+candidates, added 346 structural and 18,418 theorem cuts, and ended with 9,428
+structural and 241,121 theorem cuts.  The last solver call returned `unknown`
+with reason `canceled`, so the recorded status is correctly
+`UNKNOWN_FAIL_CLOSED`; this is not exhaustion, `UNSAT`, or Lean closure.  The
+global fourteen-role family again matched zero times.  Its mandatory global
+theorem-bank review is recorded in
+`crossed-arm-audit/OTHER_AT_COMMON_V9_WAVE_UNIVERSAL_CANDIDATES.md`.  It found
+no new universal/general-cardinality candidate: all fresh theorem cuts are
+instances of existing families and the 346 fresh structural cuts are
+`raw_btw_sep`.  It also confirmed that the 2,933 fresh `reversed_second` keys
+are exact rotations of fresh `first` keys.  One agentic search for the
+strongest remaining arbitrary-packet classifier and the required sibling and
+legacy registry pass found no reusable theorem.
+
+A source-to-Lean registry audit found that all 22 theorem-cut families have an
+exact mathematical producer, but six promotion interfaces needed repair.  Four
+Kalmanson entries named the obsolete `Problem97.CapCrossingKalmanson`
+namespace; the five-point convex family named only its positive-orientation
+half despite a dihedral guard; and the six-point two-`K2` family named a theorem
+in an explicit `Scratch` namespace.  The namespace metadata is corrected,
+`ConvexFivePointCore.false_of_core_of_common_orientation` now dispatches both
+strict orientations, and
+`CapCrossingKalmansonBridge.false_of_six_ccw_two_k2_three_selected_rows`
+provides the cardinality-generic production six-point proof.  Both new Lean
+theorems pass focused Lean 4.27 checks with transitive axioms exactly `propext`,
+`Classical.choice`, and `Quot.sound`.  This repairs the theorem-family producer
+registry; it does not discharge the separate decoder-level obligations for the
+base CNF or the five structural clause families.
+
+Both crossed orientations must presently be exhausted and certified.  This is
+not a removable labeling symmetry in the live interface:
+`FreshOutsideFirstBlockerFiber.blockers_eq` is supplied only for `source`, while
+`otherOutsidePoint` has no corresponding blocker equality.  The existing
+`FreshOutsideSecondBlockerFiber.toSwappedFirst` swaps the collision rows but
+preserves the source/other roles, and the producer, exact-support normalizer,
+coordinator, and CEGAR encoder all retain the two orientations separately.  A
+single-arm certificate would suffice only after proving the new geometric fact
+that `otherOutsidePoint` has the same blocker as the first source; no current
+source or theorem-bank entry supplies that fact.  Thus the materialization
+route must cover both `source-at-common` and `other-at-common`, unless that
+specific blocker-equality lemma is proved first.
+
+The replay back end itself does not need to be redesigned.  The production
+modules `Certificate/CheckpointedRup.lean`,
+`Certificate/CheckpointedRupCompact.lean`,
+`Certificate/CheckpointedRupCompactBoundary.lean`, and
+`Certificate/CheckpointedRupSemanticBoundary.lean` already provide the
+two-shard checkpoint composition, compact CPF1/CPA1 decoding, and the generic
+signed-DIMACS satisfaction boundary.  Their action language has no RAT
+constructor, and both the Python materializer and compact decoder reject RAT,
+malformed hints, and trailing data fail-closed.  The generated window proofs
+use `native_decide`, so the accepted trust profile is compiler-trusted Lean
+closure with `Lean.trustCompiler`, not compiler-independent kernel closure.
+
+The reusable scratch implementation consists of
+`materialize_checkpointed_rup.py`, `materialize_windowed_rup.py`, and
+`emit_compact_windowed_rup_replay_package.py` under
+`scratch/atail-force/unique4-exact-two-lrat-ingress/`, together with their
+same-named tests.  Promotion must parameterize the currently fixed replay
+namespace/module prefix and remove hard-coded source schemas, scratch-depth
+checker paths, and scratch provenance.  Build runners, text emitters, and the
+attester are not dependencies of the compact route.  Consequently the first
+missing implementation is the deterministic crossed-arm CNF/source-certificate
+exporter, not another RUP checker.
+
+That exporter must be a direct deterministic Boolean encoding, not Z3's
+generic `tseitin-cnf` tactic.  The live model contains bounded integer cyclic
+positions and an uninterpreted global edge-length class sort; generic tactic
+CNF would merely Boolean-abstract those theory atoms unless their consistency
+were encoded separately.  Use intra-block strict-order variables with total-
+order clauses for the movable cyclic positions, canonically defined
+strict-between auxiliaries, and one propositional edge-equivalence relation
+whose transitivity clauses model the global length-class equality.  The
+manifest must distinguish this semantic Booleanization from the current Z3
+research model and bind every variable/clause family and learned-key origin.
+
+The first exporter slice is now implemented in
+`scripts/crossed_arm_cegar_v9_encoding.py` and
+`scripts/materialize_crossed_arm_cegar_v9.py`, with adversarial tests in
+`scripts/test_materialize_crossed_arm_cegar_v9.py`.  It emits deterministic
+DIMACS, variable, clause-provenance, canonical learned-cut, and manifest
+artifacts.  Both discovery representations normalize to the same direct
+negative-triple Boolean semantics.  Verification regenerates the complete
+ledger from canonical learned keys rather than trusting coordinated artifact
+digests; CNF, provenance, alias, learned-key, and source-substitution tampering
+tests reject.  Standalone verification is explicitly source-unauthenticated,
+while authenticated status requires an external checkpoint `Path` whose bytes
+and normalized cuts the verifier rereads itself; fabricated prevalidated
+objects cannot receive that status.  Twenty-two bounded/adversarial tests and
+an independent acceptance audit pass.
+
+For the legacy source checkpoint the authenticated input-formula package has
+89,152 variables and 1,224,020 unique clauses, with CNF SHA-256
+`6a6257624904869b908980f6548825418efa71a2e67ec62b8878a383ab73cc88`.
+The later compact one-candidate checkpoint has the same 1,023,270-clause base
+and 89,152 variables, but cut normalization plus 29 genuinely fresh keys gives
+1,217,857 unique clauses and CNF SHA-256
+`e00fc35916ad54f6c0a24bf2b81ea1f0cdd2de8d6bc0e42c05f6a4b271e3bd27`.
+Both verify only as input formulas; neither package contains a SAT witness,
+`UNSAT` proof, LRAT/RUP evidence, or Lean semantic-bridge closure.
+
+If an arm reaches Boolean exhaustion, promotion follows this checked route:
+
+1. Add `scripts/materialize_crossed_arm_cegar_v9.py` to emit a canonical
+   DIMACS formula from the exact arm encoder and its validated guarded-cut
+   checkpoint.  The manifest must bind the arm, encoder/cut schemas, all input
+   digests, variable map, clause-family counts, and final CNF digest.
+2. Use the now-promoted generic scripts
+   `materialize_checkpointed_rup.py`, `materialize_windowed_rup.py`, and
+   `emit_compact_windowed_rup_replay_package.py`.  Their exact
+   `p97-pure-rup-source-v1` ingress hash-binds the source manifest, CNF, and
+   normalized LRAT; they reject RAT or malformed references fail-closed and
+   emit bounded replay windows.  The 18 focused tests pass.  A crossed-arm
+   adapter must still authenticate the encoder checkpoint and stage an actual
+   pure-RUP proof before these tools can be applied.
+3. Put generated Lean packages under
+   `ATail/CrossedArmCegarCertificate/Generated/{SourceAtCommon,OtherAtCommon}/`.
+   They may depend only on production source and committed generated payloads,
+   never on `scratch/`, `vendor/`, or a historical Lean tree.
+4. Add `ATail/CrossedArmCegarEncoding.lean`, defining the packet-induced
+   Boolean valuation and proving every parsed base, structural, and guarded
+   theorem-family clause.  Digests, Python replay, and an external `UNSAT`
+   result do not replace this semantic bridge.
+5. Add `ATail/CrossedArmCegarCertificate.lean` to compose the generated windows
+   with `CheckpointedRup.CompactBoundary.startUnsatisfiable`, transfer packet
+   satisfaction using
+   `CheckpointedRup.SemanticBoundary.entails_formula_of_signedClauses_sat`, and
+   expose one source-clean contradiction theorem per arm.  Wire both into
+   `false_of_capSource_firstFiber_crossedThreeRowExactSupports`.
+6. Accept closure only after the focused and full Lean 4.27 builds, refreshed
+   proof-blueprint spine, and transitive axiom audit pass.  `native_decide` and
+   its permitted `Lean.trustCompiler` boundary are allowed, but `sorryAx`,
+   scratch imports, unchecked RAT, and an `UNSAT_UNCERTIFIED` status are not.
+
 # Convert the conjunction packets into structures
 
 Both
@@ -1168,6 +1486,388 @@ only a source/build checkpoint: the terminal remains `sorry`-backed and has
 not passed a closing transitive proof-blueprint and axiom audit. Those gates
 must be rerun after the terminal is proved before any closure claim.
 
+## 2026-08-02 producer checkpoint
+
+The post-G3 semantic tail has now been isolated and kernel-checked in
+`scratch/q1_g3_tail.lean`: from
+`(bu - bs) * (br - bv) * bv * bw = 0`, the q1, e7, e8, and e9 equations
+successively force `bu = bs`, `bw = bs`, `bv = bs`, `bs = 1`, and then
+`(br - 1)^2 = 0`. This is a scratch proof only; it is not yet wired into the
+production coordinator.
+
+The exact characteristic-zero square certificate
+`localized-g3-product-square-certificate-exact-v1.singexpr` remains
+externally verified (zero Singular residual, 3,353 multiplier terms). A
+mechanical Lean translation parses, but the unstructured rational definitions
+hit deterministic `whnf` heartbeat exhaustion at 12,000,000 heartbeats after
+roughly 22 minutes. It is therefore `UNKNOWN`/resource-blocked, not kernel
+evidence, and must not be promoted as-is.
+
+The current computational route is an exact staged reconstruction of the
+stronger q-branch consequence
+`(bu - bs)^8 * bv^2 * bw ∈ (e2,e5,e7,e8,e9,q1)`, which would yield `bu = bs`
+under the already available nonzero hypotheses without the large G3
+multiplier. Finite-field discovery alone is insufficient; promotion requires
+an exact characteristic-zero certificate and a Lean 4.27 scratch check.
+
+## 2026-08-02 certificate correction
+
+The first shifted Singular report was invalid: its `e2` substitution omitted
+the `x` contribution in two `br * bu` terms.  Its reported 57-element basis,
+single-row lift, and 3,685-term reconstruction are stale and must not be used.
+The corrected QQ run passes an explicit source/substitution consistency check,
+reduces the target to zero, and reports a 61-element basis with 55 nonzero
+lift rows (1,100 coefficient terms).  A variable-order probe found a shorter
+439-term *basis lift* in order `(br,bs,bv,bw,x)`, but that is still only a
+component decomposition and not a standalone certificate; composing it back
+to the six shifted generators produced no compact Lean-facing identity.  No
+kernel-checked producer or production wiring follows from these runs.  The
+corrected metrics are recorded in
+`scratch/q1-power-search/compact_shifted_relation.txt` and
+`scratch/q1-power-search/x_subst_qq_corrected.out`; the older
+`scratch/q1-power-search/REPORT.txt` is explicitly marked stale.
+
+## 2026-08-02 spine-reachability correction
+
+The indexed theorem search does find the exact source-clean crossed-arm
+consumer in `ATail/CrossedArmSevenPointEuclideanObstruction.lean`:
+`crossed_arm_seven_point_collision` and its
+`not_realizes_of_crossedArmSevenPointCollisionCore` equality-core bridge.
+That result is a reusable banked theorem, but it does **not** currently count
+for the live closure. A read-only import/call-graph audit found that the two
+crossed-arm modules are only connected to each other; no production module
+imports either one, and the live
+`false_of_capSourceThirdCanonicalRowSurface` spine still reaches the three
+sorry-backed terminal leaves listed above. The source index also has no
+crossed-arm declarations because these files are unbuilt/uncommitted.
+
+Therefore the crossed-arm route is presently an off-spine candidate, not a
+closed sorry. To make it count, first add a production import edge (preferably
+through a dedicated adapter), then prove a packet-to-eleven-equality-core
+adapter for one terminal leaf. Importing the module alone is insufficient, and
+even a successful adapter would leave the other two terminal leaves open. The
+universal polynomial `q1EqZeroG7` remains unproved/resource-blocked; the
+source-clean geometric theorem must not be described as a kernel closure of
+the live root until its packet adapter and transitive spine wiring are both
+checked.
+
+The follow-up global indexed-bank pass also found no theorem that forces a
+cross-blocker equality from finite saturation alone. Existing declarations
+only provide equality-or-residual-avoidance dichotomies (or force equality
+after an equated-blocker hypothesis). The missing producer is therefore still
+the finite residual classifier or a direct metric contradiction, not a wiring
+alias to an existing bank theorem.
+
+## 2026-08-02 direct-lift and subset checkpoint
+
+An exact QQ Singular lift of the target
+`(bu - bs) * (br - bv) * bv * bw` against the six original generators
+`(q1,e2,e5,e7,e8,e9)` is now audited directly.  The target is a reduced
+Groebner-basis element, but the direct six-row lift has 5,038 coefficient
+terms, roughly 5.2 million coefficient characters, and no practical Lean
+translation path.  This is external algebra evidence only.
+
+A four-generator auxiliary subset (`U8,U24,U32,U34`) gives the same target in
+the scratch theorem `q1_g3_subset_test.lean`; the earlier cached run reported
+exit 0, but a fresh rerun and the full adapter theorem were killed with exit
+137 under current host memory pressure.  The adapter identities themselves
+are short `linear_combination` steps, and the post-target semantic tail is
+already kernel-checked in scratch.  Until the subset theorem recompiles
+independently under the current Lean 4.27 environment and is moved behind a
+production import/geometry adapter, this remains a promising route rather
+  than a closed producer or a closed sorry.
+
+### 2026-08-02 latest global theorem-bank check
+
+The latest agentic Lean-corpus search was run against the remaining enlarged-
+first-fiber leaf and its one-sided branch.  It found only the already-indexed
+compatibility adapters (`false_of_twoCapSources_oneSidedDeletionSurvival` and
+the first-fiber coordinator) plus the exact membership characterization
+`mem_outside_qBlockerFiber_iff_frontierDeletion_survival`.  A second search for
+a contradiction from `SixCenterDeletionSurvivalPacket` likewise found no
+source-clean terminal: the indexed five-center boundary explicitly treats the
+sixth actual blocker as blocked rather than as a sixth surviving row.
+
+Conclusion: the latest round has a completed global theorem-bank audit, but it
+did not produce a reusable producer for the one-sided leaf.  The leaf still
+needs a new terminal or a checked finite incidence classifier; adding another
+adapter would not improve the proof spine.
+
+## 2026-08-02 V21 FreshThird residual bank checkpoint
+
+The bounded V21 probe added explicit selectors for the two fresh source labels
+and the unordered `Q` pair, then ran the equal-center, same-blocker, and
+omission residual modes separately.  All three 60-second external-Z3 runs
+ended `UNKNOWN`/`canceled`; none produced an UNSAT core, Boolean cut, model,
+finite coverage result, or Lean ingress.  The exact run records and trust
+boundary are in
+`scratch/retained-omission-e1/round5-general-cegar/V21-FRESH-RESIDUAL-PROBE.md`.
+
+The required post-round global theorem-bank audit is recorded in
+`scratch/retained-omission-e1/round5-general-cegar/V21-GLOBAL-THEOREM-BANK-AUDIT.md`.
+All three local theorem-bank registries contain zero declarations matching
+FreshThird/NormalizedResidual/equal-center/same-blocker/common-endpoint
+producers, and the indexed Lean search found only existing helpers or generic
+unrelated consumers.  Therefore V21 is a documented computational NO-GO, not a
+closure or a reusable source-clean bridge.  The live normalized-residual
+`sorry` remains the next direct proof target; the next admissible route must be
+a new incidence/metric producer or a materially smaller incremental classifier.
+
+### V21 fidelity correction and n≥17 handoff
+
+The V21 result must not be read as evidence about the full live packet.  Its
+base script fixes the relaxed exact-`n=15`, `(6,6,6)` cap profile and labels the
+two selected cap sources from a four-point interior.  The production witness
+has `cap_card_ge_eight`, so the minimum live size is `n≥17`; it also requires
+both selected sources to lie in the same indexed cap interior, to avoid all
+four collision endpoints, and to carry exact selected-four support and
+deletion-survival data.  V21 does not encode those conditions.  Its NO-GO is
+therefore only a bounded-relaxation search result, not a satisfiability or
+impossibility statement for the live theorem.
+
+The post-round inventory
+`scratch/retained-omission-e1/round5-general-cegar/N17-ENCODER-INVENTORY.md`
+confirms that no existing scratch encoder contains all of these n≥17 fields.
+The faithful computational handoff is consequently an explicit n=17
+`(6,8,6)` model (or a uniform n≥17 model) with the cap-source, endpoint-
+exclusion, exact-support, and deletion-survival predicates represented before
+any new CEGAR run.  Until that model exists, do not spend another round on the
+V21 n=15 relaxation or promote its cuts into the theorem bank.
+
+## 2026-08-02 n>=17 faithful-model and bank-search checkpoint
+
+The first repaired concrete n=17 `(6,8,6)` incidence probe is now available
+at `scratch/retained-omission-e1/round5-general-cegar/n17_freshthird_incidence_probe.py`.
+Two encoding defects found during staged checking were corrected: the named
+apex indices now follow the actual carrier labels, and selector projections
+use implications rather than forcing every Q selector simultaneously.  The
+row-cap selector is deliberately an abstract geometric-center cap label and
+is no longer identified with carrier-vertex cap membership.
+
+The repaired model is SAT for each normalized residual arm
+(`firstNonHit`, `secondNonHit`, and `equalCrossRowCenters`).  This is bounded
+external incidence evidence only; coordinates, QF_NRA realization,
+cyclic/Kalmanson constraints, CEGAR cuts, Lean ingress, and general-n
+quantification remain absent.  It is therefore a diagnostic NO-GO for an
+incidence-only closure route, not a theorem or a counterexample to the Lean
+statement.  The run record and trust boundary are in
+`scratch/retained-omission-e1/round5-general-cegar/N17-FRESH-THIRD-INCIDENCE-ROUND1.md`.
+
+The post-round global theorem-bank audit is
+`scratch/retained-omission-e1/round5-general-cegar/LATEST-GLOBAL-BANK-AUDIT.md`.
+It confirms that no new n>=17/general-n certificate was banked, all three
+mandatory theorem-bank JSON registries have zero FreshThird/normalized-residual
+matches, and indexed Lean search finds only the current sorry-backed routers,
+helpers, and unrelated consumers.  In particular, the agentic search result
+that described the normalized-residual declaration as a contradiction was
+verified against its source and is only a `by sorry` declaration, not a
+reusable producer.  Do not promote that search hit or the SAT models into the
+closure matrix.
+
+## 2026-08-02 n>=17 cyclic/metric refinement checkpoint
+
+The repaired n=17 `(6,8,6)` model was strengthened with an optional bounded
+cyclic/metric layer: permutation positions with fixed apex blocks, exact-radius
+equalities, positive symmetric distances, triangle inequalities, the
+source-clean alternating shared-pair separator, and guarded strict Kalmanson
+implications for the two consecutive-center orientations.  The implementation
+keeps the prior implication-based Q projections and does not restore the old
+strong-arm clauses.  Details and the run record are in
+`scratch/retained-omission-e1/round5-general-cegar/N17-FRESH-THIRD-CYCLIC-METRIC-ROUND2.md`.
+
+The bounded external Z3 run returned `SAT` in 12,855 ms.  No UNSAT core,
+general-n cut, or Lean producer resulted; coordinates/QF_NRA realization,
+Lean ingress, and universal quantification remain omitted.  This is therefore
+another diagnostic NO-GO for this relaxation, not theorem closure.  A fresh
+global theorem-bank audit is required and is the next gate before choosing a
+different computational route.
+
+The required post-round bank audit is now complete at
+`scratch/retained-omission-e1/round5-general-cegar/ROUND2-GLOBAL-BANK-AUDIT.md`.
+All three theorem-bank registries have zero FreshThird,
+normalized-residual, or two-cap-source matches.  Agentic indexed search found
+only the live `sorry`, checked helpers, and fixed U1 packets that do not accept
+the FreshThird hypotheses; no transitive kernel-checked producer is available.
+The cyclic/metric round is therefore a documented NO-GO for bank reuse and
+closure.  Do not promote the SAT artifact or the search hits into the closure
+matrix.
+
+An arm-isolation replay of this same bounded model also forced each residual
+selector separately; `firstNonHit`, `secondNonHit`, and
+`equalCrossRowCenters` all remained `SAT`.  This is diagnostic evidence only,
+not a new CEGAR cut, and it leaves no arm-specific producer to wire.
+
+## 2026-08-02 banked convex-five-point CEGAR checkpoint
+
+The next bounded route used the already importable
+`Census554.ConvexFivePointCore.false_of_core_of_common_orientation` consumer.
+`scratch/retained-omission-e1/round5-general-cegar/n17_convex_core_cegar.py`
+detects four exact radius equalities in each n=17 cyclic/metric SAT model and
+learns only the same-orientation convex-order exclusion.  The replay reached
+finite `SAT` after five rounds and 323 learned cuts (84, 175, 48, 16, then 0),
+with no observed violating core in the final model.  The result and trust
+boundary are recorded in
+`scratch/retained-omission-e1/round5-general-cegar/N17-CONVEX-FIVE-POINT-CORE-ROUND3.md`.
+
+This remains external diagnostic evidence: the cyclic positions are not a
+`Realizes` witness, QF_NRA coordinates and universal-`n` coverage are absent,
+and the final SAT shadow does not imply a source-clean producer.  The learned
+cuts cannot be promoted without a Lean adapter that supplies the theorem's
+equality closure and convex-order hypotheses.  A fresh global theorem-bank
+audit is the next mandatory gate.
+
+The post-round audit is complete at
+`scratch/retained-omission-e1/round5-general-cegar/ROUND3-GLOBAL-BANK-AUDIT.md`.
+All three theorem-bank registries again have zero FreshThird,
+ConvexFivePointCore, normalized-residual, or general-n producers.  Agentic
+search found only residual coordinators, finite pattern-code detectors, and
+the live `sorry`; the fixed U1/N9 near-misses do not supply the FreshThird
+adapter.  Round 3 is therefore a NO-GO for bank reuse and closure.  No learned
+cut or search hit may be promoted without a source-clean Lean adapter and a
+transitive spine audit.
+
+## 2026-08-02 v26 PB-lowering/source-core checkpoint
+
+The latest computational artifact is the bounded v26
+PB-lowering/source-core pilot at
+`scratch/retained-omission-e1/round5-general-cegar/v26-pb-lowering-source-core.md`.
+After substituting the authenticated v22 55-fix projection, two independent
+fresh Z3 parses returned `UNSAT` for the lowered QF_LRA formula.  The returned
+source selectors are cyclic alternation, exact rich profiles, and strict
+Kalmanson.  This is an authenticated finite external result only: it has no
+proof certificate, no coordinate realization for the live packet, no
+universal-n argument, and no Lean/kernel ingress.  It does not close or
+narrow the live normalized-residual `sorry` by itself.
+
+The v26 global theorem-bank pass checked the required current-project prose and
+all four named P97 registries, then made exactly one indexed Lean search.  The
+only close hit was the fixed-card-11
+`RetainedKalmansonDecoder.false_of_retainedOccurrence` consumer.  It requires
+a proved carrier/boundary labeling and transformation from the v26 n=15
+exact-rich pattern to `RetainedOccurrence`; that bridge is absent.  Therefore
+v26 is a bridge target and bank NO-GO, not a reusable theorem.  Do not promote
+its finite UNSAT or its three source selectors into the closure matrix.
+
+The focused residual audit at
+`scratch/retained-omission-e1/round5-general-cegar/RESIDUAL-ROUTE-AUDIT-R2.md`
+confirms the same source frontier: the distinct-center arm is already
+source-clean, while the two non-hit arms end in `sameBlocker` or
+`sourceRowOmission`, and the equal-center arm ends in
+`CommonCollisionEndpointOmission`/complementary-membership data.  No current
+import supplies a terminal for those residual interfaces.  The next honest
+closure target is a new source-clean producer or terminal for one of those
+interfaces, not another wrapper or bank alias.
+
+## 2026-08-02 independent artifact-reuse and bank audit (R2)
+
+The independent audit at
+`scratch/retained-omission-e1/round5-general-cegar/CEGAR-ARTIFACT-REUSE-AUDIT-R2.md`
+checked the retained V21--V26 artifacts, the round-5 core-mining outputs, and
+the six named P97 registry files.  It also ran one agentic Lean-index query,
+which surfaced only the source-clean constructor
+`freshThirdNormalizedResidualCase_of_crossRowResidual`; source inspection
+confirms that it only packages the residual disjunction and does not derive
+`False`.  No banked exact-rich/five-support producer or normalized-residual
+terminal was found.
+
+The strongest bounded candidate is the 31-clause finite set-system lemma in
+`scratch/retained-omission-e1/round5-core-mining/MINIMIZATION-REPORT.md`.
+It uses three six-element rich supports, two four-element K4 rows, and nine
+cyclic-alternation cuts.  It is a finite Boolean obstruction, not yet a Lean
+theorem and not yet an adapter for the live packet.  Formalizing that lemma is
+the next computationally informed route; it must be followed by a
+source-faithful construction of its five supports and a transitive axiom
+audit.  Until those two bridges exist, broad CEGAR and direct sorry removal
+remain out of scope.
+
+## 2026-08-02 finite-cardinality bridge checkpoint
+
+The literal nested `native_decide` encoding of the 31-clause packet was
+stopped after more than twenty minutes without a result; raw witness
+enumeration is not a useful Lean target.  The first generic source-clean
+component now compiles in
+`scratch/retained-omission-e1/round5-core-mining/ThreeCoverCard.lean`:
+`Finset.card_le_three_of_three_cover_atMostOne` proves that a finite set
+covered by three domains, with at most one point in each domain, has
+cardinality at most three.  The check used Lean 4.27 via `lake env lean` and
+introduced no production imports or axioms.  This is only a bridge lemma: the
+live packet still lacks a proved construction of the three covering domains
+and their at-most-one bounds, so no closure or narrowing of the live
+`FreshThirdNormalizedResidualCase` obligation is claimed.
+
+## 2026-08-02 exact-15 adapter audit R3
+
+The independent audit at
+`scratch/retained-omission-e1/round5-general-cegar/EXACT15-ADAPTER-AUDIT-R3.md`
+checked whether `ATail/ExactFifteenApexProfile.lean` can be imported as a
+live adapter.  It cannot: its producers require `D.A.card = 15` and are
+apex-indexed `SelectedFourClass` statements, whereas the normalized residual
+contains arbitrary blocker-centered `CriticalFourShell`s and only the live
+`cap_card_ge_eight` lower bound.  The first missing bridge is therefore an
+apex-to-blocker-row transfer (or a new metric contradiction), not an import
+alias.  The exact-15 profile remains a conditional finite-slice producer and
+must not be counted as closure.
+
+The same audit confirms that `K7`/`K8` in the finite packet are scratch labels
+for four-point rows avoiding centers 7 and 8; they are not production
+interfaces.  The next constructive target is the rich--rich apex-cover
+counting lemma, followed by the three-domain cardinality bridge already
+checked in `ThreeCoverCard.lean`.
+
+## 2026-08-02 v27 ordered-distance minimization checkpoint
+
+The authenticated v27 external replay reduced the fixed n=15 shadow to two
+exact-rich profile literals plus strict Kalmanson; fresh parses returned
+`UNSAT`.  Its proposed theorem-facing shape is recorded in
+`scratch/retained-omission-e1/round5-general-cegar/v27-source-assertion-minimization.md`.
+This is discovery evidence only: there is no coordinate realization,
+general-n quantifier, proof certificate, or Lean ingress, and the required
+ordered-distance producer is absent from the current bank.  It therefore
+does not narrow the live normalized residual, but it identifies a smaller
+finite geometry target if the missing apex-to-blocker transfer is later
+proved.
+
+## 2026-08-02 v29 contract and theorem-bank checkpoint
+
+The latest completed v29 retry is recorded at
+`scratch/retained-omission-e1/round5-general-cegar/artifacts-v29-c-full-nonapex-shell/20260802T210119.317640Z-retry-pid32065/summary.json`.
+Its child-process contract is valid and all 67 cases completed, but every case
+is `UNKNOWN`; there is no cut, certificate, or mathematical narrowing.  The
+round is therefore a clean process result only and is not a closure artifact.
+
+The required post-round global theorem-bank pass is recorded at
+`scratch/retained-omission-e1/round5-general-cegar/V29-POST-ROUND-GLOBAL-THEOREM-BANK-AUDIT.md`.
+The three P97 registry scans found no retained-omission, tri-apex, cross-cap,
+or K8 producer, and one agentic Lean-index query found no exact target.  The
+closest source-clean facts remain fixed-radius cross-cap intersection bounds
+and the two-hit critical-shell terminal; the live `Q`/`G` interfaces do not
+provide the required same-radius two-hit bridge.  The next honest target is
+therefore still a source-faithful cross-cap incidence producer or a metric
+terminal, not a wrapper or bank alias.
+
+## 2026-08-02 paired-branch terminal audit
+
+The paired-common-deletion arm has now been checked against the available
+source-clean consumers. `ApexRichClassStructure` supplies only upper bounds
+for cap-slice intersections; `CommonDeletionTwoCenterPacket` supplies two
+exact-four rows with overlap at most two, but no lower overlap bound or global
+boundary order. The two-center bisector terminals therefore cannot be
+instantiated: the reverse-omission hypothesis explicitly says the retained
+source is outside the reverse shell, and the packet does not provide the
+shared chord/order data those terminals require. The Kalmanson and
+CapCrossing consumers have the same missing ordered-support hypotheses.
+
+The smallest honest paired-branch bridge would have to prove all of the
+following from the live packet: two distinct points in the two row supports,
+their distinctness from both centers, and a global CCW/nonalternation adapter
+(or an equivalent three-row Kalmanson pattern). None is currently available.
+The brute-force `native_decide` proof of the fixed n=15 five-support shadow is
+also not a practical terminal: nested finite enumeration has remained
+running for tens of minutes. The active computational route is consequently
+to formalize the human-readable three-domain/cardinality obstruction in
+small source-clean lemmas, then separately prove the geometric support/order
+adapter; no closure is claimed at this checkpoint.
+
 ## 2026-08-02 rich--rich count-kernel checkpoint
 
 The first unconditional production slice of that route is now isolated in
@@ -1214,3 +1914,168 @@ This is a reusable finite producer for the future parity adapter, not closure:
 the live `FreshThirdBlockerFiber` packet still does not derive its region
 hypothesis (nor the support extraction and radius-transfer data) for the
 residual theorem.
+
+## 2026-08-02 full-fidelity FreshThird residual checkpoint
+
+The repaired N17 probe is recorded at
+`scratch/retained-omission-e1/round5-general-cegar/N17-FRESH-THIRD-FIDELITY-PROBE-ROUND5.md`.
+It uses independent selectors for `C.firstSource` and `C.secondSource`,
+explicit cap-row survival predicates, guarded deletion-survival predicates,
+and the corrected equal-center arm.  The incidence artifact
+`artifacts-n17-generic/20260802T184918Z/result.json` is SAT in all three
+normalized residual arms (`firstNonHit`, `secondNonHit`, and
+`equalCrossRowCenters`).  The cyclic/metric artifact
+`artifacts-n17-generic/20260802T184331Z/result.json` and its per-arm runs are
+`UNKNOWN` at the bounded time limits, so this is an external finite diagnostic
+only: it has no coordinate realization, universal-n quantifier, Lean ingress,
+or kernel-checked certificate.
+
+The mandatory post-round theorem-bank audit is recorded by the round-5 global
+bank pass.  All six required P97 registries (including the general-n census)
+and one focused agentic Lean search returned no `FreshThird`,
+`sourceRowOmission`, normalized-residual, or equivalent terminal/adapter.
+The nearest imported facts are the existing cross-deletion survival/support
+equivalences and the distinct-center FreshThird terminal; neither supplies the
+missing common-radius, boundary-order, or blocker-row hypotheses.  The
+load-bearing `false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual`
+obligation therefore remains open, with no promotion or closure claim from
+this round.  The next honest implementation target is a source-faithful
+support/radius/order adapter or a new metric terminal, not a wrapper around the
+existing `sorry`.
+
+## 2026-08-03 normalized-residual adapter audit
+
+Two bounded audits rechecked the live `FreshThird` residual against the current
+source-clean bank.  The support audit confirms that `support_eq_radius` is
+directly usable only on the existing hit arms; the equal-center arm yields the
+exact four-point row and endpoint-omission facts already recorded, while the
+`FreshThirdOrderPartition` producer has no geometric input bridge.  The branch
+audit confirms that the `firstNonHit` and `secondNonHit` packets reduce only to
+equal-blocker/support equality or one-sided `Q` endpoint deletion-survival.
+Neither audit found a source-clean `False` consumer for the generic
+`FreshThirdBlockerFiber` packet, and neither changed the live obligation.
+
+One `nthdegree docs search --lean --agentic` query for the combined
+source-row-omission/equal-blocker/deletion-survival shape returned only the
+existing residual wrapper and consumers requiring first-fiber witnesses or
+common-radius hypotheses.  The search therefore supplies no reusable bridge;
+the next implementation target remains a new branch-specific incidence/metric
+consumer (or a producer strengthening that supplies its hypotheses), not an
+alias, wrapper, or scratch enumeration.
+
+## 2026-08-03 terminal API audit and cleanup checkpoint
+
+The normalized-residual terminal was re-audited against the current theorem
+bank after the Lean-file cleanup.  The first- and second-non-hit constructors
+provide only equal-blocker/support equality or one-sided `Q` deletion
+survival; `cross_deletion_survives_iff_not_mem_selected_support` normalizes the
+latter but does not produce `False`.  The equal-center both-hit constructor
+does provide the exact four-point support and simultaneous omission of all four
+collision endpoints, but no imported consumer accepts a generic
+`FreshThirdBlockerFiber` with those hypotheses.  The available
+`ThirdCenterCommonPair` and first-fiber five-center consumers additionally
+require absent survivor-relocation, common-radius, or first-fiber witness data.
+
+Thus there is still no source-faithful terminal or import-only bridge for the
+load-bearing normalized-residual `sorry`.  The next implementation must add a
+new occurrence/embedding or direct incidence/metric consumer (with its
+hypotheses constructed from this packet); adding another wrapper or finite
+enumeration would not narrow the live obligation.  The two untracked Lean
+axiom-audit probes were committed and pushed in `b35b77ab`; no untracked `.lean`
+files remain at this checkpoint.
+
+## 2026-08-03 equal-center canonical-cap branch checkpoint
+
+The first source-faithful consumer for the normalized packet is now present
+in `ATail/FrontierLiveClosure.lean` as
+`false_of_freshThirdEqualCenter_sameCapOppIndex`.  It consumes the genuine
+same-cap interaction data at `capIndex = S.oppIndex1`, the two both-hit
+hypotheses, and the equal-center equation.  The existing exact-row producer
+then identifies the first selected support with the four named sources; two
+cap sources and whichever fresh fiber source is in the canonical cap form a
+three-point subset of that selected row intersected with the cap.  The
+imported `CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two`
+consumer closes the branch unconditionally.
+
+The file typechecks directly under Lean 4.27.0.  This is a real branch
+consumer, not a wrapper or finite-search claim, but it does not yet close the
+parent normalized-residual `sorry`: the distinct-cap interaction, the
+same-cap interactions at the other cap indices, and the two non-hit packets
+still lack source-faithful consumers.  The next integration step is to wire
+this branch into the load-bearing coordinator while keeping those residual
+interfaces explicit.
+
+## 2026-08-03 build-hygiene checkpoint
+
+The shared endpoint-classification adapter in `FrontierLiveClosure.lean` had
+drifted from the producer's interface: the classifier returns `Nonempty`
+wrappers, while the terminal constructors consume the underlying witness
+types.  The adapter now unwraps those witnesses explicitly.  The equal-center
+canonical-cap consumer also now rewrites its selected support explicitly with
+`FreshThirdEqualCenterExactFourRow.first_support_eq`; this removes an
+elaboration-dependent `simpa` step.
+
+`lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure` succeeds under Lean
+4.27.0 after these repairs.  This is build hygiene only and closes no
+load-bearing `sorry`; the normalized-residual branch frontier recorded above
+is unchanged.
+
+## 2026-08-03 non-hit route audit
+
+The indexed theorem-bank audit for `firstNonHit` and `secondNonHit` found no
+source-faithful terminal or import-only bridge.  The two packets normalize only
+to equal selected supports (the `sameBlocker` constructor) or one-sided
+`Q.source₁`/`Q.source₂` deletion survival (the `sourceRowOmission` constructor).
+`cross_deletion_survives_iff_not_mem_selected_support` and the blocker-center
+separation lemma rewrite these facts, but yield only center inequality or an
+intersection upper bound; they do not supply the reciprocal row incidence,
+common radius, cap placement, or boundary-order hypotheses needed by an
+existing contradiction.
+
+Accordingly, the non-hit leaves remain genuine open interfaces.  The next
+implementation must construct a new incidence/metric consumer or strengthen
+the producer with a strictly narrowing packet.  Reusing the residual wrapper,
+an alias, or a finite SAT result would be circular or non-kernel evidence and
+does not advance the closure matrix.
+
+## 2026-08-03 normalized-residual coordinator wiring checkpoint
+
+The normalized coordinator now performs the source-clean narrowing that is
+available at this frontier.  The two non-hit constructors and every
+same-blocker/source-row-omission interaction are routed into the explicit
+`FreshThirdNormalizedResidualRemainingCase` packet.  In the equal-center
+positive branch, the canonical same-cap `oppIndex1` interaction is consumed by
+`false_of_freshThirdEqualCenter_sameCapOppIndex`; distinct-cap interactions and
+same-cap interactions at the other two indices are retained as the narrowed
+`FreshThirdNonCanonicalInteraction` pair.  No source-clean terminal has been
+invented for that remaining packet: its single theorem remains the loud
+load-bearing leaf
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining`.
+
+The coordinator call sites now pass the full section interface explicitly,
+which avoids Lean treating the first geometric hypothesis as the source row.
+`lake build Erdos9796Proof.P97.ATail.FrontierLiveClosure` succeeds under Lean
+4.27.0.  This is a genuine narrowing/wiring checkpoint, not closure: the
+remaining packet still contains the non-hit and noncanonical equal-center
+obligations, and the closure matrix must continue to count that leaf as open.
+
+## 2026-08-03 source-faithful consumer audit checkpoint
+
+The read-only theorem-bank audit is complete. It confirms that
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` has no
+import-reachable source-clean consumer in the current tree or the indexed P97
+banks. The `firstNonHit` and `secondNonHit` constructors expose only equal
+selected supports or one-sided deletion survival; the noncanonical
+equal-center constructors expose only distinct cap indices or same-cap
+interaction away from `S.oppIndex1`. Existing consumers require additional
+reciprocal row incidence, a common radius/first-fiber witness, or boundary
+order data that this packet does not retain. The closest RVOL tetrahedron
+consumer is not import-reachable and its U5 hypotheses do not map to this
+interface.
+
+Therefore the next closure step is a new source-faithful incidence/metric
+producer or terminal, or a producer strengthening that retains one of those
+missing invariants. An alias, wrapper, finite-search result, or conditional
+`Closers` package would be circular and receives no closure credit. The
+load-bearing leaf remains open and must stay explicit in the coordinator
+frontier. No new CEGAR round was run at this checkpoint.
