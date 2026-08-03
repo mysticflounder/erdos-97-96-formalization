@@ -1,0 +1,3 @@
+import Erdos9796Proof.P97.ATail.FanoSevenCircleObstruction
+
+#print axioms Problem97.FanoSevenCircleObstruction.coordinate_relations_incompatible

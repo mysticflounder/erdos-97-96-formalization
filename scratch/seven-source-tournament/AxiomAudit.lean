@@ -1,0 +1,7 @@
+import Erdos9796Proof.P97.ATail.SevenSourceTournament
+
+#print axioms Problem97.SevenSourceTournament.paleySupport_eq
+#print axioms Problem97.SevenSourceTournament.support_inter_card_eq_two_of_isSupportBounded
+#print axioms Problem97.SevenSourceTournament.isDoublyRegular_of_isSupportBounded
+#print axioms Problem97.SevenSourceTournament.exists_perm_of_isSupportBounded
+#print axioms Problem97.SevenSourceTournament.exists_perm_supports_eq_paley
