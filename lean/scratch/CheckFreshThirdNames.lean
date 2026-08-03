@@ -1,0 +1,7 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure
+
+open scoped EuclideanGeometry
+open Problem97
+
+#check ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.commonCollisionEndpointOmission_or_complementaryMembership
+#check ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_equalBlockers_complementaryMembership
