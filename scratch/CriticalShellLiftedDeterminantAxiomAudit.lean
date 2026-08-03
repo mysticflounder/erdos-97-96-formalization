@@ -1,0 +1,3 @@
+import Erdos9796Proof.P97.ATail.CriticalShellLiftedDeterminant
+
+#print axioms Problem97.ATailCriticalShellLift.det_liftedFour_ne_zero_of_three_mem_one_not_mem
