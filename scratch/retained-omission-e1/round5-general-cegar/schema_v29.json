@@ -1,0 +1,96 @@
+{
+  "schema_version": 29,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "inherits": {
+    "schema": "schema_v15.json",
+    "engine": "round5_cegar_v12.py",
+    "encoder": "round5_cegar_v15.py",
+    "meaning": "all v15 constraints, including the 4368 nonapex same-shell squared-distance superadditivity assertions, and all v12 Boolean/power refinement checks are retained; v29 changes only global K4 semantics at nonapex centers and the corresponding theorem-licensed power-shell registry"
+  },
+  "scope": {
+    "cardinality": 15,
+    "cap_profile": [6, 6, 6],
+    "antecedent": "exact n=15 plus all-large caps plus ApexRichClassStructure",
+    "normalization_status": "explicit exact-n15 finite slice; not a universal-target consequence"
+  },
+  "global_k4": {
+    "tracked_clause_count": 465,
+    "count_formula": "15 * 31",
+    "nonapex_centers": {
+      "labels": "0 through 11",
+      "support_semantics": "for every point x, k4[c,x] iff d(c,x) = k4_radius[c]",
+      "center_bit": "k4[c,c] is false",
+      "radius": "k4_radius[c] >= 1",
+      "cardinality": "at least four support bits are true",
+      "critical_row_tie": "used(c) implies k4[c,x] iff row[c,x]"
+    },
+    "apex_centers": {
+      "labels": "12 through 14",
+      "support_semantics": "k4[c,x] implies d(c,x) = k4_radius[c]; the reverse implication is deliberately absent",
+      "center_bit": "k4[c,c] is false",
+      "radius": "k4_radius[c] >= 1",
+      "cardinality": "exactly four support bits are true",
+      "meaning": "a selected four-subset of the physical six-shell, not the whole physical shell"
+    },
+    "lean_source": "lean/Erdos9796Proof/P97/WitnessPacketInterface.lean",
+    "lean_licensing": [
+      "Problem97.exists_selectedClass_card_ge_four_of_hasNEquidistantProperty",
+      "Problem97.mem_selectedClass"
+    ]
+  },
+  "retained_constraint_family": {
+    "name": "nonapex_global_k4_squared_superadditivity",
+    "tracked_clause_count": 4368,
+    "count_formula": "12 * choose(14,3)",
+    "source_schema": "schema_v15.json"
+  },
+  "power_shell_whitelist": {
+    "retained_sources": [
+      "active critical full rows",
+      "rich full classes"
+    ],
+    "new_source": {
+      "name_pattern": "physical_globalK4_<nonapex center>",
+      "kind": "physical_nonapex_global_k4_full_class",
+      "support": "the 15 equality predicates d(center,point) = k4_radius[center]",
+      "activation": "not used(center)"
+    },
+    "deduplication": "when a nonapex center is used, its exact critical row is the only registered copy of that physical circle",
+    "excluded_sources": [
+      "apex selected K4 supports",
+      "witness-packet B1 selected supports",
+      "witness-packet B2 selected supports"
+    ],
+    "certificate_reconstruction": "row names, kinds, supports, activations, cells, and points must resolve against this exact whitelist or validation fails closed"
+  },
+  "spawn_contract": {
+    "start_method": "spawn",
+    "child_behavior": "each child imports v29 independently, binds both the v12 reconstruction whitelist and the v9 active-shell miner, recomputes exact frozen provenance, and returns an attestation",
+    "parent_gate": "the parent exact-compares frozen provenance, case identity, worker attestation, global_K4 count 465, superadditivity count 4368, and power-cut row-kind accounting before admitting a result",
+    "runtime_restoration": "all patched v12 and v9 globals are restored in a finally block, including exceptional exits"
+  },
+  "retry_source": {
+    "kind": "byte-frozen previously authenticated v8 seed-1001 terminal summary",
+    "sha256": "159b4773efe899119b64bd1b95a5bcba94cb2bfd62f03b4287e869d71c7f1733",
+    "invocation_sha256": "700c2e28ccf91965678502d92e320b59b7bde497f86d2f6a91f30f75a01228f6",
+    "original_source_summary_sha256": "1727b3ea7bd39e20bd22a3788ea328163bf72a33745d2c5517987b0c3e3d8ebb",
+    "schema_version": 8,
+    "case_count": 67,
+    "required_status": "unknown",
+    "artifact_checks": "the frozen invocation and original 68-case source summary are hash-authenticated; all 67 per-case result projections, provenance, case identities, seeds, constraint totals, and decompressed SMT2 hashes are replayed before selection",
+    "reason": "historical provenance is authenticated by its immutable artifact chain; recomputing a past v8 source contract from later-edited Lean sources would incorrectly reject the immutable result"
+  },
+  "provenance": {
+    "frozen_inputs": [
+      "round5_cegar_v29.py",
+      "schema_v29.json",
+      "round5_cegar_v15.py through its inherited encoder chain",
+      "round5_cegar_v12.py and round5_cegar_v9.py",
+      "schema_v15.json through its inherited schema chain",
+      "uv.lock",
+      "source contract including WitnessPacketInterface.lean"
+    ],
+    "worker_gate": "exact recomputation before Encoding construction in parent and spawned workers"
+  },
+  "trust_boundary": "external Z3 evidence for the exact-n15 finite encoding; not by itself a Lean theorem or universal closure"
+}

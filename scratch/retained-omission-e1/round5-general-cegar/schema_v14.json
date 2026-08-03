@@ -1,0 +1,45 @@
+{
+  "schema_version": 14,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "inherits": {
+    "schema": "schema_v13.json",
+    "engine": "round5_cegar_v12.py",
+    "encoder": "round5_cegar_v13.py",
+    "meaning": "all v13 constraints and v12 power refinement are retained; v14 projects each first-apex packet B1 through the exact-n15 apex profile"
+  },
+  "scope": {
+    "cardinality": 15,
+    "cap_profile": [6, 6, 6],
+    "antecedent": "exact n=15 plus all-large caps plus ApexRichClassStructure",
+    "normalization_status": "explicit exact-n15 finite slice; not a universal-target consequence"
+  },
+  "new_constraint_family": {
+    "name": "apex_packet_b1_profile_compatibility",
+    "S": "each packet B1 support is contained in the first apex's exact six-point rich shell",
+    "D": "each packet B1 support equals one of the first apex's two exact four-point rich shells",
+    "lean_theorems": [
+      "Problem97.ATailExactFifteenApexProfile.capByIndex_card_eq_six_of_card_eq_fifteen",
+      "Problem97.ATailExactFifteenApexProfile.exactCapProfile_of_card_eq_fifteen",
+      "Problem97.ATailExactFifteenApexProfile.selectedFourClass_support_subset_richSixClass_of_cap_card_eq_six",
+      "Problem97.ATailExactFifteenApexProfile.twoRichClasses_card_eq_four_of_cap_card_eq_six",
+      "Problem97.ATailExactFifteenApexProfile.selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six"
+    ],
+    "chosen_subset_caveat": "SelectedFourClass support is a chosen four-subset. Complement points are not certified shell nonmembers; S is inclusion only. D equality additionally uses that each rich shell has exact cardinality four.",
+    "packet_count": 2,
+    "tracked_clause_counts": {"first_profile_S": 30, "first_profile_D": 2}
+  },
+  "provenance": {
+    "frozen_inputs": [
+      "round5_cegar_v14.py",
+      "round5_cegar_v13.py",
+      "round5_cegar_v12.py",
+      "round5_cegar_v8.py",
+      "round5_cegar_v9.py",
+      "schema_v14.json",
+      "uv.lock",
+      "source contract"
+    ],
+    "worker_gate": "exact recomputation before Encoding construction in parent and spawned workers"
+  },
+  "trust_boundary": "external Z3 evidence for the exact-n15 finite encoding; not by itself a Lean theorem or universal closure"
+}

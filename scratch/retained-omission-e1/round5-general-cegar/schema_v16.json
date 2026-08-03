@@ -1,0 +1,43 @@
+{
+  "schema_version": 16,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "inherits": {
+    "formula": "schema_v15.json and round5_cegar_v15.py",
+    "boolean_master": "round5_cegar_v12.py Boolean-only assertion relaxation plus replay-authenticated v12 power cuts",
+    "meaning": "no v15 mathematical constraint is removed or replaced"
+  },
+  "semantic_boolean_universe": {
+    "source": "all uninterpreted Bool constants occurring in encoding groups or frozen full assertions",
+    "excluded": "every constant whose printed name begins track_",
+    "completion": "every candidate model is evaluated with model_completion=True for every semantic Bool"
+  },
+  "assignment_check": {
+    "formula": "the raw inherited quantifier-free Bool plus LRA plus native PB formula",
+    "fixing": "one fresh selector per semantic Bool, with selector implying Bool=value; all selectors are check assumptions",
+    "solver": "plain z3.Solver, not SolverFor(QF_LRA)",
+    "unknown": "terminal incomplete; never blocked"
+  },
+  "blocker_admission": {
+    "projection": "only fresh fix selectors from the UNSAT assumption core",
+    "replay": "projected fixes must replay UNSAT against a fresh solver containing the frozen full assertions",
+    "blocker": "disjunction of the opposite values of the replayed core assignment",
+    "empty_core": "allowed only after fresh replay proves the frozen full formula UNSAT"
+  },
+  "provenance": {
+    "records": [
+      "source and schema hashes",
+      "transitive v15, v14, v13, v12, and v8 formula/schema hashes",
+      "Z3 version, seed, threads, and budgets",
+      "frozen full and Boolean-master formula hashes",
+      "canonical complete assignments and hashes",
+      "projected core, replay, blocker, and cumulative blocker hashes",
+      "per-check and aggregate timings"
+    ]
+  },
+  "terminal_status": {
+    "complete": ["sat", "unsat"],
+    "incomplete": ["unknown", "budget", "error"],
+    "process_exit": "nonzero when any requested case is incomplete"
+  },
+  "trust_boundary": "external Z3 evidence for the exact-n15 finite encoding; not by itself a Lean theorem or universal closure"
+}

@@ -319,7 +319,11 @@ from a selected subset and cannot use those exclusions as power-pattern
 nonzeros.  The new layer has 251 Boolean variables and 702 tracked constraints;
 the complete semantic count is `1031 + 15 * profiles.count("D")`.
 
-Ruff, Python compilation, eight focused tests, and three profile subtests pass.
+Ruff, Python compilation, nine focused tests, and three profile subtests pass.
+A clean-checkout gate now verifies that every schema and the lockfile read by
+the inherited v8/v9/v12-v19/v29-v33 runtime chain are tracked; this prevents
+an untracked working-tree dependency from masquerading as a source-frozen
+computation.
 A spawned-child smoke has valid provenance and closes only
 `fresh_SSS_k0_d1_f2` externally at the Boolean prepass, with zero assignment
 records.  This is evidence that the narrowed encoding is active, not a

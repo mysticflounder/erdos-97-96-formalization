@@ -1,0 +1,65 @@
+{
+  "schema_version": 30,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "composition": {
+    "encoding": "round5_cegar_v29.Encoding with schema_v29 full nonapex physical K4-shell semantics",
+    "engine": "round5_cegar_v19 Boolean-master, fixed-assignment QF_LRA replay, v18 static equality bank, and hash-chained journal",
+    "mathematical_delta": "none beyond v29",
+    "semantic_bool_count": "780 + 15 * profiles.count('D'); SSS/DSS/SDD/DDD = 780/795/810/825"
+  },
+  "runtime_binding": {
+    "v12": "bound through round5_cegar_v29._bound_v12_runtime, then rebased to the v30 frozen provenance",
+    "v16": "Encoding, schema paths, provenance, and source contract are temporarily rebound to v30",
+    "v19": "schema paths, provenance, source contract, and frozen-provenance verifier are temporarily rebound to v30",
+    "restoration": "every mutable module global is restored in a finally block, including exceptional exits"
+  },
+  "fixed_assignment_replay": {
+    "assignment": "all profile-specific semantic Boolean variables, authenticated by exact fix-name set equality against the frozen full formula",
+    "primary": "v19 audited exact PB rewrite and QF_LRA check",
+    "independent_replay": "v19 fresh-context reconstruction and repeated QF_LRA check",
+    "blocker_admission": "only dual-UNSAT replay with matching compositional identity",
+    "journal": "v19 immutable fsynced hash chain, renamed as a v30 artifact"
+  },
+  "raw_probe": {
+    "engine": "round5_cegar_v16.check_assignment",
+    "default_timeout_ms": 1000,
+    "disabled_value": 0,
+    "unsat_admission": "raw primary UNSAT plus fresh frozen-formula UNSAT replay",
+    "fallback": "raw SAT, UNKNOWN, or error falls through to unchanged v19 primary plus fresh-context normalized QF_LRA replay",
+    "journal": "the v19 journal records the proposed assignment and the authenticated final outcome, including raw-probe metadata"
+  },
+  "spawn_contract": {
+    "start_method": "spawn",
+    "workers": "closed interval 1 through 24",
+    "stable_seed": "SHA-256(base seed, NUL, case id), low 31 bits",
+    "child_attestation": "exact v30 provenance, v29 encoding identity, v19 engine identity, PID, and spawn method",
+    "parent_gate": "case identity, full provenance, exact profile-specific Boolean count, constraint counts 465 and 4368, journal summary, power-row accounting, terminal policy, and durable result bytes"
+  },
+  "artifact_contract": {
+    "default_directory": "artifacts-v30-boolean-master-full-shell",
+    "names": {
+      "assignment_journal": "assignment-journal-v30",
+      "boolean_master": "boolean_master_v30.smt2.gz",
+      "boolean_prepass": "boolean_prepass_v30.json",
+      "cegar_trace": "cegar_trace_v30.json",
+      "full_frozen": "full_frozen_v30.smt2.gz",
+      "witness": "witness_v30.json"
+    },
+    "result_hash": "summary.json records result_file_sha256_by_case; result.json never embeds its own digest"
+  },
+  "retry_source": {
+    "kind": "byte-frozen authenticated v29 terminal summary",
+    "sha256": "96bc41be3a625843ee5047df1ca08eaba49fa7d22d38f2471fb5ce9724c4a46d",
+    "case_count": 67,
+    "statuses": {"unknown": 67},
+    "child_contract_valid": true,
+    "subset_selection": "optional exact filter by the profile-specific frozen semantic Boolean count; the selected case ids remain sorted and are drawn only from the authenticated v29 UNKNOWN universe"
+  },
+  "terminal_status": {
+    "complete": ["sat", "unsat"],
+    "incomplete": ["unknown", "budget", "error"],
+    "unknown_policy": "no new blocker is admitted without replay-authenticated UNSAT",
+    "process_exit": "nonzero unless every requested case is complete"
+  },
+  "trust_boundary": "external exact-n15 Z3 evidence; not a Lean theorem, kernel certificate, or universal closure result"
+}

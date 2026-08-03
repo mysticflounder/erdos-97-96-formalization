@@ -1,0 +1,47 @@
+{
+  "schema_version": 19,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "inherits": {
+    "formula": "schema_v18.json and its transitive source contract",
+    "static_bank": "the complete v18 profile-specific length-two equality bank",
+    "dynamic_equality": "v17 equality-closure core with fresh raw replay",
+    "meaning": "no inherited mathematical constraint is removed or weakened"
+  },
+  "fixed_assignment_replay": {
+    "primary": "exact PB rewrite followed by audited SolverFor(QF_LRA)",
+    "independent_replay": "translate the frozen raw assertions into a fresh Z3 context, independently repeat the exact rewrite and QF_LRA check",
+    "admission": "UNSAT is blocked only when both primary and fresh replay are UNSAT and their compositional identities agree",
+    "unknown": "terminal incomplete; no blocker",
+    "blocker": "the complete 825-literal semantic assignment only; never generalized",
+    "normalized_smt_serialization": false
+  },
+  "compositional_replay_identity": {
+    "components": [
+      "frozen full formula SHA-256",
+      "canonical complete assignment SHA-256",
+      "deterministic normalization specification SHA-256",
+      "normalizer/rewrite/audit source SHA-256",
+      "source assertion count",
+      "normalized assertion count",
+      "tracker count",
+      "raw PB count",
+      "post-fix pre-normalization PB count"
+    ],
+    "explicit_nonclaim": "the identity is not a raw or normalized SMT formula SHA-256",
+    "tamper_policy": "any component, hash, or primary/replay mismatch is rejected"
+  },
+  "assignment_journal": {
+    "format": "one immutable JSON record file per phase in a consecutive hash chain",
+    "phases": ["proposed", "outcome"],
+    "durability": "write temporary record, fsync file, atomic rename, fsync directory",
+    "recovery": "fail closed on malformed, nonconsecutive, hash-mismatched, or orphan outcome records",
+    "blocker_record": "UNSAT outcomes contain the exact projected core and blocker text/hash; SAT, UNKNOWN, and error outcomes contain no blocker"
+  },
+  "execution_guard": "only one explicit case or one smoke case; broad matrix execution is rejected",
+  "terminal_status": {
+    "complete": ["sat", "unsat"],
+    "incomplete": ["unknown", "budget", "error"],
+    "process_exit": "nonzero when the requested case is incomplete"
+  },
+  "trust_boundary": "external Z3 evidence for the exact-n15 finite encoding; not a Lean theorem, kernel certificate, or universal closure result"
+}

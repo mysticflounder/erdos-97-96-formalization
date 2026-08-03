@@ -1,0 +1,46 @@
+{
+  "schema_version": 17,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "inherits": {
+    "formula": "schema_v16.json, schema_v15.json, and their transitive source contract",
+    "boolean_master": "round5_cegar_v12.py complete semantic-Bool assignment master",
+    "meaning": "no inherited mathematical constraint is removed or weakened"
+  },
+  "equality_closure_prefilter": {
+    "relations": "true global-K4, active critical-row, and rich-row bits equate their undirected distance edges",
+    "contradiction": "an active critical or rich false bit is connected to a true member of its own exact row",
+    "explanation": "the blocker contains every concrete true/false/activation fix used by a shortest equality path",
+    "admission": "every generalized explanation must replay UNSAT in a fresh plain z3.Solver containing the frozen raw full formula"
+  },
+  "fixed_assignment_normalization": {
+    "scope": "only after every semantic Bool has a fixed value",
+    "trackers": "the exact 26-name source-tracker allowlist is verified and substituted true; an assumption-core variant is optional diagnostic work and is not blocker-bearing",
+    "pb_rewrite": "the observed weighted PbGe shape is exactly decomposed to cardinality plus Boolean structure, then card2bv exactly eliminates every cardinality node",
+    "audit": "reject unless all post-transform sorts and operations are quantifier-free Bool plus linear Real arithmetic, with zero PB, If, Int, BV, Array, nonlinear, or nonconstant-UF nodes",
+    "solver": "SolverFor(QF_LRA), one thread, fixed seed and bounded timeout",
+    "unknown": "terminal incomplete and never blocked"
+  },
+  "blocker_admission": {
+    "generalized": "only equality-closure explanations authenticated by fresh raw-full-formula replay",
+    "theory_unsat": "only the exact 825-literal complete semantic assignment, after fresh-context reconstruction of the frozen formula, independent normalization, fresh QF_LRA audit, and fresh UNSAT check; the replay record is self-contained with explicit status, logic audit, fixed/raw PB counts, and raw/source/reconstructed/universe/assignment/blocker hashes",
+    "assignment_identity": "canonical assignment SHA-256 must be unchanged at replay",
+    "tracker_core": "the attempted assumption-core variant timed out and is not used; decisive primary and replay checks record exact allowlist substitution instead",
+    "sat": "terminal only after the normalized model evaluates every original frozen assertion to true"
+  },
+  "provenance": {
+    "records": [
+      "v17 and transitive v16 through v8 source/schema hashes plus uv.lock, focused-test source hash, retained focused-test log hash, and test command",
+      "Z3 version, seed, one-thread setting, and budgets",
+      "frozen raw, Boolean-master, assignment, normalized-formula, tracker-core, replay, blocker, and cumulative hashes",
+      "pre/post PB counts, exact logic audits, and per-phase timings",
+      "Boolean-master and frozen gzip blob hashes in result.json; result.json hash in enclosing summary.json"
+    ],
+    "result_self_hash": "not embedded because adding that hash changes result.json; summary.json attests the finalized result.json bytes"
+  },
+  "terminal_status": {
+    "complete": ["sat", "unsat"],
+    "incomplete": ["unknown", "budget", "error"],
+    "process_exit": "nonzero when the requested case is incomplete"
+  },
+  "trust_boundary": "external Z3 evidence for the exact-n15 finite encoding; not a Lean theorem, kernel certificate, or universal closure result"
+}

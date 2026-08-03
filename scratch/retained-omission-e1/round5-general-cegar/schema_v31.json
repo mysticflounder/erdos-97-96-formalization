@@ -1,0 +1,89 @@
+{
+  "schema_version": 31,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "composition": {
+    "encoding": "round5_cegar_v31.Encoding, a subclass of round5_cegar_v29.Encoding",
+    "engine": "round5_cegar_v30 authenticated retry/runtime contract over the round5_cegar_v19 Boolean-master and replay engine",
+    "mathematical_delta": "source-proved reverse-hit two-center acute squared-distance clauses in non-paired normal forms",
+    "semantic_bool_count": "unchanged: 780 + 15 * profiles.count('D'); SSS/DSS/SDD/DDD = 780/795/810/825"
+  },
+  "reverse_hit_two_center_sqdist_acute": {
+    "source": "Problem97.ATailFrontierLiveClosure.reverseHit_twoCenter_sqdist_acute",
+    "scope": "every arm except paired",
+    "apex": "APICES[0]",
+    "kept": "case.kept",
+    "deleted": "case.deleted",
+    "centers": "INTERIORS[0]",
+    "guard": "block[deleted, center]",
+    "clauses": [
+      "s(apex, center) + s(apex, kept) >= s(center, kept) + 1",
+      "s(apex, center) + s(center, kept) >= s(apex, kept) + 1"
+    ],
+    "clause_count": {
+      "non_paired": 8,
+      "paired": 0
+    },
+    "authenticated_v29_retry_source": {
+      "affected_non_paired_cases": 24,
+      "unaffected_paired_cases": 43,
+      "total": 67
+    },
+    "semantic_boolean_delta": 0
+  },
+  "runtime_binding": {
+    "v12": "bound through round5_cegar_v29._bound_v12_runtime and rebased to v31.Encoding plus the v31 frozen provenance",
+    "v16": "Encoding, schema paths, provenance, and source contract are temporarily rebound to v31",
+    "v19": "schema paths, provenance, source contract, and frozen-provenance verifier are temporarily rebound to v31",
+    "tracker_allowlist": "v17.TRACKER_ALLOWLIST is scoped to the inherited set plus track_reverse_hit_two_center_sqdist_acute while v31 runtime is active, then restored",
+    "v30": "the authenticated solve and matrix implementations are reused through scoped bindings and restored in finally blocks",
+    "restoration": "every mutable module global is restored after normal and exceptional exits"
+  },
+  "fixed_assignment_replay": {
+    "assignment": "all profile-specific semantic Boolean variables, authenticated by exact fix-name set equality against the frozen full formula",
+    "primary": "v19 audited exact PB rewrite and QF_LRA check",
+    "independent_replay": "v19 fresh-context reconstruction and repeated QF_LRA check",
+    "blocker_admission": "only dual-UNSAT replay with matching compositional identity",
+    "journal": "v19 immutable fsynced hash chain, renamed as a v31 artifact"
+  },
+  "raw_probe": {
+    "engine": "round5_cegar_v16.check_assignment",
+    "default_timeout_ms": 1000,
+    "disabled_value": 0,
+    "unsat_admission": "raw primary UNSAT plus fresh frozen-formula UNSAT replay",
+    "fallback": "raw SAT, UNKNOWN, or error falls through to unchanged v19 primary plus fresh-context normalized QF_LRA replay"
+  },
+  "spawn_contract": {
+    "start_method": "spawn",
+    "workers": "closed interval 1 through 24",
+    "stable_seed": "SHA-256(base seed, NUL, case id), low 31 bits",
+    "child_attestation": "exact v31 provenance, v31 encoding identity, v19 engine identity, PID, and spawn method",
+    "parent_gate": "case identity, full provenance, exact profile-specific Boolean count, inherited constraint counts, acute-family arm count, journal summary, power-row accounting, terminal policy, and durable result bytes"
+  },
+  "artifact_contract": {
+    "default_directory": "artifacts-v31-reverse-hit-two-center-acute",
+    "names": {
+      "assignment_journal": "assignment-journal-v31",
+      "boolean_master": "boolean_master_v31.smt2.gz",
+      "boolean_prepass": "boolean_prepass_v31.json",
+      "cegar_trace": "cegar_trace_v31.json",
+      "full_frozen": "full_frozen_v31.smt2.gz",
+      "witness": "witness_v31.json"
+    },
+    "result_hash": "summary.json records result_file_sha256_by_case; result.json never embeds its own digest"
+  },
+  "retry_source": {
+    "kind": "byte-frozen authenticated v29 terminal summary",
+    "sha256": "96bc41be3a625843ee5047df1ca08eaba49fa7d22d38f2471fb5ce9724c4a46d",
+    "case_count": 67,
+    "statuses": {"unknown": 67},
+    "child_contract_valid": true,
+    "subset_selection": "optional exact filter by the unchanged profile-specific semantic Boolean count"
+  },
+  "terminal_status": {
+    "complete": ["sat", "unsat"],
+    "incomplete": ["unknown", "budget", "error"],
+    "unknown_policy": "no new blocker is admitted without replay-authenticated UNSAT",
+    "process_exit": "nonzero unless every requested case is complete"
+  },
+  "trust_boundary": "external exact-n15 Z3 evidence; not a Lean theorem, kernel certificate, or universal closure result"
+}

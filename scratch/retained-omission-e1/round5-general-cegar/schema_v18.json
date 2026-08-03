@@ -1,0 +1,32 @@
+{
+  "schema_version": 18,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "inherits": {
+    "formula": "schema_v17.json and its transitive source contract",
+    "dynamic_cegar": "round5_cegar_v17.py equality closure and fixed-assignment QF_LRA fallback",
+    "meaning": "no inherited mathematical constraint is removed or weakened"
+  },
+  "static_equality_triangle_bank": {
+    "scope": "complete reduced profile-specific bank of exact-shell contradictions with equality-path length two",
+    "rows": "global K4 and active critical rows at nonapices; global K4 and active rich rows at apices",
+    "targets": "active critical exact rows at nonapices and active rich exact rows at apices",
+    "activation": "every critical row appearing as target or path edge is guarded by Used(center)",
+    "placement": "Boolean master only, after inherited Boolean prepass and before initial-master hashing and the first dynamic model",
+    "ddd_cardinality": 15684,
+    "dynamic_boundary": "paths of length at least three remain in v17's replay-authenticated dynamic equality lane",
+    "frozen_formula": "unchanged; the static bank is not inserted into the raw formula used for independent replay"
+  },
+  "blocker_admission": {
+    "static": "precompiled theorem-derived length-two clauses, not observed-model blockers",
+    "generalized_dynamic": "unchanged v17 equality explanations authenticated by fresh raw-full-formula replay",
+    "theory_unsat": "unchanged v17 complete 825-literal assignment only after independent normalized-full replay",
+    "unknown": "terminal incomplete and never blocked"
+  },
+  "execution_guard": "only one explicit case or one smoke case; broad matrix execution is rejected",
+  "terminal_status": {
+    "complete": ["sat", "unsat"],
+    "incomplete": ["unknown", "budget", "error"],
+    "process_exit": "nonzero when the requested case is incomplete"
+  },
+  "trust_boundary": "external Z3 evidence for the exact-n15 finite encoding; not a Lean theorem, kernel certificate, or universal closure result"
+}

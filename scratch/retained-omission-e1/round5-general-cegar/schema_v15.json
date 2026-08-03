@@ -1,0 +1,46 @@
+{
+  "schema_version": 15,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "inherits": {
+    "schema": "schema_v14.json",
+    "engine": "round5_cegar_v12.py",
+    "encoder": "round5_cegar_v14.py",
+    "meaning": "all v14 constraints and v12 power refinement are retained; v15 adds same-shell squared-distance superadditivity for nonapex global K4 witnesses"
+  },
+  "scope": {
+    "cardinality": 15,
+    "cap_profile": [6, 6, 6],
+    "antecedent": "exact n=15 plus all-large caps plus ApexRichClassStructure",
+    "normalization_status": "explicit exact-n15 finite slice; not a universal-target consequence"
+  },
+  "new_constraint_family": {
+    "name": "nonapex_global_k4_squared_superadditivity",
+    "centers": "the 12 nonapex carrier labels only",
+    "guard": "k4[c,x] and k4[c,y] and k4[c,z], where x,y,z occur in increasing angular-order positions around c",
+    "inequality": "s(x,z) >= s(x,y) + s(y,z) + 1",
+    "lean_theorems": [
+      "Problem97.CGN.sameShell_sqDist_superadditive_of_strictCapOrder",
+      "Problem97.dist_sq_gt_add_of_same_shell_opposite_sides"
+    ],
+    "lean_source": "lean/Erdos9796Proof/P97/SameShellSuperadditivity.lean",
+    "tracked_clause_count": 4368,
+    "count_formula": "12 * choose(14,3)",
+    "boolean_prepass": "excluded because every assertion contains Real-valued squared distances",
+    "nonduplication": "apex global K4 witnesses are covered by inherited v13 rich-profile compatibility and inherited rich-shell superadditivity; no apex or rich-shell assertions are added"
+  },
+  "provenance": {
+    "frozen_inputs": [
+      "round5_cegar_v15.py",
+      "round5_cegar_v14.py",
+      "round5_cegar_v13.py",
+      "round5_cegar_v12.py",
+      "round5_cegar_v8.py",
+      "round5_cegar_v9.py",
+      "schema_v15.json",
+      "uv.lock",
+      "source contract"
+    ],
+    "worker_gate": "exact recomputation before Encoding construction in parent and spawned workers"
+  },
+  "trust_boundary": "external Z3 evidence for the exact-n15 finite encoding; not by itself a Lean theorem or universal closure"
+}

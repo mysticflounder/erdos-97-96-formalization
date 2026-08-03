@@ -1,0 +1,78 @@
+{
+  "schema_version": 32,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "composition": {
+    "encoding": "round5_cegar_v32.Encoding subclasses round5_cegar_v31.Encoding",
+    "engine": "v31-composed authenticated v30/v19 retry and replay runtime",
+    "inherited_delta": "v31 reverse-hit two-center acute squared-distance clauses",
+    "new_delta": "exact-fifteen S-profile mutual-class-pair implication clauses",
+    "semantic_bool_count": "unchanged: 780 + 15 * profiles.count('D')"
+  },
+  "exact_fifteen_s_profile_mutual_class_pair": {
+    "source": "Problem97.ATailExactFifteenSProfileMutualClassPair.false_of_sProfile_interiorPair_of_card_eq_fifteen",
+    "scope": "every S-profile cap in every normal-form arm",
+    "apex": "APICES[i]",
+    "ordered_pair": "distinct C,M in INTERIORS[i]",
+    "clause": "not k4[C,P] or not k4[C,M] or not k4[M,C] or k4[M,P]",
+    "clause_count": "12 * profiles.count('S')",
+    "profile_counts": {
+      "SSS": 36,
+      "DSS": 24,
+      "SDD": 12,
+      "DDD": 0
+    },
+    "authenticated_v29_retry_source": {
+      "affected_s_profile_cases": 43,
+      "unaffected_ddd_cases": 24,
+      "total_added_clauses": 516,
+      "total_cases": 67
+    },
+    "semantic_boolean_delta": 0,
+    "soundness_guard": "valid only with v29-or-later physical full-shell equivalence for nonapex k4 atoms"
+  },
+  "runtime_binding": {
+    "base": "round5_cegar_v31._bound_v31_runtime",
+    "v12_v16": "schema paths, Encoding, source contract, and provenance rebound to v32",
+    "v19": "schema paths, source contract, provenance, and frozen-provenance verifier rebound to v32",
+    "tracker_allowlist": "inherits the v31 acute tracker and adds track_exact_fifteen_s_profile_mutual_class_pair",
+    "restoration": "all mutable module globals restored after normal or exceptional exit"
+  },
+  "fixed_assignment_replay": {
+    "assignment": "exact profile-specific semantic Boolean universe",
+    "primary": "v19 audited PB rewrite and QF_LRA check",
+    "independent_replay": "fresh-context reconstruction and repeated QF_LRA check",
+    "blocker_admission": "dual-UNSAT replay with matching compositional identity only",
+    "journal": "immutable fsynced v19 hash chain promoted to the v32 namespace"
+  },
+  "spawn_contract": {
+    "start_method": "spawn",
+    "workers": "closed interval 1 through 24",
+    "child_attestation": "exact v32 provenance, encoding identity, v19 engine identity, PID, and spawn method",
+    "parent_gate": "case identity, full provenance, exact Boolean count, inherited counts, both added-family counts, journal, power-row accounting, terminal policy, and durable bytes"
+  },
+  "artifact_contract": {
+    "default_directory": "artifacts-v32-s-profile-mutual-class",
+    "names": {
+      "assignment_journal": "assignment-journal-v32",
+      "boolean_master": "boolean_master_v32.smt2.gz",
+      "boolean_prepass": "boolean_prepass_v32.json",
+      "cegar_trace": "cegar_trace_v32.json",
+      "full_frozen": "full_frozen_v32.smt2.gz",
+      "witness": "witness_v32.json"
+    },
+    "result_hash": "summary.json records result_file_sha256_by_case"
+  },
+  "retry_source": {
+    "kind": "byte-frozen authenticated v29 terminal summary",
+    "sha256": "96bc41be3a625843ee5047df1ca08eaba49fa7d22d38f2471fb5ce9724c4a46d",
+    "case_count": 67,
+    "statuses": {"unknown": 67},
+    "child_contract_valid": true
+  },
+  "terminal_status": {
+    "complete": ["sat", "unsat"],
+    "incomplete": ["unknown", "budget", "error"],
+    "unknown_policy": "fail closed; no blocker admitted without replay-authenticated UNSAT"
+  },
+  "trust_boundary": "external exact-n15 evidence; not finite coverage, a Lean closure, or a universal E1 proof"
+}

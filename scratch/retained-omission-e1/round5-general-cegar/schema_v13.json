@@ -1,0 +1,51 @@
+{
+  "schema_version": 13,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "inherits": {
+    "schema": "schema_v12.json",
+    "engine": "round5_cegar_v12.py",
+    "base_encoder": "round5_cegar_v8.py",
+    "meaning": "all v8 constraints and v12 Boolean/full-shell power refinement are retained; v13 adds one Boolean-visible consequence already implied by the exact rich-profile distance constraints"
+  },
+  "scope": {
+    "cardinality": 15,
+    "cap_profile": [6, 6, 6],
+    "strict_interior_profile": [4, 4, 4],
+    "normalization_status": "explicit exact-n15 finite slice; not a universal-target consequence"
+  },
+  "new_constraint_family": {
+    "name": "apex_global_k4_profile_compatibility",
+    "S": "the selected four-point global K4 support at the apex is contained in its exact six-point rich shell",
+    "D": "the selected four-point global K4 support at the apex equals one of its two disjoint exact four-point rich shells",
+    "derivation": "v8 ties every selected global-K4 point to one positive radius, represents each named rich shell iff by its exact radius, makes the two D radii distinct, and bounds every unnamed apex radius class by at most three; hence a four-point K4 cannot use an unnamed radius or mix the two D radii",
+    "purpose": "retain this consequence when the Boolean prepass drops all Real-valued radius equalities",
+    "full_solver_status": "redundant consequence, asserted explicitly for audit symmetry"
+  },
+  "saved_model_gate": {
+    "corpus": "the 16 saved v11 first Boolean models",
+    "result": "15 of 16 models violate the new family, across 27 apex instances",
+    "survivor": "fresh_SDD_k0_d2_f3",
+    "interpretation": "demonstrated first-model refinement, not closure"
+  },
+  "provenance": {
+    "frozen_inputs": [
+      "round5_cegar_v13.py",
+      "round5_cegar_v12.py",
+      "round5_cegar_v8.py",
+      "round5_cegar_v9.py",
+      "schema_v13.json",
+      "uv.lock",
+      "source contract"
+    ],
+    "worker_gate": "exact recomputation before Encoding construction in parent and spawned workers"
+  },
+  "artifacts": {
+    "note": "the inherited v12 execution engine retains its internal power_cuts_v12.json filename; result provenance and schema_version identify the enclosing v13 run",
+    "boolean_prepass.json": "Boolean filter counts and refinement outcome",
+    "boolean_encoding.smt2.gz": "replayable Boolean formula including the new static family",
+    "power_cuts_v12.json": "inherited v12-engine power cuts and admissions",
+    "encoding.smt2.gz": "full formula including the redundant static family and learned cuts",
+    "result.json": "case verdict and frozen v13 provenance"
+  },
+  "trust_boundary": "external Z3 evidence for the exact-n15 finite encoding; not by itself a Lean theorem or universal closure"
+}

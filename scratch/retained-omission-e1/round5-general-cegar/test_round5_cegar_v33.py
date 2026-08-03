@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import argparse
 import copy
+import importlib
 import multiprocessing
 import os
+import subprocess
 import tempfile
 import unittest
 from concurrent.futures import ProcessPoolExecutor
@@ -258,6 +260,34 @@ class V33EndpointSeedTests(unittest.TestCase):
             self.assertEqual(dependencies[name], v33.file_sha256(path))
         for family in v33.NEW_FAMILIES:
             self.assertIn(family, frozen["source_contract"]["role_map"])
+
+    def test_inherited_runtime_inputs_are_tracked(self) -> None:
+        versions = (8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 29, 30, 31, 32, 33)
+        project_root = v33.v29.PROJECT_ROOT
+        schema_paths = [
+            importlib.import_module(f"round5_cegar_v{version}").SCHEMA_PATH
+            for version in versions
+        ]
+        runtime_paths = [*schema_paths, v33.v29.UV_LOCK_PATH]
+        relative_paths = [
+            str(path.relative_to(project_root)) for path in runtime_paths
+        ]
+        completed = subprocess.run(
+            [
+                "git",
+                "-C",
+                str(project_root),
+                "ls-files",
+                "--error-unmatch",
+                "--",
+                *relative_paths,
+            ],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        self.assertEqual(set(completed.stdout.splitlines()), set(relative_paths))
 
     def test_parent_validation_checks_every_new_family(self) -> None:
         frozen = v33.provenance()

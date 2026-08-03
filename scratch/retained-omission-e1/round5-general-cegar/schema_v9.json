@@ -1,0 +1,69 @@
+{
+  "schema_version": 9,
+  "target": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+  "inherits": {
+    "schema": "schema_v8.json",
+    "encoder": "round5_cegar_v8.py",
+    "meaning": "all v8 constraints are retained; v9 adds a bounded lazy full-shell power-pattern family"
+  },
+  "scope": {
+    "cardinality": 15,
+    "cap_profile": [6, 6, 6],
+    "strict_interior_profile": [4, 4, 4],
+    "normalization_status": "explicit exact-n15 finite slice; not a universal-target consequence"
+  },
+  "case_axes": {
+    "arm": ["paired", "fresh", "secondcap_collision", "secondcap_distinct"],
+    "profiles": ["SSS", "SSD", "SDS", "SDD", "DSS", "DSD", "DDS", "DDD"],
+    "kept": [0, 1, 2, 3],
+    "deleted": "a distinct first-interior label",
+    "fresh": "v8 semantics unchanged"
+  },
+  "new_constraint_families": [
+    "power_pattern_rank4_full_shell"
+  ],
+  "cut_admission": {
+    "power_pattern_rank4_full_shell": {
+      "lean_theorem": "Problem97.Census554.CirclePowerMatrix.false_of_powerMatrix_unique_possible_matching",
+      "antecedent": "five active full positive-radius carrier circle classes and five carrier points; support=true certifies zero power, support=false certifies nonzero power; the possible-support graph has exactly one perfect matching and all five matching entries are certified nonzero",
+      "schema_arms": ["paired", "fresh", "secondcap_collision", "secondcap_distinct"],
+      "full_shell_sources": ["active critical_full_row", "unconditional exact_rich_profiles"],
+      "excluded_sources": [
+        "global_K4 chosen four-subsets unless they merely alias an active critical row",
+        "packet_B1 chosen four-subsets",
+        "packet_B2 because it merely aliases an active critical row"
+      ]
+    }
+  },
+  "lazy_loop": {
+    "criterion": "enumerate all 120 permutations; exactly one may avoid forced-zero cells, and its five entries must be forced nonzero",
+    "progress": "every admitted cut is independently replayed and must be false in the source model",
+    "budgets": ["wall-clock timeout", "maximum power cuts", "maximum candidate submatrices"],
+    "budget_terminal": "unknown",
+    "serialization": "encoding.smt2.gz and encoding_sha256 describe the final formula after every admitted lazy cut",
+    "cut_artifact": "power_cuts.json records theorem, exact arm antecedent, matching, all forced-zero cells, and one zero blocker for each of the other 119 permutations"
+  },
+  "important_distinctions": {
+    "full_class_only": "v9 never maps absence from a chosen four-subset to nonzero power",
+    "critical_row": "full only under its recorded used(center) activation literal",
+    "rich_class": "unconditional full ambient positive-radius class",
+    "unknown_incidence": "not used by this initial full-shell-only lane",
+    "solver_unsat": "external evidence for this finite abstraction, not by itself a Lean closure theorem"
+  },
+  "result_required_fields": [
+    "schema_version",
+    "case",
+    "status",
+    "elapsed_seconds",
+    "constraint_counts",
+    "solver",
+    "script_sha256",
+    "base_v8_script_sha256",
+    "source_contract",
+    "initial_encoding_sha256",
+    "encoding_sha256",
+    "power_cut_count",
+    "power_candidate_count"
+  ],
+  "status_values": ["sat", "unsat", "unknown", "error"]
+}
