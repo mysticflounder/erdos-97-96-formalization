@@ -269,3 +269,11 @@ scratch/atail-force/exact7-role-coverage-gate/probe_l2u_stageb_results.json
 /scratch/card11-exact5-common-fullradius-v7-ingress/s2_o0-ingress/core-to-input-clause-id.json
 
 docs/live-blueprint.md.tmp
+
+# Singular certificate exports written to the repo ROOT. The .sing drivers
+# under scratch/.../metric-core-miner-v9/ write bare relative filenames
+# (e.g. write("g3-from-original-f.singexpr", ...)), so running one with the
+# repo root as CWD drops its output here instead of beside the driver.
+# Regenerate by re-running the driver from its own directory.
+/*.singexpr
+/scratch-*.log
