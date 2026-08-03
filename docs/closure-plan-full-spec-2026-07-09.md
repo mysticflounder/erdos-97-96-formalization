@@ -66,10 +66,64 @@ Every checkpoint that changes this frontier must report:
 - production import and refreshed publish-spine reachability;
 - root axiom closure, including any approved native-decision trust boundary.
 
-## Current inventory (updated 2026-07-26)
+## Active E1 retained-omission decomposition (2026-08-02)
 
-The active A-tail source surface is **five direct `sorry` declarations / five
-textual holes**, all in `ATail/FrontierLiveClosure.lean`.
+This section supersedes the older monolithic E1 execution guidance.  The
+production Lean frontier remains the single loud obligation
+
+```text
+Problem97.ATailFrontierLiveClosure.
+  false_of_retainedOmission_triApexAllLarge_core
+```
+
+with inputs `R`, the normalized retained omission `Q`, and the flattened
+tri-apex all-large context `G`.  The four items below are **workstreams**, not
+four new Lean leaves.  Do not replace the core by child `sorry`s until a
+kernel-checked producer proves an exhaustive split, every child has a strict
+narrowing measure, and all children are wired back to the core and both
+publish targets in the same change.
+
+| Workstream | Deliverable | Closure boundary |
+|---|---|---|
+| E1-A: canonical archetypes | Quotient exact-cardinality-15 survivors by the sound symmetries already proved in Lean; state a small family of source-faithful core predicates and prove cross-case coverage. | A census or list of representatives is not coverage until its Boolean classifier and symmetry transport are checked. |
+| E1-B: general soundness bank | Prove one reusable Lean theorem for each useful learned cut or geometric obstruction, with full-shell hypotheses kept distinct from chosen four-subsets. | A producer receives closure credit only when its antecedents are obtained from `R`, `Q`, and `G` or from a checked child predicate. |
+| E1-C: exact-15 finite coverage | Prove a finite Boolean certificate that every exact-15 normalized model reaches one proved E1-B obstruction. | This closes only the exact-cardinality-15 slice; it does not prove the uniform all-large theorem. |
+| E1-D: general-cardinality lift | Derive either a bounded local obstruction already covered by E1-C/E1-B or a legitimate deletion/minimality descent preserving the normalized retained-omission hypotheses. | This is the indispensable bridge from exact 15 to arbitrary `15 ≤ D.A.card`; no finite census may silently stand in for it. |
+
+The first completed E1-B producer is the seven-source critical-shell theorem:
+`ATailSevenSourceCriticalShellMutualOmission.exists_mutualOmission`, together
+with
+`exists_seven_sources_outside_two_supports_with_mutualOmission`.  The counting
+dichotomy, literal Paley physical-shell determinant adapter, and permutation
+transport all build without `sorryAx`; their axiom footprint is
+`propext`, `Classical.choice`, `Lean.ofReduceBool`, `Lean.trustCompiler`, and
+`Quot.sound`.  This is a general producer of a mutually omitted pair, not yet a
+consumer proving the E1 core.  The next theorem must connect that pair to a
+canonical E1-A obstruction or to the E1-D bounded-support/descent bridge.
+
+Dated mining evidence explains the split.  By 2026-08-02, v30 had authenticated
+about 6,950 UNSAT assignments across 23 active cases and extracted 437 projected
+cores of size 4--17, with at least one core in every active case, but had closed
+no case near mid-budget.  The earlier 55-fix v22 core covered all 190 v19
+assignments but none of 5,711 later v20 proposals.  This is useful theorem
+mining and archetype evidence, not monotone convergence.  The long v28 run has
+no completeness bound or theorem-level termination argument, so it remains a
+proposal generator until it emits a replayed terminal certificate.
+
+Execution order is therefore E1-B and E1-A in parallel, then E1-C, then E1-D,
+then the exhaustive Lean split and coordinator wiring.  Every completed CEGAR
+round still requires a global theorem-bank audit; odd-numbered rounds also
+require an efficiency/observability audit before another production launch.
+
+A raw source scan on 2026-08-02 found 21 explicit `sorry` bodies in
+`ATail/FrontierLiveClosure.lean`.  The five-leaf inventory immediately below is
+a dated 2026-07-26 snapshot and must not be reported as current source truth.
+
+## Dated inventory snapshot (2026-07-26; superseded for current dispatch)
+
+At that snapshot, the active A-tail source surface was **five direct `sorry`
+declarations / five textual holes**, all in
+`ATail/FrontierLiveClosure.lean`.
 
 | # | Cluster | Current source surface | Symbols | Textual holes | Front |
 |---|---|---|---:|---:|---|
@@ -80,8 +134,8 @@ textual holes**, all in `ATail/FrontierLiveClosure.lean`.
 | 5 | Tri-apex low-hit, distinct blockers | `false_of_retainedInteriorDirectedOmission_and_all_low_hits` | 1 | 1 | A |
 | **Total** | | | **5** | **5** | |
 
-The coordinator-interface frontier changed from two undifferentiated parent
-contradictions to five load-bearing open leaves. The parent
+At that snapshot, the coordinator-interface frontier changed from two
+undifferentiated parent contradictions to five load-bearing open leaves. The parent
 `false_of_originalFrontierUniqueRadiusArm` now has two checked constructors:
 exact four and exact five. Exact four dispatches exhaustively by carrier
 cardinality to the closed card-11 certificate ingress or the open uniform
@@ -96,9 +150,9 @@ Each open leaf strictly retains and narrows its parent data: a stronger lower
 bound for the remaining exact-four leaf; a concrete center-equality branch for
 the exact-five leaves; and concrete
 collision/exact-two or directed-omission packets for the two tri-apex leaves.
-The checked splits are exhaustive, acyclic, and source-clean, and every leaf is
-consumed on the production route. This is the current production
-coordinator-interface census, not merely a scratch proposal.
+The checked splits were exhaustive, acyclic, and source-clean, and every leaf
+was consumed on the production route. This was the production
+coordinator-interface census at that snapshot, not merely a scratch proposal.
 
 The old `DoubleApexOffSurplusSharedRadiusPair` and LIVE Q/C implementation was
 removed from production comments and preserved under
@@ -108,10 +162,9 @@ The exact-five child is now source-clean by cap redesignation, but its axiom
 closure still inherits `sorryAx` from the unique arm. The pinned-surplus,
 endpoint, and ERASE clusters remain source-closed.
 
-This inventory is the current source scan. Refresh proof-blueprint after the
-focused production build before publication; do not substitute the historical
-12-declaration LIVE inventory or count `sorry` tokens inside the commented
-legacy block.
+This inventory is a dated source scan. Refresh proof-blueprint after the
+focused production build before publication; do not use this historical count
+as the current frontier or count `sorry` tokens inside commented legacy blocks.
 
 ## Current Front-A closure strategy (refreshed 2026-07-17)
 
@@ -8627,15 +8680,16 @@ branch-complete parent route.  The reciprocal critical arm is a checked
 dependency edge into the protected owner lane.  The protected paused
 `FA-UNIQ4` / `FA-UNIQ5` lane remains a separate final-closure dependency.
 
-## Authoritative A-tail terminal boundary (refreshed 2026-07-26)
+## Historical A-tail terminal boundary (snapshot 2026-07-26)
 
-This section supersedes the historical coherent-R and LIVE helper queue above
-for current A-tail execution.  The live Route-B caller now bypasses the old
-`DoubleApexOffSurplusSharedRadiusPair` and LIVE Q/C tree and dispatches through
-`CriticalPairFrontier`.
+At its snapshot date, this section superseded the historical coherent-R and
+LIVE helper queue above.  It is itself superseded for current E1 execution by
+the 2026-08-02 decomposition near the top of this plan.  The live Route-B
+caller bypasses the old `DoubleApexOffSurplusSharedRadiusPair` and LIVE Q/C
+tree and dispatches through `CriticalPairFrontier`.
 
-Current source truth is five direct leaf declarations with `sorry`, all in
-`ATail/FrontierLiveClosure.lean`:
+Source truth at that snapshot was five direct leaf declarations with `sorry`,
+all in `ATail/FrontierLiveClosure.lean`:
 
 ```text
 false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve
@@ -8660,10 +8714,10 @@ The cardinality, obstruction-center equality, and blocker-equality splits are
 checked and exhaustive; this is a narrowing of the live frontier, not five
 off-spine specifications.
 
-The strategy notes below predate this leaf promotion. They remain useful
-as provenance for the exact-five and all-large routes, but whenever their
-older parent-level target names or scratch-only boundary conflict with the
-five-leaf census above, the census above is authoritative.
+The strategy notes below predate this leaf promotion. They remain useful as
+provenance for the exact-five and all-large routes, but neither those notes nor
+this five-leaf census is authoritative for the current source frontier.  Use
+the 2026-08-02 E1 decomposition and a refreshed source/proof-blueprint audit.
 
 The exact-five theorem is the first closure target.  Its only admissible
 branch outputs are already terminal:

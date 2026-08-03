@@ -108,9 +108,9 @@ theorem mutualOmission_or_exists_perm_supports_eq_paley
               (sources i).2).toCriticalFourShell.support =
             (H.selectedAt (sources j).1
               (sources j).2).toCriticalFourShell.support
-        rw [← uniqueFourClass_centerAt_eq_selectedAt_support H
+        rw [← ATailMinimalUniqueFourCover.uniqueFourClass_centerAt_eq_selectedAt_support H
               (sources i).1 (sources i).2,
-            ← uniqueFourClass_centerAt_eq_selectedAt_support H
+            ← ATailMinimalUniqueFourCover.uniqueFourClass_centerAt_eq_selectedAt_support H
               (sources j).1 (sources j).2,
             hcenter]
       have hjKi : (sources j).1 ∈ Ki.support := by
@@ -139,7 +139,8 @@ theorem mutualOmission_or_exists_perm_supports_eq_paley
           (t := Ki.support ∩ Kj.support) ?_ ?_)
         hphysical
       · intro k hk
-        rcases Finset.mem_inter.mp hk with ⟨hki, hkj⟩
+        have hmem : k ∈ B i ∩ B j := hk
+        rcases Finset.mem_inter.mp hmem with ⟨hki, hkj⟩
         exact Finset.mem_inter.mpr ⟨
           by simpa [B, indexedCriticalSupport, Ki] using hki,
           by simpa [B, indexedCriticalSupport, Kj] using hkj⟩
@@ -160,8 +161,7 @@ theorem exists_seven_sources_outside_two_selected_supports
       ∀ i, (sources i).1 ∉ K₁.support ∧ (sources i).1 ∉ K₂.support := by
   classical
   rcases
-      ATailSevenSourcesOutsideTwoShells.
-        exists_seven_carrierVertices_outside_two_selected_supports
+      Problem97.ATailSevenSourcesOutsideTwoShells.exists_seven_carrierVertices_outside_two_selected_supports
           hcard K₁ K₂ with
     ⟨T, hTcard, houtside⟩
   let eT : T ≃ Vertex := Finset.equivFinOfCardEq hTcard

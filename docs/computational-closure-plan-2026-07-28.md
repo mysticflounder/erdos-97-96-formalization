@@ -7,12 +7,12 @@ landings. This plan supersedes the round-2 solve-prompt lane as the primary
 closure route; the bridge prompts remain valid side-channels if run, but
 nothing below depends on them.
 
-## 1. Baseline
+## 1. Dated package baseline (2026-07-30; superseded for source counts)
 
-18 direct open source obligations (source inventory refreshed 2026-07-30,
-identical for
+This section records the 18-obligation package census refreshed 2026-07-30,
+which was identical for
 `Problem97.erdos97_rhs` and `Problem96.erdos96_rhs`; kernel `#print axioms`
-is the arbiter — the refs miner has a known dropped-edge bug). All in
+is the arbiter — the refs miner has a known dropped-edge bug. All were in
 `ATail/FrontierLiveClosure.lean` (FLC), namespace
 `Problem97.ATailFrontierLiveClosure`. Recomposed 2026-07-28 by the landed
 simplification refactor (`a0f73bc1`): initially 19 leaves, with A dropping 8→6
@@ -33,6 +33,11 @@ interfaces.  They are now compatibility adapters to the single common
 `false_of_capSourceThirdCanonicalRowSurface` obligation, which retains the
 residual explicitly.  This reduces the direct total to 18 and the F-Γ frontier
 from three leaves to two without discarding the finite blocker-fiber data.
+
+This is not the current raw source count.  A 2026-08-02 scan found 21 explicit
+`sorry` bodies in FLC.  Refresh the proof-blueprint coordinator frontier before
+using a declaration count for publication; the active E1 execution target and
+four-workstream decomposition are recorded below.
 
 | Pkg | Leaves | Declarations |
 |---|---|---|
@@ -66,6 +71,42 @@ cardinality at least eight, giving floor `(8,6,6)` and `|A| ≥ 17`.  Thus the
 17-point F3 incidence shadow below does not raise the parent theorem's lower
 bound from 15, and a 15- or 16-point parent survivor need not instantiate the
 cap-source packet.
+
+### E1 closure decomposition (2026-08-02)
+
+Broad exact-15 CEGAR is no longer the sole proof plan for the uniform E1 core.
+It remains valuable as a theorem miner and finite coverage engine, but its
+output must be consumed through four separately auditable workstreams:
+
+1. **Canonical core archetypes.**  Classify exact-15 survivors up to proved
+   symmetries and prove a Boolean cross-case coverage theorem.  Representatives
+   without checked coverage are diagnostics only.
+2. **General Lean soundness theorems.**  Bank the reusable geometric or metric
+   contradiction behind each useful cut family.  The first completed producer
+   is the seven-source critical-shell mutual-omission theorem: the counting
+   dichotomy, literal Paley physical-shell adapter, and reindexing step compile
+   without `sorryAx` under the approved `native_decide` trust boundary.
+3. **Exact-15 finite coverage.**  Produce a replayable certificate that every
+   exact-15 normalized assignment reaches a proved soundness theorem.  This is
+   an exact-cardinality theorem, not the uniform E1 conclusion.
+4. **General-cardinality lift.**  Prove that every larger normalized residual
+   contains a bounded covered obstruction or admits a deletion/minimality
+   descent preserving the E1 hypotheses.  This is the required bridge from the
+   exact-15 certificate to arbitrary `15 ≤ D.A.card`.
+
+These are workstreams, not four new Lean obligations.  Keep
+`false_of_retainedOmission_triApexAllLarge_core` as the one load-bearing E1
+`sorry` until a kernel-checked exhaustive producer justifies a narrower child
+frontier.  A promotion must state the before/after coordinator interfaces,
+strict narrowing measure for every child, immediate constructor fan-out, and
+publish-spine consumers.
+
+The dated v30 signal is positive for workstreams 1 and 2 but not a convergence
+certificate: roughly 6,950 authenticated UNSAT assignments yielded 437 short
+projected cores across all 23 active cases, while closing zero cases near
+mid-budget.  The long v28 run has no completeness or termination bound.  Every
+round therefore ends with a global theorem-bank audit, and every odd round also
+gets an efficiency/observability review before more compute is launched.
 
 ## 2. Ground rules (binding)
 
@@ -263,7 +304,7 @@ These results shape where compute is spent; do not re-run them.
 - **The consolidated metric question (Q)** (dead-ends): the global
   per-vertex-K4 forced-repeated-circle incidence is irreducibly metric /
   ∃ℝ-flavoured. The plan does not attempt to decide (Q) wholesale; it
-  attacks the 18 live leaves' finite case structure, where each leaf's
+  attacks the dated package frontier's finite case structure, where each leaf's
   hypothesis stack is strictly richer than (Q).
 
 ## 4. The engine: two-layer CEGAR per package
@@ -327,7 +368,7 @@ semantics, D/E share the residual frame.
 |---|---|---|---|
 | 1 | A-core (6) | Partition T = {z_d} ∪ I_u ∪ I_v, |I_u| = |I_v| = 2 disjoint; β-pattern with β(x) = a₁ iff x ∈ Cl(a₁,r); CD overlap ≤ 2; cap-growth trichotomy; leaf deltas A2–A8 (β(source) placement × N_u/N_v row-heaviness) | Encoder must find SAT on the 15-point witness's incidence type restricted to the layers it realizes; leaf-delta consistency: A3–A5 and A7–A8 deltas mutually exclusive by construction |
 | 2 | C-core (2) | Same skeleton as A (Γ₂ = {z*} ∪ I_u ∪ I_v); C1 placement trichotomy; C2 explicit collision arm | Same witness gate; C1 trichotomy exhaustiveness checked against A's version |
-| 3 | E (1) | Cover bound |A| ≤ 4|N|; cap-sum identity; derived n ≥ 15; unique-four shell cover as functional map x ↦ Row(x) into 4-blocks; directed-omission arm choice; E9 low-hit ≤ 2 clauses | Reproduce the kernel-checked low-hit consumers' arithmetic on a hand-built 15-point pattern |
+| 3 | E (1) | Four-workstream E1 pipeline: canonical exact-15 archetypes; general Lean soundness cuts (beginning with seven-source critical-shell mutual omission); finite Boolean exact-15 coverage; source-faithful bounded-obstruction or deletion/minimality lift to general cardinality. Preserve the cover bound, cap-sum identity, `n ≥ 15`, full unique-four shell semantics, directed-omission provenance, and E9 low-hit clauses. | Reproduce the kernel-checked low-hit arithmetic on a hand-built 15-point pattern; reject any exact-15 certificate lacking checked archetype coverage, and reject any claimed uniform closure lacking the general-cardinality lift. |
 | 4 | F-Γ (2) | Γ restated in `lean/scratch/f3c-redundancy-bank/F3cRedundancy.lean`; pairs-disjointness; shell ∩ cap = sources; deltas for cross-blocker coincidence and the common cap-source surface together with the blocker-multiplicity residual. The former fresh-third, one-sided-deletion, and aligned/nonbisector branches are compatibility adapters | Fixed-slot completeness is unavailable: a 17-point shadow and an unbounded four-point-block extension survive. Route the remaining leaves through geometric/global bridges, not a closed named universe |
 | 5 | D-R (2) | Two disjoint selected 4-classes K₁ ∩ K₂ = ∅; no-five-row at a₂; D2's five role-swap equalities S ↔ S′ | Verify the five syntactic role/cap aliases under the double renaming; do not assert `S′′ = S` or packet equality |
 | 6 | D-E (2) | Exact-five class; D3 distinct-centers vs D4 common-center arm; D4's exactly-2-on-bisector cardinality | D4's bisector-2 clause must be consistent with the banked `b1_bisectorSet_eq_pair` mechanism (Dumitrescu L1 bound ≤ 2) |

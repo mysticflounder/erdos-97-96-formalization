@@ -103,6 +103,93 @@ theorem exists_perm_of_isSupportBounded (bits : UpperPair → Bool)
 def bitsOfSupports (B : Vertex → Finset Vertex) : UpperPair → Bool :=
   fun p ↦ decide (p.1.2 ∈ B p.1.1)
 
+private abbrev Incidence (B : Vertex → Finset Vertex) :=
+  Σ i : Vertex, ↑(B i)
+
+private def unorderedSlot (i j : Vertex) (hij : i ≠ j) : UpperPair :=
+  if h : i < j then ⟨(i, j), h⟩
+  else ⟨(j, i), lt_of_le_of_ne (le_of_not_gt h) (Ne.symm hij)⟩
+
+private def incidenceSlot {B : Vertex → Finset Vertex} (x : Incidence B) :
+    Vertex ⊕ UpperPair :=
+  if h : x.1 = x.2.1 then Sum.inl x.1
+  else Sum.inr (unorderedSlot x.1 x.2.1 h)
+
+private theorem incidenceSlot_swap {B : Vertex → Finset Vertex}
+    {i j : Vertex} (hij : i ≠ j) (hji : j ∈ B i) (hij' : i ∈ B j) :
+    incidenceSlot (⟨i, ⟨j, hji⟩⟩ : Incidence B) =
+      incidenceSlot (⟨j, ⟨i, hij'⟩⟩ : Incidence B) := by
+  by_cases hlt : i < j
+  · simp [incidenceSlot, unorderedSlot, hij, Ne.symm hij, hlt,
+      not_lt_of_ge (le_of_lt hlt)]
+  · have hjlt : j < i := lt_of_le_of_ne (le_of_not_gt hlt) (Ne.symm hij)
+    simp [incidenceSlot, unorderedSlot, hij, Ne.symm hij, hlt, hjlt]
+
+private theorem card_vertex_sum_upperPair :
+    Fintype.card (Vertex ⊕ UpperPair) = 28 := by
+  decide
+
+/-- If seven self-containing supports have size at most four and every pair is
+covered in at least one direction, then capacity is tight: every support has
+size four and every pair is covered in exactly one direction. -/
+theorem exact_support_surface_of_card_le_four_and_pairCovered
+    (B : Vertex → Finset Vertex)
+    (hcard : ∀ i, (B i).card ≤ 4)
+    (hself : ∀ i, i ∈ B i)
+    (hcover : ∀ i j, i ≠ j → j ∈ B i ∨ i ∈ B j) :
+    (∀ i, (B i).card = 4) ∧
+      ∀ i j, i ≠ j → (j ∈ B i ↔ i ∉ B j) := by
+  classical
+  have hsurj : Function.Surjective (@incidenceSlot B) := by
+    intro s
+    rcases s with i | p
+    · exact ⟨⟨i, ⟨i, hself i⟩⟩, by simp [incidenceSlot]⟩
+    · rcases p with ⟨⟨i, j⟩, hij⟩
+      have hne : i ≠ j := ne_of_lt hij
+      rcases hcover i j hne with hji | hijmem
+      · refine ⟨⟨i, ⟨j, hji⟩⟩, ?_⟩
+        simp [incidenceSlot, unorderedSlot, hne, hij]
+      · refine ⟨⟨j, ⟨i, hijmem⟩⟩, ?_⟩
+        simp [incidenceSlot, unorderedSlot, Ne.symm hne,
+          not_lt_of_ge (le_of_lt hij)]
+  have hInc_le : Fintype.card (Incidence B) ≤ 28 := by
+    rw [Fintype.card_sigma]
+    calc
+      ∑ i : Vertex, Fintype.card ↑(B i) = ∑ i : Vertex, (B i).card := by simp
+      _ ≤ ∑ _i : Vertex, 4 := Finset.sum_le_sum fun i _ ↦ hcard i
+      _ = 28 := by decide
+  have hSlots_le : 28 ≤ Fintype.card (Incidence B) := by
+    rw [← card_vertex_sum_upperPair]
+    exact Fintype.card_le_of_surjective incidenceSlot hsurj
+  have hInc_eq : Fintype.card (Incidence B) = 28 := by omega
+  have hSlots_eq : Fintype.card (Incidence B) = Fintype.card (Vertex ⊕ UpperPair) := by
+    exact hInc_eq.trans card_vertex_sum_upperPair.symm
+  have hinj : Function.Injective (@incidenceSlot B) :=
+    ((Fintype.bijective_iff_surjective_and_card incidenceSlot).2
+      ⟨hsurj, hSlots_eq⟩).1
+  constructor
+  · have hsum : ∑ i : Vertex, (B i).card = ∑ _i : Vertex, 4 := by
+      have hsigma : ∑ i : Vertex, (B i).card = 28 := by
+        rw [← hInc_eq, Fintype.card_sigma]
+        simp
+      calc
+        ∑ i : Vertex, (B i).card = 28 := hsigma
+        _ = ∑ _i : Vertex, 4 := by decide
+    have hterm := (Finset.sum_eq_sum_iff_of_le
+      (s := (Finset.univ : Finset Vertex))
+      (f := fun i ↦ (B i).card) (g := fun _ ↦ 4)
+      (fun i _ ↦ hcard i)).mp hsum
+    exact fun i ↦ hterm i (Finset.mem_univ i)
+  · intro i j hij
+    constructor
+    · intro hji hijmem
+      have heq := hinj (incidenceSlot_swap hij hji hijmem)
+      exact hij (by simpa using congrArg Sigma.fst heq)
+    · intro hnot
+      rcases hcover i j hij with hji | hijmem
+      · exact hji
+      · exact (hnot hijmem).elim
+
 private theorem arc_bitsOfSupports_iff
     {B : Vertex → Finset Vertex}
     (hone : ∀ i j, i ≠ j → (j ∈ B i ↔ i ∉ B j))
@@ -165,6 +252,20 @@ theorem exists_perm_supports_eq_paley
     have hσji : σ j ≠ σ i := Ne.symm hσij
     rw [← arc_bitsOfSupports_iff hone hij, hσ]
     simp [paleySupport, hσji]
+
+/-- Pair coverage plus the four-slot capacity supplies the exact tournament
+surface required by `exists_perm_supports_eq_paley`. -/
+theorem exists_perm_supports_eq_paley_of_card_le_four_and_pairCovered
+    (B : Vertex → Finset Vertex)
+    (hcard : ∀ i, (B i).card ≤ 4)
+    (hself : ∀ i, i ∈ B i)
+    (hcover : ∀ i j, i ≠ j → j ∈ B i ∨ i ∈ B j)
+    (hinter : ∀ i j, i ≠ j → ((B i) ∩ B j).card ≤ 2) :
+    ∃ σ : Equiv.Perm Vertex,
+      ∀ i j, j ∈ B i ↔ σ j ∈ ({σ i, σ i + 1, σ i + 2, σ i + 4} : Finset Vertex) := by
+  rcases exact_support_surface_of_card_le_four_and_pairCovered
+      B hcard hself hcover with ⟨hcardEq, hone⟩
+  exact exists_perm_supports_eq_paley B hcardEq hself hone hinter
 
 end SevenSourceTournament
 end Problem97
