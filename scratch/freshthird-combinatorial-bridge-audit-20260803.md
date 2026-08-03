@@ -88,3 +88,27 @@ is available from the listed ingredients.  The first missing bridge is a new
 equal-center/noncanonical incidence or boundary theorem (and, separately, a
 non-hit/source-row-omission bridge).  Treat `firstNonHit`/`secondNonHit` as
 open; do not promote the target to closure.
+
+## Cap-index uniqueness audit (2026-08-03, follow-up)
+
+The only direct cross-index primitive found in the indexed Lean corpus is
+`Problem97.SurplusCapPacket.capInteriorByIndex_ne_of_mem_of_mem_ne` in
+`SurplusM44Packet/Shard02.lean:182--190`:
+
+```lean
+{i j : Fin 3} {x y : ℝ²}
+(hxI : x ∈ S.capInteriorByIndex i)
+(hyI : y ∈ S.capInteriorByIndex j)
+(hij : i ≠ j) : x ≠ y
+```
+
+Its contrapositive gives a source-clean same-point index equality when both
+indexed-interior memberships are already available.  A tiny `lake env lean`
+check reports only `[propext, Classical.choice, Quot.sound]` in its axiom
+list.  This does not close FreshThird: the noncanonical interaction has
+distinct blocker centers, while `CapSourceThirdCanonicalRowWitness` places
+the *source vertices* in `oppIndex1`, not their blocker centers.  No theorem
+was found that supplies a second indexed-interior membership for either
+center, nor one that rules out the noncanonical same-cap or distinct-cap
+constructors.  The missing bridge classification above is therefore
+unchanged.

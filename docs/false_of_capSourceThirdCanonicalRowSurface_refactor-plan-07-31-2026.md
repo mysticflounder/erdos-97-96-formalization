@@ -2275,3 +2275,17 @@ producer adding the common-radius and mutual-incidence hypotheses required by
 the generic two-cap terminal. No closure credit is assigned, and
 `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
 the sole open load-bearing theorem for this packet.
+
+## 2026-08-03 cap-index uniqueness audit
+
+The indexed Lean search found only the source-clean primitive
+`SurplusCapPacket.capInteriorByIndex_ne_of_mem_of_mem_ne` (in
+`SurplusM44Packet/Shard02.lean`), whose contrapositive identifies indices
+when the same point is already known to lie in both indexed cap interiors.
+Its tiny Lean 4.27 axiom check has no `sorryAx` or custom axioms.  It does not
+advance the FreshThird closure: the residual's noncanonical interaction has
+distinct blocker centers, and the canonical-row witness puts the source
+vertices—not those centers—in `oppIndex1`.  No source-clean theorem supplies
+the missing second cap-interior membership or eliminates the distinct-cap,
+noncanonical same-cap, or non-hit constructors.  The coordinator frontier
+and closure status are therefore unchanged.
