@@ -2339,3 +2339,22 @@ remaining load-bearing declaration for this packet is
 `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining`, still
 open. Focused Lean 4.27 compilation succeeds. This is a frontier update, not
 a closure: the narrowed packet has no source-clean terminal yet.
+
+### Fresh-third exact-row/global-bank checkpoint (2026-08-03)
+
+The round-6 global theorem-bank audit found no import-reachable source-clean
+consumer for the exact equal-center four-row plus noncanonical overlap packet.
+The nearest Kalmanson and shared-pair declarations require a strict boundary
+quadruple, boundary/index transport, and (for the alternation theorem)
+distinct centers; these hypotheses are not present in the live residual.  The
+audit report is
+`scratch/retained-omission-e1/round5-general-cegar/round6-global-bank-audit-20260803.md`.
+
+The strengthened bounded n=17 incidence and cyclic CEGAR overlays are SAT in
+external Z3 (no Lean kernel proof, no Euclidean realization, no universal
+claim).  They are diagnostic only and do not alter the closure count.  The
+first missing producer is a branch-preserving `ConvexCyclicOrder`/strict
+boundary adapter feeding the existing Kalmanson consumer; the non-hit arms
+still need an independent source-faithful bridge.  The literal declaration
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
+open and on spine.

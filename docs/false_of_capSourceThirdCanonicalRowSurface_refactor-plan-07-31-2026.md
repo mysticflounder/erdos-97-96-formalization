@@ -2119,3 +2119,36 @@ common-radius/fiber, cyclic-order, incidence, or metric invariant strong
 enough to consume both non-hit constructors.  The literal load-bearing
 `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
 open; no wrapper, SAT result, or conditional theorem is promoted.
+
+## 2026-08-03 round-6 exact-row/global-bank checkpoint
+
+The round-6 global theorem-bank audit is complete.  The mandatory certificate
+registries and indexed Lean corpus contain no import-reachable, source-clean
+consumer of the full `FreshThirdEqualCenterExactFourRow` packet together with
+the noncanonical exact-overlap/cap data.  The closest reusable declarations
+are the exact-overlap incidence lemma at `FrontierLiveClosure:10039`, the
+ordered Kalmanson terminal
+`CapCrossingKalmansonBridge.false_of_two_selected_rows_shared_late_pair`, and
+the shared-pair alternation theorem
+`Problem97.selectedFourClass_shared_pair_separated`; each requires additional
+boundary/index, strict-order, or distinct-center hypotheses absent from this
+residual.  The audit report is retained at
+`scratch/retained-omission-e1/round5-general-cegar/round6-global-bank-audit-20260803.md`.
+
+The equal-center CEGAR overlay was strengthened to exact four-point rows,
+exact fresh-row overlap, noncanonical cap-interior membership, and the cyclic
+metric relaxation.  Both the incidence and cyclic n=17 models are SAT (the
+cyclic v2/v3 run is about 26 seconds), with metadata explicitly limiting the
+result to external Z3, bounded n=17, and no Lean or Euclidean realization.
+The witness alternates the shared fresh pair across the two equal-center rows,
+so exact row support and cyclic relaxation alone do not supply the missing
+contradiction.
+
+The first source-faithful implementation target is therefore a
+branch-preserving `ConvexCyclicOrder`/strict-boundary adapter: export the
+subtype values, prove the required convex-independence and boundary index
+transport, and convert the two exact shells to the row interface expected by
+the Kalmanson consumer.  This is a producer/adapter target, not a closure
+claim.  The non-hit constructors remain untouched, and
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
+the explicit open leaf in the coordinator frontier.
