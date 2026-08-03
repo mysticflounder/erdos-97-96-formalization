@@ -328,13 +328,33 @@ A spawned-child smoke has valid provenance and closes only
 `fresh_SSS_k0_d1_f2` externally at the Boolean prepass, with zero assignment
 records.  This is evidence that the narrowed encoding is active, not a
 coverage result.  The parent remains open with the same eight terminal leaves
-and no ninth obligation.  The frozen 192-case matrix was launched from
-detached commit `643f30fe` with 23 nice-15 workers under
-`artifacts-v33-production2-clean-643f30fe/20260803T133955.191739Z-matrix-pid89083`;
-v28 retains the twenty-fourth local core.  Its terminal review must include
-both the global theorem-bank audit and,
-since v33 is odd-numbered, the CEGAR efficiency audit.  Exact scope and hashes
-are in
+and no ninth obligation.
+
+The frozen 192-case matrix ran from detached commit `643f30fe` with 23 nice-15
+workers under
+`artifacts-v33-production2-clean-643f30fe/20260803T133955.191739Z-matrix-pid89083`.
+Its terminal aggregate is authenticated but incomplete: 144 `UNSAT`, 36
+`UNKNOWN`, 12 fail-closed tracker errors, and zero `SAT`; all 144 closures occur
+in the inherited Boolean prepass.  The child contract is valid, all 192
+result-file hashes recompute, and the aggregate SHA-256 is
+`6eeef80f2a5e614d2fd0f8aabad2526f39c1841d3a88290dff345ca20b174960`.
+
+The profile split identifies a smaller successor lane.  `SSS`, `SDS`, `SSD`,
+and `SDD` close completely; `DSS`, `DSD`, and `DDS` each leave 12 unknowns;
+`DDD` closes 12 and hits the same missing
+`track_exact_fifteen_s_profile_mutual_class_pair` tracker admission on 12.
+These unresolved/error cases occupy the same 12 joint role tuples.  The
+mandatory global theorem-bank audit found no matching general-n contradiction.
+The odd-round efficiency audit localized the principal measured cost to dual
+normalization (367.60 seconds in a representative 636.93-second case, versus
+about 8.24 seconds in recorded solver calls), with a further roughly 245
+seconds not yet instrumented.
+
+The next computational step is therefore not a broader or repeated matrix:
+repair the D-profile tracker allowlist, add durable phase telemetry, and run
+the 12 hard role tuples as a canary lane.  V33 closes only its 144 labelled
+subcases; it does not close the selected-seed slice or a Lean terminal leaf.
+Exact scope, hashes, and audit details are in
 `scratch/retained-omission-e1/round5-general-cegar/V33-ENDPOINT-SHARED-BLOCKER-SEED.md`.
 
 The 2026-08-03 checkpoint builds the complete

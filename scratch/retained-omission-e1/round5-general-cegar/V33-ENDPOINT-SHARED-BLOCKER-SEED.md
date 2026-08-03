@@ -93,12 +93,64 @@ produced zero assignment records.  This establishes that the v33 clauses can
 close at least one labelled SSS slice in the Boolean prepass.  It does not say
 anything yet about the other 191 cases.
 
-## Next action
+## Terminal classification
 
-The frozen 192-case matrix is running from detached commit `643f30fe` with 23
-nice-15 workers under
-`artifacts-v33-production2-clean-643f30fe/20260803T133955.191739Z-matrix-pid89083`;
-the separate v28 miner retains the twenty-fourth local core.  On termination,
-authenticate every child and durable artifact before aggregating results.
-Because v33 is odd-numbered, pair its mandatory global theorem-bank audit with
-an efficiency/observability audit before designing any successor round.
+The frozen 192-case matrix ran from detached commit `643f30fe` with 23 nice-15
+workers under
+`artifacts-v33-production2-clean-643f30fe/20260803T133955.191739Z-matrix-pid89083`.
+It terminated after 1487.31 seconds with:
+
+- 144 `UNSAT` cases, all at the inherited Boolean prepass;
+- 36 `UNKNOWN` cases;
+- 12 runtime-error cases; and
+- zero `SAT` cases.
+
+The aggregate has `child_contract_valid = true`, an empty child-validation
+error map, exactly 192 result records, and exactly 192 recorded result-file
+hashes.  Recomputing all 192 hashes found zero mismatches.  The terminal
+`summary.json` SHA-256 is
+`6eeef80f2a5e614d2fd0f8aabad2526f39c1841d3a88290dff345ca20b174960`.
+The corresponding `invocation.json` and `progress.json` SHA-256 values are
+`bb814303a026c22abeb925525463dcfbf2376155acedd4c0273673354f49e34a`
+and `75bef06170a58238ed1c27a2d47a963ae71a6a87a6891ebd18f8d65b2d4c7f6f`.
+An independent audit also recomputed the trace, prepass, frozen-blob, and
+assignment-journal hash chains and reran the exact child validator over all
+192 durable results; it found zero errors.
+
+The profile split is exact.  `SSS`, `SDS`, `SSD`, and `SDD` close 24/24;
+`DSS`, `DSD`, and `DDS` each close 12/24 and leave 12 `UNKNOWN`; `DDD` closes
+12/24 and errors on the other 12.  Of the 36 unknowns, 35 report
+`v33_wall_clock_budget_exhausted` and one reports `boolean_master: canceled`.
+The unknown traces contain 1,057 completed full-assignment checks, all UNSAT,
+but none exhausts its whole Boolean case.
+The 12 errors all report the same fail-closed provenance defect:
+`track_exact_fifteen_s_profile_mutual_class_pair` is absent from the frozen
+formula-tracker allowlist.
+
+This is a terminal authenticated **incomplete** computation.  It proves the
+144 labelled exact-15 subcases only; it does not close the 48 remaining
+labelled cases, the selected-seed slice, any terminal Lean leaf, or the parent
+retained-omission theorem.
+
+## Mandatory audits and successor lane
+
+The global theorem-bank audit found no banked general-n contradiction matching
+the v33 selected-seed/shared-blocker hypotheses.  The reusable banked material
+is generic infrastructure (`exists_selectedFourClass_of_globalK4` and
+`SelectedFourClass.inter_card_le_two`), already represented in the current
+encoding; the simultaneous prescribed-row producer is the newer local theorem
+`exists_faithfulCarrierPattern_with_classes_on`, not an omitted bank hit.
+
+The odd-round efficiency audit found that the Boolean prepass is not the hard
+case bottleneck: completed prepasses returned within 16.7 seconds.  On a
+representative 636.93-second hard case, dual normalization consumed 367.60
+seconds while the recorded solver calls consumed about 8.24 seconds; roughly
+245 seconds remains uninstrumented and must not be assigned to a phase without
+new telemetry.  The hard downstream branch is confined to 12 joint
+`(kept, deleted, fresh)` role tuples.
+
+Before another production wave, repair the D-profile tracker allowlist and add
+durable phase timing around normalization, reconstruction/hash work, formula
+hashing, and journal writes.  Exercise only the 12 hard role tuples as the
+canary lane.  Do not rerun the 192-case monolith or claim convergence from the
+144 Boolean-prepass closures.
