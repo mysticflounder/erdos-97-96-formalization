@@ -2253,3 +2253,25 @@ common-radius/mutual-incidence invariant (or a new branch-specific metric or
 ordered-cap terminal) for the non-hit and noncanonical equal-center arms.
 This audit introduced no new obligation and gives no closure credit; the
 normalized remaining theorem remains an explicit open load-bearing `sorry`.
+
+## 2026-08-03 FreshThird combinatorial-bridge audit
+
+The follow-up audit is recorded in
+[`scratch/freshthird-combinatorial-bridge-audit-20260803.md`](../scratch/freshthird-combinatorial-bridge-audit-20260803.md).
+It rechecked the exact-four support/cardinality facts, both cross-pair
+deletion views, and every field of `FreshThirdBlockerFiber` against the three
+constructors of `FreshThirdNormalizedResidualRemainingCase`. Those facts do
+not force either `firstNonHit` or `secondNonHit` to become a row hit, and they
+do not force a common radius or reciprocal C-row incidence. In the
+equal-center branch they likewise leave the noncanonical same-cap and
+distinct-cap interactions compatible with the existing cap bounds.
+
+The only import-reachable consumers found are the already-used
+distinct-center two-hit terminal and the canonical same-cap terminal; neither
+consumes this residual. The next producer must therefore be one of: (i) a
+source-faithful non-hit/source-row-omission contradiction, (ii) an
+equal-center noncanonical incidence or ordered-cap terminal, or (iii) a
+producer adding the common-radius and mutual-incidence hypotheses required by
+the generic two-cap terminal. No closure credit is assigned, and
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
+the sole open load-bearing theorem for this packet.

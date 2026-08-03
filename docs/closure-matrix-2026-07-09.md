@@ -2358,3 +2358,23 @@ boundary adapter feeding the existing Kalmanson consumer; the non-hit arms
 still need an independent source-faithful bridge.  The literal declaration
 `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
 open and on spine.
+
+### Fresh-third combinatorial bridge audit (2026-08-03)
+
+The exact-four support/cardinality, cross-pair deletion, and
+`FreshThirdBlockerFiber` fields were audited together against all three
+constructors of `FreshThirdNormalizedResidualRemainingCase`. They do not
+source-cleanly close either non-hit constructor or the noncanonical
+equal-center interactions: no common first-apex radius, reciprocal C-row
+incidence, or boundary/order invariant is forced. The nearest consumers are
+still the distinct-center two-hit terminal and the canonical same-cap
+terminal, both already dispatched elsewhere. The audit report is
+`scratch/freshthird-combinatorial-bridge-audit-20260803.md`.
+
+The next required producer is therefore a non-hit/source-row-omission
+contradiction, an equal-center noncanonical incidence/order terminal, or an
+adapter that proves the common-radius/mutual-incidence hypotheses of the
+generic two-cap terminal. This is a frontier clarification only: the
+load-bearing declaration
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
+open, on spine, and receives no closure credit.
