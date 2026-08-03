@@ -283,10 +283,24 @@ Consequently the current v29/v30 encoding, which stores one physical shell per
 nonapex center and reuses the old paired/fresh case universe, does not directly
 encode this shared-blocker continuation.  A sound successor must explicitly
 quantify over every equidistant selected four-subset at the relevant seed
-centers (or prove an equivalent universal reduction).  The intended query is
-whether every escaping selected row avoids a second hit of `Q.row.support` in
-the adjacent cap containing `J`.  Treating `Q.row` as a full exact-four shell
-would create a spurious inconsistency and is forbidden.
+centers (or prove an equivalent universal reduction).  The useful continuation
+query is whether some forced escaping selected row has its **center** in the
+adjacent cap containing `J` and has at least two hits in `Q.row.support`; the
+two hit points may lie anywhere in the carrier.  The superficially stronger
+query that puts a second `Q.row` point inside that adjacent cap is vacuous:
+the proved left/right singleton theorems already say that the whole retained
+first-apex radius class meets the chosen adjacent cap only at `J`.  That query
+is therefore only an encoding canary, never a closure result.  Treating
+`Q.row` as a full exact-four shell would likewise create a spurious
+inconsistency and is forbidden.
+
+The quantifier polarity must also be explicit.  For a candidate predicate
+`Good(c, row)`, the finite counterexample query is the base model together with
+valid selected rows at all six seed centers, existence of an escaping chosen
+row, and `Esc(c) -> not Good(c, row_c)` for every seed center.  Authenticated
+UNSAT would then prove that every selected-row choice pattern has a good
+escaping row in the frozen exact-15 relaxation.  A single existentially chosen
+row does not establish that statement.
 
 The negative arm now carries
 an explicit new common-deletion packet rather than an inert omission.  The
