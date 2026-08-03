@@ -2099,3 +2099,23 @@ equal-center constructors remain genuine load-bearing obligations.  No new
 `sorry`, alias, finite-search wrapper, or scratch theorem is promoted by this
 checkpoint; the closure matrix must continue to count
 `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` as open.
+
+## 2026-08-03 CEGAR and certificate audit checkpoint
+
+The bounded retained-omission CEGAR artifacts were checked against the
+normalized FreshThird residual.  The n=17 generic arms are `SAT` in the
+external Z3 model; the cyclic refinements are `UNKNOWN`, and the exact-n=15
+probe was cancelled/`UNKNOWN`.  The result metadata explicitly records
+`external_solver_only`, `lean_kernel_proof = false`, and
+`universal_n_claim = false`; the models omit the Euclidean realization and
+Lean ingress.  These artifacts therefore cannot be promoted as a terminal or
+as a producer for the live theorem.
+
+The certificate and script registries contain no FreshThird,
+`firstNonHit`, `secondNonHit`, or `normalized_residual` certificate.  The
+indexed Lean search likewise found only the current wrappers and branch-local
+producers.  The first missing source-faithful bridge remains a new cap,
+common-radius/fiber, cyclic-order, incidence, or metric invariant strong
+enough to consume both non-hit constructors.  The literal load-bearing
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
+open; no wrapper, SAT result, or conditional theorem is promoted.
