@@ -2209,3 +2209,27 @@ third common incidence, common-radius/fiber witness, or boundary transport
 for the non-hit and noncanonical equal-center branches.  The explicit
 `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` leaf is
 still open.
+
+## 2026-08-03 equal-center bridge and bounded-smoke checkpoint
+
+The read-only imported-source audit and the deep agentic Lean search both
+found no source-clean consumer for either `firstNonHit`/`secondNonHit` or the
+`distinctBlockersDifferentCaps × distinctBlockersDifferentCaps` equal-center
+product.  The nearest apparent `sameBlockerAllEndpointOmission` terminal is
+`sorryAx`-tainted and has an incompatible `FreshOutsideFirstBlockerFiber`
+interface, so it is explicitly rejected.  The smallest honest next target is
+a new direct terminal consuming both cross-row hits, equal centers, and both
+noncanonical cap payloads; the non-hit arms still need a separate incidence,
+deletion, or boundary bridge.  No existing theorem-bank declaration supplies
+that bridge.
+
+The bounded round-7 triple-center multiplicity smoke
+`fresh_SSS_k0_d1_f2` returned external Z3 `unsat` under schema v7.  Its run
+directory is
+`scratch/retained-omission-e1/round7-triple-center-multiplicity/artifacts-smoke/20260803T121810.553483Z-caplocal-pid37729`.
+As with the earlier smoke, the artifact has no Lean certificate, Euclidean
+realization, or universal-in-​n claim, and therefore receives no closure
+credit.  The live closure matrix must continue to mark
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` as an
+open load-bearing sorry.  No new CEGAR round or promoted obligation was
+introduced at this checkpoint.
