@@ -2152,3 +2152,28 @@ the Kalmanson consumer.  This is a producer/adapter target, not a closure
 claim.  The non-hit constructors remain untouched, and
 `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
 the explicit open leaf in the coordinator frontier.
+
+## 2026-08-03 ShellCurvatureRows adapter audit
+
+The direct generic adapter route was checked under Lean 4.27.0.  The
+`ConvexCyclicOrder/ShellCurvatureRows` module provides a source-clean
+`ShellBoundaryIndexing` producer, with non-collinearity discharged from the
+convex carrier and `card_gt_four`; the
+`SelectedFourClassCurvature` module also provides source-clean support-order
+and quarter-turn-arc adapters.  These modules compile without `sorryAx`.
+
+They do not yet consume the live FreshThird residual.  The residual packet
+does not package `H.selectedAt` as the `SelectedFourClass` objects expected by
+the adapters, does not retain the common-radius membership needed by the
+mutual-cross-membership consumers, and does not provide the finite
+permutation/strict-order transport for the named source points.  The
+`firstNonHit` and `secondNonHit` branches still expose only one-sided deletion
+survival or equal selected supports.  Thus the first source-faithful bridge
+remains either a global erase/removability theorem or a branch-preserving
+cross-row incidence/order producer; generic boundary construction alone is
+insufficient.
+
+This is an audit and implementation-direction checkpoint only.  No new
+obligation was introduced, no wrapper or SAT artifact was promoted, and
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
+the explicit open load-bearing leaf.
