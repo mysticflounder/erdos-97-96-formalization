@@ -2233,3 +2233,23 @@ credit.  The live closure matrix must continue to mark
 `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` as an
 open load-bearing sorry.  No new CEGAR round or promoted obligation was
 introduced at this checkpoint.
+
+## 2026-08-03 FreshThird adapter-route audit
+
+The focused adapter audit is recorded in
+[`scratch/freshthird-adapter-route-audit-20260803.md`](../scratch/freshthird-adapter-route-audit-20260803.md).
+It confirms that the remaining normalized leaf has no non-circular,
+source-clean consumer with the current `C`/`Q` interface.  In particular,
+`false_of_twoCapSources_mutualCrossMembership_distinctBlockers` is declared
+later and additionally requires a common first-apex radius, both source
+vertices in the same `SelectedClass`, reciprocal C-row incidence, and
+distinct blockers.  The non-hit branches provide none of that data, while
+the equal-center branch has equal blockers.  The private blocker-off-cap and
+complementary-membership adapters are later, type-incompatible, or require
+the already-removed canonical branch.
+
+Accordingly, the first missing producer is unchanged: a source-faithful
+common-radius/mutual-incidence invariant (or a new branch-specific metric or
+ordered-cap terminal) for the non-hit and noncanonical equal-center arms.
+This audit introduced no new obligation and gives no closure credit; the
+normalized remaining theorem remains an explicit open load-bearing `sorry`.
