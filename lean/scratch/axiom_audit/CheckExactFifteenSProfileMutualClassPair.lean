@@ -1,0 +1,4 @@
+import Erdos9796Proof.P97.ATail.ExactFifteenSProfileMutualClassPair
+
+#print axioms Problem97.ATailExactFifteenSProfileMutualClassPair.capInteriorByIndex_subset_selectedClass_of_card_eq_fifteen
+#print axioms Problem97.ATailExactFifteenSProfileMutualClassPair.false_of_sProfile_interiorPair_of_card_eq_fifteen
