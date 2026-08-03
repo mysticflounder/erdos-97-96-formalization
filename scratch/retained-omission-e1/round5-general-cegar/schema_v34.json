@@ -1,0 +1,97 @@
+{
+  "schema_version": 34,
+  "target": "Erdos Problem 97 round-5 general CEGAR",
+  "scope": "Tracker-admission-only successor to frozen v33",
+  "composition": {
+    "encoding": "round5_cegar_v34.Encoding subclasses round5_cegar_v33.Encoding",
+    "engine": "round5_cegar_v19.solve_case through captured v33 dispatch",
+    "mathematical_source_contract": "exactly schema_v33/source_contract",
+    "semantic_boolean_count": "1031 + 15 * profiles.count('D')"
+  },
+  "tracker_admission_repair": {
+    "affected_profile": "DDD",
+    "family": "exact_fifteen_s_profile_mutual_class_pair",
+    "prior_failure": "allowlisted tracker absent because the zero-clause family key was omitted",
+    "representation": "explicit empty family group emitting a tracked tautological conjunction",
+    "semantic_constraint_delta": 0,
+    "semantic_boolean_delta": 0,
+    "solution_set_delta": 0
+  },
+  "hard_canary": {
+    "profiles": ["DDD"],
+    "default_profile": "DDD",
+    "role_triples": [
+      [0, 2, 1],
+      [0, 2, 3],
+      [0, 3, 1],
+      [0, 3, 2],
+      [1, 3, 0],
+      [1, 3, 2],
+      [2, 0, 1],
+      [2, 0, 3],
+      [3, 0, 1],
+      [3, 0, 2],
+      [3, 1, 0],
+      [3, 1, 2]
+    ],
+    "delegation": "exactly one run_matrix call"
+  },
+  "runtime_binding": {
+    "predecessor_callables": "captured before rebinding",
+    "restoration": "finally in every binding context",
+    "recursive_dispatch": false
+  },
+  "runtime_telemetry": {
+    "implementation": "round5_cegar_v34_telemetry.py",
+    "implementation_test": "test_round5_cegar_v34_telemetry.py",
+    "provenance_pins": [
+      "implementation file SHA-256",
+      "implementation-test file SHA-256",
+      "installed executable-source SHA-256"
+    ],
+    "installation_scope": "one inherited solve runtime",
+    "durability": "runtime_telemetry is embedded in each hash-chained assignment outcome",
+    "child_validation": "recompute durable payload SHA-256 and verify nonnegative phase reconciliation",
+    "normalization_identity_effect": "none"
+  },
+  "source_integrity": {
+    "policy": "fail closed unless every transitive file-backed provenance source is tracked at HEAD and its worktree bytes equal the raw HEAD blob",
+    "mechanism": "one git cat-file --batch request over the explicit source registry",
+    "dirty_source_bypass": false
+  },
+  "focused_test_attestation": {
+    "schema": "round5-v34-focused-pytest/v1",
+    "cwd": "scratch/retained-omission-e1/round5-general-cegar",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "argv": [
+      "uv",
+      "run",
+      "--with",
+      "pytest",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "test_round5_cegar_v34.py",
+      "test_round5_cegar_v34_telemetry.py"
+    ],
+    "command": "PYTHONDONTWRITEBYTECODE=1 uv run --with pytest pytest -q -p no:cacheprovider test_round5_cegar_v34.py test_round5_cegar_v34_telemetry.py",
+    "expected_exit_code": 0,
+    "collected_test_count": 18,
+    "passed_test_count": 18
+  },
+  "spawn": {
+    "start_method": "spawn",
+    "worker_module": "round5_cegar_v34",
+    "encoding": "round5_cegar_v34.Encoding",
+    "engine": "round5_cegar_v19.solve_case",
+    "result_validation": "a genuine spawned round5_cegar_v34._worker result is parent-validated, including fail-closed terminal status/complete agreement"
+  },
+  "terminal_policy": {
+    "complete": ["sat", "unsat"],
+    "incomplete": ["unknown", "budget", "error"]
+  },
+  "trust_boundary": "This repair authenticates a previously omitted provenance tracker. It proves no new mathematical clause and does not close Problem 97."
+}
