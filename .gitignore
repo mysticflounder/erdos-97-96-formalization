@@ -240,6 +240,53 @@ scratch/atail-force/exact7-role-coverage-gate/probe_l2u_stageb_results.json
 /scratch/singular-liftstd-x9-20260729/run.stdout.json
 /scratch/singular-liftstd-x9-20260729/run.stderr.txt
 
+# Root-level agent/search transcripts and bounded context snapshots are
+# regenerable diagnostics. Keep curated reports and plans visible; existing
+# tracked files remain tracked even when a pattern below matches them.
+/scratch/agentic-*.txt
+/scratch/agentic_*.txt
+/scratch/agentic-*.err
+/scratch/agentic_*.err
+/scratch/.audit_untracked_paths.txt
+/scratch/freshthird*.txt
+/scratch/fresh-third*.txt
+/scratch/nthdegree*.txt
+/scratch/nd-*.txt
+/scratch/target-*.txt
+/scratch/target_*.txt
+/scratch/*_context.txt
+/scratch/*_target*.txt
+/scratch/*_window*.txt
+/scratch/*_search*.txt
+/scratch/*_hits.txt
+/scratch/*_rg.txt
+/scratch/*_defs.txt
+/scratch/*_lines.txt
+/scratch/*_terminal*.txt
+/scratch/*_show*.txt
+
+# Text-wrapped certificate payloads are generated from the pinned solver
+# drivers; the promoted Lean/source summaries live elsewhere.
+/scratch/**/*.lrat.txt
+/scratch/**/*.cert.txt
+
+# Completed retained-omission CEGAR runs are reproducible solver artifacts;
+# keep their drivers, manifests, reports, and summaries visible.  The live
+# projected-static shard is elsewhere and is intentionally not covered here.
+/scratch/retained-omission-e1/**/artifacts*/
+/scratch/retained-omission-e1/**/__pycache__/
+/scratch/retained-omission-e1/**/.pytest_cache/
+/scratch/retained-omission-e1/**/.ruff_cache/
+/scratch/retained-omission-e1/**/.venv/
+/scratch/retained-omission-e1/**/.uv-cache/
+
+# QF-NRA instance batches are regenerated from the checked-in miner/audit
+# drivers; retain their reports and result summaries in the parent directory.
+/scratch/endpoint_exact15_d44_qfnra_instances/
+/scratch/five_role_euclidean_qfnra_instances/
+/scratch/five_role_euclidean_qfnra_witness_instances/
+/scratch/five_role_euclidean_qfnra_parametric_instances/
+
 # Replayable census journals and solver stdout/stderr remain local. Their
 # drivers, manifests, and curated result summaries stay visible.
 /scratch/atail-force/r-actual-blocker-orbit-census/out*/
