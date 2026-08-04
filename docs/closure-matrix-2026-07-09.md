@@ -2564,3 +2564,51 @@ the missing hypotheses are archived in
 
 Status is unchanged: `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining`
 is `OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`, with no closure credit.
+### FreshThird cap-size/composition inventory (2026-08-03)
+
+The bounded cap-composition probe is recorded in
+`scratch/freshthird-cap-size-composition-inventory-20260803.md`.  Using the
+live cap-sum identity, the lower bounds `ci >= 6`, and the residual field
+`cap_card_ge_eight`, it excludes designated-cap FreshThird instances at
+`n = 15,16`.  At `n = 17` the only fixed-index profile is `(6,8,6)`; at
+`n = 18` the fixed-index profiles are `(6,9,6)`, `(7,8,6)`, and `(6,8,7)`.
+
+This is a finite selector-capacity filter, not a geometric realization or a
+universal-in-`n` theorem.  The existing `n = 17` SAT artifacts for the three
+remaining arms remain external diagnostic evidence only.  No Lean closure
+credit is assigned; the normalized-remaining theorem is still
+`OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`.
+
+The count is informative about proof architecture but not by itself about
+theorem difficulty.  The family `(6,8,n-11)` keeps the designated cap at size
+8 for every `n >= 17`, so the minimal `m=2` local branch persists at arbitrary
+`n`.  Any cap-profile case split must therefore retain that thin-cap branch
+unless a transport theorem permits choosing the designated cap as a largest
+cap.  A geometric impossibility result for the thin profiles or a
+profile-independent terminal could instead bypass that split.
+
+The same stars-and-bars identities were checked for every `15 <= n <= 256`:
+all labelled profiles are `binomial(n-13, 2)`, and fixed-index designated-cap
+profiles are `binomial(n-15, 2)` for `n >= 17`.  At `n=256` these are 29,403 and
+28,920 respectively; the corresponding total ordered C-pair capacity is
+283,444,920.  This is exhaustive for the stated arithmetic interface, not a
+claim about additional geometric profiles or Lean realizability.
+
+The follow-up motif audit is in
+`scratch/freshthird-cap-profile-motifs-20260804.md`.  For designated-cap
+surplus `m=c_d-6`, the `m=2` thin-cap stratum persists for every `n >= 17` and
+has the largest profile multiplicity, while selector-capacity workload peaks
+near `m ≈ 2(n-15)/3` (C-pairs) or `m ≈ 4(n-15)/5` (independent C/Q slots).
+These are search heuristics only; they do not alter the Lean closure status.
+
+The largest-cap alternative is not currently a free relabeling in the Lean
+tree.  `TwoCapSourceThirdCanonicalRowSurface` and
+`CapSourceThirdCanonicalRowWitness` hard-code `S.oppIndex1` in the cardinality,
+cap-interior, and source-witness fields.  Existing packet redesignations are
+useful in other residuals, but no transport theorem currently carries this
+FreshThird packet, its blocker fiber, and the normalized residual across a new
+cap index.  Until that producer is proved, the uniform `m=2` thin-cap branch is
+present in every cap-profile case split; do not replace it with a
+largest-cap-only split without the transport theorem.  This does not rule out
+closing the branch by a geometric impossibility or a profile-independent
+terminal.

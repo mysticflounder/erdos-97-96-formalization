@@ -176,3 +176,52 @@ The live theorem
 `OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`; the focused reports are archived
 in `scratch/freshthird-equalcenter-terminal-search-20260803.md` and
 `scratch/freshthird-metric-order-consumer-search-20260803.md`.
+## FreshThird cap-size/composition inventory (2026-08-03)
+
+The bounded inventory in
+`scratch/freshthird-cap-size-composition-inventory-20260803.md` gives a useful
+search filter for the remaining residual.  The designated-cap requirement
+`cap_card_ge_eight` removes `n = 15,16`; the only fixed-index `n = 17`
+profile is `(6,8,6)`, and the fixed-index `n = 18` profiles are
+`(6,9,6)`, `(7,8,6)`, and `(6,8,7)`.  These profiles determine only the
+number of endpoint-fresh selector slots.  They do not provide a geometric
+realization, a kernel-checked contradiction, or a universal-`n` reduction.
+The `n = 17` SAT artifacts therefore remain diagnostic, and the live
+normalized-remaining theorem remains open with zero closure credit.
+
+## FreshThird profile-motif implications (2026-08-04)
+
+The profile motifs do not justify a production Lean case enumerator or change
+the closure count.  They do refine the next-producer plan:
+
+1. Treat the persistent thin-cap stratum `m=2`, namely
+   `(6+a,8,n-11-a)` for `0 <= a <= n-17`, as a uniform arbitrary-surplus
+   branch, not as an `n=17` finite case.
+2. Audit whether the coordinator can legally relabel the designated cap to a
+   largest cap.  If so, a separate producer can use
+   `c_d >= ceil((n+3)/3)` and obtain growing local slack.  If not, the `m=2`
+   stratum remains present in every cap-profile case split; it may still be
+   discharged by a geometric impossibility theorem or a profile-independent
+   terminal rather than a dedicated `m=2` producer.
+3. Use the capacity-dominant strata only to prioritize future external
+   diagnostics after a source-clean producer exists; their selector counts
+   are not proof hypotheses.
+
+The live theorem
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
+`OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`.  No new `sorry`, profile split,
+or solver result is promoted from this arithmetic audit.
+
+### FreshThird index-interface boundary (2026-08-04)
+
+The proposed largest-cap shortcut is not yet available to the coordinator.
+`TwoCapSourceThirdCanonicalRowSurface` and
+`CapSourceThirdCanonicalRowWitness` mention `S.oppIndex1` directly in their
+cardinality and cap-interior data, and the normalized residual retains that
+index through its blocker/source fields.  The existing packet redesignation
+helpers do not transport this packet and residual to a new index.  Consequently
+the cap-profile route must either handle the thin-cap (`m=2`) stratum directly
+or separately add and verify a full FreshThird transport theorem before using a
+largest-cap branch.  A profile-independent terminal remains a third route.
+This audit changes sequencing only; the live theorem stays
+`OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER` with zero closure credit.

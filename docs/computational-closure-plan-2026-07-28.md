@@ -474,6 +474,41 @@ must not be promoted to full-shell nonmembership.  Consequently v32 remains a
 sound exact-15 finite-search cut until a separate coverage theorem or complete
 finite certificate is produced.
 
+### FreshThird cap-profile routing (2026-08-04)
+
+The bounded cap-composition census and follow-up motif audit are recorded in
+`scratch/freshthird-cap-size-composition-inventory-20260803.md` and
+`scratch/freshthird-cap-profile-motifs-20260804.md`.  Writing
+`s = n - 15` and `m = c_d - 6` for the designated cap, the arithmetic
+interface has `e_0 + e_1 + e_2 = s`, with `e_i = c_i - 6`, and the fixed-index
+cap-source requirement is `m >= 2`.  Hence the labelled profile count is
+`binomial(n - 13, 2)`, the fixed-index designated-cap count is
+`binomial(n - 15, 2)` for `n >= 17`, and the `m = 2` stratum persists for
+every `n >= 17`.  The identities and canonical-orbit census were checked for
+every `15 <= n <= 256`; this is exhaustive for the stated arithmetic model,
+not a geometric realization or a Lean theorem.
+
+This changes computation priority but not closure credit.  The `m = 2`
+thin-cap stratum consists of `(6+a,8,n-11-a)` for
+`0 <= a <= n-17` and must be treated as a uniform arbitrary-surplus branch;
+an `n = 17` SAT or exact-profile result cannot be promoted to the universal
+FreshThird leaf.  Capacity-dominant strata (roughly `m` near two-thirds of
+the surplus for C-pairs and four-fifths for independent C/Q slots) are useful
+for diagnostic ordering only.
+
+The alternative “choose the largest cap” route is not currently available as
+a Lean simplification.  `TwoCapSourceThirdCanonicalRowSurface` and
+`CapSourceThirdCanonicalRowWitness` hard-code `S.oppIndex1`, and no current
+transport theorem carries that packet, its blocker fiber, and the normalized
+residual to a new index.  Existing packet redesignations are not sufficient
+for this interface.  Therefore the computational work order is: prioritize
+handling the `m = 2` stratum (by a uniform producer, a geometric impossibility,
+or a profile-independent terminal); separately audit/prove a full
+index-transport producer if the growing-slack largest-cap route is desired;
+and do not add an `n`-specific production enumerator.  The live target
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
+`OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`.
+
 ## 2. Ground rules (binding)
 
 1. **Encoding smoke test before any production run** — every encoder must
