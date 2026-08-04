@@ -31,3 +31,14 @@ and artifact replay.  Once those checks pass, migrate the projected depth-5
 wave first, then the shared-pair and supplemental fixed-shard wrappers, each
 to a fresh v3 output root.  Do not resume or mix v2 output directories with a
 v3 run.
+
+## Resume gate correction
+
+The first attempted checkpoint replay exposed a v3 resume bug: `CHECKPOINT`
+was not included in the idempotent prior-manifest status set, so `--resume`
+continued the bounded run and added two more raw-SAT records.  The driver now
+treats `CHECKPOINT` like the other completed/checkpoint states, and a regression
+test verifies that resume neither calls the solver nor creates a new manifest
+generation.  The original output root is retained as a historical continuation
+record; a fresh canary with the corrected source hash is required before wave
+promotion.

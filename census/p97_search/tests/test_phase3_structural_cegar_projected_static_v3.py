@@ -1087,6 +1087,45 @@ def test_manifest_generation_tamper_fails_closed_on_resume(tmp_path: Path) -> No
         )
 
 
+def test_checkpoint_resume_is_idempotent_and_does_not_extend_bound(
+    tmp_path: Path,
+) -> None:
+    out = tmp_path / "checkpoint-resume"
+    first = v3.run_driver(
+        out,
+        timeout_s=5,
+        learned_core_limit=2,
+        survivor_limit=2,
+        bootstrap_results=None,
+        algebraic_bootstrap=None,
+        projected_static_v3=True,
+        max_new_raw=1,
+        solver_runner=_sat_runner(_first_projected_survivor_assignment()),
+    )
+
+    assert first["status"] == "CHECKPOINT"
+    assert first["counts"]["raw_sat_count"] == 1
+    generation_count = len(tuple(out.glob("manifest.g*.json")))
+
+    resumed = v3.run_driver(
+        out,
+        timeout_s=5,
+        learned_core_limit=2,
+        survivor_limit=2,
+        bootstrap_results=None,
+        algebraic_bootstrap=None,
+        projected_static_v3=True,
+        max_new_raw=1,
+        solver_runner=lambda *_args: pytest.fail(
+            "checkpoint resume must not invoke the solver"
+        ),
+        resume=True,
+    )
+
+    assert resumed == first
+    assert len(tuple(out.glob("manifest.g*.json"))) == generation_count
+
+
 def test_manifest_fast_path_matches_checkpoint_replay_and_skips_hot_recount(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,

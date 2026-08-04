@@ -9975,6 +9975,7 @@ def run_driver(
         return manifest
 
     if prior_manifest is not None and prior_manifest.get("status") in {
+        "CHECKPOINT",
         "STRUCTURAL_UNSAT_VERIFIED",
         "P97_EUCLIDEAN_GAUGE_UNSAT_VERIFIED",
         "ENUMERATION_COMPLETE_WITH_SURVIVORS",
