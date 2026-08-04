@@ -5,7 +5,7 @@
   "composition": {
     "encoding": "round5_cegar_v35.Encoding subclasses round5_cegar_v33.Encoding",
     "engine": "round5_cegar_v19.solve_case through captured v33 dispatch",
-    "mathematical_source_contract": "exactly schema_v33/source_contract",
+    "mathematical_source_contract": "schema_v33/source_contract extended by Problem97.false_of_mutualClassPair_sharedMember_thirdClassExcludes for nonapex exact full-shell K4 semantics",
     "semantic_boolean_count": "1031 + 15 * profiles.count('D')"
   },
   "tracker_admission_repair": {
@@ -67,6 +67,7 @@
   "source_integrity": {
     "policy": "fail closed unless every transitive file-backed provenance source is tracked at HEAD and its worktree bytes equal the raw HEAD blob",
     "mechanism": "one git cat-file --batch request over the explicit source registry",
+    "commit_identity": "record the exact git HEAD commit whose raw blobs passed the source gate",
     "dirty_source_bypass": false
   },
   "focused_test_attestation": {
@@ -89,8 +90,8 @@
     ],
     "command": "PYTHONDONTWRITEBYTECODE=1 uv run --with pytest pytest -q -p no:cacheprovider test_round5_cegar_v35.py test_round5_cegar_v34_telemetry.py",
     "expected_exit_code": 0,
-    "collected_test_count": 13,
-    "passed_test_count": 13
+    "collected_test_count": 20,
+    "passed_test_count": 20
   },
   "spawn": {
     "start_method": "spawn",

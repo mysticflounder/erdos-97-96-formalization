@@ -150,7 +150,7 @@ def source_contract() -> dict[str, object]:
 
 
 def _provenance_source_paths() -> dict[str, Path]:
-    """Return every file-backed source used by the transitive v34 contract."""
+    """Return every file-backed source used by the transitive v35 contract."""
     local_names = (
         "round5_cegar_v8.py",
         "round5_cegar_v9.py",
@@ -265,6 +265,26 @@ def _verified_head_source_hashes() -> dict[str, str]:
     return dict(sorted(hashes.items()))
 
 
+def _git_head_commit() -> str:
+    """Return the exact commit whose blobs passed the source-frozen gate."""
+    completed = subprocess.run(
+        ["git", "rev-parse", "--verify", "HEAD"],
+        cwd=v8.PROJECT_ROOT,
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    commit = completed.stdout.strip()
+    if (
+        completed.returncode != 0
+        or len(commit) not in (40, 64)
+        or any(character not in "0123456789abcdef" for character in commit)
+    ):
+        detail = completed.stderr.strip()
+        raise RuntimeError(f"could not identify source-frozen HEAD commit: {detail}")
+    return commit
+
+
 def _focused_test_attestation() -> dict[str, object]:
     schema = json.loads(SCHEMA_PATH.read_text())
     attestation = schema.get("focused_test_attestation")
@@ -294,6 +314,7 @@ def _telemetry_hashes() -> dict[str, str]:
 
 def provenance() -> dict[str, object]:
     head_source_sha256 = _verified_head_source_hashes()
+    git_head_commit = _git_head_commit()
     focused_test_attestation = _focused_test_attestation()
     inherited = _BASE_V33_PROVENANCE()
     # v34 replaces the inherited optional ignored log with the required,
@@ -314,6 +335,7 @@ def provenance() -> dict[str, object]:
             "focused_test_attestation_sha256": canonical_sha256(
                 focused_test_attestation
             ),
+            "git_head_commit": git_head_commit,
             "head_source_sha256": head_source_sha256,
             "artifact_contract": {
                 "default_directory": DEFAULT_ARTIFACT_DIR.name,
@@ -518,26 +540,26 @@ def _durable_telemetry_summary(
 ) -> dict[str, object]:
     journal_summary = result.get("assignment_journal")
     if not isinstance(journal_summary, dict):
-        raise TypeError("v34 telemetry requires an assignment journal summary")
+        raise TypeError("v35 telemetry requires an assignment journal summary")
     directory = journal_summary.get("directory")
     if not isinstance(directory, str):
-        raise TypeError("v34 telemetry journal directory is missing")
+        raise TypeError("v35 telemetry journal directory is missing")
     recovered = v19.AssignmentJournal(case_dir / directory).recover()
     completed = recovered.get("completed")
     if not isinstance(completed, list):
-        raise TypeError("v34 telemetry journal completed set is invalid")
+        raise TypeError("v35 telemetry journal completed set is invalid")
     payloads: list[dict[str, object]] = []
     for index, outcome in enumerate(completed):
         if not isinstance(outcome, dict):
-            raise TypeError("v34 telemetry outcome is not an object")
+            raise TypeError("v35 telemetry outcome is not an object")
         runtime = outcome.get("runtime_telemetry")
         if not isinstance(runtime, dict):
-            raise TypeError(f"v34 telemetry missing from outcome {index}")
+            raise TypeError(f"v35 telemetry missing from outcome {index}")
         _assert_reconciled_runtime(runtime, f"outcome {index}")
         checks = runtime.get("checks")
         reconstructions = runtime.get("reconstructions")
         if not isinstance(checks, list) or not isinstance(reconstructions, list):
-            raise TypeError(f"v34 telemetry event lists missing from outcome {index}")
+            raise TypeError(f"v35 telemetry event lists missing from outcome {index}")
         for check_index, check in enumerate(checks):
             _assert_reconciled_runtime(check, f"outcome {index} check {check_index}")
             if isinstance(check, dict) and isinstance(check.get("normalization"), dict):
@@ -552,7 +574,7 @@ def _durable_telemetry_summary(
             )
         payloads.append(runtime)
     if journal_summary.get("completed_assignment_count") != len(payloads):
-        raise RuntimeError("v34 telemetry count differs from journal summary")
+        raise RuntimeError("v35 telemetry count differs from journal summary")
     return {
         "schema_version": telemetry.TELEMETRY_SCHEMA_VERSION,
         "telemetry_source_sha256": telemetry.telemetry_source_sha256(),
@@ -601,7 +623,7 @@ def solve_case(
     frozen_provenance: dict[str, object] | None = None,
 ) -> dict[str, object]:
     if case.arm != "fresh":
-        raise ValueError("v34 admits only the ordinary fresh arm")
+        raise ValueError("v35 admits only the ordinary fresh arm")
     with telemetry.installed(), _bound_v33_solve_dispatch():
         result = _BASE_V33_SOLVE_CASE(
             case=case,
