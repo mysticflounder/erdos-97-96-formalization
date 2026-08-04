@@ -12,7 +12,7 @@ full census evidence; it records the theorem candidates that the data has
 made plausible and the order in which they should be attacked.
 
 Scope: L2 triple-support classes under the PROVEN cuts of
-`docs/multi-center-joint-census-spec-2026-07-07.md`.
+`docs/archive/2026-07-16-doc-sweep/multi-center-joint-census-spec-2026-07-07.md`.
 
 ## Current empirical facts
 

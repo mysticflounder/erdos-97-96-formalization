@@ -6,7 +6,7 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Multi-center joint census results (2026-07-08)
 
-Scope: `docs/multi-center-joint-census-spec-2026-07-07.md`, L2 GLOBAL
+Scope: `docs/archive/2026-07-16-doc-sweep/multi-center-joint-census-spec-2026-07-07.md`, L2 GLOBAL
 surface under the PROVEN cuts. This note records the completed
 empirical sweep through `n = 28`, which is sufficient for the spec's
 `STABILIZED-EMPIRICAL` label. At publication, a supplementary extension run
