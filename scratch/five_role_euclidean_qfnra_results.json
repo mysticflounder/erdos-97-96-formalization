@@ -1,0 +1,3178 @@
+{
+  "diagnostic_only": true,
+  "counts": {
+    "SAT_EXACT_RATIONAL_NAMED_LOCAL": 22,
+    "UNSAT_KALMANSON_NECESSARY_CORE": 82,
+    "UNKNOWN": 16
+  },
+  "total": 120,
+  "normalization": "O=(0,0), next cyclic role=(1,0), obtained exactly by z -> conjugate(next)*z/|next|^2; this combines translation, orientation-preserving rotation, and positive scaling",
+  "strict_convexity": "all 35 orientations i<j<k are strictly positive",
+  "witness_ordering": "smallest returned witness per residual, lexicographically by max absolute numerator, max denominator, then sum of absolute numerators; no global minimality claim",
+  "exact_solver_versions": {
+    "z3": "4.16.0",
+    "cvc5": "1.3.3"
+  },
+  "smallest_witness_per_residual": [
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXMBC",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "A": {
+          "x": "1",
+          "y": "0"
+        },
+        "C": {
+          "x": "-109969/117169",
+          "y": "40440/117169"
+        },
+        "M": {
+          "x": "41/841",
+          "y": "840/841"
+        },
+        "K": {
+          "x": "344307/117169",
+          "y": "40440/117169"
+        },
+        "X": {
+          "x": "19986158/10662379",
+          "y": "7518470/10662379"
+        },
+        "B": {
+          "x": "-26759936/44172713",
+          "y": "202091232/220863565"
+        }
+      },
+      "witness_size": {
+        "max_abs_numerator": 202091232,
+        "max_denominator": 220863565,
+        "sum_abs_numerators": 256891834
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBKMA",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "A": {
+          "x": "-63/65",
+          "y": "16/65"
+        },
+        "C": {
+          "x": "1",
+          "y": "0"
+        },
+        "M": {
+          "x": "-21079/25129",
+          "y": "13680/25129"
+        },
+        "K": {
+          "x": "35473/280865",
+          "y": "533904/280865"
+        },
+        "X": {
+          "x": "9571897/9268545",
+          "y": "1026976/9268545"
+        },
+        "B": {
+          "x": "36475/75387",
+          "y": "1108840/678483"
+        }
+      },
+      "witness_size": {
+        "max_abs_numerator": 9571897,
+        "max_denominator": 9268545,
+        "sum_abs_numerators": 12348404
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBMAKJ",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "1",
+          "y": "0"
+        },
+        "J": {
+          "x": "-63/65",
+          "y": "16/65"
+        },
+        "M": {
+          "x": "7473/11345",
+          "y": "8536/11345"
+        },
+        "K": {
+          "x": "-19191/20345",
+          "y": "8192/20345"
+        },
+        "A": {
+          "x": "53971/386555",
+          "y": "285388/386555"
+        },
+        "B": {
+          "x": "489947/487835",
+          "y": "222244/487835"
+        }
+      },
+      "witness_size": {
+        "max_abs_numerator": 489947,
+        "max_denominator": 487835,
+        "sum_abs_numerators": 1095022
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKAMBC",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "-63/65",
+          "y": "16/65"
+        },
+        "J": {
+          "x": "1",
+          "y": "0"
+        },
+        "M": {
+          "x": "-334223/737425",
+          "y": "657336/737425"
+        },
+        "K": {
+          "x": "20617/20345",
+          "y": "3216/20345"
+        },
+        "A": {
+          "x": "17939/386555",
+          "y": "289892/386555"
+        },
+        "B": {
+          "x": "-27310757/31709275",
+          "y": "21840524/31709275"
+        }
+      },
+      "witness_size": {
+        "max_abs_numerator": 27310757,
+        "max_denominator": 31709275,
+        "sum_abs_numerators": 50474584
+      }
+    }
+  ],
+  "rows": [
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXCMB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OCMB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXCBM",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "A": {
+          "x": "1",
+          "y": "0"
+        },
+        "C": {
+          "x": "2193/8465",
+          "y": "8176/8465"
+        },
+        "M": {
+          "x": "-130475/137437",
+          "y": "43188/137437"
+        },
+        "K": {
+          "x": "116776469/53676565",
+          "y": "16968112/53676565"
+        },
+        "X": {
+          "x": "600288007/418677207",
+          "y": "305955272/418677207"
+        },
+        "B": {
+          "x": "-1583656547/3490212615",
+          "y": "2936842106/3490212615"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "A": false,
+        "X": true
+      },
+      "witness_size": {
+        "max_abs_numerator": 2936842106,
+        "max_denominator": 3490212615,
+        "sum_abs_numerators": 5560670546
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.027450666995719075,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/AeqJ_OAKXC_OAKXCBM_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXMCB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OMCB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXMBC",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "A": {
+          "x": "1",
+          "y": "0"
+        },
+        "C": {
+          "x": "-109969/117169",
+          "y": "40440/117169"
+        },
+        "M": {
+          "x": "41/841",
+          "y": "840/841"
+        },
+        "K": {
+          "x": "344307/117169",
+          "y": "40440/117169"
+        },
+        "X": {
+          "x": "19986158/10662379",
+          "y": "7518470/10662379"
+        },
+        "B": {
+          "x": "-26759936/44172713",
+          "y": "202091232/220863565"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "A": false,
+        "X": true
+      },
+      "witness_size": {
+        "max_abs_numerator": 202091232,
+        "max_denominator": 220863565,
+        "sum_abs_numerators": 256891834
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.026742584072053432,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/AeqJ_OAKXC_OAKXMBC_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXBCM",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_AKCM",
+        "K2_KXCM",
+        "K2_OACM",
+        "K2_XBCM",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXBMC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_AKMC",
+        "K2_KXMC",
+        "K2_OAMC",
+        "K2_XBMC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKMXCB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OMXB",
+        "K1_OXCB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKMXBC",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 64.29743270901963,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OAKXC_OAKMXBC.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKMBXC",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 61.568171250168234,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OAKXC_OAKMBXC.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKBXCM",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_AKCM",
+        "K2_KBCM",
+        "K2_OACM",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKBXMC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_AKMC",
+        "K2_KBMC",
+        "K2_OAMC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKBMXC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_AKMX",
+        "K2_AKXC",
+        "K2_KBMX",
+        "K2_KBXC",
+        "K2_OAMX",
+        "K2_OAXC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMKXCB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OKXB",
+        "K1_OMKB",
+        "K1_OXCB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMKXBC",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 61.280645332997665,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OAKXC_OAMKXBC.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMKBXC",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 61.489049084018916,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OAKXC_OAMKBXC.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMBKXC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OAMC",
+        "K1_OBKC",
+        "K2_AMBK",
+        "K2_AMKX",
+        "K2_AMXC",
+        "K2_BKXC",
+        "K2_MBXC",
+        "K2_OABK",
+        "O_radius_CM",
+        "SigmaB_CM",
+        "base_A_CK",
+        "base_O_AC",
+        "base_X_AK"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OABKXCM",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_ABCM",
+        "K2_OACM",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OABKXMC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_ABMC",
+        "K2_OAMC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OABKMXC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_ABMX",
+        "K2_ABXC",
+        "K2_OAMX",
+        "K2_OAXC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OABMKXC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_ABKX",
+        "K2_ABMK",
+        "K2_ABXC",
+        "K2_OAKX",
+        "K2_OAMK",
+        "K2_OAXC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMAKXCB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OAKB",
+        "K1_OKXB",
+        "K1_OMAB",
+        "K1_OXCB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMAKXBC",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 61.8512407920789,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OAKXC_OMAKXBC.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMAKBXC",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "A": {
+          "x": "825/857",
+          "y": "232/857"
+        },
+        "C": {
+          "x": "-17360015/17517937",
+          "y": "2346912/17517937"
+        },
+        "M": {
+          "x": "1",
+          "y": "0"
+        },
+        "K": {
+          "x": "21450596425/99098969609",
+          "y": "206265043104/99098969609"
+        },
+        "X": {
+          "x": "-7077187727135/5648641267713",
+          "y": "2354143036708/5648641267713"
+        },
+        "B": {
+          "x": "86079011/613127795",
+          "y": "1279238256/613127795"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "A": true,
+        "X": true
+      },
+      "witness_size": {
+        "max_abs_numerator": 7077187727135,
+        "max_denominator": 5648641267713,
+        "sum_abs_numerators": 9660431428624
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.027073875069618225,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/AeqJ_OAKXC_OMAKBXC_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMABKXC",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 61.22245391597971,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OAKXC_OMABKXC.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMBAKXC",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 62.07964879204519,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OAKXC_OMBAKXC.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OBAKXCM",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBCM",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OBAKXMC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBMC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OBAKMXC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBMX",
+        "K2_OBXC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OBAMKXC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBKX",
+        "K2_OBMK",
+        "K2_OBXC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OBMAKXC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBAK",
+        "K2_OBKX",
+        "K2_OBMA",
+        "K2_OBXC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKAMB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OAMB",
+        "K1_OCXB",
+        "K1_OKAB",
+        "K1_OXKB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKABM",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 61.57206495804712,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OCXKA_OCXKABM.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKMAB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OCXB",
+        "K1_OKMB",
+        "K1_OXKB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKMBA",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OCXA",
+        "K1_OKMA",
+        "K1_OXKA",
+        "K2_CXBA",
+        "K2_KMBA",
+        "K2_XKBA",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKBAM",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 63.55933158309199,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OCXKA_OCXKBAM.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKBMA",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OKBA",
+        "K2_CXBM",
+        "K2_CXKB",
+        "K2_CXMA",
+        "K2_KBMA",
+        "K2_OCKB",
+        "K2_OCMA",
+        "K2_XKMA",
+        "O_radius_CM",
+        "SigmaB_CM",
+        "base_A_CK",
+        "base_O_AC",
+        "base_X_AK"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXMKAB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OCXB",
+        "K1_OXMB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXMKBA",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OCXA",
+        "K1_OXMA",
+        "K2_CXBA",
+        "K2_XMBA",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXMBKA",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OCXA",
+        "K1_OXMA",
+        "K2_CXBK",
+        "K2_CXKA",
+        "K2_XMBK",
+        "K2_XMKA",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBKAM",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 61.16088283387944,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OCXKA_OCXBKAM.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBKMA",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "A": {
+          "x": "-63/65",
+          "y": "16/65"
+        },
+        "C": {
+          "x": "1",
+          "y": "0"
+        },
+        "M": {
+          "x": "-21079/25129",
+          "y": "13680/25129"
+        },
+        "K": {
+          "x": "35473/280865",
+          "y": "533904/280865"
+        },
+        "X": {
+          "x": "9571897/9268545",
+          "y": "1026976/9268545"
+        },
+        "B": {
+          "x": "36475/75387",
+          "y": "1108840/678483"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "X": true,
+        "A": false
+      },
+      "witness_size": {
+        "max_abs_numerator": 9571897,
+        "max_denominator": 9268545,
+        "sum_abs_numerators": 12348404
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.026944250101223588,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/AeqJ_OCXKA_OCXBKMA_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBMKA",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 61.254257041960955,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OCXKA_OCXBMKA.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCMXKAB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OCMB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCMXKBA",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OCMA",
+        "K2_CMBA",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCMXBKA",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OCMA",
+        "K2_CMBK",
+        "K2_CMKA",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCMBXKA",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OCMA",
+        "K2_CMBX",
+        "K2_CMKA",
+        "K2_CMXK",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBXKAM",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 61.15863945800811,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OCXKA_OCBXKAM.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBXKMA",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 61.211271750042215,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OCXKA_OCBXKMA.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBXMKA",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 62.28939116606489,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/AeqJ_OCXKA_OCBXMKA.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBMXKA",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "A": {
+          "x": "-109969/117169",
+          "y": "40440/117169"
+        },
+        "C": {
+          "x": "1",
+          "y": "0"
+        },
+        "M": {
+          "x": "29460871/98539129",
+          "y": "94032000/98539129"
+        },
+        "K": {
+          "x": "-36227702883/13728574561",
+          "y": "18370921440/13728574561"
+        },
+        "X": {
+          "x": "-1893810882302/1249300285051",
+          "y": "1635038856950/1249300285051"
+        },
+        "B": {
+          "x": "39065600/44172713",
+          "y": "143492832/220863565"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "X": true,
+        "A": false
+      },
+      "witness_size": {
+        "max_abs_numerator": 1893810882302,
+        "max_denominator": 1249300285051,
+        "sum_abs_numerators": 3583754565288
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.02692904183641076,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/AeqJ_OCXKA_OCBMXKA_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMCXKAB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OMCB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMCXKBA",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OMCA",
+        "K2_MCBA",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMCXBKA",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OMCA",
+        "K2_MCBK",
+        "K2_MCKA",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMCBXKA",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OMCA",
+        "K2_MCBX",
+        "K2_MCKA",
+        "K2_MCXK",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMBCXKA",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "A": {
+          "x": "-367195/386797",
+          "y": "121572/386797"
+        },
+        "C": {
+          "x": "351455581/6025136869",
+          "y": "6014877660/6025136869"
+        },
+        "M": {
+          "x": "1",
+          "y": "0"
+        },
+        "K": {
+          "x": "-154167422567/78326779297",
+          "y": "76867723644/78326779297"
+        },
+        "X": {
+          "x": "-88825243017/78326779297",
+          "y": "89597989072/78326779297"
+        },
+        "B": {
+          "x": "4190775835/6025136869",
+          "y": "3953052378/6025136869"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "X": true,
+        "A": false
+      },
+      "witness_size": {
+        "max_abs_numerator": 154167422567,
+        "max_denominator": 78326779297,
+        "sum_abs_numerators": 423969028522
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.026846708031371236,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/AeqJ_OCXKA_OMBCXKA_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OBCXKAM",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBAM",
+        "K2_OBCX",
+        "K2_OBKA",
+        "K2_OBXK",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OBCXKMA",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBCX",
+        "K2_OBKM",
+        "K2_OBXK",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OBCXMKA",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBCX",
+        "K2_OBXM",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OBCMXKA",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBCM",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OBMCXKA",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBMC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKJMB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OAKB",
+        "K1_OCAB",
+        "K1_OJMB",
+        "K1_OKJB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKJBM",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "1",
+          "y": "0"
+        },
+        "J": {
+          "x": "455/697",
+          "y": "528/697"
+        },
+        "M": {
+          "x": "-63/65",
+          "y": "16/65"
+        },
+        "K": {
+          "x": "5814219/3680857",
+          "y": "2203872/3680857"
+        },
+        "A": {
+          "x": "89523634/62574569",
+          "y": "10199464/62574569"
+        },
+        "B": {
+          "x": "469/5525",
+          "y": "3752/5525"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "A": true,
+        "J": true
+      },
+      "witness_size": {
+        "max_abs_numerator": 89523634,
+        "max_denominator": 62574569,
+        "sum_abs_numerators": 107746473
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.027184334117919207,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OCAKJ_OCAKJBM_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKMJB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OAKB",
+        "K1_OCAB",
+        "K1_OKMB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKMBJ",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OAKJ",
+        "K1_OCAJ",
+        "K1_OKMJ",
+        "K2_AKBJ",
+        "K2_CABJ",
+        "K2_KMBJ",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKBJM",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "1",
+          "y": "0"
+        },
+        "J": {
+          "x": "-19065/25337",
+          "y": "16688/25337"
+        },
+        "M": {
+          "x": "-63/65",
+          "y": "16/65"
+        },
+        "K": {
+          "x": "37199619/93772237",
+          "y": "166189832/93772237"
+        },
+        "A": {
+          "x": "6231063208/7970640145",
+          "y": "7289358332/7970640145"
+        },
+        "B": {
+          "x": "49/225",
+          "y": "392/225"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "A": true,
+        "J": true
+      },
+      "witness_size": {
+        "max_abs_numerator": 7289358332,
+        "max_denominator": 7970640145,
+        "sum_abs_numerators": 13723847265
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.02732087508775294,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OCAKJ_OCAKBJM_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKBMJ",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "1",
+          "y": "0"
+        },
+        "J": {
+          "x": "-8927/9505",
+          "y": "3264/9505"
+        },
+        "M": {
+          "x": "-7595/13213",
+          "y": "10812/13213"
+        },
+        "K": {
+          "x": "219815917/166194925",
+          "y": "322875456/166194925"
+        },
+        "A": {
+          "x": "6806878027/3822483275",
+          "y": "3319847136/3822483275"
+        },
+        "B": {
+          "x": "651211/647437",
+          "y": "1253274/647437"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "A": true,
+        "J": false
+      },
+      "witness_size": {
+        "max_abs_numerator": 6806878027,
+        "max_denominator": 3822483275,
+        "sum_abs_numerators": 10671351620
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.026973749976605177,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OCAKJ_OCAKBMJ_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAMKJB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OAMB",
+        "K1_OCAB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAMKBJ",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OAMJ",
+        "K1_OCAJ",
+        "K2_AMBJ",
+        "K2_CABJ",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAMBKJ",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OAMJ",
+        "K1_OCAJ",
+        "K2_AMBK",
+        "K2_AMKJ",
+        "K2_CABK",
+        "K2_CAKJ",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCABKJM",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "1",
+          "y": "0"
+        },
+        "J": {
+          "x": "-70125/87797",
+          "y": "52828/87797"
+        },
+        "M": {
+          "x": "-63/65",
+          "y": "16/65"
+        },
+        "K": {
+          "x": "14091807/222389801",
+          "y": "366784804/222389801"
+        },
+        "A": {
+          "x": "9756057888/14900116667",
+          "y": "13328780904/14900116667"
+        },
+        "B": {
+          "x": "341/1625",
+          "y": "2728/1625"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "A": true,
+        "J": true
+      },
+      "witness_size": {
+        "max_abs_numerator": 13328780904,
+        "max_denominator": 14900116667,
+        "sum_abs_numerators": 23465841505
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.027019458124414086,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OCAKJ_OCABKJM_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCABKMJ",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "1",
+          "y": "0"
+        },
+        "J": {
+          "x": "-63/65",
+          "y": "16/65"
+        },
+        "M": {
+          "x": "-10528/14753",
+          "y": "10335/14753"
+        },
+        "K": {
+          "x": "418257/808145",
+          "y": "1555696/808145"
+        },
+        "A": {
+          "x": "12309407/12122175",
+          "y": "12447496/12122175"
+        },
+        "B": {
+          "x": "2070965/2626034",
+          "y": "5065899/2626034"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "A": true,
+        "J": false
+      },
+      "witness_size": {
+        "max_abs_numerator": 12447496,
+        "max_denominator": 12122175,
+        "sum_abs_numerators": 33888663
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.026825416134670377,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OCAKJ_OCABKMJ_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCABMKJ",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OABJ",
+        "K2_ABKJ",
+        "K2_ABMK",
+        "K2_CAMK",
+        "K2_OCAB",
+        "K2_OCKJ",
+        "K2_OCMK",
+        "O_radius_CM",
+        "SigmaB_CM",
+        "base_A_CK",
+        "base_C_JK",
+        "base_O_JC"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCMAKJB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OCMB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCMAKBJ",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OCMJ",
+        "K2_CMBJ",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCMABKJ",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OCMJ",
+        "K2_CMBK",
+        "K2_CMKJ",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCMBAKJ",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OCMJ",
+        "K2_CMAK",
+        "K2_CMBA",
+        "K2_CMKJ",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBAKJM",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OBAM",
+        "K2_BAJM",
+        "K2_BAKJ",
+        "K2_CBJM",
+        "K2_CBKJ",
+        "K2_OCBA",
+        "K2_OCJM",
+        "O_radius_CM",
+        "SigmaB_CM",
+        "base_A_CK",
+        "base_C_JK",
+        "base_O_JC"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBAKMJ",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 61.24170562485233,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/XeqC_OCAKJ_OCBAKMJ.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBAMKJ",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "1",
+          "y": "0"
+        },
+        "J": {
+          "x": "-63/65",
+          "y": "16/65"
+        },
+        "M": {
+          "x": "-3129/11321",
+          "y": "10880/11321"
+        },
+        "K": {
+          "x": "-85587/94445",
+          "y": "52144/94445"
+        },
+        "A": {
+          "x": "1512767/5572255",
+          "y": "5859016/5572255"
+        },
+        "B": {
+          "x": "677504/1120779",
+          "y": "899810/1120779"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "A": true,
+        "J": false
+      },
+      "witness_size": {
+        "max_abs_numerator": 5859016,
+        "max_denominator": 5572255,
+        "sum_abs_numerators": 9100917
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.02677712496370077,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OCAKJ_OCBAMKJ_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBMAKJ",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "1",
+          "y": "0"
+        },
+        "J": {
+          "x": "-63/65",
+          "y": "16/65"
+        },
+        "M": {
+          "x": "7473/11345",
+          "y": "8536/11345"
+        },
+        "K": {
+          "x": "-19191/20345",
+          "y": "8192/20345"
+        },
+        "A": {
+          "x": "53971/386555",
+          "y": "285388/386555"
+        },
+        "B": {
+          "x": "489947/487835",
+          "y": "222244/487835"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "A": true,
+        "J": false
+      },
+      "witness_size": {
+        "max_abs_numerator": 489947,
+        "max_denominator": 487835,
+        "sum_abs_numerators": 1095022
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.026799459010362625,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OCAKJ_OCBMAKJ_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMCAKJB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OMCB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMCAKBJ",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OMCJ",
+        "K2_MCBJ",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMCABKJ",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OMCJ",
+        "K2_MCBK",
+        "K2_MCKJ",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMCBAKJ",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OMCJ",
+        "K2_MCAK",
+        "K2_MCBA",
+        "K2_MCKJ",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMBCAKJ",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "115/277",
+          "y": "252/277"
+        },
+        "J": {
+          "x": "-3237581/3350869",
+          "y": "863940/3350869"
+        },
+        "M": {
+          "x": "1",
+          "y": "0"
+        },
+        "K": {
+          "x": "-11018739089/10257010009",
+          "y": "5856770388/10257010009"
+        },
+        "A": {
+          "x": "-94060091339/256425250225",
+          "y": "231862645896/256425250225"
+        },
+        "B": {
+          "x": "6286/6925",
+          "y": "4041/6925"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "A": true,
+        "J": false
+      },
+      "witness_size": {
+        "max_abs_numerator": 231862645896,
+        "max_denominator": 256425250225,
+        "sum_abs_numerators": 342802358928
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.026746666990220547,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OCAKJ_OMBCAKJ_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OBCAKJM",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBAK",
+        "K2_OBCA",
+        "K2_OBJM",
+        "K2_OBKJ",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OBCAKMJ",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBAK",
+        "K2_OBCA",
+        "K2_OBKM",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OBCAMKJ",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBAM",
+        "K2_OBCA",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OBCMAKJ",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBCM",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OBMCAKJ",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBMC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKACMB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OCMB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKACBM",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "-609/3809",
+          "y": "3760/3809"
+        },
+        "J": {
+          "x": "1",
+          "y": "0"
+        },
+        "M": {
+          "x": "-40457775/41872337",
+          "y": "10791712/41872337"
+        },
+        "K": {
+          "x": "30754289/25920245",
+          "y": "7130088/25920245"
+        },
+        "A": {
+          "x": "27640382/46656441",
+          "y": "36424906/46656441"
+        },
+        "B": {
+          "x": "-877143888/1214297773",
+          "y": "969650758/1214297773"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "J": false,
+        "A": true
+      },
+      "witness_size": {
+        "max_abs_numerator": 969650758,
+        "max_denominator": 1214297773,
+        "sum_abs_numerators": 1999998168
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.027078333077952266,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OJKAC_OJKACBM_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKAMCB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OMCB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKAMBC",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "-63/65",
+          "y": "16/65"
+        },
+        "J": {
+          "x": "1",
+          "y": "0"
+        },
+        "M": {
+          "x": "-334223/737425",
+          "y": "657336/737425"
+        },
+        "K": {
+          "x": "20617/20345",
+          "y": "3216/20345"
+        },
+        "A": {
+          "x": "17939/386555",
+          "y": "289892/386555"
+        },
+        "B": {
+          "x": "-27310757/31709275",
+          "y": "21840524/31709275"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "J": false,
+        "A": true
+      },
+      "witness_size": {
+        "max_abs_numerator": 27310757,
+        "max_denominator": 31709275,
+        "sum_abs_numerators": 50474584
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.026680542156100273,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OJKAC_OJKAMBC_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKABCM",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_ABCM",
+        "K2_JKCM",
+        "K2_KACM",
+        "K2_OJCM",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKABMC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_ABMC",
+        "K2_JKMC",
+        "K2_KAMC",
+        "K2_OJMC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKMACB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OACB",
+        "K1_OMAB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKMABC",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "-63/65",
+          "y": "16/65"
+        },
+        "J": {
+          "x": "1",
+          "y": "0"
+        },
+        "M": {
+          "x": "190907/379405",
+          "y": "327876/379405"
+        },
+        "K": {
+          "x": "262721/259025",
+          "y": "80528/259025"
+        },
+        "A": {
+          "x": "-42621/11138075",
+          "y": "12093272/11138075"
+        },
+        "B": {
+          "x": "-14614888/37561095",
+          "y": "34818716/37561095"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "J": false,
+        "A": true
+      },
+      "witness_size": {
+        "max_abs_numerator": 34818716,
+        "max_denominator": 37561095,
+        "sum_abs_numerators": 62431609
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.026692999992519617,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OJKAC_OJKMABC_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKMBAC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OBAC",
+        "K1_OJKC",
+        "K1_OKMC",
+        "K2_JKBA",
+        "K2_KMAC",
+        "K2_KMBA",
+        "K2_OJBA",
+        "O_radius_CM",
+        "SigmaB_CM",
+        "base_A_CK",
+        "base_C_JK",
+        "base_O_JC"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKBACM",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_JKCM",
+        "K2_KBCM",
+        "K2_OJCM",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKBAMC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_JKMC",
+        "K2_KBMC",
+        "K2_OJMC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKBMAC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OBMC",
+        "K1_OJKC",
+        "K1_OKBC",
+        "K1_OMAC",
+        "K2_JKMA",
+        "K2_KBAC",
+        "K2_KBMA",
+        "K2_OJMA",
+        "O_radius_CM",
+        "SigmaB_CM",
+        "base_A_CK",
+        "base_C_JK",
+        "base_O_JC"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMKACB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OACB",
+        "K1_OKAB",
+        "K1_OMKB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMKABC",
+      "classification": "UNKNOWN",
+      "exact_parametric_qfnra": {
+        "z3": {
+          "status": "UNKNOWN",
+          "wall_seconds": 61.32705716602504,
+          "reason": "timeout"
+        },
+        "cvc5": {
+          "status": "UNKNOWN",
+          "returncode": -6,
+          "stderr_tail": [
+            "cvc5 interrupted by timeout."
+          ]
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_parametric_instances/XeqC_OJKAC_OJMKABC.smt2"
+      },
+      "rational_search": "NOT_FOUND (not an UNSAT result)"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMKBAC",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "-63/65",
+          "y": "16/65"
+        },
+        "J": {
+          "x": "1",
+          "y": "0"
+        },
+        "M": {
+          "x": "2836217/3281785",
+          "y": "1651056/3281785"
+        },
+        "K": {
+          "x": "-7/265",
+          "y": "528/265"
+        },
+        "A": {
+          "x": "-37757/51675",
+          "y": "64336/51675"
+        },
+        "B": {
+          "x": "-84479279/292078865",
+          "y": "602816128/292078865"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "J": false,
+        "A": true
+      },
+      "witness_size": {
+        "max_abs_numerator": 602816128,
+        "max_denominator": 292078865,
+        "sum_abs_numerators": 691885388
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.02687887498177588,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OJKAC_OJMKBAC_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMBKAC",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "-100435/106933",
+          "y": "36708/106933"
+        },
+        "J": {
+          "x": "1",
+          "y": "0"
+        },
+        "M": {
+          "x": "301435189/367100989",
+          "y": "209523180/367100989"
+        },
+        "K": {
+          "x": "-1006415087/1751669473",
+          "y": "3991357440/1751669473"
+        },
+        "A": {
+          "x": "-31280132067/22771703149",
+          "y": "32498863978/22771703149"
+        },
+        "B": {
+          "x": "-5028744327/17987948461",
+          "y": "38916628568/17987948461"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "J": false,
+        "A": true
+      },
+      "witness_size": {
+        "max_abs_numerator": 38916628568,
+        "max_denominator": 22771703149,
+        "sum_abs_numerators": 113233236980
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.02696320810355246,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OJKAC_OJMBKAC_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJBKACM",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_JBCM",
+        "K2_OJCM",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJBKAMC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_JBMC",
+        "K2_OJMC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJBKMAC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_JBAC",
+        "K2_JBMA",
+        "K2_OJAC",
+        "K2_OJMA",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJBMKAC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_JBAC",
+        "K2_JBKA",
+        "K2_JBMK",
+        "K2_OJAC",
+        "K2_OJKA",
+        "K2_OJMK",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJKACB",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OACB",
+        "K1_OJKB",
+        "K1_OKAB",
+        "K1_OMJB",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJKABC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K1_OABC",
+        "K1_OMJC",
+        "K2_JKAB",
+        "K2_JKBC",
+        "K2_MJAB",
+        "K2_MJBC",
+        "K2_OMAB",
+        "O_radius_CM",
+        "SigmaB_CM",
+        "base_A_CK",
+        "base_C_JK",
+        "base_O_JC"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJKBAC",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "-63/65",
+          "y": "16/65"
+        },
+        "J": {
+          "x": "4402403/4773925",
+          "y": "1846404/4773925"
+        },
+        "M": {
+          "x": "1",
+          "y": "0"
+        },
+        "K": {
+          "x": "4164398447/12092352025",
+          "y": "19519758396/12092352025"
+        },
+        "A": {
+          "x": "-335837917648/810187585675",
+          "y": "833050691936/810187585675"
+        },
+        "B": {
+          "x": "341/1625",
+          "y": "2728/1625"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "J": true,
+        "A": true
+      },
+      "witness_size": {
+        "max_abs_numerator": 833050691936,
+        "max_denominator": 810187585675,
+        "sum_abs_numerators": 1192579018383
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.026739625027403235,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OJKAC_OMJKBAC_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJBKAC",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "-63/65",
+          "y": "16/65"
+        },
+        "J": {
+          "x": "657336/737425",
+          "y": "334223/737425"
+        },
+        "M": {
+          "x": "1",
+          "y": "0"
+        },
+        "K": {
+          "x": "141029964/2729209925",
+          "y": "4954627927/2729209925"
+        },
+        "A": {
+          "x": "-247119942291/463965687250",
+          "y": "500536956587/463965687250"
+        },
+        "B": {
+          "x": "49/225",
+          "y": "392/225"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "J": true,
+        "A": true
+      },
+      "witness_size": {
+        "max_abs_numerator": 500536956587,
+        "max_denominator": 463965687250,
+        "sum_abs_numerators": 752753548849
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.02662537503056228,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OJKAC_OMJBKAC_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMBJKAC",
+      "classification": "SAT_EXACT_RATIONAL_NAMED_LOCAL",
+      "coordinates": {
+        "O": {
+          "x": "0",
+          "y": "0"
+        },
+        "C": {
+          "x": "-390659/403141",
+          "y": "99540/403141"
+        },
+        "J": {
+          "x": "-2069721267/4573634645",
+          "y": "4078527644/4573634645"
+        },
+        "M": {
+          "x": "1",
+          "y": "0"
+        },
+        "K": {
+          "x": "-31996072782907/23238637631245",
+          "y": "22435490673724/23238637631245"
+        },
+        "A": {
+          "x": "-312232822885817/232386376312450",
+          "y": "59179547985692/116193188156225"
+        },
+        "B": {
+          "x": "1056151/12497371",
+          "y": "8422470/12497371"
+        }
+      },
+      "cap": {
+        "C": true,
+        "M": true,
+        "K": true,
+        "B": true,
+        "O": false,
+        "J": true,
+        "A": true
+      },
+      "witness_size": {
+        "max_abs_numerator": 312232822885817,
+        "max_denominator": 232386376312450,
+        "sum_abs_numerators": 425850092545872
+      },
+      "independent_fraction_validation": "PASS",
+      "fixed_witness_exact_solver_replay": {
+        "z3": "SAT",
+        "cvc5": "SAT",
+        "cvc5_detail": {
+          "status": "SAT",
+          "wall_seconds": 0.026982582872733474,
+          "returncode": 1,
+          "stderr_tail": []
+        },
+        "instance": "scratch/five_role_euclidean_qfnra_witness_instances/XeqC_OJKAC_OMBJKAC_fixed_witness.smt2"
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OBJKACM",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBCM",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OBJKAMC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBMC",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OBJKMAC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBAC",
+        "K2_OBMA",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OBJMKAC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBAC",
+        "K2_OBKA",
+        "K2_OBMK",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OBMJKAC",
+      "classification": "UNSAT_KALMANSON_NECESSARY_CORE",
+      "solver_trust": "Z3 exact-rational QF_LRA core from source packet; not a proof certificate",
+      "core": [
+        "K2_OBAC",
+        "K2_OBJK",
+        "K2_OBKA",
+        "K2_OBMJ",
+        "O_radius_CM",
+        "SigmaB_CM"
+      ],
+      "euclidean_bridge": "strictly convex Euclidean cyclic distances satisfy strict Kalmanson inequalities; homogeneous scaling realizes the packet gap normalization"
+    }
+  ],
+  "omitted": [
+    "anonymous shell fillers",
+    "existential O-centered deletion rows and their overlap <=2 with exact Sigma_A/Sigma_B",
+    "physical cap/MEC geometry",
+    "full ambient carrier",
+    "global no-K4"
+  ]
+}

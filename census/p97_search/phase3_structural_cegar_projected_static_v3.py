@@ -31,6 +31,7 @@ import json
 import os
 import sys
 import tempfile
+import time
 from collections import Counter, defaultdict
 from collections.abc import Iterator, Mapping, Sequence
 from pathlib import Path
@@ -74,8 +75,14 @@ pinned_multiplicity = importlib.import_module(
 cegar_runtime = importlib.import_module(
     "census.p97_search.phase3_cegar_runtime"
 )
+productivity = importlib.import_module(
+    "census.p97_search.phase3_productivity"
+)
 loader_cache = importlib.import_module(
     "census.p97_search.phase3_loader_cache"
+)
+prefix_bank_cache = importlib.import_module(
+    "census.p97_search.phase3_prefix_bank_cache"
 )
 phase3_order_universe = importlib.import_module(
     "census.p97_search.phase3_order_universe"
@@ -5216,6 +5223,7 @@ def _base_configuration(
     shard_depth: int | None = None,
     shard_index: int | None = None,
     persistent_discovery: bool = False,
+    productivity_telemetry: bool = False,
 ) -> dict[str, Any]:
     cube_variables = (
         []
@@ -5392,6 +5400,19 @@ def _base_configuration(
                 "accelerator only; source replay remains required at terminal, "
                 "explicit audit, and publication acceptance boundaries"
             ),
+        },
+        "productivity_telemetry": {
+            "enabled": productivity_telemetry,
+            "schema": productivity.SCHEMA,
+            "record_schema": productivity.RECORD_SCHEMA,
+            "miner_schema": productivity.MINER_SCHEMA,
+            "stream": "productivity.jsonl" if productivity_telemetry else None,
+            "trust_boundary": (
+                "authenticated read-only diagnostic stream; it cannot alter "
+                "classification, clause admission, witness validation, or "
+                "terminal proof publication"
+            ),
+            "promotion": "PARKED-SPEC until a replayable finite or kernel consumer",
         },
         "shard_local_simplification": {
             "enabled": shard_local_simplification,
@@ -7093,6 +7114,7 @@ def _artifact_hashes(out: Path) -> dict[str, str]:
         "smoke.json",
         "bootstrap.json",
         "learned-certificates.jsonl",
+        "productivity.jsonl",
         "survivors.jsonl",
         "solver-logs.jsonl",
         "cube-batches.jsonl",
@@ -7120,6 +7142,19 @@ def _loader_source_sha256() -> str:
     )
 
 
+def _prefix_bank_cache_source_sha256() -> str:
+    return _sha256_value(
+        {
+            "driver": _sha256_file(Path(__file__).resolve()),
+            "cache": _sha256_file(Path(prefix_bank_cache.__file__).resolve()),
+            "prefix_bank": _sha256_file(
+                Path(three_rhombus_prefix_bank.__file__).resolve()
+            ),
+            "detector": _sha256_file(Path(three_rhombus.__file__).resolve()),
+        }
+    )
+
+
 def _serialized_active_bank_entries(bank: Any) -> list[dict[str, Any]]:
     entries: list[dict[str, Any]] = []
     for key, certificate in bank.active.items():
@@ -7138,8 +7173,13 @@ def _serialized_active_bank_entries(bank: Any) -> list[dict[str, Any]]:
 def _cached_learned_state(
     payload: Mapping[str, Any],
 ) -> tuple[list[dict[str, Any]], Any, list[tuple[int, ...]]]:
-    records = [dict(record) for record in payload["records"]]
-    clauses = [tuple(clause) for clause in payload["clauses"]]
+    # The compact cache payload has passed its authenticated envelope and
+    # loader validation.  Its learned records were decoded once from the
+    # authenticated, version-pinned compact record table.  Copy only the outer
+    # list because the driver appends new records; retaining the validated
+    # record and certificate objects avoids a second compiled-bank object graph.
+    records = list(payload["records"])
+    clauses = [tuple(record["clause"]) for record in records]
     for index, record in enumerate(records):
         if record.get("index") != index:
             raise StructuralCegarError(
@@ -7505,6 +7545,7 @@ class ManifestProspectiveState:
     def stream_artifact_hashes(
         self,
         stream_ledgers: Mapping[str, Mapping[str, Any]],
+        productivity_stream: Mapping[str, Any] | None = None,
     ) -> dict[str, str]:
         hashes = dict(self.artifact_hashes)
         names = {
@@ -7525,6 +7566,13 @@ class ManifestProspectiveState:
                     f"prospective {stream_name} ledger has no file hash"
                 )
             hashes[artifact_name] = file_sha256
+        if productivity_stream is not None:
+            file_sha256 = productivity_stream.get("file_sha256")
+            if not isinstance(file_sha256, str):
+                raise StructuralCegarError(
+                    "prospective productivity ledger has no file hash"
+                )
+            hashes["productivity.jsonl"] = file_sha256
         return hashes
 
     def counts(self) -> dict[str, Any]:
@@ -7691,6 +7739,32 @@ def _assert_jsonl_run_ledger(
         raise StructuralCegarError(
             f"shadow {ledger.stream_name} RunLedger/artifact mismatch"
         )
+
+
+def _assert_productivity_ledger(
+    ledger: productivity.ProductivityLedger,
+    path: Path,
+    records: Sequence[Mapping[str, Any]],
+    manifest: Mapping[str, Any],
+) -> None:
+    shadow = ledger.snapshot().as_dict()
+    data = path.read_bytes()
+    recount = {
+        "record_count": len(records),
+        "byte_count": len(data),
+        "terminal_record_sha256": (
+            str(records[-1]["record_sha256"]) if records else None
+        ),
+        "file_sha256": _sha256_bytes(data),
+    }
+    if shadow != recount:
+        raise StructuralCegarError("shadow productivity ledger/recount mismatch")
+    if manifest.get("productivity_stream") != shadow:
+        raise StructuralCegarError("shadow productivity ledger/manifest mismatch")
+    if manifest.get("artifact_hashes", {}).get("productivity.jsonl") != shadow[
+        "file_sha256"
+    ]:
+        raise StructuralCegarError("shadow productivity ledger/artifact mismatch")
 
 
 def _stream_ledger_manifest(
@@ -7864,6 +7938,7 @@ def _manifest(
     manifest_generation: int | None = None,
     previous_manifest_sha256: str | None = None,
     solver_metadata: Mapping[str, Any] | None = None,
+    productivity_stream: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     bootstrap_count = sum(
         record["origin"]
@@ -8212,6 +8287,8 @@ def _manifest(
             str(name): dict(snapshot)
             for name, snapshot in sorted(stream_ledgers.items())
         }
+    if productivity_stream is not None:
+        unsigned["productivity_stream"] = dict(productivity_stream)
     if manifest_generation is not None:
         if type(manifest_generation) is not int or manifest_generation <= 0:
             raise StructuralCegarError("manifest generation must be positive")
@@ -8235,6 +8312,7 @@ def _manifest_from_prospective_state(
     previous_manifest_sha256: str | None,
     state: ManifestProspectiveState,
     solver_metadata: Mapping[str, Any] | None = None,
+    productivity_stream: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Project the hot manifest from state updated after durable appends."""
 
@@ -8266,7 +8344,9 @@ def _manifest_from_prospective_state(
             "failure": None,
             "terminal_clause_count": terminal_clause_count,
             "terminal_drat_verified": unsat_verified,
-            "artifact_hashes": state.stream_artifact_hashes(stream_ledgers),
+            "artifact_hashes": state.stream_artifact_hashes(
+                stream_ledgers, productivity_stream
+            ),
             "stream_ledgers": {
                 str(name): dict(snapshot)
                 for name, snapshot in sorted(stream_ledgers.items())
@@ -8276,6 +8356,8 @@ def _manifest_from_prospective_state(
             "previous_manifest_sha256": previous_manifest_sha256,
         }
     )
+    if productivity_stream is not None:
+        unsigned["productivity_stream"] = dict(productivity_stream)
     return {**unsigned, "manifest_sha256": _sha256_value(unsigned)}
 
 
@@ -8439,12 +8521,87 @@ def _commit_sat_classification(
     shard_literals: Sequence[int] = (),
     learned_ledger: cegar_runtime.LearnedRunLedger | None = None,
     survivor_ledger: cegar_runtime.JsonlRunLedger | None = None,
+    productivity_path: Path | None = None,
+    productivity_ledger: productivity.ProductivityLedger | None = None,
+    productivity_records: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
+    if (productivity_ledger is None) != (productivity_path is None):
+        raise StructuralCegarError(
+            "productivity path and ledger must be enabled together"
+        )
+    if productivity_ledger is not None and productivity_records is None:
+        raise StructuralCegarError(
+            "enabled productivity classification requires a mutable record list"
+        )
+    telemetry = (
+        None
+        if productivity_ledger is None
+        else productivity.ClassificationTelemetry()
+    )
+    started_ns = time.perf_counter_ns() if telemetry is not None else 0
+
+    def timed(name: str, function: Any, *args: Any, **kwargs: Any) -> Any:
+        if telemetry is None:
+            return function(*args, **kwargs)
+        with telemetry.measure(name):
+            return function(*args, **kwargs)
+
+    def finish(
+        classification: str,
+        source_record: Mapping[str, Any],
+        *,
+        antichain: Mapping[str, Any],
+    ) -> dict[str, Any]:
+        result = {
+            "classification": classification,
+            "record_sha256": source_record["record_sha256"],
+            "assignment_sha256": assignment_sha256,
+        }
+        if productivity_ledger is None:
+            return result
+        assert productivity_path is not None
+        assert productivity_records is not None
+        assert telemetry is not None
+        diagnostic_record = productivity.make_record(
+            index=productivity_ledger.record_count,
+            raw_sat_index=raw_sat_index,
+            assignment_sha256=assignment_sha256,
+            classification=classification,
+            source_record=source_record,
+            timings_ns=telemetry.snapshot(time.perf_counter_ns() - started_ns),
+            antichain=antichain,
+            bounded_elimination={
+                "kind": "source-assignment",
+                "count": 1,
+                "scope": "exact lower bound; no extrapolation",
+            },
+            previous_record_sha256=productivity_ledger.terminal_record_sha256,
+        )
+        serialized = _append_record(productivity_path, diagnostic_record)
+        try:
+            productivity_ledger.observe_durable_append(
+                diagnostic_record, serialized
+            )
+        except productivity.ProductivityError as exc:
+            raise StructuralCegarError(
+                f"shadow productivity ledger append failed: {exc}"
+            ) from exc
+        productivity_records.append(diagnostic_record)
+        result["productivity_record_sha256"] = diagnostic_record[
+            "record_sha256"
+        ]
+        return result
+
     _validate_shard_assignment(
         assignment, shard_literals, where="live solver result"
     )
-    obj = encoding.decode(assignment)
-    encoding.validate(obj, assignment)
+    if telemetry is None:
+        obj = encoding.decode(assignment)
+        encoding.validate(obj, assignment)
+    else:
+        with telemetry.measure("decode_validate"):
+            obj = encoding.decode(assignment)
+            encoding.validate(obj, assignment)
     semantic = encoding.semantic_record(assignment)
     assignment_sha256 = _assignment_hash(encoding, assignment)
     failure_detail.update(
@@ -8459,12 +8616,14 @@ def _commit_sat_classification(
     )
     rows_json = [row.as_dict() for row in rows]
     failure_detail["metric_rows_sha256"] = _sha256_value(rows_json)
-    found = _detection(rows)
+    found = timed("metric_detector", _detection, rows)
     failure_detail["detection_stage"] = (
         None if found is None else found["stage"]
     )
     if found is None:
-        three_rhombus_match = _three_rhombus_detection(encoding, rows)
+        three_rhombus_match = timed(
+            "three_rhombus_detector", _three_rhombus_detection, encoding, rows
+        )
         failure_detail["three_rhombus_match"] = (
             None
             if three_rhombus_match is None
@@ -8505,14 +8664,22 @@ def _commit_sat_classification(
             _append_learned_record(learned_path, record, learned_ledger)
             learned.append(record)
             learned_clauses.append(clause)
-            return {
-                "classification": "learned-seven-point-three-rhombus",
-                "record_sha256": record["record_sha256"],
-                "assignment_sha256": assignment_sha256,
-            }
+            return finish(
+                "learned-seven-point-three-rhombus",
+                record,
+                antichain={
+                    "outcome": "append-only-clause",
+                    "added": True,
+                    "superseded_count": 0,
+                },
+            )
 
-        cap_order_match = _cap_order_certificate(
-            obj, rows, context=context
+        cap_order_match = timed(
+            "cap_order_minimization_replay",
+            _cap_order_certificate,
+            obj,
+            rows,
+            context=context,
         )
         failure_detail["cap_order_match"] = (
             None
@@ -8547,14 +8714,22 @@ def _commit_sat_classification(
             _append_learned_record(learned_path, record, learned_ledger)
             learned.append(record)
             learned_clauses.append(clause)
-            return {
-                "classification": "learned-cap-order",
-                "record_sha256": record["record_sha256"],
-                "assignment_sha256": assignment_sha256,
-            }
+            return finish(
+                "learned-cap-order",
+                record,
+                antichain={
+                    "outcome": "append-only-clause",
+                    "added": True,
+                    "superseded_count": 0,
+                },
+            )
 
-        rhombus_cap_order_match = _rhombus_cap_order_certificate(
-            obj, rows, context=context
+        rhombus_cap_order_match = timed(
+            "rhombus_cap_order_minimization_replay",
+            _rhombus_cap_order_certificate,
+            obj,
+            rows,
+            context=context,
         )
         failure_detail["rhombus_cap_order_match"] = (
             None
@@ -8591,14 +8766,24 @@ def _commit_sat_classification(
             _append_learned_record(learned_path, record, learned_ledger)
             learned.append(record)
             learned_clauses.append(clause)
-            return {
-                "classification": "learned-rhombus-cap-order",
-                "record_sha256": record["record_sha256"],
-                "assignment_sha256": assignment_sha256,
-            }
+            return finish(
+                "learned-rhombus-cap-order",
+                record,
+                antichain={
+                    "outcome": "append-only-clause",
+                    "added": True,
+                    "superseded_count": 0,
+                },
+            )
 
-        shared_pair_match = _shared_pair_separation_certificate(
-            encoding, assignment, obj, rows, context=context
+        shared_pair_match = timed(
+            "shared_pair_minimization_replay",
+            _shared_pair_separation_certificate,
+            encoding,
+            assignment,
+            obj,
+            rows,
+            context=context,
         )
         failure_detail["shared_pair_separation_match"] = (
             None
@@ -8634,16 +8819,24 @@ def _commit_sat_classification(
             _append_learned_record(learned_path, record, learned_ledger)
             learned.append(record)
             learned_clauses.append(clause)
-            return {
-                "classification": "learned-shared-pair-cyclic-separation",
-                "record_sha256": record["record_sha256"],
-                "assignment_sha256": assignment_sha256,
-            }
+            return finish(
+                "learned-shared-pair-cyclic-separation",
+                record,
+                antichain={
+                    "outcome": "append-only-clause",
+                    "added": True,
+                    "superseded_count": 0,
+                },
+            )
 
         # The context path queries only compatible orders and stops at the
         # first uncovered one.  Its legacy stream replay remains unchanged.
-        kalmanson_cap_order_match = _kalmanson_cap_order_certificate(
-            obj, rows, context=context
+        kalmanson_cap_order_match = timed(
+            "kalmanson_minimization_replay",
+            _kalmanson_cap_order_certificate,
+            obj,
+            rows,
+            context=context,
         )
         failure_detail["kalmanson_cap_order_match"] = (
             None
@@ -8681,14 +8874,22 @@ def _commit_sat_classification(
             _append_learned_record(learned_path, record, learned_ledger)
             learned.append(record)
             learned_clauses.append(clause)
-            return {
-                "classification": "learned-kalmanson-cap-order",
-                "record_sha256": record["record_sha256"],
-                "assignment_sha256": assignment_sha256,
-            }
+            return finish(
+                "learned-kalmanson-cap-order",
+                record,
+                antichain={
+                    "outcome": "append-only-clause",
+                    "added": True,
+                    "superseded_count": 0,
+                },
+            )
 
-        algebraic_match = _find_algebraic_match(
-            encoding, assignment, algebraic_templates
+        algebraic_match = timed(
+            "algebraic_certificate_replay",
+            _find_algebraic_match,
+            encoding,
+            assignment,
+            algebraic_templates,
         )
         failure_detail["algebraic_match"] = (
             None
@@ -8727,11 +8928,15 @@ def _commit_sat_classification(
                     ) from exc
             survivors.append(record)
             survivor_clauses.append(block)
-            return {
-                "classification": "structurally-unresolved-survivor",
-                "record_sha256": record["record_sha256"],
-                "assignment_sha256": assignment_sha256,
-            }
+            return finish(
+                "structurally-unresolved-survivor",
+                record,
+                antichain={
+                    "outcome": "survivor-block",
+                    "added": True,
+                    "superseded_count": 0,
+                },
+            )
 
         template, permutation, mapped = algebraic_match
         clause = _clause_for_memberships(encoding, mapped, assignment)
@@ -8759,8 +8964,8 @@ def _commit_sat_classification(
         _append_learned_record(learned_path, record, learned_ledger)
         learned.append(record)
         learned_clauses.append(clause)
-        return {
-            "classification": (
+        return finish(
+            (
                 "learned-real-distinctness"
                 if template["certificate_kind"]
                 in {
@@ -8769,16 +8974,31 @@ def _commit_sat_classification(
                 }
                 else "learned-algebraic"
             ),
-            "record_sha256": record["record_sha256"],
-            "assignment_sha256": assignment_sha256,
-        }
+            record,
+            antichain={
+                "outcome": "append-only-clause",
+                "added": True,
+                "superseded_count": 0,
+            },
+        )
 
-    certificate, selected = _certificate(rows, found, context=context)
-    clause = _clause_for_structural_certificate(
-        encoding, certificate, selected, assignment
+    certificate, selected = timed(
+        "structural_certificate_minimization_replay",
+        _certificate,
+        rows,
+        found,
+        context=context,
+    )
+    clause = timed(
+        "clause_projection",
+        _clause_for_structural_certificate,
+        encoding,
+        certificate,
+        selected,
+        assignment,
     )
     key = certificates._rows_key(selected)
-    _matched, superseded, added = bank.add(key, certificate)
+    _matched, superseded, added = timed("antichain_update", bank.add, key, certificate)
     if not added:
         raise StructuralCegarError(
             "SAT assignment survived an already learned/subsuming cut"
@@ -8804,11 +9024,15 @@ def _commit_sat_classification(
     _append_learned_record(learned_path, record, learned_ledger)
     learned.append(record)
     learned_clauses.append(clause)
-    return {
-        "classification": "learned-structural",
-        "record_sha256": record["record_sha256"],
-        "assignment_sha256": assignment_sha256,
-    }
+    return finish(
+        "learned-structural",
+        record,
+        antichain={
+            "outcome": "active-antichain",
+            "added": bool(added),
+            "superseded_count": len(superseded),
+        },
+    )
 
 
 def _launch_cube_batch(
@@ -8970,6 +9194,7 @@ def run_driver(
         str | Path | Sequence[str | Path] | None
     ) = DEFAULT_ALGEBRAIC_BOOTSTRAPS,
     three_rhombus_prefix_bank: str | Path | None = None,
+    three_rhombus_prefix_cache: str | Path | None = None,
     three_rhombus_prefix_root_sha256: str | None = None,
     three_rhombus_prefix_source_sha256: str | None = None,
     projected_static_v3: bool = False,
@@ -8978,6 +9203,7 @@ def run_driver(
     compiled_loader_cache: bool = False,
     shard_local_simplification: bool = False,
     persistent_discovery: bool = False,
+    productivity_telemetry: bool = False,
     incremental_solver_factory: Any | None = None,
     resume: bool = False,
     max_new_raw: int | None = None,
@@ -9015,6 +9241,8 @@ def run_driver(
         )
     if type(persistent_discovery) is not bool:
         raise StructuralCegarError("persistent_discovery must be a bool")
+    if type(productivity_telemetry) is not bool:
+        raise StructuralCegarError("productivity_telemetry must be a bool")
     if incremental_solver_factory is not None and not persistent_discovery:
         raise StructuralCegarError(
             "incremental_solver_factory requires persistent_discovery=True"
@@ -9088,6 +9316,13 @@ def run_driver(
         raise StructuralCegarError(
             "three-rhombus prefix-bank ingestion requires projected-static-v3"
         )
+    if (
+        three_rhombus_prefix_cache is not None
+        and three_rhombus_prefix_bank is None
+    ):
+        raise StructuralCegarError(
+            "three-rhombus prefix cache requires an authenticated prefix bank"
+        )
 
     solver_backend: SolverRunner = solver_runner
     if persistent_discovery:
@@ -9111,19 +9346,94 @@ def run_driver(
     if bootstrap is not None and not bootstrap.is_file():
         raise StructuralCegarError(f"bootstrap results do not exist: {bootstrap}")
     encoding = _phase3_encoding(projected_static_v3=projected_static_v3)
-    prefix_bank_data = (
-        None
-        if three_rhombus_prefix_bank is None
-        else _load_authenticated_three_rhombus_prefix_bank(
-            Path(three_rhombus_prefix_bank),
-            expected_root_sha256=str(
-                three_rhombus_prefix_root_sha256
-            ),
-            expected_source_prefix_sha256=str(
-                three_rhombus_prefix_source_sha256
-            ),
+    prefix_bank_data: dict[str, Any] | None = None
+    prefix_cache_used = False
+    prefix_cache_audit_done = True
+    if three_rhombus_prefix_bank is not None:
+        prefix_bank_path = Path(three_rhombus_prefix_bank)
+        prefix_cache_path = (
+            None
+            if three_rhombus_prefix_cache is None
+            else Path(three_rhombus_prefix_cache)
         )
-    )
+        if prefix_cache_path is not None:
+            cache_resolved = prefix_cache_path.resolve()
+            output_resolved = out.resolve()
+            bank_resolved = prefix_bank_path.resolve()
+            if output_resolved in cache_resolved.parents:
+                raise StructuralCegarError(
+                    "three-rhombus prefix cache must not be inside the run output"
+                )
+            if (
+                cache_resolved == bank_resolved
+                or bank_resolved in cache_resolved.parents
+            ):
+                raise StructuralCegarError(
+                    "three-rhombus prefix cache must not be inside the source bank"
+                )
+        prefix_root_sha256 = str(three_rhombus_prefix_root_sha256)
+        prefix_source_sha256 = str(three_rhombus_prefix_source_sha256)
+        prefix_cache_source_sha256 = (
+            None
+            if prefix_cache_path is None
+            else _prefix_bank_cache_source_sha256()
+        )
+        if prefix_cache_path is not None:
+            assert prefix_cache_source_sha256 is not None
+            cache_result = prefix_bank_cache.try_load(
+                prefix_cache_path,
+                bank_path=prefix_bank_path,
+                expected_root_sha256=prefix_root_sha256,
+                expected_source_prefix_sha256=prefix_source_sha256,
+                producer_source_sha256=prefix_cache_source_sha256,
+            )
+            if cache_result.hit:
+                try:
+                    cached_descriptor = _validate_three_rhombus_prefix_descriptor(
+                        cache_result.descriptor,
+                        where="cached three-rhombus prefix bank",
+                    )
+                    if cached_descriptor is None or cache_result.entries is None:
+                        raise StructuralCegarError(
+                            "cached three-rhombus prefix bank is incomplete"
+                        )
+                    prefix_bank_data = {
+                        "configuration": cached_descriptor,
+                        "entries": cache_result.entries,
+                    }
+                    prefix_cache_used = True
+                    prefix_cache_audit_done = False
+                except StructuralCegarError:
+                    # A cache hit is usable only if it also satisfies the
+                    # driver's descriptor contract; otherwise replay source.
+                    prefix_bank_data = None
+        if prefix_bank_data is None:
+            prefix_bank_data = _load_authenticated_three_rhombus_prefix_bank(
+                prefix_bank_path,
+                expected_root_sha256=prefix_root_sha256,
+                expected_source_prefix_sha256=prefix_source_sha256,
+            )
+            if prefix_cache_path is not None:
+                assert prefix_cache_source_sha256 is not None
+                try:
+                    prefix_bank_cache.write_cache(
+                        prefix_cache_path,
+                        bank_path=prefix_bank_path,
+                        expected_root_sha256=prefix_root_sha256,
+                        expected_source_prefix_sha256=prefix_source_sha256,
+                        producer_source_sha256=prefix_cache_source_sha256,
+                        descriptor=prefix_bank_data["configuration"],
+                        entries=prefix_bank_data["entries"],
+                    )
+                except (
+                    OSError,
+                    prefix_bank_cache.PrefixCacheError,
+                    TypeError,
+                    ValueError,
+                ) as exc:
+                    raise StructuralCegarError(
+                        f"three-rhombus prefix-bank cache publication failed: {exc}"
+                    ) from exc
     if bootstrap is not None:
         _validate_bootstrap_mode(encoding, bootstrap)
     algebraic_directories = _algebraic_directories(algebraic_bootstrap)
@@ -9154,6 +9464,7 @@ def run_driver(
         shard_depth=shard_depth,
         shard_index=shard_index,
         persistent_discovery=persistent_discovery,
+        productivity_telemetry=productivity_telemetry,
     )
     shard_literals = (
         ()
@@ -9178,6 +9489,7 @@ def run_driver(
     survivors_path = out / "survivors.jsonl"
     logs_path = out / "solver-logs.jsonl"
     cube_batches_path = out / "cube-batches.jsonl"
+    productivity_path = out / "productivity.jsonl"
     manifest_path = out / "manifest.json"
     compiled_loader_cache_path = out / COMPILED_LOADER_CACHE_NAME
     compiled_cache_used = False
@@ -9187,6 +9499,8 @@ def run_driver(
     survivor_scan = cegar_runtime.JournalScan()
     logs_scan = cegar_runtime.JournalScan()
     cube_batches_scan = cegar_runtime.JournalScan()
+    productivity_scan = cegar_runtime.JournalScan()
+    productivity_records: list[dict[str, Any]] = []
 
     if resume:
         if not manifest_path.is_file():
@@ -9252,6 +9566,11 @@ def run_driver(
                 learned, bank, learned_clauses = _cached_learned_state(
                     cache_result.payload
                 )
+                # The reconstructed state retains only the learned records,
+                # clauses, and bank certificates.  Release the authenticated
+                # envelope/index tree before later classification work so a
+                # cache hit does not retain its serialized antichain index.
+                del cache_result
                 compiled_cache_used = True
             else:
                 learned, bank, learned_clauses = _load_learned(
@@ -9292,6 +9611,14 @@ def run_driver(
             logs=logs,
             stream_scan=cube_batches_scan,
         )
+        if productivity_telemetry:
+            productivity_records = _strict_json_lines(
+                productivity_path, scan=productivity_scan
+            )
+        elif productivity_path.exists():
+            raise StructuralCegarError(
+                "disabled productivity telemetry has an unexpected artifact"
+            )
     else:
         if out.exists() and any(out.iterdir()):
             raise StructuralCegarError("output directory is nonempty; pass resume=True")
@@ -9356,6 +9683,8 @@ def run_driver(
         _atomic_bytes(survivors_path, b"")
         _atomic_bytes(logs_path, b"")
         _atomic_bytes(cube_batches_path, b"")
+        if productivity_telemetry:
+            _atomic_bytes(productivity_path, b"")
         learned, bank, learned_clauses = _load_learned(
             learned_path,
             encoding,
@@ -9367,6 +9696,11 @@ def run_driver(
         logs = []
         cube_batches = []
 
+        if productivity_telemetry:
+            productivity_records = _strict_json_lines(
+                productivity_path, scan=productivity_scan
+            )
+
     learned_ledger = _build_learned_run_ledger(learned, learned_scan)
     survivor_ledger = _build_stream_run_ledger(
         "survivors", survivors, survivor_scan
@@ -9375,6 +9709,17 @@ def run_driver(
     cube_batches_ledger = _build_stream_run_ledger(
         "cube-batches", cube_batches, cube_batches_scan
     )
+    if productivity_telemetry:
+        try:
+            productivity_ledger = productivity.ProductivityLedger.from_authenticated_records(
+                productivity_records, productivity_scan
+            )
+        except productivity.ProductivityError as exc:
+            raise StructuralCegarError(
+                f"productivity journal authentication failed: {exc}"
+            ) from exc
+    else:
+        productivity_ledger = None
     prospective_state = (
         None
         if not manifest_fast_path
@@ -9462,6 +9807,24 @@ def run_driver(
             )
         compiled_cache_audit_done = True
 
+    def audit_prefix_cache() -> None:
+        nonlocal prefix_cache_audit_done
+        if not prefix_cache_used or prefix_cache_audit_done:
+            return
+        assert prefix_bank_data is not None
+        replayed = _load_authenticated_three_rhombus_prefix_bank(
+            Path(three_rhombus_prefix_bank),
+            expected_root_sha256=str(three_rhombus_prefix_root_sha256),
+            expected_source_prefix_sha256=str(
+                three_rhombus_prefix_source_sha256
+            ),
+        )
+        if replayed != prefix_bank_data:
+            raise StructuralCegarError(
+                "three-rhombus prefix-bank cache differs from full source replay"
+            )
+        prefix_cache_audit_done = True
+
     def publish(*, force_recount: bool = False) -> dict[str, Any]:
         nonlocal next_manifest_generation, previous_manifest_sha256
         nonlocal published_manifest, running_publication_count
@@ -9471,9 +9834,15 @@ def run_driver(
                 close()
         solver_metadata = _solver_manifest_metadata(solver_backend)
         if status != "RUNNING":
+            audit_prefix_cache()
             audit_compiled_cache()
         stream_ledger_state = _stream_ledger_manifest(
             learned_ledger, survivor_ledger, logs_ledger, cube_batches_ledger
+        )
+        productivity_stream_state = (
+            None
+            if productivity_ledger is None
+            else productivity_ledger.snapshot().as_dict()
         )
         if (
             prospective_state is not None
@@ -9530,6 +9899,7 @@ def run_driver(
                 previous_manifest_sha256=previous_manifest_sha256,
                 state=prospective_state,
                 solver_metadata=solver_metadata,
+                productivity_stream=productivity_stream_state,
             )
         else:
             manifest = _manifest(
@@ -9549,6 +9919,7 @@ def run_driver(
                 manifest_generation=next_manifest_generation,
                 previous_manifest_sha256=previous_manifest_sha256,
                 solver_metadata=solver_metadata,
+                productivity_stream=productivity_stream_state,
             )
         _validate_manifest_count_cache(
             manifest,
@@ -9569,6 +9940,25 @@ def run_driver(
                 cube_batches,
                 manifest,
             )
+            if productivity_ledger is not None:
+                _assert_productivity_ledger(
+                    productivity_ledger,
+                    productivity_path,
+                    productivity_records,
+                    manifest,
+                )
+        elif productivity_ledger is not None:
+            expected_productivity = productivity_ledger.snapshot().as_dict()
+            if manifest.get("productivity_stream") != expected_productivity:
+                raise StructuralCegarError(
+                    "prospective productivity ledger/manifest mismatch"
+                )
+            if manifest.get("artifact_hashes", {}).get("productivity.jsonl") != (
+                expected_productivity["file_sha256"]
+            ):
+                raise StructuralCegarError(
+                    "prospective productivity ledger/artifact mismatch"
+                )
         if compiled_loader_cache and status != "RUNNING":
             _write_compiled_loader_cache(
                 compiled_loader_cache_path,
@@ -9616,6 +10006,11 @@ def run_driver(
                 "previous_manifest_sha256"
             ),
             solver_metadata=_solver_manifest_metadata(solver_backend),
+            productivity_stream=(
+                None
+                if productivity_ledger is None
+                else productivity_ledger.snapshot().as_dict()
+            ),
         )
         _validate_manifest_count_cache(
             replayed_manifest,
@@ -9640,9 +10035,17 @@ def run_driver(
             cube_batches,
             replayed_manifest,
         )
+        if productivity_ledger is not None:
+            _assert_productivity_ledger(
+                productivity_ledger,
+                productivity_path,
+                productivity_records,
+                replayed_manifest,
+            )
         if replayed_manifest != prior_manifest:
             raise StructuralCegarError("completed/checkpoint manifest replay mismatch")
         audit_compiled_cache()
+        audit_prefix_cache()
         if compiled_loader_cache:
             _write_compiled_loader_cache(
                 compiled_loader_cache_path,
@@ -9875,6 +10278,13 @@ def run_driver(
                                 failure_detail=failure_detail,
                                 learned_ledger=learned_ledger,
                                 survivor_ledger=survivor_ledger,
+                                productivity_path=(
+                                    productivity_path
+                                    if productivity_telemetry
+                                    else None
+                                ),
+                                productivity_ledger=productivity_ledger,
+                                productivity_records=productivity_records,
                             )
                             classification = str(committed["classification"])
                             committed_record_sha256 = str(
@@ -10090,6 +10500,11 @@ def run_driver(
                     shard_literals=shard_literals,
                     learned_ledger=learned_ledger,
                     survivor_ledger=survivor_ledger,
+                    productivity_path=(
+                        productivity_path if productivity_telemetry else None
+                    ),
+                    productivity_ledger=productivity_ledger,
+                    productivity_records=productivity_records,
                 )
                 observe_classification_delta(learned_before, survivors_before)
                 dynamic_delta, raw_delta = _committed_classification_delta(
@@ -10568,6 +10983,14 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         ),
     )
     parser.add_argument(
+        "--productivity-telemetry",
+        action="store_true",
+        help=(
+            "append authenticated detector-boundary productivity records; "
+            "diagnostic only and inert with respect to classification"
+        ),
+    )
+    parser.add_argument(
         "--projected-static-v3",
         action="store_true",
         help=(
@@ -10581,6 +11004,14 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         help=(
             "authenticated projected-static-v2 three-rhombus prefix-bank "
             "directory to translate into projected-static-v3 bootstrap records"
+        ),
+    )
+    parser.add_argument(
+        "--three-rhombus-prefix-cache",
+        type=Path,
+        help=(
+            "opt-in authenticated warm cache for the three-rhombus prefix bank; "
+            "terminal publication still performs the full source replay"
         ),
     )
     parser.add_argument(
@@ -10614,6 +11045,14 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         )
     if args.three_rhombus_prefix_bank is not None and not args.projected_static_v3:
         parser.error("--three-rhombus-prefix-bank requires --projected-static-v3")
+    if (
+        args.three_rhombus_prefix_cache is not None
+        and args.three_rhombus_prefix_bank is None
+    ):
+        parser.error(
+            "--three-rhombus-prefix-cache requires "
+            "--three-rhombus-prefix-bank"
+        )
     return args
 
 
@@ -10650,7 +11089,9 @@ def main() -> int:
         compiled_loader_cache=args.compiled_loader_cache,
         shard_local_simplification=args.shard_local_simplification,
         persistent_discovery=args.persistent_discovery,
+        productivity_telemetry=args.productivity_telemetry,
         three_rhombus_prefix_bank=args.three_rhombus_prefix_bank,
+        three_rhombus_prefix_cache=args.three_rhombus_prefix_cache,
         three_rhombus_prefix_root_sha256=(
             args.three_rhombus_prefix_root_sha256
         ),

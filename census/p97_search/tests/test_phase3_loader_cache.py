@@ -16,7 +16,12 @@ def _row(center: int, support: tuple[int, ...], exact: bool = False) -> tuple:
     return (center, support, exact)
 
 
-def _record(index: int, clause: list[int], previous: str | None) -> dict:
+def _record(
+    index: int,
+    clause: list[int],
+    previous: str | None,
+    certificate: dict | None = None,
+) -> dict:
     unsigned = {
         "index": index,
         "origin": "test",
@@ -24,6 +29,8 @@ def _record(index: int, clause: list[int], previous: str | None) -> dict:
         "clause": clause,
         "previous_record_sha256": previous,
     }
+    if certificate is not None:
+        unsigned["certificate"] = certificate
     unsigned["record_sha256"] = cache._sha256_value(unsigned)
     return unsigned
 
@@ -63,8 +70,8 @@ def test_indexed_bank_matches_legacy_antichain_contract() -> None:
 
 def test_cache_round_trip_and_index_replay(tmp_path: Path) -> None:
     source = tmp_path / "learned.jsonl"
-    first = _record(0, [-1, 2], None)
-    second = _record(1, [3, -4], first["record_sha256"])
+    first = _record(0, [-1, 2], None, {"stage": "test-stage"})
+    second = _record(1, [3, -4], first["record_sha256"], {"stage": "other-stage"})
     source.write_bytes(
         (json.dumps(first, sort_keys=True, separators=(",", ":")) + "\n").encode()
         + (json.dumps(second, sort_keys=True, separators=(",", ":")) + "\n").encode()
@@ -94,7 +101,13 @@ def test_cache_round_trip_and_index_replay(tmp_path: Path) -> None:
     assert result.hit is True
     assert result.reason == "hit"
     assert result.payload is not None
-    assert result.payload["clauses"] == [(-1, 2), (3, -4)]
+    assert result.payload["record_table"]["record_count"] == 2
+    assert result.payload["records"] == [first, second]
+    assert result.payload["active_record_indices"] == [0]
+    disk_payload = json.loads(cache_path.read_text())["payload"]
+    assert "records" not in disk_payload
+    assert "clauses" not in disk_payload
+    assert cache._record_table_path(cache_path).is_file()
     restored = cache.cached_bank(result.payload)
     assert restored.active == bank.active
     scan = runtime.JournalScan()

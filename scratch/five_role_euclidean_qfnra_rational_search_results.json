@@ -1,0 +1,1496 @@
+{
+  "method": "floating search followed by independent exact Fraction validation",
+  "candidate_count": 38,
+  "counts": {
+    "SAT": 22,
+    "NOT_FOUND": 16
+  },
+  "rows": [
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXCBM",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.03217122917091557,
+        "parameters": [
+          "56/73",
+          "366/59",
+          "-148/99",
+          "19/39",
+          "-1/6"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "A": {
+            "x": "1",
+            "y": "0"
+          },
+          "C": {
+            "x": "2193/8465",
+            "y": "8176/8465"
+          },
+          "M": {
+            "x": "-130475/137437",
+            "y": "43188/137437"
+          },
+          "K": {
+            "x": "116776469/53676565",
+            "y": "16968112/53676565"
+          },
+          "X": {
+            "x": "600288007/418677207",
+            "y": "305955272/418677207"
+          },
+          "B": {
+            "x": "-1583656547/3490212615",
+            "y": "2936842106/3490212615"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "A": false,
+          "X": true
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 2936842106,
+          "max_denominator": 3490212615,
+          "sum_abs_numerators": 5560670546
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKXMBC",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.022960068631018394,
+        "parameters": [
+          "337/60",
+          "20/21",
+          "-337/60",
+          "25/91",
+          "16/65"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "A": {
+            "x": "1",
+            "y": "0"
+          },
+          "C": {
+            "x": "-109969/117169",
+            "y": "40440/117169"
+          },
+          "M": {
+            "x": "41/841",
+            "y": "840/841"
+          },
+          "K": {
+            "x": "344307/117169",
+            "y": "40440/117169"
+          },
+          "X": {
+            "x": "19986158/10662379",
+            "y": "7518470/10662379"
+          },
+          "B": {
+            "x": "-26759936/44172713",
+            "y": "202091232/220863565"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "A": false,
+          "X": true
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 202091232,
+          "max_denominator": 220863565,
+          "sum_abs_numerators": 256891834
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKMXBC",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": -0.004054647496637441
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAKMBXC",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": -0.0027160113318867494
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMKXBC",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": 0.0
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OAMKBXC",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": 0.0
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMAKXBC",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": 0.0
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMAKBXC",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.025569543558950327,
+        "parameters": [
+          "140/29",
+          "-4/29",
+          "-44/61",
+          "58/57",
+          "71/70"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "A": {
+            "x": "1",
+            "y": "0"
+          },
+          "C": {
+            "x": "-18759/20441",
+            "y": "8120/20441"
+          },
+          "M": {
+            "x": "825/857",
+            "y": "-232/857"
+          },
+          "K": {
+            "x": "89250897/115634737",
+            "y": "224919800/115634737"
+          },
+          "X": {
+            "x": "-7206107831/6591180009",
+            "y": "4879951580/6591180009"
+          },
+          "B": {
+            "x": "429169731/613127795",
+            "y": "1208169464/613127795"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "A": true,
+          "X": true
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 7206107831,
+          "max_denominator": 6591180009,
+          "sum_abs_numerators": 14037597240
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMABKXC",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": -0.0030450083527866034
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OAKXC",
+      "order": "OMBAKXC",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": 0.0
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKABM",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": 0.0
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXKBAM",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": -0.006626397901204423
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBKAM",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": 0.0
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBKMA",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.025333742449408104,
+        "parameters": [
+          "-8",
+          "-16/97",
+          "49/79",
+          "-29/33",
+          "-20/27"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "A": {
+            "x": "1",
+            "y": "0"
+          },
+          "C": {
+            "x": "-63/65",
+            "y": "-16/65"
+          },
+          "M": {
+            "x": "9153/9665",
+            "y": "-3104/9665"
+          },
+          "K": {
+            "x": "97041/280865",
+            "y": "-526208/280865"
+          },
+          "X": {
+            "x": "-9024583/9268545",
+            "y": "-3351536/9268545"
+          },
+          "B": {
+            "x": "-45229/678483",
+            "y": "-128392/75387"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "X": true,
+          "A": false
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 9024583,
+          "max_denominator": 9268545,
+          "sum_abs_numerators": 13185326
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCXBMKA",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": -0.0027160305145727858
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBXKAM",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": 0.0
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBXKMA",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": 0.0
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBXMKA",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": -0.004201836415481279
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OCBMXKA",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.02296006316607325,
+        "parameters": [
+          "-337/60",
+          "-20/21",
+          "337/60",
+          "-25/91",
+          "-16/65"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "A": {
+            "x": "1",
+            "y": "0"
+          },
+          "C": {
+            "x": "-109969/117169",
+            "y": "-40440/117169"
+          },
+          "M": {
+            "x": "41/841",
+            "y": "-840/841"
+          },
+          "K": {
+            "x": "344307/117169",
+            "y": "-40440/117169"
+          },
+          "X": {
+            "x": "19986158/10662379",
+            "y": "-7518470/10662379"
+          },
+          "B": {
+            "x": "-26759936/44172713",
+            "y": "-202091232/220863565"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "X": true,
+          "A": false
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 202091232,
+          "max_denominator": 220863565,
+          "sum_abs_numerators": 256891834
+        }
+      }
+    },
+    {
+      "branch": "A=J",
+      "residual": "OCXKA",
+      "order": "OMBCXKA",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.03217124831919839,
+        "parameters": [
+          "-76/99",
+          "-614/99",
+          "3/2",
+          "-37/76",
+          "1/6"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "A": {
+            "x": "1",
+            "y": "0"
+          },
+          "C": {
+            "x": "4025/15577",
+            "y": "-15048/15577"
+          },
+          "M": {
+            "x": "-367195/386797",
+            "y": "-121572/386797"
+          },
+          "K": {
+            "x": "440837/202501",
+            "y": "-63384/202501"
+          },
+          "X": {
+            "x": "290811/202501",
+            "y": "-147724/202501"
+          },
+          "B": {
+            "x": "-2735934997/6025136869",
+            "y": "-5069899890/6025136869"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "X": true,
+          "A": false
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 5069899890,
+          "max_denominator": 6025136869,
+          "sum_abs_numerators": 7807285484
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKJBM",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.024622038332782495,
+        "parameters": [
+          "11/24",
+          "8",
+          "-41/60",
+          "-4/17",
+          "-24/85"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "455/697",
+            "y": "528/697"
+          },
+          "M": {
+            "x": "-63/65",
+            "y": "16/65"
+          },
+          "K": {
+            "x": "5814219/3680857",
+            "y": "2203872/3680857"
+          },
+          "A": {
+            "x": "89523634/62574569",
+            "y": "10199464/62574569"
+          },
+          "B": {
+            "x": "469/5525",
+            "y": "3752/5525"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "A": true,
+          "J": true
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 89523634,
+          "max_denominator": 62574569,
+          "sum_abs_numerators": 107746473
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKBJM",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.03938648294524428,
+        "parameters": [
+          "149/56",
+          "8",
+          "-26/55",
+          "-4/85",
+          "-37/45"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "-19065/25337",
+            "y": "16688/25337"
+          },
+          "M": {
+            "x": "-63/65",
+            "y": "16/65"
+          },
+          "K": {
+            "x": "37199619/93772237",
+            "y": "166189832/93772237"
+          },
+          "A": {
+            "x": "6231063208/7970640145",
+            "y": "7289358332/7970640145"
+          },
+          "B": {
+            "x": "49/225",
+            "y": "392/225"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "A": true,
+          "J": true
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 7289358332,
+          "max_denominator": 7970640145,
+          "sum_abs_numerators": 13723847265
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCAKBMJ",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.04474839011473893,
+        "parameters": [
+          "96/17",
+          "102/53",
+          "-93/94",
+          "-22/69",
+          "-95/98"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "-8927/9505",
+            "y": "3264/9505"
+          },
+          "M": {
+            "x": "-7595/13213",
+            "y": "10812/13213"
+          },
+          "K": {
+            "x": "219815917/166194925",
+            "y": "322875456/166194925"
+          },
+          "A": {
+            "x": "6806878027/3822483275",
+            "y": "3319847136/3822483275"
+          },
+          "B": {
+            "x": "651211/647437",
+            "y": "1253274/647437"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "A": true,
+          "J": false
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 6806878027,
+          "max_denominator": 3822483275,
+          "sum_abs_numerators": 10671351620
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCABKJM",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.03247901854739751,
+        "parameters": [
+          "281/94",
+          "8",
+          "-18/47",
+          "-5/67",
+          "-79/100"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "-70125/87797",
+            "y": "52828/87797"
+          },
+          "M": {
+            "x": "-63/65",
+            "y": "16/65"
+          },
+          "K": {
+            "x": "14091807/222389801",
+            "y": "366784804/222389801"
+          },
+          "A": {
+            "x": "9756057888/14900116667",
+            "y": "13328780904/14900116667"
+          },
+          "B": {
+            "x": "341/1625",
+            "y": "2728/1625"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "A": true,
+          "J": true
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 13328780904,
+          "max_denominator": 14900116667,
+          "sum_abs_numerators": 23465841505
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCABKMJ",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.04156404779502738,
+        "parameters": [
+          "8",
+          "159/65",
+          "-63/92",
+          "-2/15",
+          "-82/89"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "-63/65",
+            "y": "16/65"
+          },
+          "M": {
+            "x": "-10528/14753",
+            "y": "10335/14753"
+          },
+          "K": {
+            "x": "418257/808145",
+            "y": "1555696/808145"
+          },
+          "A": {
+            "x": "12309407/12122175",
+            "y": "12447496/12122175"
+          },
+          "B": {
+            "x": "2070965/2626034",
+            "y": "5065899/2626034"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "A": true,
+          "J": false
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 12447496,
+          "max_denominator": 12122175,
+          "sum_abs_numerators": 33888663
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBAKMJ",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": -1.2225117563578708e-09
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBAMKJ",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.04240185384682689,
+        "parameters": [
+          "8",
+          "85/64",
+          "-3/38",
+          "-24/59",
+          "-25/99"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "-63/65",
+            "y": "16/65"
+          },
+          "M": {
+            "x": "-3129/11321",
+            "y": "10880/11321"
+          },
+          "K": {
+            "x": "-85587/94445",
+            "y": "52144/94445"
+          },
+          "A": {
+            "x": "1512767/5572255",
+            "y": "5859016/5572255"
+          },
+          "B": {
+            "x": "677504/1120779",
+            "y": "899810/1120779"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "A": true,
+          "J": false
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 5859016,
+          "max_denominator": 5572255,
+          "sum_abs_numerators": 9100917
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OCBMAKJ",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.04031646060982803,
+        "parameters": [
+          "8",
+          "44/97",
+          "-1/25",
+          "-21/76",
+          "-10/43"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "-63/65",
+            "y": "16/65"
+          },
+          "M": {
+            "x": "7473/11345",
+            "y": "8536/11345"
+          },
+          "K": {
+            "x": "-19191/20345",
+            "y": "8192/20345"
+          },
+          "A": {
+            "x": "53971/386555",
+            "y": "285388/386555"
+          },
+          "B": {
+            "x": "489947/487835",
+            "y": "222244/487835"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "A": true,
+          "J": false
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 489947,
+          "max_denominator": 487835,
+          "sum_abs_numerators": 1095022
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OCAKJ",
+      "order": "OMBCAKJ",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.05564853009252214,
+        "parameters": [
+          "84/71",
+          "-9/14",
+          "-6/55",
+          "-11/100",
+          "11/50"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "-2015/12097",
+            "y": "11928/12097"
+          },
+          "M": {
+            "x": "115/277",
+            "y": "-252/277"
+          },
+          "K": {
+            "x": "2720629/37028917",
+            "y": "44966712/37028917"
+          },
+          "A": {
+            "x": "620527783/925722925",
+            "y": "656431692/925722925"
+          },
+          "B": {
+            "x": "6286/6925",
+            "y": "-4041/6925"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "A": true,
+          "J": false
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 656431692,
+          "max_denominator": 925722925,
+          "sum_abs_numerators": 1324671454
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKACBM",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.055630124262625404,
+        "parameters": [
+          "-47/40",
+          "57/88",
+          "9/82",
+          "1/9",
+          "-19/87"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "-609/3809",
+            "y": "-3760/3809"
+          },
+          "M": {
+            "x": "4495/10993",
+            "y": "10032/10993"
+          },
+          "K": {
+            "x": "2121231/25920245",
+            "y": "-31498648/25920245"
+          },
+          "A": {
+            "x": "31537058/46656441",
+            "y": "-33108586/46656441"
+          },
+          "B": {
+            "x": "288112/318797",
+            "y": "186618/318797"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "J": false,
+          "A": true
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 33108586,
+          "max_denominator": 46656441,
+          "sum_abs_numerators": 98759150
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKAMBC",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.04031756542154103,
+        "parameters": [
+          "-8",
+          "-44/97",
+          "1/25",
+          "21/76",
+          "10/43"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "-63/65",
+            "y": "-16/65"
+          },
+          "M": {
+            "x": "7473/11345",
+            "y": "-8536/11345"
+          },
+          "K": {
+            "x": "-19191/20345",
+            "y": "-8192/20345"
+          },
+          "A": {
+            "x": "53971/386555",
+            "y": "-285388/386555"
+          },
+          "B": {
+            "x": "489947/487835",
+            "y": "-222244/487835"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "J": false,
+          "A": true
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 489947,
+          "max_denominator": 487835,
+          "sum_abs_numerators": 1095022
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJKMABC",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.04238672415552267,
+        "parameters": [
+          "-8",
+          "-61/46",
+          "7/89",
+          "35/86",
+          "25/99"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "-63/65",
+            "y": "-16/65"
+          },
+          "M": {
+            "x": "-1605/5837",
+            "y": "-5612/5837"
+          },
+          "K": {
+            "x": "-46963/51805",
+            "y": "-28544/51805"
+          },
+          "A": {
+            "x": "603623/2227615",
+            "y": "-2342136/2227615"
+          },
+          "B": {
+            "x": "349784/577863",
+            "y": "-463844/577863"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "J": false,
+          "A": true
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 2342136,
+          "max_denominator": 2227615,
+          "sum_abs_numerators": 3842191
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMKABC",
+      "result": {
+        "status": "NOT_FOUND",
+        "best_normalized_margin": -3.7070763291769673e-09
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMKBAC",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.04156402184735569,
+        "parameters": [
+          "-8",
+          "-208/85",
+          "13/19",
+          "2/15",
+          "82/89"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "-63/65",
+            "y": "-16/65"
+          },
+          "M": {
+            "x": "-36039/50489",
+            "y": "-35360/50489"
+          },
+          "K": {
+            "x": "8889/17225",
+            "y": "-33152/17225"
+          },
+          "A": {
+            "x": "262159/258375",
+            "y": "-265312/258375"
+          },
+          "B": {
+            "x": "3542545/4493521",
+            "y": "-8668816/4493521"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "J": false,
+          "A": true
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 8668816,
+          "max_denominator": 4493521,
+          "sum_abs_numerators": 12852352
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OJMBKAC",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.04474868506290674,
+        "parameters": [
+          "-322/57",
+          "-52/27",
+          "90/91",
+          "29/91",
+          "95/98"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "-100435/106933",
+            "y": "-36708/106933"
+          },
+          "M": {
+            "x": "-1975/3433",
+            "y": "-2808/3433"
+          },
+          "K": {
+            "x": "2315412905/1751669473",
+            "y": "-3403331988/1751669473"
+          },
+          "A": {
+            "x": "40535553693/22771703149",
+            "y": "-19786149418/22771703149"
+          },
+          "B": {
+            "x": "169101/168217",
+            "y": "-325676/168217"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "J": false,
+          "A": true
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 40535553693,
+          "max_denominator": 22771703149,
+          "sum_abs_numerators": 66041084708
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJKBAC",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.03247902621711979,
+        "parameters": [
+          "-257/86",
+          "-8",
+          "18/47",
+          "5/67",
+          "79/100"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "-58653/73445",
+            "y": "-44204/73445"
+          },
+          "M": {
+            "x": "-63/65",
+            "y": "-16/65"
+          },
+          "K": {
+            "x": "11824623/186036185",
+            "y": "-306834356/186036185"
+          },
+          "A": {
+            "x": "8162508848/12464424395",
+            "y": "-11150008736/12464424395"
+          },
+          "B": {
+            "x": "341/1625",
+            "y": "-2728/1625"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "J": true,
+          "A": true
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 11150008736,
+          "max_denominator": 12464424395,
+          "sum_abs_numerators": 19631282569
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMJBKAC",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.03938637967131731,
+        "parameters": [
+          "-141/53",
+          "-8",
+          "26/55",
+          "4/85",
+          "37/45"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "-8536/11345",
+            "y": "-7473/11345"
+          },
+          "M": {
+            "x": "-63/65",
+            "y": "-16/65"
+          },
+          "K": {
+            "x": "16660156/41987845",
+            "y": "-74413737/41987845"
+          },
+          "A": {
+            "x": "5580389981/7137933650",
+            "y": "-6527789157/7137933650"
+          },
+          "B": {
+            "x": "49/225",
+            "y": "-392/225"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "J": true,
+          "A": true
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 6527789157,
+          "max_denominator": 7137933650,
+          "sum_abs_numerators": 12199269561
+        }
+      }
+    },
+    {
+      "branch": "X=C",
+      "residual": "OJKAC",
+      "order": "OMBJKAC",
+      "result": {
+        "status": "SAT",
+        "search_margin": 0.02459903021642867,
+        "parameters": [
+          "-44/97",
+          "-630/79",
+          "40/59",
+          "19/80",
+          "26/93"
+        ],
+        "coordinates": {
+          "O": {
+            "x": "0",
+            "y": "0"
+          },
+          "C": {
+            "x": "1",
+            "y": "0"
+          },
+          "J": {
+            "x": "7473/11345",
+            "y": "-8536/11345"
+          },
+          "M": {
+            "x": "-390659/403141",
+            "y": "-99540/403141"
+          },
+          "K": {
+            "x": "90650633/57643945",
+            "y": "-34332056/57643945"
+          },
+          "A": {
+            "x": "823011523/576439450",
+            "y": "-46634698/288219725"
+          },
+          "B": {
+            "x": "1056151/12497371",
+            "y": "-8422470/12497371"
+          }
+        },
+        "cap": {
+          "C": true,
+          "M": true,
+          "K": true,
+          "B": true,
+          "O": false,
+          "J": true,
+          "A": true
+        },
+        "exact_fraction_validation": "PASS",
+        "witness_size": {
+          "max_abs_numerator": 823011523,
+          "max_denominator": 576439450,
+          "sum_abs_numerators": 1004613740
+        }
+      }
+    }
+  ]
+}

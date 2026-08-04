@@ -143,6 +143,61 @@ def test_cli_exposes_loader_and_mock_transcript_commands() -> None:
     assert persistent_ab.family == [("shell", 4), ("frontier", 12), ("shared", 24)]
     assert persistent_ab.worker_timeout == 1_800
 
+    prefix_cache_ab = parser.parse_args(
+        [
+            "prefix-cache-ab",
+            "--prefix-bank",
+            "bank",
+            "--prefix-root-sha256",
+            "a" * 64,
+            "--prefix-source-sha256",
+            "b" * 64,
+            "--output",
+            "bench-prefix-cache",
+        ]
+    )
+    assert prefix_cache_ab.command == "prefix-cache-ab"
+    assert prefix_cache_ab.warm == 3
+
+    prefix_cache_process_ab = parser.parse_args(
+        [
+            "prefix-cache-process-ab",
+            "--prefix-bank",
+            "bank",
+            "--prefix-cache",
+            "cache.json",
+            "--prefix-root-sha256",
+            "a" * 64,
+            "--prefix-source-sha256",
+            "b" * 64,
+            "--output",
+            "bench-prefix-cache-process",
+        ]
+    )
+    assert prefix_cache_process_ab.command == "prefix-cache-process-ab"
+    assert prefix_cache_process_ab.fresh == 3
+    assert prefix_cache_process_ab.worker_timeout == 900
+
+    journal_checkpoint_process_ab = parser.parse_args(
+        [
+            "journal-checkpoint-process-ab",
+            "--journal",
+            "journal-a.jsonl",
+            "--journal",
+            "journal-b.jsonl",
+            "--output",
+            "bench-journal-checkpoint",
+        ]
+    )
+    assert journal_checkpoint_process_ab.command == "journal-checkpoint-process-ab"
+    assert journal_checkpoint_process_ab.journal == [
+        Path("journal-a.jsonl"),
+        Path("journal-b.jsonl"),
+    ]
+    assert journal_checkpoint_process_ab.checkpoint_fraction == 0.75
+    assert journal_checkpoint_process_ab.fresh == 3
+    assert journal_checkpoint_process_ab.worker_timeout == 1_800
+
     selected = parser.parse_args(
         [
             "runtime-ab",
@@ -181,6 +236,57 @@ def test_cli_exposes_loader_and_mock_transcript_commands() -> None:
     )
     assert legacy_nonprojected.nonprojected is True
     assert legacy_nonprojected.legacy_order_coverage is True
+
+
+def test_cold_start_profile_separates_driver_components(tmp_path: Path) -> None:
+    worker = tmp_path / "persistent-worker.json"
+    samples = [
+        {
+            "stage": "loader",
+            "operation": "learned_replay",
+            "wall_ns": 40,
+            "cpu_ns": 30,
+        },
+        {
+            "stage": "cnf",
+            "operation": "render",
+            "wall_ns": 20,
+            "cpu_ns": 20,
+        },
+        {
+            "stage": "solver",
+            "operation": "persistent_invoke",
+            "wall_ns": 80,
+            "cpu_ns": 75,
+        },
+        {
+            "stage": "manifest",
+            "operation": "artifact_hashes",
+            "wall_ns": 10,
+            "cpu_ns": 8,
+        },
+        {
+            "stage": "driver",
+            "operation": "hard_shard_discovery",
+            "wall_ns": 200,
+            "cpu_ns": 190,
+        },
+    ]
+    benchmark._atomic_json(worker, {"ok": True, "samples": samples})
+
+    report = benchmark.benchmark_cold_start_profile(
+        [worker], [], tmp_path / "profile"
+    )
+
+    observation = report["observations"][0]
+    assert observation["buckets"]["loader_replay"]["wall_ns_total"] == 40
+    assert observation["buckets"]["cnf_construction"]["wall_ns_total"] == 20
+    assert observation["buckets"]["manifest_hash"]["wall_ns_total"] == 10
+    assert observation["buckets"]["solver"]["wall_ns_total"] == 80
+    assert observation["buckets"]["driver_total"]["wall_ns_total"] == 200
+    assert observation["derived"]["solver_wall_fraction_of_driver_total"] == 0.4
+    assert observation["derived"]["non_solver_components_are_non_additive"] is True
+    assert (tmp_path / "profile/report.json").is_file()
 
 
 def test_accounting_benchmark_compares_full_and_fast_manifests(

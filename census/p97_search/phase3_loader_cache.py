@@ -3,14 +3,19 @@
 This module is an accelerator boundary, not a certificate boundary.  A cache
 is useful only when the authenticated source stream, configuration, loader
 identity, and cache payload all agree.  The v3 driver still performs a full
-source replay at terminal/publication audit boundaries.
+source replay at terminal/publication audit boundaries.  The compiled cache
+stores authenticated metadata and antichain references plus a version-pinned
+compact learned-record table.  A cache hit checks the raw source identity and
+decodes that table; it never treats the sidecar as proof-bearing.
 """
 
 from __future__ import annotations
 
 import hashlib
 import json
+import marshal
 import os
+import sys
 import tempfile
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
@@ -19,9 +24,12 @@ from typing import Any
 
 from census.p97_search import phase3_cegar_runtime as cegar_runtime
 
-CACHE_SCHEMA = "p97-phase3-compiled-loader-cache-v1"
-INDEX_SCHEMA = "p97-phase3-indexed-antichain-v1"
+CACHE_SCHEMA = "p97-phase3-compiled-loader-cache-v5"
+INDEX_SCHEMA = "p97-phase3-indexed-antichain-v2"
 ORDERING_SCHEMA = "p97-phase3-v3-loader-order-v1"
+RECORD_TABLE_SCHEMA = "p97-phase3-record-table-marshal-v1"
+RECORD_TABLE_SUFFIX = ".records.marshal"
+MARSHAL_VERSION = marshal.version
 
 
 class CacheError(ValueError):
@@ -39,7 +47,15 @@ def _sha256_bytes(data: bytes) -> str:
 
 
 def _sha256_value(value: Any) -> str:
-    return _sha256_bytes(_canonical_bytes(value))
+    """Hash canonical JSON incrementally instead of materializing it."""
+
+    encoder = json.JSONEncoder(
+        sort_keys=True, separators=(",", ":"), allow_nan=False
+    )
+    digest = hashlib.sha256()
+    for chunk in encoder.iterencode(value):
+        digest.update(chunk.encode("utf-8"))
+    return digest.hexdigest()
 
 
 def _without_duplicate_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
@@ -100,13 +116,36 @@ class CacheResult:
     source: SourceIdentity | None = None
 
 
-def source_identity(path: Path) -> SourceIdentity:
-    """Scan source bytes and framing without replaying certificate semantics."""
+def _record_table_path(cache_path: Path) -> Path:
+    """Return the fixed sibling path for the compact record table."""
+
+    return cache_path.with_name(cache_path.name + RECORD_TABLE_SUFFIX)
+
+
+def _stream_file_digest(path: Path) -> tuple[int, str]:
+    """Hash a file without parsing its contents."""
+
+    if not path.is_file():
+        raise CacheError(f"missing source stream {path}")
+    digest = hashlib.sha256()
+    byte_count = 0
+    with path.open("rb") as handle:
+        for raw in iter(lambda: handle.read(1 << 20), b""):
+            byte_count += len(raw)
+            digest.update(raw)
+    return byte_count, digest.hexdigest()
+
+
+def _scan_source(
+    path: Path, *, retain_records: bool
+) -> tuple[SourceIdentity, list[dict[str, Any]] | None]:
+    """Authenticate a JSONL source, optionally retaining parsed records."""
 
     digest = hashlib.sha256()
     record_count = 0
     byte_count = 0
     terminal: str | None = None
+    records: list[dict[str, Any]] | None = [] if retain_records else None
     if not path.is_file():
         raise CacheError(f"missing source stream {path}")
     with path.open("rb") as handle:
@@ -140,12 +179,25 @@ def source_identity(path: Path) -> SourceIdentity:
             record_count += 1
             byte_count += len(raw)
             digest.update(raw)
-    return SourceIdentity(
-        record_count=record_count,
-        byte_count=byte_count,
-        terminal_record_sha256=terminal,
-        file_sha256=digest.hexdigest(),
+            if records is not None:
+                records.append(record)
+    return (
+        SourceIdentity(
+            record_count=record_count,
+            byte_count=byte_count,
+            terminal_record_sha256=terminal,
+            file_sha256=digest.hexdigest(),
+        ),
+        records,
     )
+
+
+def source_identity(path: Path) -> SourceIdentity:
+    """Scan source bytes and framing without retaining parsed records."""
+
+    source, records = _scan_source(path, retain_records=False)
+    assert records is None
+    return source
 
 
 def prime_journal_scan(
@@ -207,41 +259,194 @@ def _validate_clause(value: Any, *, where: str) -> tuple[int, ...]:
     return tuple(value)
 
 
-def _validate_payload(payload: Any) -> dict[str, Any]:
+def _source_identity_from_dict(value: Any) -> SourceIdentity:
+    if not isinstance(value, dict) or set(value) != {
+        "record_count",
+        "byte_count",
+        "terminal_record_sha256",
+        "file_sha256",
+    }:
+        raise CacheError("cache source identity is malformed")
+    record_count = value["record_count"]
+    byte_count = value["byte_count"]
+    terminal = value["terminal_record_sha256"]
+    file_sha256 = value["file_sha256"]
+    if type(record_count) is not int or record_count < 0:
+        raise CacheError("cache source record count is invalid")
+    if type(byte_count) is not int or byte_count < 0:
+        raise CacheError("cache source byte count is invalid")
+    if terminal is not None and (
+        not isinstance(terminal, str)
+        or len(terminal) != 64
+        or any(character not in "0123456789abcdef" for character in terminal)
+    ):
+        raise CacheError("cache source terminal digest is invalid")
+    if (
+        not isinstance(file_sha256, str)
+        or len(file_sha256) != 64
+        or any(character not in "0123456789abcdef" for character in file_sha256)
+    ):
+        raise CacheError("cache source file digest is invalid")
+    return SourceIdentity(record_count, byte_count, terminal, file_sha256)
+
+
+def _validate_record_table(value: Any) -> int:
+    if not isinstance(value, dict) or set(value) != {
+        "schema",
+        "marshal_version",
+        "python_implementation",
+        "python_version",
+        "record_count",
+        "byte_count",
+        "sha256",
+        "terminal_record_sha256",
+    }:
+        raise CacheError("cache record table metadata is malformed")
+    if value["schema"] != RECORD_TABLE_SCHEMA:
+        raise CacheError("cache record table schema mismatch")
+    if value["marshal_version"] != MARSHAL_VERSION:
+        raise CacheError("cache record table marshal version mismatch")
+    if value["python_implementation"] != sys.implementation.name:
+        raise CacheError("cache record table Python implementation mismatch")
+    if value["python_version"] != list(sys.version_info[:3]):
+        raise CacheError("cache record table Python version mismatch")
+    record_count = value["record_count"]
+    byte_count = value["byte_count"]
+    if type(record_count) is not int or record_count < 0:
+        raise CacheError("cache record table count is invalid")
+    if type(byte_count) is not int or byte_count < 0:
+        raise CacheError("cache record table byte count is invalid")
+    digest = value["sha256"]
+    if (
+        not isinstance(digest, str)
+        or len(digest) != 64
+        or any(character not in "0123456789abcdef" for character in digest)
+    ):
+        raise CacheError("cache record table digest is invalid")
+    terminal = value["terminal_record_sha256"]
+    if terminal is not None and (
+        not isinstance(terminal, str)
+        or len(terminal) != 64
+        or any(character not in "0123456789abcdef" for character in terminal)
+    ):
+        raise CacheError("cache record table terminal digest is invalid")
+    return record_count
+
+
+def _record_terminal(
+    records: Sequence[Mapping[str, Any]], *, verify_hashes: bool
+) -> str | None:
+    """Validate record framing and return its authenticated terminal hash."""
+
+    terminal: str | None = None
+    for position, record in enumerate(records):
+        if not isinstance(record, dict):
+            raise CacheError(f"record table entry {position} is not an object")
+        if type(record.get("index")) is not int or record.get("index") != position:
+            raise CacheError(f"record table entry {position} has a non-dense index")
+        if record.get("previous_record_sha256") != terminal:
+            raise CacheError(f"record table entry {position} breaks the hash chain")
+        unsigned = dict(record)
+        claimed = unsigned.pop("record_sha256", None)
+        if not isinstance(claimed, str):
+            raise CacheError(f"record table entry {position} has no record hash")
+        if verify_hashes and claimed != _sha256_value(unsigned):
+            raise CacheError(f"record table entry {position} has an invalid record hash")
+        terminal = claimed
+    return terminal
+
+
+def _validate_payload(
+    payload: Any, *, record_count: int | None = None
+) -> dict[str, Any]:
     if not isinstance(payload, dict):
         raise CacheError("cache payload is not an object")
-    records = payload.get("records")
-    clauses = payload.get("clauses")
-    active = payload.get("active_entries")
+    record_table = payload.get("record_table")
+    active_indices = payload.get("active_record_indices")
     index = payload.get("index")
-    if not isinstance(records, list) or not all(
-        isinstance(record, dict) for record in records
-    ):
-        raise CacheError("cache records are not a list of objects")
-    if not isinstance(clauses, list) or len(clauses) != len(records):
-        raise CacheError("cache clauses do not match record count")
-    normalized_clauses: list[tuple[int, ...]] = []
-    for position, clause in enumerate(clauses):
-        normalized = _validate_clause(clause, where=f"cache clause {position}")
-        record_clause = records[position].get("clause")
-        if record_clause is not None and record_clause != list(normalized):
-            raise CacheError(f"cache record {position} clause mismatch")
-        normalized_clauses.append(normalized)
-    if not isinstance(active, list):
-        raise CacheError("cache active_entries are not a list")
-    for position, entry in enumerate(active):
-        if not isinstance(entry, dict):
-            raise CacheError(f"cache active entry {position} is not an object")
-        if not isinstance(entry.get("key"), list) or "certificate" not in entry:
-            raise CacheError(f"cache active entry {position} is malformed")
+    if set(payload) != {"record_table", "active_record_indices", "index"}:
+        raise CacheError("cache payload has redundant or missing fields")
+    serialized_record_count = _validate_record_table(record_table)
+    if record_count is not None and serialized_record_count != record_count:
+        raise CacheError("cache record count does not match source")
     if not isinstance(index, dict) or index.get("schema") != INDEX_SCHEMA:
         raise CacheError("cache antichain index schema mismatch")
+    if set(index) != {"schema", "active_order", "full_index_sha256"}:
+        raise CacheError("cache antichain index is not compact")
+    active_order = index.get("active_order")
+    if not isinstance(active_order, list):
+        raise CacheError("cache antichain active_order is not a list")
+    full_index_sha256 = index.get("full_index_sha256")
+    if (
+        not isinstance(full_index_sha256, str)
+        or len(full_index_sha256) != 64
+        or any(character not in "0123456789abcdef" for character in full_index_sha256)
+    ):
+        raise CacheError("cache antichain full index digest is invalid")
+    if not isinstance(active_indices, list) or len(active_indices) != len(active_order):
+        raise CacheError("cache active record indices do not match antichain order")
+    for position, record_index in enumerate(active_indices):
+        if (
+            type(record_index) is not int
+            or not 0 <= record_index < serialized_record_count
+        ):
+            raise CacheError(f"cache active record index {position} is invalid")
     return {
         **payload,
-        "records": [dict(record) for record in records],
-        "clauses": normalized_clauses,
-        "active_entries": [dict(entry) for entry in active],
+        "active_record_indices": list(active_indices),
     }
+
+
+def _validate_active_records(
+    payload: Mapping[str, Any], records: Sequence[Mapping[str, Any]]
+) -> None:
+    """Validate source-backed records referenced by the compact payload."""
+
+    expected_count = payload["record_table"]["record_count"]
+    if expected_count != len(records):
+        raise CacheError("source record count does not match cache")
+    for position, record in enumerate(records):
+        if not isinstance(record, Mapping):
+            raise CacheError(f"source record {position} is not an object")
+        _validate_clause(record.get("clause"), where=f"source record {position} clause")
+    for position, record_index in enumerate(payload["active_record_indices"]):
+        if not isinstance(records[record_index].get("certificate"), dict):
+            raise CacheError(
+                f"cache active record {record_index} has no certificate object"
+            )
+
+
+def _active_record_indices(
+    records: Sequence[Mapping[str, Any]],
+    active_entries: Sequence[Mapping[str, Any]],
+) -> list[int]:
+    """Resolve active certificates to their already-stored learned records."""
+
+    by_certificate: dict[str, list[int]] = {}
+    for index, record in enumerate(records):
+        certificate = record.get("certificate")
+        if isinstance(certificate, dict):
+            by_certificate.setdefault(_sha256_value(certificate), []).append(index)
+
+    result: list[int] = []
+    for position, entry in enumerate(active_entries):
+        certificate = entry.get("certificate")
+        if not isinstance(certificate, dict):
+            raise CacheError(f"active entry {position} has no certificate object")
+        candidates = by_certificate.get(_sha256_value(certificate), [])
+        exact = [
+            index
+            for index in candidates
+            if records[index].get("certificate") == certificate
+        ]
+        if not exact:
+            raise CacheError(
+                f"active entry {position} has no corresponding learned record"
+            )
+        # Duplicate certificate records are semantically identical for the
+        # indexed bank; retain the first deterministic occurrence.
+        result.append(exact[0])
+    return result
 
 
 def write_cache(
@@ -257,13 +462,56 @@ def write_cache(
 ) -> None:
     """Atomically write a self-authenticating, source-bound cache."""
 
+    if len(records) != source.record_count:
+        raise CacheError("cache records do not match source record count")
+    terminal = _record_terminal(records, verify_hashes=True)
+    if terminal != source.terminal_record_sha256:
+        raise CacheError("cache records do not match source terminal hash")
+    active_record_indices = _active_record_indices(records, active_entries)
+    if len(clauses) != len(records):
+        raise CacheError("cache clauses do not match record count")
+    for position, clause in enumerate(clauses):
+        normalized = _validate_clause(
+            list(clause), where=f"cache clause {position}"
+        )
+        if records[position].get("clause") != list(normalized):
+            raise CacheError(f"cache record {position} clause mismatch")
+    active_order = index.get("active_order")
+    if not isinstance(active_order, list) or len(active_order) != len(
+        active_record_indices
+    ):
+        raise CacheError("active entries do not match serialized antichain order")
+    for position, entry in enumerate(active_entries):
+        if entry.get("key") != active_order[position]:
+            raise CacheError("active entry order does not match antichain index")
+    compact_index = {
+        "schema": INDEX_SCHEMA,
+        "active_order": active_order,
+        "full_index_sha256": _sha256_value(
+            {"schema": INDEX_SCHEMA, **dict(index)}
+        ),
+    }
+    try:
+        record_table_bytes = marshal.dumps(list(records), MARSHAL_VERSION)
+    except (TypeError, ValueError) as exc:
+        raise CacheError(f"cache record table is not marshalable: {exc}") from exc
+    record_table = {
+        "schema": RECORD_TABLE_SCHEMA,
+        "marshal_version": MARSHAL_VERSION,
+        "python_implementation": sys.implementation.name,
+        "python_version": list(sys.version_info[:3]),
+        "record_count": len(records),
+        "byte_count": len(record_table_bytes),
+        "sha256": _sha256_bytes(record_table_bytes),
+        "terminal_record_sha256": terminal,
+    }
     payload = {
-        "records": [dict(record) for record in records],
-        "clauses": [list(clause) for clause in clauses],
-        "active_entries": [dict(entry) for entry in active_entries],
-        "index": {"schema": INDEX_SCHEMA, **dict(index)},
+        "record_table": record_table,
+        "active_record_indices": active_record_indices,
+        "index": compact_index,
     }
     payload = _validate_payload(payload)
+    _validate_active_records(payload, records)
     unsigned = {
         "schema": CACHE_SCHEMA,
         "identity": _cache_identity(source, configuration, loader_source_sha256),
@@ -274,6 +522,7 @@ def write_cache(
         "payload_sha256": _sha256_value(unsigned["payload"]),
     }
     envelope["cache_sha256"] = _sha256_value(envelope)
+    _file_atomic_write(_record_table_path(path), record_table_bytes)
     _file_atomic_write(
         path,
         json.dumps(envelope, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
@@ -292,15 +541,16 @@ def try_load(
 
     if not path.is_file():
         return CacheResult(False, "missing-cache")
-    source = source_identity(source_path)
+    source: SourceIdentity | None = None
     try:
-        raw = json.loads(
-            path.read_bytes(),
-            parse_constant=lambda token: (_ for _ in ()).throw(
-                ValueError(f"invalid JSON constant {token}")
-            ),
-            object_pairs_hook=_without_duplicate_keys,
-        )
+        with path.open("r", encoding="utf-8") as handle:
+            raw = json.load(
+                handle,
+                parse_constant=lambda token: (_ for _ in ()).throw(
+                    ValueError(f"invalid JSON constant {token}")
+                ),
+                object_pairs_hook=_without_duplicate_keys,
+            )
         if not isinstance(raw, dict) or raw.get("schema") != CACHE_SCHEMA:
             raise CacheError("cache schema mismatch")
         unsigned = {key: value for key, value in raw.items() if key != "cache_sha256"}
@@ -309,11 +559,58 @@ def try_load(
         payload = raw.get("payload")
         if raw.get("payload_sha256") != _sha256_value(payload):
             raise CacheError("cache payload hash mismatch")
+        raw_identity = raw.get("identity")
+        if not isinstance(raw_identity, dict):
+            raise CacheError("cache identity is not an object")
+        expected_source = _source_identity_from_dict(raw_identity.get("source"))
+        source_byte_count, source_file_sha256 = _stream_file_digest(source_path)
+        if (
+            source_byte_count != expected_source.byte_count
+            or source_file_sha256 != expected_source.file_sha256
+        ):
+            raise CacheError("cache source byte identity mismatch")
+        source = SourceIdentity(
+            record_count=expected_source.record_count,
+            byte_count=source_byte_count,
+            terminal_record_sha256=expected_source.terminal_record_sha256,
+            file_sha256=source_file_sha256,
+        )
         expected_identity = _cache_identity(source, configuration, loader_source_sha256)
         if raw.get("identity") != expected_identity:
             raise CacheError("cache source/configuration identity mismatch")
-        return CacheResult(True, "hit", _validate_payload(payload), source)
-    except (CacheError, OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
+        payload = _validate_payload(payload, record_count=source.record_count)
+        record_table = payload["record_table"]
+        if record_table["terminal_record_sha256"] != source.terminal_record_sha256:
+            raise CacheError("cache record table terminal hash mismatch")
+        record_table_path = _record_table_path(path)
+        record_table_bytes = record_table_path.read_bytes()
+        if (
+            len(record_table_bytes) != record_table["byte_count"]
+            or _sha256_bytes(record_table_bytes) != record_table["sha256"]
+        ):
+            raise CacheError("cache record table digest mismatch")
+        try:
+            records = marshal.loads(record_table_bytes)
+        except (EOFError, TypeError, ValueError) as exc:
+            raise CacheError(f"cache record table decode failed: {exc}") from exc
+        if not isinstance(records, list):
+            raise CacheError("cache record table is not a list")
+        if _record_terminal(records, verify_hashes=False) != source.terminal_record_sha256:
+            raise CacheError("cache record table hash chain mismatch")
+        _validate_active_records(payload, records)
+        # The on-disk payload intentionally has no learned-record object graph.
+        # Attach the compact-table decode only to the in-memory result.
+        payload = {**payload, "records": records}
+        return CacheResult(True, "hit", payload, source)
+    except (
+        CacheError,
+        OSError,
+        UnicodeDecodeError,
+        json.JSONDecodeError,
+        EOFError,
+        TypeError,
+        ValueError,
+    ) as exc:
         return CacheResult(False, str(exc), source=source)
 
 
@@ -327,6 +624,10 @@ class IndexedNogoodBank:
         self._rows: list[Any] = []
         self.postings: dict[int, set[tuple[Any, ...]]] = {}
         self.size_buckets: dict[int, set[tuple[Any, ...]]] = {}
+        # A cache hit validates one complete snapshot.  Reuse that exact
+        # snapshot for the immediate state digest; all mutating operations
+        # invalidate it before changing the bank.
+        self._index_snapshot_cache: dict[str, Any] | None = None
 
     def _row_id(self, row: Any) -> int:
         try:
@@ -339,6 +640,7 @@ class IndexedNogoodBank:
             return identifier
 
     def _remove(self, key: tuple[Any, ...]) -> None:
+        self._index_snapshot_cache = None
         del self.active[key]
         bucket = self.size_buckets[len(key)]
         bucket.remove(key)
@@ -410,6 +712,7 @@ class IndexedNogoodBank:
         )
         for old in superseded:
             self._remove(old)
+        self._index_snapshot_cache = None
         self.active[key] = dict(certificate)
         bucket = self.size_buckets.setdefault(len(key), set())
         bucket.add(key)
@@ -420,14 +723,20 @@ class IndexedNogoodBank:
         return key, superseded, True
 
     def load_active(
-        self, entries: Sequence[tuple[tuple[Any, ...], Mapping[str, Any]]]
+        self,
+        entries: Sequence[tuple[tuple[Any, ...], Mapping[str, Any]]],
+        *,
+        copy_certificates: bool = True,
     ) -> None:
         """Load already-audited active entries without changing their order."""
 
+        self._index_snapshot_cache = None
         for key, certificate in entries:
             if key in self.active:
                 raise CacheError("duplicate active antichain key")
-            self.active[key] = dict(certificate)
+            self.active[key] = (
+                dict(certificate) if copy_certificates else certificate
+            )
             self.size_buckets.setdefault(len(key), set()).add(key)
             for row in key:
                 self.postings.setdefault(self._row_id(row), set()).add(key)
@@ -437,6 +746,8 @@ class IndexedNogoodBank:
                 self.empty = key
 
     def index_snapshot(self) -> dict[str, Any]:
+        if self._index_snapshot_cache is not None:
+            return self._index_snapshot_cache
         keys = list(self.active)
         key_ids = {key: index for index, key in enumerate(keys)}
         active_rows = {
@@ -473,15 +784,22 @@ def cached_bank(payload: Mapping[str, Any]) -> IndexedNogoodBank:
 
     bank = IndexedNogoodBank()
     entries: list[tuple[tuple[Any, ...], Mapping[str, Any]]] = []
-    for entry in payload["active_entries"]:
-        key = _tupleize(entry["key"])
+    active_order = payload["index"]["active_order"]
+    for key_value, record_index in zip(
+        active_order, payload["active_record_indices"], strict=True
+    ):
+        key = _tupleize(key_value)
         if not isinstance(key, tuple):
             raise CacheError("cached antichain key is not a tuple")
-        entries.append((key, entry["certificate"]))
-    bank.load_active(entries)
-    expected = _jsonable(payload["index"])
-    actual = _jsonable(bank.index_snapshot())
-    expected.pop("schema", None)
-    if expected != actual:
+        certificate = payload["records"][record_index].get("certificate")
+        if not isinstance(certificate, dict):
+            raise CacheError("cached active record has no certificate object")
+        entries.append((key, certificate))
+    bank.load_active(entries, copy_certificates=False)
+    expected_digest = payload["index"]["full_index_sha256"]
+    snapshot = bank.index_snapshot()
+    actual_digest = _sha256_value({"schema": INDEX_SCHEMA, **snapshot})
+    if expected_digest != actual_digest:
         raise CacheError("serialized antichain index does not replay")
+    bank._index_snapshot_cache = snapshot
     return bank

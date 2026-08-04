@@ -27,6 +27,7 @@ from typing import Any, Self
 
 from census.p97_search import phase3_cegar_runtime as runtime
 from census.p97_search import phase3_incremental_cadical as incremental
+from census.p97_search import phase3_journal_checkpoint as journal_checkpoint
 from census.p97_search import phase3_structural_cegar_projected_static_v3 as v3
 from census.p97_search.benchmarks import phase3_cegar_timing as timing
 
@@ -34,6 +35,17 @@ BENCHMARK_COMMAND_SCHEMA = "p97-phase3-cegar-benchmark-command-v1"
 BENCHMARK_REPORT_SCHEMA = "p97-phase3-cegar-benchmark-report-v1"
 RUNTIME_AB_REPORT_SCHEMA = "p97-phase3-cegar-runtime-ab-report-v1"
 PERSISTENT_AB_REPORT_SCHEMA = "p97-phase3-cegar-persistent-discovery-ab-report-v1"
+COLD_START_PROFILE_SCHEMA = "p97-phase3-cegar-cold-start-profile-v1"
+PREFIX_CACHE_AB_REPORT_SCHEMA = "p97-phase3-three-rhombus-prefix-cache-ab-report-v1"
+PREFIX_CACHE_PROCESS_AB_REPORT_SCHEMA = (
+    "p97-phase3-three-rhombus-prefix-cache-process-ab-report-v1"
+)
+JOURNAL_CHECKPOINT_PROCESS_AB_REPORT_SCHEMA = (
+    "p97-phase3-authenticated-journal-checkpoint-process-ab-report-v1"
+)
+COMPILED_LOADER_PROCESS_AB_REPORT_SCHEMA = (
+    "p97-phase3-compiled-loader-process-ab-report-v1"
+)
 REPLAY_ONLY_STATUSES = frozenset(
     {
         "STRUCTURAL_UNSAT_VERIFIED",
@@ -114,7 +126,9 @@ def _source_hashes() -> dict[str, str]:
         Path(runtime.__file__).resolve(),
         Path(incremental.__file__).resolve(),
         Path(v3.__file__).resolve(),
+        Path(v3.prefix_bank_cache.__file__).resolve(),
         Path(v3.phase3_order_universe.__file__).resolve(),
+        Path(journal_checkpoint.__file__).resolve(),
     )
     return {
         str(path.relative_to(v3.ROOT)): _sha256_file(path)
@@ -251,6 +265,12 @@ def _instrument_v3(recorder: timing.TimingRecorder) -> Iterator[None]:
         ("_load_logs", "loader", "log_replay"),
         ("_load_cube_batches", "loader", "cube_replay"),
         ("_run_smoke_gates", "loader", "smoke_replay"),
+        (
+            "_load_authenticated_three_rhombus_prefix_bank",
+            "loader",
+            "prefix_bank_replay",
+        ),
+        ("_load_algebraic_templates", "loader", "algebraic_replay"),
         ("_combined_detection", "classifier", "detect"),
         ("_commit_sat_classification", "classifier_minimizer", "commit"),
         ("_minimize_cap_facts", "minimizer", "cap_facts"),
@@ -272,6 +292,26 @@ def _instrument_v3(recorder: timing.TimingRecorder) -> Iterator[None]:
                 return original_cnf_bytes(self, *args, **kwargs)
 
         patch(encoding_class, "cnf_bytes", cnf_bytes)
+
+        original_parse_dimacs = incremental.parse_dimacs
+
+        @functools.wraps(original_parse_dimacs)
+        def parse_dimacs(data: bytes) -> Any:
+            with recorder.measure(
+                "cnf", "persistent_parse", counters={"bytes": len(data)}
+            ):
+                return original_parse_dimacs(data)
+
+        patch(incremental, "parse_dimacs", parse_dimacs)
+
+        original_persistent_solve = incremental.IpasirCadicalSolver.solve
+
+        @functools.wraps(original_persistent_solve)
+        def persistent_solve(self: Any, timeout_s: int) -> Any:
+            with recorder.measure("solver", "persistent_invoke"):
+                return original_persistent_solve(self, timeout_s)
+
+        patch(incremental.IpasirCadicalSolver, "solve", persistent_solve)
 
         original_atomic_bytes = v3._atomic_bytes
 
@@ -499,6 +539,22 @@ def _spawn_worker(
     if not all(isinstance(sample, dict) for sample in samples):
         raise BenchmarkError("fresh benchmark worker samples are malformed")
     return result, samples, process
+
+
+def _spawn_worker_with_wall(
+    target: Callable[..., None],
+    args: tuple[Any, ...],
+    result_path: Path,
+    *,
+    join_timeout_s: int = 900,
+) -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any], int]:
+    """Spawn one worker and include process creation/join wall time."""
+
+    started = time.perf_counter_ns()
+    result, samples, process = _spawn_worker(
+        target, args, result_path, join_timeout_s=join_timeout_s
+    )
+    return result, samples, process, time.perf_counter_ns() - started
 
 
 def _append_samples(
@@ -1015,6 +1071,1294 @@ def _sample_wall_ns(
     return values[0]
 
 
+_PROFILE_BUCKETS = (
+    "loader_replay",
+    "cnf_construction",
+    "manifest_hash",
+    "solver",
+    "terminal_proof",
+    "certificate_minimizer",
+    "journal_io",
+    "artifact_io",
+    "terminal_publication",
+    "driver_total",
+    "other",
+)
+
+
+def _profile_bucket(stage: str) -> str:
+    if stage == "loader":
+        return "loader_replay"
+    if stage in {"encoding", "cnf"}:
+        return "cnf_construction"
+    if stage == "manifest":
+        return "manifest_hash"
+    if stage == "solver":
+        return "solver"
+    if stage == "terminal.check":
+        return "terminal_proof"
+    if stage in {"classifier", "classifier_minimizer", "minimizer"}:
+        return "certificate_minimizer"
+    if stage == "journal":
+        return "journal_io"
+    if stage == "artifact":
+        return "artifact_io"
+    if stage == "terminal":
+        return "terminal_publication"
+    if stage == "driver":
+        return "driver_total"
+    return "other"
+
+
+def _profile_stats(samples: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
+    wall = sorted(int(sample["wall_ns"]) for sample in samples)
+    cpu = sorted(int(sample["cpu_ns"]) for sample in samples)
+    if not wall:
+        return {
+            "sample_count": 0,
+            "wall_ns_total": 0,
+            "cpu_ns_total": 0,
+            "wall_ns_median": None,
+            "wall_ns_p95": None,
+            "cpu_ns_median": None,
+            "cpu_ns_p95": None,
+        }
+    p95 = max(0, math.ceil(0.95 * len(wall)) - 1)
+    middle = len(wall) // 2
+    if len(wall) % 2:
+        wall_median = wall[middle]
+        cpu_median = cpu[middle]
+    else:
+        wall_median = (wall[middle - 1] + wall[middle]) // 2
+        cpu_median = (cpu[middle - 1] + cpu[middle]) // 2
+    return {
+        "sample_count": len(wall),
+        "wall_ns_total": sum(wall),
+        "cpu_ns_total": sum(cpu),
+        "wall_ns_median": wall_median,
+        "wall_ns_p95": wall[p95],
+        "cpu_ns_median": cpu_median,
+        "cpu_ns_p95": cpu[p95],
+    }
+
+
+def _profile_observation(
+    label: str,
+    samples: Sequence[Mapping[str, Any]],
+    *,
+    source_kind: str,
+    source_path: Path,
+) -> dict[str, Any]:
+    checked: list[dict[str, Any]] = []
+    for sample in samples:
+        if not isinstance(sample, Mapping):
+            raise BenchmarkError(f"{source_path}: timing sample is not an object")
+        if not isinstance(sample.get("stage"), str) or not isinstance(
+            sample.get("operation"), str
+        ):
+            raise BenchmarkError(
+                f"{source_path}: timing sample identity is malformed"
+            )
+        if type(sample.get("wall_ns")) is not int or type(
+            sample.get("cpu_ns")
+        ) is not int:
+            raise BenchmarkError(
+                f"{source_path}: timing sample clocks are malformed"
+            )
+        checked.append(dict(sample))
+
+    by_stage: dict[tuple[str, str], list[Mapping[str, Any]]] = {}
+    by_bucket: dict[str, list[Mapping[str, Any]]] = {
+        bucket: [] for bucket in _PROFILE_BUCKETS
+    }
+    for sample in checked:
+        identity = (str(sample["stage"]), str(sample["operation"]))
+        by_stage.setdefault(identity, []).append(sample)
+        by_bucket[_profile_bucket(identity[0])].append(sample)
+
+    stages = {
+        f"{stage}/{operation}": _profile_stats(group)
+        for (stage, operation), group in sorted(by_stage.items())
+    }
+    buckets = {
+        bucket: _profile_stats(by_bucket[bucket])
+        for bucket in _PROFILE_BUCKETS
+    }
+    driver = buckets["driver_total"]
+    solver = buckets["solver"]
+    driver_wall = driver["wall_ns_total"]
+    return {
+        "label": label,
+        "source_kind": source_kind,
+        "source_path": str(source_path.resolve()),
+        "source_sha256": _sha256_file(source_path),
+        "sample_count": len(checked),
+        "stages": stages,
+        "buckets": buckets,
+        "derived": {
+            "solver_wall_fraction_of_driver_total": (
+                None
+                if driver_wall <= 0
+                else solver["wall_ns_total"] / driver_wall
+            ),
+            "non_solver_components_are_non_additive": True,
+        },
+    }
+
+
+def _read_worker_samples(path: Path) -> list[dict[str, Any]]:
+    payload = v3._strict_json(path)
+    if not isinstance(payload, Mapping) or payload.get("ok") is not True:
+        raise BenchmarkError(f"{path}: worker result is not successful")
+    samples = payload.get("samples")
+    if not isinstance(samples, list):
+        raise BenchmarkError(f"{path}: worker result has no timing samples")
+    return [dict(sample) for sample in samples]
+
+
+def benchmark_cold_start_profile(
+    worker_json: Sequence[Path],
+    timing_journals: Sequence[Path],
+    output_dir: Path,
+) -> dict[str, Any]:
+    """Profile fresh worker samples without touching their run namespaces.
+
+    Component buckets intentionally remain diagnostic: nested boundaries such
+    as manifest construction and artifact hashing are not summed into an
+    end-to-end total.  The driver bucket is the only end-to-end boundary.
+    """
+
+    if not worker_json and not timing_journals:
+        raise BenchmarkError("cold-start profile needs a worker or timing journal")
+    output = _new_output(output_dir)
+    observations: list[dict[str, Any]] = []
+    inputs: list[dict[str, Any]] = []
+    loaded_sources: list[tuple[str, Path, list[dict[str, Any]]]] = []
+    for path in tuple(worker_json):
+        path = path.resolve()
+        if not path.is_file():
+            raise BenchmarkError(f"missing worker timing artifact: {path}")
+        samples = _read_worker_samples(path)
+        loaded_sources.append(("fresh-worker", path, samples))
+        observations.append(
+            _profile_observation(
+                path.stem,
+                samples,
+                source_kind="fresh-worker",
+                source_path=path,
+            )
+        )
+        inputs.append(
+            {
+                "kind": "fresh-worker",
+                "path": str(path),
+                "sha256": _sha256_file(path),
+            }
+        )
+    for path in tuple(timing_journals):
+        path = path.resolve()
+        if not path.is_file():
+            raise BenchmarkError(f"missing timing journal: {path}")
+        records = timing.TimingJournal(path).read()
+        fresh = [
+            record
+            for record in records
+            if record.get("cache_condition") == "fresh-process-new-copy"
+        ]
+        if not fresh:
+            raise BenchmarkError(f"{path}: timing journal has no fresh records")
+        loaded_sources.append(("fresh-timing-journal", path, fresh))
+        observations.append(
+            _profile_observation(
+                path.stem,
+                fresh,
+                source_kind="fresh-timing-journal",
+                source_path=path,
+            )
+        )
+        inputs.append(
+            {
+                "kind": "fresh-timing-journal",
+                "path": str(path),
+                "sha256": _sha256_file(path),
+            }
+        )
+
+    all_samples: list[Mapping[str, Any]] = []
+    for _kind, _path, samples in loaded_sources:
+        all_samples.extend(samples)
+    aggregate_source = output / "profile-inputs.json"
+    _atomic_json(aggregate_source, {"inputs": inputs})
+    aggregate = _profile_observation(
+        "all-inputs",
+        all_samples,
+        source_kind="profile-aggregate",
+        source_path=aggregate_source,
+    )
+    unsigned = {
+        "schema": COLD_START_PROFILE_SCHEMA,
+        "command": "cold-start-profile",
+        "inputs": inputs,
+        "observations": observations,
+        "aggregate": aggregate,
+        "interpretation": {
+            "driver_total": "end-to-end observed driver boundary",
+            "component_buckets": "diagnostic boundaries; nested timings may overlap",
+            "persistent_solver": (
+                "reported under solver/persistent_invoke when instrumented"
+            ),
+            "os_cache_control": "none",
+        },
+        "trust_boundary": (
+            "read-only diagnostic profile; source worker and timing journals are "
+            "hash-bound and no run artifact is rewritten"
+        ),
+    }
+    manifest = _hashed_record(
+        {
+            "schema": BENCHMARK_COMMAND_SCHEMA,
+            "command": "cold-start-profile",
+            "source_sha256": _source_hashes(),
+            "subject": {"inputs": inputs},
+            "trust_boundary": unsigned["trust_boundary"],
+        },
+        "benchmark_manifest_sha256",
+    )
+    _atomic_json(output / "benchmark-manifest.json", manifest)
+    report = _hashed_record(
+        {
+            **unsigned,
+            "benchmark_manifest_sha256": manifest["benchmark_manifest_sha256"],
+        },
+        "report_sha256",
+    )
+    _atomic_json(output / "report.json", report)
+    return report
+
+
+def benchmark_prefix_bank_cache_ab(
+    bank_path: Path,
+    output_dir: Path,
+    *,
+    expected_root_sha256: str,
+    expected_source_prefix_sha256: str,
+    warm_repetitions: int = 3,
+) -> dict[str, Any]:
+    """Measure one authoritative replay against disk-cache validation.
+
+    The warm arm still validates the pinned bank root, manifest, cache
+    envelope, and canonical certificate stream.  It is a same-process
+    diagnostic, so OS page-cache effects are reported rather than hidden.
+    """
+
+    if warm_repetitions <= 0:
+        raise BenchmarkError("warm_repetitions must be positive")
+    bank = bank_path.resolve()
+    output = _new_output(output_dir, subject=bank)
+    if not bank.is_dir():
+        raise BenchmarkError(f"missing prefix-bank directory: {bank}")
+    manifest_path = bank / "manifest.json"
+    manifest = v3._strict_json(manifest_path)
+    source = manifest.get("source")
+    if not isinstance(source, Mapping):
+        raise BenchmarkError("prefix-bank manifest has no source metadata")
+    actual_source_prefix_sha256 = source.get("prefix_sha256")
+    if actual_source_prefix_sha256 != expected_source_prefix_sha256:
+        raise BenchmarkError("prefix-bank source-prefix pin does not match manifest")
+    actual_root_sha256 = _sha256_file(bank / "SHA256SUMS")
+    if actual_root_sha256 != expected_root_sha256:
+        raise BenchmarkError("prefix-bank root pin does not match SHA256SUMS")
+
+    producer_source_sha256 = v3._prefix_bank_cache_source_sha256()
+    cold_start = time.perf_counter_ns()
+    authenticated = v3._load_authenticated_three_rhombus_prefix_bank(
+        bank,
+        expected_root_sha256=expected_root_sha256,
+        expected_source_prefix_sha256=expected_source_prefix_sha256,
+    )
+    cold_wall_ns = time.perf_counter_ns() - cold_start
+    cache_path = output / "prefix-cache.json"
+    cache_start = time.perf_counter_ns()
+    v3.prefix_bank_cache.write_cache(
+        cache_path,
+        bank_path=bank,
+        expected_root_sha256=expected_root_sha256,
+        expected_source_prefix_sha256=expected_source_prefix_sha256,
+        producer_source_sha256=producer_source_sha256,
+        descriptor=authenticated["configuration"],
+        entries=authenticated["entries"],
+    )
+    cache_write_wall_ns = time.perf_counter_ns() - cache_start
+
+    warm_wall_ns: list[int] = []
+    for _ in range(warm_repetitions):
+        warm_start = time.perf_counter_ns()
+        result = v3.prefix_bank_cache.try_load(
+            cache_path,
+            bank_path=bank,
+            expected_root_sha256=expected_root_sha256,
+            expected_source_prefix_sha256=expected_source_prefix_sha256,
+            producer_source_sha256=producer_source_sha256,
+        )
+        elapsed = time.perf_counter_ns() - warm_start
+        if not result.hit or result.entries is None or result.descriptor is None:
+            raise BenchmarkError(
+                f"prefix-bank cache warm validation failed: {result.reason}"
+            )
+        if (
+            result.descriptor != authenticated["configuration"]
+            or result.entries != authenticated["entries"]
+        ):
+            raise BenchmarkError("prefix-bank cache differs from cold replay")
+        warm_wall_ns.append(elapsed)
+    ordered_warm = sorted(warm_wall_ns)
+    warm_median_ns = ordered_warm[len(ordered_warm) // 2]
+    unsigned = {
+        "schema": PREFIX_CACHE_AB_REPORT_SCHEMA,
+        "command": "prefix-cache-ab",
+        "subject": {
+            "bank_path": str(bank),
+            "bank_sha256sums_root_sha256": expected_root_sha256,
+            "source_prefix_sha256": expected_source_prefix_sha256,
+            "producer_source_sha256": producer_source_sha256,
+            "entry_count": len(authenticated["entries"]),
+        },
+        "cold_full_replay": {"wall_ns": cold_wall_ns},
+        "cache_publication": {
+            "wall_ns": cache_write_wall_ns,
+            "path": str(cache_path),
+            "sha256": _sha256_file(cache_path),
+            "bytes": cache_path.stat().st_size,
+        },
+        "warm_cache_validation": {
+            "wall_ns": warm_wall_ns,
+            "wall_ns_median": warm_median_ns,
+            "hit_count": warm_repetitions,
+        },
+        "derived": {
+            "warm_over_cold": warm_median_ns / max(cold_wall_ns, 1),
+            "cold_over_warm_median": cold_wall_ns / max(warm_median_ns, 1),
+            "same_process": True,
+            "os_cache_control": "none",
+        },
+        "trust_boundary": (
+            "diagnostic cache benchmark; the cold arm is the authoritative full "
+            "replay, and production cache hits require terminal or explicit "
+            "audit replay"
+        ),
+    }
+    manifest_record = _hashed_record(
+        {
+            "schema": BENCHMARK_COMMAND_SCHEMA,
+            "command": "prefix-cache-ab",
+            "source_sha256": _source_hashes(),
+            "subject": unsigned["subject"],
+            "trust_boundary": unsigned["trust_boundary"],
+        },
+        "benchmark_manifest_sha256",
+    )
+    _atomic_json(output / "benchmark-manifest.json", manifest_record)
+    report = _hashed_record(
+        {
+            **unsigned,
+            "benchmark_manifest_sha256": manifest_record[
+                "benchmark_manifest_sha256"
+            ],
+        },
+        "report_sha256",
+    )
+    _atomic_json(output / "report.json", report)
+    return report
+
+
+def _prefix_bank_payload_sha256(
+    descriptor: Mapping[str, Any], entries: Sequence[Mapping[str, Any]]
+) -> str:
+    return _sha256_bytes(
+        v3._canonical_bytes(
+            {"configuration": dict(descriptor), "entries": list(entries)}
+        )
+    )
+
+
+def _prefix_cache_process_worker(
+    bank_path: Path,
+    expected_root_sha256: str,
+    expected_source_prefix_sha256: str,
+    cache_path: Path | None,
+    result_path: Path,
+) -> None:
+    """Measure one fresh projected-static-v3 prefix-loader boundary."""
+
+    def work(recorder: timing.TimingRecorder) -> Mapping[str, Any]:
+        with _instrument_v3(recorder), recorder.measure(
+            "loader", "process_startup_to_ready"
+        ):
+            if cache_path is None:
+                authenticated = v3._load_authenticated_three_rhombus_prefix_bank(
+                    bank_path,
+                    expected_root_sha256=expected_root_sha256,
+                    expected_source_prefix_sha256=expected_source_prefix_sha256,
+                )
+                descriptor = authenticated["configuration"]
+                entries = authenticated["entries"]
+                cache_hit = False
+            else:
+                producer_source_sha256 = v3._prefix_bank_cache_source_sha256()
+                with recorder.measure("loader", "prefix_bank_cache_validate"):
+                    cache_result = v3.prefix_bank_cache.try_load(
+                        cache_path,
+                        bank_path=bank_path,
+                        expected_root_sha256=expected_root_sha256,
+                        expected_source_prefix_sha256=expected_source_prefix_sha256,
+                        producer_source_sha256=producer_source_sha256,
+                    )
+                if (
+                    not cache_result.hit
+                    or cache_result.descriptor is None
+                    or cache_result.entries is None
+                ):
+                    raise BenchmarkError(
+                        "fresh-process prefix-bank cache validation failed: "
+                        f"{cache_result.reason}"
+                    )
+                descriptor = v3._validate_three_rhombus_prefix_descriptor(
+                    cache_result.descriptor,
+                    where="fresh-process cached prefix bank",
+                )
+                if descriptor is None:
+                    raise BenchmarkError(
+                        "fresh-process cached prefix-bank descriptor is invalid"
+                    )
+                entries = cache_result.entries
+                cache_hit = True
+            return {
+                "cache_hit": cache_hit,
+                "entry_count": len(entries),
+                "descriptor_sha256": _sha256_bytes(
+                    v3._canonical_bytes(descriptor)
+                ),
+                "payload_sha256": _prefix_bank_payload_sha256(
+                    descriptor, entries
+                ),
+            }
+
+    _write_worker_result(result_path, work)
+
+
+def benchmark_prefix_bank_process_ab(
+    bank_path: Path,
+    cache_path: Path,
+    output_dir: Path,
+    *,
+    expected_root_sha256: str,
+    expected_source_prefix_sha256: str,
+    fresh_repetitions: int = 3,
+    worker_timeout_s: int = 900,
+) -> dict[str, Any]:
+    """Compare full replay and cache validation in fresh OS processes.
+
+    This is intentionally a loader-boundary benchmark rather than a terminal
+    proof benchmark.  Exact payload equality between the two arms is required;
+    the full replay arm remains the authority for the cache result.
+    """
+
+    if fresh_repetitions <= 0:
+        raise BenchmarkError("fresh_repetitions must be positive")
+    if worker_timeout_s <= 0:
+        raise BenchmarkError("worker_timeout_s must be positive")
+    bank = bank_path.resolve()
+    cache = cache_path.resolve()
+    output = _new_output(output_dir, subject=bank)
+    if not bank.is_dir():
+        raise BenchmarkError(f"missing prefix-bank directory: {bank}")
+    if not cache.is_file():
+        raise BenchmarkError(f"missing prefix-bank cache: {cache}")
+    if cache == bank or bank in cache.parents:
+        raise BenchmarkError("prefix-bank cache must be outside the source bank")
+
+    producer_source_sha256 = v3._prefix_bank_cache_source_sha256()
+    arms: dict[str, list[dict[str, Any]]] = {"full": [], "cache": []}
+    for arm, arm_cache in (("full", None), ("cache", cache)):
+        arm_output = output / arm
+        arm_output.mkdir(parents=True)
+        for repetition in range(fresh_repetitions):
+            result_path = arm_output / f"worker-{repetition:03d}.json"
+            result, samples, process, worker_wall_ns = _spawn_worker_with_wall(
+                _prefix_cache_process_worker,
+                (
+                    bank,
+                    expected_root_sha256,
+                    expected_source_prefix_sha256,
+                    arm_cache,
+                    result_path,
+                ),
+                result_path,
+                join_timeout_s=worker_timeout_s,
+            )
+            max_rss_kib = process.get("max_rss_kib")
+            if type(max_rss_kib) is not int or max_rss_kib <= 0:
+                raise BenchmarkError(
+                    f"{arm} repetition {repetition} has no positive peak RSS"
+                )
+            arms[arm].append(
+                {
+                    "repetition": repetition,
+                    "cache_condition": "fresh-process-same-copy",
+                    "worker_wall_ns": worker_wall_ns,
+                    "max_rss_kib": max_rss_kib,
+                    "result": result,
+                    "timing_summary": timing.summarize(samples),
+                }
+            )
+
+    full_results = [run["result"] for run in arms["full"]]
+    cache_results = [run["result"] for run in arms["cache"]]
+    full_payloads = {result.get("payload_sha256") for result in full_results}
+    cache_payloads = {result.get("payload_sha256") for result in cache_results}
+    exact_payload_agreement = (
+        len(full_payloads) == 1
+        and full_payloads == cache_payloads
+        and all(result.get("cache_hit") is False for result in full_results)
+        and all(result.get("cache_hit") is True for result in cache_results)
+    )
+    full_wall = [int(run["worker_wall_ns"]) for run in arms["full"]]
+    cache_wall = [int(run["worker_wall_ns"]) for run in arms["cache"]]
+    full_rss = [int(run["max_rss_kib"]) for run in arms["full"]]
+    cache_rss = [int(run["max_rss_kib"]) for run in arms["cache"]]
+    full_wall_p95 = _nearest_rank_p95(full_wall)
+    cache_wall_p95 = _nearest_rank_p95(cache_wall)
+    full_rss_p95 = _nearest_rank_p95(full_rss)
+    cache_rss_p95 = _nearest_rank_p95(cache_rss)
+    wall_ratio = (
+        None
+        if full_wall_p95 is None or full_wall_p95 <= 0 or cache_wall_p95 is None
+        else cache_wall_p95 / full_wall_p95
+    )
+    rss_ratio = (
+        None
+        if full_rss_p95 is None or full_rss_p95 <= 0 or cache_rss_p95 is None
+        else cache_rss_p95 / full_rss_p95
+    )
+    unsigned = {
+        "schema": PREFIX_CACHE_PROCESS_AB_REPORT_SCHEMA,
+        "command": "prefix-cache-process-ab",
+        "subject": {
+            "bank_path": str(bank),
+            "cache_path": str(cache),
+            "bank_sha256sums_root_sha256": expected_root_sha256,
+            "source_prefix_sha256": expected_source_prefix_sha256,
+            "producer_source_sha256": producer_source_sha256,
+            "fresh_repetitions": fresh_repetitions,
+            "worker_timeout_seconds": worker_timeout_s,
+        },
+        "arms": arms,
+        "metrics": {
+            "full_worker_wall_ns_p95": full_wall_p95,
+            "cache_worker_wall_ns_p95": cache_wall_p95,
+            "cache_over_full_worker_wall_ratio": wall_ratio,
+            "full_peak_rss_kib_p95": full_rss_p95,
+            "cache_peak_rss_kib_p95": cache_rss_p95,
+            "cache_over_full_rss_ratio": rss_ratio,
+        },
+        "gate": {
+            "exact_payload_agreement": exact_payload_agreement,
+            "max_cache_over_full_wall_ratio": 0.20,
+            "max_cache_over_full_rss_ratio": 1.10,
+            "wall_pass": wall_ratio is not None and wall_ratio <= 0.20,
+            "rss_pass": rss_ratio is not None and rss_ratio <= 1.10,
+            "process_level_prefix_cache_gate_pass": (
+                exact_payload_agreement
+                and wall_ratio is not None
+                and wall_ratio <= 0.20
+                and rss_ratio is not None
+                and rss_ratio <= 1.10
+            ),
+        },
+        "trust_boundary": (
+            "fresh-process diagnostic at the projected-static-v3 prefix-loader "
+            "boundary; full replay is authoritative, exact payload equality is "
+            "required, and cache validation is not a proof or terminal result"
+        ),
+    }
+    manifest_record = _hashed_record(
+        {
+            "schema": BENCHMARK_COMMAND_SCHEMA,
+            "command": "prefix-cache-process-ab",
+            "source_sha256": _source_hashes(),
+            "subject": unsigned["subject"],
+            "trust_boundary": unsigned["trust_boundary"],
+        },
+        "benchmark_manifest_sha256",
+    )
+    _atomic_json(output / "benchmark-manifest.json", manifest_record)
+    report = _hashed_record(
+        {
+            **unsigned,
+            "benchmark_manifest_sha256": manifest_record[
+                "benchmark_manifest_sha256"
+            ],
+        },
+        "report_sha256",
+    )
+    _atomic_json(output / "report.json", report)
+    return report
+
+
+def _compiled_loader_state_digest(
+    records: Sequence[Mapping[str, Any]],
+    clauses: Sequence[Sequence[int]],
+    bank: Any,
+) -> dict[str, Any]:
+    """Return exact, ordered identities for one compiled loader state."""
+
+    def array_sha256(values: Iterator[Any]) -> str:
+        """Hash one canonical JSON array without materializing the array."""
+
+        digest = hashlib.sha256()
+        digest.update(b"[")
+        first = True
+        for value in values:
+            if not first:
+                digest.update(b",")
+            digest.update(v3._canonical_bytes(value))
+            first = False
+        digest.update(b"]")
+        return digest.hexdigest()
+
+    def active_values() -> Iterator[Mapping[str, Any]]:
+        for key, certificate in bank.active.items():
+            yield {
+                "key": [
+                    [int(center), list(support), bool(exact)]
+                    for center, support, exact in key
+                ],
+                # The certificate is already immutable for this diagnostic
+                # boundary; do not copy 40k nested dictionaries just to hash
+                # their canonical representation.
+                "certificate": certificate,
+            }
+
+    payload = {
+        "record_count": len(records),
+        "clause_count": len(clauses),
+        "records_sha256": array_sha256(iter(records)),
+        "clauses_sha256": array_sha256((list(clause) for clause in clauses)),
+        "active_entries_sha256": array_sha256(active_values()),
+        "index_sha256": _sha256_bytes(
+            v3._canonical_bytes(bank.index_snapshot())
+        ),
+    }
+    return {
+        **payload,
+        "state_sha256": _sha256_bytes(v3._canonical_bytes(payload)),
+    }
+
+
+def _compiled_loader_process_worker(
+    run_dir: Path,
+    mode: str,
+    result_path: Path,
+) -> None:
+    """Run one fresh-process full replay or compiled-cache hit."""
+
+    if mode not in {"full", "cache"}:
+        raise BenchmarkError(f"unknown compiled-loader worker mode: {mode}")
+
+    def work(recorder: timing.TimingRecorder) -> Mapping[str, Any]:
+        manifest = _subject_manifest(run_dir)
+        configuration = manifest.get("configuration")
+        if not isinstance(configuration, Mapping):
+            raise BenchmarkError("compiled-loader subject has no configuration")
+        projected_static_v3 = v3._projected_static_v3_from_configuration(
+            configuration, where="compiled-loader benchmark subject"
+        )
+        encoding = v3._phase3_encoding(
+            projected_static_v3=projected_static_v3
+        )
+        source_path = run_dir / "learned-certificates.jsonl"
+        cache_path = run_dir / v3.COMPILED_LOADER_CACHE_NAME
+        scan = runtime.JournalScan()
+        cache_reason = "not-requested"
+        source_identity: Mapping[str, Any] | None = None
+        if mode == "full":
+            with _instrument_v3(recorder), recorder.measure(
+                "loader", "full_semantic_replay"
+            ):
+                records, bank, clauses = v3._load_learned(
+                    source_path,
+                    encoding,
+                    stream_scan=scan,
+                )
+        else:
+            with _instrument_v3(recorder), recorder.measure(
+                "loader", "compiled_cache_hit"
+            ):
+                cache_result = v3.loader_cache.try_load(
+                    cache_path,
+                    source_path=source_path,
+                    configuration=configuration,
+                    loader_source_sha256=v3._loader_source_sha256(),
+                )
+                cache_reason = cache_result.reason
+                if not cache_result.hit or cache_result.payload is None:
+                    raise BenchmarkError(
+                        f"compiled-loader cache did not hit: {cache_result.reason}"
+                    )
+                if cache_result.source is not None:
+                    v3.loader_cache.prime_journal_scan(
+                        scan, cache_result.source, source_path
+                    )
+                    source_identity = cache_result.source.as_dict()
+                records, bank, clauses = v3._cached_learned_state(
+                    cache_result.payload
+                )
+                del cache_result
+        state = _compiled_loader_state_digest(records, clauses, bank)
+        return {
+            "mode": mode,
+            "cache_hit": mode == "cache",
+            "cache_reason": cache_reason,
+            "source_identity": source_identity,
+            **state,
+        }
+
+    _write_worker_result(result_path, work)
+
+
+def _materialize_compiled_loader_fixture(
+    source_path: Path,
+    fixture_dir: Path,
+) -> dict[str, Any]:
+    """Translate one legacy authenticated bank into a cache-bearing v3 run."""
+
+    source = source_path.resolve()
+
+    def unknown_solver(
+        _cnf: Path, _timeout_s: int, _proof: Path | None
+    ) -> Any:
+        return v3.sat.SolverResult("UNKNOWN", {}, 0, "", "fixture only")
+
+    started = time.perf_counter_ns()
+    result = v3.run_driver(
+        fixture_dir,
+        timeout_s=5,
+        learned_core_limit=1,
+        survivor_limit=1,
+        bootstrap_results=source,
+        algebraic_bootstrap=None,
+        projected_static_v3=False,
+        compiled_loader_cache=True,
+        solver_runner=unknown_solver,
+        checker_runner=_unexpected_backend,
+    )
+    elapsed = time.perf_counter_ns() - started
+    cache_path = fixture_dir / v3.COMPILED_LOADER_CACHE_NAME
+    if result.get("status") != "UNKNOWN":
+        raise BenchmarkError(
+            "compiled-loader fixture did not stop at the controlled UNKNOWN boundary"
+        )
+    if not cache_path.is_file():
+        raise BenchmarkError("compiled-loader fixture did not publish its cache")
+    manifest = _subject_manifest(fixture_dir)
+    source_identity = v3.loader_cache.source_identity(
+        fixture_dir / "learned-certificates.jsonl"
+    )
+    return {
+        "source_path": str(source),
+        "fixture_path": str(fixture_dir),
+        "cache_path": str(cache_path),
+        "source_record_count": source_identity.record_count,
+        "source_byte_count": source_identity.byte_count,
+        "translated_record_count": int(manifest["counts"]["learned_core_count"]),
+        "translated_source_sha256": source_identity.file_sha256,
+        "fixture_status": result.get("status"),
+        "materialization_wall_ns": elapsed,
+        "fixture_manifest_sha256": manifest["manifest_sha256"],
+        "fixture_cache_sha256": _sha256_file(cache_path),
+    }
+
+
+def benchmark_compiled_loader_process_ab(
+    source_paths: Sequence[Path],
+    output_dir: Path,
+    *,
+    fresh_repetitions: int = 3,
+    worker_timeout_s: int = 1_800,
+) -> dict[str, Any]:
+    """Compare full semantic replay and the exact v3 compiled-cache hit path."""
+
+    if len(source_paths) != 2:
+        raise BenchmarkError(
+            "compiled-loader process A/B requires exactly two source banks"
+        )
+    if fresh_repetitions <= 0:
+        raise BenchmarkError("fresh_repetitions must be positive")
+    if worker_timeout_s <= 0:
+        raise BenchmarkError("worker_timeout_s must be positive")
+    sources = tuple(path.resolve() for path in source_paths)
+    if len(set(sources)) != len(sources):
+        raise BenchmarkError("compiled-loader source banks must be distinct")
+    output = _new_output(output_dir, subject=sources[0])
+    for source in sources:
+        if not source.is_file():
+            raise BenchmarkError(f"missing compiled-loader source: {source}")
+        if output == source or output in source.parents:
+            raise BenchmarkError(
+                "compiled-loader benchmark output must be disjoint from sources"
+            )
+
+    subjects: list[dict[str, Any]] = []
+    for index, source in enumerate(sources):
+        fixture = output / "fixtures" / f"bank-{index:02d}"
+        subjects.append(_materialize_compiled_loader_fixture(source, fixture))
+
+    benchmark_runs: list[dict[str, Any]] = []
+    for subject_index, subject in enumerate(subjects):
+        fixture = Path(subject["fixture_path"])
+        arms: dict[str, list[dict[str, Any]]] = {"full": [], "cache": []}
+        for mode in ("full", "cache"):
+            arm_output = output / "workers" / f"bank-{subject_index:02d}" / mode
+            arm_output.mkdir(parents=True, exist_ok=True)
+            for repetition in range(fresh_repetitions):
+                result_path = arm_output / f"worker-{repetition:03d}.json"
+                result, samples, process, worker_wall_ns = (
+                    _spawn_worker_with_wall(
+                        _compiled_loader_process_worker,
+                        (fixture, mode, result_path),
+                        result_path,
+                        join_timeout_s=worker_timeout_s,
+                    )
+                )
+                max_rss_kib = process.get("max_rss_kib")
+                if type(max_rss_kib) is not int or max_rss_kib <= 0:
+                    raise BenchmarkError(
+                        f"{mode} bank {subject_index} has no positive peak RSS"
+                    )
+                arms[mode].append(
+                    {
+                        "repetition": repetition,
+                        "cache_condition": "fresh-process-same-fixture",
+                        "worker_wall_ns": worker_wall_ns,
+                        "max_rss_kib": max_rss_kib,
+                        "result": result,
+                        "timing_summary": timing.summarize(samples),
+                    }
+                )
+        full_results = [run["result"] for run in arms["full"]]
+        cache_results = [run["result"] for run in arms["cache"]]
+        full_states = {result.get("state_sha256") for result in full_results}
+        cache_states = {result.get("state_sha256") for result in cache_results}
+        exact_state_agreement = (
+            len(full_states) == 1
+            and full_states == cache_states
+            and all(result.get("cache_hit") is False for result in full_results)
+            and all(result.get("cache_hit") is True for result in cache_results)
+        )
+        full_wall = [int(run["worker_wall_ns"]) for run in arms["full"]]
+        cache_wall = [int(run["worker_wall_ns"]) for run in arms["cache"]]
+        full_rss = [int(run["max_rss_kib"]) for run in arms["full"]]
+        cache_rss = [int(run["max_rss_kib"]) for run in arms["cache"]]
+        full_wall_p95 = _nearest_rank_p95(full_wall)
+        cache_wall_p95 = _nearest_rank_p95(cache_wall)
+        full_rss_p95 = _nearest_rank_p95(full_rss)
+        cache_rss_p95 = _nearest_rank_p95(cache_rss)
+        cache_over_full_wall_ratio = (
+            None
+            if full_wall_p95 is None
+            or full_wall_p95 <= 0
+            or cache_wall_p95 is None
+            else cache_wall_p95 / full_wall_p95
+        )
+        cache_over_full_rss_ratio = (
+            None
+            if full_rss_p95 is None
+            or full_rss_p95 <= 0
+            or cache_rss_p95 is None
+            else cache_rss_p95 / full_rss_p95
+        )
+        benchmark_runs.append(
+            {
+                "subject": subject,
+                "arms": arms,
+                "metrics": {
+                    "full_worker_wall_ns_p95": full_wall_p95,
+                    "cache_worker_wall_ns_p95": cache_wall_p95,
+                    "cache_over_full_worker_wall_ratio": (
+                        cache_over_full_wall_ratio
+                    ),
+                    "full_peak_rss_kib_p95": full_rss_p95,
+                    "cache_peak_rss_kib_p95": cache_rss_p95,
+                    "cache_over_full_rss_ratio": cache_over_full_rss_ratio,
+                },
+                "gate": {
+                    "exact_state_agreement": exact_state_agreement,
+                    "max_cache_over_full_wall_ratio": 0.20,
+                    "max_cache_over_full_rss_ratio": 1.10,
+                    "wall_pass": (
+                        cache_over_full_wall_ratio is not None
+                        and cache_over_full_wall_ratio <= 0.20
+                    ),
+                    "rss_pass": (
+                        cache_over_full_rss_ratio is not None
+                        and cache_over_full_rss_ratio <= 1.10
+                    ),
+                    "compiled_loader_cache_gate_pass": (
+                        exact_state_agreement
+                        and cache_over_full_wall_ratio is not None
+                        and cache_over_full_wall_ratio <= 0.20
+                        and cache_over_full_rss_ratio is not None
+                        and cache_over_full_rss_ratio <= 1.10
+                    ),
+                },
+            }
+        )
+
+    all_pass = all(
+        run["gate"]["compiled_loader_cache_gate_pass"]
+        for run in benchmark_runs
+    )
+    unsigned = {
+        "schema": COMPILED_LOADER_PROCESS_AB_REPORT_SCHEMA,
+        "command": "compiled-loader-process-ab",
+        "subject": {
+            "source_paths": [str(source) for source in sources],
+            "fresh_repetitions": fresh_repetitions,
+            "worker_timeout_seconds": worker_timeout_s,
+        },
+        "runs": benchmark_runs,
+        "gate": {
+            "required_bank_count": 2,
+            "observed_bank_count": len(benchmark_runs),
+            "required_wall_speedup": 5.0,
+            "required_cache_over_full_wall_ratio": 0.20,
+            "max_cache_over_full_rss_ratio": 1.10,
+            "per_bank_pass": all_pass,
+            "compiled_loader_process_gate_pass": all_pass,
+        },
+        "trust_boundary": (
+            "fresh-process diagnostic at the v3 compiled-loader boundary; "
+            "full semantic replay is authoritative, exact ordered state "
+            "agreement is required, and the cache is never a proof or terminal "
+            "claim"
+        ),
+    }
+    manifest_record = _hashed_record(
+        {
+            "schema": BENCHMARK_COMMAND_SCHEMA,
+            "command": "compiled-loader-process-ab",
+            "source_sha256": _source_hashes(),
+            "subject": unsigned["subject"],
+            "trust_boundary": unsigned["trust_boundary"],
+        },
+        "benchmark_manifest_sha256",
+    )
+    _atomic_json(output / "benchmark-manifest.json", manifest_record)
+    report = _hashed_record(
+        {
+            **unsigned,
+            "benchmark_manifest_sha256": manifest_record[
+                "benchmark_manifest_sha256"
+            ],
+        },
+        "report_sha256",
+    )
+    _atomic_json(output / "report.json", report)
+    return report
+
+
+def _journal_record_count(path: Path) -> int:
+    """Count framed source records without parsing their JSON payloads."""
+
+    if not path.is_file():
+        raise BenchmarkError(f"missing journal source: {path}")
+    count = 0
+    last: bytes = b""
+    with path.open("rb") as handle:
+        for raw in handle:
+            count += 1
+            last = raw
+    if count == 0:
+        raise BenchmarkError(f"journal source is empty: {path}")
+    if not last.endswith(b"\n"):
+        raise BenchmarkError(f"journal source has a torn tail: {path}")
+    return count
+
+
+def _journal_identity(scan: journal_checkpoint.SuffixScan) -> dict[str, Any]:
+    return {
+        "total_record_count": scan.total_record_count,
+        "total_byte_count": scan.total_byte_count,
+        "terminal_record_sha256": scan.terminal_record_sha256,
+        "file_sha256": scan.file_sha256,
+        "clause_count": scan.clause_count,
+        "clause_sha256": scan.clause_sha256,
+    }
+
+
+def _journal_checkpoint_process_worker(
+    journal_paths: tuple[Path, ...],
+    checkpoint_paths: tuple[Path, ...] | None,
+    configuration: Mapping[str, Any],
+    result_path: Path,
+) -> None:
+    """Run one fresh-process full or authenticated-suffix journal scan."""
+
+    mode = "full" if checkpoint_paths is None else "suffix"
+    if checkpoint_paths is not None and len(checkpoint_paths) != len(journal_paths):
+        raise BenchmarkError("journal/checkpoint arity mismatch")
+
+    def work(recorder: timing.TimingRecorder) -> Mapping[str, Any]:
+        identities: list[dict[str, Any]] = []
+        suffix_records = 0
+        suffix_bytes = 0
+        for index, journal_path in enumerate(journal_paths):
+            with recorder.measure("loader", f"journal_{mode}_scan"):
+                if checkpoint_paths is None:
+                    scan = journal_checkpoint.full_scan(
+                        journal_path, configuration=configuration
+                    )
+                else:
+                    scan = journal_checkpoint.scan_suffix(
+                        journal_path,
+                        checkpoint_paths[index],
+                        configuration=configuration,
+                    )
+            identities.append(
+                {
+                    "source_path": str(journal_path),
+                    "identity": _journal_identity(scan),
+                }
+            )
+            suffix_records += scan.suffix_record_count
+            suffix_bytes += scan.suffix_byte_count
+        payload = {"journals": identities}
+        return {
+            "mode": mode,
+            "journal_count": len(identities),
+            "total_record_count": sum(
+                item["identity"]["total_record_count"] for item in identities
+            ),
+            "total_byte_count": sum(
+                item["identity"]["total_byte_count"] for item in identities
+            ),
+            "suffix_record_count": suffix_records,
+            "suffix_byte_count": suffix_bytes,
+            "identity_payload_sha256": _sha256_bytes(
+                timing._canonical_bytes(payload)
+            ),
+            "journals": identities,
+        }
+
+    _write_worker_result(result_path, work)
+
+
+def benchmark_journal_checkpoint_process_ab(
+    journal_paths: Sequence[Path],
+    output_dir: Path,
+    *,
+    checkpoint_fraction: float = 0.75,
+    fresh_repetitions: int = 3,
+    worker_timeout_s: int = 1_800,
+) -> dict[str, Any]:
+    """Compare full replay with authenticated suffix replay in fresh processes."""
+
+    if not journal_paths:
+        raise BenchmarkError("at least one journal source is required")
+    if not 0.0 < checkpoint_fraction < 1.0:
+        raise BenchmarkError("checkpoint_fraction must be between zero and one")
+    if fresh_repetitions <= 0:
+        raise BenchmarkError("fresh_repetitions must be positive")
+    if worker_timeout_s <= 0:
+        raise BenchmarkError("worker_timeout_s must be positive")
+    journals = tuple(path.resolve() for path in journal_paths)
+    if len(set(journals)) != len(journals):
+        raise BenchmarkError("journal sources must be distinct")
+    output = _new_output(output_dir, subject=journals[0])
+    for journal_path in journals[1:]:
+        if output == journal_path or output in journal_path.parents:
+            raise BenchmarkError("benchmark output must be disjoint from journals")
+
+    configuration = {
+        "schema": journal_checkpoint.CHECKPOINT_SCHEMA,
+        "clause_digest": "p97-phase3-clause-order-digest-v1",
+    }
+    checkpoint_dir = output / "checkpoints"
+    checkpoint_paths: list[Path] = []
+    checkpoint_metadata: list[dict[str, Any]] = []
+    for index, journal_path in enumerate(journals):
+        record_count = _journal_record_count(journal_path)
+        if record_count < 2:
+            raise BenchmarkError(
+                f"journal must have a nonempty suffix: {journal_path}"
+            )
+        prefix_count = min(
+            record_count - 1,
+            max(1, math.floor(record_count * checkpoint_fraction)),
+        )
+        checkpoint_path = checkpoint_dir / f"journal-{index:03d}.checkpoint.json"
+        prefix = journal_checkpoint.build_checkpoint(
+            journal_path,
+            checkpoint_path,
+            record_count=prefix_count,
+            configuration=configuration,
+        )
+        checkpoint_paths.append(checkpoint_path)
+        checkpoint_metadata.append(
+            {
+                "source_path": str(journal_path),
+                "source_bytes": journal_path.stat().st_size,
+                "source_record_count_estimate": record_count,
+                "checkpoint_path": str(checkpoint_path),
+                "checkpoint_sha256": _sha256_file(checkpoint_path),
+                "prefix": prefix.as_dict(),
+                "suffix_record_count_estimate": record_count - prefix_count,
+            }
+        )
+
+    arms: dict[str, list[dict[str, Any]]] = {"full": [], "suffix": []}
+    for arm, arm_checkpoints in (("full", None), ("suffix", tuple(checkpoint_paths))):
+        arm_output = output / arm
+        arm_output.mkdir(parents=True)
+        for repetition in range(fresh_repetitions):
+            result_path = arm_output / f"worker-{repetition:03d}.json"
+            result, samples, process, worker_wall_ns = _spawn_worker_with_wall(
+                _journal_checkpoint_process_worker,
+                (journals, arm_checkpoints, configuration, result_path),
+                result_path,
+                join_timeout_s=worker_timeout_s,
+            )
+            max_rss_kib = process.get("max_rss_kib")
+            if type(max_rss_kib) is not int or max_rss_kib <= 0:
+                raise BenchmarkError(
+                    f"{arm} repetition {repetition} has no positive peak RSS"
+                )
+            arms[arm].append(
+                {
+                    "repetition": repetition,
+                    "cache_condition": "fresh-process-same-source",
+                    "worker_wall_ns": worker_wall_ns,
+                    "max_rss_kib": max_rss_kib,
+                    "result": result,
+                    "timing_summary": timing.summarize(samples),
+                }
+            )
+
+    full_results = [run["result"] for run in arms["full"]]
+    suffix_results = [run["result"] for run in arms["suffix"]]
+    full_payloads = {result.get("identity_payload_sha256") for result in full_results}
+    suffix_payloads = {
+        result.get("identity_payload_sha256") for result in suffix_results
+    }
+    exact_identity_agreement = (
+        len(full_payloads) == 1
+        and full_payloads == suffix_payloads
+        and all(result.get("mode") == "full" for result in full_results)
+        and all(result.get("mode") == "suffix" for result in suffix_results)
+    )
+    full_wall = [int(run["worker_wall_ns"]) for run in arms["full"]]
+    suffix_wall = [int(run["worker_wall_ns"]) for run in arms["suffix"]]
+    full_rss = [int(run["max_rss_kib"]) for run in arms["full"]]
+    suffix_rss = [int(run["max_rss_kib"]) for run in arms["suffix"]]
+    full_wall_p95 = _nearest_rank_p95(full_wall)
+    suffix_wall_p95 = _nearest_rank_p95(suffix_wall)
+    full_rss_p95 = _nearest_rank_p95(full_rss)
+    suffix_rss_p95 = _nearest_rank_p95(suffix_rss)
+    speedup = (
+        None
+        if full_wall_p95 is None
+        or full_wall_p95 <= 0
+        or suffix_wall_p95 is None
+        or suffix_wall_p95 <= 0
+        else full_wall_p95 / suffix_wall_p95
+    )
+    rss_ratio = (
+        None
+        if full_rss_p95 is None
+        or full_rss_p95 <= 0
+        or suffix_rss_p95 is None
+        else suffix_rss_p95 / full_rss_p95
+    )
+    unsigned = {
+        "schema": JOURNAL_CHECKPOINT_PROCESS_AB_REPORT_SCHEMA,
+        "command": "journal-checkpoint-process-ab",
+        "subject": {
+            "journal_paths": [str(path) for path in journals],
+            "journal_count": len(journals),
+            "aggregate_record_count_estimate": sum(
+                item["source_record_count_estimate"] for item in checkpoint_metadata
+            ),
+            "aggregate_source_bytes": sum(
+                item["source_bytes"] for item in checkpoint_metadata
+            ),
+            "checkpoint_fraction": checkpoint_fraction,
+            "configuration_sha256": journal_checkpoint._sha256_value(
+                configuration
+            ),
+            "fresh_repetitions": fresh_repetitions,
+            "worker_timeout_seconds": worker_timeout_s,
+        },
+        "checkpoints": checkpoint_metadata,
+        "arms": arms,
+        "metrics": {
+            "full_worker_wall_ns_p95": full_wall_p95,
+            "suffix_worker_wall_ns_p95": suffix_wall_p95,
+            "full_over_suffix_speedup": speedup,
+            "full_peak_rss_kib_p95": full_rss_p95,
+            "suffix_peak_rss_kib_p95": suffix_rss_p95,
+            "suffix_over_full_rss_ratio": rss_ratio,
+            "suffix_record_count": sum(
+                result.get("suffix_record_count", 0) for result in suffix_results
+            ),
+            "suffix_byte_count": sum(
+                result.get("suffix_byte_count", 0) for result in suffix_results
+            ),
+        },
+        "gate": {
+            "exact_identity_agreement": exact_identity_agreement,
+            "minimum_speedup": 1.5,
+            "speedup_pass": speedup is not None and speedup >= 1.5,
+            "max_suffix_over_full_rss_ratio": 1.10,
+            "rss_pass": rss_ratio is not None and rss_ratio <= 1.10,
+            "journal_checkpoint_process_gate_pass": (
+                exact_identity_agreement
+                and speedup is not None
+                and speedup >= 1.5
+                and rss_ratio is not None
+                and rss_ratio <= 1.10
+            ),
+        },
+        "trust_boundary": (
+            "fresh-process diagnostic for authenticated append-only journal "
+            "startup; full replay is authoritative, suffix checkpoints are "
+            "not a terminal certificate, and no suffix result may replace "
+            "the v3 proof/replay boundary without a separate promotion gate"
+        ),
+    }
+    manifest_record = _hashed_record(
+        {
+            "schema": BENCHMARK_COMMAND_SCHEMA,
+            "command": "journal-checkpoint-process-ab",
+            "source_sha256": _source_hashes(),
+            "subject": unsigned["subject"],
+            "trust_boundary": unsigned["trust_boundary"],
+        },
+        "benchmark_manifest_sha256",
+    )
+    _atomic_json(output / "benchmark-manifest.json", manifest_record)
+    report = _hashed_record(
+        {
+            **unsigned,
+            "benchmark_manifest_sha256": manifest_record[
+                "benchmark_manifest_sha256"
+            ],
+        },
+        "report_sha256",
+    )
+    _atomic_json(output / "report.json", report)
+    return report
+
+
 def _real_discovery_worker(
     run_dir: Path,
     result_path: Path,
@@ -1294,7 +2638,11 @@ def benchmark_persistent_discovery_ab(
             "promotion_status": (
                 "P7_PRODUCTION_CANARY_OPEN"
                 if family_passes >= 2 and terminal_exercised_any
-                else "P7_PROMOTION_CLOSED_TERMINAL_GATE_INCOMPLETE"
+                else (
+                    "P7_PROMOTION_CLOSED_TERMINAL_GATE_INCOMPLETE"
+                    if not terminal_exercised_any
+                    else "P7_PROMOTION_CLOSED_PERFORMANCE_GATE_INCOMPLETE"
+                )
             ),
         },
         "trust_boundary": (
@@ -2071,6 +3419,80 @@ def build_parser() -> argparse.ArgumentParser:
         "fault-matrix", help="exercise append and manifest durability boundaries"
     )
     fault_matrix.add_argument("--output", required=True, type=Path)
+    cold_profile = subparsers.add_parser(
+        "cold-start-profile",
+        help="profile fresh worker and timing-journal stage boundaries",
+    )
+    cold_profile.add_argument(
+        "--worker-json",
+        action="append",
+        type=Path,
+        default=[],
+        help="fresh spawned-worker JSON; repeat for multiple arms/families",
+    )
+    cold_profile.add_argument(
+        "--timing-journal",
+        action="append",
+        type=Path,
+        default=[],
+        help="hash-chained benchmark timing journal; fresh records are selected",
+    )
+    cold_profile.add_argument("--output", required=True, type=Path)
+    prefix_cache_ab = subparsers.add_parser(
+        "prefix-cache-ab",
+        help="compare authoritative prefix-bank replay with cache validation",
+    )
+    prefix_cache_ab.add_argument("--prefix-bank", required=True, type=Path)
+    prefix_cache_ab.add_argument("--prefix-root-sha256", required=True)
+    prefix_cache_ab.add_argument("--prefix-source-sha256", required=True)
+    prefix_cache_ab.add_argument("--output", required=True, type=Path)
+    prefix_cache_ab.add_argument("--warm", type=int, default=3)
+    prefix_cache_process_ab = subparsers.add_parser(
+        "prefix-cache-process-ab",
+        help="compare prefix-bank replay and cache validation in fresh processes",
+    )
+    prefix_cache_process_ab.add_argument("--prefix-bank", required=True, type=Path)
+    prefix_cache_process_ab.add_argument("--prefix-cache", required=True, type=Path)
+    prefix_cache_process_ab.add_argument("--prefix-root-sha256", required=True)
+    prefix_cache_process_ab.add_argument("--prefix-source-sha256", required=True)
+    prefix_cache_process_ab.add_argument("--output", required=True, type=Path)
+    prefix_cache_process_ab.add_argument("--fresh", type=int, default=3)
+    prefix_cache_process_ab.add_argument("--worker-timeout", type=int, default=900)
+    journal_checkpoint_process_ab = subparsers.add_parser(
+        "journal-checkpoint-process-ab",
+        help="compare full and authenticated journal-suffix scans in fresh processes",
+    )
+    journal_checkpoint_process_ab.add_argument(
+        "--journal",
+        action="append",
+        required=True,
+        type=Path,
+        help="authenticated JSONL journal source; repeat for a source set",
+    )
+    journal_checkpoint_process_ab.add_argument("--output", required=True, type=Path)
+    journal_checkpoint_process_ab.add_argument(
+        "--checkpoint-fraction", type=float, default=0.75
+    )
+    journal_checkpoint_process_ab.add_argument("--fresh", type=int, default=3)
+    journal_checkpoint_process_ab.add_argument(
+        "--worker-timeout", type=int, default=1_800
+    )
+    compiled_loader_process_ab = subparsers.add_parser(
+        "compiled-loader-process-ab",
+        help="compare full v3 loader replay with compiled-cache hits",
+    )
+    compiled_loader_process_ab.add_argument(
+        "--source",
+        action="append",
+        required=True,
+        type=Path,
+        help="legacy authenticated learned journal; repeat exactly twice",
+    )
+    compiled_loader_process_ab.add_argument("--output", required=True, type=Path)
+    compiled_loader_process_ab.add_argument("--fresh", type=int, default=3)
+    compiled_loader_process_ab.add_argument(
+        "--worker-timeout", type=int, default=1_800
+    )
     for subparser in (loader, transcript, runtime_ab):
         subparser.add_argument("--fresh", type=int, default=3)
         subparser.add_argument("--warm", type=int, default=5)
@@ -2121,6 +3543,45 @@ def main(argv: Sequence[str] | None = None) -> int:
             learned_core_limit=args.learned_core_limit,
             survivor_limit=args.survivor_limit,
             max_new_raw=args.max_new_raw,
+            worker_timeout_s=args.worker_timeout,
+        )
+    elif args.command == "cold-start-profile":
+        report = benchmark_cold_start_profile(
+            args.worker_json,
+            args.timing_journal,
+            args.output,
+        )
+    elif args.command == "prefix-cache-ab":
+        report = benchmark_prefix_bank_cache_ab(
+            args.prefix_bank,
+            args.output,
+            expected_root_sha256=args.prefix_root_sha256,
+            expected_source_prefix_sha256=args.prefix_source_sha256,
+            warm_repetitions=args.warm,
+        )
+    elif args.command == "prefix-cache-process-ab":
+        report = benchmark_prefix_bank_process_ab(
+            args.prefix_bank,
+            args.prefix_cache,
+            args.output,
+            expected_root_sha256=args.prefix_root_sha256,
+            expected_source_prefix_sha256=args.prefix_source_sha256,
+            fresh_repetitions=args.fresh,
+            worker_timeout_s=args.worker_timeout,
+        )
+    elif args.command == "journal-checkpoint-process-ab":
+        report = benchmark_journal_checkpoint_process_ab(
+            args.journal,
+            args.output,
+            checkpoint_fraction=args.checkpoint_fraction,
+            fresh_repetitions=args.fresh,
+            worker_timeout_s=args.worker_timeout,
+        )
+    elif args.command == "compiled-loader-process-ab":
+        report = benchmark_compiled_loader_process_ab(
+            args.source,
+            args.output,
+            fresh_repetitions=args.fresh,
             worker_timeout_s=args.worker_timeout,
         )
     else:

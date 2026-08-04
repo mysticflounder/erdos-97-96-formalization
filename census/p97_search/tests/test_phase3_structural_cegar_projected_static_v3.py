@@ -20,6 +20,9 @@ v3 = importlib.import_module(
 prefix_bank = importlib.import_module(
     "census.p97_search.phase3_three_rhombus_prefix_bank"
 )
+prefix_cache = importlib.import_module(
+    "census.p97_search.phase3_prefix_bank_cache"
+)
 
 PROJECTED_SURVIVORS = (
     v3.ROOT
@@ -1305,6 +1308,50 @@ def test_authenticated_prefix_bank_translates_exact_entries_and_reloads(
     assert replayed == learned
     assert learned_bank.active == {}
     assert clauses == [tuple(entry["clause"])]
+
+
+def test_authenticated_prefix_bank_cache_round_trip_and_binding(
+    tmp_path: Path,
+) -> None:
+    output, root_sha256, source_sha256, _manifest = (
+        _build_authenticated_prefix_fixture(tmp_path)
+    )
+    authenticated = v3._load_authenticated_three_rhombus_prefix_bank(
+        output,
+        expected_root_sha256=root_sha256,
+        expected_source_prefix_sha256=source_sha256,
+    )
+    cache_path = tmp_path / "prefix-cache.json"
+    producer_sha256 = v3._prefix_bank_cache_source_sha256()
+    prefix_cache.write_cache(
+        cache_path,
+        bank_path=output,
+        expected_root_sha256=root_sha256,
+        expected_source_prefix_sha256=source_sha256,
+        producer_source_sha256=producer_sha256,
+        descriptor=authenticated["configuration"],
+        entries=authenticated["entries"],
+    )
+    hit = prefix_cache.try_load(
+        cache_path,
+        bank_path=output,
+        expected_root_sha256=root_sha256,
+        expected_source_prefix_sha256=source_sha256,
+        producer_source_sha256=producer_sha256,
+    )
+    assert hit.hit is True
+    assert hit.descriptor == authenticated["configuration"]
+    assert hit.entries == authenticated["entries"]
+
+    stale = prefix_cache.try_load(
+        cache_path,
+        bank_path=output,
+        expected_root_sha256=root_sha256,
+        expected_source_prefix_sha256=source_sha256,
+        producer_source_sha256="0" * 64,
+    )
+    assert stale.hit is False
+    assert "identity" in stale.reason
 
 
 def test_prefix_bank_wrong_missing_pins_and_v2_record_fail_closed(

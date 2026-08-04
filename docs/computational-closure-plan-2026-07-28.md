@@ -423,6 +423,47 @@ selected-row choice pattern has a good escaping row in the frozen exact-15
 relaxation.  A single existentially chosen row does not establish that
 statement.
 
+#### Endpoint local-geometry retirement and global-coupling retarget (2026-08-04)
+
+The follow-up endpoint audit retires the named local geometry as a closing
+route.  The four residual base orders
+`A = J: OAKXC, OCXKA` and `X = C: OCAKJ, OJKAC` each have an exact-rational
+strictly convex planar realization satisfying the named eight-role
+equalities and nonmemberships.  An independent verifier checked all 140
+hull-edge/other-point cross signs.  These are local named configurations only:
+they do not realize the anonymous erased deletion rows, the full carrier, or
+the global no-K4 condition, so they are not P97 countermodels or closure
+failures.  The constructive artifacts are
+`scratch/endpoint_constructive_geometry_report.md` and
+`scratch/endpoint_constructive_geometry_verification.json`.
+
+The source-faithful packet boundary is now corrected.  The existing theorem
+`ATailFiveCenterDeletionBoundary.qDeletedK4Class_support_eq_selectedShell`
+identifies the delete-M packet's `B2` support with `Sigma_A` and the delete-K
+packet's `B2` support with `Sigma_B`.  Thus only the two O-centered `B1`
+supports remain anonymous; each has an overlap of at most two with its
+corresponding exact selected shell.  The earlier diagnostic wording that
+treated both erased rows as fully decoupled is superseded.  Any new endpoint
+schema must encode these exact `B2` identifications and overlap caps, but must
+not promote either O-row to a full physical circle.
+
+The exact QF_NRA audit checked all 120 insertions of `M,B` into the four
+residual orders: 22 exact-rational named-local SAT witnesses, 82
+solver-trusted strict-Kalmanson necessary-core UNSAT results, and 16
+UNKNOWN results after Z3/cvc5 timeouts.  All 22 witnesses passed independent
+`Fraction` readback and fixed replay in both solvers.  The result is a
+diagnostic boundary, not a proof: the audit still omits the anonymous O-row
+supports, their exact overlap constraints, cap/MEC data, the full carrier, and
+global K4 exclusion.  The detailed report is
+`scratch/five_role_euclidean_qfnra_report.md`.
+
+The next producer target is therefore global full-carrier/deletion-row
+coupling, beginning with the proved `B2 = Sigma_A/Sigma_B` identifications and
+the two overlap-at-most-two constraints.  Do not rerun the retired named-role
+relaxation or treat its SAT witnesses as global models; do not treat
+solver-trusted Kalmanson UNSAT or QF_NRA `UNKNOWN` as independently checked
+closure.
+
 The negative arm now carries
 an explicit new common-deletion packet rather than an inert omission.  The
 three-distinct-blocker branch still lacks selected-row ordinal-comparison edges
@@ -812,6 +853,39 @@ a separately proved positive-row metric consequence only after an ATAIL
 branch produces the required positive antecedent. SAT, `UNKNOWN`, bounded
 shadows, and finite realization failures remain conditional evidence.
 
+### Phase-3 CEGAR implementation status (2026-08-04)
+
+The performance work is now represented by a fail-closed, testable accelerator
+layer rather than changes to the production proof contract.  The checked
+implementation includes:
+
+- authenticated append-only journal prefix checkpoints in
+  `census/p97_search/phase3_journal_checkpoint.py`;
+- a validated prefix-bank cache in
+  `census/p97_search/phase3_prefix_bank_cache.py`;
+- timing and cold-start/process-profile instrumentation in
+  `census/p97_search/benchmarks/phase3_cegar_benchmark.py`;
+- read-only productivity telemetry/mining in
+  `phase3_productivity.py` and `phase3_productivity_miner.py`; and
+- held-out detector portfolio/adaptation tooling in
+  `phase3_portfolio.py` and `phase3_portfolio_adapter.py`.
+
+The journal checkpoint and prefix-cache paths authenticate their source
+identity and fall back to authoritative replay on a miss or mismatch.  The
+productivity and portfolio paths are diagnostic/PARKED-SPEC: they do not select
+detectors, admit clauses, alter the cascade, or turn `UNKNOWN` into a negative
+result.  The benchmark now measures loader replay, CNF construction, manifest
+hashing, solver, certificate/minimizer, journal/artifact I/O, terminal proof,
+and publication buckets, including persistent-solver parse/invocation and
+worker wall time.
+
+The corresponding unit and integration tests live under
+`census/p97_search/tests/`.  These changes improve observability and restart
+cost without changing the frozen journal/certificate semantics.  Production
+promotion still requires a differential corpus, authenticated replay, and a
+fresh terminal proof; no timing result or portfolio proposal is a closure
+result.
+
 ## 5. Package work orders and smoke gates
 
 The current production handoff is the E1 core specified above.  The matrix
@@ -901,6 +975,15 @@ matrix used only if that route needs a certified secondary consumer.
   only after the focused Lake, proof-blueprint reference/spine, and
   transitive-axiom gates pass.  Do not open a new card-12/13 census as a
   substitute.
+- **Endpoint retarget (2026-08-04)**: the four surviving `A = J`/`X = C`
+  endpoint orders have exact-rational strictly convex named local witnesses,
+  and the 120-insertion QF_NRA audit reports 22 SAT, 82 Kalmanson-core UNSAT,
+  and 16 UNKNOWN.  Retire named local metric/order mining as a closing route.
+  Start the next producer from the source-faithful deletion boundary:
+  `B2 = Sigma_A/Sigma_B`, the two O-centered `B1` supports, and their
+  overlap-at-most-two constraints.  The target is a global full-carrier/K4
+  coupling; local SAT witnesses are not global models and solver outcomes are
+  not Lean closure.
 - **Session 1**: base incidence encoder + A-core instantiation + A smoke
   gate; A-core package verdict run. Deliverable: verdict or a concrete
   encoding blocker. DONE 2026-07-28: all gates pass; verdict = SAT on all
