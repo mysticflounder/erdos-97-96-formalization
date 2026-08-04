@@ -59,6 +59,26 @@ frontier has three actual theorem obligations:
 * `false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual`; and
 * `false_of_capSource_firstFiber_collisionFiveCenterDeletion`.
 
+**Frontier refresh (2026-08-03, `proof-blueprint spine`).** Two of the three
+obligations above are closed and the list is superseded. Both
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual`
+(`FrontierLiveClosure.lean:11337`) and
+`false_of_capSource_firstFiber_collisionFiveCenterDeletion` are now
+source-clean coordinators, not leaves — the first dispatches all three of its
+constructors into `..._normalized_remaining` (`:11324`), which carries the
+`sorry`. The live `TwoSourceExactCollisionRowsTerminal` frontier is five
+obligations:
+
+* `false_of_capSource_firstFiber_crossedThreeRowExactSupports`;
+* `false_of_capSource_firstFiber_outsidePairDeletionExactRows`;
+* `false_of_crossBlockerCoincidence`;
+* `false_of_twoCapSources_freshOutsideFirstBlockerFiber` (double-leverage —
+  two consumers); and
+* `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining`
+  (active anchor).
+
+Dispatch against these names, not the three above.
+
 After those are proved, the remaining gates are a Lake build and refreshed
 proof-blueprint/transitive-axiom audit. A clean source compile is not a claim
 that the publish target is `sorry`-free.
@@ -2393,3 +2413,140 @@ static clause, freeze the changed contract, and rerun only the twelve hard
 cases. This is a prospective producer, not current closure. The coordinator
 frontier remains at eight terminal obligations; no new `sorry` or compatibility
 wrapper is introduced by this checkpoint.
+
+## 2026-08-03 noncanonical same-cap adapter boundary
+
+The parked Lean 4.27 adapter
+`scratch/freshthird-noncanonical-two-center-adapter-20260803.lean` typechecks
+with a clean axiom report (`propext`, `Classical.choice`, `Quot.sound`).  It
+shows that the existing two-center equidistance terminal is reachable from the
+noncanonical same-cap shape only after adding the explicit hypotheses that both
+fresh support points lie outside the common indexed cap.  The adapter derives
+the two shell equalities and invokes
+`ATailUniqueRowProducerScratch.false_of_two_cap_centers_equidistant_outside_pair`.
+
+The live `sameCapWithInternalFiberSource` constructor instead carries
+`Q.source₁ ∈ cap ∨ Q.source₂ ∈ cap`, so this adapter is diagnostic and cannot be
+promoted.  The next source-faithful target is a one-inside/one-outside
+terminal, or a producer adding the missing incidence/order invariant.  The
+normalized-remaining theorem stays `OPEN / ON-SPINE / NO SOURCE-CLEAN
+CONSUMER`; no new `sorry` is introduced and no closure credit is claimed.
+
+## 2026-08-03 v35 transitivity canary result
+
+The theorem-first v35 gate was executed against the authenticated v35
+contract.  All twelve remaining exact-15 `DDD` cases returned `UNKNOWN` at
+the five-minute budget, after 189 metric assignments; none reached `SAT`,
+terminal `UNSAT`, or a contract error.  The source-authenticated run is under
+`scratch/retained-omission-e1/round5-general-cegar/artifacts-v35-hard-canary-production1/20260803T214414.991226Z-hard-canary-pid13301/`.
+
+The added family contains 1,320 ordered distinct-nonapex clauses and no new
+semantic Boolean variables.  The focused v35/telemetry tests passed 13/13,
+and child-contract validation passed.  Since the canary produced neither a
+finite certificate nor a Lean consumer, it is diagnostic-only and the
+normalized-remaining `sorry` stays the sole load-bearing open obligation in
+this coordinator frontier.
+
+The Lean producer
+`Problem97.mem_selectedClass_of_mutualClassPair_sharedMember` is source-clean
+under Lean 4.27 (axioms: `propext`, `Classical.choice`, `Quot.sound`).  Its
+interface still requires the reverse membership from the candidate source row
+back into the mutual blocker row; `FreshThirdBlockerFiber` does not provide
+that membership, so the producer is bank-only and cannot yet be promoted.
+The next source-faithful target remains a reciprocal-incidence/common-radius
+producer or a one-inside/one-outside metric terminal, not another unconditional
+wrapper around the residual theorem.
+
+## 2026-08-03 one-inside/one-outside boundary check
+
+A bounded incidence/cap shadow was run for the residual
+`sameCapWithInternalFiberSource` arm.  It satisfies the retained exact-four
+supports, reciprocal equal-blocker fresh fiber, distinct source/fresh centers,
+and a noncanonical shared cap containing one fresh source but not the other.
+The artifact is `scratch/freshthird_one_inside_one_outside_shadow.py` with
+output in `scratch/freshthird_one_inside_one_outside_shadow.out`.
+
+The result is diagnostic rather than geometric: no Euclidean distances,
+cyclic order, or Kalmanson inequalities were encoded.  It nevertheless rules
+out treating the current packet fields as an immediate contradiction.  Keep
+the live target open and pursue exactly one of these promotion routes:
+
+1. prove a metric/order terminal for the one-inside/one-outside pattern; or
+2. add a producer that exposes common selected-class radius and reciprocal
+   incidence, then consume the existing mutual-shell bank theorem.
+
+Do not add a cyclic recursive wrapper or a bare `False.elim` branch.
+
+### FreshThird non-hit theorem-bank audit (2026-08-03)
+
+The bounded source audit checked both `firstNonHit` and `secondNonHit` against
+the indexed U5 and survival-cover banks.  A `sourceRowOmission` payload can be
+packaged mechanically as a `U5QDeletedK4Class` by applying
+`U5QDeletedK4Class.exists_card_four_of_hasNEquidistantPointsAt_skeleton` to
+the deletion-survival field (after unfolding `D.skeleton`).  This produces a
+q-free exact-four row, but no contradiction: the five-center deletion
+consumer needs five distinct deletion-survival centers, while the residual
+supplies only one row per omitted source.  The survival-cover theorem
+`selectedSupports_eq_of_actualBlockers_eq` only recovers support equality in
+the `sameBlocker` arm and likewise has no negative conclusion.
+
+No indexed theorem consumes either non-hit constructor, and no source-clean
+adapter to `False` was found.  The live target remains
+`OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`; the next honest interface is a
+producer that accumulates the missing deletion rows or supplies the
+metric/order (or common-radius/reciprocal-incidence) bridge.
+
+### FreshThird row-count and sameBlocker probes (2026-08-03)
+
+The local row-count API contributes only
+`selectedFourClass_inter_capByIndex_card_le_two` and the outside-pair
+uniqueness bound for this residual.  Global ordered-cap consumers additionally
+need `MecCapPacket`, `StrictCapOrder`, and `FaithfulCarrierPattern`, none of
+which is present in `FreshThirdNormalizedResidualRemainingCase`; adding a
+wrapper around those theorems would therefore widen the interface rather than
+prove the branch.
+
+The sameBlocker probe confirms that equal center/support data plus the mutual
+fresh-shell incidence is satisfiable and yields only `¬ CrossRowHit` when
+combined with the hit definition.  The sourceRowOmission arm is similarly
+row-local: one deletion-survival row cannot feed the five-center deletion
+terminal without additional distinct centers.  The concrete promotion choices
+remain (i) a metric/cyclic-order producer for the one-inside/one-outside arm,
+(ii) a common-radius/reciprocal-incidence producer, or (iii) an accumulator of
+distinct deletion-survival rows.  Until one is landed, keep the normalized
+remaining theorem as the sole `OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`.
+
+### FreshThird five-center producer applicability check (2026-08-03)
+
+The existing first-fiber deletion producers were checked directly:
+`firstFiber_firstSourceHit_or_fiveCenterDeletion` and
+`firstFiber_twoAnchorHits_or_anchoredFiveCenterDeletion` require a
+`FreshOutsideFirstBlockerFiber`/anchored packet with an outside-cap source and
+cap-minus-row exact-pair data.  `SixCenterDeletionSurvivalPacket_of_oneSided`
+requires one-sided deletion survival for the two cap-source witnesses, not
+the residual's survival rows for `Q.source₁` or `Q.source₂`.  Therefore none
+specializes to `FreshThirdNormalizedResidualRemainingCase`; no deletion
+consumer is available without a new source-faithful metric/order or
+incidence producer.  Keep the normalized-remaining theorem
+`OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`.
+
+### FreshThird equal-center and metric/order consumer search (2026-08-03)
+
+Two focused source and theorem-bank audits checked the remaining equal-center
+noncanonical products and the mixed one-inside/one-outside product against the
+available cap, perpendicular-bisector, cyclic-order, and Kalmanson consumers.
+No import-reachable source-clean `False` consumer matches either packet.
+
+The equal-center arm still lacks a way to force a third support point into the
+noncanonical cap, both blocker endpoints outside one common cap, or a physical
+opposite-apex pair-localization hypothesis.  The mixed arm additionally lacks
+the convex-boundary injectivity/image/CCW order packet and a producer turning
+its shell equalities into chord/Kalmanson equalities.  Existing outside-pair
+and retained-collision consumers are therefore not type-correct adapters.
+
+The exact candidate signatures and gaps are recorded in
+`scratch/freshthird-equalcenter-terminal-search-20260803.md` and
+`scratch/freshthird-metric-order-consumer-search-20260803.md`.  The live
+normalized-remaining theorem remains `OPEN / ON-SPINE / NO SOURCE-CLEAN
+CONSUMER`; the next promotion target is a new metric/order producer or a
+stronger common-radius/reciprocal-incidence packet, not another wrapper.

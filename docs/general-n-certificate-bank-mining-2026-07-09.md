@@ -639,7 +639,8 @@ a sound chart-exhaustiveness bridge, and a producer showing that a live
 general-`n` branch enters that fixed packet.
 
 Finally, the archive preserves an important negative audit result:
-`docs/97-audit-2026-04-27.md` retracts the purported uniform cap-sum closure.
+`~/erdos-general-theorem/docs/97-audit-2026-04-27.md` (that worktree, not this
+repo) retracts the purported uniform cap-sum closure.
 That artifact summed a positive feasible margin with already excluded
 negative margins and did not prove infeasibility. The later May prose
 surplus-removal assembly should therefore be read as a proposed route, not as

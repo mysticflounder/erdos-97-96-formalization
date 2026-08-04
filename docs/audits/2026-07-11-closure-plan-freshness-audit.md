@@ -195,7 +195,7 @@ general-M leaf remains open.
 The general-M endpoint leaf also cannot consume K-B-PIN unchanged:
 `PinnedShellOK` requires the Moser apex in the pinned row, whereas endpoint
 escape forces it out of the escaped row. The required scoped extension is
-recorded in `docs/audits/2026-07-11-endpoint-generalm-representability.md`:
+recorded in `docs/archive/2026-08-03-doc-sweep/audits/2026-07-11-endpoint-generalm-representability.md`:
 
 - `EndpointLeftShellOK` and `EndpointRightShellOK` seed predicates;
 - endpoint finite-classifier coverage;

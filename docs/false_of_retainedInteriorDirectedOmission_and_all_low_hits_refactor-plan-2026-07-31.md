@@ -1,3 +1,13 @@
+> **Status 2026-08-03 — LANDED. Read as a record of a completed refactor, not
+> as a proposal.** The recommendation below is implemented:
+> `false_of_retainedInteriorDirectedOmission_and_all_low_hits`
+> (`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8556`) is now
+> exactly the compatibility wrapper this plan describes — it normalizes via
+> `nonempty_retainedOmissionAllLargeNormalForm` and dispatches to
+> `false_of_retainedOmission_triApexAllLarge_core`. Live work has moved one
+> layer deeper, into that core's eight open branches; see
+> `docs/p97-spine-closure-audit-2026-08-03.md`.
+
 ## Yes—but refactor the **normal form**, not the theorem into a larger forest of `sorry`s
 
 The current theorem begins one structural layer too early. It receives a `RetainedInteriorDirectedOmission`, whose orientation is still disjunctive, even though the repository already has checked machinery that converts exactly that packet into:

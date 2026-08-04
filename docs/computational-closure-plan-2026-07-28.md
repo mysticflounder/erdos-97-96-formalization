@@ -357,6 +357,41 @@ subcases; it does not close the selected-seed slice or a Lean terminal leaf.
 Exact scope, hashes, and audit details are in
 `scratch/retained-omission-e1/round5-general-cegar/V33-ENDPOINT-SHARED-BLOCKER-SEED.md`.
 
+#### V34--V35 hard-canary terminal (2026-08-03)
+
+V34 isolated the twelve hard exact-15 `DDD` role tuples and authenticated the
+failure mode: all twelve cases remained `UNKNOWN`, despite 225 metrically
+inconsistent assignments. A recurring compact-core motif yielded the banked
+nonapex full-shell transitivity theorem
+`false_of_mutualClassPair_sharedMember_thirdClassExcludes`.
+
+V35 encoded that theorem as exactly 1,320 ordered nonapex clauses and reran
+only the twelve hard cases against authenticated commit `61d11be0`. The
+top-level HEAD-source manifest contains 59 entries; the source contract has
+16 role entries over 14 unique files, and top-level provenance separately
+records the Git commit. The focused contract suite passed 20/20 tests, the
+aggregate reports `child_contract_valid = true`, and all twelve result-file
+hashes validate. The aggregate remains incomplete: 0 `SAT`, 0 terminal
+`UNSAT`, 12 `UNKNOWN`; summary SHA-256
+`4b6447ccd412bd9714f6352571c8cd97220ca6d148d778ff0c2a9f194b248353`.
+
+The theorem pruned assignments from 225 to 186 (17.3%) but did not improve
+wall time (361.656 to 367.063 seconds). Of 186 learned blockers, 50 were compact
+and 136 were complete 1,076-literal assignment blockers. Normalization consumed
+2,102.386 assignment-seconds while solver checking consumed only 28.761.
+Future runtimes can cache case-invariant normalization and reconstruction, but
+the present lineage will not close by engineering alone.
+
+The v34--v35 transitivity-only lane is therefore retired. The next bounded
+round on the retained-omission target must be gated by an order-sensitive
+metric contradiction or another source-entitled producer for the hard
+one-inside/one-outside cap arm. A reverse-incidence/common-radius producer is
+also the precise missing bridge in the separate FreshThird residual, but it
+must not be conflated with these twelve v35 cases. No theorem-bank audit found
+either bridge ready-made. The retained-omission eight-leaf coordinator
+frontier remains unchanged. Full evidence is in
+`scratch/retained-omission-e1/round5-general-cegar/V35-TRANSITIVITY-CANARY-TERMINAL.md`.
+
 The 2026-08-03 checkpoint builds the complete
 `Erdos9796Proof.P97.ATail.FrontierLiveClosure` target and repairs the stale
 constructor arities in the already-committed normalized fresh-third adapter.

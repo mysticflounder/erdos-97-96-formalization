@@ -8,6 +8,16 @@ in `ATail/FrontierLiveClosure.lean` (families A–F). These prompt-time leaf
 maps and line numbers are not a live frontier. Authoritative on-spine status
 comes from `proof-blueprint spine` after the current build refresh.
 
+> **Relocation notice (2026-08-03 doc sweep).** Eight consumed/superseded
+> prompts moved to `docs/archive/2026-08-03-doc-sweep/solve-prompts/`: the
+> Family F set (`2026-07-27-exact-collision-terminals.md`, the four
+> `2026-07-27-f-bridge-*.md` round-2 bridges, and
+> `2026-07-27-f-round1-response.md`) and the retired U1 double-apex pair
+> (`2026-07-27-u1-double-apex-shared-radius-pair.md`,
+> `2026-07-28-u1-double-apex-round1-response.md`). The tables below still
+> name them; read those rows as history. The nine prompts remaining in this
+> directory all target obligations that are still open.
+
 Every prompt is self-contained (all Lean structures unfolded into plain
 planar-metric mathematics) and dual-branch: branch A proves `False` from the
 leaf's hypotheses (closes the leaf); branch B exhibits one exact
@@ -22,7 +32,7 @@ adapted accordingly.
 | C | `2026-07-27-physical-apex-boundary.md` | 2: `..._physicalApex_sourceNeU` (:5430), `..._nonphysicalCollision` (:5602) |
 | D | `2026-07-27-post-card-eleven-unique-radius.md` | 4: `false_of_exactFourPostCardElevenTwoRadiusBranch` (:6090), `false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome` (:6167), `false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual` (:6247), `false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual` (:6258) |
 | E | `2026-07-27-tri-apex-directed-omission.md` | 1: `false_of_retainedInteriorDirectedOmission_and_all_low_hits` (:6752) |
-| F (CONSUMED; HISTORICAL) | `2026-07-27-exact-collision-terminals.md` — round 1 answered; do not redispatch. Kept only as the "F doc" / Γ source cited by the four round-2 bridges below. Its prompt-time frontier had 4 leaves. As of the 2026-07-30 cap-source consolidation, the direct frontier has 2: `false_of_crossBlockerCoincidence` and `false_of_capSourceThirdCanonicalRowSurface`. The former fresh-third, one-sided-deletion, and aligned/nonbisector interfaces are compatibility adapters and are not independent targets. | Historical snapshot only; use the closure matrix and generated blueprint for current status |
+| F (CONSUMED; HISTORICAL) | `2026-07-27-exact-collision-terminals.md` — round 1 answered; do not redispatch. Kept only as the "F doc" / Γ source cited by the four round-2 bridges below. Its prompt-time frontier had 4 leaves. ~~As of the 2026-07-30 cap-source consolidation, the direct frontier has 2: `false_of_crossBlockerCoincidence` and `false_of_capSourceThirdCanonicalRowSurface`.~~ **Corrected 2026-08-03:** `false_of_capSourceThirdCanonicalRowSurface` (`FrontierLiveClosure.lean:13103`) is now a proved dispatcher, not a leaf, and `TwoSourceExactCollisionRowsTerminal` currently holds **5** open leaves — `false_of_crossBlockerCoincidence`, `false_of_twoCapSources_freshOutsideFirstBlockerFiber`, `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining`, `false_of_capSource_firstFiber_outsidePairDeletionExactRows`, `false_of_capSource_firstFiber_crossedThreeRowExactSupports`. The former fresh-third, one-sided-deletion, and aligned/nonbisector interfaces are compatibility adapters and are not independent targets. | Historical snapshot only; use the closure matrix and generated blueprint for current status |
 | G (RETIRED) | `2026-07-27-u1-double-apex-shared-radius-pair.md` | `DoubleApexOffSurplusSharedRadiusPair` (`U1LargeCapRouteBTail.lean:2401`) — NOT an active obligation: the whole declaration sits inside the 2026-07-25 retirement block comment (:2371–:2623), and its conclusion is refuted under the hypotheses by the proved reflection kernel `oppCap2_escape_gen` (:2257). The document is kept as an archive of the retired Route-A residual; do not run it as a frontier prompt. |
 
 Usage: run a prompt in a deep-thinker harness (the multiagent block is

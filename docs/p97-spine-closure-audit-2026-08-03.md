@@ -4,6 +4,34 @@ Audit of `proof-blueprint spine` for the publish target `Problem97.erdos97_rhs`,
 with ranked recommendations for faster closure. Live truth is always
 `proof-blueprint spine`; numbers below are the 2026-08-03 snapshot.
 
+## Post-audit computational update
+
+The v33--v35 work completed after the initial snapshot repairs the CEGAR
+harness conclusion below but strengthens the mathematical diagnosis. A
+source-frozen v35 canary at commit `61d11be0` authenticated all twelve hard
+exact-15 `DDD` cases and the new 1,320-clause nonapex full-shell transitivity
+bank. It still returned twelve `UNKNOWN` results: 186 assignments were each
+metrically inconsistent, but no Boolean case was exhausted. Compared with
+v34, the assignment count fell 17.3% while wall time rose 1.5%.
+
+Accordingly, the harness is no longer the immediate blocker and the
+transitivity-only CEGAR lineage is terminal. For the v35 retained-omission
+cases, the first missing producer is an order-sensitive metric contradiction
+or equivalent source-entitled rule for the one-inside/one-outside cap arm.
+For the separate FreshThird residual, the first missing producer is reverse
+selected-class incidence/common radius for its candidate-source and
+mutual-blocker rows. No current general-n theorem bank supplies either bridge
+directly.
+
+The recommendation below to expose the three FreshThird arms is therefore
+computational granularity only. Those arms belong to the separate five-leaf
+FreshThird family, not the retained-omission eight-leaf family. They should
+remain internal labels or `PARKED-SPEC`s until a producer proves a genuine
+narrowing/closure; promoting them would change the FreshThird and global
+frontiers, but would not literally create a ninth retained-omission leaf. Full
+authentication and telemetry are recorded in
+`scratch/retained-omission-e1/round5-general-cegar/V35-TRANSITIVITY-CANARY-TERMINAL.md`.
+
 ## Spine state
 
 - Open: 93/36005 nodes; 29 open obligations — 28 `sorry` theorems plus the
@@ -56,25 +84,28 @@ normalized-residual promotion.
 
 ## Recommendations, ranked by expected closure speed-up
 
-### 1. Split `normalized_remaining` into its three arms; build the cyclic-order producer
+### 1. Build the missing producer; keep the three arms computational
 
 The SAT-in-all-arms result means the aggregate leaf cannot close at the
-incidence level. The arm split (`firstNonHit` / `secondNonHit` /
-`equalCrossRowCenters`) is the narrowing the promotion rules require, and it
-makes the conditional Kalmanson cut consumable for the equal-center arm as
-soon as an ordered-cap / cyclic-order producer lands. The non-hit arms then
-get targeted metric-refinement probes instead of one aggregate probe.
+incidence level. Keep `firstNonHit`, `secondNonHit`, and
+`equalCrossRowCenters` as internal solver strata so that each can receive a
+targeted metric refinement. Promote no new Lean leaf until an ordered-cap,
+common-radius, or reciprocal-incidence producer makes one stratum strictly
+smaller or closes it. The conditional Kalmanson cut becomes consumable for the
+equal-center arm only after its cyclic-order premise is proved.
 
 Corollary: pause further case-splitting on the FreshThird lane until a
 producer lands. Splits without new producers multiply leaves without
 shrinking target freedom.
 
-### 2. Fix the CEGAR harness before spending more solver compute
+### 2. Preserve the repaired harness; spend compute only behind a new theorem
 
-Three consecutive runs (v29/v30/v31) burned full iterations for almost no
-information. The child-contract validation errors and allowlist errors are
-harness defects, not math. Repair them (and the repair-canary timeout) before
-launching another production round.
+V33--v35 repaired the child-contract, tracker-admission, source-freeze,
+telemetry, and spawned-worker checks. The authenticated v35 terminal result
+shows that the remaining stall is mathematical, not another harness failure.
+Cache normalization/reconstruction work before a future production run, but
+launch that run only after its semantic contract contains a new proved
+metric/order or reciprocal-incidence consequence.
 
 ### 3. Close the mirror pair with one proof
 
@@ -129,3 +160,19 @@ The spine is a serial conjunction of 28 leaves, so total closure time is
 bounded by the FreshThird lane (items 1–2). Items 3–5 are parallelizable
 subagent work that shrinks the leaf count in the meantime; item 6 is cheap
 and removes iteration friction.
+
+## FreshThird consumer audit update (2026-08-03)
+
+The equal-center/noncanonical and mixed one-inside/one-outside packets were
+checked against the available source-clean cap, bisector, cyclic-order, and
+Kalmanson consumers.  Neither has an import-reachable terminal.  The first
+missing bridge is now concrete: either derive a strict boundary/order and
+shell-to-chord equality packet, or strengthen the residual with common
+selected-class radius and reciprocal row membership.  Existing both-outside
+cap consumers and retained-collision adapters are not type-correct here.
+
+The live theorem
+`false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining` remains
+`OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`; the focused reports are archived
+in `scratch/freshthird-equalcenter-terminal-search-20260803.md` and
+`scratch/freshthird-metric-order-consumer-search-20260803.md`.

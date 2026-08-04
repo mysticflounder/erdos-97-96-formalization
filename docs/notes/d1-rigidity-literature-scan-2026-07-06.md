@@ -8,7 +8,7 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 Dispatch: workstream D1 of the [archived 2026-07-06 closure plan](../archive/2026-07-10-closure-plan-consolidation/closure-plan-2026-07-06.md)
 (§7), context §F3 of
-`docs/audits/2026-07-06-frontier-missed-angle-analysis.md`. Date: 2026-07-06.
+`docs/archive/2026-08-03-doc-sweep/audits/2026-07-06-frontier-missed-angle-analysis.md`. Date: 2026-07-06.
 
 ## 1. What was investigated
 

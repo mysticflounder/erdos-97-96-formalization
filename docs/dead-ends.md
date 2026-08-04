@@ -15,8 +15,11 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 > (`live-status.md`, `upstream-closure.md`, `postmortems/`, `audits/` from
 > that repo) were not copied — consult `../p97-rvol/docs/` for the
 > historical record. The live frontier is tracked in this repo: see
-> `u-lane/97-slot3-certificate-closure-plan-2026-07-06.md` and
-> `four-point-subpacket-plan.md`.
+> `docs/live-blueprint.md` (generated from `proof-blueprint spine`) and
+> `docs/closure-matrix-2026-07-09.md`. Frontier pointer updated 2026-08-03;
+> the previously named `u-lane/97-slot3-certificate-closure-plan-2026-07-06.md`
+> and `four-point-subpacket-plan.md` were archived under
+> `docs/archive/2026-07-16-doc-sweep/` and are no longer live status.
 
 Don't-repeat log: the durable lessons from failed/closed routes, clustered by the
 obligation they attacked. This is not a status file. Before citing any apex1 /

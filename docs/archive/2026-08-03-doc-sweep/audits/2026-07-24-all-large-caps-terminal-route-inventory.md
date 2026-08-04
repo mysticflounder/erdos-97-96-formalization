@@ -336,7 +336,7 @@ instantiation respects the cyclic-order semantics.
 ## Consumer hunt for the shortest-side exclusion: negative
 
 The shortest-side bi-equidistance exclusion
-(`docs/shortest-side-biequidistance-exclusion-2026-07-24.md`) was pushed for a
+(`docs/archive/2026-08-03-doc-sweep/shortest-side-biequidistance-exclusion-2026-07-24.md`) was pushed for a
 consumer inside this terminal. It does not close it, and the specific mechanism
 one would reach for provably does not exist here.
 

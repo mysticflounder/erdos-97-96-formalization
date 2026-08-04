@@ -269,7 +269,7 @@ it must not invoke the cap-six-only assembler. The generic
 packet: it fixes neither the physical second apex nor a four-cap. Any
 alternative-packet proof therefore needs new MEC-boundary/retriangulation
 geometry, as recorded in
-`docs/audits/2026-07-20-exact-five-short-cap-terminal-audit.md`.
+`docs/archive/2026-08-03-doc-sweep/audits/2026-07-20-exact-five-short-cap-terminal-audit.md`.
 
 ### Historical exact-five second-cap route (2026-07-21; superseded)
 
@@ -349,7 +349,7 @@ The older arbitrary mutual packet is no longer the live interface.
 This carrier-wide cover is useful but nonterminal. It is a universal negative
 incidence statement, not the positive shared pair required by an existing
 consumer. The 13-point finite metric in
-`docs/audits/2026-07-21-exact-five-global-minimality-regression.md` is no
+`docs/archive/2026-08-03-doc-sweep/audits/2026-07-21-exact-five-global-minimality-regression.md` is no
 longer a regression for the complete live parent: its forced first-apex
 double-deletion row has only one strict `oppCap1` hit, while production
 `nonempty_firstApexShellRolePacket F R` supplies two. The replay and complete
@@ -440,7 +440,7 @@ complementary arm. Its exported robust outcome is already exactly
 actual blocker and a source-faithful common-deletion packet with the physical
 second apex—but no banked theorem relates that new row to the asymmetric
 outside pair, a repeated critical fiber, or an alternative MEC triangle. See
-`docs/audits/2026-07-21-exact-five-card-ge-14-survival-cover.md`. The
+`docs/archive/2026-08-03-doc-sweep/audits/2026-07-21-exact-five-card-ge-14-survival-cover.md`. The
 uniform target must consume that raw packet together with the named star and
 return one of the three existing sinks directly; another robust/common-
 deletion wrapper is nonterminal.
@@ -5507,7 +5507,7 @@ this subsection is historical route rationale, not current work.
   stated strictly `5 < S.surplusCap.card`), routed to the forced
   `m = 6` / `A.card = 11` machinery with a scoped extension (endpoint seed
   predicates, classifier extension, one (4,2,2) bridge case, endpoint source
-  consumers) — see `docs/audits/2026-07-11-endpoint-generalm-representability.md`.
+  consumers) — see `docs/archive/2026-08-03-doc-sweep/audits/2026-07-11-endpoint-generalm-representability.md`.
   Finite gate passed 2026-07-11 with zero residuals over both 32-placement
   endpoint seed families (EXACT WITHIN MODEL, not PROVEN;
   `census/endpoint_confinement/endpoint_direct_metric_core_residuals_n11.json`).
@@ -7611,7 +7611,7 @@ progress on `R`
 does not by itself close K-A-PAIR.
 
 The follow-up R/full-parent continuation object gate has now been executed;
-see `docs/audits/2026-07-15-r-global-continuation-object-gate.md`.  The proposed
+see `docs/archive/2026-08-03-doc-sweep/audits/2026-07-15-r-global-continuation-object-gate.md`.  The proposed
 two-continuation-row union was rejected before encoding, so no formula or
 solver run exists to interpret.  On one concrete frontier the source produces
 an R normal form and an independent continuation dispatch, not a theorem

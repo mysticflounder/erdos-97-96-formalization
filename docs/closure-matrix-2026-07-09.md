@@ -28,6 +28,23 @@ a dated snapshot): the exact-four branch has since undergone further
 on-spine decompositions, so its current leaf count must be read from the
 regenerated `docs/live-blueprint.md`, not from the fixed counts below.
 
+**Live reconciliation (2026-08-03, `proof-blueprint spine`).** The 2026-07-26
+snapshot below is superseded in its counts and retained only as a dated
+record of the branch shape at that time. Current authoritative state:
+
+- 29 open obligations — 28 `sorry` theorems plus the induced `sorryAx`; all
+  28 sit inside `ATailFrontierLiveClosure`;
+- open nodes 93/36005; spine source 283943 lines across 36005 declarations;
+- axiom posture core + `Lean.trustCompiler`, with 20 trusted certificate
+  leaves covered by `#print axioms`;
+- open-leaf families: Rigid221 / exact-four mutual-omission cluster (13),
+  `retainedOmission` triApexAllLarge core (8), FreshThird
+  `TwoSourceExactCollisionRowsTerminal` (5), `firstApexUniqueRadius` exactFive
+  residuals (2). Family-level analysis and ranked recommendations are in
+  `docs/p97-spine-closure-audit-2026-08-03.md`.
+
+The 2026-07-26 snapshot follows.
+
 - 6 direct source declarations with `sorry`, all in
   `ATail/FrontierLiveClosure.lean`;
 - the unique-radius parent is source-clean and dispatches to the closed
@@ -174,7 +191,7 @@ inapplicable because it required the cap-six `L` branch.
 | K-B-PIN | DONE (2026-07-12, spine-verified post build refresh) | `Problem97.isM44PinnedSurplusGeneralMResidualsExcluded` in `PinnedSurplusGeneralM.lean` | `isM44PinnedSurplusResidualsExcluded` | The open `5 < m` branch is forced to `m = 6`, `A.card = 11`, with exact `(6,4,4)` cap-selected hit counts; all six incidence fields and native placement soundness are proved. `CapSelectedPinnedShellBridge` consumes every right aligned residual packet through all twelve certified core cases. The new `U2NonSurplusSqueeze.NonSurplusSwap.pinnedLeft_to_right` field proves the left-to-right reflection for all three surplus-index cases, preserving minimality, `(m,4,4)`, and surplus-cap cardinality; the terminal relabels the swapped packet and reuses the right producer and closure contradiction. `PinnedSurplusGeneralM.lean` has no source `sorry`, and direct Lean elaboration passed. Build refreshed 2026-07-12 after the U1 owner landed P1b (86149679) + the ERASE-P2 redraft (3d27977c): full library green, 9308 jobs; `PinnedSurplusGeneralM.lean` built clean with zero sorry warnings. `proof-blueprint axioms` on the declaration: core + `Lean.ofReduceBool` + approved `Lean.trustCompiler`, no `sorryAx`; the declaration left the `proof-blueprint spine` open-obligations list (anchor [closed]). |
 | K-B-END-LABEL | DONE (2026-07-11) | `Problem97.isM44EndpointResidualsExcluded` (`Base.lean`; both former `hshadow` holes proved) | `removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit` | Route (b) implemented (136ebb9b) and the m=5 branch fully proved: `EndpointCertificate/GeometryProducer.lean` (sorry-free) supplies `endpointLeft/Right_residual_false_of_card_five`, each covering both ambient CCW apex orientations (direct + reflected kernels `SurplusCOMPGBankGeometry.lean:1498/:1621`; apex orientation SYMMETRIC not forced per the 2026-07-11 prover verdict; the mirror residual flips the kernel pairing). Gate passed: full library green. Its former general-m dependency later closed under K-B-END-GENERAL; the endpoint cluster is absent from the current open inventory. Commits: 858b7e39, 8a7e6d1b, b2183714, 35bc63aa, f67e7818, e7ee31a2, plus the right-residual closure. |
 | K-A-LIVE-E1-SPLIT | ACTIVE 2026-08-02 — FOUR TERMINAL-SPECIFIC LOUD LEAVES; THREE DISPATCHERS PROVED | `ATailFrontierLiveClosure.false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core`; `ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_{endpointCrossHit,endpointCommonDeletion,threeDistinctBlockers}_triApexAllLarge_core`; proved dispatchers `ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCriticalFiber_triApexAllLarge_core`, `ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_triApexAllLarge_core`, and `ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core`; producers `ATailFrontierLiveClosure.exists_reverseHitFresh_nonreturnEndpointClassification` and `ATailFrontierLiveClosure.exists_reverseHitFresh_endpointCriticalFiber_continuation`; ordered consumer `ATailFrontierLiveClosure.false_of_endpointFreshCrossHit_of_orderedPlacement`; `ATailSevenSourceCriticalShellMutualOmission.exists_mutualOmission`; `ATailExactFifteenApexProfile.exists_exactSixClass_or_all_exactTwoFourClasses_of_card_eq_fifteen`; `docs/computational-closure-plan-2026-07-28.md` | Existing E1 compatibility wrapper and Route-B publish spine | Stop treating one heterogeneous exact-15 CEGAR master as the uniform proof target. Run in parallel: canonical exact-15 archetypes with checked symmetry/cross-case coverage; general Lean soundness theorems, beginning with the verified seven-source physical-shell mutual-omission producer; a replayable exact-15 Boolean coverage certificate; and a source-faithful general-cardinality lift by bounded obstruction or valid deletion/minimality descent. Exact-15 closure alone does not prove the uniform `15 ≤ A.card` core. The checked exact-15 profile dispatcher is two-way: some apex has an exact six-class, or every apex is exact `4+4`; this is exhaustive but not itself a profile-level child frontier. The normalized retained-omission sum type first splits the former one-`sorry` parent into paired-common-deletion and reverse-hit/fresh branches. The nonreturning two-step producer now proves the reverse-hit/fresh coordinator and splits it into an origin-tagged endpoint critical-fiber collision or three pairwise-distinct actual blockers. The endpoint collision then splits source-faithfully into a positive cross hit or a new common-deletion packet. The terminal frontier is therefore four immediate publish-spine consumers; the raw open count changes one to four, so this is tractability decomposition rather than closure. The endpoint cross-hit branch has a proved `OrderedCrossRowCore` adapter and lacks only its six-role cyclic-order placement producer; the three-distinct branch lacks selected-row ordinal-comparison edges for a strict cycle. The S-profile mutual-class soundness theorem needs only one cap of cardinality exactly six, so exact-15 all-large caps are a corollary; the theorem remains coverage-gated because universal E1 supplies only lower bounds. Its v30 exact-15 cut census removed only 21 of 11,601 completed proposals, all already `UNSAT`, so it is neither a convergence signal nor uniform E1 progress. Every CEGAR terminal requires a global theorem-bank audit; odd rounds additionally require an efficiency/observability audit. |
-| K-B-END-GENERAL | DONE (2026-07-12, commit 3114fb1f) | `Problem97.isM44EndpointGeneralMResidualsExcluded` (`Base.lean:9511`, hole `:9513`; stated strictly `5 < S.surplusCap.card`) | `isM44EndpointResidualsExcluded` (`m ≠ 5` branch) | General-m endpoint leaf, routed to the forced `m = 6` / `A.card = 11` machinery (K-B-PIN). Cannot consume K-B-PIN unchanged: endpoint escape forces the Moser apex OUT of the escaped row, failing `PinnedShellOK`. Scoped extension required (see `docs/audits/2026-07-11-endpoint-generalm-representability.md`): `EndpointLeft/RightShellOK` seed predicates, classifier extension to the seed union, one (4,2,2) bridge seed-production case, endpoint source consumers. Finite gate PASSED 2026-07-11 — EXACT WITHIN MODEL, not PROVEN: 64-placement sweep (both families, twelve formalized metric cores, enumerate-residuals, complete=true) returned zero residuals (`census/endpoint_confinement/endpoint_direct_metric_core_residuals_n11.json`); no new metric cores needed. STAGING LANDED (5c44d1fc, 6fbde4a8): `EndpointCertificate/GeneralMCardEleven.lean` (sorry-free, no Base import) — card-11 forcing transport, full left+right escape row-shape families (selected classes card-4 interior-pinned, escapee strict-interior + surplus-cap disjointness), and the `EndpointLeft/RightShellOK` seed predicates over the `Fin 11` vocabulary matching the probe encoding. Next: endpoint placement checks against the committed native classifier (gate: `#eval` all 64 before proving — the Lean `hasPrefixCore` core set is not identical to the probe's core granularity), then the soundness transport mirroring `CapSelectedNativeClosureSound` (committed c5fcf286). BRIDGE LANE 2026-07-11 late: transport map `docs/audits/2026-07-11-endpoint-classifier-transport-map.md` (58f93ae2 - left family reuses the committed search code verbatim; right family needs a center-2 detector fork with fresh native runs); bridge design `docs/endpoint-generalm-bridge-design-2026-07-11.md` (a57c7e71, lemmas L1-L13; L9/L10/L10b done upstream at 9e6b5722 `incidenceOK_patternCode`); `EndpointCertificate/BridgeStaging.lean` landed 41d704f3 (L1a-L5: minimality glue, `labelOf`, Moser-cap class forcing + k4Radius uniqueness, endpoint no-qfree, T1 decomposition, row-0 two-intS-slots chooser - obstruction E1 discharged). ASSEMBLY INPUTS ALL LANDED 2026-07-11: `BridgeCarrier.lean` 9bac7853 (L6 public prescription constructor, L7 `endpointBlocker` + transports, L8 row-1 equation, right L3/L4 mirrors); `OrderedCoreSigns.lean` 2c32e3a1 (L12 branches 11-12, core axioms only); `EndpointClassifierSound.lean` + `EndpointClosureSound.lean` fffff751 (transport items 4-7; finals `closureCoreAlternative_of_incidenceOK_endpointLeft/RightShellOK`, axioms core + ofReduceBool/trustCompiler). Pinned lane 8ebadfa2 supplies `false_of_duplicateCenterCore_patternCode` + `false_of_perpBisectorCore_patternCode` for the branch dispatch. CLOSED 3114fb1f: `EndpointCertificate/BridgeAssembly.lean` (L11 `exactAt_endpointBlocker`, right L7/L8 mirrors, system-exposing blocker assemblies, L12b `false_of_closureCoreAlternative_of_canonical`, L13 `false_of_endpointEscapeLeft/Right_cardEleven`) + minimal Base.lean wiring at `:9513`. Leaf axioms: propext/Classical.choice/Quot.sound + Lean.ofReduceBool/Lean.trustCompiler (allowed set, no sorryAx); full library green (9307 jobs); spine open inventory 5 → 4 declarations. |
+| K-B-END-GENERAL | DONE (2026-07-12, commit 3114fb1f) | `Problem97.isM44EndpointGeneralMResidualsExcluded` (`Base.lean:9511`, hole `:9513`; stated strictly `5 < S.surplusCap.card`) | `isM44EndpointResidualsExcluded` (`m ≠ 5` branch) | General-m endpoint leaf, routed to the forced `m = 6` / `A.card = 11` machinery (K-B-PIN). Cannot consume K-B-PIN unchanged: endpoint escape forces the Moser apex OUT of the escaped row, failing `PinnedShellOK`. Scoped extension required (see `docs/archive/2026-08-03-doc-sweep/audits/2026-07-11-endpoint-generalm-representability.md`): `EndpointLeft/RightShellOK` seed predicates, classifier extension to the seed union, one (4,2,2) bridge seed-production case, endpoint source consumers. Finite gate PASSED 2026-07-11 — EXACT WITHIN MODEL, not PROVEN: 64-placement sweep (both families, twelve formalized metric cores, enumerate-residuals, complete=true) returned zero residuals (`census/endpoint_confinement/endpoint_direct_metric_core_residuals_n11.json`); no new metric cores needed. STAGING LANDED (5c44d1fc, 6fbde4a8): `EndpointCertificate/GeneralMCardEleven.lean` (sorry-free, no Base import) — card-11 forcing transport, full left+right escape row-shape families (selected classes card-4 interior-pinned, escapee strict-interior + surplus-cap disjointness), and the `EndpointLeft/RightShellOK` seed predicates over the `Fin 11` vocabulary matching the probe encoding. Next: endpoint placement checks against the committed native classifier (gate: `#eval` all 64 before proving — the Lean `hasPrefixCore` core set is not identical to the probe's core granularity), then the soundness transport mirroring `CapSelectedNativeClosureSound` (committed c5fcf286). BRIDGE LANE 2026-07-11 late: transport map `docs/archive/2026-08-03-doc-sweep/audits/2026-07-11-endpoint-classifier-transport-map.md` (58f93ae2 - left family reuses the committed search code verbatim; right family needs a center-2 detector fork with fresh native runs); bridge design `docs/archive/2026-07-16-doc-sweep/endpoint-generalm-bridge-design-2026-07-11.md` (a57c7e71, lemmas L1-L13; L9/L10/L10b done upstream at 9e6b5722 `incidenceOK_patternCode`); `EndpointCertificate/BridgeStaging.lean` landed 41d704f3 (L1a-L5: minimality glue, `labelOf`, Moser-cap class forcing + k4Radius uniqueness, endpoint no-qfree, T1 decomposition, row-0 two-intS-slots chooser - obstruction E1 discharged). ASSEMBLY INPUTS ALL LANDED 2026-07-11: `BridgeCarrier.lean` 9bac7853 (L6 public prescription constructor, L7 `endpointBlocker` + transports, L8 row-1 equation, right L3/L4 mirrors); `OrderedCoreSigns.lean` 2c32e3a1 (L12 branches 11-12, core axioms only); `EndpointClassifierSound.lean` + `EndpointClosureSound.lean` fffff751 (transport items 4-7; finals `closureCoreAlternative_of_incidenceOK_endpointLeft/RightShellOK`, axioms core + ofReduceBool/trustCompiler). Pinned lane 8ebadfa2 supplies `false_of_duplicateCenterCore_patternCode` + `false_of_perpBisectorCore_patternCode` for the branch dispatch. CLOSED 3114fb1f: `EndpointCertificate/BridgeAssembly.lean` (L11 `exactAt_endpointBlocker`, right L7/L8 mirrors, system-exposing blocker assemblies, L12b `false_of_closureCoreAlternative_of_canonical`, L13 `false_of_endpointEscapeLeft/Right_cardEleven`) + minimal Base.lean wiring at `:9513`. Leaf axioms: propext/Classical.choice/Quot.sound + Lean.ofReduceBool/Lean.trustCompiler (allowed set, no sorryAx); full library green (9307 jobs); spine open inventory 5 → 4 declarations. |
 | K-B-ERASE | DONE (commit `652fdfcb`, pushed 2026-07-13) | `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` consumes all 20 row and 2 P4 `*_cardEleven_residual_excluded` theorems | `isM44NonSurplusContainmentExactPinResidualsExcluded` chain | Card-ten/card-eleven P2/P4, all 128 P2 native leaves, `P2Closure`, all 22 residual consumers, and `Continuation` build. The dispatcher, terminals, ERASE parent, and exact-pin parent have only core plus approved native-decision axioms and no `sorryAx`; exact-pin is 0/1376 open and its target-specific publication gate passes. This remains separate from the global gate, which is blocked by the live A-tail frontier; the card-11 replay trees are committed production Lean sources rather than a separate build prerequisite. |
 
 ### K-A-LIVE collision exact-two checkpoint (2026-07-26)
@@ -1900,7 +1917,7 @@ marginals.
 | ATAIL-R-F2-GENERATED-SUCCESSOR | OPEN FINITE GEOMETRIC CONSUMER; FIVE-WAY POSTMIX SOURCE SPLIT, FOUR Q-CRITICAL ENDPOINT CLASSES, LIVE-CENTER/SECOND-APEX METRIC TERMINALS, AND HISTORY-RETAINING REROUTE CLASSIFIER CHECKED 2026-07-16 | `OriginalQOutsideMiddleSuccessor`; `OriginalQGeneratedSuccessorPair.SourceSplit`; `PostmixSourceSplit`; `HistoryRetainingPostmixSourceSplit`; `ReducedGeneratedSuccessorFrontier`; full anchored origin/frontier/cap/MEC parent surface | Consume only honest branch outputs: the four global-source-selection endpoints for q-critical cross survival; explicit off-`oppCap2` placement plus reciprocal membership where applicable; a companion-omission residual; or either concrete non-apex outside-middle reroute. Retain `false_of_originalQOutsideMiddleSuccessor` as the umbrella target. | Each successor source belongs to its actual generated support, lies outside the live row and physical middle row, and preserves K4 at `p` and `S.oppApex2`; this polarity forbids reuse of `OffLiveCommonDeletionSuccessor`. For q-critical/q-critical, the metric arm is `False` and full-parent continuation reduces to the two oriented cross-deletion-survival arms. The global-source-selection normal form initially had three `CommonDeletionTwoCenterPacket` variants, `ApexDoubleCriticalResidual`, and `DeletedBlockerApexAlignment`; `qcritical-endpoint-integration/` closes the alignment endpoint because its blocker would be the deleted `q`, leaving exactly the two escape/common-deletion orientations, `ApexDoubleCriticalResidual`, and relocated-blocker common deletion. The paired rank reduction proves an outside source is omitted by the opposite generated row and, for equal sources, one shared ordered-cap argument rules out both companions being present. The equal-source live-center constructor closes uniformly. The second-apex constructor also has no metric residual: homogeneous and mixed pairs close, leaving only reroutes at `x` or `y`. `PostmixSourceSplit` therefore retains distinct sources, the two oriented equal-source cross-survival arms, and those two concrete reroutes. `ReducedGeneratedSuccessorFrontier` now carries that split directly when at least one row is q-deleted; the two-q-critical arm still carries an oriented cross survival and four-class endpoint normal form. `postmix-reroute-consumer/` repairs the projected split by retaining equal predecessor sources at the physical second apex and the equilateral history. Each reroute is either outside `oppCap2` and omitted by the opposite full row, or inside `oppCap2` with a certified opposite-side rank move; opposite-row incidence in the outside case is already a direct common-outside-pair contradiction. The surviving rank move still lacks a fixed cross-step cap presentation, center-index link, decreasing measure, and no-wrap theorem. The old `StrictOppCap1CommonHit`, surplus-heavy completion equality, three-reverse-equality packets, and mixed complementary packets are not producer targets. Do not infer cap or metric facts from support omission or recurse unranked through the generic classifier. |
 | ATAIL-R-F2-SECOND-APEX-EQUILATERAL | LOCAL METRIC RESIDUAL CLOSED 2026-07-16; ALL FOUR CONSTRUCTOR PAIRS REDUCED TO FALSE OR REROUTE; FRONTIER WIRING CHECKED | `MixedSecondApexEliminator.lean`; `SecondApexPostmixWiring.lean`; exact q-deleted/q-critical generated-row constructors; physical second-apex row | Remove the two mixed complementary packets and replace the old `equalSource_atSecondApex` frontier arm by concrete non-apex outside-middle reroutes. | Homogeneous constructor pairs were already closed or rerouted. For either mixed packet, the support-only points `a,b` lie with the second apex `O` on the physical row, and the generated equalities give `y+a=O+x` and `x+b=O+y`; hence `a+b=2O`, making three distinct carrier points collinear against convex independence. Both mixed `False` theorems and `secondApexRerouteReduction` are kernel-clean. `PostmixSourceSplit` removes the old second-apex constructor, retains only reroute-at-`x`/`y`, and converts both to `OriginalQOutsideMiddleSuccessor`; `ReducedGeneratedSuccessorFrontier` now carries this split directly. The local residual is closed, but the reroutes remain parent-consumer obligations and no production `sorry` is closed. |
 | ATAIL-R-ANCHORED-F2-SUPPORTHEAVY-HANDLER | CHECKED-SCRATCH 2026-07-16; NATIVE DEPENDENT INTERFACE; EIGHT EXPLICIT CALLBACKS; NO FULL F2 `FALSE` | Anchored provenance lift; support-heavy coupling; generated escape/metric routing; origin-tagged coordinator | Keep the anchored aligned packet on `alignedSharedRowPacket` and consume the exact generated-row residual without a dependent cast through the generic live-center packet. | `scratch/atail-force/r-anchored-f2-supportheavy-handler/AnchoredF2SupportHeavyHandler.lean` defines a native anchored and full origin-tagged coordinator eliminator. The both-q-deleted case becomes exact repeated common deletion; each mixed case routes to cross survival, non-equilateral, or equilateral; both-q-critical routes only to cross survival because its metric residual is already contradictory. All six printed endpoints have only the three core axioms. Eight callbacks remain, so this is a nested branch reduction rather than R closure. |
-| ATAIL-R-CONTINUATION-OBJECT-GATE | FAILED BEFORE ENCODING 2026-07-15; NO FORMULA OR SOLVER RUN; SUPERSEDED BY SOURCE-FAITHFUL ORBIT GATE | ATAIL-ROBUST-COUPLING; `exists_doubleSurvivalBranchNormalForm`; `nonempty_frontierContinuationDispatch`; `UnifiedFrontierParentCoupling` | Before any paired-row scan, prove a full-parent R transition which returns a checked terminal or an invariant-preserving strict rank/adjacent-cap advance. | `docs/audits/2026-07-15-r-global-continuation-object-gate.md` records that the proposed common two-row target is not source/consumer faithful. The source constructs only `(R B0/B1/B2) x (CrossSurvival/NonEquilateral/Equilateral)`; it does not couple the robust pair to either anonymous continuation row. Repeated outside-pair support is an unsourced conditional terminal, the original-U5 role has no legal live map, and a raw same-cap edge is nonterminal and lacks its endpoint equality. Do not encode pinned `G,K`, continue R CEGAR, or treat a bank miss as a terminal negation. The later actual-blocker work supersedes the old final diagnosis: source-exact successor preservation and a finite orbit are now proved. The remaining fields are retained-blocker provenance on terminal hits and cycle-wide cap/global-order progress on a minimal erased cycle. |
+| ATAIL-R-CONTINUATION-OBJECT-GATE | FAILED BEFORE ENCODING 2026-07-15; NO FORMULA OR SOLVER RUN; SUPERSEDED BY SOURCE-FAITHFUL ORBIT GATE | ATAIL-ROBUST-COUPLING; `exists_doubleSurvivalBranchNormalForm`; `nonempty_frontierContinuationDispatch`; `UnifiedFrontierParentCoupling` | Before any paired-row scan, prove a full-parent R transition which returns a checked terminal or an invariant-preserving strict rank/adjacent-cap advance. | `docs/archive/2026-08-03-doc-sweep/audits/2026-07-15-r-global-continuation-object-gate.md` records that the proposed common two-row target is not source/consumer faithful. The source constructs only `(R B0/B1/B2) x (CrossSurvival/NonEquilateral/Equilateral)`; it does not couple the robust pair to either anonymous continuation row. Repeated outside-pair support is an unsourced conditional terminal, the original-U5 role has no legal live map, and a raw same-cap edge is nonterminal and lacks its endpoint equality. Do not encode pinned `G,K`, continue R CEGAR, or treat a bank miss as a terminal negation. The later actual-blocker work supersedes the old final diagnosis: source-exact successor preservation and a finite orbit are now proved. The remaining fields are retained-blocker provenance on terminal hits and cycle-wide cap/global-order progress on a minimal erased cycle. |
 | ATAIL-R-ACTUAL-BLOCKER-TRANSITION | CHECKED-SCRATCH COMPLETE COHERENT ORBIT NORMAL FORM AND DOWNSTREAM BOUNDARIES 2026-07-16; RECIPROCAL CRITICAL ARM RECLASSIFIED AS SWAPPED `FA-UNIQ4`; ANCHORED ARM PROJECTS TO COMMON DELETION | `FixedSingleRadiusCycleAnchoredIntegration.lean`; `LeastTerminalHitReciprocalRowSplit.lean`; `FixedSingleRadiusAnchoredOrTerminalResidual.lean`; `AnchoredTwoRowCoverConsumer.lean`; `ReciprocalSwapReduction.lean` | Preserve the actual source and exact blocker rows; expose a provenance-bearing common-deletion output or the swapped unique-row dependency. | Every cycle reaches an anchored transition. The anchored cover fallback is eliminated, and every anchored transition has an off-surplus row-external source whose deletion preserves the same two rows. Thus terminal-hit versus minimal-cycle provenance is not needed to produce the next common deletion, although it may still be needed to consume it. In the reciprocal split, prescribed criticality supplies a swapped first-apex `FA-UNIQ4` branch; reciprocal common deletion remains provenance-bearing and nonterminal. All accepted adapters use only the three core axioms. No production sorry is closed. |
 | ATAIL-R-DANGEROUS-RETAINING | CHECKED-SCRATCH 2026-07-16; FIRST-CENTER ALIGNMENT CHARACTERIZED BUT NOT FORCED; LIVE-HEAVY SUCCESSOR PAIR/RANK SURFACE EXPLICIT; LIVE-CENTER AND SECOND-APEX METRIC CONSTRUCTORS REDUCED | `DangerousRowCoupling.lean`; `DangerousRetainingFullParentNormalForm.lean`; failure/F2 normal forms; F1/F3, F2 original-`q`, generated-successor, and support-heavy reports | Keep the live dangerous row in the same critical system and consume exact common-deletion profiles with named source/center roles. | The aligned surface has source-faithful reductions for every F profile. F1/F3 route to protected `FA-UNIQ4/5` or an exact cap-at-least-six successor. Native anchored live-heavy constructs both full-parent outside-middle successors; their source-equality/cross-survival split and cap-rank alternatives are explicit. The q-critical/q-critical metric arm closes from perpendicular-bisector localization plus the retained non-Moser hypothesis, and the equal-source-at-live-center constructor closes for every generated-row constructor pair by raw-support companion descent plus cap order. The second-apex metric arm now reduces to reroute at `x` or `y`, so the current postmix source split has five arms. Physical mixed confinement still has exactly three constructor-indexed two-common-point residuals. Support-heavy remains eight callbacks, with q-critical boundary absorption and its both-q-critical metric arm closed. Reciprocal and spent F2 require source-faithful adapters. Anonymous support-cardinality mining, the retired uniform named-hit disjunction, impossible live-center/second-apex metric producers, omission-to-metric inference, and unranked reclassification remain prohibited. |
 | ATAIL-R-FRONTIER-PROGRESS | CHECKED-SCRATCH 2026-07-16; PAIR-LOCAL FRESHNESS ONLY, NO WELL-FOUNDED RANK | `AnchoredTwoRowCoverConsumer.lean`; `AnchoredOffSurplusFrontierSuccessor.lean`; `FrontierProgressAudit.lean` | Determine whether same-radius recurrence is strict in a retained history/rank. | The successor pair differs from the current source pair and the new endpoint avoids the current source. The deleted endpoint is either retained by the terminal carrier or already erased. The retained branch yields another retained row-external source or the exact terminal three-point residual; the cycle branch explicitly reuses erased history. Because `CriticalPairFrontier` forgets predecessor and history, no global nonrecurrence or strict descent follows. A new rank must be carried in the theorem statement rather than inferred from `Nonempty CriticalPairFrontier`. |
@@ -2424,3 +2441,126 @@ The normalized-remaining theorem therefore remains
 `OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`; the parked probes and bounded
 incidence searches provide diagnostic evidence only and do not change the
 closure count.
+
+### FreshThird noncanonical same-cap two-center adapter checkpoint (2026-08-03)
+
+The parked Lean 4.27 adapter
+`scratch/freshthird-noncanonical-two-center-adapter-20260803.lean` now
+typechecks and reports only `propext`, `Classical.choice`, and `Quot.sound`.
+With explicit hypotheses that both fresh support points are outside the common
+indexed cap, it derives both shell equalities and invokes
+`ATailUniqueRowProducerScratch.false_of_two_cap_centers_equidistant_outside_pair`.
+
+This does not close the live branch.  The production
+`sameCapWithInternalFiberSource` constructor retains
+`Q.source₁ ∈ cap ∨ Q.source₂ ∈ cap`, incompatible with the adapter’s
+two-outside premise.  The missing producer is therefore either a
+one-inside/one-outside terminal or a source-faithful incidence/order
+strengthening. The normalized-remaining theorem remains
+`OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`; no closure credit is assigned.
+
+### FreshThird v35 nonapex-transitivity hard-canary checkpoint (2026-08-03)
+
+The approved source-entitled v35 slice completed with a valid child contract
+but no terminal result.  Its twelve exact-15 `DDD` role cases all returned
+`UNKNOWN` within the five-minute case budget; 189 metric assignments were
+checked in total, and no case was `SAT`, terminal `UNSAT`, or a contract error.
+The run is recorded under
+`scratch/retained-omission-e1/round5-general-cegar/artifacts-v35-hard-canary-production1/20260803T214414.991226Z-hard-canary-pid13301/`.
+
+The slice added 1,320 ordered distinct-nonapex six-literal transitivity
+clauses with zero semantic-Boolean increase (1,076 semantic Booleans and 38
+trackers per case).  The focused v35 plus telemetry suite passed all 13 tests,
+and the artifact source-integrity hashes are pinned to the authenticated
+run.  This is computational evidence only: the CEGAR lane has no finite
+certificate and does not change the Lean closure count.
+
+The corresponding source-clean producer
+`Problem97.mem_selectedClass_of_mutualClassPair_sharedMember` compiles under
+Lean 4.27 with axiom profile `propext`, `Classical.choice`, and `Quot.sound`.
+It is currently a compatibility bank theorem (the exact-fifteen S-profile
+module imports the file only for the older negative terminal); no live
+consumer supplies the missing reciprocal incidence in the normalized residual.
+The load-bearing theorem therefore remains
+`OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`, with no new `sorry` and no
+closure credit.
+
+### FreshThird one-inside/one-outside interface shadow (2026-08-03)
+
+The remaining noncanonical same-cap arm was tested against a bounded
+incidence/cap shadow using the fields actually retained by
+`FreshThirdBlockerFiber`, `FreshThirdEqualCenterExactFourRow`, and
+`sameCapWithInternalFiberSource`.  The witness has exact-four cap-source
+supports `{c₁,c₂,q₁,q₂}`, a reciprocal fresh pair with one equal blocker,
+distinct source/fresh centers, and a noncanonical cap containing exactly one
+of `q₁,q₂`; the shadow is satisfiable.  The script and output are
+`scratch/freshthird_one_inside_one_outside_shadow.py` and
+`scratch/freshthird_one_inside_one_outside_shadow.out`.
+
+This is incidence/cap-level diagnostic evidence only: it omits Euclidean
+metric, cyclic-order, and Kalmanson constraints, so it is not a countermodel
+to the geometric theorem.  It does establish that those packet fields alone
+do not expose an unconditional contradiction.  The honest next producer must
+therefore add a metric/order invariant (or strengthen the interface with
+common-radius/reciprocal-incidence data); no closure credit is assigned.
+
+### FreshThird non-hit theorem-bank audit (2026-08-03)
+
+The indexed U5/survival-cover audit found no source-clean consumer for the
+`firstNonHit` or `secondNonHit` constructors.  Their `sourceRowOmission`
+payloads can be converted to a q-free exact-four `U5QDeletedK4Class`, but the
+current packet gives only one deletion-survival row and therefore does not
+meet the five-center deletion terminal.  Their `sameBlocker` payloads can
+recover equal selected supports via
+`selectedSupports_eq_of_actualBlockers_eq`, which is positive bookkeeping,
+not a contradiction.  This confirms that the normalized-remaining theorem is
+still `OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`; no closure credit is
+assigned.
+
+### FreshThird row-count and sameBlocker probes (2026-08-03)
+
+The row-count audit found only local bounds applicable to the normalized
+residual: `selectedFourClass_inter_capByIndex_card_le_two`, the outside-pair
+uniqueness lemma, and finite ordered-cap counting statements.  The latter
+require a `MecCapPacket`/`StrictCapOrder`/`FaithfulCarrierPattern` interface
+which the residual does not carry.  Consequently the one-inside/one-outside
+arm cannot be promoted by an existing row-count theorem.
+
+The sameBlocker/sourceRowOmission probe is likewise nonterminal.  `sameBlocker`
+recovers center and support equality, but the fresh shell incidence is
+compatible with that equality and only contradicts an independently supplied
+cross-row hit.  `sourceRowOmission` is row-local; its deletion-survival field
+does not imply `False` and does not yield the five distinct survival centers
+required by the deletion consumer.  The target remains
+`OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`.
+
+### FreshThird five-center producer applicability check (2026-08-03)
+
+The source-clean first-fiber producers
+`firstFiber_firstSourceHit_or_fiveCenterDeletion`,
+`firstFiber_twoAnchorHits_or_anchoredFiveCenterDeletion`, and
+`SixCenterDeletionSurvivalPacket_of_oneSided` were checked against the live
+normalized residual.  The first two require a `FreshOutsideFirstBlockerFiber`
+or anchored first-fiber packet, including a source outside the canonical cap
+and cap-minus-row exact-pair data.  The six-center producer additionally
+requires one-sided deletion survival for the two cap-source witnesses, while
+the residual supplies survival only against the fresh third sources.  Thus no
+conversion is type-correct and the deletion consumers cannot be used as a
+hidden bridge.  The normalized-remaining theorem stays
+`OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`.
+
+### FreshThird equal-center and metric/order consumer search (2026-08-03)
+
+The equal-center and mixed one-inside/one-outside residuals were checked
+against the source-clean cap-cardinality, outside-overlap,
+perpendicular-bisector, cyclic-order, and Kalmanson banks.  No import-reachable
+terminal consumes either packet.  The equal-center branch lacks a third
+noncanonical-cap support point, common outside endpoint pair, or physical
+opposite-apex localization; the mixed branch lacks convex-boundary order data
+and a shell-to-chord/Kalmanson equality producer.  Candidate signatures and
+the missing hypotheses are archived in
+`scratch/freshthird-equalcenter-terminal-search-20260803.md` and
+`scratch/freshthird-metric-order-consumer-search-20260803.md`.
+
+Status is unchanged: `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining`
+is `OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`, with no closure credit.

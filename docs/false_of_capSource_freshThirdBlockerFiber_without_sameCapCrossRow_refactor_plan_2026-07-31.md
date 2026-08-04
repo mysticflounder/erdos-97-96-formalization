@@ -1,3 +1,14 @@
+> **Status 2026-08-03 — LANDED, with a naming divergence.** The positive
+> normal form this plan proposes is implemented, at
+> `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:10375-11343`, as the
+> `FreshThirdCapSourceInteraction` / `FreshThirdTwoCapSourceObstruction`
+> machinery. The public theorem name proposed below,
+> `false_of_capSource_freshThirdBlockerFiber_core`, was **not** adopted and
+> exists nowhere in `lean/`. The descendant obligation that actually carries
+> the `sorry` is
+> `false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining`
+> (`:11324`), which is a current active anchor. Dispatch against that name.
+
 ## Verdict
 
 **Yes.** This is a strong refactor candidate, but the right refactor is more surgical than the E1 refactor.

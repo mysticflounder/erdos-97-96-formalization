@@ -508,6 +508,15 @@ weaken portability without contributing to this proof.
 
 ## 8. Ranked next actions
 
+> **Status update 2026-08-03.** Item 1 is half-done. The formalization landed
+> as `lean/Erdos9796Proof/P97/Phase3ThreeRhombusRowAdapter.lean` and
+> `lean/Erdos9796Proof/P97/Phase3MetricCertificateBank.lean` (both 2026-08-02),
+> but the *integration* half has not: the bank imports the adapter and nothing
+> imports the bank, so the pair is an orphan island unreachable from the
+> `Problem97.erdos97_rhs` spine. The "source-clean unimported declaration"
+> classification in `docs/p97-three-rhombus-collision-skeptic-audit-2026-08-01.md`
+> therefore still stands. Items 2–5 are untouched.
+
 1. **Formalize and integrate the direct 13-atom rule.**  It is literal-minimal,
    has a two-line vector conclusion after the four-cycle lemma, and rejects the
    fixed 100-survivor projected-static-v2 residual with one clause.

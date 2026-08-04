@@ -1,5 +1,16 @@
 # ATAIL-FORCE parent robust-contradiction plan (2026-07-13, refreshed 2026-07-17)
 
+> **Freshness note (2026-08-03).** Partially superseded — kept because its
+> assembler `Problem97.ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap`
+> is still an open node on the `Problem97.erdos97_rhs` spine. But the producer
+> taxonomy this plan builds around is gone: `false_of_largeOppositeCapsBiApexRobust`,
+> named 12 times below, exists nowhere in `lean/` or `attic/`. That layer was
+> replaced by the 2026-08-02 E1 retained-omission decomposition and the
+> `TwoSourceExactCollisionRowsTerminal` / FreshThird machinery from which the
+> current 28 on-spine leaves are drawn. Read the producer sections as design
+> history; take live leaf names from `docs/live-blueprint.md` and family-level
+> status from `docs/p97-spine-closure-audit-2026-08-03.md`.
+
 ## Status and lane authorization
 
 Cardinality nomenclature is now fixed for this lane:
@@ -5040,7 +5051,7 @@ continuation is assigned, closing `R` alone will not close K-A-PAIR.
 
 The proposed next bounded query on two continuation rows has now been
 source- and consumer-audited before encoding.  The audit is
-`docs/audits/2026-07-15-r-global-continuation-object-gate.md`.  The verdict is
+`docs/archive/2026-08-03-doc-sweep/audits/2026-07-15-r-global-continuation-object-gate.md`.  The verdict is
 fail-closed: **no formula was generated and no solver was run**.
 
 For one concrete frontier `F` on the `R` arm, the checked source can construct
@@ -5864,7 +5875,7 @@ producer accepted by `LargeCapUniqueFiveShortCapTerminal`. The generic
 producer: it controls neither the physical second apex nor a four-cap. The
 alternative route therefore needs new MEC-boundary geometry, not a relabelled
 global-K4 packet; see
-`docs/audits/2026-07-20-exact-five-short-cap-terminal-audit.md`.
+`docs/archive/2026-08-03-doc-sweep/audits/2026-07-20-exact-five-short-cap-terminal-audit.md`.
 
 The first two implementation stages are complete; the remaining order is:
 
