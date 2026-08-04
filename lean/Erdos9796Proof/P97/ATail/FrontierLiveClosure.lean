@@ -35,6 +35,7 @@ import Erdos9796Proof.P97.ConvexIndepHelpers
 import Erdos9796Proof.P97.Moser.NonDeg
 import Erdos9796Proof.P97.SameShellSuperadditivity
 import Erdos9796Proof.P97.TwoCenterAcute
+import Erdos9796Proof.P97.U1CarrierInjection
 
 /-!
 # Live large-cap frontier closure boundary
@@ -8197,6 +8198,341 @@ theorem endpointFresh_exists_prescribedRow_escape_twoShellSeed_of_sharedBlocker
   refine ⟨center, hcenter, z, ?_, hzOutside⟩
   simpa only [hG center hcenter] using hzRow
 
+/-- One endpoint seed center is intrinsically escaping: every selected
+four-class centered there contains a carrier point outside the two-shell seed.
+
+This is the choice-free consequence of the prescribed-row escape theorem.  It
+turns the finite-search quantifier order
+`∀ row assignment, ∃ escaping center` into
+`∃ center, ∀ selected row, the row escapes`, without identifying a selected
+support with a full physical radius class. -/
+theorem endpointFresh_exists_seedCenter_all_selectedRows_escape_twoShellSeed_of_sharedBlocker
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    (E : RetainedMatchingEndpointCriticalFiber W)
+    (Q : EndpointFreshFirstApexRowSource E)
+    (K_mem_J_shell :
+      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+    (hAX :
+      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+        H.centerAt Q.J Q.J_mem_A)
+    (hcard : 15 ≤ D.A.card) :
+    ∃ center : ℝ²,
+      ∃ _hcenter : center ∈ endpointFreshTwoShellSeed E Q,
+        ∀ K : SelectedFourClass D.A center,
+          ∃ z : ℝ²,
+            z ∈ K.support ∧ z ∉ endpointFreshTwoShellSeed E Q := by
+  have hseedSub : endpointFreshTwoShellSeed E Q ⊆ D.A :=
+    endpointFresh_twoShellSeed_subset_carrier E Q
+  have hseedNonempty : (endpointFreshTwoShellSeed E Q).Nonempty := by
+    let KA :=
+      (H.selectedAt E.fiber.source₁.1
+        E.fiber.source₁.2).toCriticalFourShell
+    refine ⟨E.fiber.source₁.1, ?_⟩
+    exact Finset.mem_union_left _ KA.q_mem_support
+  have hseedCard : (endpointFreshTwoShellSeed E Q).card = 6 :=
+    endpointFresh_twoShellSeed_card_eq_six_of_sharedBlocker
+      Q K_mem_J_shell hAX
+  have hseedProper : endpointFreshTwoShellSeed E Q ≠ D.A := by
+    intro hseedEq
+    have hAcard : D.A.card = 6 := by
+      simpa [hseedEq] using hseedCard
+    omega
+  exact
+    Problem97.exists_center_all_selectedFourClass_escape_of_proper_subset
+      R.minimal hseedNonempty hseedSub hseedProper
+
+/-- Pinned-multiplicity form of the universal escape producer: at one of the
+six endpoint seed centers, every positive-radius carrier class contains at
+most three seed points.
+
+Indeed, four seed points on one such class could be trimmed to a selected
+four-class wholly contained in the seed, contradicting universal escape at
+the pinned center.  This statement is phrased in full physical
+`SelectedClass` multiplicities for direct use by finite encoders. -/
+theorem endpointFresh_exists_seedCenter_selectedClass_seed_card_le_three_of_sharedBlocker
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    (E : RetainedMatchingEndpointCriticalFiber W)
+    (Q : EndpointFreshFirstApexRowSource E)
+    (K_mem_J_shell :
+      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+    (hAX :
+      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+        H.centerAt Q.J Q.J_mem_A)
+    (hcard : 15 ≤ D.A.card) :
+    ∃ center : ℝ²,
+      ∃ _hcenter : center ∈ endpointFreshTwoShellSeed E Q,
+        ∀ shellRadius : ℝ,
+          0 < shellRadius →
+            ((SelectedClass D.A center shellRadius) ∩
+                endpointFreshTwoShellSeed E Q).card ≤ 3 := by
+  have hseedSub : endpointFreshTwoShellSeed E Q ⊆ D.A :=
+    endpointFresh_twoShellSeed_subset_carrier E Q
+  have hseedNonempty : (endpointFreshTwoShellSeed E Q).Nonempty := by
+    let KA :=
+      (H.selectedAt E.fiber.source₁.1
+        E.fiber.source₁.2).toCriticalFourShell
+    refine ⟨E.fiber.source₁.1, ?_⟩
+    exact Finset.mem_union_left _ KA.q_mem_support
+  have hseedCard : (endpointFreshTwoShellSeed E Q).card = 6 :=
+    endpointFresh_twoShellSeed_card_eq_six_of_sharedBlocker
+      Q K_mem_J_shell hAX
+  have hseedProper : endpointFreshTwoShellSeed E Q ≠ D.A := by
+    intro hseedEq
+    have hAcard : D.A.card = 6 := by
+      simpa [hseedEq] using hseedCard
+    omega
+  exact
+    Problem97.exists_center_selectedClass_inter_card_le_three_of_proper_subset
+      R.minimal hseedNonempty hseedSub hseedProper
+
+/-- The pinned low-multiplicity center is neither center of either exposed
+four-point shell: it is distinct from the first apex and from the common
+blocker center.
+
+Each excluded center already has four points of one positive physical shell
+inside the endpoint seed.  This is a role exclusion for the pinned center; it
+does not identify which of the other six seed roles the center occupies. -/
+theorem endpointFresh_exists_seedCenter_ne_firstApex_ne_sharedBlocker_selectedClass_seed_card_le_three
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    {W : RetainedMatchingTwoStepCommonDeletionWalk R}
+    (E : RetainedMatchingEndpointCriticalFiber W)
+    (Q : EndpointFreshFirstApexRowSource E)
+    (K_mem_J_shell :
+      Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+    (hAX :
+      H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 =
+        H.centerAt Q.J Q.J_mem_A)
+    (hcard : 15 ≤ D.A.card) :
+    ∃ center : ℝ²,
+      ∃ _hcenter : center ∈ endpointFreshTwoShellSeed E Q,
+        center ≠ S.oppApex1 ∧
+          center ≠ H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 ∧
+            ∀ shellRadius : ℝ,
+              0 < shellRadius →
+                ((SelectedClass D.A center shellRadius) ∩
+                    endpointFreshTwoShellSeed E Q).card ≤ 3 := by
+  rcases
+      endpointFresh_exists_seedCenter_selectedClass_seed_card_le_three_of_sharedBlocker
+        R E Q K_mem_J_shell hAX hcard with
+    ⟨center, hcenter, hmult⟩
+  refine ⟨center, hcenter, ?_, ?_, hmult⟩
+  · intro hcenter
+    have hrowSub :
+        Q.row.support ⊆
+          SelectedClass D.A center Q.row.radius ∩
+            endpointFreshTwoShellSeed E Q := by
+      intro z hz
+      refine Finset.mem_inter.mpr ⟨?_, ?_⟩
+      · rw [mem_selectedClass]
+        exact ⟨Q.row.support_subset_A hz, by
+          simpa [hcenter] using Q.row.support_eq_radius z hz⟩
+      · simp only [endpointFreshTwoShellSeed, Finset.mem_union]
+        exact Or.inr hz
+    have hfour := Finset.card_le_card hrowSub
+    have hthree := hmult Q.row.radius Q.row.radius_pos
+    rw [Q.row.support_card] at hfour
+    omega
+  · intro hcenter
+    let KA :=
+      (H.selectedAt E.fiber.source₁.1
+        E.fiber.source₁.2).toCriticalFourShell
+    have hrowSub :
+        KA.support ⊆
+          SelectedClass D.A center KA.radius ∩
+            endpointFreshTwoShellSeed E Q := by
+      intro z hz
+      refine Finset.mem_inter.mpr ⟨?_, ?_⟩
+      · rw [mem_selectedClass]
+        exact ⟨KA.support_subset_A hz, by
+          simpa [hcenter] using KA.support_eq_radius z hz⟩
+      · simp only [endpointFreshTwoShellSeed, Finset.mem_union]
+        exact Or.inl hz
+    have hfour := Finset.card_le_card hrowSub
+    have hthree := hmult KA.radius KA.radius_pos
+    rw [KA.support_card] at hfour
+    omega
+
+/-- At exact cardinality fifteen, a `D44` first cap forces the two endpoint
+deletion rows into opposite rich classes.  The row deleting the retained
+source is the other-radius class, while the row deleting the fresh source is
+the retained-radius class and hence the named endpoint row. -/
+theorem endpointFresh_d44_deletedRows_of_card_eq_fifteen
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    {P : RetainedInteriorDirectedOmission R}
+    (O : OrientedRetainedCommonDeletion P)
+    (C : ReverseHitFreshEndpointContext R O)
+    (E : RetainedMatchingEndpointCriticalFiber C.walk)
+    (Q : EndpointFreshFirstApexRowSource E)
+    (hcard : D.A.card = 15)
+    {otherRadius : ℝ}
+    (hOtherPos : 0 < otherRadius)
+    (hRadiusNe : radius ≠ otherRadius)
+    (hOtherFour :
+      4 ≤ (SelectedClass D.A S.oppApex1 otherRadius).card) :
+    Q.K ∈ SelectedClass D.A S.oppApex1 otherRadius ∧
+      O.packet.B₁ = SelectedClass D.A S.oppApex1 otherRadius ∧
+      C.freshPacket.B₁ = SelectedClass D.A S.oppApex1 radius ∧
+      Q.row.support = SelectedClass D.A S.oppApex1 radius ∧
+      C.freshPacket.B₁ = Q.row.support ∧
+      Q.K ∈ O.packet.B₁ := by
+  classical
+  have happ :
+      S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i <;>
+      simp [SurplusCapPacket.oppApex1,
+        SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, hi]
+  let deletedAtM :=
+    ATailFiveCenterDeletionBoundary.qDeletedK4ClassToSelectedFourClass
+      O.packet.row₁ O.packet.B₁_card
+  let deletedAtK :=
+    ATailFiveCenterDeletionBoundary.qDeletedK4ClassToSelectedFourClass
+      C.freshPacket.row₁ C.freshPacket.B₁_card
+  have hcap :
+      (S.capByIndex S.oppIndex1).card = 6 :=
+    ATailExactFifteenApexProfile.capByIndex_card_eq_six_of_card_eq_fifteen
+      S hcard C.allLarge.cap_card_ge_six S.oppIndex1
+  have hCeq : Q.C = O.kept :=
+    Q.C_eq_fiber_source₁.trans
+      (E.fiber_source₁_eq_first.trans C.walk_first_eq)
+  have hKeq : Q.K = C.fresh :=
+    Q.K_eq_fiber_source₂.trans
+      (E.fiber_source₂_eq_next.trans C.walk_next_eq)
+  have hbase :=
+    ATailExactFifteenApexProfile.twoRichClass_deletedRows_forced_assignment_of_center_eq_opposite
+      S D.convex S.oppIndex1 happ F.radius_pos hOtherPos hRadiusNe
+      R.frontierRadius_class_card_ge_four hOtherFour hcap
+      deletedAtM deletedAtK Q.C O.deleted Q.K
+      Q.C_mem_radius O.deleted_mem_radius
+      (by simpa only [hCeq] using O.kept_mem_capInterior)
+      O.deleted_mem_capInterior
+      (by simpa only [hKeq] using C.fresh_mem_capInterior)
+      (by
+        intro h
+        exact O.sources_ne (hCeq.symm.trans h))
+      (by
+        intro h
+        exact C.fresh_ne_kept (hKeq.symm.trans (h.trans hCeq)))
+      (by
+        intro h
+        exact C.fresh_ne_deleted (hKeq.symm.trans h))
+      (by
+        simpa [deletedAtM,
+          ATailFiveCenterDeletionBoundary.qDeletedK4ClassToSelectedFourClass]
+          using O.packet.row₁.q_not_mem)
+      (by
+        simpa [deletedAtK, hKeq,
+          ATailFiveCenterDeletionBoundary.qDeletedK4ClassToSelectedFourClass]
+          using C.freshPacket.row₁.q_not_mem)
+  have hbase' :
+      Q.K ∈ SelectedClass D.A S.oppApex1 otherRadius ∧
+        O.packet.B₁ = SelectedClass D.A S.oppApex1 otherRadius ∧
+        C.freshPacket.B₁ = SelectedClass D.A S.oppApex1 radius := by
+    simpa [deletedAtM, deletedAtK,
+      ATailFiveCenterDeletionBoundary.qDeletedK4ClassToSelectedFourClass]
+      using hbase
+  have hfourRadius :
+      4 ≤ (SelectedClass D.A
+        (S.oppositeVertexByIndex S.oppIndex1) radius).card := by
+    simpa only [← happ] using R.frontierRadius_class_card_ge_four
+  have hfourOther :
+      4 ≤ (SelectedClass D.A
+        (S.oppositeVertexByIndex S.oppIndex1) otherRadius).card := by
+    simpa only [← happ] using hOtherFour
+  have hcardsAtIndex :=
+    ATailExactFifteenApexProfile.twoRichClasses_card_eq_four_of_cap_card_eq_six
+      S D.convex S.oppIndex1 F.radius_pos hOtherPos hRadiusNe
+      hfourRadius hfourOther hcap
+  have hcards :
+      (SelectedClass D.A S.oppApex1 radius).card = 4 ∧
+        (SelectedClass D.A S.oppApex1 otherRadius).card = 4 := by
+    simpa only [← happ] using hcardsAtIndex
+  have hQsub :
+      Q.row.support ⊆ SelectedClass D.A S.oppApex1 radius := by
+    simpa [Q.row_radius_eq] using
+      ATailExactFifteenApexProfile.selectedFourClass_support_subset_selectedClass
+        Q.row
+  have hQeq :
+      Q.row.support = SelectedClass D.A S.oppApex1 radius := by
+    apply Finset.eq_of_subset_of_card_le hQsub
+    have hclassCard :
+        (SelectedClass D.A S.oppApex1 radius).card = 4 := by
+      exact hcards.1
+    rw [hclassCard, Q.row.support_card]
+  exact ⟨hbase'.1, hbase'.2.1, hbase'.2.2, hQeq,
+    hbase'.2.2.trans hQeq.symm, by
+      rw [hbase'.2.1]
+      exact hbase'.1⟩
+
+/-- In the same exact-fifteen `D44` packet, the fresh first-apex deletion row
+meets the deleted source's canonical shell in exactly the two retained-radius
+sources.  This is the exact `Sigma_B` intersection promised by finite cap
+exhaustion; no endpoint blocker placement is inferred here. -/
+theorem endpointFresh_d44_freshRow_inter_reverseShell_eq_sources_of_card_eq_fifteen
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    {P : RetainedInteriorDirectedOmission R}
+    (O : OrientedRetainedCommonDeletion P)
+    (C : ReverseHitFreshEndpointContext R O)
+    (E : RetainedMatchingEndpointCriticalFiber C.walk)
+    (Q : EndpointFreshFirstApexRowSource E)
+    (hcard : D.A.card = 15)
+    {otherRadius : ℝ}
+    (hOtherPos : 0 < otherRadius)
+    (hRadiusNe : radius ≠ otherRadius)
+    (hOtherFour :
+      4 ≤ (SelectedClass D.A S.oppApex1 otherRadius).card) :
+    C.freshPacket.B₁ ∩
+        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support =
+      {O.kept, O.deleted} := by
+  classical
+  have hrows := endpointFresh_d44_deletedRows_of_card_eq_fifteen
+    R O C E Q hcard hOtherPos hRadiusNe hOtherFour
+  have hB₂ :
+      C.freshPacket.B₂ =
+        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support :=
+    ATailFiveCenterDeletionBoundary.qDeletedK4Class_support_eq_selectedShell
+      O.deleted_mem_A C.freshPacket.row₂ C.freshPacket.B₂_card
+  have hpairSub :
+      ({O.kept, O.deleted} : Finset ℝ²) ⊆
+        C.freshPacket.B₁ ∩
+          (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support := by
+    intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl
+    · exact Finset.mem_inter.mpr ⟨by
+        rw [hrows.2.2.1]
+        exact O.kept_mem_radius, C.reverse_mem⟩
+    · exact Finset.mem_inter.mpr ⟨by
+        rw [hrows.2.2.1]
+        exact O.deleted_mem_radius,
+        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.q_mem_support⟩
+  have hinterCard :
+      (C.freshPacket.B₁ ∩
+        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support).card ≤ 2 := by
+    rw [← hB₂]
+    exact C.freshPacket.overlap_le_two
+  symm
+  exact Finset.eq_of_subset_of_card_le hpairSub (by
+    simpa [O.sources_ne] using hinterCard)
+
 /-- Cross-hit subproblem in which the common endpoint blocker is the fresh
 first-apex row source (`A = J`). -/
 theorem false_of_retainedOmission_reverseHitFresh_endpointCrossHit_firstCenterEqFreshSource_triApexAllLarge_core
@@ -15909,10 +16245,7 @@ theorem false_of_capSource_freshOutsideSecondBlockerFiber
     (capSourceThirdCanonicalRowSurface_swap P Pρ hcapSource)
     (hsecond.map FreshOutsideSecondBlockerFiber.toSwappedFirst)
 
-end
-
-end TwoSourceExactCollisionRowsTerminal
-
+omit D S radius ρ H F R P Fρ Rρ Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq B L N T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- Source-exact collision rows force either the desired three-hit shell or
 one concrete cross-row incidence.
 
@@ -16097,6 +16430,8 @@ theorem exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows
             (LP := LP) (hLP := hLP) (MP := MP)
             hcoincidence hresidual)
 
+
+omit D S radius ρ H F R P Fρ Rρ Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq B L N T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- The retained two-cycle and tri-apex normal form forces a three-hit
 canonical shell at one of the three rich Moser apices.
 
@@ -16229,6 +16564,7 @@ theorem exists_three_hit_of_two_collisionRows_capCross_normalForm
     · exact False.elim (hcrossOmissions.2.2.1 hcross)
     · exact False.elim (hcrossOmissions.2.2.2.1 hcross)
 
+omit D S radius ρ H F R P Fρ Rρ Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq B L N T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- Two source-exact equal-blocker rows on distinct first-apex radii force a
 three-hit canonical shell at one of the three rich Moser apices.
 
@@ -16435,6 +16771,7 @@ theorem exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollis
         T hpairsDisjoint hblockersNe hcrossOmissions
           LPρ hLPρ MPρ LP hLP MP hcapEightOrCross
 
+omit D S radius ρ H F R P Fρ Rρ Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq B L N T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- The symmetric two-radius collision normal form.
 
 Both distinct first-apex radii have cardinality exactly four, exactly two
@@ -16490,6 +16827,11 @@ theorem false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_al
       F R P Fρ Rρ Pρ hρne hfrontierFour hρfour
         hfrontierInteriorTwo hρInteriorTwo B L N T
   exact (not_le_of_gt hthree) (hlow i x hx r hrich)
+
+
+end
+
+end TwoSourceExactCollisionRowsTerminal
 
 /-- Exact-four, two-radius collision branch of the low-hit tri-apex
 contradiction.
@@ -16837,7 +17179,7 @@ theorem false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hit
               S.capInteriorByIndex S.oppIndex1).card = 2 := by
           omega
         exact
-          false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits
+          TwoSourceExactCollisionRowsTerminal.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits
             F R P Fρ Rρ Pρ hρne hfrontierFour hρexactFour
               hfrontierInteriorTwo hρInteriorTwo B L N T
   · have homission :

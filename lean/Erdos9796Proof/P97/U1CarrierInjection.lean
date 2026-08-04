@@ -531,6 +531,102 @@ theorem inter_card_le_two {A : Finset ℝ²} {x y : ℝ²}
   · exact hac hca.symm
   · exact hbc hcb.symm
 
+private theorem exact_overlap_of_cap_singleton_of_card_bound
+    {α : Type*} [DecidableEq α] {K L C : Finset α} {J : α}
+    (hinter_le : (K ∩ L).card ≤ 2)
+    (hcap : K ∩ C = {J})
+    (hJ : J ∈ K ∩ L)
+    (hinter_ge : 2 ≤ (K ∩ L).card) :
+    ∃ x, x ∉ C ∧ K ∩ L = {J, x} ∧
+      (K \ C) ∩ (L \ C) = {x} := by
+  classical
+  have hinter_card : (K ∩ L).card = 2 := le_antisymm hinter_le hinter_ge
+  have hJcap : J ∈ C := by
+    have hJKC : J ∈ K ∩ C := by
+      rw [hcap]
+      simp
+    exact (Finset.mem_inter.mp hJKC).2
+  rw [Finset.card_eq_two] at hinter_card
+  rcases hinter_card with ⟨a, b, hab, hinter_eq⟩
+  have hJab : J = a ∨ J = b := by
+    rw [hinter_eq] at hJ
+    simpa only [Finset.mem_insert, Finset.mem_singleton] using hJ
+  rcases hJab with rfl | rfl
+  · have hbKL : b ∈ K ∩ L := by
+      rw [hinter_eq]
+      simp
+    have hbK : b ∈ K := (Finset.mem_inter.mp hbKL).1
+    have hbnotC : b ∉ C := by
+      intro hbC
+      have hbKC : b ∈ K ∩ C := Finset.mem_inter.mpr ⟨hbK, hbC⟩
+      rw [hcap] at hbKC
+      have hbJ : b = J := by simpa using hbKC
+      exact hab hbJ.symm
+    refine ⟨b, hbnotC, hinter_eq, ?_⟩
+    ext z
+    constructor
+    · intro hz
+      rcases Finset.mem_inter.mp hz with ⟨hzKC, hzLC⟩
+      have hzKL : z ∈ K ∩ L :=
+        Finset.mem_inter.mpr
+          ⟨(Finset.mem_sdiff.mp hzKC).1, (Finset.mem_sdiff.mp hzLC).1⟩
+      rw [hinter_eq] at hzKL
+      rcases Finset.mem_insert.mp hzKL with hzA | hzB
+      · subst z
+        exact False.elim ((Finset.mem_sdiff.mp hzKC).2 hJcap)
+      · simpa only [Finset.mem_singleton] using hzB
+    · intro hz
+      have hzb : z = b := Finset.mem_singleton.mp hz
+      subst z
+      exact Finset.mem_inter.mpr
+        ⟨Finset.mem_sdiff.mpr ⟨(Finset.mem_inter.mp hbKL).1, hbnotC⟩,
+          Finset.mem_sdiff.mpr ⟨(Finset.mem_inter.mp hbKL).2, hbnotC⟩⟩
+  · have haKL : a ∈ K ∩ L := by
+      rw [hinter_eq]
+      simp
+    have haK : a ∈ K := (Finset.mem_inter.mp haKL).1
+    have hanotC : a ∉ C := by
+      intro haC
+      have haKC : a ∈ K ∩ C := Finset.mem_inter.mpr ⟨haK, haC⟩
+      rw [hcap] at haKC
+      have haJ : a = J := by simpa using haKC
+      exact hab haJ
+    refine ⟨a, hanotC, ?_, ?_⟩
+    · simpa [Finset.pair_comm] using hinter_eq
+    · ext z
+      constructor
+      · intro hz
+        rcases Finset.mem_inter.mp hz with ⟨hzKC, hzLC⟩
+        have hzKL : z ∈ K ∩ L :=
+          Finset.mem_inter.mpr
+            ⟨(Finset.mem_sdiff.mp hzKC).1, (Finset.mem_sdiff.mp hzLC).1⟩
+        rw [hinter_eq] at hzKL
+        rcases Finset.mem_insert.mp hzKL with hzA | hzB
+        · simpa only [Finset.mem_singleton] using hzA
+        · have hzJ : z = J := Finset.mem_singleton.mp hzB
+          subst z
+          exact False.elim ((Finset.mem_sdiff.mp hzKC).2 hJcap)
+      · intro hz
+        have hza : z = a := Finset.mem_singleton.mp hz
+        subst z
+        exact Finset.mem_inter.mpr
+          ⟨Finset.mem_sdiff.mpr ⟨(Finset.mem_inter.mp haKL).1, hanotC⟩,
+            Finset.mem_sdiff.mpr ⟨(Finset.mem_inter.mp haKL).2, hanotC⟩⟩
+
+/-- If two selected four-classes overlap twice and the first meets `C` only at
+`J`, their overlap is exactly `J` together with one point outside `C`. -/
+theorem exact_overlap_of_cap_singleton
+    {A : Finset ℝ²} {C : Finset ℝ²} {c d J : ℝ²}
+    (Kc : SelectedFourClass A c) (Kd : SelectedFourClass A d)
+    (hcd : c ≠ d)
+    (hcap : Kc.support ∩ C = {J})
+    (hJ : J ∈ Kc.support ∩ Kd.support)
+    (hoverlap_ge_two : 2 ≤ (Kc.support ∩ Kd.support).card) :
+    ∃ x, x ∉ C ∧ Kc.support ∩ Kd.support = {J, x} ∧
+      (Kc.support \ C) ∩ (Kd.support \ C) = {x} := by
+  exact exact_overlap_of_cap_singleton_of_card_bound
+    (inter_card_le_two Kc Kd hcd) hcap hJ hoverlap_ge_two
+
 end SelectedFourClass
 
 /-- A critical four-shell at `center`, sourced by deleting `q`.
@@ -1650,6 +1746,88 @@ theorem exists_faithfulCarrierPattern_with_classes_on
   }, ?_⟩
   intro center hcenter
   simp [classAt, hcenter]
+
+/-- In a minimal counterexample, every nonempty proper carrier subset has a
+single center at which every selected four-class escapes the subset.
+
+This is the quantifier-normalized form of
+`FaithfulCarrierPattern.exists_row_escape_of_proper_subset`: prescribing one
+selected class at every subset center and negating the conclusion would
+produce a faithful pattern whose chosen rows all stay inside the subset. -/
+theorem exists_center_all_selectedFourClass_escape_of_proper_subset
+    {D : CounterexampleData} (hmin : D.Minimal) {B : Finset ℝ²}
+    (hBne : B.Nonempty) (hBA : B ⊆ D.A) (hBproper : B ≠ D.A) :
+    ∃ center : ℝ², ∃ _hcenter : center ∈ B,
+      ∀ K : SelectedFourClass D.A center,
+        ∃ z : ℝ², z ∈ K.support ∧ z ∉ B := by
+  classical
+  by_contra hnoCenter
+  let K : ∀ center : ℝ², center ∈ B → SelectedFourClass D.A center :=
+    fun center hcenter =>
+      Classical.choose <|
+        Classical.not_forall.mp fun hAllRows =>
+          hnoCenter ⟨center, hcenter, hAllRows⟩
+  rcases
+      exists_faithfulCarrierPattern_with_classes_on D.K4 hBA hBne K with
+    ⟨P, hP⟩
+  rcases
+      P.exists_row_escape_of_proper_subset hmin hBne hBA hBproper with
+    ⟨center, hcenter, z, hzSupport, hzOutside⟩
+  have hChosenRowDoesNotEscape :
+      ¬ ∃ z : ℝ², z ∈ (K center hcenter).support ∧ z ∉ B :=
+    Classical.choose_spec <|
+      Classical.not_forall.mp fun hAllRows =>
+        hnoCenter ⟨center, hcenter, hAllRows⟩
+  apply hChosenRowDoesNotEscape
+  refine ⟨z, ?_, hzOutside⟩
+  simpa only [hP center hcenter] using hzSupport
+
+/-- Full physical-shell form of the preceding pinned-center theorem.  At one
+center of every nonempty proper carrier subset, each positive-radius class
+contains at most three points of that subset. -/
+theorem exists_center_selectedClass_inter_card_le_three_of_proper_subset
+    {D : CounterexampleData} (hmin : D.Minimal) {B : Finset ℝ²}
+    (hBne : B.Nonempty) (hBA : B ⊆ D.A) (hBproper : B ≠ D.A) :
+    ∃ center : ℝ², ∃ _hcenter : center ∈ B,
+      ∀ radius : ℝ, 0 < radius →
+        ((SelectedClass D.A center radius) ∩ B).card ≤ 3 := by
+  classical
+  rcases
+      exists_center_all_selectedFourClass_escape_of_proper_subset
+        hmin hBne hBA hBproper with
+    ⟨center, hcenter, hEveryRowEscapes⟩
+  refine ⟨center, hcenter, ?_⟩
+  intro radius hradius
+  by_contra hnotLe
+  have hfour : 4 ≤ ((SelectedClass D.A center radius) ∩ B).card := by
+    omega
+  obtain ⟨support, hsupportSubset, hsupportCard⟩ :=
+    Finset.exists_subset_card_eq hfour
+  let K : SelectedFourClass D.A center :=
+    { support := support
+      support_subset_A := by
+        intro z hz
+        exact
+          (mem_selectedClass.mp
+            (Finset.mem_inter.mp (hsupportSubset hz)).1).1
+      support_card := hsupportCard
+      radius := radius
+      radius_pos := hradius
+      support_eq_radius := by
+        intro z hz
+        exact
+          (mem_selectedClass.mp
+            (Finset.mem_inter.mp (hsupportSubset hz)).1).2
+      center_not_mem := by
+        intro hcenterSupport
+        have hdist : dist center center = radius :=
+          (mem_selectedClass.mp
+            (Finset.mem_inter.mp (hsupportSubset hcenterSupport)).1).2
+        have hzero : (0 : ℝ) = radius := by
+          simpa using hdist
+        linarith }
+  rcases hEveryRowEscapes K with ⟨z, hzSupport, hzOutside⟩
+  exact hzOutside (Finset.mem_inter.mp (hsupportSubset hzSupport)).2
 
 /-- Preserve both a prescribed exact selected class and a distinct named
 critical shell in one faithful carrier pattern. -/

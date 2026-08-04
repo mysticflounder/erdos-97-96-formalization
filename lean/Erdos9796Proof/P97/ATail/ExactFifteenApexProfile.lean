@@ -306,6 +306,172 @@ theorem selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six
     apply Finset.eq_of_subset_of_card_le hsub
     rw [hcards.2, K.support_card]
 
+/-- In a six-point `D44` cap, two apex rows omitting points from opposite
+interior slices have forced radii.  More precisely, if `C,M` are the two
+known points of the first rich slice and `K` is a third interior point, then
+`K` lies in the second rich class.  A row omitting `M` must be the second
+class, while a row omitting `K` must be the first class.
+
+This is the finite-exhaustion producer used by the exact-fifteen endpoint
+lane.  It only concerns full selected classes and selected four-point rows;
+it does not identify an arbitrary chosen four-subset with a full class. -/
+theorem twoRichClass_deletedRows_forced_assignment_of_cap_card_eq_six
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3)
+    {r₁ r₂ : ℝ}
+    (hr₁ : 0 < r₁) (hr₂ : 0 < r₂) (hne : r₁ ≠ r₂)
+    (hfour₁ : 4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r₁).card)
+    (hfour₂ : 4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r₂).card)
+    (hcap : (S.capByIndex i).card = 6)
+    (deletedAtM deletedAtK :
+      SelectedFourClass A (S.oppositeVertexByIndex i))
+    (C M K : ℝ²)
+    (hCclass : C ∈ SelectedClass A (S.oppositeVertexByIndex i) r₁)
+    (hMclass : M ∈ SelectedClass A (S.oppositeVertexByIndex i) r₁)
+    (hCinterior : C ∈ S.capInteriorByIndex i)
+    (hMinterior : M ∈ S.capInteriorByIndex i)
+    (hKinterior : K ∈ S.capInteriorByIndex i)
+    (hCM : C ≠ M) (hKC : K ≠ C) (hKM : K ≠ M)
+    (hMdeleted : M ∉ deletedAtM.support)
+    (hKdeleted : K ∉ deletedAtK.support) :
+    K ∈ SelectedClass A (S.oppositeVertexByIndex i) r₂ ∧
+      deletedAtM.support =
+        SelectedClass A (S.oppositeVertexByIndex i) r₂ ∧
+      deletedAtK.support =
+        SelectedClass A (S.oppositeVertexByIndex i) r₁ := by
+  classical
+  let I := S.capInteriorByIndex i
+  let I₁ := SelectedClass A (S.oppositeVertexByIndex i) r₁ ∩ I
+  let I₂ := SelectedClass A (S.oppositeVertexByIndex i) r₂ ∩ I
+  have hinterior : I.card = 4 := by
+    have hadd := capInteriorByIndex_card_add_two S i
+    dsimp [I]
+    omega
+  have hpartition :
+      I₁.card = 2 ∧ I₂.card = 2 ∧ Disjoint I₁ I₂ ∧ I = I₁ ∪ I₂ := by
+    simpa [I, I₁, I₂] using
+      twoRichClassSlices_partition_of_capInterior_card_eq_four
+        S hconv i hr₁ hr₂ hne hfour₁ hfour₂ hinterior
+  have hC_I₁ : C ∈ I₁ :=
+    Finset.mem_inter.mpr ⟨hCclass, hCinterior⟩
+  have hM_I₁ : M ∈ I₁ :=
+    Finset.mem_inter.mpr ⟨hMclass, hMinterior⟩
+  have hpairSub : ({C, M} : Finset ℝ²) ⊆ I₁ := by
+    intro x hx
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl
+    · exact hC_I₁
+    · exact hM_I₁
+  have hI₁eq : I₁ = ({C, M} : Finset ℝ²) := by
+    exact (Finset.eq_of_subset_of_card_le hpairSub (by
+      simpa [hCM] using hpartition.1.le)).symm
+  have hKnotI₁ : K ∉ I₁ := by
+    rw [hI₁eq]
+    simp [hKC, hKM]
+  have hK_I₂ : K ∈ I₂ := by
+    have hKunion : K ∈ I₁ ∪ I₂ := by
+      rw [← hpartition.2.2.2]
+      exact hKinterior
+    rcases Finset.mem_union.mp hKunion with hK_I₁ | hK_I₂
+    · exact (hKnotI₁ hK_I₁).elim
+    · exact hK_I₂
+  have hKclass :
+      K ∈ SelectedClass A (S.oppositeVertexByIndex i) r₂ :=
+    (Finset.mem_inter.mp hK_I₂).1
+  have hMrow :
+      deletedAtM.support =
+        SelectedClass A (S.oppositeVertexByIndex i) r₂ := by
+    rcases selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six
+        S hconv i deletedAtM hr₁ hr₂ hne hfour₁ hfour₂ hcap with hrow | hrow
+    · exact (hMdeleted (by simpa [hrow] using hMclass)).elim
+    · exact hrow
+  have hKrow :
+      deletedAtK.support =
+        SelectedClass A (S.oppositeVertexByIndex i) r₁ := by
+    rcases selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six
+        S hconv i deletedAtK hr₁ hr₂ hne hfour₁ hfour₂ hcap with hrow | hrow
+    · exact hrow
+    · exact (hKdeleted (by simpa [hrow] using hKclass)).elim
+  exact ⟨hKclass, hMrow, hKrow⟩
+
+/-- Center-transport form of
+`twoRichClass_deletedRows_forced_assignment_of_cap_card_eq_six`.  Endpoint
+packets name the same Moser apex through `oppApex1`, while cap-profile lemmas
+name it through `oppositeVertexByIndex`; this adapter keeps that equality
+explicit and avoids dependent transport at every consumer. -/
+theorem twoRichClass_deletedRows_forced_assignment_of_center_eq_opposite
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3) {center : ℝ²}
+    (hcenter : center = S.oppositeVertexByIndex i)
+    {r₁ r₂ : ℝ}
+    (hr₁ : 0 < r₁) (hr₂ : 0 < r₂) (hne : r₁ ≠ r₂)
+    (hfour₁ : 4 ≤ (SelectedClass A center r₁).card)
+    (hfour₂ : 4 ≤ (SelectedClass A center r₂).card)
+    (hcap : (S.capByIndex i).card = 6)
+    (deletedAtM deletedAtK : SelectedFourClass A center)
+    (C M K : ℝ²)
+    (hCclass : C ∈ SelectedClass A center r₁)
+    (hMclass : M ∈ SelectedClass A center r₁)
+    (hCinterior : C ∈ S.capInteriorByIndex i)
+    (hMinterior : M ∈ S.capInteriorByIndex i)
+    (hKinterior : K ∈ S.capInteriorByIndex i)
+    (hCM : C ≠ M) (hKC : K ≠ C) (hKM : K ≠ M)
+    (hMdeleted : M ∉ deletedAtM.support)
+    (hKdeleted : K ∉ deletedAtK.support) :
+    K ∈ SelectedClass A center r₂ ∧
+      deletedAtM.support = SelectedClass A center r₂ ∧
+      deletedAtK.support = SelectedClass A center r₁ := by
+  subst center
+  exact twoRichClass_deletedRows_forced_assignment_of_cap_card_eq_six
+    S hconv i hr₁ hr₂ hne hfour₁ hfour₂ hcap
+    deletedAtM deletedAtK C M K hCclass hMclass hCinterior hMinterior
+    hKinterior hCM hKC hKM hMdeleted hKdeleted
+
+/-- Consumer-facing form of
+`twoRichClass_deletedRows_forced_assignment_of_cap_card_eq_six`: if a named
+selected row already has the first rich radius, then the row omitting `K` is
+exactly that retained row. -/
+theorem twoRichClass_deletedRows_eq_retainedRow_of_cap_card_eq_six
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3)
+    {r₁ r₂ : ℝ}
+    (hr₁ : 0 < r₁) (hr₂ : 0 < r₂) (hne : r₁ ≠ r₂)
+    (hfour₁ : 4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r₁).card)
+    (hfour₂ : 4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) r₂).card)
+    (hcap : (S.capByIndex i).card = 6)
+    (retainedRow deletedAtM deletedAtK :
+      SelectedFourClass A (S.oppositeVertexByIndex i))
+    (hretainedRadius : retainedRow.radius = r₁)
+    (C M K : ℝ²)
+    (hCclass : C ∈ SelectedClass A (S.oppositeVertexByIndex i) r₁)
+    (hMclass : M ∈ SelectedClass A (S.oppositeVertexByIndex i) r₁)
+    (hCinterior : C ∈ S.capInteriorByIndex i)
+    (hMinterior : M ∈ S.capInteriorByIndex i)
+    (hKinterior : K ∈ S.capInteriorByIndex i)
+    (hCM : C ≠ M) (hKC : K ≠ C) (hKM : K ≠ M)
+    (hMdeleted : M ∉ deletedAtM.support)
+    (hKdeleted : K ∉ deletedAtK.support) :
+    K ∈ SelectedClass A (S.oppositeVertexByIndex i) r₂ ∧
+      deletedAtM.support =
+        SelectedClass A (S.oppositeVertexByIndex i) r₂ ∧
+      deletedAtK.support = retainedRow.support := by
+  have hbase :=
+    twoRichClass_deletedRows_forced_assignment_of_cap_card_eq_six
+      S hconv i hr₁ hr₂ hne hfour₁ hfour₂ hcap
+      deletedAtM deletedAtK C M K hCclass hMclass hCinterior hMinterior
+      hKinterior hCM hKC hKM hMdeleted hKdeleted
+  have hcards := twoRichClasses_card_eq_four_of_cap_card_eq_six
+    S hconv i hr₁ hr₂ hne hfour₁ hfour₂ hcap
+  have hretainedSub : retainedRow.support ⊆
+      SelectedClass A (S.oppositeVertexByIndex i) r₁ := by
+    simpa [hretainedRadius] using
+      selectedFourClass_support_subset_selectedClass retainedRow
+  have hretainedEq : retainedRow.support =
+      SelectedClass A (S.oppositeVertexByIndex i) r₁ := by
+    apply Finset.eq_of_subset_of_card_le hretainedSub
+    rw [hcards.1, retainedRow.support_card]
+  exact ⟨hbase.1, hbase.2.1, hbase.2.2.trans hretainedEq.symm⟩
+
 /-- Complete exact-fifteen classification of an arbitrary selected four-class
 at a rich Moser apex.  This is the direct theorem-bank interface for the finite
 encoder: the `S6` branch has one exact six-class containing the row, while the

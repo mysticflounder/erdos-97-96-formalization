@@ -9,11 +9,13 @@ import Erdos9796Proof.P97.U1CarrierInjection
 /-!
 # Mutual shell pair with a shared member excludes the source from a third class
 
-Status: `COMPAT-ONLY/BANK`. The module is source-proved and builds, but it has
-no import consumer anywhere in the tree and is not on either current publish
-spine, so `lake build` does not reach it from the library roots. It remains a
-reusable bank; it receives no live-frontier closure credit unless a consumer is
-promoted through the standard preflight.
+Status: `COMPAT-ONLY/BANK`. The module is source-proved and builds, but the
+positive producer below has no live consumer and is not on either current
+publish spine, so `lake build` does not reach it from the library roots. The
+module is imported by the exact-fifteen S-profile bank for its older negative
+terminal; the new producer remains a reusable bank and receives no
+live-frontier closure credit unless a consumer is promoted through the
+standard preflight.
 
 Lean terminals for the exact-seven L2u equality-layer laws (REPORT Finding 13
 in `scratch/atail-force/exact7-role-coverage-gate`): when the critical shell
@@ -147,5 +149,30 @@ theorem false_of_mutualClassPair_sharedMember_thirdClassExcludes
       _ = dist M C := dist_comm C M
       _ = rM := (mem_selectedClass.mp hCM).2
   exact hP2 (mem_selectedClass.mpr ⟨(mem_selectedClass.mp hPC).1, hMPd⟩)
+
+/-- The positive form of the mutual-class equality chain.
+
+Five directed `SelectedClass` memberships force the sixth one by distance
+symmetry.  This is the kernel producer for the six-literal nonapex full-shell
+transitivity cut used by the retained-omission CEGAR slice; unlike the
+exclusion terminal above, it exposes the implied membership directly. -/
+theorem mem_selectedClass_of_mutualClassPair_sharedMember
+    {A : Finset ℝ²} {P C M : ℝ²} {rP rC rM : ℝ}
+    (hCP : C ∈ SelectedClass A P rP)
+    (hMP : M ∈ SelectedClass A P rP)
+    (hPC : P ∈ SelectedClass A C rC)
+    (hMC : M ∈ SelectedClass A C rC)
+    (hCM : C ∈ SelectedClass A M rM) :
+    P ∈ SelectedClass A M rM := by
+  have hMPd : dist M P = rM := by
+    calc dist M P = dist P M := dist_comm M P
+      _ = rP := (mem_selectedClass.mp hMP).2
+      _ = dist P C := ((mem_selectedClass.mp hCP).2).symm
+      _ = dist C P := dist_comm P C
+      _ = rC := (mem_selectedClass.mp hPC).2
+      _ = dist C M := ((mem_selectedClass.mp hMC).2).symm
+      _ = dist M C := dist_comm C M
+      _ = rM := (mem_selectedClass.mp hCM).2
+  exact mem_selectedClass.mpr ⟨(mem_selectedClass.mp hPC).1, hMPd⟩
 
 end Problem97

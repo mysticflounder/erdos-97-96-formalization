@@ -1,0 +1,3 @@
+import Erdos9796Proof.P97.ATail.MutualShellPairSharedMember
+
+#print axioms Problem97.mem_selectedClass_of_mutualClassPair_sharedMember
