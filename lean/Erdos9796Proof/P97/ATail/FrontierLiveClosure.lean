@@ -18612,8 +18612,8 @@ private theorem firstApex_minimalDeletionCore_of_crossRetainedEndpoints
       rw [herase, Finset.sdiff_singleton_eq_erase]
       exact hrobust.survives x hxA
 
-include hρne hfrontierInteriorEq hρInteriorEq T
-  hfrontierFour hρfour in
+omit hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
 /-- Retained radii produce a concrete first-apex minimal-deletion core.
 
 This is the retained-branch ingress for the FreshThird producer.  It keeps
@@ -18674,7 +18674,8 @@ abbrev FreshThirdRetainedDeletionCorePacket
       (ATAILStageOneMinimalDeletionCore.MinimalDeletionCore
         D.A {x, y} S.oppApex1)
 
-include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T in
+omit hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
 /- A single source-level producer for the two possible aligned-radii
    outcomes.  The parent can now consume this dichotomy directly; no fixed-n
    census or theorem-bank lookup is involved. -/
