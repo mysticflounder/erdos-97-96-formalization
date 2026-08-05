@@ -324,3 +324,19 @@ docs/live-blueprint.md.tmp
 # Regenerate by re-running the driver from its own directory.
 /*.singexpr
 /scratch-*.log
+
+# 2026-08-04 scratch curation round 2. Confirmed zero tracked precedent for
+# these shapes anywhere in repo history (unlike most scratch/ content, which
+# is intentionally kept as a permanent research trail) -- see
+# docs/live-blueprint.md history and git log for the "curate scratch
+# artifacts" convention this follows.
+/scratch/**/*.err
+/lean/scratch/**/*.err
+/scratch/**/*.tmp
+/scratch/p97-distinct-distance-lane/*.stdout.json
+
+# Stray .singexpr drops swept into a holding dir when a Singular driver was
+# run from the repo root by accident (see the /*.singexpr rule above for the
+# root cause). Differs from the canonical certificate under the same driver
+# directory -- not a duplicate, just an accidental/unreliable capture.
+/scratch/**/root-cwd-strays-*/
