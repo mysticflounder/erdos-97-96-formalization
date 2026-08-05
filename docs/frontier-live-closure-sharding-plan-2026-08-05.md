@@ -159,7 +159,7 @@ variable ... (the block at current line 11155, verbatim)
 ```
 
 Shard 1's import block is the current file's full external import list
-(everything the file imports today). Shards 2–17 import only their
+(everything the file imports today). Shards 2–15 import only their
 predecessor — the chain makes all earlier material and all external
 imports transitively available, and keeps the import graph trivially
 acyclic. Unused-`open` noise is harmless; a later cleanup pass may trim
@@ -180,13 +180,32 @@ stay with the declarations they precede.
    shard bodies against the original is reviewable.
 2. **Script, not hand-editing.** A one-shot script
    (`scripts/shard_frontier_live_closure.py`) reads the anchor table,
-   locates each anchor by declaration name (including its attached
-   docstring/attribute/`set_option ... in` prefix lines), and writes the 15
-   shard files plus the umbrella. Cutting by name makes the script robust
-   to line drift from the parallel agent's edits. The `variable` block for
-   shards 8–14 must be re-extracted from the execution head, not from this
-   plan: it is itself under active revision (#3029 removed 12 unused
-   ambient parameters from it during the RFC window).
+   locates each anchor by declaration name, and writes the 15 shard files
+   plus the umbrella. Cutting by name makes the script robust to line
+   drift from the parallel agent's edits. The `variable` block for shards
+   8–14 must be re-extracted from the execution head, not from this plan:
+   it is itself under active revision (#3029 removed 12 unused ambient
+   parameters from it during the RFC window).
+   - **Prefix inseparability (#3035).** Every declaration prefix travels
+     with its declaration: the docstring block, `@[...]` attribute lines,
+     and every `... in`-suffixed modifier command (`set_option ... in`,
+     `omit ... in`, `include ... in`, `open ... in`), including stacked
+     chains of them, plus any immediately attached `/-!` commentary block.
+     The cut point is the first line of the whole prefix group, never the
+     declaration keyword line.
+   - **Persistent `include`/`omit` state.** The TwoSource section contains
+     117 *standalone* `include`/`omit` commands (no `in` suffix, first at
+     current line 11216) whose effect persists across declarations. The
+     script folds them linearly and computes the active include-set at
+     every anchor. Cuts at neutral state need nothing; cuts at non-neutral
+     state get a single machine-generated
+     `include <active vars> -- [shard-prologue-state]` line after the
+     `variable` block, reproducing elaboration state exactly (set
+     semantics: the body's own subsequent commands then fold identically).
+     As of 2026-08-05: shards 9–12 cut at neutral state; shard 13's anchor
+     carries `{T, hρne, hfrontierInteriorEq, hρInteriorEq}` and shard 14's
+     carries `{T}`. Recompute at the execution head; the script must
+     refuse to run if its fold model hits anything it cannot classify.
 3. **Private-decl gate.** Before writing anything, the script asserts, for
    each `private` declaration, that every occurrence of its name is inside
    the same shard span. On violation it aborts and reports the pair; the
@@ -194,18 +213,23 @@ stay with the declarations they precede.
    violation recorded in the commit message (fallback; none expected from
    the current inventory).
 4. **Reassembly identity check.** The script also emits
-   `cat`-concatenation of the shard *bodies* (prologues/epilogues stripped)
-   and diffs it against the original file body — must be byte-identical.
+   `cat`-concatenation of the shard *bodies* (prologues/epilogues and any
+   `-- [shard-prologue-state]`-marked injected lines stripped) and diffs it
+   against the original file body — must be byte-identical.
 
 ## Verification gates (all must pass before commit)
 
 1. `lake build Erdos9796Proof` green from the umbrella.
 2. `sorry` inventory identical: same count, same enclosing declaration
    names as the pre-split head (compare `grep -n "sorry"` decl mapping).
-3. `proof-blueprint spine` output identical pre/post.
+3. `proof-blueprint spine` output identical pre/post after normalization:
+   strip file paths and line numbers before diffing (#3035) — the split
+   changes locations by design; the compared inventory is statement names,
+   sorry names, and their spine relationships.
 4. `#print axioms` on the two terminal consumers
    (`false_of_criticalPairFrontier`,
-   `false_of_twoLargeCaps_commonCriticalMap`) identical pre/post.
+   `false_of_twoLargeCaps_commonCriticalMap`) identical pre/post (axiom
+   sets carry no file locations; raw diff is fine).
 5. Spot-compile two scratch probes that import the umbrella (e.g.
    `scratch/check_axioms_current.lean`, one `freshthird` probe) to confirm
    downstream imports resolve with zero edits.
@@ -215,7 +239,7 @@ stay with the declarations they precede.
 
 ## Rebuild cost (one-time)
 
-The split itself forces one re-elaboration of the file's content (as 17
+The split itself forces one re-elaboration of the file's content (as 15
 modules, parallelizable) plus the 3 production importers — bounded and
 local. It does **not** invalidate package oleans outside this subtree
 (lakefile untouched), does not re-mine any certificate bank, and does not
@@ -264,3 +288,10 @@ direction.
 - 2026-08-05: update pass after feedback — merged to 15 shards per #3031,
   added execution-head re-extraction note per #3029, recorded active-claim
   snapshot. Not executed; execution still gated on a clean sync point.
+- 2026-08-05 (execution Phase 0, convo #3040): incorporated #3035 —
+  prefix inseparability extended to all `... in` modifier chains,
+  persistent `include`/`omit` state fold added (117 standalone commands;
+  anchor states computed, shards 13–14 need state-replication prologues),
+  spine comparison normalized, stray 17-shard references fixed. Working
+  tree drifted to 21,801 lines; Phase 2 remains gated on the ~4.4k
+  uncommitted working-tree lines being committed by their owner.
