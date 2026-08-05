@@ -5,16 +5,49 @@ Authors: Adam McKenna
 -/
 import Erdos9796Proof.Geometry.FivePointCircleIsosceles
 
+/-!
+# Shortest-side bi-equidistance obstruction (normalized coordinates)
+
+This file contains the algebraic kernel of the shortest-side argument, stated
+entirely in normalized coordinates: the shortest side of the triangle lies on
+the x-axis with endpoints `(-a, 0)` and `(a, 0)`, the circumcircle has centre
+`(0, h)` and radius `R`, and the third vertex is `(p, q)` with `q > 0`.  The
+hypotheses `hshort₁`/`hshort₂` state that the base `2a` is (weakly) the
+shortest side, and `hc` places `(p, q)` on the circumcircle.
+
+The main chain is:
+
+* `shortestSide_normalized_bounds` — the two driving estimates
+  `a * (a + |p|) ≤ h * q` and `R - h < q`;
+* `shortestSide_outside_triangle_abs_bound` — the horizontal cross-section
+  of the triangle at height `t`, as an absolute-value bound;
+* `shortestSide_normalized_disk_obstruction` — a point of the closed disk at
+  positive height cannot lie strictly outside that cross-section;
+* `shortestSide_equal_endpoint_distances_reflection` — bi-equidistance from
+  the base endpoints forces a reflection pair across the base;
+* `shortestSide_normalized_triangle_disk_obstruction` — the combined
+  contradiction consumed by the geometric adapter.
+
+No lemma here claims the coordinate normalisation for an arbitrary geometric
+configuration; that adapter is developed separately.
+-/
+
 namespace Erdos9796Proof.Geometry
 
-/-
-  The first formal layer of the shortest-side argument is purely algebraic.
-  The coordinates are those obtained after putting the shortest side on the
-  x-axis, with endpoints `(-a, 0)` and `(a, 0)`, circle centre `(0, h)`, and
-  third boundary point `(p, q)`.  This lemma records the two estimates that
-  drive the rest of the argument; it does not yet claim the coordinate
-  normalisation for an arbitrary geometric configuration.
--/
+/-- First formal layer of the shortest-side argument, purely algebraic.
+
+In the normalized coordinates (shortest side on the x-axis with endpoints
+`(-a, 0)` and `(a, 0)`, circumcentre `(0, h)`, radius `R`, third vertex
+`(p, q)` on the circle), the shortest-side hypotheses yield the two
+estimates that drive the rest of the argument:
+
+* `a * (a + |p|) ≤ h * q`, the slope bound used to control the triangle's
+  cross-sections; and
+* `R - h < q`, the height estimate placing the third vertex strictly above
+  the top gap of the disk.
+
+This lemma does not claim the coordinate normalisation for an arbitrary
+geometric configuration. -/
 lemma shortestSide_normalized_bounds
     {R a h p q : ℝ}
     (ha : 0 < a)
@@ -63,13 +96,15 @@ lemma shortestSide_normalized_bounds
     exact (not_lt_of_ge hsum) hlt
   exact ⟨habs, hq⟩
 
-/-
-  This is the disk-versus-cross-section contradiction.  The hypothesis
-  `hout` is exactly the strict lower bound supplied by the fact that the
-  reflected point lies outside the triangle.  Keeping that geometric input
-  explicit makes the algebraic kernel reusable while the convex-hull adapter
-  is developed separately.
--/
+/-- The disk-versus-cross-section contradiction.
+
+A point `(ξ, t + h)` of the closed disk of radius `R` about `(0, h)` at
+positive height `t` above the base cannot satisfy the strict lower bound
+`|ξ| > a - ((a + |p|) / q) * t`.  The hypothesis `hout` is exactly the bound
+supplied by the fact that the reflected point lies outside the triangle
+(see `shortestSide_outside_triangle_abs_bound`).  Keeping that geometric
+input explicit makes the algebraic kernel reusable while the convex-hull
+adapter is developed separately. -/
 lemma shortestSide_normalized_disk_obstruction
     {R a h p q ξ t : ℝ}
     (ha : 0 < a)
@@ -151,12 +186,13 @@ lemma shortestSide_normalized_disk_obstruction
   have hxi_lt : ξ ^ 2 < (a - k * t) ^ 2 := lt_of_le_of_lt hxi_upper hgap
   exact (not_lt_of_ge hsquare'.le) hxi_lt
 
-/-
-  At height `t` the horizontal section of the triangle with vertices
-  `(-a, 0)`, `(a, 0)`, and `(p, q)` is the interval whose endpoints occur in
-  `hout`.  This lemma is the exact absolute-value estimate needed by the
-  disk obstruction above.
--/
+/-- Cross-section estimate: lying outside the triangle at height `t` gives
+the absolute-value bound `|ξ| > a - ((a + |p|) / q) * t`.
+
+At height `t` the horizontal section of the triangle with vertices
+`(-a, 0)`, `(a, 0)`, and `(p, q)` is the interval whose endpoints occur in
+`hout`.  This lemma is the exact absolute-value estimate consumed by
+`shortestSide_normalized_disk_obstruction`. -/
 lemma shortestSide_outside_triangle_abs_bound
     {a p q ξ t : ℝ}
     (hq : 0 < q)
@@ -213,12 +249,13 @@ lemma shortestSide_outside_triangle_abs_bound
         _ < ξ := hright
         _ ≤ |ξ| := le_abs_self ξ
 
-/-
-  Equal distances from two distinct points to both endpoints of the symmetric
-  base force the two points to be a reflection pair across that base.  This
-  is the coordinate form of the bi-equidistance restatement used by the
-  shortest-side proof.
--/
+/-- Bi-equidistance forces a reflection pair.
+
+If two distinct points `(x₁, y₁)` and `(x₂, y₂)` are equidistant from both
+endpoints `(-a, 0)` and `(a, 0)` of the symmetric base, then they are a
+reflection pair across that base: `x₁ = x₂`, `y₁ = -y₂`, and `y₁ ≠ 0`.
+This is the coordinate form of the bi-equidistance restatement used by the
+shortest-side proof. -/
 lemma shortestSide_equal_endpoint_distances_reflection
     {a x₁ y₁ x₂ y₂ : ℝ}
     (ha : 0 < a)
@@ -238,12 +275,16 @@ lemma shortestSide_equal_endpoint_distances_reflection
     apply hne
     exact ⟨hx, by linarith⟩
 
-/-
-  Combining the two preceding lemmas gives the complete shortest-side
-  contradiction once the geometric configuration has been normalised to
-  these coordinates.  In particular, the endpoint `t = q` is excluded by
-  the height estimate before the cross-section argument is used.
--/
+/-- The complete normalized shortest-side contradiction.
+
+Combines `shortestSide_outside_triangle_abs_bound` with
+`shortestSide_normalized_disk_obstruction`: a disk point at positive height
+`t` cannot lie strictly outside the triangle's horizontal cross-section at
+that height.  This is the form consumed once the geometric configuration
+has been normalised to these coordinates; in particular, the endpoint
+`t = q` is excluded by the height estimate `R - h < q` of
+`shortestSide_normalized_bounds` before the cross-section argument is
+used. -/
 lemma shortestSide_normalized_triangle_disk_obstruction
     {R a h p q ξ t : ℝ}
     (ha : 0 < a)
