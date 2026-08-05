@@ -1,5 +1,12 @@
 # R-branch fixed-row descent producer audit
 
+> **Update 2026-08-04:** the "B0 versus ambient limitation" below is now
+> kernel-checked in `../capture-insufficiency/` (matrix row
+> ATAIL-R-CAPTURE-INSUFFICIENCY): the capture packet is not producible from
+> the incidence facts reachable at this frontier. Do not dispatch
+> incidence-only producers for `StrictSurplusRowCapturesErasedPair`; triage
+> candidate couplings against the countermodel first (see that REPORT).
+
 ## Outcome
 
 The simultaneous-double-survival arm of

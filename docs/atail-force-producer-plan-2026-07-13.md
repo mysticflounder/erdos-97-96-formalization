@@ -4982,6 +4982,23 @@ asking the parent to produce the opposite equality is already asking it to
 prove `False`. A named candidate such as `q` does not change that polarity.
 The equality is therefore a consumer input, not an accepted mining object.
 
+The insufficiency is now kernel-checked rather than prose (2026-08-04,
+`scratch/atail-force/capture-insufficiency/`, matrix row
+ATAIL-R-CAPTURE-INSUFFICIENCY). A 39-field abstract signature enumerates the
+incidence facts reachable at the double-survival normal-form frontier
+(`CaptureIncidenceInterface.lean`); a `Fin 17` countermodel proves every
+field by kernel `decide` (`CaptureIncidenceCountermodel.lean`), so the facts
+are consistent and `StrictSurplusRowCapturesErasedPair` is not producible
+from them; an `(ℝ², ℝ)` realization proves each field from its named real
+source (`CaptureIncidenceRealization.lean`), so the signature over-claims
+nothing. Incidence-only lemma-mining or bank-search passes at the current
+normal-form interface are therefore not admissible dispatches. An R closer
+must import a coupling outside the signature — MEC/convex order, cap-triple
+partition structure beyond the listed membership facts, an `oppApex2`-side
+one-hit analogue, or shell label/provenance data — and each candidate is
+first falsified in solver time by adding it as a constraint in
+`search_model.py` and checking whether the countermodel survives.
+
 `r-complement-blocker-map/RobustPairBlockerNormalForm.lean` sharpens the
 remaining complement without closing it. For the two directed cross-deletion
 survival predicates, the actual blockers coincide exactly when neither

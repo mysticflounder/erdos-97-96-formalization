@@ -7514,6 +7514,20 @@ proves that every strict-surplus point avoids every retained off-surplus
 first-apex pair. Asking the parent to produce the opposite equality is
 therefore equivalent to asking it to prove `False`, not an adjudicated local
 mining target. Naming `q` as the center does not change that polarity.
+
+That insufficiency is itself kernel-checked (2026-08-04,
+`scratch/atail-force/capture-insufficiency/`). A 39-field abstract signature
+enumerates the incidence facts reachable at the double-survival normal-form
+frontier; a 17-point finite model satisfies every field by kernel `decide`,
+so the enumerated facts are consistent and
+`StrictSurplusRowCapturesErasedPair` is not producible from them. An
+`(ℝ², ℝ)` realization proves each abstract field from its named real source,
+so the signature over-claims nothing. An R closer must import a coupling
+outside the signature — MEC/convex order, cap-triple partition structure
+beyond the listed membership facts, an `oppApex2`-side one-hit analogue, or
+shell label/provenance data. Candidate couplings are triaged in solver time
+by adding them as constraints in `search_model.py` and checking whether the
+finite model survives, before any Lean dispatch is written.
 Focused source
 validation also repaired the stale
 `DoubleSecondApexFrontier.toCriticalPairFrontier` constructor by copying the
