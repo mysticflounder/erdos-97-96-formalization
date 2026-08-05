@@ -1,0 +1,7 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure
+open scoped EuclideanGeometry
+open Problem97
+#check Problem97.ATailFrontierLiveClosure.exists_globalK4Row_and_sourceFaithfulCriticalCover
+#check Problem97.ATailFrontierLiveClosure.SelectedFourClass.inter_card_le_two
+#check Problem97.ATailFrontierLiveClosure.CriticalFourShell.toSelectedFourClass
+#check Problem97.ATailFrontierLiveClosure.endpointFresh_exists_criticalRow_escape_or_fullyDeletionRobust_twoShellSeed

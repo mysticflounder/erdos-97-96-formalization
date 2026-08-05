@@ -1,0 +1,35 @@
+{
+  "boolean_excluded_total": 18357,
+  "boolean_included_total": 9094,
+  "case_id": "fresh_DDD_k0_d2_f1",
+  "d44_cut_count": 46,
+  "elapsed_seconds": 6.316371707944199,
+  "epistemic_status": "diagnostic only; v39 forces a hypothetical producer and this exact-15 slice is not a universal closure",
+  "full_assertion_count": 27451,
+  "full_reason_unknown": "canceled",
+  "full_status": "unknown",
+  "model": {
+    "frontier": [
+      0,
+      2,
+      10,
+      14
+    ],
+    "other": [
+      1,
+      3,
+      5,
+      8
+    ],
+    "qrow": [
+      0,
+      2,
+      10,
+      14
+    ]
+  },
+  "reason_unknown": null,
+  "schema_version": 40,
+  "status": "sat",
+  "timeout_ms": 30000
+}

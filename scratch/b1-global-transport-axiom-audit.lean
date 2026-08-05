@@ -1,0 +1,6 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1Live
+
+open Problem97
+open Problem97.ATailFrontierLiveClosure
+
+#print axioms Problem97.ATailFrontierLiveClosure.false_of_b1_global_gap_or_closed_terminal

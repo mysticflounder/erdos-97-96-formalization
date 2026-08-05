@@ -1,0 +1,17 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure
+
+open scoped EuclideanGeometry
+namespace Problem97
+namespace ATailFrontierLiveClosure
+
+#check false_of_criticalShell_center_in_cap_of_two_hits_in_distinct_cap
+#check endpointFresh_exists_seedCenter_all_selectedRows_escape_twoShellSeed_of_sharedBlocker
+#check endpointFresh_exists_seedCenter_ne_firstApex_ne_sharedBlocker_selectedClass_seed_card_le_three
+#check endpointFresh_sharedBlocker_pair_alternates
+#check EndpointFreshFirstApexRowSource
+#check SurplusCapPacket.leftAdjacentCapByIndex
+#check SelectedFourClass
+#check CriticalShellSystem.centerAt
+
+end ATailFrontierLiveClosure
+end Problem97

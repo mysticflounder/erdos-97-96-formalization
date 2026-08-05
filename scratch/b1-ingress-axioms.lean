@@ -1,0 +1,7 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure
+
+#print axioms
+  Problem97.ATailFrontierLiveClosure.exists_exactFourMutualOmissionSourceContext_of_fivePointInteriorSource
+
+#print axioms
+  Problem97.ATailFrontierLiveClosure.b1_live_both_interior_outside_or_firstApexClass_split

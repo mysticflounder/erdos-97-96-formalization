@@ -1,0 +1,21 @@
+{
+  "schema": "p97-phase3-ingress-contract-v1",
+  "evidence_classification": "LOCAL_CERTIFICATE",
+  "promotion_eligible": false,
+  "live_leaf": "NO_LEAN_LANDING:Phase3.projected_static_v3",
+  "ingress_hypotheses_sha256": null,
+  "finite_schema": "p97-phase3-structural-cegar-projected-static-v3",
+  "cardinality_scope": "n=10, k=4, profile=(4,4,5), exact source assignment only; no general-cardinality lift",
+  "source_theorem": null,
+  "producer_theorem": null,
+  "lift_theorem": null,
+  "consumer_theorem": null,
+  "missing_fields": [
+    "ingress_hypotheses_sha256",
+    "source_theorem",
+    "producer_theorem",
+    "lift_theorem",
+    "consumer_theorem"
+  ],
+  "missing_field_reason": "Authenticated bounded diagnostic only; the projected-static-v3 driver has no proved universal frontier ingress or general-cardinality lift for this record stream."
+}

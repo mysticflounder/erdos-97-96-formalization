@@ -1,0 +1,5 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure
+set_option pp.explicit true
+set_option pp.universes true
+set_option pp.all true
+#check Problem97.ATailFrontierLiveClosure.exists_globalK4Row_and_sourceFaithfulCriticalCover

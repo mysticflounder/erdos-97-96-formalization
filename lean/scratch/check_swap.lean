@@ -1,0 +1,7 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure
+open scoped BigOperators
+open Problem97
+open Problem97.ATailFrontierLiveClosure
+open Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal
+set_option pp.explicit true in
+#check @capSourceThirdCanonicalRowWitness_swap

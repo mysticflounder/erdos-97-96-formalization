@@ -355,3 +355,27 @@ docs/live-blueprint.md.tmp
 # worktree-hygiene-sweep push over this file. Regenerate from the pinned
 # Singular driver in the same scratch/ tree.
 /scratch/q1_radical_staged_exact.singexpr
+
+# 2026-08-05 scratch curation round 3. Confirmed by content review: these are
+# ephemeral session working notes -- grep/rg dumps, raw code/doc excerpts,
+# docs-search results, conversation-tail pastes, spine-sorry snapshots -- not
+# authored analysis. Audit/report .md files, probe .lean/.py scripts, and
+# curated ingress-report/ingress-contract JSON in the same directories stay
+# tracked (same split as the retained-omission-e1 rule above).
+/scratch/*.txt
+/scratch/audits/*.txt
+/scratch/codex-freshthird-producer-audit/
+/lean/scratch/*.txt
+/lean/scratch/*.out
+/scratch/recall.json
+/scratch/crossrow-*.json
+/scratch/freshthird-docs-search.json
+
+# Accidental nested lean/lean/ dir from a wrong-CWD lean invocation -- same
+# mistake class as the /*.singexpr root-cwd-strays rule above.
+/lean/lean/
+
+# p10a targeted solver run: manifests, cube batches, solver logs, survivors.
+# Heavy regenerable output; the driver and the curated ingress-report/contract
+# JSON at the scratch/ top level stay tracked.
+/scratch/p10a-targeted-run/

@@ -1,0 +1,75 @@
+{
+  "schema": "p97-b1-global-gap-contract-v1",
+  "status": "PARKED-SPEC",
+  "evidence_classification": "LOCAL_CERTIFICATE",
+  "promotion_eligible": false,
+  "live_leaf": "Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision",
+  "ingress_theorem": "Problem97.ATailFrontierLiveClosure.b1_live_normalForm",
+  "normal_form_theorem": "Problem97.ATailFrontierLiveClosure.b1_live_bisectorSet_eq_pair",
+  "transport_context_theorem": "Problem97.ATailFrontierLiveClosure.B1GlobalTransportContext",
+  "transport_terminal_definition": "Problem97.ATailFrontierLiveClosure.B1GlobalGapOrClosedTerminal",
+  "transport_consumer_theorem": "Problem97.ATailFrontierLiveClosure.false_of_b1_global_gap_or_closed_terminal",
+  "transport_contract_status": "PROVEN_CONSUMER_INFRASTRUCTURE__NON_PROMOTABLE",
+  "consumer_theorem": "Problem97.ATailFrontierLiveClosure.b1_live_false_of_third_bisector_carrier",
+  "partial_producer_theorem": "Problem97.ATailFrontierLiveClosure.b1_live_exists_third_interior_escape",
+  "partial_producer_status": "SOURCE_CLEAN_NARROWING__NOT_BISECTOR_PRODUCER",
+  "partial_consumer_theorem": "Problem97.ATailFrontierLiveClosure.b1_live_escape_small_overlap",
+  "conditional_terminal_theorem": "Problem97.ATailFrontierLiveClosure.b1_live_false_of_escape_overlap_ge_three",
+  "partial_consumer_status": "SOURCE_CLEAN_AT_MOST_TWO_PACKET__CONDITIONAL_TERMINAL",
+  "producer_theorem": null,
+  "lift_theorem": null,
+  "finite_schema": "p97-b-core-named-local.v2",
+  "cardinality_scope": "Universal live binders; the named-local CNF is diagnostic only and has no finite-carrier completeness claim.",
+  "producer_query": {
+    "fiber": "D.A.filter (fun p => dist p first.deleted.1 = dist p second.deleted.1)",
+    "required_fiber_cardinality": "3 <= fiber.card",
+    "saturated_local_fiber": "fiber = {common_actual_blocker, S.oppApex2}",
+    "required_new_point": "c in fiber and c != common_actual_blocker and c != S.oppApex2",
+    "known_lower_bound_not_sufficient": "3 <= (SelectedClass D.A S.oppApex2 rho intersect S.capInteriorByIndex S.oppIndex2).card"
+  },
+  "required_producer_outputs": [
+    {
+      "name": "third_bisector_carrier",
+      "statement": "c in D.A, c differs from the common actual blocker and S.oppApex2, and c is equidistant from the two deleted sources",
+      "consumer": "b1_live_false_of_third_bisector_carrier"
+    },
+    {
+      "name": "bisector_fiber_card_ge_three",
+      "statement": "the carrier fiber of the two deleted-source bisector has cardinality at least three",
+      "consumer": "b1_live_false_of_bisector_fiber_card_ge_three"
+    },
+    {
+      "name": "third_interior_escape",
+      "statement": "there is a strict second-cap interior point outside both deleted sources and the saturated common selected row; its deletion survives at the common blocker and its actual blocker differs from that blocker",
+      "consumer": "pending global B1 blocker-multiplicity or row-cap consumer",
+      "promotion_status": "source-clean partial producer; does not imply a third bisector point"
+    },
+    {
+      "name": "global_shell_cap_no_m44_obstruction",
+      "statement": "a source-level shell/cap/no-(m,4,4) theorem whose output is one of the two interfaces above",
+      "consumer": "requires a separately proved universal lift"
+    }
+  ],
+  "required_lift": {
+    "statement": "the producer output is derived from the full live B1 binders for every admissible carrier, not only from the named-local projection",
+    "theorem": null
+  },
+  "missing_fields": [
+    "producer_theorem",
+    "lift_theorem"
+  ],
+  "replay_artifacts": [
+    "out/manifest.json",
+    "out/smoke-manifest.json"
+  ],
+  "notes": [
+    "b1_live_normalForm supplies support equality, cross-membership, and the physical two-point intersection used by the local projection.",
+    "b1_live_exists_third_interior_escape is a source-clean narrowing theorem: its escaped point is not asserted to lie on the deleted-source bisector.",
+    "b1_live_escape_small_overlap is source-clean: it composes the escape with the selected-shell at-most-two theorem and records the escaped-shell intersection packet.",
+    "b1_live_false_of_escape_overlap_ge_three is conditional: it closes only under a separately proved universal lower bound of three for every admissible escaped point.",
+    "The latest source audit does not entail that lower bound; equal-center/same-support and distinct-center/at-most-two are the exhaustive source dichotomy.",
+    "The B1-direct-shadow SAT model is not a finite geometric model and cannot promote the live theorem.",
+    "The third-bisector smoke is a theorem-bank regression test, not a producer for the live B1 binders.",
+    "B1GlobalTransportContext packages the full live packet once; false_of_b1_global_gap_or_closed_terminal closes the third-carrier, fiber-card, and escaped-overlap arms. The source audit found no producer for that disjunction, so producer_theorem and lift_theorem remain null."
+  ]
+}

@@ -1,0 +1,10 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdResidual
+#check Finset.card_eq_two
+#check Finset.card_eq_three
+#check Finset.exists_mem_ne
+#check Finset.exists_ne_map_eq_of_card_lt
+#check Finset.card_erase_of_mem
+#check Finset.card_erase_add_one
+#check Finset.card_pos
+#check Finset.card_eq_zero
+#check Finset.card_le_card
