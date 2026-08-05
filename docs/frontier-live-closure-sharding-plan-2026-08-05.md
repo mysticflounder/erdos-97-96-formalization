@@ -194,24 +194,34 @@ stay with the declarations they precede.
      The cut point is the first line of the whole prefix group, never the
      declaration keyword line.
    - **Persistent `include`/`omit` state.** The TwoSource section contains
-     117 *standalone* `include`/`omit` commands (no `in` suffix, first at
-     current line 11216) whose effect persists across declarations. The
-     script folds them linearly and computes the active include-set at
-     every anchor. Cuts at neutral state need nothing; cuts at non-neutral
-     state get a single machine-generated
-     `include <active vars> -- [shard-prologue-state]` line after the
-     `variable` block, reproducing elaboration state exactly (set
-     semantics: the body's own subsequent commands then fold identically).
-     As of 2026-08-05: shards 9–12 cut at neutral state; shard 13's anchor
-     carries `{T, hρne, hfrontierInteriorEq, hρInteriorEq}` and shard 14's
-     carries `{T}`. Recompute at the execution head; the script must
-     refuse to run if its fold model hits anything it cannot classify.
+     `include`/`omit` commands both as one-shot `... in` declaration
+     prefixes and as persistent state changes; commands span multiple
+     lines (indented continuations), so classification must join a
+     command's continuation lines before testing for the trailing `in` —
+     a single-line parser misclassifies and corrupts the fold (this
+     invalidated the earlier "shard 13 carries {T,…}" note). At the
+     execution head (adcb9a4d) the corrected fold shows exactly **one**
+     persistent command: the 14-variable `include` at the top of the
+     section, active through its entire remainder. Every interior
+     TwoSource shard (9–14) therefore gets the same machine-generated
+     `include <the 14 vars> -- [shard-prologue-state]` line after the
+     `variable` block; the body's own one-shot prefixes then apply
+     unchanged. The script recomputes this at the head and refuses to run
+     on anything its parser cannot classify.
 3. **Private-decl gate.** Before writing anything, the script asserts, for
    each `private` declaration, that every occurrence of its name is inside
    the same shard span. On violation it aborts and reports the pair; the
    fix is moving the boundary (preferred) or de-privatizing with the
-   violation recorded in the commit message (fallback; none expected from
-   the current inventory).
+   violation recorded in the commit message (fallback). Outcome at the
+   execution head (adcb9a4d): 63 private declarations; 12 cross shard
+   boundaries. One is fixed by a boundary move — shard 7's anchor is now
+   `redesignateFirstOppCapAsSurplus` (two declarations earlier than the
+   draft anchor) so that private def stays with its users. The other 11
+   span too far for boundary moves (up to eight shards, e.g.
+   `exactFourMutualOmissionJointDeletion_exactFive_strongSplit` defined in
+   shard 1 and used in shard 6) and are de-privatized by the script; all
+   11 names verified globally unique in the package; the list lives in
+   `DEPRIVATIZE` in the script and in the split commit message.
 4. **Reassembly identity check.** The script also emits
    `cat`-concatenation of the shard *bodies* (prologues/epilogues and any
    `-- [shard-prologue-state]`-marked injected lines stripped) and diffs it
@@ -290,8 +300,15 @@ direction.
   snapshot. Not executed; execution still gated on a clean sync point.
 - 2026-08-05 (execution Phase 0, convo #3040): incorporated #3035 —
   prefix inseparability extended to all `... in` modifier chains,
-  persistent `include`/`omit` state fold added (117 standalone commands;
-  anchor states computed, shards 13–14 need state-replication prologues),
-  spine comparison normalized, stray 17-shard references fixed. Working
-  tree drifted to 21,801 lines; Phase 2 remains gated on the ~4.4k
-  uncommitted working-tree lines being committed by their owner.
+  persistent `include`/`omit` state fold added, spine comparison
+  normalized, stray 17-shard references fixed. Working tree drifted to
+  21,801 lines; Phase 2 gated on the working-tree delta being committed.
+- 2026-08-05 (execution Phase 1): sync point landed — Rank-Four
+  Cartographer checkpointed the integration delta as adcb9a4d (#3044) and
+  froze the file. `scripts/shard_frontier_live_closure.py` written and
+  validated in check mode plus a scratch trial emit against that head:
+  15 shards resolve (643–3,353 lines), multi-line modifier commands
+  handled (single persistent 14-variable `include` found — see mechanics),
+  shard 7 anchor moved for one private, 11 privates slated for recorded
+  de-privatization, `/-/`-typo comment block handled as a plain comment.
+  Real cut (Phase 2) next; gates (Phase 3) before any commit.
