@@ -317,3 +317,71 @@ direction.
   place. Deliberately uncommitted pending Phase 3 gates; baselines
   (sorry-by-declaration, endpoint axioms, spine snapshot) captured from
   the pre-split head. Phase 3 build in flight.
+- 2026-08-05 (execution Phase 3, first build): checkpoint adcb9a4d found
+  to be non-compiling — the earlier "baseline build green" record was
+  wrong (background-task wrapper reported exit 0 on a failed build, and
+  `lake env lean` probes had silently used the stale ab6f416e olean).
+  Three defects, all in the never-elaborated tail (old lines ≥ 17357):
+  1. parse error — leading bar in an rcases pattern
+     (`with |_hretainedPacket …`), old line 17372;
+  2. forward reference — `false_of_twoCapSources_freshThirdBlockerFiber`
+     called `freshThird_canonical_consumerPacket`, declared ~1,500 lines
+     later; full-file scan showed it was the only true forward
+     reference;
+  3. producer signatures — both FreshThird producers carried
+     `include <6 vars> in` prefixes, no-ops under the section's
+     persistent 14-variable include, so they elaborated with 8 extra
+     hypotheses their call sites never pass.
+  A fourth surfaced once the producers elaborated: in rcases
+  alternative position a singleton anonymous pattern binds the whole
+  hypothesis, so the coordinator's second branch received the
+  `Nonempty` wrapper instead of the surface witness (reproduced and the
+  fix verified against minimal test files).
+  Fixes (convo #3048): commit f3fa0c2d moves the four-theorem consumer
+  cluster plus its two private `_on_surface`/`_on_commonRadius_surface`
+  helpers to directly after the producer's proof and removes the stray
+  bar (pure 208-line block move, zero statement/proof edits); commit
+  f9550ea9 replaces the two `include` prefixes with the complementary
+  `omit <8 vars> in`, matching the 6-hypothesis signatures every caller
+  assumes; commit d68f1c9d doubles the rcases pattern
+  (`⟨Ccommon⟩` → `⟨⟨Ccommon⟩⟩`). Shards re-cut after each fix; shards
+  1–12 byte-stable across the re-cuts (shards 1–10 already built green
+  on the first attempt). Rank-Four Cartographer reviewed and approved
+  the relocation (#3050).
+- 2026-08-05 (execution Phase 3 complete): sharded chain builds green
+  (10,893 jobs) and full `lake build Erdos9796Proof` over it builds
+  green (11,992 jobs, 0 errors). Gates:
+  - (A) sorry inventory: 28 sorries, identical enclosing declarations.
+  - (B) endpoint `#print axioms`: identical sets for
+    `false_of_criticalPairFrontier` and
+    `false_of_twoLargeCaps_commonCriticalMap`
+    (core + `sorryAx` + `ofReduceBool`/`trustCompiler`).
+  - (C) normalized spine: 84 open nodes unchanged, anchors unchanged,
+    same 3 off-spine sorries (now attributed to shard paths). Residual
+    count diffs (+13 decls, one node 24→25 closed deps) are the
+    adcb9a4d checkpoint delta itself — the baseline spine had been
+    mined from the stale ab6f416e olean and never saw it.
+  - (D) scratch probes: `twosource_axioms.lean` and
+    `axiom-check-freshthird.lean` compile clean against the umbrella.
+    `check_axioms_current.lean` and
+    `search-double-deletion-axioms.lean` fail on wrong namespace
+    qualification that predates the freeze (verified their FQNs never
+    matched at adcb9a4d either).
+  - (E) certificate banks: all six `*_mining.json` still contain 0
+    `FrontierLiveClosure` references.
+- 2026-08-05 (execution Phase 4): shards + umbrella committed. The 11
+  de-privatized declarations (private in the monolith, users landed in
+  a different shard; all names verified globally unique):
+  `exactFourMutualOmissionJointDeletion_exactFive_strongSplit`,
+  `third_not_mem_of_card_le_two`,
+  `redesignateFirstOppCapAsSurplusAtAllLarge`,
+  `triApexAllLargeContext_index_cases`,
+  `endpointFreshTwoShellSeed`,
+  `exists_two_firstFiberCapSourceWitness_of_commonRadius`,
+  `false_of_twoCapSources_freshThirdBlockerFiber_core_commonRadius`,
+  `offCapPoint_blocker_ne_first_of_ne_outsidePair`,
+  `firstFiberCapSource_firstApexRadius_eq_singleton_of_aligned`,
+  `exists_crossRetainedEndpoints_sourceSurvives_doubleDeletion`,
+  `firstApex_minimalDeletionCore_of_crossRetainedEndpoints`.
+  The two `_on_surface`/`_on_commonRadius_surface` helpers remain
+  private (they moved with their only consumer in f3fa0c2d).
